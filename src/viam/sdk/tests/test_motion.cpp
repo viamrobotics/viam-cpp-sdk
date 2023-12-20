@@ -71,16 +71,15 @@ BOOST_AUTO_TEST_CASE(mock_move_on_map) {
 BOOST_AUTO_TEST_CASE(mock_move_on_globe) {
     std::shared_ptr<MockMotion> motion = MockMotion::get_mock_motion();
 
-    bool success = motion->move_on_globe(fake_geo_point(),
-                                         15,
-                                         fake_component_name(),
-                                         fake_movement_sensor_name(),
-                                         fake_obstacles(),
-                                         fake_motion_configuration(),
-                                         fake_map());
+    std::string execution_id = motion->move_on_globe(fake_geo_point(),
+                                                     15,
+                                                     fake_component_name(),
+                                                     fake_movement_sensor_name(),
+                                                     fake_obstacles(),
+                                                     fake_motion_configuration(),
+                                                     fake_map());
 
-    BOOST_TEST(success);
-
+    BOOST_CHECK_EQUAL(execution_id, "execution-id");
     BOOST_CHECK_EQUAL(motion->peek_destination, fake_geo_point());
     BOOST_CHECK_EQUAL(motion->peek_heading, 15);
     BOOST_CHECK_EQUAL(motion->peek_component_name, fake_component_name());
@@ -221,15 +220,15 @@ BOOST_AUTO_TEST_CASE(test_move_on_map) {
 
 BOOST_AUTO_TEST_CASE(test_move_on_globe) {
     server_to_mock_pipeline([](Motion& client, std::shared_ptr<MockMotion> mock) -> void {
-        bool success = client.move_on_globe(fake_geo_point(),
-                                            15,
-                                            fake_component_name(),
-                                            fake_movement_sensor_name(),
-                                            fake_obstacles(),
-                                            fake_motion_configuration(),
-                                            fake_map());
+        std::string execution_id = client.move_on_globe(fake_geo_point(),
+                                                        15,
+                                                        fake_component_name(),
+                                                        fake_movement_sensor_name(),
+                                                        fake_obstacles(),
+                                                        fake_motion_configuration(),
+                                                        fake_map());
 
-        BOOST_TEST(success);
+        BOOST_CHECK_EQUAL(execution_id, "execution-id");
     });
 }
 

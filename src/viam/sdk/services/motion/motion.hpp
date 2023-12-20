@@ -303,13 +303,13 @@ class Motion : public Service {
     /// @param movement_sensor_name The name of the movement sensor used to check robot location.
     /// @param obstacles Obstacles to be considered for motion planning.
     /// @param motion_configuration Optional set of motion configuration options.
-    /// @return Whether or not the move was successful.
-    inline bool move_on_globe(const geo_point& destination,
-                              const boost::optional<double>& heading,
-                              const Name& component_name,
-                              const Name& movement_sensor_name,
-                              const std::vector<geo_obstacle>& obstacles,
-                              std::shared_ptr<motion_configuration> motion_configuration) {
+    /// @return The execution ID of the move_on_globe request.
+    inline std::string move_on_globe(const geo_point& destination,
+                                     const boost::optional<double>& heading,
+                                     const Name& component_name,
+                                     const Name& movement_sensor_name,
+                                     const std::vector<geo_obstacle>& obstacles,
+                                     std::shared_ptr<motion_configuration> motion_configuration) {
         return move_on_globe(destination,
                              heading,
                              component_name,
@@ -327,14 +327,14 @@ class Motion : public Service {
     /// @param obstacles Obstacles to be considered for motion planning.
     /// @param motion_configuration Optional set of motion configuration options.
     /// @param extra Any additional arguments to the method.
-    /// @return Whether or not the move was successful.
-    virtual bool move_on_globe(const geo_point& destination,
-                               const boost::optional<double>& heading,
-                               const Name& component_name,
-                               const Name& movement_sensor_name,
-                               const std::vector<geo_obstacle>& obstacles,
-                               std::shared_ptr<motion_configuration> motion_configuration,
-                               const AttributeMap& extra) = 0;
+    /// @return The execution_id of the move_on_globe request.
+    virtual std::string move_on_globe(const geo_point& destination,
+                                      const boost::optional<double>& heading,
+                                      const Name& component_name,
+                                      const Name& movement_sensor_name,
+                                      const std::vector<geo_obstacle>& obstacles,
+                                      std::shared_ptr<motion_configuration> motion_configuration,
+                                      const AttributeMap& extra) = 0;
 
     /// @brief Get the pose of any component on the robot.
     /// @param component_name The component whose pose is being requested.

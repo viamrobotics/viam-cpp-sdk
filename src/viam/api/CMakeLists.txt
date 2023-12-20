@@ -19,6 +19,7 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
 endif()
 
 set(BUF_PROTO_COMPONENTS
+  app/packages
   app/v1
   common
   component
@@ -123,6 +124,8 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     # it sanely? We would need to filter out (or add in) the headers.
 
     # This list is needed for the core library.
+    ${PROTO_GEN_DIR}/app/packages/v1/packages.pb.cc
+    ${PROTO_GEN_DIR}/app/packages/v1/packages.pb.h
     ${PROTO_GEN_DIR}/app/v1/app.grpc.pb.cc
     ${PROTO_GEN_DIR}/app/v1/app.grpc.pb.h
     ${PROTO_GEN_DIR}/app/v1/app.pb.cc
@@ -228,7 +231,7 @@ endif(VIAMCPPSDK_USE_DYNAMIC_PROTOS)
 
 
 add_custom_target(
-  update-buf 
+  update-buf
   COMMAND buf mod update ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
@@ -246,6 +249,7 @@ add_library(viam-cpp-sdk::viamapi ALIAS viamapi)
 
 target_sources(viamapi
   PRIVATE
+    ${PROTO_GEN_DIR}/app/packages/v1/packages.pb.cc
     ${PROTO_GEN_DIR}/app/v1/app.grpc.pb.cc
     ${PROTO_GEN_DIR}/app/v1/app.pb.cc
     ${PROTO_GEN_DIR}/app/v1/robot.grpc.pb.cc
@@ -287,6 +291,7 @@ target_sources(viamapi
     BASE_DIRS
       ${PROTO_GEN_DIR}/../..
     FILES
+      ${PROTO_GEN_DIR}/../../viam/api/app/packages/v1/packages.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/app/v1/app.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/app/v1/app.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/app/v1/robot.grpc.pb.h

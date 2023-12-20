@@ -32,6 +32,7 @@
 #include <google/protobuf/map.h>  // IWYU pragma: export
 #include <google/protobuf/map_entry.h>
 #include <google/protobuf/map_field_inl.h>
+#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include "common/v1/common.pb.h"
 #include "google/api/annotations.pb.h"
@@ -133,6 +134,38 @@ namespace component {
 namespace movementsensor {
 namespace v1 {
 
+enum NmeaGGAFix : int {
+  NMEA_GGA_FIX_INVALID_UNSPECIFIED = 0,
+  NMEA_GGA_FIX_GNSS = 1,
+  NMEA_GGA_FIX_DGPS = 2,
+  NMEA_GGA_FIX_PPS = 3,
+  NMEA_GGA_FIX_RTK_FIXED = 4,
+  NMEA_GGA_FIX_RTK_FLOAT = 5,
+  NMEA_GGA_FIX_DEAD_RECKONING = 6,
+  NMEA_GGA_FIX_MANUAL = 7,
+  NMEA_GGA_FIX_SIMULATION = 8,
+  NmeaGGAFix_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  NmeaGGAFix_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool NmeaGGAFix_IsValid(int value);
+constexpr NmeaGGAFix NmeaGGAFix_MIN = NMEA_GGA_FIX_INVALID_UNSPECIFIED;
+constexpr NmeaGGAFix NmeaGGAFix_MAX = NMEA_GGA_FIX_SIMULATION;
+constexpr int NmeaGGAFix_ARRAYSIZE = NmeaGGAFix_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* NmeaGGAFix_descriptor();
+template<typename T>
+inline const std::string& NmeaGGAFix_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, NmeaGGAFix>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function NmeaGGAFix_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    NmeaGGAFix_descriptor(), enum_t_value);
+}
+inline bool NmeaGGAFix_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, NmeaGGAFix* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<NmeaGGAFix>(
+    NmeaGGAFix_descriptor(), name, value);
+}
 // ===================================================================
 
 class GetLinearVelocityRequest final :
@@ -2420,6 +2453,10 @@ class GetAccuracyResponse final :
 
   enum : int {
     kAccuracyFieldNumber = 1,
+    kPositionHdopFieldNumber = 2,
+    kPositionVdopFieldNumber = 3,
+    kPositionNmeaGgaFixFieldNumber = 4,
+    kCompassDegreesErrorFieldNumber = 5,
   };
   // map<string, float> accuracy = 1 [json_name = "accuracy"];
   int accuracy_size() const;
@@ -2438,6 +2475,58 @@ class GetAccuracyResponse final :
   ::PROTOBUF_NAMESPACE_ID::Map< std::string, float >*
       mutable_accuracy();
 
+  // optional float position_hdop = 2 [json_name = "positionHdop"];
+  bool has_position_hdop() const;
+  private:
+  bool _internal_has_position_hdop() const;
+  public:
+  void clear_position_hdop();
+  float position_hdop() const;
+  void set_position_hdop(float value);
+  private:
+  float _internal_position_hdop() const;
+  void _internal_set_position_hdop(float value);
+  public:
+
+  // optional float position_vdop = 3 [json_name = "positionVdop"];
+  bool has_position_vdop() const;
+  private:
+  bool _internal_has_position_vdop() const;
+  public:
+  void clear_position_vdop();
+  float position_vdop() const;
+  void set_position_vdop(float value);
+  private:
+  float _internal_position_vdop() const;
+  void _internal_set_position_vdop(float value);
+  public:
+
+  // optional .viam.component.movementsensor.v1.NmeaGGAFix position_nmea_gga_fix = 4 [json_name = "positionNmeaGgaFix"];
+  bool has_position_nmea_gga_fix() const;
+  private:
+  bool _internal_has_position_nmea_gga_fix() const;
+  public:
+  void clear_position_nmea_gga_fix();
+  ::viam::component::movementsensor::v1::NmeaGGAFix position_nmea_gga_fix() const;
+  void set_position_nmea_gga_fix(::viam::component::movementsensor::v1::NmeaGGAFix value);
+  private:
+  ::viam::component::movementsensor::v1::NmeaGGAFix _internal_position_nmea_gga_fix() const;
+  void _internal_set_position_nmea_gga_fix(::viam::component::movementsensor::v1::NmeaGGAFix value);
+  public:
+
+  // optional float compass_degrees_error = 5 [json_name = "compassDegreesError"];
+  bool has_compass_degrees_error() const;
+  private:
+  bool _internal_has_compass_degrees_error() const;
+  public:
+  void clear_compass_degrees_error();
+  float compass_degrees_error() const;
+  void set_compass_degrees_error(float value);
+  private:
+  float _internal_compass_degrees_error() const;
+  void _internal_set_compass_degrees_error(float value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.component.movementsensor.v1.GetAccuracyResponse)
  private:
   class _Internal;
@@ -2445,12 +2534,17 @@ class GetAccuracyResponse final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::MapField<
       GetAccuracyResponse_AccuracyEntry_DoNotUse,
       std::string, float,
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_FLOAT> accuracy_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  float position_hdop_;
+  float position_vdop_;
+  int position_nmea_gga_fix_;
+  float compass_degrees_error_;
   friend struct ::TableStruct_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto;
 };
 // -------------------------------------------------------------------
@@ -4312,6 +4406,118 @@ GetAccuracyResponse::mutable_accuracy() {
   return _internal_mutable_accuracy();
 }
 
+// optional float position_hdop = 2 [json_name = "positionHdop"];
+inline bool GetAccuracyResponse::_internal_has_position_hdop() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool GetAccuracyResponse::has_position_hdop() const {
+  return _internal_has_position_hdop();
+}
+inline void GetAccuracyResponse::clear_position_hdop() {
+  position_hdop_ = 0;
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline float GetAccuracyResponse::_internal_position_hdop() const {
+  return position_hdop_;
+}
+inline float GetAccuracyResponse::position_hdop() const {
+  // @@protoc_insertion_point(field_get:viam.component.movementsensor.v1.GetAccuracyResponse.position_hdop)
+  return _internal_position_hdop();
+}
+inline void GetAccuracyResponse::_internal_set_position_hdop(float value) {
+  _has_bits_[0] |= 0x00000001u;
+  position_hdop_ = value;
+}
+inline void GetAccuracyResponse::set_position_hdop(float value) {
+  _internal_set_position_hdop(value);
+  // @@protoc_insertion_point(field_set:viam.component.movementsensor.v1.GetAccuracyResponse.position_hdop)
+}
+
+// optional float position_vdop = 3 [json_name = "positionVdop"];
+inline bool GetAccuracyResponse::_internal_has_position_vdop() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool GetAccuracyResponse::has_position_vdop() const {
+  return _internal_has_position_vdop();
+}
+inline void GetAccuracyResponse::clear_position_vdop() {
+  position_vdop_ = 0;
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline float GetAccuracyResponse::_internal_position_vdop() const {
+  return position_vdop_;
+}
+inline float GetAccuracyResponse::position_vdop() const {
+  // @@protoc_insertion_point(field_get:viam.component.movementsensor.v1.GetAccuracyResponse.position_vdop)
+  return _internal_position_vdop();
+}
+inline void GetAccuracyResponse::_internal_set_position_vdop(float value) {
+  _has_bits_[0] |= 0x00000002u;
+  position_vdop_ = value;
+}
+inline void GetAccuracyResponse::set_position_vdop(float value) {
+  _internal_set_position_vdop(value);
+  // @@protoc_insertion_point(field_set:viam.component.movementsensor.v1.GetAccuracyResponse.position_vdop)
+}
+
+// optional .viam.component.movementsensor.v1.NmeaGGAFix position_nmea_gga_fix = 4 [json_name = "positionNmeaGgaFix"];
+inline bool GetAccuracyResponse::_internal_has_position_nmea_gga_fix() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline bool GetAccuracyResponse::has_position_nmea_gga_fix() const {
+  return _internal_has_position_nmea_gga_fix();
+}
+inline void GetAccuracyResponse::clear_position_nmea_gga_fix() {
+  position_nmea_gga_fix_ = 0;
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline ::viam::component::movementsensor::v1::NmeaGGAFix GetAccuracyResponse::_internal_position_nmea_gga_fix() const {
+  return static_cast< ::viam::component::movementsensor::v1::NmeaGGAFix >(position_nmea_gga_fix_);
+}
+inline ::viam::component::movementsensor::v1::NmeaGGAFix GetAccuracyResponse::position_nmea_gga_fix() const {
+  // @@protoc_insertion_point(field_get:viam.component.movementsensor.v1.GetAccuracyResponse.position_nmea_gga_fix)
+  return _internal_position_nmea_gga_fix();
+}
+inline void GetAccuracyResponse::_internal_set_position_nmea_gga_fix(::viam::component::movementsensor::v1::NmeaGGAFix value) {
+  _has_bits_[0] |= 0x00000004u;
+  position_nmea_gga_fix_ = value;
+}
+inline void GetAccuracyResponse::set_position_nmea_gga_fix(::viam::component::movementsensor::v1::NmeaGGAFix value) {
+  _internal_set_position_nmea_gga_fix(value);
+  // @@protoc_insertion_point(field_set:viam.component.movementsensor.v1.GetAccuracyResponse.position_nmea_gga_fix)
+}
+
+// optional float compass_degrees_error = 5 [json_name = "compassDegreesError"];
+inline bool GetAccuracyResponse::_internal_has_compass_degrees_error() const {
+  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline bool GetAccuracyResponse::has_compass_degrees_error() const {
+  return _internal_has_compass_degrees_error();
+}
+inline void GetAccuracyResponse::clear_compass_degrees_error() {
+  compass_degrees_error_ = 0;
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline float GetAccuracyResponse::_internal_compass_degrees_error() const {
+  return compass_degrees_error_;
+}
+inline float GetAccuracyResponse::compass_degrees_error() const {
+  // @@protoc_insertion_point(field_get:viam.component.movementsensor.v1.GetAccuracyResponse.compass_degrees_error)
+  return _internal_compass_degrees_error();
+}
+inline void GetAccuracyResponse::_internal_set_compass_degrees_error(float value) {
+  _has_bits_[0] |= 0x00000008u;
+  compass_degrees_error_ = value;
+}
+inline void GetAccuracyResponse::set_compass_degrees_error(float value) {
+  _internal_set_compass_degrees_error(value);
+  // @@protoc_insertion_point(field_set:viam.component.movementsensor.v1.GetAccuracyResponse.compass_degrees_error)
+}
+
 // -------------------------------------------------------------------
 
 // GetLinearAccelerationRequest
@@ -4582,6 +4788,16 @@ inline void GetLinearAccelerationResponse::set_allocated_linear_acceleration(::v
 }  // namespace movementsensor
 }  // namespace component
 }  // namespace viam
+
+PROTOBUF_NAMESPACE_OPEN
+
+template <> struct is_proto_enum< ::viam::component::movementsensor::v1::NmeaGGAFix> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::viam::component::movementsensor::v1::NmeaGGAFix>() {
+  return ::viam::component::movementsensor::v1::NmeaGGAFix_descriptor();
+}
+
+PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
 

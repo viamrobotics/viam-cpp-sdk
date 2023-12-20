@@ -54,13 +54,13 @@ bool MotionClient::move_on_map(const pose& destination,
         .invoke([](auto& response) { return response.success(); });
 }
 
-bool MotionClient::move_on_globe(const geo_point& destination,
-                                 const boost::optional<double>& heading,
-                                 const Name& component_name,
-                                 const Name& movement_sensor_name,
-                                 const std::vector<geo_obstacle>& obstacles,
-                                 std::shared_ptr<motion_configuration> motion_configuration,
-                                 const AttributeMap& extra) {
+std::string MotionClient::move_on_globe(const geo_point& destination,
+                                        const boost::optional<double>& heading,
+                                        const Name& component_name,
+                                        const Name& movement_sensor_name,
+                                        const std::vector<geo_obstacle>& obstacles,
+                                        std::shared_ptr<motion_configuration> motion_configuration,
+                                        const AttributeMap& extra) {
     return make_client_helper(this, *stub_, &StubType::MoveOnGlobe)
         .with(extra,
               [&](auto& request) {
@@ -80,7 +80,7 @@ bool MotionClient::move_on_globe(const geo_point& destination,
                       *request.mutable_motion_configuration() = motion_configuration->to_proto();
                   }
               })
-        .invoke([](auto& response) { return response.success(); });
+        .invoke([](auto& response) { return response.execution_id(); });
 }
 
 pose_in_frame MotionClient::get_pose(

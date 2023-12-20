@@ -2779,9 +2779,34 @@ class MethodSettings final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kAutoPopulatedFieldsFieldNumber = 3,
     kSelectorFieldNumber = 1,
     kLongRunningFieldNumber = 2,
   };
+  // repeated string auto_populated_fields = 3 [json_name = "autoPopulatedFields"];
+  int auto_populated_fields_size() const;
+  private:
+  int _internal_auto_populated_fields_size() const;
+  public:
+  void clear_auto_populated_fields();
+  const std::string& auto_populated_fields(int index) const;
+  std::string* mutable_auto_populated_fields(int index);
+  void set_auto_populated_fields(int index, const std::string& value);
+  void set_auto_populated_fields(int index, std::string&& value);
+  void set_auto_populated_fields(int index, const char* value);
+  void set_auto_populated_fields(int index, const char* value, size_t size);
+  std::string* add_auto_populated_fields();
+  void add_auto_populated_fields(const std::string& value);
+  void add_auto_populated_fields(std::string&& value);
+  void add_auto_populated_fields(const char* value);
+  void add_auto_populated_fields(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& auto_populated_fields() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_auto_populated_fields();
+  private:
+  const std::string& _internal_auto_populated_fields(int index) const;
+  std::string* _internal_add_auto_populated_fields();
+  public:
+
   // string selector = 1 [json_name = "selector"];
   void clear_selector();
   const std::string& selector() const;
@@ -2821,6 +2846,7 @@ class MethodSettings final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> auto_populated_fields_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr selector_;
   ::google::api::MethodSettings_LongRunning* long_running_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -5776,6 +5802,81 @@ inline void MethodSettings::set_allocated_long_running(::google::api::MethodSett
   }
   long_running_ = long_running;
   // @@protoc_insertion_point(field_set_allocated:google.api.MethodSettings.long_running)
+}
+
+// repeated string auto_populated_fields = 3 [json_name = "autoPopulatedFields"];
+inline int MethodSettings::_internal_auto_populated_fields_size() const {
+  return auto_populated_fields_.size();
+}
+inline int MethodSettings::auto_populated_fields_size() const {
+  return _internal_auto_populated_fields_size();
+}
+inline void MethodSettings::clear_auto_populated_fields() {
+  auto_populated_fields_.Clear();
+}
+inline std::string* MethodSettings::add_auto_populated_fields() {
+  std::string* _s = _internal_add_auto_populated_fields();
+  // @@protoc_insertion_point(field_add_mutable:google.api.MethodSettings.auto_populated_fields)
+  return _s;
+}
+inline const std::string& MethodSettings::_internal_auto_populated_fields(int index) const {
+  return auto_populated_fields_.Get(index);
+}
+inline const std::string& MethodSettings::auto_populated_fields(int index) const {
+  // @@protoc_insertion_point(field_get:google.api.MethodSettings.auto_populated_fields)
+  return _internal_auto_populated_fields(index);
+}
+inline std::string* MethodSettings::mutable_auto_populated_fields(int index) {
+  // @@protoc_insertion_point(field_mutable:google.api.MethodSettings.auto_populated_fields)
+  return auto_populated_fields_.Mutable(index);
+}
+inline void MethodSettings::set_auto_populated_fields(int index, const std::string& value) {
+  auto_populated_fields_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:google.api.MethodSettings.auto_populated_fields)
+}
+inline void MethodSettings::set_auto_populated_fields(int index, std::string&& value) {
+  auto_populated_fields_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:google.api.MethodSettings.auto_populated_fields)
+}
+inline void MethodSettings::set_auto_populated_fields(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  auto_populated_fields_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:google.api.MethodSettings.auto_populated_fields)
+}
+inline void MethodSettings::set_auto_populated_fields(int index, const char* value, size_t size) {
+  auto_populated_fields_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:google.api.MethodSettings.auto_populated_fields)
+}
+inline std::string* MethodSettings::_internal_add_auto_populated_fields() {
+  return auto_populated_fields_.Add();
+}
+inline void MethodSettings::add_auto_populated_fields(const std::string& value) {
+  auto_populated_fields_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:google.api.MethodSettings.auto_populated_fields)
+}
+inline void MethodSettings::add_auto_populated_fields(std::string&& value) {
+  auto_populated_fields_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:google.api.MethodSettings.auto_populated_fields)
+}
+inline void MethodSettings::add_auto_populated_fields(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  auto_populated_fields_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:google.api.MethodSettings.auto_populated_fields)
+}
+inline void MethodSettings::add_auto_populated_fields(const char* value, size_t size) {
+  auto_populated_fields_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:google.api.MethodSettings.auto_populated_fields)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+MethodSettings::auto_populated_fields() const {
+  // @@protoc_insertion_point(field_list:google.api.MethodSettings.auto_populated_fields)
+  return auto_populated_fields_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+MethodSettings::mutable_auto_populated_fields() {
+  // @@protoc_insertion_point(field_mutable_list:google.api.MethodSettings.auto_populated_fields)
+  return &auto_populated_fields_;
 }
 
 #ifdef __GNUC__

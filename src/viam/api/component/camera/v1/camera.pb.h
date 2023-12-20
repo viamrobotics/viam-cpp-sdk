@@ -1796,10 +1796,35 @@ class GetPropertiesResponse final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kMimeTypesFieldNumber = 4,
     kIntrinsicParametersFieldNumber = 2,
     kDistortionParametersFieldNumber = 3,
     kSupportsPcdFieldNumber = 1,
   };
+  // repeated string mime_types = 4 [json_name = "mimeTypes"];
+  int mime_types_size() const;
+  private:
+  int _internal_mime_types_size() const;
+  public:
+  void clear_mime_types();
+  const std::string& mime_types(int index) const;
+  std::string* mutable_mime_types(int index);
+  void set_mime_types(int index, const std::string& value);
+  void set_mime_types(int index, std::string&& value);
+  void set_mime_types(int index, const char* value);
+  void set_mime_types(int index, const char* value, size_t size);
+  std::string* add_mime_types();
+  void add_mime_types(const std::string& value);
+  void add_mime_types(std::string&& value);
+  void add_mime_types(const char* value);
+  void add_mime_types(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& mime_types() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_mime_types();
+  private:
+  const std::string& _internal_mime_types(int index) const;
+  std::string* _internal_add_mime_types();
+  public:
+
   // .viam.component.camera.v1.IntrinsicParameters intrinsic_parameters = 2 [json_name = "intrinsicParameters"];
   bool has_intrinsic_parameters() const;
   private:
@@ -1852,6 +1877,7 @@ class GetPropertiesResponse final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> mime_types_;
   ::viam::component::camera::v1::IntrinsicParameters* intrinsic_parameters_;
   ::viam::component::camera::v1::DistortionParameters* distortion_parameters_;
   bool supports_pcd_;
@@ -4122,6 +4148,81 @@ inline void GetPropertiesResponse::set_allocated_distortion_parameters(::viam::c
   }
   distortion_parameters_ = distortion_parameters;
   // @@protoc_insertion_point(field_set_allocated:viam.component.camera.v1.GetPropertiesResponse.distortion_parameters)
+}
+
+// repeated string mime_types = 4 [json_name = "mimeTypes"];
+inline int GetPropertiesResponse::_internal_mime_types_size() const {
+  return mime_types_.size();
+}
+inline int GetPropertiesResponse::mime_types_size() const {
+  return _internal_mime_types_size();
+}
+inline void GetPropertiesResponse::clear_mime_types() {
+  mime_types_.Clear();
+}
+inline std::string* GetPropertiesResponse::add_mime_types() {
+  std::string* _s = _internal_add_mime_types();
+  // @@protoc_insertion_point(field_add_mutable:viam.component.camera.v1.GetPropertiesResponse.mime_types)
+  return _s;
+}
+inline const std::string& GetPropertiesResponse::_internal_mime_types(int index) const {
+  return mime_types_.Get(index);
+}
+inline const std::string& GetPropertiesResponse::mime_types(int index) const {
+  // @@protoc_insertion_point(field_get:viam.component.camera.v1.GetPropertiesResponse.mime_types)
+  return _internal_mime_types(index);
+}
+inline std::string* GetPropertiesResponse::mutable_mime_types(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.component.camera.v1.GetPropertiesResponse.mime_types)
+  return mime_types_.Mutable(index);
+}
+inline void GetPropertiesResponse::set_mime_types(int index, const std::string& value) {
+  mime_types_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.component.camera.v1.GetPropertiesResponse.mime_types)
+}
+inline void GetPropertiesResponse::set_mime_types(int index, std::string&& value) {
+  mime_types_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.component.camera.v1.GetPropertiesResponse.mime_types)
+}
+inline void GetPropertiesResponse::set_mime_types(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  mime_types_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.component.camera.v1.GetPropertiesResponse.mime_types)
+}
+inline void GetPropertiesResponse::set_mime_types(int index, const char* value, size_t size) {
+  mime_types_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.component.camera.v1.GetPropertiesResponse.mime_types)
+}
+inline std::string* GetPropertiesResponse::_internal_add_mime_types() {
+  return mime_types_.Add();
+}
+inline void GetPropertiesResponse::add_mime_types(const std::string& value) {
+  mime_types_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.component.camera.v1.GetPropertiesResponse.mime_types)
+}
+inline void GetPropertiesResponse::add_mime_types(std::string&& value) {
+  mime_types_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.component.camera.v1.GetPropertiesResponse.mime_types)
+}
+inline void GetPropertiesResponse::add_mime_types(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  mime_types_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.component.camera.v1.GetPropertiesResponse.mime_types)
+}
+inline void GetPropertiesResponse::add_mime_types(const char* value, size_t size) {
+  mime_types_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.component.camera.v1.GetPropertiesResponse.mime_types)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+GetPropertiesResponse::mime_types() const {
+  // @@protoc_insertion_point(field_list:viam.component.camera.v1.GetPropertiesResponse.mime_types)
+  return mime_types_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+GetPropertiesResponse::mutable_mime_types() {
+  // @@protoc_insertion_point(field_mutable_list:viam.component.camera.v1.GetPropertiesResponse.mime_types)
+  return &mime_types_;
 }
 
 // -------------------------------------------------------------------

@@ -99,6 +99,9 @@ extern JWKSFileDefaultTypeInternal _JWKSFile_default_instance_;
 class LocationSecret;
 struct LocationSecretDefaultTypeInternal;
 extern LocationSecretDefaultTypeInternal _LocationSecret_default_instance_;
+class LogConfiguration;
+struct LogConfigurationDefaultTypeInternal;
+extern LogConfigurationDefaultTypeInternal _LogConfiguration_default_instance_;
 class LogRequest;
 struct LogRequestDefaultTypeInternal;
 extern LogRequestDefaultTypeInternal _LogRequest_default_instance_;
@@ -192,6 +195,7 @@ template<> ::viam::app::v1::ExternalAuthConfig* Arena::CreateMaybeMessage<::viam
 template<> ::viam::app::v1::Frame* Arena::CreateMaybeMessage<::viam::app::v1::Frame>(Arena*);
 template<> ::viam::app::v1::JWKSFile* Arena::CreateMaybeMessage<::viam::app::v1::JWKSFile>(Arena*);
 template<> ::viam::app::v1::LocationSecret* Arena::CreateMaybeMessage<::viam::app::v1::LocationSecret>(Arena*);
+template<> ::viam::app::v1::LogConfiguration* Arena::CreateMaybeMessage<::viam::app::v1::LogConfiguration>(Arena*);
 template<> ::viam::app::v1::LogRequest* Arena::CreateMaybeMessage<::viam::app::v1::LogRequest>(Arena*);
 template<> ::viam::app::v1::LogResponse* Arena::CreateMaybeMessage<::viam::app::v1::LogResponse>(Arena*);
 template<> ::viam::app::v1::ModuleConfig* Arena::CreateMaybeMessage<::viam::app::v1::ModuleConfig>(Arena*);
@@ -1310,6 +1314,7 @@ class ComponentConfig final :
     kApiFieldNumber = 9,
     kFrameFieldNumber = 5,
     kAttributesFieldNumber = 8,
+    kLogConfigurationFieldNumber = 10,
   };
   // repeated string depends_on = 6 [json_name = "dependsOn"];
   int depends_on_size() const;
@@ -1459,6 +1464,24 @@ class ComponentConfig final :
       ::PROTOBUF_NAMESPACE_ID::Struct* attributes);
   ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_attributes();
 
+  // .viam.app.v1.LogConfiguration log_configuration = 10 [json_name = "logConfiguration"];
+  bool has_log_configuration() const;
+  private:
+  bool _internal_has_log_configuration() const;
+  public:
+  void clear_log_configuration();
+  const ::viam::app::v1::LogConfiguration& log_configuration() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::LogConfiguration* release_log_configuration();
+  ::viam::app::v1::LogConfiguration* mutable_log_configuration();
+  void set_allocated_log_configuration(::viam::app::v1::LogConfiguration* log_configuration);
+  private:
+  const ::viam::app::v1::LogConfiguration& _internal_log_configuration() const;
+  ::viam::app::v1::LogConfiguration* _internal_mutable_log_configuration();
+  public:
+  void unsafe_arena_set_allocated_log_configuration(
+      ::viam::app::v1::LogConfiguration* log_configuration);
+  ::viam::app::v1::LogConfiguration* unsafe_arena_release_log_configuration();
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.ComponentConfig)
  private:
   class _Internal;
@@ -1475,6 +1498,7 @@ class ComponentConfig final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr api_;
   ::viam::app::v1::Frame* frame_;
   ::PROTOBUF_NAMESPACE_ID::Struct* attributes_;
+  ::viam::app::v1::LogConfiguration* log_configuration_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
 };
@@ -3481,6 +3505,154 @@ class Frame final :
 };
 // -------------------------------------------------------------------
 
+class LogConfiguration final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.LogConfiguration) */ {
+ public:
+  inline LogConfiguration() : LogConfiguration(nullptr) {}
+  ~LogConfiguration() override;
+  explicit PROTOBUF_CONSTEXPR LogConfiguration(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  LogConfiguration(const LogConfiguration& from);
+  LogConfiguration(LogConfiguration&& from) noexcept
+    : LogConfiguration() {
+    *this = ::std::move(from);
+  }
+
+  inline LogConfiguration& operator=(const LogConfiguration& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline LogConfiguration& operator=(LogConfiguration&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const LogConfiguration& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const LogConfiguration* internal_default_instance() {
+    return reinterpret_cast<const LogConfiguration*>(
+               &_LogConfiguration_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    16;
+
+  friend void swap(LogConfiguration& a, LogConfiguration& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(LogConfiguration* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(LogConfiguration* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  LogConfiguration* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<LogConfiguration>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const LogConfiguration& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const LogConfiguration& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(LogConfiguration* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.LogConfiguration";
+  }
+  protected:
+  explicit LogConfiguration(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLevelFieldNumber = 1,
+  };
+  // string level = 1 [json_name = "level"];
+  void clear_level();
+  const std::string& level() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_level(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_level();
+  PROTOBUF_NODISCARD std::string* release_level();
+  void set_allocated_level(std::string* level);
+  private:
+  const std::string& _internal_level() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_level(const std::string& value);
+  std::string* _internal_mutable_level();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.LogConfiguration)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr level_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Translation final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.Translation) */ {
  public:
@@ -3529,7 +3701,7 @@ class Translation final :
                &_Translation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   friend void swap(Translation& a, Translation& b) {
     a.Swap(&b);
@@ -3693,7 +3865,7 @@ class Orientation_NoOrientation final :
                &_Orientation_NoOrientation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   friend void swap(Orientation_NoOrientation& a, Orientation_NoOrientation& b) {
     a.Swap(&b);
@@ -3810,7 +3982,7 @@ class Orientation_OrientationVectorRadians final :
                &_Orientation_OrientationVectorRadians_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   friend void swap(Orientation_OrientationVectorRadians& a, Orientation_OrientationVectorRadians& b) {
     a.Swap(&b);
@@ -3986,7 +4158,7 @@ class Orientation_OrientationVectorDegrees final :
                &_Orientation_OrientationVectorDegrees_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   friend void swap(Orientation_OrientationVectorDegrees& a, Orientation_OrientationVectorDegrees& b) {
     a.Swap(&b);
@@ -4162,7 +4334,7 @@ class Orientation_EulerAngles final :
                &_Orientation_EulerAngles_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    21;
 
   friend void swap(Orientation_EulerAngles& a, Orientation_EulerAngles& b) {
     a.Swap(&b);
@@ -4327,7 +4499,7 @@ class Orientation_AxisAngles final :
                &_Orientation_AxisAngles_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    22;
 
   friend void swap(Orientation_AxisAngles& a, Orientation_AxisAngles& b) {
     a.Swap(&b);
@@ -4503,7 +4675,7 @@ class Orientation_Quaternion final :
                &_Orientation_Quaternion_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    23;
 
   friend void swap(Orientation_Quaternion& a, Orientation_Quaternion& b) {
     a.Swap(&b);
@@ -4689,7 +4861,7 @@ class Orientation final :
                &_Orientation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    24;
 
   friend void swap(Orientation& a, Orientation& b) {
     a.Swap(&b);
@@ -4965,7 +5137,7 @@ class RemoteConfig final :
                &_RemoteConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    25;
 
   friend void swap(RemoteConfig& a, RemoteConfig& b) {
     a.Swap(&b);
@@ -5272,7 +5444,7 @@ class RemoteAuth_Credentials final :
                &_RemoteAuth_Credentials_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    26;
 
   friend void swap(RemoteAuth_Credentials& a, RemoteAuth_Credentials& b) {
     a.Swap(&b);
@@ -5431,7 +5603,7 @@ class RemoteAuth final :
                &_RemoteAuth_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    27;
 
   friend void swap(RemoteAuth& a, RemoteAuth& b) {
     a.Swap(&b);
@@ -5601,7 +5773,7 @@ class AgentInfo final :
                &_AgentInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    28;
 
   friend void swap(AgentInfo& a, AgentInfo& b) {
     a.Swap(&b);
@@ -5844,7 +6016,7 @@ class ConfigRequest final :
                &_ConfigRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    29;
 
   friend void swap(ConfigRequest& a, ConfigRequest& b) {
     a.Swap(&b);
@@ -6013,7 +6185,7 @@ class ConfigResponse final :
                &_ConfigResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    30;
 
   friend void swap(ConfigResponse& a, ConfigResponse& b) {
     a.Swap(&b);
@@ -6165,7 +6337,7 @@ class CertificateRequest final :
                &_CertificateRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    31;
 
   friend void swap(CertificateRequest& a, CertificateRequest& b) {
     a.Swap(&b);
@@ -6313,7 +6485,7 @@ class CertificateResponse final :
                &_CertificateResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    32;
 
   friend void swap(CertificateResponse& a, CertificateResponse& b) {
     a.Swap(&b);
@@ -6493,7 +6665,7 @@ class LogRequest final :
                &_LogRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    33;
 
   friend void swap(LogRequest& a, LogRequest& b) {
     a.Swap(&b);
@@ -6660,7 +6832,7 @@ class LogResponse final :
                &_LogResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    34;
 
   friend void swap(LogResponse& a, LogResponse& b) {
     a.Swap(&b);
@@ -6777,7 +6949,7 @@ class NeedsRestartRequest final :
                &_NeedsRestartRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    34;
+    35;
 
   friend void swap(NeedsRestartRequest& a, NeedsRestartRequest& b) {
     a.Swap(&b);
@@ -6925,7 +7097,7 @@ class NeedsRestartResponse final :
                &_NeedsRestartResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    35;
+    36;
 
   friend void swap(NeedsRestartResponse& a, NeedsRestartResponse& b) {
     a.Swap(&b);
@@ -7132,7 +7304,7 @@ class ModuleConfig final :
                &_ModuleConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    37;
+    38;
 
   friend void swap(ModuleConfig& a, ModuleConfig& b) {
     a.Swap(&b);
@@ -7390,7 +7562,7 @@ class PackageConfig final :
                &_PackageConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    38;
+    39;
 
   friend void swap(PackageConfig& a, PackageConfig& b) {
     a.Swap(&b);
@@ -9247,6 +9419,96 @@ inline void ComponentConfig::set_allocated_api(std::string* api) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ComponentConfig.api)
+}
+
+// .viam.app.v1.LogConfiguration log_configuration = 10 [json_name = "logConfiguration"];
+inline bool ComponentConfig::_internal_has_log_configuration() const {
+  return this != internal_default_instance() && log_configuration_ != nullptr;
+}
+inline bool ComponentConfig::has_log_configuration() const {
+  return _internal_has_log_configuration();
+}
+inline void ComponentConfig::clear_log_configuration() {
+  if (GetArenaForAllocation() == nullptr && log_configuration_ != nullptr) {
+    delete log_configuration_;
+  }
+  log_configuration_ = nullptr;
+}
+inline const ::viam::app::v1::LogConfiguration& ComponentConfig::_internal_log_configuration() const {
+  const ::viam::app::v1::LogConfiguration* p = log_configuration_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::LogConfiguration&>(
+      ::viam::app::v1::_LogConfiguration_default_instance_);
+}
+inline const ::viam::app::v1::LogConfiguration& ComponentConfig::log_configuration() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ComponentConfig.log_configuration)
+  return _internal_log_configuration();
+}
+inline void ComponentConfig::unsafe_arena_set_allocated_log_configuration(
+    ::viam::app::v1::LogConfiguration* log_configuration) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(log_configuration_);
+  }
+  log_configuration_ = log_configuration;
+  if (log_configuration) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.ComponentConfig.log_configuration)
+}
+inline ::viam::app::v1::LogConfiguration* ComponentConfig::release_log_configuration() {
+  
+  ::viam::app::v1::LogConfiguration* temp = log_configuration_;
+  log_configuration_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::LogConfiguration* ComponentConfig::unsafe_arena_release_log_configuration() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ComponentConfig.log_configuration)
+  
+  ::viam::app::v1::LogConfiguration* temp = log_configuration_;
+  log_configuration_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::LogConfiguration* ComponentConfig::_internal_mutable_log_configuration() {
+  
+  if (log_configuration_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::LogConfiguration>(GetArenaForAllocation());
+    log_configuration_ = p;
+  }
+  return log_configuration_;
+}
+inline ::viam::app::v1::LogConfiguration* ComponentConfig::mutable_log_configuration() {
+  ::viam::app::v1::LogConfiguration* _msg = _internal_mutable_log_configuration();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ComponentConfig.log_configuration)
+  return _msg;
+}
+inline void ComponentConfig::set_allocated_log_configuration(::viam::app::v1::LogConfiguration* log_configuration) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete log_configuration_;
+  }
+  if (log_configuration) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(log_configuration);
+    if (message_arena != submessage_arena) {
+      log_configuration = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, log_configuration, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  log_configuration_ = log_configuration;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ComponentConfig.log_configuration)
 }
 
 // -------------------------------------------------------------------
@@ -11448,6 +11710,60 @@ inline void Frame::set_allocated_geometry(::viam::common::v1::Geometry* geometry
   }
   geometry_ = geometry;
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Frame.geometry)
+}
+
+// -------------------------------------------------------------------
+
+// LogConfiguration
+
+// string level = 1 [json_name = "level"];
+inline void LogConfiguration::clear_level() {
+  level_.ClearToEmpty();
+}
+inline const std::string& LogConfiguration::level() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.LogConfiguration.level)
+  return _internal_level();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void LogConfiguration::set_level(ArgT0&& arg0, ArgT... args) {
+ 
+ level_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.LogConfiguration.level)
+}
+inline std::string* LogConfiguration::mutable_level() {
+  std::string* _s = _internal_mutable_level();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.LogConfiguration.level)
+  return _s;
+}
+inline const std::string& LogConfiguration::_internal_level() const {
+  return level_.Get();
+}
+inline void LogConfiguration::_internal_set_level(const std::string& value) {
+  
+  level_.Set(value, GetArenaForAllocation());
+}
+inline std::string* LogConfiguration::_internal_mutable_level() {
+  
+  return level_.Mutable(GetArenaForAllocation());
+}
+inline std::string* LogConfiguration::release_level() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.LogConfiguration.level)
+  return level_.Release();
+}
+inline void LogConfiguration::set_allocated_level(std::string* level) {
+  if (level != nullptr) {
+    
+  } else {
+    
+  }
+  level_.SetAllocated(level, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (level_.IsDefault()) {
+    level_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.LogConfiguration.level)
 }
 
 // -------------------------------------------------------------------
@@ -14980,6 +15296,8 @@ inline void PackageConfig::set_allocated_status(::viam::app::v1::AppValidationSt
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
