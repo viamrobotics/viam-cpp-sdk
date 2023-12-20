@@ -234,7 +234,8 @@ struct MethodSettings_LongRunningDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MethodSettings_LongRunningDefaultTypeInternal _MethodSettings_LongRunning_default_instance_;
 PROTOBUF_CONSTEXPR MethodSettings::MethodSettings(
     ::_pbi::ConstantInitialized)
-  : selector_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  : auto_populated_fields_()
+  , selector_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , long_running_(nullptr){}
 struct MethodSettingsDefaultTypeInternal {
   PROTOBUF_CONSTEXPR MethodSettingsDefaultTypeInternal()
@@ -404,6 +405,7 @@ const uint32_t TableStruct_google_2fapi_2fclient_2eproto::offsets[] PROTOBUF_SEC
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::google::api::MethodSettings, selector_),
   PROTOBUF_FIELD_OFFSET(::google::api::MethodSettings, long_running_),
+  PROTOBUF_FIELD_OFFSET(::google::api::MethodSettings, auto_populated_fields_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::google::api::CommonLanguageSettings)},
@@ -514,32 +516,33 @@ const char descriptor_table_protodef_google_2fapi_2fclient_2eproto[] PROTOBUF_SE
   "n\030\001 \001(\0132\".google.api.CommonLanguageSetti"
   "ngsR\006common\"H\n\nGoSettings\022:\n\006common\030\001 \001("
   "\0132\".google.api.CommonLanguageSettingsR\006c"
-  "ommon\"\216\003\n\016MethodSettings\022\032\n\010selector\030\001 \001"
+  "ommon\"\302\003\n\016MethodSettings\022\032\n\010selector\030\001 \001"
   "(\tR\010selector\022I\n\014long_running\030\002 \001(\0132&.goo"
   "gle.api.MethodSettings.LongRunningR\013long"
-  "Running\032\224\002\n\013LongRunning\022G\n\022initial_poll_"
-  "delay\030\001 \001(\0132\031.google.protobuf.DurationR\020"
-  "initialPollDelay\0222\n\025poll_delay_multiplie"
-  "r\030\002 \001(\002R\023pollDelayMultiplier\022\?\n\016max_poll"
-  "_delay\030\003 \001(\0132\031.google.protobuf.DurationR"
-  "\014maxPollDelay\022G\n\022total_poll_timeout\030\004 \001("
-  "\0132\031.google.protobuf.DurationR\020totalPollT"
-  "imeout*\243\001\n\031ClientLibraryOrganization\022+\n\'"
-  "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED\020"
-  "\000\022\t\n\005CLOUD\020\001\022\007\n\003ADS\020\002\022\n\n\006PHOTOS\020\003\022\017\n\013STR"
-  "EET_VIEW\020\004\022\014\n\010SHOPPING\020\005\022\007\n\003GEO\020\006\022\021\n\rGEN"
-  "ERATIVE_AI\020\007*g\n\030ClientLibraryDestination"
-  "\022*\n&CLIENT_LIBRARY_DESTINATION_UNSPECIFI"
-  "ED\020\000\022\n\n\006GITHUB\020\n\022\023\n\017PACKAGE_MANAGER\020\024:J\n"
-  "\020method_signature\022\036.google.protobuf.Meth"
-  "odOptions\030\233\010 \003(\tR\017methodSignature:C\n\014def"
-  "ault_host\022\037.google.protobuf.ServiceOptio"
-  "ns\030\231\010 \001(\tR\013defaultHost:C\n\014oauth_scopes\022\037"
-  ".google.protobuf.ServiceOptions\030\232\010 \001(\tR\013"
-  "oauthScopesBi\n\016com.google.apiB\013ClientPro"
-  "toP\001ZAgoogle.golang.org/genproto/googlea"
-  "pis/api/annotations;annotations\242\002\004GAPIb\006"
-  "proto3"
+  "Running\0222\n\025auto_populated_fields\030\003 \003(\tR\023"
+  "autoPopulatedFields\032\224\002\n\013LongRunning\022G\n\022i"
+  "nitial_poll_delay\030\001 \001(\0132\031.google.protobu"
+  "f.DurationR\020initialPollDelay\0222\n\025poll_del"
+  "ay_multiplier\030\002 \001(\002R\023pollDelayMultiplier"
+  "\022\?\n\016max_poll_delay\030\003 \001(\0132\031.google.protob"
+  "uf.DurationR\014maxPollDelay\022G\n\022total_poll_"
+  "timeout\030\004 \001(\0132\031.google.protobuf.Duration"
+  "R\020totalPollTimeout*\243\001\n\031ClientLibraryOrga"
+  "nization\022+\n\'CLIENT_LIBRARY_ORGANIZATION_"
+  "UNSPECIFIED\020\000\022\t\n\005CLOUD\020\001\022\007\n\003ADS\020\002\022\n\n\006PHO"
+  "TOS\020\003\022\017\n\013STREET_VIEW\020\004\022\014\n\010SHOPPING\020\005\022\007\n\003"
+  "GEO\020\006\022\021\n\rGENERATIVE_AI\020\007*g\n\030ClientLibrar"
+  "yDestination\022*\n&CLIENT_LIBRARY_DESTINATI"
+  "ON_UNSPECIFIED\020\000\022\n\n\006GITHUB\020\n\022\023\n\017PACKAGE_"
+  "MANAGER\020\024:J\n\020method_signature\022\036.google.p"
+  "rotobuf.MethodOptions\030\233\010 \003(\tR\017methodSign"
+  "ature:C\n\014default_host\022\037.google.protobuf."
+  "ServiceOptions\030\231\010 \001(\tR\013defaultHost:C\n\014oa"
+  "uth_scopes\022\037.google.protobuf.ServiceOpti"
+  "ons\030\232\010 \001(\tR\013oauthScopesBi\n\016com.google.ap"
+  "iB\013ClientProtoP\001ZAgoogle.golang.org/genp"
+  "roto/googleapis/api/annotations;annotati"
+  "ons\242\002\004GAPIb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fclient_2eproto_deps[3] = {
   &::descriptor_table_google_2fapi_2flaunch_5fstage_2eproto,
@@ -548,7 +551,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fclie
 };
 static ::_pbi::once_flag descriptor_table_google_2fapi_2fclient_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2fclient_2eproto = {
-    false, false, 3806, descriptor_table_protodef_google_2fapi_2fclient_2eproto,
+    false, false, 3858, descriptor_table_protodef_google_2fapi_2fclient_2eproto,
     "google/api/client.proto",
     &descriptor_table_google_2fapi_2fclient_2eproto_once, descriptor_table_google_2fapi_2fclient_2eproto_deps, 3, 16,
     schemas, file_default_instances, TableStruct_google_2fapi_2fclient_2eproto::offsets,
@@ -4218,12 +4221,14 @@ MethodSettings::_Internal::long_running(const MethodSettings* msg) {
 }
 MethodSettings::MethodSettings(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  auto_populated_fields_(arena) {
   SharedCtor();
   // @@protoc_insertion_point(arena_constructor:google.api.MethodSettings)
 }
 MethodSettings::MethodSettings(const MethodSettings& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      auto_populated_fields_(from.auto_populated_fields_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   selector_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -4274,6 +4279,7 @@ void MethodSettings::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  auto_populated_fields_.Clear();
   selector_.ClearToEmpty();
   if (GetArenaForAllocation() == nullptr && long_running_ != nullptr) {
     delete long_running_;
@@ -4303,6 +4309,21 @@ const char* MethodSettings::_InternalParse(const char* ptr, ::_pbi::ParseContext
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           ptr = ctx->ParseMessage(_internal_mutable_long_running(), ptr);
           CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string auto_populated_fields = 3 [json_name = "autoPopulatedFields"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_auto_populated_fields();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "google.api.MethodSettings.auto_populated_fields"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<26>(ptr));
         } else
           goto handle_unusual;
         continue;
@@ -4352,6 +4373,16 @@ uint8_t* MethodSettings::_InternalSerialize(
         _Internal::long_running(this).GetCachedSize(), target, stream);
   }
 
+  // repeated string auto_populated_fields = 3 [json_name = "autoPopulatedFields"];
+  for (int i = 0, n = this->_internal_auto_populated_fields_size(); i < n; i++) {
+    const auto& s = this->_internal_auto_populated_fields(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "google.api.MethodSettings.auto_populated_fields");
+    target = stream->WriteString(3, s, target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -4367,6 +4398,14 @@ size_t MethodSettings::ByteSizeLong() const {
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // repeated string auto_populated_fields = 3 [json_name = "autoPopulatedFields"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(auto_populated_fields_.size());
+  for (int i = 0, n = auto_populated_fields_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      auto_populated_fields_.Get(i));
+  }
 
   // string selector = 1 [json_name = "selector"];
   if (!this->_internal_selector().empty()) {
@@ -4404,6 +4443,7 @@ void MethodSettings::MergeFrom(const MethodSettings& from) {
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  auto_populated_fields_.MergeFrom(from.auto_populated_fields_);
   if (!from._internal_selector().empty()) {
     _internal_set_selector(from._internal_selector());
   }
@@ -4429,6 +4469,7 @@ void MethodSettings::InternalSwap(MethodSettings* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  auto_populated_fields_.InternalSwap(&other->auto_populated_fields_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &selector_, lhs_arena,
       &other->selector_, rhs_arena
