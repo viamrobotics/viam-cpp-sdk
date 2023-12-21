@@ -22,6 +22,7 @@
 #include <viam/sdk/tests/mocks/generic_mocks.hpp>
 #include <viam/sdk/tests/mocks/mock_motor.hpp>
 #include <viam/sdk/tests/mocks/mock_robot.hpp>
+#include <viam/sdk/tests/test_utils.hpp>
 
 namespace viam {
 namespace sdktests {
@@ -51,7 +52,7 @@ void robot_client_to_mocks_pipeline(F&& test_case) {
     // Create a RobotClient to the MockRobotService over an established
     // in-process gRPC channel.
     grpc::ChannelArguments args;
-    std::shared_ptr<grpc::Channel> grpc_channel = server->grpc_in_process_channel(args);
+    std::shared_ptr<grpc::Channel> grpc_channel = TestServer(server).grpc_in_process_channel(args);
     auto viam_channel = std::make_shared<ViamChannel>(grpc_channel, "", nullptr);
     auto client = RobotClient::with_channel(viam_channel, Options(0, boost::none));
 

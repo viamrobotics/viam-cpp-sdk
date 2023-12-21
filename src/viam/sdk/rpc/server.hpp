@@ -9,6 +9,12 @@
 #include <grpcpp/server_builder.h>
 
 namespace viam {
+
+// needed for later `friend` declaration.
+namespace sdktests {
+class TestServer;
+}
+
 namespace sdk {
 
 /// @class Server server.hpp "rpc/server.hpp"
@@ -43,11 +49,8 @@ class Server {
     /// @brief Shutdown the gRPC server.
     void shutdown();
 
-    /// @brief Establishes a channel for in-process communication; should only
-    /// be used for testing (see `client_to_mock_pipeline`).
-    /// @param args Arguments for channel establishment.
-    /// @return Established gRPC channel.
-    std::shared_ptr<grpc::Channel> grpc_in_process_channel(const grpc::ChannelArguments& args);
+    // friend declaration to allow TestServer to access the private server_ field.
+    friend class ::viam::sdktests::TestServer;
 
    private:
     std::unique_ptr<grpc::ServerBuilder> builder_;

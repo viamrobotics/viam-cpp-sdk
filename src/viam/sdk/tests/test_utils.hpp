@@ -16,6 +16,19 @@ using namespace viam::sdk;
 AttributeMap fake_map();
 std::vector<GeometryConfig> fake_geometries();
 
+// TestServer is a wrapper around viam::sdk::Server that is a friend of the
+// class and can therefore access its private fields.
+class TestServer {
+   public:
+    TestServer(std::shared_ptr<Server> sdk_server);
+    ~TestServer();
+
+    std::shared_ptr<grpc::Channel> grpc_in_process_channel(const grpc::ChannelArguments& args);
+
+   private:
+    std::shared_ptr<Server> sdk_server_;
+};
+
 // This function sets up the following architecture:
 // -- ResourceClient
 //        /\
@@ -48,7 +61,7 @@ void client_to_mock_pipeline(std::shared_ptr<Resource> mock, F&& test_case) {
     // Create a resource-specific client to the mock over an established
     // in-process gRPC channel.
     grpc::ChannelArguments args;
-    std::shared_ptr<grpc::Channel> grpc_channel = server->grpc_in_process_channel(args);
+    std::shared_ptr<grpc::Channel> grpc_channel = TestServer(server).grpc_in_process_channel(args);
     ClientType client(mock->name(), grpc_channel);
 
     // Run the passed-in test case on the created stack and give access to the
