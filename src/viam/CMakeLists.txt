@@ -14,7 +14,7 @@
 
 add_subdirectory(api)
 add_subdirectory(sdk)
-add_subdirectory(examples)
+add_subdirectory(examples EXCLUDE_FROM_ALL)
 
 # Generate CMake configs to enable importing this project
 # into others via `find_package`.
