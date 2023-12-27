@@ -8,6 +8,7 @@ cmake .. -G Ninja -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON \
 		-DVIAMCPPSDK_SANITIZED_BUILD=ON \
 		-DVIAMCPPSDK_CLANG_TIDY=ON
 ninja all
+ninja src/viam/sdk/tests/all
 ninja install
 pushd src/viam/sdk/tests
 UBSAN_OPTIONS="print_stacktrace=1" ctest --output-on-failure
