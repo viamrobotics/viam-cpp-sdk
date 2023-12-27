@@ -13,6 +13,7 @@ ninja install
 pushd src/viam/sdk/tests
 UBSAN_OPTIONS="print_stacktrace=1" ctest --output-on-failure
 popd
+ninja src/viam/examples/modules/complex/all
 pushd src/viam/examples/modules/complex
 UBSAN_OPTIONS="print_stacktrace=1" ctest --output-on-failure
 popd
