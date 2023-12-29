@@ -250,7 +250,14 @@ void ModuleService::serve() {
 }
 
 ModuleService::~ModuleService() {
-    // TODO(RSDK-5509): Run registered cleanup functions here.
+    try {
+        cleanup_function_();
+    } catch (const std::exception& xcp) {
+        BOOST_LOG_TRIVIAL(error) << "Module cleanup function failed with exception " << xcp.what();
+    } catch (...) {
+        BOOST_LOG_TRIVIAL(error) << "Module cleanup function failed with unknown exception";
+    }
+
     BOOST_LOG_TRIVIAL(info) << "Shutting down gracefully.";
     server_->shutdown();
 
@@ -304,6 +311,13 @@ void ModuleService::add_api_from_registry(API api) {
 void ModuleService::add_model_from_registry(API api, Model model) {
     const std::lock_guard<std::mutex> lock(lock_);
     return add_model_from_registry_inlock_(api, model, lock);
+}
+
+void ModuleService::register_cleanup_function(std::function<void()> func) {
+    if (cleanup_function_) {
+        throw std::runtime_error("cleanup function already registered");
+    }
+    cleanup_function_ = func;
 }
 
 }  // namespace sdk

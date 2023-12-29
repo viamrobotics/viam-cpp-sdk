@@ -53,6 +53,13 @@ class ModuleService : viam::module::v1::ModuleService::Service {
     /// @param model The model to add.
     void add_model_from_registry(API api, Model model);
 
+    /// @brief Registers a cleanup function to run when the module shuts down. There is
+    /// no default cleanup function and only a single cleanup function can be registered.
+    /// Cleanup functions must be registered before `serve` is called.
+    /// @param func The function to run.
+    /// @throws runtime_error if a cleanup function has already been registered.
+    void register_cleanup_function(std::function<void()> func);
+
    private:
     ::grpc::Status AddResource(::grpc::ServerContext* context,
                                const ::viam::module::v1::AddResourceRequest* request,
@@ -87,6 +94,7 @@ class ModuleService : viam::module::v1::ModuleService::Service {
     std::string parent_addr_;
     std::shared_ptr<Server> server_;
     SignalManager signal_manager_;
+    std::function<void()> cleanup_function_;
 };
 
 }  // namespace sdk

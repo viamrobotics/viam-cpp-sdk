@@ -97,6 +97,10 @@ int main(int argc, char** argv) {
 
     std::vector<std::shared_ptr<ModelRegistration>> mrs = {mr};
     auto my_mod = std::make_shared<ModuleService>(argc, argv, mrs);
+    // register_cleanup_function can be used to run custom logic at the time of
+    // shutdown. It must be called before `serve`.
+    my_mod->register_cleanup_function(
+        []() { BOOST_LOG_TRIVIAL(info) << "C++ simple module example cleaning up"; });
     my_mod->serve();
 
     return EXIT_SUCCESS;
