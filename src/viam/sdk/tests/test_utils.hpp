@@ -53,7 +53,7 @@ void client_to_mock_pipeline(std::shared_ptr<Resource> mock, F&& test_case) {
     // Create a viam RPC server. Create a resource-specific server with that
     // viam RPC server. Add the mock resource to the resource-specific server,
     // and start the RPC server.
-    std::shared_ptr<sdk::Server> server = std::make_shared<sdk::Server>();
+    auto server = std::make_shared<sdk::Server>();
     ServerType resource_server(server);
     resource_server.resource_manager()->add(mock->name(), mock);
     server->start();
@@ -61,7 +61,8 @@ void client_to_mock_pipeline(std::shared_ptr<Resource> mock, F&& test_case) {
     // Create a resource-specific client to the mock over an established
     // in-process gRPC channel.
     grpc::ChannelArguments args;
-    std::shared_ptr<grpc::Channel> grpc_channel = TestServer(server).grpc_in_process_channel(args);
+    auto test_server = TestServer(server);
+    auto grpc_channel = test_server.grpc_in_process_channel(args);
     ClientType client(mock->name(), grpc_channel);
 
     // Run the passed-in test case on the created stack and give access to the

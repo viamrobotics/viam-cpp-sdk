@@ -3,7 +3,6 @@
 /// @brief Defines the `Server` class.
 #pragma once
 
-#include <grpcpp/channel.h>
 #include <grpcpp/impl/service_type.h>
 #include <grpcpp/security/server_credentials.h>
 #include <grpcpp/server_builder.h>
