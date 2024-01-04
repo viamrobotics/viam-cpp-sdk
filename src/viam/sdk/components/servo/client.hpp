@@ -35,7 +35,7 @@ class ServoClient : public Servo {
 
     using StubType = viam::component::servo::v1::ServoService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    std : shared_ptr<grpc::Channel> channel_;
-}
+    std::shared_ptr<grpc::Channel> channel_;
+};
 }  // namespace sdk
 }  // namespace viam

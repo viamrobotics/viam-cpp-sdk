@@ -36,11 +36,16 @@ class ServoRegistration : public ResourceRegistration {
 /// specific servo implementations. This class cannot be used on its own.
 class Servo : public Component, public Stoppable {
    public:
+    /// @struct position
+    /// @brief Current position of the servo relative to its home
+    typedef double position;
+
     static API static_api();
+    static std::shared_ptr<ResourceRegistration> resource_registration();
     API dynamic_api() const override;
 
     /// @brief Creates a `position` struct from its proto representation.
-    static position from_proto(viam::component::servo : v1::GetPositionResponse proto);
+    static position from_proto(viam::component::servo::v1::GetPositionResponse proto);
 
     /// @brief Move the servo to the provided angle
     /// @param angle_deg The desired angle of the servo in degrees.

@@ -1,4 +1,4 @@
-#include <viam/sdk/components/servo/server.hpp>
+#include <viam/sdk/components/servo/servo.hpp>
 
 #include <viam/api/component/servo/v1/servo.grpc.pb.h>
 #include <viam/api/component/servo/v1/servo.pb.h>
@@ -42,7 +42,7 @@ API Servo::dynamic_api() const {
     return static_api();
 }
 
-Servo::position Servo::from_proto(viam::component::servo::v1::GetPositionResponse proto) {
+Servo::get_position Servo::from_proto(viam::component::servo::v1::GetPositionResponse proto) {
     return proto.position();
 }
 
