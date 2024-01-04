@@ -1,5 +1,7 @@
 name: Build + draft release
 
+on: pull_request
+
 jobs:
   prepare:
     if: github.repository_owner == 'viamrobotics'
