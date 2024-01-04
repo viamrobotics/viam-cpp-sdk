@@ -44,7 +44,7 @@ class ServoServer : public ResourceServer,
                              const viam::common::v1::DoCommandRequest* request,
                              viam::common::v1::DoCommandResponse* response) noexcept override;
 
-    void register_server(std::shared_ptr<Server> server) ovverride;
-}
+    void register_server(std::shared_ptr<Server> server) override;
+};
 }  // namespace sdk
 }  // namespace viam

@@ -43,7 +43,7 @@ API Servo::dynamic_api() const {
 }
 
 Servo::get_position Servo::from_proto(viam::component::servo::v1::GetPositionResponse proto) {
-    return proto.position();
+    return proto.position_deg();
 }
 
 namespace {

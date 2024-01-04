@@ -22,7 +22,7 @@ class ServoClient : public Servo {
    public:
     ServoClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     void move(uint32_t angle_deg, const AttributeMap& extra) override;
-    position get_posiiton(const AttributeMap& extra) override;
+    position get_position(const AttributeMap& extra) override;
     void stop(const AttributeMap& extra) override;
     bool is_moving() override;
     std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
