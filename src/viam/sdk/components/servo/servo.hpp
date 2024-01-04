@@ -38,7 +38,7 @@ class Servo : public Component, public Stoppable {
    public:
     /// @struct position
     /// @brief Current position of the servo relative to its home
-    typedef double position;
+    typedef uint32_t position;
 
     static API static_api();
     static std::shared_ptr<ResourceRegistration> resource_registration();
