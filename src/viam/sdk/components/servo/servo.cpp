@@ -42,7 +42,7 @@ API Servo::dynamic_api() const {
     return static_api();
 }
 
-Servo::get_position Servo::from_proto(viam::component::servo::v1::GetPositionResponse proto) {
+Servo::position Servo::from_proto(viam::component::servo::v1::GetPositionResponse proto) {
     return proto.position_deg();
 }
 

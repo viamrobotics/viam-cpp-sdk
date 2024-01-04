@@ -30,6 +30,10 @@ class ServoServer : public ResourceServer,
         const ::viam::component::servo::v1::GetPositionRequest* request,
         ::viam::component::servo::v1::GetPositionResponse* response) noexcept override;
 
+    ::grpc::Status Stop(::grpc::ServerContext* context,
+                        const ::viam::component::servo::v1::StopRequest* request,
+                        ::viam::component::servo::v1::StopResponse* response) noexcept override;
+
     ::grpc::Status IsMoving(
         ::grpc::ServerContext* context,
         const ::viam::component::servo::v1::IsMovingRequest* request,

@@ -26,7 +26,7 @@ ServoServer::ServoServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
     return make_service_helper<Servo>(
         "ServoServer::GetPosition", this, request)([&](auto& helper, auto& servo) {
         const Servo::position result = servo->get_position(helper.getExtra());
-        response->set_position(result);
+        response->set_position_deg(result);
     });
 }
 
