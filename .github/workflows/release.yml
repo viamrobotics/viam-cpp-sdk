@@ -1,0 +1,160 @@
+name: Build + draft release
+
+jobs:
+  prepare:
+    if: github.repository_owner == 'viamrobotics'
+    runs-on: [buildjet-8vcpu-ubuntu-2204-arm]
+    container:
+      image: ghcr.io/viamrobotics/canon:arm64
+    outputs:
+      version: ${{ steps.which_version.outputs.version }}
+      sha: ${{ steps.commit.outputs.commit_long_sha }}
+    steps:
+      - name: Check if organization member
+        id: is_organization_member
+        uses: jamessingleton/is-organization-member@1.0.1
+        with:
+          organization: viamrobotics
+          username: ${{ github.actor }}
+          token:  ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Cancelling - user not part of organization
+        uses: andymckay/cancel-action@0.2
+        if: |
+          steps.is_organization_member.outputs.result == 'false'
+
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Which Version
+        id: which_version
+        shell: bash
+        run: echo "version=$(cmake --system-information | awk -F= '$1~/CMAKE_PROJECT_VERSION:STATIC/{print$2}')" >> $GITHUB_OUTPUT
+
+      - name: Check if release exists
+        uses: cardinalby/git-get-release-action@1.2.4
+        id: release_exists
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          releaseName: v${{ steps.which_version.outputs.version }}
+          doNotFailIfNotFound: 'true'
+
+      - name: Cancelling - release already exists
+        uses: andymckay/cancel-action@0.2
+        if: steps.release_exists.outputs.id != ''
+
+      - name: Commit + Push
+        id: commit
+        uses: EndBug/add-and-commit@v9.0.0
+        with:
+          default_author: github_actions
+          message: Bumping version to v${{ steps.which_version.outputs.version }} [skip ci]
+
+  build_macos:
+    if: github.repository_owner == 'viamrobotics'
+    needs: [prepare]
+    runs-on: [self-hosted, ARM64, macOS]
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: aarch64-apple-darwin
+            platform: macosx_arm64
+          - target: x86_64-apple-darwin
+            platform: macosx_x86_64
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.prepare.outputs.sha }}
+      - name: Install dependencies
+        run: |
+          brew install abseil cmake boost grpc protobuf xtensor
+          brew install pkg-config ninja buf
+      - name: Setup build directory
+        run: mkdir builds
+      - name: Build
+        run: |
+          mkdir build
+          pushd build/
+          cmake .. -G Ninja
+          ninja all && ninja install
+          popd
+      - name: Copy
+        run: |
+          cp build/install/lib/libviam_rust_utils.a builds/libviam_rust_utils-${{ matrix.platform }}.a
+          cp build/install/lib/libviamsdk.${{ steps.which_version.outputs.version }}.dylib builds/libviamsdk-${{ matrix.platform }}.dylib
+      - name: Correct install path
+        run: |
+          install_name_tool -id "@rpath/libviam_rust_utils.dylib" builds/libviam_rust_utils-${{ matrix.platform }}.dylib
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: builds
+          path: builds
+
+  build_linux:
+    if: github.repository_owner == 'viamrobotics'
+    needs: [prepare]
+    runs-on: [self-hosted, x64]
+    container:
+      image: ghcr.io/cross-rs/${{ matrix.image }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: x86_64-unknown-linux-gnu
+            platform: linux_x86_64
+            image: x86_64-unknown-linux-gnu:main-centos
+          - target: arm-unknown-linux-gnueabihf
+            platform: linux_armv6l
+            image: arm-unknown-linux-gnueabihf:main
+          - target: aarch64-unknown-linux-gnu
+            platform: linux_aarch64
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.prepare.outputs.sha }}
+      - name: Install dependencies
+        run: |
+          apt-get install cmake build-essential libabsl-dev libboost-all-dev libgrpc++-dev libprotobuf-dev libxtensor-dev
+          apt-get install pkg-config ninja-build protobuf-compiler-grpc
+      - name: Setup build directory
+        run: mkdir builds
+      - name: Build
+        run: |
+          mkdir build
+          pushd build/
+          cmake .. -G Ninja
+          ninja all && ninja install
+          popd
+      - name: Copy
+        run: |
+          cp build/install/lib/libviam_rust_utils.a builds/libviam_rust_utils-${{ matrix.platform }}.a
+          cp build/install/lib/libviamsdk.${{ steps.which_version.outputs.version }}.so builds/libviamsdk-${{ matrix.platform }}.so
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: builds
+          path: builds
+
+  release:
+    needs: [prepare, build_macos, build_linux]
+    if: github.repository_owner == 'viamrobotics'
+    runs-on: [self-hosted, x64]
+    container:
+      image: ghcr.io/viamrobotics/canon:amd64
+
+    steps:
+      - uses: actions/download-artifact@v3
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ needs.prepare.outputs.version }}
+          files: builds/*
+          draft: true
+          prerelease: false
+          fail_on_unmatched_files: true
