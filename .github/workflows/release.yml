@@ -29,7 +29,7 @@ jobs:
       - name: Which Version
         id: which_version
         shell: bash
-        run: echo "version=$(cmake --system-information | awk -F= '$1~/CMAKE_PROJECT_VERSION:STATIC/{print$2}')" >> $GITHUB_OUTPUT
+        run: echo "version=$(grep 'set(CMAKE_PROJECT_VERSION' ../CMakeLists.txt | sed 's/)//' | awk '{print $2}')"
 
       - name: Check if release exists
         uses: cardinalby/git-get-release-action@1.2.4
