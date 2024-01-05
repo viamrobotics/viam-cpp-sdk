@@ -13,8 +13,8 @@
 
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/components/servo/client.hpp>
-#include <viam/sdk/components/servo/servo.hpp>
 #include <viam/sdk/components/servo/server.hpp>
+#include <viam/sdk/components/servo/servo.hpp>
 #include <viam/sdk/tests/mocks/mock_servo.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
@@ -30,9 +30,9 @@ BOOST_AUTO_TEST_SUITE(test_mock)
 
 BOOST_AUTO_TEST_CASE(mock_get_position) {
     std::shared_ptr<MockServo> servo = MockServo::get_mock_servo();
-    servo->move(3);
+    servo->move(static_cast<unsigned>(3));
     BOOST_CHECK(servo->get_position() == 3);
-    servo->move(5);
+    servo->move(static_cast<unsigned>(5));
     BOOST_CHECK(servo->get_position() == 5);
 }
 
@@ -113,16 +113,16 @@ void server_to_mock_pipeline(Lambda&& func) {
 
 BOOST_AUTO_TEST_CASE(test_get_position) {
     server_to_mock_pipeline([](Servo& client) -> void {
-        client.move(3);
+        client.move(static_cast<unsigned>(3));
         BOOST_CHECK(client.get_position() == 3);
-        client.move(5);
+        client.move(static_cast<unsigned>(5));
         BOOST_CHECK(client.get_position() == 5);
     });
 }
 
 BOOST_AUTO_TEST_CASE(test_stop) {
     server_to_mock_pipeline([](Servo& client) -> void {
-        client.move(90);
+        client.move(static_cast<unsigned>(90));
         client.stop(AttributeMap());
         // This test is a no-op for now because is_moving will always
         // return false
@@ -152,8 +152,7 @@ BOOST_AUTO_TEST_CASE(test_do_command) {
 }
 
 BOOST_AUTO_TEST_CASE(test_exception_creation) {
-    server_to_mock_pipeline([](Servo& client) -> void {
-    });
+    server_to_mock_pipeline([](Servo& client) -> void {});
 }
 
 BOOST_AUTO_TEST_SUITE_END()
