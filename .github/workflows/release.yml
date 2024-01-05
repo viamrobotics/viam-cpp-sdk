@@ -79,8 +79,8 @@ jobs:
         run: mkdir builds
       - name: Build
         run: |
-          echo "version=$(grep 'set(CMAKE_PROJECT_VERSION' CMakeLists.txt | sed 's/)//' | awk '{print $2}')"
-          echo "version is ${{ steps.which_version.outputs.version }}"
+          echo "version=$(grep 'set.CMAKE_PROJECT_VERSION' CMakeLists.txt | sed 's/)//' | awk '{print $2}')"
+          echo "version is ${{ needs.prepare.outputs.version }}"
           export BUF_CONFIG_DIR=$(mktemp -d)
           mkdir build
           pushd build/
