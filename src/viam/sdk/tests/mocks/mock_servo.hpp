@@ -38,6 +38,7 @@ class MockServo : public Servo {
     // that calls the virtual method and passes a `nullptr` by default in place of the `extra`
     // param. In order to access these versions of the methods within the client code, however,
     // we need to include these `using` lines.
+    using Servo::move;
     using Servo::get_geometries;
     using Servo::get_position;
     using Servo::stop;
