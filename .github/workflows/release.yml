@@ -127,6 +127,8 @@ jobs:
           ref: ${{ needs.prepare.outputs.sha }}
       - name: Install dependencies
         run: |
+          sudo apt update
+          sudo apt install libabsl-dev
           apt-get update
           apt-get -y dist-upgrade
           apt-get -y --no-install-recommends install cmake build-essential libabsl-dev libboost-all-dev libgrpc++-dev libprotobuf-dev libxtensor-dev
