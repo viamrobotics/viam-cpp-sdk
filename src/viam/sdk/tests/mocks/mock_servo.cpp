@@ -18,6 +18,10 @@ namespace servo {
 
 using namespace viam::sdk;
 
+void MockServo::move(uint32_t angle_deg, const AttributeMap& extra) {
+    position_ = angle_deg;
+}
+
 Servo::position MockServo::get_position(const AttributeMap& extra) {
     return position_;
 }

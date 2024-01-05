@@ -18,7 +18,7 @@ using viam::sdk::Servo;
 
 class MockServo : public Servo {
    public:
-    move
+    void move(uint32_t angle_deg, const viam::sdk::AttributeMap& extra) override;
     Servo::position get_position(const sdk::AttributeMap& extra) override;
     void stop(const viam::sdk::AttributeMap& extra) override;
     bool is_moving() override;

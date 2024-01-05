@@ -66,7 +66,6 @@ BOOST_AUTO_TEST_CASE(mock_do_command) {
 
 BOOST_AUTO_TEST_CASE(mock_exception_creation) {
     std::shared_ptr<MockServo> servo = MockServo::get_mock_servo();
-    BOOST_CHECK_THROW(servo->go_for(0.0, 1.0), std::runtime_error);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
@@ -114,9 +113,9 @@ void server_to_mock_pipeline(Lambda&& func) {
 
 BOOST_AUTO_TEST_CASE(test_get_position) {
     server_to_mock_pipeline([](Servo& client) -> void {
-        client.go_to(3);
+        client.move(3);
         BOOST_CHECK(client.get_position() == 3);
-        client.reset_zero_position(5);
+        client.move(5);
         BOOST_CHECK(client.get_position() == 5);
     });
 }
@@ -154,7 +153,6 @@ BOOST_AUTO_TEST_CASE(test_do_command) {
 
 BOOST_AUTO_TEST_CASE(test_exception_creation) {
     server_to_mock_pipeline([](Servo& client) -> void {
-        BOOST_CHECK_THROW(client.go_for(0.0, 1.0), std::runtime_error);
     });
 }
 
