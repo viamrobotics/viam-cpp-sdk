@@ -114,7 +114,7 @@ jobs:
         include:
           - target: x86_64-unknown-linux-gnu
             platform: linux_x86_64
-            image: x86_64-unknown-linux-gnu:main-centos
+            image: x86_64-unknown-linux-gnu:main
           - target: arm-unknown-linux-gnueabihf
             platform: linux_armv6l
             image: arm-unknown-linux-gnueabihf:main
@@ -127,8 +127,6 @@ jobs:
           ref: ${{ needs.prepare.outputs.sha }}
       - name: Install dependencies
         run: |
-          apt update
-          apt install libabsl-dev
           apt-get update
           apt-get -y dist-upgrade
           apt-get -y --no-install-recommends install cmake build-essential libabsl-dev libboost-all-dev libgrpc++-dev libprotobuf-dev libxtensor-dev
