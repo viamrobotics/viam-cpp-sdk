@@ -78,6 +78,7 @@ jobs:
         run: mkdir builds
       - name: Build
         run: |
+          export BUF_CONFIG_DIR=$(mktemp -d)
           mkdir build
           pushd build/
           cmake .. -G Ninja
