@@ -31,7 +31,7 @@ jobs:
       - name: Which Version
         id: which_version
         shell: bash
-        run: echo "version=$(grep 'set(CMAKE_PROJECT_VERSION' CMakeLists.txt | sed 's/)//' | awk '{print $2}')"
+        run: echo "version=$(grep 'set(CMAKE_PROJECT_VERSION' CMakeLists.txt | sed 's/)//' | awk '{print $2}')" >> $GITHUB_OUTPUT
 
       - name: Check if release exists
         uses: cardinalby/git-get-release-action@1.2.4
