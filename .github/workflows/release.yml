@@ -90,7 +90,7 @@ jobs:
       - name: Copy
         run: |
           cp build/install/lib/libviam_rust_utils.a builds/libviam_rust_utils-${{ matrix.platform }}.a
-          cp build/install/lib/libviamsdk.${{ steps.which_version.outputs.version }}.dylib builds/libviamsdk-${{ matrix.platform }}.dylib
+          cp build/install/lib/libviamsdk.${{ needs.prepare.outputs.version }}.dylib builds/libviamsdk-${{ matrix.platform }}.dylib
       - name: Correct install path
         run: |
           install_name_tool -id "@rpath/libviam_rust_utils.dylib" builds/libviam_rust_utils-${{ matrix.platform }}.dylib
@@ -139,7 +139,7 @@ jobs:
       - name: Copy
         run: |
           cp build/install/lib/libviam_rust_utils.a builds/libviam_rust_utils-${{ matrix.platform }}.a
-          cp build/install/lib/libviamsdk.${{ steps.which_version.outputs.version }}.so builds/libviamsdk-${{ matrix.platform }}.so
+          cp build/install/lib/libviamsdk.${{ needs.prepare.outputs.version }}.so builds/libviamsdk-${{ matrix.platform }}.so
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
