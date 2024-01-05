@@ -127,8 +127,10 @@ jobs:
           ref: ${{ needs.prepare.outputs.sha }}
       - name: Install dependencies
         run: |
-          apt-get install cmake build-essential libabsl-dev libboost-all-dev libgrpc++-dev libprotobuf-dev libxtensor-dev
-          apt-get install pkg-config ninja-build protobuf-compiler-grpc
+          apt-get update
+          apt-get -y dist-upgrade
+          apt-get -y --no-install-recommends install cmake build-essential libabsl-dev libboost-all-dev libgrpc++-dev libprotobuf-dev libxtensor-dev
+          apt-get -y --no-install-recommends install pkg-config ninja-build protobuf-compiler-grpc
       - name: Setup build directory
         run: mkdir builds
       - name: Build
