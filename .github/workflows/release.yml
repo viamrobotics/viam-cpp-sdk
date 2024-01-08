@@ -127,6 +127,7 @@ jobs:
           ref: ${{ needs.prepare.outputs.sha }}
       - name: Install dependencies
         run: |
+          apt-get -y --no-install-recommends wget
           bash -c 'wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -'
           apt-add-repository -y 'deb http://apt.llvm.org/focal/ llvm-toolchain-focal-15 main'
           apt-get -y --no-install-recommends install -t llvm-toolchain-focal-15 clang-15 clang-tidy-15
