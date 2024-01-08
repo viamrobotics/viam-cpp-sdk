@@ -127,7 +127,6 @@ jobs:
           ref: ${{ needs.prepare.outputs.sha }}
       - name: Install dependencies
         run: |
-          hostnamectl
           apt-get update
           apt-get -y dist-upgrade
           apt-get list libasl-dev
@@ -137,6 +136,8 @@ jobs:
         run: mkdir builds
       - name: Build
         run: |
+          cat /etc/os-release
+          lsb_release -a
           mkdir build
           pushd build/
           cmake .. -G Ninja
