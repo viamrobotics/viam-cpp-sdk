@@ -164,6 +164,7 @@ jobs:
       - name: Setup build directory
         run: mkdir builds
       - name: Build
+        shell: bash
         run: |
           mkdir build
           pushd build/
