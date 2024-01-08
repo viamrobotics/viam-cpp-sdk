@@ -159,7 +159,7 @@ jobs:
           apt-get -y dist-upgrade
           #apt-get list libasl-dev
           #apt-get -y --no-install-recommends install cmake build-essential libabsl-dev libboost-all-dev libgrpc++-dev libprotobuf-dev libxtensor-dev
-          apt-get -y --no-install-recommends install cmake build-essential libboost-all-dev libgrpc++-dev libprotobuf-dev libxtensor-dev
+          apt-get -y --no-install-recommends install cmake build-essential libboost-all-dev libgrpc++-dev libprotobuf-dev 
           apt-get -y --no-install-recommends install pkg-config ninja-build protobuf-compiler-grpc
       - name: Setup build directory
         run: mkdir builds
