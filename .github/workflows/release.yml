@@ -79,7 +79,6 @@ jobs:
         run: mkdir builds
       - name: Build
         run: |
-          hostnamectl
           echo "version=$(grep 'set.CMAKE_PROJECT_VERSION' CMakeLists.txt | sed 's/)//' | awk '{print $2}')"
           echo "version is ${{ needs.prepare.outputs.version }}"
           export BUF_CONFIG_DIR=$(mktemp -d)
@@ -128,9 +127,10 @@ jobs:
           ref: ${{ needs.prepare.outputs.sha }}
       - name: Install dependencies
         run: |
-          apt-get list -a libasl-dev
+          hostnamectl
           apt-get update
           apt-get -y dist-upgrade
+          apt-get list libasl-dev
           apt-get -y --no-install-recommends install cmake build-essential libabsl-dev libboost-all-dev libgrpc++-dev libprotobuf-dev libxtensor-dev
           apt-get -y --no-install-recommends install pkg-config ninja-build protobuf-compiler-grpc
       - name: Setup build directory
