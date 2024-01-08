@@ -127,12 +127,17 @@ jobs:
           ref: ${{ needs.prepare.outputs.sha }}
       - name: Install dependencies
         run: |
+          bash -c 'wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -'
+          apt-add-repository -y 'deb http://apt.llvm.org/focal/ llvm-toolchain-focal-15 main'
+          apt-get -y --no-install-recommends install -t llvm-toolchain-focal-15 clang-15 clang-tidy-15
+
           cat /etc/os-release
           lsb_release -a
           apt-get update
           apt-get -y dist-upgrade
-          apt-get list libasl-dev
-          apt-get -y --no-install-recommends install cmake build-essential libabsl-dev libboost-all-dev libgrpc++-dev libprotobuf-dev libxtensor-dev
+          #apt-get list libasl-dev
+          #apt-get -y --no-install-recommends install cmake build-essential libabsl-dev libboost-all-dev libgrpc++-dev libprotobuf-dev libxtensor-dev
+          apt-get -y --no-install-recommends install cmake build-essential libboost-all-dev libgrpc++-dev libprotobuf-dev libxtensor-dev
           apt-get -y --no-install-recommends install pkg-config ninja-build protobuf-compiler-grpc
       - name: Setup build directory
         run: mkdir builds
