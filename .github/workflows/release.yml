@@ -127,6 +127,8 @@ jobs:
           ref: ${{ needs.prepare.outputs.sha }}
       - name: Install dependencies
         run: |
+          apt-get update
+          apt-get -y dist-upgrade
           apt-get -y --no-install-recommends install \
               build-essential \
               ca-certificates \
@@ -160,9 +162,8 @@ jobs:
           # Add public key and repository to get cmake 3.25+
           wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - > /usr/share/keyrings/kitware-archive-keyring.gpg
           echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ focal main' > /etc/apt/sources.list.d/kitware.list
-          apt-get -y --no-install-recommends install -t llvm-toolchain-focal-15 clang-15 clang-tidy-15
           apt-get update
-          apt-get -y dist-upgrade
+          apt-get -y --no-install-recommends install -t llvm-toolchain-focal-15 clang-15 clang-tidy-15
 
           apt-get -y install cmake
 
