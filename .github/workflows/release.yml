@@ -84,7 +84,7 @@ jobs:
           export BUF_CONFIG_DIR=$(mktemp -d)
           mkdir build
           pushd build/
-          cmake .. -G Ninja
+          /usr/bin/cmake .. -G Ninja
           ninja all && ninja install
           popd
       - name: Copy
