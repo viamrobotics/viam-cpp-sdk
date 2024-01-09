@@ -57,8 +57,7 @@ class MockMotor : public Motor {
     Motor::position position_;
     Motor::power_status power_status_;
     Motor::properties properties_;
-    // TODO(RSDK-2747) swap to AttributeMap
-    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<viam::sdk::ProtoType>>> map_;
+    viam::sdk::AttributeMap map_;
 };
 
 Motor::position fake_position();
