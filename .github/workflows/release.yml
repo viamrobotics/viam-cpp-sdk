@@ -166,6 +166,7 @@ jobs:
           apt-get -y --no-install-recommends install -t llvm-toolchain-focal-15 clang-15 clang-tidy-15
 
           apt-get -y install cmake
+          echo "cmake version is ${cmake --version}"
 
           apt-get -y --no-install-recommends install build-essential libboost-all-dev libgrpc++-dev libprotobuf-dev
           apt-get -y --no-install-recommends install pkg-config ninja-build protobuf-compiler-grpc
