@@ -12,6 +12,7 @@ var searchData=
   ['related_20to_20the_20movementsensor_20component_9',['Classes related to the MovementSensor component.',['../group__MovementSensor.html',1,'']]],
   ['related_20to_20the_20powersensor_20component_10',['Classes related to the PowerSensor component.',['../group__PowerSensor.html',1,'']]],
   ['related_20to_20the_20sensor_20component_11',['Classes related to the Sensor component.',['../group__Sensor.html',1,'']]],
-  ['representation_12',['Classes related to a Robot representation.',['../group__Robot.html',1,'']]],
-  ['robot_20representation_13',['Classes related to a Robot representation.',['../group__Robot.html',1,'']]]
+  ['related_20to_20the_20servo_20component_12',['Classes related to the Servo component.',['../group__Servo.html',1,'']]],
+  ['representation_13',['Classes related to a Robot representation.',['../group__Robot.html',1,'']]],
+  ['robot_20representation_14',['Classes related to a Robot representation.',['../group__Robot.html',1,'']]]
 ];
