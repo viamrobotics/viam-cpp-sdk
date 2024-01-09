@@ -32,18 +32,18 @@ BOOST_AUTO_TEST_CASE(mock_move_and_get_position) {
     std::shared_ptr<MockServo> servo = MockServo::get_mock_servo();
 
     BOOST_CHECK(!servo->is_moving());
-    servo->move(static_cast<unsigned>(3));
+    servo->move(3);
     BOOST_CHECK_EQUAL(servo->get_position(), 3);
     BOOST_CHECK(servo->is_moving());
 
-    servo->move(static_cast<unsigned>(5));
+    servo->move(5);
     BOOST_CHECK_EQUAL(servo->get_position(), 5);
     BOOST_CHECK(servo->is_moving());
 }
 
 BOOST_AUTO_TEST_CASE(mock_stop) {
     std::shared_ptr<MockServo> servo = MockServo::get_mock_servo();
-    servo->move(static_cast<unsigned>(3));
+    servo->move(3);
     BOOST_CHECK(servo->is_moving());
     servo->stop();
     BOOST_CHECK(!servo->is_moving());
@@ -117,11 +117,11 @@ void server_to_mock_pipeline(Lambda&& func) {
 BOOST_AUTO_TEST_CASE(test_move_and_get_position) {
     server_to_mock_pipeline([](Servo& client) -> void {
         BOOST_CHECK(!client.is_moving());
-        client.move(static_cast<unsigned>(3));
+        client.move(3);
         BOOST_CHECK_EQUAL(client.get_position(), 3);
         BOOST_CHECK(client.is_moving());
 
-        client.move(static_cast<unsigned>(5));
+        client.move(5);
         BOOST_CHECK_EQUAL(client.get_position(), 5);
         BOOST_CHECK(client.is_moving());
     });
@@ -129,7 +129,7 @@ BOOST_AUTO_TEST_CASE(test_move_and_get_position) {
 
 BOOST_AUTO_TEST_CASE(test_stop) {
     server_to_mock_pipeline([](Servo& client) -> void {
-        client.move(static_cast<unsigned>(3));
+        client.move(3);
         BOOST_CHECK(client.is_moving());
         client.stop();
         BOOST_CHECK(!client.is_moving());
