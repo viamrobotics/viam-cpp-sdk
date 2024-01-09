@@ -18,7 +18,8 @@ using namespace viam::sdk;
 //
 class MockRobotService : public RobotService_ {
    public:
-    MockRobotService(std::shared_ptr<Server> server) : RobotService_(server){};
+    explicit MockRobotService(std::shared_ptr<ResourceManager> manager, Server& server)
+        : RobotService_(std::move(manager), server){};
 
     ::grpc::Status FrameSystemConfig(
         ::grpc::ServerContext* context,

@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE(mock_get_api) {
 
 BOOST_AUTO_TEST_CASE(test_do_command) {
     std::shared_ptr<MockGeneric> mock = MockGeneric::get_mock_generic();
-    client_to_mock_pipeline<GenericClient, GenericServer>(mock, [](Generic& client) {
+    client_to_mock_pipeline<GenericClient>(mock, [](Generic& client) {
         AttributeMap expected = fake_map();
         AttributeMap command;
         AttributeMap result_map = client.do_command(command);
@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE(test_do_command) {
 
 BOOST_AUTO_TEST_CASE(test_get_geometries) {
     std::shared_ptr<MockGeneric> mock = MockGeneric::get_mock_generic();
-    client_to_mock_pipeline<GenericClient, GenericServer>(mock, [](Generic& client) {
+    client_to_mock_pipeline<GenericClient>(mock, [](Generic& client) {
         std::vector<GeometryConfig> expected_geometries = fake_geometries();
         std::vector<GeometryConfig> result_geometries = client.get_geometries(fake_map());
 

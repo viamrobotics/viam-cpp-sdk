@@ -22,9 +22,9 @@
 namespace viam {
 namespace sdk {
 
-// TODO(RSDK-1742): instead of std::functions, consider making these functions
+// TODO(RSDK-3030): instead of std::functions, consider making these functions
 // virtual
-// TODO(RSDK-1742): one class per header
+// TODO(RSDK-3030): one class per header
 /// @class ResourceRegistration registry.hpp "registry/registry.hpp"
 /// @brief Defines registered `Resource` creation functionality.
 class ResourceRegistration {
@@ -36,9 +36,10 @@ class ResourceRegistration {
 
     /// @brief Create a resource's gRPC server.
     /// @param manager The server's `ResourceManager`.
+    /// @param server The Server with which to register the relevant gRPC service.
     /// @return a `shared_ptr` to the gRPC server.
     virtual std::shared_ptr<ResourceServer> create_resource_server(
-        std::shared_ptr<ResourceManager> manager) = 0;
+        std::shared_ptr<ResourceManager> manager, Server& server) = 0;
 
     /// @brief Returns a reference to the `ResourceRegistration`'s service descriptor.
     const google::protobuf::ServiceDescriptor* service_descriptor();
@@ -66,9 +67,11 @@ template <typename ResourceClientT,
 class ResourceRegistration2 : public ResourceRegistration {
    public:
     using ResourceRegistration::ResourceRegistration;
-    std::shared_ptr<ResourceServer> create_resource_server(
-        std::shared_ptr<ResourceManager> manager) override {
-        return std::make_shared<ResourceServerT>(manager);
+    std::shared_ptr<ResourceServer> create_resource_server(std::shared_ptr<ResourceManager> manager,
+                                                           Server& server) override {
+        auto rs = std::make_shared<ResourceServerT>(manager);
+        server.register_service(rs.get());
+        return rs;
     }
 
     std::shared_ptr<Resource> create_rpc_client(std::string name,

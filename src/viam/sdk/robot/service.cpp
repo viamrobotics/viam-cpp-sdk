@@ -30,6 +30,11 @@ using google::protobuf::RepeatedPtrField;
 using viam::common::v1::ResourceName;
 using viam::robot::v1::Status;
 
+RobotService_::RobotService_(std::shared_ptr<ResourceManager> manager, Server& server)
+    : ResourceServer(std::move(manager)) {
+    server.register_service(this);
+}
+
 std::vector<ResourceName> RobotService_::generate_metadata() {
     std::vector<ResourceName> metadata;
     for (const auto& key_and_val : resource_manager()->resources()) {
@@ -203,14 +208,6 @@ std::shared_ptr<Resource> RobotService_::resource_by_name(Name name) {
 
     return r;
 }
-
-void RobotService_::register_server(std::shared_ptr<Server> server) {
-    server->register_service(this);
-}
-
-std::shared_ptr<RobotService_> RobotService_::create() {
-    return std::make_shared<RobotService_>();
-};
 
 }  // namespace sdk
 }  // namespace viam

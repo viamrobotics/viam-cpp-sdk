@@ -18,7 +18,6 @@ namespace sdk {
 class CameraServer : public ResourceServer,
                      public viam::component::camera::v1::CameraService::Service {
    public:
-    CameraServer();
     explicit CameraServer(std::shared_ptr<ResourceManager> manager);
 
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
@@ -47,8 +46,6 @@ class CameraServer : public ResourceServer,
         ::grpc::ServerContext* context,
         const ::viam::component::camera::v1::GetPropertiesRequest* request,
         ::viam::component::camera::v1::GetPropertiesResponse* response) noexcept override;
-
-    void register_server(std::shared_ptr<Server> server) override;
 };
 
 }  // namespace sdk

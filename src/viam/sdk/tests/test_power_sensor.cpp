@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE(mock_get_api) {
 
 BOOST_AUTO_TEST_CASE(test_get_voltage) {
     std::shared_ptr<MockPowerSensor> mock = MockPowerSensor::get_mock_powersensor();
-    client_to_mock_pipeline<PowerSensorClient, PowerSensorServer>(mock, [&](PowerSensor& client) {
+    client_to_mock_pipeline<PowerSensorClient>(mock, [&](PowerSensor& client) {
         mock->peek_voltage = {10.0, false};
         BOOST_CHECK(client.get_voltage() == mock->peek_voltage);
     });
@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE(test_get_voltage) {
 
 BOOST_AUTO_TEST_CASE(test_get_current) {
     std::shared_ptr<MockPowerSensor> mock = MockPowerSensor::get_mock_powersensor();
-    client_to_mock_pipeline<PowerSensorClient, PowerSensorServer>(mock, [&](PowerSensor& client) {
+    client_to_mock_pipeline<PowerSensorClient>(mock, [&](PowerSensor& client) {
         mock->peek_current = {10.0, false};
         BOOST_CHECK(client.get_current() == mock->peek_current);
     });
@@ -56,7 +56,7 @@ BOOST_AUTO_TEST_CASE(test_get_current) {
 
 BOOST_AUTO_TEST_CASE(test_get_power) {
     std::shared_ptr<MockPowerSensor> mock = MockPowerSensor::get_mock_powersensor();
-    client_to_mock_pipeline<PowerSensorClient, PowerSensorServer>(mock, [&](PowerSensor& client) {
+    client_to_mock_pipeline<PowerSensorClient>(mock, [&](PowerSensor& client) {
         mock->peek_power = 10.0;
         BOOST_CHECK(client.get_power() == mock->peek_power);
     });
@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_CASE(test_get_power) {
 
 BOOST_AUTO_TEST_CASE(test_get_readings) {
     std::shared_ptr<MockPowerSensor> mock = MockPowerSensor::get_mock_powersensor();
-    client_to_mock_pipeline<PowerSensorClient, PowerSensorServer>(mock, [&](PowerSensor& client) {
+    client_to_mock_pipeline<PowerSensorClient>(mock, [&](PowerSensor& client) {
         AttributeMap expected = fake_map();
 
         AttributeMap readings = client.get_readings();
@@ -77,7 +77,7 @@ BOOST_AUTO_TEST_CASE(test_get_readings) {
 
 BOOST_AUTO_TEST_CASE(test_do_command) {
     std::shared_ptr<MockPowerSensor> mock = MockPowerSensor::get_mock_powersensor();
-    client_to_mock_pipeline<PowerSensorClient, PowerSensorServer>(mock, [](PowerSensor& client) {
+    client_to_mock_pipeline<PowerSensorClient>(mock, [](PowerSensor& client) {
         AttributeMap expected = fake_map();
 
         AttributeMap command = fake_map();

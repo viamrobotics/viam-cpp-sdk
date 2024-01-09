@@ -205,7 +205,7 @@ BOOST_AUTO_TEST_SUITE(test_mlmodel_client_server)
 BOOST_AUTO_TEST_CASE(mock_metadata_grpc_roundtrip) {
     const auto mock = std::make_shared<MockMLModelService>();
     mock->set_metadata(test_metadata);
-    client_to_mock_pipeline<MLModelServiceClient, MLModelServiceServer>(mock, [](auto& client) {
+    client_to_mock_pipeline<MLModelServiceClient>(mock, [](auto& client) {
         const auto returned_metadata = client.metadata();
         BOOST_TEST(test_metadata == returned_metadata);
     });
@@ -287,7 +287,7 @@ BOOST_AUTO_TEST_CASE(mock_infer_grpc_roundtrip) {
         return std::shared_ptr<MLModelService::named_tensor_views>{std::move(output), ntvs};
     });
 
-    client_to_mock_pipeline<MLModelServiceClient, MLModelServiceServer>(mock, [](auto& client) {
+    client_to_mock_pipeline<MLModelServiceClient>(mock, [](auto& client) {
         MLModelService::named_tensor_views request;
 
         std::array<float, 1024> input1_data{};

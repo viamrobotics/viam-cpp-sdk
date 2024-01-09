@@ -26,8 +26,10 @@ MLModelServiceRegistration::MLModelServiceRegistration(
     : ResourceRegistration(service_descriptor) {}
 
 std::shared_ptr<ResourceServer> MLModelServiceRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager) {
-    return std::make_shared<MLModelServiceServer>(std::move(manager));
+    std::shared_ptr<ResourceManager> manager, Server& server) {
+    auto mlms = std::make_shared<MLModelServiceServer>(std::move(manager));
+    server.register_service(mlms.get());
+    return mlms;
 };
 
 std::shared_ptr<Resource> MLModelServiceRegistration::create_rpc_client(

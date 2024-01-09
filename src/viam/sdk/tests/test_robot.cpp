@@ -37,22 +37,22 @@ BOOST_AUTO_TEST_SUITE(test_robot)
 // the robot client and the mock robot service.
 template <typename F>
 void robot_client_to_mocks_pipeline(F&& test_case) {
-    // Create a viam RPC server. Create a MockRobotService with that viam RPC
-    // server. Add the mock resource to the MockRobotService, and start the RPC
-    // server.
-    std::shared_ptr<sdk::Server> server = std::make_shared<sdk::Server>();
-    MockRobotService service(server);
-    service.resource_manager()->add(std::string("mock_generic"),
-                                    generic::MockGeneric::get_mock_generic());
-    service.resource_manager()->add(std::string("mock_motor"), motor::MockMotor::get_mock_motor());
-    service.resource_manager()->add(std::string("mock_camera"),
-                                    camera::MockCamera::get_mock_camera());
+    // Create a ResourceManager. Add a few mock resources to the
+    // ResourceManager. Create a Server. Create a MockRobotService from the
+    // ResourceManager and Server. Start the Server.
+    auto rm = std::make_shared<ResourceManager>();
+    rm->add(std::string("mock_generic"), generic::MockGeneric::get_mock_generic());
+    rm->add(std::string("mock_motor"), motor::MockMotor::get_mock_motor());
+    rm->add(std::string("mock_camera"), camera::MockCamera::get_mock_camera());
+    auto server = std::make_shared<sdk::Server>();
+    MockRobotService service(rm, *server);
     server->start();
 
     // Create a RobotClient to the MockRobotService over an established
     // in-process gRPC channel.
     grpc::ChannelArguments args;
-    std::shared_ptr<grpc::Channel> grpc_channel = TestServer(server).grpc_in_process_channel(args);
+    auto test_server = TestServer(server);
+    auto grpc_channel = test_server.grpc_in_process_channel(args);
     auto viam_channel = std::make_shared<ViamChannel>(grpc_channel, "", nullptr);
     auto client = RobotClient::with_channel(viam_channel, Options(0, boost::none));
 
@@ -60,7 +60,7 @@ void robot_client_to_mocks_pipeline(F&& test_case) {
     // created RobotClient and MockRobotService.
     std::forward<F>(test_case)(client, service);
 
-    // Shutdown viam RPC server afterward.
+    // Shutdown Server afterward.
     server->shutdown();
 }
 

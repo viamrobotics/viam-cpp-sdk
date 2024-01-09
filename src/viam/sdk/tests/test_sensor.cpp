@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE(mock_get_api) {
 
 BOOST_AUTO_TEST_CASE(test_get_readings) {
     std::shared_ptr<MockSensor> mock = MockSensor::get_mock_sensor();
-    client_to_mock_pipeline<SensorClient, SensorServer>(mock, [](Sensor& client) {
+    client_to_mock_pipeline<SensorClient>(mock, [](Sensor& client) {
         AttributeMap expected = fake_map();
 
         AttributeMap readings = client.get_readings();
@@ -54,7 +54,7 @@ BOOST_AUTO_TEST_CASE(test_get_readings) {
 
 BOOST_AUTO_TEST_CASE(test_do_command) {
     std::shared_ptr<MockSensor> mock = MockSensor::get_mock_sensor();
-    client_to_mock_pipeline<SensorClient, SensorServer>(mock, [](Sensor& client) {
+    client_to_mock_pipeline<SensorClient>(mock, [](Sensor& client) {
         AttributeMap expected = fake_map();
 
         AttributeMap command = fake_map();
@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE(test_do_command) {
 
 BOOST_AUTO_TEST_CASE(test_get_geometries) {
     std::shared_ptr<MockSensor> mock = MockSensor::get_mock_sensor();
-    client_to_mock_pipeline<SensorClient, SensorServer>(mock, [](Sensor& client) {
+    client_to_mock_pipeline<SensorClient>(mock, [](Sensor& client) {
         std::vector<sdk::GeometryConfig> expected = fake_geometries();
         std::vector<sdk::GeometryConfig> geometries = client.get_geometries();
         BOOST_CHECK(expected == geometries);

@@ -8,7 +8,6 @@ namespace sdk {
 
 class ResourceServer {
    public:
-    virtual void register_server(std::shared_ptr<Server> server) = 0;
     const std::shared_ptr<ResourceManager>& resource_manager() const;
 
    protected:

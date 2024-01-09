@@ -5,6 +5,7 @@
 #include <grpcpp/grpcpp.h>
 
 #include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/rpc/server.hpp>
 
@@ -48,14 +49,20 @@ class TestServer {
 // without starting another process.
 //
 // The passed in test_case function will have access to the created ResourceClient.
-template <typename ClientType, typename ServerType, typename F>
+template <typename ClientType, typename F>
 void client_to_mock_pipeline(std::shared_ptr<Resource> mock, F&& test_case) {
-    // Create a viam RPC server. Create a resource-specific server with that
-    // viam RPC server. Add the mock resource to the resource-specific server,
-    // and start the RPC server.
+    // Create a ResourceManager. Add the mock resource to the ResourceManager.
+    // Create a Server. Use the mock's API to create a resource-specific
+    // server (like MotorServer) from the ResourceManager and Server. Start the
+    // Server.
+    auto rm = std::make_shared<ResourceManager>();
+    rm->add(mock->name(), mock);
     auto server = std::make_shared<sdk::Server>();
-    ServerType resource_server(server);
-    resource_server.resource_manager()->add(mock->name(), mock);
+    auto rs = sdk::Registry::lookup_resource(mock->dynamic_api());
+    // resource_server is unused; we call create_resource_server to call
+    // register_service and associate the Server with the resource-specific
+    // server (like MotorServer).
+    auto resource_server = rs->create_resource_server(rm, *server);
     server->start();
 
     // Create a resource-specific client to the mock over an established
@@ -63,13 +70,13 @@ void client_to_mock_pipeline(std::shared_ptr<Resource> mock, F&& test_case) {
     grpc::ChannelArguments args;
     auto test_server = TestServer(server);
     auto grpc_channel = test_server.grpc_in_process_channel(args);
-    ClientType client(mock->name(), grpc_channel);
+    ClientType resource_client(mock->name(), grpc_channel);
 
     // Run the passed-in test case on the created stack and give access to the
     // created resource-specific client.
-    std::forward<F>(test_case)(client);
+    std::forward<F>(test_case)(resource_client);
 
-    // Shutdown viam RPC server afterward.
+    // Shutdown Server afterward.
     server->shutdown();
 }
 
