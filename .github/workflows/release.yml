@@ -84,7 +84,7 @@ jobs:
           export BUF_CONFIG_DIR=$(mktemp -d)
           mkdir build
           pushd build/
-          /usr/bin/cmake .. -G Ninja
+          cmake .. -G Ninja
           ninja all && ninja install
           popd
       - name: Copy
@@ -170,7 +170,7 @@ jobs:
           apt-get -y install cmake
           which cmake
 
-          cmake --version
+          /usr/bin/cmake --version
 
           apt-get -y --no-install-recommends install build-essential libboost-all-dev libgrpc++-dev libprotobuf-dev
           apt-get -y --no-install-recommends install pkg-config ninja-build protobuf-compiler-grpc
@@ -181,7 +181,7 @@ jobs:
         run: |
           mkdir build
           pushd build/
-          cmake .. -G Ninja
+          /usr/bin/cmake .. -G Ninja
           ninja all && ninja install
           popd
       - name: Copy
