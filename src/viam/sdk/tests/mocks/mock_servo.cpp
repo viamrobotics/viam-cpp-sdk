@@ -19,6 +19,7 @@ namespace servo {
 using namespace viam::sdk;
 
 void MockServo::move(uint32_t angle_deg, const AttributeMap& extra) {
+    is_moving_ = true;
     position_ = angle_deg;
 }
 
@@ -47,7 +48,7 @@ std::shared_ptr<MockServo> MockServo::get_mock_servo() {
 
     servo->position_ = fake_position();
     servo->map_ = fake_map();
-    servo->is_moving_ = true;
+    servo->is_moving_ = false;
 
     return servo;
 }

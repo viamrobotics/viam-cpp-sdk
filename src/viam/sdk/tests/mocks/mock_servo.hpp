@@ -36,8 +36,7 @@ class MockServo : public Servo {
 
    private:
     Servo::position position_;
-    // TODO(RSDK-2747) swap to AttributeMap
-    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<viam::sdk::ProtoType>>> map_;
+    viam::sdk::AttributeMap map_;
     bool is_moving_;
 };
 
