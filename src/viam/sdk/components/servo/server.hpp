@@ -13,7 +13,7 @@ namespace viam {
 namespace sdk {
 
 /// @class ServoServer
-/// @brief gRPC server implementation of a `Servo` componnet.
+/// @brief gRPC server implementation of a `Servo` component.
 /// @ingroup Servo
 class ServoServer : public ResourceServer,
                     public viam::component::servo::v1::ServoService::Service {
