@@ -210,7 +210,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(Name name) {
 };
 
 ModuleService::ModuleService(std::string addr)
-    : module_(std::make_unique<Module>(std::move(addr))), server_(std::make_shared<Server>()) {}
+    : module_(std::make_unique<Module>(std::move(addr))), server_(std::make_unique<Server>()) {}
 
 ModuleService::ModuleService(int argc,
                              char** argv,
@@ -219,7 +219,7 @@ ModuleService::ModuleService(int argc,
         throw std::runtime_error("Need socket path as command line argument");
     }
     module_ = std::make_unique<Module>(argv[1]);
-    server_ = std::make_shared<Server>();
+    server_ = std::make_unique<Server>();
     signal_manager_ = SignalManager();
     set_logger_severity_from_args(argc, argv);
 
