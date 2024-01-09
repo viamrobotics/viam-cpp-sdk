@@ -15,6 +15,8 @@
 namespace viam {
 namespace sdk {
 
+/// @defgroup Servo Classes related to the Servo component.
+
 /// @class ServoRegistration
 /// @brief Defines a `ResourceRegistration` for the `Servo` component.
 /// @ingroup Servo
@@ -26,8 +28,6 @@ class ServoRegistration : public ResourceRegistration {
     std::shared_ptr<Resource> create_rpc_client(std::string name,
                                                 std::shared_ptr<grpc::Channel> chan) override;
 };
-
-/// @defgroup Servo Classes related to the Servo component.
 
 /// @class Servo servo.hpp "components/servo/servo.hpp"
 /// @ingroup Servo
@@ -59,6 +59,7 @@ class Servo : public Component, public Stoppable {
     virtual void move(uint32_t angle_deg, const AttributeMap& extra) = 0;
 
     /// @brief Get the current angle (degrees) of the servo.
+    /// @throws runtime_error if position reporting is not supported
     inline position get_position() {
         return get_position({});
     }

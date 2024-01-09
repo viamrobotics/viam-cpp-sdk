@@ -64,10 +64,6 @@ BOOST_AUTO_TEST_CASE(mock_do_command) {
     BOOST_CHECK(result_pt == expected_pt);
 }
 
-BOOST_AUTO_TEST_CASE(mock_exception_creation) {
-    std::shared_ptr<MockServo> servo = MockServo::get_mock_servo();
-}
-
 BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(test_servo_client_server)
@@ -149,10 +145,6 @@ BOOST_AUTO_TEST_CASE(test_do_command) {
 
         BOOST_CHECK(result_pt == expected_pt);
     });
-}
-
-BOOST_AUTO_TEST_CASE(test_exception_creation) {
-    server_to_mock_pipeline([](Servo& client) -> void {});
 }
 
 BOOST_AUTO_TEST_SUITE_END()
