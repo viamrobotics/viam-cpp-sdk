@@ -97,7 +97,6 @@ BOOST_AUTO_TEST_SUITE(test_servo_client_server)
 template <typename Lambda>
 void server_to_mock_pipeline(Lambda&& func) {
     ServoServer servo_server;
-    std::shared_ptr<MockServo> mock = MockServo::get_mock_servo();
     servo_server.resource_manager()->add(std::string("mock_servo"), MockServo::get_mock_servo());
 
     grpc::ServerBuilder builder;
