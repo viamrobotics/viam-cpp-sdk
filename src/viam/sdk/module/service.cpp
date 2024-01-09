@@ -251,7 +251,9 @@ void ModuleService::serve() {
 
 ModuleService::~ModuleService() {
     try {
-        cleanup_function_();
+        if (cleanup_function_) {
+            cleanup_function_();
+        }
     } catch (const std::exception& xcp) {
         BOOST_LOG_TRIVIAL(error) << "Module cleanup function failed with exception " << xcp.what();
     } catch (...) {
