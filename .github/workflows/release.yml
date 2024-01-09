@@ -159,6 +159,10 @@ jobs:
           apt-get -y dist-upgrade
           #apt-get list libasl-dev
           #apt-get -y --no-install-recommends install cmake build-essential libabsl-dev libboost-all-dev libgrpc++-dev libprotobuf-dev libxtensor-dev
+          # Add public key and repository to get cmake 3.25+
+          wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - > /usr/share/keyrings/kitware-archive-keyring.gpg
+          echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ focal main' > /etc/apt/sources.list.d/kitware.list
+
           apt-get -y --no-install-recommends install cmake build-essential libboost-all-dev libgrpc++-dev libprotobuf-dev 
           apt-get -y --no-install-recommends install pkg-config ninja-build protobuf-compiler-grpc
       - name: Setup build directory
