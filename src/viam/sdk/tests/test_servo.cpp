@@ -31,15 +31,15 @@ BOOST_AUTO_TEST_SUITE(test_mock)
 BOOST_AUTO_TEST_CASE(mock_get_position) {
     std::shared_ptr<MockServo> servo = MockServo::get_mock_servo();
     servo->move(static_cast<unsigned>(3));
-    BOOST_CHECK(servo->get_position() == 3);
+    BOOST_CHECK_EQUAL(servo->get_position(), 3);
     servo->move(static_cast<unsigned>(5));
-    BOOST_CHECK(servo->get_position() == 5);
+    BOOST_CHECK_EQUAL(servo->get_position(), 5);
 }
 
 BOOST_AUTO_TEST_CASE(mock_stop) {
     std::shared_ptr<MockServo> servo = MockServo::get_mock_servo();
-    AttributeMap extra_map = fake_map();
-    servo->stop(std::move(extra_map));
+    BOOST_CHECK(servo->is_moving());
+    servo->stop();
     BOOST_CHECK(!servo->is_moving());
 }
 
@@ -91,6 +91,7 @@ BOOST_AUTO_TEST_SUITE(test_servo_client_server)
 template <typename Lambda>
 void server_to_mock_pipeline(Lambda&& func) {
     ServoServer servo_server;
+    std::shared_ptr<MockServo> mock = MockServo::get_mock_servo();
     servo_server.resource_manager()->add(std::string("mock_servo"), MockServo::get_mock_servo());
 
     grpc::ServerBuilder builder;
@@ -110,18 +111,16 @@ void server_to_mock_pipeline(Lambda&& func) {
 BOOST_AUTO_TEST_CASE(test_get_position) {
     server_to_mock_pipeline([](Servo& client) -> void {
         client.move(static_cast<unsigned>(3));
-        BOOST_CHECK(client.get_position() == 3);
+        BOOST_CHECK_EQUAL(client.get_position(), 3);
         client.move(static_cast<unsigned>(5));
-        BOOST_CHECK(client.get_position() == 5);
+        BOOST_CHECK_EQUAL(client.get_position(), 5);
     });
 }
 
 BOOST_AUTO_TEST_CASE(test_stop) {
     server_to_mock_pipeline([](Servo& client) -> void {
-        client.move(static_cast<unsigned>(90));
-        client.stop(AttributeMap());
-        // This test is a no-op for now because is_moving will always
-        // return false
+        BOOST_CHECK(client.is_moving());
+        client.stop();
         BOOST_CHECK(!client.is_moving());
     });
 }

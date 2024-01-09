@@ -27,9 +27,7 @@ Servo::position MockServo::get_position(const AttributeMap& extra) {
 }
 
 void MockServo::stop(const AttributeMap& extra) {
-    // None of these functions are async and this mock is not
-    // thread-safe (Send, not Sync). The mock servo should never be
-    // moving when this is called
+    is_moving_ = false;
 }
 
 std::vector<GeometryConfig> MockServo::get_geometries(const sdk::AttributeMap& extra) {
@@ -37,9 +35,7 @@ std::vector<GeometryConfig> MockServo::get_geometries(const sdk::AttributeMap& e
 }
 
 bool MockServo::is_moving() {
-    // None of these functions are async and this mock is not
-    // thread-safe (Send, not Sync)
-    return false;
+    return is_moving_;
 }
 
 AttributeMap MockServo::do_command(const AttributeMap& _command) {
@@ -51,6 +47,7 @@ std::shared_ptr<MockServo> MockServo::get_mock_servo() {
 
     servo->position_ = fake_position();
     servo->map_ = fake_map();
+    servo->is_moving_ = true;
 
     return servo;
 }
