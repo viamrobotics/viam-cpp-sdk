@@ -20,6 +20,13 @@ BOOST_AUTO_TEST_CASE(test_api) {
     BOOST_CHECK_EQUAL(api.to_string(), "ns:component:st");
     BOOST_CHECK(!api.is_service_type());
     BOOST_CHECK(api.is_component_type());
+
+    API api2 = API::from_string("ns:service:st");
+    BOOST_CHECK_EQUAL(api2.to_string(), "ns:service:st");
+    BOOST_CHECK(api2.is_service_type());
+    BOOST_CHECK(!api2.is_component_type());
+
+    BOOST_CHECK_THROW(API::from_string("nsservicest"), std::string);
 }
 
 }  // namespace sdktests
