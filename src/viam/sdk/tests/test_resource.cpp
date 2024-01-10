@@ -46,5 +46,26 @@ BOOST_AUTO_TEST_CASE(test_name) {
     BOOST_CHECK_THROW(Name::from_string("ns:service:#st/remote:name"), std::string);
 }
 
+BOOST_AUTO_TEST_CASE(test_model) {
+    ModelFamily mf("ns", "mf");
+    BOOST_CHECK_EQUAL(mf.to_string(), "ns:mf");
+
+    Model model1(mf, "model1");
+    BOOST_CHECK_EQUAL(model1.to_string(), "ns:mf:model1");
+    Model model2("ns", "mf", "model2");
+    BOOST_CHECK_EQUAL(model2.to_string(), "ns:mf:model2");
+
+    Model model3 = Model::from_str("ns:mf:model3");
+    BOOST_CHECK_EQUAL(model3.to_string(), "ns:mf:model3");
+    Model model4 = Model::from_str("model4");
+    BOOST_CHECK_EQUAL(model4.to_string(), "rdk:builtin:model4");
+
+    ModelFamily empty("", "");
+    Model model5(empty, "model5");
+    BOOST_CHECK_EQUAL(model5.to_string(), "model5");
+
+    BOOST_CHECK_THROW(Model::from_str("@"), std::runtime_error);
+}
+
 }  // namespace sdktests
 }  // namespace viam
