@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_CASE(test_get_power) {
 
 BOOST_AUTO_TEST_CASE(test_get_readings) {
     std::shared_ptr<MockPowerSensor> mock = MockPowerSensor::get_mock_powersensor();
-    client_to_mock_pipeline<PowerSensorClient>(mock, [&](PowerSensor& client) {
+    client_to_mock_pipeline<PowerSensorClient>(mock, [](PowerSensor& client) {
         AttributeMap expected = fake_map();
 
         AttributeMap readings = client.get_readings();

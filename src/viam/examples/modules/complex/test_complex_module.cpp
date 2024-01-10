@@ -37,7 +37,7 @@ struct RegisterGizmoAndSummationFixture {
 // Gizmo and Summation APIs must be registered before these tests are run
 // (otherwise client_to_mock_pipeline will not be able to use their resource
 // registrations to create the appropriate servers).
-BOOST_GLOBAL_FIXTURE(RegisterGizmoAndSummationFixture);
+BOOST_TEST_GLOBAL_FIXTURE(RegisterGizmoAndSummationFixture);
 
 BOOST_AUTO_TEST_SUITE(test_gizmo_impl)
 
