@@ -143,11 +143,9 @@ jobs:
               wget
 
           # Add the public key for the llvm repository to get the correct clang version
-          bash -c 'sudo wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -'
+          bash -c 'sudo wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -'
           sudo apt-add-repository -y 'deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-15 main'
           echo "added llvm"
-
-          sudo chmod 777 /usr/share/keyrings/kitware-archive-keyring.gpg
 
           # Add public key and repository to get cmake 3.25+
           bash -c 'sudo wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo gpg --dearmor - > /usr/share/keyrings/kitware-archive-keyring.gpg'
