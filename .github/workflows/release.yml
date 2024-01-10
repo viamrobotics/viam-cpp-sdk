@@ -278,7 +278,7 @@ jobs:
           path: builds
 
   release:
-    needs: [prepare, build_macos, build_linux]
+    needs: [prepare, build_macos, build_linux, build_aarch_linux]
     if: github.repository_owner == 'viamrobotics'
     runs-on: [self-hosted, x64]
     container:
