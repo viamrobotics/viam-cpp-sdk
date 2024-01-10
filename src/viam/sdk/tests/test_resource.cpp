@@ -27,6 +27,23 @@ BOOST_AUTO_TEST_CASE(test_api) {
     BOOST_CHECK(!api2.is_component_type());
 
     BOOST_CHECK_THROW(API::from_string("nsservicest"), std::string);
+    BOOST_CHECK_THROW(API::from_string("ns:service:#st"), std::string);
+    BOOST_CHECK_THROW(API::from_string("ns:service"), std::string);
+}
+
+BOOST_AUTO_TEST_CASE(test_name) {
+    Name name(API::from_string("ns:service:st"), "remote", "name");
+    BOOST_CHECK_EQUAL(name.api().to_string(), "ns:service:st");
+    BOOST_CHECK_EQUAL(name.remote_name(), "remote");
+    BOOST_CHECK_EQUAL(name.name(), "name");
+    BOOST_CHECK_EQUAL(name.to_string(), "ns:service:st/remote:name");
+    BOOST_CHECK_EQUAL(name.short_name(), "remote:name");
+
+    Name name2 = Name::from_string("ns:component:st/name");
+    BOOST_CHECK_EQUAL(name2.api().to_string(), "ns:component:st");
+    BOOST_CHECK_EQUAL(name2.short_name(), "name");
+
+    BOOST_CHECK_THROW(Name::from_string("ns:service:#st/remote:name"), std::string);
 }
 
 }  // namespace sdktests
