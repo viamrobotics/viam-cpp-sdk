@@ -42,6 +42,7 @@ BOOST_AUTO_TEST_CASE(test_name) {
     Name name2 = Name::from_string("ns:component:st/name");
     BOOST_CHECK_EQUAL(name2.api().to_string(), "ns:component:st");
     BOOST_CHECK_EQUAL(name2.short_name(), "name");
+    BOOST_CHECK_EQUAL(Name::from_proto(name2.to_proto()), name2);
 
     BOOST_CHECK_THROW(Name::from_string("ns:service:#st/remote:name"), std::string);
 }
