@@ -208,6 +208,7 @@ jobs:
           popd
       - name: Copy
         run: |
+          ls build/install/lib/
           cp build/install/lib/libviam_rust_utils.a builds/libviam_rust_utils-${{ matrix.platform }}.a
           cp build/install/lib/libviamsdk.${{ needs.prepare.outputs.version }}.so builds/libviamsdk-${{ matrix.platform }}.so
       - name: Upload artifacts
