@@ -150,7 +150,7 @@ jobs:
           # Add public key and repository to get cmake 3.25+
           bash -c 'sudo wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null'
           echo "got cmake thing"
-          sudo echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' > /etc/apt/sources.list.d/kitware.list
+          sudo echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null
           echo "installed cmake thing"
           sudo apt-get update
           sudo apt-get -y --no-install-recommends install -t llvm-toolchain-jammy-15 clang-15 clang-tidy-15
