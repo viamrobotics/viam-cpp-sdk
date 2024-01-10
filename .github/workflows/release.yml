@@ -147,6 +147,8 @@ jobs:
           sudo apt-add-repository -y 'deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-15 main'
           echo "added llvm"
 
+          sudo chmod 777 /usr/share/keyrings/kitware-archive-keyring.gpg
+
           # Add public key and repository to get cmake 3.25+
           bash -c 'sudo wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo gpg --dearmor - > /usr/share/keyrings/kitware-archive-keyring.gpg'
           echo "got cmake thing"
