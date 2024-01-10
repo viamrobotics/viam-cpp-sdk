@@ -116,9 +116,9 @@ jobs:
       - name: Install dependencies
         run: |
           cat /etc/os-release
-          apt-get update
-          apt-get -y dist-upgrade
-          apt-get -y --no-install-recommends install \
+          sudo apt-get update
+          sudo apt-get -y dist-upgrade
+          sudo apt-get -y --no-install-recommends install \
               build-essential \
               ca-certificates \
               curl \
