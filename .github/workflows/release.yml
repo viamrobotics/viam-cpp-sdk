@@ -127,7 +127,6 @@ jobs:
           ref: ${{ needs.prepare.outputs.sha }}
       - name: Install dependencies
         run: |
-          PATH="$PATH:/root"
           apt-get update
           apt-get -y dist-upgrade
           apt-get -y --no-install-recommends install \
@@ -177,6 +176,26 @@ jobs:
 
           #apt-get -y --no-install-recommends install build-essential libboost-all-dev libgrpc++-dev libprotobuf-dev
           #apt-get -y --no-install-recommends install pkg-config ninja-build protobuf-compiler-grpc
+          mkdir -p ${HOME}/opt/src
+          cd ${HOME}/opt/src && \
+            git clone --recurse-submodules -b v1.52.0 --depth 1 --shallow-submodules https://github.com/grpc/grpc && \
+            cd grpc && \
+            mkdir -p build && \
+            cd build && \
+            cmake .. -G Ninja \
+                -DgRPC_ZLIB_PROVIDER=package \
+                -DgRPC_CARES_PROVIDER=package \
+                -DgRPC_RE2_PROVIDER=package \
+                -DgRPC_SSL_PROVIDER=package \
+                -DgRPC_INSTALL=ON \
+                -DgRPC_BUILD_TESTS=OFF \
+                -DBUILD_SHARED_LIBS=ON \
+                -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+                -DCMAKE_INSTALL_PREFIX=/usr/local \
+                -DCMAKE_INSTALL_RPATH=/usr/local/lib && \
+            ninja install && \
+            cd .. && \
+            rm -rf build
       - name: Setup build directory
         run: mkdir builds
       - name: Build
