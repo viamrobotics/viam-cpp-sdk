@@ -315,8 +315,9 @@ set(VIAMCPPSDK_XTENSOR_VERSION_MINIMUM 0.24.3)
 
 # Time to find absl. Note that the version min value is currently empty,
 # because absl doesn't use a versioning scheme that works here.
+message("looking for absl")
 find_package(absl ${VIAMCPPSDK_ABSL_VERSION_MINIMUM} REQUIRED)
-
+message("found absl")
 # Time to find `BOOST`.
 find_package(Boost ${VIAMCPPSDK_BOOST_VERSION_MINIMUM} REQUIRED COMPONENTS headers log program_options)
 

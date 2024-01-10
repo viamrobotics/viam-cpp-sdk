@@ -127,6 +127,7 @@ jobs:
           ref: ${{ needs.prepare.outputs.sha }}
       - name: Install dependencies
         run: |
+          PATH="$PATH:/root"
           apt-get update
           apt-get -y dist-upgrade
           apt-get -y --no-install-recommends install \
@@ -160,7 +161,7 @@ jobs:
 
           #apt-get list libasl-dev
           #apt-get -y --no-install-recommends install cmake build-essential libabsl-dev libboost-all-dev libgrpc++-dev libprotobuf-dev libxtensor-dev
-          
+
           # Add public key and repository to get cmake 3.25+
           wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - > /usr/share/keyrings/kitware-archive-keyring.gpg
           echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ focal main' > /etc/apt/sources.list.d/kitware.list
@@ -171,9 +172,11 @@ jobs:
           which cmake
 
           /usr/bin/cmake --version
+          #apt-get -y --no-install-recommends install libboost-all-dev libgrpc++-dev libprotobuf-dev
+          #apt-get -y --no-install-recommends install pkg-config ninja-build protobuf-compiler-grpc
 
-          apt-get -y --no-install-recommends install build-essential libboost-all-dev libgrpc++-dev libprotobuf-dev
-          apt-get -y --no-install-recommends install pkg-config ninja-build protobuf-compiler-grpc
+          #apt-get -y --no-install-recommends install build-essential libboost-all-dev libgrpc++-dev libprotobuf-dev
+          #apt-get -y --no-install-recommends install pkg-config ninja-build protobuf-compiler-grpc
       - name: Setup build directory
         run: mkdir builds
       - name: Build
