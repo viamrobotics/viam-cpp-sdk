@@ -210,7 +210,8 @@ jobs:
         run: |
           ls build/install/lib/
           cp build/install/lib/libviam_rust_utils.a builds/libviam_rust_utils-${{ matrix.platform }}.a
-          cp build/install/lib/libviamsdk.${{ needs.prepare.outputs.version }}.so builds/libviamsdk-${{ matrix.platform }}.so
+          cp build/install/lib/libviamapi.so.${{ needs.prepare.outputs.version }} builds/libviamapi-${{ matrix.platform }}.so
+          cp build/install/lib/libviamsdk.so.${{ needs.prepare.outputs.version }} builds/libviamsdk-${{ matrix.platform }}.so
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
