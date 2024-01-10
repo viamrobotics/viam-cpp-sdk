@@ -73,7 +73,6 @@ jobs:
           ref: ${{ needs.prepare.outputs.sha }}
       - name: Install dependencies
         run: |
-          cat /etc/os-release
           brew install abseil cmake boost grpc protobuf xtensor
           brew install pkg-config ninja buf
       - name: Setup build directory
@@ -116,6 +115,7 @@ jobs:
           ref: ${{ needs.prepare.outputs.sha }}
       - name: Install dependencies
         run: |
+          cat /etc/os-release
           apt-get update
           apt-get -y dist-upgrade
           apt-get -y --no-install-recommends install \
