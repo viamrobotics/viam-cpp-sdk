@@ -38,6 +38,8 @@ BOOST_AUTO_TEST_CASE(test_name) {
     BOOST_CHECK_EQUAL(name1.name(), "name");
     BOOST_CHECK_EQUAL(name1.to_string(), "ns:service:st/remote:name");
     BOOST_CHECK_EQUAL(name1.short_name(), "remote:name");
+    // TODO: Currently, remotes not being returned from proto for whatever reason
+    // BOOST_CHECK_EQUAL(Name::from_proto(name1.to_proto()), name1);
 
     Name name2 = Name::from_string("ns:component:st/name");
     BOOST_CHECK_EQUAL(name2.api().to_string(), "ns:component:st");
