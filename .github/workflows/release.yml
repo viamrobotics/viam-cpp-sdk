@@ -3,6 +3,7 @@ name: Build + draft release
 # CR erodkin: delete this!
 on: pull_request
 
+# (erodkin) this is needed to create the release, per https://github.com/softprops/action-gh-release/issues/236
 permissions:
   contents: write
 
@@ -306,3 +307,5 @@ jobs:
           draft: true
           prerelease: false
           fail_on_unmatched_files: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
