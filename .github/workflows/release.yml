@@ -188,22 +188,22 @@ jobs:
     needs: [prepare]
     runs-on: ${{ matrix.runs-on }}
     container:
-      image: ghcr.io/cross-rs/${{ matrix.image }}
+      image: ${{ matrix.image }}
     strategy:
       fail-fast: false
       matrix:
         include:
           - target: aarch64-unknown-linux-gnu
             platform: linux_aarch64
-            image: aarch64-unknown-linux-gnu:latest
+            image: ubuntu:20.04
             runs-on: buildjet-8vcpu-ubuntu-2204-arm
           - target: x86_64-unknown-linux-gnu
             platform: linux_x86_64
-            image: x86_64-unknown-linux-gnu:main
+            image: ghcr.io/cross-rs/x86_64-unknown-linux-gnu:main
             runs-on: [self-hosted, x64]
           - target: arm-unknown-linux-gnueabihf
             platform: linux_armv6l
-            image: arm-unknown-linux-gnueabihf:main
+            image: ghcr.io/cross-rs/arm-unknown-linux-gnueabihf:main
             runs-on: [self-hosted, x64]
     steps:
       - name: Checkout Code
