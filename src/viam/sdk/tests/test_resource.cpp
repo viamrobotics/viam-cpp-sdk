@@ -1,8 +1,13 @@
 #define BOOST_TEST_MODULE test module test_resource
 #include <boost/test/included/unit_test.hpp>
 
+#include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/referenceframe/frame.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
+#include <viam/sdk/spatialmath/geometry.hpp>
+#include <viam/sdk/spatialmath/orientation.hpp>
+#include <viam/sdk/spatialmath/orientation_types.hpp>
 
 namespace viam {
 namespace sdktests {
@@ -68,6 +73,57 @@ BOOST_AUTO_TEST_CASE(test_model) {
     BOOST_CHECK_EQUAL(model5.to_string(), "model5");
 
     BOOST_CHECK_THROW(Model::from_str("@"), std::runtime_error);
+}
+
+BOOST_AUTO_TEST_CASE(test_linkconfig) {
+    translation t;
+    t.x = 0;
+    t.y = 1;
+    t.z = 2;
+    OrientationConfig ocfg = OrientationConfig();
+
+    GeometryConfig gcfg;
+    struct pose pose;
+    pose.coordinates.x = 3;
+    pose.coordinates.y = 4;
+    pose.coordinates.z = 5;
+    pose.orientation.o_x = 6;
+    pose.orientation.o_y = 7;
+    pose.orientation.o_z = 8;
+    pose.theta = 3;
+    gcfg.set_pose(pose);
+    gcfg.set_label("label");
+    gcfg.set_geometry_type(GeometryType::box);
+    struct box box;
+    box.x = 9;
+    box.y = 10;
+    box.z = 11;
+    gcfg.set_geometry_specifics(box);
+
+    LinkConfig lc;
+    lc.set_translation(t);
+    translation result_t = lc.get_translation();
+    BOOST_CHECK_EQUAL(result_t.x, t.x);
+    BOOST_CHECK_EQUAL(result_t.y, t.y);
+    BOOST_CHECK_EQUAL(result_t.z, t.z);
+
+    lc.set_orientation_config(ocfg);
+
+    lc.set_geometry_config(gcfg);
+    GeometryConfig result_gcfg = lc.get_geometry_config();
+    BOOST_CHECK_EQUAL(result_gcfg.get_pose(), pose);
+    BOOST_CHECK_EQUAL(result_gcfg.get_geometry_specifics().which(),
+                      gcfg.get_geometry_specifics().which());
+    const auto result_gs = boost::get<struct box>(result_gcfg.get_geometry_specifics());
+    BOOST_CHECK_EQUAL(result_gs.x, box.x);
+    BOOST_CHECK_EQUAL(result_gs.y, box.y);
+    BOOST_CHECK_EQUAL(result_gs.z, box.z);
+    BOOST_CHECK_EQUAL(result_gcfg.get_geometry_type(), GeometryType::box);
+
+    BOOST_CHECK_EQUAL(result_gcfg.get_label(), "label");
+
+    lc.set_parent("parent");
+    BOOST_CHECK_EQUAL(lc.get_parent(), "parent");
 }
 
 }  // namespace sdktests
