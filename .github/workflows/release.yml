@@ -71,12 +71,15 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ needs.prepare.outputs.sha }}
+
       - name: Install dependencies
         run: |
           brew install abseil cmake boost grpc protobuf xtensor
           brew install pkg-config ninja buf
+
       - name: Setup build directory
         run: mkdir builds
+
       - name: Build
         run: |
           export BUF_CONFIG_DIR=$(mktemp -d)
@@ -85,6 +88,7 @@ jobs:
           cmake .. -G Ninja
           ninja all && ninja install
           popd
+
       - name: Copy
         run: |
           cp build/install/lib/libviam_rust_utils.a builds/libviam_rust_utils-${{ matrix.platform }}.a
@@ -94,6 +98,7 @@ jobs:
         run: |
           install_name_tool -id "@rpath/libviamsdk.dylib" builds/libviamsdk-${{ matrix.platform }}.dylib
           install_name_tool -id "@rpath/libviamapi.dylib" builds/libviamapi-${{ matrix.platform }}.dylib
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -150,8 +155,10 @@ jobs:
           sudo apt-get update
           sudo apt-get -y --no-install-recommends install -t llvm-toolchain-jammy-15 clang-15 clang-tidy-15
           sudo apt-get -y install cmake
+
       - name: Setup build directory
         run: mkdir builds
+
       - name: Build
         shell: bash
         run: |
@@ -160,11 +167,13 @@ jobs:
           /usr/bin/cmake .. -G Ninja
           ninja all -j 3 && ninja install
           popd
+
       - name: Copy
         run: |
           cp build/install/lib/libviam_rust_utils.a builds/libviam_rust_utils-linux_aarch64.a
           cp build/install/lib/libviamapi.so.${{ needs.prepare.outputs.version }} builds/libviamapi-linux_aarch64.so
           cp build/install/lib/libviamsdk.so.${{ needs.prepare.outputs.version }} builds/libviamsdk-linux_aarch64.so
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -174,26 +183,25 @@ jobs:
   build_linux:
     if: github.repository_owner == 'viamrobotics'
     needs: [prepare]
-    runs-on: ${{ matrix.runs-on }}
+    runs-on: [self-hosted, x64]
     container:
-      image: ${{ matrix.image }}
+      image: ghcr.io/cross-rs/${{ matrix.image }}
     strategy:
       fail-fast: false
       matrix:
         include:
           - target: x86_64-unknown-linux-gnu
             platform: linux_x86_64
-            image: ghcr.io/cross-rs/x86_64-unknown-linux-gnu:main
-            runs-on: [self-hosted, x64]
+            image: x86_64-unknown-linux-gnu:main
           - target: arm-unknown-linux-gnueabihf
             platform: linux_armv6l
-            image: ghcr.io/cross-rs/arm-unknown-linux-gnueabihf:main
-            runs-on: [self-hosted, x64]
+            image: arm-unknown-linux-gnueabihf:main
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
           ref: ${{ needs.prepare.outputs.sha }}
+
       - name: Install dependencies
         run: |
           apt-get update
@@ -252,8 +260,10 @@ jobs:
             ninja install && \
             cd .. && \
             rm -rf build
+
       - name: Setup build directory
         run: mkdir builds
+
       - name: Build
         shell: bash
         run: |
@@ -262,11 +272,13 @@ jobs:
           /usr/bin/cmake .. -G Ninja
           ninja all && ninja install
           popd
+
       - name: Copy
         run: |
           cp build/install/lib/libviam_rust_utils.a builds/libviam_rust_utils-${{ matrix.platform }}.a
           cp build/install/lib/libviamapi.so.${{ needs.prepare.outputs.version }} builds/libviamapi-${{ matrix.platform }}.so
           cp build/install/lib/libviamsdk.so.${{ needs.prepare.outputs.version }} builds/libviamsdk-${{ matrix.platform }}.so
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
