@@ -79,8 +79,6 @@ jobs:
         run: mkdir builds
       - name: Build
         run: |
-          echo "version=$(grep 'set.CMAKE_PROJECT_VERSION' CMakeLists.txt | sed 's/)//' | awk '{print $2}')"
-          echo "version is ${{ needs.prepare.outputs.version }}"
           export BUF_CONFIG_DIR=$(mktemp -d)
           mkdir build
           pushd build/
@@ -164,8 +162,6 @@ jobs:
           popd
       - name: Copy
         run: |
-          # CR erodkin: delete me
-          ls build/install/lib/
           cp build/install/lib/libviam_rust_utils.a builds/libviam_rust_utils-linux_aarch64.a
           cp build/install/lib/libviamapi.so.${{ needs.prepare.outputs.version }} builds/libviamapi-linux_aarch64.so
           cp build/install/lib/libviamsdk.so.${{ needs.prepare.outputs.version }} builds/libviamsdk-linux_aarch64.so
@@ -185,10 +181,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - target: aarch64-unknown-linux-gnu
-            platform: linux_aarch64
-            image: ubuntu:20.04
-            runs-on: buildjet-8vcpu-ubuntu-2204-arm
           - target: x86_64-unknown-linux-gnu
             platform: linux_x86_64
             image: ghcr.io/cross-rs/x86_64-unknown-linux-gnu:main
@@ -272,7 +264,6 @@ jobs:
           popd
       - name: Copy
         run: |
-          ls build/install/lib/
           cp build/install/lib/libviam_rust_utils.a builds/libviam_rust_utils-${{ matrix.platform }}.a
           cp build/install/lib/libviamapi.so.${{ needs.prepare.outputs.version }} builds/libviamapi-${{ matrix.platform }}.so
           cp build/install/lib/libviamsdk.so.${{ needs.prepare.outputs.version }} builds/libviamsdk-${{ matrix.platform }}.so
