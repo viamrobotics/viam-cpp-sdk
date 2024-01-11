@@ -3,6 +3,9 @@ name: Build + draft release
 # CR erodkin: delete this!
 on: pull_request
 
+permissions:
+  contents: write
+
 jobs:
   prepare:
     if: github.repository_owner == 'viamrobotics'
