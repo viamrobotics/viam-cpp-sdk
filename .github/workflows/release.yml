@@ -108,14 +108,14 @@ jobs:
     runs-on: ${{ matrix.runs-on }}
     container:
       image: ${{ matrix.image }}
-    matrix:
-      include:
-        - target: aarch64-unknown-linux-gnu
-          platform: linux_aarch64
-          image: ghcr.io/cross-rs/ubuntu:20.04
-          runs-on: buildjet-8vcpu-ubuntu-2204-arm
     strategy:
       fail-fast: false
+      matrix:
+        include:
+          - target: aarch64-unknown-linux-gnu
+            platform: linux_aarch64
+            image: ghcr.io/cross-rs/ubuntu:20.04
+            runs-on: buildjet-8vcpu-ubuntu-2204-arm
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
