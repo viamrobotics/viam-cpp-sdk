@@ -115,7 +115,6 @@ jobs:
           ref: ${{ needs.prepare.outputs.sha }}
       - name: Install dependencies
         run: |
-          cat /etc/os-release
           sudo apt-get update
           sudo apt-get -y dist-upgrade
           sudo apt-get -y --no-install-recommends install \
@@ -145,13 +144,11 @@ jobs:
           # Add the public key for the llvm repository to get the correct clang version
           bash -c 'sudo wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -'
           sudo apt-add-repository -y 'deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-15 main'
-          echo "added llvm"
 
           # Add public key and repository to get cmake 3.25+
           bash -c 'sudo wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null'
-          echo "got cmake thing"
           sudo echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null
-          echo "installed cmake thing"
+
           sudo apt-get update
           sudo apt-get -y --no-install-recommends install -t llvm-toolchain-jammy-15 clang-15 clang-tidy-15
           sudo apt-get -y install cmake
@@ -188,6 +185,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          - target: aarch64-unknown-linux-gnu
+            platform: linux_aarch64
+            image: ubuntu:20.04
+            runs-on: buildjet-8vcpu-ubuntu-2204-arm
           - target: x86_64-unknown-linux-gnu
             platform: linux_x86_64
             image: x86_64-unknown-linux-gnu:main
