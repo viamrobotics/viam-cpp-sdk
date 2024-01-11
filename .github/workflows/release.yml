@@ -105,10 +105,15 @@ jobs:
   build_aarch_linux:
     if: github.repository_owner == 'viamrobotics'
     needs: [prepare]
-    runs-on: [buildjet-8vcpu-ubuntu-2204-arm]
-    target: aarch64-unknown-linux-gnu
+    runs-on: ${{ matrix.runs-on }}
     container:
-      image: ghcr.io/cross-rs/ubuntu:20.04
+      image: ${{ matrix.image }}
+    matrix:
+      include:
+        - target: aarch64-unknown-linux-gnu
+          platform: linux_aarch64
+          image: ghcr.io/cross-rs/ubuntu:20.04
+          runs-on: buildjet-8vcpu-ubuntu-2204-arm
     strategy:
       fail-fast: false
     steps:
