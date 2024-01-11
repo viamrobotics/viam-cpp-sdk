@@ -123,6 +123,7 @@ jobs:
           ref: ${{ needs.prepare.outputs.sha }}
       - name: Install dependencies
         run: |
+          apt-get -y --no-install-recommends sudo
           sudo apt-get update
           sudo apt-get -y dist-upgrade
           sudo apt-get -y --no-install-recommends install \
@@ -146,7 +147,6 @@ jobs:
               protobuf-compiler \
               protobuf-compiler-grpc \
               software-properties-common \
-              sudo \
               wget
 
           # Add the public key for the llvm repository to get the correct clang version
