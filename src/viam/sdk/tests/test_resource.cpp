@@ -119,6 +119,8 @@ BOOST_AUTO_TEST_CASE(test_linkconfig) {
     BOOST_CHECK_EQUAL(result_gs.y, box.y);
     BOOST_CHECK_EQUAL(result_gs.z, box.z);
 
+    viam::app::v1::Frame proto = lc.to_proto();
+    LinkConfig lc2 = LinkConfig::from_proto(proto);
 }
 
 }  // namespace sdktests
