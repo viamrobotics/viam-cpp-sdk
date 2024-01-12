@@ -1,15 +1,16 @@
 name: Build + draft release
 
+# CR erodkin: delete this!
+on: pull_request
+
 # (erodkin) this is needed to create the release, per https://github.com/softprops/action-gh-release/issues/236
 permissions:
   contents: write
-
+ghcr.io/cross-rs/
 jobs:
   prepare:
     if: github.repository_owner == 'viamrobotics'
-    runs-on: buildjet-8vcpu-ubuntu-2204-arm
-    container:
-      image: ghcr.io/viamrobotics/canon:arm64
+    runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.which_version.outputs.version }}
       sha: ${{ steps.commit.outputs.commit_long_sha }}
@@ -110,6 +111,8 @@ jobs:
     if: github.repository_owner == 'viamrobotics'
     needs: [prepare]
     runs-on: buildjet-8vcpu-ubuntu-2204-arm
+    container:
+      image: ubuntu:20.04
     strategy:
       fail-fast: false
     steps:
@@ -184,19 +187,22 @@ jobs:
   build_linux:
     if: github.repository_owner == 'viamrobotics'
     needs: [prepare]
-    runs-on: [self-hosted, x64]
+    runs-on: buildjet-8vcpu-ubuntu-2204-arm
     container:
-      image: ghcr.io/cross-rs/${{ matrix.image }}
+      image: ${{ matrix.image }}
     strategy:
       fail-fast: false
       matrix:
         include:
+          - target: aarch64-unknown-linux-gnu
+            platform: linux_aarch64
+            image: ubuntu:20.04
           - target: x86_64-unknown-linux-gnu
             platform: linux_x86_64
-            image: x86_64-unknown-linux-gnu:main
+            image: ghcr.io/cross-rs/x86_64-unknown-linux-gnu:main
           - target: arm-unknown-linux-gnueabihf
             platform: linux_armv6l
-            image: arm-unknown-linux-gnueabihf:main
+            image: ghcr.io/cross-rs/arm-unknown-linux-gnueabihf:main
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -289,9 +295,7 @@ jobs:
   release:
     needs: [prepare, build_macos, build_linux, build_aarch_linux]
     if: github.repository_owner == 'viamrobotics'
-    runs-on: [self-hosted, x64]
-    container:
-      image: ghcr.io/viamrobotics/canon:amd64
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/download-artifact@v3
