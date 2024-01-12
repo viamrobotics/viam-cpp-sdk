@@ -6,7 +6,7 @@ on: pull_request
 # (erodkin) this is needed to create the release, per https://github.com/softprops/action-gh-release/issues/236
 permissions:
   contents: write
-ghcr.io/cross-rs/
+
 jobs:
   prepare:
     if: github.repository_owner == 'viamrobotics'
