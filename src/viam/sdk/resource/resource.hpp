@@ -18,10 +18,9 @@ class Resource {
    public:
     virtual ~Resource();
     explicit Resource(std::string name);
-    static API static_api();
 
     /// @brief Returns the `API` associated with a particular resource.
-    virtual API dynamic_api() const = 0;
+    virtual API api() const = 0;
 
     /// @brief Returns a `ResourceName` for a particular resource name.
     virtual viam::common::v1::ResourceName get_resource_name(std::string name);
@@ -36,6 +35,13 @@ class Resource {
 
    private:
     std::string name_;
+};
+
+template <>
+struct API::api_map<Resource> {
+    static API api() {
+        return {"rdk", "resource", "Resource"};
+    }
 };
 
 }  // namespace sdk

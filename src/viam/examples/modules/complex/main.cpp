@@ -28,7 +28,7 @@
 using namespace viam::sdk;
 
 int main(int argc, char** argv) {
-    API base_api = Base::static_api();
+    API base_api = API::for_t<Base>();
     Model mybase_model("viam", "base", "mybase");
 
     std::shared_ptr<ModelRegistration> mybase_mr = std::make_shared<ModelRegistration>(
@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
         [](Dependencies deps, ResourceConfig cfg) { return std::make_unique<MyBase>(deps, cfg); },
         MyBase::validate);
 
-    API gizmo_api = Gizmo::static_api();
+    API gizmo_api = API::for_t<Gizmo>();
     Model mygizmo_model("viam", "gizmo", "mygizmo");
     // Make sure to explicity register resources with custom APIs. Note that
     // this must be done in `main` and not in resource implementation files due
@@ -49,7 +49,7 @@ int main(int argc, char** argv) {
         [](Dependencies deps, ResourceConfig cfg) { return std::make_unique<MyGizmo>(deps, cfg); },
         MyGizmo::validate);
 
-    API summation_api = Summation::static_api();
+    API summation_api = API::for_t<Summation>();
     Model mysummation_model("viam", "summation", "mysummation");
     // Make sure to explicity register resources with custom APIs. Note that
     // this must be done in `main` and not in resource implementation files due

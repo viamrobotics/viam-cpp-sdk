@@ -63,7 +63,7 @@ int main() {
     }
 
     // ensure we can create clients to the robot
-    auto gc = robot->resource_by_name<GenericClient>("generic1");
+    auto gc = robot->resource_by_name<Generic>("generic1");
     if (gc) {
         std::cout << "got generic client named " << gc->name() << std::endl;
     }

@@ -22,6 +22,7 @@
 
 #include <viam/api/service/mlmodel/v1/mlmodel.grpc.pb.h>
 
+#include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/services/service.hpp>
@@ -62,9 +63,8 @@ class MLModelService : public Service {
     };
 
    public:
-    static API static_api();
     static std::shared_ptr<ResourceRegistration> resource_registration();
-    API dynamic_api() const override;
+    API api() const override;
 
     template <typename T>
     using tensor_view = typename make_tensor_view_<T>::type;
@@ -182,6 +182,13 @@ class MLModelService : public Service {
 
    protected:
     explicit MLModelService(std::string name);
+};
+
+template <>
+struct API::api_map<MLModelService> {
+    static API api() {
+        return API(kRDK, kService, "mlmodel");
+    }
 };
 
 }  // namespace sdk

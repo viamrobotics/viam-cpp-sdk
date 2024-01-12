@@ -44,6 +44,15 @@ class API : public APIType {
     bool is_service_type();
     friend bool operator==(API const& lhs, API const& rhs);
     friend bool operator<(const API& lhs, const API& rhs);
+    friend std::ostream& operator<<(std::ostream& os, const API& v);
+
+    template <typename T>
+    struct api_map;
+
+    template <typename T>
+    static API for_t() {
+        return api_map<T>::api();
+    }
 
    private:
     std::string resource_subtype_;

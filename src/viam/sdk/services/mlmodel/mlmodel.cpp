@@ -35,10 +35,6 @@ std::shared_ptr<Resource> MLModelServiceRegistration::create_rpc_client(
     return std::make_shared<MLModelServiceClient>(std::move(name), std::move(channel));
 };
 
-API MLModelService::static_api() {
-    return API(kRDK, kService, "mlmodel");
-}
-
 std::shared_ptr<ResourceRegistration> MLModelService::resource_registration() {
     const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
     const google::protobuf::ServiceDescriptor* sd =
@@ -50,8 +46,8 @@ std::shared_ptr<ResourceRegistration> MLModelService::resource_registration() {
     return std::make_shared<MLModelServiceRegistration>(sd);
 }
 
-API MLModelService::dynamic_api() const {
-    return static_api();
+API MLModelService::api() const {
+    return API::for_t<MLModelService>();
 }
 
 boost::optional<MLModelService::tensor_info::data_types>
@@ -178,7 +174,7 @@ MLModelService::MLModelService(std::string name) : Service(std::move(name)) {}
 
 namespace {
 bool init() {
-    Registry::register_resource(MLModelService::static_api(),
+    Registry::register_resource(API::for_t<MLModelService>(),
                                 MLModelService::resource_registration());
     return true;
 };

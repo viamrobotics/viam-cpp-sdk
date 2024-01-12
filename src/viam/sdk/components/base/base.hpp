@@ -54,7 +54,6 @@ class Base : public Component, public Stoppable {
 
     // functions shared across all components
     static std::shared_ptr<ResourceRegistration> resource_registration();
-    static API static_api();
 
     /// @brief Move a robot's base in a straight line by a given distance. This method blocks
     /// until completed or cancelled
@@ -157,10 +156,17 @@ class Base : public Component, public Stoppable {
     /// @return The requested `GeometryConfig`s associated with the component.
     virtual std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) = 0;
 
-    API dynamic_api() const override;
+    API api() const override;
 
    protected:
     explicit Base(std::string name);
+};
+
+template <>
+struct API::api_map<Base> {
+    static API api() {
+        return {kRDK, kComponent, "base"};
+    }
 };
 
 }  // namespace sdk

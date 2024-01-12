@@ -40,9 +40,8 @@ class Servo : public Component, public Stoppable {
     /// @brief Current position of the servo relative to its home
     typedef uint32_t position;
 
-    static API static_api();
     static std::shared_ptr<ResourceRegistration> resource_registration();
-    API dynamic_api() const override;
+    API api() const override;
 
     /// @brief Creates a `position` struct from its proto representation.
     static position from_proto(viam::component::servo::v1::GetPositionResponse proto);
@@ -100,5 +99,13 @@ class Servo : public Component, public Stoppable {
    protected:
     explicit Servo(std::string name) : Component(std::move(name)){};
 };
+
+template <>
+struct API::api_map<Servo> {
+    static API api() {
+        return {kRDK, kComponent, "servo"};
+    }
+};
+
 }  // namespace sdk
 }  // namespace viam

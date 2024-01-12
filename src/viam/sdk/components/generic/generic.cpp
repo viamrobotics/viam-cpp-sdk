@@ -39,19 +39,15 @@ std::shared_ptr<ResourceRegistration> Generic::resource_registration() {
     return std::make_shared<GenericRegistration>(sd);
 }
 
-API Generic::static_api() {
-    return {kRDK, kComponent, "generic"};
-}
-
-API Generic::dynamic_api() const {
-    return static_api();
+API Generic::api() const {
+    return API::for_t<Generic>();
 }
 
 Generic::Generic(std::string name) : Component(std::move(name)){};
 
 namespace {
 bool init() {
-    Registry::register_resource(Generic::static_api(), Generic::resource_registration());
+    Registry::register_resource(API::for_t<Generic>(), Generic::resource_registration());
     return true;
 };
 

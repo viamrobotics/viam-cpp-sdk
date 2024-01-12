@@ -43,12 +43,8 @@ std::shared_ptr<ResourceRegistration> Camera::resource_registration() {
 // NOLINTNEXTLINE
 const std::string Camera::lazy_suffix = "+lazy";
 
-API Camera::static_api() {
-    return {kRDK, kComponent, "camera"};
-}
-
-API Camera::dynamic_api() const {
-    return static_api();
+API Camera::api() const {
+    return API::for_t<Camera>();
 }
 
 std::string Camera::normalize_mime_type(const std::string& str) {
@@ -223,7 +219,7 @@ bool operator==(const Camera::properties& lhs, const Camera::properties& rhs) {
 
 namespace {
 bool init() {
-    Registry::register_resource(Camera::static_api(), Camera::resource_registration());
+    Registry::register_resource(API::for_t<Camera>(), Camera::resource_registration());
     return true;
 };
 

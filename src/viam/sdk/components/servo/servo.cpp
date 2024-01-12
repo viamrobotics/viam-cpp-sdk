@@ -34,12 +34,8 @@ std::shared_ptr<ResourceRegistration> Servo::resource_registration() {
     return std::make_shared<ServoRegistration>(sd);
 }
 
-API Servo::static_api() {
-    return {kRDK, kComponent, "servo"};
-}
-
-API Servo::dynamic_api() const {
-    return static_api();
+API Servo::api() const {
+    return API::for_t<Servo>();
 }
 
 Servo::position Servo::from_proto(viam::component::servo::v1::GetPositionResponse proto) {
@@ -48,7 +44,7 @@ Servo::position Servo::from_proto(viam::component::servo::v1::GetPositionRespons
 
 namespace {
 bool init() {
-    Registry::register_resource(Servo::static_api(), Servo::resource_registration());
+    Registry::register_resource(API::for_t<Servo>(), Servo::resource_registration());
     return true;
 };
 

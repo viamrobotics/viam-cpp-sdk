@@ -14,12 +14,8 @@ using namespace viam::component::powersensor::v1;
 namespace viam {
 namespace sdk {
 
-API PowerSensor::static_api() {
-    return {kRDK, kComponent, "power_sensor"};
-}
-
-API PowerSensor::dynamic_api() const {
-    return static_api();
+API PowerSensor::api() const {
+    return API::for_t<PowerSensor>();
 }
 
 PowerSensor::voltage PowerSensor::from_proto(GetVoltageResponse proto) {
@@ -69,7 +65,7 @@ class PowerSensorRegistration final
 };
 
 bool init() {
-    Registry::register_resource(PowerSensor::static_api(),
+    Registry::register_resource(API::for_t<PowerSensor>(),
                                 PowerSensorRegistration::resource_registration());
     return true;
 };

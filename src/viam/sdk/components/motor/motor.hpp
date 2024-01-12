@@ -63,7 +63,6 @@ class Motor : public Component, public Stoppable {
 
     // functions shared across all components
     static std::shared_ptr<ResourceRegistration> resource_registration();
-    static API static_api();
 
     /// @brief Creates a `position` struct from its proto representation.
     static position from_proto(viam::component::motor::v1::GetPositionResponse proto);
@@ -208,10 +207,17 @@ class Motor : public Component, public Stoppable {
     /// @return The requested `GeometryConfig`s associated with the component.
     virtual std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) = 0;
 
-    API dynamic_api() const override;
+    API api() const override;
 
    protected:
     explicit Motor(std::string name);
+};
+
+template <>
+struct API::api_map<Motor> {
+    static API api() {
+        return {kRDK, kComponent, "motor"};
+    }
 };
 
 bool operator==(const Motor::power_status& lhs, const Motor::power_status& rhs);

@@ -64,7 +64,6 @@ class Encoder : public Component {
 
     // functions shared across all components
     static std::shared_ptr<ResourceRegistration> resource_registration();
-    static API static_api();
 
     /// @brief Creates a `position_type` struct from its proto representation.
     static position_type from_proto(viam::component::encoder::v1::PositionType proto);
@@ -136,10 +135,17 @@ class Encoder : public Component {
     /// @return The requested `GeometryConfig`s associated with the component.
     virtual std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) = 0;
 
-    API dynamic_api() const override;
+    API api() const override;
 
    protected:
     explicit Encoder(std::string name);
+};
+
+template <>
+struct API::api_map<Encoder> {
+    static API api() {
+        return {kRDK, kComponent, "encoder"};
+    }
 };
 
 bool operator==(const Encoder::position& lhs, const Encoder::position& rhs);

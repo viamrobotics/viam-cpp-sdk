@@ -726,7 +726,7 @@ int serve(const std::string& socket_path) try {
     // Create a new model registration for the service.
     auto module_registration = std::make_shared<vsdk::ModelRegistration>(
         // Identify that this resource offers the MLModelService API
-        vsdk::MLModelService::static_api(),
+        vsdk::API::for_t<vsdk::MLModelService>(),
 
         // Declare a model triple for this service.
         vsdk::Model{"viam", "mlmodelservice", "example_mlmodelservice_tflite"},

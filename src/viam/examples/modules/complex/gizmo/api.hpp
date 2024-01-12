@@ -31,8 +31,7 @@ class Gizmo : public Component {
    public:
     // methods shared across all components
     static std::shared_ptr<ResourceRegistration> resource_registration();
-    static API static_api();
-    API dynamic_api() const override;
+    API api() const override;
 
     virtual bool do_one(std::string arg1) = 0;
     virtual bool do_one_client_stream(std::vector<std::string> arg1) = 0;
@@ -42,6 +41,13 @@ class Gizmo : public Component {
 
    protected:
     explicit Gizmo(std::string name);
+};
+
+template <>
+struct API::api_map<Gizmo> {
+    static API api() {
+        return {"viam", "component", "gizmo"};
+    }
 };
 
 // `GizmoClient` is the gRPC client implementation of a `Gizmo` component.

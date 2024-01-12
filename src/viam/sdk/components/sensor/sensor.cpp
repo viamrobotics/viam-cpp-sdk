@@ -11,12 +11,8 @@
 namespace viam {
 namespace sdk {
 
-API Sensor::static_api() {
-    return {kRDK, kComponent, "sensor"};
-}
-
-API Sensor::dynamic_api() const {
-    return static_api();
+API Sensor::api() const {
+    return API::for_t<Sensor>();
 }
 
 namespace {
@@ -30,7 +26,7 @@ class SensorRegistration final
 };
 
 bool init() {
-    Registry::register_resource(Sensor::static_api(), SensorRegistration::resource_registration());
+    Registry::register_resource(API::for_t<Sensor>(), SensorRegistration::resource_registration());
     return true;
 };
 

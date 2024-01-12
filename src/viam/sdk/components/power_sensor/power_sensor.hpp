@@ -44,8 +44,7 @@ class PowerSensor : public Component {
         bool is_ac;
     };
 
-    static API static_api();
-    API dynamic_api() const override;
+    API api() const override;
 
     /// @brief Creates a `voltage` struct from its proto representation.
     static voltage from_proto(GetVoltageResponse proto);
@@ -110,6 +109,13 @@ class PowerSensor : public Component {
 
    protected:
     explicit PowerSensor(std::string name) : Component(std::move(name)){};
+};
+
+template <>
+struct API::api_map<PowerSensor> {
+    static API api() {
+        return {kRDK, kComponent, "power_sensor"};
+    }
 };
 
 bool operator==(const PowerSensor::voltage& lhs, const PowerSensor::voltage& rhs);
