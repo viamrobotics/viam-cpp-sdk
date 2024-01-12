@@ -121,6 +121,20 @@ BOOST_AUTO_TEST_CASE(test_linkconfig) {
 
     viam::app::v1::Frame proto = lc.to_proto();
     LinkConfig lc2 = LinkConfig::from_proto(proto);
+    BOOST_CHECK_EQUAL(lc2.get_parent(), "parent");
+    BOOST_CHECK_EQUAL(lc2.get_translation().x, t.x);
+    BOOST_CHECK_EQUAL(lc2.get_translation().y, t.y);
+    BOOST_CHECK_EQUAL(lc2.get_translation().z, t.z);
+    GeometryConfig result_gcfg2 = lc2.get_geometry_config();
+    BOOST_CHECK_EQUAL(result_gcfg2.get_label(), "label");
+    BOOST_CHECK_EQUAL(result_gcfg2.get_pose(), pose);
+    BOOST_CHECK_EQUAL(result_gcfg2.get_geometry_type(), GeometryType::box);
+    BOOST_CHECK_EQUAL(result_gcfg2.get_geometry_specifics().which(),
+                      gcfg.get_geometry_specifics().which());
+    const auto result_gs2 = boost::get<struct box>(result_gcfg2.get_geometry_specifics());
+    BOOST_CHECK_EQUAL(result_gs2.x, box.x);
+    BOOST_CHECK_EQUAL(result_gs2.y, box.y);
+    BOOST_CHECK_EQUAL(result_gs2.z, box.z);
 }
 
 }  // namespace sdktests
