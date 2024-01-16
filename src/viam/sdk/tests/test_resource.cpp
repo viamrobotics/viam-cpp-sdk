@@ -137,5 +137,17 @@ BOOST_AUTO_TEST_CASE(test_linkconfig) {
     BOOST_CHECK_EQUAL(result_gs2.z, box.z);
 }
 
+BOOST_AUTO_TEST_CASE(test_resource) {
+    std::string type = "type";
+    ResourceConfig resource1(type);
+    BOOST_CHECK_EQUAL(resource1.api().to_string(), "rdk:type:");
+    BOOST_CHECK_EQUAL(resource1.frame().get_parent(), "");
+    BOOST_CHECK_EQUAL(resource1.model().to_string(), "rdk:builtin:builtin");
+    BOOST_CHECK_EQUAL(resource1.name(), "");
+    BOOST_CHECK_EQUAL(resource1.namespace_(), "");
+    BOOST_CHECK_EQUAL(resource1.type(), type);
+    BOOST_CHECK_EQUAL(resource1.resource_name().to_string(), "rdk:type:type/");
+}
+
 }  // namespace sdktests
 }  // namespace viam
