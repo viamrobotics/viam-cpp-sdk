@@ -209,7 +209,7 @@ BOOST_AUTO_TEST_CASE(test_get_resource) {
     server_to_client_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
             auto mock_motor = client->resource_by_name<Motor>("mock_motor");
-            BOOST_CHECK(mock_motor);
+            BOOST_CHECK(mock_motor != nullptr);
         });
 }
 
