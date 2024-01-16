@@ -30,7 +30,7 @@ class ResourceConfig {
     void set_frame(LinkConfig frame);
     void set_model(Model model);
     void set_name(std::string name);
-    void set_namespace(std::string namespace_);
+    void set_namespace(std::string ns);
     const API& api() const;
     const LinkConfig& frame() const;
     const Model& model() const;
