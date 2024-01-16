@@ -176,6 +176,15 @@ const struct MLModelService::metadata test_metadata {
 
 BOOST_AUTO_TEST_SUITE(test_mock_mlmodel)
 
+BOOST_AUTO_TEST_CASE(mock_get_api) {
+    const MockMLModelService mlms("mock_mlms");
+    auto api = mlms.api();
+    auto static_api = API::for_t<MLModelService>();
+
+    BOOST_CHECK_EQUAL(api, static_api);
+    BOOST_CHECK_EQUAL(static_api.resource_subtype(), "mlmodel");
+}
+
 BOOST_AUTO_TEST_CASE(mock_construction) {
     const std::string mock_name = "mocky mock";
     MockMLModelService mock_mlms(mock_name);

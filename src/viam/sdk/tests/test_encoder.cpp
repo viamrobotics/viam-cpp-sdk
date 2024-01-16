@@ -29,6 +29,16 @@ using namespace encoder;
 using namespace viam::sdk;
 
 BOOST_AUTO_TEST_SUITE(test_encoder)
+
+BOOST_AUTO_TEST_CASE(mock_get_api) {
+    const MockEncoder encoder("mock_encoder");
+    auto api = encoder.api();
+    auto static_api = API::for_t<Encoder>();
+
+    BOOST_CHECK_EQUAL(api, static_api);
+    BOOST_CHECK_EQUAL(static_api.resource_subtype(), "encoder");
+}
+
 // This sets up the following architecture
 // -- MockComponent
 //        /\
