@@ -138,15 +138,34 @@ BOOST_AUTO_TEST_CASE(test_linkconfig) {
 }
 
 BOOST_AUTO_TEST_CASE(test_resource) {
-    std::string type = "type";
-    ResourceConfig resource1(type);
+    ResourceConfig resource1("type");
     BOOST_CHECK_EQUAL(resource1.api().to_string(), "rdk:type:");
     BOOST_CHECK_EQUAL(resource1.frame().get_parent(), "");
     BOOST_CHECK_EQUAL(resource1.model().to_string(), "rdk:builtin:builtin");
     BOOST_CHECK_EQUAL(resource1.name(), "");
     BOOST_CHECK_EQUAL(resource1.namespace_(), "");
-    BOOST_CHECK_EQUAL(resource1.type(), type);
+    BOOST_CHECK_EQUAL(resource1.type(), "type");
     BOOST_CHECK_EQUAL(resource1.resource_name().to_string(), "rdk:type:type/");
+
+    API api;
+    api.set_namespace("ns");
+    api.set_resource_subtype("type");
+    LinkConfig lc;
+    lc.set_parent("parent");
+    Name name(api, "remote", "type");
+
+    ResourceConfig resource2("type");
+    BOOST_CHECK_EQUAL(resource2.type(), "type");
+    resource2.set_api(api);
+    BOOST_CHECK_EQUAL(resource2.api().to_string(), api.to_string());
+    resource2.set_frame(lc);
+    BOOST_CHECK_EQUAL(resource2.frame().get_parent(), "parent");
+    resource2.set_model(Model::from_str("ns:mf:model"));
+    BOOST_CHECK_EQUAL(resource2.model().to_string(), "ns:mf:model");
+    resource2.set_name("name");
+    BOOST_CHECK_EQUAL(resource2.name(), "name");
+    resource2.set_namespace("ns");
+    BOOST_CHECK_EQUAL(resource2.namespace_(), "ns");
 }
 
 }  // namespace sdktests

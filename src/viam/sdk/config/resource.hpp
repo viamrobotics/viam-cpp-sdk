@@ -26,6 +26,11 @@ class ResourceConfig {
     viam::app::v1::ComponentConfig to_proto() const;
     ResourceConfig(std::string type);
     Name resource_name();
+    void set_api(API api);
+    void set_frame(LinkConfig frame);
+    void set_model(Model model);
+    void set_name(std::string name);
+    void set_namespace(std::string namespace_);
     const API& api() const;
     const LinkConfig& frame() const;
     const Model& model() const;
