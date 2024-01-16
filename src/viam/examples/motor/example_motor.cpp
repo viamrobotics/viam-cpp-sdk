@@ -66,8 +66,6 @@ int main() {
         std::string motor_name("motor1");
 
         cout << "Getting motor: " << motor_name << endl;
-        // CR erodkin: this is a significant change! make sure there isn't a better option, and if
-        // not then be sure to flag this loudly in review
         std::shared_ptr<vs::Motor> motor;
         try {
             motor = robot->resource_by_name<vs::Motor>(motor_name);
