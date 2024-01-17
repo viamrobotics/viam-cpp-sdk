@@ -201,11 +201,11 @@ jobs:
           - target: x86_64-unknown-linux-gnu
             platform: linux_x86_64
             image: ghcr.io/cross-rs/x86_64-unknown-linux-gnu:main
-            runs_on: buildjet-4vcpu-ubuntu-2204-arm
+            runs_on: buildjet-4vcpu-ubuntu-2204
           - target: arm-unknown-linux-gnueabihf
             platform: linux_armv6l
             image: ghcr.io/cross-rs/arm-unknown-linux-gnueabihf:main
-            runs_on: buildjet-4vcpu-ubuntu-2204-arm
+            runs_on: buildjet-4vcpu-ubuntu-2204
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
