@@ -1,6 +1,7 @@
 #define BOOST_TEST_MODULE test module test_resource
 #include <boost/test/included/unit_test.hpp>
 
+#include <google/protobuf/struct.pb.h>
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -14,6 +15,8 @@ namespace viam {
 namespace sdktests {
 
 using namespace viam::sdk;
+using google::protobuf::Struct;
+using google::protobuf::Value;
 
 BOOST_AUTO_TEST_CASE(test_api) {
     API api1;
@@ -171,6 +174,12 @@ BOOST_AUTO_TEST_CASE(test_resource) {
     *proto_cfg.mutable_type() = "type";
     *proto_cfg.mutable_api() = "ns:component:type";
     *proto_cfg.mutable_model() = "ns:mf:model1";
+    Struct attributes;
+    Value v;
+    v.set_number_value(1);
+    const google::protobuf::MapPair<std::string, Value> val("a", v);
+    attributes.mutable_fields()->insert(val);
+    *proto_cfg.mutable_attributes() = attributes;
 
     viam::app::v1::Frame frame;
     viam::common::v1::Geometry g;
@@ -215,6 +224,14 @@ BOOST_AUTO_TEST_CASE(test_resource) {
     BOOST_CHECK_EQUAL(resource2.model().to_string(), "ns:mf:model1");
     BOOST_CHECK_EQUAL(resource2.api().to_string(), "ns:component:type");
     BOOST_CHECK_EQUAL(resource2.frame().get_parent(), "parent");
+    std::string key;
+    Value value;
+    for (const auto& key_and_value : *resource2.attributes()) {
+        key = key_and_value.first;
+        value = key_and_value.second->proto_value();
+    }
+    BOOST_CHECK_EQUAL(key, "a");
+    BOOST_CHECK_EQUAL(value.number_value(), 1);
     // BOOST_CHECK_THROW(ResourceConfig::from_proto(proto_cfg), std::string);
 }
 
