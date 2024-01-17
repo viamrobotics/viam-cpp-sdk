@@ -2,6 +2,7 @@
 #include <boost/test/included/unit_test.hpp>
 
 #include <viam/sdk/common/pose.hpp>
+#include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/referenceframe/frame.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
@@ -164,6 +165,57 @@ BOOST_AUTO_TEST_CASE(test_resource) {
     BOOST_CHECK_EQUAL(resource1.type(), "type");
     BOOST_CHECK_EQUAL(resource1.resource_name().to_string(), "rdk:type:type/");
 
+    viam::app::v1::ComponentConfig proto_cfg;
+    *proto_cfg.mutable_name() = "name";
+    *proto_cfg.mutable_namespace_() = "ns";
+    *proto_cfg.mutable_type() = "type";
+    *proto_cfg.mutable_api() = "ns:component:type";
+    *proto_cfg.mutable_model() = "ns:mf:model1";
+
+    viam::app::v1::Frame frame;
+    viam::common::v1::Geometry g;
+    viam::common::v1::Pose pose;
+    pose.set_x(0);
+    pose.set_y(1);
+    pose.set_z(2);
+    pose.set_o_x(3);
+    pose.set_o_y(4);
+    pose.set_o_z(5);
+    pose.set_theta(6);
+    viam::common::v1::RectangularPrism box;
+    viam::common::v1::Vector3 vec3;
+    vec3.set_x(7);
+    vec3.set_y(8);
+    vec3.set_z(9);
+    *box.mutable_dims_mm() = vec3;
+    *g.mutable_label() = "label";
+    *g.mutable_center() = pose;
+    *g.mutable_box() = box;
+    viam::app::v1::Orientation o;
+    viam::app::v1::Orientation_AxisAngles aa;
+    aa.set_x(10);
+    aa.set_y(11);
+    aa.set_z(12);
+    aa.set_theta(13);
+    *o.mutable_axis_angles() = aa;
+    viam::app::v1::Translation t;
+    t.set_x(14);
+    t.set_y(15);
+    t.set_z(16);
+    *frame.mutable_parent() = "parent";
+    *frame.mutable_geometry() = g;
+    *frame.mutable_orientation() = o;
+    *frame.mutable_translation() = t;
+    *proto_cfg.mutable_frame() = frame;
+
+    ResourceConfig resource2 = ResourceConfig::from_proto(proto_cfg);
+    BOOST_CHECK_EQUAL(resource2.name(), "name");
+    BOOST_CHECK_EQUAL(resource2.namespace_(), "ns");
+    BOOST_CHECK_EQUAL(resource2.type(), "type");
+    BOOST_CHECK_EQUAL(resource2.model().to_string(), "ns:mf:model1");
+    BOOST_CHECK_EQUAL(resource2.api().to_string(), "ns:component:type");
+    BOOST_CHECK_EQUAL(resource2.frame().get_parent(), "parent");
+    // BOOST_CHECK_THROW(ResourceConfig::from_proto(proto_cfg), std::string);
 }
 
 }  // namespace sdktests
