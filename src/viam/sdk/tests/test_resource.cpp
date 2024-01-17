@@ -31,6 +31,8 @@ BOOST_AUTO_TEST_CASE(test_api) {
     BOOST_CHECK(api1.is_component_type());
 
     API api2 = API::from_string("ns:service:st");
+    BOOST_CHECK_EQUAL(api1.type_namespace(), "ns");
+    BOOST_CHECK_EQUAL(api1.resource_subtype(), "st");
     BOOST_CHECK_EQUAL(api2.to_string(), "ns:service:st");
     BOOST_CHECK(api2.is_service_type());
     BOOST_CHECK(!api2.is_component_type());
