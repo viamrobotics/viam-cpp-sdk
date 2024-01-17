@@ -1,8 +1,5 @@
 name: Build + draft release
 
-# CR erodkin: delete this!
-on: pull_request
-
 # (erodkin) this is needed to create the release, per https://github.com/softprops/action-gh-release/issues/236
 permissions:
   contents: write
@@ -100,83 +97,6 @@ jobs:
         run: |
           install_name_tool -id "@rpath/libviamsdk.dylib" builds/libviamsdk-${{ matrix.platform }}.dylib
           install_name_tool -id "@rpath/libviamapi.dylib" builds/libviamapi-${{ matrix.platform }}.dylib
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: builds
-          path: builds
-
-  build_aarch_linux:
-    if: github.repository_owner == 'viamrobotics'
-    needs: [prepare]
-    runs-on: buildjet-8vcpu-ubuntu-2204-arm
-    container:
-      image: ubuntu:20.04
-    strategy:
-      fail-fast: false
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ needs.prepare.outputs.sha }}
-      - name: Install dependencies
-        run: |
-          apt-get -y --no-install-recommends sudo
-          sudo apt-get update
-          sudo apt-get -y dist-upgrade
-          sudo apt-get -y --no-install-recommends install \
-              build-essential \
-              ca-certificates \
-              curl \
-              doxygen \
-              g++ \
-              gdb \
-              git \
-              gnupg \
-              gpg \
-              less \
-              libabsl-dev \
-              libboost-all-dev \
-              libgrpc++-dev \
-              libprotobuf-dev \
-              libssl-dev \
-              ninja-build \
-              pkg-config \
-              protobuf-compiler \
-              protobuf-compiler-grpc \
-              software-properties-common \
-              wget
-
-          # Add the public key for the llvm repository to get the correct clang version
-          bash -c 'sudo wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -'
-          sudo apt-add-repository -y 'deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-15 main'
-
-          # Add public key and repository to get cmake 3.25+
-          bash -c 'sudo wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null'
-          sudo echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null
-
-          sudo apt-get update
-          sudo apt-get -y --no-install-recommends install -t llvm-toolchain-jammy-15 clang-15 clang-tidy-15
-          sudo apt-get -y install cmake
-
-      - name: Setup build directory
-        run: mkdir builds
-
-      - name: Build
-        shell: bash
-        run: |
-          mkdir build
-          pushd build/
-          /usr/bin/cmake .. -G Ninja
-          ninja all -j 3 && ninja install
-          popd
-
-      - name: Copy
-        run: |
-          cp build/install/lib/libviam_rust_utils.a builds/libviam_rust_utils-linux_aarch64.a
-          cp build/install/lib/libviamapi.so.${{ needs.prepare.outputs.version }} builds/libviamapi-linux_aarch64.so
-          cp build/install/lib/libviamsdk.so.${{ needs.prepare.outputs.version }} builds/libviamsdk-linux_aarch64.so
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
@@ -296,7 +216,7 @@ jobs:
           path: builds
 
   release:
-    needs: [prepare, build_macos, build_linux, build_aarch_linux]
+    needs: [prepare, build_macos, build_linux]
     if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
 
