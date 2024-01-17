@@ -280,7 +280,7 @@ jobs:
           mkdir build
           pushd build/
           /usr/bin/cmake .. -G Ninja
-          ninja all && ninja install
+          ninja all -j 3 && ninja install
           popd
 
       - name: Copy
