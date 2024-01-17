@@ -76,65 +76,82 @@ BOOST_AUTO_TEST_CASE(test_model) {
 }
 
 BOOST_AUTO_TEST_CASE(test_linkconfig) {
-    translation t;
-    t.x = 0;
-    t.y = 1;
-    t.z = 2;
-    OrientationConfig ocfg = OrientationConfig();
-    GeometryConfig gcfg;
-    struct pose pose;
-    pose.coordinates.x = 3;
-    pose.coordinates.y = 4;
-    pose.coordinates.z = 5;
-    pose.orientation.o_x = 6;
-    pose.orientation.o_y = 7;
-    pose.orientation.o_z = 8;
-    pose.theta = 3;
-    gcfg.set_pose(pose);
-    gcfg.set_label("label");
-    gcfg.set_geometry_type(GeometryType::box);
-    struct box box;
-    box.x = 9;
-    box.y = 10;
-    box.z = 11;
-    gcfg.set_geometry_specifics(box);
+    viam::app::v1::Frame frame;
 
-    LinkConfig lc;
-    lc.set_orientation_config(ocfg);
-    lc.set_parent("parent");
+    viam::common::v1::Geometry g;
+    viam::common::v1::Pose pose;
+    pose.set_x(0);
+    pose.set_y(1);
+    pose.set_z(2);
+    pose.set_o_x(3);
+    pose.set_o_y(4);
+    pose.set_o_z(5);
+    pose.set_theta(6);
+    viam::common::v1::RectangularPrism box;
+    viam::common::v1::Vector3 vec3;
+    vec3.set_x(7);
+    vec3.set_y(8);
+    vec3.set_z(9);
+    *box.mutable_dims_mm() = vec3;
+    *g.mutable_label() = "label";
+    *g.mutable_center() = pose;
+    *g.mutable_box() = box;
+
+    viam::app::v1::Orientation o;
+    viam::app::v1::Orientation_AxisAngles aa;
+    aa.set_x(10);
+    aa.set_y(11);
+    aa.set_z(12);
+    aa.set_theta(13);
+    *o.mutable_axis_angles() = aa;
+
+    viam::app::v1::Translation t;
+    t.set_x(14);
+    t.set_y(15);
+    t.set_z(16);
+
+    *frame.mutable_parent() = "parent";
+    *frame.mutable_geometry() = g;
+    *frame.mutable_orientation() = o;
+    *frame.mutable_translation() = t;
+
+    LinkConfig lc = LinkConfig::from_proto(frame);
     BOOST_CHECK_EQUAL(lc.get_parent(), "parent");
-    lc.set_translation(t);
-    BOOST_CHECK_EQUAL(lc.get_translation().x, t.x);
-    BOOST_CHECK_EQUAL(lc.get_translation().y, t.y);
-    BOOST_CHECK_EQUAL(lc.get_translation().z, t.z);
-    lc.set_geometry_config(gcfg);
-    GeometryConfig result_gcfg = lc.get_geometry_config();
-    BOOST_CHECK_EQUAL(result_gcfg.get_label(), "label");
-    BOOST_CHECK_EQUAL(result_gcfg.get_pose(), pose);
-    BOOST_CHECK_EQUAL(result_gcfg.get_geometry_type(), GeometryType::box);
-    BOOST_CHECK_EQUAL(result_gcfg.get_geometry_specifics().which(),
-                      gcfg.get_geometry_specifics().which());
-    const auto result_gs = boost::get<struct box>(result_gcfg.get_geometry_specifics());
-    BOOST_CHECK_EQUAL(result_gs.x, box.x);
-    BOOST_CHECK_EQUAL(result_gs.y, box.y);
-    BOOST_CHECK_EQUAL(result_gs.z, box.z);
+    BOOST_CHECK_EQUAL(lc.get_translation().x, t.x());
+    BOOST_CHECK_EQUAL(lc.get_translation().y, t.y());
+    BOOST_CHECK_EQUAL(lc.get_translation().z, t.z());
+    GeometryConfig gcfg = lc.get_geometry_config();
+    BOOST_CHECK_EQUAL(gcfg.get_label(), "label");
+    BOOST_CHECK_EQUAL(gcfg.get_pose(), pose::from_proto(pose));
+    BOOST_CHECK_EQUAL(gcfg.get_geometry_type(), GeometryType::box);
+    const auto gs = gcfg.box_proto();
+    BOOST_CHECK_EQUAL(gs.dims_mm().x(), box.dims_mm().x());
+    BOOST_CHECK_EQUAL(gs.dims_mm().y(), box.dims_mm().y());
+    BOOST_CHECK_EQUAL(gs.dims_mm().z(), box.dims_mm().z());
 
-    viam::app::v1::Frame proto = lc.to_proto();
-    LinkConfig lc2 = LinkConfig::from_proto(proto);
-    BOOST_CHECK_EQUAL(lc2.get_parent(), "parent");
-    BOOST_CHECK_EQUAL(lc2.get_translation().x, t.x);
-    BOOST_CHECK_EQUAL(lc2.get_translation().y, t.y);
-    BOOST_CHECK_EQUAL(lc2.get_translation().z, t.z);
-    GeometryConfig result_gcfg2 = lc2.get_geometry_config();
-    BOOST_CHECK_EQUAL(result_gcfg2.get_label(), "label");
-    BOOST_CHECK_EQUAL(result_gcfg2.get_pose(), pose);
-    BOOST_CHECK_EQUAL(result_gcfg2.get_geometry_type(), GeometryType::box);
-    BOOST_CHECK_EQUAL(result_gcfg2.get_geometry_specifics().which(),
-                      gcfg.get_geometry_specifics().which());
-    const auto result_gs2 = boost::get<struct box>(result_gcfg2.get_geometry_specifics());
-    BOOST_CHECK_EQUAL(result_gs2.x, box.x);
-    BOOST_CHECK_EQUAL(result_gs2.y, box.y);
-    BOOST_CHECK_EQUAL(result_gs2.z, box.z);
+    viam::app::v1::Frame proto_lc = lc.to_proto();
+    BOOST_CHECK_EQUAL(proto_lc.parent(), "parent");
+    BOOST_CHECK_EQUAL(proto_lc.translation().x(), t.x());
+    BOOST_CHECK_EQUAL(proto_lc.translation().y(), t.y());
+    BOOST_CHECK_EQUAL(proto_lc.translation().z(), t.z());
+    BOOST_CHECK(proto_lc.has_orientation());
+    viam::app::v1::Orientation proto_ocfg = proto_lc.orientation();
+    BOOST_CHECK_EQUAL(proto_ocfg.type_case(), viam::app::v1::Orientation::TypeCase::kAxisAngles);
+    BOOST_CHECK_EQUAL(proto_ocfg.axis_angles().x(), o.axis_angles().x());
+    BOOST_CHECK_EQUAL(proto_ocfg.axis_angles().y(), o.axis_angles().y());
+    BOOST_CHECK_EQUAL(proto_ocfg.axis_angles().z(), o.axis_angles().z());
+    BOOST_CHECK_EQUAL(proto_ocfg.axis_angles().theta(), o.axis_angles().theta());
+    BOOST_CHECK(proto_lc.has_geometry());
+    viam::common::v1::Geometry proto_gcfg = proto_lc.geometry();
+    BOOST_CHECK_EQUAL(proto_gcfg.label(), "label");
+    BOOST_CHECK_EQUAL(proto_gcfg.center().x(), pose.x());
+    BOOST_CHECK_EQUAL(proto_gcfg.center().y(), pose.y());
+    BOOST_CHECK_EQUAL(proto_gcfg.center().z(), pose.z());
+    BOOST_CHECK_EQUAL(proto_gcfg.geometry_type_case(),
+                      viam::common::v1::Geometry::GeometryTypeCase::kBox);
+    BOOST_CHECK_EQUAL(proto_gcfg.box().dims_mm().x(), box.dims_mm().x());
+    BOOST_CHECK_EQUAL(proto_gcfg.box().dims_mm().y(), box.dims_mm().y());
+    BOOST_CHECK_EQUAL(proto_gcfg.box().dims_mm().z(), box.dims_mm().z());
 }
 
 BOOST_AUTO_TEST_CASE(test_resource) {
@@ -147,25 +164,6 @@ BOOST_AUTO_TEST_CASE(test_resource) {
     BOOST_CHECK_EQUAL(resource1.type(), "type");
     BOOST_CHECK_EQUAL(resource1.resource_name().to_string(), "rdk:type:type/");
 
-    API api;
-    api.set_namespace("ns");
-    api.set_resource_subtype("type");
-    LinkConfig lc;
-    lc.set_parent("parent");
-    Name name(api, "remote", "type");
-
-    ResourceConfig resource2("type");
-    BOOST_CHECK_EQUAL(resource2.type(), "type");
-    resource2.set_api(api);
-    BOOST_CHECK_EQUAL(resource2.api().to_string(), api.to_string());
-    resource2.set_frame(lc);
-    BOOST_CHECK_EQUAL(resource2.frame().get_parent(), "parent");
-    resource2.set_model(Model::from_str("ns:mf:model"));
-    BOOST_CHECK_EQUAL(resource2.model().to_string(), "ns:mf:model");
-    resource2.set_name("name");
-    BOOST_CHECK_EQUAL(resource2.name(), "name");
-    resource2.set_namespace("ns");
-    BOOST_CHECK_EQUAL(resource2.namespace_(), "ns");
 }
 
 }  // namespace sdktests

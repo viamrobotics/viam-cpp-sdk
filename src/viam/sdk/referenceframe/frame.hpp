@@ -14,10 +14,6 @@ class LinkConfig {
    public:
     viam::app::v1::Frame to_proto() const;
     static LinkConfig from_proto(viam::app::v1::Frame proto);
-    void set_translation(translation translation);
-    void set_orientation_config(OrientationConfig orientation);
-    void set_geometry_config(GeometryConfig geometry);
-    void set_parent(std::string parent);
     translation get_translation() const;
     OrientationConfig get_orientation_config() const;
     GeometryConfig get_geometry_config() const;

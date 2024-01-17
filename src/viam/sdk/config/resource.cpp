@@ -36,40 +36,20 @@ Name ResourceConfig::resource_name() {
     return Name(this->api_, "", remotes.at(0));
 }
 
-void ResourceConfig::set_api(API api) {
-    api_ = std::move(api);
-}
-
 const API& ResourceConfig::api() const {
     return api_;
-}
-
-void ResourceConfig::set_frame(LinkConfig frame) {
-    frame_ = std::move(frame);
 }
 
 const LinkConfig& ResourceConfig::frame() const {
     return frame_;
 }
 
-void ResourceConfig::set_model(Model model) {
-    model_ = std::move(model);
-}
-
 const Model& ResourceConfig::model() const {
     return model_;
 }
 
-void ResourceConfig::set_name(std::string name) {
-    name_ = std::move(name);
-}
-
 const std::string& ResourceConfig::name() const {
     return name_;
-}
-
-void ResourceConfig::set_namespace(std::string ns) {
-    namespace__ = std::move(ns);
 }
 
 const std::string& ResourceConfig::namespace_() const {
