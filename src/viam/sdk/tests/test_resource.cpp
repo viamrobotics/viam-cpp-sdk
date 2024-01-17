@@ -232,7 +232,9 @@ BOOST_AUTO_TEST_CASE(test_resource) {
     }
     BOOST_CHECK_EQUAL(key, "a");
     BOOST_CHECK_EQUAL(value.number_value(), 1);
-    // BOOST_CHECK_THROW(ResourceConfig::from_proto(proto_cfg), std::string);
+
+    *proto_cfg.mutable_api() = "ns:component:test";
+    BOOST_CHECK_THROW(ResourceConfig::from_proto(proto_cfg), std::runtime_error);
 }
 
 }  // namespace sdktests
