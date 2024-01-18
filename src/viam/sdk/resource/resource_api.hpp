@@ -50,7 +50,7 @@ class API : public APIType {
     struct api_map;
 
     template <typename T>
-    static API for_t() {
+    static API get() {
         return api_map<T>::api();
     }
 

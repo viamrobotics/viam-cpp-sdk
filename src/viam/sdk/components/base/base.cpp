@@ -38,7 +38,11 @@ std::shared_ptr<ResourceRegistration> Base::resource_registration() {
 }
 
 API Base::api() const {
-    return API::for_t<Base>();
+    return API::get<Base>();
+}
+
+API API::api_map<Base>::api() {
+    return {kRDK, kComponent, "base"};
 }
 
 Base::properties Base::properties::from_proto(
@@ -64,7 +68,7 @@ Base::Base(std::string name) : Component(std::move(name)){};
 
 namespace {
 bool init() {
-    Registry::register_resource(API::for_t<Base>(), Base::resource_registration());
+    Registry::register_resource(API::get<Base>(), Base::resource_registration());
     return true;
 };
 

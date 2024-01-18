@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_SUITE(test_base)
 BOOST_AUTO_TEST_CASE(mock_get_api) {
     const MockBase base("mock_base");
     auto api = base.api();
-    auto static_api = API::for_t<Base>();
+    auto static_api = API::get<Base>();
 
     BOOST_CHECK_EQUAL(api, static_api);
     BOOST_CHECK_EQUAL(static_api.resource_subtype(), "base");

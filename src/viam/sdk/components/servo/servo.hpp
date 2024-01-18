@@ -102,9 +102,7 @@ class Servo : public Component, public Stoppable {
 
 template <>
 struct API::api_map<Servo> {
-    static API api() {
-        return {kRDK, kComponent, "servo"};
-    }
+    static API api();
 };
 
 }  // namespace sdk

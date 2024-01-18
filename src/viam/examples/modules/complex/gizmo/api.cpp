@@ -44,7 +44,7 @@ std::shared_ptr<ResourceRegistration> Gizmo::resource_registration() {
 }
 
 API Gizmo::api() const {
-    return API::for_t<Gizmo>();
+    return API::get<Gizmo>();
 }
 
 Gizmo::Gizmo(std::string name) : Component(std::move(name)){};

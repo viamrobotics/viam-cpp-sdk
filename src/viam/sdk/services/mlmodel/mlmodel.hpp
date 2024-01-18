@@ -186,9 +186,7 @@ class MLModelService : public Service {
 
 template <>
 struct API::api_map<MLModelService> {
-    static API api() {
-        return API(kRDK, kService, "mlmodel");
-    }
+    static API api();
 };
 
 }  // namespace sdk

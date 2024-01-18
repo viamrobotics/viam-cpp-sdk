@@ -30,7 +30,7 @@ std::shared_ptr<MockGeneric> generic = MockGeneric::get_mock_generic();
 BOOST_AUTO_TEST_CASE(mock_get_api) {
     const auto generic = MockGeneric::get_mock_generic();
     auto api = generic->api();
-    auto static_api = API::for_t<Generic>();
+    auto static_api = API::get<Generic>();
 
     BOOST_CHECK_EQUAL(api, static_api);
     BOOST_CHECK_EQUAL(static_api.resource_subtype(), "generic");

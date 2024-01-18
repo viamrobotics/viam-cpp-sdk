@@ -40,7 +40,11 @@ Motor::position Motor::from_proto(viam::component::motor::v1::GetPositionRespons
     return proto.position();
 }
 API Motor::api() const {
-    return API::for_t<Motor>();
+    return API::get<Motor>();
+}
+
+API API::api_map<Motor>::api() {
+    return {kRDK, kComponent, "motor"};
 }
 
 Motor::power_status Motor::from_proto(viam::component::motor::v1::IsPoweredResponse proto) {
@@ -89,7 +93,7 @@ bool operator==(const Motor::properties& lhs, const Motor::properties& rhs) {
 
 namespace {
 bool init() {
-    Registry::register_resource(API::for_t<Motor>(), Motor::resource_registration());
+    Registry::register_resource(API::get<Motor>(), Motor::resource_registration());
     return true;
 };
 

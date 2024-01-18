@@ -39,8 +39,8 @@ int main() {
 
     // Register custom gizmo and summation API so robot client can access resources
     // of that type from the server.
-    Registry::register_resource(API::for_t<Gizmo>(), Gizmo::resource_registration());
-    Registry::register_resource(API::for_t<Summation>(), Summation::resource_registration());
+    Registry::register_resource(API::get<Gizmo>(), Gizmo::resource_registration());
+    Registry::register_resource(API::get<Summation>(), Summation::resource_registration());
 
     // Connect to robot.
     std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);

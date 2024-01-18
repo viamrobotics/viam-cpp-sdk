@@ -113,9 +113,7 @@ class PowerSensor : public Component {
 
 template <>
 struct API::api_map<PowerSensor> {
-    static API api() {
-        return {kRDK, kComponent, "power_sensor"};
-    }
+    static API api();
 };
 
 bool operator==(const PowerSensor::voltage& lhs, const PowerSensor::voltage& rhs);

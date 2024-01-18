@@ -32,7 +32,7 @@ std::shared_ptr<MockCamera> camera = MockCamera::get_mock_camera();
 
 BOOST_AUTO_TEST_CASE(mock_get_api) {
     auto api = camera->api();
-    auto static_api = API::for_t<Camera>();
+    auto static_api = API::get<Camera>();
 
     BOOST_CHECK_EQUAL(api, static_api);
     BOOST_CHECK_EQUAL(static_api.resource_subtype(), "camera");

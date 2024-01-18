@@ -499,9 +499,7 @@ class Motion : public Service {
 
 template <>
 struct API::api_map<Motion> {
-    static API api() {
-        return {kRDK, kService, "motion"};
-    }
+    static API api();
 };
 
 }  // namespace sdk

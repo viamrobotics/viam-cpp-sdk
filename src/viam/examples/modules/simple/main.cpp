@@ -77,7 +77,7 @@ class Printer : public Generic {
 };
 
 int main(int argc, char** argv) {
-    API generic = API::for_t<Generic>();
+    API generic = API::get<Generic>();
     Model m("viam", "generic", "printer");
 
     std::shared_ptr<ModelRegistration> mr = std::make_shared<ModelRegistration>(

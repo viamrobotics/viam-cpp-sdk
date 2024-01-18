@@ -215,9 +215,7 @@ class Motor : public Component, public Stoppable {
 
 template <>
 struct API::api_map<Motor> {
-    static API api() {
-        return {kRDK, kComponent, "motor"};
-    }
+    static API api();
 };
 
 bool operator==(const Motor::power_status& lhs, const Motor::power_status& rhs);

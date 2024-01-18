@@ -164,9 +164,7 @@ class Base : public Component, public Stoppable {
 
 template <>
 struct API::api_map<Base> {
-    static API api() {
-        return {kRDK, kComponent, "base"};
-    }
+    static API api();
 };
 
 }  // namespace sdk

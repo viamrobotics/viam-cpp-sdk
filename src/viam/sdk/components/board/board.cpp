@@ -38,7 +38,11 @@ std::shared_ptr<ResourceRegistration> Board::resource_registration() {
 }
 
 API Board::api() const {
-    return API::for_t<Board>();
+    return API::get<Board>();
+}
+
+API API::api_map<Board>::api() {
+    return {kRDK, kComponent, "board"};
 }
 
 Board::status Board::from_proto(viam::common::v1::BoardStatus proto) {
@@ -149,7 +153,7 @@ bool operator==(const Board::status& lhs, const Board::status& rhs) {
 
 namespace {
 bool init() {
-    Registry::register_resource(API::for_t<Board>(), Board::resource_registration());
+    Registry::register_resource(API::get<Board>(), Board::resource_registration());
     return true;
 };
 

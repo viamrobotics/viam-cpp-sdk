@@ -47,7 +47,11 @@ std::shared_ptr<ResourceRegistration> MLModelService::resource_registration() {
 }
 
 API MLModelService::api() const {
-    return API::for_t<MLModelService>();
+    return API::get<MLModelService>();
+}
+
+API API::api_map<MLModelService>::api() {
+    return API(kRDK, kService, "mlmodel");
 }
 
 boost::optional<MLModelService::tensor_info::data_types>
@@ -174,7 +178,7 @@ MLModelService::MLModelService(std::string name) : Service(std::move(name)) {}
 
 namespace {
 bool init() {
-    Registry::register_resource(API::for_t<MLModelService>(),
+    Registry::register_resource(API::get<MLModelService>(),
                                 MLModelService::resource_registration());
     return true;
 };

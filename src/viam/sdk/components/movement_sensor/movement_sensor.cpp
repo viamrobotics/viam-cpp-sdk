@@ -15,7 +15,11 @@ namespace viam {
 namespace sdk {
 
 API MovementSensor::api() const {
-    return API::for_t<MovementSensor>();
+    return API::get<MovementSensor>();
+}
+
+API API::api_map<MovementSensor>::api() {
+    return {kRDK, kComponent, "movement_sensor"};
 }
 
 MovementSensor::compassheading MovementSensor::from_proto(
@@ -111,7 +115,7 @@ class MovementSensorRegistration final
 };
 
 bool init() {
-    Registry::register_resource(API::for_t<MovementSensor>(),
+    Registry::register_resource(API::get<MovementSensor>(),
                                 MovementSensorRegistration::resource_registration());
     return true;
 };

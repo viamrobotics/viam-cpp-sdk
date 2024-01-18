@@ -63,9 +63,7 @@ class Generic : public Component {
 
 template <>
 struct API::api_map<Generic> {
-    static API api() {
-        return {kRDK, kComponent, "generic"};
-    }
+    static API api();
 };
 
 }  // namespace sdk

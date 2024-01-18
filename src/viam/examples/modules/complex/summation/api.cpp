@@ -45,7 +45,7 @@ std::shared_ptr<ResourceRegistration> Summation::resource_registration() {
 }
 
 API Summation::api() const {
-    return API::for_t<Summation>();
+    return API::get<Summation>();
 }
 
 Summation::Summation(std::string name) : Service(std::move(name)){};

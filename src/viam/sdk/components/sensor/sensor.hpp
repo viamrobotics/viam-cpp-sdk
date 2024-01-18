@@ -61,9 +61,7 @@ class Sensor : public Component {
 
 template <>
 struct API::api_map<Sensor> {
-    static API api() {
-        return {kRDK, kComponent, "sensor"};
-    }
+    static API api();
 };
 
 }  // namespace sdk

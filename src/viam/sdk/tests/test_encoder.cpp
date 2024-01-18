@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_SUITE(test_encoder)
 BOOST_AUTO_TEST_CASE(mock_get_api) {
     const MockEncoder encoder("mock_encoder");
     auto api = encoder.api();
-    auto static_api = API::for_t<Encoder>();
+    auto static_api = API::get<Encoder>();
 
     BOOST_CHECK_EQUAL(api, static_api);
     BOOST_CHECK_EQUAL(static_api.resource_subtype(), "encoder");

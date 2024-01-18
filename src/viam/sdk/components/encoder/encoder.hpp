@@ -143,9 +143,7 @@ class Encoder : public Component {
 
 template <>
 struct API::api_map<Encoder> {
-    static API api() {
-        return {kRDK, kComponent, "encoder"};
-    }
+    static API api();
 };
 
 bool operator==(const Encoder::position& lhs, const Encoder::position& rhs);

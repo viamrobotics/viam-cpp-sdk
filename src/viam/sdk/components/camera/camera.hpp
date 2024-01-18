@@ -195,9 +195,7 @@ class Camera : public Component {
 
 template <>
 struct API::api_map<Camera> {
-    static API api() {
-        return {kRDK, kComponent, "camera"};
-    }
+    static API api();
 };
 
 bool operator==(const Camera::raw_image& lhs, const Camera::raw_image& rhs);

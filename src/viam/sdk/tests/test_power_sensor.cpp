@@ -32,7 +32,7 @@ BOOST_AUTO_TEST_SUITE(test_powersensor)
 BOOST_AUTO_TEST_CASE(mock_get_api) {
     const MockPowerSensor power_sensor("mock_power_sensor");
     auto api = power_sensor.api();
-    auto static_api = API::for_t<PowerSensor>();
+    auto static_api = API::get<PowerSensor>();
 
     BOOST_CHECK_EQUAL(api, static_api);
     BOOST_CHECK_EQUAL(static_api.resource_subtype(), "power_sensor");

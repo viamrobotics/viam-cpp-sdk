@@ -155,9 +155,7 @@ class MovementSensor : public Component {
 
 template <>
 struct API::api_map<MovementSensor> {
-    static API api() {
-        return {kRDK, kComponent, "movement_sensor"};
-    }
+    static API api();
 };
 
 bool operator==(const MovementSensor::compassheading& lhs,

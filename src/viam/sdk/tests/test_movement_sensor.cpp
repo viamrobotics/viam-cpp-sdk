@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_SUITE(test_movementsensor)
 BOOST_AUTO_TEST_CASE(mock_get_api) {
     const MockMovementSensor movement_sensor("mock_movement_sensor");
     auto api = movement_sensor.api();
-    auto static_api = API::for_t<MovementSensor>();
+    auto static_api = API::get<MovementSensor>();
 
     BOOST_CHECK_EQUAL(api, static_api);
     BOOST_CHECK_EQUAL(static_api.resource_subtype(), "movement_sensor");

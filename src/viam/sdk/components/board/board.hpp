@@ -280,9 +280,7 @@ class Board : public Component {
 
 template <>
 struct API::api_map<Board> {
-    static API api() {
-        return {kRDK, kComponent, "board"};
-    }
+    static API api();
 };
 
 bool operator==(const Board::status& lhs, const Board::status& rhs);

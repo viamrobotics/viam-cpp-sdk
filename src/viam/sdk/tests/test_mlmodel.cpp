@@ -179,7 +179,7 @@ BOOST_AUTO_TEST_SUITE(test_mock_mlmodel)
 BOOST_AUTO_TEST_CASE(mock_get_api) {
     const MockMLModelService mlms("mock_mlms");
     auto api = mlms.api();
-    auto static_api = API::for_t<MLModelService>();
+    auto static_api = API::get<MLModelService>();
 
     BOOST_CHECK_EQUAL(api, static_api);
     BOOST_CHECK_EQUAL(static_api.resource_subtype(), "mlmodel");
