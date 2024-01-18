@@ -83,6 +83,10 @@ viam::common::v1::Pose pose::to_proto() const {
     return proto;
 }
 
+GeometryConfig::GeometryConfig() {
+    geometry_type_ = GeometryType::box;
+}
+
 GeometryConfig GeometryConfig::from_proto(const viam::common::v1::Geometry& proto) {
     GeometryConfig cfg;
     const auto& pose = proto.center();
