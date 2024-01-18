@@ -199,8 +199,8 @@ jobs:
         shell: bash
         run: |
           mkdir build
-          usr/bin/cmake -S . -B build -G Ninja
-          usr/bin/cmake --build build --target all install -- -v -j 3
+          /usr/bin/cmake -S . -B build -G Ninja
+          /usr/bin/cmake --build build --target all install -- -v -j 3
 
       - name: Copy
         run: |
@@ -209,8 +209,8 @@ jobs:
           cp build/install/lib/libviamsdk.so.${{ needs.prepare.outputs.version }} builds/libviamsdk-${{ matrix.platform }}.so
       - name: Correct install path
         run: |
-          usr/bin/cmake --install build --prefix builds/libviamsdk-${{ matrix.platform }}
-          usr/bin/cmake --install build --prefix builds/libviamapi-${{ matrix.platform }}
+          /usr/bin/cmake --install build --prefix builds/libviamsdk-${{ matrix.platform }}
+          /usr/bin/cmake --install build --prefix builds/libviamapi-${{ matrix.platform }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
