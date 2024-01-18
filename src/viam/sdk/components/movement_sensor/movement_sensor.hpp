@@ -154,7 +154,7 @@ class MovementSensor : public Component {
 };
 
 template <>
-struct API::api_map<MovementSensor> {
+struct API::traits<MovementSensor> {
     static API api();
 };
 

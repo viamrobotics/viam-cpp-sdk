@@ -498,7 +498,7 @@ class Motion : public Service {
 };
 
 template <>
-struct API::api_map<Motion> {
+struct API::traits<Motion> {
     static API api();
 };
 

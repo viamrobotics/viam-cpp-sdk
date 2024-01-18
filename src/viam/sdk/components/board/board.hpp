@@ -279,7 +279,7 @@ class Board : public Component {
 };
 
 template <>
-struct API::api_map<Board> {
+struct API::traits<Board> {
     static API api();
 };
 

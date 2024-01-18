@@ -47,7 +47,7 @@ API Camera::api() const {
     return API::get<Camera>();
 }
 
-API API::api_map<Camera>::api() {
+API API::traits<Camera>::api() {
     return {kRDK, kComponent, "camera"};
 }
 

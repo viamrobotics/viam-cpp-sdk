@@ -38,7 +38,7 @@ class Resource {
 };
 
 template <>
-struct API::api_map<Resource> {
+struct API::traits<Resource> {
     static API api() {
         return {"rdk", "resource", "Resource"};
     }

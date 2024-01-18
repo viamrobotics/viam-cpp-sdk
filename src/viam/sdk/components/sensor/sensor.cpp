@@ -15,7 +15,7 @@ API Sensor::api() const {
     return API::get<Sensor>();
 }
 
-API API::api_map<Sensor>::api() {
+API API::traits<Sensor>::api() {
     return {kRDK, kComponent, "sensor"};
 }
 

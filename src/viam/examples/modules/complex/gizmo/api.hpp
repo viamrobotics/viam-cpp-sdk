@@ -43,12 +43,12 @@ class Gizmo : public Component {
     explicit Gizmo(std::string name);
 };
 
+namespace viam::sdk {
 template <>
-struct API::api_map<Gizmo> {
-    static API api() {
-        return {"viam", "component", "gizmo"};
-    }
+struct API::traits<Gizmo> {
+    static ::viam::sdk::API api();
 };
+}  // namespace viam::sdk
 
 // `GizmoClient` is the gRPC client implementation of a `Gizmo` component.
 class GizmoClient : public Gizmo {

@@ -47,11 +47,11 @@ class API : public APIType {
     friend std::ostream& operator<<(std::ostream& os, const API& v);
 
     template <typename T>
-    struct api_map;
+    struct traits;
 
     template <typename T>
     static API get() {
-        return api_map<T>::api();
+        return traits<T>::api();
     }
 
    private:

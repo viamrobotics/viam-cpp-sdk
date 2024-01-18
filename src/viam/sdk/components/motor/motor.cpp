@@ -43,7 +43,7 @@ API Motor::api() const {
     return API::get<Motor>();
 }
 
-API API::api_map<Motor>::api() {
+API API::traits<Motor>::api() {
     return {kRDK, kComponent, "motor"};
 }
 

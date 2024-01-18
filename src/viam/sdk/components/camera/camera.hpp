@@ -194,7 +194,7 @@ class Camera : public Component {
 };
 
 template <>
-struct API::api_map<Camera> {
+struct API::traits<Camera> {
     static API api();
 };
 

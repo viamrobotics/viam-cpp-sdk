@@ -50,7 +50,7 @@ API MLModelService::api() const {
     return API::get<MLModelService>();
 }
 
-API API::api_map<MLModelService>::api() {
+API API::traits<MLModelService>::api() {
     return API(kRDK, kService, "mlmodel");
 }
 

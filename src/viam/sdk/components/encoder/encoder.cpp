@@ -42,7 +42,7 @@ API Encoder::api() const {
     return API::get<Encoder>();
 }
 
-API API::api_map<Encoder>::api() {
+API API::traits<Encoder>::api() {
     return {kRDK, kComponent, "encoder"};
 }
 

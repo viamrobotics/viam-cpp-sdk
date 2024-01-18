@@ -62,7 +62,7 @@ class Generic : public Component {
 };
 
 template <>
-struct API::api_map<Generic> {
+struct API::traits<Generic> {
     static API api();
 };
 

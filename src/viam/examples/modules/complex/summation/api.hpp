@@ -41,12 +41,12 @@ class Summation : public Service {
     explicit Summation(std::string name);
 };
 
+namespace viam::sdk {
 template <>
-struct API::api_map<Summation> {
-    static API api() {
-        return {"viam", "service", "summation"};
-    }
+struct API::traits<Summation> {
+    static API api();
 };
+}  // namespace viam::sdk
 
 // `SummationClient` is the gRPC client implementation of a `Summation`
 // service.

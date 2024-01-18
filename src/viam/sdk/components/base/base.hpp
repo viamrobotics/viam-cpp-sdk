@@ -163,7 +163,7 @@ class Base : public Component, public Stoppable {
 };
 
 template <>
-struct API::api_map<Base> {
+struct API::traits<Base> {
     static API api();
 };
 

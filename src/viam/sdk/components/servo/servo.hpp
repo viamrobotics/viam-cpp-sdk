@@ -101,7 +101,7 @@ class Servo : public Component, public Stoppable {
 };
 
 template <>
-struct API::api_map<Servo> {
+struct API::traits<Servo> {
     static API api();
 };
 

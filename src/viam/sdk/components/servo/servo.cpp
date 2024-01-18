@@ -38,7 +38,7 @@ API Servo::api() const {
     return API::get<Servo>();
 }
 
-API API::api_map<Servo>::api() {
+API API::traits<Servo>::api() {
     return {kRDK, kComponent, "servo"};
 }
 

@@ -18,7 +18,7 @@ API PowerSensor::api() const {
     return API::get<PowerSensor>();
 }
 
-API API::api_map<PowerSensor>::api() {
+API API::traits<PowerSensor>::api() {
     return {kRDK, kComponent, "power_sensor"};
 }
 

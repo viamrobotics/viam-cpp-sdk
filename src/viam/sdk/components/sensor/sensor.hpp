@@ -60,7 +60,7 @@ class Sensor : public Component {
 };
 
 template <>
-struct API::api_map<Sensor> {
+struct API::traits<Sensor> {
     static API api();
 };
 

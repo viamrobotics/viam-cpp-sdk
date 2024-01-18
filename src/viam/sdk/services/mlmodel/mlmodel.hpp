@@ -185,7 +185,7 @@ class MLModelService : public Service {
 };
 
 template <>
-struct API::api_map<MLModelService> {
+struct API::traits<MLModelService> {
     static API api();
 };
 

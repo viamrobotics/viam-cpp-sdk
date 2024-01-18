@@ -112,7 +112,7 @@ class PowerSensor : public Component {
 };
 
 template <>
-struct API::api_map<PowerSensor> {
+struct API::traits<PowerSensor> {
     static API api();
 };
 

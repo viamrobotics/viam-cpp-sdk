@@ -41,7 +41,7 @@ API Base::api() const {
     return API::get<Base>();
 }
 
-API API::api_map<Base>::api() {
+API API::traits<Base>::api() {
     return {kRDK, kComponent, "base"};
 }
 

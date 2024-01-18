@@ -18,7 +18,7 @@ API MovementSensor::api() const {
     return API::get<MovementSensor>();
 }
 
-API API::api_map<MovementSensor>::api() {
+API API::traits<MovementSensor>::api() {
     return {kRDK, kComponent, "movement_sensor"};
 }
 

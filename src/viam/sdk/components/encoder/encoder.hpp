@@ -142,7 +142,7 @@ class Encoder : public Component {
 };
 
 template <>
-struct API::api_map<Encoder> {
+struct API::traits<Encoder> {
     static API api();
 };
 

@@ -100,7 +100,7 @@ API Motion::api() const {
     return API::get<Motion>();
 }
 
-API API::api_map<Motion>::api() {
+API API::traits<Motion>::api() {
     return {kRDK, kService, "motion"};
 }
 

@@ -214,7 +214,7 @@ class Motor : public Component, public Stoppable {
 };
 
 template <>
-struct API::api_map<Motor> {
+struct API::traits<Motor> {
     static API api();
 };
 

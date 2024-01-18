@@ -43,7 +43,7 @@ API Generic::api() const {
     return API::get<Generic>();
 }
 
-API API::api_map<Generic>::api() {
+API API::traits<Generic>::api() {
     return {kRDK, kComponent, "generic"};
 }
 

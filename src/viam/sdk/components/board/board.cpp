@@ -41,7 +41,7 @@ API Board::api() const {
     return API::get<Board>();
 }
 
-API API::api_map<Board>::api() {
+API API::traits<Board>::api() {
     return {kRDK, kComponent, "board"};
 }
 
