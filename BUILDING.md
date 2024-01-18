@@ -116,6 +116,10 @@ simple as:
 cmake .. -G Ninja
 ```
 
+If you encounter an error about an inability to link an OpenSSL target on MacOS,
+try setting your [PKG_CONFIG_PATH](#setting-pkg_config_path) to point to your
+Homebrew installation.
+
 If all went well, you should now have a file named `build.ninja` in
 the `build` directory created above. Note that `git status` will not
 show this, since the `build` directory is ignored.
