@@ -96,12 +96,12 @@ Motion::constraints Motion::constraints::from_proto(const service::motion::v1::C
     return constraints;
 }
 
-API Motion::static_api() {
-    return {kRDK, kService, "motion"};
+API Motion::api() const {
+    return API::get<Motion>();
 }
 
-API Motion::dynamic_api() const {
-    return static_api();
+API API::traits<Motion>::api() {
+    return {kRDK, kService, "motion"};
 }
 
 std::shared_ptr<ResourceRegistration> Motion::resource_registration() {
@@ -435,7 +435,7 @@ service::motion::v1::PlanStatusWithID Motion::plan_status_with_id::to_proto() co
 
 namespace {
 bool init() {
-    Registry::register_resource(Motion::static_api(), Motion::resource_registration());
+    Registry::register_resource(API::get<Motion>(), Motion::resource_registration());
     return true;
 }
 

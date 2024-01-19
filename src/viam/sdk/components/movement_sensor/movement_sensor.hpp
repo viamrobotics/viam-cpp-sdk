@@ -56,8 +56,7 @@ class MovementSensor : public Component {
         bool linear_acceleration_supported;
     };
 
-    static API static_api();
-    API dynamic_api() const override;
+    API api() const override;
 
     /// @brief Creates a `compassheading` struct from its proto representation.
     static compassheading from_proto(
@@ -152,6 +151,11 @@ class MovementSensor : public Component {
 
    protected:
     explicit MovementSensor(std::string name) : Component(std::move(name)){};
+};
+
+template <>
+struct API::traits<MovementSensor> {
+    static API api();
 };
 
 bool operator==(const MovementSensor::compassheading& lhs,

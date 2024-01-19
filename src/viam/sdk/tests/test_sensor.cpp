@@ -30,6 +30,15 @@ using namespace viam::sdk;
 
 BOOST_AUTO_TEST_SUITE(test_sensor)
 
+BOOST_AUTO_TEST_CASE(mock_get_api) {
+    const MockSensor sensor("mock_sensor");
+    auto api = sensor.api();
+    auto static_api = API::get<Sensor>();
+
+    BOOST_CHECK_EQUAL(api, static_api);
+    BOOST_CHECK_EQUAL(static_api.resource_subtype(), "sensor");
+}
+
 // This sets up the following architecture
 // -- MockComponent
 //        /\

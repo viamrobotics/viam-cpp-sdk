@@ -54,9 +54,9 @@ int main() {
         std::string camera_name("camera1");
 
         cout << "Getting camera: " << camera_name << endl;
-        std::shared_ptr<vs::CameraClient> camera;
+        std::shared_ptr<vs::Camera> camera;
         try {
-            camera = robot->resource_by_name<vs::CameraClient>(camera_name);
+            camera = robot->resource_by_name<vs::Camera>(camera_name);
         } catch (const std::exception& e) {
             cerr << "Failed to find " << camera_name << ". Exiting." << endl;
             throw;

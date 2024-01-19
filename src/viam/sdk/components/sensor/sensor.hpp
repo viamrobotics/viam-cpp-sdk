@@ -26,8 +26,7 @@ namespace sdk {
 /// specific sensor implementations. This class cannot be used on its own.
 class Sensor : public Component {
    public:
-    static API static_api();
-    API dynamic_api() const override;
+    API api() const override;
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.
@@ -58,6 +57,11 @@ class Sensor : public Component {
 
    protected:
     explicit Sensor(std::string name) : Component(std::move(name)){};
+};
+
+template <>
+struct API::traits<Sensor> {
+    static API api();
 };
 
 }  // namespace sdk
