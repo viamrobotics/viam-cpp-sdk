@@ -38,12 +38,12 @@ std::shared_ptr<ResourceRegistration> Encoder::resource_registration() {
     return std::make_shared<EncoderRegistration>(sd);
 }
 
-API Encoder::static_api() {
-    return {kRDK, kComponent, "encoder"};
+API Encoder::api() const {
+    return API::get<Encoder>();
 }
 
-API Encoder::dynamic_api() const {
-    return static_api();
+API API::traits<Encoder>::api() {
+    return {kRDK, kComponent, "encoder"};
 }
 
 Encoder::position_type Encoder::from_proto(viam::component::encoder::v1::PositionType proto) {
@@ -125,7 +125,7 @@ bool operator==(const Encoder::properties& lhs, const Encoder::properties& rhs) 
 
 namespace {
 bool init() {
-    Registry::register_resource(Encoder::static_api(), Encoder::resource_registration());
+    Registry::register_resource(API::get<Encoder>(), Encoder::resource_registration());
     return true;
 };
 

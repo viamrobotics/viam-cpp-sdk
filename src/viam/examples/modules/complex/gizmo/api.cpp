@@ -43,12 +43,12 @@ std::shared_ptr<ResourceRegistration> Gizmo::resource_registration() {
     return std::make_shared<GizmoRegistration>(sd);
 }
 
-API Gizmo::static_api() {
-    return {"viam", "component", "gizmo"};
+API Gizmo::api() const {
+    return API::get<Gizmo>();
 }
 
-API Gizmo::dynamic_api() const {
-    return static_api();
+API API::traits<Gizmo>::api() {
+    return {"viam", "component", "gizmo"};
 }
 
 Gizmo::Gizmo(std::string name) : Component(std::move(name)){};

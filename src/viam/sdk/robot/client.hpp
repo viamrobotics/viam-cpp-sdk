@@ -90,7 +90,7 @@ class RobotClient {
     /// @return a `shared_ptr` to the requested resource.
     std::shared_ptr<T> resource_by_name(std::string name) {
         ResourceName r;
-        API api = T::static_api();
+        API api = API::get<T>();
         *r.mutable_namespace_() = api.type_namespace();
         *r.mutable_type() = api.resource_type();
         *r.mutable_subtype() = api.resource_subtype();

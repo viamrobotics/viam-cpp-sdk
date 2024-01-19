@@ -29,6 +29,16 @@ using namespace board;
 using namespace viam::sdk;
 
 BOOST_AUTO_TEST_SUITE(test_board)
+
+BOOST_AUTO_TEST_CASE(mock_get_api) {
+    const MockBoard board("mock_board");
+    auto api = board.api();
+    auto static_api = API::get<Board>();
+
+    BOOST_CHECK_EQUAL(api, static_api);
+    BOOST_CHECK_EQUAL(static_api.resource_subtype(), "board");
+}
+
 // This sets up the following architecture
 // -- MockComponent
 //        /\
