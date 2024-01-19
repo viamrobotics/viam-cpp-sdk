@@ -107,46 +107,46 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;viam/api/service/mlmodel/v1/mlmodel.grpc.pb.h&gt;</span></div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;<a class="code" href="registry_8hpp.html">viam/sdk/registry/registry.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;<a class="code" href="resource__manager_8hpp.html">viam/sdk/resource/resource_manager.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;viam/sdk/services/service.hpp&gt;</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">namespace </span>viam {</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">namespace </span>sdk {</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="foldopen" id="foldopen00032" data-start="{" data-end="};">
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1MLModelServiceRegistration.html">   32</a></span><span class="keyword">class </span><a class="code hl_class" href="classviam_1_1sdk_1_1MLModelServiceRegistration.html">MLModelServiceRegistration</a> : <span class="keyword">public</span> <a class="code hl_class" href="classviam_1_1sdk_1_1ResourceRegistration.html">ResourceRegistration</a> {</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>   <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classviam_1_1sdk_1_1MLModelServiceRegistration.html">MLModelServiceRegistration</a>(</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keyword">const</span> google::protobuf::ServiceDescriptor* <a class="code hl_function" href="classviam_1_1sdk_1_1ResourceRegistration.html#a7e0ee496b1182bd2c2bd7c43c8960c19">service_descriptor</a>);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1MLModelServiceRegistration.html#ab4861703cd5e5ebf12ad822fc14c5092">   37</a></span>    std::shared_ptr&lt;ResourceServer&gt; <a class="code hl_function" href="classviam_1_1sdk_1_1MLModelServiceRegistration.html#ab4861703cd5e5ebf12ad822fc14c5092">create_resource_server</a>(</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        std::shared_ptr&lt;ResourceManager&gt; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">manager</a>) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1MLModelServiceRegistration.html#afe6654865d3f21bae7d23c37cfa6280a">   40</a></span>    std::shared_ptr&lt;Resource&gt; <a class="code hl_function" href="classviam_1_1sdk_1_1MLModelServiceRegistration.html#afe6654865d3f21bae7d23c37cfa6280a">create_rpc_client</a>(std::string name,</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                                                std::shared_ptr&lt;grpc::Channel&gt; channel) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>};</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;viam/sdk/common/utils.hpp&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;<a class="code" href="registry_8hpp.html">viam/sdk/registry/registry.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;<a class="code" href="resource__manager_8hpp.html">viam/sdk/resource/resource_manager.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;viam/sdk/services/service.hpp&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">namespace </span>viam {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">namespace </span>sdk {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="foldopen" id="foldopen00033" data-start="{" data-end="};">
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1MLModelServiceRegistration.html">   33</a></span><span class="keyword">class </span><a class="code hl_class" href="classviam_1_1sdk_1_1MLModelServiceRegistration.html">MLModelServiceRegistration</a> : <span class="keyword">public</span> <a class="code hl_class" href="classviam_1_1sdk_1_1ResourceRegistration.html">ResourceRegistration</a> {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classviam_1_1sdk_1_1MLModelServiceRegistration.html">MLModelServiceRegistration</a>(</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keyword">const</span> google::protobuf::ServiceDescriptor* <a class="code hl_function" href="classviam_1_1sdk_1_1ResourceRegistration.html#a7e0ee496b1182bd2c2bd7c43c8960c19">service_descriptor</a>);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1MLModelServiceRegistration.html#ab4861703cd5e5ebf12ad822fc14c5092">   38</a></span>    std::shared_ptr&lt;ResourceServer&gt; <a class="code hl_function" href="classviam_1_1sdk_1_1MLModelServiceRegistration.html#ab4861703cd5e5ebf12ad822fc14c5092">create_resource_server</a>(</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        std::shared_ptr&lt;ResourceManager&gt; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">manager</a>) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1MLModelServiceRegistration.html#afe6654865d3f21bae7d23c37cfa6280a">   41</a></span>    std::shared_ptr&lt;Resource&gt; <a class="code hl_function" href="classviam_1_1sdk_1_1MLModelServiceRegistration.html#afe6654865d3f21bae7d23c37cfa6280a">create_rpc_client</a>(std::string name,</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>                                                std::shared_ptr&lt;grpc::Channel&gt; channel) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>};</div>
 </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="foldopen" id="foldopen00050" data-start="{" data-end="};">
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1MLModelService.html">   50</a></span><span class="keyword">class </span><a class="code hl_class" href="classviam_1_1sdk_1_1MLModelService.html">MLModelService</a> : <span class="keyword">public</span> <a class="code hl_class" href="classviam_1_1sdk_1_1Service.html">Service</a> {</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>   <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">struct </span>make_tensor_view_ {</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keyword">using </span>shape_t = std::vector&lt;std::size_t&gt;;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keyword">using </span>xt_no_ownership_t = <span class="keyword">decltype</span>(xt::no_ownership());</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keyword">using </span>type = <span class="keyword">decltype</span>(xt::adapt(std::declval&lt;const T*&gt;(),</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                                        std::declval&lt;std::size_t&gt;(),</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                                        std::declval&lt;xt_no_ownership_t&gt;(),</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                                        std::declval&lt;shape_t&gt;()));</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    };</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>   <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keyword">static</span> <a class="code hl_class" href="classviam_1_1sdk_1_1API.html">API</a> static_api();</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="foldopen" id="foldopen00051" data-start="{" data-end="};">
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1MLModelService.html">   51</a></span><span class="keyword">class </span><a class="code hl_class" href="classviam_1_1sdk_1_1MLModelService.html">MLModelService</a> : <span class="keyword">public</span> <a class="code hl_class" href="classviam_1_1sdk_1_1Service.html">Service</a> {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keyword">struct </span>make_tensor_view_ {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="keyword">using </span>shape_t = std::vector&lt;std::size_t&gt;;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keyword">using </span>xt_no_ownership_t = <span class="keyword">decltype</span>(xt::no_ownership());</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keyword">using </span>type = <span class="keyword">decltype</span>(xt::adapt(std::declval&lt;const T*&gt;(),</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                                        std::declval&lt;std::size_t&gt;(),</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                                        std::declval&lt;xt_no_ownership_t&gt;(),</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                                        std::declval&lt;shape_t&gt;()));</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    };</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>   <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keyword">static</span> std::shared_ptr&lt;ResourceRegistration&gt; resource_registration();</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1MLModelService.html#a4ee3b0d20b84d4132fff45c92b761a18">   67</a></span>    <a class="code hl_class" href="classviam_1_1sdk_1_1API.html">API</a> <a class="code hl_function" href="classviam_1_1sdk_1_1MLModelService.html#a4ee3b0d20b84d4132fff45c92b761a18">dynamic_api</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1MLModelService.html#a011109cead348eb8fea94013e1693871">   67</a></span>    <a class="code hl_class" href="classviam_1_1sdk_1_1API.html">API</a> <a class="code hl_function" href="classviam_1_1sdk_1_1MLModelService.html#a011109cead348eb8fea94013e1693871">api</a>() <span class="keyword">const override</span>;</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keyword">using </span>tensor_view = <span class="keyword">typename</span> make_tensor_view_&lt;T&gt;::type;</div>
@@ -259,16 +259,23 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>};</div>
 </div>
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>}  <span class="comment">// namespace sdk</span></div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>}  <span class="comment">// namespace viam</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00188" data-start="{" data-end="};">
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1API_1_1traits_3_01MLModelService_01_4.html">  188</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1API_1_1traits.html">API::traits</a>&lt;<a class="code hl_class" href="classviam_1_1sdk_1_1MLModelService.html">MLModelService</a>&gt; {</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="keyword">static</span> <a class="code hl_class" href="classviam_1_1sdk_1_1API.html">API</a> api();</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>};</div>
+</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>}  <span class="comment">// namespace sdk</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>}  <span class="comment">// namespace viam</span></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1API_html"><div class="ttname"><a href="classviam_1_1sdk_1_1API.html">viam::sdk::API</a></div><div class="ttdoc">Extends APIType to additionally define a resource's subtype (e.g., camera).</div><div class="ttdef"><b>Definition</b> resource_api.hpp:33</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ClientHelper_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ClientHelper.html">viam::sdk::ClientHelper</a></div><div class="ttdef"><b>Definition</b> client_helper.hpp:15</div></div>
-<div class="ttc" id="aclassviam_1_1sdk_1_1MLModelServiceRegistration_html"><div class="ttname"><a href="classviam_1_1sdk_1_1MLModelServiceRegistration.html">viam::sdk::MLModelServiceRegistration</a></div><div class="ttdef"><b>Definition</b> mlmodel.hpp:32</div></div>
+<div class="ttc" id="aclassviam_1_1sdk_1_1MLModelServiceRegistration_html"><div class="ttname"><a href="classviam_1_1sdk_1_1MLModelServiceRegistration.html">viam::sdk::MLModelServiceRegistration</a></div><div class="ttdef"><b>Definition</b> mlmodel.hpp:33</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1MLModelServiceRegistration_html_ab4861703cd5e5ebf12ad822fc14c5092"><div class="ttname"><a href="classviam_1_1sdk_1_1MLModelServiceRegistration.html#ab4861703cd5e5ebf12ad822fc14c5092">viam::sdk::MLModelServiceRegistration::create_resource_server</a></div><div class="ttdeci">std::shared_ptr&lt; ResourceServer &gt; create_resource_server(std::shared_ptr&lt; ResourceManager &gt; manager) override</div><div class="ttdoc">Create a resource's gRPC server.</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1MLModelServiceRegistration_html_afe6654865d3f21bae7d23c37cfa6280a"><div class="ttname"><a href="classviam_1_1sdk_1_1MLModelServiceRegistration.html#afe6654865d3f21bae7d23c37cfa6280a">viam::sdk::MLModelServiceRegistration::create_rpc_client</a></div><div class="ttdeci">std::shared_ptr&lt; Resource &gt; create_rpc_client(std::string name, std::shared_ptr&lt; grpc::Channel &gt; channel) override</div><div class="ttdoc">Create gRPC client to a resource.</div></div>
-<div class="ttc" id="aclassviam_1_1sdk_1_1MLModelService_html"><div class="ttname"><a href="classviam_1_1sdk_1_1MLModelService.html">viam::sdk::MLModelService</a></div><div class="ttdoc">Represents a machine trained learning model instance.</div><div class="ttdef"><b>Definition</b> mlmodel.hpp:50</div></div>
+<div class="ttc" id="aclassviam_1_1sdk_1_1MLModelService_html"><div class="ttname"><a href="classviam_1_1sdk_1_1MLModelService.html">viam::sdk::MLModelService</a></div><div class="ttdoc">Represents a machine trained learning model instance.</div><div class="ttdef"><b>Definition</b> mlmodel.hpp:51</div></div>
+<div class="ttc" id="aclassviam_1_1sdk_1_1MLModelService_html_a011109cead348eb8fea94013e1693871"><div class="ttname"><a href="classviam_1_1sdk_1_1MLModelService.html#a011109cead348eb8fea94013e1693871">viam::sdk::MLModelService::api</a></div><div class="ttdeci">API api() const override</div><div class="ttdoc">Returns the API associated with a particular resource.</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1MLModelService_html_a1c03167453c6064da5a8ff4fce2c0d19"><div class="ttname"><a href="classviam_1_1sdk_1_1MLModelService.html#a1c03167453c6064da5a8ff4fce2c0d19">viam::sdk::MLModelService::infer</a></div><div class="ttdeci">std::shared_ptr&lt; named_tensor_views &gt; infer(const named_tensor_views &amp;inputs)</div><div class="ttdoc">Runs the model against the input tensors and returns inference results as tensors.</div><div class="ttdef"><b>Definition</b> mlmodel.hpp:112</div></div>
-<div class="ttc" id="aclassviam_1_1sdk_1_1MLModelService_html_a4ee3b0d20b84d4132fff45c92b761a18"><div class="ttname"><a href="classviam_1_1sdk_1_1MLModelService.html#a4ee3b0d20b84d4132fff45c92b761a18">viam::sdk::MLModelService::dynamic_api</a></div><div class="ttdeci">API dynamic_api() const override</div><div class="ttdoc">Returns the API associated with a particular resource.</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1MLModelService_html_a7f47543009c93dd84e5765fdfb06dcef"><div class="ttname"><a href="classviam_1_1sdk_1_1MLModelService.html#a7f47543009c93dd84e5765fdfb06dcef">viam::sdk::MLModelService::metadata</a></div><div class="ttdeci">struct metadata metadata()</div><div class="ttdoc">Returns metadata describing the inputs and outputs of the model.</div><div class="ttdef"><b>Definition</b> mlmodel.hpp:174</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1MLModelService_html_ace034e1de08a6702b016f9d3390d6c50"><div class="ttname"><a href="classviam_1_1sdk_1_1MLModelService.html#ace034e1de08a6702b016f9d3390d6c50">viam::sdk::MLModelService::infer</a></div><div class="ttdeci">virtual std::shared_ptr&lt; named_tensor_views &gt; infer(const named_tensor_views &amp;inputs, const AttributeMap &amp;extra)=0</div><div class="ttdoc">Runs the model against the input tensors and returns inference results as tensors.</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ResourceRegistration_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ResourceRegistration.html">viam::sdk::ResourceRegistration</a></div><div class="ttdoc">Defines registered Resource creation functionality.</div><div class="ttdef"><b>Definition</b> registry.hpp:30</div></div>
@@ -277,6 +284,7 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassviam_1_1sdk_1_1Service_html"><div class="ttname"><a href="classviam_1_1sdk_1_1Service.html">viam::sdk::Service</a></div><div class="ttdef"><b>Definition</b> service.hpp:12</div></div>
 <div class="ttc" id="aregistry_8hpp_html"><div class="ttname"><a href="registry_8hpp.html">registry.hpp</a></div><div class="ttdoc">Defines the resource registry and associated types.</div></div>
 <div class="ttc" id="aresource__manager_8hpp_html"><div class="ttname"><a href="resource__manager_8hpp.html">resource_manager.hpp</a></div><div class="ttdoc">Defines a general-purpose resource manager.</div></div>
+<div class="ttc" id="astructviam_1_1sdk_1_1API_1_1traits_html"><div class="ttname"><a href="structviam_1_1sdk_1_1API_1_1traits.html">viam::sdk::API::traits</a></div><div class="ttdef"><b>Definition</b> resource_api.hpp:50</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1MLModelService_1_1metadata_html"><div class="ttname"><a href="structviam_1_1sdk_1_1MLModelService_1_1metadata.html">viam::sdk::MLModelService::metadata</a></div><div class="ttdef"><b>Definition</b> mlmodel.hpp:165</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1MLModelService_1_1tensor__info_1_1file_html"><div class="ttname"><a href="structviam_1_1sdk_1_1MLModelService_1_1tensor__info_1_1file.html">viam::sdk::MLModelService::tensor_info::file</a></div><div class="ttdef"><b>Definition</b> mlmodel.hpp:128</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1MLModelService_1_1tensor__info_html"><div class="ttname"><a href="structviam_1_1sdk_1_1MLModelService_1_1tensor__info.html">viam::sdk::MLModelService::tensor_info</a></div><div class="ttdef"><b>Definition</b> mlmodel.hpp:127</div></div>
