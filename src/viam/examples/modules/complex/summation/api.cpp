@@ -44,12 +44,12 @@ std::shared_ptr<ResourceRegistration> Summation::resource_registration() {
     return std::make_shared<SummationRegistration>(sd);
 }
 
-API Summation::static_api() {
-    return {"viam", "service", "summation"};
+API Summation::api() const {
+    return API::get<Summation>();
 }
 
-API Summation::dynamic_api() const {
-    return static_api();
+API API::traits<Summation>::api() {
+    return {"viam", "service", "summation"};
 }
 
 Summation::Summation(std::string name) : Service(std::move(name)){};

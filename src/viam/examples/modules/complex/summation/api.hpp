@@ -33,14 +33,20 @@ class Summation : public Service {
    public:
     // methods shared across all services
     static std::shared_ptr<ResourceRegistration> resource_registration();
-    static API static_api();
-    API dynamic_api() const override;
+    API api() const override;
 
     virtual double sum(std::vector<double> numbers) = 0;
 
    protected:
     explicit Summation(std::string name);
 };
+
+namespace viam::sdk {
+template <>
+struct API::traits<Summation> {
+    static API api();
+};
+}  // namespace viam::sdk
 
 // `SummationClient` is the gRPC client implementation of a `Summation`
 // service.

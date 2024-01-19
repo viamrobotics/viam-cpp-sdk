@@ -28,6 +28,15 @@ using namespace viam::sdk;
 
 BOOST_AUTO_TEST_SUITE(test_mock)
 
+BOOST_AUTO_TEST_CASE(mock_get_api) {
+    const MockMotor motor("mock_motor");
+    auto api = motor.api();
+    auto static_api = API::get<Motor>();
+
+    BOOST_CHECK_EQUAL(api, static_api);
+    BOOST_CHECK_EQUAL(static_api.resource_subtype(), "motor");
+}
+
 BOOST_AUTO_TEST_CASE(mock_set_power) {
     std::shared_ptr<MockMotor> motor = MockMotor::get_mock_motor();
     motor->set_power(1.0);

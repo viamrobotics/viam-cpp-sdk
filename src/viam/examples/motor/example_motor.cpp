@@ -10,7 +10,7 @@
 #include <viam/sdk/robot/service.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 
-void print_motor_position(std::shared_ptr<viam::sdk::MotorClient> motor) {
+void print_motor_position(std::shared_ptr<viam::sdk::Motor> motor) {
     // Whether the motor supports returning its position
     if (motor->get_properties().position_reporting) {
         // Position is measured in rotations (position is a typedef double)
@@ -66,9 +66,9 @@ int main() {
         std::string motor_name("motor1");
 
         cout << "Getting motor: " << motor_name << endl;
-        std::shared_ptr<vs::MotorClient> motor;
+        std::shared_ptr<vs::Motor> motor;
         try {
-            motor = robot->resource_by_name<vs::MotorClient>(motor_name);
+            motor = robot->resource_by_name<vs::Motor>(motor_name);
         } catch (const std::exception& e) {
             cerr << "Failed to find " << motor_name << ". Exiting." << endl;
             throw;

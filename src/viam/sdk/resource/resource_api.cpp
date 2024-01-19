@@ -166,6 +166,11 @@ bool operator<(const API& lhs, const API& rhs) {
     return lhs.to_string() < rhs.to_string();
 }
 
+std::ostream& operator<<(std::ostream& os, const API& v) {
+    os << v.to_string();
+    return os;
+}
+
 bool operator==(const Name& lhs, const Name& rhs) {
     return lhs.to_string() == rhs.to_string();
 }

@@ -30,6 +30,14 @@ BOOST_AUTO_TEST_SUITE(test_camera)
 
 std::shared_ptr<MockCamera> camera = MockCamera::get_mock_camera();
 
+BOOST_AUTO_TEST_CASE(mock_get_api) {
+    auto api = camera->api();
+    auto static_api = API::get<Camera>();
+
+    BOOST_CHECK_EQUAL(api, static_api);
+    BOOST_CHECK_EQUAL(static_api.resource_subtype(), "camera");
+}
+
 BOOST_AUTO_TEST_CASE(test_get_image) {
     Camera::raw_image expected_image = fake_raw_image();
     Camera::raw_image image = camera->get_image("JPEG", {});

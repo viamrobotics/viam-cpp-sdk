@@ -28,6 +28,15 @@ using namespace viam::sdk;
 
 BOOST_AUTO_TEST_SUITE(test_mock)
 
+BOOST_AUTO_TEST_CASE(mock_get_api) {
+    const MockServo servo("mock_servo");
+    auto api = servo.api();
+    auto static_api = API::get<Servo>();
+
+    BOOST_CHECK_EQUAL(api, static_api);
+    BOOST_CHECK_EQUAL(static_api.resource_subtype(), "servo");
+}
+
 BOOST_AUTO_TEST_CASE(mock_move_and_get_position) {
     std::shared_ptr<MockServo> servo = MockServo::get_mock_servo();
 
