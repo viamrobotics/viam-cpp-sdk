@@ -18,11 +18,7 @@ namespace viam {
 namespace sdk {
 
 Name ResourceConfig::resource_name() {
-    try {
-        this->fix_api();
-    } catch (std::string err) {  // NOLINT
-        throw err;
-    }
+    this->fix_api();
     std::vector<std::string> remotes;
     // NOLINTNEXTLINE(clang-analyzer-cplusplus.NewDeleteLeaks)
     boost::split(remotes, this->name_, boost::is_any_of(":"));
@@ -88,7 +84,8 @@ void ResourceConfig::fix_api() {
     // config structs
     if (this->api_.type_namespace() != this->namespace__ ||
         this->api_.resource_subtype() != this->type_) {
-        throw "component namespace and/or type do not match component api field";
+        throw std::runtime_error(
+            "component namespace and/or type do not match component api field");
     }
 }
 
@@ -104,11 +101,7 @@ ResourceConfig ResourceConfig::from_proto(viam::app::v1::ComponentConfig proto_c
     }
     resource.model_ = Model::from_str(proto_cfg.model());
 
-    try {
-        resource.fix_api();
-    } catch (std::string err) {  // NOLINT
-        throw err;
-    }
+    resource.fix_api();
 
     if (proto_cfg.has_frame()) {
         resource.frame_ = LinkConfig::from_proto(proto_cfg.frame());
