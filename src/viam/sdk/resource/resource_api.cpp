@@ -113,7 +113,7 @@ std::string Name::short_name() const {
 viam::common::v1::ResourceName Name::to_proto() const {
     viam::common::v1::ResourceName rn;
     *rn.mutable_namespace_() = this->api().type_namespace();
-    if (this->remote_name() == "") {
+    if (this->remote_name().empty()) {
         *rn.mutable_name() = this->name();
     } else {
         *rn.mutable_name() = this->remote_name() + ":" + this->name();
