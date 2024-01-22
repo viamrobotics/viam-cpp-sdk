@@ -157,50 +157,51 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1OrientationConfig.html">OrientationConfig</a> get_orientation_config() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    std::string get_label() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_class" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a>&amp; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">lhs</a>, <span class="keyword">const</span> <a class="code hl_class" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a>&amp; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">rhs</a>);</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>   <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    GeometryType geometry_type_;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1pose.html">pose</a> pose_;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    geometry_specifics geometry_specifics_;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="comment">// TODO: if and when RDK makes more explicit use of ox/oy/oz, we should</span></div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="comment">// do the same here</span></div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1OrientationConfig.html">OrientationConfig</a> orientation_config_;</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    std::string label_;</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>};</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a>();</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    GeometryType geometry_type_;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1pose.html">pose</a> pose_;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    geometry_specifics geometry_specifics_;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="comment">// TODO: if and when RDK makes more explicit use of ox/oy/oz, we should</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="comment">// do the same here</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1OrientationConfig.html">OrientationConfig</a> orientation_config_;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    std::string label_;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>};</div>
 </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="foldopen" id="foldopen00079" data-start="{" data-end="};">
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1geo__point.html">   79</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a> {</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordtype">double</span> longitude, latitude;</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    common::v1::GeoPoint to_proto() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keyword">static</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a> from_proto(<span class="keyword">const</span> common::v1::GeoPoint&amp; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">proto</a>);</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a>&amp; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">lhs</a>, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a>&amp; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">rhs</a>);</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keyword">friend</span> std::ostream&amp; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">operator&lt;&lt;</a>(std::ostream&amp; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">os</a>, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a>&amp; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">v</a>);</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>};</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="foldopen" id="foldopen00080" data-start="{" data-end="};">
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1geo__point.html">   80</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a> {</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordtype">double</span> longitude, latitude;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    common::v1::GeoPoint to_proto() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keyword">static</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a> from_proto(<span class="keyword">const</span> common::v1::GeoPoint&amp; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">proto</a>);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a>&amp; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">lhs</a>, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a>&amp; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">rhs</a>);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keyword">friend</span> std::ostream&amp; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">operator&lt;&lt;</a>(std::ostream&amp; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">os</a>, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a>&amp; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">v</a>);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>};</div>
 </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
-<div class="foldopen" id="foldopen00088" data-start="{" data-end="};">
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1geo__obstacle.html">   88</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1geo__obstacle.html">geo_obstacle</a> {</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a> location;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    std::vector&lt;GeometryConfig&gt; geometries;</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    common::v1::GeoObstacle to_proto() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keyword">static</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1geo__obstacle.html">geo_obstacle</a> from_proto(<span class="keyword">const</span> common::v1::GeoObstacle&amp; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">proto</a>);</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1geo__obstacle.html">geo_obstacle</a>&amp; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">lhs</a>, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1geo__obstacle.html">geo_obstacle</a>&amp; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">rhs</a>);</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>};</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="foldopen" id="foldopen00089" data-start="{" data-end="};">
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1geo__obstacle.html">   89</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1geo__obstacle.html">geo_obstacle</a> {</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <a class="code hl_struct" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a> location;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    std::vector&lt;GeometryConfig&gt; geometries;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    common::v1::GeoObstacle to_proto() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keyword">static</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1geo__obstacle.html">geo_obstacle</a> from_proto(<span class="keyword">const</span> common::v1::GeoObstacle&amp; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">proto</a>);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1geo__obstacle.html">geo_obstacle</a>&amp; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">lhs</a>, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1geo__obstacle.html">geo_obstacle</a>&amp; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">rhs</a>);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>};</div>
 </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>}  <span class="comment">// namespace sdk</span></div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>}  <span class="comment">// namespace viam</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>}  <span class="comment">// namespace sdk</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>}  <span class="comment">// namespace viam</span></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ClientHelper_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ClientHelper.html">viam::sdk::ClientHelper</a></div><div class="ttdef"><b>Definition</b> client_helper.hpp:15</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1GeometryConfig_html"><div class="ttname"><a href="classviam_1_1sdk_1_1GeometryConfig.html">viam::sdk::GeometryConfig</a></div><div class="ttdef"><b>Definition</b> geometry.hpp:42</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1OrientationConfig_html"><div class="ttname"><a href="classviam_1_1sdk_1_1OrientationConfig.html">viam::sdk::OrientationConfig</a></div><div class="ttdef"><b>Definition</b> orientation.hpp:19</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1box_html"><div class="ttname"><a href="structviam_1_1sdk_1_1box.html">viam::sdk::box</a></div><div class="ttdef"><b>Definition</b> geometry.hpp:24</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1capsule_html"><div class="ttname"><a href="structviam_1_1sdk_1_1capsule.html">viam::sdk::capsule</a></div><div class="ttdef"><b>Definition</b> geometry.hpp:34</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1coordinates_html"><div class="ttname"><a href="structviam_1_1sdk_1_1coordinates.html">viam::sdk::coordinates</a></div><div class="ttdef"><b>Definition</b> pose.hpp:8</div></div>
-<div class="ttc" id="astructviam_1_1sdk_1_1geo__obstacle_html"><div class="ttname"><a href="structviam_1_1sdk_1_1geo__obstacle.html">viam::sdk::geo_obstacle</a></div><div class="ttdef"><b>Definition</b> geometry.hpp:88</div></div>
-<div class="ttc" id="astructviam_1_1sdk_1_1geo__point_html"><div class="ttname"><a href="structviam_1_1sdk_1_1geo__point.html">viam::sdk::geo_point</a></div><div class="ttdef"><b>Definition</b> geometry.hpp:79</div></div>
+<div class="ttc" id="astructviam_1_1sdk_1_1geo__obstacle_html"><div class="ttname"><a href="structviam_1_1sdk_1_1geo__obstacle.html">viam::sdk::geo_obstacle</a></div><div class="ttdef"><b>Definition</b> geometry.hpp:89</div></div>
+<div class="ttc" id="astructviam_1_1sdk_1_1geo__point_html"><div class="ttname"><a href="structviam_1_1sdk_1_1geo__point.html">viam::sdk::geo_point</a></div><div class="ttdef"><b>Definition</b> geometry.hpp:80</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1pose__orientation_html"><div class="ttname"><a href="structviam_1_1sdk_1_1pose__orientation.html">viam::sdk::pose_orientation</a></div><div class="ttdef"><b>Definition</b> pose.hpp:13</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1pose_html"><div class="ttname"><a href="structviam_1_1sdk_1_1pose.html">viam::sdk::pose</a></div><div class="ttdef"><b>Definition</b> pose.hpp:18</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1sphere_html"><div class="ttname"><a href="structviam_1_1sdk_1_1sphere.html">viam::sdk::sphere</a></div><div class="ttdef"><b>Definition</b> geometry.hpp:30</div></div>
