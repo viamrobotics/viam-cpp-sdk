@@ -213,37 +213,37 @@ class GetSensorsRequest final :
     kNameFieldNumber = 1,
     kExtraFieldNumber = 99,
   };
-  // string name = 1 [json_name = "name"];
-  void clear_name();
-  const std::string& name() const;
+  // string name = 1 [json_name = "name", deprecated = true];
+  PROTOBUF_DEPRECATED void clear_name();
+  PROTOBUF_DEPRECATED const std::string& name() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_name(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_name();
-  PROTOBUF_NODISCARD std::string* release_name();
-  void set_allocated_name(std::string* name);
+  PROTOBUF_DEPRECATED void set_name(ArgT0&& arg0, ArgT... args);
+  PROTOBUF_DEPRECATED std::string* mutable_name();
+  PROTOBUF_NODISCARD PROTOBUF_DEPRECATED std::string* release_name();
+  PROTOBUF_DEPRECATED void set_allocated_name(std::string* name);
   private:
   const std::string& _internal_name() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
   std::string* _internal_mutable_name();
   public:
 
-  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  bool has_extra() const;
+  // .google.protobuf.Struct extra = 99 [json_name = "extra", deprecated = true];
+  PROTOBUF_DEPRECATED bool has_extra() const;
   private:
   bool _internal_has_extra() const;
   public:
-  void clear_extra();
-  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
-  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
-  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
-  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  PROTOBUF_DEPRECATED void clear_extra();
+  PROTOBUF_DEPRECATED const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD PROTOBUF_DEPRECATED ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  PROTOBUF_DEPRECATED ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  PROTOBUF_DEPRECATED void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
   private:
   const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
   ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
   public:
-  void unsafe_arena_set_allocated_extra(
+  PROTOBUF_DEPRECATED void unsafe_arena_set_allocated_extra(
       ::PROTOBUF_NAMESPACE_ID::Struct* extra);
-  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+  PROTOBUF_DEPRECATED ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
 
   // @@protoc_insertion_point(class_scope:viam.service.sensors.v1.GetSensorsRequest)
  private:
@@ -380,22 +380,22 @@ class GetSensorsResponse final :
   enum : int {
     kSensorNamesFieldNumber = 1,
   };
-  // repeated .viam.common.v1.ResourceName sensor_names = 1 [json_name = "sensorNames"];
-  int sensor_names_size() const;
+  // repeated .viam.common.v1.ResourceName sensor_names = 1 [json_name = "sensorNames", deprecated = true];
+  PROTOBUF_DEPRECATED int sensor_names_size() const;
   private:
   int _internal_sensor_names_size() const;
   public:
-  void clear_sensor_names();
-  ::viam::common::v1::ResourceName* mutable_sensor_names(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::ResourceName >*
+  PROTOBUF_DEPRECATED void clear_sensor_names();
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* mutable_sensor_names(int index);
+  PROTOBUF_DEPRECATED ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::ResourceName >*
       mutable_sensor_names();
   private:
   const ::viam::common::v1::ResourceName& _internal_sensor_names(int index) const;
   ::viam::common::v1::ResourceName* _internal_add_sensor_names();
   public:
-  const ::viam::common::v1::ResourceName& sensor_names(int index) const;
-  ::viam::common::v1::ResourceName* add_sensor_names();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::ResourceName >&
+  PROTOBUF_DEPRECATED const ::viam::common::v1::ResourceName& sensor_names(int index) const;
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* add_sensor_names();
+  PROTOBUF_DEPRECATED const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::ResourceName >&
       sensor_names() const;
 
   // @@protoc_insertion_point(class_scope:viam.service.sensors.v1.GetSensorsResponse)
@@ -534,55 +534,55 @@ class GetReadingsRequest final :
     kNameFieldNumber = 1,
     kExtraFieldNumber = 99,
   };
-  // repeated .viam.common.v1.ResourceName sensor_names = 2 [json_name = "sensorNames"];
-  int sensor_names_size() const;
+  // repeated .viam.common.v1.ResourceName sensor_names = 2 [json_name = "sensorNames", deprecated = true];
+  PROTOBUF_DEPRECATED int sensor_names_size() const;
   private:
   int _internal_sensor_names_size() const;
   public:
-  void clear_sensor_names();
-  ::viam::common::v1::ResourceName* mutable_sensor_names(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::ResourceName >*
+  PROTOBUF_DEPRECATED void clear_sensor_names();
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* mutable_sensor_names(int index);
+  PROTOBUF_DEPRECATED ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::ResourceName >*
       mutable_sensor_names();
   private:
   const ::viam::common::v1::ResourceName& _internal_sensor_names(int index) const;
   ::viam::common::v1::ResourceName* _internal_add_sensor_names();
   public:
-  const ::viam::common::v1::ResourceName& sensor_names(int index) const;
-  ::viam::common::v1::ResourceName* add_sensor_names();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::ResourceName >&
+  PROTOBUF_DEPRECATED const ::viam::common::v1::ResourceName& sensor_names(int index) const;
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* add_sensor_names();
+  PROTOBUF_DEPRECATED const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::ResourceName >&
       sensor_names() const;
 
-  // string name = 1 [json_name = "name"];
-  void clear_name();
-  const std::string& name() const;
+  // string name = 1 [json_name = "name", deprecated = true];
+  PROTOBUF_DEPRECATED void clear_name();
+  PROTOBUF_DEPRECATED const std::string& name() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_name(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_name();
-  PROTOBUF_NODISCARD std::string* release_name();
-  void set_allocated_name(std::string* name);
+  PROTOBUF_DEPRECATED void set_name(ArgT0&& arg0, ArgT... args);
+  PROTOBUF_DEPRECATED std::string* mutable_name();
+  PROTOBUF_NODISCARD PROTOBUF_DEPRECATED std::string* release_name();
+  PROTOBUF_DEPRECATED void set_allocated_name(std::string* name);
   private:
   const std::string& _internal_name() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
   std::string* _internal_mutable_name();
   public:
 
-  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  bool has_extra() const;
+  // .google.protobuf.Struct extra = 99 [json_name = "extra", deprecated = true];
+  PROTOBUF_DEPRECATED bool has_extra() const;
   private:
   bool _internal_has_extra() const;
   public:
-  void clear_extra();
-  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
-  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
-  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
-  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  PROTOBUF_DEPRECATED void clear_extra();
+  PROTOBUF_DEPRECATED const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD PROTOBUF_DEPRECATED ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  PROTOBUF_DEPRECATED ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  PROTOBUF_DEPRECATED void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
   private:
   const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
   ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
   public:
-  void unsafe_arena_set_allocated_extra(
+  PROTOBUF_DEPRECATED void unsafe_arena_set_allocated_extra(
       ::PROTOBUF_NAMESPACE_ID::Struct* extra);
-  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+  PROTOBUF_DEPRECATED ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
 
   // @@protoc_insertion_point(class_scope:viam.service.sensors.v1.GetReadingsRequest)
  private:
@@ -750,40 +750,40 @@ class Readings final :
     kReadingsFieldNumber = 2,
     kNameFieldNumber = 1,
   };
-  // map<string, .google.protobuf.Value> readings = 2 [json_name = "readings"];
-  int readings_size() const;
+  // map<string, .google.protobuf.Value> readings = 2 [json_name = "readings", deprecated = true];
+  PROTOBUF_DEPRECATED int readings_size() const;
   private:
   int _internal_readings_size() const;
   public:
-  void clear_readings();
+  PROTOBUF_DEPRECATED void clear_readings();
   private:
   const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Value >&
       _internal_readings() const;
   ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Value >*
       _internal_mutable_readings();
   public:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Value >&
+  PROTOBUF_DEPRECATED const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Value >&
       readings() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Value >*
+  PROTOBUF_DEPRECATED ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Value >*
       mutable_readings();
 
-  // .viam.common.v1.ResourceName name = 1 [json_name = "name"];
-  bool has_name() const;
+  // .viam.common.v1.ResourceName name = 1 [json_name = "name", deprecated = true];
+  PROTOBUF_DEPRECATED bool has_name() const;
   private:
   bool _internal_has_name() const;
   public:
-  void clear_name();
-  const ::viam::common::v1::ResourceName& name() const;
-  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_name();
-  ::viam::common::v1::ResourceName* mutable_name();
-  void set_allocated_name(::viam::common::v1::ResourceName* name);
+  PROTOBUF_DEPRECATED void clear_name();
+  PROTOBUF_DEPRECATED const ::viam::common::v1::ResourceName& name() const;
+  PROTOBUF_NODISCARD PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* release_name();
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* mutable_name();
+  PROTOBUF_DEPRECATED void set_allocated_name(::viam::common::v1::ResourceName* name);
   private:
   const ::viam::common::v1::ResourceName& _internal_name() const;
   ::viam::common::v1::ResourceName* _internal_mutable_name();
   public:
-  void unsafe_arena_set_allocated_name(
+  PROTOBUF_DEPRECATED void unsafe_arena_set_allocated_name(
       ::viam::common::v1::ResourceName* name);
-  ::viam::common::v1::ResourceName* unsafe_arena_release_name();
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* unsafe_arena_release_name();
 
   // @@protoc_insertion_point(class_scope:viam.service.sensors.v1.Readings)
  private:
@@ -924,22 +924,22 @@ class GetReadingsResponse final :
   enum : int {
     kReadingsFieldNumber = 1,
   };
-  // repeated .viam.service.sensors.v1.Readings readings = 1 [json_name = "readings"];
-  int readings_size() const;
+  // repeated .viam.service.sensors.v1.Readings readings = 1 [json_name = "readings", deprecated = true];
+  PROTOBUF_DEPRECATED int readings_size() const;
   private:
   int _internal_readings_size() const;
   public:
-  void clear_readings();
-  ::viam::service::sensors::v1::Readings* mutable_readings(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::sensors::v1::Readings >*
+  PROTOBUF_DEPRECATED void clear_readings();
+  PROTOBUF_DEPRECATED ::viam::service::sensors::v1::Readings* mutable_readings(int index);
+  PROTOBUF_DEPRECATED ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::sensors::v1::Readings >*
       mutable_readings();
   private:
   const ::viam::service::sensors::v1::Readings& _internal_readings(int index) const;
   ::viam::service::sensors::v1::Readings* _internal_add_readings();
   public:
-  const ::viam::service::sensors::v1::Readings& readings(int index) const;
-  ::viam::service::sensors::v1::Readings* add_readings();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::sensors::v1::Readings >&
+  PROTOBUF_DEPRECATED const ::viam::service::sensors::v1::Readings& readings(int index) const;
+  PROTOBUF_DEPRECATED ::viam::service::sensors::v1::Readings* add_readings();
+  PROTOBUF_DEPRECATED const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::sensors::v1::Readings >&
       readings() const;
 
   // @@protoc_insertion_point(class_scope:viam.service.sensors.v1.GetReadingsResponse)
@@ -964,7 +964,7 @@ class GetReadingsResponse final :
 #endif  // __GNUC__
 // GetSensorsRequest
 
-// string name = 1 [json_name = "name"];
+// string name = 1 [json_name = "name", deprecated = true];
 inline void GetSensorsRequest::clear_name() {
   name_.ClearToEmpty();
 }
@@ -1014,7 +1014,7 @@ inline void GetSensorsRequest::set_allocated_name(std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:viam.service.sensors.v1.GetSensorsRequest.name)
 }
 
-// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+// .google.protobuf.Struct extra = 99 [json_name = "extra", deprecated = true];
 inline bool GetSensorsRequest::_internal_has_extra() const {
   return this != internal_default_instance() && extra_ != nullptr;
 }
@@ -1103,7 +1103,7 @@ inline void GetSensorsRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Stru
 
 // GetSensorsResponse
 
-// repeated .viam.common.v1.ResourceName sensor_names = 1 [json_name = "sensorNames"];
+// repeated .viam.common.v1.ResourceName sensor_names = 1 [json_name = "sensorNames", deprecated = true];
 inline int GetSensorsResponse::_internal_sensor_names_size() const {
   return sensor_names_.size();
 }
@@ -1144,7 +1144,7 @@ GetSensorsResponse::sensor_names() const {
 
 // GetReadingsRequest
 
-// string name = 1 [json_name = "name"];
+// string name = 1 [json_name = "name", deprecated = true];
 inline void GetReadingsRequest::clear_name() {
   name_.ClearToEmpty();
 }
@@ -1194,7 +1194,7 @@ inline void GetReadingsRequest::set_allocated_name(std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:viam.service.sensors.v1.GetReadingsRequest.name)
 }
 
-// repeated .viam.common.v1.ResourceName sensor_names = 2 [json_name = "sensorNames"];
+// repeated .viam.common.v1.ResourceName sensor_names = 2 [json_name = "sensorNames", deprecated = true];
 inline int GetReadingsRequest::_internal_sensor_names_size() const {
   return sensor_names_.size();
 }
@@ -1231,7 +1231,7 @@ GetReadingsRequest::sensor_names() const {
   return sensor_names_;
 }
 
-// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+// .google.protobuf.Struct extra = 99 [json_name = "extra", deprecated = true];
 inline bool GetReadingsRequest::_internal_has_extra() const {
   return this != internal_default_instance() && extra_ != nullptr;
 }
@@ -1322,7 +1322,7 @@ inline void GetReadingsRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Str
 
 // Readings
 
-// .viam.common.v1.ResourceName name = 1 [json_name = "name"];
+// .viam.common.v1.ResourceName name = 1 [json_name = "name", deprecated = true];
 inline bool Readings::_internal_has_name() const {
   return this != internal_default_instance() && name_ != nullptr;
 }
@@ -1407,7 +1407,7 @@ inline void Readings::set_allocated_name(::viam::common::v1::ResourceName* name)
   // @@protoc_insertion_point(field_set_allocated:viam.service.sensors.v1.Readings.name)
 }
 
-// map<string, .google.protobuf.Value> readings = 2 [json_name = "readings"];
+// map<string, .google.protobuf.Value> readings = 2 [json_name = "readings", deprecated = true];
 inline int Readings::_internal_readings_size() const {
   return readings_.size();
 }
@@ -1437,7 +1437,7 @@ Readings::mutable_readings() {
 
 // GetReadingsResponse
 
-// repeated .viam.service.sensors.v1.Readings readings = 1 [json_name = "readings"];
+// repeated .viam.service.sensors.v1.Readings readings = 1 [json_name = "readings", deprecated = true];
 inline int GetReadingsResponse::_internal_readings_size() const {
   return readings_.size();
 }

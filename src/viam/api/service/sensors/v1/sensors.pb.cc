@@ -180,37 +180,38 @@ const char descriptor_table_protodef_service_2fsensors_2fv1_2fsensors_2eproto[] 
   "\n service/sensors/v1/sensors.proto\022\027viam"
   ".service.sensors.v1\032\026common/v1/common.pr"
   "oto\032\034google/api/annotations.proto\032\034googl"
-  "e/protobuf/struct.proto\"V\n\021GetSensorsReq"
-  "uest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132"
-  "\027.google.protobuf.StructR\005extra\"U\n\022GetSe"
-  "nsorsResponse\022\?\n\014sensor_names\030\001 \003(\0132\034.vi"
-  "am.common.v1.ResourceNameR\013sensorNames\"\230"
-  "\001\n\022GetReadingsRequest\022\022\n\004name\030\001 \001(\tR\004nam"
-  "e\022\?\n\014sensor_names\030\002 \003(\0132\034.viam.common.v1"
-  ".ResourceNameR\013sensorNames\022-\n\005extra\030c \001("
-  "\0132\027.google.protobuf.StructR\005extra\"\336\001\n\010Re"
-  "adings\0220\n\004name\030\001 \001(\0132\034.viam.common.v1.Re"
-  "sourceNameR\004name\022K\n\010readings\030\002 \003(\0132/.via"
+  "e/protobuf/struct.proto\"b\n\021GetSensorsReq"
+  "uest\022\026\n\004name\030\001 \001(\tB\002\030\001R\004name\0221\n\005extra\030c "
+  "\001(\0132\027.google.protobuf.StructB\002\030\001R\005extra:"
+  "\002\030\001\"]\n\022GetSensorsResponse\022C\n\014sensor_name"
+  "s\030\001 \003(\0132\034.viam.common.v1.ResourceNameB\002\030"
+  "\001R\013sensorNames:\002\030\001\"\250\001\n\022GetReadingsReques"
+  "t\022\026\n\004name\030\001 \001(\tB\002\030\001R\004name\022C\n\014sensor_name"
+  "s\030\002 \003(\0132\034.viam.common.v1.ResourceNameB\002\030"
+  "\001R\013sensorNames\0221\n\005extra\030c \001(\0132\027.google.p"
+  "rotobuf.StructB\002\030\001R\005extra:\002\030\001\"\352\001\n\010Readin"
+  "gs\0224\n\004name\030\001 \001(\0132\034.viam.common.v1.Resour"
+  "ceNameB\002\030\001R\004name\022O\n\010readings\030\002 \003(\0132/.via"
   "m.service.sensors.v1.Readings.ReadingsEn"
-  "tryR\010readings\032S\n\rReadingsEntry\022\020\n\003key\030\001 "
-  "\001(\tR\003key\022,\n\005value\030\002 \001(\0132\026.google.protobu"
-  "f.ValueR\005value:\0028\001\"T\n\023GetReadingsRespons"
-  "e\022=\n\010readings\030\001 \003(\0132!.viam.service.senso"
-  "rs.v1.ReadingsR\010readings2\321\003\n\016SensorsServ"
-  "ice\022\222\001\n\nGetSensors\022*.viam.service.sensor"
-  "s.v1.GetSensorsRequest\032+.viam.service.se"
-  "nsors.v1.GetSensorsResponse\"+\202\323\344\223\002%\022#/vi"
-  "am/api/v1/service/{name}/sensors\022\236\001\n\013Get"
-  "Readings\022+.viam.service.sensors.v1.GetRe"
-  "adingsRequest\032,.viam.service.sensors.v1."
-  "GetReadingsResponse\"4\202\323\344\223\002.\022,/viam/api/v"
-  "1/service/sensors/{name}/readings\022\210\001\n\tDo"
-  "Command\022 .viam.common.v1.DoCommandReques"
-  "t\032!.viam.common.v1.DoCommandResponse\"6\202\323"
-  "\344\223\0020\"./viam/api/v1/service/sensors/{name"
-  "}/do_commandBA\n\033com.viam.service.sensors"
-  ".v1Z\"go.viam.com/api/service/sensors/v1b"
-  "\006proto3"
+  "tryB\002\030\001R\010readings\032S\n\rReadingsEntry\022\020\n\003ke"
+  "y\030\001 \001(\tR\003key\022,\n\005value\030\002 \001(\0132\026.google.pro"
+  "tobuf.ValueR\005value:\0028\001:\002\030\001\"\\\n\023GetReading"
+  "sResponse\022A\n\010readings\030\001 \003(\0132!.viam.servi"
+  "ce.sensors.v1.ReadingsB\002\030\001R\010readings:\002\030\001"
+  "2\332\003\n\016SensorsService\022\225\001\n\nGetSensors\022*.via"
+  "m.service.sensors.v1.GetSensorsRequest\032+"
+  ".viam.service.sensors.v1.GetSensorsRespo"
+  "nse\".\210\002\001\202\323\344\223\002%\022#/viam/api/v1/service/{na"
+  "me}/sensors\022\241\001\n\013GetReadings\022+.viam.servi"
+  "ce.sensors.v1.GetReadingsRequest\032,.viam."
+  "service.sensors.v1.GetReadingsResponse\"7"
+  "\210\002\001\202\323\344\223\002.\022,/viam/api/v1/service/sensors/"
+  "{name}/readings\022\213\001\n\tDoCommand\022 .viam.com"
+  "mon.v1.DoCommandRequest\032!.viam.common.v1"
+  ".DoCommandResponse\"9\210\002\001\202\323\344\223\0020\"./viam/api"
+  "/v1/service/sensors/{name}/do_commandBD\n"
+  "\033com.viam.service.sensors.v1Z\"go.viam.co"
+  "m/api/service/sensors/v1\270\001\001b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -219,7 +220,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fsensors_2
 };
 static ::_pbi::once_flag descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto = {
-    false, false, 1327, descriptor_table_protodef_service_2fsensors_2fv1_2fsensors_2eproto,
+    false, false, 1395, descriptor_table_protodef_service_2fsensors_2fv1_2fsensors_2eproto,
     "service/sensors/v1/sensors.proto",
     &descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_once, descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_deps, 3, 6,
     schemas, file_default_instances, TableStruct_service_2fsensors_2fv1_2fsensors_2eproto::offsets,
@@ -326,7 +327,7 @@ const char* GetSensorsRequest::_InternalParse(const char* ptr, ::_pbi::ParseCont
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // string name = 1 [json_name = "name"];
+      // string name = 1 [json_name = "name", deprecated = true];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           auto str = _internal_mutable_name();
@@ -336,7 +337,7 @@ const char* GetSensorsRequest::_InternalParse(const char* ptr, ::_pbi::ParseCont
         } else
           goto handle_unusual;
         continue;
-      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+      // .google.protobuf.Struct extra = 99 [json_name = "extra", deprecated = true];
       case 99:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
           ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
@@ -373,7 +374,7 @@ uint8_t* GetSensorsRequest::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string name = 1 [json_name = "name"];
+  // string name = 1 [json_name = "name", deprecated = true];
   if (!this->_internal_name().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
@@ -383,7 +384,7 @@ uint8_t* GetSensorsRequest::_InternalSerialize(
         1, this->_internal_name(), target);
   }
 
-  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  // .google.protobuf.Struct extra = 99 [json_name = "extra", deprecated = true];
   if (this->_internal_has_extra()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(99, _Internal::extra(this),
@@ -406,14 +407,14 @@ size_t GetSensorsRequest::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string name = 1 [json_name = "name"];
+  // string name = 1 [json_name = "name", deprecated = true];
   if (!this->_internal_name().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_name());
   }
 
-  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  // .google.protobuf.Struct extra = 99 [json_name = "extra", deprecated = true];
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -539,7 +540,7 @@ const char* GetSensorsResponse::_InternalParse(const char* ptr, ::_pbi::ParseCon
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // repeated .viam.common.v1.ResourceName sensor_names = 1 [json_name = "sensorNames"];
+      // repeated .viam.common.v1.ResourceName sensor_names = 1 [json_name = "sensorNames", deprecated = true];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr -= 1;
@@ -581,7 +582,7 @@ uint8_t* GetSensorsResponse::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .viam.common.v1.ResourceName sensor_names = 1 [json_name = "sensorNames"];
+  // repeated .viam.common.v1.ResourceName sensor_names = 1 [json_name = "sensorNames", deprecated = true];
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_sensor_names_size()); i < n; i++) {
     const auto& repfield = this->_internal_sensor_names(i);
@@ -605,7 +606,7 @@ size_t GetSensorsResponse::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .viam.common.v1.ResourceName sensor_names = 1 [json_name = "sensorNames"];
+  // repeated .viam.common.v1.ResourceName sensor_names = 1 [json_name = "sensorNames", deprecated = true];
   total_size += 1UL * this->_internal_sensor_names_size();
   for (const auto& msg : this->sensor_names_) {
     total_size +=
@@ -756,7 +757,7 @@ const char* GetReadingsRequest::_InternalParse(const char* ptr, ::_pbi::ParseCon
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // string name = 1 [json_name = "name"];
+      // string name = 1 [json_name = "name", deprecated = true];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           auto str = _internal_mutable_name();
@@ -766,7 +767,7 @@ const char* GetReadingsRequest::_InternalParse(const char* ptr, ::_pbi::ParseCon
         } else
           goto handle_unusual;
         continue;
-      // repeated .viam.common.v1.ResourceName sensor_names = 2 [json_name = "sensorNames"];
+      // repeated .viam.common.v1.ResourceName sensor_names = 2 [json_name = "sensorNames", deprecated = true];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           ptr -= 1;
@@ -779,7 +780,7 @@ const char* GetReadingsRequest::_InternalParse(const char* ptr, ::_pbi::ParseCon
         } else
           goto handle_unusual;
         continue;
-      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+      // .google.protobuf.Struct extra = 99 [json_name = "extra", deprecated = true];
       case 99:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
           ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
@@ -816,7 +817,7 @@ uint8_t* GetReadingsRequest::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string name = 1 [json_name = "name"];
+  // string name = 1 [json_name = "name", deprecated = true];
   if (!this->_internal_name().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
@@ -826,7 +827,7 @@ uint8_t* GetReadingsRequest::_InternalSerialize(
         1, this->_internal_name(), target);
   }
 
-  // repeated .viam.common.v1.ResourceName sensor_names = 2 [json_name = "sensorNames"];
+  // repeated .viam.common.v1.ResourceName sensor_names = 2 [json_name = "sensorNames", deprecated = true];
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_sensor_names_size()); i < n; i++) {
     const auto& repfield = this->_internal_sensor_names(i);
@@ -834,7 +835,7 @@ uint8_t* GetReadingsRequest::_InternalSerialize(
         InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
   }
 
-  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  // .google.protobuf.Struct extra = 99 [json_name = "extra", deprecated = true];
   if (this->_internal_has_extra()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(99, _Internal::extra(this),
@@ -857,21 +858,21 @@ size_t GetReadingsRequest::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .viam.common.v1.ResourceName sensor_names = 2 [json_name = "sensorNames"];
+  // repeated .viam.common.v1.ResourceName sensor_names = 2 [json_name = "sensorNames", deprecated = true];
   total_size += 1UL * this->_internal_sensor_names_size();
   for (const auto& msg : this->sensor_names_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  // string name = 1 [json_name = "name"];
+  // string name = 1 [json_name = "name", deprecated = true];
   if (!this->_internal_name().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_name());
   }
 
-  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  // .google.protobuf.Struct extra = 99 [json_name = "extra", deprecated = true];
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -1044,7 +1045,7 @@ const char* Readings::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .viam.common.v1.ResourceName name = 1 [json_name = "name"];
+      // .viam.common.v1.ResourceName name = 1 [json_name = "name", deprecated = true];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_name(), ptr);
@@ -1052,7 +1053,7 @@ const char* Readings::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
         } else
           goto handle_unusual;
         continue;
-      // map<string, .google.protobuf.Value> readings = 2 [json_name = "readings"];
+      // map<string, .google.protobuf.Value> readings = 2 [json_name = "readings", deprecated = true];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           ptr -= 1;
@@ -1094,14 +1095,14 @@ uint8_t* Readings::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .viam.common.v1.ResourceName name = 1 [json_name = "name"];
+  // .viam.common.v1.ResourceName name = 1 [json_name = "name", deprecated = true];
   if (this->_internal_has_name()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(1, _Internal::name(this),
         _Internal::name(this).GetCachedSize(), target, stream);
   }
 
-  // map<string, .google.protobuf.Value> readings = 2 [json_name = "readings"];
+  // map<string, .google.protobuf.Value> readings = 2 [json_name = "readings", deprecated = true];
   if (!this->_internal_readings().empty()) {
     using MapType = ::_pb::Map<std::string, ::PROTOBUF_NAMESPACE_ID::Value>;
     using WireHelper = Readings_ReadingsEntry_DoNotUse::Funcs;
@@ -1143,7 +1144,7 @@ size_t Readings::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // map<string, .google.protobuf.Value> readings = 2 [json_name = "readings"];
+  // map<string, .google.protobuf.Value> readings = 2 [json_name = "readings", deprecated = true];
   total_size += 1 *
       ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_readings_size());
   for (::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Value >::const_iterator
@@ -1152,7 +1153,7 @@ size_t Readings::ByteSizeLong() const {
     total_size += Readings_ReadingsEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
   }
 
-  // .viam.common.v1.ResourceName name = 1 [json_name = "name"];
+  // .viam.common.v1.ResourceName name = 1 [json_name = "name", deprecated = true];
   if (this->_internal_has_name()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -1268,7 +1269,7 @@ const char* GetReadingsResponse::_InternalParse(const char* ptr, ::_pbi::ParseCo
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // repeated .viam.service.sensors.v1.Readings readings = 1 [json_name = "readings"];
+      // repeated .viam.service.sensors.v1.Readings readings = 1 [json_name = "readings", deprecated = true];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr -= 1;
@@ -1310,7 +1311,7 @@ uint8_t* GetReadingsResponse::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .viam.service.sensors.v1.Readings readings = 1 [json_name = "readings"];
+  // repeated .viam.service.sensors.v1.Readings readings = 1 [json_name = "readings", deprecated = true];
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_readings_size()); i < n; i++) {
     const auto& repfield = this->_internal_readings(i);
@@ -1334,7 +1335,7 @@ size_t GetReadingsResponse::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .viam.service.sensors.v1.Readings readings = 1 [json_name = "readings"];
+  // repeated .viam.service.sensors.v1.Readings readings = 1 [json_name = "readings", deprecated = true];
   total_size += 1UL * this->_internal_readings_size();
   for (const auto& msg : this->readings_) {
     total_size +=
