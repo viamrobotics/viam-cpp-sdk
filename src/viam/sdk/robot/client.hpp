@@ -13,6 +13,7 @@
 #include <viam/api/robot/v1/robot.pb.h>
 
 #include <viam/sdk/common/pose.hpp>
+#include <viam/sdk/common/transform.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/registry/registry.hpp>
@@ -25,7 +26,6 @@ namespace sdk {
 
 using grpc::Channel;
 using viam::common::v1::ResourceName;
-using viam::common::v1::Transform;
 using viam::robot::v1::FrameSystemConfig;
 using viam::robot::v1::RobotService;
 using viam::robot::v1::Status;
@@ -104,7 +104,7 @@ class RobotClient {
     /// @brief Get the configuration of the frame system of the given robot.
     /// @return The configuration of the calling robot's frame system.
     std::vector<FrameSystemConfig> get_frame_system_config(
-        std::vector<Transform> additional_transforms = std::vector<Transform>());
+        std::vector<transform> additional_transforms = std::vector<transform>());
 
     /// @brief Get the list of operations currently running on a robot.
     /// @return The list of operations currently running on the calling robot.
@@ -129,7 +129,7 @@ class RobotClient {
     pose_in_frame transform_pose(
         pose_in_frame query,
         std::string destination,
-        std::vector<Transform> additional_transforms = std::vector<Transform>());
+        std::vector<transform> additional_transforms = std::vector<transform>());
 
     /// @brief Blocks on the specified operation of the robot, returning when it is complete.
     /// @param id The ID of the operation to block on.

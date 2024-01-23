@@ -48,6 +48,7 @@ target_sources(viamsdk
     common/pose.cpp
     common/proto_type.cpp
     common/service_helper.cpp
+    common/transform.cpp
     common/utils.cpp
     common/world_state.cpp
     components/base/base.cpp
@@ -116,6 +117,7 @@ target_sources(viamsdk
       ../../viam/sdk/common/pose.hpp
       ../../viam/sdk/common/proto_type.hpp
       ../../viam/sdk/common/service_helper.hpp
+      ../../viam/sdk/common/transform.hpp
       ../../viam/sdk/common/utils.hpp
       ../../viam/sdk/common/world_state.hpp
       ../../viam/sdk/components/base/base.hpp

@@ -41,7 +41,6 @@ namespace sdk {
 
 using google::protobuf::RepeatedPtrField;
 using viam::common::v1::ResourceName;
-using viam::common::v1::Transform;
 using viam::robot::v1::Discovery;
 using viam::robot::v1::DiscoveryQuery;
 using viam::robot::v1::FrameSystemConfig;
@@ -276,14 +275,15 @@ std::shared_ptr<RobotClient> RobotClient::at_local_socket(std::string address, O
 };
 
 std::vector<FrameSystemConfig> RobotClient::get_frame_system_config(
-    std::vector<Transform> additional_transforms) {
+    std::vector<transform> additional_transforms) {
     viam::robot::v1::FrameSystemConfigRequest req;
     viam::robot::v1::FrameSystemConfigResponse resp;
     ClientContext ctx;
 
-    RepeatedPtrField<Transform>* req_transforms = req.mutable_supplemental_transforms();
-    for (const Transform& transform : additional_transforms) {
-        *req_transforms->Add() = transform;
+    RepeatedPtrField<viam::common::v1::Transform>* req_transforms =
+        req.mutable_supplemental_transforms();
+    for (const transform& transform : additional_transforms) {
+        *req_transforms->Add() = transform.to_proto();
     }
 
     const grpc::Status response = stub_->FrameSystemConfig(ctx, req, &resp);
@@ -305,17 +305,18 @@ std::vector<FrameSystemConfig> RobotClient::get_frame_system_config(
 
 pose_in_frame RobotClient::transform_pose(pose_in_frame query,
                                           std::string destination,
-                                          std::vector<Transform> additional_transforms) {
+                                          std::vector<transform> additional_transforms) {
     viam::robot::v1::TransformPoseRequest req;
     viam::robot::v1::TransformPoseResponse resp;
     ClientContext ctx;
 
     *req.mutable_source() = query.to_proto();
     *req.mutable_destination() = destination;
-    RepeatedPtrField<Transform>* req_transforms = req.mutable_supplemental_transforms();
+    RepeatedPtrField<viam::common::v1::Transform>* req_transforms =
+        req.mutable_supplemental_transforms();
 
-    for (const Transform& transform : additional_transforms) {
-        *req_transforms->Add() = transform;
+    for (const transform& transform : additional_transforms) {
+        *req_transforms->Add() = transform.to_proto();
     }
 
     const grpc::Status response = stub_->TransformPose(ctx, req, &resp);
