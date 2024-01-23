@@ -96,9 +96,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:afdc71f62fa7748582a4586f79ce701a8" id="r_afdc71f62fa7748582a4586f79ce701a8"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceServer.html">ResourceServer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afdc71f62fa7748582a4586f79ce701a8">create_resource_server</a> (std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceManager.html">ResourceManager</a> &gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">manager</a>) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
-<tr class="memdesc:afdc71f62fa7748582a4586f79ce701a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a resource's gRPC server.  <br /></td></tr>
-<tr class="separator:afdc71f62fa7748582a4586f79ce701a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbf2a6670f1168c9de81e2466a5eeab5" id="r_afbf2a6670f1168c9de81e2466a5eeab5"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceServer.html">ResourceServer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afbf2a6670f1168c9de81e2466a5eeab5">create_resource_server</a> (std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceManager.html">ResourceManager</a> &gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">manager</a>, <a class="el" href="classviam_1_1sdk_1_1Server.html">Server</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">server</a>) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memdesc:afbf2a6670f1168c9de81e2466a5eeab5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a resource's gRPC server.  <br /></td></tr>
+<tr class="separator:afbf2a6670f1168c9de81e2466a5eeab5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70d43bce57d3c3495ec18e7e29e4bb9f" id="r_a70d43bce57d3c3495ec18e7e29e4bb9f"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70d43bce57d3c3495ec18e7e29e4bb9f">create_rpc_client</a> (std::string name, std::shared_ptr&lt; grpc::Channel &gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">chan</a>) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
 <tr class="memdesc:a70d43bce57d3c3495ec18e7e29e4bb9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create gRPC client to a resource.  <br /></td></tr>
 <tr class="separator:a70d43bce57d3c3495ec18e7e29e4bb9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -129,8 +129,8 @@ std::function&lt; std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Re
 <tr class="separator:a4924f6c81d3752a2891e58716a03239b inherit pub_attribs_classviam_1_1sdk_1_1ResourceRegistration"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="afdc71f62fa7748582a4586f79ce701a8" name="afdc71f62fa7748582a4586f79ce701a8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afdc71f62fa7748582a4586f79ce701a8">&#9670;&#160;</a></span>create_resource_server()</h2>
+<a id="afbf2a6670f1168c9de81e2466a5eeab5" name="afbf2a6670f1168c9de81e2466a5eeab5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbf2a6670f1168c9de81e2466a5eeab5">&#9670;&#160;</a></span>create_resource_server()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -143,8 +143,12 @@ template&lt;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">typename<
         <tr>
           <td class="memname">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceServer.html">ResourceServer</a> &gt; <a class="el" href="classviam_1_1sdk_1_1ResourceRegistration2.html">viam::sdk::ResourceRegistration2</a>&lt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">ResourceClientT</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">ResourceServerT</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">ProtoServiceT</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">ResourceRegT</a> &gt;::create_resource_server </td>
           <td>(</td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceManager.html">ResourceManager</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>manager</em></span></td><td>)</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceManager.html">ResourceManager</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>manager</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1Server.html">Server</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>server</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -158,12 +162,13 @@ template&lt;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">typename<
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">manager</td><td>The server's <code><a class="el" href="classviam_1_1sdk_1_1ResourceManager.html" title="Defines a resource manager for use by anything that tracks resources.">ResourceManager</a></code>. </td></tr>
+    <tr><td class="paramname">server</td><td>The <a class="el" href="classviam_1_1sdk_1_1Server.html" title="Defines gRPC Server functionality.">Server</a> with which to register the relevant gRPC service. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a <code>shared_ptr</code> to the gRPC server. </dd></dl>
 
-<p>Implements <a class="el" href="classviam_1_1sdk_1_1ResourceRegistration.html#a47baa099cee6fdb86c387c4a0094b044">viam::sdk::ResourceRegistration</a>.</p>
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1ResourceRegistration.html#a6f54cb751f1d59bf0b7bb5e2b65be8e5">viam::sdk::ResourceRegistration</a>.</p>
 
 </div>
 </div>
