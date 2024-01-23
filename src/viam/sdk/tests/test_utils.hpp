@@ -58,7 +58,7 @@ void client_to_mock_pipeline(std::shared_ptr<Resource> mock, F&& test_case) {
     auto rm = std::make_shared<ResourceManager>();
     rm->add(mock->name(), mock);
     auto server = std::make_shared<sdk::Server>();
-    auto rs = sdk::Registry::lookup_resource(mock->dynamic_api());
+    auto rs = sdk::Registry::lookup_resource(mock->api());
     // resource_server is unused; we call create_resource_server to call
     // register_service and associate the Server with the resource-specific
     // server (like MotorServer).
