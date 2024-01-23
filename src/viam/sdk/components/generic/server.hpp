@@ -18,7 +18,6 @@ namespace sdk {
 class GenericServer : public ResourceServer,
                       public viam::component::generic::v1::GenericService::Service {
    public:
-    GenericServer();
     explicit GenericServer(std::shared_ptr<ResourceManager> manager);
 
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
@@ -28,8 +27,6 @@ class GenericServer : public ResourceServer,
         ::grpc::ServerContext* context,
         const ::viam::common::v1::GetGeometriesRequest* request,
         ::viam::common::v1::GetGeometriesResponse* response) noexcept override;
-
-    void register_server(std::shared_ptr<Server> server) override;
 };
 
 }  // namespace sdk

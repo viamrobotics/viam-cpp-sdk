@@ -18,7 +18,6 @@ namespace sdk {
 class ServoServer : public ResourceServer,
                     public viam::component::servo::v1::ServoService::Service {
    public:
-    ServoServer();
     explicit ServoServer(std::shared_ptr<ResourceManager> manager);
 
     ::grpc::Status Move(::grpc::ServerContext* context,
@@ -47,8 +46,6 @@ class ServoServer : public ResourceServer,
     ::grpc::Status DoCommand(grpc::ServerContext* context,
                              const viam::common::v1::DoCommandRequest* request,
                              viam::common::v1::DoCommandResponse* response) noexcept override;
-
-    void register_server(std::shared_ptr<Server> server) override;
 };
 }  // namespace sdk
 }  // namespace viam

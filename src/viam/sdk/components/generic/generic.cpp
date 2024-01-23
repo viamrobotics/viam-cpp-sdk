@@ -20,8 +20,10 @@ GenericRegistration::GenericRegistration(
     : ResourceRegistration(service_descriptor){};
 
 std::shared_ptr<ResourceServer> GenericRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager) {
-    return std::make_shared<GenericServer>(manager);
+    std::shared_ptr<ResourceManager> manager, Server& server) {
+    auto gs = std::make_shared<GenericServer>(std::move(manager));
+    server.register_service(gs.get());
+    return gs;
 };
 
 std::shared_ptr<Resource> GenericRegistration::create_rpc_client(

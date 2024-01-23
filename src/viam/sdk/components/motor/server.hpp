@@ -18,7 +18,6 @@ namespace sdk {
 class MotorServer : public ResourceServer,
                     public viam::component::motor::v1::MotorService::Service {
    public:
-    MotorServer();
     explicit MotorServer(std::shared_ptr<ResourceManager> manager);
 
     ::grpc::Status SetPower(
@@ -71,8 +70,6 @@ class MotorServer : public ResourceServer,
     ::grpc::Status DoCommand(grpc::ServerContext* context,
                              const viam::common::v1::DoCommandRequest* request,
                              viam::common::v1::DoCommandResponse* response) noexcept override;
-
-    void register_server(std::shared_ptr<Server> server) override;
 };
 
 }  // namespace sdk

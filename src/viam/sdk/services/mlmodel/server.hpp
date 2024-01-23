@@ -29,10 +29,7 @@ namespace sdk {
 class MLModelServiceServer : public ResourceServer,
                              public ::viam::service::mlmodel::v1::MLModelService::Service {
    public:
-    MLModelServiceServer();
     explicit MLModelServiceServer(std::shared_ptr<ResourceManager> manager);
-
-    void register_server(std::shared_ptr<Server> server) override;
 
     ::grpc::Status Infer(::grpc::ServerContext* context,
                          const ::viam::service::mlmodel::v1::InferRequest* request,

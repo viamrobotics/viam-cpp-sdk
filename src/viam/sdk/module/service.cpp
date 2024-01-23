@@ -210,7 +210,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(Name name) {
 };
 
 ModuleService::ModuleService(std::string addr)
-    : module_(std::make_unique<Module>(std::move(addr))), server_(std::make_shared<Server>()) {}
+    : module_(std::make_unique<Module>(std::move(addr))), server_(std::make_unique<Server>()) {}
 
 ModuleService::ModuleService(int argc,
                              char** argv,
@@ -219,7 +219,7 @@ ModuleService::ModuleService(int argc,
         throw std::runtime_error("Need socket path as command line argument");
     }
     module_ = std::make_unique<Module>(argv[1]);
-    server_ = std::make_shared<Server>();
+    server_ = std::make_unique<Server>();
     signal_manager_ = SignalManager();
     set_logger_severity_from_args(argc, argv);
 
@@ -271,8 +271,8 @@ void ModuleService::add_api_from_registry_inlock_(API api, const std::lock_guard
     auto new_manager = std::make_shared<ResourceManager>();
 
     const std::shared_ptr<ResourceRegistration> rs = Registry::lookup_resource(api);
-    const std::shared_ptr<ResourceServer> resource_server = rs->create_resource_server(new_manager);
-    resource_server->register_server(server_);
+    const std::shared_ptr<ResourceServer> resource_server =
+        rs->create_resource_server(new_manager, *server_);
     module_->mutable_services().emplace(api, new_manager);
     module_->mutable_servers().push_back(resource_server);
 }

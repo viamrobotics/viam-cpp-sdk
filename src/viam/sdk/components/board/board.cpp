@@ -18,8 +18,10 @@ BoardRegistration::BoardRegistration(const google::protobuf::ServiceDescriptor* 
     : ResourceRegistration(service_descriptor) {}
 
 std::shared_ptr<ResourceServer> BoardRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager) {
-    return std::make_shared<BoardServer>(manager);
+    std::shared_ptr<ResourceManager> manager, Server& server) {
+    auto bs = std::make_shared<BoardServer>(manager);
+    server.register_service(bs.get());
+    return bs;
 }
 
 std::shared_ptr<Resource> BoardRegistration::create_rpc_client(

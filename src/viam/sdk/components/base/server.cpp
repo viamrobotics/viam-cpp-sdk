@@ -12,8 +12,8 @@
 namespace viam {
 namespace sdk {
 
-BaseServer::BaseServer() : ResourceServer(std::make_shared<ResourceManager>()){};
-BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager) : ResourceServer(manager){};
+BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager)
+    : ResourceServer(std::move(manager)){};
 
 ::grpc::Status BaseServer::MoveStraight(
     ::grpc::ServerContext* context,
@@ -110,10 +110,6 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager) : ResourceServe
         const AttributeMap result = base->do_command(struct_to_map(request->command()));
         *response->mutable_result() = map_to_struct(result);
     });
-}
-
-void BaseServer::register_server(std::shared_ptr<Server> server) {
-    server->register_service(this);
 }
 
 }  // namespace sdk

@@ -32,9 +32,7 @@ using viam::robot::v1::Status;
 /// @ingroup Robot
 class RobotService_ : public ResourceServer, public viam::robot::v1::RobotService::Service {
    public:
-    RobotService_() : ResourceServer(std::make_shared<ResourceManager>()){};
-    RobotService_(std::shared_ptr<ResourceManager> manager) : ResourceServer(manager){};
-    static std::shared_ptr<RobotService_> create();
+    explicit RobotService_(std::shared_ptr<ResourceManager> manager, Server& server);
     std::shared_ptr<Resource> resource_by_name(Name name);
     ::grpc::Status ResourceNames(::grpc::ServerContext* context,
                                  const ::viam::robot::v1::ResourceNamesRequest* request,
@@ -49,8 +47,6 @@ class RobotService_ : public ResourceServer, public viam::robot::v1::RobotServic
     ::grpc::Status StopAll(::grpc::ServerContext* context,
                            const ::viam::robot::v1::StopAllRequest* request,
                            ::viam::robot::v1::StopAllResponse* response) override;
-
-    void register_server(std::shared_ptr<Server> server) override;
 
    private:
     std::mutex lock_;

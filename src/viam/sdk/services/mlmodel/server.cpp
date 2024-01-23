@@ -22,15 +22,8 @@
 namespace viam {
 namespace sdk {
 
-MLModelServiceServer::MLModelServiceServer()
-    : MLModelServiceServer(std::make_shared<ResourceManager>()) {}
-
 MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)) {}
-
-void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
-    server->register_service(this);
-}
 
 ::grpc::Status MLModelServiceServer::Infer(
     ::grpc::ServerContext* context,

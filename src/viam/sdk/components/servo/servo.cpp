@@ -13,8 +13,10 @@ namespace viam {
 namespace sdk {
 
 std::shared_ptr<ResourceServer> ServoRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager) {
-    return std::make_shared<ServoServer>(manager);
+    std::shared_ptr<ResourceManager> manager, Server& server) {
+    auto ss = std::make_shared<ServoServer>(std::move(manager));
+    server.register_service(ss.get());
+    return ss;
 };
 
 std::shared_ptr<Resource> ServoRegistration::create_rpc_client(

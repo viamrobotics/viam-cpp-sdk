@@ -68,7 +68,5 @@ int main() {
         std::cout << "got generic client named " << gc->name() << std::endl;
     }
 
-    robot->close();
-
     return EXIT_SUCCESS;
 }

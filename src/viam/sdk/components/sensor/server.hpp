@@ -20,7 +20,6 @@ namespace sdk {
 class SensorServer : public ResourceServer,
                      public viam::component::sensor::v1::SensorService::Service {
    public:
-    SensorServer();
     explicit SensorServer(std::shared_ptr<ResourceManager> manager);
 
     ::grpc::Status GetReadings(::grpc::ServerContext* context,
@@ -34,8 +33,6 @@ class SensorServer : public ResourceServer,
     ::grpc::Status GetGeometries(::grpc::ServerContext* context,
                                  const GetGeometriesRequest* request,
                                  GetGeometriesResponse* response) noexcept override;
-
-    void register_server(std::shared_ptr<Server> server) override;
 };
 
 }  // namespace sdk
