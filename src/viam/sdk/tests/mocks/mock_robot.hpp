@@ -1,5 +1,6 @@
 #include <robot/v1/robot.pb.h>
 
+#include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/robot/service.hpp>
 
 namespace viam {
@@ -40,7 +41,7 @@ std::vector<viam::robot::v1::Operation> mock_operations_response();
 std::vector<viam::robot::v1::Discovery> mock_discovery_response();
 std::vector<ResourceName> mock_resource_names_response();
 std::vector<FrameSystemConfig> mock_config_response();
-common::v1::PoseInFrame mock_transform_response();
+pose_in_frame mock_transform_response();
 std::vector<Status> mock_status_response();
 
 }  // namespace robot

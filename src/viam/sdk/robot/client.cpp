@@ -40,7 +40,6 @@ namespace sdk {
 // TODO(RSDK-4573) Having all these proto types exposed here in the APIs is sad. Let's fix that.
 
 using google::protobuf::RepeatedPtrField;
-using viam::common::v1::PoseInFrame;
 using viam::common::v1::ResourceName;
 using viam::common::v1::Transform;
 using viam::robot::v1::Discovery;
@@ -304,14 +303,14 @@ std::vector<FrameSystemConfig> RobotClient::get_frame_system_config(
     return fs_configs;
 }
 
-PoseInFrame RobotClient::transform_pose(PoseInFrame query,
-                                        std::string destination,
-                                        std::vector<Transform> additional_transforms) {
+pose_in_frame RobotClient::transform_pose(pose_in_frame query,
+                                          std::string destination,
+                                          std::vector<Transform> additional_transforms) {
     viam::robot::v1::TransformPoseRequest req;
     viam::robot::v1::TransformPoseResponse resp;
     ClientContext ctx;
 
-    *req.mutable_source() = query;
+    *req.mutable_source() = query.to_proto();
     *req.mutable_destination() = destination;
     RepeatedPtrField<Transform>* req_transforms = req.mutable_supplemental_transforms();
 
@@ -324,7 +323,7 @@ PoseInFrame RobotClient::transform_pose(PoseInFrame query,
         BOOST_LOG_TRIVIAL(error) << "Error getting PoseInFrame: " << response.error_message();
     }
 
-    return resp.pose();
+    return pose_in_frame::from_proto(resp.pose());
 }
 
 std::vector<Discovery> RobotClient::discover_components(std::vector<DiscoveryQuery> queries) {

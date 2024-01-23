@@ -11,6 +11,7 @@
 #include <viam/api/robot/v1/robot.grpc.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
 
+#include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/camera/camera.hpp>
 #include <viam/sdk/components/generic/client.hpp>
@@ -181,9 +182,9 @@ BOOST_AUTO_TEST_CASE(test_discover_components) {
 BOOST_AUTO_TEST_CASE(test_transform_pose) {
     server_to_client_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
-            viam::common::v1::PoseInFrame pif;
-            auto pose = client->transform_pose(pif, "", {});
-            auto mock_pose = mock_transform_response();
+            pose_in_frame pif;
+            auto pose = client->transform_pose(pif, "", {}).to_proto();
+            auto mock_pose = mock_transform_response().to_proto();
 
             BOOST_CHECK_EQUAL(pose.DebugString(), mock_pose.DebugString());
         });

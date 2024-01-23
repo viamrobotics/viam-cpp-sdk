@@ -79,11 +79,8 @@ std::vector<viam::robot::v1::Status> mock_status_response() {
     return resp;
 }
 
-common::v1::PoseInFrame mock_transform_response() {
-    common::v1::PoseInFrame response;
-    *response.mutable_reference_frame() = "arm";
-    *response.mutable_pose() = default_pose();
-    return response;
+pose_in_frame mock_transform_response() {
+    return pose_in_frame("arm", pose::from_proto(default_pose()));
 }
 
 std::vector<ResourceName> mock_resource_names_response() {
@@ -177,7 +174,7 @@ std::vector<FrameSystemConfig> mock_config_response() {
     ::grpc::ServerContext* context,
     const ::viam::robot::v1::TransformPoseRequest* request,
     ::viam::robot::v1::TransformPoseResponse* response) {
-    *response->mutable_pose() = mock_transform_response();
+    *response->mutable_pose() = mock_transform_response().to_proto();
     return ::grpc::Status();
 }
 

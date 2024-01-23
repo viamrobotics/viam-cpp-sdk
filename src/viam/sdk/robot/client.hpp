@@ -12,6 +12,7 @@
 #include <viam/api/robot/v1/robot.grpc.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
 
+#include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/registry/registry.hpp>
@@ -124,9 +125,9 @@ class RobotClient {
     /// @brief Transform a given `Pose` to a new specified destination which is a reference frame.
     /// @param query The pose that should be transformed.
     /// @param destination The name of the reference frame to transform the given pose to.
-    /// @return the `PoseInFrame` of the transformed pose.
-    viam::common::v1::PoseInFrame transform_pose(
-        viam::common::v1::PoseInFrame query,
+    /// @return the `pose_in_frame` of the transformed pose.
+    pose_in_frame transform_pose(
+        pose_in_frame query,
         std::string destination,
         std::vector<Transform> additional_transforms = std::vector<Transform>());
 
