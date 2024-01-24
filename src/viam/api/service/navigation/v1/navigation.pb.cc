@@ -253,12 +253,37 @@ struct GetPathsResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPathsResponseDefaultTypeInternal _GetPathsResponse_default_instance_;
+PROTOBUF_CONSTEXPR GetPropertiesRequest::GetPropertiesRequest(
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct GetPropertiesRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetPropertiesRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetPropertiesRequestDefaultTypeInternal() {}
+  union {
+    GetPropertiesRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPropertiesRequestDefaultTypeInternal _GetPropertiesRequest_default_instance_;
+PROTOBUF_CONSTEXPR GetPropertiesResponse::GetPropertiesResponse(
+    ::_pbi::ConstantInitialized)
+  : map_type_(0)
+{}
+struct GetPropertiesResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetPropertiesResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetPropertiesResponseDefaultTypeInternal() {}
+  union {
+    GetPropertiesResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPropertiesResponseDefaultTypeInternal _GetPropertiesResponse_default_instance_;
 }  // namespace v1
 }  // namespace navigation
 }  // namespace service
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_service_2fnavigation_2fv1_2fnavigation_2eproto[18];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_service_2fnavigation_2fv1_2fnavigation_2eproto[1];
+static ::_pb::Metadata file_level_metadata_service_2fnavigation_2fv1_2fnavigation_2eproto[20];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_service_2fnavigation_2fv1_2fnavigation_2eproto[2];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_service_2fnavigation_2fv1_2fnavigation_2eproto = nullptr;
 
 const uint32_t TableStruct_service_2fnavigation_2fv1_2fnavigation_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -399,6 +424,20 @@ const uint32_t TableStruct_service_2fnavigation_2fv1_2fnavigation_2eproto::offse
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::service::navigation::v1::GetPathsResponse, paths_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::service::navigation::v1::GetPropertiesRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::service::navigation::v1::GetPropertiesRequest, name_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::service::navigation::v1::GetPropertiesResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::service::navigation::v1::GetPropertiesResponse, map_type_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::service::navigation::v1::GetModeRequest)},
@@ -419,6 +458,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 114, -1, -1, sizeof(::viam::service::navigation::v1::Path)},
   { 122, -1, -1, sizeof(::viam::service::navigation::v1::GetPathsRequest)},
   { 130, -1, -1, sizeof(::viam::service::navigation::v1::GetPathsResponse)},
+  { 137, -1, -1, sizeof(::viam::service::navigation::v1::GetPropertiesRequest)},
+  { 144, -1, -1, sizeof(::viam::service::navigation::v1::GetPropertiesResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -440,6 +481,8 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::service::navigation::v1::_Path_default_instance_._instance,
   &::viam::service::navigation::v1::_GetPathsRequest_default_instance_._instance,
   &::viam::service::navigation::v1::_GetPathsResponse_default_instance_._instance,
+  &::viam::service::navigation::v1::_GetPropertiesRequest_default_instance_._instance,
+  &::viam::service::navigation::v1::_GetPropertiesResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_service_2fnavigation_2fv1_2fnavigation_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -485,49 +528,58 @@ const char descriptor_table_protodef_service_2fnavigation_2fv1_2fnavigation_2epr
   "e\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027.google.pr"
   "otobuf.StructR\005extra\"J\n\020GetPathsResponse"
   "\0226\n\005paths\030\001 \003(\0132 .viam.service.navigatio"
-  "n.v1.PathR\005paths*R\n\004Mode\022\024\n\020MODE_UNSPECI"
-  "FIED\020\000\022\017\n\013MODE_MANUAL\020\001\022\021\n\rMODE_WAYPOINT"
-  "\020\002\022\020\n\014MODE_EXPLORE\020\0032\345\013\n\021NavigationServi"
-  "ce\022\227\001\n\007GetMode\022*.viam.service.navigation"
-  ".v1.GetModeRequest\032+.viam.service.naviga"
-  "tion.v1.GetModeResponse\"3\202\323\344\223\002-\022+/viam/a"
-  "pi/v1/service/navigation/{name}/mode\022\227\001\n"
-  "\007SetMode\022*.viam.service.navigation.v1.Se"
-  "tModeRequest\032+.viam.service.navigation.v"
-  "1.SetModeResponse\"3\202\323\344\223\002-\032+/viam/api/v1/"
-  "service/navigation/{name}/mode\022\247\001\n\013GetLo"
-  "cation\022..viam.service.navigation.v1.GetL"
-  "ocationRequest\032/.viam.service.navigation"
-  ".v1.GetLocationResponse\"7\202\323\344\223\0021\022//viam/a"
-  "pi/v1/service/navigation/{name}/location"
-  "\022\253\001\n\014GetWaypoints\022/.viam.service.navigat"
-  "ion.v1.GetWaypointsRequest\0320.viam.servic"
-  "e.navigation.v1.GetWaypointsResponse\"8\202\323"
-  "\344\223\0022\0220/viam/api/v1/service/navigation/{n"
-  "ame}/waypoints\022\250\001\n\013AddWaypoint\022..viam.se"
-  "rvice.navigation.v1.AddWaypointRequest\032/"
-  ".viam.service.navigation.v1.AddWaypointR"
-  "esponse\"8\202\323\344\223\0022\"0/viam/api/v1/service/na"
-  "vigation/{name}/waypoints\022\266\001\n\016RemoveWayp"
-  "oint\0221.viam.service.navigation.v1.Remove"
-  "WaypointRequest\0322.viam.service.navigatio"
-  "n.v1.RemoveWaypointResponse\"=\202\323\344\223\0027*5/vi"
-  "am/api/v1/service/navigation/{name}/wayp"
-  "oints/{id}\022\257\001\n\014GetObstacles\022/.viam.servi"
-  "ce.navigation.v1.GetObstaclesRequest\0320.v"
-  "iam.service.navigation.v1.GetObstaclesRe"
-  "sponse\"<\202\323\344\223\0026\0224/viam/api/v1/service/nav"
-  "igation/{name}/get_obstacles\022\237\001\n\010GetPath"
-  "s\022+.viam.service.navigation.v1.GetPathsR"
-  "equest\032,.viam.service.navigation.v1.GetP"
-  "athsResponse\"8\202\323\344\223\0022\0220/viam/api/v1/servi"
-  "ce/navigation/{name}/get_paths\022\213\001\n\tDoCom"
-  "mand\022 .viam.common.v1.DoCommandRequest\032!"
-  ".viam.common.v1.DoCommandResponse\"9\202\323\344\223\002"
-  "3\"1/viam/api/v1/service/navigation/{name"
-  "}/do_commandBG\n\036com.viam.service.navigat"
-  "ion.v1Z%go.viam.com/api/service/navigati"
-  "on/v1b\006proto3"
+  "n.v1.PathR\005paths\"*\n\024GetPropertiesRequest"
+  "\022\022\n\004name\030\001 \001(\tR\004name\"W\n\025GetPropertiesRes"
+  "ponse\022>\n\010map_type\030\001 \001(\0162#.viam.service.n"
+  "avigation.v1.MapTypeR\007mapType*H\n\007MapType"
+  "\022\030\n\024MAP_TYPE_UNSPECIFIED\020\000\022\021\n\rMAP_TYPE_N"
+  "ONE\020\001\022\020\n\014MAP_TYPE_GPS\020\002*R\n\004Mode\022\024\n\020MODE_"
+  "UNSPECIFIED\020\000\022\017\n\013MODE_MANUAL\020\001\022\021\n\rMODE_W"
+  "AYPOINT\020\002\022\020\n\014MODE_EXPLORE\020\0032\227\r\n\021Navigati"
+  "onService\022\227\001\n\007GetMode\022*.viam.service.nav"
+  "igation.v1.GetModeRequest\032+.viam.service"
+  ".navigation.v1.GetModeResponse\"3\202\323\344\223\002-\022+"
+  "/viam/api/v1/service/navigation/{name}/m"
+  "ode\022\227\001\n\007SetMode\022*.viam.service.navigatio"
+  "n.v1.SetModeRequest\032+.viam.service.navig"
+  "ation.v1.SetModeResponse\"3\202\323\344\223\002-\032+/viam/"
+  "api/v1/service/navigation/{name}/mode\022\247\001"
+  "\n\013GetLocation\022..viam.service.navigation."
+  "v1.GetLocationRequest\032/.viam.service.nav"
+  "igation.v1.GetLocationResponse\"7\202\323\344\223\0021\022/"
+  "/viam/api/v1/service/navigation/{name}/l"
+  "ocation\022\253\001\n\014GetWaypoints\022/.viam.service."
+  "navigation.v1.GetWaypointsRequest\0320.viam"
+  ".service.navigation.v1.GetWaypointsRespo"
+  "nse\"8\202\323\344\223\0022\0220/viam/api/v1/service/naviga"
+  "tion/{name}/waypoints\022\250\001\n\013AddWaypoint\022.."
+  "viam.service.navigation.v1.AddWaypointRe"
+  "quest\032/.viam.service.navigation.v1.AddWa"
+  "ypointResponse\"8\202\323\344\223\0022\"0/viam/api/v1/ser"
+  "vice/navigation/{name}/waypoints\022\266\001\n\016Rem"
+  "oveWaypoint\0221.viam.service.navigation.v1"
+  ".RemoveWaypointRequest\0322.viam.service.na"
+  "vigation.v1.RemoveWaypointResponse\"=\202\323\344\223"
+  "\0027*5/viam/api/v1/service/navigation/{nam"
+  "e}/waypoints/{id}\022\257\001\n\014GetObstacles\022/.via"
+  "m.service.navigation.v1.GetObstaclesRequ"
+  "est\0320.viam.service.navigation.v1.GetObst"
+  "aclesResponse\"<\202\323\344\223\0026\0224/viam/api/v1/serv"
+  "ice/navigation/{name}/get_obstacles\022\237\001\n\010"
+  "GetPaths\022+.viam.service.navigation.v1.Ge"
+  "tPathsRequest\032,.viam.service.navigation."
+  "v1.GetPathsResponse\"8\202\323\344\223\0022\0220/viam/api/v"
+  "1/service/navigation/{name}/get_paths\022\257\001"
+  "\n\rGetProperties\0220.viam.service.navigatio"
+  "n.v1.GetPropertiesRequest\0321.viam.service"
+  ".navigation.v1.GetPropertiesResponse\"9\202\323"
+  "\344\223\0023\0221/viam/api/v1/service/navigation/{n"
+  "ame}/properties\022\213\001\n\tDoCommand\022 .viam.com"
+  "mon.v1.DoCommandRequest\032!.viam.common.v1"
+  ".DoCommandResponse\"9\202\323\344\223\0023\"1/viam/api/v1"
+  "/service/navigation/{name}/do_commandBG\n"
+  "\036com.viam.service.navigation.v1Z%go.viam"
+  ".com/api/service/navigation/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -536,9 +588,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fnavigatio
 };
 static ::_pbi::once_flag descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto = {
-    false, false, 3373, descriptor_table_protodef_service_2fnavigation_2fv1_2fnavigation_2eproto,
+    false, false, 3758, descriptor_table_protodef_service_2fnavigation_2fv1_2fnavigation_2eproto,
     "service/navigation/v1/navigation.proto",
-    &descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_once, descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_deps, 3, 18,
+    &descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_once, descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_deps, 3, 20,
     schemas, file_default_instances, TableStruct_service_2fnavigation_2fv1_2fnavigation_2eproto::offsets,
     file_level_metadata_service_2fnavigation_2fv1_2fnavigation_2eproto, file_level_enum_descriptors_service_2fnavigation_2fv1_2fnavigation_2eproto,
     file_level_service_descriptors_service_2fnavigation_2fv1_2fnavigation_2eproto,
@@ -553,9 +605,24 @@ namespace viam {
 namespace service {
 namespace navigation {
 namespace v1 {
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Mode_descriptor() {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MapType_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto);
   return file_level_enum_descriptors_service_2fnavigation_2fv1_2fnavigation_2eproto[0];
+}
+bool MapType_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Mode_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto);
+  return file_level_enum_descriptors_service_2fnavigation_2fv1_2fnavigation_2eproto[1];
 }
 bool Mode_IsValid(int value) {
   switch (value) {
@@ -4190,6 +4257,375 @@ void GetPathsResponse::InternalSwap(GetPathsResponse* other) {
       file_level_metadata_service_2fnavigation_2fv1_2fnavigation_2eproto[17]);
 }
 
+// ===================================================================
+
+class GetPropertiesRequest::_Internal {
+ public:
+};
+
+GetPropertiesRequest::GetPropertiesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.service.navigation.v1.GetPropertiesRequest)
+}
+GetPropertiesRequest::GetPropertiesRequest(const GetPropertiesRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.service.navigation.v1.GetPropertiesRequest)
+}
+
+inline void GetPropertiesRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+GetPropertiesRequest::~GetPropertiesRequest() {
+  // @@protoc_insertion_point(destructor:viam.service.navigation.v1.GetPropertiesRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetPropertiesRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+}
+
+void GetPropertiesRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetPropertiesRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.service.navigation.v1.GetPropertiesRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  name_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetPropertiesRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.service.navigation.v1.GetPropertiesRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetPropertiesRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.service.navigation.v1.GetPropertiesRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.service.navigation.v1.GetPropertiesRequest.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.service.navigation.v1.GetPropertiesRequest)
+  return target;
+}
+
+size_t GetPropertiesRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.service.navigation.v1.GetPropertiesRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetPropertiesRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetPropertiesRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetPropertiesRequest::GetClassData() const { return &_class_data_; }
+
+void GetPropertiesRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetPropertiesRequest *>(to)->MergeFrom(
+      static_cast<const GetPropertiesRequest &>(from));
+}
+
+
+void GetPropertiesRequest::MergeFrom(const GetPropertiesRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.navigation.v1.GetPropertiesRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetPropertiesRequest::CopyFrom(const GetPropertiesRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.service.navigation.v1.GetPropertiesRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetPropertiesRequest::IsInitialized() const {
+  return true;
+}
+
+void GetPropertiesRequest::InternalSwap(GetPropertiesRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetPropertiesRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_getter, &descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_once,
+      file_level_metadata_service_2fnavigation_2fv1_2fnavigation_2eproto[18]);
+}
+
+// ===================================================================
+
+class GetPropertiesResponse::_Internal {
+ public:
+};
+
+GetPropertiesResponse::GetPropertiesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.service.navigation.v1.GetPropertiesResponse)
+}
+GetPropertiesResponse::GetPropertiesResponse(const GetPropertiesResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  map_type_ = from.map_type_;
+  // @@protoc_insertion_point(copy_constructor:viam.service.navigation.v1.GetPropertiesResponse)
+}
+
+inline void GetPropertiesResponse::SharedCtor() {
+map_type_ = 0;
+}
+
+GetPropertiesResponse::~GetPropertiesResponse() {
+  // @@protoc_insertion_point(destructor:viam.service.navigation.v1.GetPropertiesResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetPropertiesResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void GetPropertiesResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetPropertiesResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.service.navigation.v1.GetPropertiesResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  map_type_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetPropertiesResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .viam.service.navigation.v1.MapType map_type = 1 [json_name = "mapType"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_map_type(static_cast<::viam::service::navigation::v1::MapType>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetPropertiesResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.service.navigation.v1.GetPropertiesResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .viam.service.navigation.v1.MapType map_type = 1 [json_name = "mapType"];
+  if (this->_internal_map_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      1, this->_internal_map_type(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.service.navigation.v1.GetPropertiesResponse)
+  return target;
+}
+
+size_t GetPropertiesResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.service.navigation.v1.GetPropertiesResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .viam.service.navigation.v1.MapType map_type = 1 [json_name = "mapType"];
+  if (this->_internal_map_type() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_map_type());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetPropertiesResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetPropertiesResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetPropertiesResponse::GetClassData() const { return &_class_data_; }
+
+void GetPropertiesResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetPropertiesResponse *>(to)->MergeFrom(
+      static_cast<const GetPropertiesResponse &>(from));
+}
+
+
+void GetPropertiesResponse::MergeFrom(const GetPropertiesResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.navigation.v1.GetPropertiesResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_map_type() != 0) {
+    _internal_set_map_type(from._internal_map_type());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetPropertiesResponse::CopyFrom(const GetPropertiesResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.service.navigation.v1.GetPropertiesResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetPropertiesResponse::IsInitialized() const {
+  return true;
+}
+
+void GetPropertiesResponse::InternalSwap(GetPropertiesResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(map_type_, other->map_type_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetPropertiesResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_getter, &descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_once,
+      file_level_metadata_service_2fnavigation_2fv1_2fnavigation_2eproto[19]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace navigation
@@ -4267,6 +4703,14 @@ Arena::CreateMaybeMessage< ::viam::service::navigation::v1::GetPathsRequest >(Ar
 template<> PROTOBUF_NOINLINE ::viam::service::navigation::v1::GetPathsResponse*
 Arena::CreateMaybeMessage< ::viam::service::navigation::v1::GetPathsResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::service::navigation::v1::GetPathsResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::service::navigation::v1::GetPropertiesRequest*
+Arena::CreateMaybeMessage< ::viam::service::navigation::v1::GetPropertiesRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::service::navigation::v1::GetPropertiesRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::service::navigation::v1::GetPropertiesResponse*
+Arena::CreateMaybeMessage< ::viam::service::navigation::v1::GetPropertiesResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::service::navigation::v1::GetPropertiesResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 
