@@ -46,13 +46,6 @@ jobs:
         uses: andymckay/cancel-action@0.2
         if: steps.release_exists.outputs.id != ''
 
-      - name: Commit + Push
-        id: commit
-        uses: EndBug/add-and-commit@v9.0.0
-        with:
-          default_author: github_actions
-          message: Bumping version to v${{ steps.which_version.outputs.version }} [skip ci]
-
   build_macos:
     if: github.repository_owner == 'viamrobotics'
     needs: [prepare]
@@ -89,8 +82,6 @@ jobs:
       - name: Copy
         run: |
           cmake --install build --prefix builds/libviamsdk-${{ matrix.platform }}
-          cmake --install build --prefix builds/libviamapi-${{ matrix.platform }}
-          cp build/install/lib/libviam_rust_utils.a builds/libviam_rust_utils-${{ matrix.platform }}.a
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
@@ -151,15 +142,11 @@ jobs:
               sudo \
               wget \
 
-          # Add the public key for the llvm repository to get the correct clang version
-          bash -c 'wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -'
-          apt-add-repository -y 'deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-15 main'
-
           sudo wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
           sudo echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null
 
           apt-get update
-          apt-get -y --no-install-recommends install -t llvm-toolchain-jammy-15 clang-15 clang-tidy-15
+          apt-get -y --no-install-recommends install -t clang-15 clang-tidy-15
           apt-get -y install cmake
 
       - name: Setup build directory
@@ -175,8 +162,6 @@ jobs:
       - name: Copy
         run: |
           /usr/bin/cmake --install build --prefix builds/libviamsdk-${{ matrix.platform }}
-          /usr/bin/cmake --install build --prefix builds/libviamapi-${{ matrix.platform }}
-          cp build/install/lib/libviam_rust_utils.a builds/libviam_rust_utils-${{ matrix.platform }}.a
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
@@ -199,22 +184,18 @@ jobs:
             platform: linux_aarch64-debian-bullseye
             image: debian:bullseye
             runs_on: buildjet-8vcpu-ubuntu-2204-arm
-            os: bullseye
           - target: x86_64-debian-bullseye
             platform: linux_x86_64-debian-bullseye
             image: debian:bullseye
             runs_on: buildjet-8vcpu-ubuntu-2204
-            os: bullseye
           - target: aarch64-debian-bookworm
-            platform: linux_aarch64-ubuntu-jammy
+            platform: linux_aarch64-debian-bookworm
             image: debian:bookworm
             runs_on: buildjet-8vcpu-ubuntu-2204-arm
-            os: bookworm
           - target: x86_64-debian-bookworm
-            platform: linux_x86_64-ubuntu-jammy
+            platform: linux_x86_64-debian-bookworm
             image: debian:bookworm
             runs_on: buildjet-8vcpu-ubuntu-2204
-            os: bookworm
 
     steps:
       - name: Checkout Code
@@ -253,17 +234,10 @@ jobs:
               wget \
               zlib1g-dev
 
-          # Add the public key for the llvm repository to get the correct clang version
-          bash -c 'wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -'
-          # For unclear reasons (possibly a debian bug), this install fails initially for
-          # bookworm but succeeds on second try
-          apt-add-repository -y 'deb http://apt.llvm.org/${{ matrix.os }}/ llvm-toolchain-${{ matrix.os }}-15 main'
-          apt-add-repository -y 'deb http://apt.llvm.org/${{ matrix.os }}/ llvm-toolchain-${{ matrix.os }}-15 main'
-
           apt-add-repository -y 'deb http://deb.debian.org/debian bullseye-backports main'
 
           apt-get update
-          apt-get -y --no-install-recommends install -t llvm-toolchain-${{ matrix.os }}-15 clang-15 clang-tidy-15
+          apt-get -y --no-install-recommends install -t clang-15 clang-tidy-15
           apt-get -y install cmake
 
           apt-get -y --no-install-recommends install -t bullseye-backports cmake
@@ -280,8 +254,6 @@ jobs:
       - name: Copy
         run: |
           /usr/bin/cmake --install build --prefix builds/libviamsdk-${{ matrix.platform }}
-          /usr/bin/cmake --install build --prefix builds/libviamapi-${{ matrix.platform }}
-          cp build/install/lib/libviam_rust_utils.a builds/libviam_rust_utils-${{ matrix.platform }}.a
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
