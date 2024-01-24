@@ -74,6 +74,11 @@ jobs:
 
       - name: Build
         run: |
+          # `buf` tries to read a CLI config file that we don't actually use located at
+          # ~/.config/buf/config.yaml. We don't always have permission to access this
+          # directory in CI, so we set the `BUF_CONFIG_DIR` to some other value that we
+          # do have permissions for. See https://github.com/bufbuild/buf/issues/2698 for
+          # more details.
           export BUF_CONFIG_DIR=$(mktemp -d)
           mkdir build
           cmake -S . -B build -G Ninja
@@ -81,7 +86,7 @@ jobs:
 
       - name: Copy
         run: |
-          cmake --install build --prefix builds/libviamsdk-${{ matrix.platform }}
+          cmake --install build --prefix builds/viam-cpp-sdk-${{ matrix.platform }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
@@ -146,7 +151,6 @@ jobs:
           sudo echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null
 
           apt-get update
-          apt-get -y --no-install-recommends install -t clang-15 clang-tidy-15
           apt-get -y install cmake
 
       - name: Setup build directory
@@ -161,7 +165,7 @@ jobs:
 
       - name: Copy
         run: |
-          /usr/bin/cmake --install build --prefix builds/libviamsdk-${{ matrix.platform }}
+          /usr/bin/cmake --install build --prefix builds/viam-cpp-sdk-${{ matrix.platform }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
@@ -237,7 +241,6 @@ jobs:
           apt-add-repository -y 'deb http://deb.debian.org/debian bullseye-backports main'
 
           apt-get update
-          apt-get -y --no-install-recommends install -t clang-15 clang-tidy-15
           apt-get -y install cmake
 
           apt-get -y --no-install-recommends install -t bullseye-backports cmake
@@ -253,7 +256,7 @@ jobs:
 
       - name: Copy
         run: |
-          /usr/bin/cmake --install build --prefix builds/libviamsdk-${{ matrix.platform }}
+          /usr/bin/cmake --install build --prefix builds/viam-cpp-sdk-${{ matrix.platform }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
