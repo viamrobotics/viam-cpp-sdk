@@ -101,7 +101,94 @@ jobs:
           name: builds
           path: builds
 
-  build_linux:
+  build_linux_ubuntu_jammy:
+    if: github.repository_owner == 'viamrobotics'
+    needs: [prepare]
+    runs-on:  ${{ matrix.runs_on }}
+    container:
+      image: ${{ matrix.image }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: aarch64-ubuntu-jammy-gnu
+            platform: linux_aarch64-ubuntu-jammy
+            image: ubuntu:22.04
+            runs_on: buildjet-8vcpu-ubuntu-2204-arm
+          - target: x86_64-ubuntu-jammy-gnu
+            platform: linux_x86_64-ubuntu-jammy
+            image: ubuntu:22.04
+            runs_on: buildjet-8vcpu-ubuntu-2204
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.prepare.outputs.sha }}
+
+      - name: Install dependencies
+        run: |
+          apt-get update
+          apt-get -y dist-upgrade
+          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
+              build-essential \
+              ca-certificates \
+              curl \
+              doxygen \
+              g++ \
+              gdb \
+              git \
+              gnupg \
+              gpg \
+              less \
+              libabsl-dev \
+              libboost-all-dev \
+              libgrpc++-dev \
+              libprotobuf-dev \
+              libssl-dev \
+              ninja-build \
+              pkg-config \
+              protobuf-compiler \
+              protobuf-compiler-grpc \
+              software-properties-common \
+              sudo \
+              wget \
+
+          # Add the public key for the llvm repository to get the correct clang version
+          bash -c 'wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -'
+          apt-add-repository -y 'deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-15 main'
+
+          sudo wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
+          sudo echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null
+
+          apt-get update
+          apt-get -y --no-install-recommends install -t llvm-toolchain-jammy-15 clang-15 clang-tidy-15
+          apt-get -y install cmake
+
+      - name: Setup build directory
+        run: mkdir builds
+
+      - name: Build
+        shell: bash
+        run: |
+          mkdir build
+          /usr/bin/cmake -S . -B build -G Ninja
+          /usr/bin/cmake --build build --target all install -- -v -j 3
+
+      - name: Copy
+        run: |
+          /usr/bin/cmake --install build --prefix builds/libviamsdk-${{ matrix.platform }}
+          /usr/bin/cmake --install build --prefix builds/libviamapi-${{ matrix.platform }}
+          cp build/install/lib/libviam_rust_utils.a builds/libviam_rust_utils-${{ matrix.platform }}.a
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: builds
+          path: builds
+
+
+  build_linux_debian:
     if: github.repository_owner == 'viamrobotics'
     needs: [prepare]
     runs-on:  ${{ matrix.runs_on }}
@@ -132,27 +219,6 @@ jobs:
             runs_on: buildjet-8vcpu-ubuntu-2204
             os: bookworm
 
-              ## CR erodkin: set aside for now so we can focus on getting debian builds working
-          - target: aarch64-ubuntu-jammy-gnu
-            platform: linux_aarch64-ubuntu-jammy
-            image: ubuntu:22.04
-            runs_on: buildjet-8vcpu-ubuntu-2204-arm
-            os: jammy
-          - target: x86_64-ubuntu-jammy-gnu
-            platform: linux_x86_64-ubuntu-jammy
-            image: ubuntu:22.04
-            runs_on: buildjet-8vcpu-ubuntu-2204
-            os: jammy
-
-              ## CR erodkin: old, probably should delete all this
-          #- target: x86_64-unknown-linux-gnu
-            #platform: linux_x86_64
-            #image: ghcr.io/cross-rs/x86_64-unknown-linux-gnu:main
-            #runs_on: buildjet-4vcpu-ubuntu-2204
-          #- target: arm-unknown-linux-gnueabihf
-            #platform: linux_armv6l
-            #image: ghcr.io/cross-rs/arm-unknown-linux-gnueabihf:main
-            #runs_on: buildjet-4vcpu-ubuntu-2204
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -197,39 +263,11 @@ jobs:
 
           apt-add-repository -y 'deb http://deb.debian.org/debian bullseye-backports main'
 
-          # CR erodkin: (used for ubuntu but maybe not debian)
-          # Add public key and repository to get cmake 3.25+
-          sudo wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
-          sudo echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null
-          #wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - > /usr/share/keyrings/kitware-archive-keyring.gpg
-          #echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ focal main' > /etc/apt/sources.list.d/kitware.list
-
           apt-get update
           apt-get -y --no-install-recommends install -t llvm-toolchain-${{ matrix.os }}-15 clang-15 clang-tidy-15
           apt-get -y install cmake
 
           apt-get -y --no-install-recommends install -t bullseye-backports cmake
-          #mkdir -p ${HOME}/opt/src
-          #cd ${HOME}/opt/src && \
-            #git clone --recurse-submodules -b v1.52.0 --depth 1 --shallow-submodules https://github.com/grpc/grpc && \
-            #cd grpc && \
-            #mkdir -p build && \
-            #cd build && \
-            #cmake .. -G Ninja \
-                #-DgRPC_ZLIB_PROVIDER=package \
-                #-DgRPC_CARES_PROVIDER=package \
-                #-DgRPC_RE2_PROVIDER=package \
-                #-DgRPC_SSL_PROVIDER=package \
-                #-DgRPC_INSTALL=ON \
-                #-DgRPC_BUILD_TESTS=OFF \
-                #-DBUILD_SHARED_LIBS=ON \
-                #-DCMAKE_BUILD_TYPE=RelWithDebInfo \
-                #-DCMAKE_INSTALL_PREFIX=/usr/local \
-                #-DCMAKE_INSTALL_RPATH=/usr/local/lib && \
-            #ninja install && \
-            #cd .. && \
-            #rm -rf build
-
       - name: Setup build directory
         run: mkdir builds
 
@@ -253,7 +291,7 @@ jobs:
           path: builds
 
   release:
-    needs: [prepare, build_macos, build_linux]
+    needs: [prepare, build_macos, build_linux_debian, build_linux_ubuntu_jammy]
     if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
 
@@ -263,7 +301,7 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v${{ needs.prepare.outputs.version }}
+          tag_name: releases/v${{ needs.prepare.outputs.version }}
           files: builds/*
           draft: true
           prerelease: false
