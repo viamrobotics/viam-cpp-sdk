@@ -14,18 +14,19 @@
 namespace viam {
 namespace sdk {
 
-GenericClient::GenericClient(std::string name, std::shared_ptr<grpc::Channel> channel)
-    : Generic(std::move(name)),
+GenericComponentClient::GenericComponentClient(std::string name,
+                                               std::shared_ptr<grpc::Channel> channel)
+    : GenericComponent(std::move(name)),
       stub_(viam::component::generic::v1::GenericService::NewStub(channel)),
       channel_(std::move(channel)){};
 
-AttributeMap GenericClient::do_command(AttributeMap command) {
+AttributeMap GenericComponentClient::do_command(AttributeMap command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
         .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
         .invoke([](auto& response) { return struct_to_map(response.result()); });
 }
 
-std::vector<GeometryConfig> GenericClient::get_geometries(const AttributeMap& extra) {
+std::vector<GeometryConfig> GenericComponentClient::get_geometries(const AttributeMap& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
         .invoke([](auto& response) { return GeometryConfig::from_proto(response); });

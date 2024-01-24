@@ -1,6 +1,6 @@
 /// @file components/generic/client.hpp
 ///
-/// @brief Implements a gRPC client for the `Generic` component.
+/// @brief Implements a gRPC client for the `GenericComponent`.
 #pragma once
 
 #include <grpcpp/channel.h>
@@ -13,12 +13,12 @@
 namespace viam {
 namespace sdk {
 
-/// @class GenericClient
-/// @brief gRPC client implementation of a `Generic` component.
-/// @ingroup Generic
-class GenericClient : public Generic {
+/// @class GenericComponentClient
+/// @brief gRPC client implementation of a `GenericComponent`.
+/// @ingroup GenericComponent
+class GenericComponentClient : public GenericComponent {
    public:
-    GenericClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+    GenericComponentClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     AttributeMap do_command(AttributeMap command) override;
     std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
 
@@ -26,9 +26,10 @@ class GenericClient : public Generic {
     // This constructor leaves the `channel_` as a nullptr. This is useful for testing
     // purposes, but renders it unusable for production use. Care should be taken to
     // avoid use of this constructor outside of tests.
-    GenericClient(std::string name,
-                  std::unique_ptr<viam::component::generic::v1::GenericService::StubInterface> stub)
-        : Generic(std::move(name)), stub_(std::move(stub)){};
+    GenericComponentClient(
+        std::string name,
+        std::unique_ptr<viam::component::generic::v1::GenericService::StubInterface> stub)
+        : GenericComponent(std::move(name)), stub_(std::move(stub)){};
 
    private:
     using StubType = viam::component::generic::v1::GenericService::StubInterface;
