@@ -96,6 +96,9 @@ target_sources(viamsdk
     robot/service.cpp
     rpc/dial.cpp
     rpc/server.cpp
+    services/generic/client.cpp
+    services/generic/generic.cpp
+    services/generic/server.cpp
     services/mlmodel/client.cpp
     services/mlmodel/mlmodel.cpp
     services/mlmodel/private/proto.cpp
@@ -165,6 +168,9 @@ target_sources(viamsdk
       ../../viam/sdk/robot/service.hpp
       ../../viam/sdk/rpc/dial.hpp
       ../../viam/sdk/rpc/server.hpp
+      ../../viam/sdk/services/generic/client.hpp
+      ../../viam/sdk/services/generic/generic.hpp
+      ../../viam/sdk/services/generic/server.hpp
       ../../viam/sdk/services/mlmodel/client.hpp
       ../../viam/sdk/services/mlmodel/mlmodel.hpp
       ../../viam/sdk/services/mlmodel/server.hpp
