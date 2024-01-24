@@ -193,6 +193,7 @@ jobs:
           apt-add-repository -y 'deb http://apt.llvm.org/${{ matrix.os }}/ llvm-toolchain-${{ matrix.os }}-15 main'
           apt-add-repository -y 'deb http://apt.llvm.org/${{ matrix.os }}/ llvm-toolchain-${{ matrix.os }}-15 main'
 
+          apt-add-repository -y 'deb http://deb.debian.org/debian bullseye-backports main'
 
           # CR erodkin: (used for ubuntu but maybe not debian)
           # Add public key and repository to get cmake 3.25+
@@ -203,6 +204,7 @@ jobs:
           apt-get -y --no-install-recommends install -t llvm-toolchain-${{ matrix.os }}-15 clang-15 clang-tidy-15
           apt-get -y install cmake
 
+          apt-get -y --no-install-recommends install -t bullseye-backports cmake
           #mkdir -p ${HOME}/opt/src
           #cd ${HOME}/opt/src && \
             #git clone --recurse-submodules -b v1.52.0 --depth 1 --shallow-submodules https://github.com/grpc/grpc && \
@@ -223,13 +225,6 @@ jobs:
             #ninja install && \
             #cd .. && \
             #rm -rf build
-
-      - name: Install cmake
-        if: ${{ matrix.os }} == 'bullseye'
-        run: |
-          apt-add-repository -y 'deb http://apt.llvm.org/${{ matrix.os }}/ llvm-toolchain-${{ matrix.os }}-15 main'
-          apt-add-repository -y 'deb http://deb.debian.org/debian bullseye-backports main'
-          apt-get -y --no-install-recommends install -t bullseye-backports cmake
 
       - name: Setup build directory
         run: mkdir builds
