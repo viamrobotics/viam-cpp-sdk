@@ -42,7 +42,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          releaseName: v${{ steps.which_version.outputs.version }}
+          releaseName: releases/v${{ steps.which_version.outputs.version }}
           doNotFailIfNotFound: 'true'
 
       - name: Cancelling - release already exists
@@ -91,13 +91,9 @@ jobs:
 
       - name: Copy
         run: |
-          cp build/install/lib/libviam_rust_utils.a builds/libviam_rust_utils-${{ matrix.platform }}.a
-          cp build/install/lib/libviamsdk.${{ needs.prepare.outputs.version }}.dylib builds/libviamsdk-${{ matrix.platform }}.dylib
-          cp build/install/lib/libviamapi.${{ needs.prepare.outputs.version }}.dylib builds/libviamapi-${{ matrix.platform }}.dylib
-      - name: Correct install path
-        run: |
           cmake --install build --prefix builds/libviamsdk-${{ matrix.platform }}
           cmake --install build --prefix builds/libviamapi-${{ matrix.platform }}
+          cp build/install/lib/libviam_rust_utils.a builds/libviam_rust_utils-${{ matrix.platform }}.a
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
@@ -115,18 +111,38 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - target: aarch64-unknown-linux-gnu
-            platform: linux_aarch64
-            image: ubuntu:20.04
+          - target: aarch64-debian-bullseye
+            platform: linux_aarch64-debian-bullseye
+            image: debian:bullseye
             runs_on: buildjet-8vcpu-ubuntu-2204-arm
-          - target: x86_64-unknown-linux-gnu
-            platform: linux_x86_64
-            image: ghcr.io/cross-rs/x86_64-unknown-linux-gnu:main
-            runs_on: buildjet-4vcpu-ubuntu-2204
-          - target: arm-unknown-linux-gnueabihf
-            platform: linux_armv6l
-            image: ghcr.io/cross-rs/arm-unknown-linux-gnueabihf:main
-            runs_on: buildjet-4vcpu-ubuntu-2204
+          - target: x86_64-debian-bullseye
+            platform: linux_x86_64-debian-bullseye
+            image: debian:bullseye
+            runs_on: buildjet-8vcpu-ubuntu-2204
+          - target: aarch64-debian-bookworm
+            platform: linux_aarch64-ubuntu-jammy
+            image: debian:bookworm
+            runs_on: buildjet-8vcpu-ubuntu-2204-arm
+          - target: x86_64-debian-bookworm
+            platform: linux_x86_64-ubuntu-jammy
+            image: debian:bookworm
+            runs_on: buildjet-8vcpu-ubuntu-2204
+          - target: aarch64-ubuntu-jammy-gnu
+            platform: linux_aarch64-ubuntu-jammy
+            image: ubuntu:22.04
+            runs_on: buildjet-8vcpu-ubuntu-2204-arm
+          - target: x86_64-ubuntu-jammy-gnu
+            platform: linux_x86_64-ubuntu-jammy
+            image: ubuntu:22.04
+            runs_on: buildjet-8vcpu-ubuntu-2204
+          #- target: x86_64-unknown-linux-gnu
+            #platform: linux_x86_64
+            #image: ghcr.io/cross-rs/x86_64-unknown-linux-gnu:main
+            #runs_on: buildjet-4vcpu-ubuntu-2204
+          #- target: arm-unknown-linux-gnueabihf
+            #platform: linux_armv6l
+            #image: ghcr.io/cross-rs/arm-unknown-linux-gnueabihf:main
+            #runs_on: buildjet-4vcpu-ubuntu-2204
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -150,6 +166,7 @@ jobs:
               less \
               libboost-all-dev \
               libc-ares-dev \
+              libgrpc++-dev \
               libre2-dev \
               libssl-dev \
               ninja-build \
@@ -171,26 +188,26 @@ jobs:
           apt-get -y --no-install-recommends install -t llvm-toolchain-focal-15 clang-15 clang-tidy-15
           apt-get -y install cmake
 
-          mkdir -p ${HOME}/opt/src
-          cd ${HOME}/opt/src && \
-            git clone --recurse-submodules -b v1.52.0 --depth 1 --shallow-submodules https://github.com/grpc/grpc && \
-            cd grpc && \
-            mkdir -p build && \
-            cd build && \
-            cmake .. -G Ninja \
-                -DgRPC_ZLIB_PROVIDER=package \
-                -DgRPC_CARES_PROVIDER=package \
-                -DgRPC_RE2_PROVIDER=package \
-                -DgRPC_SSL_PROVIDER=package \
-                -DgRPC_INSTALL=ON \
-                -DgRPC_BUILD_TESTS=OFF \
-                -DBUILD_SHARED_LIBS=ON \
-                -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-                -DCMAKE_INSTALL_PREFIX=/usr/local \
-                -DCMAKE_INSTALL_RPATH=/usr/local/lib && \
-            ninja install && \
-            cd .. && \
-            rm -rf build
+          #mkdir -p ${HOME}/opt/src
+          #cd ${HOME}/opt/src && \
+            #git clone --recurse-submodules -b v1.52.0 --depth 1 --shallow-submodules https://github.com/grpc/grpc && \
+            #cd grpc && \
+            #mkdir -p build && \
+            #cd build && \
+            #cmake .. -G Ninja \
+                #-DgRPC_ZLIB_PROVIDER=package \
+                #-DgRPC_CARES_PROVIDER=package \
+                #-DgRPC_RE2_PROVIDER=package \
+                #-DgRPC_SSL_PROVIDER=package \
+                #-DgRPC_INSTALL=ON \
+                #-DgRPC_BUILD_TESTS=OFF \
+                #-DBUILD_SHARED_LIBS=ON \
+                #-DCMAKE_BUILD_TYPE=RelWithDebInfo \
+                #-DCMAKE_INSTALL_PREFIX=/usr/local \
+                #-DCMAKE_INSTALL_RPATH=/usr/local/lib && \
+            #ninja install && \
+            #cd .. && \
+            #rm -rf build
 
       - name: Setup build directory
         run: mkdir builds
@@ -204,13 +221,9 @@ jobs:
 
       - name: Copy
         run: |
-          cp build/install/lib/libviam_rust_utils.a builds/libviam_rust_utils-${{ matrix.platform }}.a
-          cp build/install/lib/libviamapi.so.${{ needs.prepare.outputs.version }} builds/libviamapi-${{ matrix.platform }}.so
-          cp build/install/lib/libviamsdk.so.${{ needs.prepare.outputs.version }} builds/libviamsdk-${{ matrix.platform }}.so
-      - name: Correct install path
-        run: |
           /usr/bin/cmake --install build --prefix builds/libviamsdk-${{ matrix.platform }}
           /usr/bin/cmake --install build --prefix builds/libviamapi-${{ matrix.platform }}
+          cp build/install/lib/libviam_rust_utils.a builds/libviam_rust_utils-${{ matrix.platform }}.a
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
