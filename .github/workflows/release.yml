@@ -191,6 +191,7 @@ jobs:
           # Add the public key for the llvm repository to get the correct clang version
           bash -c 'wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -'
           apt-add-repository -y 'deb http://apt.llvm.org/${{ matrix.os }}/ llvm-toolchain-${{ matrix.os }}-15 main'
+          apt-add-repository -y 'deb http://apt.llvm.org/${{ matrix.os }}/ llvm-toolchain-${{ matrix.os }}-15 main'
 
 
           # CR erodkin: (used for ubuntu but maybe not debian)
@@ -226,6 +227,7 @@ jobs:
       - name: Install cmake
         if: ${{ matrix.os }} == 'bullseye'
         run: |
+          apt-add-repository -y 'deb http://apt.llvm.org/${{ matrix.os }}/ llvm-toolchain-${{ matrix.os }}-15 main'
           apt-add-repository -y 'deb http://deb.debian.org/debian bullseye-backports main'
           apt-get -y --no-install-recommends install -t bullseye-backports cmake
 
