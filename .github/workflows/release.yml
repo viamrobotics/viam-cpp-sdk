@@ -1,8 +1,5 @@
 name: Build + draft release
 
-# CR erodkin: delete me before merging
-on: pull_request
-
 # (erodkin) this is needed to create the release, per https://github.com/softprops/action-gh-release/issues/236
 permissions:
   contents: write
@@ -258,6 +255,8 @@ jobs:
 
           # Add the public key for the llvm repository to get the correct clang version
           bash -c 'wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -'
+          # For unclear reasons (possibly a debian bug), this install fails initially for
+          # bookworm but succeeds on second try
           apt-add-repository -y 'deb http://apt.llvm.org/${{ matrix.os }}/ llvm-toolchain-${{ matrix.os }}-15 main'
           apt-add-repository -y 'deb http://apt.llvm.org/${{ matrix.os }}/ llvm-toolchain-${{ matrix.os }}-15 main'
 
