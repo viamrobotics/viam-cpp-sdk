@@ -41,8 +41,6 @@ namespace sdk {
 
 using google::protobuf::RepeatedPtrField;
 using viam::common::v1::ResourceName;
-using viam::robot::v1::Discovery;
-using viam::robot::v1::DiscoveryQuery;
 using viam::robot::v1::FrameSystemConfig;
 using viam::robot::v1::Operation;
 using viam::robot::v1::RobotService;
@@ -54,6 +52,34 @@ using viam::robot::v1::Status;
 // error on the C++ side.
 // NOLINTNEXTLINE
 const std::string kStreamRemoved("Stream removed");
+
+viam::robot::v1::DiscoveryQuery discoveryQuery::to_proto() const {
+    viam::robot::v1::DiscoveryQuery proto;
+    *proto.mutable_subtype() = subtype;
+    *proto.mutable_model() = std::move(model);
+    return proto;
+}
+
+discoveryQuery discoveryQuery::from_proto(const viam::robot::v1::DiscoveryQuery& proto) {
+    discoveryQuery query;
+    query.subtype = proto.subtype();
+    query.model = proto.model();
+    return query;
+}
+
+viam::robot::v1::Discovery discovery::to_proto() const {
+    viam::robot::v1::Discovery proto;
+    *proto.mutable_query() = query.to_proto();
+    *proto.mutable_results() = map_to_struct(results);
+    return proto;
+}
+
+discovery discovery::from_proto(const viam::robot::v1::Discovery& proto) {
+    discovery discovery;
+    discovery.query = discoveryQuery::from_proto(proto.query());
+    discovery.results = struct_to_map(proto.results());
+    return discovery;
+}
 
 RobotClient::~RobotClient() {
     if (should_close_channel_) {
@@ -327,15 +353,15 @@ pose_in_frame RobotClient::transform_pose(pose_in_frame query,
     return pose_in_frame::from_proto(resp.pose());
 }
 
-std::vector<Discovery> RobotClient::discover_components(std::vector<DiscoveryQuery> queries) {
+std::vector<discovery> RobotClient::discover_components(std::vector<discoveryQuery> queries) {
     viam::robot::v1::DiscoverComponentsRequest req;
     viam::robot::v1::DiscoverComponentsResponse resp;
     ClientContext ctx;
 
-    RepeatedPtrField<DiscoveryQuery>* req_queries = req.mutable_queries();
+    RepeatedPtrField<viam::robot::v1::DiscoveryQuery>* req_queries = req.mutable_queries();
 
-    for (const DiscoveryQuery& query : queries) {
-        *req_queries->Add() = query;
+    for (const discoveryQuery& query : queries) {
+        *req_queries->Add() = query.to_proto();
     }
 
     const grpc::Status response = stub_->DiscoverComponents(ctx, req, &resp);
@@ -343,10 +369,10 @@ std::vector<Discovery> RobotClient::discover_components(std::vector<DiscoveryQue
         BOOST_LOG_TRIVIAL(error) << "Error discovering components: " << response.error_message();
     }
 
-    std::vector<Discovery> components = std::vector<Discovery>();
+    std::vector<discovery> components = std::vector<discovery>();
 
-    for (const Discovery& d : resp.discovery()) {
-        components.push_back(d);
+    for (const viam::robot::v1::Discovery& d : resp.discovery()) {
+        components.push_back(discovery::from_proto(d));
     }
 
     return components;

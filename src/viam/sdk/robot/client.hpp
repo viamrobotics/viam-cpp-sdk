@@ -30,6 +30,24 @@ using viam::robot::v1::FrameSystemConfig;
 using viam::robot::v1::RobotService;
 using viam::robot::v1::Status;
 
+struct discoveryQuery {
+    discoveryQuery(){};
+    viam::robot::v1::DiscoveryQuery to_proto() const;
+    static discoveryQuery from_proto(const viam::robot::v1::DiscoveryQuery& proto);
+    std::string subtype;
+    std::string model;
+    friend bool operator==(const discoveryQuery& lhs, const discoveryQuery& rhs);
+};
+
+struct discovery {
+    discovery(){};
+    viam::robot::v1::Discovery to_proto() const;
+    static discovery from_proto(const viam::robot::v1::Discovery& proto);
+    discoveryQuery query;
+    AttributeMap results;
+    friend bool operator==(const discovery& lhs, const discovery& rhs);
+};
+
 // TODO(RSDK-1742) replace all `ResourceName` references in API with `Name`
 /// @defgroup Robot Classes related to a Robot representation.
 
@@ -119,8 +137,7 @@ class RobotClient {
     /// @return A list of statuses.
     std::vector<Status> get_status();
 
-    std::vector<viam::robot::v1::Discovery> discover_components(
-        std::vector<viam::robot::v1::DiscoveryQuery> queries);
+    std::vector<discovery> discover_components(std::vector<discoveryQuery> queries);
 
     /// @brief Transform a given `Pose` to a new specified destination which is a reference frame.
     /// @param query The pose that should be transformed.
