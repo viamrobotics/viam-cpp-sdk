@@ -168,10 +168,12 @@ jobs:
               libboost-all-dev \
               libc-ares-dev \
               libgrpc++-dev \
+              libprotobuf-dev \
               libre2-dev \
               libssl-dev \
               ninja-build \
               pkg-config \
+              protobuf-compiler-grpc \
               software-properties-common \
               sudo \
               wget \
