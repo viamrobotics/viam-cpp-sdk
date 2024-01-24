@@ -133,14 +133,16 @@ jobs:
             os: bookworm
 
               ## CR erodkin: set aside for now so we can focus on getting debian builds working
-          #- target: aarch64-ubuntu-jammy-gnu
-            #platform: linux_aarch64-ubuntu-jammy
-            #image: ubuntu:22.04
-            #runs_on: buildjet-8vcpu-ubuntu-2204-arm
-          #- target: x86_64-ubuntu-jammy-gnu
-            #platform: linux_x86_64-ubuntu-jammy
-            #image: ubuntu:22.04
-            #runs_on: buildjet-8vcpu-ubuntu-2204
+          - target: aarch64-ubuntu-jammy-gnu
+            platform: linux_aarch64-ubuntu-jammy
+            image: ubuntu:22.04
+            runs_on: buildjet-8vcpu-ubuntu-2204-arm
+            os: jammy
+          - target: x86_64-ubuntu-jammy-gnu
+            platform: linux_x86_64-ubuntu-jammy
+            image: ubuntu:22.04
+            runs_on: buildjet-8vcpu-ubuntu-2204
+            os: jammy
 
               ## CR erodkin: old, probably should delete all this
           #- target: x86_64-unknown-linux-gnu
@@ -156,6 +158,15 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ needs.prepare.outputs.sha }}
+
+      - name: CMake installs
+        if: ${{ matrix.os }} == 'jammy'
+        run: |
+          # Add public key and repository to get cmake 3.25+
+          apt-get -y --no-install-recommends install wget gpg
+          wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - > /usr/share/keyrings/kitware-archive-keyring.gpg
+          echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ focal main' > /etc/apt/sources.list.d/kitware.list
+          apt-get update
 
       - name: Install dependencies
         run: |
