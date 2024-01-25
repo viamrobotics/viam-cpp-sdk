@@ -1,7 +1,6 @@
 name: Build + draft release
 
-on:
-  workflow_dispatch:
+on: pull_request
 
 # (erodkin) this is needed to create the release, per https://github.com/softprops/action-gh-release/issues/236
 permissions:
@@ -241,12 +240,16 @@ jobs:
               wget \
               zlib1g-dev
 
+      - name: Update CMake for bullseye
+        if: ${{ matrix.image }} == debian:bookworm
+        run: |
           apt-add-repository -y 'deb http://deb.debian.org/debian bullseye-backports main'
 
           apt-get update
           apt-get -y install cmake
 
           apt-get -y --no-install-recommends install -t bullseye-backports cmake
+
       - name: Setup build directory
         run: mkdir builds
 
