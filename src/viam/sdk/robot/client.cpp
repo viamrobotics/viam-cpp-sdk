@@ -41,7 +41,6 @@ namespace sdk {
 
 using google::protobuf::RepeatedPtrField;
 using viam::common::v1::ResourceName;
-using viam::robot::v1::FrameSystemConfig;
 using viam::robot::v1::Operation;
 using viam::robot::v1::RobotService;
 using viam::robot::v1::Status;
@@ -79,6 +78,16 @@ discovery discovery::from_proto(const viam::robot::v1::Discovery& proto) {
     discovery.query = discoveryQuery::from_proto(proto.query());
     discovery.results = struct_to_map(proto.results());
     return discovery;
+}
+
+viam::robot::v1::FrameSystemConfig frameSystemConfig::to_proto() const {
+    viam::robot::v1::FrameSystemConfig proto;
+    *proto.mutable_frame() = frame.to_proto();
+    return proto;
+}
+
+frameSystemConfig frameSystemConfig::from_proto(const viam::robot::v1::FrameSystemConfig& proto) {
+    return frameSystemConfig(WorldState::transform::from_proto(proto.frame()));
 }
 
 RobotClient::~RobotClient() {
@@ -300,15 +309,15 @@ std::shared_ptr<RobotClient> RobotClient::at_local_socket(std::string address, O
     return robot;
 };
 
-std::vector<FrameSystemConfig> RobotClient::get_frame_system_config(
-    std::vector<transform> additional_transforms) {
+std::vector<frameSystemConfig> RobotClient::get_frame_system_config(
+    std::vector<WorldState::transform> additional_transforms) {
     viam::robot::v1::FrameSystemConfigRequest req;
     viam::robot::v1::FrameSystemConfigResponse resp;
     ClientContext ctx;
 
     RepeatedPtrField<viam::common::v1::Transform>* req_transforms =
         req.mutable_supplemental_transforms();
-    for (const transform& transform : additional_transforms) {
+    for (const WorldState::transform& transform : additional_transforms) {
         *req_transforms->Add() = transform.to_proto();
     }
 
@@ -318,20 +327,22 @@ std::vector<FrameSystemConfig> RobotClient::get_frame_system_config(
                                  << response.error_message();
     }
 
-    const RepeatedPtrField<FrameSystemConfig> configs = resp.frame_system_configs();
+    const RepeatedPtrField<viam::robot::v1::FrameSystemConfig> configs =
+        resp.frame_system_configs();
 
-    std::vector<FrameSystemConfig> fs_configs = std::vector<FrameSystemConfig>();
+    std::vector<frameSystemConfig> fs_configs = std::vector<frameSystemConfig>();
 
-    for (const FrameSystemConfig& fs : configs) {
-        fs_configs.push_back(fs);
+    for (const viam::robot::v1::FrameSystemConfig& fs : configs) {
+        fs_configs.push_back(frameSystemConfig::from_proto(fs));
     }
 
     return fs_configs;
 }
 
-pose_in_frame RobotClient::transform_pose(pose_in_frame query,
-                                          std::string destination,
-                                          std::vector<transform> additional_transforms) {
+pose_in_frame RobotClient::transform_pose(
+    pose_in_frame query,
+    std::string destination,
+    std::vector<WorldState::transform> additional_transforms) {
     viam::robot::v1::TransformPoseRequest req;
     viam::robot::v1::TransformPoseResponse resp;
     ClientContext ctx;
@@ -341,7 +352,7 @@ pose_in_frame RobotClient::transform_pose(pose_in_frame query,
     RepeatedPtrField<viam::common::v1::Transform>* req_transforms =
         req.mutable_supplemental_transforms();
 
-    for (const transform& transform : additional_transforms) {
+    for (const WorldState::transform& transform : additional_transforms) {
         *req_transforms->Add() = transform.to_proto();
     }
 

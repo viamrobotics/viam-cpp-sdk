@@ -13,8 +13,8 @@
 #include <viam/api/robot/v1/robot.pb.h>
 
 #include <viam/sdk/common/pose.hpp>
-#include <viam/sdk/common/transform.hpp>
 #include <viam/sdk/common/utils.hpp>
+#include <viam/sdk/common/world_state.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
@@ -26,7 +26,6 @@ namespace sdk {
 
 using grpc::Channel;
 using viam::common::v1::ResourceName;
-using viam::robot::v1::FrameSystemConfig;
 using viam::robot::v1::RobotService;
 using viam::robot::v1::Status;
 
@@ -46,6 +45,14 @@ struct discovery {
     discoveryQuery query;
     AttributeMap results;
     friend bool operator==(const discovery& lhs, const discovery& rhs);
+};
+
+struct frameSystemConfig {
+    viam::robot::v1::FrameSystemConfig to_proto() const;
+    static frameSystemConfig from_proto(const viam::robot::v1::FrameSystemConfig& proto);
+    frameSystemConfig(WorldState::transform frame) : frame(std::move(frame)){};
+
+    WorldState::transform frame;
 };
 
 // TODO(RSDK-1742) replace all `ResourceName` references in API with `Name`
@@ -121,8 +128,9 @@ class RobotClient {
 
     /// @brief Get the configuration of the frame system of the given robot.
     /// @return The configuration of the calling robot's frame system.
-    std::vector<FrameSystemConfig> get_frame_system_config(
-        std::vector<transform> additional_transforms = std::vector<transform>());
+    std::vector<frameSystemConfig> get_frame_system_config(
+        std::vector<WorldState::transform> additional_transforms =
+            std::vector<WorldState::transform>());
 
     /// @brief Get the list of operations currently running on a robot.
     /// @return The list of operations currently running on the calling robot.
@@ -143,10 +151,10 @@ class RobotClient {
     /// @param query The pose that should be transformed.
     /// @param destination The name of the reference frame to transform the given pose to.
     /// @return the `pose_in_frame` of the transformed pose.
-    pose_in_frame transform_pose(
-        pose_in_frame query,
-        std::string destination,
-        std::vector<transform> additional_transforms = std::vector<transform>());
+    pose_in_frame transform_pose(pose_in_frame query,
+                                 std::string destination,
+                                 std::vector<WorldState::transform> additional_transforms =
+                                     std::vector<WorldState::transform>());
 
     /// @brief Blocks on the specified operation of the robot, returning when it is complete.
     /// @param id The ID of the operation to block on.

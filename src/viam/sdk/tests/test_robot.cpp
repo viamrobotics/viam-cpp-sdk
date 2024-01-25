@@ -152,7 +152,13 @@ BOOST_AUTO_TEST_CASE(test_get_frame_system_config) {
             auto mock_fs_config = mock_config_response();
             auto fs_config = client->get_frame_system_config();
 
-            BOOST_TEST(vec_to_string_util(mock_fs_config) == vec_to_string_util(fs_config),
+            std::vector<viam::robot::v1::FrameSystemConfig> fs_config_proto =
+                std::vector<viam::robot::v1::FrameSystemConfig>();
+            for (const frameSystemConfig& f : fs_config) {
+                fs_config_proto.push_back(f.to_proto());
+            }
+
+            BOOST_TEST(vec_to_string_util(mock_fs_config) == vec_to_string_util(fs_config_proto),
                        boost::test_tools::per_element());
         });
 }

@@ -109,8 +109,8 @@ std::vector<ResourceName> mock_resource_names_response() {
     return vec;
 }
 
-std::vector<FrameSystemConfig> mock_config_response() {
-    FrameSystemConfig config;
+std::vector<viam::robot::v1::FrameSystemConfig> mock_config_response() {
+    viam::robot::v1::FrameSystemConfig config;
     common::v1::Transform t;
     *t.mutable_reference_frame() = "some-reference-frame";
     viam::common::v1::Pose pose = default_pose();
@@ -126,7 +126,7 @@ std::vector<FrameSystemConfig> mock_config_response() {
     s.mutable_fields()->insert(pair);
     *config.mutable_kinematics() = s;
 
-    FrameSystemConfig config1;
+    viam::robot::v1::FrameSystemConfig config1;
     common::v1::Transform t1;
     *t1.mutable_reference_frame() = "another-reference-frame";
     viam::common::v1::Pose pose1 = default_pose(1);
@@ -142,7 +142,7 @@ std::vector<FrameSystemConfig> mock_config_response() {
     s1.mutable_fields()->insert(pair);
     *config1.mutable_kinematics() = s1;
 
-    std::vector<FrameSystemConfig> response;
+    std::vector<viam::robot::v1::FrameSystemConfig> response;
     response.push_back(config);
     response.push_back(config1);
     return response;
