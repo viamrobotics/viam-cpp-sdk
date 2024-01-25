@@ -41,5 +41,21 @@ LinkConfig LinkConfig::from_proto(viam::app::v1::Frame proto) {
     return lc;
 };
 
+translation LinkConfig::get_translation() const {
+    return translation_;
+}
+
+OrientationConfig LinkConfig::get_orientation_config() const {
+    return orientation_;
+}
+
+GeometryConfig LinkConfig::get_geometry_config() const {
+    return geometry_;
+}
+
+std::string LinkConfig::get_parent() const {
+    return parent_;
+}
+
 }  // namespace sdk
 }  // namespace viam

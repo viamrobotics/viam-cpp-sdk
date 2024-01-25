@@ -24,6 +24,7 @@
 #include <viam/sdk/services/mlmodel/private/proto.hpp>
 #include <viam/sdk/services/mlmodel/server.hpp>
 #include <viam/sdk/tests/mocks/mlmodel_mocks.hpp>
+#include <viam/sdk/tests/test_utils.hpp>
 
 #define BOOST_TEST_MODULE test module test_mlmodel
 #include <boost/test/included/unit_test.hpp>
@@ -176,6 +177,15 @@ const struct MLModelService::metadata test_metadata {
 
 BOOST_AUTO_TEST_SUITE(test_mock_mlmodel)
 
+BOOST_AUTO_TEST_CASE(mock_get_api) {
+    const MockMLModelService mlms("mock_mlms");
+    auto api = mlms.api();
+    auto static_api = API::get<MLModelService>();
+
+    BOOST_CHECK_EQUAL(api, static_api);
+    BOOST_CHECK_EQUAL(static_api.resource_subtype(), "mlmodel");
+}
+
 BOOST_AUTO_TEST_CASE(mock_construction) {
     const std::string mock_name = "mocky mock";
     MockMLModelService mock_mlms(mock_name);
@@ -192,27 +202,10 @@ BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(test_mlmodel_client_server)
 
-template <typename F>
-void client_server_test(std::shared_ptr<MockMLModelService> mock, F&& f) {
-    const auto k_service_name = "mock_mlmodel_service";
-
-    MLModelServiceServer mlmodel_server;
-    mlmodel_server.resource_manager()->add(k_service_name, std::move(mock));
-
-    grpc::ServerBuilder builder;
-    builder.RegisterService(&mlmodel_server);
-    auto server = builder.BuildAndStart();
-
-    MLModelServiceClient client(k_service_name, server->InProcessChannel({}));
-    std::forward<F>(f)(client);
-
-    server->Shutdown();
-}
-
 BOOST_AUTO_TEST_CASE(mock_metadata_grpc_roundtrip) {
     const auto mock = std::make_shared<MockMLModelService>();
     mock->set_metadata(test_metadata);
-    client_server_test(mock, [](auto& client) {
+    client_to_mock_pipeline<MLModelServiceClient>(mock, [](auto& client) {
         const auto returned_metadata = client.metadata();
         BOOST_TEST(test_metadata == returned_metadata);
     });
@@ -294,7 +287,7 @@ BOOST_AUTO_TEST_CASE(mock_infer_grpc_roundtrip) {
         return std::shared_ptr<MLModelService::named_tensor_views>{std::move(output), ntvs};
     });
 
-    client_server_test(mock, [](auto& client) {
+    client_to_mock_pipeline<MLModelServiceClient>(mock, [](auto& client) {
         MLModelService::named_tensor_views request;
 
         std::array<float, 1024> input1_data{};

@@ -9,8 +9,8 @@
 namespace viam {
 namespace sdk {
 
-ServoServer::ServoServer() : ResourceServer(std::make_shared<ResourceManager>()){};
-ServoServer::ServoServer(std::shared_ptr<ResourceManager> manager) : ResourceServer(manager){};
+ServoServer::ServoServer(std::shared_ptr<ResourceManager> manager)
+    : ResourceServer(std::move(manager)){};
 
 ::grpc::Status ServoServer::Move(::grpc::ServerContext* context,
                                  const ::viam::component::servo::v1::MoveRequest* request,
@@ -69,10 +69,6 @@ ServoServer::ServoServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
         const AttributeMap result = servo->do_command(struct_to_map(request->command()));
         *response->mutable_result() = map_to_struct(result);
     });
-}
-
-void ServoServer::register_server(std::shared_ptr<Server> server) {
-    server->register_service(this);
 }
 
 }  // namespace sdk

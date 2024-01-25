@@ -60,5 +60,14 @@ std::vector<GeometryConfig> fake_geometries() {
             std::move(capsule_config)};
 }
 
+TestServer::TestServer(std::shared_ptr<Server> sdk_server) : sdk_server_(sdk_server){};
+
+TestServer::~TestServer() = default;
+
+std::shared_ptr<grpc::Channel> TestServer::grpc_in_process_channel(
+    const grpc::ChannelArguments& args) {
+    return sdk_server_->server_->InProcessChannel(args);
+}
+
 }  // namespace sdktests
 }  // namespace viam

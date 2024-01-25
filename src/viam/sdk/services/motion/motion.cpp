@@ -18,8 +18,10 @@ MotionRegistration::MotionRegistration(
     : ResourceRegistration(service_descriptor){};
 
 std::shared_ptr<ResourceServer> MotionRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager) {
-    return std::make_shared<MotionServer>(manager);
+    std::shared_ptr<ResourceManager> manager, Server& server) {
+    auto ms = std::make_shared<MotionServer>(manager);
+    server.register_service(ms.get());
+    return ms;
 };
 
 std::shared_ptr<Resource> MotionRegistration::create_rpc_client(
@@ -96,12 +98,12 @@ Motion::constraints Motion::constraints::from_proto(const service::motion::v1::C
     return constraints;
 }
 
-API Motion::static_api() {
-    return {kRDK, kService, "motion"};
+API Motion::api() const {
+    return API::get<Motion>();
 }
 
-API Motion::dynamic_api() const {
-    return static_api();
+API API::traits<Motion>::api() {
+    return {kRDK, kService, "motion"};
 }
 
 std::shared_ptr<ResourceRegistration> Motion::resource_registration() {
@@ -435,7 +437,7 @@ service::motion::v1::PlanStatusWithID Motion::plan_status_with_id::to_proto() co
 
 namespace {
 bool init() {
-    Registry::register_resource(Motion::static_api(), Motion::resource_registration());
+    Registry::register_resource(API::get<Motion>(), Motion::resource_registration());
     return true;
 }
 

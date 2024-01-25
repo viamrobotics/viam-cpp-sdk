@@ -85,7 +85,7 @@ class ModuleService : viam::module::v1::ModuleService::Service {
     std::unique_ptr<Module> module_;
     std::shared_ptr<RobotClient> parent_;
     std::string parent_addr_;
-    std::shared_ptr<Server> server_;
+    std::unique_ptr<Server> server_;
     SignalManager signal_manager_;
 };
 

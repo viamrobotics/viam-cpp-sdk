@@ -28,6 +28,15 @@ using namespace viam::sdk;
 
 BOOST_AUTO_TEST_SUITE(test_mock)
 
+BOOST_AUTO_TEST_CASE(mock_get_api) {
+    const MockMotor motor("mock_motor");
+    auto api = motor.api();
+    auto static_api = API::get<Motor>();
+
+    BOOST_CHECK_EQUAL(api, static_api);
+    BOOST_CHECK_EQUAL(static_api.resource_subtype(), "motor");
+}
+
 BOOST_AUTO_TEST_CASE(mock_set_power) {
     std::shared_ptr<MockMotor> motor = MockMotor::get_mock_motor();
     motor->set_power(1.0);
@@ -102,47 +111,9 @@ BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(test_motor_client_server)
 
-// This sets up the following architecture
-// -- MockComponent
-//        /\
-//
-//        | (function calls)
-//
-//        \/
-// -- ComponentServer (Real)
-//        /\
-//
-//        | (grpc InProcessChannel)
-//
-//        \/
-// -- ComponentClient (Real)
-//
-// This is as close to a real setup as we can get
-// without starting another process
-//
-// The passed in lambda function has access to the ComponentClient
-//
-template <typename Lambda>
-void server_to_mock_pipeline(Lambda&& func) {
-    MotorServer motor_server;
-    motor_server.resource_manager()->add(std::string("mock_motor"), MockMotor::get_mock_motor());
-
-    grpc::ServerBuilder builder;
-    builder.RegisterService(&motor_server);
-
-    std::unique_ptr<grpc::Server> server = builder.BuildAndStart();
-
-    grpc::ChannelArguments args;
-    auto grpc_channel = server->InProcessChannel(args);
-    MotorClient client("mock_motor", grpc_channel);
-    // Run the passed test on the created stack
-    std::forward<Lambda>(func)(client);
-    // shutdown afterwards
-    server->Shutdown();
-}
-
 BOOST_AUTO_TEST_CASE(test_set_power) {
-    server_to_mock_pipeline([](Motor& client) -> void {
+    std::shared_ptr<MockMotor> mock = MockMotor::get_mock_motor();
+    client_to_mock_pipeline<MotorClient>(mock, [](Motor& client) {
         client.set_power(1.0);
         BOOST_CHECK(client.get_power_status().power_pct == 1.0);
         client.set_power(0.0);
@@ -155,7 +126,8 @@ BOOST_AUTO_TEST_CASE(test_set_power) {
 }
 
 BOOST_AUTO_TEST_CASE(test_go_for) {
-    server_to_mock_pipeline([](Motor& client) -> void {
+    std::shared_ptr<MockMotor> mock = MockMotor::get_mock_motor();
+    client_to_mock_pipeline<MotorClient>(mock, [](Motor& client) {
         client.go_for(1.0, 1.0);
         BOOST_CHECK(client.get_position() == 1.0);
         client.go_for(1.0, 1.5);
@@ -166,7 +138,8 @@ BOOST_AUTO_TEST_CASE(test_go_for) {
 }
 
 BOOST_AUTO_TEST_CASE(test_go_to) {
-    server_to_mock_pipeline([](Motor& client) -> void {
+    std::shared_ptr<MockMotor> mock = MockMotor::get_mock_motor();
+    client_to_mock_pipeline<MotorClient>(mock, [](Motor& client) {
         client.go_to(1.0, 1.0);
         BOOST_CHECK(client.get_position() == 1.0);
         client.go_to(0.1, -1.0);
@@ -175,7 +148,8 @@ BOOST_AUTO_TEST_CASE(test_go_to) {
 }
 
 BOOST_AUTO_TEST_CASE(test_reset_zero_position) {
-    server_to_mock_pipeline([](Motor& client) -> void {
+    std::shared_ptr<MockMotor> mock = MockMotor::get_mock_motor();
+    client_to_mock_pipeline<MotorClient>(mock, [](Motor& client) {
         client.go_to(1.0, 1.0);
         BOOST_CHECK(client.get_position() == 1.0);
         client.reset_zero_position(1.5);
@@ -184,12 +158,14 @@ BOOST_AUTO_TEST_CASE(test_reset_zero_position) {
 }
 
 BOOST_AUTO_TEST_CASE(test_get_properties) {
-    server_to_mock_pipeline(
-        [](Motor& client) -> void { BOOST_CHECK(client.get_properties().position_reporting); });
+    std::shared_ptr<MockMotor> mock = MockMotor::get_mock_motor();
+    client_to_mock_pipeline<MotorClient>(
+        mock, [](Motor& client) { BOOST_CHECK(client.get_properties().position_reporting); });
 }
 
 BOOST_AUTO_TEST_CASE(test_stop) {
-    server_to_mock_pipeline([](Motor& client) -> void {
+    std::shared_ptr<MockMotor> mock = MockMotor::get_mock_motor();
+    client_to_mock_pipeline<MotorClient>(mock, [](Motor& client) {
         client.set_power(1.0);
         BOOST_CHECK(client.get_power_status().power_pct == 1.0);
         BOOST_CHECK(client.get_power_status().is_on);
@@ -203,14 +179,16 @@ BOOST_AUTO_TEST_CASE(test_stop) {
 }
 
 BOOST_AUTO_TEST_CASE(test_get_geometries) {
-    server_to_mock_pipeline([](Motor& client) -> void {
+    std::shared_ptr<MockMotor> mock = MockMotor::get_mock_motor();
+    client_to_mock_pipeline<MotorClient>(mock, [](Motor& client) {
         const auto& geometries = client.get_geometries();
         BOOST_CHECK_EQUAL(geometries, fake_geometries());
     });
 }
 
 BOOST_AUTO_TEST_CASE(test_do_command) {
-    server_to_mock_pipeline([](Motor& client) -> void {
+    std::shared_ptr<MockMotor> mock = MockMotor::get_mock_motor();
+    client_to_mock_pipeline<MotorClient>(mock, [](Motor& client) {
         AttributeMap expected = fake_map();
 
         AttributeMap command = fake_map();
@@ -224,7 +202,8 @@ BOOST_AUTO_TEST_CASE(test_do_command) {
 }
 
 BOOST_AUTO_TEST_CASE(test_exception_creation) {
-    server_to_mock_pipeline([](Motor& client) -> void {
+    std::shared_ptr<MockMotor> mock = MockMotor::get_mock_motor();
+    client_to_mock_pipeline<MotorClient>(mock, [](Motor& client) {
         BOOST_CHECK_THROW(client.go_for(0.0, 1.0), std::runtime_error);
     });
 }

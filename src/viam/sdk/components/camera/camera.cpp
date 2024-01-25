@@ -21,8 +21,10 @@ CameraRegistration::CameraRegistration(
     : ResourceRegistration(service_descriptor){};
 
 std::shared_ptr<ResourceServer> CameraRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager) {
-    return std::make_shared<CameraServer>(manager);
+    std::shared_ptr<ResourceManager> manager, Server& server) {
+    auto cs = std::make_shared<CameraServer>(manager);
+    server.register_service(cs.get());
+    return cs;
 };
 
 std::shared_ptr<Resource> CameraRegistration::create_rpc_client(
@@ -43,12 +45,12 @@ std::shared_ptr<ResourceRegistration> Camera::resource_registration() {
 // NOLINTNEXTLINE
 const std::string Camera::lazy_suffix = "+lazy";
 
-API Camera::static_api() {
-    return {kRDK, kComponent, "camera"};
+API Camera::api() const {
+    return API::get<Camera>();
 }
 
-API Camera::dynamic_api() const {
-    return static_api();
+API API::traits<Camera>::api() {
+    return {kRDK, kComponent, "camera"};
 }
 
 std::string Camera::normalize_mime_type(const std::string& str) {
@@ -223,7 +225,7 @@ bool operator==(const Camera::properties& lhs, const Camera::properties& rhs) {
 
 namespace {
 bool init() {
-    Registry::register_resource(Camera::static_api(), Camera::resource_registration());
+    Registry::register_resource(API::get<Camera>(), Camera::resource_registration());
     return true;
 };
 

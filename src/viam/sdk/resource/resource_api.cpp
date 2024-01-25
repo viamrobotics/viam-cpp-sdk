@@ -113,7 +113,11 @@ std::string Name::short_name() const {
 viam::common::v1::ResourceName Name::to_proto() const {
     viam::common::v1::ResourceName rn;
     *rn.mutable_namespace_() = this->api().type_namespace();
-    *rn.mutable_name() = this->name();
+    if (this->remote_name().empty()) {
+        *rn.mutable_name() = this->name();
+    } else {
+        *rn.mutable_name() = this->remote_name() + ":" + this->name();
+    }
     *rn.mutable_type() = this->api().resource_type();
     *rn.mutable_subtype() = this->api().resource_subtype();
     return rn;
@@ -125,7 +129,14 @@ Name Name::from_proto(const viam::common::v1::ResourceName& proto) {
     boost::split(name_parts, proto.name(), boost::is_any_of(":"));
     auto name = name_parts.back();
     name_parts.pop_back();
-    auto remote_name = std::accumulate(name_parts.begin(), name_parts.end(), std::string(":"));
+    auto remote_name = name_parts.empty()
+                           ? ""
+                           : std::accumulate(std::next(name_parts.begin()),
+                                             name_parts.end(),
+                                             *name_parts.begin(),
+                                             [](const std::string& a, const std::string& b) {
+                                                 return a + ":" + b;
+                                             });
 
     return Name({proto.namespace_(), proto.type(), proto.subtype()}, remote_name, name);
 };
@@ -160,6 +171,11 @@ bool operator==(const API& lhs, const API& rhs) {
 
 bool operator<(const API& lhs, const API& rhs) {
     return lhs.to_string() < rhs.to_string();
+}
+
+std::ostream& operator<<(std::ostream& os, const API& v) {
+    os << v.to_string();
+    return os;
 }
 
 bool operator==(const Name& lhs, const Name& rhs) {

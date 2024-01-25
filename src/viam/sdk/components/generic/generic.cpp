@@ -20,8 +20,10 @@ GenericRegistration::GenericRegistration(
     : ResourceRegistration(service_descriptor){};
 
 std::shared_ptr<ResourceServer> GenericRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager) {
-    return std::make_shared<GenericServer>(manager);
+    std::shared_ptr<ResourceManager> manager, Server& server) {
+    auto gs = std::make_shared<GenericServer>(std::move(manager));
+    server.register_service(gs.get());
+    return gs;
 };
 
 std::shared_ptr<Resource> GenericRegistration::create_rpc_client(
@@ -39,19 +41,19 @@ std::shared_ptr<ResourceRegistration> Generic::resource_registration() {
     return std::make_shared<GenericRegistration>(sd);
 }
 
-API Generic::static_api() {
-    return {kRDK, kComponent, "generic"};
+API Generic::api() const {
+    return API::get<Generic>();
 }
 
-API Generic::dynamic_api() const {
-    return static_api();
+API API::traits<Generic>::api() {
+    return {kRDK, kComponent, "generic"};
 }
 
 Generic::Generic(std::string name) : Component(std::move(name)){};
 
 namespace {
 bool init() {
-    Registry::register_resource(Generic::static_api(), Generic::resource_registration());
+    Registry::register_resource(API::get<Generic>(), Generic::resource_registration());
     return true;
 };
 

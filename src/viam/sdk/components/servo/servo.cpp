@@ -13,8 +13,10 @@ namespace viam {
 namespace sdk {
 
 std::shared_ptr<ResourceServer> ServoRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager) {
-    return std::make_shared<ServoServer>(manager);
+    std::shared_ptr<ResourceManager> manager, Server& server) {
+    auto ss = std::make_shared<ServoServer>(std::move(manager));
+    server.register_service(ss.get());
+    return ss;
 };
 
 std::shared_ptr<Resource> ServoRegistration::create_rpc_client(
@@ -34,12 +36,12 @@ std::shared_ptr<ResourceRegistration> Servo::resource_registration() {
     return std::make_shared<ServoRegistration>(sd);
 }
 
-API Servo::static_api() {
-    return {kRDK, kComponent, "servo"};
+API Servo::api() const {
+    return API::get<Servo>();
 }
 
-API Servo::dynamic_api() const {
-    return static_api();
+API API::traits<Servo>::api() {
+    return {kRDK, kComponent, "servo"};
 }
 
 Servo::position Servo::from_proto(viam::component::servo::v1::GetPositionResponse proto) {
@@ -48,7 +50,7 @@ Servo::position Servo::from_proto(viam::component::servo::v1::GetPositionRespons
 
 namespace {
 bool init() {
-    Registry::register_resource(Servo::static_api(), Servo::resource_registration());
+    Registry::register_resource(API::get<Servo>(), Servo::resource_registration());
     return true;
 };
 

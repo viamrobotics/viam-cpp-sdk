@@ -39,8 +39,8 @@ int main() {
 
     // Register custom gizmo and summation API so robot client can access resources
     // of that type from the server.
-    Registry::register_resource(Gizmo::static_api(), Gizmo::resource_registration());
-    Registry::register_resource(Summation::static_api(), Summation::resource_registration());
+    Registry::register_resource(API::get<Gizmo>(), Gizmo::resource_registration());
+    Registry::register_resource(API::get<Summation>(), Summation::resource_registration());
 
     // Connect to robot.
     std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);
@@ -53,7 +53,7 @@ int main() {
     }
 
     // Exercise Gizmo methods.
-    auto gc = robot->resource_by_name<GizmoClient>("gizmo1");
+    auto gc = robot->resource_by_name<Gizmo>("gizmo1");
     if (!gc) {
         std::cerr << "could not get 'gizmo1' resource from robot" << std::endl;
         return EXIT_FAILURE;
@@ -76,7 +76,7 @@ int main() {
     }
 
     // Exercise Summation methods.
-    auto sc = robot->resource_by_name<SummationClient>("mysum1");
+    auto sc = robot->resource_by_name<Summation>("mysum1");
     if (!sc) {
         std::cerr << "could not get 'mysum1' resource from robot" << std::endl;
         return EXIT_FAILURE;
@@ -85,7 +85,7 @@ int main() {
     std::cout << "mysum1 sum of numbers [0, 10) is: " << sum << std::endl;
 
     // Exercise a Base method.
-    auto bc = robot->resource_by_name<BaseClient>("base1");
+    auto bc = robot->resource_by_name<Base>("base1");
     if (!bc) {
         std::cerr << "could not get 'base1' resource from robot" << std::endl;
         return EXIT_FAILURE;

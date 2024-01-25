@@ -22,8 +22,10 @@ GizmoRegistration::GizmoRegistration(const google::protobuf::ServiceDescriptor* 
     : ResourceRegistration(service_descriptor){};
 
 std::shared_ptr<ResourceServer> GizmoRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager) {
-    return std::make_shared<GizmoServer>(manager);
+    std::shared_ptr<ResourceManager> manager, Server& server) {
+    auto gs = std::make_shared<GizmoServer>(std::move(manager));
+    server.register_service(gs.get());
+    return gs;
 };
 
 std::shared_ptr<Resource> GizmoRegistration::create_rpc_client(
@@ -43,20 +45,20 @@ std::shared_ptr<ResourceRegistration> Gizmo::resource_registration() {
     return std::make_shared<GizmoRegistration>(sd);
 }
 
-API Gizmo::static_api() {
-    return {"viam", "component", "gizmo"};
+API Gizmo::api() const {
+    return API::get<Gizmo>();
 }
 
-API Gizmo::dynamic_api() const {
-    return static_api();
+API API::traits<Gizmo>::api() {
+    return {"viam", "component", "gizmo"};
 }
 
 Gizmo::Gizmo(std::string name) : Component(std::move(name)){};
 
 /* Gizmo server methods */
 
-GizmoServer::GizmoServer() : ResourceServer(std::make_shared<ResourceManager>()){};
-GizmoServer::GizmoServer(std::shared_ptr<ResourceManager> manager) : ResourceServer(manager){};
+GizmoServer::GizmoServer(std::shared_ptr<ResourceManager> manager)
+    : ResourceServer(std::move(manager)){};
 
 grpc::Status GizmoServer::DoOne(grpc::ServerContext* context,
                                 const DoOneRequest* request,
@@ -192,10 +194,6 @@ grpc::Status GizmoServer::DoTwo(::grpc::ServerContext* context,
     response->set_ret1(gizmo->do_two(request->arg1()));
 
     return grpc::Status();
-}
-
-void GizmoServer::register_server(std::shared_ptr<Server> server) {
-    server->register_service(this);
 }
 
 /* Gizmo client methods */

@@ -15,8 +15,10 @@ namespace viam {
 namespace sdk {
 
 std::shared_ptr<ResourceServer> MotorRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager) {
-    return std::make_shared<MotorServer>(manager);
+    std::shared_ptr<ResourceManager> manager, Server& server) {
+    auto ms = std::make_shared<MotorServer>(std::move(manager));
+    server.register_service(ms.get());
+    return ms;
 };
 
 std::shared_ptr<Resource> MotorRegistration::create_rpc_client(
@@ -36,15 +38,15 @@ std::shared_ptr<ResourceRegistration> Motor::resource_registration() {
     return std::make_shared<MotorRegistration>(sd);
 }
 
-API Motor::static_api() {
-    return {kRDK, kComponent, "motor"};
-}
-
 Motor::position Motor::from_proto(viam::component::motor::v1::GetPositionResponse proto) {
     return proto.position();
 }
-API Motor::dynamic_api() const {
-    return static_api();
+API Motor::api() const {
+    return API::get<Motor>();
+}
+
+API API::traits<Motor>::api() {
+    return {kRDK, kComponent, "motor"};
 }
 
 Motor::power_status Motor::from_proto(viam::component::motor::v1::IsPoweredResponse proto) {
@@ -93,7 +95,7 @@ bool operator==(const Motor::properties& lhs, const Motor::properties& rhs) {
 
 namespace {
 bool init() {
-    Registry::register_resource(Motor::static_api(), Motor::resource_registration());
+    Registry::register_resource(API::get<Motor>(), Motor::resource_registration());
     return true;
 };
 

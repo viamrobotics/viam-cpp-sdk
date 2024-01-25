@@ -22,6 +22,7 @@
 
 #include <viam/api/service/mlmodel/v1/mlmodel.grpc.pb.h>
 
+#include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/services/service.hpp>
@@ -34,8 +35,8 @@ class MLModelServiceRegistration : public ResourceRegistration {
     explicit MLModelServiceRegistration(
         const google::protobuf::ServiceDescriptor* service_descriptor);
 
-    std::shared_ptr<ResourceServer> create_resource_server(
-        std::shared_ptr<ResourceManager> manager) override;
+    std::shared_ptr<ResourceServer> create_resource_server(std::shared_ptr<ResourceManager> manager,
+                                                           Server& server) override;
 
     std::shared_ptr<Resource> create_rpc_client(std::string name,
                                                 std::shared_ptr<grpc::Channel> channel) override;
@@ -62,9 +63,8 @@ class MLModelService : public Service {
     };
 
    public:
-    static API static_api();
     static std::shared_ptr<ResourceRegistration> resource_registration();
-    API dynamic_api() const override;
+    API api() const override;
 
     template <typename T>
     using tensor_view = typename make_tensor_view_<T>::type;
@@ -182,6 +182,11 @@ class MLModelService : public Service {
 
    protected:
     explicit MLModelService(std::string name);
+};
+
+template <>
+struct API::traits<MLModelService> {
+    static API api();
 };
 
 }  // namespace sdk

@@ -21252,10 +21252,14 @@ class RegistryItem final :
     kNameFieldNumber = 4,
     kUrlFieldNumber = 7,
     kDescriptionFieldNumber = 8,
+    kCreatedAtFieldNumber = 15,
+    kUpdatedAtFieldNumber = 16,
     kTypeFieldNumber = 5,
     kVisibilityFieldNumber = 6,
     kTotalRobotUsageFieldNumber = 9,
     kTotalOrganizationUsageFieldNumber = 10,
+    kTotalExternalRobotUsageFieldNumber = 13,
+    kTotalExternalOrganizationUsageFieldNumber = 14,
     kModuleMetadataFieldNumber = 11,
     kMlModelMetadataFieldNumber = 12,
   };
@@ -21343,6 +21347,42 @@ class RegistryItem final :
   std::string* _internal_mutable_description();
   public:
 
+  // .google.protobuf.Timestamp created_at = 15 [json_name = "createdAt"];
+  bool has_created_at() const;
+  private:
+  bool _internal_has_created_at() const;
+  public:
+  void clear_created_at();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& created_at() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_created_at();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_created_at();
+  void set_allocated_created_at(::PROTOBUF_NAMESPACE_ID::Timestamp* created_at);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_created_at() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_created_at();
+  public:
+  void unsafe_arena_set_allocated_created_at(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* created_at);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_created_at();
+
+  // .google.protobuf.Timestamp updated_at = 16 [json_name = "updatedAt"];
+  bool has_updated_at() const;
+  private:
+  bool _internal_has_updated_at() const;
+  public:
+  void clear_updated_at();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& updated_at() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_updated_at();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_updated_at();
+  void set_allocated_updated_at(::PROTOBUF_NAMESPACE_ID::Timestamp* updated_at);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_updated_at() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_updated_at();
+  public:
+  void unsafe_arena_set_allocated_updated_at(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* updated_at);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_updated_at();
+
   // .viam.app.packages.v1.PackageType type = 5 [json_name = "type"];
   void clear_type();
   ::viam::app::packages::v1::PackageType type() const;
@@ -21377,6 +21417,24 @@ class RegistryItem final :
   private:
   int64_t _internal_total_organization_usage() const;
   void _internal_set_total_organization_usage(int64_t value);
+  public:
+
+  // int64 total_external_robot_usage = 13 [json_name = "totalExternalRobotUsage"];
+  void clear_total_external_robot_usage();
+  int64_t total_external_robot_usage() const;
+  void set_total_external_robot_usage(int64_t value);
+  private:
+  int64_t _internal_total_external_robot_usage() const;
+  void _internal_set_total_external_robot_usage(int64_t value);
+  public:
+
+  // int64 total_external_organization_usage = 14 [json_name = "totalExternalOrganizationUsage"];
+  void clear_total_external_organization_usage();
+  int64_t total_external_organization_usage() const;
+  void set_total_external_organization_usage(int64_t value);
+  private:
+  int64_t _internal_total_external_organization_usage() const;
+  void _internal_set_total_external_organization_usage(int64_t value);
   public:
 
   // .viam.app.v1.ModuleMetadata module_metadata = 11 [json_name = "moduleMetadata"];
@@ -21435,10 +21493,14 @@ class RegistryItem final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr url_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr description_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* created_at_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* updated_at_;
   int type_;
   int visibility_;
   int64_t total_robot_usage_;
   int64_t total_organization_usage_;
+  int64_t total_external_robot_usage_;
+  int64_t total_external_organization_usage_;
   union MetadataUnion {
     constexpr MetadataUnion() : _constinit_{} {}
       ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
@@ -42281,6 +42343,26 @@ inline void RegistryItem::set_total_robot_usage(int64_t value) {
   // @@protoc_insertion_point(field_set:viam.app.v1.RegistryItem.total_robot_usage)
 }
 
+// int64 total_external_robot_usage = 13 [json_name = "totalExternalRobotUsage"];
+inline void RegistryItem::clear_total_external_robot_usage() {
+  total_external_robot_usage_ = int64_t{0};
+}
+inline int64_t RegistryItem::_internal_total_external_robot_usage() const {
+  return total_external_robot_usage_;
+}
+inline int64_t RegistryItem::total_external_robot_usage() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RegistryItem.total_external_robot_usage)
+  return _internal_total_external_robot_usage();
+}
+inline void RegistryItem::_internal_set_total_external_robot_usage(int64_t value) {
+  
+  total_external_robot_usage_ = value;
+}
+inline void RegistryItem::set_total_external_robot_usage(int64_t value) {
+  _internal_set_total_external_robot_usage(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.RegistryItem.total_external_robot_usage)
+}
+
 // int64 total_organization_usage = 10 [json_name = "totalOrganizationUsage"];
 inline void RegistryItem::clear_total_organization_usage() {
   total_organization_usage_ = int64_t{0};
@@ -42299,6 +42381,26 @@ inline void RegistryItem::_internal_set_total_organization_usage(int64_t value) 
 inline void RegistryItem::set_total_organization_usage(int64_t value) {
   _internal_set_total_organization_usage(value);
   // @@protoc_insertion_point(field_set:viam.app.v1.RegistryItem.total_organization_usage)
+}
+
+// int64 total_external_organization_usage = 14 [json_name = "totalExternalOrganizationUsage"];
+inline void RegistryItem::clear_total_external_organization_usage() {
+  total_external_organization_usage_ = int64_t{0};
+}
+inline int64_t RegistryItem::_internal_total_external_organization_usage() const {
+  return total_external_organization_usage_;
+}
+inline int64_t RegistryItem::total_external_organization_usage() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RegistryItem.total_external_organization_usage)
+  return _internal_total_external_organization_usage();
+}
+inline void RegistryItem::_internal_set_total_external_organization_usage(int64_t value) {
+  
+  total_external_organization_usage_ = value;
+}
+inline void RegistryItem::set_total_external_organization_usage(int64_t value) {
+  _internal_set_total_external_organization_usage(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.RegistryItem.total_external_organization_usage)
 }
 
 // .viam.app.v1.ModuleMetadata module_metadata = 11 [json_name = "moduleMetadata"];
@@ -42447,6 +42549,176 @@ inline ::viam::app::v1::MLModelMetadata* RegistryItem::mutable_ml_model_metadata
   ::viam::app::v1::MLModelMetadata* _msg = _internal_mutable_ml_model_metadata();
   // @@protoc_insertion_point(field_mutable:viam.app.v1.RegistryItem.ml_model_metadata)
   return _msg;
+}
+
+// .google.protobuf.Timestamp created_at = 15 [json_name = "createdAt"];
+inline bool RegistryItem::_internal_has_created_at() const {
+  return this != internal_default_instance() && created_at_ != nullptr;
+}
+inline bool RegistryItem::has_created_at() const {
+  return _internal_has_created_at();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& RegistryItem::_internal_created_at() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = created_at_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& RegistryItem::created_at() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RegistryItem.created_at)
+  return _internal_created_at();
+}
+inline void RegistryItem::unsafe_arena_set_allocated_created_at(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* created_at) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(created_at_);
+  }
+  created_at_ = created_at;
+  if (created_at) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.RegistryItem.created_at)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* RegistryItem::release_created_at() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = created_at_;
+  created_at_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* RegistryItem::unsafe_arena_release_created_at() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.RegistryItem.created_at)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = created_at_;
+  created_at_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* RegistryItem::_internal_mutable_created_at() {
+  
+  if (created_at_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    created_at_ = p;
+  }
+  return created_at_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* RegistryItem::mutable_created_at() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_created_at();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RegistryItem.created_at)
+  return _msg;
+}
+inline void RegistryItem::set_allocated_created_at(::PROTOBUF_NAMESPACE_ID::Timestamp* created_at) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(created_at_);
+  }
+  if (created_at) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(created_at));
+    if (message_arena != submessage_arena) {
+      created_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, created_at, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  created_at_ = created_at;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RegistryItem.created_at)
+}
+
+// .google.protobuf.Timestamp updated_at = 16 [json_name = "updatedAt"];
+inline bool RegistryItem::_internal_has_updated_at() const {
+  return this != internal_default_instance() && updated_at_ != nullptr;
+}
+inline bool RegistryItem::has_updated_at() const {
+  return _internal_has_updated_at();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& RegistryItem::_internal_updated_at() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = updated_at_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& RegistryItem::updated_at() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RegistryItem.updated_at)
+  return _internal_updated_at();
+}
+inline void RegistryItem::unsafe_arena_set_allocated_updated_at(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* updated_at) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(updated_at_);
+  }
+  updated_at_ = updated_at;
+  if (updated_at) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.RegistryItem.updated_at)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* RegistryItem::release_updated_at() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = updated_at_;
+  updated_at_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* RegistryItem::unsafe_arena_release_updated_at() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.RegistryItem.updated_at)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = updated_at_;
+  updated_at_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* RegistryItem::_internal_mutable_updated_at() {
+  
+  if (updated_at_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    updated_at_ = p;
+  }
+  return updated_at_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* RegistryItem::mutable_updated_at() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_updated_at();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RegistryItem.updated_at)
+  return _msg;
+}
+inline void RegistryItem::set_allocated_updated_at(::PROTOBUF_NAMESPACE_ID::Timestamp* updated_at) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(updated_at_);
+  }
+  if (updated_at) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(updated_at));
+    if (message_arena != submessage_arena) {
+      updated_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, updated_at, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  updated_at_ = updated_at;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RegistryItem.updated_at)
 }
 
 inline bool RegistryItem::has_metadata() const {

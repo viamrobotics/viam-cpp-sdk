@@ -28,6 +28,15 @@ using namespace viam::sdk;
 
 BOOST_AUTO_TEST_SUITE(test_mock)
 
+BOOST_AUTO_TEST_CASE(mock_get_api) {
+    const MockServo servo("mock_servo");
+    auto api = servo.api();
+    auto static_api = API::get<Servo>();
+
+    BOOST_CHECK_EQUAL(api, static_api);
+    BOOST_CHECK_EQUAL(static_api.resource_subtype(), "servo");
+}
+
 BOOST_AUTO_TEST_CASE(mock_move_and_get_position) {
     std::shared_ptr<MockServo> servo = MockServo::get_mock_servo();
 
@@ -74,47 +83,9 @@ BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(test_servo_client_server)
 
-// This sets up the following architecture
-// -- MockComponent
-//        /\
-//
-//        | (function calls)
-//
-//        \/
-// -- ComponentServer (Real)
-//        /\
-//
-//        | (grpc InProcessChannel)
-//
-//        \/
-// -- ComponentClient (Real)
-//
-// This is as close to a real setup as we can get
-// without starting another process
-//
-// The passed in lambda function has access to the ComponentClient
-//
-template <typename Lambda>
-void server_to_mock_pipeline(Lambda&& func) {
-    ServoServer servo_server;
-    servo_server.resource_manager()->add(std::string("mock_servo"), MockServo::get_mock_servo());
-
-    grpc::ServerBuilder builder;
-    builder.RegisterService(&servo_server);
-
-    std::unique_ptr<grpc::Server> server = builder.BuildAndStart();
-
-    grpc::ChannelArguments args;
-    auto grpc_channel = server->InProcessChannel(args);
-    ServoClient client("mock_servo", grpc_channel);
-    // Run the passed test on the created stack
-    std::forward<Lambda>(func)(client);
-    // shutdown afterwards
-    server->Shutdown();
-}
-
 BOOST_AUTO_TEST_CASE(test_move_and_get_position) {
-    server_to_mock_pipeline([](Servo& client) -> void {
+    std::shared_ptr<MockServo> mock = MockServo::get_mock_servo();
+    client_to_mock_pipeline<ServoClient>(mock, [](Servo& client) {
         BOOST_CHECK(!client.is_moving());
         client.move(3);
         BOOST_CHECK_EQUAL(client.get_position(), 3);
@@ -127,7 +98,8 @@ BOOST_AUTO_TEST_CASE(test_move_and_get_position) {
 }
 
 BOOST_AUTO_TEST_CASE(test_stop) {
-    server_to_mock_pipeline([](Servo& client) -> void {
+    std::shared_ptr<MockServo> mock = MockServo::get_mock_servo();
+    client_to_mock_pipeline<ServoClient>(mock, [](Servo& client) {
         client.move(3);
         BOOST_CHECK(client.is_moving());
         client.stop();
@@ -136,14 +108,16 @@ BOOST_AUTO_TEST_CASE(test_stop) {
 }
 
 BOOST_AUTO_TEST_CASE(test_get_geometries) {
-    server_to_mock_pipeline([](Servo& client) -> void {
+    std::shared_ptr<MockServo> mock = MockServo::get_mock_servo();
+    client_to_mock_pipeline<ServoClient>(mock, [](Servo& client) {
         const auto& geometries = client.get_geometries();
         BOOST_CHECK_EQUAL(geometries, fake_geometries());
     });
 }
 
 BOOST_AUTO_TEST_CASE(test_do_command) {
-    server_to_mock_pipeline([](Servo& client) -> void {
+    std::shared_ptr<MockServo> mock = MockServo::get_mock_servo();
+    client_to_mock_pipeline<ServoClient>(mock, [](Servo& client) {
         AttributeMap expected = fake_map();
 
         AttributeMap command = fake_map();

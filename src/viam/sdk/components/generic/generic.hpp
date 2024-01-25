@@ -23,8 +23,8 @@ namespace sdk {
 class GenericRegistration : public ResourceRegistration {
    public:
     explicit GenericRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
-    std::shared_ptr<ResourceServer> create_resource_server(
-        std::shared_ptr<ResourceManager> manager) override;
+    std::shared_ptr<ResourceServer> create_resource_server(std::shared_ptr<ResourceManager> manager,
+                                                           Server& server) override;
     std::shared_ptr<Resource> create_rpc_client(std::string name,
                                                 std::shared_ptr<grpc::Channel> chan) override;
 };
@@ -41,7 +41,6 @@ class Generic : public Component {
     static std::shared_ptr<ResourceRegistration> resource_registration();
 
     /// @brief Creates a `Generic` `API`.
-    static API static_api();
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param command the command to execute.
@@ -56,10 +55,15 @@ class Generic : public Component {
 
     virtual std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) = 0;
 
-    API dynamic_api() const override;
+    API api() const override;
 
    protected:
     explicit Generic(std::string name);
+};
+
+template <>
+struct API::traits<Generic> {
+    static API api();
 };
 
 }  // namespace sdk

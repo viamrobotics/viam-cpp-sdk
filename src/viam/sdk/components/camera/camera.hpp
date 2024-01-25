@@ -15,6 +15,7 @@
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/registry/registry.hpp>
+#include <viam/sdk/resource/resource_api.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
 
 namespace viam {
@@ -28,8 +29,8 @@ namespace sdk {
 class CameraRegistration : public ResourceRegistration {
    public:
     explicit CameraRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
-    std::shared_ptr<ResourceServer> create_resource_server(
-        std::shared_ptr<ResourceManager> manager) override;
+    std::shared_ptr<ResourceServer> create_resource_server(std::shared_ptr<ResourceManager> manager,
+                                                           Server& server) override;
     std::shared_ptr<Resource> create_rpc_client(std::string name,
                                                 std::shared_ptr<grpc::Channel> chan) override;
 };
@@ -100,9 +101,6 @@ class Camera : public Component {
 
     /// @brief Creates a `ResourceRegistration` for the `Camera` component.
     static std::shared_ptr<ResourceRegistration> resource_registration();
-
-    /// @brief Creates a `Camera` `API`.
-    static API static_api();
 
     /// @brief remove any extra suffix's from the mime type string.
     static std::string normalize_mime_type(const std::string& str);
@@ -189,10 +187,15 @@ class Camera : public Component {
     /// @return The camera properties.
     virtual properties get_properties() = 0;
 
-    API dynamic_api() const override;
+    API api() const override;
 
    protected:
     explicit Camera(std::string name);
+};
+
+template <>
+struct API::traits<Camera> {
+    static API api();
 };
 
 bool operator==(const Camera::raw_image& lhs, const Camera::raw_image& rhs);

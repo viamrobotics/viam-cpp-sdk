@@ -30,48 +30,18 @@ using namespace viam::sdk;
 
 BOOST_AUTO_TEST_SUITE(test_sensor)
 
-// This sets up the following architecture
-// -- MockComponent
-//        /\
-//
-//        | (function calls)
-//
-//        \/
-// -- ComponentServer (Real)
-//        /\
-//
-//        | (grpc InProcessChannel)
-//
-//        \/
-// -- ComponentClient (Real)
-//
-// This is as close to a real setup as we can get
-// without starting another process
-//
-// The passed in lambda function has access to the ComponentClient
-//
-template <typename Lambda>
-void server_to_mock_pipeline(Lambda&& func) {
-    SensorServer sensor_server;
-    std::shared_ptr<MockSensor> mock = MockSensor::get_mock_sensor();
-    sensor_server.resource_manager()->add(std::string("mock_sensor"), mock);
+BOOST_AUTO_TEST_CASE(mock_get_api) {
+    const MockSensor sensor("mock_sensor");
+    auto api = sensor.api();
+    auto static_api = API::get<Sensor>();
 
-    grpc::ServerBuilder builder;
-    builder.RegisterService(&sensor_server);
-
-    std::unique_ptr<grpc::Server> server = builder.BuildAndStart();
-
-    grpc::ChannelArguments args;
-    auto grpc_channel = server->InProcessChannel(args);
-    SensorClient client("mock_sensor", grpc_channel);
-    // Run the passed test on the created stack
-    std::forward<Lambda>(func)(client, mock);
-    // shutdown afterwards
-    server->Shutdown();
+    BOOST_CHECK_EQUAL(api, static_api);
+    BOOST_CHECK_EQUAL(static_api.resource_subtype(), "sensor");
 }
 
 BOOST_AUTO_TEST_CASE(test_get_readings) {
-    server_to_mock_pipeline([](Sensor& client, std::shared_ptr<MockSensor> mock) -> void {
+    std::shared_ptr<MockSensor> mock = MockSensor::get_mock_sensor();
+    client_to_mock_pipeline<SensorClient>(mock, [](Sensor& client) {
         AttributeMap expected = fake_map();
 
         AttributeMap readings = client.get_readings();
@@ -83,7 +53,8 @@ BOOST_AUTO_TEST_CASE(test_get_readings) {
 }
 
 BOOST_AUTO_TEST_CASE(test_do_command) {
-    server_to_mock_pipeline([](Sensor& client, std::shared_ptr<MockSensor> mock) -> void {
+    std::shared_ptr<MockSensor> mock = MockSensor::get_mock_sensor();
+    client_to_mock_pipeline<SensorClient>(mock, [](Sensor& client) {
         AttributeMap expected = fake_map();
 
         AttributeMap command = fake_map();
@@ -96,7 +67,8 @@ BOOST_AUTO_TEST_CASE(test_do_command) {
 }
 
 BOOST_AUTO_TEST_CASE(test_get_geometries) {
-    server_to_mock_pipeline([](Sensor& client, std::shared_ptr<MockSensor> mock) -> void {
+    std::shared_ptr<MockSensor> mock = MockSensor::get_mock_sensor();
+    client_to_mock_pipeline<SensorClient>(mock, [](Sensor& client) {
         std::vector<sdk::GeometryConfig> expected = fake_geometries();
         std::vector<sdk::GeometryConfig> geometries = client.get_geometries();
         BOOST_CHECK(expected == geometries);

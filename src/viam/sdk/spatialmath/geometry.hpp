@@ -65,6 +65,7 @@ class GeometryConfig {
     OrientationConfig get_orientation_config() const;
     std::string get_label() const;
     friend bool operator==(const GeometryConfig& lhs, const GeometryConfig& rhs);
+    GeometryConfig();
 
    private:
     GeometryType geometry_type_;

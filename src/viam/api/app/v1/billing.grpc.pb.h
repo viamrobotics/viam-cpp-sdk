@@ -37,41 +37,6 @@ class BillingService final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status GetCurrentMonthUsageSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageSummaryRequest& request, ::viam::app::v1::GetCurrentMonthUsageSummaryResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetCurrentMonthUsageSummaryResponse>> AsyncGetCurrentMonthUsageSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageSummaryRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetCurrentMonthUsageSummaryResponse>>(AsyncGetCurrentMonthUsageSummaryRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetCurrentMonthUsageSummaryResponse>> PrepareAsyncGetCurrentMonthUsageSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageSummaryRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetCurrentMonthUsageSummaryResponse>>(PrepareAsyncGetCurrentMonthUsageSummaryRaw(context, request, cq));
-    }
-    virtual ::grpc::Status GetUnpaidBalance(::grpc::ClientContext* context, const ::viam::app::v1::GetUnpaidBalanceRequest& request, ::viam::app::v1::GetUnpaidBalanceResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetUnpaidBalanceResponse>> AsyncGetUnpaidBalance(::grpc::ClientContext* context, const ::viam::app::v1::GetUnpaidBalanceRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetUnpaidBalanceResponse>>(AsyncGetUnpaidBalanceRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetUnpaidBalanceResponse>> PrepareAsyncGetUnpaidBalance(::grpc::ClientContext* context, const ::viam::app::v1::GetUnpaidBalanceRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetUnpaidBalanceResponse>>(PrepareAsyncGetUnpaidBalanceRaw(context, request, cq));
-    }
-    virtual ::grpc::Status GetInvoiceHistory(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoiceHistoryRequest& request, ::viam::app::v1::GetInvoiceHistoryResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetInvoiceHistoryResponse>> AsyncGetInvoiceHistory(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoiceHistoryRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetInvoiceHistoryResponse>>(AsyncGetInvoiceHistoryRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetInvoiceHistoryResponse>> PrepareAsyncGetInvoiceHistory(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoiceHistoryRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetInvoiceHistoryResponse>>(PrepareAsyncGetInvoiceHistoryRaw(context, request, cq));
-    }
-    virtual ::grpc::Status GetItemizedInvoice(::grpc::ClientContext* context, const ::viam::app::v1::GetItemizedInvoiceRequest& request, ::viam::app::v1::GetItemizedInvoiceResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetItemizedInvoiceResponse>> AsyncGetItemizedInvoice(::grpc::ClientContext* context, const ::viam::app::v1::GetItemizedInvoiceRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetItemizedInvoiceResponse>>(AsyncGetItemizedInvoiceRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetItemizedInvoiceResponse>> PrepareAsyncGetItemizedInvoice(::grpc::ClientContext* context, const ::viam::app::v1::GetItemizedInvoiceRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetItemizedInvoiceResponse>>(PrepareAsyncGetItemizedInvoiceRaw(context, request, cq));
-    }
-    virtual ::grpc::Status GetBillingSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetBillingSummaryRequest& request, ::viam::app::v1::GetBillingSummaryResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetBillingSummaryResponse>> AsyncGetBillingSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetBillingSummaryRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetBillingSummaryResponse>>(AsyncGetBillingSummaryRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetBillingSummaryResponse>> PrepareAsyncGetBillingSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetBillingSummaryRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetBillingSummaryResponse>>(PrepareAsyncGetBillingSummaryRaw(context, request, cq));
-    }
     // Detailed breakdown of current month's costs
     virtual ::grpc::Status GetCurrentMonthUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest& request, ::viam::app::v1::GetCurrentMonthUsageResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetCurrentMonthUsageResponse>> AsyncGetCurrentMonthUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest& request, ::grpc::CompletionQueue* cq) {
@@ -109,16 +74,6 @@ class BillingService final {
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void GetCurrentMonthUsageSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageSummaryRequest* request, ::viam::app::v1::GetCurrentMonthUsageSummaryResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetCurrentMonthUsageSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageSummaryRequest* request, ::viam::app::v1::GetCurrentMonthUsageSummaryResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void GetUnpaidBalance(::grpc::ClientContext* context, const ::viam::app::v1::GetUnpaidBalanceRequest* request, ::viam::app::v1::GetUnpaidBalanceResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetUnpaidBalance(::grpc::ClientContext* context, const ::viam::app::v1::GetUnpaidBalanceRequest* request, ::viam::app::v1::GetUnpaidBalanceResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void GetInvoiceHistory(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoiceHistoryRequest* request, ::viam::app::v1::GetInvoiceHistoryResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetInvoiceHistory(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoiceHistoryRequest* request, ::viam::app::v1::GetInvoiceHistoryResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void GetItemizedInvoice(::grpc::ClientContext* context, const ::viam::app::v1::GetItemizedInvoiceRequest* request, ::viam::app::v1::GetItemizedInvoiceResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetItemizedInvoice(::grpc::ClientContext* context, const ::viam::app::v1::GetItemizedInvoiceRequest* request, ::viam::app::v1::GetItemizedInvoiceResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void GetBillingSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetBillingSummaryRequest* request, ::viam::app::v1::GetBillingSummaryResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetBillingSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetBillingSummaryRequest* request, ::viam::app::v1::GetBillingSummaryResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // Detailed breakdown of current month's costs
       virtual void GetCurrentMonthUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetCurrentMonthUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
@@ -135,16 +90,6 @@ class BillingService final {
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetCurrentMonthUsageSummaryResponse>* AsyncGetCurrentMonthUsageSummaryRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageSummaryRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetCurrentMonthUsageSummaryResponse>* PrepareAsyncGetCurrentMonthUsageSummaryRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageSummaryRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetUnpaidBalanceResponse>* AsyncGetUnpaidBalanceRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetUnpaidBalanceRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetUnpaidBalanceResponse>* PrepareAsyncGetUnpaidBalanceRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetUnpaidBalanceRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetInvoiceHistoryResponse>* AsyncGetInvoiceHistoryRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoiceHistoryRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetInvoiceHistoryResponse>* PrepareAsyncGetInvoiceHistoryRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoiceHistoryRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetItemizedInvoiceResponse>* AsyncGetItemizedInvoiceRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetItemizedInvoiceRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetItemizedInvoiceResponse>* PrepareAsyncGetItemizedInvoiceRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetItemizedInvoiceRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetBillingSummaryResponse>* AsyncGetBillingSummaryRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetBillingSummaryRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetBillingSummaryResponse>* PrepareAsyncGetBillingSummaryRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetBillingSummaryRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetCurrentMonthUsageResponse>* AsyncGetCurrentMonthUsageRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetCurrentMonthUsageResponse>* PrepareAsyncGetCurrentMonthUsageRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetOrgBillingInformationResponse>* AsyncGetOrgBillingInformationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetOrgBillingInformationRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -158,41 +103,6 @@ class BillingService final {
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status GetCurrentMonthUsageSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageSummaryRequest& request, ::viam::app::v1::GetCurrentMonthUsageSummaryResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetCurrentMonthUsageSummaryResponse>> AsyncGetCurrentMonthUsageSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageSummaryRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetCurrentMonthUsageSummaryResponse>>(AsyncGetCurrentMonthUsageSummaryRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetCurrentMonthUsageSummaryResponse>> PrepareAsyncGetCurrentMonthUsageSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageSummaryRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetCurrentMonthUsageSummaryResponse>>(PrepareAsyncGetCurrentMonthUsageSummaryRaw(context, request, cq));
-    }
-    ::grpc::Status GetUnpaidBalance(::grpc::ClientContext* context, const ::viam::app::v1::GetUnpaidBalanceRequest& request, ::viam::app::v1::GetUnpaidBalanceResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetUnpaidBalanceResponse>> AsyncGetUnpaidBalance(::grpc::ClientContext* context, const ::viam::app::v1::GetUnpaidBalanceRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetUnpaidBalanceResponse>>(AsyncGetUnpaidBalanceRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetUnpaidBalanceResponse>> PrepareAsyncGetUnpaidBalance(::grpc::ClientContext* context, const ::viam::app::v1::GetUnpaidBalanceRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetUnpaidBalanceResponse>>(PrepareAsyncGetUnpaidBalanceRaw(context, request, cq));
-    }
-    ::grpc::Status GetInvoiceHistory(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoiceHistoryRequest& request, ::viam::app::v1::GetInvoiceHistoryResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetInvoiceHistoryResponse>> AsyncGetInvoiceHistory(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoiceHistoryRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetInvoiceHistoryResponse>>(AsyncGetInvoiceHistoryRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetInvoiceHistoryResponse>> PrepareAsyncGetInvoiceHistory(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoiceHistoryRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetInvoiceHistoryResponse>>(PrepareAsyncGetInvoiceHistoryRaw(context, request, cq));
-    }
-    ::grpc::Status GetItemizedInvoice(::grpc::ClientContext* context, const ::viam::app::v1::GetItemizedInvoiceRequest& request, ::viam::app::v1::GetItemizedInvoiceResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetItemizedInvoiceResponse>> AsyncGetItemizedInvoice(::grpc::ClientContext* context, const ::viam::app::v1::GetItemizedInvoiceRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetItemizedInvoiceResponse>>(AsyncGetItemizedInvoiceRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetItemizedInvoiceResponse>> PrepareAsyncGetItemizedInvoice(::grpc::ClientContext* context, const ::viam::app::v1::GetItemizedInvoiceRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetItemizedInvoiceResponse>>(PrepareAsyncGetItemizedInvoiceRaw(context, request, cq));
-    }
-    ::grpc::Status GetBillingSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetBillingSummaryRequest& request, ::viam::app::v1::GetBillingSummaryResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetBillingSummaryResponse>> AsyncGetBillingSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetBillingSummaryRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetBillingSummaryResponse>>(AsyncGetBillingSummaryRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetBillingSummaryResponse>> PrepareAsyncGetBillingSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetBillingSummaryRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetBillingSummaryResponse>>(PrepareAsyncGetBillingSummaryRaw(context, request, cq));
-    }
     ::grpc::Status GetCurrentMonthUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest& request, ::viam::app::v1::GetCurrentMonthUsageResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetCurrentMonthUsageResponse>> AsyncGetCurrentMonthUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetCurrentMonthUsageResponse>>(AsyncGetCurrentMonthUsageRaw(context, request, cq));
@@ -226,16 +136,6 @@ class BillingService final {
     class async final :
       public StubInterface::async_interface {
      public:
-      void GetCurrentMonthUsageSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageSummaryRequest* request, ::viam::app::v1::GetCurrentMonthUsageSummaryResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetCurrentMonthUsageSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageSummaryRequest* request, ::viam::app::v1::GetCurrentMonthUsageSummaryResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void GetUnpaidBalance(::grpc::ClientContext* context, const ::viam::app::v1::GetUnpaidBalanceRequest* request, ::viam::app::v1::GetUnpaidBalanceResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetUnpaidBalance(::grpc::ClientContext* context, const ::viam::app::v1::GetUnpaidBalanceRequest* request, ::viam::app::v1::GetUnpaidBalanceResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void GetInvoiceHistory(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoiceHistoryRequest* request, ::viam::app::v1::GetInvoiceHistoryResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetInvoiceHistory(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoiceHistoryRequest* request, ::viam::app::v1::GetInvoiceHistoryResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void GetItemizedInvoice(::grpc::ClientContext* context, const ::viam::app::v1::GetItemizedInvoiceRequest* request, ::viam::app::v1::GetItemizedInvoiceResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetItemizedInvoice(::grpc::ClientContext* context, const ::viam::app::v1::GetItemizedInvoiceRequest* request, ::viam::app::v1::GetItemizedInvoiceResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void GetBillingSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetBillingSummaryRequest* request, ::viam::app::v1::GetBillingSummaryResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetBillingSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetBillingSummaryRequest* request, ::viam::app::v1::GetBillingSummaryResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetCurrentMonthUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response, std::function<void(::grpc::Status)>) override;
       void GetCurrentMonthUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetOrgBillingInformation(::grpc::ClientContext* context, const ::viam::app::v1::GetOrgBillingInformationRequest* request, ::viam::app::v1::GetOrgBillingInformationResponse* response, std::function<void(::grpc::Status)>) override;
@@ -254,16 +154,6 @@ class BillingService final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetCurrentMonthUsageSummaryResponse>* AsyncGetCurrentMonthUsageSummaryRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageSummaryRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetCurrentMonthUsageSummaryResponse>* PrepareAsyncGetCurrentMonthUsageSummaryRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageSummaryRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetUnpaidBalanceResponse>* AsyncGetUnpaidBalanceRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetUnpaidBalanceRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetUnpaidBalanceResponse>* PrepareAsyncGetUnpaidBalanceRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetUnpaidBalanceRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetInvoiceHistoryResponse>* AsyncGetInvoiceHistoryRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoiceHistoryRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetInvoiceHistoryResponse>* PrepareAsyncGetInvoiceHistoryRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoiceHistoryRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetItemizedInvoiceResponse>* AsyncGetItemizedInvoiceRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetItemizedInvoiceRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetItemizedInvoiceResponse>* PrepareAsyncGetItemizedInvoiceRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetItemizedInvoiceRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetBillingSummaryResponse>* AsyncGetBillingSummaryRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetBillingSummaryRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetBillingSummaryResponse>* PrepareAsyncGetBillingSummaryRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetBillingSummaryRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetCurrentMonthUsageResponse>* AsyncGetCurrentMonthUsageRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetCurrentMonthUsageResponse>* PrepareAsyncGetCurrentMonthUsageRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetOrgBillingInformationResponse>* AsyncGetOrgBillingInformationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetOrgBillingInformationRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -273,11 +163,6 @@ class BillingService final {
     ::grpc::ClientReader< ::viam::app::v1::GetInvoicePdfResponse>* GetInvoicePdfRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicePdfRequest& request) override;
     ::grpc::ClientAsyncReader< ::viam::app::v1::GetInvoicePdfResponse>* AsyncGetInvoicePdfRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicePdfRequest& request, ::grpc::CompletionQueue* cq, void* tag) override;
     ::grpc::ClientAsyncReader< ::viam::app::v1::GetInvoicePdfResponse>* PrepareAsyncGetInvoicePdfRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicePdfRequest& request, ::grpc::CompletionQueue* cq) override;
-    const ::grpc::internal::RpcMethod rpcmethod_GetCurrentMonthUsageSummary_;
-    const ::grpc::internal::RpcMethod rpcmethod_GetUnpaidBalance_;
-    const ::grpc::internal::RpcMethod rpcmethod_GetInvoiceHistory_;
-    const ::grpc::internal::RpcMethod rpcmethod_GetItemizedInvoice_;
-    const ::grpc::internal::RpcMethod rpcmethod_GetBillingSummary_;
     const ::grpc::internal::RpcMethod rpcmethod_GetCurrentMonthUsage_;
     const ::grpc::internal::RpcMethod rpcmethod_GetOrgBillingInformation_;
     const ::grpc::internal::RpcMethod rpcmethod_GetInvoicesSummary_;
@@ -289,11 +174,6 @@ class BillingService final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status GetCurrentMonthUsageSummary(::grpc::ServerContext* context, const ::viam::app::v1::GetCurrentMonthUsageSummaryRequest* request, ::viam::app::v1::GetCurrentMonthUsageSummaryResponse* response);
-    virtual ::grpc::Status GetUnpaidBalance(::grpc::ServerContext* context, const ::viam::app::v1::GetUnpaidBalanceRequest* request, ::viam::app::v1::GetUnpaidBalanceResponse* response);
-    virtual ::grpc::Status GetInvoiceHistory(::grpc::ServerContext* context, const ::viam::app::v1::GetInvoiceHistoryRequest* request, ::viam::app::v1::GetInvoiceHistoryResponse* response);
-    virtual ::grpc::Status GetItemizedInvoice(::grpc::ServerContext* context, const ::viam::app::v1::GetItemizedInvoiceRequest* request, ::viam::app::v1::GetItemizedInvoiceResponse* response);
-    virtual ::grpc::Status GetBillingSummary(::grpc::ServerContext* context, const ::viam::app::v1::GetBillingSummaryRequest* request, ::viam::app::v1::GetBillingSummaryResponse* response);
     // Detailed breakdown of current month's costs
     virtual ::grpc::Status GetCurrentMonthUsage(::grpc::ServerContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response);
     // Org-level information (like billing email and payment details)
@@ -304,112 +184,12 @@ class BillingService final {
     virtual ::grpc::Status GetInvoicePdf(::grpc::ServerContext* context, const ::viam::app::v1::GetInvoicePdfRequest* request, ::grpc::ServerWriter< ::viam::app::v1::GetInvoicePdfResponse>* writer);
   };
   template <class BaseClass>
-  class WithAsyncMethod_GetCurrentMonthUsageSummary : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_GetCurrentMonthUsageSummary() {
-      ::grpc::Service::MarkMethodAsync(0);
-    }
-    ~WithAsyncMethod_GetCurrentMonthUsageSummary() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetCurrentMonthUsageSummary(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetCurrentMonthUsageSummaryRequest* /*request*/, ::viam::app::v1::GetCurrentMonthUsageSummaryResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetCurrentMonthUsageSummary(::grpc::ServerContext* context, ::viam::app::v1::GetCurrentMonthUsageSummaryRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetCurrentMonthUsageSummaryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_GetUnpaidBalance : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_GetUnpaidBalance() {
-      ::grpc::Service::MarkMethodAsync(1);
-    }
-    ~WithAsyncMethod_GetUnpaidBalance() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetUnpaidBalance(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetUnpaidBalanceRequest* /*request*/, ::viam::app::v1::GetUnpaidBalanceResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetUnpaidBalance(::grpc::ServerContext* context, ::viam::app::v1::GetUnpaidBalanceRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetUnpaidBalanceResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_GetInvoiceHistory : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_GetInvoiceHistory() {
-      ::grpc::Service::MarkMethodAsync(2);
-    }
-    ~WithAsyncMethod_GetInvoiceHistory() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetInvoiceHistory(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetInvoiceHistoryRequest* /*request*/, ::viam::app::v1::GetInvoiceHistoryResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetInvoiceHistory(::grpc::ServerContext* context, ::viam::app::v1::GetInvoiceHistoryRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetInvoiceHistoryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_GetItemizedInvoice : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_GetItemizedInvoice() {
-      ::grpc::Service::MarkMethodAsync(3);
-    }
-    ~WithAsyncMethod_GetItemizedInvoice() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetItemizedInvoice(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetItemizedInvoiceRequest* /*request*/, ::viam::app::v1::GetItemizedInvoiceResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetItemizedInvoice(::grpc::ServerContext* context, ::viam::app::v1::GetItemizedInvoiceRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetItemizedInvoiceResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_GetBillingSummary : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_GetBillingSummary() {
-      ::grpc::Service::MarkMethodAsync(4);
-    }
-    ~WithAsyncMethod_GetBillingSummary() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetBillingSummary(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetBillingSummaryRequest* /*request*/, ::viam::app::v1::GetBillingSummaryResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetBillingSummary(::grpc::ServerContext* context, ::viam::app::v1::GetBillingSummaryRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetBillingSummaryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
   class WithAsyncMethod_GetCurrentMonthUsage : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetCurrentMonthUsage() {
-      ::grpc::Service::MarkMethodAsync(5);
+      ::grpc::Service::MarkMethodAsync(0);
     }
     ~WithAsyncMethod_GetCurrentMonthUsage() override {
       BaseClassMustBeDerivedFromService(this);
@@ -420,7 +200,7 @@ class BillingService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetCurrentMonthUsage(::grpc::ServerContext* context, ::viam::app::v1::GetCurrentMonthUsageRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetCurrentMonthUsageResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -429,7 +209,7 @@ class BillingService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetOrgBillingInformation() {
-      ::grpc::Service::MarkMethodAsync(6);
+      ::grpc::Service::MarkMethodAsync(1);
     }
     ~WithAsyncMethod_GetOrgBillingInformation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -440,7 +220,7 @@ class BillingService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetOrgBillingInformation(::grpc::ServerContext* context, ::viam::app::v1::GetOrgBillingInformationRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetOrgBillingInformationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -449,7 +229,7 @@ class BillingService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetInvoicesSummary() {
-      ::grpc::Service::MarkMethodAsync(7);
+      ::grpc::Service::MarkMethodAsync(2);
     }
     ~WithAsyncMethod_GetInvoicesSummary() override {
       BaseClassMustBeDerivedFromService(this);
@@ -460,7 +240,7 @@ class BillingService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetInvoicesSummary(::grpc::ServerContext* context, ::viam::app::v1::GetInvoicesSummaryRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetInvoicesSummaryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -469,7 +249,7 @@ class BillingService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetInvoicePdf() {
-      ::grpc::Service::MarkMethodAsync(8);
+      ::grpc::Service::MarkMethodAsync(3);
     }
     ~WithAsyncMethod_GetInvoicePdf() override {
       BaseClassMustBeDerivedFromService(this);
@@ -480,158 +260,23 @@ class BillingService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetInvoicePdf(::grpc::ServerContext* context, ::viam::app::v1::GetInvoicePdfRequest* request, ::grpc::ServerAsyncWriter< ::viam::app::v1::GetInvoicePdfResponse>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncServerStreaming(8, context, request, writer, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncServerStreaming(3, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetCurrentMonthUsageSummary<WithAsyncMethod_GetUnpaidBalance<WithAsyncMethod_GetInvoiceHistory<WithAsyncMethod_GetItemizedInvoice<WithAsyncMethod_GetBillingSummary<WithAsyncMethod_GetCurrentMonthUsage<WithAsyncMethod_GetOrgBillingInformation<WithAsyncMethod_GetInvoicesSummary<WithAsyncMethod_GetInvoicePdf<Service > > > > > > > > > AsyncService;
-  template <class BaseClass>
-  class WithCallbackMethod_GetCurrentMonthUsageSummary : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_GetCurrentMonthUsageSummary() {
-      ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetCurrentMonthUsageSummaryRequest, ::viam::app::v1::GetCurrentMonthUsageSummaryResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetCurrentMonthUsageSummaryRequest* request, ::viam::app::v1::GetCurrentMonthUsageSummaryResponse* response) { return this->GetCurrentMonthUsageSummary(context, request, response); }));}
-    void SetMessageAllocatorFor_GetCurrentMonthUsageSummary(
-        ::grpc::MessageAllocator< ::viam::app::v1::GetCurrentMonthUsageSummaryRequest, ::viam::app::v1::GetCurrentMonthUsageSummaryResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetCurrentMonthUsageSummaryRequest, ::viam::app::v1::GetCurrentMonthUsageSummaryResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_GetCurrentMonthUsageSummary() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetCurrentMonthUsageSummary(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetCurrentMonthUsageSummaryRequest* /*request*/, ::viam::app::v1::GetCurrentMonthUsageSummaryResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetCurrentMonthUsageSummary(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::GetCurrentMonthUsageSummaryRequest* /*request*/, ::viam::app::v1::GetCurrentMonthUsageSummaryResponse* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_GetUnpaidBalance : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_GetUnpaidBalance() {
-      ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetUnpaidBalanceRequest, ::viam::app::v1::GetUnpaidBalanceResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetUnpaidBalanceRequest* request, ::viam::app::v1::GetUnpaidBalanceResponse* response) { return this->GetUnpaidBalance(context, request, response); }));}
-    void SetMessageAllocatorFor_GetUnpaidBalance(
-        ::grpc::MessageAllocator< ::viam::app::v1::GetUnpaidBalanceRequest, ::viam::app::v1::GetUnpaidBalanceResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetUnpaidBalanceRequest, ::viam::app::v1::GetUnpaidBalanceResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_GetUnpaidBalance() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetUnpaidBalance(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetUnpaidBalanceRequest* /*request*/, ::viam::app::v1::GetUnpaidBalanceResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetUnpaidBalance(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::GetUnpaidBalanceRequest* /*request*/, ::viam::app::v1::GetUnpaidBalanceResponse* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_GetInvoiceHistory : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_GetInvoiceHistory() {
-      ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetInvoiceHistoryRequest, ::viam::app::v1::GetInvoiceHistoryResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetInvoiceHistoryRequest* request, ::viam::app::v1::GetInvoiceHistoryResponse* response) { return this->GetInvoiceHistory(context, request, response); }));}
-    void SetMessageAllocatorFor_GetInvoiceHistory(
-        ::grpc::MessageAllocator< ::viam::app::v1::GetInvoiceHistoryRequest, ::viam::app::v1::GetInvoiceHistoryResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetInvoiceHistoryRequest, ::viam::app::v1::GetInvoiceHistoryResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_GetInvoiceHistory() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetInvoiceHistory(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetInvoiceHistoryRequest* /*request*/, ::viam::app::v1::GetInvoiceHistoryResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetInvoiceHistory(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::GetInvoiceHistoryRequest* /*request*/, ::viam::app::v1::GetInvoiceHistoryResponse* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_GetItemizedInvoice : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_GetItemizedInvoice() {
-      ::grpc::Service::MarkMethodCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetItemizedInvoiceRequest, ::viam::app::v1::GetItemizedInvoiceResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetItemizedInvoiceRequest* request, ::viam::app::v1::GetItemizedInvoiceResponse* response) { return this->GetItemizedInvoice(context, request, response); }));}
-    void SetMessageAllocatorFor_GetItemizedInvoice(
-        ::grpc::MessageAllocator< ::viam::app::v1::GetItemizedInvoiceRequest, ::viam::app::v1::GetItemizedInvoiceResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetItemizedInvoiceRequest, ::viam::app::v1::GetItemizedInvoiceResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_GetItemizedInvoice() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetItemizedInvoice(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetItemizedInvoiceRequest* /*request*/, ::viam::app::v1::GetItemizedInvoiceResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetItemizedInvoice(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::GetItemizedInvoiceRequest* /*request*/, ::viam::app::v1::GetItemizedInvoiceResponse* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_GetBillingSummary : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_GetBillingSummary() {
-      ::grpc::Service::MarkMethodCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetBillingSummaryRequest, ::viam::app::v1::GetBillingSummaryResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetBillingSummaryRequest* request, ::viam::app::v1::GetBillingSummaryResponse* response) { return this->GetBillingSummary(context, request, response); }));}
-    void SetMessageAllocatorFor_GetBillingSummary(
-        ::grpc::MessageAllocator< ::viam::app::v1::GetBillingSummaryRequest, ::viam::app::v1::GetBillingSummaryResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetBillingSummaryRequest, ::viam::app::v1::GetBillingSummaryResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_GetBillingSummary() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetBillingSummary(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetBillingSummaryRequest* /*request*/, ::viam::app::v1::GetBillingSummaryResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetBillingSummary(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::GetBillingSummaryRequest* /*request*/, ::viam::app::v1::GetBillingSummaryResponse* /*response*/)  { return nullptr; }
-  };
+  typedef WithAsyncMethod_GetCurrentMonthUsage<WithAsyncMethod_GetOrgBillingInformation<WithAsyncMethod_GetInvoicesSummary<WithAsyncMethod_GetInvoicePdf<Service > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetCurrentMonthUsage : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetCurrentMonthUsage() {
-      ::grpc::Service::MarkMethodCallback(5,
+      ::grpc::Service::MarkMethodCallback(0,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetCurrentMonthUsageRequest, ::viam::app::v1::GetCurrentMonthUsageResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response) { return this->GetCurrentMonthUsage(context, request, response); }));}
     void SetMessageAllocatorFor_GetCurrentMonthUsage(
         ::grpc::MessageAllocator< ::viam::app::v1::GetCurrentMonthUsageRequest, ::viam::app::v1::GetCurrentMonthUsageResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetCurrentMonthUsageRequest, ::viam::app::v1::GetCurrentMonthUsageResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -652,13 +297,13 @@ class BillingService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetOrgBillingInformation() {
-      ::grpc::Service::MarkMethodCallback(6,
+      ::grpc::Service::MarkMethodCallback(1,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetOrgBillingInformationRequest, ::viam::app::v1::GetOrgBillingInformationResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetOrgBillingInformationRequest* request, ::viam::app::v1::GetOrgBillingInformationResponse* response) { return this->GetOrgBillingInformation(context, request, response); }));}
     void SetMessageAllocatorFor_GetOrgBillingInformation(
         ::grpc::MessageAllocator< ::viam::app::v1::GetOrgBillingInformationRequest, ::viam::app::v1::GetOrgBillingInformationResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetOrgBillingInformationRequest, ::viam::app::v1::GetOrgBillingInformationResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -679,13 +324,13 @@ class BillingService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetInvoicesSummary() {
-      ::grpc::Service::MarkMethodCallback(7,
+      ::grpc::Service::MarkMethodCallback(2,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetInvoicesSummaryRequest, ::viam::app::v1::GetInvoicesSummaryResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetInvoicesSummaryRequest* request, ::viam::app::v1::GetInvoicesSummaryResponse* response) { return this->GetInvoicesSummary(context, request, response); }));}
     void SetMessageAllocatorFor_GetInvoicesSummary(
         ::grpc::MessageAllocator< ::viam::app::v1::GetInvoicesSummaryRequest, ::viam::app::v1::GetInvoicesSummaryResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetInvoicesSummaryRequest, ::viam::app::v1::GetInvoicesSummaryResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -706,7 +351,7 @@ class BillingService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetInvoicePdf() {
-      ::grpc::Service::MarkMethodCallback(8,
+      ::grpc::Service::MarkMethodCallback(3,
           new ::grpc::internal::CallbackServerStreamingHandler< ::viam::app::v1::GetInvoicePdfRequest, ::viam::app::v1::GetInvoicePdfResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetInvoicePdfRequest* request) { return this->GetInvoicePdf(context, request); }));
@@ -722,100 +367,15 @@ class BillingService final {
     virtual ::grpc::ServerWriteReactor< ::viam::app::v1::GetInvoicePdfResponse>* GetInvoicePdf(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::GetInvoicePdfRequest* /*request*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetCurrentMonthUsageSummary<WithCallbackMethod_GetUnpaidBalance<WithCallbackMethod_GetInvoiceHistory<WithCallbackMethod_GetItemizedInvoice<WithCallbackMethod_GetBillingSummary<WithCallbackMethod_GetCurrentMonthUsage<WithCallbackMethod_GetOrgBillingInformation<WithCallbackMethod_GetInvoicesSummary<WithCallbackMethod_GetInvoicePdf<Service > > > > > > > > > CallbackService;
+  typedef WithCallbackMethod_GetCurrentMonthUsage<WithCallbackMethod_GetOrgBillingInformation<WithCallbackMethod_GetInvoicesSummary<WithCallbackMethod_GetInvoicePdf<Service > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
-  template <class BaseClass>
-  class WithGenericMethod_GetCurrentMonthUsageSummary : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_GetCurrentMonthUsageSummary() {
-      ::grpc::Service::MarkMethodGeneric(0);
-    }
-    ~WithGenericMethod_GetCurrentMonthUsageSummary() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetCurrentMonthUsageSummary(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetCurrentMonthUsageSummaryRequest* /*request*/, ::viam::app::v1::GetCurrentMonthUsageSummaryResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_GetUnpaidBalance : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_GetUnpaidBalance() {
-      ::grpc::Service::MarkMethodGeneric(1);
-    }
-    ~WithGenericMethod_GetUnpaidBalance() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetUnpaidBalance(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetUnpaidBalanceRequest* /*request*/, ::viam::app::v1::GetUnpaidBalanceResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_GetInvoiceHistory : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_GetInvoiceHistory() {
-      ::grpc::Service::MarkMethodGeneric(2);
-    }
-    ~WithGenericMethod_GetInvoiceHistory() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetInvoiceHistory(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetInvoiceHistoryRequest* /*request*/, ::viam::app::v1::GetInvoiceHistoryResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_GetItemizedInvoice : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_GetItemizedInvoice() {
-      ::grpc::Service::MarkMethodGeneric(3);
-    }
-    ~WithGenericMethod_GetItemizedInvoice() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetItemizedInvoice(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetItemizedInvoiceRequest* /*request*/, ::viam::app::v1::GetItemizedInvoiceResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_GetBillingSummary : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_GetBillingSummary() {
-      ::grpc::Service::MarkMethodGeneric(4);
-    }
-    ~WithGenericMethod_GetBillingSummary() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetBillingSummary(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetBillingSummaryRequest* /*request*/, ::viam::app::v1::GetBillingSummaryResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
   template <class BaseClass>
   class WithGenericMethod_GetCurrentMonthUsage : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetCurrentMonthUsage() {
-      ::grpc::Service::MarkMethodGeneric(5);
+      ::grpc::Service::MarkMethodGeneric(0);
     }
     ~WithGenericMethod_GetCurrentMonthUsage() override {
       BaseClassMustBeDerivedFromService(this);
@@ -832,7 +392,7 @@ class BillingService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetOrgBillingInformation() {
-      ::grpc::Service::MarkMethodGeneric(6);
+      ::grpc::Service::MarkMethodGeneric(1);
     }
     ~WithGenericMethod_GetOrgBillingInformation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -849,7 +409,7 @@ class BillingService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetInvoicesSummary() {
-      ::grpc::Service::MarkMethodGeneric(7);
+      ::grpc::Service::MarkMethodGeneric(2);
     }
     ~WithGenericMethod_GetInvoicesSummary() override {
       BaseClassMustBeDerivedFromService(this);
@@ -866,7 +426,7 @@ class BillingService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetInvoicePdf() {
-      ::grpc::Service::MarkMethodGeneric(8);
+      ::grpc::Service::MarkMethodGeneric(3);
     }
     ~WithGenericMethod_GetInvoicePdf() override {
       BaseClassMustBeDerivedFromService(this);
@@ -878,112 +438,12 @@ class BillingService final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_GetCurrentMonthUsageSummary : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_GetCurrentMonthUsageSummary() {
-      ::grpc::Service::MarkMethodRaw(0);
-    }
-    ~WithRawMethod_GetCurrentMonthUsageSummary() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetCurrentMonthUsageSummary(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetCurrentMonthUsageSummaryRequest* /*request*/, ::viam::app::v1::GetCurrentMonthUsageSummaryResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetCurrentMonthUsageSummary(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_GetUnpaidBalance : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_GetUnpaidBalance() {
-      ::grpc::Service::MarkMethodRaw(1);
-    }
-    ~WithRawMethod_GetUnpaidBalance() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetUnpaidBalance(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetUnpaidBalanceRequest* /*request*/, ::viam::app::v1::GetUnpaidBalanceResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetUnpaidBalance(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_GetInvoiceHistory : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_GetInvoiceHistory() {
-      ::grpc::Service::MarkMethodRaw(2);
-    }
-    ~WithRawMethod_GetInvoiceHistory() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetInvoiceHistory(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetInvoiceHistoryRequest* /*request*/, ::viam::app::v1::GetInvoiceHistoryResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetInvoiceHistory(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_GetItemizedInvoice : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_GetItemizedInvoice() {
-      ::grpc::Service::MarkMethodRaw(3);
-    }
-    ~WithRawMethod_GetItemizedInvoice() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetItemizedInvoice(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetItemizedInvoiceRequest* /*request*/, ::viam::app::v1::GetItemizedInvoiceResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetItemizedInvoice(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_GetBillingSummary : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_GetBillingSummary() {
-      ::grpc::Service::MarkMethodRaw(4);
-    }
-    ~WithRawMethod_GetBillingSummary() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetBillingSummary(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetBillingSummaryRequest* /*request*/, ::viam::app::v1::GetBillingSummaryResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetBillingSummary(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
   class WithRawMethod_GetCurrentMonthUsage : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetCurrentMonthUsage() {
-      ::grpc::Service::MarkMethodRaw(5);
+      ::grpc::Service::MarkMethodRaw(0);
     }
     ~WithRawMethod_GetCurrentMonthUsage() override {
       BaseClassMustBeDerivedFromService(this);
@@ -994,7 +454,7 @@ class BillingService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetCurrentMonthUsage(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1003,7 +463,7 @@ class BillingService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetOrgBillingInformation() {
-      ::grpc::Service::MarkMethodRaw(6);
+      ::grpc::Service::MarkMethodRaw(1);
     }
     ~WithRawMethod_GetOrgBillingInformation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1014,7 +474,7 @@ class BillingService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetOrgBillingInformation(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1023,7 +483,7 @@ class BillingService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetInvoicesSummary() {
-      ::grpc::Service::MarkMethodRaw(7);
+      ::grpc::Service::MarkMethodRaw(2);
     }
     ~WithRawMethod_GetInvoicesSummary() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1034,7 +494,7 @@ class BillingService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetInvoicesSummary(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1043,7 +503,7 @@ class BillingService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetInvoicePdf() {
-      ::grpc::Service::MarkMethodRaw(8);
+      ::grpc::Service::MarkMethodRaw(3);
     }
     ~WithRawMethod_GetInvoicePdf() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1054,118 +514,8 @@ class BillingService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetInvoicePdf(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncWriter< ::grpc::ByteBuffer>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncServerStreaming(8, context, request, writer, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncServerStreaming(3, context, request, writer, new_call_cq, notification_cq, tag);
     }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_GetCurrentMonthUsageSummary : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_GetCurrentMonthUsageSummary() {
-      ::grpc::Service::MarkMethodRawCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetCurrentMonthUsageSummary(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_GetCurrentMonthUsageSummary() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetCurrentMonthUsageSummary(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetCurrentMonthUsageSummaryRequest* /*request*/, ::viam::app::v1::GetCurrentMonthUsageSummaryResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetCurrentMonthUsageSummary(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_GetUnpaidBalance : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_GetUnpaidBalance() {
-      ::grpc::Service::MarkMethodRawCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetUnpaidBalance(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_GetUnpaidBalance() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetUnpaidBalance(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetUnpaidBalanceRequest* /*request*/, ::viam::app::v1::GetUnpaidBalanceResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetUnpaidBalance(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_GetInvoiceHistory : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_GetInvoiceHistory() {
-      ::grpc::Service::MarkMethodRawCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetInvoiceHistory(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_GetInvoiceHistory() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetInvoiceHistory(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetInvoiceHistoryRequest* /*request*/, ::viam::app::v1::GetInvoiceHistoryResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetInvoiceHistory(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_GetItemizedInvoice : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_GetItemizedInvoice() {
-      ::grpc::Service::MarkMethodRawCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetItemizedInvoice(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_GetItemizedInvoice() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetItemizedInvoice(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetItemizedInvoiceRequest* /*request*/, ::viam::app::v1::GetItemizedInvoiceResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetItemizedInvoice(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_GetBillingSummary : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_GetBillingSummary() {
-      ::grpc::Service::MarkMethodRawCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetBillingSummary(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_GetBillingSummary() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetBillingSummary(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetBillingSummaryRequest* /*request*/, ::viam::app::v1::GetBillingSummaryResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetBillingSummary(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithRawCallbackMethod_GetCurrentMonthUsage : public BaseClass {
@@ -1173,7 +523,7 @@ class BillingService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetCurrentMonthUsage() {
-      ::grpc::Service::MarkMethodRawCallback(5,
+      ::grpc::Service::MarkMethodRawCallback(0,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetCurrentMonthUsage(context, request, response); }));
@@ -1195,7 +545,7 @@ class BillingService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetOrgBillingInformation() {
-      ::grpc::Service::MarkMethodRawCallback(6,
+      ::grpc::Service::MarkMethodRawCallback(1,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetOrgBillingInformation(context, request, response); }));
@@ -1217,7 +567,7 @@ class BillingService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetInvoicesSummary() {
-      ::grpc::Service::MarkMethodRawCallback(7,
+      ::grpc::Service::MarkMethodRawCallback(2,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetInvoicesSummary(context, request, response); }));
@@ -1239,7 +589,7 @@ class BillingService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetInvoicePdf() {
-      ::grpc::Service::MarkMethodRawCallback(8,
+      ::grpc::Service::MarkMethodRawCallback(3,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->GetInvoicePdf(context, request); }));
@@ -1256,147 +606,12 @@ class BillingService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_GetCurrentMonthUsageSummary : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_GetCurrentMonthUsageSummary() {
-      ::grpc::Service::MarkMethodStreamed(0,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::app::v1::GetCurrentMonthUsageSummaryRequest, ::viam::app::v1::GetCurrentMonthUsageSummaryResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::viam::app::v1::GetCurrentMonthUsageSummaryRequest, ::viam::app::v1::GetCurrentMonthUsageSummaryResponse>* streamer) {
-                       return this->StreamedGetCurrentMonthUsageSummary(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_GetCurrentMonthUsageSummary() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status GetCurrentMonthUsageSummary(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetCurrentMonthUsageSummaryRequest* /*request*/, ::viam::app::v1::GetCurrentMonthUsageSummaryResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetCurrentMonthUsageSummary(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::GetCurrentMonthUsageSummaryRequest,::viam::app::v1::GetCurrentMonthUsageSummaryResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_GetUnpaidBalance : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_GetUnpaidBalance() {
-      ::grpc::Service::MarkMethodStreamed(1,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::app::v1::GetUnpaidBalanceRequest, ::viam::app::v1::GetUnpaidBalanceResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::viam::app::v1::GetUnpaidBalanceRequest, ::viam::app::v1::GetUnpaidBalanceResponse>* streamer) {
-                       return this->StreamedGetUnpaidBalance(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_GetUnpaidBalance() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status GetUnpaidBalance(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetUnpaidBalanceRequest* /*request*/, ::viam::app::v1::GetUnpaidBalanceResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetUnpaidBalance(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::GetUnpaidBalanceRequest,::viam::app::v1::GetUnpaidBalanceResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_GetInvoiceHistory : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_GetInvoiceHistory() {
-      ::grpc::Service::MarkMethodStreamed(2,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::app::v1::GetInvoiceHistoryRequest, ::viam::app::v1::GetInvoiceHistoryResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::viam::app::v1::GetInvoiceHistoryRequest, ::viam::app::v1::GetInvoiceHistoryResponse>* streamer) {
-                       return this->StreamedGetInvoiceHistory(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_GetInvoiceHistory() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status GetInvoiceHistory(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetInvoiceHistoryRequest* /*request*/, ::viam::app::v1::GetInvoiceHistoryResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetInvoiceHistory(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::GetInvoiceHistoryRequest,::viam::app::v1::GetInvoiceHistoryResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_GetItemizedInvoice : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_GetItemizedInvoice() {
-      ::grpc::Service::MarkMethodStreamed(3,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::app::v1::GetItemizedInvoiceRequest, ::viam::app::v1::GetItemizedInvoiceResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::viam::app::v1::GetItemizedInvoiceRequest, ::viam::app::v1::GetItemizedInvoiceResponse>* streamer) {
-                       return this->StreamedGetItemizedInvoice(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_GetItemizedInvoice() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status GetItemizedInvoice(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetItemizedInvoiceRequest* /*request*/, ::viam::app::v1::GetItemizedInvoiceResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetItemizedInvoice(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::GetItemizedInvoiceRequest,::viam::app::v1::GetItemizedInvoiceResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_GetBillingSummary : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_GetBillingSummary() {
-      ::grpc::Service::MarkMethodStreamed(4,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::app::v1::GetBillingSummaryRequest, ::viam::app::v1::GetBillingSummaryResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::viam::app::v1::GetBillingSummaryRequest, ::viam::app::v1::GetBillingSummaryResponse>* streamer) {
-                       return this->StreamedGetBillingSummary(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_GetBillingSummary() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status GetBillingSummary(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetBillingSummaryRequest* /*request*/, ::viam::app::v1::GetBillingSummaryResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetBillingSummary(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::GetBillingSummaryRequest,::viam::app::v1::GetBillingSummaryResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
   class WithStreamedUnaryMethod_GetCurrentMonthUsage : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetCurrentMonthUsage() {
-      ::grpc::Service::MarkMethodStreamed(5,
+      ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetCurrentMonthUsageRequest, ::viam::app::v1::GetCurrentMonthUsageResponse>(
             [this](::grpc::ServerContext* context,
@@ -1423,7 +638,7 @@ class BillingService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetOrgBillingInformation() {
-      ::grpc::Service::MarkMethodStreamed(6,
+      ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetOrgBillingInformationRequest, ::viam::app::v1::GetOrgBillingInformationResponse>(
             [this](::grpc::ServerContext* context,
@@ -1450,7 +665,7 @@ class BillingService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetInvoicesSummary() {
-      ::grpc::Service::MarkMethodStreamed(7,
+      ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetInvoicesSummaryRequest, ::viam::app::v1::GetInvoicesSummaryResponse>(
             [this](::grpc::ServerContext* context,
@@ -1471,14 +686,14 @@ class BillingService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetInvoicesSummary(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::GetInvoicesSummaryRequest,::viam::app::v1::GetInvoicesSummaryResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetCurrentMonthUsageSummary<WithStreamedUnaryMethod_GetUnpaidBalance<WithStreamedUnaryMethod_GetInvoiceHistory<WithStreamedUnaryMethod_GetItemizedInvoice<WithStreamedUnaryMethod_GetBillingSummary<WithStreamedUnaryMethod_GetCurrentMonthUsage<WithStreamedUnaryMethod_GetOrgBillingInformation<WithStreamedUnaryMethod_GetInvoicesSummary<Service > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_GetCurrentMonthUsage<WithStreamedUnaryMethod_GetOrgBillingInformation<WithStreamedUnaryMethod_GetInvoicesSummary<Service > > > StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_GetInvoicePdf : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithSplitStreamingMethod_GetInvoicePdf() {
-      ::grpc::Service::MarkMethodStreamed(8,
+      ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::SplitServerStreamingHandler<
           ::viam::app::v1::GetInvoicePdfRequest, ::viam::app::v1::GetInvoicePdfResponse>(
             [this](::grpc::ServerContext* context,
@@ -1500,7 +715,7 @@ class BillingService final {
     virtual ::grpc::Status StreamedGetInvoicePdf(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::viam::app::v1::GetInvoicePdfRequest,::viam::app::v1::GetInvoicePdfResponse>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_GetInvoicePdf<Service > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetCurrentMonthUsageSummary<WithStreamedUnaryMethod_GetUnpaidBalance<WithStreamedUnaryMethod_GetInvoiceHistory<WithStreamedUnaryMethod_GetItemizedInvoice<WithStreamedUnaryMethod_GetBillingSummary<WithStreamedUnaryMethod_GetCurrentMonthUsage<WithStreamedUnaryMethod_GetOrgBillingInformation<WithStreamedUnaryMethod_GetInvoicesSummary<WithSplitStreamingMethod_GetInvoicePdf<Service > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetCurrentMonthUsage<WithStreamedUnaryMethod_GetOrgBillingInformation<WithStreamedUnaryMethod_GetInvoicesSummary<WithSplitStreamingMethod_GetInvoicePdf<Service > > > > StreamedService;
 };
 
 }  // namespace v1

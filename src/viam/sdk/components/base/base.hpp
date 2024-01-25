@@ -26,8 +26,8 @@ namespace sdk {
 class BaseRegistration : public ResourceRegistration {
    public:
     explicit BaseRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
-    std::shared_ptr<ResourceServer> create_resource_server(
-        std::shared_ptr<ResourceManager> manager) override;
+    std::shared_ptr<ResourceServer> create_resource_server(std::shared_ptr<ResourceManager> manager,
+                                                           Server& server) override;
     std::shared_ptr<Resource> create_rpc_client(std::string name,
                                                 std::shared_ptr<grpc::Channel> chan) override;
 };
@@ -54,7 +54,6 @@ class Base : public Component, public Stoppable {
 
     // functions shared across all components
     static std::shared_ptr<ResourceRegistration> resource_registration();
-    static API static_api();
 
     /// @brief Move a robot's base in a straight line by a given distance. This method blocks
     /// until completed or cancelled
@@ -157,10 +156,15 @@ class Base : public Component, public Stoppable {
     /// @return The requested `GeometryConfig`s associated with the component.
     virtual std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) = 0;
 
-    API dynamic_api() const override;
+    API api() const override;
 
    protected:
     explicit Base(std::string name);
+};
+
+template <>
+struct API::traits<Base> {
+    static API api();
 };
 
 }  // namespace sdk

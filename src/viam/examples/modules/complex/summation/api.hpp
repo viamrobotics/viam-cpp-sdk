@@ -22,8 +22,8 @@ using namespace viam::service::summation::v1;
 class SummationRegistration : public ResourceRegistration {
    public:
     explicit SummationRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
-    std::shared_ptr<ResourceServer> create_resource_server(
-        std::shared_ptr<ResourceManager> manager) override;
+    std::shared_ptr<ResourceServer> create_resource_server(std::shared_ptr<ResourceManager> manager,
+                                                           Server& server) override;
     std::shared_ptr<Resource> create_rpc_client(std::string name,
                                                 std::shared_ptr<grpc::Channel> chan) override;
 };
@@ -33,14 +33,20 @@ class Summation : public Service {
    public:
     // methods shared across all services
     static std::shared_ptr<ResourceRegistration> resource_registration();
-    static API static_api();
-    API dynamic_api() const override;
+    API api() const override;
 
     virtual double sum(std::vector<double> numbers) = 0;
 
    protected:
     explicit Summation(std::string name);
 };
+
+namespace viam::sdk {
+template <>
+struct API::traits<Summation> {
+    static API api();
+};
+}  // namespace viam::sdk
 
 // `SummationClient` is the gRPC client implementation of a `Summation`
 // service.
@@ -60,12 +66,9 @@ class SummationClient : public Summation {
 // service.
 class SummationServer : public ResourceServer, public SummationService::Service {
    public:
-    SummationServer();
     explicit SummationServer(std::shared_ptr<ResourceManager> manager);
 
     grpc::Status Sum(grpc::ServerContext* context,
                      const SumRequest* request,
                      SumResponse* response) override;
-
-    void register_server(std::shared_ptr<Server> server) override;
 };

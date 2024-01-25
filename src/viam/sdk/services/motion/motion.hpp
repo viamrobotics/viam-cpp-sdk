@@ -27,8 +27,8 @@ namespace sdk {
 class MotionRegistration : public ResourceRegistration {
    public:
     explicit MotionRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
-    std::shared_ptr<ResourceServer> create_resource_server(
-        std::shared_ptr<ResourceManager> manager) override;
+    std::shared_ptr<ResourceServer> create_resource_server(std::shared_ptr<ResourceManager> manager,
+                                                           Server& server) override;
     std::shared_ptr<Resource> create_rpc_client(std::string name,
                                                 std::shared_ptr<grpc::Channel> chan) override;
 };
@@ -240,8 +240,7 @@ class Motion : public Service {
         service::motion::v1::Constraints to_proto() const;
     };
 
-    static API static_api();
-    API dynamic_api() const override;
+    API api() const override;
 
     /// @brief Creates a `ResourceRegistration` for the `Motion` service.
     static std::shared_ptr<ResourceRegistration> resource_registration();
@@ -496,6 +495,11 @@ class Motion : public Service {
 
    protected:
     explicit Motion(std::string name);
+};
+
+template <>
+struct API::traits<Motion> {
+    static API api();
 };
 
 }  // namespace sdk

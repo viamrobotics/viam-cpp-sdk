@@ -28,7 +28,7 @@ static const char* SLAMService_method_names[] = {
   "/viam.service.slam.v1.SLAMService/GetPosition",
   "/viam.service.slam.v1.SLAMService/GetPointCloudMap",
   "/viam.service.slam.v1.SLAMService/GetInternalState",
-  "/viam.service.slam.v1.SLAMService/GetLatestMapInfo",
+  "/viam.service.slam.v1.SLAMService/GetProperties",
   "/viam.service.slam.v1.SLAMService/DoCommand",
 };
 
@@ -42,7 +42,7 @@ SLAMService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channe
   : channel_(channel), rpcmethod_GetPosition_(SLAMService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetPointCloudMap_(SLAMService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
   , rpcmethod_GetInternalState_(SLAMService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
-  , rpcmethod_GetLatestMapInfo_(SLAMService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetProperties_(SLAMService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_DoCommand_(SLAMService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
@@ -101,25 +101,25 @@ void SLAMService::Stub::async::GetInternalState(::grpc::ClientContext* context, 
   return ::grpc::internal::ClientAsyncReaderFactory< ::viam::service::slam::v1::GetInternalStateResponse>::Create(channel_.get(), cq, rpcmethod_GetInternalState_, context, request, false, nullptr);
 }
 
-::grpc::Status SLAMService::Stub::GetLatestMapInfo(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetLatestMapInfoRequest& request, ::viam::service::slam::v1::GetLatestMapInfoResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::service::slam::v1::GetLatestMapInfoRequest, ::viam::service::slam::v1::GetLatestMapInfoResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetLatestMapInfo_, context, request, response);
+::grpc::Status SLAMService::Stub::GetProperties(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPropertiesRequest& request, ::viam::service::slam::v1::GetPropertiesResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::slam::v1::GetPropertiesRequest, ::viam::service::slam::v1::GetPropertiesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetProperties_, context, request, response);
 }
 
-void SLAMService::Stub::async::GetLatestMapInfo(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetLatestMapInfoRequest* request, ::viam::service::slam::v1::GetLatestMapInfoResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::service::slam::v1::GetLatestMapInfoRequest, ::viam::service::slam::v1::GetLatestMapInfoResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetLatestMapInfo_, context, request, response, std::move(f));
+void SLAMService::Stub::async::GetProperties(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPropertiesRequest* request, ::viam::service::slam::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::slam::v1::GetPropertiesRequest, ::viam::service::slam::v1::GetPropertiesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetProperties_, context, request, response, std::move(f));
 }
 
-void SLAMService::Stub::async::GetLatestMapInfo(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetLatestMapInfoRequest* request, ::viam::service::slam::v1::GetLatestMapInfoResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetLatestMapInfo_, context, request, response, reactor);
+void SLAMService::Stub::async::GetProperties(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPropertiesRequest* request, ::viam::service::slam::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetProperties_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetLatestMapInfoResponse>* SLAMService::Stub::PrepareAsyncGetLatestMapInfoRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetLatestMapInfoRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::slam::v1::GetLatestMapInfoResponse, ::viam::service::slam::v1::GetLatestMapInfoRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetLatestMapInfo_, context, request);
+::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetPropertiesResponse>* SLAMService::Stub::PrepareAsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::slam::v1::GetPropertiesResponse, ::viam::service::slam::v1::GetPropertiesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetProperties_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetLatestMapInfoResponse>* SLAMService::Stub::AsyncGetLatestMapInfoRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetLatestMapInfoRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetPropertiesResponse>* SLAMService::Stub::AsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncGetLatestMapInfoRaw(context, request, cq);
+    this->PrepareAsyncGetPropertiesRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -181,12 +181,12 @@ SLAMService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       SLAMService_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< SLAMService::Service, ::viam::service::slam::v1::GetLatestMapInfoRequest, ::viam::service::slam::v1::GetLatestMapInfoResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< SLAMService::Service, ::viam::service::slam::v1::GetPropertiesRequest, ::viam::service::slam::v1::GetPropertiesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](SLAMService::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::viam::service::slam::v1::GetLatestMapInfoRequest* req,
-             ::viam::service::slam::v1::GetLatestMapInfoResponse* resp) {
-               return service->GetLatestMapInfo(ctx, req, resp);
+             const ::viam::service::slam::v1::GetPropertiesRequest* req,
+             ::viam::service::slam::v1::GetPropertiesResponse* resp) {
+               return service->GetProperties(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       SLAMService_method_names[4],
@@ -224,7 +224,7 @@ SLAMService::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status SLAMService::Service::GetLatestMapInfo(::grpc::ServerContext* context, const ::viam::service::slam::v1::GetLatestMapInfoRequest* request, ::viam::service::slam::v1::GetLatestMapInfoResponse* response) {
+::grpc::Status SLAMService::Service::GetProperties(::grpc::ServerContext* context, const ::viam::service::slam::v1::GetPropertiesRequest* request, ::viam::service::slam::v1::GetPropertiesResponse* response) {
   (void) context;
   (void) request;
   (void) response;

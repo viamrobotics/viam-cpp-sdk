@@ -13,8 +13,8 @@
 namespace viam {
 namespace sdk {
 
-MotionServer::MotionServer() : ResourceServer(std::make_shared<ResourceManager>()){};
-MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager) : ResourceServer(manager){};
+MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
+    : ResourceServer(std::move(manager)){};
 
 ::grpc::Status MotionServer::Move(::grpc::ServerContext* context,
                                   const ::viam::service::motion::v1::MoveRequest* request,
@@ -211,10 +211,6 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager) : ResourceS
         *response->mutable_result() = map_to_struct(result);
     });
 };
-
-void MotionServer::register_server(std::shared_ptr<Server> server) {
-    server->register_service(this);
-}
 
 }  // namespace sdk
 }  // namespace viam

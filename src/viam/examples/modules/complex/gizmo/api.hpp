@@ -20,8 +20,8 @@ using namespace viam::component::gizmo::v1;
 class GizmoRegistration : public ResourceRegistration {
    public:
     explicit GizmoRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
-    std::shared_ptr<ResourceServer> create_resource_server(
-        std::shared_ptr<ResourceManager> manager) override;
+    std::shared_ptr<ResourceServer> create_resource_server(std::shared_ptr<ResourceManager> manager,
+                                                           Server& server) override;
     std::shared_ptr<Resource> create_rpc_client(std::string name,
                                                 std::shared_ptr<grpc::Channel> chan) override;
 };
@@ -31,8 +31,7 @@ class Gizmo : public Component {
    public:
     // methods shared across all components
     static std::shared_ptr<ResourceRegistration> resource_registration();
-    static API static_api();
-    API dynamic_api() const override;
+    API api() const override;
 
     virtual bool do_one(std::string arg1) = 0;
     virtual bool do_one_client_stream(std::vector<std::string> arg1) = 0;
@@ -43,6 +42,13 @@ class Gizmo : public Component {
    protected:
     explicit Gizmo(std::string name);
 };
+
+namespace viam::sdk {
+template <>
+struct API::traits<Gizmo> {
+    static ::viam::sdk::API api();
+};
+}  // namespace viam::sdk
 
 // `GizmoClient` is the gRPC client implementation of a `Gizmo` component.
 class GizmoClient : public Gizmo {
@@ -64,7 +70,6 @@ class GizmoClient : public Gizmo {
 // `GizmoServer` is the gRPC server implementation of a `Gizmo` component.
 class GizmoServer : public ResourceServer, public GizmoService::Service {
    public:
-    GizmoServer();
     explicit GizmoServer(std::shared_ptr<ResourceManager> manager);
 
     grpc::Status DoOne(grpc::ServerContext* context,
@@ -86,6 +91,4 @@ class GizmoServer : public ResourceServer, public GizmoService::Service {
     grpc::Status DoTwo(grpc::ServerContext* context,
                        const DoTwoRequest* request,
                        DoTwoResponse* response) override;
-
-    void register_server(std::shared_ptr<Server> server) override;
 };

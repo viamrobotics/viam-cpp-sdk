@@ -19,8 +19,10 @@ EncoderRegistration::EncoderRegistration(
     : ResourceRegistration(service_descriptor){};
 
 std::shared_ptr<ResourceServer> EncoderRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager) {
-    return std::make_shared<EncoderServer>(manager);
+    std::shared_ptr<ResourceManager> manager, Server& server) {
+    auto es = std::make_shared<EncoderServer>(manager);
+    server.register_service(es.get());
+    return es;
 };
 
 std::shared_ptr<Resource> EncoderRegistration::create_rpc_client(
@@ -38,12 +40,12 @@ std::shared_ptr<ResourceRegistration> Encoder::resource_registration() {
     return std::make_shared<EncoderRegistration>(sd);
 }
 
-API Encoder::static_api() {
-    return {kRDK, kComponent, "encoder"};
+API Encoder::api() const {
+    return API::get<Encoder>();
 }
 
-API Encoder::dynamic_api() const {
-    return static_api();
+API API::traits<Encoder>::api() {
+    return {kRDK, kComponent, "encoder"};
 }
 
 Encoder::position_type Encoder::from_proto(viam::component::encoder::v1::PositionType proto) {
@@ -125,7 +127,7 @@ bool operator==(const Encoder::properties& lhs, const Encoder::properties& rhs) 
 
 namespace {
 bool init() {
-    Registry::register_resource(Encoder::static_api(), Encoder::resource_registration());
+    Registry::register_resource(API::get<Encoder>(), Encoder::resource_registration());
     return true;
 };
 

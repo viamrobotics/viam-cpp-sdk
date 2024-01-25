@@ -107,7 +107,7 @@ proto::Orientation OrientationConfig::to_proto() const {
             aa.set_y(a.y);
             aa.set_z(a.z);
             aa.set_theta(a.theta);
-            orientation.set_allocated_axis_angles(&aa);
+            *orientation.mutable_axis_angles() = std::move(aa);
             return orientation;
         };
         case OrientationVector: {
@@ -117,7 +117,7 @@ proto::Orientation OrientationConfig::to_proto() const {
             ovec.set_y(ov.y);
             ovec.set_z(ov.z);
             ovec.set_theta(ov.theta);
-            orientation.set_allocated_vector_radians(&ovec);
+            *orientation.mutable_vector_radians() = std::move(ovec);
             return orientation;
         };
         case OrientationVectorDegrees: {
@@ -128,7 +128,7 @@ proto::Orientation OrientationConfig::to_proto() const {
             ovec.set_y(ovd.y);
             ovec.set_z(ovd.z);
             ovec.set_theta(ovd.theta);
-            orientation.set_allocated_vector_degrees(&ovec);
+            *orientation.mutable_vector_degrees() = std::move(ovec);
             return orientation;
         };
         case EulerAngles: {
@@ -137,7 +137,7 @@ proto::Orientation OrientationConfig::to_proto() const {
             euler.set_pitch(ea.pitch);
             euler.set_roll(ea.roll);
             euler.set_yaw(ea.yaw);
-            orientation.set_allocated_euler_angles(&euler);
+            *orientation.mutable_euler_angles() = std::move(euler);
             return orientation;
         };
         case Quaternion: {
@@ -147,7 +147,7 @@ proto::Orientation OrientationConfig::to_proto() const {
             quat.set_x(q.x);
             quat.set_y(q.y);
             quat.set_z(q.z);
-            orientation.set_allocated_quaternion(&quat);
+            *orientation.mutable_quaternion() = std::move(quat);
             return orientation;
         };
         default: {

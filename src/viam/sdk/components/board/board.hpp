@@ -25,8 +25,8 @@ namespace sdk {
 class BoardRegistration : public ResourceRegistration {
    public:
     explicit BoardRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
-    std::shared_ptr<ResourceServer> create_resource_server(
-        std::shared_ptr<ResourceManager> manager) override;
+    std::shared_ptr<ResourceServer> create_resource_server(std::shared_ptr<ResourceManager> manager,
+                                                           Server& server) override;
     std::shared_ptr<Resource> create_rpc_client(std::string name,
                                                 std::shared_ptr<grpc::Channel> chan) override;
 };
@@ -67,8 +67,7 @@ class Board : public Component {
 
     // functions shared across all components
     static std::shared_ptr<ResourceRegistration> resource_registration();
-    static API static_api();
-    API dynamic_api() const override;
+    API api() const override;
 
     /// @brief Creates a `status` struct from its proto representation.
     static status from_proto(viam::common::v1::BoardStatus proto);
@@ -277,6 +276,11 @@ class Board : public Component {
 
    protected:
     explicit Board(std::string name);
+};
+
+template <>
+struct API::traits<Board> {
+    static API api();
 };
 
 bool operator==(const Board::status& lhs, const Board::status& rhs);

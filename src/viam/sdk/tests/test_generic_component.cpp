@@ -25,85 +25,37 @@ using namespace viam::sdk;
 
 BOOST_AUTO_TEST_SUITE(generic_suite)
 
-std::shared_ptr<MockGeneric> generic = MockGeneric::get_mock_generic();
+BOOST_AUTO_TEST_CASE(mock_get_api) {
+    const auto generic = MockGeneric::get_mock_generic();
+    auto api = generic->api();
+    auto static_api = API::get<Generic>();
 
-BOOST_AUTO_TEST_CASE(test_do) {
-    AttributeMap expected = fake_map();
-
-    AttributeMap command;
-    AttributeMap result_map = generic->do_command(command);
-
-    std::shared_ptr<ProtoType> expected_pt = expected->at(std::string("test"));
-    std::shared_ptr<ProtoType> result_pt = result_map->at(std::string("test"));
-
-    BOOST_CHECK(*expected_pt == *result_pt);
+    BOOST_CHECK_EQUAL(api, static_api);
+    BOOST_CHECK_EQUAL(static_api.resource_subtype(), "generic");
 }
 
-BOOST_AUTO_TEST_CASE(test_do_service) {
-    auto server = std::make_shared<GenericServer>();
-    server->resource_manager()->add(std::string("mock_generic"), MockGeneric::get_mock_generic());
+BOOST_AUTO_TEST_CASE(test_do_command) {
+    std::shared_ptr<MockGeneric> mock = MockGeneric::get_mock_generic();
+    client_to_mock_pipeline<GenericClient>(mock, [](Generic& client) {
+        AttributeMap expected = fake_map();
+        AttributeMap command;
+        AttributeMap result_map = client.do_command(command);
 
-    viam::common::v1::DoCommandRequest req;
-    viam::common::v1::DoCommandResponse resp;
-    grpc::ServerContext ctx;
+        std::shared_ptr<ProtoType> expected_pt = expected->at(std::string("test"));
+        std::shared_ptr<ProtoType> result_pt = result_map->at(std::string("test"));
 
-    *req.mutable_name() = "mock_generic";
-    grpc::Status status = server->DoCommand(&ctx, &req, &resp);
-
-    AttributeMap result_map = struct_to_map(resp.result());
-    AttributeMap expected_map = fake_map();
-
-    ProtoType expected_pt = *(expected_map->at(std::string("test")));
-    ProtoType result_pt = *(result_map->at(std::string("test")));
-
-    BOOST_CHECK(expected_pt == result_pt);
-}
-
-BOOST_AUTO_TEST_CASE(test_do_client) {
-    MockGenericClient client("mock_generic");
-
-    AttributeMap command = fake_map();
-    AttributeMap expected_map = fake_map();
-    AttributeMap result_map = client.do_command(command);
-
-    ProtoType expected_pt = *(expected_map->at(std::string("test")));
-    ProtoType result_pt = *(result_map->at(std::string("test")));
-
-    BOOST_CHECK(expected_pt == result_pt);
+        BOOST_CHECK(*expected_pt == *result_pt);
+    });
 }
 
 BOOST_AUTO_TEST_CASE(test_get_geometries) {
-    std::vector<GeometryConfig> expected_geometries = fake_geometries();
-    std::vector<GeometryConfig> result_geometries = generic->get_geometries(fake_map());
+    std::shared_ptr<MockGeneric> mock = MockGeneric::get_mock_generic();
+    client_to_mock_pipeline<GenericClient>(mock, [](Generic& client) {
+        std::vector<GeometryConfig> expected_geometries = fake_geometries();
+        std::vector<GeometryConfig> result_geometries = client.get_geometries(fake_map());
 
-    BOOST_CHECK(expected_geometries == result_geometries);
-}
-
-BOOST_AUTO_TEST_CASE(test_get_geometries_service) {
-    auto server = std::make_shared<GenericServer>();
-    server->resource_manager()->add(std::string("mock_generic"), MockGeneric::get_mock_generic());
-
-    viam::common::v1::GetGeometriesRequest req;
-    viam::common::v1::GetGeometriesResponse resp;
-    grpc::ServerContext ctx;
-
-    *req.mutable_name() = "mock_generic";
-    grpc::Status status = server->GetGeometries(&ctx, &req, &resp);
-
-    BOOST_CHECK(status.error_code() == 0);
-
-    std::vector<GeometryConfig> expected_geometries = fake_geometries();
-    std::vector<GeometryConfig> response_geometries = GeometryConfig::from_proto(resp);
-
-    BOOST_CHECK(expected_geometries == response_geometries);
-}
-
-BOOST_AUTO_TEST_CASE(test_get_geometries_client) {
-    MockGenericClient client("mock_generic");
-    std::vector<GeometryConfig> result_geometries = client.get_geometries(fake_map());
-    std::vector<GeometryConfig> expected_geometries = fake_geometries();
-
-    BOOST_CHECK(result_geometries == expected_geometries);
+        BOOST_CHECK(expected_geometries == result_geometries);
+    });
 }
 
 BOOST_AUTO_TEST_SUITE_END()
