@@ -14,7 +14,7 @@ Server::~Server() {
 
 void Server::register_service(grpc::Service* service) {
     if (!builder_) {
-        throw "Cannot register a new service after the server has started";
+        throw std::runtime_error("Cannot register a new service after the server has started");
     }
 
     builder_->RegisterService(service);
@@ -25,6 +25,8 @@ void Server::start() {
         throw std::runtime_error("Attempted to start server that was already running");
     }
 
+    // CR erodkin: this is supposed to be called at static initialization. We can get close
+    // enough (I suspect) by putting this into the `TheOneAndOnly` call.
     grpc::reflection::InitProtoReflectionServerBuilderPlugin();
     server_ = builder_->BuildAndStart();
     builder_ = nullptr;
@@ -33,7 +35,7 @@ void Server::start() {
 void Server::add_listening_port(std::string address,
                                 std::shared_ptr<grpc::ServerCredentials> creds) {
     if (!builder_) {
-        throw "Cannot add a listening port after server has started";
+        throw std::runtime_error("Cannot add a listening port after server has started");
     }
 
     if (!creds) {

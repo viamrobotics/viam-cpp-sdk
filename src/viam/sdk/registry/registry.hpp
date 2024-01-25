@@ -31,6 +31,7 @@ class ResourceRegistration {
    public:
     virtual ~ResourceRegistration();
 
+    // CR erodkin: is this necessary at all? how do we use this?
     /// @brief Add `Reconfigure` functionality to a resource.
     std::function<std::shared_ptr<Resource>(std::shared_ptr<Resource>, Name)> create_reconfigurable;
 

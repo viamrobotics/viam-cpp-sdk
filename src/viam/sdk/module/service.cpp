@@ -243,7 +243,7 @@ void ModuleService::serve() {
     server_->start();
 
     BOOST_LOG_TRIVIAL(info) << "Module listening on " << module_->addr();
-    BOOST_LOG_TRIVIAL(info) << "Module handles the following API/model pairs: " << std::endl
+    BOOST_LOG_TRIVIAL(info) << "Module handles the following API/model pairs:\n"
                             << module_->handles();
 
     signal_manager_.wait();
