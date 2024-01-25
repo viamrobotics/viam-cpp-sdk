@@ -241,8 +241,9 @@ jobs:
               zlib1g-dev
 
       - name: Update CMake for bullseye
-        if: ${{ matrix.image }} == debian:bookworm
-        run: |
+        run: Update CMake for bullseye
+          - if: ${{ matrix.image }} == debian:bullseye
+            run: |
           apt-add-repository -y 'deb http://deb.debian.org/debian bullseye-backports main'
 
           apt-get update
