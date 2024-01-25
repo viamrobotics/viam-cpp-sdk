@@ -1,7 +1,8 @@
 name: Build + draft release
 
 # (erodkin) this is needed to create the release, per https://github.com/softprops/action-gh-release/issues/236
-on: workflow_dispatch
+on:
+  workflow_dispatch:
 
 permissions:
   contents: write
