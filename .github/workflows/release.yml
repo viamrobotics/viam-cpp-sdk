@@ -1,8 +1,7 @@
 name: Build + draft release
 
-# CR erodkin: delete me
-on: pull_request
-  #workflow_dispatch:
+on:
+  workflow_dispatch:
 
 # (erodkin) this is needed to create the release, per https://github.com/softprops/action-gh-release/issues/236
 permissions:
