@@ -1,6 +1,6 @@
 /// @file components/generic/server.hpp
 ///
-/// @brief Implements a gRPC server for the `Generic` component.
+/// @brief Implements a gRPC server for the `GenericComponent`.
 #pragma once
 
 #include <viam/api/common/v1/common.grpc.pb.h>
@@ -12,13 +12,13 @@
 namespace viam {
 namespace sdk {
 
-/// @class GenericServer
-/// @brief gRPC server implementation of a `Generic` component.
-/// @ingroup Generic
-class GenericServer : public ResourceServer,
-                      public viam::component::generic::v1::GenericService::Service {
+/// @class GenericComponentServer
+/// @brief gRPC server implementation of a `GenericComponent`.
+/// @ingroup GenericComponent
+class GenericComponentServer : public ResourceServer,
+                               public viam::component::generic::v1::GenericService::Service {
    public:
-    explicit GenericServer(std::shared_ptr<ResourceManager> manager);
+    explicit GenericComponentServer(std::shared_ptr<ResourceManager> manager);
 
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
                              const ::viam::common::v1::DoCommandRequest* request,
