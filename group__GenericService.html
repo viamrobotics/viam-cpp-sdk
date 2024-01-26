@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Viam C++ SDK: src/viam/sdk/components/generic/generic.hpp File Reference</title>
+<title>Viam C++ SDK: Classes related to the generic service.</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -48,6 +48,7 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,43 +70,30 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_2f841a913ca9dc33e6376c2a26eb0ce5.html">viam</a></li><li class="navelem"><a class="el" href="dir_2dd7419e3f1605b187eaf7d665ac5e3d.html">sdk</a></li><li class="navelem"><a class="el" href="dir_a4a68a42606520ef697732eab96dd466.html">components</a></li><li class="navelem"><a class="el" href="dir_e52954b1b5d81c607be16155e53efb2c.html">generic</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a>  </div>
-  <div class="headertitle"><div class="title">generic.hpp File Reference</div></div>
+  <div class="headertitle"><div class="title">Classes related to the generic service.</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>Defines <code>Generic</code> subtype and component class capable of executing arbitrary commands.  
-<a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;google/protobuf/descriptor.h&gt;</code><br />
-<code>#include &lt;viam/sdk/common/proto_type.hpp&gt;</code><br />
-<code>#include &lt;viam/sdk/common/utils.hpp&gt;</code><br />
-<code>#include &lt;viam/sdk/config/resource.hpp&gt;</code><br />
-<code>#include &lt;<a class="el" href="registry_8hpp_source.html">viam/sdk/registry/registry.hpp</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="resource__manager_8hpp_source.html">viam/sdk/resource/resource_manager.hpp</a>&gt;</code><br />
-</div>
-<p><a href="generic_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1GenericRegistration.html">viam::sdk::GenericRegistration</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a <code><a class="el" href="classviam_1_1sdk_1_1ResourceRegistration.html" title="Defines registered Resource creation functionality.">ResourceRegistration</a></code> for the <code><a class="el" href="classviam_1_1sdk_1_1Generic.html" title="A Generic represents any component that can execute arbitrary commands.">Generic</a></code> component.  <a href="classviam_1_1sdk_1_1GenericRegistration.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1GenericServiceClient.html">viam::sdk::GenericServiceClient</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">gRPC client implementation of a <code><a class="el" href="classviam_1_1sdk_1_1GenericService.html" title="A GenericService represents any service that can execute arbitrary commands.">GenericService</a></code>.  <a href="classviam_1_1sdk_1_1GenericServiceClient.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Generic.html">viam::sdk::Generic</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <code><a class="el" href="classviam_1_1sdk_1_1Generic.html" title="A Generic represents any component that can execute arbitrary commands.">Generic</a></code> represents any component that can execute arbitrary commands.  <a href="classviam_1_1sdk_1_1Generic.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1GenericServiceRegistration.html">viam::sdk::GenericServiceRegistration</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a <code><a class="el" href="classviam_1_1sdk_1_1ResourceRegistration.html" title="Defines registered Resource creation functionality.">ResourceRegistration</a></code> for the <code><a class="el" href="classviam_1_1sdk_1_1GenericService.html" title="A GenericService represents any service that can execute arbitrary commands.">GenericService</a></code>.  <a href="classviam_1_1sdk_1_1GenericServiceRegistration.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1API_1_1traits_3_01Generic_01_4.html">viam::sdk::API::traits&lt; Generic &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1GenericService.html">viam::sdk::GenericService</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <code><a class="el" href="classviam_1_1sdk_1_1GenericService.html" title="A GenericService represents any service that can execute arbitrary commands.">GenericService</a></code> represents any service that can execute arbitrary commands.  <a href="classviam_1_1sdk_1_1GenericService.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1GenericServiceServer.html">viam::sdk::GenericServiceServer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">gRPC server implementation of a <code><a class="el" href="classviam_1_1sdk_1_1GenericService.html" title="A GenericService represents any service that can execute arbitrary commands.">GenericService</a></code>.  <a href="classviam_1_1sdk_1_1GenericServiceServer.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Defines <code>Generic</code> subtype and component class capable of executing arbitrary commands. </p>
-</div></div><!-- contents -->
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
