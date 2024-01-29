@@ -7,6 +7,8 @@
 #include <grpcpp/security/server_credentials.h>
 #include <grpcpp/server_builder.h>
 
+#include <viam/sdk/resource/resource_server_base.hpp>
+
 namespace viam {
 
 // needed for later `friend` declaration.
@@ -52,6 +54,7 @@ class Server {
     friend class ::viam::sdktests::TestServer;
 
    private:
+    std::vector<std::shared_ptr<ResourceServer>> managed_servers_;
     std::unique_ptr<grpc::ServerBuilder> builder_;
     std::unique_ptr<grpc::Server> server_;
 };

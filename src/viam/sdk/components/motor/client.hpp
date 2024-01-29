@@ -10,7 +10,6 @@
 #include <viam/sdk/components/motor/motor.hpp>
 #include <viam/sdk/components/motor/server.hpp>
 #include <viam/sdk/config/resource.hpp>
-#include <viam/sdk/robot/client.hpp>
 
 namespace viam {
 namespace sdk {

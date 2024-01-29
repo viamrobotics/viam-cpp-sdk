@@ -4,9 +4,6 @@
 #include <viam/api/component/powersensor/v1/powersensor.pb.h>
 
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/power_sensor/client.hpp>
-#include <viam/sdk/components/power_sensor/server.hpp>
-#include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
 
 using namespace viam::component::powersensor::v1;
@@ -57,19 +54,6 @@ bool operator==(const PowerSensor::voltage& lhs, const PowerSensor::voltage& rhs
 bool operator==(const PowerSensor::current& lhs, const PowerSensor::current& rhs) {
     return (lhs.amperes == rhs.amperes && lhs.is_ac == rhs.is_ac);
 }
-
-namespace {
-bool init() {
-    Registry::register_resource<PowerSensorClient,
-                                PowerSensorServer,
-                                component::powersensor::v1::PowerSensorService>(
-        API::get<PowerSensor>());
-    return true;
-};
-
-// NOLINTNEXTLINE(cert-err58-cpp)
-const bool inited = init();
-}  // namespace
 
 }  // namespace sdk
 }  // namespace viam

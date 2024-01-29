@@ -1,12 +1,23 @@
 #include <viam/sdk/rpc/server.hpp>
 
-#include <grpcpp/ext/proto_server_reflection_plugin.h>
 #include <grpcpp/security/server_credentials.h>
+
+#include <viam/sdk/registry/registry.hpp>
 
 namespace viam {
 namespace sdk {
 
-Server::Server() : builder_(std::make_unique<grpc::ServerBuilder>()) {}
+Server::Server() : builder_(std::make_unique<grpc::ServerBuilder>()) {
+    auto new_manager = std::make_shared<ResourceManager>();
+    // CR erodkin: is this the best place to do this? Probably it makes more sense when we actually
+    // register the service. see if we can figure out how to do that. Related: if we can do it right
+    // then we don't need to manage resources separately in the module manager probably? it'll also
+    // have a server and that server can track everything for them. But we'll need to test that!
+    for (const auto& rr : Registry::registered_resources()) {
+        auto server = rr.second->create_resource_server(new_manager, *this);
+        managed_servers_.push_back(server);
+    }
+}
 
 Server::~Server() {
     shutdown();
@@ -25,9 +36,6 @@ void Server::start() {
         throw std::runtime_error("Attempted to start server that was already running");
     }
 
-    // CR erodkin: this is supposed to be called at static initialization. We can get close
-    // enough (I suspect) by putting this into the `TheOneAndOnly` call.
-    grpc::reflection::InitProtoReflectionServerBuilderPlugin();
     server_ = builder_->BuildAndStart();
     builder_ = nullptr;
 }

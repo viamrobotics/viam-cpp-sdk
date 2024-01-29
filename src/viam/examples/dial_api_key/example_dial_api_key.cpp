@@ -38,6 +38,10 @@ int main() {
     std::string address(uri);
     Options options(1, opts);
 
+    // initialize the Registry to ensure all built-in components and gRPC server reflection
+    // are supported.
+    Registry::initialize();
+
     // connect to robot, ensure we can refresh it
     std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);
 

@@ -6,38 +6,10 @@
 #include <viam/api/component/base/v1/base.pb.h>
 
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/base/client.hpp>
-#include <viam/sdk/components/base/server.hpp>
-#include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
 
 namespace viam {
 namespace sdk {
-
-BaseRegistration::BaseRegistration(const google::protobuf::ServiceDescriptor* service_descriptor)
-    : ResourceRegistration(service_descriptor){};
-
-std::shared_ptr<ResourceServer> BaseRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager, Server& server) {
-    auto bs = std::make_shared<BaseServer>(manager);
-    server.register_service(bs.get());
-    return bs;
-};
-
-std::shared_ptr<Resource> BaseRegistration::create_rpc_client(std::string name,
-                                                              std::shared_ptr<grpc::Channel> chan) {
-    return std::make_shared<BaseClient>(std::move(name), std::move(chan));
-};
-
-std::shared_ptr<ResourceRegistration> Base::resource_registration() {
-    const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
-    const google::protobuf::ServiceDescriptor* sd =
-        p->FindServiceByName(viam::component::base::v1::BaseService::service_full_name());
-    if (!sd) {
-        throw std::runtime_error("Unable to get service descriptor for the base service");
-    }
-    return std::make_shared<BaseRegistration>(sd);
-}
 
 API Base::api() const {
     return API::get<Base>();
@@ -67,16 +39,6 @@ bool operator==(const Base::properties& lhs, const Base::properties& rhs) {
 }
 
 Base::Base(std::string name) : Component(std::move(name)){};
-
-namespace {
-bool init() {
-    Registry::register_resource(API::get<Base>(), Base::resource_registration());
-    return true;
-};
-
-// NOLINTNEXTLINE
-const bool inited = init();
-}  // namespace
 
 }  // namespace sdk
 }  // namespace viam

@@ -1,7 +1,5 @@
 #pragma once
 
-#include <unordered_map>
-
 #include <grpcpp/grpcpp.h>
 
 #include <viam/sdk/config/resource.hpp>
@@ -51,6 +49,9 @@ class TestServer {
 // The passed in test_case function will have access to the created ResourceClient.
 template <typename ClientType, typename F>
 void client_to_mock_pipeline(std::shared_ptr<Resource> mock, F&& test_case) {
+    if (!Registry::is_initialized()) {
+        Registry::initialize();
+    }
     // Create a ResourceManager. Add the mock resource to the ResourceManager.
     // Create a Server. Use the mock's API to create a resource-specific
     // server (like MotorServer) from the ResourceManager and Server. Start the

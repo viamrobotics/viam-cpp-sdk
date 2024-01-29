@@ -6,9 +6,6 @@
 #include <viam/api/component/movementsensor/v1/movementsensor.pb.h>
 
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/movement_sensor/client.hpp>
-#include <viam/sdk/components/movement_sensor/server.hpp>
-#include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
 
 namespace viam {
@@ -103,19 +100,6 @@ bool operator==(const MovementSensor::properties& lhs, const MovementSensor::pro
             lhs.compass_heading_supported == rhs.compass_heading_supported &&
             lhs.linear_acceleration_supported == rhs.linear_acceleration_supported);
 }
-
-namespace {
-bool init() {
-    Registry::register_resource<MovementSensorClient,
-                                MovementSensorServer,
-                                component::movementsensor::v1::MovementSensorService>(
-        API::get<MovementSensor>());
-    return true;
-};
-
-// NOLINTNEXTLINE(cert-err58-cpp)
-const bool inited = init();
-}  // namespace
 
 }  // namespace sdk
 }  // namespace viam

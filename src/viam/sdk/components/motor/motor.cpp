@@ -6,37 +6,10 @@
 #include <viam/api/component/motor/v1/motor.pb.h>
 
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/motor/client.hpp>
-#include <viam/sdk/components/motor/server.hpp>
-#include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
 
 namespace viam {
 namespace sdk {
-
-std::shared_ptr<ResourceServer> MotorRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager, Server& server) {
-    auto ms = std::make_shared<MotorServer>(std::move(manager));
-    server.register_service(ms.get());
-    return ms;
-};
-
-std::shared_ptr<Resource> MotorRegistration::create_rpc_client(
-    std::string name, std::shared_ptr<grpc::Channel> chan) {
-    return std::make_shared<MotorClient>(std::move(name), std::move(chan));
-};
-MotorRegistration::MotorRegistration(const google::protobuf::ServiceDescriptor* service_descriptor)
-    : ResourceRegistration(service_descriptor){};
-
-std::shared_ptr<ResourceRegistration> Motor::resource_registration() {
-    const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
-    const google::protobuf::ServiceDescriptor* sd =
-        p->FindServiceByName(viam::component::motor::v1::MotorService::service_full_name());
-    if (!sd) {
-        throw std::runtime_error("Unable to get service descriptor for the motor service");
-    }
-    return std::make_shared<MotorRegistration>(sd);
-}
 
 Motor::position Motor::from_proto(viam::component::motor::v1::GetPositionResponse proto) {
     return proto.position();
@@ -92,16 +65,6 @@ bool operator==(const Motor::power_status& lhs, const Motor::power_status& rhs) 
 bool operator==(const Motor::properties& lhs, const Motor::properties& rhs) {
     return (lhs.position_reporting == rhs.position_reporting);
 }
-
-namespace {
-bool init() {
-    Registry::register_resource(API::get<Motor>(), Motor::resource_registration());
-    return true;
-};
-
-// NOLINTNEXTLINE
-const bool inited = init();
-}  // namespace
 
 }  // namespace sdk
 }  // namespace viam

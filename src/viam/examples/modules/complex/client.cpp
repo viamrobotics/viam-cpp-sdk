@@ -37,6 +37,10 @@ int main() {
     std::string address(uri);
     Options options(1, opts);
 
+    // initialize the Registry to ensure all built-in components and gRPC server reflection
+    // are supported.
+    Registry::initialize();
+
     // Register custom gizmo and summation API so robot client can access resources
     // of that type from the server.
     Registry::register_resource(API::get<Gizmo>(), Gizmo::resource_registration());

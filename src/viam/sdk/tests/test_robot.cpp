@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <memory>
+#include <ostream>
 #include <typeinfo>
 #include <unordered_set>
 #include <utility>
@@ -37,6 +38,9 @@ BOOST_AUTO_TEST_SUITE(test_robot)
 // the robot client and the mock robot service.
 template <typename F>
 void robot_client_to_mocks_pipeline(F&& test_case) {
+    if (!Registry::is_initialized()) {
+        Registry::initialize();
+    }
     // Create a ResourceManager. Add a few mock resources to the
     // ResourceManager. Create a Server. Create a MockRobotService from the
     // ResourceManager and Server. Start the Server.
@@ -45,8 +49,11 @@ void robot_client_to_mocks_pipeline(F&& test_case) {
     rm->add(std::string("mock_motor"), motor::MockMotor::get_mock_motor());
     rm->add(std::string("mock_camera"), camera::MockCamera::get_mock_camera());
     auto server = std::make_shared<sdk::Server>();
+    std::cout << "gonna create a robot service\n" << std::flush;
     MockRobotService service(rm, *server);
+    std::cout << "gonna start a robot service\n" << std::flush;
     server->start();
+    std::cout << " started a robot service\n" << std::flush;
 
     // Create a RobotClient to the MockRobotService over an established
     // in-process gRPC channel.
@@ -219,6 +226,7 @@ BOOST_AUTO_TEST_CASE(test_get_resource) {
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
             auto mock_motor = client->resource_by_name<Motor>("mock_motor");
             BOOST_CHECK(mock_motor);
+            // BOOST_CHECK(!mock_motor->is_moving());
         });
 }
 

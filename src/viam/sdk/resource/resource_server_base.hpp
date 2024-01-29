@@ -1,7 +1,6 @@
 #pragma once
 
 #include <viam/sdk/resource/resource_manager.hpp>
-#include <viam/sdk/rpc/server.hpp>
 
 namespace viam {
 namespace sdk {

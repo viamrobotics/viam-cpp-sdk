@@ -11,27 +11,12 @@
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/common/world_state.hpp>
-#include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 #include <viam/sdk/services/service.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
 
 namespace viam {
 namespace sdk {
-
-/// @defgroup Motion Classes related to the Motion service.
-
-/// @class MotionRegistration
-/// @brief Defines a `ResourceRegistration` for the `Motion` service.
-/// @ingroup Motion
-class MotionRegistration : public ResourceRegistration {
-   public:
-    explicit MotionRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
-    std::shared_ptr<ResourceServer> create_resource_server(std::shared_ptr<ResourceManager> manager,
-                                                           Server& server) override;
-    std::shared_ptr<Resource> create_rpc_client(std::string name,
-                                                std::shared_ptr<grpc::Channel> chan) override;
-};
 
 /// @struct obstacle_detector_name
 /// @brief Defines configuration for obstacle detectors by pairing a vision service name and a
@@ -241,9 +226,6 @@ class Motion : public Service {
     };
 
     API api() const override;
-
-    /// @brief Creates a `ResourceRegistration` for the `Motion` service.
-    static std::shared_ptr<ResourceRegistration> resource_registration();
 
     /// @brief Moves any compononent on the robot to a specified destination.
     /// @param destination Where to move the component to.

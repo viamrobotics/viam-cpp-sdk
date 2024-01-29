@@ -10,26 +10,10 @@
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
-#include <viam/sdk/registry/registry.hpp>
-#include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/stoppable.hpp>
 
 namespace viam {
 namespace sdk {
-
-/// @defgroup Motor Classes related to the Motor component.
-
-/// @class MotorRegistration
-/// @brief Defines a `ResourceRegistration` for the `Motor` component.
-/// @ingroup Motor
-class MotorRegistration : public ResourceRegistration {
-   public:
-    explicit MotorRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
-    std::shared_ptr<ResourceServer> create_resource_server(std::shared_ptr<ResourceManager> manager,
-                                                           Server& server) override;
-    std::shared_ptr<Resource> create_rpc_client(std::string name,
-                                                std::shared_ptr<grpc::Channel> chan) override;
-};
 
 /// @class Motor motor.hpp "components/motor/motor.hpp"
 /// @brief A `Motor` represents physical hardware that controls the rotation of an axle
@@ -60,9 +44,6 @@ class Motor : public Component, public Stoppable {
         /// True if the motor supports reporting its position
         bool position_reporting;
     };
-
-    // functions shared across all components
-    static std::shared_ptr<ResourceRegistration> resource_registration();
 
     /// @brief Creates a `position` struct from its proto representation.
     static position from_proto(viam::component::motor::v1::GetPositionResponse proto);

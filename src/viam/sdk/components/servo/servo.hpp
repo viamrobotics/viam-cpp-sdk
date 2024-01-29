@@ -8,26 +8,12 @@
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
-#include <viam/sdk/registry/registry.hpp>
-#include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/stoppable.hpp>
 
 namespace viam {
 namespace sdk {
 
 /// @defgroup Servo Classes related to the Servo component.
-
-/// @class ServoRegistration
-/// @brief Defines a `ResourceRegistration` for the `Servo` component.
-/// @ingroup Servo
-class ServoRegistration : public ResourceRegistration {
-   public:
-    explicit ServoRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
-    std::shared_ptr<ResourceServer> create_resource_server(std::shared_ptr<ResourceManager> manager,
-                                                           Server& server) override;
-    std::shared_ptr<Resource> create_rpc_client(std::string name,
-                                                std::shared_ptr<grpc::Channel> chan) override;
-};
 
 /// @class Servo servo.hpp "components/servo/servo.hpp"
 /// @ingroup Servo
@@ -40,7 +26,6 @@ class Servo : public Component, public Stoppable {
     /// @brief Current position of the servo relative to its home
     typedef uint32_t position;
 
-    static std::shared_ptr<ResourceRegistration> resource_registration();
     API api() const override;
 
     /// @brief Creates a `position` struct from its proto representation.
