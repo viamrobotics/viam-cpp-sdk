@@ -20,17 +20,9 @@ API API::traits<Sensor>::api() {
 }
 
 namespace {
-class SensorRegistration final
-    : public ResourceRegistration2<SensorClient,
-                                   SensorServer,
-                                   viam::component::sensor::v1::SensorService,
-                                   SensorRegistration> {
-   public:
-    using ResourceRegistration2::ResourceRegistration2;
-};
-
 bool init() {
-    Registry::register_resource(API::get<Sensor>(), SensorRegistration::resource_registration());
+    Registry::register_resource<SensorClient, SensorServer, component::sensor::v1::SensorService>(
+        API::get<Sensor>());
     return true;
 };
 

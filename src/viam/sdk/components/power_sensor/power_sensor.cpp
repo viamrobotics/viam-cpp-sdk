@@ -59,18 +59,11 @@ bool operator==(const PowerSensor::current& lhs, const PowerSensor::current& rhs
 }
 
 namespace {
-class PowerSensorRegistration final
-    : public ResourceRegistration2<PowerSensorClient,
-                                   PowerSensorServer,
-                                   viam::component::powersensor::v1::PowerSensorService,
-                                   PowerSensorRegistration> {
-   public:
-    using ResourceRegistration2::ResourceRegistration2;
-};
-
 bool init() {
-    Registry::register_resource(API::get<PowerSensor>(),
-                                PowerSensorRegistration::resource_registration());
+    Registry::register_resource<PowerSensorClient,
+                                PowerSensorServer,
+                                component::powersensor::v1::PowerSensorService>(
+        API::get<PowerSensor>());
     return true;
 };
 

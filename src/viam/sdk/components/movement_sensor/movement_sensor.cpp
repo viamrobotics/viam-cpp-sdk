@@ -105,18 +105,11 @@ bool operator==(const MovementSensor::properties& lhs, const MovementSensor::pro
 }
 
 namespace {
-class MovementSensorRegistration final
-    : public ResourceRegistration2<MovementSensorClient,
-                                   MovementSensorServer,
-                                   viam::component::movementsensor::v1::MovementSensorService,
-                                   MovementSensorRegistration> {
-   public:
-    using ResourceRegistration2::ResourceRegistration2;
-};
-
 bool init() {
-    Registry::register_resource(API::get<MovementSensor>(),
-                                MovementSensorRegistration::resource_registration());
+    Registry::register_resource<MovementSensorClient,
+                                MovementSensorServer,
+                                component::movementsensor::v1::MovementSensorService>(
+        API::get<MovementSensor>());
     return true;
 };
 

@@ -59,39 +59,6 @@ class ResourceRegistration {
     const google::protobuf::ServiceDescriptor* service_descriptor_;
 };
 
-// TODO(RSDK-3030): Potentially make ResourceRegistration2 the one and only
-// form of resource registration.
-template <typename ResourceClientT,
-          typename ResourceServerT,
-          typename ProtoServiceT,
-          typename ResourceRegT>
-class ResourceRegistration2 : public ResourceRegistration {
-   public:
-    using ResourceRegistration::ResourceRegistration;
-    std::shared_ptr<ResourceServer> create_resource_server(std::shared_ptr<ResourceManager> manager,
-                                                           Server& server) override {
-        auto rs = std::make_shared<ResourceServerT>(manager);
-        server.register_service(rs.get());
-        return rs;
-    }
-
-    std::shared_ptr<Resource> create_rpc_client(std::string name,
-                                                std::shared_ptr<grpc::Channel> chan) override {
-        return std::make_shared<ResourceClientT>(std::move(name), std::move(chan));
-    }
-
-    static std::shared_ptr<ResourceRegistration> resource_registration() {
-        const google::protobuf::DescriptorPool* p =
-            google::protobuf::DescriptorPool::generated_pool();
-        const google::protobuf::ServiceDescriptor* sd =
-            p->FindServiceByName(ProtoServiceT::service_full_name());
-        if (!sd) {
-            throw std::runtime_error("Unable to get service descriptor");
-        }
-        return std::make_shared<ResourceRegT>(sd);
-    }
-};
-
 /// @class ModelRegistration
 /// @brief Information about a registered model, including a constructor and config validator.
 class ModelRegistration {
@@ -159,6 +126,29 @@ class Registry {
     /// @return a `shared_ptr` to the resource's registration data.
     static std::shared_ptr<ModelRegistration> lookup_model(API api, Model model);
 
+    template <typename ResourceClientT, typename ResourceServerT, typename ProtoServiceT>
+    static void register_resource(API api) {
+        class ResourceRegistration2 final : public ResourceRegistration {
+           public:
+            using ResourceRegistration::ResourceRegistration;
+            std::shared_ptr<ResourceServer> create_resource_server(
+                std::shared_ptr<ResourceManager> manager, Server& server) override {
+                auto rs = std::make_shared<ResourceServerT>(manager);
+                server.register_service(rs.get());
+                return rs;
+            }
+
+            std::shared_ptr<Resource> create_rpc_client(
+                std::string name, std::shared_ptr<grpc::Channel> chan) override {
+                return std::make_shared<ResourceClientT>(std::move(name), std::move(chan));
+            }
+        };
+
+        const google::protobuf::ServiceDescriptor* sd =
+            get_service_descriptor_(ProtoServiceT::service_full_name());
+        Registry::register_resource(api, std::make_shared<ResourceRegistration2>(sd));
+    }
+
     /// @brief Register an api.
     /// @param api The api to be registered.
     /// @param resource_registration `ResourceRegistration` with resource functionality.
@@ -175,6 +165,8 @@ class Registry {
     static std::unordered_map<std::string, std::shared_ptr<ModelRegistration>> registered_models();
 
    private:
+    static const google::protobuf::ServiceDescriptor* get_service_descriptor_(
+        const char* service_full_name);
     static std::unordered_map<std::string, std::shared_ptr<ModelRegistration>> resources_;
     static std::unordered_map<API, std::shared_ptr<ResourceRegistration>> apis_;
 };

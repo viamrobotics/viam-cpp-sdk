@@ -72,6 +72,16 @@ std::shared_ptr<ResourceRegistration> Registry::lookup_resource(API api) {
     return apis_.at(api);
 }
 
+const google::protobuf::ServiceDescriptor* Registry::get_service_descriptor_(
+    const char* service_full_name) {
+    const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
+    const google::protobuf::ServiceDescriptor* sd = p->FindServiceByName(service_full_name);
+    if (!sd) {
+        throw std::runtime_error("Unable to get service descriptor");
+    }
+    return sd;
+}
+
 std::unordered_map<std::string, std::shared_ptr<ModelRegistration>> Registry::registered_models() {
     std::unordered_map<std::string, std::shared_ptr<ModelRegistration>> registry;
     for (auto& resource : resources_) {
