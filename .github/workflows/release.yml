@@ -1,0 +1,287 @@
+name: Build + draft release
+
+on:
+  workflow_dispatch:
+
+# (erodkin) this is needed to create the release, per https://github.com/softprops/action-gh-release/issues/236
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    if: github.repository_owner == 'viamrobotics'
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.which_version.outputs.version }}
+      sha: ${{ steps.commit.outputs.commit_long_sha }}
+    steps:
+      - name: Check if organization member
+        id: is_organization_member
+        uses: jamessingleton/is-organization-member@1.0.1
+        with:
+          organization: viamrobotics
+          username: ${{ github.actor }}
+          token:  ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Cancelling - user not part of organization
+        uses: andymckay/cancel-action@0.2
+        if: |
+          steps.is_organization_member.outputs.result == 'false'
+
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Which Version
+        id: which_version
+        shell: bash
+        run: echo "version=$(grep 'set(CMAKE_PROJECT_VERSION' CMakeLists.txt | sed 's/)//' | awk '{print $2}')" >> $GITHUB_OUTPUT
+
+      - name: Check if release exists
+        uses: cardinalby/git-get-release-action@1.2.4
+        id: release_exists
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          releaseName: releases/v${{ steps.which_version.outputs.version }}
+          doNotFailIfNotFound: 'true'
+
+      - name: Cancelling - release already exists
+        uses: andymckay/cancel-action@0.2
+        if: steps.release_exists.outputs.id != ''
+
+  build_macos:
+    if: github.repository_owner == 'viamrobotics'
+    needs: [prepare]
+    runs-on: [self-hosted, ARM64, macOS]
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: aarch64-apple-darwin
+            platform: macosx_arm64
+          - target: x86_64-apple-darwin
+            platform: macosx_x86_64
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.prepare.outputs.sha }}
+
+      - name: Install dependencies
+        run: |
+          brew install abseil cmake boost grpc protobuf xtensor
+          brew install pkg-config ninja buf
+
+      - name: Setup build directory
+        run: mkdir builds
+
+      - name: Build
+        run: |
+          # `buf` tries to read a CLI config file that we don't actually use located at
+          # ~/.config/buf/config.yaml. We don't always have permission to access this
+          # directory in CI, so we set the `BUF_CONFIG_DIR` to some other value that we
+          # do have permissions for. See https://github.com/bufbuild/buf/issues/2698 for
+          # more details.
+          export BUF_CONFIG_DIR=$(mktemp -d)
+          mkdir build
+          cmake -S . -B build -G Ninja
+          cmake --build build --target all install -- -v
+
+      - name: Copy
+        run: |
+          cmake --install build --prefix builds/viam-cpp-sdk-${{ matrix.platform }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: builds
+          path: builds
+
+  build_linux_ubuntu_jammy:
+    if: github.repository_owner == 'viamrobotics'
+    needs: [prepare]
+    runs-on:  ${{ matrix.runs_on }}
+    container:
+      image: ${{ matrix.image }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: aarch64-ubuntu-jammy-gnu
+            platform: linux_aarch64-ubuntu-jammy
+            image: ubuntu:22.04
+            runs_on: buildjet-8vcpu-ubuntu-2204-arm
+          - target: x86_64-ubuntu-jammy-gnu
+            platform: linux_x86_64-ubuntu-jammy
+            image: ubuntu:22.04
+            runs_on: buildjet-8vcpu-ubuntu-2204
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.prepare.outputs.sha }}
+
+      - name: Install dependencies
+        run: |
+          apt-get update
+          apt-get -y dist-upgrade
+          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
+              build-essential \
+              ca-certificates \
+              curl \
+              doxygen \
+              g++ \
+              gdb \
+              git \
+              gnupg \
+              gpg \
+              less \
+              libabsl-dev \
+              libboost-all-dev \
+              libgrpc++-dev \
+              libprotobuf-dev \
+              libssl-dev \
+              ninja-build \
+              pkg-config \
+              protobuf-compiler \
+              protobuf-compiler-grpc \
+              software-properties-common \
+              sudo \
+              wget \
+
+          sudo wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
+          sudo echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null
+
+          apt-get update
+          apt-get -y install cmake
+
+      - name: Setup build directory
+        run: mkdir builds
+
+      - name: Build
+        shell: bash
+        run: |
+          mkdir build
+          /usr/bin/cmake -S . -B build -G Ninja
+          /usr/bin/cmake --build build --target all install -- -v -j 3
+
+      - name: Copy
+        run: |
+          /usr/bin/cmake --install build --prefix builds/viam-cpp-sdk-${{ matrix.platform }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: builds
+          path: builds
+
+
+  build_linux_debian:
+    if: github.repository_owner == 'viamrobotics'
+    needs: [prepare]
+    runs-on:  ${{ matrix.runs_on }}
+    container:
+      image: ${{ matrix.image }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: aarch64-debian-bullseye
+            platform: linux_aarch64-debian-bullseye
+            image: debian:bullseye
+            runs_on: buildjet-8vcpu-ubuntu-2204-arm
+          - target: x86_64-debian-bullseye
+            platform: linux_x86_64-debian-bullseye
+            image: debian:bullseye
+            runs_on: buildjet-8vcpu-ubuntu-2204
+          - target: aarch64-debian-bookworm
+            platform: linux_aarch64-debian-bookworm
+            image: debian:bookworm
+            runs_on: buildjet-8vcpu-ubuntu-2204-arm
+          - target: x86_64-debian-bookworm
+            platform: linux_x86_64-debian-bookworm
+            image: debian:bookworm
+            runs_on: buildjet-8vcpu-ubuntu-2204
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.prepare.outputs.sha }}
+
+      - name: Install dependencies
+        run: |
+          apt-get update
+          apt-get -y dist-upgrade
+          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
+              build-essential \
+              ca-certificates \
+              cmake \
+              curl \
+              doxygen \
+              g++ \
+              gdb \
+              git \
+              gnupg \
+              gpg \
+              less \
+              libabsl-dev \
+              libboost-all-dev \
+              libc-ares-dev \
+              libgrpc++-dev \
+              libprotobuf-dev \
+              libre2-dev \
+              libssl-dev \
+              ninja-build \
+              pkg-config \
+              protobuf-compiler-grpc \
+              software-properties-common \
+              sudo \
+              wget \
+              zlib1g-dev
+
+          apt-add-repository -y 'deb http://deb.debian.org/debian bullseye-backports main'
+
+          apt-get update
+          apt-get -y install cmake
+
+          apt-get -y --no-install-recommends install -t bullseye-backports cmake
+      - name: Setup build directory
+        run: mkdir builds
+
+      - name: Build
+        shell: bash
+        run: |
+          mkdir build
+          /usr/bin/cmake -S . -B build -G Ninja
+          /usr/bin/cmake --build build --target all install -- -v -j 3
+
+      - name: Copy
+        run: |
+          /usr/bin/cmake --install build --prefix builds/viam-cpp-sdk-${{ matrix.platform }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: builds
+          path: builds
+
+  release:
+    needs: [prepare, build_macos, build_linux_debian, build_linux_ubuntu_jammy]
+    if: github.repository_owner == 'viamrobotics'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v3
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: releases/v${{ needs.prepare.outputs.version }}
+          files: builds/*
+          draft: true
+          prerelease: false
+          fail_on_unmatched_files: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

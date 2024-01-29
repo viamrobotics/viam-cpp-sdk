@@ -192,6 +192,10 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/robot/v1/robot.grpc.pb.h
     ${PROTO_GEN_DIR}/robot/v1/robot.pb.cc
     ${PROTO_GEN_DIR}/robot/v1/robot.pb.h
+    ${PROTO_GEN_DIR}/service/generic/v1/generic.grpc.pb.cc
+    ${PROTO_GEN_DIR}/service/generic/v1/generic.grpc.pb.h
+    ${PROTO_GEN_DIR}/service/generic/v1/generic.pb.cc
+    ${PROTO_GEN_DIR}/service/generic/v1/generic.pb.h
     ${PROTO_GEN_DIR}/service/mlmodel/v1/mlmodel.grpc.pb.cc
     ${PROTO_GEN_DIR}/service/mlmodel/v1/mlmodel.grpc.pb.h
     ${PROTO_GEN_DIR}/service/mlmodel/v1/mlmodel.pb.cc
@@ -287,6 +291,8 @@ target_sources(viamapi
     ${PROTO_GEN_DIR}/module/v1/module.pb.cc
     ${PROTO_GEN_DIR}/robot/v1/robot.grpc.pb.cc
     ${PROTO_GEN_DIR}/robot/v1/robot.pb.cc
+    ${PROTO_GEN_DIR}/service/generic/v1/generic.grpc.pb.cc
+    ${PROTO_GEN_DIR}/service/generic/v1/generic.pb.cc
     ${PROTO_GEN_DIR}/service/mlmodel/v1/mlmodel.grpc.pb.cc
     ${PROTO_GEN_DIR}/service/mlmodel/v1/mlmodel.pb.cc
     ${PROTO_GEN_DIR}/service/motion/v1/motion.grpc.pb.cc
@@ -332,6 +338,8 @@ target_sources(viamapi
       ${PROTO_GEN_DIR}/../../viam/api/robot/v1/robot.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/robot/v1/robot.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/tagger/v1/tagger.grpc.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/service/generic/v1/generic.grpc.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/service/generic/v1/generic.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/service/mlmodel/v1/mlmodel.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/service/mlmodel/v1/mlmodel.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/service/motion/v1/motion.grpc.pb.h

@@ -83,6 +83,12 @@ extern GetPathsRequestDefaultTypeInternal _GetPathsRequest_default_instance_;
 class GetPathsResponse;
 struct GetPathsResponseDefaultTypeInternal;
 extern GetPathsResponseDefaultTypeInternal _GetPathsResponse_default_instance_;
+class GetPropertiesRequest;
+struct GetPropertiesRequestDefaultTypeInternal;
+extern GetPropertiesRequestDefaultTypeInternal _GetPropertiesRequest_default_instance_;
+class GetPropertiesResponse;
+struct GetPropertiesResponseDefaultTypeInternal;
+extern GetPropertiesResponseDefaultTypeInternal _GetPropertiesResponse_default_instance_;
 class GetWaypointsRequest;
 struct GetWaypointsRequestDefaultTypeInternal;
 extern GetWaypointsRequestDefaultTypeInternal _GetWaypointsRequest_default_instance_;
@@ -122,6 +128,8 @@ template<> ::viam::service::navigation::v1::GetObstaclesRequest* Arena::CreateMa
 template<> ::viam::service::navigation::v1::GetObstaclesResponse* Arena::CreateMaybeMessage<::viam::service::navigation::v1::GetObstaclesResponse>(Arena*);
 template<> ::viam::service::navigation::v1::GetPathsRequest* Arena::CreateMaybeMessage<::viam::service::navigation::v1::GetPathsRequest>(Arena*);
 template<> ::viam::service::navigation::v1::GetPathsResponse* Arena::CreateMaybeMessage<::viam::service::navigation::v1::GetPathsResponse>(Arena*);
+template<> ::viam::service::navigation::v1::GetPropertiesRequest* Arena::CreateMaybeMessage<::viam::service::navigation::v1::GetPropertiesRequest>(Arena*);
+template<> ::viam::service::navigation::v1::GetPropertiesResponse* Arena::CreateMaybeMessage<::viam::service::navigation::v1::GetPropertiesResponse>(Arena*);
 template<> ::viam::service::navigation::v1::GetWaypointsRequest* Arena::CreateMaybeMessage<::viam::service::navigation::v1::GetWaypointsRequest>(Arena*);
 template<> ::viam::service::navigation::v1::GetWaypointsResponse* Arena::CreateMaybeMessage<::viam::service::navigation::v1::GetWaypointsResponse>(Arena*);
 template<> ::viam::service::navigation::v1::Path* Arena::CreateMaybeMessage<::viam::service::navigation::v1::Path>(Arena*);
@@ -136,6 +144,32 @@ namespace service {
 namespace navigation {
 namespace v1 {
 
+enum MapType : int {
+  MAP_TYPE_UNSPECIFIED = 0,
+  MAP_TYPE_NONE = 1,
+  MAP_TYPE_GPS = 2,
+  MapType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  MapType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool MapType_IsValid(int value);
+constexpr MapType MapType_MIN = MAP_TYPE_UNSPECIFIED;
+constexpr MapType MapType_MAX = MAP_TYPE_GPS;
+constexpr int MapType_ARRAYSIZE = MapType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MapType_descriptor();
+template<typename T>
+inline const std::string& MapType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, MapType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function MapType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    MapType_descriptor(), enum_t_value);
+}
+inline bool MapType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, MapType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<MapType>(
+    MapType_descriptor(), name, value);
+}
 enum Mode : int {
   MODE_UNSPECIFIED = 0,
   MODE_MANUAL = 1,
@@ -3000,6 +3034,297 @@ class GetPathsResponse final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_service_2fnavigation_2fv1_2fnavigation_2eproto;
 };
+// -------------------------------------------------------------------
+
+class GetPropertiesRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.navigation.v1.GetPropertiesRequest) */ {
+ public:
+  inline GetPropertiesRequest() : GetPropertiesRequest(nullptr) {}
+  ~GetPropertiesRequest() override;
+  explicit PROTOBUF_CONSTEXPR GetPropertiesRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetPropertiesRequest(const GetPropertiesRequest& from);
+  GetPropertiesRequest(GetPropertiesRequest&& from) noexcept
+    : GetPropertiesRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetPropertiesRequest& operator=(const GetPropertiesRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetPropertiesRequest& operator=(GetPropertiesRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetPropertiesRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetPropertiesRequest* internal_default_instance() {
+    return reinterpret_cast<const GetPropertiesRequest*>(
+               &_GetPropertiesRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    18;
+
+  friend void swap(GetPropertiesRequest& a, GetPropertiesRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetPropertiesRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetPropertiesRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetPropertiesRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetPropertiesRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetPropertiesRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetPropertiesRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetPropertiesRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.navigation.v1.GetPropertiesRequest";
+  }
+  protected:
+  explicit GetPropertiesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.service.navigation.v1.GetPropertiesRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fnavigation_2fv1_2fnavigation_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetPropertiesResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.navigation.v1.GetPropertiesResponse) */ {
+ public:
+  inline GetPropertiesResponse() : GetPropertiesResponse(nullptr) {}
+  ~GetPropertiesResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetPropertiesResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetPropertiesResponse(const GetPropertiesResponse& from);
+  GetPropertiesResponse(GetPropertiesResponse&& from) noexcept
+    : GetPropertiesResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetPropertiesResponse& operator=(const GetPropertiesResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetPropertiesResponse& operator=(GetPropertiesResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetPropertiesResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetPropertiesResponse* internal_default_instance() {
+    return reinterpret_cast<const GetPropertiesResponse*>(
+               &_GetPropertiesResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    19;
+
+  friend void swap(GetPropertiesResponse& a, GetPropertiesResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetPropertiesResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetPropertiesResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetPropertiesResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetPropertiesResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetPropertiesResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetPropertiesResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetPropertiesResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.navigation.v1.GetPropertiesResponse";
+  }
+  protected:
+  explicit GetPropertiesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMapTypeFieldNumber = 1,
+  };
+  // .viam.service.navigation.v1.MapType map_type = 1 [json_name = "mapType"];
+  void clear_map_type();
+  ::viam::service::navigation::v1::MapType map_type() const;
+  void set_map_type(::viam::service::navigation::v1::MapType value);
+  private:
+  ::viam::service::navigation::v1::MapType _internal_map_type() const;
+  void _internal_set_map_type(::viam::service::navigation::v1::MapType value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.service.navigation.v1.GetPropertiesResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  int map_type_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fnavigation_2fv1_2fnavigation_2eproto;
+};
 // ===================================================================
 
 
@@ -4778,9 +5103,91 @@ GetPathsResponse::paths() const {
   return paths_;
 }
 
+// -------------------------------------------------------------------
+
+// GetPropertiesRequest
+
+// string name = 1 [json_name = "name"];
+inline void GetPropertiesRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& GetPropertiesRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.service.navigation.v1.GetPropertiesRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetPropertiesRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.navigation.v1.GetPropertiesRequest.name)
+}
+inline std::string* GetPropertiesRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.navigation.v1.GetPropertiesRequest.name)
+  return _s;
+}
+inline const std::string& GetPropertiesRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void GetPropertiesRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetPropertiesRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetPropertiesRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.service.navigation.v1.GetPropertiesRequest.name)
+  return name_.Release();
+}
+inline void GetPropertiesRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.navigation.v1.GetPropertiesRequest.name)
+}
+
+// -------------------------------------------------------------------
+
+// GetPropertiesResponse
+
+// .viam.service.navigation.v1.MapType map_type = 1 [json_name = "mapType"];
+inline void GetPropertiesResponse::clear_map_type() {
+  map_type_ = 0;
+}
+inline ::viam::service::navigation::v1::MapType GetPropertiesResponse::_internal_map_type() const {
+  return static_cast< ::viam::service::navigation::v1::MapType >(map_type_);
+}
+inline ::viam::service::navigation::v1::MapType GetPropertiesResponse::map_type() const {
+  // @@protoc_insertion_point(field_get:viam.service.navigation.v1.GetPropertiesResponse.map_type)
+  return _internal_map_type();
+}
+inline void GetPropertiesResponse::_internal_set_map_type(::viam::service::navigation::v1::MapType value) {
+  
+  map_type_ = value;
+}
+inline void GetPropertiesResponse::set_map_type(::viam::service::navigation::v1::MapType value) {
+  _internal_set_map_type(value);
+  // @@protoc_insertion_point(field_set:viam.service.navigation.v1.GetPropertiesResponse.map_type)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -4825,6 +5232,11 @@ GetPathsResponse::paths() const {
 
 PROTOBUF_NAMESPACE_OPEN
 
+template <> struct is_proto_enum< ::viam::service::navigation::v1::MapType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::viam::service::navigation::v1::MapType>() {
+  return ::viam::service::navigation::v1::MapType_descriptor();
+}
 template <> struct is_proto_enum< ::viam::service::navigation::v1::Mode> : ::std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::viam::service::navigation::v1::Mode>() {

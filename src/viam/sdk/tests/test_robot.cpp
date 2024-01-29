@@ -41,7 +41,7 @@ void robot_client_to_mocks_pipeline(F&& test_case) {
     // ResourceManager. Create a Server. Create a MockRobotService from the
     // ResourceManager and Server. Start the Server.
     auto rm = std::make_shared<ResourceManager>();
-    rm->add(std::string("mock_generic"), generic::MockGeneric::get_mock_generic());
+    rm->add(std::string("mock_generic"), generic::MockGenericComponent::get_mock_generic());
     rm->add(std::string("mock_motor"), motor::MockMotor::get_mock_motor());
     rm->add(std::string("mock_camera"), camera::MockCamera::get_mock_camera());
     auto server = std::make_shared<sdk::Server>();
@@ -77,9 +77,11 @@ BOOST_AUTO_TEST_CASE(test_registering_resources) {
 
     Model generic_model("fake", "fake", "mock_generic");
     std::shared_ptr<ModelRegistration> gr = std::make_shared<ModelRegistration>(
-        API::get<Generic>(),
+        API::get<GenericComponent>(),
         generic_model,
-        [](Dependencies, ResourceConfig cfg) { return generic::MockGeneric::get_mock_generic(); },
+        [](Dependencies, ResourceConfig cfg) {
+            return generic::MockGenericComponent::get_mock_generic();
+        },
         [](ResourceConfig cfg) -> std::vector<std::string> { return {}; });
     Registry::register_model(gr);
 
@@ -92,7 +94,7 @@ BOOST_AUTO_TEST_CASE(test_registering_resources) {
     Registry::register_model(mr);
 
     BOOST_CHECK(Registry::lookup_model(API::get<Camera>(), camera_model));
-    BOOST_CHECK(Registry::lookup_model(API::get<Generic>(), generic_model));
+    BOOST_CHECK(Registry::lookup_model(API::get<GenericComponent>(), generic_model));
     BOOST_CHECK(Registry::lookup_model(API::get<Motor>(), motor_model));
 }
 
