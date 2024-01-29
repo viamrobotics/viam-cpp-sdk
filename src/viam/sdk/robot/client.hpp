@@ -29,20 +29,20 @@ using viam::common::v1::ResourceName;
 using viam::robot::v1::RobotService;
 using viam::robot::v1::Status;
 
-struct discoveryQuery {
-    discoveryQuery(){};
+struct discovery_query {
+    discovery_query(){};
     viam::robot::v1::DiscoveryQuery to_proto() const;
-    static discoveryQuery from_proto(const viam::robot::v1::DiscoveryQuery& proto);
+    static discovery_query from_proto(const viam::robot::v1::DiscoveryQuery& proto);
     std::string subtype;
     std::string model;
-    friend bool operator==(const discoveryQuery& lhs, const discoveryQuery& rhs);
+    friend bool operator==(const discovery_query& lhs, const discovery_query& rhs);
 };
 
 struct discovery {
     discovery(){};
     viam::robot::v1::Discovery to_proto() const;
     static discovery from_proto(const viam::robot::v1::Discovery& proto);
-    discoveryQuery query;
+    discovery_query query;
     AttributeMap results;
     friend bool operator==(const discovery& lhs, const discovery& rhs);
 };
@@ -146,7 +146,7 @@ class RobotClient {
     /// @return A list of statuses.
     std::vector<Status> get_status();
 
-    std::vector<discovery> discover_components(std::vector<discoveryQuery> queries);
+    std::vector<discovery> discover_components(std::vector<discovery_query> queries);
 
     /// @brief Transform a given `Pose` to a new specified destination which is a reference frame.
     /// @param query The pose that should be transformed.

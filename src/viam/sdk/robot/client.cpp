@@ -52,15 +52,15 @@ using viam::robot::v1::Status;
 // NOLINTNEXTLINE
 const std::string kStreamRemoved("Stream removed");
 
-viam::robot::v1::DiscoveryQuery discoveryQuery::to_proto() const {
+viam::robot::v1::DiscoveryQuery discovery_query::to_proto() const {
     viam::robot::v1::DiscoveryQuery proto;
     *proto.mutable_subtype() = subtype;
     *proto.mutable_model() = std::move(model);
     return proto;
 }
 
-discoveryQuery discoveryQuery::from_proto(const viam::robot::v1::DiscoveryQuery& proto) {
-    discoveryQuery query;
+discovery_query discover_query::from_proto(const viam::robot::v1::DiscoveryQuery& proto) {
+    discover_query query;
     query.subtype = proto.subtype();
     query.model = proto.model();
     return query;
@@ -75,7 +75,7 @@ viam::robot::v1::Discovery discovery::to_proto() const {
 
 discovery discovery::from_proto(const viam::robot::v1::Discovery& proto) {
     discovery discovery;
-    discovery.query = discoveryQuery::from_proto(proto.query());
+    discovery.query = discover_query::from_proto(proto.query());
     discovery.results = struct_to_map(proto.results());
     return discovery;
 }
@@ -372,14 +372,14 @@ pose_in_frame RobotClient::transform_pose(
     return pose_in_frame::from_proto(resp.pose());
 }
 
-std::vector<discovery> RobotClient::discover_components(std::vector<discoveryQuery> queries) {
+std::vector<discovery> RobotClient::discover_components(std::vector<discover_query> queries) {
     viam::robot::v1::DiscoverComponentsRequest req;
     viam::robot::v1::DiscoverComponentsResponse resp;
     ClientContext ctx;
 
     RepeatedPtrField<viam::robot::v1::DiscoveryQuery>* req_queries = req.mutable_queries();
 
-    for (const discoveryQuery& query : queries) {
+    for (const discover_query& query : queries) {
         *req_queries->Add() = query.to_proto();
     }
 
