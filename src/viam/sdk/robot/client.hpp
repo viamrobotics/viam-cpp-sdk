@@ -53,6 +53,7 @@ struct frameSystemConfig {
     frameSystemConfig(WorldState::transform frame) : frame(std::move(frame)){};
 
     WorldState::transform frame;
+    AttributeMap kinematics;
 };
 
 // TODO(RSDK-1742) replace all `ResourceName` references in API with `Name`

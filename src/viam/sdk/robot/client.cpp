@@ -83,11 +83,19 @@ discovery discovery::from_proto(const viam::robot::v1::Discovery& proto) {
 viam::robot::v1::FrameSystemConfig frameSystemConfig::to_proto() const {
     viam::robot::v1::FrameSystemConfig proto;
     *proto.mutable_frame() = frame.to_proto();
+    if (kinematics) {
+        *proto.mutable_kinematics() = map_to_struct(kinematics);
+    }
     return proto;
 }
 
 frameSystemConfig frameSystemConfig::from_proto(const viam::robot::v1::FrameSystemConfig& proto) {
-    return frameSystemConfig(WorldState::transform::from_proto(proto.frame()));
+    frameSystemConfig fsconfig =
+        frameSystemConfig(WorldState::transform::from_proto(proto.frame()));
+    if (proto.has_kinematics()) {
+        fsconfig.kinematics = struct_to_map(proto.kinematics());
+    }
+    return fsconfig;
 }
 
 RobotClient::~RobotClient() {

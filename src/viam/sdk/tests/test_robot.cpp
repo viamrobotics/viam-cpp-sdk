@@ -95,7 +95,9 @@ template <typename T>
 std::vector<std::string> vec_to_string_util(std::vector<T>& vec) {
     std::vector<std::string> ret;
     for (auto& v : vec) {
-        ret.push_back(v.SerializeAsString());
+        auto s = v.SerializeAsString();
+        std::cout << s << std::endl;
+        ret.push_back(std::move(s));
     }
     std::sort(ret.begin(), ret.end());
     return ret;
@@ -152,8 +154,7 @@ BOOST_AUTO_TEST_CASE(test_get_frame_system_config) {
             auto mock_fs_config = mock_config_response();
             auto fs_config = client->get_frame_system_config();
 
-            std::vector<viam::robot::v1::FrameSystemConfig> fs_config_proto =
-                std::vector<viam::robot::v1::FrameSystemConfig>();
+            std::vector<viam::robot::v1::FrameSystemConfig> fs_config_proto;
             for (const frameSystemConfig& f : fs_config) {
                 fs_config_proto.push_back(f.to_proto());
             }
