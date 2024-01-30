@@ -32,7 +32,10 @@ class ResourceRegistration {
    public:
     virtual ~ResourceRegistration();
 
-    // CR erodkin: is this necessary at all? how do we use this?
+    // TODO(RSDK-6484): the semantics of `create_reconfigurable` are opaque (and to-date
+    // are in fact non-existent). We should get rid of this and just add a `Reconfigurable`
+    // base class (similar to `Stoppable`), and things that want to reconfigure can inherit
+    // from it.
     /// @brief Add `Reconfigure` functionality to a resource.
     std::function<std::shared_ptr<Resource>(std::shared_ptr<Resource>, Name)> create_reconfigurable;
 

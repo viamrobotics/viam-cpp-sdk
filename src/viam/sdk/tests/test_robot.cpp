@@ -49,11 +49,8 @@ void robot_client_to_mocks_pipeline(F&& test_case) {
     rm->add(std::string("mock_motor"), motor::MockMotor::get_mock_motor());
     rm->add(std::string("mock_camera"), camera::MockCamera::get_mock_camera());
     auto server = std::make_shared<sdk::Server>();
-    std::cout << "gonna create a robot service\n" << std::flush;
     MockRobotService service(rm, *server);
-    std::cout << "gonna start a robot service\n" << std::flush;
     server->start();
-    std::cout << " started a robot service\n" << std::flush;
 
     // Create a RobotClient to the MockRobotService over an established
     // in-process gRPC channel.
@@ -226,7 +223,10 @@ BOOST_AUTO_TEST_CASE(test_get_resource) {
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
             auto mock_motor = client->resource_by_name<Motor>("mock_motor");
             BOOST_CHECK(mock_motor);
-            // BOOST_CHECK(!mock_motor->is_moving());
+
+            // test not just that we can get the motor, but that the motor service has been
+            // appropriately registered such that we can actually use it.
+            BOOST_CHECK(!mock_motor->is_moving());
         });
 }
 

@@ -19,6 +19,7 @@ class MotorServer : public ResourceServer,
                     public viam::component::motor::v1::MotorService::Service {
    public:
     explicit MotorServer(std::shared_ptr<ResourceManager> manager);
+    API api() const override;
 
     ::grpc::Status SetPower(
         ::grpc::ServerContext* context,

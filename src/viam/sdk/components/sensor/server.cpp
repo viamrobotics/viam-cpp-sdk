@@ -48,5 +48,9 @@ SensorServer::SensorServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
+API SensorServer::api() const {
+    return API::get<Sensor>();
+}
+
 }  // namespace sdk
 }  // namespace viam

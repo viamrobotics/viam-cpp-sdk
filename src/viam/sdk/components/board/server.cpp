@@ -204,5 +204,9 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
+API BoardServer::api() const {
+    return API::get<Board>();
+}
+
 }  // namespace sdk
 }  // namespace viam

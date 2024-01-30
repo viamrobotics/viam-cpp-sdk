@@ -112,5 +112,9 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
+API BaseServer::api() const {
+    return API::get<Base>();
+}
+
 }  // namespace sdk
 }  // namespace viam

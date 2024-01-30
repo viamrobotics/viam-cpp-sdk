@@ -212,5 +212,9 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
     });
 };
 
+API MotionServer::api() const {
+    return API::get<Motion>();
+}
+
 }  // namespace sdk
 }  // namespace viam

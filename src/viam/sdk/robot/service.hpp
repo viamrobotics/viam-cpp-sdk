@@ -49,6 +49,8 @@ class RobotService_ : public ResourceServer, public viam::robot::v1::RobotServic
                            ::viam::robot::v1::StopAllResponse* response) override;
 
    private:
+    // CR erodkin: this is a bit of a hacky workaround, leave a comment about it
+    API api() const override;
     std::mutex lock_;
     std::vector<ResourceName> generate_metadata();
     std::vector<Status> generate_status(RepeatedPtrField<ResourceName> resource_names);

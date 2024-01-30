@@ -15,7 +15,7 @@ Server::Server() : builder_(std::make_unique<grpc::ServerBuilder>()) {
     // have a server and that server can track everything for them. But we'll need to test that!
     for (const auto& rr : Registry::registered_resources()) {
         auto server = rr.second->create_resource_server(new_manager, *this);
-        managed_servers_.push_back(server);
+        managed_servers_.emplace(server->api(), std::move(server));
     }
 }
 
@@ -29,6 +29,22 @@ void Server::register_service(grpc::Service* service) {
     }
 
     builder_->RegisterService(service);
+}
+
+void Server::add_resource(std::shared_ptr<Resource> resource) {
+    if (!builder_) {
+        throw std::runtime_error("Cannot add a new resource after the server has started");
+    }
+
+    auto api = resource->api();
+    if (managed_servers_.find(api) == managed_servers_.end()) {
+        std::ostringstream buffer;
+        buffer << "Attempted to add resource with API: " << api
+               << " but no matching resource server as found";
+        throw std::runtime_error(buffer.str());
+    }
+    auto resource_server = managed_servers_.at(std::move(api));
+    resource_server->resource_manager()->add(resource->name(), std::move(resource));
 }
 
 void Server::start() {

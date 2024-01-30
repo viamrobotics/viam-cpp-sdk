@@ -21,5 +21,9 @@ GenericServiceServer::GenericServiceServer(std::shared_ptr<ResourceManager> mana
     });
 }
 
+API GenericServiceServer::api() const {
+    return API::get<GenericService>();
+}
+
 }  // namespace sdk
 }  // namespace viam

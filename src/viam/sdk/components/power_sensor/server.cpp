@@ -68,5 +68,9 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
+API PowerSensorServer::api() const {
+    return API::get<PowerSensor>();
+}
+
 }  // namespace sdk
 }  // namespace viam

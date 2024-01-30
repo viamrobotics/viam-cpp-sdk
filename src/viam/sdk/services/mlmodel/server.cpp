@@ -158,5 +158,9 @@ MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> mana
     });
 }
 
+API MLModelServiceServer::api() const {
+    return API::get<MLModelService>();
+}
+
 }  // namespace sdk
 }  // namespace viam

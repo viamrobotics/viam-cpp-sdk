@@ -116,5 +116,9 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
+API CameraServer::api() const {
+    return API::get<Camera>();
+}
+
 }  // namespace sdk
 }  // namespace viam

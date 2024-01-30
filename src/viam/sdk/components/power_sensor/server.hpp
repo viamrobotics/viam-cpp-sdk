@@ -20,6 +20,7 @@ namespace sdk {
 class PowerSensorServer : public ResourceServer, public PowerSensorService::Service {
    public:
     explicit PowerSensorServer(std::shared_ptr<ResourceManager> manager);
+    API api() const override;
 
     ::grpc::Status GetVoltage(::grpc::ServerContext* context,
                               const GetVoltageRequest* request,

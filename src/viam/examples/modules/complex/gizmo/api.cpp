@@ -45,6 +45,10 @@ std::shared_ptr<ResourceRegistration> Gizmo::resource_registration() {
     return std::make_shared<GizmoRegistration>(sd);
 }
 
+API GizmoServer::api() const {
+    return API::get<Gizmo>();
+}
+
 API Gizmo::api() const {
     return API::get<Gizmo>();
 }

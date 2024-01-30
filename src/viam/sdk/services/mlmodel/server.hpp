@@ -30,6 +30,7 @@ class MLModelServiceServer : public ResourceServer,
                              public ::viam::service::mlmodel::v1::MLModelService::Service {
    public:
     explicit MLModelServiceServer(std::shared_ptr<ResourceManager> manager);
+    API api() const override;
 
     ::grpc::Status Infer(::grpc::ServerContext* context,
                          const ::viam::service::mlmodel::v1::InferRequest* request,

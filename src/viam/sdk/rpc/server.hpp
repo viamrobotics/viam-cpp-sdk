@@ -7,6 +7,8 @@
 #include <grpcpp/security/server_credentials.h>
 #include <grpcpp/server_builder.h>
 
+#include <viam/sdk/resource/resource.hpp>
+#include <viam/sdk/resource/resource_api.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
 
 namespace viam {
@@ -30,12 +32,20 @@ class Server {
     /// repeated calls.
     void start();
 
-    // TODO: make `register_service` take one of our types as an arg rather than a
-    // grpc service type, and convert under the hood
+    // CR erodkin: deleted a todo here because it wouldn't play nice with user-defined modular
+    // resources. Leave a flyby comment to that effect in the PR.
     /// @brief Registers a gRPC service.
     /// @param service The gRPC service to be registered.
     /// @throws `std::runtime_error` if called after the server has been `start`ed.
     void register_service(grpc::Service* service);
+
+    // CR erodkin: I don't love having this on server. Consider if we can put this somewhere
+    // else?
+    /// @brief Adds a specific managed resource to the associated resource server
+    /// @param resource The resource to add
+    /// @throws `std::runtime_error` if a matching `ResourceServer` doesn't exist in the server,
+    /// or if called after the server has `start`ed.
+    void add_resource(std::shared_ptr<Resource> resource);
 
     /// @brief Adds a listening port to the server.
     /// @param address The address to listen at.
@@ -54,7 +64,7 @@ class Server {
     friend class ::viam::sdktests::TestServer;
 
    private:
-    std::vector<std::shared_ptr<ResourceServer>> managed_servers_;
+    std::unordered_map<API, std::shared_ptr<ResourceServer>> managed_servers_;
     std::unique_ptr<grpc::ServerBuilder> builder_;
     std::unique_ptr<grpc::Server> server_;
 };

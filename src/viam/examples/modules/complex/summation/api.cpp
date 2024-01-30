@@ -50,6 +50,10 @@ API Summation::api() const {
     return API::get<Summation>();
 }
 
+API SummationServer::api() const {
+    return API::get<Summation>();
+}
+
 API API::traits<Summation>::api() {
     return {"viam", "service", "summation"};
 }
