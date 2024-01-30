@@ -25,7 +25,6 @@ namespace viam {
 namespace sdk {
 
 using grpc::Channel;
-using viam::common::v1::ResourceName;
 using viam::robot::v1::RobotService;
 using viam::robot::v1::Status;
 
@@ -56,7 +55,6 @@ struct frameSystemConfig {
     AttributeMap kinematics;
 };
 
-// TODO(RSDK-1742) replace all `ResourceName` references in API with `Name`
 /// @defgroup Robot Classes related to a Robot representation.
 
 /// @class RobotClient client.h "robot/client.h"
@@ -95,10 +93,10 @@ class RobotClient {
     static std::shared_ptr<RobotClient> with_channel(std::shared_ptr<ViamChannel> channel,
                                                      Options options);
     RobotClient(std::shared_ptr<ViamChannel> channel);
-    std::vector<ResourceName>* resource_names();
+    std::vector<Name>* resource_names();
 
     /// @brief Lookup and return a `shared_ptr` to a resource.
-    /// @param name The `ResourceName` of the resource.
+    /// @param name The `Name` of the resource.
     /// @throws `std::runtime_error` if the requested resource doesn't exist or is the wrong type.
     /// @return a `shared_ptr` to the requested resource as an uncasted `Resource`.
     ///
@@ -108,7 +106,7 @@ class RobotClient {
     ///
     /// Because the return type here is a `Resource`, the user will need to manually
     /// cast to the desired type.
-    std::shared_ptr<Resource> resource_by_name(const ResourceName& name);
+    std::shared_ptr<Resource> resource_by_name(const Name& name);
 
     template <typename T>
     /// @brief Lookup and return a `shared_ptr` to a resource of the requested type.
@@ -116,12 +114,8 @@ class RobotClient {
     /// @throws `std::runtime_error` if the requested resource doesn't exist or is the wrong type.
     /// @return a `shared_ptr` to the requested resource.
     std::shared_ptr<T> resource_by_name(std::string name) {
-        ResourceName r;
         API api = API::get<T>();
-        *r.mutable_namespace_() = api.type_namespace();
-        *r.mutable_type() = api.resource_type();
-        *r.mutable_subtype() = api.resource_subtype();
-        *r.mutable_name() = std::move(name);
+        Name r = Name::from_string(api.to_string() + "/" + name);
 
         auto resource = this->resource_by_name(std::move(r));
         return std::dynamic_pointer_cast<T>(resource);
@@ -140,7 +134,7 @@ class RobotClient {
     /// @brief Get the status of the requested robot components.
     /// @param components A list of the specific components for which status is desired.
     /// @return A list of statuses.
-    std::vector<Status> get_status(std::vector<ResourceName>& components);
+    std::vector<Status> get_status(std::vector<Name>& components);
 
     /// @brief Get the status of all robot components.
     /// @return A list of statuses.
@@ -165,8 +159,8 @@ class RobotClient {
     void stop_all();
 
     /// @brief Cancel all operations for the robot and stop all actuators and movement.
-    /// @param extra Any extra params to pass to resources' `stop` methods, keyed by `ResourceName`.
-    void stop_all(std::unordered_map<ResourceName,
+    /// @param extra Any extra params to pass to resources' `stop` methods, keyed by `Name`.
+    void stop_all(std::unordered_map<Name,
                                      std::unordered_map<std::string, std::shared_ptr<ProtoType>>,
                                      ResourceNameHasher,
                                      ResourceNameEqual> extra);
@@ -184,7 +178,7 @@ class RobotClient {
     bool should_close_channel_;
     std::unique_ptr<RobotService::Stub> stub_;
     std::mutex lock_;
-    std::vector<ResourceName> resource_names_;
+    std::vector<Name> resource_names_;
     ResourceManager resource_manager_;
     void refresh_every();
 };

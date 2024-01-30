@@ -12,33 +12,32 @@
 
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/components/component.hpp>
+#include <viam/sdk/resource/resource_api.hpp>
 
 namespace viam {
 namespace sdk {
 
-using viam::common::v1::ResourceName;
 const std::string kComponent = "component";
 const std::string kResource = "resource";
 const std::string kService = "service";
 const std::string kRDK = "rdk";
 const std::string kBuiltin = "builtin";
 
-std::vector<viam::common::v1::ResourceName> resource_names_for_resource(
-    const std::shared_ptr<Resource>& resource);
+std::vector<Name> resource_names_for_resource(const std::shared_ptr<Resource>& resource);
 
 class ResourceNameHasher {
    public:
-    size_t operator()(ResourceName const& key) const {
-        return std::hash<std::string>()(key.SerializeAsString());
+    size_t operator()(Name const& key) const {
+        return std::hash<std::string>()(key.to_string());
     }
 };
 class ResourceNameEqual {
    public:
-    bool operator()(ResourceName const& t1, ResourceName const& t2) const {
-        return !(t1.SerializeAsString().compare(t2.SerializeAsString()));
+    bool operator()(Name const& t1, Name const& t2) const {
+        return !(t1.to_string().compare(t2.to_string()));
     }
-    static bool check_equal(const ResourceName r1, const ResourceName r2) {
-        return r1.SerializeAsString().compare(r2.SerializeAsString());
+    static bool check_equal(const Name r1, const Name r2) {
+        return r1.to_string().compare(r2.to_string());
     }
 };
 

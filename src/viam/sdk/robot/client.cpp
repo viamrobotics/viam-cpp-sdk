@@ -40,7 +40,6 @@ namespace sdk {
 // TODO(RSDK-4573) Having all these proto types exposed here in the APIs is sad. Let's fix that.
 
 using google::protobuf::RepeatedPtrField;
-using viam::common::v1::ResourceName;
 using viam::robot::v1::Operation;
 using viam::robot::v1::RobotService;
 using viam::robot::v1::Status;
@@ -59,8 +58,8 @@ viam::robot::v1::DiscoveryQuery discovery_query::to_proto() const {
     return proto;
 }
 
-discovery_query discover_query::from_proto(const viam::robot::v1::DiscoveryQuery& proto) {
-    discover_query query;
+discovery_query discovery_query::from_proto(const viam::robot::v1::DiscoveryQuery& proto) {
+    discovery_query query;
     query.subtype = proto.subtype();
     query.model = proto.model();
     return query;
@@ -75,7 +74,7 @@ viam::robot::v1::Discovery discovery::to_proto() const {
 
 discovery discovery::from_proto(const viam::robot::v1::Discovery& proto) {
     discovery discovery;
-    discovery.query = discover_query::from_proto(proto.query());
+    discovery.query = discovery_query::from_proto(proto.query());
     discovery.results = struct_to_map(proto.results());
     return discovery;
 }
@@ -127,14 +126,14 @@ std::vector<Status> RobotClient::get_status() {
     return get_status(*resources);
 }
 // gets Statuses of components associated with robot. If a specific component
-// vector is provided, only statuses for the given ResourceNames will be
+// vector is provided, only statuses for the given Names will be
 // returned
-std::vector<Status> RobotClient::get_status(std::vector<ResourceName>& components) {
+std::vector<Status> RobotClient::get_status(std::vector<Name>& components) {
     viam::robot::v1::GetStatusRequest req;
     viam::robot::v1::GetStatusResponse resp;
     ClientContext ctx;
-    for (const ResourceName& name : components) {
-        *req.mutable_resource_names()->Add() = name;
+    for (const Name& name : components) {
+        *req.mutable_resource_names()->Add() = name.to_proto();
     }
 
     const grpc::Status response = stub_->GetStatus(ctx, req, &resp);
@@ -209,9 +208,9 @@ void RobotClient::refresh() {
     }
 
     std::unordered_map<Name, std::shared_ptr<Resource>> new_resources;
-    std::vector<ResourceName> current_resources;
+    std::vector<Name> current_resources;
     for (const auto& name : resp.resources()) {
-        current_resources.push_back(name);
+        current_resources.push_back(Name::from_proto(name));
         if (name.subtype() == "remote") {
             continue;
         }
@@ -269,9 +268,9 @@ RobotClient::RobotClient(std::shared_ptr<ViamChannel> channel)
       should_close_channel_(false),
       stub_(RobotService::NewStub(channel_)) {}
 
-std::vector<ResourceName>* RobotClient::resource_names() {
+std::vector<Name>* RobotClient::resource_names() {
     const std::lock_guard<std::mutex> lock(lock_);
-    std::vector<ResourceName>* resources = &resource_names_;
+    std::vector<Name>* resources = &resource_names_;
     return resources;
 }
 
@@ -372,14 +371,14 @@ pose_in_frame RobotClient::transform_pose(
     return pose_in_frame::from_proto(resp.pose());
 }
 
-std::vector<discovery> RobotClient::discover_components(std::vector<discover_query> queries) {
+std::vector<discovery> RobotClient::discover_components(std::vector<discovery_query> queries) {
     viam::robot::v1::DiscoverComponentsRequest req;
     viam::robot::v1::DiscoverComponentsResponse resp;
     ClientContext ctx;
 
     RepeatedPtrField<viam::robot::v1::DiscoveryQuery>* req_queries = req.mutable_queries();
 
-    for (const discover_query& query : queries) {
+    for (const discovery_query& query : queries) {
         *req_queries->Add() = query.to_proto();
     }
 
@@ -397,17 +396,17 @@ std::vector<discovery> RobotClient::discover_components(std::vector<discover_que
     return components;
 }
 
-std::shared_ptr<Resource> RobotClient::resource_by_name(const ResourceName& name) {
+std::shared_ptr<Resource> RobotClient::resource_by_name(const Name& name) {
     return resource_manager_.resource(name.name());
 }
 
 void RobotClient::stop_all() {
-    std::unordered_map<ResourceName,
+    std::unordered_map<Name,
                        std::unordered_map<std::string, std::shared_ptr<ProtoType>>,
                        ResourceNameHasher,
                        ResourceNameEqual>
         map;
-    for (const ResourceName& name : *resource_names()) {
+    for (const Name& name : *resource_names()) {
         const std::unordered_map<std::string, std::shared_ptr<ProtoType>> val;
         map.emplace(name, val);
     }
@@ -415,7 +414,7 @@ void RobotClient::stop_all() {
 }
 
 void RobotClient::stop_all(
-    std::unordered_map<ResourceName,
+    std::unordered_map<Name,
                        std::unordered_map<std::string, std::shared_ptr<ProtoType>>,
                        ResourceNameHasher,
                        ResourceNameEqual> extra) {
@@ -425,13 +424,13 @@ void RobotClient::stop_all(
 
     RepeatedPtrField<viam::robot::v1::StopExtraParameters>* ep = req.mutable_extra();
     for (auto& xtra : extra) {
-        const ResourceName name = xtra.first;
+        const Name name = xtra.first;
         const std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> params =
             std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>(
                 xtra.second);
         const google::protobuf::Struct s = map_to_struct(params);
         viam::robot::v1::StopExtraParameters stop;
-        *stop.mutable_name() = name;
+        *stop.mutable_name() = name.to_proto();
         *stop.mutable_params() = s;
         *ep->Add() = stop;
     }

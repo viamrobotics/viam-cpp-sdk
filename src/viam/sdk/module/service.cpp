@@ -66,7 +66,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(Name name) {
         parent_ = RobotClient::at_local_socket(parent_addr_, {0, boost::none});
     }
 
-    return parent_->resource_by_name(name.to_proto());
+    return parent_->resource_by_name(name);
 }
 
 ::grpc::Status ModuleService::AddResource(::grpc::ServerContext* context,

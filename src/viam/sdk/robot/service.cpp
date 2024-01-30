@@ -27,20 +27,19 @@ namespace viam {
 namespace sdk {
 
 using google::protobuf::RepeatedPtrField;
-using viam::common::v1::ResourceName;
 using viam::robot::v1::Status;
 
-std::vector<ResourceName> RobotService_::generate_metadata() {
-    std::vector<ResourceName> metadata;
+std::vector<Name> RobotService_::generate_metadata() {
+    std::vector<Name> metadata;
     for (const auto& key_and_val : resource_manager()->resources()) {
-        for (const ResourceName& resource : resource_names_for_resource(key_and_val.second)) {
+        for (const Name& resource : resource_names_for_resource(key_and_val.second)) {
             metadata.push_back(resource);
         }
     }
     return metadata;
 }
 
-std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName> resource_names) {
+std::vector<Status> RobotService_::generate_status(std::vector<Name> resource_names) {
     std::vector<Status> statuses;
     for (const auto& cmp : resource_manager()->resources()) {
         const std::shared_ptr<Resource> resource = cmp.second;
@@ -48,7 +47,7 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
             const std::shared_ptr<ModelRegistration> registration = kv.second;
             if (registration->api().resource_subtype() == resource->api().resource_subtype()) {
                 bool resource_present = false;
-                const ResourceName name = resource->get_resource_name(resource->name());
+                const Name name = Name::from_proto(resource->get_resource_name(resource->name()));
                 for (auto& resource_name : resource_names) {
                     if (ResourceNameEqual::check_equal(name, resource_name)) {
                         resource_present = true;
@@ -68,7 +67,7 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
     for (auto& status : statuses) {
         bool status_name_is_known = false;
         for (auto& resource_name : resource_names) {
-            if (status.name().SerializeAsString() == resource_name.SerializeAsString()) {
+            if (Name::from_proto(status.name()) == resource_name) {
                 status_name_is_known = true;
                 break;
             }
@@ -87,9 +86,9 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [ResourceNames] without a request");
     };
-    RepeatedPtrField<ResourceName>* p = response->mutable_resources();
-    for (const ResourceName& name : generate_metadata()) {
-        *p->Add() = name;
+    RepeatedPtrField<common::v1::ResourceName>* p = response->mutable_resources();
+    for (const Name& name : generate_metadata()) {
+        *p->Add() = name.to_proto();
     }
 
     return ::grpc::Status();
@@ -103,8 +102,13 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
                               "Called [GetStatus] without a request");
     };
 
+    std::vector<Name> names;
+    for (const common::v1::ResourceName& name : request->resource_names()) {
+        names.push_back(Name::from_proto(name));
+    }
+
     RepeatedPtrField<Status>* response_status = response->mutable_status();
-    const std::vector<Status> statuses = generate_status(request->resource_names());
+    const std::vector<Status> statuses = generate_status(names);
     for (const Status& status : statuses) {
         *response_status->Add() = status;
     }
@@ -117,7 +121,11 @@ void RobotService_::stream_status(
     ::grpc::ServerWriter<::viam::robot::v1::StreamStatusResponse>* writer,
     int interval) {
     while (true) {
-        const std::vector<Status> statuses = generate_status(request->resource_names());
+        std::vector<Name> names;
+        for (const common::v1::ResourceName& name : request->resource_names()) {
+            names.push_back(Name::from_proto(name));
+        }
+        const std::vector<Status> statuses = generate_status(names);
         viam::robot::v1::StreamStatusResponse response;
         RepeatedPtrField<Status>* response_status = response.mutable_status();
         for (const Status& status : statuses) {
@@ -137,7 +145,11 @@ void RobotService_::stream_status(
     if (request->every().seconds() > 0) {
         interval = request->every().seconds();
     }
-    const RepeatedPtrField<ResourceName> resource_names = request->resource_names();
+
+    std::vector<Name> names;
+    for (const common::v1::ResourceName& name : request->resource_names()) {
+        names.push_back(Name::from_proto(name));
+    }
     std::thread t(&RobotService_::stream_status, this, request, writer, interval);
     t.detach();
     return ::grpc::Status();
@@ -146,7 +158,7 @@ void RobotService_::stream_status(
 ::grpc::Status RobotService_::StopAll(::grpc::ServerContext* context,
                                       const ::viam::robot::v1::StopAllRequest* request,
                                       ::viam::robot::v1::StopAllResponse* response) {
-    const ResourceName r;
+    const common::v1::ResourceName r;
     std::unordered_map<std::string, AttributeMap> extra;
     for (const auto& ex : request->extra()) {
         const google::protobuf::Struct& struct_ = ex.params();
@@ -160,8 +172,8 @@ void RobotService_::stream_status(
 
     for (const auto& r : resource_manager()->resources()) {
         const std::shared_ptr<Resource> resource = r.second;
-        const ResourceName rn = resource->get_resource_name(resource->name());
-        const std::string rn_ = rn.SerializeAsString();
+        const Name rn = Name::from_proto(resource->get_resource_name(resource->name()));
+        const std::string rn_ = rn.to_string();
         if (extra.find(rn_) != extra.end()) {
             try {
                 Stoppable::stop_if_stoppable(resource, extra.at(rn_));

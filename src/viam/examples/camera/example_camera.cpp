@@ -44,11 +44,12 @@ int main() {
             throw;
         }
 
-        std::vector<vs::ResourceName>* resource_names = robot->resource_names();
+        std::vector<vs::Name>* resource_names = robot->resource_names();
 
         cout << "Resources of the robot:" << endl;
-        for (vs::ResourceName resource : *resource_names) {
-            cout << " - " << resource.name() << " (" << resource.subtype() << ")" << endl;
+        for (vs::Name resource : *resource_names) {
+            cout << " - " << resource.name() << " (" << resource.api().resource_subtype() << ")"
+                 << endl;
         }
 
         std::string camera_name("camera1");

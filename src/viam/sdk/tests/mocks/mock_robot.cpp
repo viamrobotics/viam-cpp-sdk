@@ -60,15 +60,15 @@ std::vector<viam::robot::v1::Status> mock_status_response() {
     auto rns = mock_resource_names_response();
 
     viam::robot::v1::Status camera_status;
-    *camera_status.mutable_name() = rns[1];
+    *camera_status.mutable_name() = rns[1].to_proto();
     *camera_status.mutable_status() = google::protobuf::Struct();
 
     viam::robot::v1::Status generic_status;
-    *generic_status.mutable_name() = rns[0];
+    *generic_status.mutable_name() = rns[0].to_proto();
     *generic_status.mutable_status() = google::protobuf::Struct();
 
     viam::robot::v1::Status motor_status;
-    *motor_status.mutable_name() = rns[2];
+    *motor_status.mutable_name() = rns[2].to_proto();
     *motor_status.mutable_status() = google::protobuf::Struct();
 
     std::vector<viam::robot::v1::Status> resp;
@@ -83,25 +83,11 @@ pose_in_frame mock_transform_response() {
     return pose_in_frame("arm", pose::from_proto(default_pose()));
 }
 
-std::vector<ResourceName> mock_resource_names_response() {
-    std::vector<ResourceName> vec;
-    ResourceName camera;
-    *camera.mutable_namespace_() = kRDK;
-    *camera.mutable_type() = kComponent;
-    *camera.mutable_name() = "mock_camera";
-    *camera.mutable_subtype() = "camera";
-
-    ResourceName generic;
-    *generic.mutable_namespace_() = kRDK;
-    *generic.mutable_type() = kComponent;
-    *generic.mutable_name() = "mock_generic";
-    *generic.mutable_subtype() = "generic";
-
-    ResourceName motor;
-    *motor.mutable_namespace_() = kRDK;
-    *motor.mutable_type() = kComponent;
-    *motor.mutable_name() = "mock_motor";
-    *motor.mutable_subtype() = "motor";
+std::vector<Name> mock_resource_names_response() {
+    std::vector<Name> vec;
+    Name camera = Name::from_string(kRDK + ":" + kComponent + ":" + "camera/mock_camera");
+    Name generic = Name::from_string(kRDK + ":" + kComponent + ":" + "generic/mock_generic");
+    Name motor = Name::from_string(kRDK + ":" + kComponent + ":" + "motor/mock_motor");
 
     vec.push_back(camera);
     vec.push_back(generic);
