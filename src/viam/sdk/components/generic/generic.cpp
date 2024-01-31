@@ -15,45 +15,47 @@
 namespace viam {
 namespace sdk {
 
-GenericRegistration::GenericRegistration(
+GenericComponentRegistration::GenericComponentRegistration(
     const google::protobuf::ServiceDescriptor* service_descriptor)
     : ResourceRegistration(service_descriptor){};
 
-std::shared_ptr<ResourceServer> GenericRegistration::create_resource_server(
+std::shared_ptr<ResourceServer> GenericComponentRegistration::create_resource_server(
     std::shared_ptr<ResourceManager> manager, Server& server) {
-    auto gs = std::make_shared<GenericServer>(std::move(manager));
+    auto gs = std::make_shared<GenericComponentServer>(std::move(manager));
     server.register_service(gs.get());
     return gs;
 };
 
-std::shared_ptr<Resource> GenericRegistration::create_rpc_client(
+std::shared_ptr<Resource> GenericComponentRegistration::create_rpc_client(
     std::string name, std::shared_ptr<grpc::Channel> chan) {
-    return std::make_shared<GenericClient>(std::move(name), std::move(chan));
+    return std::make_shared<GenericComponentClient>(std::move(name), std::move(chan));
 };
 
-std::shared_ptr<ResourceRegistration> Generic::resource_registration() {
+std::shared_ptr<ResourceRegistration> GenericComponent::resource_registration() {
     const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
     const google::protobuf::ServiceDescriptor* sd =
         p->FindServiceByName(viam::component::generic::v1::GenericService::service_full_name());
     if (!sd) {
-        throw std::runtime_error("Unable to get service descriptor for the generic service");
+        throw std::runtime_error(
+            "Unable to get service descriptor for the generic component service");
     }
-    return std::make_shared<GenericRegistration>(sd);
+    return std::make_shared<GenericComponentRegistration>(sd);
 }
 
-API Generic::api() const {
-    return API::get<Generic>();
+API GenericComponent::api() const {
+    return API::get<GenericComponent>();
 }
 
-API API::traits<Generic>::api() {
+API API::traits<GenericComponent>::api() {
     return {kRDK, kComponent, "generic"};
 }
 
-Generic::Generic(std::string name) : Component(std::move(name)){};
+GenericComponent::GenericComponent(std::string name) : Component(std::move(name)){};
 
 namespace {
 bool init() {
-    Registry::register_resource(API::get<Generic>(), Generic::resource_registration());
+    Registry::register_resource(API::get<GenericComponent>(),
+                                GenericComponent::resource_registration());
     return true;
 };
 
