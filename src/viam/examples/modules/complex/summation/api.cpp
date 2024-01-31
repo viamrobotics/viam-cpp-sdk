@@ -18,33 +18,33 @@ using namespace viam::service::summation::v1;
 
 /* SummationRegistration methods */
 
-SummationRegistration::SummationRegistration(
-    const google::protobuf::ServiceDescriptor* service_descriptor)
-    : ResourceRegistration(service_descriptor){};
+// SummationRegistration::SummationRegistration(
+// const google::protobuf::ServiceDescriptor* service_descriptor)
+//: ResourceRegistration(service_descriptor){};
 
-std::shared_ptr<ResourceServer> SummationRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager, Server& server) {
-    auto ss = std::make_shared<SummationServer>(std::move(manager));
-    server.register_service(ss.get());
-    return ss;
-};
+// std::shared_ptr<ResourceServer> SummationRegistration::create_resource_server(
+// std::shared_ptr<ResourceManager> manager, Server& server) {
+// auto ss = std::make_shared<SummationServer>(std::move(manager));
+// server.register_service(ss.get());
+// return ss;
+//};
 
-std::shared_ptr<Resource> SummationRegistration::create_rpc_client(
-    std::string name, std::shared_ptr<grpc::Channel> chan) {
-    return std::make_shared<SummationClient>(std::move(name), std::move(chan));
-};
+// std::shared_ptr<Resource> SummationRegistration::create_rpc_client(
+// std::string name, std::shared_ptr<grpc::Channel> chan) {
+// return std::make_shared<SummationClient>(std::move(name), std::move(chan));
+//};
 
-/* Summation methods */
+//[> Summation methods <]
 
-std::shared_ptr<ResourceRegistration> Summation::resource_registration() {
-    const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
-    const google::protobuf::ServiceDescriptor* sd =
-        p->FindServiceByName(SummationService::service_full_name());
-    if (!sd) {
-        throw std::runtime_error("Unable to get service descriptor for the summation service");
-    }
-    return std::make_shared<SummationRegistration>(sd);
-}
+// std::shared_ptr<ResourceRegistration> Summation::resource_registration() {
+// const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
+// const google::protobuf::ServiceDescriptor* sd =
+// p->FindServiceByName(SummationService::service_full_name());
+// if (!sd) {
+// throw std::runtime_error("Unable to get service descriptor for the summation service");
+//}
+// return std::make_shared<SummationRegistration>(sd);
+//}
 
 API Summation::api() const {
     return API::get<Summation>();

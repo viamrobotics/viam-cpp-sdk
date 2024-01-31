@@ -24,7 +24,7 @@ GizmoRegistration::GizmoRegistration(const google::protobuf::ServiceDescriptor* 
 std::shared_ptr<ResourceServer> GizmoRegistration::create_resource_server(
     std::shared_ptr<ResourceManager> manager, Server& server) {
     auto gs = std::make_shared<GizmoServer>(std::move(manager));
-    server.register_service(gs.get());
+    // server.register_service(gs.get());
     return gs;
 };
 

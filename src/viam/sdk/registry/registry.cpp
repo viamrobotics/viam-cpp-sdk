@@ -157,8 +157,10 @@ const google::protobuf::ServiceDescriptor* ResourceRegistration::service_descrip
 
 void register_resources() {
     // Register all components
+    std::cout << "registering base!!" << std::endl;
     Registry::register_resource<BaseClient, BaseServer, component::base::v1::BaseService>(
         API::get<Base>());
+    std::cout << "registered base!!" << std::endl;
     Registry::register_resource<BoardClient, BoardServer, component::board::v1::BoardService>(
         API::get<Board>());
     Registry::register_resource<CameraClient, CameraServer, component::camera::v1::CameraService>(

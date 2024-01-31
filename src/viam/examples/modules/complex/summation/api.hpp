@@ -19,20 +19,20 @@ using namespace viam::service::summation::v1;
 
 // `SummationRegistration` defines a `ResourceRegistration` for the `Summation`
 // service.
-class SummationRegistration : public ResourceRegistration {
-   public:
-    explicit SummationRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
-    std::shared_ptr<ResourceServer> create_resource_server(std::shared_ptr<ResourceManager> manager,
-                                                           Server& server) override;
-    std::shared_ptr<Resource> create_rpc_client(std::string name,
-                                                std::shared_ptr<grpc::Channel> chan) override;
-};
+// class SummationRegistration : public ResourceRegistration {
+// public:
+// explicit SummationRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
+// std::shared_ptr<ResourceServer> create_resource_server(std::shared_ptr<ResourceManager> manager,
+// Server& server) override;
+// std::shared_ptr<Resource> create_rpc_client(std::string name,
+// std::shared_ptr<grpc::Channel> chan) override;
+//};
 
 // A `Summation` is a custom modular service.
 class Summation : public Service {
    public:
     // methods shared across all services
-    static std::shared_ptr<ResourceRegistration> resource_registration();
+    // static std::shared_ptr<ResourceRegistration> resource_registration();
     API api() const override;
 
     virtual double sum(std::vector<double> numbers) = 0;

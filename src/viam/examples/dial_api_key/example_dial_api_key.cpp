@@ -26,11 +26,11 @@ using viam::robot::v1::Status;
 using namespace viam::sdk;
 
 int main() {
-    const char* uri = "<your robot URI here>";
+    const char* uri = "webrtc-test-main.jkek76kqnh.viam.cloud";
     DialOptions dial_options;
     std::string type = "api-key";
-    std::string entity = "<your api key id>";
-    std::string payload = "<your api key value>";
+    std::string entity = "a9dcf212-3397-4318-bb1e-f5c36b3cafc1";
+    std::string payload = "2ml60ys1j4i9v0pecpxahe654yxpc1dz";
     dial_options.set_entity(entity);
     Credentials credentials(type, payload);
     dial_options.set_credentials(credentials);
