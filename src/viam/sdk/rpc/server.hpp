@@ -32,8 +32,6 @@ class Server {
     /// repeated calls.
     void start();
 
-    // CR erodkin: deleted a todo here because it wouldn't play nice with user-defined modular
-    // resources. Leave a flyby comment to that effect in the PR.
     /// @brief Registers a gRPC service.
     /// @param service The gRPC service to be registered.
     /// @throws `std::runtime_error` if called after the server has been `start`ed.

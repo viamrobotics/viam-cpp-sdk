@@ -34,7 +34,6 @@ int main(int argc, char** argv) {
     API summation_api = API::get<Summation>();
     Model mybase_model("viam", "base", "mybase");
 
-    // // CR erodkin: add note about how we've reduced the comment here.
     // Make sure to explicity register resources with custom APIs.
     Registry::register_resource<GizmoClient, GizmoServer, GizmoService>(gizmo_api);
     Registry::register_resource<SummationClient, SummationServer, SummationService>(summation_api);
