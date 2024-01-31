@@ -39,19 +39,14 @@ class Server {
     /// @throws `std::runtime_error` if called after the server has been `start`ed.
     void register_service(grpc::Service* service);
 
-    /// // CR erodkin: is this necessary? it doesn't feel like it should be but let's see!
     /// @brief Returns reference to managed resource server.
     /// @param api The api of the managed resource server.
     /// @returns The requested resource server, or nullptr if it doesn't exist.
-    std::shared_ptr<ResourceServer> lookup_resource_server(API& api);
+    std::shared_ptr<ResourceServer> lookup_resource_server(const API& api);
 
-    // CR erodkin: I don't love having this on server. Consider if we can put this somewhere
-    // else? But that means server not holding onto the ResourceServers either. Something to
-    // consider!
     /// @brief Adds a specific managed resource to the associated resource server
     /// @param resource The resource to add
-    /// @throws `std::runtime_error` if a matching `ResourceServer` doesn't exist in the server,
-    /// or if called after the server has `start`ed.
+    /// @throws `std::runtime_error` if a matching `ResourceServer` doesn't exist in the server.
     void add_resource(std::shared_ptr<Resource> resource);
 
     /// @brief Adds a listening port to the server.

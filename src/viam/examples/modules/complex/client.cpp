@@ -42,16 +42,12 @@ int main() {
     // Register custom gizmo and summation API so robot client can access resources
     // of that type from the server.
     Registry::register_resource<GizmoClient, GizmoServer, GizmoService>(API::get<Gizmo>());
-    // Registry::register_resource(API::get<Gizmo>(), Gizmo::resource_registration());
     Registry::register_resource<SummationClient, SummationServer, SummationService>(
         API::get<Summation>());
-    // Registry::register_resource(API::get<Summation>(), Summation::resource_registration());
 
-    std::cout << "registered resources\n" << std::flush;
     // Connect to robot.
     std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);
     // Print resources.
-    std::cout << "Resources" << std::endl;
     std::vector<ResourceName>* resource_names = robot->resource_names();
     for (const ResourceName& resource : *resource_names) {
         std::cout << "\tname: " << resource.name() << " (type:" << resource.type()
@@ -65,7 +61,6 @@ int main() {
         return EXIT_FAILURE;
     }
 
-    std::cout << "trying to do a thing " << std::endl;
     bool do_one_ret = gc->do_one("arg1");
     std::cout << "gizmo1 do_one returned: " << do_one_ret << std::endl;
     bool do_one_client_stream_ret = gc->do_one_client_stream({"arg1", "arg1", "arg1"});

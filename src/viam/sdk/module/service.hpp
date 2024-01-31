@@ -42,10 +42,6 @@ class ModuleService : viam::module::v1::ModuleService::Service {
     /// (this happens when the RDK shuts down).
     void serve();
 
-    /// @brief Adds an API to the module that has already been registered.
-    /// @param api The API to add.
-    void add_api_from_registry(API api);
-
     /// @brief Adds an API/model pair to the module; both the API and model should have
     /// already been registered. If the ModuleService was constructed with a vector
     /// of ModelRegistration, the passed in models will already be registered and added.
@@ -76,7 +72,6 @@ class ModuleService : viam::module::v1::ModuleService::Service {
                                   ::viam::module::v1::ValidateConfigResponse* response) override;
 
     void add_model_from_registry_inlock_(API api, Model model, const std::lock_guard<std::mutex>&);
-    void add_api_from_registry_inlock_(API api, const std::lock_guard<std::mutex>& lock);
     Dependencies get_dependencies_(google::protobuf::RepeatedPtrField<std::string> const& proto,
                                    std::string const& resource_name);
     std::shared_ptr<Resource> get_parent_resource_(Name name);

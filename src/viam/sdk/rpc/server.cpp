@@ -20,7 +20,7 @@ Server::~Server() {
     shutdown();
 }
 
-std::shared_ptr<ResourceServer> Server::lookup_resource_server(API& api) {
+std::shared_ptr<ResourceServer> Server::lookup_resource_server(const API& api) {
     if (managed_servers_.find(api) == managed_servers_.end()) {
         return nullptr;
     }
@@ -37,10 +37,6 @@ void Server::register_service(grpc::Service* service) {
 }
 
 void Server::add_resource(std::shared_ptr<Resource> resource) {
-    if (!builder_) {
-        throw std::runtime_error("Cannot add a new resource after the server has started");
-    }
-
     auto api = resource->api();
     if (managed_servers_.find(api) == managed_servers_.end()) {
         std::ostringstream buffer;
