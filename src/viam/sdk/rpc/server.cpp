@@ -11,8 +11,9 @@ namespace viam {
 namespace sdk {
 
 Server::Server() : builder_(std::make_unique<grpc::ServerBuilder>()) {
-    auto new_manager = std::make_shared<ResourceManager>();
+    Registry::initialize();
     for (const auto& rr : Registry::registered_resources()) {
+        auto new_manager = std::make_shared<ResourceManager>();
         auto server = rr.second->create_resource_server(new_manager, *this);
         managed_servers_.emplace(server->api(), std::move(server));
     }

@@ -38,7 +38,6 @@ BOOST_AUTO_TEST_SUITE(test_robot)
 // the robot client and the mock robot service.
 template <typename F>
 void robot_client_to_mocks_pipeline(F&& test_case) {
-    Registry::initialize();
     // Create a ResourceManager. Add a few mock resources to the
     // ResourceManager. Create a Server. Create a MockRobotService from the
     // ResourceManager and Server. Start the Server.

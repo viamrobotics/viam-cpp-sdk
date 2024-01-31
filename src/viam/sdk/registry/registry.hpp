@@ -117,25 +117,21 @@ class Registry {
     /// @brief Registers a resource with the Registry.
     /// @param resource An object containing resource registration information.
     /// @throws `std::runtime_error` if the resource has already been registered.
-    /// @throws `std::runtime_error` if `initialize` has not been called.
     static void register_model(std::shared_ptr<ModelRegistration> resource);
 
     /// @brief Lookup a given registered resource.
     /// @param name The name of the resource to lookup.
     /// @return a `shared_ptr` to the resource's registration data.
-    /// @throws `std::runtime_error` if `initialize` has not been called.
     static std::shared_ptr<ModelRegistration> lookup_model(std::string name);
 
     /// @brief Lookup a given registered resource.
     /// @param api The api of the resource to lookup.
     /// @param model The model of the resource to lookup.
     /// @return a `shared_ptr` to the resource's registration data.
-    /// @throws `std::runtime_error` if `initialize` has not been called.
     static std::shared_ptr<ModelRegistration> lookup_model(API api, Model model);
 
     /// @brief Register an api.
     /// @param api The api to be registered.
-    /// @throws `std::runtime_error` if `initialize` has not been called.
     template <typename ResourceClientT, typename ResourceServerT, typename ProtoServiceT>
     static void register_resource(API api) {
         class ResourceRegistration2 final : public ResourceRegistration {
@@ -162,25 +158,21 @@ class Registry {
     /// @brief Register an api.
     /// @param api The api to be registered.
     /// @param resource_registration `ResourceRegistration` with resource functionality.
-    /// @throws `std::runtime_error` if `initialize` has not been called.
     static void register_resource(API api,
                                   std::shared_ptr<ResourceRegistration> resource_registration);
 
     /// @brief Lookup a registered api.
     /// @param api The api to lookup.
     /// @return A `shared_ptr` to the registered api's `ResourceRegistration`.
-    /// @throws `std::runtime_error` if `initialize` has not been called.
     static std::shared_ptr<ResourceRegistration> lookup_resource(API api);
 
     /// @brief Provide information on registered resource models.
     /// @return A map from name to `ModelRegistration` of all registered resource models.
-    /// @throws `std::runtime_error` if `initialize` has not been called.
     static const std::unordered_map<std::string, std::shared_ptr<ModelRegistration>>&
     registered_models();
 
     /// @brief Provide access to registered resources.
     /// @return A map from `API` to `ResourceRegistration` of all registered resources.
-    /// @throws `std::runtime_error` if `initialize` has not been called.
     static const std::unordered_map<API, std::shared_ptr<ResourceRegistration>>&
     registered_resources();
 

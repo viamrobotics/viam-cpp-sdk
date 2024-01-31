@@ -28,10 +28,6 @@
 using namespace viam::sdk;
 
 int main(int argc, char** argv) {
-    // Be sure to initialize the registry so that all built-in resources types and server reflection
-    // are supported.
-    Registry::initialize();
-
     API base_api = API::get<Base>();
     API gizmo_api = API::get<Gizmo>();
     API summation_api = API::get<Summation>();
