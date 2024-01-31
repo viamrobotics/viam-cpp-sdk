@@ -187,9 +187,6 @@ class Registry {
     /// @brief Initialized the Viam registry. No-op if it has already been called.
     static void initialize();
 
-    /// @brief Returns whether or not the Registry has been `initialize`d.
-    static bool is_initialized();
-
    private:
     static bool initialized_;
 

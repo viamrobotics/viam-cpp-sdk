@@ -1,5 +1,7 @@
 #include <viam/sdk/rpc/server.hpp>
 
+#include <sstream>
+
 #include <boost/log/trivial.hpp>
 #include <grpcpp/security/server_credentials.h>
 

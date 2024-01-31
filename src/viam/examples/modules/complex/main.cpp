@@ -28,7 +28,10 @@
 using namespace viam::sdk;
 
 int main(int argc, char** argv) {
+    // Be sure to initialize the registry so that all built-in resources types and server reflection
+    // are supported.
     Registry::initialize();
+
     API base_api = API::get<Base>();
     API gizmo_api = API::get<Gizmo>();
     API summation_api = API::get<Summation>();
@@ -45,7 +48,6 @@ int main(int argc, char** argv) {
         MyBase::validate);
 
     Model mygizmo_model("viam", "gizmo", "mygizmo");
-    // Make sure to explicity register resources with custom APIs.
     std::shared_ptr<ModelRegistration> mygizmo_mr = std::make_shared<ModelRegistration>(
         gizmo_api,
         mygizmo_model,

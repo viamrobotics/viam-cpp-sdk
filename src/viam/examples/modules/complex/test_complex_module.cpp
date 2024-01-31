@@ -27,10 +27,8 @@ using namespace viam::sdktests;
 struct RegisterGizmoAndSummationFixture {
     RegisterGizmoAndSummationFixture() {
         Registry::register_resource<GizmoClient, GizmoServer, GizmoService>(API::get<Gizmo>());
-        // Registry::register_resource(API::get<Gizmo>(), Gizmo::resource_registration());
         Registry::register_resource<SummationClient, SummationServer, SummationService>(
             API::get<Summation>());
-        // Registry::register_resource(API::get<Summation>(), Summation::resource_registration());
     }
 
     // Test teardown is a noop;

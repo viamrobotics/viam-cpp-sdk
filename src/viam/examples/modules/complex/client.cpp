@@ -27,12 +27,10 @@
 using namespace viam::sdk;
 
 int main() {
-    const char* uri = "webrtc-test-main.jkek76kqnh.viam.cloud";
+    const char* uri = "<your robot URI here>";
     DialOptions dial_options;
-    std::string type = "api-key";
-    std::string entity = "a9dcf212-3397-4318-bb1e-f5c36b3cafc1";
-    std::string payload = "2ml60ys1j4i9v0pecpxahe654yxpc1dz";
-    dial_options.set_entity(entity);
+    std::string type = "<your authentication type>";
+    std::string payload = "<your authentication payload>";
     Credentials credentials(type, payload);
     dial_options.set_credentials(credentials);
     boost::optional<DialOptions> opts(dial_options);
@@ -48,6 +46,7 @@ int main() {
     // Connect to robot.
     std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);
     // Print resources.
+    std::cout << "Resources" << std::endl;
     std::vector<ResourceName>* resource_names = robot->resource_names();
     for (const ResourceName& resource : *resource_names) {
         std::cout << "\tname: " << resource.name() << " (type:" << resource.type()
@@ -60,7 +59,6 @@ int main() {
         std::cerr << "could not get 'gizmo1' resource from robot" << std::endl;
         return EXIT_FAILURE;
     }
-
     bool do_one_ret = gc->do_one("arg1");
     std::cout << "gizmo1 do_one returned: " << do_one_ret << std::endl;
     bool do_one_client_stream_ret = gc->do_one_client_stream({"arg1", "arg1", "arg1"});

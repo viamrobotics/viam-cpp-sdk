@@ -26,21 +26,17 @@ using viam::robot::v1::Status;
 using namespace viam::sdk;
 
 int main() {
-    const char* uri = "webrtc-test-main.jkek76kqnh.viam.cloud";
+    const char* uri = "<your robot URI here>";
     DialOptions dial_options;
     std::string type = "api-key";
-    std::string entity = "a9dcf212-3397-4318-bb1e-f5c36b3cafc1";
-    std::string payload = "2ml60ys1j4i9v0pecpxahe654yxpc1dz";
+    std::string entity = "<your api key id>";
+    std::string payload = "<your api key value>";
     dial_options.set_entity(entity);
     Credentials credentials(type, payload);
     dial_options.set_credentials(credentials);
     boost::optional<DialOptions> opts(dial_options);
     std::string address(uri);
     Options options(1, opts);
-
-    // initialize the Registry to ensure all built-in components and gRPC server reflection
-    // are supported.
-    Registry::initialize();
 
     // connect to robot, ensure we can refresh it
     std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);

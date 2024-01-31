@@ -15,10 +15,6 @@ int main() {
     using std::endl;
     namespace vs = ::viam::sdk;
     try {
-        // initialize the Registry to ensure all built-in components and gRPC server reflection
-        // are supported.
-        vs::Registry::initialize();
-
         // If you want to connect to a remote robot, this should be the url of the robot
         // Ex: xxx.xxx.viam.cloud
         std::string robot_address("localhost:8080");

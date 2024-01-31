@@ -196,10 +196,6 @@ void register_resources() {
         API::get<Motion>());
 }
 
-bool Registry::is_initialized() {
-    return initialized_;
-}
-
 void Registry::initialize() {
     if (initialized_) {
         BOOST_LOG_TRIVIAL(warning)
