@@ -28,10 +28,16 @@
 using namespace viam::sdk;
 
 int main(int argc, char** argv) {
-    std::cout << "at beginning!" << std::endl;
     Registry::initialize();
     API base_api = API::get<Base>();
+    API gizmo_api = API::get<Gizmo>();
+    API summation_api = API::get<Summation>();
     Model mybase_model("viam", "base", "mybase");
+
+    // // CR erodkin: add note about how we've reduced the comment here.
+    // Make sure to explicity register resources with custom APIs.
+    Registry::register_resource<GizmoClient, GizmoServer, GizmoService>(gizmo_api);
+    Registry::register_resource<SummationClient, SummationServer, SummationService>(summation_api);
 
     std::shared_ptr<ModelRegistration> mybase_mr = std::make_shared<ModelRegistration>(
         base_api,
@@ -39,27 +45,15 @@ int main(int argc, char** argv) {
         [](Dependencies deps, ResourceConfig cfg) { return std::make_unique<MyBase>(deps, cfg); },
         MyBase::validate);
 
-    API gizmo_api = API::get<Gizmo>();
     Model mygizmo_model("viam", "gizmo", "mygizmo");
-    // Make sure to explicity register resources with custom APIs. Note that
-    // this must be done in `main` and not in resource implementation files due
-    // to order of static initialization.
-    std::cout << "initialized registry, about to register gizmo" << std::endl;
-    Registry::register_resource(gizmo_api, Gizmo::resource_registration());
+    // Make sure to explicity register resources with custom APIs.
     std::shared_ptr<ModelRegistration> mygizmo_mr = std::make_shared<ModelRegistration>(
         gizmo_api,
         mygizmo_model,
         [](Dependencies deps, ResourceConfig cfg) { return std::make_unique<MyGizmo>(deps, cfg); },
         MyGizmo::validate);
 
-    API summation_api = API::get<Summation>();
     Model mysummation_model("viam", "summation", "mysummation");
-    // Make sure to explicity register resources with custom APIs. Note that
-    // this must be done in `main` and not in resource implementation files due
-    // to order of static initialization.
-    std::cout << "registered gizmo, about to register summation" << std::endl;
-    Registry::register_resource<SummationClient, SummationServer, SummationService>(summation_api);
-    // Registry::register_resource(summation_api, Summation::resource_registration());
 
     std::shared_ptr<ModelRegistration> mysummation_mr = std::make_shared<ModelRegistration>(
         summation_api, mysummation_model, [](Dependencies deps, ResourceConfig cfg) {
@@ -67,9 +61,7 @@ int main(int argc, char** argv) {
         });
 
     std::vector<std::shared_ptr<ModelRegistration>> mrs = {mybase_mr, mygizmo_mr, mysummation_mr};
-    std::cout << "creating modules service " << std::endl;
     auto my_mod = std::make_shared<ModuleService>(argc, argv, mrs);
-    std::cout << "serving module " << std::endl;
     my_mod->serve();
 
     return EXIT_SUCCESS;

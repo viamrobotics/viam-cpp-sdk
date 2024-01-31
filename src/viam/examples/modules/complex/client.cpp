@@ -38,16 +38,11 @@ int main() {
     boost::optional<DialOptions> opts(dial_options);
     std::string address(uri);
     Options options(1, opts);
-    std::cout << "doing a thing" << std::flush;
 
-    // initialize the Registry to ensure all built-in components and gRPC server reflection
-    // are supported.
-    // Registry::initialize();
-
-    std::cout << "inited registry\n" << std::flush;
     // Register custom gizmo and summation API so robot client can access resources
     // of that type from the server.
-    Registry::register_resource(API::get<Gizmo>(), Gizmo::resource_registration());
+    Registry::register_resource<GizmoClient, GizmoServer, GizmoService>(API::get<Gizmo>());
+    // Registry::register_resource(API::get<Gizmo>(), Gizmo::resource_registration());
     Registry::register_resource<SummationClient, SummationServer, SummationService>(
         API::get<Summation>());
     // Registry::register_resource(API::get<Summation>(), Summation::resource_registration());

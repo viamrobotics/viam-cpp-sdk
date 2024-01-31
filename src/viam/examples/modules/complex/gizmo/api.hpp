@@ -15,22 +15,9 @@
 using namespace viam::sdk;
 using namespace viam::component::gizmo::v1;
 
-// `GizmoRegistration` Defines a `ResourceRegistration` for the `Gizmo`
-// component.
-class GizmoRegistration : public ResourceRegistration {
-   public:
-    explicit GizmoRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
-    std::shared_ptr<ResourceServer> create_resource_server(std::shared_ptr<ResourceManager> manager,
-                                                           Server& server) override;
-    std::shared_ptr<Resource> create_rpc_client(std::string name,
-                                                std::shared_ptr<grpc::Channel> chan) override;
-};
-
 // `Gizmo` is a custom modular component.
 class Gizmo : public Component {
    public:
-    // methods shared across all components
-    static std::shared_ptr<ResourceRegistration> resource_registration();
     API api() const override;
 
     virtual bool do_one(std::string arg1) = 0;

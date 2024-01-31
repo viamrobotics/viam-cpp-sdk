@@ -16,35 +16,6 @@
 using namespace viam::sdk;
 using namespace viam::component::gizmo::v1;
 
-/* GizmoRegistration methods */
-
-GizmoRegistration::GizmoRegistration(const google::protobuf::ServiceDescriptor* service_descriptor)
-    : ResourceRegistration(service_descriptor){};
-
-std::shared_ptr<ResourceServer> GizmoRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager, Server& server) {
-    auto gs = std::make_shared<GizmoServer>(std::move(manager));
-    // server.register_service(gs.get());
-    return gs;
-};
-
-std::shared_ptr<Resource> GizmoRegistration::create_rpc_client(
-    std::string name, std::shared_ptr<grpc::Channel> chan) {
-    return std::make_shared<GizmoClient>(std::move(name), std::move(chan));
-};
-
-/* Gizmo methods */
-
-std::shared_ptr<ResourceRegistration> Gizmo::resource_registration() {
-    const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
-    const google::protobuf::ServiceDescriptor* sd =
-        p->FindServiceByName(GizmoService::service_full_name());
-    if (!sd) {
-        throw std::runtime_error("Unable to get service descriptor for the gizmo service");
-    }
-    return std::make_shared<GizmoRegistration>(sd);
-}
-
 API GizmoServer::api() const {
     return API::get<Gizmo>();
 }
@@ -72,7 +43,7 @@ grpc::Status GizmoServer::DoOne(grpc::ServerContext* context,
                             "Called [Gizmo::DoOne] without a request");
     };
 
-    auto rg = ResourceServer::resource_manager()->resource(request->name());
+    auto rg = resource_manager()->resource(request->name());
     if (!rg) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }

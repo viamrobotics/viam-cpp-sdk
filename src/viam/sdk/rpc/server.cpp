@@ -9,16 +9,7 @@ namespace viam {
 namespace sdk {
 
 Server::Server() : builder_(std::make_unique<grpc::ServerBuilder>()) {
-    std::cout << "creating a new server! this should only happen once!" << std::endl;
     auto new_manager = std::make_shared<ResourceManager>();
-    // CR erodkin: is this the best place to do this? Probably it makes more sense when we actually
-    // register the service. see if we can figure out how to do that. Related: if we can do it right
-    // then we don't need to manage resources separately in the module manager probably? it'll also
-    // have a server and that server can track everything for them. But we'll need to test that!
-    //
-    // CR erodkin: is it possible we have a duplicate in the registered resources somehow and that's
-    // what is causing the issue? Look into that possibility and/or the above CR as a separate
-    // implementation
     for (const auto& rr : Registry::registered_resources()) {
         auto server = rr.second->create_resource_server(new_manager, *this);
         managed_servers_.emplace(server->api(), std::move(server));
@@ -29,21 +20,20 @@ Server::~Server() {
     shutdown();
 }
 
+std::shared_ptr<ResourceServer> Server::lookup_resource_server(API& api) {
+    if (managed_servers_.find(api) == managed_servers_.end()) {
+        return nullptr;
+    }
+
+    return managed_servers_.at(api);
+}
+
 void Server::register_service(grpc::Service* service) {
     if (!builder_) {
         throw std::runtime_error("Cannot register a new service after the server has started");
     }
-    std::cout << "registering a service! " << std::endl;
 
-    try {
-        builder_->RegisterService(service);
-    } catch (const std::runtime_error& e) {
-        std::cout << "caught an error!\n" << std::flush;
-        BOOST_LOG_TRIVIAL(warning) << "Failed to register service: " << e.what();
-    } catch (...) {
-        std::cout << "caught an error!\n" << std::flush;
-        BOOST_LOG_TRIVIAL(warning) << "Failed to register service with unknown error";
-    }
+    builder_->RegisterService(service);
 }
 
 void Server::add_resource(std::shared_ptr<Resource> resource) {

@@ -210,9 +210,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(Name name) {
 };
 
 ModuleService::ModuleService(std::string addr)
-    : module_(std::make_unique<Module>(std::move(addr))), server_(std::make_unique<Server>()) {
-    std::cout << "starting module service\n" << std::flush;
-}
+    : module_(std::make_unique<Module>(std::move(addr))), server_(std::make_unique<Server>()) {}
 
 ModuleService::ModuleService(int argc,
                              char** argv,
@@ -237,14 +235,11 @@ void ModuleService::serve() {
     listen(sockfd, 10);
     umask(old_mask);
 
-    std::cout << "registering service " << std::endl;
     server_->register_service(this);
     const std::string address = "unix://" + module_->addr();
     server_->add_listening_port(address);
 
-    std::cout << "starting server " << std::endl;
     module_->set_ready();
-    std::cout << "starting server2" << std::endl;
     server_->start();
 
     BOOST_LOG_TRIVIAL(info) << "Module listening on " << module_->addr();
@@ -269,21 +264,19 @@ ModuleService::~ModuleService() {
 }
 
 void ModuleService::add_api_from_registry_inlock_(API api, const std::lock_guard<std::mutex>&) {
-    std::cout << "calling this thing with api " << api << std::endl;
     const std::unordered_map<API, std::shared_ptr<ResourceManager>>& services = module_->services();
     if (services.find(api) != services.end()) {
         return;
     }
-    auto new_manager = std::make_shared<ResourceManager>();
 
-    std::cout << "the API we're dealing with is " << api << std::endl;
     const std::shared_ptr<ResourceRegistration> rs = Registry::lookup_resource(api);
-    // // CR erodkin: I think this is where the issue was? we created resource server here and
-    // also when creating the server.
-    // const std::shared_ptr<ResourceServer> resource_server =
-    // rs->create_resource_server(new_manager, *server_);
-    module_->mutable_services().emplace(api, new_manager);
-    // module_->mutable_servers().push_back(resource_server);
+    auto server = server_->lookup_resource_server(api);
+    // CR erodkin: instead of having module hold on to copies of the services/servers, just
+    // point to what's in the server when doing add operations
+    if (server) {
+        module_->mutable_services().emplace(api, server->resource_manager());
+        module_->mutable_servers().push_back(std::move(server));
+    }
 }
 
 void ModuleService::add_model_from_registry_inlock_(API api,
