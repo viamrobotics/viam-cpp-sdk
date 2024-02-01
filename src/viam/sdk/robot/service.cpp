@@ -29,7 +29,6 @@ namespace sdk {
 using google::protobuf::RepeatedPtrField;
 using viam::robot::v1::Status;
 
-
 RobotService_::RobotService_(std::shared_ptr<ResourceManager> manager, Server& server)
     : ResourceServer(std::move(manager)) {
     server.register_service(this);
