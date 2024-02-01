@@ -27,6 +27,7 @@
 #include <viam/api/module/v1/module.grpc.pb.h>
 #include <viam/api/module/v1/module.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -54,7 +55,7 @@ Dependencies ModuleService::get_dependencies_(
             std::ostringstream buffer;
             buffer << resource_name << ": Dependency "
                    << "`" << dep_name << "` was not found during (re)configuration";
-            throw std::invalid_argument(buffer.str());
+            throw ResourceNotFoundException(buffer.str());
         }
         deps.emplace(dep_name, dep_resource);
     }
@@ -217,7 +218,7 @@ ModuleService::ModuleService(int argc,
                              char** argv,
                              std::vector<std::shared_ptr<ModelRegistration>> registrations) {
     if (argc < 2) {
-        throw std::runtime_error("Need socket path as command line argument");
+        throw ViamException("Need socket path as command line argument");
     }
     module_ = std::make_unique<Module>(argv[1]);
     server_ = std::make_unique<Server>();

@@ -9,6 +9,7 @@
 #include <viam/api/app/v1/robot.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/referenceframe/frame.hpp>
@@ -84,8 +85,7 @@ void ResourceConfig::fix_api() {
     // config structs
     if (this->api_.type_namespace() != this->namespace__ ||
         this->api_.resource_subtype() != this->type_) {
-        throw std::runtime_error(
-            "component namespace and/or type do not match component api field");
+        throw ViamException("component namespace and/or type do not match component api field");
     }
 }
 

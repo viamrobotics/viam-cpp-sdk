@@ -14,6 +14,7 @@
 
 #include <viam/sdk/services/mlmodel/mlmodel.hpp>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/utils.hpp>
 
 namespace viam {

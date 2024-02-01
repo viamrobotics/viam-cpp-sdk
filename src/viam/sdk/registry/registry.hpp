@@ -11,6 +11,7 @@
 #include <grpcpp/impl/service_type.h>
 #include <grpcpp/server.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>

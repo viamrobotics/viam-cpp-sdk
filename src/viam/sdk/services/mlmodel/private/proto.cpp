@@ -23,6 +23,8 @@
 #include <absl/strings/escaping.h>
 #include <boost/variant/get.hpp>
 
+#include <viam/sdk/common/exception.hpp>
+
 namespace viam {
 namespace sdk {
 namespace mlmodel_details {
@@ -123,7 +125,7 @@ MLModelService::tensor_views make_sdk_tensor_from_api_tensor_t(const T* data,
     if (!data || (size == 0) || shape.empty()) {
         std::ostringstream message;
         message << "Empty or zero length data or shape";
-        throw std::invalid_argument(message.str());
+        throw ViamException(message.str());
     }
 
     if (ts) {
@@ -143,7 +145,7 @@ MLModelService::tensor_views make_sdk_tensor_from_api_tensor_t(const T* data,
             std::ostringstream message;
             // TODO: Provide the shape
             message << "Provided shape information exceeds bounds of size_t when linearized";
-            throw std::length_error(message.str());
+            throw ViamException(message.str());
         }
         shape_accum = next_shape_accum;
     }
@@ -162,7 +164,7 @@ MLModelService::tensor_views make_sdk_tensor_from_api_tensor_t(const T* data,
         std::ostringstream message;
         // TODO: Provide the shape and details
         message << "Number of provided data elements does not match provided shape";
-        throw std::invalid_argument(message.str());
+        throw ViamException(message.str());
     }
 
     return MLModelService::make_tensor_view(data, size, std::move(shape));
@@ -240,7 +242,7 @@ MLModelService::tensor_views make_sdk_tensor_from_api_tensor(
                                                  std::move(shape),
                                                  storage);
     }
-    throw std::invalid_argument("Unsupported tensor data type");
+    throw NotSupportedException("Unsupported tensor data type");
 }
 
 }  // namespace mlmodel_details

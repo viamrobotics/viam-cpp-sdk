@@ -14,12 +14,11 @@ ViamException::~ViamException() = default;
 ConnectionException::ConnectionException(const std::string& what)
     : ViamException(what, "Connection"){};
 
-DuplicateResourceException::DuplicateResourceException(const std::string& what, Name resource_name)
-    : ViamException(what, "DuplicateResource"), resource_name_(std::move(resource_name)){};
+DuplicateRegistrationException::DuplicateRegistrationException(const std::string& what)
+    : ViamException(what, "DuplicateRegistration"){};
 
-Name DuplicateResourceException::resource_name() const noexcept {
-    return resource_name_;
-}
+DuplicateResourceException::DuplicateResourceException(const std::string& what)
+    : ViamException(what, "DuplicateResource"){};
 
 GRPCException::GRPCException(const std::string& what, int grpc_error_code)
     : ViamException(what, "gRPC"), grpc_error_code_(std::move(grpc_error_code)){};
@@ -28,12 +27,11 @@ int GRPCException::error_code() const noexcept {
     return grpc_error_code_;
 }
 
-ResourceNotFoundException::ResourceNotFoundException(const std::string& what, Name resource_name)
-    : ViamException(what, "ResourceNotFound"), resource_name_(std::move(resource_name)){};
+NotSupportedException::NotSupportedException(const std::string& what)
+    : ViamException(what, "NotSupported"){};
 
-Name ResourceNotFoundException::resource_name() const noexcept {
-    return resource_name_;
-}
+ResourceNotFoundException::ResourceNotFoundException(const std::string& what)
+    : ViamException(what, "ResourceNotFound"){};
 
 }  // namespace sdk
 }  // namespace viam

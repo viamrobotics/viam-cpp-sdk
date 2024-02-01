@@ -11,6 +11,7 @@
 
 #include <viam/api/robot/v1/robot.grpc.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
+#include <viam/sdk/common/exception.hpp>
 
 extern "C" void* init_rust_runtime();
 extern "C" int free_rust_runtime(void* ptr);
@@ -103,9 +104,7 @@ std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
         uri, entity, type, payload, opts.allows_insecure_downgrade(), float_timeout.count(), ptr);
     if (socket_path == NULL) {
         free_rust_runtime(ptr);
-        // TODO(RSDK-1742) Replace throwing of strings with throwing of
-        // runtime_error
-        throw "Unable to establish connecting path!";
+        throw ConnectionException("Unable to establish connecting path");
     }
 
     std::string address("unix://");

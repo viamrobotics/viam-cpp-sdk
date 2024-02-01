@@ -48,7 +48,7 @@ Board::power_mode Board::from_proto(viam::component::board::v1::PowerMode proto)
         }
         case viam::component::board::v1::POWER_MODE_UNSPECIFIED:
         default: {
-            throw std::runtime_error("Invalid proto board power_mode to decode");
+            throw NotSupportedException("Invalid proto board power_mode to decode");
         }
     }
 }
@@ -86,7 +86,7 @@ viam::component::board::v1::PowerMode Board::to_proto(Board::power_mode power_mo
             return viam::component::board::v1::POWER_MODE_OFFLINE_DEEP;
         }
         default: {
-            throw std::runtime_error("Invalid board power_mode to encode");
+            throw NotSupportedException("Invalid board power_mode to encode");
         }
     }
 }

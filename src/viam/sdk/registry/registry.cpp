@@ -10,7 +10,7 @@
 #include <google/protobuf/struct.pb.h>
 #include <grpcpp/channel.h>
 #include <grpcpp/ext/proto_server_reflection_plugin.h>
-
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/components/base/client.hpp>
 #include <viam/sdk/components/base/server.hpp>
 #include <viam/sdk/components/board/client.hpp>
@@ -59,8 +59,9 @@ const Model& ModelRegistration::model() const {
 void Registry::register_model(std::shared_ptr<const ModelRegistration> resource) {
     std::string reg_key = resource->api().to_string() + "/" + resource->model().to_string();
     if (resources_.find(reg_key) != resources_.end()) {
-        const std::string err = "Cannot add resource with name " + reg_key + "as it already exists";
-        throw std::runtime_error(err);
+        const std::string err = "Cannot register API/model pair" + reg_key +
+                                " as that pair has already been registered";
+        throw DuplicateRegistrationException(err);
     }
 
     resources_.emplace(std::move(reg_key), std::move(resource));
@@ -69,7 +70,9 @@ void Registry::register_model(std::shared_ptr<const ModelRegistration> resource)
 void Registry::register_resource_server_(
     API api, std::shared_ptr<ResourceServerRegistration> resource_registration) {
     if (server_apis_.find(api) != server_apis_.end()) {
-        throw std::runtime_error("Cannot add api " + api.to_string() + " as it already exists");
+        const std::string err = "Cannot register API/model pair" + api.to_string() +
+                                " as that pair has already been registered";
+        throw DuplicateRegistrationException(err);
     }
 
     server_apis_.emplace(std::move(api), std::move(resource_registration));

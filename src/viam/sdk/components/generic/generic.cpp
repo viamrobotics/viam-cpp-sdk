@@ -6,6 +6,7 @@
 
 #include <viam/api/component/generic/v1/generic.grpc.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/resource/resource.hpp>
 

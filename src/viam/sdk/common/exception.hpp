@@ -32,23 +32,24 @@ class ConnectionException : public ViamException {
     explicit ConnectionException(const std::string& what);
 };
 
-/// @class ConnectionException
+/// @class DuplicateRegistrationException
+/// @brief An exception thrown when an API/model pair has already been registered.
+/// @ingroup Exception
+class DuplicateRegistrationException : public ViamException {
+   public:
+    explicit DuplicateRegistrationException(const std::string& what);
+};
+
+/// @class DuplicateResourceException
 /// @brief An exception thrown when a resource has already been added to a
-/// `ResourceManager`.
+/// resource manager.
 /// @ingroup Exception
 class DuplicateResourceException : public ViamException {
    public:
-    explicit DuplicateResourceException(const std::string& what, Name resource_name);
-
-    /// @brief Returns the resource `Name` that was a duplicate.
-    /// @return The resource `Name` that was a duplicate.
-    Name resource_name() const noexcept;
-
-   private:
-    Name resource_name_;
+    explicit DuplicateResourceException(const std::string& what);
 };
 
-/// @class ConnectionException
+/// @class GRPCException
 /// @brief An exception thrown when a machine has sent an error back to an SDK
 /// client over gRPC.
 /// @ingroup Exception
@@ -62,19 +63,21 @@ class GRPCException : public ViamException {
     int grpc_error_code_;
 };
 
-/// @class ConnectionException
+/// @class NotSupportedException
+/// @brief An exception thrown when the SDK does not support the requested
+/// behavior.
+/// @ingroup Exception
+class NotSupportedException : public ViamException {
+   public:
+    explicit NotSupportedException(const std::string& what);
+};
+
+/// @class ResourceNotFoundException
 /// @brief An exception thrown when a resource cannot be found in a manager.
 /// @ingroup Exception
 class ResourceNotFoundException : public ViamException {
    public:
-    explicit ResourceNotFoundException(const std::string& what, Name resource_name);
-
-    /// @brief Returns the resource `Name` that was not found.
-    /// @return The resource `Name` that was not found.
-    Name resource_name() const noexcept;
-
-   private:
-    Name resource_name_;
+    explicit ResourceNotFoundException(const std::string& what);
 };
 
 }  // namespace sdk

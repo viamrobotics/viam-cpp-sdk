@@ -1,6 +1,7 @@
 #pragma once
 
 #include <grpcpp/client_context.h>
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/common/utils.hpp>
 
@@ -16,7 +17,7 @@ class ClientHelper {
     static void default_rsc_(RequestType&) {}
     static void default_rhc_(const ResponseType&) {}
     static void default_ehc_(const ::grpc::Status& status) {
-        throw std::runtime_error(status.error_message());
+        throw GRPCException(status.error_message(), status.error_code());
     }
 
    public:
