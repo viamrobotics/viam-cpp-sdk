@@ -20,8 +20,8 @@ using namespace viam::component::gizmo::v1;
 class GizmoRegistration : public ResourceRegistration {
    public:
     explicit GizmoRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
-    std::shared_ptr<ResourceServer> create_resource_server(
-        std::shared_ptr<ResourceManager> manager) override;
+    std::shared_ptr<ResourceServer> create_resource_server(std::shared_ptr<ResourceManager> manager,
+                                                           Server& server) override;
     std::shared_ptr<Resource> create_rpc_client(std::string name,
                                                 std::shared_ptr<grpc::Channel> chan) override;
 };
@@ -70,7 +70,6 @@ class GizmoClient : public Gizmo {
 // `GizmoServer` is the gRPC server implementation of a `Gizmo` component.
 class GizmoServer : public ResourceServer, public GizmoService::Service {
    public:
-    GizmoServer();
     explicit GizmoServer(std::shared_ptr<ResourceManager> manager);
 
     grpc::Status DoOne(grpc::ServerContext* context,
@@ -92,6 +91,4 @@ class GizmoServer : public ResourceServer, public GizmoService::Service {
     grpc::Status DoTwo(grpc::ServerContext* context,
                        const DoTwoRequest* request,
                        DoTwoResponse* response) override;
-
-    void register_server(std::shared_ptr<Server> server) override;
 };

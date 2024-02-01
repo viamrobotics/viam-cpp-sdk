@@ -8,6 +8,12 @@
 #include <grpcpp/server_builder.h>
 
 namespace viam {
+
+// needed for later `friend` declaration.
+namespace sdktests {
+class TestServer;
+}
+
 namespace sdk {
 
 /// @class Server server.hpp "rpc/server.hpp"
@@ -41,6 +47,9 @@ class Server {
 
     /// @brief Shutdown the gRPC server.
     void shutdown();
+
+    // friend declaration to allow TestServer to access the private server_ field.
+    friend class ::viam::sdktests::TestServer;
 
    private:
     std::unique_ptr<grpc::ServerBuilder> builder_;

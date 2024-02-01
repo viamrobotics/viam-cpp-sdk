@@ -21,8 +21,10 @@ CameraRegistration::CameraRegistration(
     : ResourceRegistration(service_descriptor){};
 
 std::shared_ptr<ResourceServer> CameraRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager) {
-    return std::make_shared<CameraServer>(manager);
+    std::shared_ptr<ResourceManager> manager, Server& server) {
+    auto cs = std::make_shared<CameraServer>(manager);
+    server.register_service(cs.get());
+    return cs;
 };
 
 std::shared_ptr<Resource> CameraRegistration::create_rpc_client(

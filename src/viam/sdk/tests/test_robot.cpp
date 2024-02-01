@@ -23,6 +23,7 @@
 #include <viam/sdk/tests/mocks/generic_mocks.hpp>
 #include <viam/sdk/tests/mocks/mock_motor.hpp>
 #include <viam/sdk/tests/mocks/mock_robot.hpp>
+#include <viam/sdk/tests/test_utils.hpp>
 
 namespace viam {
 namespace sdktests {
@@ -32,30 +33,36 @@ using namespace viam::sdk;
 
 BOOST_AUTO_TEST_SUITE(test_robot)
 
-template <typename Lambda>
-void server_to_client_pipeline(Lambda&& func) {
-    MockRobotService service;
-    auto manager = service.resource_manager();
+// Basically a copy of the client_to_mock_pipeline test utility. This version
+// has multiple mock resources and gives the passed in test case access to both
+// the robot client and the mock robot service.
+template <typename F>
+void robot_client_to_mocks_pipeline(F&& test_case) {
+    // Create a ResourceManager. Add a few mock resources to the
+    // ResourceManager. Create a Server. Create a MockRobotService from the
+    // ResourceManager and Server. Start the Server.
+    auto rm = std::make_shared<ResourceManager>();
+    rm->add(std::string("mock_generic"), generic::MockGenericComponent::get_mock_generic());
+    rm->add(std::string("mock_motor"), motor::MockMotor::get_mock_motor());
+    rm->add(std::string("mock_camera"), camera::MockCamera::get_mock_camera());
+    auto server = std::make_shared<sdk::Server>();
+    MockRobotService service(rm, *server);
+    server->start();
 
-    manager->add(std::string("mock_generic"), generic::MockGeneric::get_mock_generic());
-    manager->add(std::string("mock_motor"), motor::MockMotor::get_mock_motor());
-    manager->add(std::string("mock_camera"), camera::MockCamera::get_mock_camera());
-
-    ::grpc::ServerBuilder builder;
-    builder.RegisterService(&service);
-
-    std::unique_ptr<grpc::Server> server = builder.BuildAndStart();
-
+    // Create a RobotClient to the MockRobotService over an established
+    // in-process gRPC channel.
     grpc::ChannelArguments args;
-    auto grpc_channel = server->InProcessChannel(args);
+    auto test_server = TestServer(server);
+    auto grpc_channel = test_server.grpc_in_process_channel(args);
     auto viam_channel = std::make_shared<ViamChannel>(grpc_channel, "", nullptr);
     auto client = RobotClient::with_channel(viam_channel, Options(0, boost::none));
 
-    // Run the passed test on the created std::stack
-    std::forward<Lambda>(func)(client, service);
+    // Run the passed-in test case on the created stack and give access to the
+    // created RobotClient and MockRobotService.
+    std::forward<F>(test_case)(client, service);
 
-    //  shutdown afterwards
-    server->Shutdown();
+    // Shutdown Server afterward.
+    server->shutdown();
 }
 
 BOOST_AUTO_TEST_CASE(test_registering_resources) {
@@ -71,9 +78,11 @@ BOOST_AUTO_TEST_CASE(test_registering_resources) {
 
     Model generic_model("fake", "fake", "mock_generic");
     std::shared_ptr<ModelRegistration> gr = std::make_shared<ModelRegistration>(
-        API::get<Generic>(),
+        API::get<GenericComponent>(),
         generic_model,
-        [](Dependencies, ResourceConfig cfg) { return generic::MockGeneric::get_mock_generic(); },
+        [](Dependencies, ResourceConfig cfg) {
+            return generic::MockGenericComponent::get_mock_generic();
+        },
         [](ResourceConfig cfg) -> std::vector<std::string> { return {}; });
     Registry::register_model(gr);
 
@@ -86,7 +95,7 @@ BOOST_AUTO_TEST_CASE(test_registering_resources) {
     Registry::register_model(mr);
 
     BOOST_CHECK(Registry::lookup_model(API::get<Camera>(), camera_model));
-    BOOST_CHECK(Registry::lookup_model(API::get<Generic>(), generic_model));
+    BOOST_CHECK(Registry::lookup_model(API::get<GenericComponent>(), generic_model));
     BOOST_CHECK(Registry::lookup_model(API::get<Motor>(), motor_model));
 }
 
@@ -113,7 +122,7 @@ std::vector<std::string> name_vec_to_string(std::vector<Name>& vec) {
 }
 
 BOOST_AUTO_TEST_CASE(test_resource_names) {
-    server_to_client_pipeline(
+    robot_client_to_mocks_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
             std::vector<Name>* resource_names = client->resource_names();
             auto names = name_vec_to_string(*resource_names);
@@ -124,7 +133,7 @@ BOOST_AUTO_TEST_CASE(test_resource_names) {
 }
 
 BOOST_AUTO_TEST_CASE(test_get_status) {
-    server_to_client_pipeline(
+    robot_client_to_mocks_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
             auto mock_statuses = mock_status_response();
 
@@ -157,7 +166,7 @@ BOOST_AUTO_TEST_CASE(test_get_status) {
 }
 
 // BOOST_AUTO_TEST_CASE(test_get_frame_system_config) {
-//     server_to_client_pipeline(
+//     robot_client_to_mocks_pipeline(
 //         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
 //             auto mock_fs_config = mock_config_response();
 //             auto fs_config = client->get_frame_system_config();
@@ -173,7 +182,7 @@ BOOST_AUTO_TEST_CASE(test_get_status) {
 // }
 
 BOOST_AUTO_TEST_CASE(test_get_operations) {
-    server_to_client_pipeline(
+    robot_client_to_mocks_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
             auto ops = client->get_operations();
             auto mock_ops = mock_operations_response();
@@ -184,7 +193,7 @@ BOOST_AUTO_TEST_CASE(test_get_operations) {
 }
 
 BOOST_AUTO_TEST_CASE(test_discover_components) {
-    server_to_client_pipeline(
+    robot_client_to_mocks_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
             auto d_components = client->discover_components({});
             auto mock_components = mock_discovery_response();
@@ -201,7 +210,7 @@ BOOST_AUTO_TEST_CASE(test_discover_components) {
 }
 
 BOOST_AUTO_TEST_CASE(test_transform_pose) {
-    server_to_client_pipeline(
+    robot_client_to_mocks_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
             pose_in_frame pif;
             auto pose = client->transform_pose(pif, "", {}).to_proto();
@@ -212,7 +221,7 @@ BOOST_AUTO_TEST_CASE(test_transform_pose) {
 }
 
 BOOST_AUTO_TEST_CASE(test_stop_all) {
-    server_to_client_pipeline(
+    robot_client_to_mocks_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
             std::shared_ptr<Resource> rb = service.resource_manager()->resource("mock_motor");
             auto motor = std::dynamic_pointer_cast<motor::MockMotor>(rb);
@@ -228,7 +237,7 @@ BOOST_AUTO_TEST_CASE(test_stop_all) {
 }
 
 BOOST_AUTO_TEST_CASE(test_get_resource) {
-    server_to_client_pipeline(
+    robot_client_to_mocks_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
             auto mock_motor = client->resource_by_name<Motor>("mock_motor");
             BOOST_CHECK(mock_motor);

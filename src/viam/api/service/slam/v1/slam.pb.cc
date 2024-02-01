@@ -98,36 +98,38 @@ struct GetInternalStateResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetInternalStateResponseDefaultTypeInternal _GetInternalStateResponse_default_instance_;
-PROTOBUF_CONSTEXPR GetLatestMapInfoRequest::GetLatestMapInfoRequest(
+PROTOBUF_CONSTEXPR GetPropertiesRequest::GetPropertiesRequest(
     ::_pbi::ConstantInitialized)
   : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
-struct GetLatestMapInfoRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetLatestMapInfoRequestDefaultTypeInternal()
+struct GetPropertiesRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetPropertiesRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetLatestMapInfoRequestDefaultTypeInternal() {}
+  ~GetPropertiesRequestDefaultTypeInternal() {}
   union {
-    GetLatestMapInfoRequest _instance;
+    GetPropertiesRequest _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetLatestMapInfoRequestDefaultTypeInternal _GetLatestMapInfoRequest_default_instance_;
-PROTOBUF_CONSTEXPR GetLatestMapInfoResponse::GetLatestMapInfoResponse(
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPropertiesRequestDefaultTypeInternal _GetPropertiesRequest_default_instance_;
+PROTOBUF_CONSTEXPR GetPropertiesResponse::GetPropertiesResponse(
     ::_pbi::ConstantInitialized)
-  : last_map_update_(nullptr){}
-struct GetLatestMapInfoResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetLatestMapInfoResponseDefaultTypeInternal()
+  : cloud_slam_(false)
+  , mapping_mode_(0)
+{}
+struct GetPropertiesResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetPropertiesResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetLatestMapInfoResponseDefaultTypeInternal() {}
+  ~GetPropertiesResponseDefaultTypeInternal() {}
   union {
-    GetLatestMapInfoResponse _instance;
+    GetPropertiesResponse _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetLatestMapInfoResponseDefaultTypeInternal _GetLatestMapInfoResponse_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPropertiesResponseDefaultTypeInternal _GetPropertiesResponse_default_instance_;
 }  // namespace v1
 }  // namespace slam
 }  // namespace service
 }  // namespace viam
 static ::_pb::Metadata file_level_metadata_service_2fslam_2fv1_2fslam_2eproto[8];
-static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_service_2fslam_2fv1_2fslam_2eproto = nullptr;
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_service_2fslam_2fv1_2fslam_2eproto[1];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_service_2fslam_2fv1_2fslam_2eproto = nullptr;
 
 const uint32_t TableStruct_service_2fslam_2fv1_2fslam_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -176,19 +178,20 @@ const uint32_t TableStruct_service_2fslam_2fv1_2fslam_2eproto::offsets[] PROTOBU
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetInternalStateResponse, internal_state_chunk_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetLatestMapInfoRequest, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetPropertiesRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetLatestMapInfoRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetPropertiesRequest, name_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetLatestMapInfoResponse, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetPropertiesResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetLatestMapInfoResponse, last_map_update_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetPropertiesResponse, cloud_slam_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetPropertiesResponse, mapping_mode_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::service::slam::v1::GetPositionRequest)},
@@ -197,8 +200,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 23, -1, -1, sizeof(::viam::service::slam::v1::GetPointCloudMapResponse)},
   { 30, -1, -1, sizeof(::viam::service::slam::v1::GetInternalStateRequest)},
   { 37, -1, -1, sizeof(::viam::service::slam::v1::GetInternalStateResponse)},
-  { 44, -1, -1, sizeof(::viam::service::slam::v1::GetLatestMapInfoRequest)},
-  { 51, -1, -1, sizeof(::viam::service::slam::v1::GetLatestMapInfoResponse)},
+  { 44, -1, -1, sizeof(::viam::service::slam::v1::GetPropertiesRequest)},
+  { 51, -1, -1, sizeof(::viam::service::slam::v1::GetPropertiesResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -208,65 +211,67 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::service::slam::v1::_GetPointCloudMapResponse_default_instance_._instance,
   &::viam::service::slam::v1::_GetInternalStateRequest_default_instance_._instance,
   &::viam::service::slam::v1::_GetInternalStateResponse_default_instance_._instance,
-  &::viam::service::slam::v1::_GetLatestMapInfoRequest_default_instance_._instance,
-  &::viam::service::slam::v1::_GetLatestMapInfoResponse_default_instance_._instance,
+  &::viam::service::slam::v1::_GetPropertiesRequest_default_instance_._instance,
+  &::viam::service::slam::v1::_GetPropertiesResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_service_2fslam_2fv1_2fslam_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\032service/slam/v1/slam.proto\022\024viam.servi"
   "ce.slam.v1\032\026common/v1/common.proto\032\034goog"
   "le/api/annotations.proto\032\034google/protobu"
-  "f/struct.proto\032\037google/protobuf/timestam"
-  "p.proto\"(\n\022GetPositionRequest\022\022\n\004name\030\001 "
-  "\001(\tR\004name\"\237\001\n\023GetPositionResponse\022(\n\004pos"
-  "e\030\001 \001(\0132\024.viam.common.v1.PoseR\004pose\022/\n\023c"
-  "omponent_reference\030\002 \001(\tR\022componentRefer"
-  "ence\022-\n\005extra\030c \001(\0132\027.google.protobuf.St"
-  "ructR\005extra\"-\n\027GetPointCloudMapRequest\022\022"
-  "\n\004name\030\001 \001(\tR\004name\"M\n\030GetPointCloudMapRe"
-  "sponse\0221\n\025point_cloud_pcd_chunk\030\001 \001(\014R\022p"
-  "ointCloudPcdChunk\"-\n\027GetInternalStateReq"
-  "uest\022\022\n\004name\030\001 \001(\tR\004name\"L\n\030GetInternalS"
-  "tateResponse\0220\n\024internal_state_chunk\030\001 \001"
-  "(\014R\022internalStateChunk\"-\n\027GetLatestMapIn"
-  "foRequest\022\022\n\004name\030\001 \001(\tR\004name\"^\n\030GetLate"
-  "stMapInfoResponse\022B\n\017last_map_update\030\001 \001"
-  "(\0132\032.google.protobuf.TimestampR\rlastMapU"
-  "pdate2\274\006\n\013SLAMService\022\225\001\n\013GetPosition\022(."
-  "viam.service.slam.v1.GetPositionRequest\032"
-  ").viam.service.slam.v1.GetPositionRespon"
-  "se\"1\202\323\344\223\002+\022)/viam/api/v1/service/slam/{n"
-  "ame}/position\022\255\001\n\020GetPointCloudMap\022-.via"
-  "m.service.slam.v1.GetPointCloudMapReques"
-  "t\032..viam.service.slam.v1.GetPointCloudMa"
-  "pResponse\"8\202\323\344\223\0022\0220/viam/api/v1/service/"
-  "slam/{name}/point_cloud_map0\001\022\254\001\n\020GetInt"
-  "ernalState\022-.viam.service.slam.v1.GetInt"
-  "ernalStateRequest\032..viam.service.slam.v1"
-  ".GetInternalStateResponse\"7\202\323\344\223\0021\022//viam"
-  "/api/v1/service/slam/{name}/internal_sta"
-  "te0\001\022\255\001\n\020GetLatestMapInfo\022-.viam.service"
-  ".slam.v1.GetLatestMapInfoRequest\032..viam."
-  "service.slam.v1.GetLatestMapInfoResponse"
-  "\":\202\323\344\223\0024\0222/viam/api/v1/component/slam/{n"
-  "ame}/latest_map_info\022\205\001\n\tDoCommand\022 .via"
-  "m.common.v1.DoCommandRequest\032!.viam.comm"
-  "on.v1.DoCommandResponse\"3\202\323\344\223\002-\"+/viam/a"
-  "pi/v1/service/slam/{name}/do_commandB;\n\030"
-  "com.viam.service.slam.v1Z\037go.viam.com/ap"
-  "i/service/slam/v1b\006proto3"
+  "f/struct.proto\"(\n\022GetPositionRequest\022\022\n\004"
+  "name\030\001 \001(\tR\004name\"\237\001\n\023GetPositionResponse"
+  "\022(\n\004pose\030\001 \001(\0132\024.viam.common.v1.PoseR\004po"
+  "se\022/\n\023component_reference\030\002 \001(\tR\022compone"
+  "ntReference\022-\n\005extra\030c \001(\0132\027.google.prot"
+  "obuf.StructR\005extra\"-\n\027GetPointCloudMapRe"
+  "quest\022\022\n\004name\030\001 \001(\tR\004name\"M\n\030GetPointClo"
+  "udMapResponse\0221\n\025point_cloud_pcd_chunk\030\001"
+  " \001(\014R\022pointCloudPcdChunk\"-\n\027GetInternalS"
+  "tateRequest\022\022\n\004name\030\001 \001(\tR\004name\"L\n\030GetIn"
+  "ternalStateResponse\0220\n\024internal_state_ch"
+  "unk\030\001 \001(\014R\022internalStateChunk\"*\n\024GetProp"
+  "ertiesRequest\022\022\n\004name\030\001 \001(\tR\004name\"|\n\025Get"
+  "PropertiesResponse\022\035\n\ncloud_slam\030\001 \001(\010R\t"
+  "cloudSlam\022D\n\014mapping_mode\030\002 \001(\0162!.viam.s"
+  "ervice.slam.v1.MappingModeR\013mappingMode*"
+  "\222\001\n\013MappingMode\022\034\n\030MAPPING_MODE_UNSPECIF"
+  "IED\020\000\022\037\n\033MAPPING_MODE_CREATE_NEW_MAP\020\001\022\036"
+  "\n\032MAPPING_MODE_LOCALIZE_ONLY\020\002\022$\n MAPPIN"
+  "G_MODE_UPDATE_EXISTING_MAP\020\0032\254\006\n\013SLAMSer"
+  "vice\022\225\001\n\013GetPosition\022(.viam.service.slam"
+  ".v1.GetPositionRequest\032).viam.service.sl"
+  "am.v1.GetPositionResponse\"1\202\323\344\223\002+\022)/viam"
+  "/api/v1/service/slam/{name}/position\022\255\001\n"
+  "\020GetPointCloudMap\022-.viam.service.slam.v1"
+  ".GetPointCloudMapRequest\032..viam.service."
+  "slam.v1.GetPointCloudMapResponse\"8\202\323\344\223\0022"
+  "\0220/viam/api/v1/service/slam/{name}/point"
+  "_cloud_map0\001\022\254\001\n\020GetInternalState\022-.viam"
+  ".service.slam.v1.GetInternalStateRequest"
+  "\032..viam.service.slam.v1.GetInternalState"
+  "Response\"7\202\323\344\223\0021\022//viam/api/v1/service/s"
+  "lam/{name}/internal_state0\001\022\235\001\n\rGetPrope"
+  "rties\022*.viam.service.slam.v1.GetProperti"
+  "esRequest\032+.viam.service.slam.v1.GetProp"
+  "ertiesResponse\"3\202\323\344\223\002-\022+/viam/api/v1/ser"
+  "vice/slam/{name}/properties\022\205\001\n\tDoComman"
+  "d\022 .viam.common.v1.DoCommandRequest\032!.vi"
+  "am.common.v1.DoCommandResponse\"3\202\323\344\223\002-\"+"
+  "/viam/api/v1/service/slam/{name}/do_comm"
+  "andB;\n\030com.viam.service.slam.v1Z\037go.viam"
+  ".com/api/service/slam/v1b\006proto3"
   ;
-static const ::_pbi::DescriptorTable* const descriptor_table_service_2fslam_2fv1_2fslam_2eproto_deps[4] = {
+static const ::_pbi::DescriptorTable* const descriptor_table_service_2fslam_2fv1_2fslam_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
   &::descriptor_table_google_2fapi_2fannotations_2eproto,
   &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
-  &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_service_2fslam_2fv1_2fslam_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fslam_2fv1_2fslam_2eproto = {
-    false, false, 1665, descriptor_table_protodef_service_2fslam_2fv1_2fslam_2eproto,
+    false, false, 1792, descriptor_table_protodef_service_2fslam_2fv1_2fslam_2eproto,
     "service/slam/v1/slam.proto",
-    &descriptor_table_service_2fslam_2fv1_2fslam_2eproto_once, descriptor_table_service_2fslam_2fv1_2fslam_2eproto_deps, 4, 8,
+    &descriptor_table_service_2fslam_2fv1_2fslam_2eproto_once, descriptor_table_service_2fslam_2fv1_2fslam_2eproto_deps, 3, 8,
     schemas, file_default_instances, TableStruct_service_2fslam_2fv1_2fslam_2eproto::offsets,
     file_level_metadata_service_2fslam_2fv1_2fslam_2eproto, file_level_enum_descriptors_service_2fslam_2fv1_2fslam_2eproto,
     file_level_service_descriptors_service_2fslam_2fv1_2fslam_2eproto,
@@ -281,6 +286,22 @@ namespace viam {
 namespace service {
 namespace slam {
 namespace v1 {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MappingMode_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_service_2fslam_2fv1_2fslam_2eproto);
+  return file_level_enum_descriptors_service_2fslam_2fv1_2fslam_2eproto[0];
+}
+bool MappingMode_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+      return true;
+    default:
+      return false;
+  }
+}
+
 
 // ===================================================================
 
@@ -1546,17 +1567,17 @@ void GetInternalStateResponse::InternalSwap(GetInternalStateResponse* other) {
 
 // ===================================================================
 
-class GetLatestMapInfoRequest::_Internal {
+class GetPropertiesRequest::_Internal {
  public:
 };
 
-GetLatestMapInfoRequest::GetLatestMapInfoRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+GetPropertiesRequest::GetPropertiesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor();
-  // @@protoc_insertion_point(arena_constructor:viam.service.slam.v1.GetLatestMapInfoRequest)
+  // @@protoc_insertion_point(arena_constructor:viam.service.slam.v1.GetPropertiesRequest)
 }
-GetLatestMapInfoRequest::GetLatestMapInfoRequest(const GetLatestMapInfoRequest& from)
+GetPropertiesRequest::GetPropertiesRequest(const GetPropertiesRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   name_.InitDefault();
@@ -1567,18 +1588,18 @@ GetLatestMapInfoRequest::GetLatestMapInfoRequest(const GetLatestMapInfoRequest& 
     name_.Set(from._internal_name(), 
       GetArenaForAllocation());
   }
-  // @@protoc_insertion_point(copy_constructor:viam.service.slam.v1.GetLatestMapInfoRequest)
+  // @@protoc_insertion_point(copy_constructor:viam.service.slam.v1.GetPropertiesRequest)
 }
 
-inline void GetLatestMapInfoRequest::SharedCtor() {
+inline void GetPropertiesRequest::SharedCtor() {
 name_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   name_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
-GetLatestMapInfoRequest::~GetLatestMapInfoRequest() {
-  // @@protoc_insertion_point(destructor:viam.service.slam.v1.GetLatestMapInfoRequest)
+GetPropertiesRequest::~GetPropertiesRequest() {
+  // @@protoc_insertion_point(destructor:viam.service.slam.v1.GetPropertiesRequest)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -1586,17 +1607,17 @@ GetLatestMapInfoRequest::~GetLatestMapInfoRequest() {
   SharedDtor();
 }
 
-inline void GetLatestMapInfoRequest::SharedDtor() {
+inline void GetPropertiesRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   name_.Destroy();
 }
 
-void GetLatestMapInfoRequest::SetCachedSize(int size) const {
+void GetPropertiesRequest::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 
-void GetLatestMapInfoRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:viam.service.slam.v1.GetLatestMapInfoRequest)
+void GetPropertiesRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.service.slam.v1.GetPropertiesRequest)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -1605,7 +1626,7 @@ void GetLatestMapInfoRequest::Clear() {
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* GetLatestMapInfoRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* GetPropertiesRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
@@ -1617,7 +1638,7 @@ const char* GetLatestMapInfoRequest::_InternalParse(const char* ptr, ::_pbi::Par
           auto str = _internal_mutable_name();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "viam.service.slam.v1.GetLatestMapInfoRequest.name"));
+          CHK_(::_pbi::VerifyUTF8(str, "viam.service.slam.v1.GetPropertiesRequest.name"));
         } else
           goto handle_unusual;
         continue;
@@ -1644,9 +1665,9 @@ failure:
 #undef CHK_
 }
 
-uint8_t* GetLatestMapInfoRequest::_InternalSerialize(
+uint8_t* GetPropertiesRequest::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:viam.service.slam.v1.GetLatestMapInfoRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:viam.service.slam.v1.GetPropertiesRequest)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -1655,7 +1676,7 @@ uint8_t* GetLatestMapInfoRequest::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "viam.service.slam.v1.GetLatestMapInfoRequest.name");
+      "viam.service.slam.v1.GetPropertiesRequest.name");
     target = stream->WriteStringMaybeAliased(
         1, this->_internal_name(), target);
   }
@@ -1664,12 +1685,12 @@ uint8_t* GetLatestMapInfoRequest::_InternalSerialize(
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:viam.service.slam.v1.GetLatestMapInfoRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:viam.service.slam.v1.GetPropertiesRequest)
   return target;
 }
 
-size_t GetLatestMapInfoRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:viam.service.slam.v1.GetLatestMapInfoRequest)
+size_t GetPropertiesRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.service.slam.v1.GetPropertiesRequest)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
@@ -1686,21 +1707,21 @@ size_t GetLatestMapInfoRequest::ByteSizeLong() const {
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetLatestMapInfoRequest::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetPropertiesRequest::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetLatestMapInfoRequest::MergeImpl
+    GetPropertiesRequest::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetLatestMapInfoRequest::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetPropertiesRequest::GetClassData() const { return &_class_data_; }
 
-void GetLatestMapInfoRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+void GetPropertiesRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
                       const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetLatestMapInfoRequest *>(to)->MergeFrom(
-      static_cast<const GetLatestMapInfoRequest &>(from));
+  static_cast<GetPropertiesRequest *>(to)->MergeFrom(
+      static_cast<const GetPropertiesRequest &>(from));
 }
 
 
-void GetLatestMapInfoRequest::MergeFrom(const GetLatestMapInfoRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.slam.v1.GetLatestMapInfoRequest)
+void GetPropertiesRequest::MergeFrom(const GetPropertiesRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.slam.v1.GetPropertiesRequest)
   GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -1711,18 +1732,18 @@ void GetLatestMapInfoRequest::MergeFrom(const GetLatestMapInfoRequest& from) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void GetLatestMapInfoRequest::CopyFrom(const GetLatestMapInfoRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:viam.service.slam.v1.GetLatestMapInfoRequest)
+void GetPropertiesRequest::CopyFrom(const GetPropertiesRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.service.slam.v1.GetPropertiesRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool GetLatestMapInfoRequest::IsInitialized() const {
+bool GetPropertiesRequest::IsInitialized() const {
   return true;
 }
 
-void GetLatestMapInfoRequest::InternalSwap(GetLatestMapInfoRequest* other) {
+void GetPropertiesRequest::InternalSwap(GetPropertiesRequest* other) {
   using std::swap;
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
@@ -1733,7 +1754,7 @@ void GetLatestMapInfoRequest::InternalSwap(GetLatestMapInfoRequest* other) {
   );
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetLatestMapInfoRequest::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata GetPropertiesRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fslam_2fv1_2fslam_2eproto_getter, &descriptor_table_service_2fslam_2fv1_2fslam_2eproto_once,
       file_level_metadata_service_2fslam_2fv1_2fslam_2eproto[6]);
@@ -1741,44 +1762,34 @@ void GetLatestMapInfoRequest::InternalSwap(GetLatestMapInfoRequest* other) {
 
 // ===================================================================
 
-class GetLatestMapInfoResponse::_Internal {
+class GetPropertiesResponse::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& last_map_update(const GetLatestMapInfoResponse* msg);
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Timestamp&
-GetLatestMapInfoResponse::_Internal::last_map_update(const GetLatestMapInfoResponse* msg) {
-  return *msg->last_map_update_;
-}
-void GetLatestMapInfoResponse::clear_last_map_update() {
-  if (GetArenaForAllocation() == nullptr && last_map_update_ != nullptr) {
-    delete last_map_update_;
-  }
-  last_map_update_ = nullptr;
-}
-GetLatestMapInfoResponse::GetLatestMapInfoResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+GetPropertiesResponse::GetPropertiesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor();
-  // @@protoc_insertion_point(arena_constructor:viam.service.slam.v1.GetLatestMapInfoResponse)
+  // @@protoc_insertion_point(arena_constructor:viam.service.slam.v1.GetPropertiesResponse)
 }
-GetLatestMapInfoResponse::GetLatestMapInfoResponse(const GetLatestMapInfoResponse& from)
+GetPropertiesResponse::GetPropertiesResponse(const GetPropertiesResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_last_map_update()) {
-    last_map_update_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.last_map_update_);
-  } else {
-    last_map_update_ = nullptr;
-  }
-  // @@protoc_insertion_point(copy_constructor:viam.service.slam.v1.GetLatestMapInfoResponse)
+  ::memcpy(&cloud_slam_, &from.cloud_slam_,
+    static_cast<size_t>(reinterpret_cast<char*>(&mapping_mode_) -
+    reinterpret_cast<char*>(&cloud_slam_)) + sizeof(mapping_mode_));
+  // @@protoc_insertion_point(copy_constructor:viam.service.slam.v1.GetPropertiesResponse)
 }
 
-inline void GetLatestMapInfoResponse::SharedCtor() {
-last_map_update_ = nullptr;
+inline void GetPropertiesResponse::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&cloud_slam_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&mapping_mode_) -
+    reinterpret_cast<char*>(&cloud_slam_)) + sizeof(mapping_mode_));
 }
 
-GetLatestMapInfoResponse::~GetLatestMapInfoResponse() {
-  // @@protoc_insertion_point(destructor:viam.service.slam.v1.GetLatestMapInfoResponse)
+GetPropertiesResponse::~GetPropertiesResponse() {
+  // @@protoc_insertion_point(destructor:viam.service.slam.v1.GetPropertiesResponse)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -1786,39 +1797,46 @@ GetLatestMapInfoResponse::~GetLatestMapInfoResponse() {
   SharedDtor();
 }
 
-inline void GetLatestMapInfoResponse::SharedDtor() {
+inline void GetPropertiesResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete last_map_update_;
 }
 
-void GetLatestMapInfoResponse::SetCachedSize(int size) const {
+void GetPropertiesResponse::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 
-void GetLatestMapInfoResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:viam.service.slam.v1.GetLatestMapInfoResponse)
+void GetPropertiesResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.service.slam.v1.GetPropertiesResponse)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && last_map_update_ != nullptr) {
-    delete last_map_update_;
-  }
-  last_map_update_ = nullptr;
+  ::memset(&cloud_slam_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&mapping_mode_) -
+      reinterpret_cast<char*>(&cloud_slam_)) + sizeof(mapping_mode_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* GetLatestMapInfoResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* GetPropertiesResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .google.protobuf.Timestamp last_map_update = 1 [json_name = "lastMapUpdate"];
+      // bool cloud_slam = 1 [json_name = "cloudSlam"];
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_last_map_update(), ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          cloud_slam_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.service.slam.v1.MappingMode mapping_mode = 2 [json_name = "mappingMode"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_mapping_mode(static_cast<::viam::service::slam::v1::MappingMode>(val));
         } else
           goto handle_unusual;
         continue;
@@ -1845,88 +1863,106 @@ failure:
 #undef CHK_
 }
 
-uint8_t* GetLatestMapInfoResponse::_InternalSerialize(
+uint8_t* GetPropertiesResponse::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:viam.service.slam.v1.GetLatestMapInfoResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:viam.service.slam.v1.GetPropertiesResponse)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .google.protobuf.Timestamp last_map_update = 1 [json_name = "lastMapUpdate"];
-  if (this->_internal_has_last_map_update()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, _Internal::last_map_update(this),
-        _Internal::last_map_update(this).GetCachedSize(), target, stream);
+  // bool cloud_slam = 1 [json_name = "cloudSlam"];
+  if (this->_internal_cloud_slam() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_cloud_slam(), target);
+  }
+
+  // .viam.service.slam.v1.MappingMode mapping_mode = 2 [json_name = "mappingMode"];
+  if (this->_internal_mapping_mode() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      2, this->_internal_mapping_mode(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:viam.service.slam.v1.GetLatestMapInfoResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:viam.service.slam.v1.GetPropertiesResponse)
   return target;
 }
 
-size_t GetLatestMapInfoResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:viam.service.slam.v1.GetLatestMapInfoResponse)
+size_t GetPropertiesResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.service.slam.v1.GetPropertiesResponse)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .google.protobuf.Timestamp last_map_update = 1 [json_name = "lastMapUpdate"];
-  if (this->_internal_has_last_map_update()) {
+  // bool cloud_slam = 1 [json_name = "cloudSlam"];
+  if (this->_internal_cloud_slam() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // .viam.service.slam.v1.MappingMode mapping_mode = 2 [json_name = "mappingMode"];
+  if (this->_internal_mapping_mode() != 0) {
     total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *last_map_update_);
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_mapping_mode());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetLatestMapInfoResponse::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetPropertiesResponse::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetLatestMapInfoResponse::MergeImpl
+    GetPropertiesResponse::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetLatestMapInfoResponse::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetPropertiesResponse::GetClassData() const { return &_class_data_; }
 
-void GetLatestMapInfoResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+void GetPropertiesResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
                       const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetLatestMapInfoResponse *>(to)->MergeFrom(
-      static_cast<const GetLatestMapInfoResponse &>(from));
+  static_cast<GetPropertiesResponse *>(to)->MergeFrom(
+      static_cast<const GetPropertiesResponse &>(from));
 }
 
 
-void GetLatestMapInfoResponse::MergeFrom(const GetLatestMapInfoResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.slam.v1.GetLatestMapInfoResponse)
+void GetPropertiesResponse::MergeFrom(const GetPropertiesResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.slam.v1.GetPropertiesResponse)
   GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_last_map_update()) {
-    _internal_mutable_last_map_update()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_last_map_update());
+  if (from._internal_cloud_slam() != 0) {
+    _internal_set_cloud_slam(from._internal_cloud_slam());
+  }
+  if (from._internal_mapping_mode() != 0) {
+    _internal_set_mapping_mode(from._internal_mapping_mode());
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void GetLatestMapInfoResponse::CopyFrom(const GetLatestMapInfoResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:viam.service.slam.v1.GetLatestMapInfoResponse)
+void GetPropertiesResponse::CopyFrom(const GetPropertiesResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.service.slam.v1.GetPropertiesResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool GetLatestMapInfoResponse::IsInitialized() const {
+bool GetPropertiesResponse::IsInitialized() const {
   return true;
 }
 
-void GetLatestMapInfoResponse::InternalSwap(GetLatestMapInfoResponse* other) {
+void GetPropertiesResponse::InternalSwap(GetPropertiesResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(last_map_update_, other->last_map_update_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, mapping_mode_)
+      + sizeof(GetPropertiesResponse::mapping_mode_)
+      - PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, cloud_slam_)>(
+          reinterpret_cast<char*>(&cloud_slam_),
+          reinterpret_cast<char*>(&other->cloud_slam_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetLatestMapInfoResponse::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata GetPropertiesResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fslam_2fv1_2fslam_2eproto_getter, &descriptor_table_service_2fslam_2fv1_2fslam_2eproto_once,
       file_level_metadata_service_2fslam_2fv1_2fslam_2eproto[7]);
@@ -1962,13 +1998,13 @@ template<> PROTOBUF_NOINLINE ::viam::service::slam::v1::GetInternalStateResponse
 Arena::CreateMaybeMessage< ::viam::service::slam::v1::GetInternalStateResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::service::slam::v1::GetInternalStateResponse >(arena);
 }
-template<> PROTOBUF_NOINLINE ::viam::service::slam::v1::GetLatestMapInfoRequest*
-Arena::CreateMaybeMessage< ::viam::service::slam::v1::GetLatestMapInfoRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::service::slam::v1::GetLatestMapInfoRequest >(arena);
+template<> PROTOBUF_NOINLINE ::viam::service::slam::v1::GetPropertiesRequest*
+Arena::CreateMaybeMessage< ::viam::service::slam::v1::GetPropertiesRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::service::slam::v1::GetPropertiesRequest >(arena);
 }
-template<> PROTOBUF_NOINLINE ::viam::service::slam::v1::GetLatestMapInfoResponse*
-Arena::CreateMaybeMessage< ::viam::service::slam::v1::GetLatestMapInfoResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::service::slam::v1::GetLatestMapInfoResponse >(arena);
+template<> PROTOBUF_NOINLINE ::viam::service::slam::v1::GetPropertiesResponse*
+Arena::CreateMaybeMessage< ::viam::service::slam::v1::GetPropertiesResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::service::slam::v1::GetPropertiesResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

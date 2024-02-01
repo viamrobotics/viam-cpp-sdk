@@ -11,8 +11,8 @@ using namespace viam::common::v1;
 namespace viam {
 namespace sdk {
 
-SensorServer::SensorServer() : ResourceServer(std::make_shared<ResourceManager>()){};
-SensorServer::SensorServer(std::shared_ptr<ResourceManager> manager) : ResourceServer(manager){};
+SensorServer::SensorServer(std::shared_ptr<ResourceManager> manager)
+    : ResourceServer(std::move(manager)){};
 
 ::grpc::Status SensorServer::GetReadings(::grpc::ServerContext* context,
                                          const GetReadingsRequest* request,
@@ -46,10 +46,6 @@ SensorServer::SensorServer(std::shared_ptr<ResourceManager> manager) : ResourceS
             *response->mutable_geometries()->Add() = geometry.to_proto();
         }
     });
-}
-
-void SensorServer::register_server(std::shared_ptr<Server> server) {
-    server->register_service(this);
 }
 
 }  // namespace sdk

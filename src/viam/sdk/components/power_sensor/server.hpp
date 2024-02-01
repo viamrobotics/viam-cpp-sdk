@@ -19,7 +19,6 @@ namespace sdk {
 /// @ingroup PowerSensor
 class PowerSensorServer : public ResourceServer, public PowerSensorService::Service {
    public:
-    PowerSensorServer();
     explicit PowerSensorServer(std::shared_ptr<ResourceManager> manager);
 
     ::grpc::Status GetVoltage(::grpc::ServerContext* context,
@@ -41,8 +40,6 @@ class PowerSensorServer : public ResourceServer, public PowerSensorService::Serv
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
                              const viam::common::v1::DoCommandRequest* request,
                              viam::common::v1::DoCommandResponse* response) noexcept override;
-
-    void register_server(std::shared_ptr<Server> server) override;
 };
 
 }  // namespace sdk

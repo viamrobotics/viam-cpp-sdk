@@ -18,8 +18,10 @@ MotionRegistration::MotionRegistration(
     : ResourceRegistration(service_descriptor){};
 
 std::shared_ptr<ResourceServer> MotionRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager) {
-    return std::make_shared<MotionServer>(manager);
+    std::shared_ptr<ResourceManager> manager, Server& server) {
+    auto ms = std::make_shared<MotionServer>(manager);
+    server.register_service(ms.get());
+    return ms;
 };
 
 std::shared_ptr<Resource> MotionRegistration::create_rpc_client(

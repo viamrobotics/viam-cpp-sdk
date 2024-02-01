@@ -39,47 +39,9 @@ BOOST_AUTO_TEST_CASE(mock_get_api) {
     BOOST_CHECK_EQUAL(static_api.resource_subtype(), "board");
 }
 
-// This sets up the following architecture
-// -- MockComponent
-//        /\
-//
-//        | (function calls)
-//
-//        \/
-// -- ComponentServer (Real)
-//        /\
-//
-//        | (grpc InProcessChannel)
-//
-//        \/
-// -- ComponentClient (Real)
-//
-// This is as close to a real setup as we can get
-// without starting another process
-//
-// The passed in lambda function has access to the ComponentClient
-//
-template <typename Lambda>
-void server_to_mock_pipeline(Lambda&& func) {
-    BoardServer board_server;
-    const auto mock = std::make_shared<MockBoard>("mock_board");
-    board_server.resource_manager()->add(std::string("mock_board"), mock);
-
-    grpc::ServerBuilder builder;
-    builder.RegisterService(&board_server);
-
-    std::unique_ptr<grpc::Server> server = builder.BuildAndStart();
-
-    grpc::ChannelArguments args;
-    auto grpc_channel = server->InProcessChannel(args);
-    BoardClient client("mock_board", grpc_channel);
-    // Run the passed test on the created stack
-    std::forward<Lambda>(func)(client, mock);
-    server->Shutdown();
-}
-
 BOOST_AUTO_TEST_CASE(test_status) {
-    server_to_mock_pipeline([](Board& client, const std::shared_ptr<MockBoard> mock) -> void {
+    const auto mock = std::make_shared<MockBoard>("mock_board");
+    client_to_mock_pipeline<BoardClient>(mock, [&](Board& client) {
         std::unordered_map<std::string, Board::analog_value> analogs;
         analogs.emplace("analog", 1);
         std::unordered_map<std::string, Board::digital_value> digitals;
@@ -91,7 +53,8 @@ BOOST_AUTO_TEST_CASE(test_status) {
 }
 
 BOOST_AUTO_TEST_CASE(test_set_gpio) {
-    server_to_mock_pipeline([](Board& client, const std::shared_ptr<MockBoard> mock) -> void {
+    const auto mock = std::make_shared<MockBoard>("mock_board");
+    client_to_mock_pipeline<BoardClient>(mock, [&](Board& client) {
         client.set_gpio("t1", true);
         BOOST_CHECK_EQUAL("t1", mock->peek_pin);
         BOOST_CHECK(mock->peek_set_gpio_high);
@@ -102,7 +65,8 @@ BOOST_AUTO_TEST_CASE(test_set_gpio) {
 }
 
 BOOST_AUTO_TEST_CASE(test_get_gpio) {
-    server_to_mock_pipeline([](Board& client, const std::shared_ptr<MockBoard> mock) -> void {
+    const auto mock = std::make_shared<MockBoard>("mock_board");
+    client_to_mock_pipeline<BoardClient>(mock, [&](Board& client) {
         mock->peek_get_gpio_ret = true;
         BOOST_CHECK(client.get_gpio("t1"));
         BOOST_CHECK_EQUAL("t1", mock->peek_pin);
@@ -110,7 +74,8 @@ BOOST_AUTO_TEST_CASE(test_get_gpio) {
 }
 
 BOOST_AUTO_TEST_CASE(test_get_pwm_duty_cycle) {
-    server_to_mock_pipeline([](Board& client, const std::shared_ptr<MockBoard> mock) -> void {
+    const auto mock = std::make_shared<MockBoard>("mock_board");
+    client_to_mock_pipeline<BoardClient>(mock, [&](Board& client) {
         mock->peek_get_pwm_duty_cycle_ret = 55;
         BOOST_CHECK_EQUAL(55, client.get_pwm_duty_cycle("t1"));
         BOOST_CHECK_EQUAL("t1", mock->peek_pin);
@@ -118,7 +83,8 @@ BOOST_AUTO_TEST_CASE(test_get_pwm_duty_cycle) {
 }
 
 BOOST_AUTO_TEST_CASE(test_set_pwm_duty_cycle) {
-    server_to_mock_pipeline([](Board& client, const std::shared_ptr<MockBoard> mock) -> void {
+    const auto mock = std::make_shared<MockBoard>("mock_board");
+    client_to_mock_pipeline<BoardClient>(mock, [&](Board& client) {
         client.set_pwm_duty_cycle("t1", 0.512);
         BOOST_CHECK_EQUAL("t1", mock->peek_pin);
         BOOST_CHECK_EQUAL(0.512, mock->peek_set_pwm_duty_cycle_pct);
@@ -126,7 +92,8 @@ BOOST_AUTO_TEST_CASE(test_set_pwm_duty_cycle) {
 }
 
 BOOST_AUTO_TEST_CASE(test_get_pwm_frequency) {
-    server_to_mock_pipeline([](Board& client, const std::shared_ptr<MockBoard> mock) -> void {
+    const auto mock = std::make_shared<MockBoard>("mock_board");
+    client_to_mock_pipeline<BoardClient>(mock, [&](Board& client) {
         mock->peek_get_pwm_frequency_ret = 510;
         BOOST_CHECK_EQUAL(510, client.get_pwm_frequency("t1"));
         BOOST_CHECK_EQUAL("t1", mock->peek_pin);
@@ -134,7 +101,8 @@ BOOST_AUTO_TEST_CASE(test_get_pwm_frequency) {
 }
 
 BOOST_AUTO_TEST_CASE(test_set_pwm_frequency) {
-    server_to_mock_pipeline([](Board& client, const std::shared_ptr<MockBoard> mock) -> void {
+    const auto mock = std::make_shared<MockBoard>("mock_board");
+    client_to_mock_pipeline<BoardClient>(mock, [&](Board& client) {
         client.set_pwm_frequency("t1", 10);
         BOOST_CHECK_EQUAL("t1", mock->peek_pin);
         BOOST_CHECK_EQUAL(10, mock->peek_set_pwm_frequency_hz);
@@ -142,7 +110,8 @@ BOOST_AUTO_TEST_CASE(test_set_pwm_frequency) {
 }
 
 BOOST_AUTO_TEST_CASE(test_do_command) {
-    server_to_mock_pipeline([](Board& client, const std::shared_ptr<MockBoard> mock) -> void {
+    const auto mock = std::make_shared<MockBoard>("mock_board");
+    client_to_mock_pipeline<BoardClient>(mock, [](Board& client) {
         AttributeMap expected = fake_map();
 
         AttributeMap command = fake_map();
@@ -155,7 +124,8 @@ BOOST_AUTO_TEST_CASE(test_do_command) {
 }
 
 BOOST_AUTO_TEST_CASE(test_read_analog) {
-    server_to_mock_pipeline([](Board& client, const std::shared_ptr<MockBoard> mock) -> void {
+    const auto mock = std::make_shared<MockBoard>("mock_board");
+    client_to_mock_pipeline<BoardClient>(mock, [&](Board& client) {
         mock->peek_read_analog_ret = 5150;
         BOOST_CHECK_EQUAL(5150, client.read_analog("t1"));
         BOOST_CHECK_EQUAL("t1", mock->peek_analog_reader_name);
@@ -163,7 +133,8 @@ BOOST_AUTO_TEST_CASE(test_read_analog) {
 }
 
 BOOST_AUTO_TEST_CASE(test_write_analog) {
-    server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
+    const auto mock = std::make_shared<MockBoard>("mock_board");
+    client_to_mock_pipeline<BoardClient>(mock, [&](Board& client) {
         std::string pin = "pin1";
         int value = 42;
         client.write_analog(pin, value);
@@ -173,7 +144,8 @@ BOOST_AUTO_TEST_CASE(test_write_analog) {
 }
 
 BOOST_AUTO_TEST_CASE(test_read_digital_interrupt) {
-    server_to_mock_pipeline([](Board& client, const std::shared_ptr<MockBoard> mock) -> void {
+    const auto mock = std::make_shared<MockBoard>("mock_board");
+    client_to_mock_pipeline<BoardClient>(mock, [&](Board& client) {
         mock->peek_read_digital_interrupt_ret = 515;
         BOOST_CHECK_EQUAL(515, client.read_digital_interrupt("t1"));
         BOOST_CHECK_EQUAL("t1", mock->peek_digital_interrupt_name);
@@ -181,7 +153,8 @@ BOOST_AUTO_TEST_CASE(test_read_digital_interrupt) {
 }
 
 BOOST_AUTO_TEST_CASE(test_get_analog_reader_names) {
-    server_to_mock_pipeline([](Board& client, const std::shared_ptr<MockBoard> mock) -> void {
+    const auto mock = std::make_shared<MockBoard>("mock_board");
+    client_to_mock_pipeline<BoardClient>(mock, [&](Board& client) {
         std::unordered_map<std::string, Board::analog_value> analogs;
         analogs.emplace("analog1", 2);
         analogs.emplace("analog2", 2);
@@ -194,7 +167,8 @@ BOOST_AUTO_TEST_CASE(test_get_analog_reader_names) {
 }
 
 BOOST_AUTO_TEST_CASE(test_get_digital_interrupt_names) {
-    server_to_mock_pipeline([](Board& client, const std::shared_ptr<MockBoard> mock) -> void {
+    const auto mock = std::make_shared<MockBoard>("mock_board");
+    client_to_mock_pipeline<BoardClient>(mock, [&](Board& client) {
         std::unordered_map<std::string, Board::digital_value> digitals;
         digitals.emplace("digital1", 2);
         digitals.emplace("digital2", 2);
@@ -207,14 +181,16 @@ BOOST_AUTO_TEST_CASE(test_get_digital_interrupt_names) {
 }
 
 BOOST_AUTO_TEST_CASE(test_get_geometries) {
-    server_to_mock_pipeline([](Board& client, const std::shared_ptr<MockBoard> mock) -> void {
+    const auto mock = std::make_shared<MockBoard>("mock_board");
+    client_to_mock_pipeline<BoardClient>(mock, [](Board& client) {
         const auto& geometries = client.get_geometries();
         BOOST_CHECK_EQUAL(geometries, fake_geometries());
     });
 }
 
 BOOST_AUTO_TEST_CASE(test_set_power_mode) {
-    server_to_mock_pipeline([](Board& client, const std::shared_ptr<MockBoard> mock) -> void {
+    const auto mock = std::make_shared<MockBoard>("mock_board");
+    client_to_mock_pipeline<BoardClient>(mock, [&](Board& client) {
         auto mode = Board::power_mode::normal;
         std::chrono::duration<int64_t, std::micro> duration = std::chrono::microseconds(15531000);
         client.set_power_mode(mode, duration);

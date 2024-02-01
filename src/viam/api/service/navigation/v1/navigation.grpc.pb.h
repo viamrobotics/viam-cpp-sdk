@@ -95,6 +95,15 @@ class NavigationService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPathsResponse>> PrepareAsyncGetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPathsResponse>>(PrepareAsyncGetPathsRaw(context, request, cq));
     }
+    // GetProperties returns properties of the current navigation service, including the
+    // map_type being operated on.
+    virtual ::grpc::Status GetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest& request, ::viam::service::navigation::v1::GetPropertiesResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPropertiesResponse>> AsyncGetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPropertiesResponse>>(AsyncGetPropertiesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPropertiesResponse>> PrepareAsyncGetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPropertiesResponse>>(PrepareAsyncGetPropertiesRaw(context, request, cq));
+    }
     // DoCommand sends/receives arbitrary commands
     virtual ::grpc::Status DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>> AsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
@@ -122,6 +131,10 @@ class NavigationService final {
       virtual void GetObstacles(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest* request, ::viam::service::navigation::v1::GetObstaclesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest* request, ::viam::service::navigation::v1::GetPathsResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest* request, ::viam::service::navigation::v1::GetPathsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // GetProperties returns properties of the current navigation service, including the
+      // map_type being operated on.
+      virtual void GetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest* request, ::viam::service::navigation::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest* request, ::viam::service::navigation::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // DoCommand sends/receives arbitrary commands
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
@@ -146,6 +159,8 @@ class NavigationService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetObstaclesResponse>* PrepareAsyncGetObstaclesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPathsResponse>* AsyncGetPathsRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPathsResponse>* PrepareAsyncGetPathsRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPropertiesResponse>* AsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetPropertiesResponse>* PrepareAsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
@@ -208,6 +223,13 @@ class NavigationService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPathsResponse>> PrepareAsyncGetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPathsResponse>>(PrepareAsyncGetPathsRaw(context, request, cq));
     }
+    ::grpc::Status GetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest& request, ::viam::service::navigation::v1::GetPropertiesResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPropertiesResponse>> AsyncGetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPropertiesResponse>>(AsyncGetPropertiesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPropertiesResponse>> PrepareAsyncGetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPropertiesResponse>>(PrepareAsyncGetPropertiesRaw(context, request, cq));
+    }
     ::grpc::Status DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>> AsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>>(AsyncDoCommandRaw(context, request, cq));
@@ -234,6 +256,8 @@ class NavigationService final {
       void GetObstacles(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest* request, ::viam::service::navigation::v1::GetObstaclesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest* request, ::viam::service::navigation::v1::GetPathsResponse* response, std::function<void(::grpc::Status)>) override;
       void GetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest* request, ::viam::service::navigation::v1::GetPathsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest* request, ::viam::service::navigation::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest* request, ::viam::service::navigation::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
@@ -263,6 +287,8 @@ class NavigationService final {
     ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetObstaclesResponse>* PrepareAsyncGetObstaclesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPathsResponse>* AsyncGetPathsRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPathsResponse>* PrepareAsyncGetPathsRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPropertiesResponse>* AsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPropertiesResponse>* PrepareAsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetMode_;
@@ -273,6 +299,7 @@ class NavigationService final {
     const ::grpc::internal::RpcMethod rpcmethod_RemoveWaypoint_;
     const ::grpc::internal::RpcMethod rpcmethod_GetObstacles_;
     const ::grpc::internal::RpcMethod rpcmethod_GetPaths_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetProperties_;
     const ::grpc::internal::RpcMethod rpcmethod_DoCommand_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
@@ -289,6 +316,9 @@ class NavigationService final {
     virtual ::grpc::Status RemoveWaypoint(::grpc::ServerContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest* request, ::viam::service::navigation::v1::RemoveWaypointResponse* response);
     virtual ::grpc::Status GetObstacles(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest* request, ::viam::service::navigation::v1::GetObstaclesResponse* response);
     virtual ::grpc::Status GetPaths(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetPathsRequest* request, ::viam::service::navigation::v1::GetPathsResponse* response);
+    // GetProperties returns properties of the current navigation service, including the
+    // map_type being operated on.
+    virtual ::grpc::Status GetProperties(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest* request, ::viam::service::navigation::v1::GetPropertiesResponse* response);
     // DoCommand sends/receives arbitrary commands
     virtual ::grpc::Status DoCommand(::grpc::ServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response);
   };
@@ -453,12 +483,32 @@ class NavigationService final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetProperties() {
+      ::grpc::Service::MarkMethodAsync(8);
+    }
+    ~WithAsyncMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetPropertiesRequest* /*request*/, ::viam::service::navigation::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetProperties(::grpc::ServerContext* context, ::viam::service::navigation::v1::GetPropertiesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::navigation::v1::GetPropertiesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DoCommand() {
-      ::grpc::Service::MarkMethodAsync(8);
+      ::grpc::Service::MarkMethodAsync(9);
     }
     ~WithAsyncMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -469,10 +519,10 @@ class NavigationService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::viam::common::v1::DoCommandRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::DoCommandResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetMode<WithAsyncMethod_SetMode<WithAsyncMethod_GetLocation<WithAsyncMethod_GetWaypoints<WithAsyncMethod_AddWaypoint<WithAsyncMethod_RemoveWaypoint<WithAsyncMethod_GetObstacles<WithAsyncMethod_GetPaths<WithAsyncMethod_DoCommand<Service > > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_GetMode<WithAsyncMethod_SetMode<WithAsyncMethod_GetLocation<WithAsyncMethod_GetWaypoints<WithAsyncMethod_AddWaypoint<WithAsyncMethod_RemoveWaypoint<WithAsyncMethod_GetObstacles<WithAsyncMethod_GetPaths<WithAsyncMethod_GetProperties<WithAsyncMethod_DoCommand<Service > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetMode : public BaseClass {
    private:
@@ -690,18 +740,45 @@ class NavigationService final {
       ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetPathsRequest* /*request*/, ::viam::service::navigation::v1::GetPathsResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetProperties() {
+      ::grpc::Service::MarkMethodCallback(8,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetPropertiesRequest, ::viam::service::navigation::v1::GetPropertiesResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest* request, ::viam::service::navigation::v1::GetPropertiesResponse* response) { return this->GetProperties(context, request, response); }));}
+    void SetMessageAllocatorFor_GetProperties(
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::GetPropertiesRequest, ::viam::service::navigation::v1::GetPropertiesResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetPropertiesRequest, ::viam::service::navigation::v1::GetPropertiesResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetPropertiesRequest* /*request*/, ::viam::service::navigation::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetProperties(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetPropertiesRequest* /*request*/, ::viam::service::navigation::v1::GetPropertiesResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodCallback(8,
+      ::grpc::Service::MarkMethodCallback(9,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
     void SetMessageAllocatorFor_DoCommand(
         ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -716,7 +793,7 @@ class NavigationService final {
     virtual ::grpc::ServerUnaryReactor* DoCommand(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetMode<WithCallbackMethod_SetMode<WithCallbackMethod_GetLocation<WithCallbackMethod_GetWaypoints<WithCallbackMethod_AddWaypoint<WithCallbackMethod_RemoveWaypoint<WithCallbackMethod_GetObstacles<WithCallbackMethod_GetPaths<WithCallbackMethod_DoCommand<Service > > > > > > > > > CallbackService;
+  typedef WithCallbackMethod_GetMode<WithCallbackMethod_SetMode<WithCallbackMethod_GetLocation<WithCallbackMethod_GetWaypoints<WithCallbackMethod_AddWaypoint<WithCallbackMethod_RemoveWaypoint<WithCallbackMethod_GetObstacles<WithCallbackMethod_GetPaths<WithCallbackMethod_GetProperties<WithCallbackMethod_DoCommand<Service > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetMode : public BaseClass {
@@ -855,12 +932,29 @@ class NavigationService final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetProperties() {
+      ::grpc::Service::MarkMethodGeneric(8);
+    }
+    ~WithGenericMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetPropertiesRequest* /*request*/, ::viam::service::navigation::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DoCommand() {
-      ::grpc::Service::MarkMethodGeneric(8);
+      ::grpc::Service::MarkMethodGeneric(9);
     }
     ~WithGenericMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1032,12 +1126,32 @@ class NavigationService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetProperties() {
+      ::grpc::Service::MarkMethodRaw(8);
+    }
+    ~WithRawMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetPropertiesRequest* /*request*/, ::viam::service::navigation::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetProperties(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRaw(8);
+      ::grpc::Service::MarkMethodRaw(9);
     }
     ~WithRawMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1048,7 +1162,7 @@ class NavigationService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1228,12 +1342,34 @@ class NavigationService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetProperties() {
+      ::grpc::Service::MarkMethodRawCallback(8,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetProperties(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetPropertiesRequest* /*request*/, ::viam::service::navigation::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetProperties(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRawCallback(8,
+      ::grpc::Service::MarkMethodRawCallback(9,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
@@ -1466,12 +1602,39 @@ class NavigationService final {
     virtual ::grpc::Status StreamedGetPaths(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::GetPathsRequest,::viam::service::navigation::v1::GetPathsResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetProperties() {
+      ::grpc::Service::MarkMethodStreamed(8,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::navigation::v1::GetPropertiesRequest, ::viam::service::navigation::v1::GetPropertiesResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::navigation::v1::GetPropertiesRequest, ::viam::service::navigation::v1::GetPropertiesResponse>* streamer) {
+                       return this->StreamedGetProperties(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::service::navigation::v1::GetPropertiesRequest* /*request*/, ::viam::service::navigation::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetProperties(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::navigation::v1::GetPropertiesRequest,::viam::service::navigation::v1::GetPropertiesResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DoCommand() {
-      ::grpc::Service::MarkMethodStreamed(8,
+      ::grpc::Service::MarkMethodStreamed(9,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](::grpc::ServerContext* context,
@@ -1492,9 +1655,9 @@ class NavigationService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedDoCommand(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::common::v1::DoCommandRequest,::viam::common::v1::DoCommandResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetMode<WithStreamedUnaryMethod_SetMode<WithStreamedUnaryMethod_GetLocation<WithStreamedUnaryMethod_GetWaypoints<WithStreamedUnaryMethod_AddWaypoint<WithStreamedUnaryMethod_RemoveWaypoint<WithStreamedUnaryMethod_GetObstacles<WithStreamedUnaryMethod_GetPaths<WithStreamedUnaryMethod_DoCommand<Service > > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_GetMode<WithStreamedUnaryMethod_SetMode<WithStreamedUnaryMethod_GetLocation<WithStreamedUnaryMethod_GetWaypoints<WithStreamedUnaryMethod_AddWaypoint<WithStreamedUnaryMethod_RemoveWaypoint<WithStreamedUnaryMethod_GetObstacles<WithStreamedUnaryMethod_GetPaths<WithStreamedUnaryMethod_GetProperties<WithStreamedUnaryMethod_DoCommand<Service > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetMode<WithStreamedUnaryMethod_SetMode<WithStreamedUnaryMethod_GetLocation<WithStreamedUnaryMethod_GetWaypoints<WithStreamedUnaryMethod_AddWaypoint<WithStreamedUnaryMethod_RemoveWaypoint<WithStreamedUnaryMethod_GetObstacles<WithStreamedUnaryMethod_GetPaths<WithStreamedUnaryMethod_DoCommand<Service > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetMode<WithStreamedUnaryMethod_SetMode<WithStreamedUnaryMethod_GetLocation<WithStreamedUnaryMethod_GetWaypoints<WithStreamedUnaryMethod_AddWaypoint<WithStreamedUnaryMethod_RemoveWaypoint<WithStreamedUnaryMethod_GetObstacles<WithStreamedUnaryMethod_GetPaths<WithStreamedUnaryMethod_GetProperties<WithStreamedUnaryMethod_DoCommand<Service > > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1

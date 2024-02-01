@@ -30,7 +30,7 @@ namespace component {
 namespace generic {
 namespace v1 {
 
-// GenericService services all generic commands associated with a robot
+// GenericService services all generic components associated with a robot
 class GenericService final {
  public:
   static constexpr char const* service_full_name() {
@@ -39,7 +39,7 @@ class GenericService final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    // DoCommand sends/recieves arbitrary commands
+    // DoCommand sends/receives arbitrary commands
     virtual ::grpc::Status DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>> AsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>>(AsyncDoCommandRaw(context, request, cq));
@@ -58,7 +58,7 @@ class GenericService final {
     class async_interface {
      public:
       virtual ~async_interface() {}
-      // DoCommand sends/recieves arbitrary commands
+      // DoCommand sends/receives arbitrary commands
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // GetGeometries returns the geometries of the component in their current configuration
@@ -122,7 +122,7 @@ class GenericService final {
    public:
     Service();
     virtual ~Service();
-    // DoCommand sends/recieves arbitrary commands
+    // DoCommand sends/receives arbitrary commands
     virtual ::grpc::Status DoCommand(::grpc::ServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response);
     // GetGeometries returns the geometries of the component in their current configuration
     virtual ::grpc::Status GetGeometries(::grpc::ServerContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response);

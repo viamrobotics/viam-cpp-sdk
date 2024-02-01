@@ -16,39 +16,31 @@ namespace generic {
 using namespace viam::sdk;
 
 std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
-MockGeneric::do_command(
+MockGenericComponent::do_command(
     std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> command) {
     return map_;
 }
-std::vector<GeometryConfig> MockGeneric::get_geometries(const AttributeMap& extra) {
+std::vector<GeometryConfig> MockGenericComponent::get_geometries(const AttributeMap& extra) {
     return geometries_;
 }
-std::shared_ptr<MockGeneric> MockGeneric::get_mock_generic() {
-    const auto generic = std::make_shared<MockGeneric>("mock_generic");
+std::shared_ptr<MockGenericComponent> MockGenericComponent::get_mock_generic() {
+    auto generic = std::make_shared<MockGenericComponent>("mock_generic");
     generic->map_ = fake_map();
     generic->geometries_ = fake_geometries();
 
     return generic;
 }
 
-MockGenericStub::MockGenericStub() : server_(std::make_shared<GenericServer>()) {
-    this->server_->resource_manager()->add(std::string("mock_generic"),
-                                           MockGeneric::get_mock_generic());
+std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
+MockGenericService::do_command(
+    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> command) {
+    return map_;
 }
+std::shared_ptr<MockGenericService> MockGenericService::get_mock_generic() {
+    auto generic = std::make_shared<MockGenericService>("mock_generic");
+    generic->map_ = fake_map();
 
-::grpc::Status MockGenericStub::GetGeometries(
-    ::grpc::ClientContext* context,
-    const ::viam::common::v1::GetGeometriesRequest& request,
-    ::viam::common::v1::GetGeometriesResponse* response) {
-    grpc::ServerContext ctx;
-    return server_->GetGeometries(&ctx, &request, response);
-}
-
-::grpc::Status MockGenericStub::DoCommand(::grpc::ClientContext* context,
-                                          const ::viam::common::v1::DoCommandRequest& request,
-                                          ::viam::common::v1::DoCommandResponse* response) {
-    grpc::ServerContext ctx;
-    return server_->DoCommand(&ctx, &request, response);
+    return generic;
 }
 
 }  // namespace generic

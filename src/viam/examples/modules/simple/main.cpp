@@ -8,11 +8,9 @@
 #include <grpcpp/server_context.h>
 
 #include <viam/api/common/v1/common.grpc.pb.h>
-#include <viam/api/component/generic/v1/generic.grpc.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
+#include <viam/api/service/generic/v1/generic.grpc.pb.h>
 
-#include <viam/sdk/components/component.hpp>
-#include <viam/sdk/components/generic/generic.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/module/module.hpp>
 #include <viam/sdk/module/service.hpp>
@@ -20,13 +18,15 @@
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/rpc/server.hpp>
+#include <viam/sdk/services/generic/generic.hpp>
+#include <viam/sdk/services/service.hpp>
 
 using namespace viam::sdk;
 
 // Printer is a modular resource that can print a to_print value to STDOUT when
 // a DoCommand request is received or when reconfiguring. The to_print value
 // must be provided as an attribute in the config.
-class Printer : public Generic {
+class Printer : public GenericService {
    public:
     void reconfigure(Dependencies deps, ResourceConfig cfg) {
         std::cout << "Printer " << Resource::name() << " is reconfiguring" << std::endl;
@@ -37,7 +37,7 @@ class Printer : public Generic {
         std::cout << "Printer " << Resource::name() << " will now print " << to_print_ << std::endl;
     }
 
-    Printer(Dependencies deps, ResourceConfig cfg) : Generic(cfg.name()) {
+    Printer(Dependencies deps, ResourceConfig cfg) : GenericService(cfg.name()) {
         std::cout << "Creating Printer " + Resource::name() << std::endl;
         to_print_ = find_to_print(cfg);
         std::cout << "Printer " << Resource::name() << " will print " << to_print_ << std::endl;
@@ -47,10 +47,6 @@ class Printer : public Generic {
         std::cout << "Received DoCommand request for Printer " << Resource::name() << std::endl;
         std::cout << "Printer " << Resource::name() << " has printed " << to_print_ << std::endl;
         return command;
-    }
-
-    std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) {
-        return std::vector<GeometryConfig>();
     }
 
     static std::string find_to_print(ResourceConfig cfg) {
@@ -77,7 +73,7 @@ class Printer : public Generic {
 };
 
 int main(int argc, char** argv) {
-    API generic = API::get<Generic>();
+    API generic = API::get<GenericService>();
     Model m("viam", "generic", "printer");
 
     std::shared_ptr<ModelRegistration> mr = std::make_shared<ModelRegistration>(

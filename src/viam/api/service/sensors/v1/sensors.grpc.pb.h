@@ -31,6 +31,7 @@ namespace sensors {
 namespace v1 {
 
 // A SensorsService services keeps track of all sensors associated with a robot
+// This service is deprecated
 class SensorsService final {
  public:
   static constexpr char const* service_full_name() {

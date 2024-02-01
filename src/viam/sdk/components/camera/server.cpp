@@ -13,8 +13,8 @@
 namespace viam {
 namespace sdk {
 
-CameraServer::CameraServer() : ResourceServer(std::make_shared<ResourceManager>()){};
-CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceServer(manager){};
+CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
+    : ResourceServer(std::move(manager)){};
 
 ::grpc::Status CameraServer::DoCommand(::grpc::ServerContext* context,
                                        const ::viam::common::v1::DoCommandRequest* request,
@@ -114,10 +114,6 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
             Camera::to_proto(properties.intrinsic_parameters);
         response->set_supports_pcd(properties.supports_pcd);
     });
-}
-
-void CameraServer::register_server(std::shared_ptr<Server> server) {
-    server->register_service(this);
 }
 
 }  // namespace sdk
