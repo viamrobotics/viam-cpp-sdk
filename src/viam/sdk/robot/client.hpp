@@ -63,9 +63,9 @@ struct status {
     viam::robot::v1::Status to_proto() const;
     static status from_proto(const viam::robot::v1::Status& proto);
 
-    std::optional<Name> name;
-    std::optional<AttributeMap> status_map;
-    std::optional<time_point> last_reconfigured;
+    boost::optional<Name> name;
+    boost::optional<AttributeMap> status_map;
+    boost::optional<time_point> last_reconfigured;
     friend bool operator==(const discovery_query& lhs, const discovery_query& rhs);
 };
 
@@ -76,9 +76,9 @@ struct operation {
 
     std::string id;
     std::string method;
-    std::optional<std::string> session_id;
-    std::optional<AttributeMap> arguments;
-    std::optional<time_point> started;
+    boost::optional<std::string> session_id;
+    boost::optional<AttributeMap> arguments;
+    boost::optional<time_point> started;
 };
 
 /// @defgroup Robot Classes related to a Robot representation.
