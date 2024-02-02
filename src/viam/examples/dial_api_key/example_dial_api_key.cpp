@@ -50,18 +50,18 @@ int main() {
     }
 
     // ensure we can query statuses
-    std::vector<Status> status_plural = robot->get_status();
+    std::vector<status> status_plural = robot->get_status();
     std::cout << "Status plural len " << status_plural.size() << std::endl;
-    for (const Status& s : status_plural) {
-        std::cout << " Status! " << s.name().subtype() << std::endl;
+    for (const status& s : status_plural) {
+        std::cout << " Status! " << s.name->api().resource_subtype() << std::endl;
     }
 
     // ensure we can send requests for specific resources
     std::vector<Name> just_one = {resource_names->at(0)};
-    std::vector<Status> status_singular = robot->get_status(just_one);
+    std::vector<status> status_singular = robot->get_status(just_one);
     std::cout << "Status singular len " << status_singular.size() << std::endl;
-    for (const Status& s : status_singular) {
-        std::cout << " Status! " << s.name().subtype() << std::endl;
+    for (const status& s : status_singular) {
+        std::cout << " Status! " << s.name->api().resource_subtype() << std::endl;
     }
 
     return EXIT_SUCCESS;

@@ -42,7 +42,6 @@ namespace sdk {
 using google::protobuf::RepeatedPtrField;
 using viam::robot::v1::Operation;
 using viam::robot::v1::RobotService;
-using viam::robot::v1::Status;
 
 // gRPC responses are frequently coming back with a spurious `Stream removed`
 // error, leading to unhelpful and misleading logging. We should figure out why
@@ -88,6 +87,34 @@ viam::robot::v1::FrameSystemConfig frameSystemConfig::to_proto() const {
     return proto;
 }
 
+viam::robot::v1::Status status::to_proto() const {
+    viam::robot::v1::Status proto;
+    if (name) {
+        *proto.mutable_name() = name->to_proto();
+    }
+    if (status_map) {
+        *proto.mutable_status() = map_to_struct(*status_map);
+    }
+    if (last_reconfigured) {
+        *proto.mutable_last_reconfigured() = time_pt_to_timestamp(*last_reconfigured);
+    }
+    return proto;
+}
+
+status status::from_proto(const viam::robot::v1::Status& proto) {
+    status status;
+    if (proto.has_name()) {
+        status.name = Name::from_proto(proto.name());
+    }
+    if (proto.has_status()) {
+        status.status_map = struct_to_map(proto.status());
+    }
+    if (proto.has_last_reconfigured()) {
+        status.last_reconfigured = timestamp_to_time_pt(proto.last_reconfigured());
+    }
+    return status;
+}
+
 frameSystemConfig frameSystemConfig::from_proto(const viam::robot::v1::FrameSystemConfig& proto) {
     frameSystemConfig fsconfig =
         frameSystemConfig(WorldState::transform::from_proto(proto.frame()));
@@ -121,14 +148,14 @@ void RobotClient::close() {
 bool is_error_response(grpc::Status response) {
     return !response.ok() && (response.error_message() != kStreamRemoved);
 }
-std::vector<Status> RobotClient::get_status() {
+std::vector<status> RobotClient::get_status() {
     auto* resources = resource_names();
     return get_status(*resources);
 }
-// gets Statuses of components associated with robot. If a specific component
+// gets statuses of components associated with robot. If a specific component
 // vector is provided, only statuses for the given Names will be
 // returned
-std::vector<Status> RobotClient::get_status(std::vector<Name>& components) {
+std::vector<status> RobotClient::get_status(std::vector<Name>& components) {
     viam::robot::v1::GetStatusRequest req;
     viam::robot::v1::GetStatusResponse resp;
     ClientContext ctx;
@@ -142,12 +169,12 @@ std::vector<Status> RobotClient::get_status(std::vector<Name>& components) {
                                  << response.error_details();
     }
 
-    const RepeatedPtrField<Status> status = resp.status();
+    const RepeatedPtrField<robot::v1::Status> resp_status = resp.status();
 
-    std::vector<Status> statuses = std::vector<Status>();
+    std::vector<status> statuses = std::vector<status>();
 
-    for (const Status& s : status) {
-        statuses.push_back(s);
+    for (const robot::v1::Status& s : resp_status) {
+        statuses.push_back(status::from_proto(s));
     }
 
     return statuses;

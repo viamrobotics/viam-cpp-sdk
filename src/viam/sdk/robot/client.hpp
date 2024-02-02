@@ -26,12 +26,13 @@ namespace sdk {
 
 using grpc::Channel;
 using viam::robot::v1::RobotService;
-using viam::robot::v1::Status;
+using time_point = std::chrono::time_point<long long, std::chrono::nanoseconds>;
 
 struct discovery_query {
     discovery_query(){};
     viam::robot::v1::DiscoveryQuery to_proto() const;
     static discovery_query from_proto(const viam::robot::v1::DiscoveryQuery& proto);
+
     std::string subtype;
     std::string model;
     friend bool operator==(const discovery_query& lhs, const discovery_query& rhs);
@@ -41,6 +42,7 @@ struct discovery {
     discovery(){};
     viam::robot::v1::Discovery to_proto() const;
     static discovery from_proto(const viam::robot::v1::Discovery& proto);
+
     discovery_query query;
     AttributeMap results;
     friend bool operator==(const discovery& lhs, const discovery& rhs);
@@ -53,6 +55,18 @@ struct frameSystemConfig {
 
     WorldState::transform frame;
     AttributeMap kinematics;
+    friend bool operator==(const discovery_query& lhs, const discovery_query& rhs);
+};
+
+struct status {
+    status(){};
+    viam::robot::v1::Status to_proto() const;
+    static status from_proto(const viam::robot::v1::Status& proto);
+
+    std::optional<Name> name;
+    std::optional<AttributeMap> status_map;
+    std::optional<time_point> last_reconfigured;
+    friend bool operator==(const discovery_query& lhs, const discovery_query& rhs);
 };
 
 /// @defgroup Robot Classes related to a Robot representation.
@@ -134,11 +148,11 @@ class RobotClient {
     /// @brief Get the status of the requested robot components.
     /// @param components A list of the specific components for which status is desired.
     /// @return A list of statuses.
-    std::vector<Status> get_status(std::vector<Name>& components);
+    std::vector<status> get_status(std::vector<Name>& components);
 
     /// @brief Get the status of all robot components.
     /// @return A list of statuses.
-    std::vector<Status> get_status();
+    std::vector<status> get_status();
 
     std::vector<discovery> discover_components(std::vector<discovery_query> queries);
 

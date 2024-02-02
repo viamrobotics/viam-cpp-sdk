@@ -27,7 +27,6 @@ namespace viam {
 namespace sdk {
 
 using google::protobuf::RepeatedPtrField;
-using viam::robot::v1::Status;
 
 RobotService_::RobotService_(std::shared_ptr<ResourceManager> manager, Server& server)
     : ResourceServer(std::move(manager)) {
@@ -35,7 +34,7 @@ RobotService_::RobotService_(std::shared_ptr<ResourceManager> manager, Server& s
 }
 
 std::vector<Name> RobotService_::generate_metadata() {
-    std::vector<ResourceName> metadata;
+    std::vector<Name> metadata;
     for (const auto& key_and_val : resource_manager()->resources()) {
         for (const Name& resource : resource_names_for_resource(key_and_val.second)) {
             metadata.push_back(resource);
@@ -44,8 +43,8 @@ std::vector<Name> RobotService_::generate_metadata() {
     return metadata;
 }
 
-std::vector<Status> RobotService_::generate_status(std::vector<Name> resource_names) {
-    std::vector<Status> statuses;
+std::vector<status> RobotService_::generate_status(std::vector<Name> resource_names) {
+    std::vector<status> statuses;
     for (const auto& cmp : resource_manager()->resources()) {
         const std::shared_ptr<Resource> resource = cmp.second;
         for (const auto& kv : Registry::registered_models()) {
@@ -61,18 +60,18 @@ std::vector<Status> RobotService_::generate_status(std::vector<Name> resource_na
                 }
 
                 if (resource_present) {
-                    const Status status = registration->create_status(resource);
-                    statuses.push_back(status);
+                    const viam::robot::v1::Status status = registration->create_status(resource);
+                    statuses.push_back(status::from_proto(status));
                 }
             }
         }
     }
 
-    std::vector<Status> returnable_statuses;
+    std::vector<status> returnable_statuses;
     for (auto& status : statuses) {
         bool status_name_is_known = false;
         for (auto& resource_name : resource_names) {
-            if (Name::from_proto(status.name()) == resource_name) {
+            if (status.name == resource_name) {
                 status_name_is_known = true;
                 break;
             }
@@ -112,10 +111,10 @@ std::vector<Status> RobotService_::generate_status(std::vector<Name> resource_na
         names.push_back(Name::from_proto(name));
     }
 
-    RepeatedPtrField<Status>* response_status = response->mutable_status();
-    const std::vector<Status> statuses = generate_status(names);
-    for (const Status& status : statuses) {
-        *response_status->Add() = status;
+    RepeatedPtrField<viam::robot::v1::Status>* response_status = response->mutable_status();
+    const std::vector<status> statuses = generate_status(names);
+    for (const status& status : statuses) {
+        *response_status->Add() = status.to_proto();
     }
 
     return ::grpc::Status();
@@ -130,11 +129,11 @@ void RobotService_::stream_status(
         for (const common::v1::ResourceName& name : request->resource_names()) {
             names.push_back(Name::from_proto(name));
         }
-        const std::vector<Status> statuses = generate_status(names);
+        const std::vector<status> statuses = generate_status(names);
         viam::robot::v1::StreamStatusResponse response;
         RepeatedPtrField<Status>* response_status = response.mutable_status();
-        for (const Status& status : statuses) {
-            *response_status->Add() = status;
+        for (const status& status : statuses) {
+            *response_status->Add() = status.to_proto();
         }
 
         writer->Write(response);

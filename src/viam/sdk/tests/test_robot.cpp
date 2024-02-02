@@ -104,6 +104,17 @@ template <typename T>
 std::vector<std::string> vec_to_string_util(std::vector<T>& vec) {
     std::vector<std::string> ret;
     for (auto& v : vec) {
+        auto s = v.to_proto().SerializeAsString();
+        ret.push_back(std::move(s));
+    }
+    std::sort(ret.begin(), ret.end());
+    return ret;
+}
+
+template <typename T>
+std::vector<std::string> proto_vec_to_string_util(std::vector<T>& vec) {
+    std::vector<std::string> ret;
+    for (auto& v : vec) {
         auto s = v.SerializeAsString();
         ret.push_back(std::move(s));
     }
@@ -141,7 +152,7 @@ BOOST_AUTO_TEST_CASE(test_get_status) {
             auto statuses = client->get_status();
 
             auto status_strs = vec_to_string_util(statuses);
-            auto mock_strs = vec_to_string_util(mock_statuses);
+            auto mock_strs = proto_vec_to_string_util(mock_statuses);
 
             // ensure we get statuses for all resources, and that they are as expected.
             BOOST_CHECK_EQUAL(statuses.size(), 3);
@@ -187,7 +198,7 @@ BOOST_AUTO_TEST_CASE(test_get_operations) {
             auto ops = client->get_operations();
             auto mock_ops = mock_operations_response();
 
-            BOOST_TEST(vec_to_string_util(ops) == vec_to_string_util(mock_ops),
+            BOOST_TEST(proto_vec_to_string_util(ops) == proto_vec_to_string_util(mock_ops),
                        boost::test_tools::per_element());
         });
 }
@@ -204,8 +215,9 @@ BOOST_AUTO_TEST_CASE(test_discover_components) {
                 components.push_back(d.to_proto());
             }
 
-            BOOST_TEST(vec_to_string_util(components) == vec_to_string_util(mock_components),
-                       boost::test_tools::per_element());
+            BOOST_TEST(
+                proto_vec_to_string_util(components) == proto_vec_to_string_util(mock_components),
+                boost::test_tools::per_element());
         });
 }
 
