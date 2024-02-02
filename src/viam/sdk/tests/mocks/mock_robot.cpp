@@ -117,10 +117,10 @@ std::vector<viam::robot::v1::FrameSystemConfig> mock_config_response() {
     *t1.mutable_reference_frame() = "another-reference-frame";
     viam::common::v1::Pose pose1 = default_pose(1);
     common::v1::PoseInFrame pif1;
-    *pif.mutable_reference_frame() = "reference1";
-    *pif.mutable_pose() = pose1;
+    *pif1.mutable_reference_frame() = "reference1";
+    *pif1.mutable_pose() = pose1;
     *t1.mutable_pose_in_observer_frame() = pif1;
-    *config.mutable_frame() = t1;
+    *config1.mutable_frame() = t1;
     google::protobuf::Struct s1;
     google::protobuf::Value v1;
     v1.set_number_value(2);

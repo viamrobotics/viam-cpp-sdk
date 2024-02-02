@@ -176,21 +176,22 @@ BOOST_AUTO_TEST_CASE(test_get_status) {
         });
 }
 
-// BOOST_AUTO_TEST_CASE(test_get_frame_system_config) {
-//     robot_client_to_mocks_pipeline(
-//         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
-//             auto mock_fs_config = mock_config_response();
-//             auto fs_config = client->get_frame_system_config();
+BOOST_AUTO_TEST_CASE(test_get_frame_system_config) {
+    robot_client_to_mocks_pipeline([](std::shared_ptr<RobotClient> client,
+                                      MockRobotService& service) -> void {
+        auto mock_fs_config = mock_config_response();
+        auto fs_config = client->get_frame_system_config();
 
-//             std::vector<viam::robot::v1::FrameSystemConfig> fs_config_proto;
-//             for (const frameSystemConfig& f : fs_config) {
-//                 fs_config_proto.push_back(f.to_proto());
-//             }
+        std::vector<viam::robot::v1::FrameSystemConfig> fs_config_proto;
+        for (const frameSystemConfig& f : fs_config) {
+            fs_config_proto.push_back(f.to_proto());
+        }
 
-//             BOOST_TEST(vec_to_string_util(mock_fs_config) == vec_to_string_util(fs_config_proto),
-//                        boost::test_tools::per_element());
-//         });
-// }
+        BOOST_TEST(
+            proto_vec_to_string_util(mock_fs_config) == proto_vec_to_string_util(fs_config_proto),
+            boost::test_tools::per_element());
+    });
+}
 
 BOOST_AUTO_TEST_CASE(test_get_operations) {
     robot_client_to_mocks_pipeline(
