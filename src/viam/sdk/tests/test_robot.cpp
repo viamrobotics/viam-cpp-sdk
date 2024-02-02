@@ -199,7 +199,7 @@ BOOST_AUTO_TEST_CASE(test_get_operations) {
             auto ops = client->get_operations();
             auto mock_ops = mock_operations_response();
 
-            BOOST_TEST(proto_vec_to_string_util(ops) == proto_vec_to_string_util(mock_ops),
+            BOOST_TEST(vec_to_string_util(ops) == proto_vec_to_string_util(mock_ops),
                        boost::test_tools::per_element());
         });
 }

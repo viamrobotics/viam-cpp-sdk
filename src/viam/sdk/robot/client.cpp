@@ -37,10 +37,7 @@
 namespace viam {
 namespace sdk {
 
-// TODO(RSDK-4573) Having all these proto types exposed here in the APIs is sad. Let's fix that.
-
 using google::protobuf::RepeatedPtrField;
-using viam::robot::v1::Operation;
 using viam::robot::v1::RobotService;
 
 // gRPC responses are frequently coming back with a spurious `Stream removed`
@@ -87,6 +84,15 @@ viam::robot::v1::FrameSystemConfig frameSystemConfig::to_proto() const {
     return proto;
 }
 
+frameSystemConfig frameSystemConfig::from_proto(const viam::robot::v1::FrameSystemConfig& proto) {
+    frameSystemConfig fsconfig =
+        frameSystemConfig(WorldState::transform::from_proto(proto.frame()));
+    if (proto.has_kinematics()) {
+        fsconfig.kinematics = struct_to_map(proto.kinematics());
+    }
+    return fsconfig;
+}
+
 viam::robot::v1::Status status::to_proto() const {
     viam::robot::v1::Status proto;
     if (name) {
@@ -115,13 +121,34 @@ status status::from_proto(const viam::robot::v1::Status& proto) {
     return status;
 }
 
-frameSystemConfig frameSystemConfig::from_proto(const viam::robot::v1::FrameSystemConfig& proto) {
-    frameSystemConfig fsconfig =
-        frameSystemConfig(WorldState::transform::from_proto(proto.frame()));
-    if (proto.has_kinematics()) {
-        fsconfig.kinematics = struct_to_map(proto.kinematics());
+viam::robot::v1::Operation operation::to_proto() const {
+    viam::robot::v1::Operation proto;
+    *proto.mutable_id() = id;
+    *proto.mutable_method() = method;
+    if (session_id) {
+        *proto.mutable_session_id() = *session_id;
     }
-    return fsconfig;
+    if (arguments) {
+        *proto.mutable_arguments() = map_to_struct(*arguments);
+    }
+    if (started) {
+        *proto.mutable_started() = time_pt_to_timestamp(*started);
+    }
+    return proto;
+}
+
+operation operation::from_proto(const viam::robot::v1::Operation& proto) {
+    operation op = operation(proto.id(), proto.method());
+    if (proto.has_session_id()) {
+        op.session_id = proto.session_id();
+    }
+    if (proto.has_arguments()) {
+        op.arguments = struct_to_map(proto.arguments());
+    }
+    if (proto.has_started()) {
+        op.started = timestamp_to_time_pt(proto.started());
+    }
+    return op;
 }
 
 RobotClient::~RobotClient() {
@@ -180,12 +207,12 @@ std::vector<status> RobotClient::get_status(std::vector<Name>& components) {
     return statuses;
 }
 
-std::vector<Operation> RobotClient::get_operations() {
+std::vector<operation> RobotClient::get_operations() {
     const viam::robot::v1::GetOperationsRequest req;
     viam::robot::v1::GetOperationsResponse resp;
     ClientContext ctx;
 
-    std::vector<Operation> operations;
+    std::vector<operation> operations;
 
     grpc::Status const response = stub_->GetOperations(ctx, req, &resp);
     if (is_error_response(response)) {
@@ -194,7 +221,7 @@ std::vector<Operation> RobotClient::get_operations() {
 
     for (int i = 0; i < resp.operations().size(); ++i) {
         // NOLINTNEXTLINE
-        operations.push_back(resp.operations().at(i));
+        operations.push_back(operation::from_proto(resp.operations().at(i)));
     }
     return operations;
 }

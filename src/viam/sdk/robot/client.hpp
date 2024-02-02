@@ -69,6 +69,18 @@ struct status {
     friend bool operator==(const discovery_query& lhs, const discovery_query& rhs);
 };
 
+struct operation {
+    operation(std::string id, std::string method) : id(std::move(id)), method(std::move(method)){};
+    viam::robot::v1::Operation to_proto() const;
+    static operation from_proto(const viam::robot::v1::Operation& proto);
+
+    std::string id;
+    std::string method;
+    std::optional<std::string> session_id;
+    std::optional<AttributeMap> arguments;
+    std::optional<time_point> started;
+};
+
 /// @defgroup Robot Classes related to a Robot representation.
 
 /// @class RobotClient client.h "robot/client.h"
@@ -143,7 +155,7 @@ class RobotClient {
 
     /// @brief Get the list of operations currently running on a robot.
     /// @return The list of operations currently running on the calling robot.
-    std::vector<viam::robot::v1::Operation> get_operations();
+    std::vector<operation> get_operations();
 
     /// @brief Get the status of the requested robot components.
     /// @param components A list of the specific components for which status is desired.
