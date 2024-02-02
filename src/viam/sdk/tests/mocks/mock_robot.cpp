@@ -85,9 +85,20 @@ pose_in_frame mock_transform_response() {
 
 std::vector<Name> mock_resource_names_response() {
     std::vector<Name> vec;
-    Name camera = Name::from_string(kRDK + ":" + kComponent + ":" + "camera/mock_camera");
-    Name generic = Name::from_string(kRDK + ":" + kComponent + ":" + "generic/mock_generic");
-    Name motor = Name::from_string(kRDK + ":" + kComponent + ":" + "motor/mock_motor");
+    std::string camera_str;
+    std::string generic_str;
+    std::string motor_str;
+
+    camera_str.append(kRDK).append(":").append(kComponent).append(":").append("camera/mock_camera");
+    generic_str.append(kRDK)
+        .append(":")
+        .append(kComponent)
+        .append(":")
+        .append("generic/mock_generic");
+    motor_str.append(kRDK).append(":").append(kComponent).append(":").append("motor/mock_motor");
+    Name camera = Name::from_string(camera_str);
+    Name generic = Name::from_string(generic_str);
+    Name motor = Name::from_string(motor_str);
 
     vec.push_back(camera);
     vec.push_back(generic);
