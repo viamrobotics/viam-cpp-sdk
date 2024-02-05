@@ -23,8 +23,6 @@ const std::string kService = "service";
 const std::string kRDK = "rdk";
 const std::string kBuiltin = "builtin";
 
-std::vector<Name> resource_names_for_resource(const std::shared_ptr<Resource>& resource);
-
 class ResourceNameHasher {
    public:
     size_t operator()(Name const& key) const {

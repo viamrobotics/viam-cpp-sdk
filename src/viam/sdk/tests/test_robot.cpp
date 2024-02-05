@@ -122,23 +122,13 @@ std::vector<std::string> proto_vec_to_string_util(std::vector<T>& vec) {
     return ret;
 }
 
-std::vector<std::string> name_vec_to_string(std::vector<Name>& vec) {
-    std::vector<std::string> ret;
-    for (auto& v : vec) {
-        auto s = v.to_string();
-        ret.push_back(std::move(s));
-    }
-    std::sort(ret.begin(), ret.end());
-    return ret;
-}
-
 BOOST_AUTO_TEST_CASE(test_resource_names) {
     robot_client_to_mocks_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
             std::vector<Name>* resource_names = client->resource_names();
-            auto names = name_vec_to_string(*resource_names);
+            auto names = vec_to_string_util(*resource_names);
             auto mocks = mock_resource_names_response();
-            auto mock_resp = name_vec_to_string(mocks);
+            auto mock_resp = vec_to_string_util(mocks);
             BOOST_TEST(names == mock_resp, boost::test_tools::per_element());
         });
 }
@@ -183,7 +173,7 @@ BOOST_AUTO_TEST_CASE(test_get_frame_system_config) {
         auto fs_config = client->get_frame_system_config();
 
         std::vector<viam::robot::v1::FrameSystemConfig> fs_config_proto;
-        for (const frameSystemConfig& f : fs_config) {
+        for (const frame_system_config& f : fs_config) {
             fs_config_proto.push_back(f.to_proto());
         }
 
