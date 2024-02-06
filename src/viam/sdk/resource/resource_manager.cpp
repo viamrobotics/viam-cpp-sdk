@@ -77,7 +77,8 @@ void ResourceManager::do_add(const Name& name, std::shared_ptr<Resource> resourc
 
 void ResourceManager::do_add(std::string name, std::shared_ptr<Resource> resource) {
     if (resources_.find(name) != resources_.end()) {
-        throw DuplicateResourceException("Attempted to add resource that already existed: " + name);
+        throw ViamException("Attempted to add resource that already existed: " + name,
+                            ViamErrorCode::DuplicateResource);
     }
 
     std::string shortcut = get_shortcut_name(name);
@@ -103,8 +104,9 @@ void ResourceManager::add(const Name& name, std::shared_ptr<Resource> resource) 
 void ResourceManager::do_remove(const Name& name) {
     const std::string short_name = name.short_name();
     if (resources_.find(short_name) == resources_.end()) {
-        throw ResourceNotFoundException("Attempted to remove resource " + name.to_string() +
-                                        " but it didn't exist!");
+        throw ViamException(
+            "Attempted to remove resource " + name.to_string() + " but it didn't exist!",
+            ViamErrorCode::ResourceNotFound);
     }
     resources_.erase(short_name);
 

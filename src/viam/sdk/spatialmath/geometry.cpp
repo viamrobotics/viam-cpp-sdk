@@ -123,7 +123,7 @@ GeometryConfig GeometryConfig::from_proto(const viam::common::v1::Geometry& prot
         }
         case viam::common::v1::Geometry::GeometryTypeCase::GEOMETRY_TYPE_NOT_SET:
         default: {
-            throw NotSupportedException("Geometry type is not supported");
+            throw ViamException("Geometry type is not supported", ViamErrorCode::NotSupported);
         }
     }
 }

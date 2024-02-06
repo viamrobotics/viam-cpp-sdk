@@ -31,7 +31,8 @@ Encoder::position_type Encoder::from_proto(viam::component::encoder::v1::Positio
             return Encoder::position_type::ticks_count;
         }
         default: {
-            throw NotSupportedException("Invalid proto encoder type to decode");
+            throw ViamException("Invalid proto encoder type to decode",
+                                ViamErrorCode::NotSupported);
         }
     }
 }
@@ -64,7 +65,8 @@ viam::component::encoder::v1::PositionType Encoder::to_proto(position_type posit
             return viam::component::encoder::v1::POSITION_TYPE_TICKS_COUNT;
         }
         default: {
-            throw NotSupportedException("Invalid proto encoder type to encode");
+            throw ViamException("Invalid proto encoder type to encode",
+                                ViamErrorCode::NotSupported);
         }
     }
 }

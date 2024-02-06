@@ -55,7 +55,7 @@ Dependencies ModuleService::get_dependencies_(
             std::ostringstream buffer;
             buffer << resource_name << ": Dependency "
                    << "`" << dep_name << "` was not found during (re)configuration";
-            throw ResourceNotFoundException(buffer.str());
+            throw ViamException(buffer.str(), ViamErrorCode::ResourceNotFound);
         }
         deps.emplace(dep_name, dep_resource);
     }

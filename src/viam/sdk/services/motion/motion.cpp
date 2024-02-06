@@ -254,7 +254,7 @@ Motion::plan_state Motion::from_proto(const service::motion::v1::PlanState& prot
             return Motion::plan_state::k_stopped;
         }
         default: {
-            throw NotSupportedException("Invalid proto PlanState to encode");
+            throw ViamException("Invalid proto PlanState to encode", ViamErrorCode::NotSupported);
         }
     }
 }
@@ -274,7 +274,8 @@ service::motion::v1::PlanState Motion::to_proto(const Motion::plan_state& state)
             return service::motion::v1::PLAN_STATE_STOPPED;
         }
         default: {
-            throw NotSupportedException("Invalid plan_state to encode to proto");
+            throw ViamException("Invalid plan_state to encode to proto",
+                                ViamErrorCode::NotSupported);
         }
     }
 }

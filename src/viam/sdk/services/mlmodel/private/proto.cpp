@@ -242,7 +242,7 @@ MLModelService::tensor_views make_sdk_tensor_from_api_tensor(
                                                  std::move(shape),
                                                  storage);
     }
-    throw NotSupportedException("Unsupported tensor data type");
+    throw ViamException("Unsupported tensor data type", ViamErrorCode::NotSupported);
 }
 
 }  // namespace mlmodel_details

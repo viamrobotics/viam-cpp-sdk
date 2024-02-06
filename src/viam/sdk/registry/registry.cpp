@@ -61,7 +61,7 @@ void Registry::register_model(std::shared_ptr<const ModelRegistration> resource)
     if (resources_.find(reg_key) != resources_.end()) {
         const std::string err = "Cannot register API/model pair" + reg_key +
                                 " as that pair has already been registered";
-        throw DuplicateRegistrationException(err);
+        throw ViamException(err, ViamErrorCode::DuplicateRegistration);
     }
 
     resources_.emplace(std::move(reg_key), std::move(resource));
@@ -72,7 +72,7 @@ void Registry::register_resource_server_(
     if (server_apis_.find(api) != server_apis_.end()) {
         const std::string err = "Cannot register API/model pair" + api.to_string() +
                                 " as that pair has already been registered";
-        throw DuplicateRegistrationException(err);
+        throw ViamException(err, ViamErrorCode::DuplicateRegistration);
     }
 
     server_apis_.emplace(std::move(api), std::move(resource_registration));

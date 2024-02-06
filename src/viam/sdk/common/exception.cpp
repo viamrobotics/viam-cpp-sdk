@@ -4,34 +4,52 @@ namespace viam {
 namespace sdk {
 
 ViamException::ViamException(const std::string& what)
-    : std::runtime_error("ViamException: " + what){};
+    : std::runtime_error("ViamException: " + what), code_(ViamErrorCode::Unknown){};
 
-ViamException::ViamException(const std::string& what, const std::string& type)
-    : std::runtime_error("ViamException(" + type + "): " + what){};
+ViamException::ViamException(const std::string& what, ViamErrorCode code)
+    : std::runtime_error("ViamException: " + what), code_(code){};
 
 ViamException::~ViamException() = default;
 
-ConnectionException::ConnectionException(const std::string& what)
-    : ViamException(what, "Connection"){};
+std::error_code ViamException::code() const noexcept {
+    return code_;
+};
 
-DuplicateRegistrationException::DuplicateRegistrationException(const std::string& what)
-    : ViamException(what, "DuplicateRegistration"){};
+struct ViamErrorCategory : std::error_category {
+    const char* name() const noexcept override;
+    std::string message(int ev) const override;
+};
 
-DuplicateResourceException::DuplicateResourceException(const std::string& what)
-    : ViamException(what, "DuplicateResource"){};
-
-GRPCException::GRPCException(const std::string& what, int grpc_error_code)
-    : ViamException(what, "gRPC"), grpc_error_code_(std::move(grpc_error_code)){};
-
-int GRPCException::error_code() const noexcept {
-    return grpc_error_code_;
+const char* ViamErrorCategory::name() const noexcept {
+    return "viam";
 }
 
-NotSupportedException::NotSupportedException(const std::string& what)
-    : ViamException(what, "NotSupported"){};
+std::string ViamErrorCategory::message(int ev) const {
+    switch (static_cast<ViamErrorCode>(ev)) {
+        case ViamErrorCode::Unknown:
+            return "unknown";
+        case ViamErrorCode::Connection:
+            return "connection establishment failure";
+        case ViamErrorCode::DuplicateRegistration:
+            return "duplicate registration";
+        case ViamErrorCode::DuplicateResource:
+            return "duplicate resource";
+        case ViamErrorCode::GRPC:
+            return "gRPC";
+        case ViamErrorCode::NotSupported:
+            return "not supported";
+        case ViamErrorCode::ResourceNotFound:
+            return "resource not found";
+        default:
+            return "unknown";
+    }
+}
 
-ResourceNotFoundException::ResourceNotFoundException(const std::string& what)
-    : ViamException(what, "ResourceNotFound"){};
+const ViamErrorCategory viamErrorCategory{};
+
+std::error_code make_error_code(ViamErrorCode e) {
+    return {static_cast<int>(e), viamErrorCategory};
+}
 
 }  // namespace sdk
 }  // namespace viam

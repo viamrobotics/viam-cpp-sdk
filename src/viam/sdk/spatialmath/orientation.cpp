@@ -92,7 +92,7 @@ OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) {
         }
         case proto::Orientation::TypeCase::TYPE_NOT_SET:
         default: {
-            throw NotSupportedException("orientation type not known");
+            throw ViamException("orientation type not known", ViamErrorCode::NotSupported);
         }
     }
     return cfg;
@@ -152,7 +152,7 @@ proto::Orientation OrientationConfig::to_proto() const {
             return orientation;
         };
         default: {
-            throw NotSupportedException("orientation type not known");
+            throw ViamException("orientation type not known", ViamErrorCode::NotSupported);
         }
     }
 }

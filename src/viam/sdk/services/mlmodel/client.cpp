@@ -60,7 +60,7 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
 
     const auto result = stub_->Infer(ctx, *req, resp);
     if (!result.ok()) {
-        throw GRPCException(result.error_message(), result.error_code());
+        throw ViamException(result.error_message(), ViamErrorCode::GRPC);
     }
 
     for (const auto& kv : resp->output_tensors().tensors()) {
