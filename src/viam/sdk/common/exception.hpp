@@ -48,5 +48,5 @@ class ViamException : public std::runtime_error {
 
 namespace std {
 template <>
-struct ::std::is_error_code_enum<viam::sdk::ViamErrorCode> : true_type {};
+struct is_error_code_enum<viam::sdk::ViamErrorCode> : true_type {};
 }  // namespace std
