@@ -23,6 +23,36 @@ namespace sdk {
 
 using time_point = std::chrono::time_point<long long, std::chrono::nanoseconds>;
 
+std::vector<Name> resource_names_for_resource(const std::shared_ptr<Resource>& resource) {
+    std::string resource_type;
+    std::string resource_subtype;
+    std::vector<Name> resource_names;
+    for (auto& kv : Registry::registered_models()) {
+        const std::shared_ptr<ModelRegistration> reg = kv.second;
+        if (reg->api().to_string() == resource->api().to_string()) {
+            resource_type = reg->api().resource_type();
+            resource_subtype = reg->api().resource_subtype();
+        } else {
+            continue;
+        }
+
+        if (resource_subtype.empty()) {
+            resource_subtype = resource->name();
+        }
+
+        std::string name_str;
+        name_str.append(kRDK)
+            .append(":")
+            .append(resource_type)
+            .append(":")
+            .append(resource_subtype)
+            .append("/")
+            .append(resource->name());
+        resource_names.push_back(Name::from_string(name_str));
+    }
+    return resource_names;
+}
+
 std::vector<unsigned char> string_to_bytes(const std::string& s) {
     std::vector<unsigned char> bytes(s.begin(), s.end());
     return bytes;

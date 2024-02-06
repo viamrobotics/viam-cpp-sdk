@@ -36,7 +36,7 @@ RobotService_::RobotService_(std::shared_ptr<ResourceManager> manager, Server& s
 std::vector<Name> RobotService_::generate_metadata() {
     std::vector<Name> metadata;
     for (const auto& key_and_val : resource_manager()->resources()) {
-        for (const Name& resource : key_and_val.second->resource_names_for_resource()) {
+        for (const Name& resource : resource_names_for_resource(key_and_val.second)) {
             metadata.push_back(resource);
         }
     }

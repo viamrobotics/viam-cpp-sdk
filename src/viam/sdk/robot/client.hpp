@@ -29,9 +29,6 @@ using viam::robot::v1::RobotService;
 using time_point = std::chrono::time_point<long long, std::chrono::nanoseconds>;
 
 struct discovery_query {
-    discovery_query(){};
-    discovery_query(std::string subtype, std::string model)
-        : subtype(std::move(subtype)), model(std::move(model)){};
     viam::robot::v1::DiscoveryQuery to_proto() const;
     static discovery_query from_proto(const viam::robot::v1::DiscoveryQuery& proto);
 
@@ -41,9 +38,6 @@ struct discovery_query {
 };
 
 struct discovery {
-    discovery(){};
-    discovery(discovery_query query, AttributeMap results)
-        : query(std::move(query)), results(std::move(results)){};
     viam::robot::v1::Discovery to_proto() const;
     static discovery from_proto(const viam::robot::v1::Discovery& proto);
 
@@ -52,12 +46,9 @@ struct discovery {
     friend bool operator==(const discovery& lhs, const discovery& rhs);
 };
 
-struct frame_system_config {
+struct frameSystemConfig {
     viam::robot::v1::FrameSystemConfig to_proto() const;
-    static frame_system_config from_proto(const viam::robot::v1::FrameSystemConfig& proto);
-    frame_system_config(WorldState::transform frame) : frame(std::move(frame)){};
-    frame_system_config(WorldState::transform frame, AttributeMap kinematics)
-        : frame(std::move(frame)), kinematics(std::move(kinematics)){};
+    static frameSystemConfig from_proto(const viam::robot::v1::FrameSystemConfig& proto);
 
     WorldState::transform frame;
     AttributeMap kinematics;
@@ -65,25 +56,23 @@ struct frame_system_config {
 };
 
 struct status {
-    status(){};
     viam::robot::v1::Status to_proto() const;
     static status from_proto(const viam::robot::v1::Status& proto);
 
-    AttributeMap status_map;
     boost::optional<Name> name;
+    boost::optional<AttributeMap> status_map;
     boost::optional<time_point> last_reconfigured;
     friend bool operator==(const discovery_query& lhs, const discovery_query& rhs);
 };
 
 struct operation {
-    operation(std::string id, std::string method) : id(std::move(id)), method(std::move(method)){};
     viam::robot::v1::Operation to_proto() const;
     static operation from_proto(const viam::robot::v1::Operation& proto);
 
     std::string id;
     std::string method;
-    AttributeMap arguments;
     boost::optional<std::string> session_id;
+    boost::optional<AttributeMap> arguments;
     boost::optional<time_point> started;
 };
 
@@ -147,7 +136,7 @@ class RobotClient {
     /// @return a `shared_ptr` to the requested resource.
     std::shared_ptr<T> resource_by_name(std::string name) {
         API api = API::get<T>();
-        Name r = Name(api, "", name);
+        Name r = Name::from_string(api.to_string() + "/" + name);
 
         auto resource = this->resource_by_name(std::move(r));
         return std::dynamic_pointer_cast<T>(resource);
@@ -155,7 +144,7 @@ class RobotClient {
 
     /// @brief Get the configuration of the frame system of the given robot.
     /// @return The configuration of the calling robot's frame system.
-    std::vector<frame_system_config> get_frame_system_config(
+    std::vector<frameSystemConfig> get_frame_system_config(
         std::vector<WorldState::transform> additional_transforms =
             std::vector<WorldState::transform>());
 
@@ -208,7 +197,8 @@ class RobotClient {
     std::shared_ptr<ViamChannel> viam_channel_;
     std::shared_ptr<Channel> channel_;
     bool should_close_channel_;
-    std::unique_ptr<RobotService::Stub> stub_;
+    struct Impl;
+    std::unique_ptr<Impl> impl_;
     std::mutex lock_;
     std::vector<Name> resource_names_;
     ResourceManager resource_manager_;

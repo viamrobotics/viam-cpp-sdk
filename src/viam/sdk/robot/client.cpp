@@ -55,7 +55,10 @@ viam::robot::v1::DiscoveryQuery discovery_query::to_proto() const {
 }
 
 discovery_query discovery_query::from_proto(const viam::robot::v1::DiscoveryQuery& proto) {
-    return discovery_query(proto.subtype(), proto.model());
+    discovery_query query;
+    query.subtype = proto.subtype();
+    query.model = proto.model();
+    return query;
 }
 
 viam::robot::v1::Discovery discovery::to_proto() const {
@@ -66,10 +69,13 @@ viam::robot::v1::Discovery discovery::to_proto() const {
 }
 
 discovery discovery::from_proto(const viam::robot::v1::Discovery& proto) {
-    return discovery(discovery_query::from_proto(proto.query()), struct_to_map(proto.results()));
+    discovery discovery;
+    discovery.query = discovery_query::from_proto(proto.query());
+    discovery.results = struct_to_map(proto.results());
+    return discovery;
 }
 
-viam::robot::v1::FrameSystemConfig frame_system_config::to_proto() const {
+viam::robot::v1::FrameSystemConfig frameSystemConfig::to_proto() const {
     viam::robot::v1::FrameSystemConfig proto;
     *proto.mutable_frame() = frame.to_proto();
     if (kinematics) {
@@ -78,10 +84,9 @@ viam::robot::v1::FrameSystemConfig frame_system_config::to_proto() const {
     return proto;
 }
 
-frame_system_config frame_system_config::from_proto(
-    const viam::robot::v1::FrameSystemConfig& proto) {
-    frame_system_config fsconfig =
-        frame_system_config(WorldState::transform::from_proto(proto.frame()));
+frameSystemConfig frameSystemConfig::from_proto(const viam::robot::v1::FrameSystemConfig& proto) {
+    frameSystemConfig fsconfig;
+    fsconfig.frame = WorldState::transform::from_proto(proto.frame());
     if (proto.has_kinematics()) {
         fsconfig.kinematics = struct_to_map(proto.kinematics());
     }
@@ -94,7 +99,7 @@ viam::robot::v1::Status status::to_proto() const {
         *proto.mutable_name() = name->to_proto();
     }
     if (status_map) {
-        *proto.mutable_status() = map_to_struct(status_map);
+        *proto.mutable_status() = map_to_struct(*status_map);
     }
     if (last_reconfigured) {
         *proto.mutable_last_reconfigured() = time_pt_to_timestamp(*last_reconfigured);
@@ -124,7 +129,7 @@ viam::robot::v1::Operation operation::to_proto() const {
         *proto.mutable_session_id() = *session_id;
     }
     if (arguments) {
-        *proto.mutable_arguments() = map_to_struct(arguments);
+        *proto.mutable_arguments() = map_to_struct(*arguments);
     }
     if (started) {
         *proto.mutable_started() = time_pt_to_timestamp(*started);
@@ -133,7 +138,9 @@ viam::robot::v1::Operation operation::to_proto() const {
 }
 
 operation operation::from_proto(const viam::robot::v1::Operation& proto) {
-    operation op = operation(proto.id(), proto.method());
+    operation op;
+    op.id = proto.id();
+    op.method = proto.method();
     if (proto.has_session_id()) {
         op.session_id = proto.session_id();
     }
@@ -145,6 +152,11 @@ operation operation::from_proto(const viam::robot::v1::Operation& proto) {
     }
     return op;
 }
+
+struct RobotClient::Impl {
+    Impl(std::unique_ptr<RobotService::Stub> stub) : stub_(std::move(stub)) {}
+    std::unique_ptr<RobotService::Stub> stub_;
+};
 
 RobotClient::~RobotClient() {
     if (should_close_channel_) {
@@ -185,7 +197,7 @@ std::vector<status> RobotClient::get_status(std::vector<Name>& components) {
         *req.mutable_resource_names()->Add() = name.to_proto();
     }
 
-    const grpc::Status response = stub_->GetStatus(ctx, req, &resp);
+    const grpc::Status response = impl_->stub_->GetStatus(ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error getting status: " << response.error_message()
                                  << response.error_details();
@@ -209,7 +221,7 @@ std::vector<operation> RobotClient::get_operations() {
 
     std::vector<operation> operations;
 
-    grpc::Status const response = stub_->GetOperations(ctx, req, &resp);
+    grpc::Status const response = impl_->stub_->GetOperations(ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error getting operations: " << response.error_message();
     }
@@ -227,7 +239,7 @@ void RobotClient::cancel_operation(std::string id) {
     ClientContext ctx;
 
     req.set_id(id);
-    const grpc::Status response = stub_->CancelOperation(ctx, req, &resp);
+    const grpc::Status response = impl_->stub_->CancelOperation(ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error canceling operation with id " << id;
     }
@@ -240,7 +252,7 @@ void RobotClient::block_for_operation(std::string id) {
 
     req.set_id(id);
 
-    const grpc::Status response = stub_->BlockForOperation(ctx, req, &resp);
+    const grpc::Status response = impl_->stub_->BlockForOperation(ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error blocking for operation with id " << id;
     }
@@ -251,7 +263,7 @@ void RobotClient::refresh() {
     viam::robot::v1::ResourceNamesResponse resp;
     ClientContext ctx;
 
-    const grpc::Status response = stub_->ResourceNames(ctx, req, &resp);
+    const grpc::Status response = impl_->stub_->ResourceNames(ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error getting resource names: " << response.error_message();
     }
@@ -315,7 +327,7 @@ RobotClient::RobotClient(std::shared_ptr<ViamChannel> channel)
     : viam_channel_(channel),
       channel_(channel->channel()),
       should_close_channel_(false),
-      stub_(RobotService::NewStub(channel_)) {}
+      impl_(std::make_unique<Impl>(RobotService::NewStub(channel_))) {}
 
 std::vector<Name>* RobotClient::resource_names() {
     const std::lock_guard<std::mutex> lock(lock_);
@@ -365,7 +377,7 @@ std::shared_ptr<RobotClient> RobotClient::at_local_socket(std::string address, O
     return robot;
 };
 
-std::vector<frame_system_config> RobotClient::get_frame_system_config(
+std::vector<frameSystemConfig> RobotClient::get_frame_system_config(
     std::vector<WorldState::transform> additional_transforms) {
     viam::robot::v1::FrameSystemConfigRequest req;
     viam::robot::v1::FrameSystemConfigResponse resp;
@@ -377,7 +389,7 @@ std::vector<frame_system_config> RobotClient::get_frame_system_config(
         *req_transforms->Add() = transform.to_proto();
     }
 
-    const grpc::Status response = stub_->FrameSystemConfig(ctx, req, &resp);
+    const grpc::Status response = impl_->stub_->FrameSystemConfig(ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error getting frame system config: "
                                  << response.error_message();
@@ -386,10 +398,10 @@ std::vector<frame_system_config> RobotClient::get_frame_system_config(
     const RepeatedPtrField<viam::robot::v1::FrameSystemConfig> configs =
         resp.frame_system_configs();
 
-    std::vector<frame_system_config> fs_configs = std::vector<frame_system_config>();
+    std::vector<frameSystemConfig> fs_configs = std::vector<frameSystemConfig>();
 
     for (const viam::robot::v1::FrameSystemConfig& fs : configs) {
-        fs_configs.push_back(frame_system_config::from_proto(fs));
+        fs_configs.push_back(frameSystemConfig::from_proto(fs));
     }
 
     return fs_configs;
@@ -412,7 +424,7 @@ pose_in_frame RobotClient::transform_pose(
         *req_transforms->Add() = transform.to_proto();
     }
 
-    const grpc::Status response = stub_->TransformPose(ctx, req, &resp);
+    const grpc::Status response = impl_->stub_->TransformPose(ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error getting PoseInFrame: " << response.error_message();
     }
@@ -431,7 +443,7 @@ std::vector<discovery> RobotClient::discover_components(std::vector<discovery_qu
         *req_queries->Add() = query.to_proto();
     }
 
-    const grpc::Status response = stub_->DiscoverComponents(ctx, req, &resp);
+    const grpc::Status response = impl_->stub_->DiscoverComponents(ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error discovering components: " << response.error_message();
     }
@@ -483,7 +495,7 @@ void RobotClient::stop_all(
         *stop.mutable_params() = s;
         *ep->Add() = stop;
     }
-    const grpc::Status response = stub_->StopAll(ctx, req, &resp);
+    const grpc::Status response = impl_->stub_->StopAll(ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error stopping all: " << response.error_message()
                                  << response.error_details();
