@@ -18,13 +18,13 @@ namespace sdk {
 /// Exception.
 /// @ingroup Exception
 enum class ErrorCondition : uint8_t {
-    k_general = 0,             // Default condition
-    k_connection,              // Issue during connection establishment
-    k_duplicate_registration,  // API or API/Model pair has already been registered
-    k_duplicate_resource,      // Resource has already been added
-    k_grpc,                    // gRPC error from remote machine
-    k_not_supported,           // Behavior not supported by the SDK
-    k_resource_not_found       // Resource does not exist
+    k_general = 0,                 // Default condition
+    k_connection = 1,              // Issue during connection establishment
+    k_duplicate_registration = 2,  // API or API/Model pair has already been registered
+    k_duplicate_resource = 3,      // Resource has already been added
+    k_grpc = 4,                    // gRPC error from remote machine
+    k_not_supported = 5,           // Behavior not supported by the SDK
+    k_resource_not_found = 6       // Resource does not exist
 };
 
 std::error_condition make_error_condition(ErrorCondition e);
@@ -38,7 +38,7 @@ class Exception : public std::runtime_error {
     explicit Exception(const std::string& what);
     virtual ~Exception();
 
-    std::error_condition condition() const noexcept;
+    const std::error_condition& condition() const noexcept;
 
    private:
     std::error_condition condition_;
@@ -51,7 +51,7 @@ class GRPCException : public Exception {
    public:
     explicit GRPCException(grpc::Status status);
 
-    grpc::Status status() const noexcept;
+    const grpc::Status& status() const noexcept;
 
    private:
     grpc::Status status_;
