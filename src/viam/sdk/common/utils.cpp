@@ -40,15 +40,8 @@ std::vector<Name> resource_names_for_resource(const std::shared_ptr<Resource>& r
             resource_subtype = resource->name();
         }
 
-        std::string name_str;
-        name_str.append(kRDK)
-            .append(":")
-            .append(resource_type)
-            .append(":")
-            .append(resource_subtype)
-            .append("/")
-            .append(resource->name());
-        resource_names.push_back(Name::from_string(name_str));
+        resource_names.push_back(
+            Name({kRDK, resource_type, resource_subtype}, "", resource->name()));
     }
     return resource_names;
 }

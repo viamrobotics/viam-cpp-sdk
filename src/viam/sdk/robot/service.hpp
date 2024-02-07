@@ -24,6 +24,7 @@ namespace viam {
 namespace sdk {
 
 using google::protobuf::RepeatedPtrField;
+using viam::common::v1::ResourceName;
 using viam::robot::v1::Status;
 
 /// @class RobotService_ service.hpp "robot/service.hpp"
@@ -49,8 +50,8 @@ class RobotService_ : public ResourceServer, public viam::robot::v1::RobotServic
 
    private:
     std::mutex lock_;
-    std::vector<Name> generate_metadata();
-    std::vector<RobotClient::status> generate_status(std::vector<Name> resource_names);
+    std::vector<ResourceName> generate_metadata();
+    std::vector<Status> generate_status(RepeatedPtrField<ResourceName> resource_names);
 
     void stream_status(const ::viam::robot::v1::StreamStatusRequest* request,
                        ::grpc::ServerWriter<::viam::robot::v1::StreamStatusResponse>* writer,
