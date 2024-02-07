@@ -46,7 +46,7 @@ std::string ErrorCategory::message(int ev) const {
 }
 
 std::error_condition make_error_condition(ErrorCondition e) {
-    static ErrorCategory errorCategory{};
+    static const ErrorCategory errorCategory{};
     return {static_cast<int>(e), errorCategory};
 }
 
