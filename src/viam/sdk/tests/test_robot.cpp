@@ -205,26 +205,17 @@ BOOST_AUTO_TEST_CASE(test_get_operations) {
             auto ops = client->get_operations();
             auto mock_ops = mock_operations_response();
 
-            BOOST_TEST(vec_to_string_util(ops) == proto_vec_to_string_util(mock_ops),
-                       boost::test_tools::per_element());
+            BOOST_TEST(ops == mock_ops, boost::test_tools::per_element());
         });
 }
 
 BOOST_AUTO_TEST_CASE(test_discover_components) {
     robot_client_to_mocks_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
-            auto d_components = client->discover_components({});
+            auto components = client->discover_components({});
             auto mock_components = mock_discovery_response();
 
-            std::vector<viam::robot::v1::Discovery> components =
-                std::vector<viam::robot::v1::Discovery>();
-            for (const RobotClient::discovery& d : d_components) {
-                components.push_back(d.to_proto());
-            }
-
-            BOOST_TEST(
-                proto_vec_to_string_util(components) == proto_vec_to_string_util(mock_components),
-                boost::test_tools::per_element());
+            BOOST_TEST(components == mock_components, boost::test_tools::per_element());
         });
 }
 

@@ -143,10 +143,7 @@ void RobotService_::stream_status(
         interval = request->every().seconds();
     }
 
-    std::vector<Name> resource_names;
-    for (const ResourceName& name : request->resource_names()) {
-        resource_names.push_back(Name::from_proto(name));
-    }
+    const RepeatedPtrField<ResourceName> resource_names = request->resource_names();
     std::thread t(&RobotService_::stream_status, this, request, writer, interval);
     t.detach();
     return ::grpc::Status();

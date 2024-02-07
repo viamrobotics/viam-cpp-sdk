@@ -73,7 +73,7 @@ class RobotClient {
         static status from_proto(const viam::robot::v1::Status& proto);
 
         boost::optional<Name> name;
-        boost::optional<AttributeMap> status_map;
+        AttributeMap status_map;
         // TODO: RSDK-6574: revisit time_point
         boost::optional<std::chrono::time_point<long long, std::chrono::nanoseconds>>
             last_reconfigured;
@@ -87,9 +87,10 @@ class RobotClient {
         std::string id;
         std::string method;
         boost::optional<std::string> session_id;
-        boost::optional<AttributeMap> arguments;
+        AttributeMap arguments;
         // TODO: RSDK-6574: revisit time_point
         boost::optional<std::chrono::time_point<long long, std::chrono::nanoseconds>> started;
+        friend bool operator==(const operation& lhs, const operation& rhs);
     };
 
     ~RobotClient();

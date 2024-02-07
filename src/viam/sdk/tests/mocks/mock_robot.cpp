@@ -22,38 +22,38 @@ common::v1::Pose default_pose(int offset = 0) {
     return pose;
 }
 
-std::vector<viam::robot::v1::Operation> mock_operations_response() {
-    viam::robot::v1::Operation op;
-    *op.mutable_id() = "abc";
-    *op.mutable_method() = "123";
-    *op.mutable_session_id() = "jkl";
-    viam::robot::v1::Operation op1;
-    *op.mutable_id() = "def";
-    *op.mutable_method() = "456";
-    *op.mutable_session_id() = "xyz";
-    std::vector<viam::robot::v1::Operation> resp;
+std::vector<RobotClient::operation> mock_operations_response() {
+    RobotClient::operation op;
+    op.id = "abc";
+    op.method = "123";
+    op.session_id = "jkl";
+    RobotClient::operation op1;
+    op1.id = "def";
+    op1.method = "456";
+    op1.session_id = "xyz";
+    std::vector<RobotClient::operation> resp;
     resp.push_back(op);
     resp.push_back(op1);
     return resp;
 }
 
-std::vector<viam::robot::v1::Discovery> mock_discovery_response() {
-    viam::robot::v1::DiscoveryQuery query;
-    *query.mutable_subtype() = "camera";
-    *query.mutable_model() = "webcam";
+std::vector<RobotClient::discovery> mock_discovery_response() {
+    RobotClient::discovery_query query;
+    query.subtype = "camera";
+    query.model = "webcam";
 
-    google::protobuf::Struct results;
-    google::protobuf::Value str;
-    *str.mutable_string_value() = "bar";
-    google::protobuf::MapPair<std::string, google::protobuf::Value> pair("foo", str);
+    AttributeMap results =
+        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
+    google::protobuf::Value v;
+    *v.mutable_string_value() = "bar";
+    google::protobuf::MapPair<std::string, std::shared_ptr<ProtoType>> pair(
+        std::move("foo"), std::make_shared<ProtoType>(v));
+    results->emplace(pair);
 
-    google::protobuf::Map<std::string, google::protobuf::Value>* map = results.mutable_fields();
-    map->insert(pair);
-
-    viam::robot::v1::Discovery discovery;
-    *discovery.mutable_query() = query;
-    *discovery.mutable_results() = results;
-    return std::vector<viam::robot::v1::Discovery>{discovery};
+    RobotClient::discovery discovery;
+    discovery.query = query;
+    discovery.results = results;
+    return std::vector<RobotClient::discovery>{discovery};
 }
 
 std::vector<viam::robot::v1::Status> mock_status_response() {
@@ -85,20 +85,9 @@ pose_in_frame mock_transform_response() {
 
 std::vector<Name> mock_resource_names_response() {
     std::vector<Name> vec;
-    std::string camera_str;
-    std::string generic_str;
-    std::string motor_str;
-
-    camera_str.append(kRDK).append(":").append(kComponent).append(":").append("camera/mock_camera");
-    generic_str.append(kRDK)
-        .append(":")
-        .append(kComponent)
-        .append(":")
-        .append("generic/mock_generic");
-    motor_str.append(kRDK).append(":").append(kComponent).append(":").append("motor/mock_motor");
-    Name camera = Name::from_string(camera_str);
-    Name generic = Name::from_string(generic_str);
-    Name motor = Name::from_string(motor_str);
+    Name camera = Name({kRDK, kComponent, "camera"}, "", "mock_camera");
+    Name generic = Name({kRDK, kComponent, "generic"}, "", "mock_generic");
+    Name motor = Name({kRDK, kComponent, "motor"}, "", "mock_motor");
 
     vec.push_back(camera);
     vec.push_back(generic);
@@ -162,7 +151,7 @@ std::vector<viam::robot::v1::FrameSystemConfig> mock_config_response() {
     ::viam::robot::v1::DiscoverComponentsResponse* response) {
     auto* discovery = response->mutable_discovery();
     for (auto& d : mock_discovery_response()) {
-        *discovery->Add() = d;
+        *discovery->Add() = d.to_proto();
     }
     return ::grpc::Status();
 }
@@ -181,7 +170,7 @@ std::vector<viam::robot::v1::FrameSystemConfig> mock_config_response() {
     ::viam::robot::v1::GetOperationsResponse* response) {
     auto* ops = response->mutable_operations();
     for (auto& op : mock_operations_response()) {
-        *ops->Add() = op;
+        *ops->Add() = op.to_proto();
     }
     return ::grpc::Status();
 }

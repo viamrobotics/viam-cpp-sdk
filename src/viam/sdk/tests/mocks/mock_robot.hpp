@@ -41,8 +41,8 @@ class MockRobotService : public RobotService_ {
                                  ::viam::robot::v1::GetOperationsResponse* response) override;
 };
 
-std::vector<viam::robot::v1::Operation> mock_operations_response();
-std::vector<viam::robot::v1::Discovery> mock_discovery_response();
+std::vector<RobotClient::operation> mock_operations_response();
+std::vector<RobotClient::discovery> mock_discovery_response();
 std::vector<Name> mock_resource_names_response();
 std::vector<viam::robot::v1::FrameSystemConfig> mock_config_response();
 pose_in_frame mock_transform_response();

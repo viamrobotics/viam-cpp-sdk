@@ -82,7 +82,8 @@ RobotClient::discovery RobotClient::discovery::from_proto(const viam::robot::v1:
 }
 
 bool operator==(const RobotClient::discovery& lhs, const RobotClient::discovery& rhs) {
-    return lhs.query == rhs.query && lhs.results == rhs.results;
+    return lhs.query == rhs.query && map_to_struct(lhs.results).SerializeAsString() ==
+                                         map_to_struct(rhs.results).SerializeAsString();
 }
 
 viam::robot::v1::FrameSystemConfig RobotClient::frame_system_config::to_proto() const {
@@ -115,7 +116,7 @@ viam::robot::v1::Status RobotClient::status::to_proto() const {
         *proto.mutable_name() = name->to_proto();
     }
     if (status_map) {
-        *proto.mutable_status() = map_to_struct(*status_map);
+        *proto.mutable_status() = map_to_struct(status_map);
     }
     if (last_reconfigured) {
         *proto.mutable_last_reconfigured() = time_pt_to_timestamp(*last_reconfigured);
@@ -150,7 +151,7 @@ viam::robot::v1::Operation RobotClient::operation::to_proto() const {
         *proto.mutable_session_id() = *session_id;
     }
     if (arguments) {
-        *proto.mutable_arguments() = map_to_struct(*arguments);
+        *proto.mutable_arguments() = map_to_struct(arguments);
     }
     if (started) {
         *proto.mutable_started() = time_pt_to_timestamp(*started);
