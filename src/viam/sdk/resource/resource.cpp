@@ -12,6 +12,8 @@
 namespace viam {
 namespace sdk {
 
+using common::v1::ResourceName;
+
 Resource::~Resource() = default;
 Resource::Resource(std::string name) : name_(std::move(name)) {}
 
@@ -21,8 +23,8 @@ std::string Resource::name() const {
 
 void Resource::reconfigure(Dependencies deps, ResourceConfig cfg){};
 
-common::v1::ResourceName Resource::get_resource_name(std::string name) {
-    common::v1::ResourceName r;
+ResourceName Resource::get_resource_name(std::string name) {
+    ResourceName r;
     *r.mutable_namespace_() = kRDK;
     *r.mutable_type() = kResource;
     *r.mutable_subtype() = this->api().resource_subtype();

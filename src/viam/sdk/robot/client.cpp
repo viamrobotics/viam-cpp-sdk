@@ -47,6 +47,7 @@ using viam::robot::v1::RobotService;
 // NOLINTNEXTLINE
 const std::string kStreamRemoved("Stream removed");
 
+// TODO: add a traits class for proto to type and back conversion
 viam::robot::v1::DiscoveryQuery RobotClient::discovery_query::to_proto() const {
     viam::robot::v1::DiscoveryQuery proto;
     *proto.mutable_subtype() = subtype;
@@ -356,7 +357,7 @@ RobotClient::RobotClient(std::shared_ptr<ViamChannel> channel)
 
 std::vector<Name>* RobotClient::resource_names() {
     const std::lock_guard<std::mutex> lock(lock_);
-    std::vector<Name>* resources = &resource_names_;
+    std::vector<Name>* resources = std::move(&resource_names_);
     return resources;
 }
 

@@ -41,8 +41,6 @@ using viam::robot::v1::RobotService;
 /// `with_channel` require a user call to `close()`.
 class RobotClient {
    public:
-    using time_point = std::chrono::time_point<long long, std::chrono::nanoseconds>;
-
     struct discovery_query {
         viam::robot::v1::DiscoveryQuery to_proto() const;
         static discovery_query from_proto(const viam::robot::v1::DiscoveryQuery& proto);
@@ -76,7 +74,9 @@ class RobotClient {
 
         boost::optional<Name> name;
         boost::optional<AttributeMap> status_map;
-        boost::optional<time_point> last_reconfigured;
+        // TODO: RSDK-6574: revisit time_point
+        boost::optional<std::chrono::time_point<long long, std::chrono::nanoseconds>>
+            last_reconfigured;
         friend bool operator==(const discovery_query& lhs, const discovery_query& rhs);
     };
 
@@ -88,7 +88,8 @@ class RobotClient {
         std::string method;
         boost::optional<std::string> session_id;
         boost::optional<AttributeMap> arguments;
-        boost::optional<time_point> started;
+        // TODO: RSDK-6574: revisit time_point
+        boost::optional<std::chrono::time_point<long long, std::chrono::nanoseconds>> started;
     };
 
     ~RobotClient();
