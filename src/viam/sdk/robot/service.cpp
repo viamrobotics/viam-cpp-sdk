@@ -53,7 +53,7 @@ std::vector<status> RobotService_::generate_status(std::vector<Name> resource_na
                 bool resource_present = false;
                 const Name name = Name::from_proto(resource->get_resource_name(resource->name()));
                 for (auto& resource_name : resource_names) {
-                    if (ResourceNameEqual::check_equal(name, resource_name)) {
+                    if (name == resource_name) {
                         resource_present = true;
                         break;
                     }

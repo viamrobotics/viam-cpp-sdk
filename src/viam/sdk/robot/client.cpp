@@ -61,6 +61,10 @@ discovery_query discovery_query::from_proto(const viam::robot::v1::DiscoveryQuer
     return query;
 }
 
+bool operator==(const discovery_query& lhs, const discovery_query& rhs) {
+    return lhs.subtype == rhs.subtype && lhs.model == rhs.model;
+}
+
 viam::robot::v1::Discovery discovery::to_proto() const {
     viam::robot::v1::Discovery proto;
     *proto.mutable_query() = query.to_proto();
@@ -75,7 +79,11 @@ discovery discovery::from_proto(const viam::robot::v1::Discovery& proto) {
     return discovery;
 }
 
-viam::robot::v1::FrameSystemConfig frameSystemConfig::to_proto() const {
+bool operator==(const discovery& lhs, const discovery& rhs) {
+    return lhs.query == rhs.query && lhs.results == rhs.results;
+}
+
+viam::robot::v1::FrameSystemConfig frame_system_config::to_proto() const {
     viam::robot::v1::FrameSystemConfig proto;
     *proto.mutable_frame() = frame.to_proto();
     if (kinematics) {
@@ -84,13 +92,18 @@ viam::robot::v1::FrameSystemConfig frameSystemConfig::to_proto() const {
     return proto;
 }
 
-frameSystemConfig frameSystemConfig::from_proto(const viam::robot::v1::FrameSystemConfig& proto) {
-    frameSystemConfig fsconfig;
+frame_system_config frame_system_config::from_proto(
+    const viam::robot::v1::FrameSystemConfig& proto) {
+    frame_system_config fsconfig;
     fsconfig.frame = WorldState::transform::from_proto(proto.frame());
     if (proto.has_kinematics()) {
         fsconfig.kinematics = struct_to_map(proto.kinematics());
     }
     return fsconfig;
+}
+
+bool operator==(const frame_system_config& lhs, const frame_system_config& rhs) {
+    return lhs.frame == rhs.frame && lhs.kinematics == rhs.kinematics;
 }
 
 viam::robot::v1::Status status::to_proto() const {
@@ -119,6 +132,11 @@ status status::from_proto(const viam::robot::v1::Status& proto) {
         status.last_reconfigured = timestamp_to_time_pt(proto.last_reconfigured());
     }
     return status;
+}
+
+bool operator==(const status& lhs, const status& rhs) {
+    return lhs.name == rhs.name && lhs.status_map == rhs.status_map &&
+           lhs.last_reconfigured == rhs.last_reconfigured;
 }
 
 viam::robot::v1::Operation operation::to_proto() const {
@@ -151,6 +169,11 @@ operation operation::from_proto(const viam::robot::v1::Operation& proto) {
         op.started = timestamp_to_time_pt(proto.started());
     }
     return op;
+}
+
+bool operator==(const operation& lhs, const operation& rhs) {
+    return lhs.id == rhs.id && lhs.method == rhs.method && lhs.session_id == rhs.session_id &&
+           lhs.arguments == rhs.arguments && lhs.started == rhs.started;
 }
 
 struct RobotClient::Impl {
@@ -296,7 +319,7 @@ void RobotClient::refresh() {
     bool is_equal = current_resources.size() == resource_names_.size();
     if (is_equal) {
         for (size_t i = 0; i < resource_names_.size(); ++i) {
-            if (!ResourceNameEqual::check_equal(resource_names_.at(i), current_resources.at(i))) {
+            if (!(resource_names_.at(i) == current_resources.at(i))) {
                 is_equal = false;
                 break;
             }
@@ -377,7 +400,7 @@ std::shared_ptr<RobotClient> RobotClient::at_local_socket(std::string address, O
     return robot;
 };
 
-std::vector<frameSystemConfig> RobotClient::get_frame_system_config(
+std::vector<frame_system_config> RobotClient::get_frame_system_config(
     std::vector<WorldState::transform> additional_transforms) {
     viam::robot::v1::FrameSystemConfigRequest req;
     viam::robot::v1::FrameSystemConfigResponse resp;
@@ -398,10 +421,10 @@ std::vector<frameSystemConfig> RobotClient::get_frame_system_config(
     const RepeatedPtrField<viam::robot::v1::FrameSystemConfig> configs =
         resp.frame_system_configs();
 
-    std::vector<frameSystemConfig> fs_configs = std::vector<frameSystemConfig>();
+    std::vector<frame_system_config> fs_configs = std::vector<frame_system_config>();
 
     for (const viam::robot::v1::FrameSystemConfig& fs : configs) {
-        fs_configs.push_back(frameSystemConfig::from_proto(fs));
+        fs_configs.push_back(frame_system_config::from_proto(fs));
     }
 
     return fs_configs;
@@ -462,11 +485,7 @@ std::shared_ptr<Resource> RobotClient::resource_by_name(const Name& name) {
 }
 
 void RobotClient::stop_all() {
-    std::unordered_map<Name,
-                       std::unordered_map<std::string, std::shared_ptr<ProtoType>>,
-                       ResourceNameHasher,
-                       ResourceNameEqual>
-        map;
+    std::unordered_map<Name, std::unordered_map<std::string, std::shared_ptr<ProtoType>>> map;
     for (const Name& name : *resource_names()) {
         const std::unordered_map<std::string, std::shared_ptr<ProtoType>> val;
         map.emplace(name, val);
@@ -475,10 +494,7 @@ void RobotClient::stop_all() {
 }
 
 void RobotClient::stop_all(
-    std::unordered_map<Name,
-                       std::unordered_map<std::string, std::shared_ptr<ProtoType>>,
-                       ResourceNameHasher,
-                       ResourceNameEqual> extra) {
+    std::unordered_map<Name, std::unordered_map<std::string, std::shared_ptr<ProtoType>>> extra) {
     viam::robot::v1::StopAllRequest req;
     viam::robot::v1::StopAllResponse resp;
     ClientContext ctx;

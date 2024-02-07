@@ -25,6 +25,12 @@
 #include <viam/sdk/tests/mocks/mock_robot.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::discovery_query)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::discovery)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::frame_system_config)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::status)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::operation)
+
 namespace viam {
 namespace sdktests {
 namespace robot {
@@ -183,7 +189,7 @@ BOOST_AUTO_TEST_CASE(test_get_frame_system_config) {
         auto fs_config = client->get_frame_system_config();
 
         std::vector<viam::robot::v1::FrameSystemConfig> fs_config_proto;
-        for (const frameSystemConfig& f : fs_config) {
+        for (const frame_system_config& f : fs_config) {
             fs_config_proto.push_back(f.to_proto());
         }
 

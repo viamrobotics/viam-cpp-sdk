@@ -46,9 +46,9 @@ struct discovery {
     friend bool operator==(const discovery& lhs, const discovery& rhs);
 };
 
-struct frameSystemConfig {
+struct frame_system_config {
     viam::robot::v1::FrameSystemConfig to_proto() const;
-    static frameSystemConfig from_proto(const viam::robot::v1::FrameSystemConfig& proto);
+    static frame_system_config from_proto(const viam::robot::v1::FrameSystemConfig& proto);
 
     WorldState::transform frame;
     AttributeMap kinematics;
@@ -144,7 +144,7 @@ class RobotClient {
 
     /// @brief Get the configuration of the frame system of the given robot.
     /// @return The configuration of the calling robot's frame system.
-    std::vector<frameSystemConfig> get_frame_system_config(
+    std::vector<frame_system_config> get_frame_system_config(
         std::vector<WorldState::transform> additional_transforms =
             std::vector<WorldState::transform>());
 
@@ -181,10 +181,9 @@ class RobotClient {
 
     /// @brief Cancel all operations for the robot and stop all actuators and movement.
     /// @param extra Any extra params to pass to resources' `stop` methods, keyed by `Name`.
-    void stop_all(std::unordered_map<Name,
-                                     std::unordered_map<std::string, std::shared_ptr<ProtoType>>,
-                                     ResourceNameHasher,
-                                     ResourceNameEqual> extra);
+    void stop_all(
+        std::unordered_map<Name, std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
+            extra);
 
     /// @brief Cancel a specified operation on the robot.
     /// @param id The ID of the operation to cancel.

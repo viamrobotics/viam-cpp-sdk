@@ -25,22 +25,6 @@ const std::string kBuiltin = "builtin";
 
 std::vector<Name> resource_names_for_resource(const std::shared_ptr<Resource>& resource);
 
-class ResourceNameHasher {
-   public:
-    size_t operator()(Name const& key) const {
-        return std::hash<std::string>()(key.to_string());
-    }
-};
-class ResourceNameEqual {
-   public:
-    bool operator()(Name const& t1, Name const& t2) const {
-        return !(t1.to_string().compare(t2.to_string()));
-    }
-    static bool check_equal(const Name r1, const Name r2) {
-        return r1.to_string().compare(r2.to_string());
-    }
-};
-
 struct response_metadata {
     std::chrono::time_point<long long, std::chrono::nanoseconds> captured_at;
 
