@@ -47,43 +47,44 @@ using viam::robot::v1::RobotService;
 // NOLINTNEXTLINE
 const std::string kStreamRemoved("Stream removed");
 
-viam::robot::v1::DiscoveryQuery discovery_query::to_proto() const {
+viam::robot::v1::DiscoveryQuery RobotClient::discovery_query::to_proto() const {
     viam::robot::v1::DiscoveryQuery proto;
     *proto.mutable_subtype() = subtype;
     *proto.mutable_model() = std::move(model);
     return proto;
 }
 
-discovery_query discovery_query::from_proto(const viam::robot::v1::DiscoveryQuery& proto) {
+RobotClient::discovery_query RobotClient::discovery_query::from_proto(
+    const viam::robot::v1::DiscoveryQuery& proto) {
     discovery_query query;
     query.subtype = proto.subtype();
     query.model = proto.model();
     return query;
 }
 
-bool operator==(const discovery_query& lhs, const discovery_query& rhs) {
+bool operator==(const RobotClient::discovery_query& lhs, const RobotClient::discovery_query& rhs) {
     return lhs.subtype == rhs.subtype && lhs.model == rhs.model;
 }
 
-viam::robot::v1::Discovery discovery::to_proto() const {
+viam::robot::v1::Discovery RobotClient::discovery::to_proto() const {
     viam::robot::v1::Discovery proto;
     *proto.mutable_query() = query.to_proto();
     *proto.mutable_results() = map_to_struct(results);
     return proto;
 }
 
-discovery discovery::from_proto(const viam::robot::v1::Discovery& proto) {
+RobotClient::discovery RobotClient::discovery::from_proto(const viam::robot::v1::Discovery& proto) {
     discovery discovery;
     discovery.query = discovery_query::from_proto(proto.query());
     discovery.results = struct_to_map(proto.results());
     return discovery;
 }
 
-bool operator==(const discovery& lhs, const discovery& rhs) {
+bool operator==(const RobotClient::discovery& lhs, const RobotClient::discovery& rhs) {
     return lhs.query == rhs.query && lhs.results == rhs.results;
 }
 
-viam::robot::v1::FrameSystemConfig frame_system_config::to_proto() const {
+viam::robot::v1::FrameSystemConfig RobotClient::frame_system_config::to_proto() const {
     viam::robot::v1::FrameSystemConfig proto;
     *proto.mutable_frame() = frame.to_proto();
     if (kinematics) {
@@ -92,7 +93,7 @@ viam::robot::v1::FrameSystemConfig frame_system_config::to_proto() const {
     return proto;
 }
 
-frame_system_config frame_system_config::from_proto(
+RobotClient::frame_system_config RobotClient::frame_system_config::from_proto(
     const viam::robot::v1::FrameSystemConfig& proto) {
     frame_system_config fsconfig;
     fsconfig.frame = WorldState::transform::from_proto(proto.frame());
@@ -102,11 +103,12 @@ frame_system_config frame_system_config::from_proto(
     return fsconfig;
 }
 
-bool operator==(const frame_system_config& lhs, const frame_system_config& rhs) {
+bool operator==(const RobotClient::frame_system_config& lhs,
+                const RobotClient::frame_system_config& rhs) {
     return lhs.frame == rhs.frame && lhs.kinematics == rhs.kinematics;
 }
 
-viam::robot::v1::Status status::to_proto() const {
+viam::robot::v1::Status RobotClient::status::to_proto() const {
     viam::robot::v1::Status proto;
     if (name) {
         *proto.mutable_name() = name->to_proto();
@@ -120,7 +122,7 @@ viam::robot::v1::Status status::to_proto() const {
     return proto;
 }
 
-status status::from_proto(const viam::robot::v1::Status& proto) {
+RobotClient::status RobotClient::status::from_proto(const viam::robot::v1::Status& proto) {
     status status;
     if (proto.has_name()) {
         status.name = Name::from_proto(proto.name());
@@ -134,12 +136,12 @@ status status::from_proto(const viam::robot::v1::Status& proto) {
     return status;
 }
 
-bool operator==(const status& lhs, const status& rhs) {
+bool operator==(const RobotClient::status& lhs, const RobotClient::status& rhs) {
     return lhs.name == rhs.name && lhs.status_map == rhs.status_map &&
            lhs.last_reconfigured == rhs.last_reconfigured;
 }
 
-viam::robot::v1::Operation operation::to_proto() const {
+viam::robot::v1::Operation RobotClient::operation::to_proto() const {
     viam::robot::v1::Operation proto;
     *proto.mutable_id() = id;
     *proto.mutable_method() = method;
@@ -155,7 +157,7 @@ viam::robot::v1::Operation operation::to_proto() const {
     return proto;
 }
 
-operation operation::from_proto(const viam::robot::v1::Operation& proto) {
+RobotClient::operation RobotClient::operation::from_proto(const viam::robot::v1::Operation& proto) {
     operation op;
     op.id = proto.id();
     op.method = proto.method();
@@ -171,7 +173,7 @@ operation operation::from_proto(const viam::robot::v1::Operation& proto) {
     return op;
 }
 
-bool operator==(const operation& lhs, const operation& rhs) {
+bool operator==(const RobotClient::operation& lhs, const RobotClient::operation& rhs) {
     return lhs.id == rhs.id && lhs.method == rhs.method && lhs.session_id == rhs.session_id &&
            lhs.arguments == rhs.arguments && lhs.started == rhs.started;
 }
@@ -205,14 +207,14 @@ void RobotClient::close() {
 bool is_error_response(grpc::Status response) {
     return !response.ok() && (response.error_message() != kStreamRemoved);
 }
-std::vector<status> RobotClient::get_status() {
+std::vector<RobotClient::status> RobotClient::get_status() {
     auto* resources = resource_names();
     return get_status(*resources);
 }
 // gets statuses of components associated with robot. If a specific component
 // vector is provided, only statuses for the given Names will be
 // returned
-std::vector<status> RobotClient::get_status(std::vector<Name>& components) {
+std::vector<RobotClient::status> RobotClient::get_status(std::vector<Name>& components) {
     viam::robot::v1::GetStatusRequest req;
     viam::robot::v1::GetStatusResponse resp;
     ClientContext ctx;
@@ -237,7 +239,7 @@ std::vector<status> RobotClient::get_status(std::vector<Name>& components) {
     return statuses;
 }
 
-std::vector<operation> RobotClient::get_operations() {
+std::vector<RobotClient::operation> RobotClient::get_operations() {
     const viam::robot::v1::GetOperationsRequest req;
     viam::robot::v1::GetOperationsResponse resp;
     ClientContext ctx;
@@ -400,7 +402,7 @@ std::shared_ptr<RobotClient> RobotClient::at_local_socket(std::string address, O
     return robot;
 };
 
-std::vector<frame_system_config> RobotClient::get_frame_system_config(
+std::vector<RobotClient::frame_system_config> RobotClient::get_frame_system_config(
     std::vector<WorldState::transform> additional_transforms) {
     viam::robot::v1::FrameSystemConfigRequest req;
     viam::robot::v1::FrameSystemConfigResponse resp;
@@ -455,7 +457,8 @@ pose_in_frame RobotClient::transform_pose(
     return pose_in_frame::from_proto(resp.pose());
 }
 
-std::vector<discovery> RobotClient::discover_components(std::vector<discovery_query> queries) {
+std::vector<RobotClient::discovery> RobotClient::discover_components(
+    std::vector<discovery_query> queries) {
     viam::robot::v1::DiscoverComponentsRequest req;
     viam::robot::v1::DiscoverComponentsResponse resp;
     ClientContext ctx;

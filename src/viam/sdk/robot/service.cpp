@@ -43,8 +43,8 @@ std::vector<Name> RobotService_::generate_metadata() {
     return metadata;
 }
 
-std::vector<status> RobotService_::generate_status(std::vector<Name> resource_names) {
-    std::vector<status> statuses;
+std::vector<RobotClient::status> RobotService_::generate_status(std::vector<Name> resource_names) {
+    std::vector<RobotClient::status> statuses;
     for (const auto& cmp : resource_manager()->resources()) {
         const std::shared_ptr<Resource> resource = cmp.second;
         for (const auto& kv : Registry::registered_models()) {
@@ -61,13 +61,13 @@ std::vector<status> RobotService_::generate_status(std::vector<Name> resource_na
 
                 if (resource_present) {
                     const viam::robot::v1::Status status = registration->create_status(resource);
-                    statuses.push_back(status::from_proto(status));
+                    statuses.push_back(RobotClient::status::from_proto(status));
                 }
             }
         }
     }
 
-    std::vector<status> returnable_statuses;
+    std::vector<RobotClient::status> returnable_statuses;
     for (auto& status : statuses) {
         bool status_name_is_known = false;
         for (auto& resource_name : resource_names) {
@@ -112,8 +112,8 @@ std::vector<status> RobotService_::generate_status(std::vector<Name> resource_na
     }
 
     RepeatedPtrField<viam::robot::v1::Status>* response_status = response->mutable_status();
-    const std::vector<status> statuses = generate_status(names);
-    for (const status& status : statuses) {
+    const std::vector<RobotClient::status> statuses = generate_status(names);
+    for (const RobotClient::status& status : statuses) {
         *response_status->Add() = status.to_proto();
     }
 
@@ -129,10 +129,10 @@ void RobotService_::stream_status(
         for (const common::v1::ResourceName& name : request->resource_names()) {
             names.push_back(Name::from_proto(name));
         }
-        const std::vector<status> statuses = generate_status(names);
+        const std::vector<RobotClient::status> statuses = generate_status(names);
         viam::robot::v1::StreamStatusResponse response;
         RepeatedPtrField<Status>* response_status = response.mutable_status();
-        for (const status& status : statuses) {
+        for (const RobotClient::status& status : statuses) {
             *response_status->Add() = status.to_proto();
         }
 

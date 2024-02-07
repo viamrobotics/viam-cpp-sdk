@@ -26,55 +26,6 @@ namespace sdk {
 
 using grpc::Channel;
 using viam::robot::v1::RobotService;
-using time_point = std::chrono::time_point<long long, std::chrono::nanoseconds>;
-
-struct discovery_query {
-    viam::robot::v1::DiscoveryQuery to_proto() const;
-    static discovery_query from_proto(const viam::robot::v1::DiscoveryQuery& proto);
-
-    std::string subtype;
-    std::string model;
-    friend bool operator==(const discovery_query& lhs, const discovery_query& rhs);
-};
-
-struct discovery {
-    viam::robot::v1::Discovery to_proto() const;
-    static discovery from_proto(const viam::robot::v1::Discovery& proto);
-
-    discovery_query query;
-    AttributeMap results;
-    friend bool operator==(const discovery& lhs, const discovery& rhs);
-};
-
-struct frame_system_config {
-    viam::robot::v1::FrameSystemConfig to_proto() const;
-    static frame_system_config from_proto(const viam::robot::v1::FrameSystemConfig& proto);
-
-    WorldState::transform frame;
-    AttributeMap kinematics;
-    friend bool operator==(const discovery_query& lhs, const discovery_query& rhs);
-};
-
-struct status {
-    viam::robot::v1::Status to_proto() const;
-    static status from_proto(const viam::robot::v1::Status& proto);
-
-    boost::optional<Name> name;
-    boost::optional<AttributeMap> status_map;
-    boost::optional<time_point> last_reconfigured;
-    friend bool operator==(const discovery_query& lhs, const discovery_query& rhs);
-};
-
-struct operation {
-    viam::robot::v1::Operation to_proto() const;
-    static operation from_proto(const viam::robot::v1::Operation& proto);
-
-    std::string id;
-    std::string method;
-    boost::optional<std::string> session_id;
-    boost::optional<AttributeMap> arguments;
-    boost::optional<time_point> started;
-};
 
 /// @defgroup Robot Classes related to a Robot representation.
 
@@ -90,6 +41,56 @@ struct operation {
 /// `with_channel` require a user call to `close()`.
 class RobotClient {
    public:
+    using time_point = std::chrono::time_point<long long, std::chrono::nanoseconds>;
+
+    struct discovery_query {
+        viam::robot::v1::DiscoveryQuery to_proto() const;
+        static discovery_query from_proto(const viam::robot::v1::DiscoveryQuery& proto);
+
+        std::string subtype;
+        std::string model;
+        friend bool operator==(const discovery_query& lhs, const discovery_query& rhs);
+    };
+
+    struct discovery {
+        viam::robot::v1::Discovery to_proto() const;
+        static discovery from_proto(const viam::robot::v1::Discovery& proto);
+
+        discovery_query query;
+        AttributeMap results;
+        friend bool operator==(const discovery& lhs, const discovery& rhs);
+    };
+
+    struct frame_system_config {
+        viam::robot::v1::FrameSystemConfig to_proto() const;
+        static frame_system_config from_proto(const viam::robot::v1::FrameSystemConfig& proto);
+
+        WorldState::transform frame;
+        AttributeMap kinematics;
+        friend bool operator==(const discovery_query& lhs, const discovery_query& rhs);
+    };
+
+    struct status {
+        viam::robot::v1::Status to_proto() const;
+        static status from_proto(const viam::robot::v1::Status& proto);
+
+        boost::optional<Name> name;
+        boost::optional<AttributeMap> status_map;
+        boost::optional<time_point> last_reconfigured;
+        friend bool operator==(const discovery_query& lhs, const discovery_query& rhs);
+    };
+
+    struct operation {
+        viam::robot::v1::Operation to_proto() const;
+        static operation from_proto(const viam::robot::v1::Operation& proto);
+
+        std::string id;
+        std::string method;
+        boost::optional<std::string> session_id;
+        boost::optional<AttributeMap> arguments;
+        boost::optional<time_point> started;
+    };
+
     ~RobotClient();
     void refresh();
     void close();

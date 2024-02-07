@@ -25,11 +25,11 @@
 #include <viam/sdk/tests/mocks/mock_robot.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
-BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::discovery_query)
-BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::discovery)
-BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::frame_system_config)
-BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::status)
-BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::operation)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::discovery_query)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::discovery)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::frame_system_config)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::status)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::operation)
 
 namespace viam {
 namespace sdktests {
@@ -189,7 +189,7 @@ BOOST_AUTO_TEST_CASE(test_get_frame_system_config) {
         auto fs_config = client->get_frame_system_config();
 
         std::vector<viam::robot::v1::FrameSystemConfig> fs_config_proto;
-        for (const frame_system_config& f : fs_config) {
+        for (const RobotClient::frame_system_config& f : fs_config) {
             fs_config_proto.push_back(f.to_proto());
         }
 
@@ -218,7 +218,7 @@ BOOST_AUTO_TEST_CASE(test_discover_components) {
 
             std::vector<viam::robot::v1::Discovery> components =
                 std::vector<viam::robot::v1::Discovery>();
-            for (const discovery& d : d_components) {
+            for (const RobotClient::discovery& d : d_components) {
                 components.push_back(d.to_proto());
             }
 
