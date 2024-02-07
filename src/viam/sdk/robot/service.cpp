@@ -62,7 +62,8 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
                 }
 
                 if (resource_present) {
-                    statuses.push_back(registration->create_status(resource));
+                    const Status status = registration->create_status(resource);
+                    statuses.push_back(status);
                 }
             }
         }
@@ -142,9 +143,9 @@ void RobotService_::stream_status(
         interval = request->every().seconds();
     }
 
-    std::vector<Name> names;
+    std::vector<Name> resource_names;
     for (const ResourceName& name : request->resource_names()) {
-        names.push_back(Name::from_proto(name));
+        resource_names.push_back(Name::from_proto(name));
     }
     std::thread t(&RobotService_::stream_status, this, request, writer, interval);
     t.detach();
@@ -168,8 +169,8 @@ void RobotService_::stream_status(
 
     for (const auto& r : resource_manager()->resources()) {
         const std::shared_ptr<Resource> resource = r.second;
-        const Name rn = Name::from_proto(resource->get_resource_name(resource->name()));
-        const std::string rn_ = rn.to_string();
+        const ResourceName rn = resource->get_resource_name(resource->name());
+        const std::string rn_ = rn.SerializeAsString();
         if (extra.find(rn_) != extra.end()) {
             try {
                 Stoppable::stop_if_stoppable(resource, extra.at(rn_));
