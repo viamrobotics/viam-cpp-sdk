@@ -102,7 +102,7 @@ Board::analog_value BoardClient::read_analog(const std::string& analog_reader_na
 
     const grpc::Status status = stub_->ReadAnalogReader(ctx, request, &response);
     if (!status.ok()) {
-        throw ViamException(status.error_message(), ViamErrorCode::GRPC);
+        throw GRPCException(status);
     }
     return response.value();
 }
@@ -131,7 +131,7 @@ Board::digital_value BoardClient::read_digital_interrupt(const std::string& digi
 
     const grpc::Status status = stub_->GetDigitalInterruptValue(ctx, request, &response);
     if (!status.ok()) {
-        throw ViamException(status.error_message(), ViamErrorCode::GRPC);
+        throw GRPCException(status);
     }
     return response.value();
 }

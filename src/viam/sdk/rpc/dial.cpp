@@ -104,7 +104,7 @@ std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
         uri, entity, type, payload, opts.allows_insecure_downgrade(), float_timeout.count(), ptr);
     if (socket_path == NULL) {
         free_rust_runtime(ptr);
-        throw ViamException("Unable to establish connecting path", ViamErrorCode::Connection);
+        throw Exception(ErrorCondition::k_connection, "Unable to establish connecting path");
     }
 
     std::string address("unix://");

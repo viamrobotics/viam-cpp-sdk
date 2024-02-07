@@ -27,7 +27,7 @@ void MockMotor::set_power(double power_pct, const AttributeMap& extra) {
 void MockMotor::go_for(double rpm, double revolutions, const AttributeMap& extra) {
     // This is the actual behavior from rdk:builtin:fake_motor
     if (rpm == 0.0) {
-        throw ViamException("Cannot move motor at 0 RPM");
+        throw Exception("Cannot move motor at 0 RPM");
     }
     position_ += revolutions;
 }

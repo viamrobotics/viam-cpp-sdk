@@ -2,6 +2,7 @@
 ///
 /// @brief Defines custom exceptions for the SDK.
 #pragma once
+#include <grpcpp/support/status.h>
 #include <stdexcept>
 #include <string>
 
@@ -12,35 +13,48 @@ namespace sdk {
 
 /// @defgroup Exception Classes related to SDK exceptions.
 
-/// @class ViamErrorCode
-/// @brief Defines a set of a error codes to be used in conjunction with
-/// ViamException.
+/// @class ErrorCondition
+/// @brief Defines a set of a error conditions to be used in conjunction with
+/// Exception.
 /// @ingroup Exception
-enum class ViamErrorCode {
-    Unknown = 0,            // Default code
-    Connection,             // Issue during connection establishment
-    DuplicateRegistration,  // API or API/Model pair has already been registered
-    DuplicateResource,      // Resource has already been added
-    GRPC,                   // gRPC error from remote machine
-    NotSupported,           // Behavior not supported by the SDK
-    ResourceNotFound        // Resource does not exist
+enum class ErrorCondition : uint8_t {
+    k_general = 0,             // Default condition
+    k_connection,              // Issue during connection establishment
+    k_duplicate_registration,  // API or API/Model pair has already been registered
+    k_duplicate_resource,      // Resource has already been added
+    k_grpc,                    // gRPC error from remote machine
+    k_not_supported,           // Behavior not supported by the SDK
+    k_resource_not_found       // Resource does not exist
 };
 
-std::error_code make_error_code(ViamErrorCode e);
+std::error_condition make_error_condition(ErrorCondition e);
 
-/// @class ViamException
+/// @class Exception
 /// @brief Defines an exception type for the SDK.
 /// @ingroup Exception
-class ViamException : public std::runtime_error {
+class Exception : public std::runtime_error {
    public:
-    explicit ViamException(const std::string& what);
-    explicit ViamException(const std::string& what, ViamErrorCode code);
-    virtual ~ViamException();
+    explicit Exception(ErrorCondition condition, const std::string& what);
+    explicit Exception(const std::string& what);
+    virtual ~Exception();
 
-    std::error_code code() const noexcept;
+    std::error_condition condition() const noexcept;
 
    private:
-    std::error_code code_;
+    std::error_condition condition_;
+};
+
+/// @class GRPCException
+/// @brief Defines an exception from a gRPC interaction.
+/// @ingroup Exception
+class GRPCException : public Exception {
+   public:
+    explicit GRPCException(grpc::Status status);
+
+    grpc::Status status() const noexcept;
+
+   private:
+    grpc::Status status_;
 };
 
 }  // namespace sdk
@@ -48,5 +62,5 @@ class ViamException : public std::runtime_error {
 
 namespace std {
 template <>
-struct is_error_code_enum<viam::sdk::ViamErrorCode> : true_type {};
+struct is_error_condition_enum<viam::sdk::ErrorCondition> : true_type {};
 }  // namespace std

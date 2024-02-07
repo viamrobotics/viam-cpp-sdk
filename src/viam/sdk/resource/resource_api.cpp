@@ -68,7 +68,7 @@ API API::from_string(std::string api) {
         boost::split(api_parts, api, boost::is_any_of(":"));
         return {api_parts.at(0), api_parts.at(1), api_parts.at(2)};
     }
-    throw ViamException("string " + api + " is not a valid api name");
+    throw Exception("string " + api + " is not a valid api name");
 }
 
 API::API(APIType type, std::string resource_subtype)
@@ -144,7 +144,7 @@ Name Name::from_proto(const viam::common::v1::ResourceName& proto) {
 
 Name Name::from_string(std::string name) {
     if (!std::regex_match(name, NAME_REGEX)) {
-        throw ViamException("Received invalid Name string: " + name);
+        throw Exception("Received invalid Name string: " + name);
     }
     std::vector<std::string> slash_splits;
     boost::split(slash_splits, name, boost::is_any_of("/"));
@@ -234,7 +234,7 @@ Model Model::from_str(std::string model) {
     if (std::regex_match(model, SINGLE_FIELD_REGEX)) {
         return {"rdk", "builtin", model};
     }
-    throw ViamException("string " + model + " is not a valid model name");
+    throw Exception("string " + model + " is not a valid model name");
 }
 
 std::string ModelFamily::to_string() const {

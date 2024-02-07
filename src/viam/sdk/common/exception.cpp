@@ -3,52 +3,58 @@
 namespace viam {
 namespace sdk {
 
-ViamException::ViamException(const std::string& what)
-    : std::runtime_error("ViamException: " + what), code_(ViamErrorCode::Unknown){};
+Exception::Exception(const std::string& what)
+    : std::runtime_error("ViamException: " + what), condition_(ErrorCondition::k_general){};
 
-ViamException::ViamException(const std::string& what, ViamErrorCode code)
-    : std::runtime_error("ViamException: " + what), code_(code){};
+Exception::Exception(ErrorCondition condition, const std::string& what)
+    : std::runtime_error("ViamException: " + what), condition_(condition){};
 
-ViamException::~ViamException() = default;
+Exception::~Exception() = default;
 
-std::error_code ViamException::code() const noexcept {
-    return code_;
+std::error_condition Exception::condition() const noexcept {
+    return condition_;
 };
 
-struct ViamErrorCategory : std::error_category {
+struct ErrorCategory : std::error_category {
     const char* name() const noexcept override;
     std::string message(int ev) const override;
 };
 
-const char* ViamErrorCategory::name() const noexcept {
-    return "viam";
+const char* ErrorCategory::name() const noexcept {
+    return "viam::sdk";
 }
 
-std::string ViamErrorCategory::message(int ev) const {
-    switch (static_cast<ViamErrorCode>(ev)) {
-        case ViamErrorCode::Unknown:
-            return "unknown";
-        case ViamErrorCode::Connection:
+std::string ErrorCategory::message(int ev) const {
+    switch (static_cast<ErrorCondition>(ev)) {
+        case ErrorCondition::k_general:
+            return "general";
+        case ErrorCondition::k_connection:
             return "connection establishment failure";
-        case ViamErrorCode::DuplicateRegistration:
+        case ErrorCondition::k_duplicate_registration:
             return "duplicate registration";
-        case ViamErrorCode::DuplicateResource:
+        case ErrorCondition::k_duplicate_resource:
             return "duplicate resource";
-        case ViamErrorCode::GRPC:
+        case ErrorCondition::k_grpc:
             return "gRPC";
-        case ViamErrorCode::NotSupported:
+        case ErrorCondition::k_not_supported:
             return "not supported";
-        case ViamErrorCode::ResourceNotFound:
+        case ErrorCondition::k_resource_not_found:
             return "resource not found";
         default:
             return "unknown";
     }
 }
 
-const ViamErrorCategory viamErrorCategory{};
+std::error_condition make_error_condition(ErrorCondition e) {
+    static ErrorCategory errorCategory{};
+    return {static_cast<int>(e), errorCategory};
+}
 
-std::error_code make_error_code(ViamErrorCode e) {
-    return {static_cast<int>(e), viamErrorCategory};
+GRPCException::GRPCException(grpc::Status status)
+    : Exception(ErrorCondition::k_grpc, status.error_message()), status_(std::move(status)){};
+
+grpc::Status GRPCException::status() const noexcept {
+    return status_;
 }
 
 }  // namespace sdk

@@ -60,7 +60,7 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
 
     const auto result = stub_->Infer(ctx, *req, resp);
     if (!result.ok()) {
-        throw ViamException(result.error_message(), ViamErrorCode::GRPC);
+        throw GRPCException(result);
     }
 
     for (const auto& kv : resp->output_tensors().tensors()) {
@@ -109,7 +109,7 @@ struct MLModelService::metadata MLModelServiceClient::metadata(const AttributeMa
                     message << "Failed to deserialize returned Metadata.TensorInfo.data_type field "
                                "with value `"
                             << s.data_type() << "` to one of the known tensor data types";
-                    throw ViamException(message.str());
+                    throw Exception(message.str());
                 }
                 ti.data_type = *data_type;
                 ti.shape.reserve(s.shape_size());
@@ -134,7 +134,7 @@ struct MLModelService::metadata MLModelServiceClient::metadata(const AttributeMa
                             message << "Failed to deserialize returned "
                                        "Metadata.TensorInfo.File.label_type field with value `"
                                     << af.label_type() << "` to one of the known label types";
-                            throw ViamException(message.str());
+                            throw Exception(message.str());
                         }
                     }
                 }

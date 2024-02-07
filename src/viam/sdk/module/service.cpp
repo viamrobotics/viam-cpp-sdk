@@ -55,7 +55,7 @@ Dependencies ModuleService::get_dependencies_(
             std::ostringstream buffer;
             buffer << resource_name << ": Dependency "
                    << "`" << dep_name << "` was not found during (re)configuration";
-            throw ViamException(buffer.str(), ViamErrorCode::ResourceNotFound);
+            throw Exception(ErrorCondition::k_resource_not_found, buffer.str());
         }
         deps.emplace(dep_name, dep_resource);
     }
@@ -218,7 +218,7 @@ ModuleService::ModuleService(int argc,
                              char** argv,
                              std::vector<std::shared_ptr<ModelRegistration>> registrations) {
     if (argc < 2) {
-        throw ViamException("Need socket path as command line argument");
+        throw Exception("Need socket path as command line argument");
     }
     module_ = std::make_unique<Module>(argv[1]);
     server_ = std::make_unique<Server>();

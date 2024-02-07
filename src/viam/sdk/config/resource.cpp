@@ -85,7 +85,7 @@ void ResourceConfig::fix_api() {
     // config structs
     if (this->api_.type_namespace() != this->namespace__ ||
         this->api_.resource_subtype() != this->type_) {
-        throw ViamException("component namespace and/or type do not match component api field");
+        throw Exception("component namespace and/or type do not match component api field");
     }
 }
 

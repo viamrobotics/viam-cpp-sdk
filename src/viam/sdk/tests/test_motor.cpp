@@ -105,7 +105,7 @@ BOOST_AUTO_TEST_CASE(mock_do_command) {
 
 BOOST_AUTO_TEST_CASE(mock_exception_creation) {
     std::shared_ptr<MockMotor> motor = MockMotor::get_mock_motor();
-    BOOST_CHECK_THROW(motor->go_for(0.0, 1.0), ViamException);
+    BOOST_CHECK_THROW(motor->go_for(0.0, 1.0), Exception);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

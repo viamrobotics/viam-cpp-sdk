@@ -68,7 +68,7 @@ std::string get_shortcut_name(const std::string& name) {
 
 void ResourceManager::do_add(const Name& name, std::shared_ptr<Resource> resource) {
     if (name.name().empty()) {
-        throw ViamException("Empty name used for resource: " + name.to_string());
+        throw Exception("Empty name used for resource: " + name.to_string());
     }
     std::string short_name = name.short_name();
 
@@ -77,8 +77,8 @@ void ResourceManager::do_add(const Name& name, std::shared_ptr<Resource> resourc
 
 void ResourceManager::do_add(std::string name, std::shared_ptr<Resource> resource) {
     if (resources_.find(name) != resources_.end()) {
-        throw ViamException("Attempted to add resource that already existed: " + name,
-                            ViamErrorCode::DuplicateResource);
+        throw Exception(ErrorCondition::k_duplicate_resource,
+                        "Attempted to add resource that already existed: " + name);
     }
 
     std::string shortcut = get_shortcut_name(name);
@@ -104,9 +104,9 @@ void ResourceManager::add(const Name& name, std::shared_ptr<Resource> resource) 
 void ResourceManager::do_remove(const Name& name) {
     const std::string short_name = name.short_name();
     if (resources_.find(short_name) == resources_.end()) {
-        throw ViamException(
-            "Attempted to remove resource " + name.to_string() + " but it didn't exist!",
-            ViamErrorCode::ResourceNotFound);
+        throw Exception(
+            ErrorCondition::k_resource_not_found,
+            "Attempted to remove resource " + name.to_string() + " but it didn't exist!");
     }
     resources_.erase(short_name);
 

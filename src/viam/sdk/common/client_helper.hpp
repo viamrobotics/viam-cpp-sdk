@@ -17,7 +17,7 @@ class ClientHelper {
     static void default_rsc_(RequestType&) {}
     static void default_rhc_(const ResponseType&) {}
     static void default_ehc_(const ::grpc::Status& status) {
-        throw ViamException(status.error_message(), ViamErrorCode::GRPC);
+        throw GRPCException(status);
     }
 
    public:

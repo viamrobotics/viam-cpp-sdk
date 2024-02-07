@@ -132,7 +132,7 @@ Value ProtoType::proto_value() {
             break;
         }
         default: {
-            throw ViamException(
+            throw Exception(
                 "Invalid proto_value conversion type. This should never happen;\
 						please file a bug report.");
         }
@@ -195,7 +195,7 @@ bool operator==(const ProtoType& lhs, const ProtoType& rhs) {
             return std::equal(lhs_vec.begin(), lhs_vec.end(), rhs_vec.begin(), rhs_vec.end(), pred);
         }
         default: {
-            throw ViamException(
+            throw Exception(
                 "Invalid proto_value conversion type. This should never happen;\
                    please file a bug report.");
         }
