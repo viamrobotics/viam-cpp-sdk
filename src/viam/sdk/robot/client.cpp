@@ -488,16 +488,17 @@ std::shared_ptr<Resource> RobotClient::resource_by_name(const Name& name) {
 }
 
 void RobotClient::stop_all() {
-    std::unordered_map<Name, std::unordered_map<std::string, std::shared_ptr<ProtoType>>> map;
+    std::unordered_map<Name, AttributeMap> map;
     for (const Name& name : *resource_names()) {
         const std::unordered_map<std::string, std::shared_ptr<ProtoType>> val;
-        map.emplace(name, val);
+        const AttributeMap v =
+            std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>(val);
+        map.emplace(name, v);
     }
     stop_all(map);
 }
 
-void RobotClient::stop_all(
-    std::unordered_map<Name, std::unordered_map<std::string, std::shared_ptr<ProtoType>>> extra) {
+void RobotClient::stop_all(std::unordered_map<Name, AttributeMap> extra) {
     viam::robot::v1::StopAllRequest req;
     viam::robot::v1::StopAllResponse resp;
     ClientContext ctx;
@@ -505,9 +506,7 @@ void RobotClient::stop_all(
     RepeatedPtrField<viam::robot::v1::StopExtraParameters>* ep = req.mutable_extra();
     for (auto& xtra : extra) {
         const Name name = xtra.first;
-        const std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> params =
-            std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>(
-                xtra.second);
+        const AttributeMap params = xtra.second;
         const google::protobuf::Struct s = map_to_struct(params);
         viam::robot::v1::StopExtraParameters stop;
         *stop.mutable_name() = name.to_proto();

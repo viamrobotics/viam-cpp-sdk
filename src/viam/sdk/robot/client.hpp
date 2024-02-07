@@ -137,7 +137,7 @@ class RobotClient {
     /// @return a `shared_ptr` to the requested resource.
     std::shared_ptr<T> resource_by_name(std::string name) {
         API api = API::get<T>();
-        Name r = Name::from_string(api.to_string() + "/" + name);
+        Name r = Name(api, "", name);
 
         auto resource = this->resource_by_name(std::move(r));
         return std::dynamic_pointer_cast<T>(resource);
@@ -182,9 +182,7 @@ class RobotClient {
 
     /// @brief Cancel all operations for the robot and stop all actuators and movement.
     /// @param extra Any extra params to pass to resources' `stop` methods, keyed by `Name`.
-    void stop_all(
-        std::unordered_map<Name, std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
-            extra);
+    void stop_all(std::unordered_map<Name, AttributeMap> extra);
 
     /// @brief Cancel a specified operation on the robot.
     /// @param id The ID of the operation to cancel.
