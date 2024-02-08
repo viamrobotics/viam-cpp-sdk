@@ -26,13 +26,13 @@ class ResourceManager {
     /// @brief Returns a resource.
     /// @param name the name of the desired resource.
     /// @throws `std::runtime_error` if the desired resource does not exist.
-    std::shared_ptr<Resource> resource(const std::string& name);
+    std::shared_ptr<Resource> resource(const std::string& name) const;
 
     /// @brief Returns a resource after dynamically downcasting to `T`.
     /// @param name of the desired resource.
     /// @throws `std::runtime_error` if the desired resource does not exist.
     template <typename T>
-    std::shared_ptr<T> resource(const std::string& name) {
+    std::shared_ptr<T> resource(const std::string& name) const {
         static_assert(std::is_base_of<Resource, T>::value, "T is not derived from Resource");
         return std::dynamic_pointer_cast<T>(resource(name));
     }
