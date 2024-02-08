@@ -17,6 +17,7 @@ namespace sdk {
 /// @ingroup Motion
 class MotionClient : public Motion {
    public:
+    using interface_type = Motion;
     MotionClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     bool move(const pose_in_frame& destination,
               const Name& component_name,

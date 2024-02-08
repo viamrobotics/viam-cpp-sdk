@@ -18,6 +18,7 @@
 
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
+#include <viam/sdk/services/mlmodel/mlmodel.hpp>
 
 namespace viam {
 namespace sdk {
@@ -29,6 +30,8 @@ namespace sdk {
 class MLModelServiceServer : public ResourceServer,
                              public ::viam::service::mlmodel::v1::MLModelService::Service {
    public:
+    using interface_type = MLModelService;
+    using service_type = service::mlmodel::v1::MLModelService;
     explicit MLModelServiceServer(std::shared_ptr<ResourceManager> manager);
 
     ::grpc::Status Infer(::grpc::ServerContext* context,

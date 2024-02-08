@@ -40,6 +40,7 @@ struct API::traits<Gizmo> {
 // `GizmoClient` is the gRPC client implementation of a `Gizmo` component.
 class GizmoClient : public Gizmo {
    public:
+    using interface_type = Gizmo;
     GizmoClient(std::string name, std::shared_ptr<grpc::Channel> channel);
 
     bool do_one(std::string arg1) override;
@@ -57,6 +58,8 @@ class GizmoClient : public Gizmo {
 // `GizmoServer` is the gRPC server implementation of a `Gizmo` component.
 class GizmoServer : public ResourceServer, public GizmoService::Service {
    public:
+    using interface_type = Gizmo;
+    using service_type = GizmoService;
     explicit GizmoServer(std::shared_ptr<ResourceManager> manager);
 
     grpc::Status DoOne(grpc::ServerContext* context,

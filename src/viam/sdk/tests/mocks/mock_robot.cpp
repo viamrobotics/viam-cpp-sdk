@@ -1,4 +1,3 @@
-#include "viam/sdk/common/proto_type.hpp"
 #include <vector>
 #include <viam/sdk/tests/mocks/mock_robot.hpp>
 

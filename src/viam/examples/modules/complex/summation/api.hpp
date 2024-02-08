@@ -40,6 +40,7 @@ struct API::traits<Summation> {
 // service.
 class SummationClient : public Summation {
    public:
+    using interface_type = Summation;
     SummationClient(std::string name, std::shared_ptr<grpc::Channel> channel);
 
     double sum(std::vector<double> numbers) override;
@@ -54,6 +55,8 @@ class SummationClient : public Summation {
 // service.
 class SummationServer : public ResourceServer, public SummationService::Service {
    public:
+    using interface_type = Summation;
+    using service_type = SummationService;
     explicit SummationServer(std::shared_ptr<ResourceManager> manager);
 
     grpc::Status Sum(grpc::ServerContext* context,

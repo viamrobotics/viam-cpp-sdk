@@ -30,6 +30,7 @@ namespace sdk {
 ///
 class MLModelServiceClient : public MLModelService {
    public:
+    using interface_type = MLModelService;
     using service_type = viam::service::mlmodel::v1::MLModelService;
 
     MLModelServiceClient(std::string name, std::shared_ptr<grpc::Channel> channel);

@@ -18,6 +18,7 @@ namespace sdk {
 /// @ingroup GenericService
 class GenericServiceClient : public GenericService {
    public:
+    using interface_type = GenericService;
     GenericServiceClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     AttributeMap do_command(AttributeMap command) override;
 

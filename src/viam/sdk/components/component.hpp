@@ -14,7 +14,7 @@ namespace sdk {
 class Component : public Resource {
    public:
     Component();
-    viam::common::v1::ResourceName get_resource_name(std::string name) override;
+    viam::common::v1::ResourceName get_resource_name(std::string name) const override;
 
    protected:
     explicit Component(std::string name);

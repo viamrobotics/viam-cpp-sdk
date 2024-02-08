@@ -22,6 +22,7 @@ namespace sdk {
 /// @ingroup Base
 class BaseClient : public Base {
    public:
+    using interface_type = Base;
     BaseClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     void move_straight(int64_t distance_mm, double mm_per_sec, const AttributeMap& extra) override;
     void spin(double angle_deg, double degs_per_sec, const AttributeMap& extra) override;

@@ -6,6 +6,7 @@
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/motor/v1/motor.grpc.pb.h>
 
+#include <viam/sdk/components/motor/motor.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
 
@@ -18,6 +19,8 @@ namespace sdk {
 class MotorServer : public ResourceServer,
                     public viam::component::motor::v1::MotorService::Service {
    public:
+    using interface_type = Motor;
+    using service_type = component::motor::v1::MotorService;
     explicit MotorServer(std::shared_ptr<ResourceManager> manager);
 
     ::grpc::Status SetPower(

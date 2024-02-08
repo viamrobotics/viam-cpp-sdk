@@ -20,6 +20,7 @@ namespace sdk {
 /// @ingroup Encoder
 class EncoderClient : public Encoder {
    public:
+    using interface_type = Encoder;
     EncoderClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     position get_position(const AttributeMap& extra, position_type position_type) override;
     void reset_position(const AttributeMap& extra) override;

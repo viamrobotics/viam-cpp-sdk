@@ -8,6 +8,7 @@
 
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
+#include <viam/sdk/services/generic/generic.hpp>
 
 namespace viam {
 namespace sdk {
@@ -18,6 +19,8 @@ namespace sdk {
 class GenericServiceServer : public ResourceServer,
                              public viam::service::generic::v1::GenericService::Service {
    public:
+    using interface_type = GenericService;
+    using service_type = service::generic::v1::GenericService;
     explicit GenericServiceServer(std::shared_ptr<ResourceManager> manager);
 
     ::grpc::Status DoCommand(::grpc::ServerContext* context,

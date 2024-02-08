@@ -12,7 +12,7 @@ namespace sdk {
 
 Server::Server() : builder_(std::make_unique<grpc::ServerBuilder>()) {
     Registry::initialize();
-    for (const auto& rr : Registry::registered_resources()) {
+    for (const auto& rr : Registry::registered_resource_servers()) {
         auto new_manager = std::make_shared<ResourceManager>();
         auto server = rr.second->create_resource_server(new_manager, *this);
         managed_servers_.emplace(rr.first, std::move(server));

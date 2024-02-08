@@ -6,6 +6,7 @@
 #include <viam/api/common/v1/common.grpc.pb.h>
 #include <viam/api/component/generic/v1/generic.grpc.pb.h>
 
+#include <viam/sdk/components/generic/generic.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
 
@@ -18,6 +19,8 @@ namespace sdk {
 class GenericComponentServer : public ResourceServer,
                                public viam::component::generic::v1::GenericService::Service {
    public:
+    using interface_type = GenericComponent;
+    using service_type = component::generic::v1::GenericService;
     explicit GenericComponentServer(std::shared_ptr<ResourceManager> manager);
 
     ::grpc::Status DoCommand(::grpc::ServerContext* context,

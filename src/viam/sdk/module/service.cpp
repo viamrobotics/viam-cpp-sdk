@@ -79,7 +79,8 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(Name name) {
 
     std::shared_ptr<Resource> res;
     const Dependencies deps = get_dependencies_(request->dependencies(), cfg.name());
-    const std::shared_ptr<ModelRegistration> reg = Registry::lookup_model(cfg.api(), cfg.model());
+    const std::shared_ptr<const ModelRegistration> reg =
+        Registry::lookup_model(cfg.api(), cfg.model());
     if (reg) {
         try {
             res = reg->construct_resource(deps, cfg);
@@ -132,7 +133,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(Name name) {
         BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err.what();
     }
 
-    const std::shared_ptr<ModelRegistration> reg = Registry::lookup_model(cfg.name());
+    const std::shared_ptr<const ModelRegistration> reg = Registry::lookup_model(cfg.name());
     if (reg) {
         try {
             const std::shared_ptr<Resource> res = reg->construct_resource(deps, cfg);
@@ -152,7 +153,8 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(Name name) {
     const viam::app::v1::ComponentConfig& proto = request->config();
     ResourceConfig cfg = ResourceConfig::from_proto(proto);
 
-    const std::shared_ptr<ModelRegistration> reg = Registry::lookup_model(cfg.api(), cfg.model());
+    const std::shared_ptr<const ModelRegistration> reg =
+        Registry::lookup_model(cfg.api(), cfg.model());
     if (!reg) {
         return grpc::Status(grpc::UNKNOWN,
                             "unable to validate resource " + cfg.resource_name().name() +
@@ -265,7 +267,8 @@ ModuleService::~ModuleService() {
 void ModuleService::add_model_from_registry_inlock_(API api,
                                                     Model model,
                                                     const std::lock_guard<std::mutex>& lock) {
-    const std::shared_ptr<ResourceRegistration> creator = Registry::lookup_resource(api);
+    const std::shared_ptr<const ResourceServerRegistration> creator =
+        Registry::lookup_resource_server(api);
     std::string name;
     const google::protobuf::ServiceDescriptor* sd = nullptr;
     if (creator && creator->service_descriptor()) {

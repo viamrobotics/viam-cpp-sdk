@@ -28,24 +28,21 @@
 using namespace viam::sdk;
 
 int main(int argc, char** argv) {
-    API base_api = API::get<Base>();
-    API gizmo_api = API::get<Gizmo>();
-    API summation_api = API::get<Summation>();
     Model mybase_model("viam", "base", "mybase");
 
     // Make sure to explicity register resources with custom APIs.
-    Registry::register_resource<GizmoClient, GizmoServer, GizmoService>(gizmo_api);
-    Registry::register_resource<SummationClient, SummationServer, SummationService>(summation_api);
+    Registry::register_resource_server<GizmoServer>();
+    Registry::register_resource_server<SummationServer>();
 
     std::shared_ptr<ModelRegistration> mybase_mr = std::make_shared<ModelRegistration>(
-        base_api,
+        API::get<Base>(),
         mybase_model,
         [](Dependencies deps, ResourceConfig cfg) { return std::make_unique<MyBase>(deps, cfg); },
         MyBase::validate);
 
     Model mygizmo_model("viam", "gizmo", "mygizmo");
     std::shared_ptr<ModelRegistration> mygizmo_mr = std::make_shared<ModelRegistration>(
-        gizmo_api,
+        API::get<Gizmo>(),
         mygizmo_model,
         [](Dependencies deps, ResourceConfig cfg) { return std::make_unique<MyGizmo>(deps, cfg); },
         MyGizmo::validate);
@@ -53,7 +50,7 @@ int main(int argc, char** argv) {
     Model mysummation_model("viam", "summation", "mysummation");
 
     std::shared_ptr<ModelRegistration> mysummation_mr = std::make_shared<ModelRegistration>(
-        summation_api, mysummation_model, [](Dependencies deps, ResourceConfig cfg) {
+        API::get<Summation>(), mysummation_model, [](Dependencies deps, ResourceConfig cfg) {
             return std::make_unique<MySummation>(deps, cfg);
         });
 
