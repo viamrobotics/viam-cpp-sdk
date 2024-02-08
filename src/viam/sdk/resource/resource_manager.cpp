@@ -22,7 +22,7 @@
 namespace viam {
 namespace sdk {
 
-std::shared_ptr<Resource> ResourceManager::resource(const std::string& name) const {
+std::shared_ptr<Resource> ResourceManager::resource(const std::string& name) {
     const std::lock_guard<std::mutex> lock(lock_);
 
     if (resources_.find(name) != resources_.end()) {
