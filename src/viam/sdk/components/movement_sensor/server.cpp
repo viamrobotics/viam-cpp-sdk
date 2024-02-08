@@ -140,9 +140,5 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
     });
 }
 
-API MovementSensorServer::api() const {
-    return API::get<MovementSensor>();
-}
-
 }  // namespace sdk
 }  // namespace viam

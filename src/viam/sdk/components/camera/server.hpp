@@ -19,7 +19,6 @@ class CameraServer : public ResourceServer,
                      public viam::component::camera::v1::CameraService::Service {
    public:
     explicit CameraServer(std::shared_ptr<ResourceManager> manager);
-    API api() const override;
 
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
                              const ::viam::common::v1::DoCommandRequest* request,

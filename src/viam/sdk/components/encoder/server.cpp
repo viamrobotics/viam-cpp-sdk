@@ -68,9 +68,5 @@ EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-API EncoderServer::api() const {
-    return API::get<Encoder>();
-}
-
 }  // namespace sdk
 }  // namespace viam

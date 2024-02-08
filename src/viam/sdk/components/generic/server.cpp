@@ -33,9 +33,5 @@ GenericComponentServer::GenericComponentServer(std::shared_ptr<ResourceManager> 
     });
 }
 
-API GenericComponentServer::api() const {
-    return API::get<GenericComponent>();
-}
-
 }  // namespace sdk
 }  // namespace viam

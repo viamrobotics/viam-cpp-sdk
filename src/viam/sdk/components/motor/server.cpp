@@ -126,9 +126,5 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-API MotorServer::api() const {
-    return API::get<Motor>();
-}
-
 }  // namespace sdk
 }  // namespace viam

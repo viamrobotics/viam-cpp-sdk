@@ -213,9 +213,5 @@ std::shared_ptr<Resource> RobotService_::resource_by_name(Name name) {
     return r;
 }
 
-API RobotService_::api() const {
-    return {"RDK", "robot", "robot"};
-}
-
 }  // namespace sdk
 }  // namespace viam

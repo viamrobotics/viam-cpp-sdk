@@ -55,7 +55,6 @@ class SummationClient : public Summation {
 class SummationServer : public ResourceServer, public SummationService::Service {
    public:
     explicit SummationServer(std::shared_ptr<ResourceManager> manager);
-    API api() const override;
 
     grpc::Status Sum(grpc::ServerContext* context,
                      const SumRequest* request,

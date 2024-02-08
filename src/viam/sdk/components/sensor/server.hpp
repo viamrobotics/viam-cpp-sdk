@@ -21,7 +21,6 @@ class SensorServer : public ResourceServer,
                      public viam::component::sensor::v1::SensorService::Service {
    public:
     explicit SensorServer(std::shared_ptr<ResourceManager> manager);
-    API api() const override;
 
     ::grpc::Status GetReadings(::grpc::ServerContext* context,
                                const GetReadingsRequest* request,

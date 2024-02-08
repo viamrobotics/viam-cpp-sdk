@@ -19,7 +19,6 @@ namespace sdk {
 class BaseServer : public ResourceServer, public viam::component::base::v1::BaseService::Service {
    public:
     explicit BaseServer(std::shared_ptr<ResourceManager> manager);
-    API api() const override;
 
     ::grpc::Status MoveStraight(
         ::grpc::ServerContext* context,

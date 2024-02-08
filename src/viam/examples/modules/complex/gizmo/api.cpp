@@ -16,10 +16,6 @@
 using namespace viam::sdk;
 using namespace viam::component::gizmo::v1;
 
-API GizmoServer::api() const {
-    return API::get<Gizmo>();
-}
-
 API Gizmo::api() const {
     return API::get<Gizmo>();
 }

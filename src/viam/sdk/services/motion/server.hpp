@@ -21,7 +21,6 @@ class MotionServer : public ResourceServer,
                      public viam::service::motion::v1::MotionService::Service {
    public:
     explicit MotionServer(std::shared_ptr<ResourceManager> manager);
-    API api() const override;
 
     ::grpc::Status Move(::grpc::ServerContext* context,
                         const ::viam::service::motion::v1::MoveRequest* request,

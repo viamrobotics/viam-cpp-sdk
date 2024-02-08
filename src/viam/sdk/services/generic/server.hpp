@@ -19,7 +19,6 @@ class GenericServiceServer : public ResourceServer,
                              public viam::service::generic::v1::GenericService::Service {
    public:
     explicit GenericServiceServer(std::shared_ptr<ResourceManager> manager);
-    API api() const override;
 
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
                              const ::viam::common::v1::DoCommandRequest* request,

@@ -20,7 +20,6 @@ class MovementSensorServer
       public viam::component::movementsensor::v1::MovementSensorService::Service {
    public:
     explicit MovementSensorServer(std::shared_ptr<ResourceManager> manager);
-    API api() const override;
 
     ::grpc::Status GetLinearVelocity(
         ::grpc::ServerContext* context,

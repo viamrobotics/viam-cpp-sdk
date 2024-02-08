@@ -19,7 +19,6 @@ class BoardServer : public ResourceServer,
                     public viam::component::board::v1::BoardService::Service {
    public:
     explicit BoardServer(std::shared_ptr<ResourceManager> manager);
-    API api() const override;
 
     ::grpc::Status Status(::grpc::ServerContext* context,
                           const ::viam::component::board::v1::StatusRequest* request,

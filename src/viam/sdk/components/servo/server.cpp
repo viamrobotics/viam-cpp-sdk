@@ -71,9 +71,5 @@ ServoServer::ServoServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-API ServoServer::api() const {
-    return API::get<Servo>();
-}
-
 }  // namespace sdk
 }  // namespace viam

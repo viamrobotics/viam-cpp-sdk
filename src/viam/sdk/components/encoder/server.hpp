@@ -19,7 +19,6 @@ class EncoderServer : public ResourceServer,
                       public viam::component::encoder::v1::EncoderService::Service {
    public:
     explicit EncoderServer(std::shared_ptr<ResourceManager> manager);
-    API api() const override;
 
     ::grpc::Status GetPosition(
         ::grpc::ServerContext* context,

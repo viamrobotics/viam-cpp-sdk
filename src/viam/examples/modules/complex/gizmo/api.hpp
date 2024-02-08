@@ -58,7 +58,6 @@ class GizmoClient : public Gizmo {
 class GizmoServer : public ResourceServer, public GizmoService::Service {
    public:
     explicit GizmoServer(std::shared_ptr<ResourceManager> manager);
-    API api() const override;
 
     grpc::Status DoOne(grpc::ServerContext* context,
                        const DoOneRequest* request,

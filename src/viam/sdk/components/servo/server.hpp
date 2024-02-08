@@ -19,7 +19,6 @@ class ServoServer : public ResourceServer,
                     public viam::component::servo::v1::ServoService::Service {
    public:
     explicit ServoServer(std::shared_ptr<ResourceManager> manager);
-    API api() const override;
 
     ::grpc::Status Move(::grpc::ServerContext* context,
                         const ::viam::component::servo::v1::MoveRequest* request,
