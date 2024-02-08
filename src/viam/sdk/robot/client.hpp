@@ -65,7 +65,7 @@ class RobotClient {
 
         WorldState::transform frame;
         AttributeMap kinematics;
-        friend bool operator==(const discovery_query& lhs, const discovery_query& rhs);
+        friend bool operator==(const frame_system_config& lhs, const frame_system_config& rhs);
     };
 
     struct status {
@@ -77,7 +77,7 @@ class RobotClient {
         // TODO: RSDK-6574: revisit time_point
         boost::optional<std::chrono::time_point<long long, std::chrono::nanoseconds>>
             last_reconfigured;
-        friend bool operator==(const discovery_query& lhs, const discovery_query& rhs);
+        friend bool operator==(const status& lhs, const status& rhs);
     };
 
     struct operation {

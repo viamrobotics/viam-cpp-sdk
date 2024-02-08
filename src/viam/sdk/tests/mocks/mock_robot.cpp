@@ -10,15 +10,15 @@ namespace sdktests {
 namespace robot {
 using namespace viam::sdk;
 
-common::v1::Pose default_pose(int offset = 0) {
-    common::v1::Pose pose;
-    pose.set_x(1 + offset);
-    pose.set_y(2 + offset);
-    pose.set_z(3 + offset);
-    pose.set_o_x(2 + offset);
-    pose.set_o_y(3 + offset);
-    pose.set_o_z(4 + offset);
-    pose.set_theta(20 + offset);
+pose default_pose(int offset = 0) {
+    pose pose;
+    pose.coordinates.x = 1 + offset;
+    pose.coordinates.y = 2 + offset;
+    pose.coordinates.z = 3 + offset;
+    pose.orientation.o_x = 2 + offset;
+    pose.orientation.o_y = 3 + offset;
+    pose.orientation.o_z = 4 + offset;
+    pose.theta = 20 + offset;
     return pose;
 }
 
@@ -56,31 +56,34 @@ std::vector<RobotClient::discovery> mock_discovery_response() {
     return std::vector<RobotClient::discovery>{discovery};
 }
 
-std::vector<viam::robot::v1::Status> mock_status_response() {
+std::vector<RobotClient::status> mock_status_response() {
     auto rns = mock_resource_names_response();
 
-    viam::robot::v1::Status camera_status;
-    *camera_status.mutable_name() = rns[1].to_proto();
-    *camera_status.mutable_status() = google::protobuf::Struct();
+    RobotClient::status camera_status;
+    camera_status.name = rns[0];
+    camera_status.status_map =
+        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
 
-    viam::robot::v1::Status generic_status;
-    *generic_status.mutable_name() = rns[0].to_proto();
-    *generic_status.mutable_status() = google::protobuf::Struct();
+    RobotClient::status generic_status;
+    generic_status.name = rns[1];
+    generic_status.status_map =
+        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
 
-    viam::robot::v1::Status motor_status;
-    *motor_status.mutable_name() = rns[2].to_proto();
-    *motor_status.mutable_status() = google::protobuf::Struct();
+    RobotClient::status motor_status;
+    motor_status.name = rns[2];
+    motor_status.status_map =
+        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
 
-    std::vector<viam::robot::v1::Status> resp;
+    std::vector<RobotClient::status> resp;
     resp.push_back(camera_status);
-    resp.push_back(generic_status);
     resp.push_back(motor_status);
+    resp.push_back(generic_status);
 
     return resp;
 }
 
 pose_in_frame mock_transform_response() {
-    return pose_in_frame("arm", pose::from_proto(default_pose()));
+    return pose_in_frame("arm", default_pose());
 }
 
 std::vector<Name> mock_resource_names_response() {
@@ -95,40 +98,38 @@ std::vector<Name> mock_resource_names_response() {
     return vec;
 }
 
-std::vector<viam::robot::v1::FrameSystemConfig> mock_config_response() {
-    viam::robot::v1::FrameSystemConfig config;
-    common::v1::Transform t;
-    *t.mutable_reference_frame() = "some-reference-frame";
-    viam::common::v1::Pose pose = default_pose();
-    common::v1::PoseInFrame pif;
-    *pif.mutable_reference_frame() = "reference0";
-    *pif.mutable_pose() = pose;
-    *t.mutable_pose_in_observer_frame() = pif;
-    *config.mutable_frame() = t;
-    google::protobuf::Struct s;
+std::vector<RobotClient::frame_system_config> mock_config_response() {
+    RobotClient::frame_system_config config;
+    WorldState::transform t;
+    t.reference_frame = "some-reference-frame";
+    pose_in_frame pif;
+    pif.reference_frame = "reference0";
+    pif.pose = default_pose();
+    t.pose_in_observer_frame = pif;
+    config.frame = t;
+    AttributeMap kinematics =
+        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
     google::protobuf::Value v;
     v.set_number_value(1);
-    google::protobuf::MapPair<std::string, google::protobuf::Value> pair("fake-key", v);
-    s.mutable_fields()->insert(pair);
-    *config.mutable_kinematics() = s;
+    kinematics->emplace(std::move("fake-key"), std::make_shared<ProtoType>(v));
+    config.kinematics = kinematics;
 
-    viam::robot::v1::FrameSystemConfig config1;
-    common::v1::Transform t1;
-    *t1.mutable_reference_frame() = "another-reference-frame";
-    viam::common::v1::Pose pose1 = default_pose(1);
-    common::v1::PoseInFrame pif1;
-    *pif1.mutable_reference_frame() = "reference1";
-    *pif1.mutable_pose() = pose1;
-    *t1.mutable_pose_in_observer_frame() = pif1;
-    *config1.mutable_frame() = t1;
-    google::protobuf::Struct s1;
+    RobotClient::frame_system_config config1;
+    WorldState::transform t1;
+    t1.reference_frame = "another-reference-frame";
+    pose_in_frame pif1;
+    pif1.reference_frame = "reference1";
+    pif1.pose = default_pose(1);
+    t1.pose_in_observer_frame = pif1;
+    config1.frame = t1;
+    AttributeMap kinematics1 =
+        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
     google::protobuf::Value v1;
     v1.set_number_value(2);
-    google::protobuf::MapPair<std::string, google::protobuf::Value> pair1("new-fake-key", v1);
-    s1.mutable_fields()->insert(pair);
-    *config1.mutable_kinematics() = s1;
+    kinematics1->emplace(std::move("new-fake-key"), std::make_shared<ProtoType>(v1));
+    config1.kinematics = kinematics;
 
-    std::vector<viam::robot::v1::FrameSystemConfig> response;
+    std::vector<RobotClient::frame_system_config> response;
     response.push_back(config);
     response.push_back(config1);
     return response;
@@ -140,7 +141,7 @@ std::vector<viam::robot::v1::FrameSystemConfig> mock_config_response() {
     ::viam::robot::v1::FrameSystemConfigResponse* response) {
     auto* configs = response->mutable_frame_system_configs();
     for (const auto& c : mock_config_response()) {
-        *configs->Add() = c;
+        *configs->Add() = c.to_proto();
     }
     return ::grpc::Status();
 }

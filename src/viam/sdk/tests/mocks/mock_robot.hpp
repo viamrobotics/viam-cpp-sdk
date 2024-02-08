@@ -44,9 +44,9 @@ class MockRobotService : public RobotService_ {
 std::vector<RobotClient::operation> mock_operations_response();
 std::vector<RobotClient::discovery> mock_discovery_response();
 std::vector<Name> mock_resource_names_response();
-std::vector<viam::robot::v1::FrameSystemConfig> mock_config_response();
+std::vector<RobotClient::frame_system_config> mock_config_response();
 pose_in_frame mock_transform_response();
-std::vector<viam::robot::v1::Status> mock_status_response();
+std::vector<RobotClient::status> mock_status_response();
 
 }  // namespace robot
 }  // namespace sdktests

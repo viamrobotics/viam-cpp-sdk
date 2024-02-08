@@ -157,46 +157,34 @@ BOOST_AUTO_TEST_CASE(test_get_status) {
             // get all resource statuses
             auto statuses = client->get_status();
 
-            auto status_strs = vec_to_string_util(statuses);
-            auto mock_strs = proto_vec_to_string_util(mock_statuses);
-
             // ensure we get statuses for all resources, and that they are as expected.
             BOOST_CHECK_EQUAL(statuses.size(), 3);
-            BOOST_TEST(status_strs == mock_strs, boost::test_tools::per_element());
+            BOOST_TEST(statuses == mock_statuses, boost::test_tools::per_element());
 
             // get only a subset of status responses
             auto names = mock_resource_names_response();
             std::vector<Name> some_names{names[0], names[1]};
             auto some_statuses = client->get_status(some_names);
-            auto some_status_strs = vec_to_string_util(some_statuses);
-
             // ensure that we only get two of the three existing statuses
-            BOOST_CHECK_EQUAL(some_status_strs.size(), 2);
+            BOOST_CHECK_EQUAL(some_statuses.size(), 2);
 
             // unfortunately the sorting is a bit odd so we end up with a mismatch of index,
             // but this ensures that the statuses we received do exist in the mocks, as
             // expected.
-            std::vector<std::string> some_mock_strs{mock_strs[1], mock_strs[2]};
+            std::vector<RobotClient::status> some_mock_statuses{mock_statuses[0], mock_statuses[2]};
 
-            BOOST_TEST(some_status_strs == some_mock_strs, boost::test_tools::per_element());
+            BOOST_TEST(some_statuses == some_mock_statuses, boost::test_tools::per_element());
         });
 }
 
 BOOST_AUTO_TEST_CASE(test_get_frame_system_config) {
-    robot_client_to_mocks_pipeline([](std::shared_ptr<RobotClient> client,
-                                      MockRobotService& service) -> void {
-        auto mock_fs_config = mock_config_response();
-        auto fs_config = client->get_frame_system_config();
+    robot_client_to_mocks_pipeline(
+        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+            auto mock_fs_config = mock_config_response();
+            auto fs_config = client->get_frame_system_config();
 
-        std::vector<viam::robot::v1::FrameSystemConfig> fs_config_proto;
-        for (const RobotClient::frame_system_config& f : fs_config) {
-            fs_config_proto.push_back(f.to_proto());
-        }
-
-        BOOST_TEST(
-            proto_vec_to_string_util(mock_fs_config) == proto_vec_to_string_util(fs_config_proto),
-            boost::test_tools::per_element());
-    });
+            BOOST_TEST(mock_fs_config == fs_config, boost::test_tools::per_element());
+        });
 }
 
 BOOST_AUTO_TEST_CASE(test_get_operations) {

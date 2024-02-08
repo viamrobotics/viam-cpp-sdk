@@ -107,7 +107,8 @@ RobotClient::frame_system_config RobotClient::frame_system_config::from_proto(
 
 bool operator==(const RobotClient::frame_system_config& lhs,
                 const RobotClient::frame_system_config& rhs) {
-    return lhs.frame == rhs.frame && lhs.kinematics == rhs.kinematics;
+    return lhs.frame == rhs.frame && map_to_struct(lhs.kinematics).SerializeAsString() ==
+                                         map_to_struct(rhs.kinematics).SerializeAsString();
 }
 
 viam::robot::v1::Status RobotClient::status::to_proto() const {
@@ -139,7 +140,9 @@ RobotClient::status RobotClient::status::from_proto(const viam::robot::v1::Statu
 }
 
 bool operator==(const RobotClient::status& lhs, const RobotClient::status& rhs) {
-    return lhs.name == rhs.name && lhs.status_map == rhs.status_map &&
+    return lhs.name == rhs.name &&
+           map_to_struct(lhs.status_map).SerializeAsString() ==
+               map_to_struct(rhs.status_map).SerializeAsString() &&
            lhs.last_reconfigured == rhs.last_reconfigured;
 }
 
