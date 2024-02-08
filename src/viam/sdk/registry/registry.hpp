@@ -21,7 +21,7 @@
 namespace viam {
 namespace sdk {
 
-// TODO(RSDK-3030): one class per header
+// TODO(RSDK-6617): one class per header
 class ResourceServerRegistration {
    public:
     virtual ~ResourceServerRegistration();
@@ -59,7 +59,7 @@ class ResourceClientRegistration {
     ResourceClientRegistration() = default;
 };
 
-// TODO(RSDK-3030): instead of std::functions, consider making these functions
+// TODO(RSDK-6616): instead of std::functions, consider making these functions
 // virtual
 /// @class ModelRegistration
 /// @brief Information about a registered model, including a constructor and config validator.
