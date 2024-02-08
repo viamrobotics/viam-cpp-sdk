@@ -9,6 +9,7 @@
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
+#include <viam/sdk/tests/mocks/mock_robot.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
 namespace viam {
@@ -123,40 +124,57 @@ BOOST_AUTO_TEST_CASE(test_discovery_query) {
     query.subtype = "subtype";
     query.model = "model";
 
-    BOOST_CHECK_EQUAL(query.subtype, "subtype");
-    BOOST_CHECK_EQUAL(query.model, "model");
-
-    RobotClient::discovery_query from_proto =
-        RobotClient::discovery_query::from_proto(query.to_proto());
-    BOOST_CHECK_EQUAL(query.subtype, from_proto.subtype);
-    BOOST_CHECK_EQUAL(query.model, query.model);
-    BOOST_CHECK(query == from_proto);
+    BOOST_CHECK(query == RobotClient::discovery_query::from_proto(query.to_proto()));
 }
 
 BOOST_AUTO_TEST_CASE(test_discovery) {
-    RobotClient::discovery discovery;
+    RobotClient::discovery discovery = robot::mock_discovery_response()[0];
+    BOOST_CHECK(discovery == RobotClient::discovery::from_proto(discovery.to_proto()));
+}
 
-    RobotClient::discovery_query query;
-    query.subtype = "subtype";
-    query.model = "model";
-    discovery.query = query;
+pose default_pose(int offset = 0) {
+    pose pose;
+    pose.coordinates.x = 1 + offset;
+    pose.coordinates.y = 2 + offset;
+    pose.coordinates.z = 3 + offset;
+    pose.orientation.o_x = 2 + offset;
+    pose.orientation.o_y = 3 + offset;
+    pose.orientation.o_z = 4 + offset;
+    pose.theta = 20 + offset;
+    return pose;
+}
 
-    AttributeMap results =
-        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
-    google::protobuf::Value v;
-    *v.mutable_string_value() = "bar";
-    google::protobuf::MapPair<std::string, std::shared_ptr<ProtoType>> pair(
-        std::move("foo"), std::make_shared<ProtoType>(v));
-    results->emplace(pair);
-    discovery.results = results;
+BOOST_AUTO_TEST_CASE(test_pose) {
+    pose pose = default_pose();
+    BOOST_CHECK(pose == pose::from_proto(pose.to_proto()));
+}
 
-    BOOST_CHECK_EQUAL(discovery.query.subtype, "subtype");
-    BOOST_CHECK_EQUAL(discovery.query.model, "model");
-    std::string results_str =
-        remove_whitespace(map_to_struct(discovery.results).SerializeAsString());
-    BOOST_CHECK_EQUAL(results_str, "foobar");
+BOOST_AUTO_TEST_CASE(test_pose_in_frame) {
+    pose_in_frame pif = robot::mock_transform_response();
+    BOOST_CHECK(pif == pose_in_frame::from_proto(pif.to_proto()));
+}
 
-    // RobotClient::
+BOOST_AUTO_TEST_CASE(test_transform) {
+    WorldState::transform t;
+    t.reference_frame = "some-reference-frame";
+    t.pose_in_observer_frame = robot::mock_transform_response();
+
+    BOOST_CHECK(t == WorldState::transform::from_proto(t.to_proto()));
+}
+
+BOOST_AUTO_TEST_CASE(test_frame_system_config) {
+    RobotClient::frame_system_config fsconfig = robot::mock_config_response()[0];
+    BOOST_CHECK(fsconfig == RobotClient::frame_system_config::from_proto(fsconfig.to_proto()));
+}
+
+BOOST_AUTO_TEST_CASE(test_status) {
+    RobotClient::status status = robot::mock_status_response()[0];
+    BOOST_CHECK(status == RobotClient::status::from_proto(status.to_proto()));
+}
+
+BOOST_AUTO_TEST_CASE(test_operation) {
+    RobotClient::operation op = robot::mock_operations_response()[0];
+    BOOST_CHECK(op == RobotClient::operation::from_proto(op.to_proto()));
 }
 
 BOOST_AUTO_TEST_SUITE_END()

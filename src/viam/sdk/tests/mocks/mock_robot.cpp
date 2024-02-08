@@ -102,9 +102,7 @@ std::vector<RobotClient::frame_system_config> mock_config_response() {
     RobotClient::frame_system_config config;
     WorldState::transform t;
     t.reference_frame = "some-reference-frame";
-    pose_in_frame pif;
-    pif.reference_frame = "reference0";
-    pif.pose = default_pose();
+    pose_in_frame pif("reference0", default_pose());
     t.pose_in_observer_frame = pif;
     config.frame = t;
     AttributeMap kinematics =
@@ -117,9 +115,7 @@ std::vector<RobotClient::frame_system_config> mock_config_response() {
     RobotClient::frame_system_config config1;
     WorldState::transform t1;
     t1.reference_frame = "another-reference-frame";
-    pose_in_frame pif1;
-    pif1.reference_frame = "reference1";
-    pif1.pose = default_pose(1);
+    pose_in_frame pif1("reference1", default_pose(1));
     t1.pose_in_observer_frame = pif1;
     config1.frame = t1;
     AttributeMap kinematics1 =
