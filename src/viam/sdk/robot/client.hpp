@@ -138,10 +138,7 @@ class RobotClient {
     /// @throws `std::runtime_error` if the requested resource doesn't exist or is the wrong type.
     /// @return a `shared_ptr` to the requested resource.
     std::shared_ptr<T> resource_by_name(std::string name) {
-        API api = API::get<T>();
-        Name r = Name(api, "", name);
-
-        auto resource = this->resource_by_name(std::move(r));
+        auto resource = this->resource_by_name({API::get<T>(), "", name});
         return std::dynamic_pointer_cast<T>(resource);
     }
 
@@ -197,8 +194,8 @@ class RobotClient {
     std::shared_ptr<ViamChannel> viam_channel_;
     std::shared_ptr<Channel> channel_;
     bool should_close_channel_;
-    struct Impl;
-    std::unique_ptr<Impl> impl_;
+    struct impl;
+    std::unique_ptr<impl> impl_;
     std::mutex lock_;
     std::vector<Name> resource_names_;
     ResourceManager resource_manager_;

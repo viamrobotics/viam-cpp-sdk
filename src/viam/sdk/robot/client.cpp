@@ -38,7 +38,13 @@ namespace viam {
 namespace sdk {
 
 using google::protobuf::RepeatedPtrField;
+using viam::common::v1::Transform;
+using viam::robot::v1::Discovery;
+using viam::robot::v1::DiscoveryQuery;
+using viam::robot::v1::FrameSystemConfig;
+using viam::robot::v1::Operation;
 using viam::robot::v1::RobotService;
+using viam::robot::v1::Status;
 
 // gRPC responses are frequently coming back with a spurious `Stream removed`
 // error, leading to unhelpful and misleading logging. We should figure out why
@@ -48,15 +54,14 @@ using viam::robot::v1::RobotService;
 const std::string kStreamRemoved("Stream removed");
 
 // TODO: add a traits class for proto to type and back conversion
-viam::robot::v1::DiscoveryQuery RobotClient::discovery_query::to_proto() const {
-    viam::robot::v1::DiscoveryQuery proto;
+DiscoveryQuery RobotClient::discovery_query::to_proto() const {
+    DiscoveryQuery proto;
     *proto.mutable_subtype() = subtype;
     *proto.mutable_model() = std::move(model);
     return proto;
 }
 
-RobotClient::discovery_query RobotClient::discovery_query::from_proto(
-    const viam::robot::v1::DiscoveryQuery& proto) {
+RobotClient::discovery_query RobotClient::discovery_query::from_proto(const DiscoveryQuery& proto) {
     discovery_query query;
     query.subtype = proto.subtype();
     query.model = proto.model();
@@ -67,14 +72,14 @@ bool operator==(const RobotClient::discovery_query& lhs, const RobotClient::disc
     return lhs.subtype == rhs.subtype && lhs.model == rhs.model;
 }
 
-viam::robot::v1::Discovery RobotClient::discovery::to_proto() const {
-    viam::robot::v1::Discovery proto;
+Discovery RobotClient::discovery::to_proto() const {
+    Discovery proto;
     *proto.mutable_query() = query.to_proto();
     *proto.mutable_results() = map_to_struct(results);
     return proto;
 }
 
-RobotClient::discovery RobotClient::discovery::from_proto(const viam::robot::v1::Discovery& proto) {
+RobotClient::discovery RobotClient::discovery::from_proto(const Discovery& proto) {
     discovery discovery;
     discovery.query = discovery_query::from_proto(proto.query());
     discovery.results = struct_to_map(proto.results());
@@ -86,8 +91,8 @@ bool operator==(const RobotClient::discovery& lhs, const RobotClient::discovery&
                                          map_to_struct(rhs.results).SerializeAsString();
 }
 
-viam::robot::v1::FrameSystemConfig RobotClient::frame_system_config::to_proto() const {
-    viam::robot::v1::FrameSystemConfig proto;
+FrameSystemConfig RobotClient::frame_system_config::to_proto() const {
+    FrameSystemConfig proto;
     *proto.mutable_frame() = frame.to_proto();
     if (kinematics) {
         *proto.mutable_kinematics() = map_to_struct(kinematics);
@@ -96,7 +101,7 @@ viam::robot::v1::FrameSystemConfig RobotClient::frame_system_config::to_proto() 
 }
 
 RobotClient::frame_system_config RobotClient::frame_system_config::from_proto(
-    const viam::robot::v1::FrameSystemConfig& proto) {
+    const FrameSystemConfig& proto) {
     frame_system_config fsconfig;
     fsconfig.frame = WorldState::transform::from_proto(proto.frame());
     if (proto.has_kinematics()) {
@@ -111,8 +116,8 @@ bool operator==(const RobotClient::frame_system_config& lhs,
                                          map_to_struct(rhs.kinematics).SerializeAsString();
 }
 
-viam::robot::v1::Status RobotClient::status::to_proto() const {
-    viam::robot::v1::Status proto;
+Status RobotClient::status::to_proto() const {
+    Status proto;
     if (name) {
         *proto.mutable_name() = name->to_proto();
     }
@@ -125,7 +130,7 @@ viam::robot::v1::Status RobotClient::status::to_proto() const {
     return proto;
 }
 
-RobotClient::status RobotClient::status::from_proto(const viam::robot::v1::Status& proto) {
+RobotClient::status RobotClient::status::from_proto(const Status& proto) {
     status status;
     if (proto.has_name()) {
         status.name = Name::from_proto(proto.name());
@@ -146,8 +151,8 @@ bool operator==(const RobotClient::status& lhs, const RobotClient::status& rhs) 
            lhs.last_reconfigured == rhs.last_reconfigured;
 }
 
-viam::robot::v1::Operation RobotClient::operation::to_proto() const {
-    viam::robot::v1::Operation proto;
+Operation RobotClient::operation::to_proto() const {
+    Operation proto;
     *proto.mutable_id() = id;
     *proto.mutable_method() = method;
     if (session_id) {
@@ -162,7 +167,7 @@ viam::robot::v1::Operation RobotClient::operation::to_proto() const {
     return proto;
 }
 
-RobotClient::operation RobotClient::operation::from_proto(const viam::robot::v1::Operation& proto) {
+RobotClient::operation RobotClient::operation::from_proto(const Operation& proto) {
     operation op;
     op.id = proto.id();
     op.method = proto.method();
@@ -183,8 +188,8 @@ bool operator==(const RobotClient::operation& lhs, const RobotClient::operation&
            lhs.arguments == rhs.arguments && lhs.started == rhs.started;
 }
 
-struct RobotClient::Impl {
-    Impl(std::unique_ptr<RobotService::Stub> stub) : stub_(std::move(stub)) {}
+struct RobotClient::impl {
+    impl(std::unique_ptr<RobotService::Stub> stub) : stub_(std::move(stub)) {}
     std::unique_ptr<RobotService::Stub> stub_;
 };
 
@@ -357,7 +362,7 @@ RobotClient::RobotClient(std::shared_ptr<ViamChannel> channel)
     : viam_channel_(channel),
       channel_(channel->channel()),
       should_close_channel_(false),
-      impl_(std::make_unique<Impl>(RobotService::NewStub(channel_))) {}
+      impl_(std::make_unique<impl>(RobotService::NewStub(channel_))) {}
 
 std::vector<Name>* RobotClient::resource_names() {
     const std::lock_guard<std::mutex> lock(lock_);
@@ -398,8 +403,7 @@ std::shared_ptr<RobotClient> RobotClient::at_local_socket(std::string address, O
     const char* uri = addr.c_str();
     const std::shared_ptr<grpc::Channel> channel =
         grpc::CreateChannel(uri, grpc::InsecureChannelCredentials());
-    const std::unique_ptr<viam::robot::v1::RobotService::Stub> st =
-        viam::robot::v1::RobotService::NewStub(channel);
+    const std::unique_ptr<RobotService::Stub> st = RobotService::NewStub(channel);
     auto viam_channel = std::make_shared<ViamChannel>(channel, address.c_str(), nullptr);
     std::shared_ptr<RobotClient> robot = RobotClient::with_channel(viam_channel, options);
     robot->should_close_channel_ = true;
@@ -413,8 +417,7 @@ std::vector<RobotClient::frame_system_config> RobotClient::get_frame_system_conf
     viam::robot::v1::FrameSystemConfigResponse resp;
     ClientContext ctx;
 
-    RepeatedPtrField<viam::common::v1::Transform>* req_transforms =
-        req.mutable_supplemental_transforms();
+    RepeatedPtrField<Transform>* req_transforms = req.mutable_supplemental_transforms();
     for (const WorldState::transform& transform : additional_transforms) {
         *req_transforms->Add() = transform.to_proto();
     }
@@ -425,12 +428,11 @@ std::vector<RobotClient::frame_system_config> RobotClient::get_frame_system_conf
                                  << response.error_message();
     }
 
-    const RepeatedPtrField<viam::robot::v1::FrameSystemConfig> configs =
-        resp.frame_system_configs();
+    const RepeatedPtrField<FrameSystemConfig> configs = resp.frame_system_configs();
 
     std::vector<frame_system_config> fs_configs = std::vector<frame_system_config>();
 
-    for (const viam::robot::v1::FrameSystemConfig& fs : configs) {
+    for (const FrameSystemConfig& fs : configs) {
         fs_configs.push_back(frame_system_config::from_proto(fs));
     }
 
@@ -447,8 +449,7 @@ pose_in_frame RobotClient::transform_pose(
 
     *req.mutable_source() = query.to_proto();
     *req.mutable_destination() = destination;
-    RepeatedPtrField<viam::common::v1::Transform>* req_transforms =
-        req.mutable_supplemental_transforms();
+    RepeatedPtrField<Transform>* req_transforms = req.mutable_supplemental_transforms();
 
     for (const WorldState::transform& transform : additional_transforms) {
         *req_transforms->Add() = transform.to_proto();
@@ -468,7 +469,7 @@ std::vector<RobotClient::discovery> RobotClient::discover_components(
     viam::robot::v1::DiscoverComponentsResponse resp;
     ClientContext ctx;
 
-    RepeatedPtrField<viam::robot::v1::DiscoveryQuery>* req_queries = req.mutable_queries();
+    RepeatedPtrField<DiscoveryQuery>* req_queries = req.mutable_queries();
 
     for (const discovery_query& query : queries) {
         *req_queries->Add() = query.to_proto();
@@ -481,7 +482,7 @@ std::vector<RobotClient::discovery> RobotClient::discover_components(
 
     std::vector<discovery> components = std::vector<discovery>();
 
-    for (const viam::robot::v1::Discovery& d : resp.discovery()) {
+    for (const Discovery& d : resp.discovery()) {
         components.push_back(discovery::from_proto(d));
     }
 
