@@ -96,7 +96,7 @@ class ModelRegistration {
     std::function<std::vector<std::string>(ResourceConfig)> validate;
 
     /// @brief Creates a `Status` object for a given resource.
-    viam::robot::v1::Status create_status(std::shared_ptr<Resource> resource) const;
+    viam::robot::v1::Status create_status(const std::shared_ptr<Resource>& resource) const;
 
    private:
     // default_validator is the default validator for all models if no validator
@@ -120,13 +120,14 @@ class Registry {
     /// @brief Lookup a given registered resource.
     /// @param name The name of the resource to lookup.
     /// @return a `shared_ptr` to the resource's registration data.
-    static std::shared_ptr<const ModelRegistration> lookup_model(std::string name);
+    static std::shared_ptr<const ModelRegistration> lookup_model(const std::string& name);
 
     /// @brief Lookup a given registered resource.
     /// @param api The api of the resource to lookup.
     /// @param model The model of the resource to lookup.
     /// @return a `shared_ptr` to the resource's registration data.
-    static std::shared_ptr<const ModelRegistration> lookup_model(API api, Model model);
+    static std::shared_ptr<const ModelRegistration> lookup_model(const API& api,
+                                                                 const Model& model);
 
     /// @brief Register a resource client constructor
     template <typename ResourceClientT>
@@ -175,12 +176,12 @@ class Registry {
     /// @brief Lookup a registered server api.
     /// @param api The api to lookup.
     /// @return A `shared_ptr` to the registered api's `ResourceServerRegistration`.
-    static std::shared_ptr<const ResourceServerRegistration> lookup_resource_server(API api);
+    static std::shared_ptr<const ResourceServerRegistration> lookup_resource_server(const API& api);
 
     /// @brief Lookup a registered client api.
     /// @param api The api to lookup.
     /// @return A `shared_ptr` to the registered api's `ResourceClientRegistration`.
-    static std::shared_ptr<const ResourceClientRegistration> lookup_resource_client(API api);
+    static std::shared_ptr<const ResourceClientRegistration> lookup_resource_client(const API& api);
 
     /// @brief Provide information on registered resource models.
     /// @return A map from name to `ModelRegistration` of all registered resource models.
@@ -212,7 +213,7 @@ class Registry {
         const char* service_full_name);
 
     static std::shared_ptr<const ModelRegistration> lookup_model_inlock_(
-        std::string name, const std::lock_guard<std::mutex>&);
+        const std::string& name, const std::lock_guard<std::mutex>&);
 };
 
 }  // namespace sdk

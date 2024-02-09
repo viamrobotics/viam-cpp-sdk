@@ -11,59 +11,31 @@
 #include <grpcpp/channel.h>
 #include <grpcpp/ext/proto_server_reflection_plugin.h>
 
-#include <viam/api/component/base/v1/base.grpc.pb.h>
-#include <viam/api/component/board/v1/board.grpc.pb.h>
-#include <viam/api/component/camera/v1/camera.grpc.pb.h>
-#include <viam/api/component/encoder/v1/encoder.grpc.pb.h>
-#include <viam/api/component/generic/v1/generic.grpc.pb.h>
-#include <viam/api/component/motor/v1/motor.grpc.pb.h>
-#include <viam/api/component/movementsensor/v1/movementsensor.grpc.pb.h>
-#include <viam/api/component/powersensor/v1/powersensor.grpc.pb.h>
-#include <viam/api/component/sensor/v1/sensor.grpc.pb.h>
-#include <viam/api/component/servo/v1/servo.grpc.pb.h>
-#include <viam/api/robot/v1/robot.pb.h>
-#include <viam/api/service/generic/v1/generic.grpc.pb.h>
-#include <viam/api/service/mlmodel/v1/mlmodel.grpc.pb.h>
-#include <viam/api/service/motion/v1/motion.grpc.pb.h>
-
-#include <viam/sdk/components/base/base.hpp>
 #include <viam/sdk/components/base/client.hpp>
 #include <viam/sdk/components/base/server.hpp>
-#include <viam/sdk/components/board/board.hpp>
 #include <viam/sdk/components/board/client.hpp>
 #include <viam/sdk/components/board/server.hpp>
-#include <viam/sdk/components/camera/camera.hpp>
 #include <viam/sdk/components/camera/client.hpp>
 #include <viam/sdk/components/camera/server.hpp>
-#include <viam/sdk/components/component.hpp>
 #include <viam/sdk/components/encoder/client.hpp>
-#include <viam/sdk/components/encoder/encoder.hpp>
 #include <viam/sdk/components/encoder/server.hpp>
 #include <viam/sdk/components/generic/client.hpp>
-#include <viam/sdk/components/generic/generic.hpp>
 #include <viam/sdk/components/generic/server.hpp>
 #include <viam/sdk/components/motor/client.hpp>
-#include <viam/sdk/components/motor/motor.hpp>
 #include <viam/sdk/components/motor/server.hpp>
 #include <viam/sdk/components/movement_sensor/client.hpp>
-#include <viam/sdk/components/movement_sensor/movement_sensor.hpp>
 #include <viam/sdk/components/movement_sensor/server.hpp>
 #include <viam/sdk/components/power_sensor/client.hpp>
-#include <viam/sdk/components/power_sensor/power_sensor.hpp>
 #include <viam/sdk/components/power_sensor/server.hpp>
 #include <viam/sdk/components/sensor/client.hpp>
-#include <viam/sdk/components/sensor/sensor.hpp>
 #include <viam/sdk/components/sensor/server.hpp>
 #include <viam/sdk/components/servo/client.hpp>
 #include <viam/sdk/components/servo/server.hpp>
-#include <viam/sdk/components/servo/servo.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 #include <viam/sdk/services/generic/client.hpp>
-#include <viam/sdk/services/generic/generic.hpp>
 #include <viam/sdk/services/generic/server.hpp>
 #include <viam/sdk/services/mlmodel/client.hpp>
-#include <viam/sdk/services/mlmodel/mlmodel.hpp>
 #include <viam/sdk/services/mlmodel/server.hpp>
 #include <viam/sdk/services/motion/client.hpp>
 #include <viam/sdk/services/motion/server.hpp>
@@ -91,7 +63,7 @@ void Registry::register_model(std::shared_ptr<const ModelRegistration> resource)
         throw std::runtime_error(err);
     }
 
-    resources_.emplace(reg_key, resource);
+    resources_.emplace(std::move(reg_key), std::move(resource));
 }
 
 void Registry::register_resource_server_(
@@ -113,7 +85,7 @@ void Registry::register_resource_client_(
 }
 
 std::shared_ptr<const ModelRegistration> Registry::lookup_model_inlock_(
-    std::string name, const std::lock_guard<std::mutex>&) {
+    const std::string& name, const std::lock_guard<std::mutex>&) {
     if (resources_.find(name) == resources_.end()) {
         return nullptr;
     }
@@ -121,18 +93,19 @@ std::shared_ptr<const ModelRegistration> Registry::lookup_model_inlock_(
     return resources_.at(name);
 }
 
-std::shared_ptr<const ModelRegistration> Registry::lookup_model(std::string name) {
+std::shared_ptr<const ModelRegistration> Registry::lookup_model(const std::string& name) {
     const std::lock_guard<std::mutex> lock(lock_);
-    return lookup_model_inlock_(name, lock);
+    return lookup_model_inlock_(name, std::move(lock));
 }
 
-std::shared_ptr<const ModelRegistration> Registry::lookup_model(API api, Model model) {
+std::shared_ptr<const ModelRegistration> Registry::lookup_model(const API& api,
+                                                                const Model& model) {
     const std::lock_guard<std::mutex> lock(lock_);
     const std::string name = api.to_string() + "/" + model.to_string();
-    return lookup_model_inlock_(name, lock);
+    return lookup_model_inlock_(std::move(name), std::move(lock));
 }
 
-std::shared_ptr<const ResourceServerRegistration> Registry::lookup_resource_server(API api) {
+std::shared_ptr<const ResourceServerRegistration> Registry::lookup_resource_server(const API& api) {
     const std::lock_guard<std::mutex> lock(lock_);
     if (server_apis_.find(api) == server_apis_.end()) {
         return nullptr;
@@ -141,7 +114,7 @@ std::shared_ptr<const ResourceServerRegistration> Registry::lookup_resource_serv
     return server_apis_.at(api);
 }
 
-std::shared_ptr<const ResourceClientRegistration> Registry::lookup_resource_client(API api) {
+std::shared_ptr<const ResourceClientRegistration> Registry::lookup_resource_client(const API& api) {
     const std::lock_guard<std::mutex> lock(lock_);
     if (client_apis_.find(api) == client_apis_.end()) {
         return nullptr;
@@ -171,7 +144,7 @@ Registry::registered_models() {
 }
 
 // NOLINTNEXTLINE(readability-convert-member-functions-to-static)
-Status ModelRegistration::create_status(std::shared_ptr<Resource> resource) const {
+Status ModelRegistration::create_status(const std::shared_ptr<Resource>& resource) const {
     Status status;
     *status.mutable_name() = resource->get_resource_name(resource->name());
     *status.mutable_status() = google::protobuf::Struct();
