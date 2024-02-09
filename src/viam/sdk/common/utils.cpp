@@ -23,6 +23,7 @@ namespace sdk {
 
 using time_point = std::chrono::time_point<long long, std::chrono::nanoseconds>;
 
+// TODO: RSDK-6627 : move this function to `Resource` class.
 std::vector<Name> resource_names_for_resource(const std::shared_ptr<Resource>& resource) {
     std::string resource_type;
     std::string resource_subtype;
@@ -40,8 +41,7 @@ std::vector<Name> resource_names_for_resource(const std::shared_ptr<Resource>& r
             resource_subtype = resource->name();
         }
 
-        resource_names.push_back(
-            Name({kRDK, resource_type, resource_subtype}, "", resource->name()));
+        resource_names.push_back({{kRDK, resource_type, resource_subtype}, "", resource->name()});
     }
     return resource_names;
 }

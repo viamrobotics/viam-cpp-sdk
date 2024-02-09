@@ -45,8 +45,7 @@ int main() {
     std::vector<Name>* resource_names = robot->resource_names();
     std::cout << "Resources" << std::endl;
     for (const Name& resource : *resource_names) {
-        std::cout << "\tname: " << resource.name() << " (type:" << resource.api().resource_type()
-                  << " subtype:" << resource.api().resource_subtype() << ")" << std::endl;
+        std::cout << "\t" << resource << "\n" << std::endl;
     }
 
     // ensure we can query statuses

@@ -44,11 +44,7 @@ std::vector<RobotClient::discovery> mock_discovery_response() {
 
     AttributeMap results =
         std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
-    google::protobuf::Value v;
-    *v.mutable_string_value() = "bar";
-    google::protobuf::MapPair<std::string, std::shared_ptr<ProtoType>> pair(
-        std::move("foo"), std::make_shared<ProtoType>(v));
-    results->emplace(pair);
+    results->emplace("foo", std::make_shared<ProtoType>("bar"));
 
     RobotClient::discovery discovery;
     discovery.query = query;
@@ -83,19 +79,15 @@ std::vector<RobotClient::status> mock_status_response() {
 }
 
 pose_in_frame mock_transform_response() {
-    return pose_in_frame("arm", default_pose());
+    return {"arm", default_pose()};
 }
 
 std::vector<Name> mock_resource_names_response() {
-    std::vector<Name> vec;
     Name camera = Name({kRDK, kComponent, "camera"}, "", "mock_camera");
     Name generic = Name({kRDK, kComponent, "generic"}, "", "mock_generic");
     Name motor = Name({kRDK, kComponent, "motor"}, "", "mock_motor");
 
-    vec.push_back(camera);
-    vec.push_back(generic);
-    vec.push_back(motor);
-    return vec;
+    return {std::move(camera), std::move(generic), std::move(motor)};
 }
 
 std::vector<RobotClient::frame_system_config> mock_config_response() {
@@ -107,9 +99,7 @@ std::vector<RobotClient::frame_system_config> mock_config_response() {
     config.frame = t;
     AttributeMap kinematics =
         std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
-    google::protobuf::Value v;
-    v.set_number_value(1);
-    kinematics->emplace(std::move("fake-key"), std::make_shared<ProtoType>(v));
+    kinematics->emplace(std::move("fake-key"), std::make_shared<ProtoType>(1));
     config.kinematics = kinematics;
 
     RobotClient::frame_system_config config1;
@@ -120,10 +110,8 @@ std::vector<RobotClient::frame_system_config> mock_config_response() {
     config1.frame = t1;
     AttributeMap kinematics1 =
         std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
-    google::protobuf::Value v1;
-    v1.set_number_value(2);
-    kinematics1->emplace(std::move("new-fake-key"), std::make_shared<ProtoType>(v1));
-    config1.kinematics = kinematics;
+    kinematics1->emplace(std::move("new-fake-key"), std::make_shared<ProtoType>(2));
+    config1.kinematics = kinematics1;
 
     std::vector<RobotClient::frame_system_config> response;
     response.push_back(config);

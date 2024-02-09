@@ -114,11 +114,6 @@ BOOST_AUTO_TEST_CASE(test_prototype_map_conversion) {
     BOOST_CHECK(round_trip_proto == map);
 }
 
-std::string remove_whitespace(std::string s) {
-    s.erase(std::remove_if(s.begin(), s.end(), ::isspace), s.end());
-    return s;
-}
-
 BOOST_AUTO_TEST_CASE(test_discovery_query) {
     RobotClient::discovery_query query;
     query.subtype = "subtype";

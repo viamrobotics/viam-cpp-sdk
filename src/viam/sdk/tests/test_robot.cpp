@@ -105,29 +105,6 @@ BOOST_AUTO_TEST_CASE(test_registering_resources) {
     BOOST_CHECK(Registry::lookup_model(API::get<Motor>(), motor_model));
 }
 
-template <typename T>
-// Sorts our vecs and converts to strings for consistent comparisons
-std::vector<std::string> vec_to_string_util(std::vector<T>& vec) {
-    std::vector<std::string> ret;
-    for (auto& v : vec) {
-        auto s = v.to_proto().SerializeAsString();
-        ret.push_back(std::move(s));
-    }
-    std::sort(ret.begin(), ret.end());
-    return ret;
-}
-
-template <typename T>
-std::vector<std::string> proto_vec_to_string_util(std::vector<T>& vec) {
-    std::vector<std::string> ret;
-    for (auto& v : vec) {
-        auto s = v.SerializeAsString();
-        ret.push_back(std::move(s));
-    }
-    std::sort(ret.begin(), ret.end());
-    return ret;
-}
-
 std::vector<std::string> name_vec_to_string(std::vector<Name>& vec) {
     std::vector<std::string> ret;
     for (auto& v : vec) {
