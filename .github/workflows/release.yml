@@ -91,6 +91,10 @@ jobs:
         run: |
           cmake --install build --prefix builds/viam-cpp-sdk-${{ matrix.platform }}
 
+      - name: Create tar
+        run: |
+          tar -czvf builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz builds/viam-cpp-sdk-${{ matrix.platform }}
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -170,6 +174,10 @@ jobs:
         run: |
           /usr/bin/cmake --install build --prefix builds/viam-cpp-sdk-${{ matrix.platform }}
 
+      - name: Create tar
+        run: |
+          tar -czvf builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz builds/viam-cpp-sdk-${{ matrix.platform }}
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -241,12 +249,16 @@ jobs:
               wget \
               zlib1g-dev
 
+      - name: Update CMake for bullseye
+        if: ${{ matrix.image  == 'debian:bullseye' }}
+        run: |
           apt-add-repository -y 'deb http://deb.debian.org/debian bullseye-backports main'
 
           apt-get update
           apt-get -y install cmake
 
           apt-get -y --no-install-recommends install -t bullseye-backports cmake
+
       - name: Setup build directory
         run: mkdir builds
 
@@ -260,6 +272,10 @@ jobs:
       - name: Copy
         run: |
           /usr/bin/cmake --install build --prefix builds/viam-cpp-sdk-${{ matrix.platform }}
+
+      - name: Create tar
+        run: |
+          tar -czvf builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz builds/viam-cpp-sdk-${{ matrix.platform }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
@@ -279,7 +295,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: releases/v${{ needs.prepare.outputs.version }}
-          files: builds/*
+          files: builds/*.tar.gz
           draft: true
           prerelease: false
           fail_on_unmatched_files: true
