@@ -42,9 +42,9 @@ int main() {
     std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);
 
     // ensure we can query resources
-    std::vector<Name>* resource_names = robot->resource_names();
+    std::vector<Name> resource_names = robot->resource_names();
     std::cout << "Resources" << std::endl;
-    for (const Name& resource : *resource_names) {
+    for (const Name& resource : resource_names) {
         std::cout << "\t" << resource << "\n" << std::endl;
     }
 
@@ -56,7 +56,7 @@ int main() {
     }
 
     // ensure we can send requests for specific resources
-    std::vector<Name> just_one = {resource_names->at(0)};
+    std::vector<Name> just_one = {resource_names[0]};
     std::vector<RobotClient::status> status_singular = robot->get_status(just_one);
     std::cout << "Status singular len " << status_singular.size() << std::endl;
     for (const RobotClient::status& s : status_singular) {

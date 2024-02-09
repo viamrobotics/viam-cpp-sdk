@@ -44,10 +44,10 @@ int main() {
             throw;
         }
 
-        std::vector<vs::Name>* resource_names = robot->resource_names();
+        std::vector<vs::Name> resource_names = robot->resource_names();
 
         cout << "Resources of the robot:" << endl;
-        for (const auto& resource : *resource_names) {
+        for (const auto& resource : resource_names) {
             cout << " - " << resource.name() << " (" << resource.api().resource_subtype() << ")"
                  << endl;
         }

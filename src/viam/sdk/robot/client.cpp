@@ -218,8 +218,8 @@ bool is_error_response(grpc::Status response) {
     return !response.ok() && (response.error_message() != kStreamRemoved);
 }
 std::vector<RobotClient::status> RobotClient::get_status() {
-    auto* resources = resource_names();
-    return get_status(*resources);
+    auto resources = resource_names();
+    return get_status(resources);
 }
 // gets statuses of components associated with robot. If a specific component
 // vector is provided, only statuses for the given Names will be
@@ -364,9 +364,9 @@ RobotClient::RobotClient(std::shared_ptr<ViamChannel> channel)
       should_close_channel_(false),
       impl_(std::make_unique<impl>(RobotService::NewStub(channel_))) {}
 
-std::vector<Name>* RobotClient::resource_names() {
+std::vector<Name> RobotClient::resource_names() {
     const std::lock_guard<std::mutex> lock(lock_);
-    std::vector<Name>* resources = std::move(&resource_names_);
+    std::vector<Name> resources = std::move(resource_names_);
     return resources;
 }
 
@@ -495,7 +495,7 @@ std::shared_ptr<Resource> RobotClient::resource_by_name(const Name& name) {
 
 void RobotClient::stop_all() {
     std::unordered_map<Name, AttributeMap> map;
-    for (const Name& name : *resource_names()) {
+    for (const Name& name : resource_names()) {
         const std::unordered_map<std::string, std::shared_ptr<ProtoType>> val;
         const AttributeMap v =
             std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>(val);

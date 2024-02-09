@@ -117,7 +117,7 @@ class RobotClient {
     static std::shared_ptr<RobotClient> with_channel(std::shared_ptr<ViamChannel> channel,
                                                      Options options);
     RobotClient(std::shared_ptr<ViamChannel> channel);
-    std::vector<Name>* resource_names();
+    std::vector<Name> resource_names();
 
     /// @brief Lookup and return a `shared_ptr` to a resource.
     /// @param name The `Name` of the resource.

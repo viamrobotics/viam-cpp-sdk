@@ -46,8 +46,8 @@ int main() {
     std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);
     // Print resources.
     std::cout << "Resources" << std::endl;
-    std::vector<Name>* resource_names = robot->resource_names();
-    for (const Name& resource : *resource_names) {
+    std::vector<Name> resource_names = robot->resource_names();
+    for (const Name& resource : resource_names) {
         std::cout << "\tname: " << resource.name() << " (type:" << resource.api().resource_type()
                   << " subtype:" << resource.api().resource_subtype() << ")" << std::endl;
     }

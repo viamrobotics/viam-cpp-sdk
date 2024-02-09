@@ -118,8 +118,8 @@ std::vector<std::string> name_vec_to_string(std::vector<Name>& vec) {
 BOOST_AUTO_TEST_CASE(test_resource_names) {
     robot_client_to_mocks_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
-            std::vector<Name>* resource_names = client->resource_names();
-            auto names = name_vec_to_string(*resource_names);
+            std::vector<Name> resource_names = client->resource_names();
+            auto names = name_vec_to_string(resource_names);
             auto mocks = mock_resource_names_response();
             auto mock_resp = name_vec_to_string(mocks);
             BOOST_TEST(names == mock_resp, boost::test_tools::per_element());
