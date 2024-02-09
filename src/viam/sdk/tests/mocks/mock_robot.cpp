@@ -60,14 +60,14 @@ std::vector<RobotClient::status> mock_status_response() {
     camera_status.status_map =
         std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
 
-    RobotClient::status generic_status;
-    generic_status.name = rns[1];
-    generic_status.status_map =
+    RobotClient::status motor_status;
+    motor_status.name = rns[1];
+    motor_status.status_map =
         std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
 
-    RobotClient::status motor_status;
-    motor_status.name = rns[2];
-    motor_status.status_map =
+    RobotClient::status generic_status;
+    generic_status.name = rns[2];
+    generic_status.status_map =
         std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
 
     std::vector<RobotClient::status> resp;
@@ -84,10 +84,10 @@ pose_in_frame mock_transform_response() {
 
 std::vector<Name> mock_resource_names_response() {
     Name camera = Name({kRDK, kComponent, "camera"}, "", "mock_camera");
-    Name generic = Name({kRDK, kComponent, "generic"}, "", "mock_generic");
     Name motor = Name({kRDK, kComponent, "motor"}, "", "mock_motor");
+    Name generic = Name({kRDK, kComponent, "generic"}, "", "mock_generic");
 
-    return {std::move(camera), std::move(generic), std::move(motor)};
+    return {std::move(camera), std::move(motor), std::move(generic)};
 }
 
 std::vector<RobotClient::frame_system_config> mock_config_response() {

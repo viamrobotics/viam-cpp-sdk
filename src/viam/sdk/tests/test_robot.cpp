@@ -145,10 +145,7 @@ BOOST_AUTO_TEST_CASE(test_get_status) {
             // ensure that we only get two of the three existing statuses
             BOOST_CHECK_EQUAL(some_statuses.size(), 2);
 
-            // unfortunately the sorting is a bit odd so we end up with a mismatch of index,
-            // but this ensures that the statuses we received do exist in the mocks, as
-            // expected.
-            std::vector<RobotClient::status> some_mock_statuses{mock_statuses[0], mock_statuses[2]};
+            std::vector<RobotClient::status> some_mock_statuses{mock_statuses[0], mock_statuses[1]};
 
             BOOST_TEST(some_statuses == some_mock_statuses, boost::test_tools::per_element());
         });
