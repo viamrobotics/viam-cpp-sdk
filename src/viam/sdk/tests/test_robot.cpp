@@ -185,10 +185,10 @@ BOOST_AUTO_TEST_CASE(test_transform_pose) {
     robot_client_to_mocks_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
             pose_in_frame pif;
-            auto pose = client->transform_pose(pif, "", {}).to_proto();
-            auto mock_pose = mock_transform_response().to_proto();
+            auto pose = client->transform_pose(pif, "", {});
+            auto mock_pose = mock_transform_response();
 
-            BOOST_CHECK_EQUAL(pose.DebugString(), mock_pose.DebugString());
+            BOOST_CHECK_EQUAL(pose, mock_pose);
         });
 }
 
