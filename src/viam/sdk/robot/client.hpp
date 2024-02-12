@@ -116,7 +116,7 @@ class RobotClient {
     static std::shared_ptr<RobotClient> with_channel(std::shared_ptr<ViamChannel> channel,
                                                      Options options);
     RobotClient(std::shared_ptr<ViamChannel> channel);
-    std::vector<Name> resource_names();
+    std::vector<Name> resource_names() const;
 
     /// @brief Lookup and return a `shared_ptr` to a resource.
     /// @param name The `Name` of the resource.
@@ -192,7 +192,7 @@ class RobotClient {
     bool should_close_channel_;
     struct impl;
     std::unique_ptr<impl> impl_;
-    std::mutex lock_;
+    mutable std::mutex lock_;
     std::vector<Name> resource_names_;
     ResourceManager resource_manager_;
     void refresh_every();
