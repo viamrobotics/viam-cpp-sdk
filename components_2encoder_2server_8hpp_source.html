@@ -89,49 +89,54 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;viam/api/common/v1/common.pb.h&gt;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;viam/api/component/encoder/v1/encoder.grpc.pb.h&gt;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;<a class="code" href="resource__manager_8hpp.html">viam/sdk/resource/resource_manager.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;viam/sdk/resource/resource_server_base.hpp&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span>viam {</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span>sdk {</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1EncoderServer.html">   18</a></span><span class="keyword">class </span><a class="code hl_class" href="classviam_1_1sdk_1_1EncoderServer.html">EncoderServer</a> : <span class="keyword">public</span> <a class="code hl_class" href="classviam_1_1sdk_1_1ResourceServer.html">ResourceServer</a>,</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>                      <span class="keyword">public</span> viam::component::encoder::v1::EncoderService::Service {</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>   <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classviam_1_1sdk_1_1EncoderServer.html">EncoderServer</a>(std::shared_ptr&lt;ResourceManager&gt; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">manager</a>);</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    ::grpc::Status GetPosition(</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        ::grpc::ServerContext* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">context</a>,</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        const ::viam::component::encoder::v1::GetPositionRequest* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">request</a>,</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        ::viam::component::encoder::v1::GetPositionResponse* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">response</a>) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    ::grpc::Status ResetPosition(</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        ::grpc::ServerContext* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">context</a>,</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        const ::viam::component::encoder::v1::ResetPositionRequest* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">request</a>,</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        ::viam::component::encoder::v1::ResetPositionResponse* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">response</a>) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    ::grpc::Status GetProperties(</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        ::grpc::ServerContext* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">context</a>,</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        const ::viam::component::encoder::v1::GetPropertiesRequest* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">request</a>,</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        ::viam::component::encoder::v1::GetPropertiesResponse* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">response</a>) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    ::grpc::Status GetGeometries(</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        ::grpc::ServerContext* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">context</a>,</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        const ::viam::common::v1::GetGeometriesRequest* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">request</a>,</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        ::viam::common::v1::GetGeometriesResponse* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">response</a>) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    ::grpc::Status DoCommand(grpc::ServerContext* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">context</a>,</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                             <span class="keyword">const</span> viam::common::v1::DoCommandRequest* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">request</a>,</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>                             viam::common::v1::DoCommandResponse* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">response</a>) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>};</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;<a class="code" href="encoder_8hpp.html">viam/sdk/components/encoder/encoder.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;<a class="code" href="resource__manager_8hpp.html">viam/sdk/resource/resource_manager.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;viam/sdk/resource/resource_server_base.hpp&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span>viam {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span>sdk {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1EncoderServer.html">   19</a></span><span class="keyword">class </span><a class="code hl_class" href="classviam_1_1sdk_1_1EncoderServer.html">EncoderServer</a> : <span class="keyword">public</span> <a class="code hl_class" href="classviam_1_1sdk_1_1ResourceServer.html">ResourceServer</a>,</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>                      <span class="keyword">public</span> viam::component::encoder::v1::EncoderService::Service {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">using </span><a class="code hl_class" href="classviam_1_1sdk_1_1Encoder.html">interface_type</a> = <a class="code hl_class" href="classviam_1_1sdk_1_1Encoder.html">Encoder</a>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">using </span>service_type = component::encoder::v1::EncoderService;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classviam_1_1sdk_1_1EncoderServer.html">EncoderServer</a>(std::shared_ptr&lt;ResourceManager&gt; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">manager</a>);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    ::grpc::Status GetPosition(</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        ::grpc::ServerContext* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">context</a>,</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        const ::viam::component::encoder::v1::GetPositionRequest* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">request</a>,</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        ::viam::component::encoder::v1::GetPositionResponse* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">response</a>) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    ::grpc::Status ResetPosition(</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        ::grpc::ServerContext* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">context</a>,</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        const ::viam::component::encoder::v1::ResetPositionRequest* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">request</a>,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        ::viam::component::encoder::v1::ResetPositionResponse* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">response</a>) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    ::grpc::Status GetProperties(</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        ::grpc::ServerContext* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">context</a>,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        const ::viam::component::encoder::v1::GetPropertiesRequest* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">request</a>,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        ::viam::component::encoder::v1::GetPropertiesResponse* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">response</a>) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    ::grpc::Status GetGeometries(</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        ::grpc::ServerContext* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">context</a>,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        const ::viam::common::v1::GetGeometriesRequest* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">request</a>,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        ::viam::common::v1::GetGeometriesResponse* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">response</a>) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    ::grpc::Status DoCommand(grpc::ServerContext* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">context</a>,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                             <span class="keyword">const</span> viam::common::v1::DoCommandRequest* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">request</a>,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                             viam::common::v1::DoCommandResponse* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">response</a>) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>};</div>
 </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}  <span class="comment">// namespace sdk</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>}  <span class="comment">// namespace viam</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>}  <span class="comment">// namespace sdk</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>}  <span class="comment">// namespace viam</span></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ClientHelper_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ClientHelper.html">viam::sdk::ClientHelper</a></div><div class="ttdef"><b>Definition</b> client_helper.hpp:15</div></div>
-<div class="ttc" id="aclassviam_1_1sdk_1_1EncoderServer_html"><div class="ttname"><a href="classviam_1_1sdk_1_1EncoderServer.html">viam::sdk::EncoderServer</a></div><div class="ttdoc">gRPC server implementation of a Encoder component.</div><div class="ttdef"><b>Definition</b> server.hpp:19</div></div>
-<div class="ttc" id="aclassviam_1_1sdk_1_1ResourceServer_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ResourceServer.html">viam::sdk::ResourceServer</a></div><div class="ttdef"><b>Definition</b> resource_server_base.hpp:9</div></div>
+<div class="ttc" id="aclassviam_1_1sdk_1_1EncoderServer_html"><div class="ttname"><a href="classviam_1_1sdk_1_1EncoderServer.html">viam::sdk::EncoderServer</a></div><div class="ttdoc">gRPC server implementation of a Encoder component.</div><div class="ttdef"><b>Definition</b> server.hpp:20</div></div>
+<div class="ttc" id="aclassviam_1_1sdk_1_1Encoder_html"><div class="ttname"><a href="classviam_1_1sdk_1_1Encoder.html">viam::sdk::Encoder</a></div><div class="ttdoc">An encoder is a device that is hooked up to motors to report a position.</div><div class="ttdef"><b>Definition</b> encoder.hpp:23</div></div>
+<div class="ttc" id="aclassviam_1_1sdk_1_1ResourceServer_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ResourceServer.html">viam::sdk::ResourceServer</a></div><div class="ttdef"><b>Definition</b> resource_server_base.hpp:8</div></div>
+<div class="ttc" id="aencoder_8hpp_html"><div class="ttname"><a href="encoder_8hpp.html">encoder.hpp</a></div><div class="ttdoc">Defines a Encoder component.</div></div>
 <div class="ttc" id="aresource__manager_8hpp_html"><div class="ttname"><a href="resource__manager_8hpp.html">resource_manager.hpp</a></div><div class="ttdoc">Defines a general-purpose resource manager.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Viam C++ SDK: Classes related to the generic service.</title>
+<title>Viam C++ SDK: src/viam/sdk/robot/client.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -48,7 +48,6 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -70,30 +69,44 @@ $(function() {
 </div>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_2f841a913ca9dc33e6376c2a26eb0ce5.html">viam</a></li><li class="navelem"><a class="el" href="dir_2dd7419e3f1605b187eaf7d665ac5e3d.html">sdk</a></li><li class="navelem"><a class="el" href="dir_2d53c25206f9ecfad4f24f8b123c193e.html">robot</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a>  </div>
-  <div class="headertitle"><div class="title">Classes related to the generic service.</div></div>
+  <div class="headertitle"><div class="title">client.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>gRPC client implementation for a <code>robot</code>.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &lt;string&gt;</code><br />
+<code>#include &lt;thread&gt;</code><br />
+<code>#include &lt;grpcpp/channel.h&gt;</code><br />
+<code>#include &lt;viam/api/common/v1/common.pb.h&gt;</code><br />
+<code>#include &lt;viam/api/robot/v1/robot.grpc.pb.h&gt;</code><br />
+<code>#include &lt;viam/api/robot/v1/robot.pb.h&gt;</code><br />
+<code>#include &lt;viam/sdk/common/utils.hpp&gt;</code><br />
+<code>#include &lt;viam/sdk/components/component.hpp&gt;</code><br />
+<code>#include &lt;<a class="el" href="registry_8hpp_source.html">viam/sdk/registry/registry.hpp</a>&gt;</code><br />
+<code>#include &lt;viam/sdk/resource/resource.hpp&gt;</code><br />
+<code>#include &lt;viam/sdk/rpc/dial.hpp&gt;</code><br />
+<code>#include &lt;viam/sdk/services/service.hpp&gt;</code><br />
+</div>
+<p><a href="robot_2client_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1GenericServiceClient.html">viam::sdk::GenericServiceClient</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">gRPC client implementation of a <code><a class="el" href="classviam_1_1sdk_1_1GenericService.html" title="A GenericService represents any service that can execute arbitrary commands.">GenericService</a></code>.  <a href="classviam_1_1sdk_1_1GenericServiceClient.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1GenericServiceRegistration.html">viam::sdk::GenericServiceRegistration</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a <code><a class="el" href="classviam_1_1sdk_1_1ResourceRegistration.html" title="Defines registered Resource creation functionality.">ResourceRegistration</a></code> for the <code><a class="el" href="classviam_1_1sdk_1_1GenericService.html" title="A GenericService represents any service that can execute arbitrary commands.">GenericService</a></code>.  <a href="classviam_1_1sdk_1_1GenericServiceRegistration.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1GenericService.html">viam::sdk::GenericService</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <code><a class="el" href="classviam_1_1sdk_1_1GenericService.html" title="A GenericService represents any service that can execute arbitrary commands.">GenericService</a></code> represents any service that can execute arbitrary commands.  <a href="classviam_1_1sdk_1_1GenericService.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1GenericServiceServer.html">viam::sdk::GenericServiceServer</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">gRPC server implementation of a <code><a class="el" href="classviam_1_1sdk_1_1GenericService.html" title="A GenericService represents any service that can execute arbitrary commands.">GenericService</a></code>.  <a href="classviam_1_1sdk_1_1GenericServiceServer.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1RobotClient.html">viam::sdk::RobotClient</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">gRPC client for a robot, to be used for all interactions with a robot. There are two ways to instantiate a robot:  <a href="classviam_1_1sdk_1_1RobotClient.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-</div><!-- contents -->
+<div class="textblock"><p>gRPC client implementation for a <code>robot</code>. </p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0

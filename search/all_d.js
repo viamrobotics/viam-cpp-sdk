@@ -3,7 +3,7 @@ var searchData=
   ['plan_0',['plan',['../structviam_1_1sdk_1_1Motion_1_1plan.html',1,'viam::sdk::Motion::plan'],['../structviam_1_1sdk_1_1Motion_1_1plan__with__status.html#a0a236586ee8d4f758eb50a2ff9ad2a86',1,'viam::sdk::Motion::plan_with_status::plan']]],
   ['plan_5fdeviation_5fm_1',['plan_deviation_m',['../structviam_1_1sdk_1_1motion__configuration.html#ac8a390fb620697ac9099c9be03dc2fc4',1,'viam::sdk::motion_configuration']]],
   ['plan_5fid_2',['plan_id',['../structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html#aeaea77521be70919b2a5c94ac1b73e4b',1,'viam::sdk::Motion::plan_status_with_id']]],
-  ['plan_5fstate_3',['plan_state',['../group__Motion.html#ga675019f922d19893e0891a17f8a31605',1,'viam::sdk::Motion']]],
+  ['plan_5fstate_3',['plan_state',['../classviam_1_1sdk_1_1Motion.html#a675019f922d19893e0891a17f8a31605',1,'viam::sdk::Motion']]],
   ['plan_5fstatus_4',['plan_status',['../structviam_1_1sdk_1_1Motion_1_1plan__status.html',1,'viam::sdk::Motion']]],
   ['plan_5fstatus_5fwith_5fid_5',['plan_status_with_id',['../structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html',1,'viam::sdk::Motion']]],
   ['plan_5fwith_5fstatus_6',['plan_with_status',['../structviam_1_1sdk_1_1Motion_1_1plan__with__status.html',1,'viam::sdk::Motion']]],
