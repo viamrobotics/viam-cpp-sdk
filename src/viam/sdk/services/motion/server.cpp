@@ -94,7 +94,6 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-// CR erodkin: we weren't using `make_service_helper` here. Make note of flyby.
 ::grpc::Status MotionServer::GetPose(
     ::grpc::ServerContext* context,
     const ::viam::service::motion::v1::GetPoseRequest* request,
