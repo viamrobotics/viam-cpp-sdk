@@ -1,17 +1,11 @@
 #include <viam/sdk/robot/client.hpp>
 
-#include <algorithm>
 #include <chrono>
 #include <cstddef>
-#include <iostream>
 #include <memory>
 #include <mutex>
-#include <ostream>
-#include <set>
 #include <string>
 #include <thread>
-#include <tuple>
-#include <type_traits>
 #include <unistd.h>
 #include <vector>
 
@@ -78,7 +72,7 @@ void RobotClient::close() {
     viam_channel_->close();
 }
 
-bool is_error_response(grpc::Status response) {
+bool is_error_response(const grpc::Status& response) {
     return !response.ok() && (response.error_message() != kStreamRemoved);
 }
 std::vector<Status> RobotClient::get_status() {
@@ -222,7 +216,7 @@ void RobotClient::refresh_every() {
     }
 };
 
-RobotClient::RobotClient(std::shared_ptr<ViamChannel> channel)
+RobotClient::RobotClient(const std::shared_ptr<ViamChannel>& channel)
     : viam_channel_(channel),
       channel_(channel->channel()),
       should_close_channel_(false),
@@ -234,8 +228,8 @@ std::vector<ResourceName>* RobotClient::resource_names() {
     return resources;
 }
 
-std::shared_ptr<RobotClient> RobotClient::with_channel(std::shared_ptr<ViamChannel> channel,
-                                                       Options options) {
+std::shared_ptr<RobotClient> RobotClient::with_channel(const std::shared_ptr<ViamChannel>& channel,
+                                                       const Options& options) {
     std::shared_ptr<RobotClient> robot = std::make_shared<RobotClient>(channel);
     robot->refresh_interval_ = options.refresh_interval();
     robot->should_refresh_ = (robot->refresh_interval_ > 0);

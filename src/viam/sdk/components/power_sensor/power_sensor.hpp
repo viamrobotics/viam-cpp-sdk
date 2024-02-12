@@ -44,10 +44,10 @@ class PowerSensor : public Component {
     API api() const override;
 
     /// @brief Creates a `voltage` struct from its proto representation.
-    static voltage from_proto(GetVoltageResponse proto);
+    static voltage from_proto(const GetVoltageResponse& proto);
 
     /// @brief Creates a `current` struct from its proto representation.
-    static current from_proto(GetCurrentResponse proto);
+    static current from_proto(const GetCurrentResponse& proto);
 
     /// @brief Converts a `voltage` struct to its proto representation.
     static GetVoltageResponse to_proto(voltage v);

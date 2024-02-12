@@ -50,7 +50,8 @@ std::string Camera::format_to_MIME_string(viam::component::camera::v1::Format fo
     }
 }
 
-::viam::component::camera::v1::Format Camera::MIME_string_to_format(std::string mime_string) {
+::viam::component::camera::v1::Format Camera::MIME_string_to_format(
+    const std::string& mime_string) {
     if (mime_string == "image/vnd.viam.rgba") {
         return viam::component::camera::v1::FORMAT_RAW_RGBA;
     }
@@ -66,7 +67,7 @@ std::string Camera::format_to_MIME_string(viam::component::camera::v1::Format fo
     return viam::component::camera::v1::FORMAT_UNSPECIFIED;
 }
 
-Camera::raw_image Camera::from_proto(viam::component::camera::v1::GetImageResponse proto) {
+Camera::raw_image Camera::from_proto(const viam::component::camera::v1::GetImageResponse& proto) {
     Camera::raw_image raw_image;
     std::string img_string = proto.image();
     const std::vector<unsigned char> bytes(img_string.begin(), img_string.end());
@@ -76,7 +77,8 @@ Camera::raw_image Camera::from_proto(viam::component::camera::v1::GetImageRespon
     return raw_image;
 }
 
-Camera::image_collection Camera::from_proto(viam::component::camera::v1::GetImagesResponse proto) {
+Camera::image_collection Camera::from_proto(
+    const viam::component::camera::v1::GetImagesResponse& proto) {
     Camera::image_collection image_collection;
     std::vector<Camera::raw_image> images;
     for (const auto& img : proto.images()) {
@@ -93,7 +95,8 @@ Camera::image_collection Camera::from_proto(viam::component::camera::v1::GetImag
     return image_collection;
 }
 
-Camera::point_cloud Camera::from_proto(viam::component::camera::v1::GetPointCloudResponse proto) {
+Camera::point_cloud Camera::from_proto(
+    const viam::component::camera::v1::GetPointCloudResponse& proto) {
     Camera::point_cloud point_cloud;
     std::string pc_string = proto.point_cloud();
     const std::vector<unsigned char> bytes(pc_string.begin(), pc_string.end());
@@ -103,7 +106,7 @@ Camera::point_cloud Camera::from_proto(viam::component::camera::v1::GetPointClou
 }
 
 Camera::intrinsic_parameters Camera::from_proto(
-    viam::component::camera::v1::IntrinsicParameters proto) {
+    const viam::component::camera::v1::IntrinsicParameters& proto) {
     Camera::intrinsic_parameters params;
     // NOLINTNEXTLINE(bugprone-narrowing-conversions)
     params.width_px = proto.width_px();
@@ -117,14 +120,15 @@ Camera::intrinsic_parameters Camera::from_proto(
 }
 
 Camera::distortion_parameters Camera::from_proto(
-    viam::component::camera::v1::DistortionParameters proto) {
+    const viam::component::camera::v1::DistortionParameters& proto) {
     Camera::distortion_parameters params;
     params.model = proto.model();
     params.parameters = {proto.parameters().begin(), proto.parameters().end()};
     return params;
 }
 
-Camera::properties Camera::from_proto(viam::component::camera::v1::GetPropertiesResponse proto) {
+Camera::properties Camera::from_proto(
+    const viam::component::camera::v1::GetPropertiesResponse& proto) {
     Camera::distortion_parameters distortion_parameters;
     Camera::intrinsic_parameters intrinsic_parameters;
     Camera::properties properties;

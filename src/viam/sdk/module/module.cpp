@@ -10,7 +10,7 @@
 namespace viam {
 namespace sdk {
 
-Module::Module(std::string addr) : addr_(addr){};
+Module::Module(std::string addr) : addr_(std::move(addr)){};
 
 void Module::set_ready() {
     ready_ = true;

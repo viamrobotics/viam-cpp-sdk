@@ -10,10 +10,10 @@ namespace sdk {
 class HandlerMap_ {
    public:
     HandlerMap_();
-    void add_model(Model model, RPCSubtype subtype);
+    void add_model(const Model& model, const RPCSubtype& subtype);
 
     viam::module::v1::HandlerMap to_proto() const;
-    static const HandlerMap_ from_proto(viam::module::v1::HandlerMap proto);
+    static const HandlerMap_ from_proto(const viam::module::v1::HandlerMap& proto);
     friend std::ostream& operator<<(std::ostream& os, const HandlerMap_& hm);
 
    private:

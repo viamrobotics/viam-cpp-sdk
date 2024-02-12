@@ -47,16 +47,16 @@ const std::string& Credentials::payload() const {
 }
 
 ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* path, void* runtime)
-    : channel_(channel), path_(path), closed_(false), rust_runtime_(runtime) {}
+    : channel_(std::move(channel)), path_(path), closed_(false), rust_runtime_(runtime) {}
 
 DialOptions::DialOptions() = default;
 
 void DialOptions::set_credentials(boost::optional<Credentials> creds) {
-    credentials_ = creds;
+    credentials_ = std::move(creds);
 }
 
 void DialOptions::set_entity(boost::optional<std::string> entity) {
-    auth_entity_ = entity;
+    auth_entity_ = std::move(entity);
 }
 
 void DialOptions::set_timeout(std::chrono::duration<float> timeout) {
@@ -84,7 +84,7 @@ bool DialOptions::allows_insecure_downgrade() const {
 }
 
 std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
-                                               boost::optional<DialOptions> options) {
+                                               const boost::optional<DialOptions>& options) {
     void* ptr = init_rust_runtime();
     const DialOptions opts = options.get_value_or(DialOptions());
     const std::chrono::duration<float> float_timeout = opts.timeout();

@@ -29,7 +29,7 @@ class Servo : public Component, public Stoppable {
     API api() const override;
 
     /// @brief Creates a `position` struct from its proto representation.
-    static position from_proto(viam::component::servo::v1::GetPositionResponse proto);
+    static position from_proto(const viam::component::servo::v1::GetPositionResponse& proto);
 
     /// @brief Move the servo to the provided angle
     /// @param angle_deg The desired angle of the servo in degrees.

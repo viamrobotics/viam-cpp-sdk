@@ -22,9 +22,9 @@ class ResourceLevelServiceConfig {
 
 class ResourceConfig {
    public:
-    static ResourceConfig from_proto(viam::app::v1::ComponentConfig proto_cfg);
+    static ResourceConfig from_proto(const viam::app::v1::ComponentConfig& proto_cfg);
     viam::app::v1::ComponentConfig to_proto() const;
-    ResourceConfig(std::string type);
+    ResourceConfig(const std::string& type);
     Name resource_name();
     const API& api() const;
     const LinkConfig& frame() const;

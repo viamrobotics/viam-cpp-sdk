@@ -39,7 +39,7 @@ void Server::register_service(grpc::Service* service) {
     builder_->RegisterService(service);
 }
 
-void Server::add_resource(std::shared_ptr<Resource> resource) {
+void Server::add_resource(const std::shared_ptr<Resource>& resource) {
     auto api = resource->api();
     if (managed_servers_.find(api) == managed_servers_.end()) {
         std::ostringstream buffer;
@@ -60,7 +60,7 @@ void Server::start() {
     builder_ = nullptr;
 }
 
-void Server::add_listening_port(std::string address,
+void Server::add_listening_port(const std::string& address,
                                 std::shared_ptr<grpc::ServerCredentials> creds) {
     if (!builder_) {
         throw std::runtime_error("Cannot add a listening port after server has started");
@@ -70,7 +70,7 @@ void Server::add_listening_port(std::string address,
         creds = grpc::InsecureServerCredentials();
     }
 
-    builder_->AddListeningPort(address, creds);
+    builder_->AddListeningPort(address, std::move(creds));
 }
 
 void Server::wait() {

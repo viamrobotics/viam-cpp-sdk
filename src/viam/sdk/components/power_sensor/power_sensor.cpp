@@ -19,14 +19,14 @@ API API::traits<PowerSensor>::api() {
     return {kRDK, kComponent, "power_sensor"};
 }
 
-PowerSensor::voltage PowerSensor::from_proto(GetVoltageResponse proto) {
+PowerSensor::voltage PowerSensor::from_proto(const GetVoltageResponse& proto) {
     PowerSensor::voltage v;
     v.volts = proto.volts();
     v.is_ac = proto.is_ac();
     return v;
 }
 
-PowerSensor::current PowerSensor::from_proto(GetCurrentResponse proto) {
+PowerSensor::current PowerSensor::from_proto(const GetCurrentResponse& proto) {
     PowerSensor::current c;
     c.amperes = proto.amperes();
     c.is_ac = proto.is_ac();

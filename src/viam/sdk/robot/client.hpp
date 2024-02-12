@@ -65,9 +65,9 @@ class RobotClient {
     /// @param options Options for connecting and refreshing.
     /// Connects directly to a pre-existing channel. A robot created this way must be
     /// `close()`d manually.
-    static std::shared_ptr<RobotClient> with_channel(std::shared_ptr<ViamChannel> channel,
-                                                     Options options);
-    RobotClient(std::shared_ptr<ViamChannel> channel);
+    static std::shared_ptr<RobotClient> with_channel(const std::shared_ptr<ViamChannel>& channel,
+                                                     const Options& options);
+    RobotClient(const std::shared_ptr<ViamChannel>& channel);
     std::vector<ResourceName>* resource_names();
 
     /// @brief Lookup and return a `shared_ptr` to a resource.

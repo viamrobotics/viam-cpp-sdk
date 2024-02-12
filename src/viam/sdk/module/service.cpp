@@ -61,7 +61,7 @@ Dependencies ModuleService::get_dependencies_(
     return deps;
 }
 
-std::shared_ptr<Resource> ModuleService::get_parent_resource_(Name name) {
+std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) {
     if (!parent_) {
         parent_ = RobotClient::at_local_socket(parent_addr_, {0, boost::none});
     }
@@ -215,7 +215,7 @@ ModuleService::ModuleService(std::string addr)
 
 ModuleService::ModuleService(int argc,
                              char** argv,
-                             std::vector<std::shared_ptr<ModelRegistration>> registrations) {
+                             const std::vector<std::shared_ptr<ModelRegistration>>& registrations) {
     if (argc < 2) {
         throw std::runtime_error("Need socket path as command line argument");
     }
@@ -264,8 +264,8 @@ ModuleService::~ModuleService() {
     }
 }
 
-void ModuleService::add_model_from_registry_inlock_(API api,
-                                                    Model model,
+void ModuleService::add_model_from_registry_inlock_(const API& api,
+                                                    const Model& model,
                                                     const std::lock_guard<std::mutex>& lock) {
     const std::shared_ptr<const ResourceServerRegistration> creator =
         Registry::lookup_resource_server(api);
@@ -279,7 +279,7 @@ void ModuleService::add_model_from_registry_inlock_(API api,
     module_->mutable_handles().add_model(model, rpc_subtype);
 };
 
-void ModuleService::add_model_from_registry(API api, Model model) {
+void ModuleService::add_model_from_registry(const API& api, const Model& model) {
     const std::lock_guard<std::mutex> lock(lock_);
     return add_model_from_registry_inlock_(api, model, lock);
 }

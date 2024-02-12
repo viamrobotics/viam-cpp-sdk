@@ -45,13 +45,13 @@ class Server {
     /// @brief Adds a specific managed resource to the associated resource server
     /// @param resource The resource to add
     /// @throws `std::runtime_error` if a matching `ResourceServer` doesn't exist in the server.
-    void add_resource(std::shared_ptr<Resource> resource);
+    void add_resource(const std::shared_ptr<Resource>& resource);
 
     /// @brief Adds a listening port to the server.
     /// @param address The address to listen at.
     /// @param creds The server credentials; defaults to a insecure server credentials.
     /// @throws `std::runtime_error` if called after the server has been `start`ed.
-    void add_listening_port(std::string address,
+    void add_listening_port(const std::string& address,
                             std::shared_ptr<grpc::ServerCredentials> creds = nullptr);
 
     /// @brief waits on server close, only returning when the server is closed.

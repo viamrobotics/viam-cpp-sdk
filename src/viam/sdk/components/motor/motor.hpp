@@ -46,14 +46,15 @@ class Motor : public Component, public Stoppable {
     };
 
     /// @brief Creates a `position` struct from its proto representation.
-    static position from_proto(viam::component::motor::v1::GetPositionResponse proto);
+    static position from_proto(const viam::component::motor::v1::GetPositionResponse& proto);
 
     /// @brief Creates a `power_status` struct from its proto representation.
-    static power_status from_proto(viam::component::motor::v1::IsPoweredResponse proto);
+    static power_status from_proto(const viam::component::motor::v1::IsPoweredResponse& proto);
 
     /// @brief Creates a `properties` struct from its proto representation.
-    static properties from_proto(viam::component::motor::v1::GetPropertiesResponse proto);
+    static properties from_proto(const viam::component::motor::v1::GetPropertiesResponse& proto);
 
+    /// // CR erodkin: why aren't the `to_proto` methods complaining about lack of `const&`?
     /// @brief Converts a `position` struct to its proto representation.
     static viam::component::motor::v1::GetPositionResponse to_proto(position position);
 

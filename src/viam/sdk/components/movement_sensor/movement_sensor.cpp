@@ -20,21 +20,21 @@ API API::traits<MovementSensor>::api() {
 }
 
 MovementSensor::compassheading MovementSensor::from_proto(
-    viam::component::movementsensor::v1::GetCompassHeadingResponse proto) {
+    const viam::component::movementsensor::v1::GetCompassHeadingResponse& proto) {
     MovementSensor::compassheading compassheading;
     compassheading.value = proto.value();
     return compassheading;
 }
 
 MovementSensor::position MovementSensor::from_proto(
-    viam::component::movementsensor::v1::GetPositionResponse proto) {
+    const viam::component::movementsensor::v1::GetPositionResponse& proto) {
     MovementSensor::position position;
     position.coordinate = viam::sdk::geo_point::from_proto(proto.coordinate());
     position.altitude_m = proto.altitude_m();
     return position;
 }
 
-MovementSensor::orientation MovementSensor::from_proto(viam::common::v1::Orientation proto) {
+MovementSensor::orientation MovementSensor::from_proto(const viam::common::v1::Orientation& proto) {
     MovementSensor::orientation orientation;
     orientation.o_x = proto.o_x();
     orientation.o_y = proto.o_y();
@@ -44,7 +44,7 @@ MovementSensor::orientation MovementSensor::from_proto(viam::common::v1::Orienta
 }
 
 MovementSensor::properties MovementSensor::from_proto(
-    viam::component::movementsensor::v1::GetPropertiesResponse proto) {
+    const viam::component::movementsensor::v1::GetPropertiesResponse& proto) {
     MovementSensor::properties properties;
     properties.linear_velocity_supported = proto.linear_velocity_supported();
     properties.angular_velocity_supported = proto.angular_velocity_supported();

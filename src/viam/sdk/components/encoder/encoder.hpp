@@ -50,10 +50,10 @@ class Encoder : public Component {
     static position_type from_proto(viam::component::encoder::v1::PositionType proto);
 
     /// @brief Creates a `position` struct from its proto representation.
-    static position from_proto(viam::component::encoder::v1::GetPositionResponse proto);
+    static position from_proto(const viam::component::encoder::v1::GetPositionResponse& proto);
 
     /// @brief Creates a `properties` struct from its proto representation.
-    static properties from_proto(viam::component::encoder::v1::GetPropertiesResponse proto);
+    static properties from_proto(const viam::component::encoder::v1::GetPropertiesResponse& proto);
 
     /// @brief Converts a `position_type` struct to its proto representation.
     static viam::component::encoder::v1::PositionType to_proto(position_type position_type);

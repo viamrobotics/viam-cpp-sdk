@@ -11,7 +11,7 @@
 namespace viam {
 namespace sdk {
 
-Motor::position Motor::from_proto(viam::component::motor::v1::GetPositionResponse proto) {
+Motor::position Motor::from_proto(const viam::component::motor::v1::GetPositionResponse& proto) {
     return proto.position();
 }
 API Motor::api() const {
@@ -22,7 +22,7 @@ API API::traits<Motor>::api() {
     return {kRDK, kComponent, "motor"};
 }
 
-Motor::power_status Motor::from_proto(viam::component::motor::v1::IsPoweredResponse proto) {
+Motor::power_status Motor::from_proto(const viam::component::motor::v1::IsPoweredResponse& proto) {
     Motor::power_status power_status;
     power_status.is_on = proto.is_on();
 
@@ -30,7 +30,8 @@ Motor::power_status Motor::from_proto(viam::component::motor::v1::IsPoweredRespo
     return power_status;
 }
 
-Motor::properties Motor::from_proto(viam::component::motor::v1::GetPropertiesResponse proto) {
+Motor::properties Motor::from_proto(
+    const viam::component::motor::v1::GetPropertiesResponse& proto) {
     Motor::properties properties;
     properties.position_reporting = proto.position_reporting();
     return properties;
