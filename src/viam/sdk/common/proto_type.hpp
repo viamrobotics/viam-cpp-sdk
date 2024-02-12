@@ -82,8 +82,8 @@ class ProtoType {
         proto_type_;
 };
 
-AttributeMap struct_to_map(google::protobuf::Struct struct_);
-google::protobuf::Struct map_to_struct(AttributeMap dict);
+AttributeMap struct_to_map(const google::protobuf::Struct& struct_);
+google::protobuf::Struct map_to_struct(const AttributeMap& dict);
 
 }  // namespace sdk
 }  // namespace viam

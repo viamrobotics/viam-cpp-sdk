@@ -53,7 +53,7 @@ viam::common::v1::Vector3 Vector3::to_proto(const Vector3& vec) {
     return result;
 };
 
-Vector3 Vector3::from_proto(viam::common::v1::Vector3 vec) {
+Vector3 Vector3::from_proto(const viam::common::v1::Vector3& vec) {
     return {vec.x(), vec.y(), vec.z()};
 }
 

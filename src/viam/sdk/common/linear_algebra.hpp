@@ -31,7 +31,7 @@ class Vector3 {
     const std::array<scalar_type, 3>& data() const;
     std::array<scalar_type, 3>& data();
     static viam::common::v1::Vector3 to_proto(const Vector3& vec);
-    static Vector3 from_proto(viam::common::v1::Vector3 vec);
+    static Vector3 from_proto(const viam::common::v1::Vector3& vec);
 
    private:
     std::array<scalar_type, 3> data_;
