@@ -25,7 +25,6 @@ namespace viam {
 namespace sdk {
 
 using grpc::Channel;
-using viam::robot::v1::RobotService;
 
 /// @defgroup Robot Classes related to a Robot representation.
 
@@ -138,15 +137,13 @@ class RobotClient {
     /// @throws `std::runtime_error` if the requested resource doesn't exist or is the wrong type.
     /// @return a `shared_ptr` to the requested resource.
     std::shared_ptr<T> resource_by_name(std::string name) {
-        auto resource = this->resource_by_name({API::get<T>(), "", name});
-        return std::dynamic_pointer_cast<T>(resource);
+        return std::dynamic_pointer_cast<T>(resource_by_name({API::get<T>(), "", std::move(name)}));
     }
 
     /// @brief Get the configuration of the frame system of the given robot.
     /// @return The configuration of the calling robot's frame system.
     std::vector<frame_system_config> get_frame_system_config(
-        std::vector<WorldState::transform> additional_transforms =
-            std::vector<WorldState::transform>());
+        std::vector<WorldState::transform> additional_transforms = {});
 
     /// @brief Get the list of operations currently running on a robot.
     /// @return The list of operations currently running on the calling robot.
@@ -169,8 +166,7 @@ class RobotClient {
     /// @return the `pose_in_frame` of the transformed pose.
     pose_in_frame transform_pose(pose_in_frame query,
                                  std::string destination,
-                                 std::vector<WorldState::transform> additional_transforms =
-                                     std::vector<WorldState::transform>());
+                                 std::vector<WorldState::transform> additional_transforms = {});
 
     /// @brief Blocks on the specified operation of the robot, returning when it is complete.
     /// @param id The ID of the operation to block on.

@@ -57,7 +57,7 @@ const std::string kStreamRemoved("Stream removed");
 DiscoveryQuery RobotClient::discovery_query::to_proto() const {
     DiscoveryQuery proto;
     *proto.mutable_subtype() = subtype;
-    *proto.mutable_model() = std::move(model);
+    *proto.mutable_model() = model;
     return proto;
 }
 
@@ -365,9 +365,8 @@ RobotClient::RobotClient(std::shared_ptr<ViamChannel> channel)
       impl_(std::make_unique<impl>(RobotService::NewStub(channel_))) {}
 
 std::vector<Name> RobotClient::resource_names() {
-    const std::lock_guard<std::mutex> lock(lock_);
-    std::vector<Name> resources = std::move(resource_names_);
-    return resources;
+    std::lock_guard<std::mutex> lock(lock_);
+    return resource_names_;
 }
 
 std::shared_ptr<RobotClient> RobotClient::with_channel(std::shared_ptr<ViamChannel> channel,
@@ -403,7 +402,6 @@ std::shared_ptr<RobotClient> RobotClient::at_local_socket(std::string address, O
     const char* uri = addr.c_str();
     const std::shared_ptr<grpc::Channel> channel =
         grpc::CreateChannel(uri, grpc::InsecureChannelCredentials());
-    const std::unique_ptr<RobotService::Stub> st = RobotService::NewStub(channel);
     auto viam_channel = std::make_shared<ViamChannel>(channel, address.c_str(), nullptr);
     std::shared_ptr<RobotClient> robot = RobotClient::with_channel(viam_channel, options);
     robot->should_close_channel_ = true;
