@@ -130,7 +130,7 @@ std::vector<GeometryConfig> GeometryConfig::from_proto(
     const viam::common::v1::GetGeometriesResponse& proto) {
     std::vector<GeometryConfig> response;
     for (const auto& geometry : proto.geometries()) {
-        response.push_back(from_proto(std::move(geometry)));
+        response.push_back(from_proto(geometry));
     }
     return response;
 }
@@ -170,22 +170,22 @@ viam::common::v1::Geometry GeometryConfig::to_proto() const {
     }
 }
 void GeometryConfig::set_coordinates(coordinates coordinates) {
-    pose_.coordinates = std::move(coordinates);
+    pose_.coordinates = coordinates;
 }
 void GeometryConfig::set_pose(pose pose) {
-    pose_ = std::move(pose);
+    pose_ = pose;
 }
 void GeometryConfig::set_geometry_specifics(geometry_specifics gs) {
     geometry_specifics_ = std::move(gs);
 }
 void GeometryConfig::set_pose_orientation(pose_orientation orientation) {
-    pose_.orientation = std::move(orientation);
+    pose_.orientation = orientation;
 }
 void GeometryConfig::set_theta(double theta) {
-    pose_.theta = std::move(theta);
+    pose_.theta = theta;
 }
 void GeometryConfig::set_geometry_type(GeometryType type) {
-    geometry_type_ = std::move(type);
+    geometry_type_ = type;
 }
 void GeometryConfig::set_orientation_config(OrientationConfig config) {
     orientation_config_ = std::move(config);

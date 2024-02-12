@@ -7,7 +7,6 @@
 # readability-implicit-bool-conversion: We have decided that !ptr-type is cleaner than ptr-type==nullptr
 # readability-magic-numbers: This encourages useless variables and extra lint lines
 # performance-unnecessary-value-param: TODO(RSDK-3007) remove this and fix all lints.
-# performance-move-const-arg: TODO(RSDK-3019)
 # misc-unused-parameters: TODO(RSDK-3008) remove this and fix all lints.
 # misc-include-cleaner: TODO(RSDK-5479) this is overly finnicky, add IWYU support and fix.
 # readability-function-cognitive-complexity: No, complexity is subjective and sometimes necessary.
@@ -29,7 +28,6 @@ Checks: >
   -readability-implicit-bool-conversion,
   -readability-magic-numbers,
   -performance-unnecessary-value-param,
-  -performance-move-const-arg,
   -misc-unused-parameters,
   -misc-include-cleaner,
   -readability-function-cognitive-complexity,

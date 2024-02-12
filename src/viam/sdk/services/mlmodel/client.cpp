@@ -69,7 +69,7 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
         aav->views.emplace(kv.first, std::move(tensor));
     }
     auto* const tsav_views = &aav->views;
-    return {std::move(aav), tsav_views};
+    return {aav, tsav_views};
 }
 
 struct MLModelService::metadata MLModelServiceClient::metadata(const AttributeMap& extra) {

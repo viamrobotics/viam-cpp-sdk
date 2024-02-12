@@ -91,8 +91,8 @@ MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> mana
             target.Reserve(source.size());
             for (auto&& s : source) {
                 auto& new_entry = *target.Add();
-                *new_entry.mutable_name() = std::move(s.name);
-                *new_entry.mutable_description() = std::move(s.description);
+                *new_entry.mutable_name() = s.name;
+                *new_entry.mutable_description() = s.description;
 
                 const auto* string_for_data_type =
                     MLModelService::tensor_info::data_type_to_string(s.data_type);
@@ -118,8 +118,8 @@ MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> mana
                 associated_files.Reserve(s.associated_files.size());
                 for (auto&& af : s.associated_files) {
                     auto& new_af = *associated_files.Add();
-                    *new_af.mutable_name() = std::move(af.name);
-                    *new_af.mutable_description() = std::move(af.description);
+                    *new_af.mutable_name() = af.name;
+                    *new_af.mutable_description() = af.description;
                     switch (af.label_type) {
                         case MLModelService::tensor_info::file::k_label_type_tensor_value:
                             new_af.set_label_type(

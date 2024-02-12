@@ -63,7 +63,7 @@ void Registry::register_model(std::shared_ptr<const ModelRegistration> resource)
         throw std::runtime_error(err);
     }
 
-    resources_.emplace(std::move(reg_key), std::move(resource));
+    resources_.emplace(reg_key, std::move(resource));
 }
 
 void Registry::register_resource_server_(
@@ -102,7 +102,7 @@ std::shared_ptr<const ModelRegistration> Registry::lookup_model(const API& api,
                                                                 const Model& model) {
     const std::lock_guard<std::mutex> lock(lock_);
     const std::string name = api.to_string() + "/" + model.to_string();
-    return lookup_model_inlock_(std::move(name), std::move(lock));
+    return lookup_model_inlock_(name, std::move(lock));
 }
 
 std::shared_ptr<const ResourceServerRegistration> Registry::lookup_resource_server(const API& api) {
