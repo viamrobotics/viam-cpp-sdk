@@ -127,20 +127,8 @@ BOOST_AUTO_TEST_CASE(test_discovery) {
     BOOST_CHECK(discovery == RobotClient::discovery::from_proto(discovery.to_proto()));
 }
 
-pose default_pose(int offset = 0) {
-    pose pose;
-    pose.coordinates.x = 1 + offset;
-    pose.coordinates.y = 2 + offset;
-    pose.coordinates.z = 3 + offset;
-    pose.orientation.o_x = 2 + offset;
-    pose.orientation.o_y = 3 + offset;
-    pose.orientation.o_z = 4 + offset;
-    pose.theta = 20 + offset;
-    return pose;
-}
-
 BOOST_AUTO_TEST_CASE(test_pose) {
-    pose pose = default_pose();
+    pose pose = robot::default_pose();
     BOOST_CHECK(pose == pose::from_proto(pose.to_proto()));
 }
 

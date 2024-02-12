@@ -10,7 +10,7 @@ namespace sdktests {
 namespace robot {
 using namespace viam::sdk;
 
-pose default_pose(int offset = 0) {
+pose default_pose(int offset) {
     pose pose;
     pose.coordinates.x = 1 + offset;
     pose.coordinates.y = 2 + offset;
