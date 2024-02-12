@@ -6,6 +6,7 @@
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/camera/v1/camera.grpc.pb.h>
 
+#include <viam/sdk/components/camera/camera.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
 
@@ -18,6 +19,8 @@ namespace sdk {
 class CameraServer : public ResourceServer,
                      public viam::component::camera::v1::CameraService::Service {
    public:
+    using interface_type = Camera;
+    using service_type = component::camera::v1::CameraService;
     explicit CameraServer(std::shared_ptr<ResourceManager> manager);
 
     ::grpc::Status DoCommand(::grpc::ServerContext* context,

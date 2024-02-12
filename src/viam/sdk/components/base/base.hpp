@@ -11,26 +11,12 @@
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
-#include <viam/sdk/registry/registry.hpp>
-#include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/stoppable.hpp>
 
 namespace viam {
 namespace sdk {
 
 /// @defgroup Base Classes related to the Base component.
-
-/// @class BaseRegistration
-/// @brief Defines a `ResourceRegistration` for the `Base` component.
-/// @ingroup Base
-class BaseRegistration : public ResourceRegistration {
-   public:
-    explicit BaseRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
-    std::shared_ptr<ResourceServer> create_resource_server(std::shared_ptr<ResourceManager> manager,
-                                                           Server& server) override;
-    std::shared_ptr<Resource> create_rpc_client(std::string name,
-                                                std::shared_ptr<grpc::Channel> chan) override;
-};
 
 /// @class Base base.hpp "components/base/base.hpp"
 /// @brief A `Base` is the platform that the other parts of a mobile robot attach to.
@@ -51,9 +37,6 @@ class Base : public Component, public Stoppable {
     };
     friend std::ostream& operator<<(std::ostream& os, const properties& v);
     friend bool operator==(const properties& lhs, const properties& rhs);
-
-    // functions shared across all components
-    static std::shared_ptr<ResourceRegistration> resource_registration();
 
     /// @brief Move a robot's base in a straight line by a given distance. This method blocks
     /// until completed or cancelled

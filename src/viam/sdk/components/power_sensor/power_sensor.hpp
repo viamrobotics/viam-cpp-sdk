@@ -9,10 +9,7 @@
 
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/power_sensor/server.hpp>
 #include <viam/sdk/config/resource.hpp>
-#include <viam/sdk/registry/registry.hpp>
-#include <viam/sdk/resource/resource_manager.hpp>
 
 using namespace viam::component::powersensor::v1;
 

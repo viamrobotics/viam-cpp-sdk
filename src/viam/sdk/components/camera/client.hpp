@@ -21,6 +21,7 @@ namespace sdk {
 /// @ingroup Camera
 class CameraClient : public Camera {
    public:
+    using interface_type = Camera;
     CameraClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     AttributeMap do_command(AttributeMap command) override;
     raw_image get_image(std::string mime_type, const AttributeMap& extra) override;

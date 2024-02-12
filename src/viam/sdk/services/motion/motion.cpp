@@ -7,27 +7,9 @@
 #include <viam/api/service/motion/v1/motion.pb.h>
 
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/services/motion/client.hpp>
-#include <viam/sdk/services/motion/server.hpp>
 
 namespace viam {
 namespace sdk {
-
-MotionRegistration::MotionRegistration(
-    const google::protobuf::ServiceDescriptor* service_descriptor)
-    : ResourceRegistration(service_descriptor){};
-
-std::shared_ptr<ResourceServer> MotionRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager, Server& server) {
-    auto ms = std::make_shared<MotionServer>(manager);
-    server.register_service(ms.get());
-    return ms;
-};
-
-std::shared_ptr<Resource> MotionRegistration::create_rpc_client(
-    std::string name, std::shared_ptr<grpc::Channel> chan) {
-    return std::make_shared<MotionClient>(std::move(name), std::move(chan));
-};
 
 Motion::Motion(std::string name) : Service(std::move(name)){};
 
@@ -104,16 +86,6 @@ API Motion::api() const {
 
 API API::traits<Motion>::api() {
     return {kRDK, kService, "motion"};
-}
-
-std::shared_ptr<ResourceRegistration> Motion::resource_registration() {
-    const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
-    const google::protobuf::ServiceDescriptor* sd =
-        p->FindServiceByName(service::motion::v1::MotionService::service_full_name());
-    if (!sd) {
-        throw std::runtime_error("Unable to get service descriptor for the motion service");
-    }
-    return std::make_shared<MotionRegistration>(sd);
 }
 
 service::motion::v1::ObstacleDetector obstacle_detector::to_proto() const {
@@ -434,16 +406,6 @@ service::motion::v1::PlanStatusWithID Motion::plan_status_with_id::to_proto() co
 
     return proto;
 }
-
-namespace {
-bool init() {
-    Registry::register_resource(API::get<Motion>(), Motion::resource_registration());
-    return true;
-}
-
-// NOLINTNEXTLINE
-const bool inited = init();
-}  // namespace
 
 }  // namespace sdk
 }  // namespace viam

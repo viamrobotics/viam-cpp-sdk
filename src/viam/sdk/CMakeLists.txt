@@ -36,13 +36,6 @@ endif()
 
 target_sources(viamsdk
   PRIVATE
-    # TODO(RSDK-1742): we have to put `registry` up top here because we need the
-    # registry types to be defined first, before anything tries to init them.
-    # this obviously isn't great. it breaks up stylistic ordering and is brittle
-    # when we need to add updates. we should refactor to make this unnecessary.
-    # consider making all necessary runtime values a single `context` that has to
-    # be initialized within main before anything else happens?
-    registry/registry.cpp
     common/client_helper.cpp
     common/linear_algebra.cpp
     common/pose.cpp
@@ -87,6 +80,7 @@ target_sources(viamsdk
     module/service.cpp
     module/signal_manager.cpp
     referenceframe/frame.cpp
+    registry/registry.cpp
     resource/resource.cpp
     resource/resource_api.cpp
     resource/resource_manager.cpp

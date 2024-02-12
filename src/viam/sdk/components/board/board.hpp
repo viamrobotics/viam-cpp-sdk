@@ -11,25 +11,9 @@
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
-#include <viam/sdk/registry/registry.hpp>
-#include <viam/sdk/resource/resource_manager.hpp>
 
 namespace viam {
 namespace sdk {
-
-/// @defgroup Board Classes related to the Board component.
-
-/// @class BoardRegistration
-/// @brief Defines a `ResourceRegistration` for the `Board` component.
-/// @ingroup Board
-class BoardRegistration : public ResourceRegistration {
-   public:
-    explicit BoardRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
-    std::shared_ptr<ResourceServer> create_resource_server(std::shared_ptr<ResourceManager> manager,
-                                                           Server& server) override;
-    std::shared_ptr<Resource> create_rpc_client(std::string name,
-                                                std::shared_ptr<grpc::Channel> chan) override;
-};
 
 /// @class Board board.hpp "components/board/board.hpp"
 /// @brief Represents a physical board with gpio pins, digital interrupts, and analog voltage
@@ -65,8 +49,6 @@ class Board : public Component {
     /// The effect of these power modes depends on your physical board
     enum class power_mode : uint8_t { normal = 0, offline_deep = 1 };
 
-    // functions shared across all components
-    static std::shared_ptr<ResourceRegistration> resource_registration();
     API api() const override;
 
     /// @brief Creates a `status` struct from its proto representation.

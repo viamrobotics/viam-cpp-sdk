@@ -6,6 +6,7 @@
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/servo/v1/servo.grpc.pb.h>
 
+#include <viam/sdk/components/servo/servo.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
 
@@ -18,6 +19,8 @@ namespace sdk {
 class ServoServer : public ResourceServer,
                     public viam::component::servo::v1::ServoService::Service {
    public:
+    using interface_type = Servo;
+    using service_type = component::servo::v1::ServoService;
     explicit ServoServer(std::shared_ptr<ResourceManager> manager);
 
     ::grpc::Status Move(::grpc::ServerContext* context,

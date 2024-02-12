@@ -21,6 +21,7 @@ namespace sdk {
 /// @ingroup MovementSensor
 class MovementSensorClient : public MovementSensor {
    public:
+    using interface_type = MovementSensor;
     MovementSensorClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     Vector3 get_linear_velocity(const AttributeMap& extra) override;
     Vector3 get_angular_velocity(const AttributeMap& extra) override;

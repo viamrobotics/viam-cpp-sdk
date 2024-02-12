@@ -6,6 +6,7 @@
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/powersensor/v1/powersensor.grpc.pb.h>
 
+#include <viam/sdk/components/power_sensor/power_sensor.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
 
@@ -19,6 +20,8 @@ namespace sdk {
 /// @ingroup PowerSensor
 class PowerSensorServer : public ResourceServer, public PowerSensorService::Service {
    public:
+    using interface_type = PowerSensor;
+    using service_type = PowerSensorService;
     explicit PowerSensorServer(std::shared_ptr<ResourceManager> manager);
 
     ::grpc::Status GetVoltage(::grpc::ServerContext* context,
