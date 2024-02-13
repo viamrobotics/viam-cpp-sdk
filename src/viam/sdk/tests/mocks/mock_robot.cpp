@@ -9,6 +9,13 @@ namespace viam {
 namespace sdktests {
 namespace robot {
 using namespace viam::sdk;
+using common::v1::Pose;
+using common::v1::PoseInFrame;
+using viam::robot::v1::Discovery;
+using viam::robot::v1::DiscoveryQuery;
+using viam::robot::v1::FrameSystemConfig;
+using viam::robot::v1::Operation;
+using viam::robot::v1::Status;
 
 pose default_pose(int offset) {
     pose pose;
@@ -22,6 +29,10 @@ pose default_pose(int offset) {
     return pose;
 }
 
+Pose default_proto_pose(int offset = 0) {
+    return default_pose(offset).to_proto();
+}
+
 std::vector<RobotClient::operation> mock_operations_response() {
     RobotClient::operation op;
     op.id = "abc";
@@ -32,6 +43,21 @@ std::vector<RobotClient::operation> mock_operations_response() {
     op1.method = "456";
     op1.session_id = "xyz";
     std::vector<RobotClient::operation> resp;
+    resp.push_back(op);
+    resp.push_back(op1);
+    return resp;
+}
+
+std::vector<Operation> mock_proto_operations_response() {
+    viam::robot::v1::Operation op;
+    *op.mutable_id() = "abc";
+    *op.mutable_method() = "123";
+    *op.mutable_session_id() = "jkl";
+    viam::robot::v1::Operation op1;
+    *op1.mutable_id() = "def";
+    *op1.mutable_method() = "456";
+    *op1.mutable_session_id() = "xyz";
+    std::vector<viam::robot::v1::Operation> resp;
     resp.push_back(op);
     resp.push_back(op1);
     return resp;
@@ -50,6 +76,24 @@ std::vector<RobotClient::discovery> mock_discovery_response() {
     discovery.query = query;
     discovery.results = results;
     return std::vector<RobotClient::discovery>{discovery};
+}
+
+std::vector<Discovery> mock_proto_discovery_response() {
+    DiscoveryQuery query;
+    *query.mutable_subtype() = "camera";
+    *query.mutable_model() = "webcam";
+
+    google::protobuf::Struct results;
+    google::protobuf::Value str;
+    *str.mutable_string_value() = "bar";
+    google::protobuf::MapPair<std::string, google::protobuf::Value> pair("foo", str);
+    google::protobuf::Map<std::string, google::protobuf::Value>* map = results.mutable_fields();
+    map->insert(pair);
+
+    viam::robot::v1::Discovery discovery;
+    *discovery.mutable_query() = query;
+    *discovery.mutable_results() = results;
+    return std::vector<viam::robot::v1::Discovery>{discovery};
 }
 
 std::vector<RobotClient::status> mock_status_response() {
@@ -78,8 +122,38 @@ std::vector<RobotClient::status> mock_status_response() {
     return resp;
 }
 
+std::vector<Status> mock_proto_status_response() {
+    auto rns = mock_proto_resource_names_response();
+
+    Status camera_status;
+    *camera_status.mutable_name() = rns[0];
+    *camera_status.mutable_status() = google::protobuf::Struct();
+
+    Status motor_status;
+    *motor_status.mutable_name() = rns[1];
+    *motor_status.mutable_status() = google::protobuf::Struct();
+
+    Status generic_status;
+    *generic_status.mutable_name() = rns[2];
+    *generic_status.mutable_status() = google::protobuf::Struct();
+
+    std::vector<Status> resp;
+    resp.push_back(camera_status);
+    resp.push_back(motor_status);
+    resp.push_back(generic_status);
+
+    return resp;
+}
+
 pose_in_frame mock_transform_response() {
     return {"arm", default_pose()};
+}
+
+PoseInFrame mock_proto_transform_response() {
+    PoseInFrame response;
+    *response.mutable_reference_frame() = "arm";
+    *response.mutable_pose() = default_proto_pose();
+    return response;
 }
 
 std::vector<Name> mock_resource_names_response() {
@@ -88,6 +162,32 @@ std::vector<Name> mock_resource_names_response() {
     Name generic = Name({kRDK, kComponent, "generic"}, "", "mock_generic");
 
     return {std::move(camera), std::move(motor), std::move(generic)};
+}
+
+std::vector<ResourceName> mock_proto_resource_names_response() {
+    std::vector<ResourceName> vec;
+    ResourceName camera;
+    *camera.mutable_namespace_() = kRDK;
+    *camera.mutable_type() = kComponent;
+    *camera.mutable_name() = "mock_camera";
+    *camera.mutable_subtype() = "camera";
+
+    ResourceName generic;
+    *generic.mutable_namespace_() = kRDK;
+    *generic.mutable_type() = kComponent;
+    *generic.mutable_name() = "mock_generic";
+    *generic.mutable_subtype() = "generic";
+
+    ResourceName motor;
+    *motor.mutable_namespace_() = kRDK;
+    *motor.mutable_type() = kComponent;
+    *motor.mutable_name() = "mock_motor";
+    *motor.mutable_subtype() = "motor";
+
+    vec.push_back(camera);
+    vec.push_back(motor);
+    vec.push_back(generic);
+    return vec;
 }
 
 std::vector<RobotClient::frame_system_config> mock_config_response() {
@@ -119,13 +219,52 @@ std::vector<RobotClient::frame_system_config> mock_config_response() {
     return response;
 }
 
+std::vector<FrameSystemConfig> mock_proto_config_response() {
+    FrameSystemConfig config;
+    common::v1::Transform t;
+    *t.mutable_reference_frame() = "some-reference-frame";
+    Pose pose = default_proto_pose();
+    PoseInFrame pif;
+    *pif.mutable_reference_frame() = "reference0";
+    *pif.mutable_pose() = pose;
+    *t.mutable_pose_in_observer_frame() = pif;
+    *config.mutable_frame() = t;
+    google::protobuf::Struct s;
+    google::protobuf::Value v;
+    v.set_number_value(1);
+    google::protobuf::MapPair<std::string, google::protobuf::Value> pair("fake-key", v);
+    s.mutable_fields()->insert(pair);
+    *config.mutable_kinematics() = s;
+
+    FrameSystemConfig config1;
+    common::v1::Transform t1;
+    *t1.mutable_reference_frame() = "another-reference-frame";
+    Pose pose1 = default_proto_pose(1);
+    PoseInFrame pif1;
+    *pif1.mutable_reference_frame() = "reference1";
+    *pif1.mutable_pose() = pose1;
+    *t1.mutable_pose_in_observer_frame() = pif1;
+    *config1.mutable_frame() = t1;
+    google::protobuf::Struct s1;
+    google::protobuf::Value v1;
+    v1.set_number_value(2);
+    google::protobuf::MapPair<std::string, google::protobuf::Value> pair1("new-fake-key", v1);
+    s1.mutable_fields()->insert(pair1);
+    *config1.mutable_kinematics() = s1;
+
+    std::vector<FrameSystemConfig> response;
+    response.push_back(config);
+    response.push_back(config1);
+    return response;
+}
+
 ::grpc::Status MockRobotService::FrameSystemConfig(
     ::grpc::ServerContext* context,
     const ::viam::robot::v1::FrameSystemConfigRequest* request,
     ::viam::robot::v1::FrameSystemConfigResponse* response) {
     auto* configs = response->mutable_frame_system_configs();
-    for (const auto& c : mock_config_response()) {
-        *configs->Add() = c.to_proto();
+    for (const auto& c : mock_proto_config_response()) {
+        *configs->Add() = c;
     }
     return ::grpc::Status();
 }
@@ -135,8 +274,8 @@ std::vector<RobotClient::frame_system_config> mock_config_response() {
     const ::viam::robot::v1::DiscoverComponentsRequest* request,
     ::viam::robot::v1::DiscoverComponentsResponse* response) {
     auto* discovery = response->mutable_discovery();
-    for (auto& d : mock_discovery_response()) {
-        *discovery->Add() = d.to_proto();
+    for (auto& d : mock_proto_discovery_response()) {
+        *discovery->Add() = d;
     }
     return ::grpc::Status();
 }
@@ -145,7 +284,7 @@ std::vector<RobotClient::frame_system_config> mock_config_response() {
     ::grpc::ServerContext* context,
     const ::viam::robot::v1::TransformPoseRequest* request,
     ::viam::robot::v1::TransformPoseResponse* response) {
-    *response->mutable_pose() = mock_transform_response().to_proto();
+    *response->mutable_pose() = mock_proto_transform_response();
     return ::grpc::Status();
 }
 
@@ -154,8 +293,8 @@ std::vector<RobotClient::frame_system_config> mock_config_response() {
     const ::viam::robot::v1::GetOperationsRequest* request,
     ::viam::robot::v1::GetOperationsResponse* response) {
     auto* ops = response->mutable_operations();
-    for (auto& op : mock_operations_response()) {
-        *ops->Add() = op.to_proto();
+    for (auto& op : mock_proto_operations_response()) {
+        *ops->Add() = op;
     }
     return ::grpc::Status();
 }

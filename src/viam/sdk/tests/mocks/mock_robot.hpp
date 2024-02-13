@@ -43,11 +43,17 @@ class MockRobotService : public RobotService_ {
 
 pose default_pose(int offset = 0);
 std::vector<RobotClient::operation> mock_operations_response();
+std::vector<viam::robot::v1::Operation> mock_proto_operations_response();
 std::vector<RobotClient::discovery> mock_discovery_response();
+std::vector<viam::robot::v1::Discovery> mock_proto_discovery_response();
 std::vector<Name> mock_resource_names_response();
+std::vector<ResourceName> mock_proto_resource_names_response();
 std::vector<RobotClient::frame_system_config> mock_config_response();
+std::vector<viam::robot::v1::FrameSystemConfig> mock_proto_config_response();
 pose_in_frame mock_transform_response();
+common::v1::PoseInFrame mock_proto_transform_response();
 std::vector<RobotClient::status> mock_status_response();
+std::vector<viam::robot::v1::Status> mock_proto_status_response();
 
 }  // namespace robot
 }  // namespace sdktests

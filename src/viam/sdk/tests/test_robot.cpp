@@ -151,6 +151,38 @@ BOOST_AUTO_TEST_CASE(test_get_status) {
         });
 }
 
+BOOST_AUTO_TEST_CASE(test_frame_system_config) {
+    robot_client_to_mocks_pipeline(
+        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+            auto configs = mock_config_response();
+            auto config1 = configs[0];
+            auto config2 = configs[1];
+            auto protos = mock_proto_config_response();
+            auto proto1 = protos[0];
+            auto proto2 = protos[1];
+
+            BOOST_CHECK_EQUAL(config1.frame.reference_frame, proto1.frame().reference_frame());
+            BOOST_CHECK_EQUAL(config1.frame.pose_in_observer_frame.pose.coordinates.x,
+                              proto1.frame().pose_in_observer_frame().pose().x());
+            BOOST_CHECK_EQUAL(config1.frame.pose_in_observer_frame.pose.orientation.o_x,
+                              proto1.frame().pose_in_observer_frame().pose().o_x());
+            BOOST_CHECK_EQUAL(config1.frame.pose_in_observer_frame.pose.theta,
+                              proto1.frame().pose_in_observer_frame().pose().theta());
+            BOOST_CHECK_EQUAL(map_to_struct(config1.kinematics).SerializeAsString(),
+                              proto1.kinematics().SerializeAsString());
+
+            BOOST_CHECK_EQUAL(config2.frame.reference_frame, proto2.frame().reference_frame());
+            BOOST_CHECK_EQUAL(config2.frame.pose_in_observer_frame.pose.coordinates.x,
+                              proto2.frame().pose_in_observer_frame().pose().x());
+            BOOST_CHECK_EQUAL(config2.frame.pose_in_observer_frame.pose.orientation.o_x,
+                              proto2.frame().pose_in_observer_frame().pose().o_x());
+            BOOST_CHECK_EQUAL(config2.frame.pose_in_observer_frame.pose.theta,
+                              proto2.frame().pose_in_observer_frame().pose().theta());
+            BOOST_CHECK_EQUAL(map_to_struct(config2.kinematics).SerializeAsString(),
+                              proto2.kinematics().SerializeAsString());
+        });
+}
+
 BOOST_AUTO_TEST_CASE(test_get_frame_system_config) {
     robot_client_to_mocks_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
@@ -158,6 +190,25 @@ BOOST_AUTO_TEST_CASE(test_get_frame_system_config) {
             auto fs_config = client->get_frame_system_config();
 
             BOOST_TEST(mock_fs_config == fs_config, boost::test_tools::per_element());
+        });
+}
+
+BOOST_AUTO_TEST_CASE(test_operation) {
+    robot_client_to_mocks_pipeline(
+        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+            auto ops = mock_operations_response();
+            auto op1 = ops[0];
+            auto op2 = ops[1];
+            auto protos = mock_proto_operations_response();
+            auto proto1 = protos[0];
+            auto proto2 = protos[1];
+
+            BOOST_CHECK_EQUAL(op1.id, proto1.id());
+            BOOST_CHECK_EQUAL(op1.method, proto1.method());
+            BOOST_CHECK_EQUAL(*op1.session_id, proto1.session_id());
+            BOOST_CHECK_EQUAL(op2.id, proto2.id());
+            BOOST_CHECK_EQUAL(op2.method, proto2.method());
+            BOOST_CHECK_EQUAL(*op2.session_id, proto2.session_id());
         });
 }
 
@@ -169,6 +220,26 @@ BOOST_AUTO_TEST_CASE(test_get_operations) {
 
             BOOST_TEST(ops == mock_ops, boost::test_tools::per_element());
         });
+}
+
+BOOST_AUTO_TEST_CASE(test_discovery) {
+    robot_client_to_mocks_pipeline([](std::shared_ptr<RobotClient> client,
+                                      MockRobotService& service) -> void {
+        auto components = mock_discovery_response();
+        auto component = components[0];
+        auto results = component.results->begin();
+        auto protos = mock_proto_discovery_response();
+        auto proto = protos[0];
+        auto proto_results = proto.results().fields().begin();
+
+        BOOST_CHECK_EQUAL(component.query.subtype, proto.query().subtype());
+        BOOST_CHECK_EQUAL(component.query.model, proto.query().model());
+        BOOST_CHECK_EQUAL(results->first, proto_results->first);
+        std::cout << component.results->begin()->second->proto_value().number_value() << " ------ "
+                  << proto.results().fields().begin()->second.string_value() << std::endl;
+        // BOOST_CHECK_EQUAL(results->second->proto_value().string_value(),
+        //                   proto_results->second.number_value());
+    });
 }
 
 BOOST_AUTO_TEST_CASE(test_discover_components) {

@@ -53,56 +53,31 @@ using viam::robot::v1::Status;
 // NOLINTNEXTLINE
 const std::string kStreamRemoved("Stream removed");
 
+namespace {
 // TODO: add a traits class for proto to type and back conversion
-DiscoveryQuery RobotClient::discovery_query::to_proto() const {
+DiscoveryQuery to_proto(const RobotClient::discovery_query& query) {
     DiscoveryQuery proto;
-    *proto.mutable_subtype() = subtype;
-    *proto.mutable_model() = model;
+    *proto.mutable_subtype() = query.subtype;
+    *proto.mutable_model() = query.model;
     return proto;
 }
 
-RobotClient::discovery_query RobotClient::discovery_query::from_proto(const DiscoveryQuery& proto) {
-    discovery_query query;
+RobotClient::discovery_query from_proto(const DiscoveryQuery& proto) {
+    RobotClient::discovery_query query;
     query.subtype = proto.subtype();
     query.model = proto.model();
     return query;
 }
 
-bool operator==(const RobotClient::discovery_query& lhs, const RobotClient::discovery_query& rhs) {
-    return lhs.subtype == rhs.subtype && lhs.model == rhs.model;
-}
-
-Discovery RobotClient::discovery::to_proto() const {
-    Discovery proto;
-    *proto.mutable_query() = query.to_proto();
-    *proto.mutable_results() = map_to_struct(results);
-    return proto;
-}
-
-RobotClient::discovery RobotClient::discovery::from_proto(const Discovery& proto) {
-    discovery discovery;
-    discovery.query = discovery_query::from_proto(proto.query());
+RobotClient::discovery from_proto(const Discovery& proto) {
+    RobotClient::discovery discovery;
+    discovery.query = from_proto(proto.query());
     discovery.results = struct_to_map(proto.results());
     return discovery;
 }
 
-bool operator==(const RobotClient::discovery& lhs, const RobotClient::discovery& rhs) {
-    return lhs.query == rhs.query && map_to_struct(lhs.results).SerializeAsString() ==
-                                         map_to_struct(rhs.results).SerializeAsString();
-}
-
-FrameSystemConfig RobotClient::frame_system_config::to_proto() const {
-    FrameSystemConfig proto;
-    *proto.mutable_frame() = frame.to_proto();
-    if (kinematics) {
-        *proto.mutable_kinematics() = map_to_struct(kinematics);
-    }
-    return proto;
-}
-
-RobotClient::frame_system_config RobotClient::frame_system_config::from_proto(
-    const FrameSystemConfig& proto) {
-    frame_system_config fsconfig;
+RobotClient::frame_system_config from_proto(const FrameSystemConfig& proto) {
+    RobotClient::frame_system_config fsconfig;
     fsconfig.frame = WorldState::transform::from_proto(proto.frame());
     if (proto.has_kinematics()) {
         fsconfig.kinematics = struct_to_map(proto.kinematics());
@@ -110,28 +85,8 @@ RobotClient::frame_system_config RobotClient::frame_system_config::from_proto(
     return fsconfig;
 }
 
-bool operator==(const RobotClient::frame_system_config& lhs,
-                const RobotClient::frame_system_config& rhs) {
-    return lhs.frame == rhs.frame && map_to_struct(lhs.kinematics).SerializeAsString() ==
-                                         map_to_struct(rhs.kinematics).SerializeAsString();
-}
-
-Status RobotClient::status::to_proto() const {
-    Status proto;
-    if (name) {
-        *proto.mutable_name() = name->to_proto();
-    }
-    if (status_map) {
-        *proto.mutable_status() = map_to_struct(status_map);
-    }
-    if (last_reconfigured) {
-        *proto.mutable_last_reconfigured() = time_pt_to_timestamp(*last_reconfigured);
-    }
-    return proto;
-}
-
-RobotClient::status RobotClient::status::from_proto(const Status& proto) {
-    status status;
+RobotClient::status from_proto(const Status& proto) {
+    RobotClient::status status;
     if (proto.has_name()) {
         status.name = Name::from_proto(proto.name());
     }
@@ -144,31 +99,8 @@ RobotClient::status RobotClient::status::from_proto(const Status& proto) {
     return status;
 }
 
-bool operator==(const RobotClient::status& lhs, const RobotClient::status& rhs) {
-    return lhs.name == rhs.name &&
-           map_to_struct(lhs.status_map).SerializeAsString() ==
-               map_to_struct(rhs.status_map).SerializeAsString() &&
-           lhs.last_reconfigured == rhs.last_reconfigured;
-}
-
-Operation RobotClient::operation::to_proto() const {
-    Operation proto;
-    *proto.mutable_id() = id;
-    *proto.mutable_method() = method;
-    if (session_id) {
-        *proto.mutable_session_id() = *session_id;
-    }
-    if (arguments) {
-        *proto.mutable_arguments() = map_to_struct(arguments);
-    }
-    if (started) {
-        *proto.mutable_started() = time_pt_to_timestamp(*started);
-    }
-    return proto;
-}
-
-RobotClient::operation RobotClient::operation::from_proto(const Operation& proto) {
-    operation op;
+RobotClient::operation from_proto(const Operation& proto) {
+    RobotClient::operation op;
     op.id = proto.id();
     op.method = proto.method();
     if (proto.has_session_id()) {
@@ -181,6 +113,29 @@ RobotClient::operation RobotClient::operation::from_proto(const Operation& proto
         op.started = timestamp_to_time_pt(proto.started());
     }
     return op;
+}
+}  // namespace
+
+bool operator==(const RobotClient::discovery_query& lhs, const RobotClient::discovery_query& rhs) {
+    return lhs.subtype == rhs.subtype && lhs.model == rhs.model;
+}
+
+bool operator==(const RobotClient::discovery& lhs, const RobotClient::discovery& rhs) {
+    return lhs.query == rhs.query && map_to_struct(lhs.results).SerializeAsString() ==
+                                         map_to_struct(rhs.results).SerializeAsString();
+}
+
+bool operator==(const RobotClient::frame_system_config& lhs,
+                const RobotClient::frame_system_config& rhs) {
+    return lhs.frame == rhs.frame && map_to_struct(lhs.kinematics).SerializeAsString() ==
+                                         map_to_struct(rhs.kinematics).SerializeAsString();
+}
+
+bool operator==(const RobotClient::status& lhs, const RobotClient::status& rhs) {
+    return lhs.name == rhs.name &&
+           map_to_struct(lhs.status_map).SerializeAsString() ==
+               map_to_struct(rhs.status_map).SerializeAsString() &&
+           lhs.last_reconfigured == rhs.last_reconfigured;
 }
 
 bool operator==(const RobotClient::operation& lhs, const RobotClient::operation& rhs) {
@@ -238,12 +193,12 @@ std::vector<RobotClient::status> RobotClient::get_status(std::vector<Name>& comp
                                  << response.error_details();
     }
 
-    const RepeatedPtrField<robot::v1::Status> resp_status = resp.status();
+    const RepeatedPtrField<Status> resp_status = resp.status();
 
     std::vector<status> statuses = std::vector<status>();
 
-    for (const robot::v1::Status& s : resp_status) {
-        statuses.push_back(status::from_proto(s));
+    for (const Status& s : resp_status) {
+        statuses.push_back(from_proto(s));
     }
 
     return statuses;
@@ -263,7 +218,7 @@ std::vector<RobotClient::operation> RobotClient::get_operations() {
 
     for (int i = 0; i < resp.operations().size(); ++i) {
         // NOLINTNEXTLINE
-        operations.push_back(operation::from_proto(resp.operations().at(i)));
+        operations.push_back(from_proto(resp.operations().at(i)));
     }
     return operations;
 }
@@ -428,10 +383,10 @@ std::vector<RobotClient::frame_system_config> RobotClient::get_frame_system_conf
 
     const RepeatedPtrField<FrameSystemConfig> configs = resp.frame_system_configs();
 
-    std::vector<frame_system_config> fs_configs = std::vector<frame_system_config>();
+    std::vector<RobotClient::frame_system_config> fs_configs = std::vector<frame_system_config>();
 
     for (const FrameSystemConfig& fs : configs) {
-        fs_configs.push_back(frame_system_config::from_proto(fs));
+        fs_configs.push_back(from_proto(fs));
     }
 
     return fs_configs;
@@ -470,7 +425,7 @@ std::vector<RobotClient::discovery> RobotClient::discover_components(
     RepeatedPtrField<DiscoveryQuery>* req_queries = req.mutable_queries();
 
     for (const discovery_query& query : queries) {
-        *req_queries->Add() = query.to_proto();
+        *req_queries->Add() = to_proto(query);
     }
 
     const grpc::Status response = impl_->stub_->DiscoverComponents(ctx, req, &resp);
@@ -481,7 +436,7 @@ std::vector<RobotClient::discovery> RobotClient::discover_components(
     std::vector<discovery> components = std::vector<discovery>();
 
     for (const Discovery& d : resp.discovery()) {
-        components.push_back(discovery::from_proto(d));
+        components.push_back(from_proto(d));
     }
 
     return components;

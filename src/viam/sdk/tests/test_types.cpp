@@ -114,52 +114,6 @@ BOOST_AUTO_TEST_CASE(test_prototype_map_conversion) {
     BOOST_CHECK(round_trip_proto == map);
 }
 
-BOOST_AUTO_TEST_CASE(test_discovery_query) {
-    RobotClient::discovery_query query;
-    query.subtype = "subtype";
-    query.model = "model";
-
-    BOOST_CHECK(query == RobotClient::discovery_query::from_proto(query.to_proto()));
-}
-
-BOOST_AUTO_TEST_CASE(test_discovery) {
-    RobotClient::discovery discovery = robot::mock_discovery_response()[0];
-    BOOST_CHECK(discovery == RobotClient::discovery::from_proto(discovery.to_proto()));
-}
-
-BOOST_AUTO_TEST_CASE(test_pose) {
-    pose pose = robot::default_pose();
-    BOOST_CHECK(pose == pose::from_proto(pose.to_proto()));
-}
-
-BOOST_AUTO_TEST_CASE(test_pose_in_frame) {
-    pose_in_frame pif = robot::mock_transform_response();
-    BOOST_CHECK(pif == pose_in_frame::from_proto(pif.to_proto()));
-}
-
-BOOST_AUTO_TEST_CASE(test_transform) {
-    WorldState::transform t;
-    t.reference_frame = "some-reference-frame";
-    t.pose_in_observer_frame = robot::mock_transform_response();
-
-    BOOST_CHECK(t == WorldState::transform::from_proto(t.to_proto()));
-}
-
-BOOST_AUTO_TEST_CASE(test_frame_system_config) {
-    RobotClient::frame_system_config fsconfig = robot::mock_config_response()[0];
-    BOOST_CHECK(fsconfig == RobotClient::frame_system_config::from_proto(fsconfig.to_proto()));
-}
-
-BOOST_AUTO_TEST_CASE(test_status) {
-    RobotClient::status status = robot::mock_status_response()[0];
-    BOOST_CHECK(status == RobotClient::status::from_proto(status.to_proto()));
-}
-
-BOOST_AUTO_TEST_CASE(test_operation) {
-    RobotClient::operation op = robot::mock_operations_response()[0];
-    BOOST_CHECK(op == RobotClient::operation::from_proto(op.to_proto()));
-}
-
 BOOST_AUTO_TEST_SUITE_END()
 
 }  // namespace sdktests

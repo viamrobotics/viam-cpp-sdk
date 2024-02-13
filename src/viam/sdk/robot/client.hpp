@@ -8,10 +8,6 @@
 
 #include <grpcpp/channel.h>
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/robot/v1/robot.grpc.pb.h>
-#include <viam/api/robot/v1/robot.pb.h>
-
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/common/world_state.hpp>
@@ -41,36 +37,24 @@ using grpc::Channel;
 class RobotClient {
    public:
     struct discovery_query {
-        viam::robot::v1::DiscoveryQuery to_proto() const;
-        static discovery_query from_proto(const viam::robot::v1::DiscoveryQuery& proto);
-
         std::string subtype;
         std::string model;
         friend bool operator==(const discovery_query& lhs, const discovery_query& rhs);
     };
 
     struct discovery {
-        viam::robot::v1::Discovery to_proto() const;
-        static discovery from_proto(const viam::robot::v1::Discovery& proto);
-
         discovery_query query;
         AttributeMap results;
         friend bool operator==(const discovery& lhs, const discovery& rhs);
     };
 
     struct frame_system_config {
-        viam::robot::v1::FrameSystemConfig to_proto() const;
-        static frame_system_config from_proto(const viam::robot::v1::FrameSystemConfig& proto);
-
         WorldState::transform frame;
         AttributeMap kinematics;
         friend bool operator==(const frame_system_config& lhs, const frame_system_config& rhs);
     };
 
     struct status {
-        viam::robot::v1::Status to_proto() const;
-        static status from_proto(const viam::robot::v1::Status& proto);
-
         boost::optional<Name> name;
         AttributeMap status_map;
         // TODO: RSDK-6574: revisit time_point
@@ -80,9 +64,6 @@ class RobotClient {
     };
 
     struct operation {
-        viam::robot::v1::Operation to_proto() const;
-        static operation from_proto(const viam::robot::v1::Operation& proto);
-
         std::string id;
         std::string method;
         boost::optional<std::string> session_id;
