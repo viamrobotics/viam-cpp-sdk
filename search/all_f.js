@@ -23,7 +23,7 @@ var searchData=
   ['related_20to_20the_20servo_20component_20',['Classes related to the Servo component.',['../group__Servo.html',1,'']]],
   ['remove_21',['remove',['../classviam_1_1sdk_1_1ResourceManager.html#aa992f85df5f6a12a2606a5b3451240f1',1,'viam::sdk::ResourceManager']]],
   ['replace_5fall_22',['replace_all',['../classviam_1_1sdk_1_1ResourceManager.html#a9bb1e7d9a24531eab420de6c00755527',1,'viam::sdk::ResourceManager']]],
-  ['replace_5fone_23',['replace_one',['../classviam_1_1sdk_1_1ResourceManager.html#a06b8b518ae7b74cb6faa5d714b6be61b',1,'viam::sdk::ResourceManager']]],
+  ['replace_5fone_23',['replace_one',['../classviam_1_1sdk_1_1ResourceManager.html#a22685aa0f0642732ba8ca0b7030b5277',1,'viam::sdk::ResourceManager']]],
   ['repository_20layout_24',['Repository Layout',['../index.html#autotoc_md3',1,'']]],
   ['representation_25',['Classes related to a Robot representation.',['../group__Robot.html',1,'']]],
   ['reset_5fposition_26',['reset_position',['../classviam_1_1sdk_1_1EncoderClient.html#ac68d87c125a42cff6858a1add0a631a8',1,'viam::sdk::EncoderClient::reset_position()'],['../classviam_1_1sdk_1_1Encoder.html#aafe7eb2b51b29af70c60cabcd2443aca',1,'viam::sdk::Encoder::reset_position()'],['../classviam_1_1sdk_1_1Encoder.html#a8574f14d78ab3f14aa673e063bff3ebe',1,'viam::sdk::Encoder::reset_position(const AttributeMap &amp;extra)=0'],['../classviam_1_1sdk_1_1EncoderClient.html#aafe7eb2b51b29af70c60cabcd2443aca',1,'viam::sdk::EncoderClient::reset_position()'],['../classviam_1_1sdk_1_1EncoderClient.html#a8574f14d78ab3f14aa673e063bff3ebe',1,'viam::sdk::EncoderClient::reset_position(const AttributeMap &amp;extra)=0']]],

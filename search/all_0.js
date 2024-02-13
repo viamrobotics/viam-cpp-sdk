@@ -2,7 +2,7 @@ var searchData=
 [
   ['a_20note_20on_20connectivity_20and_20webrtc_20functionality_0',['A Note on Connectivity and webRTC Functionality',['../index.html#autotoc_md7',1,'']]],
   ['a_20robot_20representation_1',['Classes related to a Robot representation.',['../group__Robot.html',1,'']]],
-  ['add_2',['add',['../classviam_1_1sdk_1_1ResourceManager.html#adea43f61184d2a6a1720babcb3bd892e',1,'viam::sdk::ResourceManager::add(const Name &amp;name, const std::shared_ptr&lt; Resource &gt; &amp;resource)'],['../classviam_1_1sdk_1_1ResourceManager.html#a723cd1b24526598f7b4fcba57450f856',1,'viam::sdk::ResourceManager::add(const std::string &amp;name, const std::shared_ptr&lt; Resource &gt; &amp;resource)']]],
+  ['add_2',['add',['../classviam_1_1sdk_1_1ResourceManager.html#a5323b8cbcbbc374cc7b499a949f6490f',1,'viam::sdk::ResourceManager::add(const Name &amp;name, std::shared_ptr&lt; Resource &gt; resource)'],['../classviam_1_1sdk_1_1ResourceManager.html#a2233eabc462a53457f94737421a1b0eb',1,'viam::sdk::ResourceManager::add(std::string name, std::shared_ptr&lt; Resource &gt; resource)']]],
   ['add_5flistening_5fport_3',['add_listening_port',['../classviam_1_1sdk_1_1Server.html#a3b8319d05ef79275a10747580c358dd4',1,'viam::sdk::Server']]],
   ['add_5fmodel_5ffrom_5fregistry_4',['add_model_from_registry',['../classviam_1_1sdk_1_1ModuleService.html#adafbd2715ed170759d7e36ac0d5671cf',1,'viam::sdk::ModuleService']]],
   ['add_5fresource_5',['add_resource',['../classviam_1_1sdk_1_1Server.html#aa4de7327b91f01830f4e2520f97eb402',1,'viam::sdk::Server']]],
