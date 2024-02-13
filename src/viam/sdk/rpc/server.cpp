@@ -47,8 +47,9 @@ void Server::add_resource(std::shared_ptr<Resource> resource) {
                << " but no matching resource server as found";
         throw std::runtime_error(buffer.str());
     }
-    auto resource_server = managed_servers_.at(std::move(api));
-    resource_server->resource_manager()->add(resource->name(), std::move(resource));
+    auto resource_server = managed_servers_.at(api);
+    auto name = resource->name();
+    resource_server->resource_manager()->add(std::move(name), std::move(resource));
 }
 
 void Server::start() {

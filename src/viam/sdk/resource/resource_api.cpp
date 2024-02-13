@@ -200,12 +200,12 @@ bool operator==(const Model& lhs, const Model& rhs) {
 RPCSubtype::RPCSubtype(API api,
                        std::string proto_service_name,
                        const google::protobuf::ServiceDescriptor& descriptor)
-    : descriptor_(std::move(descriptor)),
+    : descriptor_(descriptor),
       proto_service_name_(std::move(proto_service_name)),
       api_(std::move(api)) {}
 
 RPCSubtype::RPCSubtype(API api, const google::protobuf::ServiceDescriptor& descriptor)
-    : descriptor_(std::move(descriptor)), api_(std::move(api)) {}
+    : descriptor_(descriptor), api_(std::move(api)) {}
 
 const std::string& RPCSubtype::proto_service_name() const {
     return proto_service_name_;

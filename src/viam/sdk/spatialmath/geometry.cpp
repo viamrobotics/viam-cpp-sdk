@@ -130,7 +130,7 @@ std::vector<GeometryConfig> GeometryConfig::from_proto(
     const viam::common::v1::GetGeometriesResponse& proto) {
     std::vector<GeometryConfig> response;
     for (const auto& geometry : proto.geometries()) {
-        response.push_back(from_proto(std::move(geometry)));
+        response.push_back(from_proto(geometry));
     }
     return response;
 }

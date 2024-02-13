@@ -92,7 +92,7 @@ pose_in_frame MotionClient::get_pose(
         .with(extra,
               [&](auto& request) {
                   *request.mutable_component_name() = component_name.to_proto();
-                  *request.mutable_destination_frame() = std::move(destination_frame);
+                  *request.mutable_destination_frame() = destination_frame;
                   for (const auto& transform : supplemental_transforms) {
                       *request.mutable_supplemental_transforms()->Add() = transform.to_proto();
                   }

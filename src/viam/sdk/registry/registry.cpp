@@ -57,7 +57,7 @@ const Model& ModelRegistration::model() const {
 };
 
 void Registry::register_model(std::shared_ptr<const ModelRegistration> resource) {
-    const std::string reg_key = resource->api().to_string() + "/" + resource->model().to_string();
+    std::string reg_key = resource->api().to_string() + "/" + resource->model().to_string();
     if (resources_.find(reg_key) != resources_.end()) {
         const std::string err = "Cannot add resource with name " + reg_key + "as it already exists";
         throw std::runtime_error(err);
@@ -95,14 +95,14 @@ std::shared_ptr<const ModelRegistration> Registry::lookup_model_inlock_(
 
 std::shared_ptr<const ModelRegistration> Registry::lookup_model(const std::string& name) {
     const std::lock_guard<std::mutex> lock(lock_);
-    return lookup_model_inlock_(name, std::move(lock));
+    return lookup_model_inlock_(name, lock);
 }
 
 std::shared_ptr<const ModelRegistration> Registry::lookup_model(const API& api,
                                                                 const Model& model) {
     const std::lock_guard<std::mutex> lock(lock_);
     const std::string name = api.to_string() + "/" + model.to_string();
-    return lookup_model_inlock_(std::move(name), std::move(lock));
+    return lookup_model_inlock_(name, lock);
 }
 
 std::shared_ptr<const ResourceServerRegistration> Registry::lookup_resource_server(const API& api) {
