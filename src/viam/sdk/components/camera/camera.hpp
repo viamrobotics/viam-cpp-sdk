@@ -114,10 +114,10 @@ class Camera : public Component {
     static properties from_proto(const viam::component::camera::v1::GetPropertiesResponse& proto);
 
     /// @brief converts a `distortion_parameters` struct to its proto representation.
-    static viam::component::camera::v1::DistortionParameters to_proto(distortion_parameters);
+    static viam::component::camera::v1::DistortionParameters to_proto(const distortion_parameters&);
 
     /// @brief converts an `intrinsic_parameters` struct to its proto representation.
-    static viam::component::camera::v1::IntrinsicParameters to_proto(intrinsic_parameters);
+    static viam::component::camera::v1::IntrinsicParameters to_proto(const intrinsic_parameters&);
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.

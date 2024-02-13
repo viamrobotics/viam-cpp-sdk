@@ -72,17 +72,18 @@ class MovementSensor : public Component {
 
     /// @brief Converts a `compassheading` struct to its proto representation.
     static viam::component::movementsensor::v1::GetCompassHeadingResponse to_proto(
-        compassheading compassheading);
+        const compassheading& compassheading);
 
     /// @brief Converts a `position` struct to its proto representation.
-    static viam::component::movementsensor::v1::GetPositionResponse to_proto(position position);
+    static viam::component::movementsensor::v1::GetPositionResponse to_proto(
+        const position& position);
 
     /// @brief Converts an `orientation` struct to its proto representation.
-    static viam::common::v1::Orientation to_proto(orientation orientation);
+    static viam::common::v1::Orientation to_proto(const orientation& orientation);
 
     /// @brief Converts a `properties` struct to its proto representation.
     static viam::component::movementsensor::v1::GetPropertiesResponse to_proto(
-        properties properties);
+        const properties& properties);
 
     inline Vector3 get_linear_velocity() {
         return get_linear_velocity({});

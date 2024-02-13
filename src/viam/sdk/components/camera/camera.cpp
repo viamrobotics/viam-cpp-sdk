@@ -149,7 +149,7 @@ Camera::properties Camera::from_proto(
 }
 
 viam::component::camera::v1::IntrinsicParameters Camera::to_proto(
-    Camera::intrinsic_parameters params) {
+    const Camera::intrinsic_parameters& params) {
     viam::component::camera::v1::IntrinsicParameters proto;
     proto.set_width_px(params.width_px);
     proto.set_height_px(params.height_px);
@@ -160,7 +160,7 @@ viam::component::camera::v1::IntrinsicParameters Camera::to_proto(
     return proto;
 }
 viam::component::camera::v1::DistortionParameters Camera::to_proto(
-    Camera::distortion_parameters params) {
+    const Camera::distortion_parameters& params) {
     viam::component::camera::v1::DistortionParameters proto;
     *proto.mutable_model() = params.model;
     *proto.mutable_parameters() = {params.parameters.begin(), params.parameters.end()};

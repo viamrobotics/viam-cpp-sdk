@@ -50,10 +50,10 @@ class PowerSensor : public Component {
     static current from_proto(const GetCurrentResponse& proto);
 
     /// @brief Converts a `voltage` struct to its proto representation.
-    static GetVoltageResponse to_proto(voltage v);
+    static GetVoltageResponse to_proto(const voltage& v);
 
     /// @brief Converts a `current` struct to its proto representation.
-    static GetCurrentResponse to_proto(current c);
+    static GetCurrentResponse to_proto(const current& c);
 
     /// @brief Returns the voltage reading of this sensor.
     /// @return The voltage reading of this sensor.

@@ -30,7 +30,8 @@ class Vector3 {
 
     const std::array<scalar_type, 3>& data() const;
     std::array<scalar_type, 3>& data();
-    static viam::common::v1::Vector3 to_proto(const Vector3& vec);
+    // CR erodkin: this was static but there doesn't seem to be a good reason for that
+    viam::common::v1::Vector3 to_proto() const;
     static Vector3 from_proto(const viam::common::v1::Vector3& vec);
 
    private:

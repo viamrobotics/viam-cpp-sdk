@@ -54,15 +54,14 @@ class Motor : public Component, public Stoppable {
     /// @brief Creates a `properties` struct from its proto representation.
     static properties from_proto(const viam::component::motor::v1::GetPropertiesResponse& proto);
 
-    /// // CR erodkin: why aren't the `to_proto` methods complaining about lack of `const&`?
     /// @brief Converts a `position` struct to its proto representation.
-    static viam::component::motor::v1::GetPositionResponse to_proto(position position);
+    static viam::component::motor::v1::GetPositionResponse to_proto(const position& position);
 
     /// @brief Converts a `power_status` struct to its proto representation.
-    static viam::component::motor::v1::IsPoweredResponse to_proto(power_status power_status);
+    static viam::component::motor::v1::IsPoweredResponse to_proto(const power_status& power_status);
 
     /// @brief Converts a `properties` struct to its proto representation.
-    static viam::component::motor::v1::GetPropertiesResponse to_proto(properties properties);
+    static viam::component::motor::v1::GetPropertiesResponse to_proto(const properties& properties);
 
     /// @brief Sets the percentage of the motor's total power that should be employed.
     /// @param power_pct Percentage of motor's power, between -1 and 1, where negative values

@@ -33,7 +33,7 @@ class WorldState {
 
     WorldState() {}
     WorldState(std::vector<geometries_in_frame> obstacles, std::vector<transform> transforms)
-        : obstacles_(obstacles), transforms_(transforms) {}
+        : obstacles_(std::move(obstacles)), transforms_(std::move(transforms)) {}
 
     friend bool operator==(const WorldState& lhs, const WorldState& rhs);
     friend bool operator==(const geometries_in_frame& lhs, const geometries_in_frame& rhs);

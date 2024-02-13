@@ -45,11 +45,11 @@ std::array<double, 3>& Vector3::data() {
     return this->data_;
 }
 
-viam::common::v1::Vector3 Vector3::to_proto(const Vector3& vec) {
+viam::common::v1::Vector3 Vector3::to_proto() const {
     viam::common::v1::Vector3 result;
-    result.set_x(vec.x());
-    result.set_y(vec.y());
-    result.set_z(vec.z());
+    result.set_x(x());
+    result.set_y(y());
+    result.set_z(z());
     return result;
 };
 

@@ -56,13 +56,13 @@ MovementSensor::properties MovementSensor::from_proto(
 }
 
 viam::component::movementsensor::v1::GetCompassHeadingResponse MovementSensor::to_proto(
-    compassheading compassheading) {
+    const compassheading& compassheading) {
     viam::component::movementsensor::v1::GetCompassHeadingResponse proto;
     proto.set_value(compassheading.value);
     return proto;
 }
 
-viam::common::v1::Orientation MovementSensor::to_proto(orientation orientation) {
+viam::common::v1::Orientation MovementSensor::to_proto(const orientation& orientation) {
     viam::common::v1::Orientation proto;
     proto.set_o_x(orientation.o_x);
     proto.set_o_y(orientation.o_y);
@@ -71,8 +71,17 @@ viam::common::v1::Orientation MovementSensor::to_proto(orientation orientation) 
     return proto;
 }
 
+// CR erodkin: somehow this wasn't defined! gotta add it
+viam::component::movementsensor::v1::GetPositionResponse MovementSensor::to_proto(
+    const position& position) {
+    component::movementsensor::v1::GetPositionResponse proto;
+    proto.set_altitude_m(position.altitude_m);
+    *proto.mutable_coordinate() = position.coordinate.to_proto();
+    return proto;
+}
+
 viam::component::movementsensor::v1::GetPropertiesResponse MovementSensor::to_proto(
-    properties properties) {
+    const properties& properties) {
     viam::component::movementsensor::v1::GetPropertiesResponse proto;
     proto.set_linear_velocity_supported(properties.linear_velocity_supported);
     proto.set_angular_velocity_supported(properties.angular_velocity_supported);

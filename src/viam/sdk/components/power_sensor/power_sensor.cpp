@@ -33,14 +33,14 @@ PowerSensor::current PowerSensor::from_proto(const GetCurrentResponse& proto) {
     return c;
 }
 
-GetVoltageResponse PowerSensor::to_proto(voltage v) {
+GetVoltageResponse PowerSensor::to_proto(const voltage& v) {
     GetVoltageResponse proto;
     proto.set_volts(v.volts);
     proto.set_is_ac(v.is_ac);
     return proto;
 }
 
-GetCurrentResponse PowerSensor::to_proto(current c) {
+GetCurrentResponse PowerSensor::to_proto(const current& c) {
     GetCurrentResponse proto;
     proto.set_amperes(c.amperes);
     proto.set_is_ac(c.is_ac);

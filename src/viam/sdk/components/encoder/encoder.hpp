@@ -59,10 +59,11 @@ class Encoder : public Component {
     static viam::component::encoder::v1::PositionType to_proto(position_type position_type);
 
     /// @brief Converts a `position` struct to its proto representation.
-    static viam::component::encoder::v1::GetPositionResponse to_proto(position position);
+    static viam::component::encoder::v1::GetPositionResponse to_proto(const position& position);
 
     /// @brief Converts a `properties` struct to its proto representation.
-    static viam::component::encoder::v1::GetPropertiesResponse to_proto(properties properties);
+    static viam::component::encoder::v1::GetPropertiesResponse to_proto(
+        const properties& properties);
 
     /// @brief Returns position of the encoder which can either be ticks since last zeroing for an
     /// incremental encoder or degrees for an absolute encoder.
