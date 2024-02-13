@@ -57,13 +57,13 @@ const Model& ModelRegistration::model() const {
 };
 
 void Registry::register_model(std::shared_ptr<const ModelRegistration> resource) {
-    const std::string reg_key = resource->api().to_string() + "/" + resource->model().to_string();
+    std::string reg_key = resource->api().to_string() + "/" + resource->model().to_string();
     if (resources_.find(reg_key) != resources_.end()) {
         const std::string err = "Cannot add resource with name " + reg_key + "as it already exists";
         throw std::runtime_error(err);
     }
 
-    resources_.emplace(reg_key, std::move(resource));
+    resources_.emplace(std::move(reg_key), std::move(resource));
 }
 
 void Registry::register_resource_server_(

@@ -48,7 +48,8 @@ void Server::add_resource(std::shared_ptr<Resource> resource) {
         throw std::runtime_error(buffer.str());
     }
     auto resource_server = managed_servers_.at(api);
-    resource_server->resource_manager()->add(resource->name(), resource);
+    auto name = resource->name();
+    resource_server->resource_manager()->add(std::move(name), std::move(resource));
 }
 
 void Server::start() {

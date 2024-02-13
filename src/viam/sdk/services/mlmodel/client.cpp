@@ -69,7 +69,11 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
         aav->views.emplace(kv.first, std::move(tensor));
     }
     auto* const tsav_views = &aav->views;
-    return {aav, tsav_views};
+    // This move does nothing pre-C++20 because the `shared_ptr` aliasing constructor takes
+    // its first arg by `const&`. However, having it here is harmless, and in C++20 this
+    // move would be correct to minimize refcount modification.
+    // NOLINTNEXTLINE(performance-move-const-arg)
+    return {std::move(aav), tsav_views};
 }
 
 struct MLModelService::metadata MLModelServiceClient::metadata(const AttributeMap& extra) {
