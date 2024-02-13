@@ -170,22 +170,22 @@ viam::common::v1::Geometry GeometryConfig::to_proto() const {
     }
 }
 void GeometryConfig::set_coordinates(coordinates coordinates) {
-    pose_.coordinates = coordinates;
+    pose_.coordinates = std::move(coordinates);
 }
 void GeometryConfig::set_pose(pose pose) {
-    pose_ = pose;
+    pose_ = std::move(pose);
 }
 void GeometryConfig::set_geometry_specifics(geometry_specifics gs) {
     geometry_specifics_ = std::move(gs);
 }
 void GeometryConfig::set_pose_orientation(pose_orientation orientation) {
-    pose_.orientation = orientation;
+    pose_.orientation = std::move(orientation);
 }
 void GeometryConfig::set_theta(double theta) {
-    pose_.theta = theta;
+    pose_.theta = std::move(theta);
 }
 void GeometryConfig::set_geometry_type(GeometryType type) {
-    geometry_type_ = type;
+    geometry_type_ = std::move(type);
 }
 void GeometryConfig::set_orientation_config(OrientationConfig config) {
     orientation_config_ = std::move(config);

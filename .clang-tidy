@@ -39,3 +39,5 @@ CheckOptions:
     value: true
   - key: readability-function-cognitive-complexity.Threshold
     value: 30
+  - key: performance-move-const-arg.CheckTriviallyCopyableMove
+    value: false

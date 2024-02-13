@@ -95,14 +95,14 @@ std::shared_ptr<const ModelRegistration> Registry::lookup_model_inlock_(
 
 std::shared_ptr<const ModelRegistration> Registry::lookup_model(const std::string& name) {
     const std::lock_guard<std::mutex> lock(lock_);
-    return lookup_model_inlock_(name, std::move(lock));
+    return lookup_model_inlock_(name, lock);
 }
 
 std::shared_ptr<const ModelRegistration> Registry::lookup_model(const API& api,
                                                                 const Model& model) {
     const std::lock_guard<std::mutex> lock(lock_);
     const std::string name = api.to_string() + "/" + model.to_string();
-    return lookup_model_inlock_(name, std::move(lock));
+    return lookup_model_inlock_(name, lock);
 }
 
 std::shared_ptr<const ResourceServerRegistration> Registry::lookup_resource_server(const API& api) {

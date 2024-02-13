@@ -47,9 +47,9 @@ void ResourceManager::replace_all(
     this->resources_ = new_resources;
     this->short_names_ = new_short_names;
 
-    for (auto resource : resources) {
+    for (const auto& resource : resources) {
         try {
-            do_add(resource.first, std::move(resource.second));
+            do_add(resource.first, resource.second);
         } catch (std::exception& exc) {
             BOOST_LOG_TRIVIAL(error) << "Error replacing all resources" << exc.what();
             return;
@@ -65,7 +65,7 @@ std::string get_shortcut_name(const std::string& name) {
     return name_split.at(name_split.size() - 1);
 }
 
-void ResourceManager::do_add(Name name, std::shared_ptr<Resource> resource) {
+void ResourceManager::do_add(const Name& name, std::shared_ptr<Resource> resource) {
     if (name.name().empty()) {
         throw "Empty name used for resource: " + name.to_string();
     }
@@ -90,10 +90,10 @@ void ResourceManager::do_add(std::string name, std::shared_ptr<Resource> resourc
     resources_.emplace(std::move(name), std::move(resource));
 }
 
-void ResourceManager::add(Name name, std::shared_ptr<Resource> resource) {
+void ResourceManager::add(const Name& name, std::shared_ptr<Resource> resource) {
     const std::lock_guard<std::mutex> lock(lock_);
     try {
-        do_add(std::move(name), std::move(resource));
+        do_add(name, std::move(resource));
     } catch (std::exception& exc) {
         BOOST_LOG_TRIVIAL(error) << "Error adding resource to subtype service: " << exc.what();
     }
@@ -134,11 +134,11 @@ void ResourceManager::remove(const Name& name) {
     };
 };
 
-void ResourceManager::replace_one(Name name, std::shared_ptr<Resource> resource) {
+void ResourceManager::replace_one(const Name& name, std::shared_ptr<Resource> resource) {
     const std::lock_guard<std::mutex> lock(lock_);
     try {
         do_remove(name);
-        do_add(std::move(name), std::move(resource));
+        do_add(name, std::move(resource));
     } catch (std::exception& exc) {
         BOOST_LOG_TRIVIAL(error) << "failed to replace resource " << name.to_string() << ": "
                                  << exc.what();

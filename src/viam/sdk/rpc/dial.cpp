@@ -60,7 +60,7 @@ void DialOptions::set_entity(boost::optional<std::string> entity) {
 }
 
 void DialOptions::set_timeout(std::chrono::duration<float> timeout) {
-    timeout_ = timeout;
+    timeout_ = std::move(timeout);
 }
 
 const boost::optional<std::string>& DialOptions::entity() const {
