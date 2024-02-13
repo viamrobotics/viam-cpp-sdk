@@ -99,6 +99,9 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
+// CR erodkin: no lint here only because we already fixed this in the other clang-tidy PR.
+// Just do that one first, delete this, then rebase.
+// NOLINTBEGIN
 ::grpc::Status MotionServer::GetPose(
     ::grpc::ServerContext* context,
     const ::viam::service::motion::v1::GetPoseRequest* request,
@@ -135,6 +138,7 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
 
     return ::grpc::Status();
 };
+// NOLINTEND
 
 ::grpc::Status MotionServer::GetPlan(
     ::grpc::ServerContext* context,

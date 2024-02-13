@@ -25,7 +25,7 @@ OrientationConfig::OrientationConfig() {
     orientation_ = quat;
 }
 
-OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) {
+OrientationConfig OrientationConfig::from_proto(const proto::Orientation& proto) {
     OrientationConfig cfg;
     switch (proto.type_case()) {
         case proto::Orientation::TypeCase::kAxisAngles: {

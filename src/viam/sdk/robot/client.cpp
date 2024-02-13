@@ -247,7 +247,8 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(const std::shared_ptr<Via
     return robot;
 };
 
-std::shared_ptr<RobotClient> RobotClient::at_address(std::string address, Options options) {
+std::shared_ptr<RobotClient> RobotClient::at_address(const std::string& address,
+                                                     const Options& options) {
     const char* uri = address.c_str();
     auto channel = ViamChannel::dial(uri, options.dial_options());
     std::shared_ptr<RobotClient> robot = RobotClient::with_channel(channel, options);
@@ -256,7 +257,8 @@ std::shared_ptr<RobotClient> RobotClient::at_address(std::string address, Option
     return robot;
 };
 
-std::shared_ptr<RobotClient> RobotClient::at_local_socket(std::string address, Options options) {
+std::shared_ptr<RobotClient> RobotClient::at_local_socket(const std::string& address,
+                                                          const Options& options) {
     const std::string addr = "unix://" + address;
     const char* uri = addr.c_str();
     const std::shared_ptr<grpc::Channel> channel =
@@ -271,7 +273,7 @@ std::shared_ptr<RobotClient> RobotClient::at_local_socket(std::string address, O
 };
 
 std::vector<FrameSystemConfig> RobotClient::get_frame_system_config(
-    std::vector<Transform> additional_transforms) {
+    const std::vector<Transform>& additional_transforms) {
     viam::robot::v1::FrameSystemConfigRequest req;
     viam::robot::v1::FrameSystemConfigResponse resp;
     ClientContext ctx;
@@ -300,13 +302,13 @@ std::vector<FrameSystemConfig> RobotClient::get_frame_system_config(
 
 PoseInFrame RobotClient::transform_pose(PoseInFrame query,
                                         std::string destination,
-                                        std::vector<Transform> additional_transforms) {
+                                        const std::vector<Transform>& additional_transforms) {
     viam::robot::v1::TransformPoseRequest req;
     viam::robot::v1::TransformPoseResponse resp;
     ClientContext ctx;
 
-    *req.mutable_source() = query;
-    *req.mutable_destination() = destination;
+    *req.mutable_source() = std::move(query);
+    *req.mutable_destination() = std::move(destination);
     RepeatedPtrField<Transform>* req_transforms = req.mutable_supplemental_transforms();
 
     for (const Transform& transform : additional_transforms) {
@@ -321,7 +323,8 @@ PoseInFrame RobotClient::transform_pose(PoseInFrame query,
     return resp.pose();
 }
 
-std::vector<Discovery> RobotClient::discover_components(std::vector<DiscoveryQuery> queries) {
+std::vector<Discovery> RobotClient::discover_components(
+    const std::vector<DiscoveryQuery>& queries) {
     viam::robot::v1::DiscoverComponentsRequest req;
     viam::robot::v1::DiscoverComponentsResponse resp;
     ClientContext ctx;
@@ -364,16 +367,16 @@ void RobotClient::stop_all() {
 }
 
 void RobotClient::stop_all(
-    std::unordered_map<ResourceName,
-                       std::unordered_map<std::string, std::shared_ptr<ProtoType>>,
-                       ResourceNameHasher,
-                       ResourceNameEqual> extra) {
+    const std::unordered_map<ResourceName,
+                             std::unordered_map<std::string, std::shared_ptr<ProtoType>>,
+                             ResourceNameHasher,
+                             ResourceNameEqual>& extra) {
     viam::robot::v1::StopAllRequest req;
     viam::robot::v1::StopAllResponse resp;
     ClientContext ctx;
 
     RepeatedPtrField<viam::robot::v1::StopExtraParameters>* ep = req.mutable_extra();
-    for (auto& xtra : extra) {
+    for (const auto& xtra : extra) {
         const ResourceName name = xtra.first;
         const std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> params =
             std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>(

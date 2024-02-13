@@ -51,14 +51,16 @@ class RobotClient {
     /// @brief Create a robot client connected to the robot at the provided address.
     /// @param address The address of the robot (IP address, URI, URL, etc.)
     /// @param options Options for connecting and refreshing.
-    static std::shared_ptr<RobotClient> at_address(std::string address, Options options);
+    static std::shared_ptr<RobotClient> at_address(const std::string& address,
+                                                   const Options& options);
 
     /// @brief Creates a robot client connected to the robot at the provided local socket.
     /// @param address The local socket of the robot (a .sock file, etc.).
     /// @param options Options for connecting and refreshing.
     /// Creates a direct connection to the robot using the `unix://` scheme.
     /// Only useful for connecting to robots across Unix sockets.
-    static std::shared_ptr<RobotClient> at_local_socket(std::string address, Options options);
+    static std::shared_ptr<RobotClient> at_local_socket(const std::string& address,
+                                                        const Options& options);
 
     /// @brief Creates a robot client connected to the provided channel.
     /// @param channel The channel to connect with.
@@ -103,7 +105,7 @@ class RobotClient {
     /// @brief Get the configuration of the frame system of the given robot.
     /// @return The configuration of the calling robot's frame system.
     std::vector<FrameSystemConfig> get_frame_system_config(
-        std::vector<Transform> additional_transforms = std::vector<Transform>());
+        const std::vector<Transform>& additional_transforms = std::vector<Transform>());
 
     /// @brief Get the list of operations currently running on a robot.
     /// @return The list of operations currently running on the calling robot.
@@ -119,7 +121,7 @@ class RobotClient {
     std::vector<Status> get_status();
 
     std::vector<viam::robot::v1::Discovery> discover_components(
-        std::vector<viam::robot::v1::DiscoveryQuery> queries);
+        const std::vector<viam::robot::v1::DiscoveryQuery>& queries);
 
     /// @brief Transform a given `Pose` to a new specified destination which is a reference frame.
     /// @param query The pose that should be transformed.
@@ -128,7 +130,7 @@ class RobotClient {
     viam::common::v1::PoseInFrame transform_pose(
         viam::common::v1::PoseInFrame query,
         std::string destination,
-        std::vector<Transform> additional_transforms = std::vector<Transform>());
+        const std::vector<Transform>& additional_transforms = std::vector<Transform>());
 
     /// @brief Blocks on the specified operation of the robot, returning when it is complete.
     /// @param id The ID of the operation to block on.
@@ -139,10 +141,11 @@ class RobotClient {
 
     /// @brief Cancel all operations for the robot and stop all actuators and movement.
     /// @param extra Any extra params to pass to resources' `stop` methods, keyed by `ResourceName`.
-    void stop_all(std::unordered_map<ResourceName,
-                                     std::unordered_map<std::string, std::shared_ptr<ProtoType>>,
-                                     ResourceNameHasher,
-                                     ResourceNameEqual> extra);
+    void stop_all(
+        const std::unordered_map<ResourceName,
+                                 std::unordered_map<std::string, std::shared_ptr<ProtoType>>,
+                                 ResourceNameHasher,
+                                 ResourceNameEqual>& extra);
 
     /// @brief Cancel a specified operation on the robot.
     /// @param id The ID of the operation to cancel.

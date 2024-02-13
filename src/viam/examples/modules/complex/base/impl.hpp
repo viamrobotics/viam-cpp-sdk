@@ -13,10 +13,10 @@ using namespace viam::sdk;
 // specifies a static `validate` method that checks config validity.
 class MyBase : public Base {
    public:
-    MyBase(Dependencies deps, ResourceConfig cfg) : Base(cfg.name()) {
+    MyBase(const Dependencies& deps, const ResourceConfig& cfg) : Base(cfg.name()) {
         this->reconfigure(deps, cfg);
     };
-    void reconfigure(Dependencies deps, ResourceConfig cfg) override;
+    void reconfigure(const Dependencies& deps, const ResourceConfig& cfg) override;
     static std::vector<std::string> validate(ResourceConfig cfg);
 
     bool is_moving() override;

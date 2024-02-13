@@ -14,10 +14,10 @@ using namespace viam::sdk;
 class MyGizmo : public Gizmo {
    public:
     MyGizmo(std::string name, std::string arg1) : Gizmo(std::move(name)), arg1_(std::move(arg1)){};
-    MyGizmo(Dependencies deps, ResourceConfig cfg) : Gizmo(cfg.name()) {
+    MyGizmo(const Dependencies& deps, const ResourceConfig& cfg) : Gizmo(cfg.name()) {
         this->reconfigure(deps, cfg);
     };
-    void reconfigure(Dependencies deps, ResourceConfig cfg) override;
+    void reconfigure(const Dependencies& deps, const ResourceConfig& cfg) override;
     static std::vector<std::string> validate(ResourceConfig cfg);
 
     bool do_one(std::string arg1) override;

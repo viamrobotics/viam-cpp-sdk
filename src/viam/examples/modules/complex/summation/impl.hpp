@@ -12,10 +12,10 @@ class MySummation : public Summation {
    public:
     MySummation(std::string name, bool subtract)
         : Summation(std::move(name)), subtract_(subtract){};
-    MySummation(Dependencies deps, ResourceConfig cfg) : Summation(cfg.name()) {
+    MySummation(const Dependencies& deps, const ResourceConfig& cfg) : Summation(cfg.name()) {
         this->reconfigure(deps, cfg);
     };
-    void reconfigure(Dependencies deps, ResourceConfig cfg) override;
+    void reconfigure(const Dependencies& deps, const ResourceConfig& cfg) override;
     static std::vector<std::string> validate(ResourceConfig cfg);
 
     double sum(std::vector<double> numbers) override;
