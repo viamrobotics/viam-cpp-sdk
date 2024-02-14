@@ -71,7 +71,6 @@ viam::common::v1::Orientation MovementSensor::to_proto(const orientation& orient
     return proto;
 }
 
-// CR erodkin: somehow this wasn't defined! gotta add it
 viam::component::movementsensor::v1::GetPositionResponse MovementSensor::to_proto(
     const position& position) {
     component::movementsensor::v1::GetPositionResponse proto;
