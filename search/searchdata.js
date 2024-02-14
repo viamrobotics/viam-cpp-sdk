@@ -7,7 +7,7 @@ var indexSectionsWithContent =
   4: "aceiloprstv",
   5: "ads",
   6: "p",
-  7: "abcdmprst",
+  7: "abcdemprst",
   8: "cdlsv"
 };
 
