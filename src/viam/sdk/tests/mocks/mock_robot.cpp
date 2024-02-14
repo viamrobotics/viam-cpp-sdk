@@ -85,9 +85,9 @@ std::vector<RobotClient::discovery> mock_discovery_response() {
     results->emplace("foo", l);
 
     RobotClient::discovery discovery;
-    discovery.query = query;
-    discovery.results = results;
-    return std::vector<RobotClient::discovery>{discovery};
+    discovery.query = std::move(query);
+    discovery.results = std::move(results);
+    return std::vector<RobotClient::discovery>{std::move(discovery)};
 }
 
 std::vector<Discovery> mock_proto_discovery_response() {
@@ -101,7 +101,7 @@ std::vector<Discovery> mock_proto_discovery_response() {
         *discovery.mutable_query() = query;
         *discovery.mutable_results() = map_to_struct(d.results);
 
-        v.push_back(discovery);
+        v.push_back(std::move(discovery));
     }
 
     return v;
@@ -125,12 +125,7 @@ std::vector<RobotClient::status> mock_status_response() {
     generic_status.status_map =
         std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
 
-    std::vector<RobotClient::status> resp;
-    resp.push_back(camera_status);
-    resp.push_back(motor_status);
-    resp.push_back(generic_status);
-
-    return resp;
+    return {std::move(camera_status), std::move(motor_status), std::move(generic_status)};
 }
 
 std::vector<Status> mock_proto_status_response() {

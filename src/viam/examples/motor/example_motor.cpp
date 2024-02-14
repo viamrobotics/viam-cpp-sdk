@@ -60,8 +60,7 @@ int main() {
 
         cout << "Resources of the robot:" << endl;
         for (const vs::Name& resource : resource_names) {
-            cout << " - " << resource.name() << " (" << resource.api().resource_subtype() << ")"
-                 << endl;
+            cout << resource << endl;
         }
 
         std::string motor_name("motor1");

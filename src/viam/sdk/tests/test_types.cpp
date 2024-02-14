@@ -1,15 +1,12 @@
 #include <memory>
 #define BOOST_TEST_MODULE test module test_types
 
-#include <cctype>
 #include <unordered_map>
 
 #include <boost/test/included/unit_test.hpp>
 
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/config/resource.hpp>
-#include <viam/sdk/robot/client.hpp>
-#include <viam/sdk/tests/mocks/mock_robot.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
 namespace viam {

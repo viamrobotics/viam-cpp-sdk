@@ -106,24 +106,12 @@ BOOST_AUTO_TEST_CASE(test_registering_resources) {
     BOOST_CHECK(Registry::lookup_model(API::get<Motor>(), motor_model));
 }
 
-std::vector<std::string> name_vec_to_string(std::vector<Name>& vec) {
-    std::vector<std::string> ret;
-    for (auto& v : vec) {
-        auto s = v.to_string();
-        ret.push_back(std::move(s));
-    }
-    std::sort(ret.begin(), ret.end());
-    return ret;
-}
-
 BOOST_AUTO_TEST_CASE(test_resource_names) {
     robot_client_to_mocks_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
-            std::vector<Name> resource_names = client->resource_names();
-            auto names = name_vec_to_string(resource_names);
+            std::vector<Name> names = client->resource_names();
             auto mocks = mock_resource_names_response();
-            auto mock_resp = name_vec_to_string(mocks);
-            BOOST_TEST(names == mock_resp, boost::test_tools::per_element());
+            BOOST_TEST(names == mocks, boost::test_tools::per_element());
         });
 }
 
@@ -152,6 +140,8 @@ BOOST_AUTO_TEST_CASE(test_get_status) {
         });
 }
 
+// This test ensures that the functions in the `mock_robot` files have the same fields for both
+// the proto and custom type versions.
 BOOST_AUTO_TEST_CASE(test_frame_system_config) {
     robot_client_to_mocks_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
@@ -194,6 +184,8 @@ BOOST_AUTO_TEST_CASE(test_get_frame_system_config) {
         });
 }
 
+// This test ensures that the functions in the `mock_robot` files have the same fields for both
+// the proto and custom type versions.
 BOOST_AUTO_TEST_CASE(test_operation) {
     robot_client_to_mocks_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
@@ -223,6 +215,8 @@ BOOST_AUTO_TEST_CASE(test_get_operations) {
         });
 }
 
+// This test ensures that the functions in the `mock_robot` files have the same fields for both
+// the proto and custom type versions.
 BOOST_AUTO_TEST_CASE(test_discovery) {
     robot_client_to_mocks_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
