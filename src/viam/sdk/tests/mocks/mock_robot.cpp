@@ -1,9 +1,11 @@
-#include "viam/sdk/common/proto_type.hpp"
 #include <vector>
 #include <viam/sdk/tests/mocks/mock_robot.hpp>
 
 #include <common/v1/common.pb.h>
 #include <robot/v1/robot.pb.h>
+
+#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/tests/test_utils.hpp>
 
 namespace viam {
 namespace sdktests {
@@ -67,10 +69,20 @@ std::vector<RobotClient::discovery> mock_discovery_response() {
     RobotClient::discovery_query query;
     query.subtype = "camera";
     query.model = "webcam";
+    auto s = std::make_shared<ProtoType>("bar");
+    auto map_pt = std::make_shared<ProtoType>(fake_map());
+    std::vector<std::shared_ptr<ProtoType>> inner{map_pt};
+    std::vector<std::shared_ptr<ProtoType>> l_{s,
+                                               std::make_shared<ProtoType>(false),
+                                               std::make_shared<ProtoType>(3),
+                                               std::make_shared<ProtoType>(4.2),
+                                               map_pt,
+                                               std::make_shared<ProtoType>(inner)};
+    auto l = std::make_shared<ProtoType>(l_);
 
     AttributeMap results =
         std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
-    results->emplace("foo", std::make_shared<ProtoType>("bar"));
+    results->emplace("foo", l);
 
     RobotClient::discovery discovery;
     discovery.query = query;
@@ -79,21 +91,20 @@ std::vector<RobotClient::discovery> mock_discovery_response() {
 }
 
 std::vector<Discovery> mock_proto_discovery_response() {
-    DiscoveryQuery query;
-    *query.mutable_subtype() = "camera";
-    *query.mutable_model() = "webcam";
+    std::vector<viam::robot::v1::Discovery> v;
+    for (const auto& d : mock_discovery_response()) {
+        DiscoveryQuery query;
+        *query.mutable_subtype() = d.query.subtype;
+        *query.mutable_model() = d.query.model;
 
-    google::protobuf::Struct results;
-    google::protobuf::Value str;
-    *str.mutable_string_value() = "bar";
-    google::protobuf::MapPair<std::string, google::protobuf::Value> pair("foo", str);
-    google::protobuf::Map<std::string, google::protobuf::Value>* map = results.mutable_fields();
-    map->insert(pair);
+        viam::robot::v1::Discovery discovery;
+        *discovery.mutable_query() = query;
+        *discovery.mutable_results() = map_to_struct(d.results);
 
-    viam::robot::v1::Discovery discovery;
-    *discovery.mutable_query() = query;
-    *discovery.mutable_results() = results;
-    return std::vector<viam::robot::v1::Discovery>{discovery};
+        v.push_back(discovery);
+    }
+
+    return v;
 }
 
 std::vector<RobotClient::status> mock_status_response() {

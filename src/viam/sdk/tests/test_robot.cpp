@@ -223,23 +223,25 @@ BOOST_AUTO_TEST_CASE(test_get_operations) {
 }
 
 BOOST_AUTO_TEST_CASE(test_discovery) {
-    robot_client_to_mocks_pipeline([](std::shared_ptr<RobotClient> client,
-                                      MockRobotService& service) -> void {
-        auto components = mock_discovery_response();
-        auto component = components[0];
-        auto results = component.results->begin();
-        auto protos = mock_proto_discovery_response();
-        auto proto = protos[0];
-        auto proto_results = proto.results().fields().begin();
+    robot_client_to_mocks_pipeline(
+        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+            auto components = mock_discovery_response();
+            auto component = components[0];
+            auto results = component.results->begin();
+            auto protos = mock_proto_discovery_response();
+            auto proto = protos[0];
+            auto proto_results = proto.results().fields().begin();
 
-        BOOST_CHECK_EQUAL(component.query.subtype, proto.query().subtype());
-        BOOST_CHECK_EQUAL(component.query.model, proto.query().model());
-        BOOST_CHECK_EQUAL(results->first, proto_results->first);
-        std::cout << component.results->begin()->second->proto_value().number_value() << " ------ "
-                  << proto.results().fields().begin()->second.string_value() << std::endl;
-        // BOOST_CHECK_EQUAL(results->second->proto_value().string_value(),
-        //                   proto_results->second.number_value());
-    });
+            BOOST_CHECK_EQUAL(component.query.subtype, proto.query().subtype());
+            BOOST_CHECK_EQUAL(component.query.model, proto.query().model());
+            BOOST_CHECK_EQUAL(results->first, proto_results->first);
+            // the `Value` type in our mock responses is a `list` type so we can comprehensively
+            // test `ProtoType` conversions. Unfortunately the protobuf `ListValue` type doesn't
+            // seem to have `==` defined, so we convert to a `DebugString` here to verify
+            // comparison and to provide helpful printing of differences in case of an error.
+            BOOST_CHECK_EQUAL(results->second->proto_value().DebugString(),
+                              proto_results->second.DebugString());
+        });
 }
 
 BOOST_AUTO_TEST_CASE(test_discover_components) {
