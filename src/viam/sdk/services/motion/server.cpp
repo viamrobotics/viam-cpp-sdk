@@ -21,8 +21,6 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
                                   ::viam::service::motion::v1::MoveResponse* response) noexcept {
     return make_service_helper<Motion>(
         "MotionServer::Move", this, request)([&](auto& helper, auto& motion) {
-        const pose_in_frame destination = pose_in_frame::from_proto(request->destination());
-        const Name name = Name::from_proto(request->component_name());
         std::shared_ptr<WorldState> ws;
         if (request->has_world_state()) {
             ws = std::make_shared<WorldState>(WorldState::from_proto(request->world_state()));
@@ -34,8 +32,8 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
                 Motion::constraints::from_proto(request->constraints()));
         }
 
-        const bool success = motion->move(std::move(destination),
-                                          std::move(name),
+        const bool success = motion->move(pose_in_frame::from_proto(request->destination()),
+                                          Name::from_proto(request->component_name()),
                                           std::move(ws),
                                           std::move(constraints),
                                           helper.getExtra());
@@ -49,13 +47,11 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
     ::viam::service::motion::v1::MoveOnMapResponse* response) noexcept {
     return make_service_helper<Motion>(
         "MotionServer::MoveOnMap", this, request)([&](auto& helper, auto& motion) {
-        const auto& destination = pose::from_proto(request->destination());
-        const auto& component_name = Name::from_proto(request->component_name());
-        const auto& slam_name = Name::from_proto(request->slam_service_name());
-        const bool success = motion->move_on_map(std::move(destination),
-                                                 std::move(component_name),
-                                                 std::move(slam_name),
-                                                 helper.getExtra());
+        const auto destination = pose::from_proto(request->destination());
+        auto component_name = Name::from_proto(request->component_name());
+        auto slam_name = Name::from_proto(request->slam_service_name());
+        const bool success = motion->move_on_map(
+            destination, std::move(component_name), std::move(slam_name), helper.getExtra());
 
         response->set_success(success);
     });
@@ -67,9 +63,9 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
     ::viam::service::motion::v1::MoveOnGlobeResponse* response) noexcept {
     return make_service_helper<Motion>(
         "MotionServer::MoveOnGlobe", this, request)([&](auto& helper, auto& motion) {
-        const auto& destination = geo_point::from_proto(request->destination());
-        const auto& component_name = Name::from_proto(request->component_name());
-        const auto& movement_sensor_name = Name::from_proto(request->movement_sensor_name());
+        const auto destination = geo_point::from_proto(request->destination());
+        auto component_name = Name::from_proto(request->component_name());
+        auto movement_sensor_name = Name::from_proto(request->movement_sensor_name());
         std::vector<geo_obstacle> obstacles;
 
         for (const auto& obstacle : request->obstacles()) {
@@ -87,8 +83,8 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
                 motion_configuration::from_proto(request->motion_configuration()));
         }
 
-        const std::string execution_id = motion->move_on_globe(std::move(destination),
-                                                               std::move(heading),
+        const std::string execution_id = motion->move_on_globe(destination,
+                                                               heading,
                                                                std::move(component_name),
                                                                std::move(movement_sensor_name),
                                                                std::move(obstacles),
@@ -99,46 +95,23 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-// CR erodkin: no lint here only because we already fixed this in the other clang-tidy PR.
-// Just do that one first, delete this, then rebase.
-// NOLINTBEGIN
 ::grpc::Status MotionServer::GetPose(
     ::grpc::ServerContext* context,
     const ::viam::service::motion::v1::GetPoseRequest* request,
     ::viam::service::motion::v1::GetPoseResponse* response) noexcept {
-    if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [GetPose] without a request");
-    };
-
-    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
-    if (!rb) {
-        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
-    }
-
-    const std::shared_ptr<Motion> motion = std::dynamic_pointer_cast<Motion>(rb);
-
-    const auto& component_name = Name::from_proto(request->component_name());
-    const std::string& destination_frame = request->destination_frame();
-    std::vector<WorldState::transform> supplemental_transforms;
-    for (const auto& proto_transform : request->supplemental_transforms()) {
-        supplemental_transforms.push_back(WorldState::transform::from_proto(proto_transform));
-    }
-    AttributeMap extra;
-    if (request->has_extra()) {
-        extra = struct_to_map(request->extra());
-    }
-
-    const pose_in_frame pose = motion->get_pose(std::move(component_name),
-                                                std::move(destination_frame),
-                                                std::move(supplemental_transforms),
-                                                std::move(extra));
-
-    *response->mutable_pose() = pose.to_proto();
-
-    return ::grpc::Status();
+    return make_service_helper<Motion>(
+        "MotionServer::GetPose", this, request)([&](auto& helper, auto& motion) {
+        const auto& component_name = Name::from_proto(request->component_name());
+        const std::string& destination_frame = request->destination_frame();
+        std::vector<WorldState::transform> supplemental_transforms;
+        for (const auto& proto_transform : request->supplemental_transforms()) {
+            supplemental_transforms.push_back(WorldState::transform::from_proto(proto_transform));
+        }
+        const pose_in_frame pose = motion->get_pose(
+            component_name, destination_frame, supplemental_transforms, helper.getExtra());
+        *response->mutable_pose() = pose.to_proto();
+    });
 };
-// NOLINTEND
 
 ::grpc::Status MotionServer::GetPlan(
     ::grpc::ServerContext* context,

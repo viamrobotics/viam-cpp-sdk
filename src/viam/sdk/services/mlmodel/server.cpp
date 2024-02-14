@@ -85,9 +85,8 @@ MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> mana
         *metadata_pb.mutable_type() = std::move(md.type);
         *metadata_pb.mutable_description() = std::move(md.description);
 
-        const auto pack_tensor_info = [&helper](
-                                          auto& target,
-                                          const std::vector<MLModelService::tensor_info>& source) {
+        const auto pack_tensor_info = [&helper](auto& target,
+                                                std::vector<MLModelService::tensor_info>& source) {
             target.Reserve(source.size());
             for (auto&& s : source) {
                 auto& new_entry = *target.Add();

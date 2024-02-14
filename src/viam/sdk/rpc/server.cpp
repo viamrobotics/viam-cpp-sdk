@@ -5,6 +5,7 @@
 #include <boost/log/trivial.hpp>
 #include <grpcpp/security/server_credentials.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/registry/registry.hpp>
 
 namespace viam {
@@ -33,27 +34,28 @@ std::shared_ptr<ResourceServer> Server::lookup_resource_server(const API& api) {
 
 void Server::register_service(grpc::Service* service) {
     if (!builder_) {
-        throw std::runtime_error("Cannot register a new service after the server has started");
+        throw Exception("Cannot register a new service after the server has started");
     }
 
     builder_->RegisterService(service);
 }
 
-void Server::add_resource(const std::shared_ptr<Resource>& resource) {
+void Server::add_resource(std::shared_ptr<Resource> resource) {
     auto api = resource->api();
     if (managed_servers_.find(api) == managed_servers_.end()) {
         std::ostringstream buffer;
         buffer << "Attempted to add resource with API: " << api
                << " but no matching resource server as found";
-        throw std::runtime_error(buffer.str());
+        throw Exception(ErrorCondition::k_resource_not_found, buffer.str());
     }
-    auto resource_server = managed_servers_.at(std::move(api));
-    resource_server->resource_manager()->add(resource->name(), std::move(resource));
+    auto resource_server = managed_servers_.at(api);
+    auto name = resource->name();
+    resource_server->resource_manager()->add(std::move(name), std::move(resource));
 }
 
 void Server::start() {
     if (server_) {
-        throw std::runtime_error("Attempted to start server that was already running");
+        throw Exception("Attempted to start server that was already running");
     }
 
     server_ = builder_->BuildAndStart();
@@ -63,7 +65,7 @@ void Server::start() {
 void Server::add_listening_port(const std::string& address,
                                 std::shared_ptr<grpc::ServerCredentials> creds) {
     if (!builder_) {
-        throw std::runtime_error("Cannot add a listening port after server has started");
+        throw Exception("Cannot add a listening port after server has started");
     }
 
     if (!creds) {

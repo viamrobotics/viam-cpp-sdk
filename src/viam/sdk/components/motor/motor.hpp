@@ -83,7 +83,7 @@ class Motor : public Component, public Stoppable {
     /// `revolutions` == 0, this will run the motor at `rpm` indefinetely. If `revolutions` != 0,
     /// this will block until the number of revolutions has been completed or another operation
     /// comes in.
-    /// @throws runtime_error if position reporting is not supported
+    /// @throws `Exception` if position reporting is not supported
     inline void go_for(double rpm, double revolutions) {
         return go_for(rpm, revolutions, {});
     }
@@ -96,14 +96,14 @@ class Motor : public Component, public Stoppable {
     /// this will block until the number of revolutions has been completed or another operation
     /// comes in.
     /// @param extra Any additional arguments to the method.
-    /// @throws runtime_error if position reporting is not supported
+    /// @throws `Exception` if position reporting is not supported
     virtual void go_for(double rpm, double revolutions, const AttributeMap& extra) = 0;
 
     /// @brief Move the motor to a specific position that is relative to its
     /// home position at a specified speed which is expressed in RPM.
     /// @param rpm Speed of motor travel in rotations per minute
     /// @param position_revolutions Number of revolutions relative to motor's home home/zero
-    /// @throws runtime_error if position reporting is not supported
+    /// @throws `Exception` if position reporting is not supported
     inline void go_to(double rpm, double position_revolutions) {
         return go_to(rpm, position_revolutions, {});
     }
@@ -113,12 +113,12 @@ class Motor : public Component, public Stoppable {
     /// @param rpm Speed of motor travel in rotations per minute
     /// @param position_revolutions Number of revolutions relative to motor's home home/zero
     /// @param extra Any additional arguments to the method.
-    /// @throws runtime_error if position reporting is not supported
+    /// @throws `Exception` if position reporting is not supported
     virtual void go_to(double rpm, double position_revolutions, const AttributeMap& extra) = 0;
 
     /// @brief Sets the current position of the motor as the new zero position.
     /// @param offset Motor position
-    /// @throws runtime_error if position reporting is not supported
+    /// @throws `Exception` if position reporting is not supported
     inline void reset_zero_position(double offset) {
         return reset_zero_position(offset, {});
     }
@@ -126,18 +126,18 @@ class Motor : public Component, public Stoppable {
     /// @brief Sets the current position of the motor as the new zero position.
     /// @param offset Motor position
     /// @param extra Any additional arguments to the method
-    /// @throws runtime_error if position reporting is not supported
+    /// @throws `Exception` if position reporting is not supported
     virtual void reset_zero_position(double offset, const AttributeMap& extra) = 0;
 
     /// @brief Reports the position of the robot's motor relative to its zero position.
-    /// @throws runtime_error if position reporting is not supported
+    /// @throws `Exception` if position reporting is not supported
     inline position get_position() {
         return get_position({});
     }
 
     /// @brief Reports the position of the robot's motor relative to its zero position.
     /// @param extra Any additional arguments to the method
-    /// @throws runtime_error if position reporting is not supported
+    /// @throws `Exception` if position reporting is not supported
     virtual position get_position(const AttributeMap& extra) = 0;
 
     /// @brief Returns the properties of the motor which comprises the booleans indicating

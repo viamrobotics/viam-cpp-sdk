@@ -43,14 +43,14 @@ class Servo : public Component, public Stoppable {
     virtual void move(uint32_t angle_deg, const AttributeMap& extra) = 0;
 
     /// @brief Get the current angle (degrees) of the servo.
-    /// @throws runtime_error if position reporting is not supported
+    /// @throws `Exception` if position reporting is not supported
     inline position get_position() {
         return get_position({});
     }
 
     /// @brief Reports the position of the robot's servo relative to its zero position.
     /// @param extra Any additional arguments to the method
-    /// @throws runtime_error if position reporting is not supported
+    /// @throws `Exception` if position reporting is not supported
     virtual position get_position(const AttributeMap& extra) = 0;
 
     /// @brief Stops a resource from running.
