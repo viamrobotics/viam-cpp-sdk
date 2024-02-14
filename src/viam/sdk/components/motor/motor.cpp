@@ -5,7 +5,6 @@
 #include <viam/api/component/motor/v1/motor.grpc.pb.h>
 #include <viam/api/component/motor/v1/motor.pb.h>
 
-#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/resource/resource.hpp>
 

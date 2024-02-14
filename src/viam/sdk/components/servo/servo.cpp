@@ -3,7 +3,6 @@
 #include <viam/api/component/servo/v1/servo.grpc.pb.h>
 #include <viam/api/component/servo/v1/servo.pb.h>
 
-#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/resource/resource.hpp>
 
