@@ -10,6 +10,7 @@
 #include <viam/api/component/board/v1/board.grpc.pb.h>
 
 #include <viam/sdk/common/client_helper.hpp>
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/board/board.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -101,7 +102,7 @@ Board::analog_value BoardClient::read_analog(const std::string& analog_reader_na
 
     const grpc::Status status = stub_->ReadAnalogReader(ctx, request, &response);
     if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
+        throw GRPCException(status);
     }
     return response.value();
 }
@@ -130,7 +131,7 @@ Board::digital_value BoardClient::read_digital_interrupt(const std::string& digi
 
     const grpc::Status status = stub_->GetDigitalInterruptValue(ctx, request, &response);
     if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
+        throw GRPCException(status);
     }
     return response.value();
 }

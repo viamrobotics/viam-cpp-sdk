@@ -19,6 +19,8 @@
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/services/mlmodel/private/proto.hpp>
 
+#include <viam/sdk/common/exception.hpp>
+
 namespace viam {
 namespace sdk {
 
@@ -58,7 +60,7 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
 
     const auto result = stub_->Infer(ctx, *req, resp);
     if (!result.ok()) {
-        throw std::runtime_error(result.error_message());
+        throw GRPCException(result);
     }
 
     for (const auto& kv : resp->output_tensors().tensors()) {
@@ -107,8 +109,7 @@ struct MLModelService::metadata MLModelServiceClient::metadata(const AttributeMa
                     message << "Failed to deserialize returned Metadata.TensorInfo.data_type field "
                                "with value `"
                             << s.data_type() << "` to one of the known tensor data types";
-                    // TODO: Throw viam exception once PR #100 merges.
-                    throw std::runtime_error(message.str());
+                    throw Exception(message.str());
                 }
                 ti.data_type = *data_type;
                 ti.shape.reserve(s.shape_size());
@@ -133,8 +134,7 @@ struct MLModelService::metadata MLModelServiceClient::metadata(const AttributeMa
                             message << "Failed to deserialize returned "
                                        "Metadata.TensorInfo.File.label_type field with value `"
                                     << af.label_type() << "` to one of the known label types";
-                            // TODO: Throw viam exception once PR #100 merges.
-                            throw std::runtime_error(message.str());
+                            throw Exception(message.str());
                         }
                     }
                 }

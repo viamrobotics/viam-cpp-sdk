@@ -6,6 +6,7 @@
 #include <viam/api/service/motion/v1/motion.grpc.pb.h>
 #include <viam/api/service/motion/v1/motion.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/utils.hpp>
 
 namespace viam {
@@ -253,7 +254,7 @@ Motion::plan_state Motion::from_proto(const service::motion::v1::PlanState& prot
             return Motion::plan_state::k_stopped;
         }
         default: {
-            throw std::runtime_error("Invalid proto PlanState to encode");
+            throw Exception(ErrorCondition::k_not_supported, "Invalid proto PlanState to encode");
         }
     }
 }
@@ -273,7 +274,8 @@ service::motion::v1::PlanState Motion::to_proto(const Motion::plan_state& state)
             return service::motion::v1::PLAN_STATE_STOPPED;
         }
         default: {
-            throw std::runtime_error("Invalid plan_state to encode to proto");
+            throw Exception(ErrorCondition::k_not_supported,
+                            "Invalid plan_state to encode to proto");
         }
     }
 }

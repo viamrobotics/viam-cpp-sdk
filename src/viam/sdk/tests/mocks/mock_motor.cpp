@@ -6,6 +6,7 @@
 #include <viam/api/component/motor/v1/motor.grpc.pb.h>
 #include <viam/api/component/motor/v1/motor.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/components/motor/motor.hpp>
 #include <viam/sdk/components/motor/server.hpp>
@@ -26,7 +27,7 @@ void MockMotor::set_power(double power_pct, const AttributeMap& extra) {
 void MockMotor::go_for(double rpm, double revolutions, const AttributeMap& extra) {
     // This is the actual behavior from rdk:builtin:fake_motor
     if (rpm == 0.0) {
-        throw std::runtime_error("Cannot move motor at 0 RPM");
+        throw Exception("Cannot move motor at 0 RPM");
     }
     position_ += revolutions;
 }
