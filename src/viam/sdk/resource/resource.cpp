@@ -19,8 +19,6 @@ std::string Resource::name() const {
     return name_;
 }
 
-void Resource::reconfigure(Dependencies deps, ResourceConfig cfg){};
-
 ResourceName Resource::get_resource_name(std::string name) const {
     ResourceName r;
     *r.mutable_namespace_() = kRDK;

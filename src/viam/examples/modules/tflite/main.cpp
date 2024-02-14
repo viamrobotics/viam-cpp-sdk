@@ -30,6 +30,7 @@
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/module/service.hpp>
 #include <viam/sdk/registry/registry.hpp>
+#include <viam/sdk/resource/reconfigurable.hpp>
 #include <viam/sdk/resource/stoppable.hpp>
 #include <viam/sdk/rpc/server.hpp>
 #include <viam/sdk/services/mlmodel/mlmodel.hpp>
@@ -58,7 +59,9 @@ constexpr char service_name[] = "example_mlmodelservice_tflite";
 //      with the model.
 //
 // Any additional configuration fields are ignored.
-class MLModelServiceTFLite : public vsdk::MLModelService, public vsdk::Stoppable {
+class MLModelServiceTFLite : public vsdk::MLModelService,
+                             public vsdk::Stoppable,
+                             public vsdk::Reconfigurable {
     class write_to_tflite_tensor_visitor_;
 
    public:
@@ -93,8 +96,8 @@ class MLModelServiceTFLite : public vsdk::MLModelService, public vsdk::Stoppable
         }
     }
 
-    void reconfigure(vsdk::Dependencies dependencies, vsdk::ResourceConfig configuration) final
-        try {
+    void reconfigure(const vsdk::Dependencies& dependencies,
+                     const vsdk::ResourceConfig& configuration) final try {
         // Care needs to be taken during reconfiguration. The
         // framework does not offer protection against invocation
         // during reconfiguration. Keep all state in a shared_ptr
