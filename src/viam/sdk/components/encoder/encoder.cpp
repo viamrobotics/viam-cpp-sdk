@@ -5,40 +5,12 @@
 #include <viam/api/component/encoder/v1/encoder.grpc.pb.h>
 #include <viam/api/component/encoder/v1/encoder.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/encoder/client.hpp>
-#include <viam/sdk/components/encoder/server.hpp>
-#include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
 
 namespace viam {
 namespace sdk {
-
-EncoderRegistration::EncoderRegistration(
-    const google::protobuf::ServiceDescriptor* service_descriptor)
-    : ResourceRegistration(service_descriptor){};
-
-std::shared_ptr<ResourceServer> EncoderRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager, Server& server) {
-    auto es = std::make_shared<EncoderServer>(manager);
-    server.register_service(es.get());
-    return es;
-};
-
-std::shared_ptr<Resource> EncoderRegistration::create_rpc_client(
-    std::string name, std::shared_ptr<grpc::Channel> chan) {
-    return std::make_shared<EncoderClient>(std::move(name), std::move(chan));
-};
-
-std::shared_ptr<ResourceRegistration> Encoder::resource_registration() {
-    const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
-    const google::protobuf::ServiceDescriptor* sd =
-        p->FindServiceByName(viam::component::encoder::v1::EncoderService::service_full_name());
-    if (!sd) {
-        throw std::runtime_error("Unable to get service descriptor for the encoder service");
-    }
-    return std::make_shared<EncoderRegistration>(sd);
-}
 
 API Encoder::api() const {
     return API::get<Encoder>();
@@ -60,7 +32,8 @@ Encoder::position_type Encoder::from_proto(viam::component::encoder::v1::Positio
             return Encoder::position_type::ticks_count;
         }
         default: {
-            throw std::runtime_error("Invalid proto encoder type to decode");
+            throw Exception(ErrorCondition::k_not_supported,
+                            "Invalid proto encoder type to decode");
         }
     }
 }
@@ -93,7 +66,8 @@ viam::component::encoder::v1::PositionType Encoder::to_proto(position_type posit
             return viam::component::encoder::v1::POSITION_TYPE_TICKS_COUNT;
         }
         default: {
-            throw std::runtime_error("Invalid proto encoder type to encode");
+            throw Exception(ErrorCondition::k_not_supported,
+                            "Invalid proto encoder type to encode");
         }
     }
 }
@@ -124,16 +98,6 @@ bool operator==(const Encoder::properties& lhs, const Encoder::properties& rhs) 
     return (lhs.ticks_count_supported == rhs.ticks_count_supported &&
             lhs.angle_degrees_supported == rhs.angle_degrees_supported);
 }
-
-namespace {
-bool init() {
-    Registry::register_resource(API::get<Encoder>(), Encoder::resource_registration());
-    return true;
-};
-
-// NOLINTNEXTLINE
-const bool inited = init();
-}  // namespace
 
 }  // namespace sdk
 }  // namespace viam

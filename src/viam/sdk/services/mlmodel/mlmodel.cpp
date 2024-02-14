@@ -15,38 +15,9 @@
 #include <viam/sdk/services/mlmodel/mlmodel.hpp>
 
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/services/mlmodel/client.hpp>
-#include <viam/sdk/services/mlmodel/server.hpp>
 
 namespace viam {
 namespace sdk {
-
-MLModelServiceRegistration::MLModelServiceRegistration(
-    const google::protobuf::ServiceDescriptor* service_descriptor)
-    : ResourceRegistration(service_descriptor) {}
-
-std::shared_ptr<ResourceServer> MLModelServiceRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager, Server& server) {
-    auto mlms = std::make_shared<MLModelServiceServer>(std::move(manager));
-    server.register_service(mlms.get());
-    return mlms;
-};
-
-std::shared_ptr<Resource> MLModelServiceRegistration::create_rpc_client(
-    std::string name, std::shared_ptr<grpc::Channel> channel) {
-    return std::make_shared<MLModelServiceClient>(std::move(name), std::move(channel));
-};
-
-std::shared_ptr<ResourceRegistration> MLModelService::resource_registration() {
-    const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
-    const google::protobuf::ServiceDescriptor* sd =
-        p->FindServiceByName(viam::service::mlmodel::v1::MLModelService::service_full_name());
-    if (!sd) {
-        // TODO: Throw viam exception once PR #100 merges.
-        throw std::runtime_error("Unable to get service descriptor for the camera service");
-    }
-    return std::make_shared<MLModelServiceRegistration>(sd);
-}
 
 API MLModelService::api() const {
     return API::get<MLModelService>();
@@ -177,17 +148,6 @@ MLModelService::tensor_info::data_types MLModelService::tensor_info::tensor_view
 }
 
 MLModelService::MLModelService(std::string name) : Service(std::move(name)) {}
-
-namespace {
-bool init() {
-    Registry::register_resource(API::get<MLModelService>(),
-                                MLModelService::resource_registration());
-    return true;
-};
-
-// NOLINTNEXTLINE
-const bool inited = init();
-}  // namespace
 
 }  // namespace sdk
 }  // namespace viam

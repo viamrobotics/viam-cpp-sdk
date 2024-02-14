@@ -23,24 +23,10 @@
 #include <viam/api/service/mlmodel/v1/mlmodel.grpc.pb.h>
 
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/registry/registry.hpp>
-#include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/services/service.hpp>
 
 namespace viam {
 namespace sdk {
-
-class MLModelServiceRegistration : public ResourceRegistration {
-   public:
-    explicit MLModelServiceRegistration(
-        const google::protobuf::ServiceDescriptor* service_descriptor);
-
-    std::shared_ptr<ResourceServer> create_resource_server(std::shared_ptr<ResourceManager> manager,
-                                                           Server& server) override;
-
-    std::shared_ptr<Resource> create_rpc_client(std::string name,
-                                                std::shared_ptr<grpc::Channel> channel) override;
-};
 
 /// @class MLModelService mlmodel.hpp "services/mlmodel/mlmodel.hpp"
 /// @brief Represents a machine trained learning model instance
@@ -63,7 +49,6 @@ class MLModelService : public Service {
     };
 
    public:
-    static std::shared_ptr<ResourceRegistration> resource_registration();
     API api() const override;
 
     template <typename T>

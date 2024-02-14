@@ -10,25 +10,9 @@
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
-#include <viam/sdk/registry/registry.hpp>
-#include <viam/sdk/resource/resource_manager.hpp>
 
 namespace viam {
 namespace sdk {
-
-/// @defgroup Encoder Classes related to the Encoder component.
-
-/// @class EncoderRegistration
-/// @brief Defines a `ResourceRegistration` for the `Encoder` component.
-/// @ingroup Encoder
-class EncoderRegistration : public ResourceRegistration {
-   public:
-    explicit EncoderRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
-    std::shared_ptr<ResourceServer> create_resource_server(std::shared_ptr<ResourceManager> manager,
-                                                           Server& server) override;
-    std::shared_ptr<Resource> create_rpc_client(std::string name,
-                                                std::shared_ptr<grpc::Channel> chan) override;
-};
 
 /// @class Encoder encoder.hpp "components/encoder/encoder.hpp"
 /// @brief An encoder is a device that is hooked up to motors to report a position
@@ -61,9 +45,6 @@ class Encoder : public Component {
         bool ticks_count_supported;
         bool angle_degrees_supported;
     };
-
-    // functions shared across all components
-    static std::shared_ptr<ResourceRegistration> resource_registration();
 
     /// @brief Creates a `position_type` struct from its proto representation.
     static position_type from_proto(viam::component::encoder::v1::PositionType proto);

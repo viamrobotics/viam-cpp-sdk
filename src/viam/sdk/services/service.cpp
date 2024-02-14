@@ -10,7 +10,7 @@
 namespace viam {
 namespace sdk {
 
-common::v1::ResourceName Service::get_resource_name(std::string name) {
+common::v1::ResourceName Service::get_resource_name(std::string name) const {
     auto r = this->Resource::get_resource_name(name);
     *r.mutable_type() = kService;
     return r;

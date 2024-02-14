@@ -5,39 +5,12 @@
 #include <viam/api/component/board/v1/board.grpc.pb.h>
 #include <viam/api/component/board/v1/board.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/board/client.hpp>
-#include <viam/sdk/components/board/server.hpp>
-#include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
 
 namespace viam {
 namespace sdk {
-
-BoardRegistration::BoardRegistration(const google::protobuf::ServiceDescriptor* service_descriptor)
-    : ResourceRegistration(service_descriptor) {}
-
-std::shared_ptr<ResourceServer> BoardRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager, Server& server) {
-    auto bs = std::make_shared<BoardServer>(manager);
-    server.register_service(bs.get());
-    return bs;
-}
-
-std::shared_ptr<Resource> BoardRegistration::create_rpc_client(
-    std::string name, std::shared_ptr<grpc::Channel> chan) {
-    return std::make_shared<BoardClient>(std::move(name), std::move(chan));
-}
-
-std::shared_ptr<ResourceRegistration> Board::resource_registration() {
-    const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
-    const google::protobuf::ServiceDescriptor* sd =
-        p->FindServiceByName(viam::component::board::v1::BoardService::service_full_name());
-    if (!sd) {
-        throw std::runtime_error("Unable to get service descriptor for the board service");
-    }
-    return std::make_shared<BoardRegistration>(sd);
-}
 
 API Board::api() const {
     return API::get<Board>();
@@ -76,7 +49,8 @@ Board::power_mode Board::from_proto(viam::component::board::v1::PowerMode proto)
         }
         case viam::component::board::v1::POWER_MODE_UNSPECIFIED:
         default: {
-            throw std::runtime_error("Invalid proto board power_mode to decode");
+            throw Exception(ErrorCondition::k_not_supported,
+                            "Invalid proto board power_mode to decode");
         }
     }
 }
@@ -114,7 +88,7 @@ viam::component::board::v1::PowerMode Board::to_proto(Board::power_mode power_mo
             return viam::component::board::v1::POWER_MODE_OFFLINE_DEEP;
         }
         default: {
-            throw std::runtime_error("Invalid board power_mode to encode");
+            throw Exception(ErrorCondition::k_not_supported, "Invalid board power_mode to encode");
         }
     }
 }
@@ -152,16 +126,6 @@ bool operator==(const Board::status& lhs, const Board::status& rhs) {
     return (lhs.analog_reader_values == rhs.analog_reader_values &&
             lhs.digital_interrupt_values == rhs.digital_interrupt_values);
 }
-
-namespace {
-bool init() {
-    Registry::register_resource(API::get<Board>(), Board::resource_registration());
-    return true;
-};
-
-// NOLINTNEXTLINE(cert-err58-cpp)
-const bool inited = init();
-}  // namespace
 
 }  // namespace sdk
 }  // namespace viam

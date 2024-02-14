@@ -10,6 +10,7 @@
 #include <boost/variant/variant.hpp>
 #include <google/protobuf/struct.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/config/resource.hpp>
 
 namespace viam {
@@ -131,7 +132,7 @@ Value ProtoType::proto_value() {
             break;
         }
         default: {
-            throw std::runtime_error(
+            throw Exception(
                 "Invalid proto_value conversion type. This should never happen;\
 						please file a bug report.");
         }
@@ -194,8 +195,9 @@ bool operator==(const ProtoType& lhs, const ProtoType& rhs) {
             return std::equal(lhs_vec.begin(), lhs_vec.end(), rhs_vec.begin(), rhs_vec.end(), pred);
         }
         default: {
-            throw "Invalid proto_value conversion type. This should never happen;\
-                   please file a bug report.";
+            throw Exception(
+                "Invalid proto_value conversion type. This should never happen;\
+                   please file a bug report.");
         }
     }
 }

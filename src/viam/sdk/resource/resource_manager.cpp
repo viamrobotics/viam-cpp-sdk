@@ -14,6 +14,7 @@
 
 #include <viam/api/component/generic/v1/generic.grpc.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
@@ -65,36 +66,36 @@ std::string get_shortcut_name(const std::string& name) {
     return name_split.at(name_split.size() - 1);
 }
 
-void ResourceManager::do_add(const Name& name, const std::shared_ptr<Resource>& resource) {
+void ResourceManager::do_add(const Name& name, std::shared_ptr<Resource> resource) {
     if (name.name().empty()) {
-        throw "Empty name used for resource: " + name.to_string();
+        throw Exception("Empty name used for resource: " + name.to_string());
     }
-    const std::string short_name = name.short_name();
+    std::string short_name = name.short_name();
 
-    do_add(short_name, resource);
+    do_add(std::move(short_name), std::move(resource));
 }
 
-void ResourceManager::do_add(const std::string& name, const std::shared_ptr<Resource>& resource) {
+void ResourceManager::do_add(std::string name, std::shared_ptr<Resource> resource) {
     if (resources_.find(name) != resources_.end()) {
-        throw "Attempted to add resource that already existed: " + name;
+        throw Exception(ErrorCondition::k_duplicate_resource,
+                        "Attempted to add resource that already existed: " + name);
     }
 
-    resources_.emplace(name, resource);
-
-    const std::string shortcut = get_shortcut_name(name);
+    std::string shortcut = get_shortcut_name(name);
     if (shortcut != name) {
         if (short_names_.find(shortcut) != short_names_.end()) {
-            short_names_.emplace(shortcut, "");
+            short_names_.emplace(std::move(shortcut), "");
         } else {
-            short_names_.emplace(shortcut, name);
+            short_names_.emplace(std::move(shortcut), name);
         }
     }
+    resources_.emplace(std::move(name), std::move(resource));
 }
 
-void ResourceManager::add(const Name& name, const std::shared_ptr<Resource>& resource) {
+void ResourceManager::add(const Name& name, std::shared_ptr<Resource> resource) {
     const std::lock_guard<std::mutex> lock(lock_);
     try {
-        do_add(name, resource);
+        do_add(name, std::move(resource));
     } catch (std::exception& exc) {
         BOOST_LOG_TRIVIAL(error) << "Error adding resource to subtype service: " << exc.what();
     }
@@ -103,7 +104,9 @@ void ResourceManager::add(const Name& name, const std::shared_ptr<Resource>& res
 void ResourceManager::do_remove(const Name& name) {
     const std::string short_name = name.short_name();
     if (resources_.find(short_name) == resources_.end()) {
-        throw "attempted to remove resource " + name.to_string() + " but it didn't exist!";
+        throw Exception(
+            ErrorCondition::k_resource_not_found,
+            "Attempted to remove resource " + name.to_string() + " but it didn't exist!");
     }
     resources_.erase(short_name);
 
@@ -135,11 +138,11 @@ void ResourceManager::remove(const Name& name) {
     };
 };
 
-void ResourceManager::replace_one(const Name& name, const std::shared_ptr<Resource>& resource) {
+void ResourceManager::replace_one(const Name& name, std::shared_ptr<Resource> resource) {
     const std::lock_guard<std::mutex> lock(lock_);
     try {
         do_remove(name);
-        do_add(name, resource);
+        do_add(name, std::move(resource));
     } catch (std::exception& exc) {
         BOOST_LOG_TRIVIAL(error) << "failed to replace resource " << name.to_string() << ": "
                                  << exc.what();
@@ -151,10 +154,10 @@ const std::unordered_map<std::string, std::shared_ptr<Resource>>& ResourceManage
     return resources_;
 }
 
-void ResourceManager::add(const std::string& name, const std::shared_ptr<Resource>& resource) {
+void ResourceManager::add(std::string name, std::shared_ptr<Resource> resource) {
     const std::lock_guard<std::mutex> lock(lock_);
     // NOLINTNEXTLINE(clang-analyzer-cplusplus.NewDeleteLeaks)
-    do_add(name, resource);
+    do_add(std::move(name), std::move(resource));
 }
 
 }  // namespace sdk

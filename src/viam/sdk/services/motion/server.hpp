@@ -10,6 +10,7 @@
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
 #include <viam/sdk/rpc/server.hpp>
+#include <viam/sdk/services/motion/motion.hpp>
 
 namespace viam {
 namespace sdk {
@@ -20,6 +21,8 @@ namespace sdk {
 class MotionServer : public ResourceServer,
                      public viam::service::motion::v1::MotionService::Service {
    public:
+    using interface_type = Motion;
+    using service_type = service::motion::v1::MotionService;
     explicit MotionServer(std::shared_ptr<ResourceManager> manager);
 
     ::grpc::Status Move(::grpc::ServerContext* context,

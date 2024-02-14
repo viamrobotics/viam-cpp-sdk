@@ -25,12 +25,12 @@ class ResourceManager {
    public:
     /// @brief Returns a resource.
     /// @param name the name of the desired resource.
-    /// @throws `std::runtime_error` if the desired resource does not exist.
+    /// @throws `Exception` if the desired resource does not exist.
     std::shared_ptr<Resource> resource(const std::string& name);
 
     /// @brief Returns a resource after dynamically downcasting to `T`.
     /// @param name of the desired resource.
-    /// @throws `std::runtime_error` if the desired resource does not exist.
+    /// @throws `Exception` if the desired resource does not exist.
     template <typename T>
     std::shared_ptr<T> resource(const std::string& name) {
         static_assert(std::is_base_of<Resource, T>::value, "T is not derived from Resource");
@@ -44,12 +44,12 @@ class ResourceManager {
     /// @brief Adds a single resource to the manager.
     /// @param name The name of the resource.
     /// @param resource The resource being added.
-    void add(const Name& name, const std::shared_ptr<Resource>& resource);
+    void add(const Name& name, std::shared_ptr<Resource> resource);
 
     /// @brief Adds a single resource to the manager.
     /// @param name The name of the resource.
     /// @param resource The resource being added.
-    void add(const std::string& name, const std::shared_ptr<Resource>& resource);
+    void add(std::string name, std::shared_ptr<Resource> resource);
 
     /// @brief Remodes a single resource from the manager.
     /// @param name The name of the resource to remove.
@@ -58,7 +58,7 @@ class ResourceManager {
     /// @brief Replaces an existing resource. No-op if the named resource does not exist.
     /// @param name The name of the resource to replace.
     /// @param resource The new resource that is replacing the existing one.
-    void replace_one(const Name& name, const std::shared_ptr<Resource>& resource);
+    void replace_one(const Name& name, std::shared_ptr<Resource> resource);
 
     /// @brief Returns a reference to the existing resources within the manager.
     const std::unordered_map<std::string, std::shared_ptr<Resource>>& resources() const;
@@ -70,8 +70,8 @@ class ResourceManager {
     std::unordered_map<std::string, std::shared_ptr<Resource>> resources_;
     /// @brief `short_names_` is a shortened version of `Name` N of form <remote>:<name>.
     std::unordered_map<std::string, std::string> short_names_;
-    void do_add(const Name& name, const std::shared_ptr<Resource>& resource);
-    void do_add(const std::string& name, const std::shared_ptr<Resource>& resource);
+    void do_add(const Name& name, std::shared_ptr<Resource> resource);
+    void do_add(std::string name, std::shared_ptr<Resource> resource);
     void do_remove(const Name& name);
 };
 

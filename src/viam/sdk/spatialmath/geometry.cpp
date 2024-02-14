@@ -7,6 +7,7 @@
 
 #include <viam/api/common/v1/common.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/spatialmath/orientation.hpp>
 
 namespace viam {
@@ -19,7 +20,7 @@ viam::common::v1::Sphere GeometryConfig::sphere_proto() const {
         sphere.set_radius_mm(sphere_specifics.radius);
         return sphere;
     } catch (...) {
-        throw std::runtime_error(
+        throw Exception(
             "Couldn't convert geometry config to sphere proto; sphere specifics not found");
     }
 }
@@ -35,8 +36,7 @@ viam::common::v1::RectangularPrism GeometryConfig::box_proto() const {
         *box.mutable_dims_mm() = vec3;
         return box;
     } catch (...) {
-        throw std::runtime_error(
-            "Couldn't convert geometry config to box proto; box specifics not found");
+        throw Exception("Couldn't convert geometry config to box proto; box specifics not found");
     }
 }
 
@@ -48,7 +48,7 @@ viam::common::v1::Capsule GeometryConfig::capsule_proto() const {
         capsule.set_length_mm(capsule_specifics.length);
         return capsule;
     } catch (...) {
-        throw std::runtime_error(
+        throw Exception(
             "Couldn't convert geometry config to capsule proto; capsule specifics not found");
     }
 }
@@ -122,7 +122,7 @@ GeometryConfig GeometryConfig::from_proto(const viam::common::v1::Geometry& prot
         }
         case viam::common::v1::Geometry::GeometryTypeCase::GEOMETRY_TYPE_NOT_SET:
         default: {
-            throw "Geometry type is not supported";
+            throw Exception(ErrorCondition::k_not_supported, "Geometry type is not supported");
         }
     }
 }
@@ -130,7 +130,7 @@ std::vector<GeometryConfig> GeometryConfig::from_proto(
     const viam::common::v1::GetGeometriesResponse& proto) {
     std::vector<GeometryConfig> response;
     for (const auto& geometry : proto.geometries()) {
-        response.push_back(from_proto(std::move(geometry)));
+        response.push_back(from_proto(geometry));
     }
     return response;
 }

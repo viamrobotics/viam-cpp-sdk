@@ -269,8 +269,8 @@ void RobotClient::refresh() {
         // TODO(RSDK-2066): as we create wrappers, make sure components in wrappers
         // are being properly registered from name.subtype(), or update what we're
         // using for lookup
-        const std::shared_ptr<ResourceRegistration> rs =
-            Registry::lookup_resource({name.namespace_(), name.type(), name.subtype()});
+        const std::shared_ptr<const ResourceClientRegistration> rs =
+            Registry::lookup_resource_client({name.namespace_(), name.type(), name.subtype()});
         if (rs) {
             try {
                 const std::shared_ptr<Resource> rpc_client =

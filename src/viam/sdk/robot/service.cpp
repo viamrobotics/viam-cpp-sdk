@@ -31,8 +31,12 @@ using viam::common::v1::ResourceName;
 using viam::robot::v1::Status;
 
 RobotService_::RobotService_(std::shared_ptr<ResourceManager> manager, Server& server)
-    : ResourceServer(std::move(manager)) {
+    : ResourceServer(manager) {
     server.register_service(this);
+    // register all managed resources with the appropriate resource servers.
+    for (const auto& resource : manager->resources()) {
+        server.add_resource(resource.second);
+    }
 }
 
 std::vector<ResourceName> RobotService_::generate_metadata() {
@@ -50,7 +54,7 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
     for (const auto& cmp : resource_manager()->resources()) {
         const std::shared_ptr<Resource> resource = cmp.second;
         for (const auto& kv : Registry::registered_models()) {
-            const std::shared_ptr<ModelRegistration> registration = kv.second;
+            const std::shared_ptr<const ModelRegistration> registration = kv.second;
             if (registration->api().resource_subtype() == resource->api().resource_subtype()) {
                 bool resource_present = false;
                 const ResourceName name = resource->get_resource_name(resource->name());

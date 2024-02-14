@@ -10,7 +10,6 @@
 #include <viam/sdk/components/motor/motor.hpp>
 #include <viam/sdk/components/motor/server.hpp>
 #include <viam/sdk/config/resource.hpp>
-#include <viam/sdk/robot/client.hpp>
 
 namespace viam {
 namespace sdk {
@@ -20,6 +19,7 @@ namespace sdk {
 /// @ingroup Motor
 class MotorClient : public Motor {
    public:
+    using interface_type = Motor;
     MotorClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     void set_power(double power_pct, const AttributeMap& extra) override;
     void go_for(double rpm, double revolutions, const AttributeMap& extra) override;

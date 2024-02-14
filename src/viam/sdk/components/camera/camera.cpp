@@ -8,39 +8,10 @@
 #include <viam/api/component/camera/v1/camera.pb.h>
 
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/camera/client.hpp>
-#include <viam/sdk/components/camera/server.hpp>
-#include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
 
 namespace viam {
 namespace sdk {
-
-CameraRegistration::CameraRegistration(
-    const google::protobuf::ServiceDescriptor* service_descriptor)
-    : ResourceRegistration(service_descriptor){};
-
-std::shared_ptr<ResourceServer> CameraRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager, Server& server) {
-    auto cs = std::make_shared<CameraServer>(manager);
-    server.register_service(cs.get());
-    return cs;
-};
-
-std::shared_ptr<Resource> CameraRegistration::create_rpc_client(
-    std::string name, std::shared_ptr<grpc::Channel> chan) {
-    return std::make_shared<CameraClient>(std::move(name), std::move(chan));
-};
-
-std::shared_ptr<ResourceRegistration> Camera::resource_registration() {
-    const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
-    const google::protobuf::ServiceDescriptor* sd =
-        p->FindServiceByName(viam::component::camera::v1::CameraService::service_full_name());
-    if (!sd) {
-        throw std::runtime_error("Unable to get service descriptor for the camera service");
-    }
-    return std::make_shared<CameraRegistration>(sd);
-}
 
 // NOLINTNEXTLINE
 const std::string Camera::lazy_suffix = "+lazy";
@@ -222,16 +193,6 @@ bool operator==(const Camera::properties& lhs, const Camera::properties& rhs) {
            lhs.intrinsic_parameters == rhs.intrinsic_parameters &&
            lhs.distortion_parameters == rhs.distortion_parameters;
 }
-
-namespace {
-bool init() {
-    Registry::register_resource(API::get<Camera>(), Camera::resource_registration());
-    return true;
-};
-
-// NOLINTNEXTLINE
-const bool inited = init();
-}  // namespace
 
 }  // namespace sdk
 }  // namespace viam

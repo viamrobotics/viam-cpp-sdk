@@ -20,6 +20,7 @@ namespace sdk {
 /// @ingroup Servo
 class ServoClient : public Servo {
    public:
+    using interface_type = Servo;
     ServoClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     void move(uint32_t angle_deg, const AttributeMap& extra) override;
     position get_position(const AttributeMap& extra) override;

@@ -2,6 +2,7 @@
 #include <boost/test/included/unit_test.hpp>
 
 #include <google/protobuf/struct.pb.h>
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -37,9 +38,9 @@ BOOST_AUTO_TEST_CASE(test_api) {
     BOOST_CHECK(api2.is_service_type());
     BOOST_CHECK(!api2.is_component_type());
 
-    BOOST_CHECK_THROW(API::from_string("nsservicest"), std::string);
-    BOOST_CHECK_THROW(API::from_string("ns:service:#st"), std::string);
-    BOOST_CHECK_THROW(API::from_string("ns:service"), std::string);
+    BOOST_CHECK_THROW(API::from_string("nsservicest"), Exception);
+    BOOST_CHECK_THROW(API::from_string("ns:service:#st"), Exception);
+    BOOST_CHECK_THROW(API::from_string("ns:service"), Exception);
 }
 
 BOOST_AUTO_TEST_CASE(test_name) {
@@ -67,7 +68,7 @@ BOOST_AUTO_TEST_CASE(test_name) {
     BOOST_CHECK_EQUAL(name3.to_string(), "ns:component:st/name");
     BOOST_CHECK_EQUAL(Name::from_proto(name3.to_proto()), name3);
 
-    BOOST_CHECK_THROW(Name::from_string("ns:service:#st/remote:name"), std::string);
+    BOOST_CHECK_THROW(Name::from_string("ns:service:#st/remote:name"), Exception);
 }
 
 BOOST_AUTO_TEST_CASE(test_model) {
@@ -88,7 +89,7 @@ BOOST_AUTO_TEST_CASE(test_model) {
     Model model5(empty, "model5");
     BOOST_CHECK_EQUAL(model5.to_string(), "model5");
 
-    BOOST_CHECK_THROW(Model::from_str("@"), std::runtime_error);
+    BOOST_CHECK_THROW(Model::from_str("@"), Exception);
 }
 
 BOOST_AUTO_TEST_CASE(test_linkconfig) {
@@ -246,7 +247,7 @@ BOOST_AUTO_TEST_CASE(test_resource) {
     BOOST_CHECK_EQUAL(value.number_value(), 1);
 
     *proto_cfg.mutable_api() = "ns:component:test";
-    BOOST_CHECK_THROW(ResourceConfig::from_proto(proto_cfg), std::runtime_error);
+    BOOST_CHECK_THROW(ResourceConfig::from_proto(proto_cfg), Exception);
 }
 
 }  // namespace sdktests

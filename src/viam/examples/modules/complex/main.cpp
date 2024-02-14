@@ -28,36 +28,29 @@
 using namespace viam::sdk;
 
 int main(int argc, char** argv) {
-    API base_api = API::get<Base>();
     Model mybase_model("viam", "base", "mybase");
 
+    // Make sure to explicity register resources with custom APIs.
+    Registry::register_resource_server<GizmoServer>();
+    Registry::register_resource_server<SummationServer>();
+
     std::shared_ptr<ModelRegistration> mybase_mr = std::make_shared<ModelRegistration>(
-        base_api,
+        API::get<Base>(),
         mybase_model,
         [](Dependencies deps, ResourceConfig cfg) { return std::make_unique<MyBase>(deps, cfg); },
         MyBase::validate);
 
-    API gizmo_api = API::get<Gizmo>();
     Model mygizmo_model("viam", "gizmo", "mygizmo");
-    // Make sure to explicity register resources with custom APIs. Note that
-    // this must be done in `main` and not in resource implementation files due
-    // to order of static initialization.
-    Registry::register_resource(gizmo_api, Gizmo::resource_registration());
     std::shared_ptr<ModelRegistration> mygizmo_mr = std::make_shared<ModelRegistration>(
-        gizmo_api,
+        API::get<Gizmo>(),
         mygizmo_model,
         [](Dependencies deps, ResourceConfig cfg) { return std::make_unique<MyGizmo>(deps, cfg); },
         MyGizmo::validate);
 
-    API summation_api = API::get<Summation>();
     Model mysummation_model("viam", "summation", "mysummation");
-    // Make sure to explicity register resources with custom APIs. Note that
-    // this must be done in `main` and not in resource implementation files due
-    // to order of static initialization.
-    Registry::register_resource(summation_api, Summation::resource_registration());
 
     std::shared_ptr<ModelRegistration> mysummation_mr = std::make_shared<ModelRegistration>(
-        summation_api, mysummation_model, [](Dependencies deps, ResourceConfig cfg) {
+        API::get<Summation>(), mysummation_model, [](Dependencies deps, ResourceConfig cfg) {
             return std::make_unique<MySummation>(deps, cfg);
         });
 

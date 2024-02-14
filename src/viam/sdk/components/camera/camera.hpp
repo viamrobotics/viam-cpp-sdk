@@ -14,26 +14,10 @@
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
-#include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
-#include <viam/sdk/resource/resource_manager.hpp>
 
 namespace viam {
 namespace sdk {
-
-/// @defgroup Camera Classes related to the Camera component.
-
-/// @class CameraRegistration
-/// @brief Defines a `ResourceRegistration` for the `Camera` component.
-/// @ingroup Camera
-class CameraRegistration : public ResourceRegistration {
-   public:
-    explicit CameraRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
-    std::shared_ptr<ResourceServer> create_resource_server(std::shared_ptr<ResourceManager> manager,
-                                                           Server& server) override;
-    std::shared_ptr<Resource> create_rpc_client(std::string name,
-                                                std::shared_ptr<grpc::Channel> chan) override;
-};
 
 /// @class Camera camera.hpp "components/camera/camera.hpp"
 /// @brief A `Camera` represents any physical hardware that can capture frames.
@@ -98,9 +82,6 @@ class Camera : public Component {
         std::vector<raw_image> images;
         response_metadata metadata;
     };
-
-    /// @brief Creates a `ResourceRegistration` for the `Camera` component.
-    static std::shared_ptr<ResourceRegistration> resource_registration();
 
     /// @brief remove any extra suffix's from the mime type string.
     static std::string normalize_mime_type(const std::string& str);

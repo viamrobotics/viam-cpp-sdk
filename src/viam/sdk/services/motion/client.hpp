@@ -3,6 +3,8 @@
 /// @brief Implements a gRPC client for the `Motion` service.
 #pragma once
 
+#include <grpcpp/channel.h>
+
 #include <viam/api/service/motion/v1/motion.grpc.pb.h>
 
 #include <viam/sdk/services/motion/motion.hpp>
@@ -15,6 +17,7 @@ namespace sdk {
 /// @ingroup Motion
 class MotionClient : public Motion {
    public:
+    using interface_type = Motion;
     MotionClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     bool move(const pose_in_frame& destination,
               const Name& component_name,

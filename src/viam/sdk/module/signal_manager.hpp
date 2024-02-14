@@ -16,7 +16,7 @@ class SignalManager {
 
     /// @brief Wait for SignalManager to receive SIGINT or SIGTERM.
     /// @return The signal number if successful.
-    /// @throws runtime_error if the underlying sigwait call was unsuccessful.
+    /// @throws `std::runtime_error` if the underlying sigwait call was unsuccessful.
     int wait();
 
    private:

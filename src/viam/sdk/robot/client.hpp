@@ -1,4 +1,4 @@
-/// @file robot/client.cpp
+/// @file robot/client.hpp
 ///
 /// @brief gRPC client implementation for a `robot`.
 #pragma once
@@ -24,7 +24,7 @@ using grpc::Channel;
 
 /// @defgroup Robot Classes related to a Robot representation.
 
-/// @class RobotClient client.h "robot/client.h"
+/// @class RobotClient client.hpp "robot/client.hpp"
 /// @brief gRPC client for a robot, to be used for all interactions with a robot.
 /// There are two ways to instantiate a robot:
 ///   - `RobotClient::at_address(...)`
@@ -101,7 +101,7 @@ class RobotClient {
 
     /// @brief Lookup and return a `shared_ptr` to a resource.
     /// @param name The `Name` of the resource.
-    /// @throws `std::runtime_error` if the requested resource doesn't exist or is the wrong type.
+    /// @throws `Exception` if the requested resource doesn't exist or is the wrong type.
     /// @return a `shared_ptr` to the requested resource as an uncasted `Resource`.
     ///
     /// This method should not be called directly except in specific cases. The
@@ -115,7 +115,7 @@ class RobotClient {
     template <typename T>
     /// @brief Lookup and return a `shared_ptr` to a resource of the requested type.
     /// @param name The ordinary name of the resource.
-    /// @throws `std::runtime_error` if the requested resource doesn't exist or is the wrong type.
+    /// @throws `Exception` if the requested resource doesn't exist or is the wrong type.
     /// @return a `shared_ptr` to the requested resource.
     std::shared_ptr<T> resource_by_name(std::string name) {
         return std::dynamic_pointer_cast<T>(resource_by_name({API::get<T>(), "", std::move(name)}));

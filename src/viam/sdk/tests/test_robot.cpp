@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <memory>
+#include <ostream>
 #include <typeinfo>
 #include <unordered_set>
 #include <utility>
@@ -286,6 +287,10 @@ BOOST_AUTO_TEST_CASE(test_get_resource) {
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
             auto mock_motor = client->resource_by_name<Motor>("mock_motor");
             BOOST_CHECK(mock_motor);
+
+            // test not just that we can get the motor, but that the motor service has been
+            // appropriately registered such that we can actually use it.
+            BOOST_CHECK(!mock_motor->is_moving());
         });
 }
 

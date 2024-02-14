@@ -20,6 +20,7 @@ namespace sdk {
 /// @ingroup Board
 class BoardClient : public Board {
    public:
+    using interface_type = Board;
     BoardClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     AttributeMap do_command(const AttributeMap& command) override;
     status get_status(const AttributeMap& extra) override;
