@@ -46,7 +46,7 @@ void Server::add_resource(std::shared_ptr<Resource> resource) {
         std::ostringstream buffer;
         buffer << "Attempted to add resource with API: " << api
                << " but no matching resource server as found";
-        throw std::runtime_error(buffer.str());
+        throw Exception(ErrorCondition::k_resource_not_found, buffer.str());
     }
     auto resource_server = managed_servers_.at(api);
     auto name = resource->name();

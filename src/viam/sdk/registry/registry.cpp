@@ -70,8 +70,8 @@ void Registry::register_model(std::shared_ptr<const ModelRegistration> resource)
 void Registry::register_resource_server_(
     API api, std::shared_ptr<ResourceServerRegistration> resource_registration) {
     if (server_apis_.find(api) != server_apis_.end()) {
-        const std::string err = "Cannot register API/model pair" + api.to_string() +
-                                " as that pair has already been registered";
+        const std::string err =
+            "Cannot register server API" + api.to_string() + " as it has already been registered";
         throw Exception(ErrorCondition::k_duplicate_registration, err);
     }
 
@@ -81,7 +81,9 @@ void Registry::register_resource_server_(
 void Registry::register_resource_client_(
     API api, std::shared_ptr<ResourceClientRegistration> resource_registration) {
     if (client_apis_.find(api) != client_apis_.end()) {
-        throw std::runtime_error("Cannot add api " + api.to_string() + " as it already exists");
+        const std::string err =
+            "Cannot register client API" + api.to_string() + " as it has already been registered";
+        throw Exception(ErrorCondition::k_duplicate_registration, err);
     }
 
     client_apis_.emplace(std::move(api), std::move(resource_registration));
@@ -131,7 +133,7 @@ const google::protobuf::ServiceDescriptor* Registry::get_service_descriptor_(
     const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
     const google::protobuf::ServiceDescriptor* sd = p->FindServiceByName(service_full_name);
     if (!sd) {
-        throw std::runtime_error("Unable to get service descriptor");
+        throw Exception("Unable to get service descriptor");
     }
     return sd;
 }
