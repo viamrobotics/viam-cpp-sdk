@@ -24,7 +24,8 @@ API API::traits<Camera>::api() {
     return {kRDK, kComponent, "camera"};
 }
 
-std::tuple<uint64_t, uint64_t, std::vector<uint16_t>> Camera::deserialize_depth_map(const std::vector<unsigned char>& data) {
+std::tuple<uint64_t, uint64_t, std::vector<uint16_t>> Camera::deserialize_depth_map(
+    const std::vector<unsigned char>& data) {
     if (data.size() < 24) {
         throw std::runtime_error("Data too short to contain valid depth information");
     }
