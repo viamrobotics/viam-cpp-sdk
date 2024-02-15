@@ -49,8 +49,9 @@ std::tuple<uint64_t, uint64_t, std::vector<uint16_t>> Camera::deserialize_depth_
     arr.reserve(width * height);
 
     for (size_t i = 0; i < width * height; ++i) {
-        size_t data_index = 24 + i * sizeof(uint16_t);
-        uint16_t depth_value = static_cast<uint16_t>(data[data_index] << 8 | data[data_index + 1]);
+        const size_t data_index = 24 + i * sizeof(uint16_t);
+        const uint16_t depth_value =
+            static_cast<uint16_t>(data[data_index] << 8 | data[data_index + 1]);
         arr.push_back(depth_value);
     }
 
