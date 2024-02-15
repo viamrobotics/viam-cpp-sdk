@@ -35,6 +35,6 @@ var searchData=
   ['traits_3c_20servo_20_3e_32',['traits&lt; Servo &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Servo_01_4.html',1,'viam::sdk::API']]],
   ['traits_3c_20summation_20_3e_33',['traits&lt; Summation &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Summation_01_4.html',1,'viam::sdk::API']]],
   ['transform_34',['transform',['../structviam_1_1sdk_1_1WorldState_1_1transform.html',1,'viam::sdk::WorldState']]],
-  ['transform_5fpose_35',['transform_pose',['../classviam_1_1sdk_1_1RobotClient.html#acfff200e9968a69c6acfe34bae49e928',1,'viam::sdk::RobotClient']]],
+  ['transform_5fpose_35',['transform_pose',['../classviam_1_1sdk_1_1RobotClient.html#a96d85f2f9eb878639ba9f7dcb41e77fb',1,'viam::sdk::RobotClient']]],
   ['translation_36',['translation',['../structviam_1_1sdk_1_1translation.html',1,'viam::sdk']]]
 ];

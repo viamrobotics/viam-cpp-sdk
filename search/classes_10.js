@@ -12,7 +12,7 @@ var searchData=
   ['servoserver_9',['ServoServer',['../classviam_1_1sdk_1_1ServoServer.html',1,'viam::sdk']]],
   ['signalmanager_10',['SignalManager',['../classviam_1_1sdk_1_1SignalManager.html',1,'viam::sdk']]],
   ['sphere_11',['sphere',['../structviam_1_1sdk_1_1sphere.html',1,'viam::sdk']]],
-  ['status_12',['status',['../structviam_1_1sdk_1_1Board_1_1status.html',1,'viam::sdk::Board']]],
+  ['status_12',['status',['../structviam_1_1sdk_1_1Board_1_1status.html',1,'viam::sdk::Board::status'],['../structviam_1_1sdk_1_1RobotClient_1_1status.html',1,'viam::sdk::RobotClient::status']]],
   ['steps_13',['steps',['../structviam_1_1sdk_1_1Motion_1_1steps.html',1,'viam::sdk::Motion']]],
   ['stoppable_14',['Stoppable',['../classviam_1_1sdk_1_1Stoppable.html',1,'viam::sdk']]],
   ['summation_15',['Summation',['../classSummation.html',1,'']]],
