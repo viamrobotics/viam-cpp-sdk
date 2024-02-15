@@ -21,13 +21,13 @@
 namespace viam {
 namespace sdk {
 
-using viam::common::v1::ResourceName;
 using time_point = std::chrono::time_point<long long, std::chrono::nanoseconds>;
 
-std::vector<ResourceName> resource_names_for_resource(const std::shared_ptr<Resource>& resource) {
+// TODO: RSDK-6627 : move this function to `Resource` class.
+std::vector<Name> resource_names_for_resource(const std::shared_ptr<Resource>& resource) {
     std::string resource_type;
     std::string resource_subtype;
-    std::vector<ResourceName> resource_names;
+    std::vector<Name> resource_names;
     for (const auto& kv : Registry::registered_models()) {
         const std::shared_ptr<const ModelRegistration> reg = kv.second;
         if (reg->api().to_string() == resource->api().to_string()) {
@@ -41,12 +41,7 @@ std::vector<ResourceName> resource_names_for_resource(const std::shared_ptr<Reso
             resource_subtype = resource->name();
         }
 
-        ResourceName r;
-        *r.mutable_namespace_() = kRDK;
-        *r.mutable_name() = resource->name();
-        *r.mutable_type() = resource_type;
-        *r.mutable_subtype() = resource_subtype;
-        resource_names.push_back(r);
+        resource_names.push_back({{kRDK, resource_type, resource_subtype}, "", resource->name()});
     }
     return resource_names;
 }

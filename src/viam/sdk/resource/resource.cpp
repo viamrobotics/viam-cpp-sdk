@@ -12,6 +12,8 @@
 namespace viam {
 namespace sdk {
 
+using common::v1::ResourceName;
+
 Resource::~Resource() = default;
 Resource::Resource(std::string name) : name_(std::move(name)) {}
 

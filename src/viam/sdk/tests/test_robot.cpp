@@ -12,6 +12,7 @@
 #include <viam/api/robot/v1/robot.grpc.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
 
+#include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/camera/camera.hpp>
 #include <viam/sdk/components/generic/client.hpp>
@@ -24,6 +25,12 @@
 #include <viam/sdk/tests/mocks/mock_motor.hpp>
 #include <viam/sdk/tests/mocks/mock_robot.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
+
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::discovery_query)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::discovery)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::frame_system_config)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::status)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::operation)
 
 namespace viam {
 namespace sdktests {
@@ -99,26 +106,12 @@ BOOST_AUTO_TEST_CASE(test_registering_resources) {
     BOOST_CHECK(Registry::lookup_model(API::get<Motor>(), motor_model));
 }
 
-template <typename T>
-// Sorts our vecs and converts to strings for consistent comparisons
-std::vector<std::string> vec_to_string_util(std::vector<T>& vec) {
-    std::vector<std::string> ret;
-    for (auto& v : vec) {
-        ret.push_back(v.SerializeAsString());
-    }
-    std::sort(ret.begin(), ret.end());
-    return ret;
-}
-
 BOOST_AUTO_TEST_CASE(test_resource_names) {
     robot_client_to_mocks_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
-            std::vector<ResourceName>* resource_names = client->resource_names();
-            auto names = vec_to_string_util(*resource_names);
+            std::vector<Name> names = client->resource_names();
             auto mocks = mock_resource_names_response();
-
-            auto mock_resp = vec_to_string_util(mocks);
-            BOOST_TEST(names == mock_resp, boost::test_tools::per_element());
+            BOOST_TEST(names == mocks, boost::test_tools::per_element());
         });
 }
 
@@ -130,28 +123,54 @@ BOOST_AUTO_TEST_CASE(test_get_status) {
             // get all resource statuses
             auto statuses = client->get_status();
 
-            auto status_strs = vec_to_string_util(statuses);
-            auto mock_strs = vec_to_string_util(mock_statuses);
-
             // ensure we get statuses for all resources, and that they are as expected.
             BOOST_CHECK_EQUAL(statuses.size(), 3);
-            BOOST_TEST(status_strs == mock_strs, boost::test_tools::per_element());
+            BOOST_TEST(statuses == mock_statuses, boost::test_tools::per_element());
 
             // get only a subset of status responses
             auto names = mock_resource_names_response();
-            std::vector<ResourceName> some_names{names[0], names[1]};
+            std::vector<Name> some_names{names[0], names[1]};
             auto some_statuses = client->get_status(some_names);
-            auto some_status_strs = vec_to_string_util(some_statuses);
-
             // ensure that we only get two of the three existing statuses
-            BOOST_CHECK_EQUAL(some_status_strs.size(), 2);
+            BOOST_CHECK_EQUAL(some_statuses.size(), 2);
 
-            // unfortunately the sorting is a bit odd so we end up with a mismatch of index,
-            // but this ensures that the statuses we received do exist in the mocks, as
-            // expected.
-            std::vector<std::string> some_mock_strs{mock_strs[1], mock_strs[2]};
+            std::vector<RobotClient::status> some_mock_statuses{mock_statuses[0], mock_statuses[1]};
 
-            BOOST_TEST(some_status_strs == some_mock_strs, boost::test_tools::per_element());
+            BOOST_TEST(some_statuses == some_mock_statuses, boost::test_tools::per_element());
+        });
+}
+
+// This test ensures that the functions in the `mock_robot` files have the same fields for both
+// the proto and custom type versions.
+BOOST_AUTO_TEST_CASE(test_frame_system_config) {
+    robot_client_to_mocks_pipeline(
+        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+            auto configs = mock_config_response();
+            auto config1 = configs[0];
+            auto config2 = configs[1];
+            auto protos = mock_proto_config_response();
+            auto proto1 = protos[0];
+            auto proto2 = protos[1];
+
+            BOOST_CHECK_EQUAL(config1.frame.reference_frame, proto1.frame().reference_frame());
+            BOOST_CHECK_EQUAL(config1.frame.pose_in_observer_frame.pose.coordinates.x,
+                              proto1.frame().pose_in_observer_frame().pose().x());
+            BOOST_CHECK_EQUAL(config1.frame.pose_in_observer_frame.pose.orientation.o_x,
+                              proto1.frame().pose_in_observer_frame().pose().o_x());
+            BOOST_CHECK_EQUAL(config1.frame.pose_in_observer_frame.pose.theta,
+                              proto1.frame().pose_in_observer_frame().pose().theta());
+            BOOST_CHECK_EQUAL(map_to_struct(config1.kinematics).SerializeAsString(),
+                              proto1.kinematics().SerializeAsString());
+
+            BOOST_CHECK_EQUAL(config2.frame.reference_frame, proto2.frame().reference_frame());
+            BOOST_CHECK_EQUAL(config2.frame.pose_in_observer_frame.pose.coordinates.x,
+                              proto2.frame().pose_in_observer_frame().pose().x());
+            BOOST_CHECK_EQUAL(config2.frame.pose_in_observer_frame.pose.orientation.o_x,
+                              proto2.frame().pose_in_observer_frame().pose().o_x());
+            BOOST_CHECK_EQUAL(config2.frame.pose_in_observer_frame.pose.theta,
+                              proto2.frame().pose_in_observer_frame().pose().theta());
+            BOOST_CHECK_EQUAL(map_to_struct(config2.kinematics).SerializeAsString(),
+                              proto2.kinematics().SerializeAsString());
         });
 }
 
@@ -161,8 +180,28 @@ BOOST_AUTO_TEST_CASE(test_get_frame_system_config) {
             auto mock_fs_config = mock_config_response();
             auto fs_config = client->get_frame_system_config();
 
-            BOOST_TEST(vec_to_string_util(mock_fs_config) == vec_to_string_util(fs_config),
-                       boost::test_tools::per_element());
+            BOOST_TEST(mock_fs_config == fs_config, boost::test_tools::per_element());
+        });
+}
+
+// This test ensures that the functions in the `mock_robot` files have the same fields for both
+// the proto and custom type versions.
+BOOST_AUTO_TEST_CASE(test_operation) {
+    robot_client_to_mocks_pipeline(
+        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+            auto ops = mock_operations_response();
+            auto op1 = ops[0];
+            auto op2 = ops[1];
+            auto protos = mock_proto_operations_response();
+            auto proto1 = protos[0];
+            auto proto2 = protos[1];
+
+            BOOST_CHECK_EQUAL(op1.id, proto1.id());
+            BOOST_CHECK_EQUAL(op1.method, proto1.method());
+            BOOST_CHECK_EQUAL(*op1.session_id, proto1.session_id());
+            BOOST_CHECK_EQUAL(op2.id, proto2.id());
+            BOOST_CHECK_EQUAL(op2.method, proto2.method());
+            BOOST_CHECK_EQUAL(*op2.session_id, proto2.session_id());
         });
 }
 
@@ -172,8 +211,31 @@ BOOST_AUTO_TEST_CASE(test_get_operations) {
             auto ops = client->get_operations();
             auto mock_ops = mock_operations_response();
 
-            BOOST_TEST(vec_to_string_util(ops) == vec_to_string_util(mock_ops),
-                       boost::test_tools::per_element());
+            BOOST_TEST(ops == mock_ops, boost::test_tools::per_element());
+        });
+}
+
+// This test ensures that the functions in the `mock_robot` files have the same fields for both
+// the proto and custom type versions.
+BOOST_AUTO_TEST_CASE(test_discovery) {
+    robot_client_to_mocks_pipeline(
+        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+            auto components = mock_discovery_response();
+            auto component = components[0];
+            auto results = component.results->begin();
+            auto protos = mock_proto_discovery_response();
+            auto proto = protos[0];
+            auto proto_results = proto.results().fields().begin();
+
+            BOOST_CHECK_EQUAL(component.query.subtype, proto.query().subtype());
+            BOOST_CHECK_EQUAL(component.query.model, proto.query().model());
+            BOOST_CHECK_EQUAL(results->first, proto_results->first);
+            // the `Value` type in our mock responses is a `list` type so we can comprehensively
+            // test `ProtoType` conversions. Unfortunately the protobuf `ListValue` type doesn't
+            // seem to have `==` defined, so we convert to a `DebugString` here to verify
+            // comparison and to provide helpful printing of differences in case of an error.
+            BOOST_CHECK_EQUAL(results->second->proto_value().DebugString(),
+                              proto_results->second.DebugString());
         });
 }
 
@@ -183,19 +245,18 @@ BOOST_AUTO_TEST_CASE(test_discover_components) {
             auto components = client->discover_components({});
             auto mock_components = mock_discovery_response();
 
-            BOOST_TEST(vec_to_string_util(components) == vec_to_string_util(mock_components),
-                       boost::test_tools::per_element());
+            BOOST_TEST(components == mock_components, boost::test_tools::per_element());
         });
 }
 
 BOOST_AUTO_TEST_CASE(test_transform_pose) {
     robot_client_to_mocks_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
-            viam::common::v1::PoseInFrame pif;
+            pose_in_frame pif;
             auto pose = client->transform_pose(pif, "", {});
             auto mock_pose = mock_transform_response();
 
-            BOOST_CHECK_EQUAL(pose.DebugString(), mock_pose.DebugString());
+            BOOST_CHECK_EQUAL(pose, mock_pose);
         });
 }
 
