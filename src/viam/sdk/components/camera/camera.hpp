@@ -83,6 +83,9 @@ class Camera : public Component {
         response_metadata metadata;
     };
 
+    /// @brief Decode image data of custom MIME type FORMAT_RAW_DEPTH into a standard representation.
+    static std::tuple<uint64_t, uint64_t, std::vector<uint16_t>> deserialize_depth_map(const std::vector<unsigned char>& data);
+
     /// @brief remove any extra suffix's from the mime type string.
     static std::string normalize_mime_type(const std::string& str);
 

@@ -24,6 +24,38 @@ API API::traits<Camera>::api() {
     return {kRDK, kComponent, "camera"};
 }
 
+std::tuple<uint64_t, uint64_t, std::vector<uint16_t>> Camera::deserialize_depth_map(const std::vector<unsigned char>& data) {
+    if (data.size() < 24) {
+        throw std::runtime_error("Data too short to contain valid depth information");
+    }
+
+    // Assuming data is in big-endian format
+    uint64_t width = 0;
+    uint64_t height = 0;
+
+    // Process header
+    for (int i = 0; i < 8; ++i) {
+        width = (width << 8) | data[8 + i];
+        height = (height << 8) | data[16 + i];
+    }
+
+    if (data.size() < 24 + width * height * sizeof(uint16_t)) {
+        throw std::runtime_error("Data size does not match width and height");
+    }
+
+    // Remaining bytes are actual depth map data
+    std::vector<uint16_t> arr;
+    arr.reserve(width * height);
+
+    for (size_t i = 0; i < width * height; ++i) {
+        size_t data_index = 24 + i * sizeof(uint16_t);
+        uint16_t depth_value = static_cast<uint16_t>(data[data_index] << 8 | data[data_index + 1]);
+        arr.push_back(depth_value);
+    }
+
+    return std::make_tuple(width, height, arr);
+}
+
 std::string Camera::normalize_mime_type(const std::string& str) {
     std::string mime_type = str;
     if (str.size() >= Camera::lazy_suffix.size() &&
