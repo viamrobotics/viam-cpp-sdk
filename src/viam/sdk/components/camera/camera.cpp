@@ -11,6 +11,13 @@
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/resource/resource.hpp>
 
+#include <cstring>
+
+#ifndef htonll
+#define htonll(x) \
+    ((1 == htonl(1)) ? (x) : ((uint64_t)htonl((x)&0xFFFFFFFF) << 32) | htonl((x) >> 32))
+#endif
+
 namespace viam {
 namespace sdk {
 
@@ -23,18 +30,6 @@ API Camera::api() const {
 
 API API::traits<Camera>::api() {
     return {kRDK, kComponent, "camera"};
-}
-
-// Utility functions for byte swapping
-uint16_t swap_bytes_16(uint16_t value) {
-    return (value >> 8) | (value << 8);
-}
-
-uint64_t swap_bytes_64(uint64_t value) {
-    return ((value >> 56) & 0xff) | ((value << 40) & 0xff000000000000) |
-           ((value << 24) & 0xff0000000000) | ((value << 8) & 0xff00000000) |
-           ((value >> 8) & 0xff000000) | ((value >> 24) & 0xff0000) | ((value >> 40) & 0xff00) |
-           ((value << 56) & 0xff00000000000000);
 }
 
 bool is_little_endian() {
@@ -51,33 +46,35 @@ std::vector<unsigned char> Camera::encode_depth_map(const Camera::depth_map& m) 
             ". Actual: " + std::to_string(m.depth_values.size()));
     }
 
-    // Equivalent to 'DEPTHMAP' in UTF-8 encoding represented as a hex
-    const uint64_t magic_number = 0x44455054484D4150ULL;
-    const uint64_t width_be = is_little_endian() ? swap_bytes_64(m.width) : m.width;
-    const uint64_t height_be = is_little_endian() ? swap_bytes_64(m.height) : m.height;
+    const uint64_t magic_number = 0x44455054484D4150ULL;  // UTF-8 encoding for 'DEPTHMAP'
+    const size_t total_byte_count = 8 + 8 + 8 + m.depth_values.size() * sizeof(uint16_t);
+    std::vector<unsigned char> data(total_byte_count);
+    size_t offset = 0;
 
-    const size_t total_byte_count = 8 /* magic number */ + 8 /* width */ + 8 /* height */ +
-                                    m.depth_values.size() * sizeof(uint16_t);
-    std::vector<unsigned char> data;
-    data.reserve(total_byte_count);
+    // Add magic number
+    uint64_t magic_number_be = htonll(magic_number);
+    std::memcpy(&data[offset], &magic_number_be, 8);
+    offset += 8;
 
-    // Add magic number to data vector
-    for (int i = 7; i >= 0; --i) {
-        data.push_back((magic_number >> (i * 8)) & 0xFF);
-    }
+    // Add width and height info
+    uint64_t width_be = htonll(m.width);
+    uint64_t height_be = htonll(m.height);
+    std::memcpy(&data[offset], &width_be, 8);
+    offset += 8;
+    std::memcpy(&data[offset], &height_be, 8);
+    offset += 8;
 
-    // Depth mimetype is big-endian
-    for (int i = 7; i >= 0; --i) {
-        data.push_back((width_be >> (i * 8)) & 0xFF);
-    }
-    for (int i = 7; i >= 0; --i) {
-        data.push_back((height_be >> (i * 8)) & 0xFF);
-    }
-
-    for (auto value : m.depth_values) {
-        const uint16_t value_be = is_little_endian() ? swap_bytes_16(value) : value;
-        data.push_back((value_be >> 8) & 0xFF);
-        data.push_back(value_be & 0xFF);
+    // Add depth values
+    if (!is_little_endian()) {
+        // If the system is big endian, directly copy the depth values
+        std::memcpy(&data[offset], m.depth_values.data(), m.depth_values.size() * sizeof(uint16_t));
+    } else {
+        // If the system is little-endian, convert each depth value to big-endian
+        for (size_t i = 0; i < m.depth_values.size(); ++i) {
+            uint16_t depth_value_be = htons(m.depth_values[i]);  // Ensure big-endian
+            std::memcpy(&data[offset], &depth_value_be, sizeof(uint16_t));
+            offset += sizeof(uint16_t);
+        }
     }
 
     return data;
