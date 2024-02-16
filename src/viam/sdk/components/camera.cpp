@@ -1,4 +1,4 @@
-#include <viam/sdk/components/camera/camera.hpp>
+#include <viam/sdk/components/camera.hpp>
 
 #include <google/protobuf/descriptor.h>
 #include <google/protobuf/util/time_util.h>

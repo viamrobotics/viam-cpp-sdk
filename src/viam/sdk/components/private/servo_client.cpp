@@ -1,4 +1,4 @@
-#include <viam/sdk/components/servo/client.hpp>
+#include <viam/sdk/components/private/servo_client.hpp>
 
 #include <algorithm>
 #include <memory>
@@ -10,7 +10,7 @@
 #include <viam/api/component/servo/v1/servo.grpc.pb.h>
 
 #include <viam/sdk/common/client_helper.hpp>
-#include <viam/sdk/components/servo/servo.hpp>
+#include <viam/sdk/components/servo.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
 

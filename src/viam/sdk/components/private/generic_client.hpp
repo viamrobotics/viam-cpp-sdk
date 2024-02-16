@@ -1,4 +1,4 @@
-/// @file components/generic/client.hpp
+/// @file components/private/generic_client.hpp
 ///
 /// @brief Implements a gRPC client for the `GenericComponent`.
 #pragma once
@@ -7,7 +7,7 @@
 
 #include <viam/api/component/generic/v1/generic.grpc.pb.h>
 
-#include <viam/sdk/components/generic/generic.hpp>
+#include <viam/sdk/components/generic.hpp>
 #include <viam/sdk/robot/client.hpp>
 
 namespace viam {

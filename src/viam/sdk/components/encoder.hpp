@@ -1,4 +1,4 @@
-/// @file components/encoder/encoder.hpp
+/// @file components/encoder.hpp
 ///
 /// @brief Defines a `Encoder` component.
 #pragma once
@@ -14,7 +14,7 @@
 namespace viam {
 namespace sdk {
 
-/// @class Encoder encoder.hpp "components/encoder/encoder.hpp"
+/// @class Encoder encoder.hpp "components/encoder.hpp"
 /// @brief An encoder is a device that is hooked up to motors to report a position
 /// @ingroup Encoder
 ///

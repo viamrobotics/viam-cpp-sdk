@@ -5,9 +5,9 @@
 #include <viam/api/component/sensor/v1/sensor.pb.h>
 
 #include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/components/sensor/client.hpp>
-#include <viam/sdk/components/sensor/sensor.hpp>
-#include <viam/sdk/components/sensor/server.hpp>
+#include <viam/sdk/components/private/sensor_client.hpp>
+#include <viam/sdk/components/sensor.hpp>
+#include <viam/sdk/components/private/sensor_server.hpp>
 
 namespace viam {
 namespace sdktests {

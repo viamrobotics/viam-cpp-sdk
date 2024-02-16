@@ -1,4 +1,4 @@
-#include <viam/sdk/components/power_sensor/power_sensor.hpp>
+#include <viam/sdk/components/power_sensor.hpp>
 
 #include <viam/api/component/powersensor/v1/powersensor.grpc.pb.h>
 #include <viam/api/component/powersensor/v1/powersensor.pb.h>

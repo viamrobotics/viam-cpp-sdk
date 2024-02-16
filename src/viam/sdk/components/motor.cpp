@@ -1,4 +1,4 @@
-#include <viam/sdk/components/motor/motor.hpp>
+#include <viam/sdk/components/motor.hpp>
 
 #include <google/protobuf/descriptor.h>
 

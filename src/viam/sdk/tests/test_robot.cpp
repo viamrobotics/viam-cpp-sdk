@@ -14,10 +14,10 @@
 
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/camera/camera.hpp>
-#include <viam/sdk/components/generic/client.hpp>
-#include <viam/sdk/components/motor/client.hpp>
-#include <viam/sdk/components/motor/motor.hpp>
+#include <viam/sdk/components/camera.hpp>
+#include <viam/sdk/components/private/generic_client.hpp>
+#include <viam/sdk/components/private/motor_client.hpp>
+#include <viam/sdk/components/motor.hpp>
 #include <viam/sdk/robot/service.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/tests/mocks/camera_mocks.hpp>

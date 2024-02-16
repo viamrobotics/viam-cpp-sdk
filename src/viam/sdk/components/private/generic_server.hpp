@@ -1,4 +1,4 @@
-/// @file components/generic/server.hpp
+/// @file components/private/generic_server.hpp
 ///
 /// @brief Implements a gRPC server for the `GenericComponent`.
 #pragma once
@@ -6,7 +6,7 @@
 #include <viam/api/common/v1/common.grpc.pb.h>
 #include <viam/api/component/generic/v1/generic.grpc.pb.h>
 
-#include <viam/sdk/components/generic/generic.hpp>
+#include <viam/sdk/components/generic.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
 

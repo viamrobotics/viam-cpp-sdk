@@ -3,9 +3,9 @@
 #include "viam/sdk/common/proto_type.hpp"
 #include <viam/api/common/v1/common.pb.h>
 
-#include <viam/sdk/components/generic/client.hpp>
-#include <viam/sdk/components/generic/generic.hpp>
-#include <viam/sdk/components/generic/server.hpp>
+#include <viam/sdk/components/private/generic_client.hpp>
+#include <viam/sdk/components/generic.hpp>
+#include <viam/sdk/components/private/generic_server.hpp>
 #include <viam/sdk/services/generic/client.hpp>
 #include <viam/sdk/services/generic/generic.hpp>
 #include <viam/sdk/services/generic/server.hpp>

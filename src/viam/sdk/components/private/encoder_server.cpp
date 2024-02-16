@@ -1,8 +1,8 @@
-#include <viam/sdk/components/encoder/server.hpp>
+#include <viam/sdk/components/private/encoder_server.hpp>
 
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/encoder/encoder.hpp>
+#include <viam/sdk/components/encoder.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/rpc/server.hpp>
 

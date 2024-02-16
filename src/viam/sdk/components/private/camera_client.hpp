@@ -1,4 +1,4 @@
-/// @file components/camera/client.hpp
+/// @file components/private/camera_client.hpp
 ///
 /// @brief Implements a gRPC client for the `Camera` component.
 #pragma once
@@ -8,8 +8,8 @@
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/camera/v1/camera.grpc.pb.h>
 
-#include <viam/sdk/components/camera/camera.hpp>
-#include <viam/sdk/components/camera/server.hpp>
+#include <viam/sdk/components/camera.hpp>
+#include <viam/sdk/components/private/camera_server.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
 

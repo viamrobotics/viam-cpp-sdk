@@ -13,9 +13,9 @@
 
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/components/motor/client.hpp>
-#include <viam/sdk/components/motor/motor.hpp>
-#include <viam/sdk/components/motor/server.hpp>
+#include <viam/sdk/components/private/motor_client.hpp>
+#include <viam/sdk/components/motor.hpp>
+#include <viam/sdk/components/private/motor_server.hpp>
 #include <viam/sdk/tests/mocks/mock_motor.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 

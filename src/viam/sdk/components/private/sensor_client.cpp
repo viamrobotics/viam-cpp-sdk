@@ -1,4 +1,4 @@
-#include <viam/sdk/components/sensor/client.hpp>
+#include <viam/sdk/components/private/sensor_client.hpp>
 
 #include <algorithm>
 #include <memory>
@@ -11,7 +11,7 @@
 
 #include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/sensor/sensor.hpp>
+#include <viam/sdk/components/sensor.hpp>
 #include <viam/sdk/config/resource.hpp>
 
 namespace viam {

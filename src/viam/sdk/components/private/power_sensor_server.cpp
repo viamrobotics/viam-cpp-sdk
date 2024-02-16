@@ -1,8 +1,8 @@
-#include <viam/sdk/components/power_sensor/server.hpp>
+#include <viam/sdk/components/private/power_sensor_server.hpp>
 
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/power_sensor/power_sensor.hpp>
+#include <viam/sdk/components/power_sensor.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/rpc/server.hpp>
 

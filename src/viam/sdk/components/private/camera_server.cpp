@@ -1,11 +1,11 @@
-#include <viam/sdk/components/camera/server.hpp>
+#include <viam/sdk/components/private/camera_server.hpp>
 
 #include <google/protobuf/util/time_util.h>
 #include <grpcpp/support/status.h>
 
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/camera/camera.hpp>
+#include <viam/sdk/components/camera.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/rpc/server.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>

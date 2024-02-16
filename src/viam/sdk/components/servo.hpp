@@ -1,4 +1,4 @@
-/// @file components/servo/servo.hpp
+/// @file components/servo.hpp
 ///
 /// @brief Defines a `Servo` component.
 #pragma once
@@ -15,7 +15,7 @@ namespace sdk {
 
 /// @defgroup Servo Classes related to the Servo component.
 
-/// @class Servo servo.hpp "components/servo/servo.hpp"
+/// @class Servo servo.hpp "components/servo.hpp"
 /// @ingroup Servo
 ///
 /// This acts as an abstract base class to be inherited form by any drivers representing

@@ -12,9 +12,9 @@
 #include <viam/api/component/servo/v1/servo.pb.h>
 
 #include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/components/servo/client.hpp>
-#include <viam/sdk/components/servo/server.hpp>
-#include <viam/sdk/components/servo/servo.hpp>
+#include <viam/sdk/components/private/servo_client.hpp>
+#include <viam/sdk/components/private/servo_server.hpp>
+#include <viam/sdk/components/servo.hpp>
 #include <viam/sdk/tests/mocks/mock_servo.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 

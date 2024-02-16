@@ -1,8 +1,8 @@
-#include <viam/sdk/components/sensor/server.hpp>
+#include <viam/sdk/components/private/sensor_server.hpp>
 
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/sensor/sensor.hpp>
+#include <viam/sdk/components/sensor.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/rpc/server.hpp>
 

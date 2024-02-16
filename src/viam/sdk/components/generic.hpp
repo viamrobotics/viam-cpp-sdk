@@ -1,4 +1,4 @@
-/// @file generic/generic.hpp
+/// @file generic.hpp
 ///
 /// @brief Defines `GenericComponent` subtype and component class capable of executing arbitrary
 /// commands.
@@ -13,7 +13,7 @@
 namespace viam {
 namespace sdk {
 
-/// @class GenericComponent generic.hpp "components/generic/generic.hpp"
+/// @class GenericComponent generic.hpp "components/generic.hpp"
 /// @brief A `GenericComponent` represents any component that can execute arbitrary commands.
 /// @ingroup GenericComponent
 ///

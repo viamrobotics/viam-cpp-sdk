@@ -1,4 +1,4 @@
-#include <viam/sdk/components/base/client.hpp>
+#include <viam/sdk/components/private/base_client.hpp>
 
 #include <memory>
 #include <stdexcept>
@@ -13,7 +13,7 @@
 #include <viam/sdk/common/linear_algebra.hpp>
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/base/base.hpp>
+#include <viam/sdk/components/base.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>

@@ -1,4 +1,4 @@
-#include <viam/sdk/components/board/client.hpp>
+#include <viam/sdk/components/private/board_client.hpp>
 
 #include <algorithm>
 #include <memory>
@@ -12,7 +12,7 @@
 #include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/board/board.hpp>
+#include <viam/sdk/components/board.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
 

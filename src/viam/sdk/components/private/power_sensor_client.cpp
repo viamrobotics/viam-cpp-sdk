@@ -1,4 +1,4 @@
-#include <viam/sdk/components/power_sensor/client.hpp>
+#include <viam/sdk/components/private/power_sensor_client.hpp>
 
 #include <algorithm>
 #include <memory>
@@ -11,7 +11,7 @@
 
 #include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/power_sensor/power_sensor.hpp>
+#include <viam/sdk/components/power_sensor.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
 

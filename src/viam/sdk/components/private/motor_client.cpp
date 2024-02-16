@@ -1,4 +1,4 @@
-#include <viam/sdk/components/motor/client.hpp>
+#include <viam/sdk/components/private/motor_client.hpp>
 
 #include <algorithm>
 #include <memory>
@@ -10,7 +10,7 @@
 #include <viam/api/component/motor/v1/motor.grpc.pb.h>
 
 #include <viam/sdk/common/client_helper.hpp>
-#include <viam/sdk/components/motor/motor.hpp>
+#include <viam/sdk/components/motor.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
 

@@ -1,4 +1,4 @@
-/// @file components/motor/client.hpp
+/// @file components/private/motor_client.hpp
 ///
 /// @brief Implements a gRPC client for the `Motor` component.
 #pragma once
@@ -7,8 +7,8 @@
 
 #include <viam/api/component/motor/v1/motor.grpc.pb.h>
 
-#include <viam/sdk/components/motor/motor.hpp>
-#include <viam/sdk/components/motor/server.hpp>
+#include <viam/sdk/components/motor.hpp>
+#include <viam/sdk/components/private/motor_server.hpp>
 #include <viam/sdk/config/resource.hpp>
 
 namespace viam {

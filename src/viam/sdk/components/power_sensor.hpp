@@ -1,4 +1,4 @@
-/// @file components/power_sensor/power_sensor.hpp
+/// @file components/power_sensor.hpp
 ///
 /// @brief Defines a `PowerSensor` component.
 #pragma once
@@ -18,7 +18,7 @@ namespace sdk {
 
 /// @defgroup PowerSensor Classes related to the PowerSensor component.
 
-/// @class PowerSensor power_sensor.hpp "components/power_sensor/power_sensor.hpp"
+/// @class PowerSensor power_sensor.hpp "components/power_sensor.hpp"
 /// @ingroup PowerSensor
 ///
 /// This acts as an abstract base class to be inherited from by any drivers representing

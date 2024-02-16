@@ -5,9 +5,9 @@
 #include <viam/api/component/motor/v1/motor.pb.h>
 
 #include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/components/motor/client.hpp>
-#include <viam/sdk/components/motor/motor.hpp>
-#include <viam/sdk/components/motor/server.hpp>
+#include <viam/sdk/components/private/motor_client.hpp>
+#include <viam/sdk/components/motor.hpp>
+#include <viam/sdk/components/private/motor_server.hpp>
 #include <viam/sdk/resource/resource.hpp>
 
 namespace viam {

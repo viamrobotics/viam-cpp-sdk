@@ -1,8 +1,8 @@
 #pragma once
 
-#include <viam/sdk/components/base/base.hpp>
+#include <viam/sdk/components/base.hpp>
 #include <viam/sdk/components/component.hpp>
-#include <viam/sdk/components/motor/motor.hpp>
+#include <viam/sdk/components/motor.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/reconfigurable.hpp>
 #include <viam/sdk/resource/resource.hpp>

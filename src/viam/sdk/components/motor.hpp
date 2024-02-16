@@ -1,4 +1,4 @@
-/// @file components/motor/motor.hpp
+/// @file components/motor.hpp
 ///
 /// @brief Defines a `Motor` component.
 #pragma once
@@ -15,7 +15,7 @@
 namespace viam {
 namespace sdk {
 
-/// @class Motor motor.hpp "components/motor/motor.hpp"
+/// @class Motor motor.hpp "components/motor.hpp"
 /// @brief A `Motor` represents physical hardware that controls the rotation of an axle
 /// @ingroup Motor
 ///

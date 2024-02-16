@@ -1,4 +1,4 @@
-#include <viam/sdk/components/encoder/client.hpp>
+#include <viam/sdk/components/private/encoder_client.hpp>
 
 #include <algorithm>
 #include <memory>
@@ -11,7 +11,7 @@
 
 #include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/encoder/encoder.hpp>
+#include <viam/sdk/components/encoder.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
 

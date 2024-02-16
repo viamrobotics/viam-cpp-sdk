@@ -5,8 +5,8 @@
 #include <viam/api/component/board/v1/board.pb.h>
 
 #include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/components/board/board.hpp>
-#include <viam/sdk/components/board/server.hpp>
+#include <viam/sdk/components/board.hpp>
+#include <viam/sdk/components/private/board_server.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
 namespace viam {

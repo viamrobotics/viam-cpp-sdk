@@ -1,4 +1,4 @@
-#include <viam/sdk/components/movement_sensor/movement_sensor.hpp>
+#include <viam/sdk/components/movement_sensor.hpp>
 
 #include <google/protobuf/descriptor.h>
 

@@ -1,8 +1,8 @@
-#include <viam/sdk/components/board/server.hpp>
+#include <viam/sdk/components/private/board_server.hpp>
 
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/board/board.hpp>
+#include <viam/sdk/components/board.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/rpc/server.hpp>

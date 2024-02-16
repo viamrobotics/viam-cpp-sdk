@@ -12,9 +12,9 @@
 #include <viam/api/component/camera/v1/camera.pb.h>
 
 #include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/components/camera/camera.hpp>
-#include <viam/sdk/components/camera/client.hpp>
-#include <viam/sdk/components/camera/server.hpp>
+#include <viam/sdk/components/camera.hpp>
+#include <viam/sdk/components/private/camera_client.hpp>
+#include <viam/sdk/components/private/camera_server.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
 #include <viam/sdk/tests/mocks/camera_mocks.hpp>
 #include <viam/sdk/tests/test_utils.hpp>

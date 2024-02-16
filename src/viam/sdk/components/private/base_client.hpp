@@ -1,4 +1,4 @@
-/// @file components/base/client.hpp
+/// @file components/private/base_client.hpp
 ///
 /// @brief Implements a gRPC client for the `Base` component.
 #pragma once
@@ -9,8 +9,8 @@
 
 #include <viam/sdk/common/linear_algebra.hpp>
 #include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/components/base/base.hpp>
-#include <viam/sdk/components/base/server.hpp>
+#include <viam/sdk/components/base.hpp>
+#include <viam/sdk/components/private/base_server.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
 

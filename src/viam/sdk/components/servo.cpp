@@ -1,4 +1,4 @@
-#include <viam/sdk/components/servo/servo.hpp>
+#include <viam/sdk/components/servo.hpp>
 
 #include <viam/api/component/servo/v1/servo.grpc.pb.h>
 #include <viam/api/component/servo/v1/servo.pb.h>

@@ -1,4 +1,4 @@
-/// @file components/sensor/sensor.hpp
+/// @file components/sensor.hpp
 ///
 /// @brief Defines a `Sensor` component.
 #pragma once
@@ -16,7 +16,7 @@ namespace sdk {
 
 /// @defgroup Sensor Classes related to the Sensor component.
 
-/// @class Sensor sensor.hpp "components/sensor/sensor.hpp"
+/// @class Sensor sensor.hpp "components/sensor.hpp"
 /// @ingroup Sensor
 ///
 /// This acts as an abstract base class to be inherited from by any drivers representing

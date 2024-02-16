@@ -1,4 +1,4 @@
-/// @file components/board/board.hpp
+/// @file components/board.hpp
 ///
 /// @brief Defines a `Board` component.
 #pragma once
@@ -15,7 +15,7 @@
 namespace viam {
 namespace sdk {
 
-/// @class Board board.hpp "components/board/board.hpp"
+/// @class Board board.hpp "components/board.hpp"
 /// @brief Represents a physical board with gpio pins, digital interrupts, and analog voltage
 /// reading
 /// @ingroup Board

@@ -1,4 +1,4 @@
-/// @file components/movement_sensor/server.hpp
+/// @file components/private/movement_sensor_server.hpp
 ///
 /// @brief Implements a gRPC server for the `MovementSensor` component.
 #pragma once
@@ -6,7 +6,7 @@
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/movementsensor/v1/movementsensor.grpc.pb.h>
 
-#include <viam/sdk/components/movement_sensor/movement_sensor.hpp>
+#include <viam/sdk/components/movement_sensor.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
 

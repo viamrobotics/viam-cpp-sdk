@@ -1,4 +1,4 @@
-#include <viam/sdk/components/encoder/encoder.hpp>
+#include <viam/sdk/components/encoder.hpp>
 
 #include <google/protobuf/descriptor.h>
 

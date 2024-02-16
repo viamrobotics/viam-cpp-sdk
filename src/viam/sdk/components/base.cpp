@@ -1,4 +1,4 @@
-#include <viam/sdk/components/base/base.hpp>
+#include <viam/sdk/components/base.hpp>
 
 #include <google/protobuf/descriptor.h>
 

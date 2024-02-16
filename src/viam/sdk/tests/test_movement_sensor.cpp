@@ -13,9 +13,9 @@
 
 #include <viam/sdk/common/linear_algebra.hpp>
 #include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/components/movement_sensor/client.hpp>
-#include <viam/sdk/components/movement_sensor/movement_sensor.hpp>
-#include <viam/sdk/components/movement_sensor/server.hpp>
+#include <viam/sdk/components/private/movement_sensor_client.hpp>
+#include <viam/sdk/components/movement_sensor.hpp>
+#include <viam/sdk/components/private/movement_sensor_server.hpp>
 #include <viam/sdk/tests/mocks/mock_movement_sensor.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 

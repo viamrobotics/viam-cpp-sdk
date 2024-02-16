@@ -1,4 +1,4 @@
-/// @file components/movement_sensor/movement_sensor.hpp
+/// @file components/movement_sensor.hpp
 ///
 /// @brief Defines a `MovementSensor` component.
 #pragma once
@@ -18,7 +18,7 @@ namespace sdk {
 
 /// @defgroup MovementSensor Classes related to the MovementSensor component.
 
-/// @class MovementSensor movement_sensor.hpp "components/movement_sensor/movement_sensor.hpp"
+/// @class MovementSensor movement_sensor.hpp "components/movement_sensor.hpp"
 /// @ingroup MovementSensor
 ///
 /// This acts as an abstract base class to be inherited from by any drivers representing

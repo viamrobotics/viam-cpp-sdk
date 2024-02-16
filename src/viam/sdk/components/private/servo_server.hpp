@@ -1,4 +1,4 @@
-/// @file components/servo/server.hpp
+/// @file components/private/servo_server.hpp
 ///
 /// @brief Implements a gRPC server for the `Servo` component.
 #pragma once
@@ -6,7 +6,7 @@
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/servo/v1/servo.grpc.pb.h>
 
-#include <viam/sdk/components/servo/servo.hpp>
+#include <viam/sdk/components/servo.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
 

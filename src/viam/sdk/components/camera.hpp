@@ -1,4 +1,4 @@
-/// @file components/camera/camera.hpp
+/// @file components/camera.hpp
 ///
 /// @brief Defines a `Camera` component.
 #pragma once
@@ -19,7 +19,7 @@
 namespace viam {
 namespace sdk {
 
-/// @class Camera camera.hpp "components/camera/camera.hpp"
+/// @class Camera camera.hpp "components/camera.hpp"
 /// @brief A `Camera` represents any physical hardware that can capture frames.
 /// @ingroup Camera
 ///

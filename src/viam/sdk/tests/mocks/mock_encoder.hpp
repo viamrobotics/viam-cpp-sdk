@@ -5,9 +5,9 @@
 #include <viam/api/component/encoder/v1/encoder.pb.h>
 
 #include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/components/encoder/client.hpp>
-#include <viam/sdk/components/encoder/encoder.hpp>
-#include <viam/sdk/components/encoder/server.hpp>
+#include <viam/sdk/components/private/encoder_client.hpp>
+#include <viam/sdk/components/encoder.hpp>
+#include <viam/sdk/components/private/encoder_server.hpp>
 
 namespace viam {
 namespace sdktests {

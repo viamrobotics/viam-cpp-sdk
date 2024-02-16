@@ -1,4 +1,4 @@
-/// @file components/movement_sensor/client.hpp
+/// @file components/private/movement_sensor_client.hpp
 ///
 /// @brief Implements a gRPC client for the `MovementSensor` component.
 #pragma once
@@ -8,8 +8,8 @@
 #include <viam/api/component/movementsensor/v1/movementsensor.grpc.pb.h>
 
 #include <viam/sdk/common/linear_algebra.hpp>
-#include <viam/sdk/components/movement_sensor/movement_sensor.hpp>
-#include <viam/sdk/components/movement_sensor/server.hpp>
+#include <viam/sdk/components/movement_sensor.hpp>
+#include <viam/sdk/components/private/movement_sensor_server.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
 

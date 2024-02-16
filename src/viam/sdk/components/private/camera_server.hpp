@@ -1,4 +1,4 @@
-/// @file components/camera/server.hpp
+/// @file components/private/camera_server.hpp
 ///
 /// @brief Implements a gRPC server for the `Camera` component.
 #pragma once
@@ -6,7 +6,7 @@
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/camera/v1/camera.grpc.pb.h>
 
-#include <viam/sdk/components/camera/camera.hpp>
+#include <viam/sdk/components/camera.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
 

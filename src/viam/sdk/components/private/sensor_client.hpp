@@ -1,4 +1,4 @@
-/// @file components/sensor/client.hpp
+/// @file components/private/sensor_client.hpp
 ///
 /// @brief Implements a gRPC client for the `Sensor` component.
 #pragma once
@@ -7,8 +7,8 @@
 
 #include <viam/api/component/sensor/v1/sensor.grpc.pb.h>
 
-#include <viam/sdk/components/sensor/sensor.hpp>
-#include <viam/sdk/components/sensor/server.hpp>
+#include <viam/sdk/components/sensor.hpp>
+#include <viam/sdk/components/private/sensor_server.hpp>
 #include <viam/sdk/config/resource.hpp>
 
 namespace viam {

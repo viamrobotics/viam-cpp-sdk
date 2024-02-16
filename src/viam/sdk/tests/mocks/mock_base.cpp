@@ -6,8 +6,8 @@
 
 #include <viam/sdk/common/linear_algebra.hpp>
 #include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/components/base/base.hpp>
-#include <viam/sdk/components/base/server.hpp>
+#include <viam/sdk/components/base.hpp>
+#include <viam/sdk/components/private/base_server.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
 namespace viam {

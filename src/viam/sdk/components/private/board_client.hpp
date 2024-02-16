@@ -1,4 +1,4 @@
-/// @file components/board/client.hpp
+/// @file components/private/board_client.hpp
 ///
 /// @brief Implements a gRPC client for the `Board` component.
 #pragma once
@@ -7,8 +7,8 @@
 
 #include <viam/api/component/board/v1/board.grpc.pb.h>
 
-#include <viam/sdk/components/board/board.hpp>
-#include <viam/sdk/components/board/server.hpp>
+#include <viam/sdk/components/board.hpp>
+#include <viam/sdk/components/private/board_server.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
 

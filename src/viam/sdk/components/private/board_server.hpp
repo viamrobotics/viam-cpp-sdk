@@ -1,4 +1,4 @@
-/// @file components/board/server.hpp
+/// @file components/private/board_server.hpp
 ///
 /// @brief Implements a gRPC server for the `Board` component.
 #pragma once
@@ -6,7 +6,7 @@
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/board/v1/board.grpc.pb.h>
 
-#include <viam/sdk/components/board/board.hpp>
+#include <viam/sdk/components/board.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
 

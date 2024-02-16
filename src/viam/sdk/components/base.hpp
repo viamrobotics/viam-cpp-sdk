@@ -1,4 +1,4 @@
-/// @file components/base/base.hpp
+/// @file components/base.hpp
 ///
 /// @brief Defines a `Base` component.
 #pragma once
@@ -18,7 +18,7 @@ namespace sdk {
 
 /// @defgroup Base Classes related to the Base component.
 
-/// @class Base base.hpp "components/base/base.hpp"
+/// @class Base base.hpp "components/base.hpp"
 /// @brief A `Base` is the platform that the other parts of a mobile robot attach to.
 /// @ingroup Base
 ///

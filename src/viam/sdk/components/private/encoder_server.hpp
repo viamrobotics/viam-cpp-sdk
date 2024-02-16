@@ -1,4 +1,4 @@
-/// @file components/encoder/server.hpp
+/// @file components/private/encoder_server.hpp
 ///
 /// @brief Implements a gRPC server for the `Encoder` component.
 #pragma once
@@ -6,7 +6,7 @@
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/encoder/v1/encoder.grpc.pb.h>
 
-#include <viam/sdk/components/encoder/encoder.hpp>
+#include <viam/sdk/components/encoder.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
 

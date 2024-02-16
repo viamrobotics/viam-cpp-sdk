@@ -1,4 +1,4 @@
-/// @file components/encoder/client.hpp
+/// @file components/private/encoder_client.hpp
 ///
 /// @brief Implements a gRPC client for the `Encoder` component.
 #pragma once
@@ -7,8 +7,8 @@
 
 #include <viam/api/component/encoder/v1/encoder.grpc.pb.h>
 
-#include <viam/sdk/components/encoder/encoder.hpp>
-#include <viam/sdk/components/encoder/server.hpp>
+#include <viam/sdk/components/encoder.hpp>
+#include <viam/sdk/components/private/encoder_server.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
 

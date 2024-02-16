@@ -1,4 +1,4 @@
-/// @file components/power_sensor/server.hpp
+/// @file components/private/power_sensor_server.hpp
 ///
 /// @brief Implements a gRPC server for the `PowerSensor` component.
 #pragma once
@@ -6,7 +6,7 @@
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/powersensor/v1/powersensor.grpc.pb.h>
 
-#include <viam/sdk/components/power_sensor/power_sensor.hpp>
+#include <viam/sdk/components/power_sensor.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
 

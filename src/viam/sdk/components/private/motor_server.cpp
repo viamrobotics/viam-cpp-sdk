@@ -1,9 +1,9 @@
-#include <viam/sdk/components/motor/server.hpp>
+#include <viam/sdk/components/private/motor_server.hpp>
 
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/motor/motor.hpp>
+#include <viam/sdk/components/motor.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/rpc/server.hpp>
 
