@@ -37,7 +37,7 @@ viam::module::v1::HandlerMap HandlerMap_::to_proto() const {
 HandlerMap_::HandlerMap_(){};
 
 // NOLINTNEXTLINE(readability-const-return-type)
-const HandlerMap_ HandlerMap_::from_proto(viam::module::v1::HandlerMap proto) {
+const HandlerMap_ HandlerMap_::from_proto(const viam::module::v1::HandlerMap& proto) {
     HandlerMap_ hm;
 
     const google::protobuf::RepeatedPtrField<viam::module::v1::HandlerDefinition>& handlers =
@@ -65,8 +65,8 @@ const HandlerMap_ HandlerMap_::from_proto(viam::module::v1::HandlerMap proto) {
     return hm;
 }
 
-void HandlerMap_::add_model(Model model, RPCSubtype subtype) {
-    handles_[subtype].push_back(model);
+void HandlerMap_::add_model(Model model, const RPCSubtype& subtype) {
+    handles_[subtype].push_back(std::move(model));
 }
 
 std::ostream& operator<<(std::ostream& os, const HandlerMap_& hm) {

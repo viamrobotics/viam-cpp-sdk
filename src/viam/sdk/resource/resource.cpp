@@ -21,7 +21,7 @@ std::string Resource::name() const {
     return name_;
 }
 
-void Resource::reconfigure(Dependencies deps, ResourceConfig cfg){};
+void Resource::reconfigure(const Dependencies& deps, const ResourceConfig& cfg){};
 
 ResourceName Resource::get_resource_name(std::string name) const {
     ResourceName r;

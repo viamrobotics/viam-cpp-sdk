@@ -51,7 +51,7 @@ class Server {
     /// @param address The address to listen at.
     /// @param creds The server credentials; defaults to a insecure server credentials.
     /// @throws `Exception` if called after the server has been `start`ed.
-    void add_listening_port(std::string address,
+    void add_listening_port(const std::string& address,
                             std::shared_ptr<grpc::ServerCredentials> creds = nullptr);
 
     /// @brief waits on server close, only returning when the server is closed.

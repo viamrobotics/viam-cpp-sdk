@@ -32,8 +32,8 @@ using viam::robot::v1::Status;
 /// @ingroup Robot
 class RobotService_ : public ResourceServer, public viam::robot::v1::RobotService::Service {
    public:
-    explicit RobotService_(std::shared_ptr<ResourceManager> manager, Server& server);
-    std::shared_ptr<Resource> resource_by_name(Name name);
+    explicit RobotService_(const std::shared_ptr<ResourceManager>& manager, Server& server);
+    std::shared_ptr<Resource> resource_by_name(const Name& name);
     ::grpc::Status ResourceNames(::grpc::ServerContext* context,
                                  const ::viam::robot::v1::ResourceNamesRequest* request,
                                  ::viam::robot::v1::ResourceNamesResponse* response) override;
@@ -50,8 +50,8 @@ class RobotService_ : public ResourceServer, public viam::robot::v1::RobotServic
 
    private:
     std::mutex lock_;
-    std::vector<ResourceName> generate_metadata();
-    std::vector<Status> generate_status(RepeatedPtrField<ResourceName> resource_names);
+    std::vector<ResourceName> generate_metadata_();
+    std::vector<Status> generate_status_(const RepeatedPtrField<ResourceName>& resource_names);
 
     void stream_status(const ::viam::robot::v1::StreamStatusRequest* request,
                        ::grpc::ServerWriter<::viam::robot::v1::StreamStatusResponse>* writer,

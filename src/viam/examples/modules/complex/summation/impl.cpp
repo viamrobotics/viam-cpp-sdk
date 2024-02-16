@@ -24,7 +24,7 @@ bool find_subtract(ResourceConfig cfg) {
     return *subtract_bool;
 }
 
-void MySummation::reconfigure(Dependencies deps, ResourceConfig cfg) {
+void MySummation::reconfigure(const Dependencies& deps, const ResourceConfig& cfg) {
     subtract_ = find_subtract(cfg);
 }
 

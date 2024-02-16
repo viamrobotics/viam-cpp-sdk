@@ -52,19 +52,19 @@ class Board : public Component {
     API api() const override;
 
     /// @brief Creates a `status` struct from its proto representation.
-    static status from_proto(viam::common::v1::BoardStatus proto);
+    static status from_proto(const viam::common::v1::BoardStatus& proto);
 
     /// @brief Creates a `analog_value` struct from its proto representation.
-    static analog_value from_proto(viam::common::v1::AnalogStatus proto);
+    static analog_value from_proto(const viam::common::v1::AnalogStatus& proto);
 
     /// @brief Creates a `digital_value` struct from its proto representation.
-    static digital_value from_proto(viam::common::v1::DigitalInterruptStatus proto);
+    static digital_value from_proto(const viam::common::v1::DigitalInterruptStatus& proto);
 
     /// @brief Creates a `power_mode` enum from its proto representation.
     static power_mode from_proto(viam::component::board::v1::PowerMode proto);
 
     /// @brief Converts a `status` struct to its proto representation.
-    static viam::common::v1::BoardStatus to_proto(status status);
+    static viam::common::v1::BoardStatus to_proto(const status& status);
 
     /// @brief Converts a `analog_value` struct to its proto representation.
     static viam::common::v1::AnalogStatus to_proto(analog_value analog_value);

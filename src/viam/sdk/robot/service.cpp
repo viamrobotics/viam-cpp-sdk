@@ -30,7 +30,7 @@ using google::protobuf::RepeatedPtrField;
 using viam::common::v1::ResourceName;
 using viam::robot::v1::Status;
 
-RobotService_::RobotService_(std::shared_ptr<ResourceManager> manager, Server& server)
+RobotService_::RobotService_(const std::shared_ptr<ResourceManager>& manager, Server& server)
     : ResourceServer(manager) {
     server.register_service(this);
     // register all managed resources with the appropriate resource servers.
@@ -39,7 +39,7 @@ RobotService_::RobotService_(std::shared_ptr<ResourceManager> manager, Server& s
     }
 }
 
-std::vector<ResourceName> RobotService_::generate_metadata() {
+std::vector<ResourceName> RobotService_::generate_metadata_() {
     std::vector<ResourceName> metadata;
     for (const auto& key_and_val : resource_manager()->resources()) {
         for (const Name& resource : resource_names_for_resource(key_and_val.second)) {
@@ -49,7 +49,8 @@ std::vector<ResourceName> RobotService_::generate_metadata() {
     return metadata;
 }
 
-std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName> resource_names) {
+std::vector<Status> RobotService_::generate_status_(
+    const RepeatedPtrField<ResourceName>& resource_names) {
     std::vector<Status> statuses;
     for (const auto& cmp : resource_manager()->resources()) {
         const std::shared_ptr<Resource> resource = cmp.second;
@@ -76,7 +77,7 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
     std::vector<Status> returnable_statuses;
     for (auto& status : statuses) {
         bool status_name_is_known = false;
-        for (auto& resource_name : resource_names) {
+        for (const auto& resource_name : resource_names) {
             if (status.name().SerializeAsString() == resource_name.SerializeAsString()) {
                 status_name_is_known = true;
                 break;
@@ -97,7 +98,7 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
                               "Called [ResourceNames] without a request");
     };
     RepeatedPtrField<ResourceName>* p = response->mutable_resources();
-    for (const ResourceName& name : generate_metadata()) {
+    for (const ResourceName& name : generate_metadata_()) {
         *p->Add() = name;
     }
 
@@ -113,7 +114,7 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
     };
 
     RepeatedPtrField<Status>* response_status = response->mutable_status();
-    const std::vector<Status> statuses = generate_status(request->resource_names());
+    const std::vector<Status> statuses = generate_status_(request->resource_names());
     for (const Status& status : statuses) {
         *response_status->Add() = status;
     }
@@ -126,7 +127,7 @@ void RobotService_::stream_status(
     ::grpc::ServerWriter<::viam::robot::v1::StreamStatusResponse>* writer,
     int interval) {
     while (true) {
-        const std::vector<Status> statuses = generate_status(request->resource_names());
+        const std::vector<Status> statuses = generate_status_(request->resource_names());
         viam::robot::v1::StreamStatusResponse response;
         RepeatedPtrField<Status>* response_status = response.mutable_status();
         for (const Status& status : statuses) {
@@ -203,7 +204,7 @@ void RobotService_::stream_status(
     return grpc::Status(status, status_message);
 }
 
-std::shared_ptr<Resource> RobotService_::resource_by_name(Name name) {
+std::shared_ptr<Resource> RobotService_::resource_by_name(const Name& name) {
     std::shared_ptr<Resource> r;
     const std::lock_guard<std::mutex> lock(lock_);
     auto resources = resource_manager()->resources();

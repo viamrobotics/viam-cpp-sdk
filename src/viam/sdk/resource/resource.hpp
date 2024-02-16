@@ -28,7 +28,7 @@ class Resource {
     /// @brief Reconfigures a resource.
     /// @param deps Dependencies of the resource.
     /// @param cfg The resource's config.
-    virtual void reconfigure(Dependencies deps, ResourceConfig cfg);
+    virtual void reconfigure(const Dependencies& deps, const ResourceConfig& cfg);
 
     /// @brief Return the resource's name.
     virtual std::string name() const;
