@@ -25,9 +25,27 @@ API API::traits<Camera>::api() {
     return {kRDK, kComponent, "camera"};
 }
 
+bool is_little_endian() {
+    unsigned int x = 1;
+    char* c = (char*)&x;
+    return *c;
+}
+
+void Camera::check_system_endianness() {
+    if (is_little_endian()) {
+        throw Exception(
+            "This function cannot be run on a little-endian system due to big-endian data format "
+            "assumptions.");
+    }
+}
+
 std::vector<unsigned char> Camera::encode_depth_map(const Camera::depth_map& m) {
-    if (m.depth_values.size() != m.width * m.height) {
-        throw Exception("Number of depth values does not match the specified width and height.");
+    check_system_endianness();
+    auto expected_size = m.width * m.height;
+    if (m.depth_values.size() != expected_size) {
+        throw Exception(
+            "Number of depth values does not match the specified width and height. Expected: " +
+            std::to_string(expected_size) + ". Actual: " + std::to_string(m.depth_values.size()));
     }
 
     // Get the total size needed
@@ -51,9 +69,11 @@ std::vector<unsigned char> Camera::encode_depth_map(const Camera::depth_map& m) 
 }
 
 Camera::depth_map Camera::decode_depth_map(const std::vector<unsigned char>& data) {
+    check_system_endianness();
     Camera::depth_map depth_map;
     if (data.size() < 24) {
-        throw Exception("Data too short to contain valid depth information");
+        throw Exception("Data too short to contain valid depth information. Size: " +
+                        std::to_string(data.size()));
     }
 
     // Assuming data is in big-endian format
@@ -66,11 +86,11 @@ Camera::depth_map Camera::decode_depth_map(const std::vector<unsigned char>& dat
         height = (height << 8) | data[16 + i];
     }
 
-    auto actual_size = width * height * sizeof(uint16_t);
-    if (data.size() < actual_size) {
-        throw Exception(
-            "Data size does not match width and height. Data size: " + std::to_string(data.size()) +
-            ". Actual size: " + std::to_string(actual_size) + ".");
+    auto expected_size = width * height * sizeof(uint16_t);
+    if (data.size() < expected_size) {
+        throw Exception("Data size does not match width and height. Actual size: " +
+                        std::to_string(data.size()) +
+                        ". Expected size: " + std::to_string(expected_size) + ".");
     }
 
     // Remaining bytes are actual depth map data

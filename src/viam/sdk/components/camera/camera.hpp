@@ -105,6 +105,9 @@ class Camera : public Component {
             : width(w), height(h), depth_values(std::move(values)) {}
     };
 
+    /// @brief Throws Exception if little-endian, as depth encode/decode funcs assume big-endian
+    static void check_system_endianness();
+
     ///
     /// Encodes the dimensions and depth values of a depth map into a raw binary format
     /// (MIME type FORMAT_RAW_DEPTH).
@@ -118,9 +121,11 @@ class Camera : public Component {
     ///
     /// @param width The width of the depth map in pixels.
     /// @param height The height of the depth map in pixels.
-    /// @param depth_values A vector containing the depth values for each pixel in the depth map.
+    /// @param depth_values A vector containing the depth values for each pixel in the depth
+    /// map.
     ///                     Each depth value is a 16-bit unsigned integer.
-    /// @return A std::vector<unsigned char> representing the encoded binary data of the depth map.
+    /// @return A std::vector<unsigned char> representing the encoded binary data of the depth
+    /// map.
     ///         The vector includes 8 bytes for width, 8 bytes for height, followed by 2 bytes
     ///         per depth value.
     /// @throws Exception: if the depth data values do not correspond to height and width.
