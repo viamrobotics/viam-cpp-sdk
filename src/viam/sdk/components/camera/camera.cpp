@@ -7,6 +7,7 @@
 #include <viam/api/component/camera/v1/camera.grpc.pb.h>
 #include <viam/api/component/camera/v1/camera.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/resource/resource.hpp>
 
@@ -24,10 +25,35 @@ API API::traits<Camera>::api() {
     return {kRDK, kComponent, "camera"};
 }
 
-std::tuple<uint64_t, uint64_t, std::vector<uint16_t>> Camera::deserialize_depth_map(
-    const std::vector<unsigned char>& data) {
+std::vector<unsigned char> encode_depth_map(const depth_map& m) {
+    if (m.depth_values.size() != m.width * m.height) {
+        throw Exception("Number of depth values does not match the specified width and height.");
+    }
+
+    // Get the total size needed
+    std::vector<unsigned char> data(16 + m.width * m.height * sizeof(uint16_t));
+    size_t offset = 0;
+
+    // Encode using big-endian format
+    for (int i = 7; i >= 0; --i) {
+        data[offset++] = (m.width >> (i * 8)) & 0xFF;
+    }
+    for (int i = 7; i >= 0; --i) {
+        data[offset++] = (m.height >> (i * 8)) & 0xFF;
+    }
+
+    for (auto value : m.depth_values) {
+        data[offset++] = (value >> 8) & 0xFF;
+        data[offset++] = value & 0xFF;
+    }
+
+    return data;
+}
+
+Camera::depth_map Camera::decode_depth_map(const std::vector<unsigned char>& data) {
+    Camera::depth_map depth_map;
     if (data.size() < 24) {
-        throw std::runtime_error("Data too short to contain valid depth information");
+        throw Exception("Data too short to contain valid depth information");
     }
 
     // Assuming data is in big-endian format
@@ -41,7 +67,7 @@ std::tuple<uint64_t, uint64_t, std::vector<uint16_t>> Camera::deserialize_depth_
     }
 
     if (data.size() < 24 + width * height * sizeof(uint16_t)) {
-        throw std::runtime_error("Data size does not match width and height");
+        throw Exception("Data size does not match width and height");
     }
 
     // Remaining bytes are actual depth map data
@@ -55,7 +81,10 @@ std::tuple<uint64_t, uint64_t, std::vector<uint16_t>> Camera::deserialize_depth_
         arr.push_back(depth_value);
     }
 
-    return std::make_tuple(width, height, arr);
+    depth_map.width = width;
+    depth_map.height = height;
+    depth_map.depth_values = std::move(arr);
+    return depth_map;
 }
 
 std::string Camera::normalize_mime_type(const std::string& str) {

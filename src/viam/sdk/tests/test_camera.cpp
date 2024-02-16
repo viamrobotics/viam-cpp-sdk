@@ -101,6 +101,24 @@ BOOST_AUTO_TEST_CASE(test_do_command) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(test_deserialize_depth_map) {
+    const uint64_t width = 2;
+    const uint64_t height = 2;
+    const std::vector<uint16_t> depth_values = {100, 200, 300, 400};
+
+    Camera::depth_map m{width, height, depth_values};
+
+    std::vector<unsigned char> data = Camera::encode_depth_map(m);
+    auto result = Camera::decode_depth_map(data);
+
+    BOOST_CHECK_EQUAL(result.width, width);
+    BOOST_CHECK_EQUAL(result.height, height);
+    BOOST_CHECK_EQUAL_COLLECTIONS(result.depth_values.begin(),
+                                  result.depth_values.end(),
+                                  depth_values.begin(),
+                                  depth_values.end());
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 }  // namespace sdktests

@@ -83,10 +83,61 @@ class Camera : public Component {
         response_metadata metadata;
     };
 
-    /// @brief Decode image data of custom MIME type FORMAT_RAW_DEPTH into a standard
-    /// representation.
-    static std::tuple<uint64_t, uint64_t, std::vector<uint16_t>> deserialize_depth_map(
-        const std::vector<unsigned char>& data);
+    /// @struct depth_map
+    /// @brief Represents the dimensions and depth values of a depth map.
+    ///
+    /// depth_map holds the width and height of a depth map, along with a vector
+    /// of actual depth values. Each depth value is a 16-bit unsigned integer representing
+    /// the distance from the camera to a point in the scene.
+    struct depth_map {
+        uint64_t width;                      ///< Width of the depth map in pixels.
+        uint64_t height;                     ///< Height of the depth map in pixels.
+        std::vector<uint16_t> depth_values;  ///< A flat vector of depth values.
+
+        /// Default constructor
+        depth_map() = default;
+
+        /// Parameterized constructor for initializing depth_map with dimensions and depth values.
+        /// @param w Width of the depth map.
+        /// @param h Height of the depth map.
+        /// @param values A vector of depth values corresponding to each pixel in the depth map.
+        depth_map(uint64_t w, uint64_t h, std::vector<uint16_t> values)
+            : width(w), height(h), depth_values(std::move(values)) {}
+    };
+
+    ///
+    /// Encodes the dimensions and depth values of a depth map into a raw binary format
+    /// (MIME type FORMAT_RAW_DEPTH).
+    ///
+    /// This function takes the width and height of a depth map, along with a vector
+    /// of depth values, and encodes this information into a binary blob. The binary
+    /// format consists of the width and height encoded as 64-bit unsigned integers
+    /// (big-endian format) followed by the depth values encoded as 16-bit unsigned
+    /// integers (big-endian format). This format is suitable for serialization and
+    /// transmission of depth map data through gRPC.
+    ///
+    /// @param width The width of the depth map in pixels.
+    /// @param height The height of the depth map in pixels.
+    /// @param depth_values A vector containing the depth values for each pixel in the depth map.
+    ///                     Each depth value is a 16-bit unsigned integer.
+    /// @return A std::vector<unsigned char> representing the encoded binary data of the depth map.
+    ///         The vector includes 8 bytes for width, 8 bytes for height, followed by 2 bytes
+    ///         per depth value.
+    /// @throws Exception: if the depth data values do not correspond to height and width.
+    ///
+    std::vector<unsigned char> encode_depth_map(const depth_map& m);
+
+    /// Decode image data of custom MIME type FORMAT_RAW_DEPTH into a depth_map structure.
+    ///
+    /// This function processes a binary blob representing a depth map in a specific
+    /// format and extracts the dimensions and depth values contained within.
+    ///
+    /// @param data A vector of unsigned chars representing the binary data of the depth map.
+    /// @return A depth_map struct containing the width, height, and depth values extracted from the
+    /// data.
+    /// @throws Exception: if the data is too short to contain valid depth information or
+    ///         if the data size does not match the expected size based on the width and height.
+    static depth_map decode_depth_map(const std::vector<unsigned char>& data);
 
     /// @brief remove any extra suffix's from the mime type string.
     static std::string normalize_mime_type(const std::string& str);
