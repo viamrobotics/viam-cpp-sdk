@@ -93,8 +93,8 @@ class MLModelServiceTFLite : public vsdk::MLModelService, public vsdk::Stoppable
         }
     }
 
-    void reconfigure(const vsdk::Dependencies& dependencies, const vsdk::ResourceConfig& configuration) final
-        try {
+    void reconfigure(const vsdk::Dependencies& dependencies,
+                     const vsdk::ResourceConfig& configuration) final try {
         // Care needs to be taken during reconfiguration. The
         // framework does not offer protection against invocation
         // during reconfiguration. Keep all state in a shared_ptr
