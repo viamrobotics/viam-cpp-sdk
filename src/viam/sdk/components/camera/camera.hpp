@@ -125,7 +125,7 @@ class Camera : public Component {
     ///         per depth value.
     /// @throws Exception: if the depth data values do not correspond to height and width.
     ///
-    std::vector<unsigned char> encode_depth_map(const depth_map& m);
+    std::vector<unsigned char> encode_depth_map(const Camera::depth_map& m);
 
     /// Decode image data of custom MIME type FORMAT_RAW_DEPTH into a depth_map structure.
     ///
@@ -137,7 +137,7 @@ class Camera : public Component {
     /// data.
     /// @throws Exception: if the data is too short to contain valid depth information or
     ///         if the data size does not match the expected size based on the width and height.
-    static depth_map decode_depth_map(const std::vector<unsigned char>& data);
+    static Camera::depth_map decode_depth_map(const std::vector<unsigned char>& data);
 
     /// @brief remove any extra suffix's from the mime type string.
     static std::string normalize_mime_type(const std::string& str);

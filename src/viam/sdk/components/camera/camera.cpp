@@ -25,7 +25,7 @@ API API::traits<Camera>::api() {
     return {kRDK, kComponent, "camera"};
 }
 
-std::vector<unsigned char> encode_depth_map(const depth_map& m) {
+std::vector<unsigned char> encode_depth_map(const Camera::depth_map& m) {
     if (m.depth_values.size() != m.width * m.height) {
         throw Exception("Number of depth values does not match the specified width and height.");
     }
