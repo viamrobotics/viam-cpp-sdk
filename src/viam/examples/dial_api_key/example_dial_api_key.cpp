@@ -42,26 +42,25 @@ int main() {
     std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);
 
     // ensure we can query resources
-    std::vector<ResourceName>* resource_names = robot->resource_names();
+    std::vector<Name> resource_names = robot->resource_names();
     std::cout << "Resources" << std::endl;
-    for (const ResourceName& resource : *resource_names) {
-        std::cout << "\tname: " << resource.name() << " (type:" << resource.type()
-                  << " subtype:" << resource.subtype() << ")" << std::endl;
+    for (const Name& resource : resource_names) {
+        std::cout << "\t" << resource << "\n" << std::endl;
     }
 
     // ensure we can query statuses
-    std::vector<Status> status_plural = robot->get_status();
+    std::vector<RobotClient::status> status_plural = robot->get_status();
     std::cout << "Status plural len " << status_plural.size() << std::endl;
-    for (const Status& s : status_plural) {
-        std::cout << " Status! " << s.name().subtype() << std::endl;
+    for (const RobotClient::status& s : status_plural) {
+        std::cout << " Status! " << s.name->api().resource_subtype() << std::endl;
     }
 
     // ensure we can send requests for specific resources
-    std::vector<ResourceName> just_one = {resource_names->at(0)};
-    std::vector<Status> status_singular = robot->get_status(just_one);
+    std::vector<Name> just_one = {resource_names[0]};
+    std::vector<RobotClient::status> status_singular = robot->get_status(just_one);
     std::cout << "Status singular len " << status_singular.size() << std::endl;
-    for (const Status& s : status_singular) {
-        std::cout << " Status! " << s.name().subtype() << std::endl;
+    for (const RobotClient::status& s : status_singular) {
+        std::cout << " Status! " << s.name->api().resource_subtype() << std::endl;
     }
 
     return EXIT_SUCCESS;

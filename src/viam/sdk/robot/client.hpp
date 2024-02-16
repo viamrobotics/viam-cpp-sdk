@@ -8,11 +8,9 @@
 
 #include <grpcpp/channel.h>
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/robot/v1/robot.grpc.pb.h>
-#include <viam/api/robot/v1/robot.pb.h>
-
+#include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/utils.hpp>
+#include <viam/sdk/common/world_state.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
@@ -23,13 +21,7 @@ namespace viam {
 namespace sdk {
 
 using grpc::Channel;
-using viam::common::v1::ResourceName;
-using viam::common::v1::Transform;
-using viam::robot::v1::FrameSystemConfig;
-using viam::robot::v1::RobotService;
-using viam::robot::v1::Status;
 
-// TODO(RSDK-1742) replace all `ResourceName` references in API with `Name`
 /// @defgroup Robot Classes related to a Robot representation.
 
 /// @class RobotClient client.hpp "robot/client.hpp"
@@ -44,6 +36,43 @@ using viam::robot::v1::Status;
 /// `with_channel` require a user call to `close()`.
 class RobotClient {
    public:
+    struct discovery_query {
+        std::string subtype;
+        std::string model;
+        friend bool operator==(const discovery_query& lhs, const discovery_query& rhs);
+    };
+
+    struct discovery {
+        discovery_query query;
+        AttributeMap results;
+        friend bool operator==(const discovery& lhs, const discovery& rhs);
+    };
+
+    struct frame_system_config {
+        WorldState::transform frame;
+        AttributeMap kinematics;
+        friend bool operator==(const frame_system_config& lhs, const frame_system_config& rhs);
+    };
+
+    struct status {
+        boost::optional<Name> name;
+        AttributeMap status_map;
+        // TODO: RSDK-6574: revisit time_point
+        boost::optional<std::chrono::time_point<long long, std::chrono::nanoseconds>>
+            last_reconfigured;
+        friend bool operator==(const status& lhs, const status& rhs);
+    };
+
+    struct operation {
+        std::string id;
+        std::string method;
+        boost::optional<std::string> session_id;
+        AttributeMap arguments;
+        // TODO: RSDK-6574: revisit time_point
+        boost::optional<std::chrono::time_point<long long, std::chrono::nanoseconds>> started;
+        friend bool operator==(const operation& lhs, const operation& rhs);
+    };
+
     ~RobotClient();
     void refresh();
     void close();
@@ -69,11 +98,11 @@ class RobotClient {
     /// `close()`d manually.
     static std::shared_ptr<RobotClient> with_channel(const std::shared_ptr<ViamChannel>& channel,
                                                      const Options& options);
-    RobotClient(const std::shared_ptr<ViamChannel>& channel);
-    std::vector<ResourceName>* resource_names();
+    RobotClient(std::shared_ptr<ViamChannel> channel);
+    std::vector<Name> resource_names() const;
 
     /// @brief Lookup and return a `shared_ptr` to a resource.
-    /// @param name The `ResourceName` of the resource.
+    /// @param name The `Name` of the resource.
     /// @throws `Exception` if the requested resource doesn't exist or is the wrong type.
     /// @return a `shared_ptr` to the requested resource as an uncasted `Resource`.
     ///
@@ -83,7 +112,7 @@ class RobotClient {
     ///
     /// Because the return type here is a `Resource`, the user will need to manually
     /// cast to the desired type.
-    std::shared_ptr<Resource> resource_by_name(const ResourceName& name);
+    std::shared_ptr<Resource> resource_by_name(const Name& name);
 
     template <typename T>
     /// @brief Lookup and return a `shared_ptr` to a resource of the requested type.
@@ -91,46 +120,37 @@ class RobotClient {
     /// @throws `Exception` if the requested resource doesn't exist or is the wrong type.
     /// @return a `shared_ptr` to the requested resource.
     std::shared_ptr<T> resource_by_name(std::string name) {
-        ResourceName r;
-        API api = API::get<T>();
-        *r.mutable_namespace_() = api.type_namespace();
-        *r.mutable_type() = api.resource_type();
-        *r.mutable_subtype() = api.resource_subtype();
-        *r.mutable_name() = std::move(name);
-
-        auto resource = this->resource_by_name(std::move(r));
-        return std::dynamic_pointer_cast<T>(resource);
+        return std::dynamic_pointer_cast<T>(resource_by_name({API::get<T>(), "", std::move(name)}));
     }
 
     /// @brief Get the configuration of the frame system of the given robot.
     /// @return The configuration of the calling robot's frame system.
-    std::vector<FrameSystemConfig> get_frame_system_config(
-        const std::vector<Transform>& additional_transforms = std::vector<Transform>());
+    std::vector<frame_system_config> get_frame_system_config(
+        const std::vector<WorldState::transform>& additional_transforms = {});
 
     /// @brief Get the list of operations currently running on a robot.
     /// @return The list of operations currently running on the calling robot.
-    std::vector<viam::robot::v1::Operation> get_operations();
+    std::vector<operation> get_operations();
 
     /// @brief Get the status of the requested robot components.
     /// @param components A list of the specific components for which status is desired.
     /// @return A list of statuses.
-    std::vector<Status> get_status(std::vector<ResourceName>& components);
+    std::vector<status> get_status(std::vector<Name>& components);
 
     /// @brief Get the status of all robot components.
     /// @return A list of statuses.
-    std::vector<Status> get_status();
+    std::vector<status> get_status();
 
-    std::vector<viam::robot::v1::Discovery> discover_components(
-        const std::vector<viam::robot::v1::DiscoveryQuery>& queries);
+    std::vector<discovery> discover_components(const std::vector<discovery_query>& queries);
 
     /// @brief Transform a given `Pose` to a new specified destination which is a reference frame.
     /// @param query The pose that should be transformed.
     /// @param destination The name of the reference frame to transform the given pose to.
-    /// @return the `PoseInFrame` of the transformed pose.
-    viam::common::v1::PoseInFrame transform_pose(
-        viam::common::v1::PoseInFrame query,
+    /// @return the `pose_in_frame` of the transformed pose.
+    pose_in_frame transform_pose(
+        const pose_in_frame& query,
         std::string destination,
-        const std::vector<Transform>& additional_transforms = std::vector<Transform>());
+        const std::vector<WorldState::transform>& additional_transforms = {});
 
     /// @brief Blocks on the specified operation of the robot, returning when it is complete.
     /// @param id The ID of the operation to block on.
@@ -140,12 +160,8 @@ class RobotClient {
     void stop_all();
 
     /// @brief Cancel all operations for the robot and stop all actuators and movement.
-    /// @param extra Any extra params to pass to resources' `stop` methods, keyed by `ResourceName`.
-    void stop_all(
-        const std::unordered_map<ResourceName,
-                                 std::unordered_map<std::string, std::shared_ptr<ProtoType>>,
-                                 ResourceNameHasher,
-                                 ResourceNameEqual>& extra);
+    /// @param extra Any extra params to pass to resources' `stop` methods, keyed by `Name`.
+    void stop_all(const std::unordered_map<Name, AttributeMap>& extra);
 
     /// @brief Cancel a specified operation on the robot.
     /// @param id The ID of the operation to cancel.
@@ -155,12 +171,13 @@ class RobotClient {
     std::vector<std::shared_ptr<std::thread>> threads_;
     std::atomic<bool> should_refresh_;
     unsigned int refresh_interval_;
-    std::shared_ptr<ViamChannel> viam_channel_;
     std::shared_ptr<Channel> channel_;
+    std::shared_ptr<ViamChannel> viam_channel_;
     bool should_close_channel_;
-    std::unique_ptr<RobotService::Stub> stub_;
-    std::mutex lock_;
-    std::vector<ResourceName> resource_names_;
+    struct impl;
+    std::unique_ptr<impl> impl_;
+    mutable std::mutex lock_;
+    std::vector<Name> resource_names_;
     ResourceManager resource_manager_;
     void refresh_every();
 };

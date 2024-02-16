@@ -42,8 +42,8 @@ RobotService_::RobotService_(const std::shared_ptr<ResourceManager>& manager, Se
 std::vector<ResourceName> RobotService_::generate_metadata_() {
     std::vector<ResourceName> metadata;
     for (const auto& key_and_val : resource_manager()->resources()) {
-        for (const ResourceName& resource : resource_names_for_resource(key_and_val.second)) {
-            metadata.push_back(resource);
+        for (const Name& resource : resource_names_for_resource(key_and_val.second)) {
+            metadata.push_back(resource.to_proto());
         }
     }
     return metadata;
@@ -60,7 +60,7 @@ std::vector<Status> RobotService_::generate_status_(
                 bool resource_present = false;
                 const ResourceName name = resource->get_resource_name(resource->name());
                 for (const auto& resource_name : resource_names) {
-                    if (ResourceNameEqual::check_equal(name, resource_name)) {
+                    if (name.SerializeAsString() == resource_name.SerializeAsString()) {
                         resource_present = true;
                         break;
                     }
@@ -147,6 +147,7 @@ void RobotService_::stream_status(
     if (request->every().seconds() > 0) {
         interval = request->every().seconds();
     }
+
     const RepeatedPtrField<ResourceName> resource_names = request->resource_names();
     std::thread t(&RobotService_::stream_status, this, request, writer, interval);
     t.detach();

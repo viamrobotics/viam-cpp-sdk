@@ -67,7 +67,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
         parent_ = RobotClient::at_local_socket(parent_addr_, {0, boost::none});
     }
 
-    return parent_->resource_by_name(name.to_proto());
+    return parent_->resource_by_name(name);
 }
 
 // TODO(RSDK-6528) - to the extent possible, switch to using `server_helper`

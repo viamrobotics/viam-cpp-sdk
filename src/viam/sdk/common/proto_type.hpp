@@ -52,6 +52,7 @@ class ProtoType {
 
     explicit ProtoType(bool b) : proto_type_(std::move(b)) {}
     explicit ProtoType(std::string s) : proto_type_(std::move(s)) {}
+    explicit ProtoType(const char* c) : proto_type_(std::string(c)) {}
     explicit ProtoType(int i) : proto_type_(std::move(i)) {}
     explicit ProtoType(double d) : proto_type_(std::move(d)) {}
     explicit ProtoType(AttributeMap m) : proto_type_(std::move(m)) {}

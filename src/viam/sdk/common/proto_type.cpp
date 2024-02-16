@@ -38,7 +38,7 @@ Struct map_to_struct(const AttributeMap& dict) {
 
 // NOLINTNEXTLINE(misc-no-recursion)
 AttributeMap struct_to_map(const Struct& struct_) {
-    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> map =
+    AttributeMap map =
         std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
 
     for (const auto& val : struct_.fields()) {
