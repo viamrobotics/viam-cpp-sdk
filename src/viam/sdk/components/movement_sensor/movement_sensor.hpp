@@ -57,30 +57,33 @@ class MovementSensor : public Component {
 
     /// @brief Creates a `compassheading` struct from its proto representation.
     static compassheading from_proto(
-        viam::component::movementsensor::v1::GetCompassHeadingResponse proto);
+        const viam::component::movementsensor::v1::GetCompassHeadingResponse& proto);
 
     /// @brief Creates a `position` struct from its proto representation.
-    static position from_proto(viam::component::movementsensor::v1::GetPositionResponse proto);
+    static position from_proto(
+        const viam::component::movementsensor::v1::GetPositionResponse& proto);
 
     /// @brief Creates an `orientation` struct from its proto representation.
-    static orientation from_proto(viam::common::v1::Orientation proto);
+    static orientation from_proto(const viam::common::v1::Orientation& proto);
 
     /// @brief Creates a `properties` struct from its proto representation.
-    static properties from_proto(viam::component::movementsensor::v1::GetPropertiesResponse proto);
+    static properties from_proto(
+        const viam::component::movementsensor::v1::GetPropertiesResponse& proto);
 
     /// @brief Converts a `compassheading` struct to its proto representation.
     static viam::component::movementsensor::v1::GetCompassHeadingResponse to_proto(
-        compassheading compassheading);
+        const compassheading& compassheading);
 
     /// @brief Converts a `position` struct to its proto representation.
-    static viam::component::movementsensor::v1::GetPositionResponse to_proto(position position);
+    static viam::component::movementsensor::v1::GetPositionResponse to_proto(
+        const position& position);
 
     /// @brief Converts an `orientation` struct to its proto representation.
-    static viam::common::v1::Orientation to_proto(orientation orientation);
+    static viam::common::v1::Orientation to_proto(const orientation& orientation);
 
     /// @brief Converts a `properties` struct to its proto representation.
     static viam::component::movementsensor::v1::GetPropertiesResponse to_proto(
-        properties properties);
+        const properties& properties);
 
     inline Vector3 get_linear_velocity() {
         return get_linear_velocity({});

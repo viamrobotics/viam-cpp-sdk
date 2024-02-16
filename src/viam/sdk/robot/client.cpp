@@ -1,17 +1,11 @@
 #include <viam/sdk/robot/client.hpp>
 
-#include <algorithm>
 #include <chrono>
 #include <cstddef>
-#include <iostream>
 #include <memory>
 #include <mutex>
-#include <ostream>
-#include <set>
 #include <string>
 #include <thread>
-#include <tuple>
-#include <type_traits>
 #include <unistd.h>
 #include <vector>
 
@@ -169,7 +163,7 @@ void RobotClient::close() {
     viam_channel_->close();
 }
 
-bool is_error_response(grpc::Status response) {
+bool is_error_response(const grpc::Status& response) {
     return !response.ok() && (response.error_message() != kStreamRemoved);
 }
 std::vector<RobotClient::status> RobotClient::get_status() {
@@ -314,8 +308,8 @@ void RobotClient::refresh_every() {
 };
 
 RobotClient::RobotClient(std::shared_ptr<ViamChannel> channel)
-    : viam_channel_(channel),
-      channel_(channel->channel()),
+    : channel_(channel->channel()),
+      viam_channel_(std::move(channel)),
       should_close_channel_(false),
       impl_(std::make_unique<impl>(RobotService::NewStub(channel_))) {}
 
@@ -325,8 +319,8 @@ std::vector<Name> RobotClient::resource_names() const {
 }
 
 std::shared_ptr<RobotClient> RobotClient::with_channel(std::shared_ptr<ViamChannel> channel,
-                                                       Options options) {
-    std::shared_ptr<RobotClient> robot = std::make_shared<RobotClient>(channel);
+                                                       const Options& options) {
+    std::shared_ptr<RobotClient> robot = std::make_shared<RobotClient>(std::move(channel));
     robot->refresh_interval_ = options.refresh_interval();
     robot->should_refresh_ = (robot->refresh_interval_ > 0);
     if (robot->should_refresh_) {
@@ -343,7 +337,8 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(std::shared_ptr<ViamChann
     return robot;
 };
 
-std::shared_ptr<RobotClient> RobotClient::at_address(std::string address, Options options) {
+std::shared_ptr<RobotClient> RobotClient::at_address(const std::string& address,
+                                                     const Options& options) {
     const char* uri = address.c_str();
     auto channel = ViamChannel::dial(uri, options.dial_options());
     std::shared_ptr<RobotClient> robot = RobotClient::with_channel(channel, options);
@@ -352,7 +347,8 @@ std::shared_ptr<RobotClient> RobotClient::at_address(std::string address, Option
     return robot;
 };
 
-std::shared_ptr<RobotClient> RobotClient::at_local_socket(std::string address, Options options) {
+std::shared_ptr<RobotClient> RobotClient::at_local_socket(const std::string& address,
+                                                          const Options& options) {
     const std::string addr = "unix://" + address;
     const char* uri = addr.c_str();
     const std::shared_ptr<grpc::Channel> channel =
@@ -365,7 +361,7 @@ std::shared_ptr<RobotClient> RobotClient::at_local_socket(std::string address, O
 };
 
 std::vector<RobotClient::frame_system_config> RobotClient::get_frame_system_config(
-    std::vector<WorldState::transform> additional_transforms) {
+    const std::vector<WorldState::transform>& additional_transforms) {
     viam::robot::v1::FrameSystemConfigRequest req;
     viam::robot::v1::FrameSystemConfigResponse resp;
     ClientContext ctx;
@@ -393,15 +389,15 @@ std::vector<RobotClient::frame_system_config> RobotClient::get_frame_system_conf
 }
 
 pose_in_frame RobotClient::transform_pose(
-    pose_in_frame query,
+    const pose_in_frame& query,
     std::string destination,
-    std::vector<WorldState::transform> additional_transforms) {
+    const std::vector<WorldState::transform>& additional_transforms) {
     viam::robot::v1::TransformPoseRequest req;
     viam::robot::v1::TransformPoseResponse resp;
     ClientContext ctx;
 
     *req.mutable_source() = query.to_proto();
-    *req.mutable_destination() = destination;
+    *req.mutable_destination() = std::move(destination);
     RepeatedPtrField<Transform>* req_transforms = req.mutable_supplemental_transforms();
 
     for (const WorldState::transform& transform : additional_transforms) {
@@ -417,7 +413,7 @@ pose_in_frame RobotClient::transform_pose(
 }
 
 std::vector<RobotClient::discovery> RobotClient::discover_components(
-    std::vector<discovery_query> queries) {
+    const std::vector<discovery_query>& queries) {
     viam::robot::v1::DiscoverComponentsRequest req;
     viam::robot::v1::DiscoverComponentsResponse resp;
     ClientContext ctx;
@@ -457,15 +453,15 @@ void RobotClient::stop_all() {
     stop_all(map);
 }
 
-void RobotClient::stop_all(std::unordered_map<Name, AttributeMap> extra) {
+void RobotClient::stop_all(const std::unordered_map<Name, AttributeMap>& extra) {
     viam::robot::v1::StopAllRequest req;
     viam::robot::v1::StopAllResponse resp;
     ClientContext ctx;
 
     RepeatedPtrField<viam::robot::v1::StopExtraParameters>* ep = req.mutable_extra();
-    for (auto& xtra : extra) {
-        const Name name = xtra.first;
-        const AttributeMap params = xtra.second;
+    for (const auto& xtra : extra) {
+        const Name& name = xtra.first;
+        const AttributeMap& params = xtra.second;
         const google::protobuf::Struct s = map_to_struct(params);
         viam::robot::v1::StopExtraParameters stop;
         *stop.mutable_name() = name.to_proto();

@@ -11,7 +11,7 @@
 namespace viam {
 namespace sdk {
 
-Motor::position Motor::from_proto(viam::component::motor::v1::GetPositionResponse proto) {
+Motor::position Motor::from_proto(const viam::component::motor::v1::GetPositionResponse& proto) {
     return proto.position();
 }
 API Motor::api() const {
@@ -22,7 +22,7 @@ API API::traits<Motor>::api() {
     return {kRDK, kComponent, "motor"};
 }
 
-Motor::power_status Motor::from_proto(viam::component::motor::v1::IsPoweredResponse proto) {
+Motor::power_status Motor::from_proto(const viam::component::motor::v1::IsPoweredResponse& proto) {
     Motor::power_status power_status;
     power_status.is_on = proto.is_on();
 
@@ -30,19 +30,20 @@ Motor::power_status Motor::from_proto(viam::component::motor::v1::IsPoweredRespo
     return power_status;
 }
 
-Motor::properties Motor::from_proto(viam::component::motor::v1::GetPropertiesResponse proto) {
+Motor::properties Motor::from_proto(
+    const viam::component::motor::v1::GetPropertiesResponse& proto) {
     Motor::properties properties;
     properties.position_reporting = proto.position_reporting();
     return properties;
 }
 
-viam::component::motor::v1::GetPositionResponse Motor::to_proto(position position) {
+viam::component::motor::v1::GetPositionResponse Motor::to_proto(const position& position) {
     viam::component::motor::v1::GetPositionResponse proto;
     proto.set_position(position);
     return proto;
 }
 
-viam::component::motor::v1::IsPoweredResponse Motor::to_proto(power_status power_status) {
+viam::component::motor::v1::IsPoweredResponse Motor::to_proto(const power_status& power_status) {
     viam::component::motor::v1::IsPoweredResponse proto;
     proto.set_is_on(power_status.is_on);
 
@@ -50,7 +51,7 @@ viam::component::motor::v1::IsPoweredResponse Motor::to_proto(power_status power
     return proto;
 }
 
-viam::component::motor::v1::GetPropertiesResponse Motor::to_proto(properties properties) {
+viam::component::motor::v1::GetPropertiesResponse Motor::to_proto(const properties& properties) {
     viam::component::motor::v1::GetPropertiesResponse proto;
     proto.set_position_reporting(properties.position_reporting);
     return proto;

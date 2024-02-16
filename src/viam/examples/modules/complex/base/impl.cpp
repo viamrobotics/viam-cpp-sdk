@@ -34,7 +34,7 @@ std::string find_motor(ResourceConfig cfg, std::string motor_name) {
     return *motor_string;
 }
 
-void MyBase::reconfigure(Dependencies deps, ResourceConfig cfg) {
+void MyBase::reconfigure(const Dependencies& deps, const ResourceConfig& cfg) {
     // Downcast `left` and `right` dependencies to motors.
     auto left = find_motor(cfg, "left");
     auto right = find_motor(cfg, "right");

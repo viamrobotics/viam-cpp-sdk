@@ -17,7 +17,7 @@ API API::traits<Servo>::api() {
     return {kRDK, kComponent, "servo"};
 }
 
-Servo::position Servo::from_proto(viam::component::servo::v1::GetPositionResponse proto) {
+Servo::position Servo::from_proto(const viam::component::servo::v1::GetPositionResponse& proto) {
     return proto.position_deg();
 }
 

@@ -80,14 +80,16 @@ class RobotClient {
     /// @brief Create a robot client connected to the robot at the provided address.
     /// @param address The address of the robot (IP address, URI, URL, etc.)
     /// @param options Options for connecting and refreshing.
-    static std::shared_ptr<RobotClient> at_address(std::string address, Options options);
+    static std::shared_ptr<RobotClient> at_address(const std::string& address,
+                                                   const Options& options);
 
     /// @brief Creates a robot client connected to the robot at the provided local socket.
     /// @param address The local socket of the robot (a .sock file, etc.).
     /// @param options Options for connecting and refreshing.
     /// Creates a direct connection to the robot using the `unix://` scheme.
     /// Only useful for connecting to robots across Unix sockets.
-    static std::shared_ptr<RobotClient> at_local_socket(std::string address, Options options);
+    static std::shared_ptr<RobotClient> at_local_socket(const std::string& address,
+                                                        const Options& options);
 
     /// @brief Creates a robot client connected to the provided channel.
     /// @param channel The channel to connect with.
@@ -95,7 +97,7 @@ class RobotClient {
     /// Connects directly to a pre-existing channel. A robot created this way must be
     /// `close()`d manually.
     static std::shared_ptr<RobotClient> with_channel(std::shared_ptr<ViamChannel> channel,
-                                                     Options options);
+                                                     const Options& options);
     RobotClient(std::shared_ptr<ViamChannel> channel);
     std::vector<Name> resource_names() const;
 
@@ -124,7 +126,7 @@ class RobotClient {
     /// @brief Get the configuration of the frame system of the given robot.
     /// @return The configuration of the calling robot's frame system.
     std::vector<frame_system_config> get_frame_system_config(
-        std::vector<WorldState::transform> additional_transforms = {});
+        const std::vector<WorldState::transform>& additional_transforms = {});
 
     /// @brief Get the list of operations currently running on a robot.
     /// @return The list of operations currently running on the calling robot.
@@ -139,15 +141,16 @@ class RobotClient {
     /// @return A list of statuses.
     std::vector<status> get_status();
 
-    std::vector<discovery> discover_components(std::vector<discovery_query> queries);
+    std::vector<discovery> discover_components(const std::vector<discovery_query>& queries);
 
     /// @brief Transform a given `Pose` to a new specified destination which is a reference frame.
     /// @param query The pose that should be transformed.
     /// @param destination The name of the reference frame to transform the given pose to.
     /// @return the `pose_in_frame` of the transformed pose.
-    pose_in_frame transform_pose(pose_in_frame query,
-                                 std::string destination,
-                                 std::vector<WorldState::transform> additional_transforms = {});
+    pose_in_frame transform_pose(
+        const pose_in_frame& query,
+        std::string destination,
+        const std::vector<WorldState::transform>& additional_transforms = {});
 
     /// @brief Blocks on the specified operation of the robot, returning when it is complete.
     /// @param id The ID of the operation to block on.
@@ -158,7 +161,7 @@ class RobotClient {
 
     /// @brief Cancel all operations for the robot and stop all actuators and movement.
     /// @param extra Any extra params to pass to resources' `stop` methods, keyed by `Name`.
-    void stop_all(std::unordered_map<Name, AttributeMap> extra);
+    void stop_all(const std::unordered_map<Name, AttributeMap>& extra);
 
     /// @brief Cancel a specified operation on the robot.
     /// @param id The ID of the operation to cancel.
@@ -168,8 +171,8 @@ class RobotClient {
     std::vector<std::shared_ptr<std::thread>> threads_;
     std::atomic<bool> should_refresh_;
     unsigned int refresh_interval_;
-    std::shared_ptr<ViamChannel> viam_channel_;
     std::shared_ptr<Channel> channel_;
+    std::shared_ptr<ViamChannel> viam_channel_;
     bool should_close_channel_;
     struct impl;
     std::unique_ptr<impl> impl_;

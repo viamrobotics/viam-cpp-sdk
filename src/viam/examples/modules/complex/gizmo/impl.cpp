@@ -31,7 +31,7 @@ std::string find_arg1(ResourceConfig cfg) {
     return *arg1_string;
 }
 
-void MyGizmo::reconfigure(Dependencies deps, ResourceConfig cfg) {
+void MyGizmo::reconfigure(const Dependencies& deps, const ResourceConfig& cfg) {
     arg1_ = find_arg1(cfg);
 }
 

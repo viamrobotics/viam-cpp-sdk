@@ -20,7 +20,7 @@ using google::protobuf::Struct;
 using google::protobuf::Value;
 
 // NOLINTNEXTLINE(misc-no-recursion)
-Struct map_to_struct(AttributeMap dict) {
+Struct map_to_struct(const AttributeMap& dict) {
     Struct s;
     if (!dict) {
         return s;
@@ -37,7 +37,7 @@ Struct map_to_struct(AttributeMap dict) {
 }
 
 // NOLINTNEXTLINE(misc-no-recursion)
-AttributeMap struct_to_map(Struct struct_) {
+AttributeMap struct_to_map(const Struct& struct_) {
     AttributeMap map =
         std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
 
