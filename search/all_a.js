@@ -1,7 +1,7 @@
 var searchData=
 [
   ['metadata_0',['metadata',['../structviam_1_1sdk_1_1MLModelService_1_1metadata.html',1,'viam::sdk::MLModelService::metadata'],['../classviam_1_1sdk_1_1MLModelServiceClient.html#a4e9bf4e584da6b6888322d970fdc8ae9',1,'viam::sdk::MLModelServiceClient::metadata()'],['../classviam_1_1sdk_1_1MLModelService.html#a7f47543009c93dd84e5765fdfb06dcef',1,'viam::sdk::MLModelService::metadata()'],['../classviam_1_1sdk_1_1MLModelService.html#ad3c5a50d1f757cecc64bd9f8778e7810',1,'viam::sdk::MLModelService::metadata(const AttributeMap &amp;extra)=0'],['../classviam_1_1sdk_1_1MLModelServiceClient.html#a7f47543009c93dd84e5765fdfb06dcef',1,'viam::sdk::MLModelServiceClient::metadata()'],['../classviam_1_1sdk_1_1MLModelServiceClient.html#ad3c5a50d1f757cecc64bd9f8778e7810',1,'viam::sdk::MLModelServiceClient::metadata(const AttributeMap &amp;extra)=0']]],
-  ['mime_5fstring_5fto_5fformat_1',['MIME_string_to_format',['../classviam_1_1sdk_1_1Camera.html#a393d46f2920e7461f7ea0a25825f3c0b',1,'viam::sdk::Camera']]],
+  ['mime_5fstring_5fto_5fformat_1',['MIME_string_to_format',['../classviam_1_1sdk_1_1Camera.html#ae66cc224dbf0cb7a0b516cc48b1ede93',1,'viam::sdk::Camera']]],
   ['mlmodelservice_2',['MLModelService',['../classviam_1_1sdk_1_1MLModelService.html',1,'viam::sdk']]],
   ['mlmodelserviceclient_3',['MLModelServiceClient',['../classviam_1_1sdk_1_1MLModelServiceClient.html',1,'viam::sdk']]],
   ['mlmodelserviceserver_4',['MLModelServiceServer',['../classviam_1_1sdk_1_1MLModelServiceServer.html',1,'viam::sdk']]],
@@ -10,7 +10,7 @@ var searchData=
   ['modelregistration_7',['ModelRegistration',['../classviam_1_1sdk_1_1ModelRegistration.html',1,'viam::sdk']]],
   ['module_8',['Module',['../classviam_1_1sdk_1_1Module.html',1,'viam::sdk']]],
   ['module_20development_9',['Classes related to C++ module development.',['../group__Module.html',1,'']]],
-  ['moduleservice_10',['ModuleService',['../classviam_1_1sdk_1_1ModuleService.html',1,'viam::sdk::ModuleService'],['../classviam_1_1sdk_1_1ModuleService.html#afe688873799bbf955ecc615509aed856',1,'viam::sdk::ModuleService::ModuleService(std::string addr)'],['../classviam_1_1sdk_1_1ModuleService.html#ae7ce5aeb1f4bea79f25836cc1656e2b2',1,'viam::sdk::ModuleService::ModuleService(int argc, char **argv, std::vector&lt; std::shared_ptr&lt; ModelRegistration &gt; &gt; registrations)']]],
+  ['moduleservice_10',['ModuleService',['../classviam_1_1sdk_1_1ModuleService.html',1,'viam::sdk::ModuleService'],['../classviam_1_1sdk_1_1ModuleService.html#afe688873799bbf955ecc615509aed856',1,'viam::sdk::ModuleService::ModuleService(std::string addr)'],['../classviam_1_1sdk_1_1ModuleService.html#a923a51847cd519480d34a16f7fe4ae8c',1,'viam::sdk::ModuleService::ModuleService(int argc, char **argv, const std::vector&lt; std::shared_ptr&lt; ModelRegistration &gt; &gt; &amp;registrations)']]],
   ['motion_11',['Motion',['../classviam_1_1sdk_1_1Motion.html',1,'viam::sdk']]],
   ['motion_2ehpp_12',['motion.hpp',['../motion_8hpp.html',1,'']]],
   ['motion_5fconfiguration_13',['motion_configuration',['../structviam_1_1sdk_1_1motion__configuration.html',1,'viam::sdk']]],

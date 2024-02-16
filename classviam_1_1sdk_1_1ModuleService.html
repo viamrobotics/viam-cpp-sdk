@@ -100,9 +100,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afe688873799bbf955ecc615509aed856" id="r_afe688873799bbf955ecc615509aed856"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe688873799bbf955ecc615509aed856">ModuleService</a> (std::string addr)</td></tr>
 <tr class="memdesc:afe688873799bbf955ecc615509aed856"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="classviam_1_1sdk_1_1ModuleService.html" title="Defines the gRPC receiving logic for a module. C++ module authors can construct a ModuleService and u...">ModuleService</a> that can serve on the provided socket.  <br /></td></tr>
 <tr class="separator:afe688873799bbf955ecc615509aed856"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7ce5aeb1f4bea79f25836cc1656e2b2" id="r_ae7ce5aeb1f4bea79f25836cc1656e2b2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7ce5aeb1f4bea79f25836cc1656e2b2">ModuleService</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">argc</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">char</a> **<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">argv</a>, std::vector&lt; std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ModelRegistration.html">ModelRegistration</a> &gt; &gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">registrations</a>)</td></tr>
-<tr class="memdesc:ae7ce5aeb1f4bea79f25836cc1656e2b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="classviam_1_1sdk_1_1ModuleService.html" title="Defines the gRPC receiving logic for a module. C++ module authors can construct a ModuleService and u...">ModuleService</a>. Socket path and log level will be inferred from passed in command line arguments, and passed in model registrations will be registered and added to module.  <br /></td></tr>
-<tr class="separator:ae7ce5aeb1f4bea79f25836cc1656e2b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a923a51847cd519480d34a16f7fe4ae8c" id="r_a923a51847cd519480d34a16f7fe4ae8c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a923a51847cd519480d34a16f7fe4ae8c">ModuleService</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">argc</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">char</a> **<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">argv</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ModelRegistration.html">ModelRegistration</a> &gt; &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">registrations</a>)</td></tr>
+<tr class="memdesc:a923a51847cd519480d34a16f7fe4ae8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="classviam_1_1sdk_1_1ModuleService.html" title="Defines the gRPC receiving logic for a module. C++ module authors can construct a ModuleService and u...">ModuleService</a>. Socket path and log level will be inferred from passed in command line arguments, and passed in model registrations will be registered and added to module.  <br /></td></tr>
+<tr class="separator:a923a51847cd519480d34a16f7fe4ae8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa85c5e8ae1c3eb53049ba05a7efc9b0b" id="r_aa85c5e8ae1c3eb53049ba05a7efc9b0b"><td class="memItemLeft" align="right" valign="top"><a id="aa85c5e8ae1c3eb53049ba05a7efc9b0b" name="aa85c5e8ae1c3eb53049ba05a7efc9b0b"></a>
 <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>serve</b> ()</td></tr>
 <tr class="memdesc:aa85c5e8ae1c3eb53049ba05a7efc9b0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts module. serve will return when SIGINT or SIGTERM is received (this happens when the RDK shuts down). <br /></td></tr>
@@ -147,8 +147,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ae7ce5aeb1f4bea79f25836cc1656e2b2" name="ae7ce5aeb1f4bea79f25836cc1656e2b2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae7ce5aeb1f4bea79f25836cc1656e2b2">&#9670;&#160;</a></span>ModuleService() <span class="overload">[2/2]</span></h2>
+<a id="a923a51847cd519480d34a16f7fe4ae8c" name="a923a51847cd519480d34a16f7fe4ae8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a923a51847cd519480d34a16f7fe4ae8c">&#9670;&#160;</a></span>ModuleService() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -169,7 +169,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ModelRegistration.html">ModelRegistration</a> &gt; &gt;</td>          <td class="paramname"><span class="paramname"><em>registrations</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ModelRegistration.html">ModelRegistration</a> &gt; &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>registrations</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
