@@ -138,7 +138,7 @@ viam::app::v1::ComponentConfig ResourceConfig::to_proto() const {
     return proto_cfg;
 }
 
-ResourceConfig::ResourceConfig(const std::string& type) : api_({kRDK, type, ""}), type_(type){};
+ResourceConfig::ResourceConfig(std::string type) : api_({kRDK, type, ""}), type_(std::move(type)){};
 
 }  // namespace sdk
 }  // namespace viam

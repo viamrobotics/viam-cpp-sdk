@@ -10,7 +10,7 @@ namespace sdk {
 class HandlerMap_ {
    public:
     HandlerMap_();
-    void add_model(const Model& model, const RPCSubtype& subtype);
+    void add_model(Model model, const RPCSubtype& subtype);
 
     viam::module::v1::HandlerMap to_proto() const;
     static const HandlerMap_ from_proto(const viam::module::v1::HandlerMap& proto);

@@ -65,8 +65,8 @@ const HandlerMap_ HandlerMap_::from_proto(const viam::module::v1::HandlerMap& pr
     return hm;
 }
 
-void HandlerMap_::add_model(const Model& model, const RPCSubtype& subtype) {
-    handles_[subtype].push_back(model);
+void HandlerMap_::add_model(Model model, const RPCSubtype& subtype) {
+    handles_[subtype].push_back(std::move(model));
 }
 
 std::ostream& operator<<(std::ostream& os, const HandlerMap_& hm) {

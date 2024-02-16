@@ -318,9 +318,9 @@ std::vector<Name> RobotClient::resource_names() const {
     return resource_names_;
 }
 
-std::shared_ptr<RobotClient> RobotClient::with_channel(const std::shared_ptr<ViamChannel>& channel,
+std::shared_ptr<RobotClient> RobotClient::with_channel(std::shared_ptr<ViamChannel> channel,
                                                        const Options& options) {
-    std::shared_ptr<RobotClient> robot = std::make_shared<RobotClient>(channel);
+    std::shared_ptr<RobotClient> robot = std::make_shared<RobotClient>(std::move(channel));
     robot->refresh_interval_ = options.refresh_interval();
     robot->should_refresh_ = (robot->refresh_interval_ > 0);
     if (robot->should_refresh_) {
@@ -460,8 +460,8 @@ void RobotClient::stop_all(const std::unordered_map<Name, AttributeMap>& extra) 
 
     RepeatedPtrField<viam::robot::v1::StopExtraParameters>* ep = req.mutable_extra();
     for (const auto& xtra : extra) {
-        const Name name = xtra.first;
-        const AttributeMap params = xtra.second;
+        const Name& name = xtra.first;
+        const AttributeMap& params = xtra.second;
         const google::protobuf::Struct s = map_to_struct(params);
         viam::robot::v1::StopExtraParameters stop;
         *stop.mutable_name() = name.to_proto();

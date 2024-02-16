@@ -265,8 +265,8 @@ ModuleService::~ModuleService() {
     }
 }
 
-void ModuleService::add_model_from_registry_inlock_(const API& api,
-                                                    const Model& model,
+void ModuleService::add_model_from_registry_inlock_(API api,
+                                                    Model model,
                                                     const std::lock_guard<std::mutex>& lock) {
     const std::shared_ptr<const ResourceServerRegistration> creator =
         Registry::lookup_resource_server(api);
@@ -276,13 +276,13 @@ void ModuleService::add_model_from_registry_inlock_(const API& api,
         name = creator->service_descriptor()->full_name();
         sd = creator->service_descriptor();
     }
-    const RPCSubtype rpc_subtype(api, name, *sd);
-    module_->mutable_handles().add_model(model, rpc_subtype);
+    const RPCSubtype rpc_subtype(std::move(api), name, *sd);
+    module_->mutable_handles().add_model(std::move(model), rpc_subtype);
 };
 
-void ModuleService::add_model_from_registry(const API& api, const Model& model) {
+void ModuleService::add_model_from_registry(API api, Model model) {
     const std::lock_guard<std::mutex> lock(lock_);
-    return add_model_from_registry_inlock_(api, model, lock);
+    return add_model_from_registry_inlock_(std::move(api), std::move(model), lock);
 }
 
 }  // namespace sdk
