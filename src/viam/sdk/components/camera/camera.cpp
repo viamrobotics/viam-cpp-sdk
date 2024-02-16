@@ -25,51 +25,56 @@ API API::traits<Camera>::api() {
     return {kRDK, kComponent, "camera"};
 }
 
+// Utility functions for byte swapping
+uint16_t swap_bytes_16(uint16_t value) {
+    return (value >> 8) | (value << 8);
+}
+
+uint64_t swap_bytes_64(uint64_t value) {
+    return ((value >> 56) & 0xff) | ((value << 40) & 0xff000000000000) |
+           ((value << 24) & 0xff0000000000) | ((value << 8) & 0xff00000000) |
+           ((value >> 8) & 0xff000000) | ((value >> 24) & 0xff0000) | ((value >> 40) & 0xff00) |
+           ((value << 56) & 0xff00000000000000);
+}
+
 bool is_little_endian() {
     unsigned int x = 1;
     char* c = (char*)&x;
     return *c;
 }
 
-void Camera::check_system_endianness() {
-    if (is_little_endian()) {
-        throw Exception(
-            "This function cannot be run on a little-endian system due to big-endian data format "
-            "assumptions.");
-    }
-}
-
 std::vector<unsigned char> Camera::encode_depth_map(const Camera::depth_map& m) {
-    check_system_endianness();
-    auto expected_size = m.width * m.height;
-    if (m.depth_values.size() != expected_size) {
+    if (m.depth_values.size() != m.width * m.height) {
         throw Exception(
             "Number of depth values does not match the specified width and height. Expected: " +
-            std::to_string(expected_size) + ". Actual: " + std::to_string(m.depth_values.size()));
+            std::to_string(m.width * m.height) +
+            ". Actual: " + std::to_string(m.depth_values.size()));
     }
 
-    // Get the total size needed
-    std::vector<unsigned char> data(16 + m.width * m.height * sizeof(uint16_t));
-    size_t offset = 0;
+    std::vector<unsigned char> data;
+    data.reserve(16 + m.width * m.height * sizeof(uint16_t));
 
-    // Encode using big-endian format
+    // Convert width and height to big-endian if necessary
+    const uint64_t width_be = is_little_endian() ? swap_bytes_64(m.width) : m.width;
+    const uint64_t height_be = is_little_endian() ? swap_bytes_64(m.height) : m.height;
+
     for (int i = 7; i >= 0; --i) {
-        data[offset++] = (m.width >> (i * 8)) & 0xFF;
+        data.push_back((width_be >> (i * 8)) & 0xFF);
     }
     for (int i = 7; i >= 0; --i) {
-        data[offset++] = (m.height >> (i * 8)) & 0xFF;
+        data.push_back((height_be >> (i * 8)) & 0xFF);
     }
 
     for (auto value : m.depth_values) {
-        data[offset++] = (value >> 8) & 0xFF;
-        data[offset++] = value & 0xFF;
+        const uint16_t value_be = is_little_endian() ? swap_bytes_16(value) : value;
+        data.push_back((value_be >> 8) & 0xFF);
+        data.push_back(value_be & 0xFF);
     }
 
     return data;
 }
 
 Camera::depth_map Camera::decode_depth_map(const std::vector<unsigned char>& data) {
-    check_system_endianness();
     Camera::depth_map depth_map;
     if (data.size() < 24) {
         throw Exception("Data too short to contain valid depth information. Size: " +
@@ -99,8 +104,8 @@ Camera::depth_map Camera::decode_depth_map(const std::vector<unsigned char>& dat
 
     for (size_t i = 0; i < width * height; ++i) {
         const size_t data_index = 24 + i * sizeof(uint16_t);
-        const uint16_t depth_value =
-            static_cast<uint16_t>(data[data_index] << 8 | data[data_index + 1]);
+        const uint16_t depth_value = static_cast<uint16_t>(
+            data[data_index] << 8 | data[data_index + 1]);  // Assemble from big endian into uint16
         arr.push_back(depth_value);
     }
 

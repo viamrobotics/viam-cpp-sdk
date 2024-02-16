@@ -105,9 +105,6 @@ class Camera : public Component {
             : width(w), height(h), depth_values(std::move(values)) {}
     };
 
-    /// @brief Throws Exception if little-endian, as depth encode/decode funcs assume big-endian
-    static void check_system_endianness();
-
     ///
     /// Encodes the dimensions and depth values of a depth map into a raw binary format
     /// (MIME type FORMAT_RAW_DEPTH).
