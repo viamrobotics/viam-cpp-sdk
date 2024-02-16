@@ -12,8 +12,8 @@
 #include <viam/api/component/powersensor/v1/powersensor.pb.h>
 
 #include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/components/private/power_sensor_client.hpp>
 #include <viam/sdk/components/power_sensor.hpp>
+#include <viam/sdk/components/private/power_sensor_client.hpp>
 #include <viam/sdk/components/private/power_sensor_server.hpp>
 #include <viam/sdk/tests/mocks/mock_power_sensor.hpp>
 #include <viam/sdk/tests/test_utils.hpp>

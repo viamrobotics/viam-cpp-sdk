@@ -13,8 +13,8 @@
 
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/components/private/sensor_client.hpp>
-#include <viam/sdk/components/sensor.hpp>
 #include <viam/sdk/components/private/sensor_server.hpp>
+#include <viam/sdk/components/sensor.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
 #include <viam/sdk/tests/mocks/mock_sensor.hpp>
 #include <viam/sdk/tests/test_utils.hpp>

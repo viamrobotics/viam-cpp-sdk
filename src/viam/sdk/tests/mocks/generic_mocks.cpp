@@ -5,8 +5,8 @@
 #include <viam/api/component/camera/v1/camera.pb.h>
 
 #include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/components/private/generic_client.hpp>
 #include <viam/sdk/components/generic.hpp>
+#include <viam/sdk/components/private/generic_client.hpp>
 #include <viam/sdk/components/private/generic_server.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 

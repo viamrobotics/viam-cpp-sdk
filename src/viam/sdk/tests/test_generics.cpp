@@ -8,8 +8,8 @@
 
 #include <viam/api/common/v1/common.pb.h>
 
-#include <viam/sdk/components/private/generic_client.hpp>
 #include <viam/sdk/components/generic.hpp>
+#include <viam/sdk/components/private/generic_client.hpp>
 #include <viam/sdk/components/private/generic_server.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>

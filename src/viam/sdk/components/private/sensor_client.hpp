@@ -7,8 +7,8 @@
 
 #include <viam/api/component/sensor/v1/sensor.grpc.pb.h>
 
-#include <viam/sdk/components/sensor.hpp>
 #include <viam/sdk/components/private/sensor_server.hpp>
+#include <viam/sdk/components/sensor.hpp>
 #include <viam/sdk/config/resource.hpp>
 
 namespace viam {

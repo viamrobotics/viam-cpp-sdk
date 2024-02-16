@@ -6,8 +6,8 @@
 
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/components/private/sensor_client.hpp>
-#include <viam/sdk/components/sensor.hpp>
 #include <viam/sdk/components/private/sensor_server.hpp>
+#include <viam/sdk/components/sensor.hpp>
 
 namespace viam {
 namespace sdktests {
