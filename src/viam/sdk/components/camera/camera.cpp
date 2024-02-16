@@ -51,13 +51,22 @@ std::vector<unsigned char> Camera::encode_depth_map(const Camera::depth_map& m) 
             ". Actual: " + std::to_string(m.depth_values.size()));
     }
 
-    std::vector<unsigned char> data;
-    data.reserve(16 + m.width * m.height * sizeof(uint16_t));
-
-    // Convert width and height to big-endian if necessary
+    // Equivalent to 'DEPTHMAP' in UTF-8 encoding represented as a hex
+    const uint64_t magic_number = 0x44455054484D4150ULL;
     const uint64_t width_be = is_little_endian() ? swap_bytes_64(m.width) : m.width;
     const uint64_t height_be = is_little_endian() ? swap_bytes_64(m.height) : m.height;
 
+    const size_t total_byte_count = 8 /* magic number */ + 8 /* width */ + 8 /* height */ +
+                                    m.depth_values.size() * sizeof(uint16_t);
+    std::vector<unsigned char> data;
+    data.reserve(total_byte_count);
+
+    // Add magic number to data vector
+    for (int i = 7; i >= 0; --i) {
+        data.push_back((magic_number >> (i * 8)) & 0xFF);
+    }
+
+    // Depth mimetype is big-endian
     for (int i = 7; i >= 0; --i) {
         data.push_back((width_be >> (i * 8)) & 0xFF);
     }
@@ -76,34 +85,35 @@ std::vector<unsigned char> Camera::encode_depth_map(const Camera::depth_map& m) 
 
 Camera::depth_map Camera::decode_depth_map(const std::vector<unsigned char>& data) {
     Camera::depth_map depth_map;
-    if (data.size() < 24) {
+
+    // Check if data includes full header: magic number, width, and height
+    const size_t header_size = 24;
+    if (data.size() < header_size) {
         throw Exception("Data too short to contain valid depth information. Size: " +
                         std::to_string(data.size()));
     }
 
-    // Assuming data is in big-endian format
     uint64_t width = 0;
     uint64_t height = 0;
 
-    // Process header
     for (int i = 0; i < 8; ++i) {
         width = (width << 8) | data[8 + i];
         height = (height << 8) | data[16 + i];
     }
 
-    auto expected_size = width * height * sizeof(uint16_t);
-    if (data.size() < expected_size) {
-        throw Exception("Data size does not match width and height. Actual size: " +
+    auto expected_size = header_size + width * height * sizeof(uint16_t);
+    if (data.size() != expected_size) {
+        throw Exception("Data size does not match width, height, and depth values. Actual size: " +
                         std::to_string(data.size()) +
-                        ". Expected size: " + std::to_string(expected_size) + ".");
+                        ". Expected size: " + std::to_string(expected_size) + "." +
+                        " Width: " + std::to_string(width) + " Height: " + std::to_string(height));
     }
 
-    // Remaining bytes are actual depth map data
     std::vector<uint16_t> arr;
     arr.reserve(width * height);
 
     for (size_t i = 0; i < width * height; ++i) {
-        const size_t data_index = 24 + i * sizeof(uint16_t);
+        const size_t data_index = header_size + i * sizeof(uint16_t);
         const uint16_t depth_value = static_cast<uint16_t>(
             data[data_index] << 8 | data[data_index + 1]);  // Assemble from big endian into uint16
         arr.push_back(depth_value);
