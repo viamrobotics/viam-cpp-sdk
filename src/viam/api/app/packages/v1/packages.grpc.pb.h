@@ -65,7 +65,7 @@ class PackageService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::packages::v1::GetPackageResponse>> PrepareAsyncGetPackage(::grpc::ClientContext* context, const ::viam::app::packages::v1::GetPackageRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::packages::v1::GetPackageResponse>>(PrepareAsyncGetPackageRaw(context, request, cq));
     }
-    // ListPackages gets the metadata for the requested packages. Include package name, version, and/or
+    // ListPackages gets the metadata for the requested packages. Includes package name, version, and/or
     // type to filter beyond the required organization_id. ListPackages also returns URLs for
     // downloading each package if they are requested.
     virtual ::grpc::Status ListPackages(::grpc::ClientContext* context, const ::viam::app::packages::v1::ListPackagesRequest& request, ::viam::app::packages::v1::ListPackagesResponse* response) = 0;
@@ -87,7 +87,7 @@ class PackageService final {
       // for downloading the package if one is requested.
       virtual void GetPackage(::grpc::ClientContext* context, const ::viam::app::packages::v1::GetPackageRequest* request, ::viam::app::packages::v1::GetPackageResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetPackage(::grpc::ClientContext* context, const ::viam::app::packages::v1::GetPackageRequest* request, ::viam::app::packages::v1::GetPackageResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // ListPackages gets the metadata for the requested packages. Include package name, version, and/or
+      // ListPackages gets the metadata for the requested packages. Includes package name, version, and/or
       // type to filter beyond the required organization_id. ListPackages also returns URLs for
       // downloading each package if they are requested.
       virtual void ListPackages(::grpc::ClientContext* context, const ::viam::app::packages::v1::ListPackagesRequest* request, ::viam::app::packages::v1::ListPackagesResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -188,7 +188,7 @@ class PackageService final {
     // GetPackage returns the metadata for a requested package version. It also returns a URL
     // for downloading the package if one is requested.
     virtual ::grpc::Status GetPackage(::grpc::ServerContext* context, const ::viam::app::packages::v1::GetPackageRequest* request, ::viam::app::packages::v1::GetPackageResponse* response);
-    // ListPackages gets the metadata for the requested packages. Include package name, version, and/or
+    // ListPackages gets the metadata for the requested packages. Includes package name, version, and/or
     // type to filter beyond the required organization_id. ListPackages also returns URLs for
     // downloading each package if they are requested.
     virtual ::grpc::Status ListPackages(::grpc::ServerContext* context, const ::viam::app::packages::v1::ListPackagesRequest* request, ::viam::app::packages::v1::ListPackagesResponse* response);
