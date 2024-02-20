@@ -11,11 +11,9 @@
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/resource/resource.hpp>
 
-#include <cstring>
-
 #ifndef htonll
-#define htonll(x) \
-    ((1 == htonl(1)) ? (x) : ((uint64_t)htonl((x)&0xFFFFFFFF) << 32) | htonl((x) >> 32))
+#define htonll(b) \
+    ((1 == htonl(1)) ? (b) : ((uint64_t)htonl((b)&0xFFFFFFFF) << 32) | htonl((b) >> 32))
 #endif
 
 namespace viam {
@@ -83,7 +81,6 @@ std::vector<unsigned char> Camera::encode_depth_map(const Camera::depth_map& m) 
 Camera::depth_map Camera::decode_depth_map(const std::vector<unsigned char>& data) {
     Camera::depth_map depth_map;
 
-    // Check if data includes full header: magic number, width, and height
     const size_t header_size = 24;
     if (data.size() < header_size) {
         throw Exception("Data too short to contain valid depth information. Size: " +

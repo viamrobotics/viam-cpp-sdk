@@ -3,8 +3,10 @@
 /// @brief Defines a `Camera` component.
 #pragma once
 
+#include <arpa/inet.h>
 #include <bitset>
 #include <chrono>
+#include <cstring>
 #include <string>
 #include <vector>
 
@@ -111,10 +113,10 @@ class Camera : public Component {
     ///
     /// This function takes the width and height of a depth map, along with a vector
     /// of depth values, and encodes this information into a binary blob. The binary
-    /// format consists of the width and height encoded as 64-bit unsigned integers
-    /// (big-endian format) followed by the depth values encoded as 16-bit unsigned
-    /// integers (big-endian format). This format is suitable for serialization and
-    /// transmission of depth map data through gRPC.
+    /// format consists of "magic number" header (UTF-8 encoding for 'DEPTHMAP' in big-endian),
+    /// then the width and height encoded as 64-bit unsigned integers, followed by the depth
+    /// values encoded as 16-bit unsigned integers (big-endian format). This format is suitable
+    /// for serialization and transmission of depth map data through gRPC.
     ///
     /// @param width The width of the depth map in pixels.
     /// @param height The height of the depth map in pixels.
