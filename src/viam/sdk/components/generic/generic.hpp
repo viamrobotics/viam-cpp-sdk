@@ -24,7 +24,6 @@ class GenericComponent : public Component {
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param command the command to execute.
     /// @return The result of the executed command.
-    // CR erodkin: flyby
     virtual AttributeMap do_command(const AttributeMap& command) = 0;
 
     /// @brief Returns `GeometryConfig`s associated with the calling camera.

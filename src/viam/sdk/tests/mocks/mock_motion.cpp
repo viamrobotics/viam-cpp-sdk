@@ -29,7 +29,6 @@ bool MockMotion::move_on_map(const pose& destination,
                              const Name& component_name,
                              const Name& slam_name,
                              const AttributeMap&) {
-    // CR erodkin: flyby
     this->peek_current_pose = destination;
     this->peek_component_name = component_name;
     this->peek_slam_name = slam_name;
