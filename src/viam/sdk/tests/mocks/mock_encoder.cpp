@@ -15,25 +15,24 @@ namespace encoder {
 
 using namespace viam::sdk;
 
-Encoder::position MockEncoder::get_position(const AttributeMap& extra,
-                                            position_type position_type) {
+Encoder::position MockEncoder::get_position(const AttributeMap&, position_type position_type) {
     this->peek_get_position_position_type = position_type;
     return this->peek_get_position_ret;
 };
 
-void MockEncoder::reset_position(const AttributeMap& extra) {
+void MockEncoder::reset_position(const AttributeMap&) {
     this->peek_reset_position_called = true;
 };
 
-Encoder::properties MockEncoder::get_properties(const AttributeMap& extra) {
+Encoder::properties MockEncoder::get_properties(const AttributeMap&) {
     return this->peek_get_properties_ret;
 };
 
-std::vector<GeometryConfig> MockEncoder::get_geometries(const sdk::AttributeMap& extra) {
+std::vector<GeometryConfig> MockEncoder::get_geometries(const sdk::AttributeMap&) {
     return fake_geometries();
 }
 
-AttributeMap MockEncoder::do_command(AttributeMap command) {
+AttributeMap MockEncoder::do_command(const AttributeMap& command) {
     return command;
 };
 

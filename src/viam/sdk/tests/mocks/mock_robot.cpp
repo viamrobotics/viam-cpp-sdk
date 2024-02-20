@@ -265,8 +265,8 @@ std::vector<FrameSystemConfig> mock_proto_config_response() {
 }
 
 ::grpc::Status MockRobotService::FrameSystemConfig(
-    ::grpc::ServerContext* context,
-    const ::viam::robot::v1::FrameSystemConfigRequest* request,
+    ::grpc::ServerContext*,
+    const ::viam::robot::v1::FrameSystemConfigRequest*,
     ::viam::robot::v1::FrameSystemConfigResponse* response) {
     auto* configs = response->mutable_frame_system_configs();
     for (const auto& c : mock_proto_config_response()) {
@@ -276,8 +276,8 @@ std::vector<FrameSystemConfig> mock_proto_config_response() {
 }
 
 ::grpc::Status MockRobotService::DiscoverComponents(
-    ::grpc::ServerContext* context,
-    const ::viam::robot::v1::DiscoverComponentsRequest* request,
+    ::grpc::ServerContext*,
+    const ::viam::robot::v1::DiscoverComponentsRequest*,
     ::viam::robot::v1::DiscoverComponentsResponse* response) {
     auto* discovery = response->mutable_discovery();
     for (auto& d : mock_proto_discovery_response()) {
@@ -286,18 +286,16 @@ std::vector<FrameSystemConfig> mock_proto_config_response() {
     return ::grpc::Status();
 }
 
-::grpc::Status MockRobotService::TransformPose(
-    ::grpc::ServerContext* context,
-    const ::viam::robot::v1::TransformPoseRequest* request,
-    ::viam::robot::v1::TransformPoseResponse* response) {
+::grpc::Status MockRobotService::TransformPose(::grpc::ServerContext*,
+                                               const ::viam::robot::v1::TransformPoseRequest*,
+                                               ::viam::robot::v1::TransformPoseResponse* response) {
     *response->mutable_pose() = mock_proto_transform_response();
     return ::grpc::Status();
 }
 
-::grpc::Status MockRobotService::GetOperations(
-    ::grpc::ServerContext* context,
-    const ::viam::robot::v1::GetOperationsRequest* request,
-    ::viam::robot::v1::GetOperationsResponse* response) {
+::grpc::Status MockRobotService::GetOperations(::grpc::ServerContext*,
+                                               const ::viam::robot::v1::GetOperationsRequest*,
+                                               ::viam::robot::v1::GetOperationsResponse* response) {
     auto* ops = response->mutable_operations();
     for (auto& op : mock_proto_operations_response()) {
         *ops->Add() = op;

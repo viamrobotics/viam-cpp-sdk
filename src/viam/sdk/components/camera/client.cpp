@@ -22,7 +22,7 @@ CameraClient::CameraClient(std::string name, std::shared_ptr<grpc::Channel> chan
       stub_(viam::component::camera::v1::CameraService::NewStub(channel)),
       channel_(std::move(channel)){};
 
-AttributeMap CameraClient::do_command(AttributeMap command) {
+AttributeMap CameraClient::do_command(const AttributeMap& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
         .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
         .invoke([](auto& response) { return struct_to_map(response.result()); });

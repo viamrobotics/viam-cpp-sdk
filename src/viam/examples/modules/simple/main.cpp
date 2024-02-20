@@ -43,7 +43,7 @@ class Printer : public GenericService {
         std::cout << "Printer " << Resource::name() << " will print " << to_print_ << std::endl;
     }
 
-    AttributeMap do_command(AttributeMap command) {
+    AttributeMap do_command(const AttributeMap& command) {
         std::cout << "Received DoCommand request for Printer " << Resource::name() << std::endl;
         std::cout << "Printer " << Resource::name() << " has printed " << to_print_ << std::endl;
         return command;

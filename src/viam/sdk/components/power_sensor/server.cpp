@@ -14,7 +14,7 @@ namespace sdk {
 PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)){};
 
-::grpc::Status PowerSensorServer::GetVoltage(::grpc::ServerContext* context,
+::grpc::Status PowerSensorServer::GetVoltage(::grpc::ServerContext*,
                                              const GetVoltageRequest* request,
                                              GetVoltageResponse* response) noexcept {
     return make_service_helper<PowerSensor>(
@@ -24,7 +24,7 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-::grpc::Status PowerSensorServer::GetCurrent(::grpc::ServerContext* context,
+::grpc::Status PowerSensorServer::GetCurrent(::grpc::ServerContext*,
                                              const GetCurrentRequest* request,
                                              GetCurrentResponse* response) noexcept {
     return make_service_helper<PowerSensor>(
@@ -34,7 +34,7 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-::grpc::Status PowerSensorServer::GetPower(::grpc::ServerContext* context,
+::grpc::Status PowerSensorServer::GetPower(::grpc::ServerContext*,
                                            const GetPowerRequest* request,
                                            GetPowerResponse* response) noexcept {
     return make_service_helper<PowerSensor>(
@@ -45,7 +45,7 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status PowerSensorServer::GetReadings(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const viam::common::v1::GetReadingsRequest* request,
     viam::common::v1::GetReadingsResponse* response) noexcept {
     return make_service_helper<PowerSensor>(
@@ -58,11 +58,11 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status PowerSensorServer::DoCommand(
-    grpc::ServerContext* context,
+    grpc::ServerContext*,
     const viam::common::v1::DoCommandRequest* request,
     viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<PowerSensor>(
-        "PowerSensorServer::DoCommand", this, request)([&](auto& helper, auto& powersensor) {
+        "PowerSensorServer::DoCommand", this, request)([&](auto&, auto& powersensor) {
         const AttributeMap result = powersensor->do_command(struct_to_map(request->command()));
         *response->mutable_result() = map_to_struct(result);
     });

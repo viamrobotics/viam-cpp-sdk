@@ -26,7 +26,7 @@ class EncoderClient : public Encoder {
     void reset_position(const AttributeMap& extra) override;
     properties get_properties(const AttributeMap& extra) override;
     std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
-    AttributeMap do_command(AttributeMap command) override;
+    AttributeMap do_command(const AttributeMap& command) override;
 
     // the `extra` param is frequently unnecessary but needs to be supported. Ideally, we'd
     // like to live in a world where implementers of derived classes don't need to go out of

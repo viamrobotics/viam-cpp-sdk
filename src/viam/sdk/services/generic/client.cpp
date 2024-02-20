@@ -19,7 +19,7 @@ GenericServiceClient::GenericServiceClient(std::string name, std::shared_ptr<grp
       stub_(viam::service::generic::v1::GenericService::NewStub(channel)),
       channel_(std::move(channel)){};
 
-AttributeMap GenericServiceClient::do_command(AttributeMap command) {
+AttributeMap GenericServiceClient::do_command(const AttributeMap& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
         .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
         .invoke([](auto& response) { return struct_to_map(response.result()); });

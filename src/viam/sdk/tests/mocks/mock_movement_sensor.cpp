@@ -14,35 +14,35 @@ namespace movementsensor {
 
 using namespace viam::sdk;
 
-Vector3 MockMovementSensor::get_linear_velocity(const AttributeMap& extra) {
+Vector3 MockMovementSensor::get_linear_velocity(const AttributeMap&) {
     return this->peek_return_vec;
 };
-Vector3 MockMovementSensor::get_angular_velocity(const AttributeMap& extra) {
+Vector3 MockMovementSensor::get_angular_velocity(const AttributeMap&) {
     return this->peek_return_vec;
 };
-MovementSensor::compassheading MockMovementSensor::get_compass_heading(const AttributeMap& extra) {
+MovementSensor::compassheading MockMovementSensor::get_compass_heading(const AttributeMap&) {
     return this->peek_compass_heading;
 };
-MovementSensor::orientation MockMovementSensor::get_orientation(const AttributeMap& extra) {
+MovementSensor::orientation MockMovementSensor::get_orientation(const AttributeMap&) {
     return this->peek_orientation;
 };
-MovementSensor::position MockMovementSensor::get_position(const AttributeMap& extra) {
+MovementSensor::position MockMovementSensor::get_position(const AttributeMap&) {
     return this->peek_position;
 };
-MovementSensor::properties MockMovementSensor::get_properties(const AttributeMap& extra) {
+MovementSensor::properties MockMovementSensor::get_properties(const AttributeMap&) {
     return this->peek_properties;
 };
-std::unordered_map<std::string, float> MockMovementSensor::get_accuracy(const AttributeMap& extra) {
+std::unordered_map<std::string, float> MockMovementSensor::get_accuracy(const AttributeMap&) {
     return this->peek_accuracy;
 };
-Vector3 MockMovementSensor::get_linear_acceleration(const AttributeMap& extra) {
+Vector3 MockMovementSensor::get_linear_acceleration(const AttributeMap&) {
     return this->peek_return_vec;
 };
 AttributeMap MockMovementSensor::do_command(const AttributeMap& command) {
     this->peek_do_command_command = command;
     return command;
 };
-std::vector<sdk::GeometryConfig> MockMovementSensor::get_geometries(const AttributeMap& extra) {
+std::vector<sdk::GeometryConfig> MockMovementSensor::get_geometries(const AttributeMap&) {
     return fake_geometries();
 };
 

@@ -11,17 +11,17 @@ GenericComponentServer::GenericComponentServer(std::shared_ptr<ResourceManager> 
     : ResourceServer(std::move(manager)){};
 
 ::grpc::Status GenericComponentServer::DoCommand(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::common::v1::DoCommandRequest* request,
     ::viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<GenericComponent>(
-        "GenericComponentServer::DoCommand", this, request)([&](auto& helper, auto& generic) {
+        "GenericComponentServer::DoCommand", this, request)([&](auto&, auto& generic) {
         const AttributeMap result = generic->do_command(struct_to_map(request->command()));
         *response->mutable_result() = map_to_struct(result);
     });
 }
 ::grpc::Status GenericComponentServer::GetGeometries(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::common::v1::GetGeometriesRequest* request,
     ::viam::common::v1::GetGeometriesResponse* response) noexcept {
     return make_service_helper<GenericComponent>(
