@@ -21,21 +21,22 @@ class MotionClient : public Motion {
     MotionClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     bool move(const pose_in_frame& destination,
               const Name& component_name,
-              std::shared_ptr<WorldState> world_state,
-              std::shared_ptr<constraints> constraints,
+              const std::shared_ptr<WorldState>& world_state,
+              const std::shared_ptr<constraints>& constraints,
               const AttributeMap& extra) override;
 
-    bool move_on_map(const pose& destination,
-                     const Name& component_name,
-                     const Name& slam_name,
-                     const AttributeMap& extra) override;
+    std::string move_on_map(const pose& destination,
+                            const Name& component_name,
+                            const Name& slam_name,
+                            const std::shared_ptr<motion_configuration>& motion_configuration,
+                            const AttributeMap& extra) override;
 
     std::string move_on_globe(const geo_point& destination,
                               const boost::optional<double>& heading,
                               const Name& component_name,
                               const Name& movement_sensor_name,
                               const std::vector<geo_obstacle>& obstacles,
-                              std::shared_ptr<motion_configuration> motion_configuration,
+                              const std::shared_ptr<motion_configuration>& motion_configuration,
                               const AttributeMap& extra) override;
 
     pose_in_frame get_pose(const Name& component_name,

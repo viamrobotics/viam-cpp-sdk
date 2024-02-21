@@ -4,6 +4,7 @@
 #include <viam/api/component/camera/v1/camera.grpc.pb.h>
 #include <viam/api/component/camera/v1/camera.pb.h>
 
+#include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/components/generic/client.hpp>
 #include <viam/sdk/components/generic/generic.hpp>
 #include <viam/sdk/components/generic/server.hpp>
@@ -15,12 +16,10 @@ namespace generic {
 
 using namespace viam::sdk;
 
-std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
-MockGenericComponent::do_command(
-    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> command) {
+AttributeMap MockGenericComponent::do_command(const AttributeMap&) {
     return map_;
 }
-std::vector<GeometryConfig> MockGenericComponent::get_geometries(const AttributeMap& extra) {
+std::vector<GeometryConfig> MockGenericComponent::get_geometries(const AttributeMap&) {
     return geometries_;
 }
 std::shared_ptr<MockGenericComponent> MockGenericComponent::get_mock_generic() {
@@ -32,8 +31,7 @@ std::shared_ptr<MockGenericComponent> MockGenericComponent::get_mock_generic() {
 }
 
 std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
-MockGenericService::do_command(
-    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> command) {
+MockGenericService::do_command(const AttributeMap&) {
     return map_;
 }
 std::shared_ptr<MockGenericService> MockGenericService::get_mock_generic() {

@@ -16,7 +16,7 @@ namespace sdk {
 MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)){};
 
-::grpc::Status MotionServer::Move(::grpc::ServerContext* context,
+::grpc::Status MotionServer::Move(::grpc::ServerContext*,
                                   const ::viam::service::motion::v1::MoveRequest* request,
                                   ::viam::service::motion::v1::MoveResponse* response) noexcept {
     return make_service_helper<Motion>(
@@ -42,30 +42,36 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
 };
 
 ::grpc::Status MotionServer::MoveOnMap(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::service::motion::v1::MoveOnMapRequest* request,
     ::viam::service::motion::v1::MoveOnMapResponse* response) noexcept {
     return make_service_helper<Motion>(
         "MotionServer::MoveOnMap", this, request)([&](auto& helper, auto& motion) {
         const auto destination = pose::from_proto(request->destination());
-        auto component_name = Name::from_proto(request->component_name());
-        auto slam_name = Name::from_proto(request->slam_service_name());
-        const bool success = motion->move_on_map(
-            destination, std::move(component_name), std::move(slam_name), helper.getExtra());
+        const auto component_name = Name::from_proto(request->component_name());
+        const auto slam_name = Name::from_proto(request->slam_service_name());
 
-        response->set_success(success);
+        std::shared_ptr<motion_configuration> mc;
+        if (request->has_motion_configuration()) {
+            mc = std::make_shared<motion_configuration>(
+                motion_configuration::from_proto(request->motion_configuration()));
+        }
+        const std::string execution_id =
+            motion->move_on_map(destination, component_name, slam_name, mc, helper.getExtra());
+
+        *response->mutable_execution_id() = execution_id;
     });
 }
 
 ::grpc::Status MotionServer::MoveOnGlobe(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::service::motion::v1::MoveOnGlobeRequest* request,
     ::viam::service::motion::v1::MoveOnGlobeResponse* response) noexcept {
     return make_service_helper<Motion>(
         "MotionServer::MoveOnGlobe", this, request)([&](auto& helper, auto& motion) {
         const auto destination = geo_point::from_proto(request->destination());
-        auto component_name = Name::from_proto(request->component_name());
-        auto movement_sensor_name = Name::from_proto(request->movement_sensor_name());
+        const auto component_name = Name::from_proto(request->component_name());
+        const auto movement_sensor_name = Name::from_proto(request->movement_sensor_name());
         std::vector<geo_obstacle> obstacles;
 
         for (const auto& obstacle : request->obstacles()) {
@@ -85,18 +91,18 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
 
         const std::string execution_id = motion->move_on_globe(destination,
                                                                heading,
-                                                               std::move(component_name),
-                                                               std::move(movement_sensor_name),
-                                                               std::move(obstacles),
-                                                               std::move(mc),
-                                                               std::move(helper.getExtra()));
+                                                               component_name,
+                                                               movement_sensor_name,
+                                                               obstacles,
+                                                               mc,
+                                                               helper.getExtra());
 
         *response->mutable_execution_id() = execution_id;
     });
 }
 
 ::grpc::Status MotionServer::GetPose(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::service::motion::v1::GetPoseRequest* request,
     ::viam::service::motion::v1::GetPoseResponse* response) noexcept {
     return make_service_helper<Motion>(
@@ -114,7 +120,7 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
 };
 
 ::grpc::Status MotionServer::GetPlan(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::service::motion::v1::GetPlanRequest* request,
     ::viam::service::motion::v1::GetPlanResponse* response) noexcept {
     return make_service_helper<Motion>(
@@ -149,7 +155,7 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status MotionServer::ListPlanStatuses(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const service::motion::v1::ListPlanStatusesRequest* request,
     service::motion::v1::ListPlanStatusesResponse* response) noexcept {
     return make_service_helper<Motion>(
@@ -167,10 +173,9 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-::grpc::Status MotionServer::StopPlan(
-    ::grpc::ServerContext* context,
-    const ::viam::service::motion::v1::StopPlanRequest* request,
-    ::viam::service::motion::v1::StopPlanResponse* response) noexcept {
+::grpc::Status MotionServer::StopPlan(::grpc::ServerContext*,
+                                      const ::viam::service::motion::v1::StopPlanRequest* request,
+                                      ::viam::service::motion::v1::StopPlanResponse*) noexcept {
     return make_service_helper<Motion>(
         "MotionServer::StopPlan", this, request)([&](auto& helper, auto& motion) {
         const auto& component_name = Name::from_proto(request->component_name());
@@ -179,11 +184,11 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-::grpc::Status MotionServer::DoCommand(::grpc::ServerContext* context,
+::grpc::Status MotionServer::DoCommand(::grpc::ServerContext*,
                                        const ::viam::common::v1::DoCommandRequest* request,
                                        ::viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Motion>(
-        "MotionServer::DoCommand", this, request)([&](auto& helper, auto& motion) {
+        "MotionServer::DoCommand", this, request)([&](auto&, auto& motion) {
         const AttributeMap result = motion->do_command(struct_to_map(request->command()));
         *response->mutable_result() = map_to_struct(result);
     });

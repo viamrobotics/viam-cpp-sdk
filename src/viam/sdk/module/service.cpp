@@ -71,9 +71,9 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
 }
 
 // TODO(RSDK-6528) - to the extent possible, switch to using `server_helper`
-::grpc::Status ModuleService::AddResource(::grpc::ServerContext* context,
+::grpc::Status ModuleService::AddResource(::grpc::ServerContext*,
                                           const ::viam::module::v1::AddResourceRequest* request,
-                                          ::viam::module::v1::AddResourceResponse* response) {
+                                          ::viam::module::v1::AddResourceResponse*) {
     const viam::app::v1::ComponentConfig& proto = request->config();
     const ResourceConfig cfg = ResourceConfig::from_proto(proto);
     const std::lock_guard<std::mutex> lock(lock_);
@@ -99,9 +99,9 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
 };
 
 ::grpc::Status ModuleService::ReconfigureResource(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::module::v1::ReconfigureResourceRequest* request,
-    ::viam::module::v1::ReconfigureResourceResponse* response) {
+    ::viam::module::v1::ReconfigureResourceResponse*) {
     const viam::app::v1::ComponentConfig& proto = request->config();
     ResourceConfig cfg = ResourceConfig::from_proto(proto);
 
@@ -148,7 +148,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
 };
 
 ::grpc::Status ModuleService::ValidateConfig(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::module::v1::ValidateConfigRequest* request,
     ::viam::module::v1::ValidateConfigResponse* response) {
     const viam::app::v1::ComponentConfig& proto = request->config();
@@ -174,9 +174,9 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
 };
 
 ::grpc::Status ModuleService::RemoveResource(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::module::v1::RemoveResourceRequest* request,
-    ::viam::module::v1::RemoveResourceResponse* response) {
+    ::viam::module::v1::RemoveResourceResponse*) {
     auto name = Name::from_string(request->name());
     auto resource_server = server_->lookup_resource_server(name.api());
     if (!resource_server) {
@@ -200,7 +200,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
     return grpc::Status();
 };
 
-::grpc::Status ModuleService::Ready(::grpc::ServerContext* context,
+::grpc::Status ModuleService::Ready(::grpc::ServerContext*,
                                     const ::viam::module::v1::ReadyRequest* request,
                                     ::viam::module::v1::ReadyResponse* response) {
     const std::lock_guard<std::mutex> lock(lock_);
@@ -267,7 +267,7 @@ ModuleService::~ModuleService() {
 
 void ModuleService::add_model_from_registry_inlock_(API api,
                                                     Model model,
-                                                    const std::lock_guard<std::mutex>& lock) {
+                                                    const std::lock_guard<std::mutex>&) {
     const std::shared_ptr<const ResourceServerRegistration> creator =
         Registry::lookup_resource_server(api);
     std::string name;

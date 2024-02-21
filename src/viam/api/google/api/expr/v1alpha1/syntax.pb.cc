@@ -162,6 +162,34 @@ struct ConstantDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ConstantDefaultTypeInternal _Constant_default_instance_;
+PROTOBUF_CONSTEXPR SourceInfo_Extension_Version::SourceInfo_Extension_Version(
+    ::_pbi::ConstantInitialized)
+  : major_(int64_t{0})
+  , minor_(int64_t{0}){}
+struct SourceInfo_Extension_VersionDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SourceInfo_Extension_VersionDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SourceInfo_Extension_VersionDefaultTypeInternal() {}
+  union {
+    SourceInfo_Extension_Version _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SourceInfo_Extension_VersionDefaultTypeInternal _SourceInfo_Extension_Version_default_instance_;
+PROTOBUF_CONSTEXPR SourceInfo_Extension::SourceInfo_Extension(
+    ::_pbi::ConstantInitialized)
+  : affected_components_()
+  , _affected_components_cached_byte_size_(0)
+  , id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , version_(nullptr){}
+struct SourceInfo_ExtensionDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SourceInfo_ExtensionDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SourceInfo_ExtensionDefaultTypeInternal() {}
+  union {
+    SourceInfo_Extension _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SourceInfo_ExtensionDefaultTypeInternal _SourceInfo_Extension_default_instance_;
 PROTOBUF_CONSTEXPR SourceInfo_PositionsEntry_DoNotUse::SourceInfo_PositionsEntry_DoNotUse(
     ::_pbi::ConstantInitialized){}
 struct SourceInfo_PositionsEntry_DoNotUseDefaultTypeInternal {
@@ -190,6 +218,7 @@ PROTOBUF_CONSTEXPR SourceInfo::SourceInfo(
   , _line_offsets_cached_byte_size_(0)
   , positions_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
   , macro_calls_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
+  , extensions_()
   , syntax_version_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , location_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct SourceInfoDefaultTypeInternal {
@@ -220,8 +249,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 }  // namespace expr
 }  // namespace api
 }  // namespace google
-static ::_pb::Metadata file_level_metadata_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto[14];
-static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto = nullptr;
+static ::_pb::Metadata file_level_metadata_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto[16];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto[1];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto = nullptr;
 
 const uint32_t TableStruct_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -330,6 +359,23 @@ const uint32_t TableStruct_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto::offs
   ::_pbi::kInvalidFieldOffsetTag,
   ::_pbi::kInvalidFieldOffsetTag,
   PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::Constant, constant_kind_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::SourceInfo_Extension_Version, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::SourceInfo_Extension_Version, major_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::SourceInfo_Extension_Version, minor_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::SourceInfo_Extension, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::SourceInfo_Extension, id_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::SourceInfo_Extension, affected_components_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::SourceInfo_Extension, version_),
   PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::SourceInfo_PositionsEntry_DoNotUse, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::SourceInfo_PositionsEntry_DoNotUse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -361,6 +407,7 @@ const uint32_t TableStruct_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto::offs
   PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::SourceInfo, line_offsets_),
   PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::SourceInfo, positions_),
   PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::SourceInfo, macro_calls_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::SourceInfo, extensions_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::SourcePosition, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -383,10 +430,12 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 61, -1, -1, sizeof(::google::api::expr::v1alpha1::Expr_Comprehension)},
   { 74, -1, -1, sizeof(::google::api::expr::v1alpha1::Expr)},
   { 89, -1, -1, sizeof(::google::api::expr::v1alpha1::Constant)},
-  { 105, 113, -1, sizeof(::google::api::expr::v1alpha1::SourceInfo_PositionsEntry_DoNotUse)},
-  { 115, 123, -1, sizeof(::google::api::expr::v1alpha1::SourceInfo_MacroCallsEntry_DoNotUse)},
-  { 125, -1, -1, sizeof(::google::api::expr::v1alpha1::SourceInfo)},
-  { 136, -1, -1, sizeof(::google::api::expr::v1alpha1::SourcePosition)},
+  { 105, -1, -1, sizeof(::google::api::expr::v1alpha1::SourceInfo_Extension_Version)},
+  { 113, -1, -1, sizeof(::google::api::expr::v1alpha1::SourceInfo_Extension)},
+  { 122, 130, -1, sizeof(::google::api::expr::v1alpha1::SourceInfo_PositionsEntry_DoNotUse)},
+  { 132, 140, -1, sizeof(::google::api::expr::v1alpha1::SourceInfo_MacroCallsEntry_DoNotUse)},
+  { 142, -1, -1, sizeof(::google::api::expr::v1alpha1::SourceInfo)},
+  { 154, -1, -1, sizeof(::google::api::expr::v1alpha1::SourcePosition)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -400,6 +449,8 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::google::api::expr::v1alpha1::_Expr_Comprehension_default_instance_._instance,
   &::google::api::expr::v1alpha1::_Expr_default_instance_._instance,
   &::google::api::expr::v1alpha1::_Constant_default_instance_._instance,
+  &::google::api::expr::v1alpha1::_SourceInfo_Extension_Version_default_instance_._instance,
+  &::google::api::expr::v1alpha1::_SourceInfo_Extension_default_instance_._instance,
   &::google::api::expr::v1alpha1::_SourceInfo_PositionsEntry_DoNotUse_default_instance_._instance,
   &::google::api::expr::v1alpha1::_SourceInfo_MacroCallsEntry_DoNotUse_default_instance_._instance,
   &::google::api::expr::v1alpha1::_SourceInfo_default_instance_._instance,
@@ -468,24 +519,36 @@ const char descriptor_table_protodef_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2ep
   "\001(\0132\031.google.protobuf.DurationB\002\030\001H\000R\rdu"
   "rationValue\022I\n\017timestamp_value\030\t \001(\0132\032.g"
   "oogle.protobuf.TimestampB\002\030\001H\000R\016timestam"
-  "pValueB\017\n\rconstant_kind\"\271\003\n\nSourceInfo\022%"
+  "pValueB\017\n\rconstant_kind\"\214\007\n\nSourceInfo\022%"
   "\n\016syntax_version\030\001 \001(\tR\rsyntaxVersion\022\032\n"
   "\010location\030\002 \001(\tR\010location\022!\n\014line_offset"
   "s\030\003 \003(\005R\013lineOffsets\022Q\n\tpositions\030\004 \003(\0132"
   "3.google.api.expr.v1alpha1.SourceInfo.Po"
   "sitionsEntryR\tpositions\022U\n\013macro_calls\030\005"
   " \003(\01324.google.api.expr.v1alpha1.SourceIn"
-  "fo.MacroCallsEntryR\nmacroCalls\032<\n\016Positi"
-  "onsEntry\022\020\n\003key\030\001 \001(\003R\003key\022\024\n\005value\030\002 \001("
-  "\005R\005value:\0028\001\032]\n\017MacroCallsEntry\022\020\n\003key\030\001"
-  " \001(\003R\003key\0224\n\005value\030\002 \001(\0132\036.google.api.ex"
-  "pr.v1alpha1.ExprR\005value:\0028\001\"p\n\016SourcePos"
-  "ition\022\032\n\010location\030\001 \001(\tR\010location\022\026\n\006off"
-  "set\030\002 \001(\005R\006offset\022\022\n\004line\030\003 \001(\005R\004line\022\026\n"
-  "\006column\030\004 \001(\005R\006columnBn\n\034com.google.api."
-  "expr.v1alpha1B\013SyntaxProtoP\001Z<google.gol"
-  "ang.org/genproto/googleapis/api/expr/v1a"
-  "lpha1;expr\370\001\001b\006proto3"
+  "fo.MacroCallsEntryR\nmacroCalls\022N\n\nextens"
+  "ions\030\006 \003(\0132..google.api.expr.v1alpha1.So"
+  "urceInfo.ExtensionR\nextensions\032\200\003\n\tExten"
+  "sion\022\016\n\002id\030\001 \001(\tR\002id\022i\n\023affected_compone"
+  "nts\030\002 \003(\01628.google.api.expr.v1alpha1.Sou"
+  "rceInfo.Extension.ComponentR\022affectedCom"
+  "ponents\022P\n\007version\030\003 \001(\01326.google.api.ex"
+  "pr.v1alpha1.SourceInfo.Extension.Version"
+  "R\007version\0325\n\007Version\022\024\n\005major\030\001 \001(\003R\005maj"
+  "or\022\024\n\005minor\030\002 \001(\003R\005minor\"o\n\tComponent\022\031\n"
+  "\025COMPONENT_UNSPECIFIED\020\000\022\024\n\020COMPONENT_PA"
+  "RSER\020\001\022\032\n\026COMPONENT_TYPE_CHECKER\020\002\022\025\n\021CO"
+  "MPONENT_RUNTIME\020\003\032<\n\016PositionsEntry\022\020\n\003k"
+  "ey\030\001 \001(\003R\003key\022\024\n\005value\030\002 \001(\005R\005value:\0028\001\032"
+  "]\n\017MacroCallsEntry\022\020\n\003key\030\001 \001(\003R\003key\0224\n\005"
+  "value\030\002 \001(\0132\036.google.api.expr.v1alpha1.E"
+  "xprR\005value:\0028\001\"p\n\016SourcePosition\022\032\n\010loca"
+  "tion\030\001 \001(\tR\010location\022\026\n\006offset\030\002 \001(\005R\006of"
+  "fset\022\022\n\004line\030\003 \001(\005R\004line\022\026\n\006column\030\004 \001(\005"
+  "R\006columnBn\n\034com.google.api.expr.v1alpha1"
+  "B\013SyntaxProtoP\001Z<google.golang.org/genpr"
+  "oto/googleapis/api/expr/v1alpha1;expr\370\001\001"
+  "b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_deps[3] = {
   &::descriptor_table_google_2fprotobuf_2fduration_2eproto,
@@ -494,9 +557,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fexpr
 };
 static ::_pbi::once_flag descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto = {
-    false, false, 3141, descriptor_table_protodef_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto,
+    false, false, 3608, descriptor_table_protodef_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto,
     "google/api/expr/v1alpha1/syntax.proto",
-    &descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_once, descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_deps, 3, 14,
+    &descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_once, descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_deps, 3, 16,
     schemas, file_default_instances, TableStruct_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto::offsets,
     file_level_metadata_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto, file_level_enum_descriptors_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto,
     file_level_service_descriptors_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto,
@@ -511,6 +574,31 @@ namespace google {
 namespace api {
 namespace expr {
 namespace v1alpha1 {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* SourceInfo_Extension_Component_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto);
+  return file_level_enum_descriptors_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto[0];
+}
+bool SourceInfo_Extension_Component_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+      return true;
+    default:
+      return false;
+  }
+}
+
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+constexpr SourceInfo_Extension_Component SourceInfo_Extension::COMPONENT_UNSPECIFIED;
+constexpr SourceInfo_Extension_Component SourceInfo_Extension::COMPONENT_PARSER;
+constexpr SourceInfo_Extension_Component SourceInfo_Extension::COMPONENT_TYPE_CHECKER;
+constexpr SourceInfo_Extension_Component SourceInfo_Extension::COMPONENT_RUNTIME;
+constexpr SourceInfo_Extension_Component SourceInfo_Extension::Component_MIN;
+constexpr SourceInfo_Extension_Component SourceInfo_Extension::Component_MAX;
+constexpr int SourceInfo_Extension::Component_ARRAYSIZE;
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 
 // ===================================================================
 
@@ -3892,6 +3980,491 @@ void Constant::InternalSwap(Constant* other) {
 
 // ===================================================================
 
+class SourceInfo_Extension_Version::_Internal {
+ public:
+};
+
+SourceInfo_Extension_Version::SourceInfo_Extension_Version(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:google.api.expr.v1alpha1.SourceInfo.Extension.Version)
+}
+SourceInfo_Extension_Version::SourceInfo_Extension_Version(const SourceInfo_Extension_Version& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&major_, &from.major_,
+    static_cast<size_t>(reinterpret_cast<char*>(&minor_) -
+    reinterpret_cast<char*>(&major_)) + sizeof(minor_));
+  // @@protoc_insertion_point(copy_constructor:google.api.expr.v1alpha1.SourceInfo.Extension.Version)
+}
+
+inline void SourceInfo_Extension_Version::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&major_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&minor_) -
+    reinterpret_cast<char*>(&major_)) + sizeof(minor_));
+}
+
+SourceInfo_Extension_Version::~SourceInfo_Extension_Version() {
+  // @@protoc_insertion_point(destructor:google.api.expr.v1alpha1.SourceInfo.Extension.Version)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SourceInfo_Extension_Version::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void SourceInfo_Extension_Version::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void SourceInfo_Extension_Version::Clear() {
+// @@protoc_insertion_point(message_clear_start:google.api.expr.v1alpha1.SourceInfo.Extension.Version)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&major_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&minor_) -
+      reinterpret_cast<char*>(&major_)) + sizeof(minor_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SourceInfo_Extension_Version::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // int64 major = 1 [json_name = "major"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          major_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int64 minor = 2 [json_name = "minor"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          minor_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SourceInfo_Extension_Version::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:google.api.expr.v1alpha1.SourceInfo.Extension.Version)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int64 major = 1 [json_name = "major"];
+  if (this->_internal_major() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt64ToArray(1, this->_internal_major(), target);
+  }
+
+  // int64 minor = 2 [json_name = "minor"];
+  if (this->_internal_minor() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt64ToArray(2, this->_internal_minor(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:google.api.expr.v1alpha1.SourceInfo.Extension.Version)
+  return target;
+}
+
+size_t SourceInfo_Extension_Version::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:google.api.expr.v1alpha1.SourceInfo.Extension.Version)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // int64 major = 1 [json_name = "major"];
+  if (this->_internal_major() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_major());
+  }
+
+  // int64 minor = 2 [json_name = "minor"];
+  if (this->_internal_minor() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_minor());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SourceInfo_Extension_Version::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    SourceInfo_Extension_Version::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SourceInfo_Extension_Version::GetClassData() const { return &_class_data_; }
+
+void SourceInfo_Extension_Version::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<SourceInfo_Extension_Version *>(to)->MergeFrom(
+      static_cast<const SourceInfo_Extension_Version &>(from));
+}
+
+
+void SourceInfo_Extension_Version::MergeFrom(const SourceInfo_Extension_Version& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1alpha1.SourceInfo.Extension.Version)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_major() != 0) {
+    _internal_set_major(from._internal_major());
+  }
+  if (from._internal_minor() != 0) {
+    _internal_set_minor(from._internal_minor());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SourceInfo_Extension_Version::CopyFrom(const SourceInfo_Extension_Version& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:google.api.expr.v1alpha1.SourceInfo.Extension.Version)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SourceInfo_Extension_Version::IsInitialized() const {
+  return true;
+}
+
+void SourceInfo_Extension_Version::InternalSwap(SourceInfo_Extension_Version* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(SourceInfo_Extension_Version, minor_)
+      + sizeof(SourceInfo_Extension_Version::minor_)
+      - PROTOBUF_FIELD_OFFSET(SourceInfo_Extension_Version, major_)>(
+          reinterpret_cast<char*>(&major_),
+          reinterpret_cast<char*>(&other->major_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SourceInfo_Extension_Version::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_getter, &descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_once,
+      file_level_metadata_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto[10]);
+}
+
+// ===================================================================
+
+class SourceInfo_Extension::_Internal {
+ public:
+  static const ::google::api::expr::v1alpha1::SourceInfo_Extension_Version& version(const SourceInfo_Extension* msg);
+};
+
+const ::google::api::expr::v1alpha1::SourceInfo_Extension_Version&
+SourceInfo_Extension::_Internal::version(const SourceInfo_Extension* msg) {
+  return *msg->version_;
+}
+SourceInfo_Extension::SourceInfo_Extension(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  affected_components_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:google.api.expr.v1alpha1.SourceInfo.Extension)
+}
+SourceInfo_Extension::SourceInfo_Extension(const SourceInfo_Extension& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      affected_components_(from.affected_components_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_id().empty()) {
+    id_.Set(from._internal_id(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_version()) {
+    version_ = new ::google::api::expr::v1alpha1::SourceInfo_Extension_Version(*from.version_);
+  } else {
+    version_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:google.api.expr.v1alpha1.SourceInfo.Extension)
+}
+
+inline void SourceInfo_Extension::SharedCtor() {
+id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+version_ = nullptr;
+}
+
+SourceInfo_Extension::~SourceInfo_Extension() {
+  // @@protoc_insertion_point(destructor:google.api.expr.v1alpha1.SourceInfo.Extension)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SourceInfo_Extension::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  id_.Destroy();
+  if (this != internal_default_instance()) delete version_;
+}
+
+void SourceInfo_Extension::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void SourceInfo_Extension::Clear() {
+// @@protoc_insertion_point(message_clear_start:google.api.expr.v1alpha1.SourceInfo.Extension)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  affected_components_.Clear();
+  id_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && version_ != nullptr) {
+    delete version_;
+  }
+  version_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SourceInfo_Extension::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string id = 1 [json_name = "id"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "google.api.expr.v1alpha1.SourceInfo.Extension.id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .google.api.expr.v1alpha1.SourceInfo.Extension.Component affected_components = 2 [json_name = "affectedComponents"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedEnumParser(_internal_mutable_affected_components(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<uint8_t>(tag) == 16) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_add_affected_components(static_cast<::google::api::expr::v1alpha1::SourceInfo_Extension_Component>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.api.expr.v1alpha1.SourceInfo.Extension.Version version = 3 [json_name = "version"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_version(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SourceInfo_Extension::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:google.api.expr.v1alpha1.SourceInfo.Extension)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string id = 1 [json_name = "id"];
+  if (!this->_internal_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_id().data(), static_cast<int>(this->_internal_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "google.api.expr.v1alpha1.SourceInfo.Extension.id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_id(), target);
+  }
+
+  // repeated .google.api.expr.v1alpha1.SourceInfo.Extension.Component affected_components = 2 [json_name = "affectedComponents"];
+  {
+    int byte_size = _affected_components_cached_byte_size_.load(std::memory_order_relaxed);
+    if (byte_size > 0) {
+      target = stream->WriteEnumPacked(
+          2, affected_components_, byte_size, target);
+    }
+  }
+
+  // .google.api.expr.v1alpha1.SourceInfo.Extension.Version version = 3 [json_name = "version"];
+  if (this->_internal_has_version()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(3, _Internal::version(this),
+        _Internal::version(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:google.api.expr.v1alpha1.SourceInfo.Extension)
+  return target;
+}
+
+size_t SourceInfo_Extension::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:google.api.expr.v1alpha1.SourceInfo.Extension)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .google.api.expr.v1alpha1.SourceInfo.Extension.Component affected_components = 2 [json_name = "affectedComponents"];
+  {
+    size_t data_size = 0;
+    unsigned int count = static_cast<unsigned int>(this->_internal_affected_components_size());for (unsigned int i = 0; i < count; i++) {
+      data_size += ::_pbi::WireFormatLite::EnumSize(
+        this->_internal_affected_components(static_cast<int>(i)));
+    }
+    if (data_size > 0) {
+      total_size += 1 +
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
+    }
+    int cached_size = ::_pbi::ToCachedSize(data_size);
+    _affected_components_cached_byte_size_.store(cached_size,
+                                    std::memory_order_relaxed);
+    total_size += data_size;
+  }
+
+  // string id = 1 [json_name = "id"];
+  if (!this->_internal_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_id());
+  }
+
+  // .google.api.expr.v1alpha1.SourceInfo.Extension.Version version = 3 [json_name = "version"];
+  if (this->_internal_has_version()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *version_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SourceInfo_Extension::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    SourceInfo_Extension::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SourceInfo_Extension::GetClassData() const { return &_class_data_; }
+
+void SourceInfo_Extension::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<SourceInfo_Extension *>(to)->MergeFrom(
+      static_cast<const SourceInfo_Extension &>(from));
+}
+
+
+void SourceInfo_Extension::MergeFrom(const SourceInfo_Extension& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1alpha1.SourceInfo.Extension)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  affected_components_.MergeFrom(from.affected_components_);
+  if (!from._internal_id().empty()) {
+    _internal_set_id(from._internal_id());
+  }
+  if (from._internal_has_version()) {
+    _internal_mutable_version()->::google::api::expr::v1alpha1::SourceInfo_Extension_Version::MergeFrom(from._internal_version());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SourceInfo_Extension::CopyFrom(const SourceInfo_Extension& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:google.api.expr.v1alpha1.SourceInfo.Extension)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SourceInfo_Extension::IsInitialized() const {
+  return true;
+}
+
+void SourceInfo_Extension::InternalSwap(SourceInfo_Extension* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  affected_components_.InternalSwap(&other->affected_components_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &id_, lhs_arena,
+      &other->id_, rhs_arena
+  );
+  swap(version_, other->version_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SourceInfo_Extension::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_getter, &descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_once,
+      file_level_metadata_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto[11]);
+}
+
+// ===================================================================
+
 SourceInfo_PositionsEntry_DoNotUse::SourceInfo_PositionsEntry_DoNotUse() {}
 SourceInfo_PositionsEntry_DoNotUse::SourceInfo_PositionsEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
     : SuperType(arena) {}
@@ -3901,7 +4474,7 @@ void SourceInfo_PositionsEntry_DoNotUse::MergeFrom(const SourceInfo_PositionsEnt
 ::PROTOBUF_NAMESPACE_ID::Metadata SourceInfo_PositionsEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_getter, &descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_once,
-      file_level_metadata_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto[10]);
+      file_level_metadata_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto[12]);
 }
 
 // ===================================================================
@@ -3915,7 +4488,7 @@ void SourceInfo_MacroCallsEntry_DoNotUse::MergeFrom(const SourceInfo_MacroCallsE
 ::PROTOBUF_NAMESPACE_ID::Metadata SourceInfo_MacroCallsEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_getter, &descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_once,
-      file_level_metadata_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto[11]);
+      file_level_metadata_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto[13]);
 }
 
 // ===================================================================
@@ -3929,7 +4502,8 @@ SourceInfo::SourceInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
   line_offsets_(arena),
   positions_(arena),
-  macro_calls_(arena) {
+  macro_calls_(arena),
+  extensions_(arena) {
   SharedCtor();
   if (arena != nullptr && !is_message_owned) {
     arena->OwnCustomDestructor(this, &SourceInfo::ArenaDtor);
@@ -3938,7 +4512,8 @@ SourceInfo::SourceInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 }
 SourceInfo::SourceInfo(const SourceInfo& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      line_offsets_(from.line_offsets_) {
+      line_offsets_(from.line_offsets_),
+      extensions_(from.extensions_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   positions_.MergeFrom(from.positions_);
   macro_calls_.MergeFrom(from.macro_calls_);
@@ -4008,6 +4583,7 @@ void SourceInfo::Clear() {
   line_offsets_.Clear();
   positions_.Clear();
   macro_calls_.Clear();
+  extensions_.Clear();
   syntax_version_.ClearToEmpty();
   location_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
@@ -4073,6 +4649,19 @@ const char* SourceInfo::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<42>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .google.api.expr.v1alpha1.SourceInfo.Extension extensions = 6 [json_name = "extensions"];
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_extensions(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<50>(ptr));
         } else
           goto handle_unusual;
         continue;
@@ -4168,6 +4757,14 @@ uint8_t* SourceInfo::_InternalSerialize(
     }
   }
 
+  // repeated .google.api.expr.v1alpha1.SourceInfo.Extension extensions = 6 [json_name = "extensions"];
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_extensions_size()); i < n; i++) {
+    const auto& repfield = this->_internal_extensions(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(6, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -4216,6 +4813,13 @@ size_t SourceInfo::ByteSizeLong() const {
     total_size += SourceInfo_MacroCallsEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
   }
 
+  // repeated .google.api.expr.v1alpha1.SourceInfo.Extension extensions = 6 [json_name = "extensions"];
+  total_size += 1UL * this->_internal_extensions_size();
+  for (const auto& msg : this->extensions_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
   // string syntax_version = 1 [json_name = "syntaxVersion"];
   if (!this->_internal_syntax_version().empty()) {
     total_size += 1 +
@@ -4255,6 +4859,7 @@ void SourceInfo::MergeFrom(const SourceInfo& from) {
   line_offsets_.MergeFrom(from.line_offsets_);
   positions_.MergeFrom(from.positions_);
   macro_calls_.MergeFrom(from.macro_calls_);
+  extensions_.MergeFrom(from.extensions_);
   if (!from._internal_syntax_version().empty()) {
     _internal_set_syntax_version(from._internal_syntax_version());
   }
@@ -4283,6 +4888,7 @@ void SourceInfo::InternalSwap(SourceInfo* other) {
   line_offsets_.InternalSwap(&other->line_offsets_);
   positions_.InternalSwap(&other->positions_);
   macro_calls_.InternalSwap(&other->macro_calls_);
+  extensions_.InternalSwap(&other->extensions_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &syntax_version_, lhs_arena,
       &other->syntax_version_, rhs_arena
@@ -4296,7 +4902,7 @@ void SourceInfo::InternalSwap(SourceInfo* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata SourceInfo::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_getter, &descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_once,
-      file_level_metadata_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto[12]);
+      file_level_metadata_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto[14]);
 }
 
 // ===================================================================
@@ -4573,7 +5179,7 @@ void SourcePosition::InternalSwap(SourcePosition* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata SourcePosition::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_getter, &descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_once,
-      file_level_metadata_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto[13]);
+      file_level_metadata_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto[15]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -4621,6 +5227,14 @@ Arena::CreateMaybeMessage< ::google::api::expr::v1alpha1::Expr >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::google::api::expr::v1alpha1::Constant*
 Arena::CreateMaybeMessage< ::google::api::expr::v1alpha1::Constant >(Arena* arena) {
   return Arena::CreateMessageInternal< ::google::api::expr::v1alpha1::Constant >(arena);
+}
+template<> PROTOBUF_NOINLINE ::google::api::expr::v1alpha1::SourceInfo_Extension_Version*
+Arena::CreateMaybeMessage< ::google::api::expr::v1alpha1::SourceInfo_Extension_Version >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::google::api::expr::v1alpha1::SourceInfo_Extension_Version >(arena);
+}
+template<> PROTOBUF_NOINLINE ::google::api::expr::v1alpha1::SourceInfo_Extension*
+Arena::CreateMaybeMessage< ::google::api::expr::v1alpha1::SourceInfo_Extension >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::google::api::expr::v1alpha1::SourceInfo_Extension >(arena);
 }
 template<> PROTOBUF_NOINLINE ::google::api::expr::v1alpha1::SourceInfo_PositionsEntry_DoNotUse*
 Arena::CreateMaybeMessage< ::google::api::expr::v1alpha1::SourceInfo_PositionsEntry_DoNotUse >(Arena* arena) {

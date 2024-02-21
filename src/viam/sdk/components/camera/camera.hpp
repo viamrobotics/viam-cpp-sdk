@@ -183,7 +183,7 @@ class Camera : public Component {
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.
     /// @return The result of the executed command.
-    virtual AttributeMap do_command(AttributeMap command) = 0;
+    virtual AttributeMap do_command(const AttributeMap& command) = 0;
 
     /// @brief Get the next image from the camera as a raw image.
     /// @param mime_type the desired mime_type of the image (does not guarantee output type).

@@ -20,7 +20,7 @@ GenericComponentClient::GenericComponentClient(std::string name,
       stub_(viam::component::generic::v1::GenericService::NewStub(channel)),
       channel_(std::move(channel)){};
 
-AttributeMap GenericComponentClient::do_command(AttributeMap command) {
+AttributeMap GenericComponentClient::do_command(const AttributeMap& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
         .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
         .invoke([](auto& response) { return struct_to_map(response.result()); });

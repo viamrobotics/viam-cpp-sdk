@@ -424,10 +424,29 @@ struct GetReadingsResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetReadingsResponseDefaultTypeInternal _GetReadingsResponse_default_instance_;
+PROTOBUF_CONSTEXPR LogEntry::LogEntry(
+    ::_pbi::ConstantInitialized)
+  : fields_()
+  , host_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , level_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , logger_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , message_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , stack_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , time_(nullptr)
+  , caller_(nullptr){}
+struct LogEntryDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR LogEntryDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~LogEntryDefaultTypeInternal() {}
+  union {
+    LogEntry _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LogEntryDefaultTypeInternal _LogEntry_default_instance_;
 }  // namespace v1
 }  // namespace common
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_common_2fv1_2fcommon_2eproto[31];
+static ::_pb::Metadata file_level_metadata_common_2fv1_2fcommon_2eproto[32];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_common_2fv1_2fcommon_2eproto[1];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_common_2fv1_2fcommon_2eproto = nullptr;
 
@@ -696,6 +715,20 @@ const uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SECT
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetReadingsResponse, readings_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::LogEntry, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::LogEntry, host_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::LogEntry, level_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::LogEntry, time_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::LogEntry, logger_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::LogEntry, message_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::LogEntry, caller_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::LogEntry, stack_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::LogEntry, fields_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::common::v1::ResourceName)},
@@ -729,6 +762,7 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 239, -1, -1, sizeof(::viam::common::v1::GetReadingsRequest)},
   { 247, 255, -1, sizeof(::viam::common::v1::GetReadingsResponse_ReadingsEntry_DoNotUse)},
   { 257, -1, -1, sizeof(::viam::common::v1::GetReadingsResponse)},
+  { 264, -1, -1, sizeof(::viam::common::v1::LogEntry)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -763,6 +797,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::common::v1::_GetReadingsRequest_default_instance_._instance,
   &::viam::common::v1::_GetReadingsResponse_ReadingsEntry_DoNotUse_default_instance_._instance,
   &::viam::common::v1::_GetReadingsResponse_default_instance_._instance,
+  &::viam::common::v1::_LogEntry_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_common_2fv1_2fcommon_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -848,14 +883,21 @@ const char descriptor_table_protodef_common_2fv1_2fcommon_2eproto[] PROTOBUF_SEC
   "common.v1.GetReadingsResponse.ReadingsEn"
   "tryR\010readings\032S\n\rReadingsEntry\022\020\n\003key\030\001 "
   "\001(\tR\003key\022,\n\005value\030\002 \001(\0132\026.google.protobu"
-  "f.ValueR\005value:\0028\001*\177\n\024KinematicsFileForm"
-  "at\022&\n\"KINEMATICS_FILE_FORMAT_UNSPECIFIED"
-  "\020\000\022\036\n\032KINEMATICS_FILE_FORMAT_SVA\020\001\022\037\n\033KI"
-  "NEMATICS_FILE_FORMAT_URDF\020\002:a\n\032safety_he"
-  "artbeat_monitored\022\036.google.protobuf.Meth"
-  "odOptions\030\244\222\005 \001(\010R\030safetyHeartbeatMonito"
-  "red\210\001\001B/\n\022com.viam.common.v1Z\031go.viam.co"
-  "m/api/common/v1b\006proto3"
+  "f.ValueR\005value:\0028\001\"\227\002\n\010LogEntry\022\022\n\004host\030"
+  "\001 \001(\tR\004host\022\024\n\005level\030\002 \001(\tR\005level\022.\n\004tim"
+  "e\030\003 \001(\0132\032.google.protobuf.TimestampR\004tim"
+  "e\022\037\n\013logger_name\030\004 \001(\tR\nloggerName\022\030\n\007me"
+  "ssage\030\005 \001(\tR\007message\022/\n\006caller\030\006 \001(\0132\027.g"
+  "oogle.protobuf.StructR\006caller\022\024\n\005stack\030\007"
+  " \001(\tR\005stack\022/\n\006fields\030\010 \003(\0132\027.google.pro"
+  "tobuf.StructR\006fields*\177\n\024KinematicsFileFo"
+  "rmat\022&\n\"KINEMATICS_FILE_FORMAT_UNSPECIFI"
+  "ED\020\000\022\036\n\032KINEMATICS_FILE_FORMAT_SVA\020\001\022\037\n\033"
+  "KINEMATICS_FILE_FORMAT_URDF\020\002:a\n\032safety_"
+  "heartbeat_monitored\022\036.google.protobuf.Me"
+  "thodOptions\030\244\222\005 \001(\010R\030safetyHeartbeatMoni"
+  "tored\210\001\001B/\n\022com.viam.common.v1Z\031go.viam."
+  "com/api/common/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_common_2fv1_2fcommon_2eproto_deps[3] = {
   &::descriptor_table_google_2fprotobuf_2fdescriptor_2eproto,
@@ -864,9 +906,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_common_2fv1_2fcommo
 };
 static ::_pbi::once_flag descriptor_table_common_2fv1_2fcommon_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_common_2fv1_2fcommon_2eproto = {
-    false, false, 3583, descriptor_table_protodef_common_2fv1_2fcommon_2eproto,
+    false, false, 3865, descriptor_table_protodef_common_2fv1_2fcommon_2eproto,
     "common/v1/common.proto",
-    &descriptor_table_common_2fv1_2fcommon_2eproto_once, descriptor_table_common_2fv1_2fcommon_2eproto_deps, 3, 31,
+    &descriptor_table_common_2fv1_2fcommon_2eproto_once, descriptor_table_common_2fv1_2fcommon_2eproto_deps, 3, 32,
     schemas, file_default_instances, TableStruct_common_2fv1_2fcommon_2eproto::offsets,
     file_level_metadata_common_2fv1_2fcommon_2eproto, file_level_enum_descriptors_common_2fv1_2fcommon_2eproto,
     file_level_service_descriptors_common_2fv1_2fcommon_2eproto,
@@ -7675,6 +7717,531 @@ void GetReadingsResponse::InternalSwap(GetReadingsResponse* other) {
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
       file_level_metadata_common_2fv1_2fcommon_2eproto[30]);
 }
+
+// ===================================================================
+
+class LogEntry::_Internal {
+ public:
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& time(const LogEntry* msg);
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& caller(const LogEntry* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+LogEntry::_Internal::time(const LogEntry* msg) {
+  return *msg->time_;
+}
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+LogEntry::_Internal::caller(const LogEntry* msg) {
+  return *msg->caller_;
+}
+void LogEntry::clear_time() {
+  if (GetArenaForAllocation() == nullptr && time_ != nullptr) {
+    delete time_;
+  }
+  time_ = nullptr;
+}
+void LogEntry::clear_caller() {
+  if (GetArenaForAllocation() == nullptr && caller_ != nullptr) {
+    delete caller_;
+  }
+  caller_ = nullptr;
+}
+void LogEntry::clear_fields() {
+  fields_.Clear();
+}
+LogEntry::LogEntry(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  fields_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.common.v1.LogEntry)
+}
+LogEntry::LogEntry(const LogEntry& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      fields_(from.fields_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  host_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    host_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_host().empty()) {
+    host_.Set(from._internal_host(), 
+      GetArenaForAllocation());
+  }
+  level_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    level_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_level().empty()) {
+    level_.Set(from._internal_level(), 
+      GetArenaForAllocation());
+  }
+  logger_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    logger_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_logger_name().empty()) {
+    logger_name_.Set(from._internal_logger_name(), 
+      GetArenaForAllocation());
+  }
+  message_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    message_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_message().empty()) {
+    message_.Set(from._internal_message(), 
+      GetArenaForAllocation());
+  }
+  stack_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    stack_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_stack().empty()) {
+    stack_.Set(from._internal_stack(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_time()) {
+    time_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.time_);
+  } else {
+    time_ = nullptr;
+  }
+  if (from._internal_has_caller()) {
+    caller_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.caller_);
+  } else {
+    caller_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.common.v1.LogEntry)
+}
+
+inline void LogEntry::SharedCtor() {
+host_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  host_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+level_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  level_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+logger_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  logger_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+message_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  message_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+stack_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  stack_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&time_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&caller_) -
+    reinterpret_cast<char*>(&time_)) + sizeof(caller_));
+}
+
+LogEntry::~LogEntry() {
+  // @@protoc_insertion_point(destructor:viam.common.v1.LogEntry)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void LogEntry::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  host_.Destroy();
+  level_.Destroy();
+  logger_name_.Destroy();
+  message_.Destroy();
+  stack_.Destroy();
+  if (this != internal_default_instance()) delete time_;
+  if (this != internal_default_instance()) delete caller_;
+}
+
+void LogEntry::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void LogEntry::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.common.v1.LogEntry)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  fields_.Clear();
+  host_.ClearToEmpty();
+  level_.ClearToEmpty();
+  logger_name_.ClearToEmpty();
+  message_.ClearToEmpty();
+  stack_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && time_ != nullptr) {
+    delete time_;
+  }
+  time_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && caller_ != nullptr) {
+    delete caller_;
+  }
+  caller_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* LogEntry::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string host = 1 [json_name = "host"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_host();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.common.v1.LogEntry.host"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string level = 2 [json_name = "level"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_level();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.common.v1.LogEntry.level"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Timestamp time = 3 [json_name = "time"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_time(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string logger_name = 4 [json_name = "loggerName"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_logger_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.common.v1.LogEntry.logger_name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string message = 5 [json_name = "message"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          auto str = _internal_mutable_message();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.common.v1.LogEntry.message"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct caller = 6 [json_name = "caller"];
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          ptr = ctx->ParseMessage(_internal_mutable_caller(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string stack = 7 [json_name = "stack"];
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
+          auto str = _internal_mutable_stack();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.common.v1.LogEntry.stack"));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .google.protobuf.Struct fields = 8 [json_name = "fields"];
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_fields(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<66>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* LogEntry::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.common.v1.LogEntry)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string host = 1 [json_name = "host"];
+  if (!this->_internal_host().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_host().data(), static_cast<int>(this->_internal_host().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.common.v1.LogEntry.host");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_host(), target);
+  }
+
+  // string level = 2 [json_name = "level"];
+  if (!this->_internal_level().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_level().data(), static_cast<int>(this->_internal_level().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.common.v1.LogEntry.level");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_level(), target);
+  }
+
+  // .google.protobuf.Timestamp time = 3 [json_name = "time"];
+  if (this->_internal_has_time()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(3, _Internal::time(this),
+        _Internal::time(this).GetCachedSize(), target, stream);
+  }
+
+  // string logger_name = 4 [json_name = "loggerName"];
+  if (!this->_internal_logger_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_logger_name().data(), static_cast<int>(this->_internal_logger_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.common.v1.LogEntry.logger_name");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_logger_name(), target);
+  }
+
+  // string message = 5 [json_name = "message"];
+  if (!this->_internal_message().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_message().data(), static_cast<int>(this->_internal_message().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.common.v1.LogEntry.message");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_message(), target);
+  }
+
+  // .google.protobuf.Struct caller = 6 [json_name = "caller"];
+  if (this->_internal_has_caller()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(6, _Internal::caller(this),
+        _Internal::caller(this).GetCachedSize(), target, stream);
+  }
+
+  // string stack = 7 [json_name = "stack"];
+  if (!this->_internal_stack().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_stack().data(), static_cast<int>(this->_internal_stack().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.common.v1.LogEntry.stack");
+    target = stream->WriteStringMaybeAliased(
+        7, this->_internal_stack(), target);
+  }
+
+  // repeated .google.protobuf.Struct fields = 8 [json_name = "fields"];
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_fields_size()); i < n; i++) {
+    const auto& repfield = this->_internal_fields(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(8, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.common.v1.LogEntry)
+  return target;
+}
+
+size_t LogEntry::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.common.v1.LogEntry)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .google.protobuf.Struct fields = 8 [json_name = "fields"];
+  total_size += 1UL * this->_internal_fields_size();
+  for (const auto& msg : this->fields_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // string host = 1 [json_name = "host"];
+  if (!this->_internal_host().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_host());
+  }
+
+  // string level = 2 [json_name = "level"];
+  if (!this->_internal_level().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_level());
+  }
+
+  // string logger_name = 4 [json_name = "loggerName"];
+  if (!this->_internal_logger_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_logger_name());
+  }
+
+  // string message = 5 [json_name = "message"];
+  if (!this->_internal_message().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_message());
+  }
+
+  // string stack = 7 [json_name = "stack"];
+  if (!this->_internal_stack().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_stack());
+  }
+
+  // .google.protobuf.Timestamp time = 3 [json_name = "time"];
+  if (this->_internal_has_time()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *time_);
+  }
+
+  // .google.protobuf.Struct caller = 6 [json_name = "caller"];
+  if (this->_internal_has_caller()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *caller_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData LogEntry::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    LogEntry::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*LogEntry::GetClassData() const { return &_class_data_; }
+
+void LogEntry::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<LogEntry *>(to)->MergeFrom(
+      static_cast<const LogEntry &>(from));
+}
+
+
+void LogEntry::MergeFrom(const LogEntry& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.common.v1.LogEntry)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  fields_.MergeFrom(from.fields_);
+  if (!from._internal_host().empty()) {
+    _internal_set_host(from._internal_host());
+  }
+  if (!from._internal_level().empty()) {
+    _internal_set_level(from._internal_level());
+  }
+  if (!from._internal_logger_name().empty()) {
+    _internal_set_logger_name(from._internal_logger_name());
+  }
+  if (!from._internal_message().empty()) {
+    _internal_set_message(from._internal_message());
+  }
+  if (!from._internal_stack().empty()) {
+    _internal_set_stack(from._internal_stack());
+  }
+  if (from._internal_has_time()) {
+    _internal_mutable_time()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_time());
+  }
+  if (from._internal_has_caller()) {
+    _internal_mutable_caller()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_caller());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void LogEntry::CopyFrom(const LogEntry& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.common.v1.LogEntry)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool LogEntry::IsInitialized() const {
+  return true;
+}
+
+void LogEntry::InternalSwap(LogEntry* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  fields_.InternalSwap(&other->fields_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &host_, lhs_arena,
+      &other->host_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &level_, lhs_arena,
+      &other->level_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &logger_name_, lhs_arena,
+      &other->logger_name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &message_, lhs_arena,
+      &other->message_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &stack_, lhs_arena,
+      &other->stack_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(LogEntry, caller_)
+      + sizeof(LogEntry::caller_)
+      - PROTOBUF_FIELD_OFFSET(LogEntry, time_)>(
+          reinterpret_cast<char*>(&time_),
+          reinterpret_cast<char*>(&other->time_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata LogEntry::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
+      file_level_metadata_common_2fv1_2fcommon_2eproto[31]);
+}
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::MethodOptions,
     ::PROTOBUF_NAMESPACE_ID::internal::PrimitiveTypeTraits< bool >, 8, false>
   safety_heartbeat_monitored(kSafetyHeartbeatMonitoredFieldNumber, false, nullptr);
@@ -7807,6 +8374,10 @@ Arena::CreateMaybeMessage< ::viam::common::v1::GetReadingsResponse_ReadingsEntry
 template<> PROTOBUF_NOINLINE ::viam::common::v1::GetReadingsResponse*
 Arena::CreateMaybeMessage< ::viam::common::v1::GetReadingsResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::common::v1::GetReadingsResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::common::v1::LogEntry*
+Arena::CreateMaybeMessage< ::viam::common::v1::LogEntry >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::common::v1::LogEntry >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

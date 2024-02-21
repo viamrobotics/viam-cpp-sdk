@@ -90,7 +90,7 @@ std::vector<Status> RobotService_::generate_status_(
     return returnable_statuses;
 }
 
-::grpc::Status RobotService_::ResourceNames(::grpc::ServerContext* context,
+::grpc::Status RobotService_::ResourceNames(::grpc::ServerContext*,
                                             const viam::robot::v1::ResourceNamesRequest* request,
                                             viam::robot::v1::ResourceNamesResponse* response) {
     if (!request) {
@@ -105,7 +105,7 @@ std::vector<Status> RobotService_::generate_status_(
     return ::grpc::Status();
 }
 
-::grpc::Status RobotService_::GetStatus(::grpc::ServerContext* context,
+::grpc::Status RobotService_::GetStatus(::grpc::ServerContext*,
                                         const ::viam::robot::v1::GetStatusRequest* request,
                                         ::viam::robot::v1::GetStatusResponse* response) {
     if (!request) {
@@ -140,7 +140,7 @@ void RobotService_::stream_status(
 }
 
 ::grpc::Status RobotService_::StreamStatus(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::robot::v1::StreamStatusRequest* request,
     ::grpc::ServerWriter<::viam::robot::v1::StreamStatusResponse>* writer) {
     uint64_t interval = 1;
@@ -154,9 +154,9 @@ void RobotService_::stream_status(
     return ::grpc::Status();
 }
 
-::grpc::Status RobotService_::StopAll(::grpc::ServerContext* context,
+::grpc::Status RobotService_::StopAll(::grpc::ServerContext*,
                                       const ::viam::robot::v1::StopAllRequest* request,
-                                      ::viam::robot::v1::StopAllResponse* response) {
+                                      ::viam::robot::v1::StopAllResponse*) {
     const ResourceName r;
     std::unordered_map<std::string, AttributeMap> extra;
     for (const auto& ex : request->extra()) {

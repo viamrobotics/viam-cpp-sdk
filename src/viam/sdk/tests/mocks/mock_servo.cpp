@@ -18,20 +18,20 @@ namespace servo {
 
 using namespace viam::sdk;
 
-void MockServo::move(uint32_t angle_deg, const AttributeMap& extra) {
+void MockServo::move(uint32_t angle_deg, const AttributeMap&) {
     is_moving_ = true;
     position_ = angle_deg;
 }
 
-Servo::position MockServo::get_position(const AttributeMap& extra) {
+Servo::position MockServo::get_position(const AttributeMap&) {
     return position_;
 }
 
-void MockServo::stop(const AttributeMap& extra) {
+void MockServo::stop(const AttributeMap&) {
     is_moving_ = false;
 }
 
-std::vector<GeometryConfig> MockServo::get_geometries(const sdk::AttributeMap& extra) {
+std::vector<GeometryConfig> MockServo::get_geometries(const sdk::AttributeMap&) {
     return fake_geometries();
 }
 
@@ -39,7 +39,7 @@ bool MockServo::is_moving() {
     return is_moving_;
 }
 
-AttributeMap MockServo::do_command(const AttributeMap& _command) {
+AttributeMap MockServo::do_command(const AttributeMap&) {
     return map_;
 }
 

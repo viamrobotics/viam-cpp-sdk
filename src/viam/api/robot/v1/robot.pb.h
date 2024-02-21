@@ -87,6 +87,12 @@ extern FrameSystemConfigRequestDefaultTypeInternal _FrameSystemConfigRequest_def
 class FrameSystemConfigResponse;
 struct FrameSystemConfigResponseDefaultTypeInternal;
 extern FrameSystemConfigResponseDefaultTypeInternal _FrameSystemConfigResponse_default_instance_;
+class GetCloudMetadataRequest;
+struct GetCloudMetadataRequestDefaultTypeInternal;
+extern GetCloudMetadataRequestDefaultTypeInternal _GetCloudMetadataRequest_default_instance_;
+class GetCloudMetadataResponse;
+struct GetCloudMetadataResponseDefaultTypeInternal;
+extern GetCloudMetadataResponseDefaultTypeInternal _GetCloudMetadataResponse_default_instance_;
 class GetOperationsRequest;
 struct GetOperationsRequestDefaultTypeInternal;
 extern GetOperationsRequestDefaultTypeInternal _GetOperationsRequest_default_instance_;
@@ -105,6 +111,12 @@ extern GetStatusRequestDefaultTypeInternal _GetStatusRequest_default_instance_;
 class GetStatusResponse;
 struct GetStatusResponseDefaultTypeInternal;
 extern GetStatusResponseDefaultTypeInternal _GetStatusResponse_default_instance_;
+class LogRequest;
+struct LogRequestDefaultTypeInternal;
+extern LogRequestDefaultTypeInternal _LogRequest_default_instance_;
+class LogResponse;
+struct LogResponseDefaultTypeInternal;
+extern LogResponseDefaultTypeInternal _LogResponse_default_instance_;
 class Operation;
 struct OperationDefaultTypeInternal;
 extern OperationDefaultTypeInternal _Operation_default_instance_;
@@ -186,12 +198,16 @@ template<> ::viam::robot::v1::DiscoveryQuery* Arena::CreateMaybeMessage<::viam::
 template<> ::viam::robot::v1::FrameSystemConfig* Arena::CreateMaybeMessage<::viam::robot::v1::FrameSystemConfig>(Arena*);
 template<> ::viam::robot::v1::FrameSystemConfigRequest* Arena::CreateMaybeMessage<::viam::robot::v1::FrameSystemConfigRequest>(Arena*);
 template<> ::viam::robot::v1::FrameSystemConfigResponse* Arena::CreateMaybeMessage<::viam::robot::v1::FrameSystemConfigResponse>(Arena*);
+template<> ::viam::robot::v1::GetCloudMetadataRequest* Arena::CreateMaybeMessage<::viam::robot::v1::GetCloudMetadataRequest>(Arena*);
+template<> ::viam::robot::v1::GetCloudMetadataResponse* Arena::CreateMaybeMessage<::viam::robot::v1::GetCloudMetadataResponse>(Arena*);
 template<> ::viam::robot::v1::GetOperationsRequest* Arena::CreateMaybeMessage<::viam::robot::v1::GetOperationsRequest>(Arena*);
 template<> ::viam::robot::v1::GetOperationsResponse* Arena::CreateMaybeMessage<::viam::robot::v1::GetOperationsResponse>(Arena*);
 template<> ::viam::robot::v1::GetSessionsRequest* Arena::CreateMaybeMessage<::viam::robot::v1::GetSessionsRequest>(Arena*);
 template<> ::viam::robot::v1::GetSessionsResponse* Arena::CreateMaybeMessage<::viam::robot::v1::GetSessionsResponse>(Arena*);
 template<> ::viam::robot::v1::GetStatusRequest* Arena::CreateMaybeMessage<::viam::robot::v1::GetStatusRequest>(Arena*);
 template<> ::viam::robot::v1::GetStatusResponse* Arena::CreateMaybeMessage<::viam::robot::v1::GetStatusResponse>(Arena*);
+template<> ::viam::robot::v1::LogRequest* Arena::CreateMaybeMessage<::viam::robot::v1::LogRequest>(Arena*);
+template<> ::viam::robot::v1::LogResponse* Arena::CreateMaybeMessage<::viam::robot::v1::LogResponse>(Arena*);
 template<> ::viam::robot::v1::Operation* Arena::CreateMaybeMessage<::viam::robot::v1::Operation>(Arena*);
 template<> ::viam::robot::v1::PeerConnectionInfo* Arena::CreateMaybeMessage<::viam::robot::v1::PeerConnectionInfo>(Arena*);
 template<> ::viam::robot::v1::ResourceNamesRequest* Arena::CreateMaybeMessage<::viam::robot::v1::ResourceNamesRequest>(Arena*);
@@ -6215,6 +6231,570 @@ class SendSessionHeartbeatResponse final :
   typedef void DestructorSkippable_;
   friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
 };
+// -------------------------------------------------------------------
+
+class LogRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.LogRequest) */ {
+ public:
+  inline LogRequest() : LogRequest(nullptr) {}
+  ~LogRequest() override;
+  explicit PROTOBUF_CONSTEXPR LogRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  LogRequest(const LogRequest& from);
+  LogRequest(LogRequest&& from) noexcept
+    : LogRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline LogRequest& operator=(const LogRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline LogRequest& operator=(LogRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const LogRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const LogRequest* internal_default_instance() {
+    return reinterpret_cast<const LogRequest*>(
+               &_LogRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    39;
+
+  friend void swap(LogRequest& a, LogRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(LogRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(LogRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  LogRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<LogRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const LogRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const LogRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(LogRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.LogRequest";
+  }
+  protected:
+  explicit LogRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLogsFieldNumber = 1,
+  };
+  // repeated .viam.common.v1.LogEntry logs = 1 [json_name = "logs"];
+  int logs_size() const;
+  private:
+  int _internal_logs_size() const;
+  public:
+  void clear_logs();
+  ::viam::common::v1::LogEntry* mutable_logs(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::LogEntry >*
+      mutable_logs();
+  private:
+  const ::viam::common::v1::LogEntry& _internal_logs(int index) const;
+  ::viam::common::v1::LogEntry* _internal_add_logs();
+  public:
+  const ::viam::common::v1::LogEntry& logs(int index) const;
+  ::viam::common::v1::LogEntry* add_logs();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::LogEntry >&
+      logs() const;
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.LogRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::LogEntry > logs_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
+class LogResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.robot.v1.LogResponse) */ {
+ public:
+  inline LogResponse() : LogResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR LogResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  LogResponse(const LogResponse& from);
+  LogResponse(LogResponse&& from) noexcept
+    : LogResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline LogResponse& operator=(const LogResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline LogResponse& operator=(LogResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const LogResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const LogResponse* internal_default_instance() {
+    return reinterpret_cast<const LogResponse*>(
+               &_LogResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    40;
+
+  friend void swap(LogResponse& a, LogResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(LogResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(LogResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  LogResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<LogResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const LogResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const LogResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.LogResponse";
+  }
+  protected:
+  explicit LogResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.LogResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetCloudMetadataRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.robot.v1.GetCloudMetadataRequest) */ {
+ public:
+  inline GetCloudMetadataRequest() : GetCloudMetadataRequest(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR GetCloudMetadataRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetCloudMetadataRequest(const GetCloudMetadataRequest& from);
+  GetCloudMetadataRequest(GetCloudMetadataRequest&& from) noexcept
+    : GetCloudMetadataRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetCloudMetadataRequest& operator=(const GetCloudMetadataRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetCloudMetadataRequest& operator=(GetCloudMetadataRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetCloudMetadataRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetCloudMetadataRequest* internal_default_instance() {
+    return reinterpret_cast<const GetCloudMetadataRequest*>(
+               &_GetCloudMetadataRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    41;
+
+  friend void swap(GetCloudMetadataRequest& a, GetCloudMetadataRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetCloudMetadataRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetCloudMetadataRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetCloudMetadataRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetCloudMetadataRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const GetCloudMetadataRequest& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const GetCloudMetadataRequest& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.GetCloudMetadataRequest";
+  }
+  protected:
+  explicit GetCloudMetadataRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.GetCloudMetadataRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetCloudMetadataResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.GetCloudMetadataResponse) */ {
+ public:
+  inline GetCloudMetadataResponse() : GetCloudMetadataResponse(nullptr) {}
+  ~GetCloudMetadataResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetCloudMetadataResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetCloudMetadataResponse(const GetCloudMetadataResponse& from);
+  GetCloudMetadataResponse(GetCloudMetadataResponse&& from) noexcept
+    : GetCloudMetadataResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetCloudMetadataResponse& operator=(const GetCloudMetadataResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetCloudMetadataResponse& operator=(GetCloudMetadataResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetCloudMetadataResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetCloudMetadataResponse* internal_default_instance() {
+    return reinterpret_cast<const GetCloudMetadataResponse*>(
+               &_GetCloudMetadataResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    42;
+
+  friend void swap(GetCloudMetadataResponse& a, GetCloudMetadataResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetCloudMetadataResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetCloudMetadataResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetCloudMetadataResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetCloudMetadataResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetCloudMetadataResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetCloudMetadataResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetCloudMetadataResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.GetCloudMetadataResponse";
+  }
+  protected:
+  explicit GetCloudMetadataResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRobotPartIdFieldNumber = 1,
+    kPrimaryOrgIdFieldNumber = 2,
+    kLocationIdFieldNumber = 3,
+  };
+  // string robot_part_id = 1 [json_name = "robotPartId"];
+  void clear_robot_part_id();
+  const std::string& robot_part_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_robot_part_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_robot_part_id();
+  PROTOBUF_NODISCARD std::string* release_robot_part_id();
+  void set_allocated_robot_part_id(std::string* robot_part_id);
+  private:
+  const std::string& _internal_robot_part_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_robot_part_id(const std::string& value);
+  std::string* _internal_mutable_robot_part_id();
+  public:
+
+  // string primary_org_id = 2 [json_name = "primaryOrgId"];
+  void clear_primary_org_id();
+  const std::string& primary_org_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_primary_org_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_primary_org_id();
+  PROTOBUF_NODISCARD std::string* release_primary_org_id();
+  void set_allocated_primary_org_id(std::string* primary_org_id);
+  private:
+  const std::string& _internal_primary_org_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_primary_org_id(const std::string& value);
+  std::string* _internal_mutable_primary_org_id();
+  public:
+
+  // string location_id = 3 [json_name = "locationId"];
+  void clear_location_id();
+  const std::string& location_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_location_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_location_id();
+  PROTOBUF_NODISCARD std::string* release_location_id();
+  void set_allocated_location_id(std::string* location_id);
+  private:
+  const std::string& _internal_location_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_location_id(const std::string& value);
+  std::string* _internal_mutable_location_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.GetCloudMetadataResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr robot_part_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr primary_org_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr location_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
 // ===================================================================
 
 
@@ -9402,9 +9982,220 @@ inline void SendSessionHeartbeatRequest::set_allocated_id(std::string* id) {
 
 // SendSessionHeartbeatResponse
 
+// -------------------------------------------------------------------
+
+// LogRequest
+
+// repeated .viam.common.v1.LogEntry logs = 1 [json_name = "logs"];
+inline int LogRequest::_internal_logs_size() const {
+  return logs_.size();
+}
+inline int LogRequest::logs_size() const {
+  return _internal_logs_size();
+}
+inline ::viam::common::v1::LogEntry* LogRequest::mutable_logs(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.LogRequest.logs)
+  return logs_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::LogEntry >*
+LogRequest::mutable_logs() {
+  // @@protoc_insertion_point(field_mutable_list:viam.robot.v1.LogRequest.logs)
+  return &logs_;
+}
+inline const ::viam::common::v1::LogEntry& LogRequest::_internal_logs(int index) const {
+  return logs_.Get(index);
+}
+inline const ::viam::common::v1::LogEntry& LogRequest::logs(int index) const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.LogRequest.logs)
+  return _internal_logs(index);
+}
+inline ::viam::common::v1::LogEntry* LogRequest::_internal_add_logs() {
+  return logs_.Add();
+}
+inline ::viam::common::v1::LogEntry* LogRequest::add_logs() {
+  ::viam::common::v1::LogEntry* _add = _internal_add_logs();
+  // @@protoc_insertion_point(field_add:viam.robot.v1.LogRequest.logs)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::LogEntry >&
+LogRequest::logs() const {
+  // @@protoc_insertion_point(field_list:viam.robot.v1.LogRequest.logs)
+  return logs_;
+}
+
+// -------------------------------------------------------------------
+
+// LogResponse
+
+// -------------------------------------------------------------------
+
+// GetCloudMetadataRequest
+
+// -------------------------------------------------------------------
+
+// GetCloudMetadataResponse
+
+// string robot_part_id = 1 [json_name = "robotPartId"];
+inline void GetCloudMetadataResponse::clear_robot_part_id() {
+  robot_part_id_.ClearToEmpty();
+}
+inline const std::string& GetCloudMetadataResponse::robot_part_id() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.GetCloudMetadataResponse.robot_part_id)
+  return _internal_robot_part_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetCloudMetadataResponse::set_robot_part_id(ArgT0&& arg0, ArgT... args) {
+ 
+ robot_part_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.GetCloudMetadataResponse.robot_part_id)
+}
+inline std::string* GetCloudMetadataResponse::mutable_robot_part_id() {
+  std::string* _s = _internal_mutable_robot_part_id();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.GetCloudMetadataResponse.robot_part_id)
+  return _s;
+}
+inline const std::string& GetCloudMetadataResponse::_internal_robot_part_id() const {
+  return robot_part_id_.Get();
+}
+inline void GetCloudMetadataResponse::_internal_set_robot_part_id(const std::string& value) {
+  
+  robot_part_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetCloudMetadataResponse::_internal_mutable_robot_part_id() {
+  
+  return robot_part_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetCloudMetadataResponse::release_robot_part_id() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.GetCloudMetadataResponse.robot_part_id)
+  return robot_part_id_.Release();
+}
+inline void GetCloudMetadataResponse::set_allocated_robot_part_id(std::string* robot_part_id) {
+  if (robot_part_id != nullptr) {
+    
+  } else {
+    
+  }
+  robot_part_id_.SetAllocated(robot_part_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (robot_part_id_.IsDefault()) {
+    robot_part_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.GetCloudMetadataResponse.robot_part_id)
+}
+
+// string primary_org_id = 2 [json_name = "primaryOrgId"];
+inline void GetCloudMetadataResponse::clear_primary_org_id() {
+  primary_org_id_.ClearToEmpty();
+}
+inline const std::string& GetCloudMetadataResponse::primary_org_id() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.GetCloudMetadataResponse.primary_org_id)
+  return _internal_primary_org_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetCloudMetadataResponse::set_primary_org_id(ArgT0&& arg0, ArgT... args) {
+ 
+ primary_org_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.GetCloudMetadataResponse.primary_org_id)
+}
+inline std::string* GetCloudMetadataResponse::mutable_primary_org_id() {
+  std::string* _s = _internal_mutable_primary_org_id();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.GetCloudMetadataResponse.primary_org_id)
+  return _s;
+}
+inline const std::string& GetCloudMetadataResponse::_internal_primary_org_id() const {
+  return primary_org_id_.Get();
+}
+inline void GetCloudMetadataResponse::_internal_set_primary_org_id(const std::string& value) {
+  
+  primary_org_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetCloudMetadataResponse::_internal_mutable_primary_org_id() {
+  
+  return primary_org_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetCloudMetadataResponse::release_primary_org_id() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.GetCloudMetadataResponse.primary_org_id)
+  return primary_org_id_.Release();
+}
+inline void GetCloudMetadataResponse::set_allocated_primary_org_id(std::string* primary_org_id) {
+  if (primary_org_id != nullptr) {
+    
+  } else {
+    
+  }
+  primary_org_id_.SetAllocated(primary_org_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (primary_org_id_.IsDefault()) {
+    primary_org_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.GetCloudMetadataResponse.primary_org_id)
+}
+
+// string location_id = 3 [json_name = "locationId"];
+inline void GetCloudMetadataResponse::clear_location_id() {
+  location_id_.ClearToEmpty();
+}
+inline const std::string& GetCloudMetadataResponse::location_id() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.GetCloudMetadataResponse.location_id)
+  return _internal_location_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetCloudMetadataResponse::set_location_id(ArgT0&& arg0, ArgT... args) {
+ 
+ location_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.GetCloudMetadataResponse.location_id)
+}
+inline std::string* GetCloudMetadataResponse::mutable_location_id() {
+  std::string* _s = _internal_mutable_location_id();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.GetCloudMetadataResponse.location_id)
+  return _s;
+}
+inline const std::string& GetCloudMetadataResponse::_internal_location_id() const {
+  return location_id_.Get();
+}
+inline void GetCloudMetadataResponse::_internal_set_location_id(const std::string& value) {
+  
+  location_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetCloudMetadataResponse::_internal_mutable_location_id() {
+  
+  return location_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetCloudMetadataResponse::release_location_id() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.GetCloudMetadataResponse.location_id)
+  return location_id_.Release();
+}
+inline void GetCloudMetadataResponse::set_allocated_location_id(std::string* location_id) {
+  if (location_id != nullptr) {
+    
+  } else {
+    
+  }
+  location_id_.SetAllocated(location_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (location_id_.IsDefault()) {
+    location_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.GetCloudMetadataResponse.location_id)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -14,7 +14,7 @@ namespace sdk {
 SensorServer::SensorServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)){};
 
-::grpc::Status SensorServer::GetReadings(::grpc::ServerContext* context,
+::grpc::Status SensorServer::GetReadings(::grpc::ServerContext*,
                                          const GetReadingsRequest* request,
                                          GetReadingsResponse* response) noexcept {
     return make_service_helper<Sensor>(
@@ -26,17 +26,17 @@ SensorServer::SensorServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-::grpc::Status SensorServer::DoCommand(grpc::ServerContext* context,
+::grpc::Status SensorServer::DoCommand(grpc::ServerContext*,
                                        const DoCommandRequest* request,
                                        DoCommandResponse* response) noexcept {
     return make_service_helper<Sensor>(
-        "SensorServer::DoCommand", this, request)([&](auto& helper, auto& sensor) {
+        "SensorServer::DoCommand", this, request)([&](auto&, auto& sensor) {
         const AttributeMap result = sensor->do_command(struct_to_map(request->command()));
         *response->mutable_result() = map_to_struct(result);
     });
 }
 
-::grpc::Status SensorServer::GetGeometries(::grpc::ServerContext* context,
+::grpc::Status SensorServer::GetGeometries(::grpc::ServerContext*,
                                            const GetGeometriesRequest* request,
                                            GetGeometriesResponse* response) noexcept {
     return make_service_helper<Sensor>(

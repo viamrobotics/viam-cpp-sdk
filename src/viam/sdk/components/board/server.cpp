@@ -14,7 +14,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)){};
 
 ::grpc::Status BoardServer::Status(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::component::board::v1::StatusRequest* request,
     ::viam::component::board::v1::StatusResponse* response) noexcept {
     return make_service_helper<Board>(
@@ -25,10 +25,9 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-::grpc::Status BoardServer::SetGPIO(
-    ::grpc::ServerContext* context,
-    const ::viam::component::board::v1::SetGPIORequest* request,
-    ::viam::component::board::v1::SetGPIOResponse* response) noexcept {
+::grpc::Status BoardServer::SetGPIO(::grpc::ServerContext*,
+                                    const ::viam::component::board::v1::SetGPIORequest* request,
+                                    ::viam::component::board::v1::SetGPIOResponse*) noexcept {
     return make_service_helper<Board>(
         "BoardServer::SetGPIO", this, request)([&](auto& helper, auto& board) {
         board->set_gpio(request->pin(), request->high(), helper.getExtra());
@@ -36,7 +35,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status BoardServer::GetGPIO(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::component::board::v1::GetGPIORequest* request,
     ::viam::component::board::v1::GetGPIOResponse* response) noexcept {
     return make_service_helper<Board>(
@@ -45,7 +44,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-::grpc::Status BoardServer::PWM(::grpc::ServerContext* context,
+::grpc::Status BoardServer::PWM(::grpc::ServerContext*,
                                 const ::viam::component::board::v1::PWMRequest* request,
                                 ::viam::component::board::v1::PWMResponse* response) noexcept {
     return make_service_helper<Board>(
@@ -54,10 +53,9 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-::grpc::Status BoardServer::SetPWM(
-    ::grpc::ServerContext* context,
-    const ::viam::component::board::v1::SetPWMRequest* request,
-    ::viam::component::board::v1::SetPWMResponse* response) noexcept {
+::grpc::Status BoardServer::SetPWM(::grpc::ServerContext*,
+                                   const ::viam::component::board::v1::SetPWMRequest* request,
+                                   ::viam::component::board::v1::SetPWMResponse*) noexcept {
     return make_service_helper<Board>(
         "BoardServer::SetPWM", this, request)([&](auto& helper, auto& board) {
         board->set_pwm_duty_cycle(request->pin(), request->duty_cycle_pct(), helper.getExtra());
@@ -65,7 +63,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status BoardServer::PWMFrequency(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::component::board::v1::PWMFrequencyRequest* request,
     ::viam::component::board::v1::PWMFrequencyResponse* response) noexcept {
     return make_service_helper<Board>(
@@ -76,27 +74,27 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status BoardServer::SetPWMFrequency(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::component::board::v1::SetPWMFrequencyRequest* request,
-    ::viam::component::board::v1::SetPWMFrequencyResponse* response) noexcept {
+    ::viam::component::board::v1::SetPWMFrequencyResponse*) noexcept {
     return make_service_helper<Board>(
         "BoardServer::SetPWMFrequency", this, request)([&](auto& helper, auto& board) {
         board->set_pwm_frequency(request->pin(), request->frequency_hz(), helper.getExtra());
     });
 }
 
-::grpc::Status BoardServer::DoCommand(grpc::ServerContext* context,
+::grpc::Status BoardServer::DoCommand(grpc::ServerContext*,
                                       const viam::common::v1::DoCommandRequest* request,
                                       viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Board>(
-        "BoardServer::DoCommand", this, request)([&](auto& helper, auto& board) {
+        "BoardServer::DoCommand", this, request)([&](auto&, auto& board) {
         const AttributeMap result = board->do_command(struct_to_map(request->command()));
         *response->mutable_result() = map_to_struct(result);
     });
 }
 
 ::grpc::Status BoardServer::ReadAnalogReader(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::component::board::v1::ReadAnalogReaderRequest* request,
     ::viam::component::board::v1::ReadAnalogReaderResponse* response) {
     if (!request) {
@@ -123,9 +121,9 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status BoardServer::WriteAnalog(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::component::board::v1::WriteAnalogRequest* request,
-    ::viam::component::board::v1::WriteAnalogResponse* response) {
+    ::viam::component::board::v1::WriteAnalogResponse*) {
     if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [Board::WriteAnalog] without a request");
@@ -148,7 +146,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status BoardServer::GetDigitalInterruptValue(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::component::board::v1::GetDigitalInterruptValueRequest* request,
     ::viam::component::board::v1::GetDigitalInterruptValueResponse* response) {
     if (!request) {
@@ -176,9 +174,9 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status BoardServer::SetPowerMode(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::component::board::v1::SetPowerModeRequest* request,
-    ::viam::component::board::v1::SetPowerModeResponse* response) noexcept {
+    ::viam::component::board::v1::SetPowerModeResponse*) noexcept {
     return make_service_helper<Board>(
         "BoardServer::SetPowerMode", this, request)([&](auto& helper, auto& board) {
         if (request->has_duration()) {
@@ -192,7 +190,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status BoardServer::GetGeometries(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::common::v1::GetGeometriesRequest* request,
     ::viam::common::v1::GetGeometriesResponse* response) noexcept {
     return make_service_helper<Board>(

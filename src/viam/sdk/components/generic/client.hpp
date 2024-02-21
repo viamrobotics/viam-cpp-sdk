@@ -20,7 +20,7 @@ class GenericComponentClient : public GenericComponent {
    public:
     using interface_type = GenericComponent;
     GenericComponentClient(std::string name, std::shared_ptr<grpc::Channel> channel);
-    AttributeMap do_command(AttributeMap command) override;
+    AttributeMap do_command(const AttributeMap& command) override;
     std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
 
    protected:

@@ -19,12 +19,12 @@ namespace motor {
 
 using namespace viam::sdk;
 
-void MockMotor::set_power(double power_pct, const AttributeMap& extra) {
+void MockMotor::set_power(double power_pct, const AttributeMap&) {
     power_status_.is_on = power_pct != 0.0;
     power_status_.power_pct = power_pct;
 }
 
-void MockMotor::go_for(double rpm, double revolutions, const AttributeMap& extra) {
+void MockMotor::go_for(double rpm, double revolutions, const AttributeMap&) {
     // This is the actual behavior from rdk:builtin:fake_motor
     if (rpm == 0.0) {
         throw Exception("Cannot move motor at 0 RPM");
@@ -32,34 +32,34 @@ void MockMotor::go_for(double rpm, double revolutions, const AttributeMap& extra
     position_ += revolutions;
 }
 
-void MockMotor::go_to(double rpm, double position_revolutions, const AttributeMap& extra) {
+void MockMotor::go_to(double rpm, double position_revolutions, const AttributeMap&) {
     position_ = position_revolutions;
 }
 
-void MockMotor::reset_zero_position(double offset, const AttributeMap& extra) {
+void MockMotor::reset_zero_position(double offset, const AttributeMap&) {
     position_ -= offset;
 }
 
-Motor::position MockMotor::get_position(const AttributeMap& extra) {
+Motor::position MockMotor::get_position(const AttributeMap&) {
     return position_;
 }
 
-Motor::properties MockMotor::get_properties(const AttributeMap& extra) {
+Motor::properties MockMotor::get_properties(const AttributeMap&) {
     return properties_;
 }
 
-void MockMotor::stop(const AttributeMap& extra) {
+void MockMotor::stop(const AttributeMap&) {
     // None of these functions are async and this mock is not
     // thread-safe (Send, not Sync). The mock motor should never be
     // moving when this is called
     set_power(0.0);
 }
 
-Motor::power_status MockMotor::get_power_status(const AttributeMap& extra) {
+Motor::power_status MockMotor::get_power_status(const AttributeMap&) {
     return power_status_;
 }
 
-std::vector<GeometryConfig> MockMotor::get_geometries(const sdk::AttributeMap& extra) {
+std::vector<GeometryConfig> MockMotor::get_geometries(const sdk::AttributeMap&) {
     return fake_geometries();
 }
 
@@ -69,7 +69,7 @@ bool MockMotor::is_moving() {
     return false;
 }
 
-AttributeMap MockMotor::do_command(const AttributeMap& _command) {
+AttributeMap MockMotor::do_command(const AttributeMap&) {
     return map_;
 }
 
