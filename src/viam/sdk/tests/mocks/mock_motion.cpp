@@ -1,3 +1,4 @@
+#include "viam/sdk/services/motion/motion.hpp"
 #include <viam/sdk/tests/mocks/mock_motion.hpp>
 
 #include <chrono>
@@ -15,8 +16,8 @@ using namespace viam::sdk;
 
 bool MockMotion::move(const pose_in_frame& destination,
                       const Name& component_name,
-                      std::shared_ptr<WorldState> world_state,
-                      std::shared_ptr<constraints> constraints,
+                      const std::shared_ptr<WorldState>& world_state,
+                      const std::shared_ptr<constraints>& constraints,
                       const AttributeMap& extra) {
     this->current_location = destination;
     this->peek_component_name = component_name;
@@ -25,31 +26,34 @@ bool MockMotion::move(const pose_in_frame& destination,
     return true;
 }
 
-bool MockMotion::move_on_map(const pose& destination,
-                             const Name& component_name,
-                             const Name& slam_name,
-                             const AttributeMap& extra) {
-    this->peek_current_pose = std::move(destination);
-    this->peek_component_name = std::move(component_name);
-    this->peek_slam_name = std::move(slam_name);
-    this->current_location.pose = std::move(destination);
+std::string MockMotion::move_on_map(
+    const pose& destination,
+    const Name& component_name,
+    const Name& slam_name,
+    const std::shared_ptr<motion_configuration>& motion_configuration,
+    const AttributeMap& extra) {
+    this->peek_current_pose = destination;
+    this->peek_component_name = component_name;
+    this->peek_slam_name = slam_name;
+    this->current_location.pose = destination;
 
-    return true;
+    return "execution-id";
 }
 
-std::string MockMotion::move_on_globe(const geo_point& destination,
-                                      const boost::optional<double>& heading,
-                                      const Name& component_name,
-                                      const Name& movement_sensor_name,
-                                      const std::vector<geo_obstacle>& obstacles,
-                                      std::shared_ptr<motion_configuration> motion_configuration,
-                                      const AttributeMap& extra) {
+std::string MockMotion::move_on_globe(
+    const geo_point& destination,
+    const boost::optional<double>& heading,
+    const Name& component_name,
+    const Name& movement_sensor_name,
+    const std::vector<geo_obstacle>& obstacles,
+    const std::shared_ptr<motion_configuration>& motion_configuration,
+    const AttributeMap& extra) {
     this->peek_heading = *heading;
-    this->peek_component_name = std::move(component_name);
-    this->peek_movement_sensor_name = std::move(movement_sensor_name);
-    this->peek_destination = std::move(destination);
-    this->peek_obstacles = std::move(obstacles);
-    this->peek_motion_configuration = std::move(motion_configuration);
+    this->peek_component_name = component_name;
+    this->peek_movement_sensor_name = movement_sensor_name;
+    this->peek_destination = destination;
+    this->peek_obstacles = obstacles;
+    this->peek_motion_configuration = motion_configuration;
 
     return "execution-id";
 }

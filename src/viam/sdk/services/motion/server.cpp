@@ -48,12 +48,18 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
     return make_service_helper<Motion>(
         "MotionServer::MoveOnMap", this, request)([&](auto& helper, auto& motion) {
         const auto destination = pose::from_proto(request->destination());
-        auto component_name = Name::from_proto(request->component_name());
-        auto slam_name = Name::from_proto(request->slam_service_name());
-        const bool success = motion->move_on_map(
-            destination, std::move(component_name), std::move(slam_name), helper.getExtra());
+        const auto component_name = Name::from_proto(request->component_name());
+        const auto slam_name = Name::from_proto(request->slam_service_name());
 
-        response->set_success(success);
+        std::shared_ptr<motion_configuration> mc;
+        if (request->has_motion_configuration()) {
+            mc = std::make_shared<motion_configuration>(
+                motion_configuration::from_proto(request->motion_configuration()));
+        }
+        const std::string execution_id =
+            motion->move_on_map(destination, component_name, slam_name, mc, helper.getExtra());
+
+        *response->mutable_execution_id() = execution_id;
     });
 }
 
@@ -64,8 +70,8 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
     return make_service_helper<Motion>(
         "MotionServer::MoveOnGlobe", this, request)([&](auto& helper, auto& motion) {
         const auto destination = geo_point::from_proto(request->destination());
-        auto component_name = Name::from_proto(request->component_name());
-        auto movement_sensor_name = Name::from_proto(request->movement_sensor_name());
+        const auto component_name = Name::from_proto(request->component_name());
+        const auto movement_sensor_name = Name::from_proto(request->movement_sensor_name());
         std::vector<geo_obstacle> obstacles;
 
         for (const auto& obstacle : request->obstacles()) {
@@ -85,11 +91,11 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
 
         const std::string execution_id = motion->move_on_globe(destination,
                                                                heading,
-                                                               std::move(component_name),
-                                                               std::move(movement_sensor_name),
-                                                               std::move(obstacles),
-                                                               std::move(mc),
-                                                               std::move(helper.getExtra()));
+                                                               component_name,
+                                                               movement_sensor_name,
+                                                               obstacles,
+                                                               mc,
+                                                               helper.getExtra());
 
         *response->mutable_execution_id() = execution_id;
     });

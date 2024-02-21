@@ -35,7 +35,6 @@
 #include <google/protobuf/map_field_inl.h>
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
-#include "app/v1/app.pb.h"
 #include "common/v1/common.pb.h"
 #include <google/protobuf/duration.pb.h>
 #include <google/protobuf/struct.pb.h>
@@ -1038,6 +1037,8 @@ class CloudConfig final :
     kSignalingAddressFieldNumber = 5,
     kLocationSecretFieldNumber = 7,
     kSecretFieldNumber = 8,
+    kPrimaryOrgIdFieldNumber = 10,
+    kLocationIdFieldNumber = 11,
     kSignalingInsecureFieldNumber = 6,
   };
   // repeated .viam.app.v1.LocationSecret location_secrets = 9 [json_name = "locationSecrets"];
@@ -1156,6 +1157,34 @@ class CloudConfig final :
   std::string* _internal_mutable_secret();
   public:
 
+  // string primary_org_id = 10 [json_name = "primaryOrgId"];
+  void clear_primary_org_id();
+  const std::string& primary_org_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_primary_org_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_primary_org_id();
+  PROTOBUF_NODISCARD std::string* release_primary_org_id();
+  void set_allocated_primary_org_id(std::string* primary_org_id);
+  private:
+  const std::string& _internal_primary_org_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_primary_org_id(const std::string& value);
+  std::string* _internal_mutable_primary_org_id();
+  public:
+
+  // string location_id = 11 [json_name = "locationId"];
+  void clear_location_id();
+  const std::string& location_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_location_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_location_id();
+  PROTOBUF_NODISCARD std::string* release_location_id();
+  void set_allocated_location_id(std::string* location_id);
+  private:
+  const std::string& _internal_location_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_location_id(const std::string& value);
+  std::string* _internal_mutable_location_id();
+  public:
+
   // bool signaling_insecure = 6 [json_name = "signalingInsecure"];
   void clear_signaling_insecure();
   bool signaling_insecure() const;
@@ -1180,6 +1209,8 @@ class CloudConfig final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr signaling_address_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr location_secret_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr secret_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr primary_org_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr location_id_;
   bool signaling_insecure_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
@@ -6739,22 +6770,22 @@ class LogRequest final :
     kLogsFieldNumber = 2,
     kIdFieldNumber = 1,
   };
-  // repeated .viam.app.v1.LogEntry logs = 2 [json_name = "logs"];
+  // repeated .viam.common.v1.LogEntry logs = 2 [json_name = "logs"];
   int logs_size() const;
   private:
   int _internal_logs_size() const;
   public:
   void clear_logs();
-  ::viam::app::v1::LogEntry* mutable_logs(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::LogEntry >*
+  ::viam::common::v1::LogEntry* mutable_logs(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::LogEntry >*
       mutable_logs();
   private:
-  const ::viam::app::v1::LogEntry& _internal_logs(int index) const;
-  ::viam::app::v1::LogEntry* _internal_add_logs();
+  const ::viam::common::v1::LogEntry& _internal_logs(int index) const;
+  ::viam::common::v1::LogEntry* _internal_add_logs();
   public:
-  const ::viam::app::v1::LogEntry& logs(int index) const;
-  ::viam::app::v1::LogEntry* add_logs();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::LogEntry >&
+  const ::viam::common::v1::LogEntry& logs(int index) const;
+  ::viam::common::v1::LogEntry* add_logs();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::LogEntry >&
       logs() const;
 
   // string id = 1 [json_name = "id"];
@@ -6778,7 +6809,7 @@ class LogRequest final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::LogEntry > logs_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::LogEntry > logs_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
@@ -8875,6 +8906,106 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Locatio
 CloudConfig::location_secrets() const {
   // @@protoc_insertion_point(field_list:viam.app.v1.CloudConfig.location_secrets)
   return location_secrets_;
+}
+
+// string primary_org_id = 10 [json_name = "primaryOrgId"];
+inline void CloudConfig::clear_primary_org_id() {
+  primary_org_id_.ClearToEmpty();
+}
+inline const std::string& CloudConfig::primary_org_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CloudConfig.primary_org_id)
+  return _internal_primary_org_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CloudConfig::set_primary_org_id(ArgT0&& arg0, ArgT... args) {
+ 
+ primary_org_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CloudConfig.primary_org_id)
+}
+inline std::string* CloudConfig::mutable_primary_org_id() {
+  std::string* _s = _internal_mutable_primary_org_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CloudConfig.primary_org_id)
+  return _s;
+}
+inline const std::string& CloudConfig::_internal_primary_org_id() const {
+  return primary_org_id_.Get();
+}
+inline void CloudConfig::_internal_set_primary_org_id(const std::string& value) {
+  
+  primary_org_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CloudConfig::_internal_mutable_primary_org_id() {
+  
+  return primary_org_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CloudConfig::release_primary_org_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CloudConfig.primary_org_id)
+  return primary_org_id_.Release();
+}
+inline void CloudConfig::set_allocated_primary_org_id(std::string* primary_org_id) {
+  if (primary_org_id != nullptr) {
+    
+  } else {
+    
+  }
+  primary_org_id_.SetAllocated(primary_org_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (primary_org_id_.IsDefault()) {
+    primary_org_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CloudConfig.primary_org_id)
+}
+
+// string location_id = 11 [json_name = "locationId"];
+inline void CloudConfig::clear_location_id() {
+  location_id_.ClearToEmpty();
+}
+inline const std::string& CloudConfig::location_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CloudConfig.location_id)
+  return _internal_location_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CloudConfig::set_location_id(ArgT0&& arg0, ArgT... args) {
+ 
+ location_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CloudConfig.location_id)
+}
+inline std::string* CloudConfig::mutable_location_id() {
+  std::string* _s = _internal_mutable_location_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CloudConfig.location_id)
+  return _s;
+}
+inline const std::string& CloudConfig::_internal_location_id() const {
+  return location_id_.Get();
+}
+inline void CloudConfig::_internal_set_location_id(const std::string& value) {
+  
+  location_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CloudConfig::_internal_mutable_location_id() {
+  
+  return location_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CloudConfig::release_location_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CloudConfig.location_id)
+  return location_id_.Release();
+}
+inline void CloudConfig::set_allocated_location_id(std::string* location_id) {
+  if (location_id != nullptr) {
+    
+  } else {
+    
+  }
+  location_id_.SetAllocated(location_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (location_id_.IsDefault()) {
+    location_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CloudConfig.location_id)
 }
 
 // -------------------------------------------------------------------
@@ -14370,38 +14501,38 @@ inline void LogRequest::set_allocated_id(std::string* id) {
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.LogRequest.id)
 }
 
-// repeated .viam.app.v1.LogEntry logs = 2 [json_name = "logs"];
+// repeated .viam.common.v1.LogEntry logs = 2 [json_name = "logs"];
 inline int LogRequest::_internal_logs_size() const {
   return logs_.size();
 }
 inline int LogRequest::logs_size() const {
   return _internal_logs_size();
 }
-inline ::viam::app::v1::LogEntry* LogRequest::mutable_logs(int index) {
+inline ::viam::common::v1::LogEntry* LogRequest::mutable_logs(int index) {
   // @@protoc_insertion_point(field_mutable:viam.app.v1.LogRequest.logs)
   return logs_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::LogEntry >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::LogEntry >*
 LogRequest::mutable_logs() {
   // @@protoc_insertion_point(field_mutable_list:viam.app.v1.LogRequest.logs)
   return &logs_;
 }
-inline const ::viam::app::v1::LogEntry& LogRequest::_internal_logs(int index) const {
+inline const ::viam::common::v1::LogEntry& LogRequest::_internal_logs(int index) const {
   return logs_.Get(index);
 }
-inline const ::viam::app::v1::LogEntry& LogRequest::logs(int index) const {
+inline const ::viam::common::v1::LogEntry& LogRequest::logs(int index) const {
   // @@protoc_insertion_point(field_get:viam.app.v1.LogRequest.logs)
   return _internal_logs(index);
 }
-inline ::viam::app::v1::LogEntry* LogRequest::_internal_add_logs() {
+inline ::viam::common::v1::LogEntry* LogRequest::_internal_add_logs() {
   return logs_.Add();
 }
-inline ::viam::app::v1::LogEntry* LogRequest::add_logs() {
-  ::viam::app::v1::LogEntry* _add = _internal_add_logs();
+inline ::viam::common::v1::LogEntry* LogRequest::add_logs() {
+  ::viam::common::v1::LogEntry* _add = _internal_add_logs();
   // @@protoc_insertion_point(field_add:viam.app.v1.LogRequest.logs)
   return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::LogEntry >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::LogEntry >&
 LogRequest::logs() const {
   // @@protoc_insertion_point(field_list:viam.app.v1.LogRequest.logs)
   return logs_;
