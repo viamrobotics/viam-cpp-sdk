@@ -22,8 +22,8 @@ MotionClient::MotionClient(std::string name, std::shared_ptr<grpc::Channel> chan
 
 bool MotionClient::move(const pose_in_frame& destination,
                         const Name& component_name,
-                        std::shared_ptr<WorldState> world_state,
-                        std::shared_ptr<Motion::constraints> constraints,
+                        const std::shared_ptr<WorldState>& world_state,
+                        const std::shared_ptr<Motion::constraints>& constraints,
                         const AttributeMap& extra) {
     return make_client_helper(this, *stub_, &StubType::Move)
         .with(extra,
@@ -40,27 +40,33 @@ bool MotionClient::move(const pose_in_frame& destination,
         .invoke([](auto& response) { return response.success(); });
 }
 
-bool MotionClient::move_on_map(const pose& destination,
-                               const Name& component_name,
-                               const Name& slam_name,
-                               const AttributeMap& extra) {
+std::string MotionClient::move_on_map(
+    const pose& destination,
+    const Name& component_name,
+    const Name& slam_name,
+    const std::shared_ptr<motion_configuration>& motion_configuration,
+    const AttributeMap& extra) {
     return make_client_helper(this, *stub_, &StubType::MoveOnMap)
         .with(extra,
               [&](auto& request) {
                   *request.mutable_destination() = destination.to_proto();
                   *request.mutable_component_name() = component_name.to_proto();
                   *request.mutable_slam_service_name() = slam_name.to_proto();
+                  if (motion_configuration) {
+                      *request.mutable_motion_configuration() = motion_configuration->to_proto();
+                  }
               })
-        .invoke([](auto& response) { return response.success(); });
+        .invoke([](auto& response) { return response.execution_id(); });
 }
 
-std::string MotionClient::move_on_globe(const geo_point& destination,
-                                        const boost::optional<double>& heading,
-                                        const Name& component_name,
-                                        const Name& movement_sensor_name,
-                                        const std::vector<geo_obstacle>& obstacles,
-                                        std::shared_ptr<motion_configuration> motion_configuration,
-                                        const AttributeMap& extra) {
+std::string MotionClient::move_on_globe(
+    const geo_point& destination,
+    const boost::optional<double>& heading,
+    const Name& component_name,
+    const Name& movement_sensor_name,
+    const std::vector<geo_obstacle>& obstacles,
+    const std::shared_ptr<motion_configuration>& motion_configuration,
+    const AttributeMap& extra) {
     return make_client_helper(this, *stub_, &StubType::MoveOnGlobe)
         .with(extra,
               [&](auto& request) {

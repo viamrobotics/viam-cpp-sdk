@@ -39,6 +39,8 @@ static const char* RobotService_method_names[] = {
   "/viam.robot.v1.RobotService/StopAll",
   "/viam.robot.v1.RobotService/StartSession",
   "/viam.robot.v1.RobotService/SendSessionHeartbeat",
+  "/viam.robot.v1.RobotService/Log",
+  "/viam.robot.v1.RobotService/GetCloudMetadata",
 };
 
 std::unique_ptr< RobotService::Stub> RobotService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -63,6 +65,8 @@ RobotService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chann
   , rpcmethod_StopAll_(RobotService_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_StartSession_(RobotService_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SendSessionHeartbeat_(RobotService_method_names[14], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Log_(RobotService_method_names[15], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetCloudMetadata_(RobotService_method_names[16], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status RobotService::Stub::GetOperations(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest& request, ::viam::robot::v1::GetOperationsResponse* response) {
@@ -403,6 +407,52 @@ void RobotService::Stub::async::SendSessionHeartbeat(::grpc::ClientContext* cont
   return result;
 }
 
+::grpc::Status RobotService::Stub::Log(::grpc::ClientContext* context, const ::viam::robot::v1::LogRequest& request, ::viam::robot::v1::LogResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::LogRequest, ::viam::robot::v1::LogResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Log_, context, request, response);
+}
+
+void RobotService::Stub::async::Log(::grpc::ClientContext* context, const ::viam::robot::v1::LogRequest* request, ::viam::robot::v1::LogResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::LogRequest, ::viam::robot::v1::LogResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Log_, context, request, response, std::move(f));
+}
+
+void RobotService::Stub::async::Log(::grpc::ClientContext* context, const ::viam::robot::v1::LogRequest* request, ::viam::robot::v1::LogResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Log_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::LogResponse>* RobotService::Stub::PrepareAsyncLogRaw(::grpc::ClientContext* context, const ::viam::robot::v1::LogRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::LogResponse, ::viam::robot::v1::LogRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Log_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::LogResponse>* RobotService::Stub::AsyncLogRaw(::grpc::ClientContext* context, const ::viam::robot::v1::LogRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncLogRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status RobotService::Stub::GetCloudMetadata(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest& request, ::viam::robot::v1::GetCloudMetadataResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::GetCloudMetadataRequest, ::viam::robot::v1::GetCloudMetadataResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetCloudMetadata_, context, request, response);
+}
+
+void RobotService::Stub::async::GetCloudMetadata(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest* request, ::viam::robot::v1::GetCloudMetadataResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::GetCloudMetadataRequest, ::viam::robot::v1::GetCloudMetadataResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetCloudMetadata_, context, request, response, std::move(f));
+}
+
+void RobotService::Stub::async::GetCloudMetadata(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest* request, ::viam::robot::v1::GetCloudMetadataResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetCloudMetadata_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetCloudMetadataResponse>* RobotService::Stub::PrepareAsyncGetCloudMetadataRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::GetCloudMetadataResponse, ::viam::robot::v1::GetCloudMetadataRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetCloudMetadata_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetCloudMetadataResponse>* RobotService::Stub::AsyncGetCloudMetadataRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetCloudMetadataRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 RobotService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       RobotService_method_names[0],
@@ -554,6 +604,26 @@ RobotService::Service::Service() {
              ::viam::robot::v1::SendSessionHeartbeatResponse* resp) {
                return service->SendSessionHeartbeat(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      RobotService_method_names[15],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::LogRequest, ::viam::robot::v1::LogResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](RobotService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::robot::v1::LogRequest* req,
+             ::viam::robot::v1::LogResponse* resp) {
+               return service->Log(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      RobotService_method_names[16],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::GetCloudMetadataRequest, ::viam::robot::v1::GetCloudMetadataResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](RobotService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::robot::v1::GetCloudMetadataRequest* req,
+             ::viam::robot::v1::GetCloudMetadataResponse* resp) {
+               return service->GetCloudMetadata(ctx, req, resp);
+             }, this)));
 }
 
 RobotService::Service::~Service() {
@@ -658,6 +728,20 @@ RobotService::Service::~Service() {
 }
 
 ::grpc::Status RobotService::Service::SendSessionHeartbeat(::grpc::ServerContext* context, const ::viam::robot::v1::SendSessionHeartbeatRequest* request, ::viam::robot::v1::SendSessionHeartbeatResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status RobotService::Service::Log(::grpc::ServerContext* context, const ::viam::robot::v1::LogRequest* request, ::viam::robot::v1::LogResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status RobotService::Service::GetCloudMetadata(::grpc::ServerContext* context, const ::viam::robot::v1::GetCloudMetadataRequest* request, ::viam::robot::v1::GetCloudMetadataResponse* response) {
   (void) context;
   (void) request;
   (void) response;

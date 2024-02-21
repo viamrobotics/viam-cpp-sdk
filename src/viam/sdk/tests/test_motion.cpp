@@ -68,10 +68,13 @@ BOOST_AUTO_TEST_CASE(mock_move_on_map) {
 
     pose new_destination({{3, 4, 5}, {6, 7, 8}, 9});
 
-    bool success =
-        motion->move_on_map(new_destination, fake_component_name(), fake_slam_name(), fake_map());
+    std::string execution_id = motion->move_on_map(new_destination,
+                                                   fake_component_name(),
+                                                   fake_slam_name(),
+                                                   fake_motion_configuration(),
+                                                   fake_map());
 
-    BOOST_TEST(success);
+    BOOST_CHECK_EQUAL(execution_id, "execution-id");
     BOOST_CHECK_EQUAL(motion->peek_current_pose, std::move(new_destination));
     BOOST_CHECK_EQUAL(motion->peek_component_name, fake_component_name());
     BOOST_CHECK_EQUAL(motion->peek_slam_name, fake_slam_name());
@@ -180,10 +183,13 @@ BOOST_AUTO_TEST_CASE(test_move_on_map) {
     auto mock = std::make_shared<MockMotion>("mock_motion");
     client_to_mock_pipeline<MotionClient>(mock, [](Motion& client) {
         pose destination({{1, 2, 3}, {4, 5, 6}, 7});
-        bool success =
-            client.move_on_map(destination, fake_component_name(), fake_slam_name(), fake_map());
+        std::string execution_id = client.move_on_map(destination,
+                                                      fake_component_name(),
+                                                      fake_slam_name(),
+                                                      fake_motion_configuration(),
+                                                      fake_map());
 
-        BOOST_TEST(success);
+        BOOST_CHECK_EQUAL(execution_id, "execution-id");
 
         pose_in_frame pose = client.get_pose(fake_component_name(), "", {}, fake_map());
         BOOST_CHECK_EQUAL(pose.pose, destination);

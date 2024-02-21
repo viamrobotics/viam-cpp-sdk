@@ -46,22 +46,15 @@ class MotionService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::MoveResponse>> PrepareAsyncMove(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::MoveResponse>>(PrepareAsyncMoveRaw(context, request, cq));
     }
+    // Generate a plan and move a component to a specific pose
+    // with respect to the SLAM map's origin.
+    // May replan to avoid obstacles
     virtual ::grpc::Status MoveOnMap(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest& request, ::viam::service::motion::v1::MoveOnMapResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::MoveOnMapResponse>> AsyncMoveOnMap(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::MoveOnMapResponse>>(AsyncMoveOnMapRaw(context, request, cq));
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::MoveOnMapResponse>> PrepareAsyncMoveOnMap(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::MoveOnMapResponse>>(PrepareAsyncMoveOnMapRaw(context, request, cq));
-    }
-    // Generate a plan and move a component to a specific pose
-    // with respect to the SLAM map's origin.
-    // May replan to avoid obstacles
-    virtual ::grpc::Status MoveOnMapNew(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapNewRequest& request, ::viam::service::motion::v1::MoveOnMapNewResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::MoveOnMapNewResponse>> AsyncMoveOnMapNew(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapNewRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::MoveOnMapNewResponse>>(AsyncMoveOnMapNewRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::MoveOnMapNewResponse>> PrepareAsyncMoveOnMapNew(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapNewRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::MoveOnMapNewResponse>>(PrepareAsyncMoveOnMapNewRaw(context, request, cq));
     }
     // Generate and begin executing an execution to move a component
     // to a specific GPS coordinate.
@@ -127,13 +120,11 @@ class MotionService final {
       virtual ~async_interface() {}
       virtual void Move(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveRequest* request, ::viam::service::motion::v1::MoveResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Move(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveRequest* request, ::viam::service::motion::v1::MoveResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void MoveOnMap(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest* request, ::viam::service::motion::v1::MoveOnMapResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void MoveOnMap(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest* request, ::viam::service::motion::v1::MoveOnMapResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // Generate a plan and move a component to a specific pose
       // with respect to the SLAM map's origin.
       // May replan to avoid obstacles
-      virtual void MoveOnMapNew(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapNewRequest* request, ::viam::service::motion::v1::MoveOnMapNewResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void MoveOnMapNew(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapNewRequest* request, ::viam::service::motion::v1::MoveOnMapNewResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void MoveOnMap(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest* request, ::viam::service::motion::v1::MoveOnMapResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void MoveOnMap(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest* request, ::viam::service::motion::v1::MoveOnMapResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // Generate and begin executing an execution to move a component
       // to a specific GPS coordinate.
       // May replan to avoid obstacles & account for location drift.
@@ -172,8 +163,6 @@ class MotionService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::MoveResponse>* PrepareAsyncMoveRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::MoveOnMapResponse>* AsyncMoveOnMapRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::MoveOnMapResponse>* PrepareAsyncMoveOnMapRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::MoveOnMapNewResponse>* AsyncMoveOnMapNewRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapNewRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::MoveOnMapNewResponse>* PrepareAsyncMoveOnMapNewRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapNewRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::MoveOnGlobeResponse>* AsyncMoveOnGlobeRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnGlobeRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::MoveOnGlobeResponse>* PrepareAsyncMoveOnGlobeRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnGlobeRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::GetPoseResponse>* AsyncGetPoseRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPoseRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -203,13 +192,6 @@ class MotionService final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveOnMapResponse>> PrepareAsyncMoveOnMap(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveOnMapResponse>>(PrepareAsyncMoveOnMapRaw(context, request, cq));
-    }
-    ::grpc::Status MoveOnMapNew(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapNewRequest& request, ::viam::service::motion::v1::MoveOnMapNewResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveOnMapNewResponse>> AsyncMoveOnMapNew(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapNewRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveOnMapNewResponse>>(AsyncMoveOnMapNewRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveOnMapNewResponse>> PrepareAsyncMoveOnMapNew(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapNewRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveOnMapNewResponse>>(PrepareAsyncMoveOnMapNewRaw(context, request, cq));
     }
     ::grpc::Status MoveOnGlobe(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnGlobeRequest& request, ::viam::service::motion::v1::MoveOnGlobeResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveOnGlobeResponse>> AsyncMoveOnGlobe(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnGlobeRequest& request, ::grpc::CompletionQueue* cq) {
@@ -260,8 +242,6 @@ class MotionService final {
       void Move(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveRequest* request, ::viam::service::motion::v1::MoveResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void MoveOnMap(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest* request, ::viam::service::motion::v1::MoveOnMapResponse* response, std::function<void(::grpc::Status)>) override;
       void MoveOnMap(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest* request, ::viam::service::motion::v1::MoveOnMapResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void MoveOnMapNew(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapNewRequest* request, ::viam::service::motion::v1::MoveOnMapNewResponse* response, std::function<void(::grpc::Status)>) override;
-      void MoveOnMapNew(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapNewRequest* request, ::viam::service::motion::v1::MoveOnMapNewResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void MoveOnGlobe(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnGlobeRequest* request, ::viam::service::motion::v1::MoveOnGlobeResponse* response, std::function<void(::grpc::Status)>) override;
       void MoveOnGlobe(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnGlobeRequest* request, ::viam::service::motion::v1::MoveOnGlobeResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetPose(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPoseRequest* request, ::viam::service::motion::v1::GetPoseResponse* response, std::function<void(::grpc::Status)>) override;
@@ -289,8 +269,6 @@ class MotionService final {
     ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveResponse>* PrepareAsyncMoveRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveOnMapResponse>* AsyncMoveOnMapRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveOnMapResponse>* PrepareAsyncMoveOnMapRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveOnMapNewResponse>* AsyncMoveOnMapNewRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapNewRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveOnMapNewResponse>* PrepareAsyncMoveOnMapNewRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapNewRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveOnGlobeResponse>* AsyncMoveOnGlobeRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnGlobeRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveOnGlobeResponse>* PrepareAsyncMoveOnGlobeRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnGlobeRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::GetPoseResponse>* AsyncGetPoseRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPoseRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -305,7 +283,6 @@ class MotionService final {
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Move_;
     const ::grpc::internal::RpcMethod rpcmethod_MoveOnMap_;
-    const ::grpc::internal::RpcMethod rpcmethod_MoveOnMapNew_;
     const ::grpc::internal::RpcMethod rpcmethod_MoveOnGlobe_;
     const ::grpc::internal::RpcMethod rpcmethod_GetPose_;
     const ::grpc::internal::RpcMethod rpcmethod_StopPlan_;
@@ -320,11 +297,10 @@ class MotionService final {
     Service();
     virtual ~Service();
     virtual ::grpc::Status Move(::grpc::ServerContext* context, const ::viam::service::motion::v1::MoveRequest* request, ::viam::service::motion::v1::MoveResponse* response);
-    virtual ::grpc::Status MoveOnMap(::grpc::ServerContext* context, const ::viam::service::motion::v1::MoveOnMapRequest* request, ::viam::service::motion::v1::MoveOnMapResponse* response);
     // Generate a plan and move a component to a specific pose
     // with respect to the SLAM map's origin.
     // May replan to avoid obstacles
-    virtual ::grpc::Status MoveOnMapNew(::grpc::ServerContext* context, const ::viam::service::motion::v1::MoveOnMapNewRequest* request, ::viam::service::motion::v1::MoveOnMapNewResponse* response);
+    virtual ::grpc::Status MoveOnMap(::grpc::ServerContext* context, const ::viam::service::motion::v1::MoveOnMapRequest* request, ::viam::service::motion::v1::MoveOnMapResponse* response);
     // Generate and begin executing an execution to move a component
     // to a specific GPS coordinate.
     // May replan to avoid obstacles & account for location drift.
@@ -390,32 +366,12 @@ class MotionService final {
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_MoveOnMapNew : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_MoveOnMapNew() {
-      ::grpc::Service::MarkMethodAsync(2);
-    }
-    ~WithAsyncMethod_MoveOnMapNew() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status MoveOnMapNew(::grpc::ServerContext* /*context*/, const ::viam::service::motion::v1::MoveOnMapNewRequest* /*request*/, ::viam::service::motion::v1::MoveOnMapNewResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestMoveOnMapNew(::grpc::ServerContext* context, ::viam::service::motion::v1::MoveOnMapNewRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::motion::v1::MoveOnMapNewResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
   class WithAsyncMethod_MoveOnGlobe : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_MoveOnGlobe() {
-      ::grpc::Service::MarkMethodAsync(3);
+      ::grpc::Service::MarkMethodAsync(2);
     }
     ~WithAsyncMethod_MoveOnGlobe() override {
       BaseClassMustBeDerivedFromService(this);
@@ -426,7 +382,7 @@ class MotionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestMoveOnGlobe(::grpc::ServerContext* context, ::viam::service::motion::v1::MoveOnGlobeRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::motion::v1::MoveOnGlobeResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -435,7 +391,7 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetPose() {
-      ::grpc::Service::MarkMethodAsync(4);
+      ::grpc::Service::MarkMethodAsync(3);
     }
     ~WithAsyncMethod_GetPose() override {
       BaseClassMustBeDerivedFromService(this);
@@ -446,7 +402,7 @@ class MotionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetPose(::grpc::ServerContext* context, ::viam::service::motion::v1::GetPoseRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::motion::v1::GetPoseResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -455,7 +411,7 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_StopPlan() {
-      ::grpc::Service::MarkMethodAsync(5);
+      ::grpc::Service::MarkMethodAsync(4);
     }
     ~WithAsyncMethod_StopPlan() override {
       BaseClassMustBeDerivedFromService(this);
@@ -466,7 +422,7 @@ class MotionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestStopPlan(::grpc::ServerContext* context, ::viam::service::motion::v1::StopPlanRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::motion::v1::StopPlanResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -475,7 +431,7 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListPlanStatuses() {
-      ::grpc::Service::MarkMethodAsync(6);
+      ::grpc::Service::MarkMethodAsync(5);
     }
     ~WithAsyncMethod_ListPlanStatuses() override {
       BaseClassMustBeDerivedFromService(this);
@@ -486,7 +442,7 @@ class MotionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListPlanStatuses(::grpc::ServerContext* context, ::viam::service::motion::v1::ListPlanStatusesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::motion::v1::ListPlanStatusesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -495,7 +451,7 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetPlan() {
-      ::grpc::Service::MarkMethodAsync(7);
+      ::grpc::Service::MarkMethodAsync(6);
     }
     ~WithAsyncMethod_GetPlan() override {
       BaseClassMustBeDerivedFromService(this);
@@ -506,7 +462,7 @@ class MotionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetPlan(::grpc::ServerContext* context, ::viam::service::motion::v1::GetPlanRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::motion::v1::GetPlanResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -515,7 +471,7 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DoCommand() {
-      ::grpc::Service::MarkMethodAsync(8);
+      ::grpc::Service::MarkMethodAsync(7);
     }
     ~WithAsyncMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -526,10 +482,10 @@ class MotionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::viam::common::v1::DoCommandRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::DoCommandResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Move<WithAsyncMethod_MoveOnMap<WithAsyncMethod_MoveOnMapNew<WithAsyncMethod_MoveOnGlobe<WithAsyncMethod_GetPose<WithAsyncMethod_StopPlan<WithAsyncMethod_ListPlanStatuses<WithAsyncMethod_GetPlan<WithAsyncMethod_DoCommand<Service > > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_Move<WithAsyncMethod_MoveOnMap<WithAsyncMethod_MoveOnGlobe<WithAsyncMethod_GetPose<WithAsyncMethod_StopPlan<WithAsyncMethod_ListPlanStatuses<WithAsyncMethod_GetPlan<WithAsyncMethod_DoCommand<Service > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_Move : public BaseClass {
    private:
@@ -585,45 +541,18 @@ class MotionService final {
       ::grpc::CallbackServerContext* /*context*/, const ::viam::service::motion::v1::MoveOnMapRequest* /*request*/, ::viam::service::motion::v1::MoveOnMapResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_MoveOnMapNew : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_MoveOnMapNew() {
-      ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::motion::v1::MoveOnMapNewRequest, ::viam::service::motion::v1::MoveOnMapNewResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::motion::v1::MoveOnMapNewRequest* request, ::viam::service::motion::v1::MoveOnMapNewResponse* response) { return this->MoveOnMapNew(context, request, response); }));}
-    void SetMessageAllocatorFor_MoveOnMapNew(
-        ::grpc::MessageAllocator< ::viam::service::motion::v1::MoveOnMapNewRequest, ::viam::service::motion::v1::MoveOnMapNewResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::motion::v1::MoveOnMapNewRequest, ::viam::service::motion::v1::MoveOnMapNewResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_MoveOnMapNew() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status MoveOnMapNew(::grpc::ServerContext* /*context*/, const ::viam::service::motion::v1::MoveOnMapNewRequest* /*request*/, ::viam::service::motion::v1::MoveOnMapNewResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* MoveOnMapNew(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::motion::v1::MoveOnMapNewRequest* /*request*/, ::viam::service::motion::v1::MoveOnMapNewResponse* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
   class WithCallbackMethod_MoveOnGlobe : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_MoveOnGlobe() {
-      ::grpc::Service::MarkMethodCallback(3,
+      ::grpc::Service::MarkMethodCallback(2,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::service::motion::v1::MoveOnGlobeRequest, ::viam::service::motion::v1::MoveOnGlobeResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::service::motion::v1::MoveOnGlobeRequest* request, ::viam::service::motion::v1::MoveOnGlobeResponse* response) { return this->MoveOnGlobe(context, request, response); }));}
     void SetMessageAllocatorFor_MoveOnGlobe(
         ::grpc::MessageAllocator< ::viam::service::motion::v1::MoveOnGlobeRequest, ::viam::service::motion::v1::MoveOnGlobeResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::motion::v1::MoveOnGlobeRequest, ::viam::service::motion::v1::MoveOnGlobeResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -644,13 +573,13 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetPose() {
-      ::grpc::Service::MarkMethodCallback(4,
+      ::grpc::Service::MarkMethodCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::service::motion::v1::GetPoseRequest, ::viam::service::motion::v1::GetPoseResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::service::motion::v1::GetPoseRequest* request, ::viam::service::motion::v1::GetPoseResponse* response) { return this->GetPose(context, request, response); }));}
     void SetMessageAllocatorFor_GetPose(
         ::grpc::MessageAllocator< ::viam::service::motion::v1::GetPoseRequest, ::viam::service::motion::v1::GetPoseResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::motion::v1::GetPoseRequest, ::viam::service::motion::v1::GetPoseResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -671,13 +600,13 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_StopPlan() {
-      ::grpc::Service::MarkMethodCallback(5,
+      ::grpc::Service::MarkMethodCallback(4,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::service::motion::v1::StopPlanRequest, ::viam::service::motion::v1::StopPlanResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::service::motion::v1::StopPlanRequest* request, ::viam::service::motion::v1::StopPlanResponse* response) { return this->StopPlan(context, request, response); }));}
     void SetMessageAllocatorFor_StopPlan(
         ::grpc::MessageAllocator< ::viam::service::motion::v1::StopPlanRequest, ::viam::service::motion::v1::StopPlanResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::motion::v1::StopPlanRequest, ::viam::service::motion::v1::StopPlanResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -698,13 +627,13 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_ListPlanStatuses() {
-      ::grpc::Service::MarkMethodCallback(6,
+      ::grpc::Service::MarkMethodCallback(5,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::service::motion::v1::ListPlanStatusesRequest, ::viam::service::motion::v1::ListPlanStatusesResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::service::motion::v1::ListPlanStatusesRequest* request, ::viam::service::motion::v1::ListPlanStatusesResponse* response) { return this->ListPlanStatuses(context, request, response); }));}
     void SetMessageAllocatorFor_ListPlanStatuses(
         ::grpc::MessageAllocator< ::viam::service::motion::v1::ListPlanStatusesRequest, ::viam::service::motion::v1::ListPlanStatusesResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::motion::v1::ListPlanStatusesRequest, ::viam::service::motion::v1::ListPlanStatusesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -725,13 +654,13 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetPlan() {
-      ::grpc::Service::MarkMethodCallback(7,
+      ::grpc::Service::MarkMethodCallback(6,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::service::motion::v1::GetPlanRequest, ::viam::service::motion::v1::GetPlanResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::service::motion::v1::GetPlanRequest* request, ::viam::service::motion::v1::GetPlanResponse* response) { return this->GetPlan(context, request, response); }));}
     void SetMessageAllocatorFor_GetPlan(
         ::grpc::MessageAllocator< ::viam::service::motion::v1::GetPlanRequest, ::viam::service::motion::v1::GetPlanResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::motion::v1::GetPlanRequest, ::viam::service::motion::v1::GetPlanResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -752,13 +681,13 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodCallback(8,
+      ::grpc::Service::MarkMethodCallback(7,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
     void SetMessageAllocatorFor_DoCommand(
         ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -773,7 +702,7 @@ class MotionService final {
     virtual ::grpc::ServerUnaryReactor* DoCommand(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_Move<WithCallbackMethod_MoveOnMap<WithCallbackMethod_MoveOnMapNew<WithCallbackMethod_MoveOnGlobe<WithCallbackMethod_GetPose<WithCallbackMethod_StopPlan<WithCallbackMethod_ListPlanStatuses<WithCallbackMethod_GetPlan<WithCallbackMethod_DoCommand<Service > > > > > > > > > CallbackService;
+  typedef WithCallbackMethod_Move<WithCallbackMethod_MoveOnMap<WithCallbackMethod_MoveOnGlobe<WithCallbackMethod_GetPose<WithCallbackMethod_StopPlan<WithCallbackMethod_ListPlanStatuses<WithCallbackMethod_GetPlan<WithCallbackMethod_DoCommand<Service > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Move : public BaseClass {
@@ -810,29 +739,12 @@ class MotionService final {
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_MoveOnMapNew : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_MoveOnMapNew() {
-      ::grpc::Service::MarkMethodGeneric(2);
-    }
-    ~WithGenericMethod_MoveOnMapNew() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status MoveOnMapNew(::grpc::ServerContext* /*context*/, const ::viam::service::motion::v1::MoveOnMapNewRequest* /*request*/, ::viam::service::motion::v1::MoveOnMapNewResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
   class WithGenericMethod_MoveOnGlobe : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_MoveOnGlobe() {
-      ::grpc::Service::MarkMethodGeneric(3);
+      ::grpc::Service::MarkMethodGeneric(2);
     }
     ~WithGenericMethod_MoveOnGlobe() override {
       BaseClassMustBeDerivedFromService(this);
@@ -849,7 +761,7 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetPose() {
-      ::grpc::Service::MarkMethodGeneric(4);
+      ::grpc::Service::MarkMethodGeneric(3);
     }
     ~WithGenericMethod_GetPose() override {
       BaseClassMustBeDerivedFromService(this);
@@ -866,7 +778,7 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_StopPlan() {
-      ::grpc::Service::MarkMethodGeneric(5);
+      ::grpc::Service::MarkMethodGeneric(4);
     }
     ~WithGenericMethod_StopPlan() override {
       BaseClassMustBeDerivedFromService(this);
@@ -883,7 +795,7 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListPlanStatuses() {
-      ::grpc::Service::MarkMethodGeneric(6);
+      ::grpc::Service::MarkMethodGeneric(5);
     }
     ~WithGenericMethod_ListPlanStatuses() override {
       BaseClassMustBeDerivedFromService(this);
@@ -900,7 +812,7 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetPlan() {
-      ::grpc::Service::MarkMethodGeneric(7);
+      ::grpc::Service::MarkMethodGeneric(6);
     }
     ~WithGenericMethod_GetPlan() override {
       BaseClassMustBeDerivedFromService(this);
@@ -917,7 +829,7 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DoCommand() {
-      ::grpc::Service::MarkMethodGeneric(8);
+      ::grpc::Service::MarkMethodGeneric(7);
     }
     ~WithGenericMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -969,32 +881,12 @@ class MotionService final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_MoveOnMapNew : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_MoveOnMapNew() {
-      ::grpc::Service::MarkMethodRaw(2);
-    }
-    ~WithRawMethod_MoveOnMapNew() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status MoveOnMapNew(::grpc::ServerContext* /*context*/, const ::viam::service::motion::v1::MoveOnMapNewRequest* /*request*/, ::viam::service::motion::v1::MoveOnMapNewResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestMoveOnMapNew(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
   class WithRawMethod_MoveOnGlobe : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_MoveOnGlobe() {
-      ::grpc::Service::MarkMethodRaw(3);
+      ::grpc::Service::MarkMethodRaw(2);
     }
     ~WithRawMethod_MoveOnGlobe() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1005,7 +897,7 @@ class MotionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestMoveOnGlobe(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1014,7 +906,7 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetPose() {
-      ::grpc::Service::MarkMethodRaw(4);
+      ::grpc::Service::MarkMethodRaw(3);
     }
     ~WithRawMethod_GetPose() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1025,7 +917,7 @@ class MotionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetPose(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1034,7 +926,7 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_StopPlan() {
-      ::grpc::Service::MarkMethodRaw(5);
+      ::grpc::Service::MarkMethodRaw(4);
     }
     ~WithRawMethod_StopPlan() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1045,7 +937,7 @@ class MotionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestStopPlan(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1054,7 +946,7 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListPlanStatuses() {
-      ::grpc::Service::MarkMethodRaw(6);
+      ::grpc::Service::MarkMethodRaw(5);
     }
     ~WithRawMethod_ListPlanStatuses() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1065,7 +957,7 @@ class MotionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListPlanStatuses(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1074,7 +966,7 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetPlan() {
-      ::grpc::Service::MarkMethodRaw(7);
+      ::grpc::Service::MarkMethodRaw(6);
     }
     ~WithRawMethod_GetPlan() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1085,7 +977,7 @@ class MotionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetPlan(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1094,7 +986,7 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRaw(8);
+      ::grpc::Service::MarkMethodRaw(7);
     }
     ~WithRawMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1105,7 +997,7 @@ class MotionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1153,34 +1045,12 @@ class MotionService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_MoveOnMapNew : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_MoveOnMapNew() {
-      ::grpc::Service::MarkMethodRawCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->MoveOnMapNew(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_MoveOnMapNew() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status MoveOnMapNew(::grpc::ServerContext* /*context*/, const ::viam::service::motion::v1::MoveOnMapNewRequest* /*request*/, ::viam::service::motion::v1::MoveOnMapNewResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* MoveOnMapNew(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
   class WithRawCallbackMethod_MoveOnGlobe : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_MoveOnGlobe() {
-      ::grpc::Service::MarkMethodRawCallback(3,
+      ::grpc::Service::MarkMethodRawCallback(2,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->MoveOnGlobe(context, request, response); }));
@@ -1202,7 +1072,7 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetPose() {
-      ::grpc::Service::MarkMethodRawCallback(4,
+      ::grpc::Service::MarkMethodRawCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetPose(context, request, response); }));
@@ -1224,7 +1094,7 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_StopPlan() {
-      ::grpc::Service::MarkMethodRawCallback(5,
+      ::grpc::Service::MarkMethodRawCallback(4,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->StopPlan(context, request, response); }));
@@ -1246,7 +1116,7 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_ListPlanStatuses() {
-      ::grpc::Service::MarkMethodRawCallback(6,
+      ::grpc::Service::MarkMethodRawCallback(5,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListPlanStatuses(context, request, response); }));
@@ -1268,7 +1138,7 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetPlan() {
-      ::grpc::Service::MarkMethodRawCallback(7,
+      ::grpc::Service::MarkMethodRawCallback(6,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetPlan(context, request, response); }));
@@ -1290,7 +1160,7 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRawCallback(8,
+      ::grpc::Service::MarkMethodRawCallback(7,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
@@ -1361,39 +1231,12 @@ class MotionService final {
     virtual ::grpc::Status StreamedMoveOnMap(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::motion::v1::MoveOnMapRequest,::viam::service::motion::v1::MoveOnMapResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_MoveOnMapNew : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_MoveOnMapNew() {
-      ::grpc::Service::MarkMethodStreamed(2,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::service::motion::v1::MoveOnMapNewRequest, ::viam::service::motion::v1::MoveOnMapNewResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::viam::service::motion::v1::MoveOnMapNewRequest, ::viam::service::motion::v1::MoveOnMapNewResponse>* streamer) {
-                       return this->StreamedMoveOnMapNew(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_MoveOnMapNew() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status MoveOnMapNew(::grpc::ServerContext* /*context*/, const ::viam::service::motion::v1::MoveOnMapNewRequest* /*request*/, ::viam::service::motion::v1::MoveOnMapNewResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedMoveOnMapNew(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::motion::v1::MoveOnMapNewRequest,::viam::service::motion::v1::MoveOnMapNewResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
   class WithStreamedUnaryMethod_MoveOnGlobe : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_MoveOnGlobe() {
-      ::grpc::Service::MarkMethodStreamed(3,
+      ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::motion::v1::MoveOnGlobeRequest, ::viam::service::motion::v1::MoveOnGlobeResponse>(
             [this](::grpc::ServerContext* context,
@@ -1420,7 +1263,7 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetPose() {
-      ::grpc::Service::MarkMethodStreamed(4,
+      ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::motion::v1::GetPoseRequest, ::viam::service::motion::v1::GetPoseResponse>(
             [this](::grpc::ServerContext* context,
@@ -1447,7 +1290,7 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_StopPlan() {
-      ::grpc::Service::MarkMethodStreamed(5,
+      ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::motion::v1::StopPlanRequest, ::viam::service::motion::v1::StopPlanResponse>(
             [this](::grpc::ServerContext* context,
@@ -1474,7 +1317,7 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListPlanStatuses() {
-      ::grpc::Service::MarkMethodStreamed(6,
+      ::grpc::Service::MarkMethodStreamed(5,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::motion::v1::ListPlanStatusesRequest, ::viam::service::motion::v1::ListPlanStatusesResponse>(
             [this](::grpc::ServerContext* context,
@@ -1501,7 +1344,7 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetPlan() {
-      ::grpc::Service::MarkMethodStreamed(7,
+      ::grpc::Service::MarkMethodStreamed(6,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::motion::v1::GetPlanRequest, ::viam::service::motion::v1::GetPlanResponse>(
             [this](::grpc::ServerContext* context,
@@ -1528,7 +1371,7 @@ class MotionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DoCommand() {
-      ::grpc::Service::MarkMethodStreamed(8,
+      ::grpc::Service::MarkMethodStreamed(7,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](::grpc::ServerContext* context,
@@ -1549,9 +1392,9 @@ class MotionService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedDoCommand(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::common::v1::DoCommandRequest,::viam::common::v1::DoCommandResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_Move<WithStreamedUnaryMethod_MoveOnMap<WithStreamedUnaryMethod_MoveOnMapNew<WithStreamedUnaryMethod_MoveOnGlobe<WithStreamedUnaryMethod_GetPose<WithStreamedUnaryMethod_StopPlan<WithStreamedUnaryMethod_ListPlanStatuses<WithStreamedUnaryMethod_GetPlan<WithStreamedUnaryMethod_DoCommand<Service > > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_Move<WithStreamedUnaryMethod_MoveOnMap<WithStreamedUnaryMethod_MoveOnGlobe<WithStreamedUnaryMethod_GetPose<WithStreamedUnaryMethod_StopPlan<WithStreamedUnaryMethod_ListPlanStatuses<WithStreamedUnaryMethod_GetPlan<WithStreamedUnaryMethod_DoCommand<Service > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Move<WithStreamedUnaryMethod_MoveOnMap<WithStreamedUnaryMethod_MoveOnMapNew<WithStreamedUnaryMethod_MoveOnGlobe<WithStreamedUnaryMethod_GetPose<WithStreamedUnaryMethod_StopPlan<WithStreamedUnaryMethod_ListPlanStatuses<WithStreamedUnaryMethod_GetPlan<WithStreamedUnaryMethod_DoCommand<Service > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_Move<WithStreamedUnaryMethod_MoveOnMap<WithStreamedUnaryMethod_MoveOnGlobe<WithStreamedUnaryMethod_GetPose<WithStreamedUnaryMethod_StopPlan<WithStreamedUnaryMethod_ListPlanStatuses<WithStreamedUnaryMethod_GetPlan<WithStreamedUnaryMethod_DoCommand<Service > > > > > > > > StreamedService;
 };
 
 }  // namespace v1

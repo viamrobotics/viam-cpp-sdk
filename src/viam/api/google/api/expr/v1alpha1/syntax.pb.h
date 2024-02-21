@@ -32,6 +32,7 @@
 #include <google/protobuf/map.h>  // IWYU pragma: export
 #include <google/protobuf/map_entry.h>
 #include <google/protobuf/map_field_inl.h>
+#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include <google/protobuf/duration.pb.h>
 #include <google/protobuf/struct.pb.h>
@@ -87,6 +88,12 @@ extern ParsedExprDefaultTypeInternal _ParsedExpr_default_instance_;
 class SourceInfo;
 struct SourceInfoDefaultTypeInternal;
 extern SourceInfoDefaultTypeInternal _SourceInfo_default_instance_;
+class SourceInfo_Extension;
+struct SourceInfo_ExtensionDefaultTypeInternal;
+extern SourceInfo_ExtensionDefaultTypeInternal _SourceInfo_Extension_default_instance_;
+class SourceInfo_Extension_Version;
+struct SourceInfo_Extension_VersionDefaultTypeInternal;
+extern SourceInfo_Extension_VersionDefaultTypeInternal _SourceInfo_Extension_Version_default_instance_;
 class SourceInfo_MacroCallsEntry_DoNotUse;
 struct SourceInfo_MacroCallsEntry_DoNotUseDefaultTypeInternal;
 extern SourceInfo_MacroCallsEntry_DoNotUseDefaultTypeInternal _SourceInfo_MacroCallsEntry_DoNotUse_default_instance_;
@@ -112,6 +119,8 @@ template<> ::google::api::expr::v1alpha1::Expr_Ident* Arena::CreateMaybeMessage<
 template<> ::google::api::expr::v1alpha1::Expr_Select* Arena::CreateMaybeMessage<::google::api::expr::v1alpha1::Expr_Select>(Arena*);
 template<> ::google::api::expr::v1alpha1::ParsedExpr* Arena::CreateMaybeMessage<::google::api::expr::v1alpha1::ParsedExpr>(Arena*);
 template<> ::google::api::expr::v1alpha1::SourceInfo* Arena::CreateMaybeMessage<::google::api::expr::v1alpha1::SourceInfo>(Arena*);
+template<> ::google::api::expr::v1alpha1::SourceInfo_Extension* Arena::CreateMaybeMessage<::google::api::expr::v1alpha1::SourceInfo_Extension>(Arena*);
+template<> ::google::api::expr::v1alpha1::SourceInfo_Extension_Version* Arena::CreateMaybeMessage<::google::api::expr::v1alpha1::SourceInfo_Extension_Version>(Arena*);
 template<> ::google::api::expr::v1alpha1::SourceInfo_MacroCallsEntry_DoNotUse* Arena::CreateMaybeMessage<::google::api::expr::v1alpha1::SourceInfo_MacroCallsEntry_DoNotUse>(Arena*);
 template<> ::google::api::expr::v1alpha1::SourceInfo_PositionsEntry_DoNotUse* Arena::CreateMaybeMessage<::google::api::expr::v1alpha1::SourceInfo_PositionsEntry_DoNotUse>(Arena*);
 template<> ::google::api::expr::v1alpha1::SourcePosition* Arena::CreateMaybeMessage<::google::api::expr::v1alpha1::SourcePosition>(Arena*);
@@ -121,6 +130,33 @@ namespace api {
 namespace expr {
 namespace v1alpha1 {
 
+enum SourceInfo_Extension_Component : int {
+  SourceInfo_Extension_Component_COMPONENT_UNSPECIFIED = 0,
+  SourceInfo_Extension_Component_COMPONENT_PARSER = 1,
+  SourceInfo_Extension_Component_COMPONENT_TYPE_CHECKER = 2,
+  SourceInfo_Extension_Component_COMPONENT_RUNTIME = 3,
+  SourceInfo_Extension_Component_SourceInfo_Extension_Component_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  SourceInfo_Extension_Component_SourceInfo_Extension_Component_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool SourceInfo_Extension_Component_IsValid(int value);
+constexpr SourceInfo_Extension_Component SourceInfo_Extension_Component_Component_MIN = SourceInfo_Extension_Component_COMPONENT_UNSPECIFIED;
+constexpr SourceInfo_Extension_Component SourceInfo_Extension_Component_Component_MAX = SourceInfo_Extension_Component_COMPONENT_RUNTIME;
+constexpr int SourceInfo_Extension_Component_Component_ARRAYSIZE = SourceInfo_Extension_Component_Component_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* SourceInfo_Extension_Component_descriptor();
+template<typename T>
+inline const std::string& SourceInfo_Extension_Component_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, SourceInfo_Extension_Component>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function SourceInfo_Extension_Component_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    SourceInfo_Extension_Component_descriptor(), enum_t_value);
+}
+inline bool SourceInfo_Extension_Component_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, SourceInfo_Extension_Component* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<SourceInfo_Extension_Component>(
+    SourceInfo_Extension_Component_descriptor(), name, value);
+}
 // ===================================================================
 
 class ParsedExpr final :
@@ -2293,6 +2329,384 @@ class Constant final :
 };
 // -------------------------------------------------------------------
 
+class SourceInfo_Extension_Version final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:google.api.expr.v1alpha1.SourceInfo.Extension.Version) */ {
+ public:
+  inline SourceInfo_Extension_Version() : SourceInfo_Extension_Version(nullptr) {}
+  ~SourceInfo_Extension_Version() override;
+  explicit PROTOBUF_CONSTEXPR SourceInfo_Extension_Version(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SourceInfo_Extension_Version(const SourceInfo_Extension_Version& from);
+  SourceInfo_Extension_Version(SourceInfo_Extension_Version&& from) noexcept
+    : SourceInfo_Extension_Version() {
+    *this = ::std::move(from);
+  }
+
+  inline SourceInfo_Extension_Version& operator=(const SourceInfo_Extension_Version& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SourceInfo_Extension_Version& operator=(SourceInfo_Extension_Version&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SourceInfo_Extension_Version& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SourceInfo_Extension_Version* internal_default_instance() {
+    return reinterpret_cast<const SourceInfo_Extension_Version*>(
+               &_SourceInfo_Extension_Version_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  friend void swap(SourceInfo_Extension_Version& a, SourceInfo_Extension_Version& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SourceInfo_Extension_Version* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SourceInfo_Extension_Version* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SourceInfo_Extension_Version* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SourceInfo_Extension_Version>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const SourceInfo_Extension_Version& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const SourceInfo_Extension_Version& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SourceInfo_Extension_Version* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "google.api.expr.v1alpha1.SourceInfo.Extension.Version";
+  }
+  protected:
+  explicit SourceInfo_Extension_Version(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMajorFieldNumber = 1,
+    kMinorFieldNumber = 2,
+  };
+  // int64 major = 1 [json_name = "major"];
+  void clear_major();
+  int64_t major() const;
+  void set_major(int64_t value);
+  private:
+  int64_t _internal_major() const;
+  void _internal_set_major(int64_t value);
+  public:
+
+  // int64 minor = 2 [json_name = "minor"];
+  void clear_minor();
+  int64_t minor() const;
+  void set_minor(int64_t value);
+  private:
+  int64_t _internal_minor() const;
+  void _internal_set_minor(int64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:google.api.expr.v1alpha1.SourceInfo.Extension.Version)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  int64_t major_;
+  int64_t minor_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SourceInfo_Extension final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:google.api.expr.v1alpha1.SourceInfo.Extension) */ {
+ public:
+  inline SourceInfo_Extension() : SourceInfo_Extension(nullptr) {}
+  ~SourceInfo_Extension() override;
+  explicit PROTOBUF_CONSTEXPR SourceInfo_Extension(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SourceInfo_Extension(const SourceInfo_Extension& from);
+  SourceInfo_Extension(SourceInfo_Extension&& from) noexcept
+    : SourceInfo_Extension() {
+    *this = ::std::move(from);
+  }
+
+  inline SourceInfo_Extension& operator=(const SourceInfo_Extension& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SourceInfo_Extension& operator=(SourceInfo_Extension&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SourceInfo_Extension& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SourceInfo_Extension* internal_default_instance() {
+    return reinterpret_cast<const SourceInfo_Extension*>(
+               &_SourceInfo_Extension_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    11;
+
+  friend void swap(SourceInfo_Extension& a, SourceInfo_Extension& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SourceInfo_Extension* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SourceInfo_Extension* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SourceInfo_Extension* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SourceInfo_Extension>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const SourceInfo_Extension& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const SourceInfo_Extension& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SourceInfo_Extension* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "google.api.expr.v1alpha1.SourceInfo.Extension";
+  }
+  protected:
+  explicit SourceInfo_Extension(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef SourceInfo_Extension_Version Version;
+
+  typedef SourceInfo_Extension_Component Component;
+  static constexpr Component COMPONENT_UNSPECIFIED =
+    SourceInfo_Extension_Component_COMPONENT_UNSPECIFIED;
+  static constexpr Component COMPONENT_PARSER =
+    SourceInfo_Extension_Component_COMPONENT_PARSER;
+  static constexpr Component COMPONENT_TYPE_CHECKER =
+    SourceInfo_Extension_Component_COMPONENT_TYPE_CHECKER;
+  static constexpr Component COMPONENT_RUNTIME =
+    SourceInfo_Extension_Component_COMPONENT_RUNTIME;
+  static inline bool Component_IsValid(int value) {
+    return SourceInfo_Extension_Component_IsValid(value);
+  }
+  static constexpr Component Component_MIN =
+    SourceInfo_Extension_Component_Component_MIN;
+  static constexpr Component Component_MAX =
+    SourceInfo_Extension_Component_Component_MAX;
+  static constexpr int Component_ARRAYSIZE =
+    SourceInfo_Extension_Component_Component_ARRAYSIZE;
+  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
+  Component_descriptor() {
+    return SourceInfo_Extension_Component_descriptor();
+  }
+  template<typename T>
+  static inline const std::string& Component_Name(T enum_t_value) {
+    static_assert(::std::is_same<T, Component>::value ||
+      ::std::is_integral<T>::value,
+      "Incorrect type passed to function Component_Name.");
+    return SourceInfo_Extension_Component_Name(enum_t_value);
+  }
+  static inline bool Component_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
+      Component* value) {
+    return SourceInfo_Extension_Component_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAffectedComponentsFieldNumber = 2,
+    kIdFieldNumber = 1,
+    kVersionFieldNumber = 3,
+  };
+  // repeated .google.api.expr.v1alpha1.SourceInfo.Extension.Component affected_components = 2 [json_name = "affectedComponents"];
+  int affected_components_size() const;
+  private:
+  int _internal_affected_components_size() const;
+  public:
+  void clear_affected_components();
+  private:
+  ::google::api::expr::v1alpha1::SourceInfo_Extension_Component _internal_affected_components(int index) const;
+  void _internal_add_affected_components(::google::api::expr::v1alpha1::SourceInfo_Extension_Component value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>* _internal_mutable_affected_components();
+  public:
+  ::google::api::expr::v1alpha1::SourceInfo_Extension_Component affected_components(int index) const;
+  void set_affected_components(int index, ::google::api::expr::v1alpha1::SourceInfo_Extension_Component value);
+  void add_affected_components(::google::api::expr::v1alpha1::SourceInfo_Extension_Component value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>& affected_components() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>* mutable_affected_components();
+
+  // string id = 1 [json_name = "id"];
+  void clear_id();
+  const std::string& id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // .google.api.expr.v1alpha1.SourceInfo.Extension.Version version = 3 [json_name = "version"];
+  bool has_version() const;
+  private:
+  bool _internal_has_version() const;
+  public:
+  void clear_version();
+  const ::google::api::expr::v1alpha1::SourceInfo_Extension_Version& version() const;
+  PROTOBUF_NODISCARD ::google::api::expr::v1alpha1::SourceInfo_Extension_Version* release_version();
+  ::google::api::expr::v1alpha1::SourceInfo_Extension_Version* mutable_version();
+  void set_allocated_version(::google::api::expr::v1alpha1::SourceInfo_Extension_Version* version);
+  private:
+  const ::google::api::expr::v1alpha1::SourceInfo_Extension_Version& _internal_version() const;
+  ::google::api::expr::v1alpha1::SourceInfo_Extension_Version* _internal_mutable_version();
+  public:
+  void unsafe_arena_set_allocated_version(
+      ::google::api::expr::v1alpha1::SourceInfo_Extension_Version* version);
+  ::google::api::expr::v1alpha1::SourceInfo_Extension_Version* unsafe_arena_release_version();
+
+  // @@protoc_insertion_point(class_scope:google.api.expr.v1alpha1.SourceInfo.Extension)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField<int> affected_components_;
+  mutable std::atomic<int> _affected_components_cached_byte_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  ::google::api::expr::v1alpha1::SourceInfo_Extension_Version* version_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto;
+};
+// -------------------------------------------------------------------
+
 class SourceInfo_PositionsEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<SourceInfo_PositionsEntry_DoNotUse, 
     int64_t, int32_t,
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT64,
@@ -2389,7 +2803,7 @@ class SourceInfo final :
                &_SourceInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    14;
 
   friend void swap(SourceInfo& a, SourceInfo& b) {
     a.Swap(&b);
@@ -2459,6 +2873,7 @@ class SourceInfo final :
 
   // nested types ----------------------------------------------------
 
+  typedef SourceInfo_Extension Extension;
 
   // accessors -------------------------------------------------------
 
@@ -2466,6 +2881,7 @@ class SourceInfo final :
     kLineOffsetsFieldNumber = 3,
     kPositionsFieldNumber = 4,
     kMacroCallsFieldNumber = 5,
+    kExtensionsFieldNumber = 6,
     kSyntaxVersionFieldNumber = 1,
     kLocationFieldNumber = 2,
   };
@@ -2525,6 +2941,24 @@ class SourceInfo final :
   ::PROTOBUF_NAMESPACE_ID::Map< int64_t, ::google::api::expr::v1alpha1::Expr >*
       mutable_macro_calls();
 
+  // repeated .google.api.expr.v1alpha1.SourceInfo.Extension extensions = 6 [json_name = "extensions"];
+  int extensions_size() const;
+  private:
+  int _internal_extensions_size() const;
+  public:
+  void clear_extensions();
+  ::google::api::expr::v1alpha1::SourceInfo_Extension* mutable_extensions(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::google::api::expr::v1alpha1::SourceInfo_Extension >*
+      mutable_extensions();
+  private:
+  const ::google::api::expr::v1alpha1::SourceInfo_Extension& _internal_extensions(int index) const;
+  ::google::api::expr::v1alpha1::SourceInfo_Extension* _internal_add_extensions();
+  public:
+  const ::google::api::expr::v1alpha1::SourceInfo_Extension& extensions(int index) const;
+  ::google::api::expr::v1alpha1::SourceInfo_Extension* add_extensions();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::google::api::expr::v1alpha1::SourceInfo_Extension >&
+      extensions() const;
+
   // string syntax_version = 1 [json_name = "syntaxVersion"];
   void clear_syntax_version();
   const std::string& syntax_version() const;
@@ -2572,6 +3006,7 @@ class SourceInfo final :
       int64_t, ::google::api::expr::v1alpha1::Expr,
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT64,
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> macro_calls_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::google::api::expr::v1alpha1::SourceInfo_Extension > extensions_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr syntax_version_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr location_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -2627,7 +3062,7 @@ class SourcePosition final :
                &_SourcePosition_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    15;
 
   friend void swap(SourcePosition& a, SourcePosition& b) {
     a.Swap(&b);
@@ -5426,6 +5861,237 @@ inline Constant::ConstantKindCase Constant::constant_kind_case() const {
 }
 // -------------------------------------------------------------------
 
+// SourceInfo_Extension_Version
+
+// int64 major = 1 [json_name = "major"];
+inline void SourceInfo_Extension_Version::clear_major() {
+  major_ = int64_t{0};
+}
+inline int64_t SourceInfo_Extension_Version::_internal_major() const {
+  return major_;
+}
+inline int64_t SourceInfo_Extension_Version::major() const {
+  // @@protoc_insertion_point(field_get:google.api.expr.v1alpha1.SourceInfo.Extension.Version.major)
+  return _internal_major();
+}
+inline void SourceInfo_Extension_Version::_internal_set_major(int64_t value) {
+  
+  major_ = value;
+}
+inline void SourceInfo_Extension_Version::set_major(int64_t value) {
+  _internal_set_major(value);
+  // @@protoc_insertion_point(field_set:google.api.expr.v1alpha1.SourceInfo.Extension.Version.major)
+}
+
+// int64 minor = 2 [json_name = "minor"];
+inline void SourceInfo_Extension_Version::clear_minor() {
+  minor_ = int64_t{0};
+}
+inline int64_t SourceInfo_Extension_Version::_internal_minor() const {
+  return minor_;
+}
+inline int64_t SourceInfo_Extension_Version::minor() const {
+  // @@protoc_insertion_point(field_get:google.api.expr.v1alpha1.SourceInfo.Extension.Version.minor)
+  return _internal_minor();
+}
+inline void SourceInfo_Extension_Version::_internal_set_minor(int64_t value) {
+  
+  minor_ = value;
+}
+inline void SourceInfo_Extension_Version::set_minor(int64_t value) {
+  _internal_set_minor(value);
+  // @@protoc_insertion_point(field_set:google.api.expr.v1alpha1.SourceInfo.Extension.Version.minor)
+}
+
+// -------------------------------------------------------------------
+
+// SourceInfo_Extension
+
+// string id = 1 [json_name = "id"];
+inline void SourceInfo_Extension::clear_id() {
+  id_.ClearToEmpty();
+}
+inline const std::string& SourceInfo_Extension::id() const {
+  // @@protoc_insertion_point(field_get:google.api.expr.v1alpha1.SourceInfo.Extension.id)
+  return _internal_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void SourceInfo_Extension::set_id(ArgT0&& arg0, ArgT... args) {
+ 
+ id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:google.api.expr.v1alpha1.SourceInfo.Extension.id)
+}
+inline std::string* SourceInfo_Extension::mutable_id() {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:google.api.expr.v1alpha1.SourceInfo.Extension.id)
+  return _s;
+}
+inline const std::string& SourceInfo_Extension::_internal_id() const {
+  return id_.Get();
+}
+inline void SourceInfo_Extension::_internal_set_id(const std::string& value) {
+  
+  id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SourceInfo_Extension::_internal_mutable_id() {
+  
+  return id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* SourceInfo_Extension::release_id() {
+  // @@protoc_insertion_point(field_release:google.api.expr.v1alpha1.SourceInfo.Extension.id)
+  return id_.Release();
+}
+inline void SourceInfo_Extension::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  id_.SetAllocated(id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (id_.IsDefault()) {
+    id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:google.api.expr.v1alpha1.SourceInfo.Extension.id)
+}
+
+// repeated .google.api.expr.v1alpha1.SourceInfo.Extension.Component affected_components = 2 [json_name = "affectedComponents"];
+inline int SourceInfo_Extension::_internal_affected_components_size() const {
+  return affected_components_.size();
+}
+inline int SourceInfo_Extension::affected_components_size() const {
+  return _internal_affected_components_size();
+}
+inline void SourceInfo_Extension::clear_affected_components() {
+  affected_components_.Clear();
+}
+inline ::google::api::expr::v1alpha1::SourceInfo_Extension_Component SourceInfo_Extension::_internal_affected_components(int index) const {
+  return static_cast< ::google::api::expr::v1alpha1::SourceInfo_Extension_Component >(affected_components_.Get(index));
+}
+inline ::google::api::expr::v1alpha1::SourceInfo_Extension_Component SourceInfo_Extension::affected_components(int index) const {
+  // @@protoc_insertion_point(field_get:google.api.expr.v1alpha1.SourceInfo.Extension.affected_components)
+  return _internal_affected_components(index);
+}
+inline void SourceInfo_Extension::set_affected_components(int index, ::google::api::expr::v1alpha1::SourceInfo_Extension_Component value) {
+  affected_components_.Set(index, value);
+  // @@protoc_insertion_point(field_set:google.api.expr.v1alpha1.SourceInfo.Extension.affected_components)
+}
+inline void SourceInfo_Extension::_internal_add_affected_components(::google::api::expr::v1alpha1::SourceInfo_Extension_Component value) {
+  affected_components_.Add(value);
+}
+inline void SourceInfo_Extension::add_affected_components(::google::api::expr::v1alpha1::SourceInfo_Extension_Component value) {
+  _internal_add_affected_components(value);
+  // @@protoc_insertion_point(field_add:google.api.expr.v1alpha1.SourceInfo.Extension.affected_components)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>&
+SourceInfo_Extension::affected_components() const {
+  // @@protoc_insertion_point(field_list:google.api.expr.v1alpha1.SourceInfo.Extension.affected_components)
+  return affected_components_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>*
+SourceInfo_Extension::_internal_mutable_affected_components() {
+  return &affected_components_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>*
+SourceInfo_Extension::mutable_affected_components() {
+  // @@protoc_insertion_point(field_mutable_list:google.api.expr.v1alpha1.SourceInfo.Extension.affected_components)
+  return _internal_mutable_affected_components();
+}
+
+// .google.api.expr.v1alpha1.SourceInfo.Extension.Version version = 3 [json_name = "version"];
+inline bool SourceInfo_Extension::_internal_has_version() const {
+  return this != internal_default_instance() && version_ != nullptr;
+}
+inline bool SourceInfo_Extension::has_version() const {
+  return _internal_has_version();
+}
+inline void SourceInfo_Extension::clear_version() {
+  if (GetArenaForAllocation() == nullptr && version_ != nullptr) {
+    delete version_;
+  }
+  version_ = nullptr;
+}
+inline const ::google::api::expr::v1alpha1::SourceInfo_Extension_Version& SourceInfo_Extension::_internal_version() const {
+  const ::google::api::expr::v1alpha1::SourceInfo_Extension_Version* p = version_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::api::expr::v1alpha1::SourceInfo_Extension_Version&>(
+      ::google::api::expr::v1alpha1::_SourceInfo_Extension_Version_default_instance_);
+}
+inline const ::google::api::expr::v1alpha1::SourceInfo_Extension_Version& SourceInfo_Extension::version() const {
+  // @@protoc_insertion_point(field_get:google.api.expr.v1alpha1.SourceInfo.Extension.version)
+  return _internal_version();
+}
+inline void SourceInfo_Extension::unsafe_arena_set_allocated_version(
+    ::google::api::expr::v1alpha1::SourceInfo_Extension_Version* version) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(version_);
+  }
+  version_ = version;
+  if (version) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:google.api.expr.v1alpha1.SourceInfo.Extension.version)
+}
+inline ::google::api::expr::v1alpha1::SourceInfo_Extension_Version* SourceInfo_Extension::release_version() {
+  
+  ::google::api::expr::v1alpha1::SourceInfo_Extension_Version* temp = version_;
+  version_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::google::api::expr::v1alpha1::SourceInfo_Extension_Version* SourceInfo_Extension::unsafe_arena_release_version() {
+  // @@protoc_insertion_point(field_release:google.api.expr.v1alpha1.SourceInfo.Extension.version)
+  
+  ::google::api::expr::v1alpha1::SourceInfo_Extension_Version* temp = version_;
+  version_ = nullptr;
+  return temp;
+}
+inline ::google::api::expr::v1alpha1::SourceInfo_Extension_Version* SourceInfo_Extension::_internal_mutable_version() {
+  
+  if (version_ == nullptr) {
+    auto* p = CreateMaybeMessage<::google::api::expr::v1alpha1::SourceInfo_Extension_Version>(GetArenaForAllocation());
+    version_ = p;
+  }
+  return version_;
+}
+inline ::google::api::expr::v1alpha1::SourceInfo_Extension_Version* SourceInfo_Extension::mutable_version() {
+  ::google::api::expr::v1alpha1::SourceInfo_Extension_Version* _msg = _internal_mutable_version();
+  // @@protoc_insertion_point(field_mutable:google.api.expr.v1alpha1.SourceInfo.Extension.version)
+  return _msg;
+}
+inline void SourceInfo_Extension::set_allocated_version(::google::api::expr::v1alpha1::SourceInfo_Extension_Version* version) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete version_;
+  }
+  if (version) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(version);
+    if (message_arena != submessage_arena) {
+      version = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, version, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  version_ = version;
+  // @@protoc_insertion_point(field_set_allocated:google.api.expr.v1alpha1.SourceInfo.Extension.version)
+}
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -5637,6 +6303,46 @@ SourceInfo::mutable_macro_calls() {
   return _internal_mutable_macro_calls();
 }
 
+// repeated .google.api.expr.v1alpha1.SourceInfo.Extension extensions = 6 [json_name = "extensions"];
+inline int SourceInfo::_internal_extensions_size() const {
+  return extensions_.size();
+}
+inline int SourceInfo::extensions_size() const {
+  return _internal_extensions_size();
+}
+inline void SourceInfo::clear_extensions() {
+  extensions_.Clear();
+}
+inline ::google::api::expr::v1alpha1::SourceInfo_Extension* SourceInfo::mutable_extensions(int index) {
+  // @@protoc_insertion_point(field_mutable:google.api.expr.v1alpha1.SourceInfo.extensions)
+  return extensions_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::google::api::expr::v1alpha1::SourceInfo_Extension >*
+SourceInfo::mutable_extensions() {
+  // @@protoc_insertion_point(field_mutable_list:google.api.expr.v1alpha1.SourceInfo.extensions)
+  return &extensions_;
+}
+inline const ::google::api::expr::v1alpha1::SourceInfo_Extension& SourceInfo::_internal_extensions(int index) const {
+  return extensions_.Get(index);
+}
+inline const ::google::api::expr::v1alpha1::SourceInfo_Extension& SourceInfo::extensions(int index) const {
+  // @@protoc_insertion_point(field_get:google.api.expr.v1alpha1.SourceInfo.extensions)
+  return _internal_extensions(index);
+}
+inline ::google::api::expr::v1alpha1::SourceInfo_Extension* SourceInfo::_internal_add_extensions() {
+  return extensions_.Add();
+}
+inline ::google::api::expr::v1alpha1::SourceInfo_Extension* SourceInfo::add_extensions() {
+  ::google::api::expr::v1alpha1::SourceInfo_Extension* _add = _internal_add_extensions();
+  // @@protoc_insertion_point(field_add:google.api.expr.v1alpha1.SourceInfo.extensions)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::google::api::expr::v1alpha1::SourceInfo_Extension >&
+SourceInfo::extensions() const {
+  // @@protoc_insertion_point(field_list:google.api.expr.v1alpha1.SourceInfo.extensions)
+  return extensions_;
+}
+
 // -------------------------------------------------------------------
 
 // SourcePosition
@@ -5780,6 +6486,10 @@ inline void SourcePosition::set_column(int32_t value) {
 
 // -------------------------------------------------------------------
 
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 
@@ -5787,6 +6497,16 @@ inline void SourcePosition::set_column(int32_t value) {
 }  // namespace expr
 }  // namespace api
 }  // namespace google
+
+PROTOBUF_NAMESPACE_OPEN
+
+template <> struct is_proto_enum< ::google::api::expr::v1alpha1::SourceInfo_Extension_Component> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::google::api::expr::v1alpha1::SourceInfo_Extension_Component>() {
+  return ::google::api::expr::v1alpha1::SourceInfo_Extension_Component_descriptor();
+}
+
+PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
 
