@@ -3,10 +3,9 @@
 /// @brief Defines a `Camera` component.
 #pragma once
 
-#include <arpa/inet.h>
 #include <bitset>
+#include <boost/endian/conversion.hpp>
 #include <chrono>
-#include <cstring>
 #include <string>
 #include <vector>
 
@@ -85,6 +84,12 @@ class Camera : public Component {
         response_metadata metadata;
     };
 
+    /// @brief UTF-8 encoding of 'DEPTHMAP' used in the header of FORMAT_RAW_DEPTH bytes payload.
+    static const uint64_t MAGIC_NUMBER = 0x44455054484D4150ULL;
+
+    /// @brief Number of bytes of the header for FORMAT_RAW_DEPTH payloads
+    static const auto HEADER_SIZE = 8 /*magic num*/ + 8 /*width*/ + 8 /*height*/;
+
     /// @struct depth_map
     /// @brief Represents the dimensions and depth values of a depth map.
     ///
@@ -118,11 +123,7 @@ class Camera : public Component {
     /// values encoded as 16-bit unsigned integers (big-endian format). This format is suitable
     /// for serialization and transmission of depth map data through gRPC.
     ///
-    /// @param width The width of the depth map in pixels.
-    /// @param height The height of the depth map in pixels.
-    /// @param depth_values A vector containing the depth values for each pixel in the depth
-    /// map.
-    ///                     Each depth value is a 16-bit unsigned integer.
+    /// @param depth_map the dimensions and depth values of a depth map.
     /// @return A std::vector<unsigned char> representing the encoded binary data of the depth
     /// map.
     ///         The vector includes 8 bytes for width, 8 bytes for height, followed by 2 bytes
@@ -139,8 +140,8 @@ class Camera : public Component {
     /// @param data A vector of unsigned chars representing the binary data of the depth map.
     /// @return A depth_map struct containing the width, height, and depth values extracted from the
     /// data.
-    /// @throws Exception: if the data is too short to contain valid depth information or
-    ///         if the data size does not match the expected size based on the width and height.
+    /// @throws Exception: if the data is misformatted e.g. doesn't contain valid depth information,
+    ///         or if the data size does not match the expected size based on the width and height.
     static Camera::depth_map decode_depth_map(const std::vector<unsigned char>& data);
 
     /// @brief remove any extra suffix's from the mime type string.
