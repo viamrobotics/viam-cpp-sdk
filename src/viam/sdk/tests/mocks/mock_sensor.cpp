@@ -14,13 +14,13 @@ namespace sensor {
 
 using namespace viam::sdk;
 
-AttributeMap MockSensor::get_readings(const AttributeMap& extra) {
+AttributeMap MockSensor::get_readings(const AttributeMap&) {
     return fake_map();
 };
 AttributeMap MockSensor::do_command(const AttributeMap& command) {
     return command;
 };
-std::vector<sdk::GeometryConfig> MockSensor::get_geometries(const AttributeMap& extra) {
+std::vector<sdk::GeometryConfig> MockSensor::get_geometries(const AttributeMap&) {
     return fake_geometries();
 };
 

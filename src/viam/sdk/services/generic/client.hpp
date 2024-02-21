@@ -20,7 +20,7 @@ class GenericServiceClient : public GenericService {
    public:
     using interface_type = GenericService;
     GenericServiceClient(std::string name, std::shared_ptr<grpc::Channel> channel);
-    AttributeMap do_command(AttributeMap command) override;
+    AttributeMap do_command(const AttributeMap& command) override;
 
    protected:
     // This constructor leaves the `channel_` as a nullptr. This is useful for testing

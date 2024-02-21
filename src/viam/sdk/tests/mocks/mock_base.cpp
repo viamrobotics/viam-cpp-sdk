@@ -20,34 +20,32 @@ Base::properties fake_properties() {
     return {2, 4, 8};
 }
 
-void MockBase::move_straight(int64_t distance_mm, double mm_per_sec, const AttributeMap& extra) {
+void MockBase::move_straight(int64_t distance_mm, double mm_per_sec, const AttributeMap&) {
     this->peek_move_straight_distance_mm = distance_mm;
     this->peek_move_straight_mm_per_sec = mm_per_sec;
 }
-void MockBase::spin(double angle_deg, double degs_per_sec, const AttributeMap& extra) {
+void MockBase::spin(double angle_deg, double degs_per_sec, const AttributeMap&) {
     this->peek_spin_angle_deg = angle_deg;
     this->peek_spin_degs_per_sec = degs_per_sec;
 }
-void MockBase::set_power(const Vector3& linear, const Vector3& angular, const AttributeMap& extra) {
+void MockBase::set_power(const Vector3& linear, const Vector3& angular, const AttributeMap&) {
     this->peek_set_power_linear = linear;
     this->peek_set_power_angular = angular;
 }
-void MockBase::set_velocity(const Vector3& linear,
-                            const Vector3& angular,
-                            const AttributeMap& extra) {
+void MockBase::set_velocity(const Vector3& linear, const Vector3& angular, const AttributeMap&) {
     this->peek_set_velocity_linear = linear;
     this->peek_set_velocity_angular = angular;
 }
-void MockBase::stop(const AttributeMap& extra) {
+void MockBase::stop(const AttributeMap&) {
     this->peek_stop_called = true;
 }
 bool MockBase::is_moving() {
     return false;
 }
-Base::properties MockBase::get_properties(const sdk::AttributeMap& extra) {
+Base::properties MockBase::get_properties(const sdk::AttributeMap&) {
     return fake_properties();
 }
-std::vector<GeometryConfig> MockBase::get_geometries(const sdk::AttributeMap& extra) {
+std::vector<GeometryConfig> MockBase::get_geometries(const sdk::AttributeMap&) {
     return fake_geometries();
 }
 

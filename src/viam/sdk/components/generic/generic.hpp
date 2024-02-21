@@ -24,7 +24,7 @@ class GenericComponent : public Component {
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param command the command to execute.
     /// @return The result of the executed command.
-    virtual AttributeMap do_command(AttributeMap command) = 0;
+    virtual AttributeMap do_command(const AttributeMap& command) = 0;
 
     /// @brief Returns `GeometryConfig`s associated with the calling camera.
     /// @return The requested `GeometryConfig`s associated with the component.

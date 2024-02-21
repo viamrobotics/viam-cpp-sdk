@@ -18,7 +18,7 @@ bool MockMotion::move(const pose_in_frame& destination,
                       const Name& component_name,
                       const std::shared_ptr<WorldState>& world_state,
                       const std::shared_ptr<constraints>& constraints,
-                      const AttributeMap& extra) {
+                      const AttributeMap&) {
     this->current_location = destination;
     this->peek_component_name = component_name;
     this->peek_world_state = world_state;
@@ -31,7 +31,7 @@ std::string MockMotion::move_on_map(
     const Name& component_name,
     const Name& slam_name,
     const std::shared_ptr<motion_configuration>& motion_configuration,
-    const AttributeMap& extra) {
+    const AttributeMap&) {
     this->peek_current_pose = destination;
     this->peek_component_name = component_name;
     this->peek_slam_name = slam_name;
@@ -47,7 +47,7 @@ std::string MockMotion::move_on_globe(
     const Name& movement_sensor_name,
     const std::vector<geo_obstacle>& obstacles,
     const std::shared_ptr<motion_configuration>& motion_configuration,
-    const AttributeMap& extra) {
+    const AttributeMap&) {
     this->peek_heading = *heading;
     this->peek_component_name = component_name;
     this->peek_movement_sensor_name = movement_sensor_name;
@@ -58,49 +58,45 @@ std::string MockMotion::move_on_globe(
     return "execution-id";
 }
 
-pose_in_frame MockMotion::get_pose(
-    const Name& component_name,
-    const std::string& destination_frame,
-    const std::vector<WorldState::transform>& supplemental_transforms,
-    const AttributeMap& extra) {
+pose_in_frame MockMotion::get_pose(const Name&,
+                                   const std::string&,
+                                   const std::vector<WorldState::transform>&,
+                                   const AttributeMap&) {
     return current_location;
 }
 
-Motion::plan_with_status MockMotion::get_plan(const sdk::Name& component_name,
-                                              const std::string& execution_id,
-                                              const sdk::AttributeMap& extra) {
+Motion::plan_with_status MockMotion::get_plan(const sdk::Name&,
+                                              const std::string&,
+                                              const sdk::AttributeMap&) {
     return fake_plan_with_status();
 }
 
 std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>>
-MockMotion::get_plan_with_replan_history(const sdk::Name& component_name,
-                                         const std::string& execution_id,
-                                         const sdk::AttributeMap& extra) {
+MockMotion::get_plan_with_replan_history(const sdk::Name&,
+                                         const std::string&,
+                                         const sdk::AttributeMap&) {
     return {fake_plan_with_status(), {fake_plan_with_status()}};
 }
 
-Motion::plan_with_status MockMotion::get_latest_plan(const sdk::Name& component_name,
-                                                     const sdk::AttributeMap& extra) {
+Motion::plan_with_status MockMotion::get_latest_plan(const sdk::Name&, const sdk::AttributeMap&) {
     return fake_plan_with_status();
 }
 
 std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>>
-MockMotion::get_latest_plan_with_replan_history(const sdk::Name& component_name,
-                                                const sdk::AttributeMap& extra) {
+MockMotion::get_latest_plan_with_replan_history(const sdk::Name&, const sdk::AttributeMap&) {
     return {fake_plan_with_status(), {fake_plan_with_status()}};
 }
 
 std::vector<Motion::plan_status_with_id> MockMotion::list_active_plan_statuses(
-    const sdk::AttributeMap& extra) {
+    const sdk::AttributeMap&) {
     return {fake_plan_status_with_id()};
 }
 
-std::vector<Motion::plan_status_with_id> MockMotion::list_plan_statuses(
-    const sdk::AttributeMap& extra) {
+std::vector<Motion::plan_status_with_id> MockMotion::list_plan_statuses(const sdk::AttributeMap&) {
     return {fake_plan_status_with_id()};
 }
 
-void MockMotion::stop_plan(const sdk::Name& name, const sdk::AttributeMap& extra) {
+void MockMotion::stop_plan(const sdk::Name&, const sdk::AttributeMap&) {
     this->peek_stop_plan_called = true;
 }
 

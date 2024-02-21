@@ -16,7 +16,7 @@ namespace sdk {
 MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)){};
 
-::grpc::Status MotionServer::Move(::grpc::ServerContext* context,
+::grpc::Status MotionServer::Move(::grpc::ServerContext*,
                                   const ::viam::service::motion::v1::MoveRequest* request,
                                   ::viam::service::motion::v1::MoveResponse* response) noexcept {
     return make_service_helper<Motion>(
@@ -42,7 +42,7 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
 };
 
 ::grpc::Status MotionServer::MoveOnMap(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::service::motion::v1::MoveOnMapRequest* request,
     ::viam::service::motion::v1::MoveOnMapResponse* response) noexcept {
     return make_service_helper<Motion>(
@@ -64,7 +64,7 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status MotionServer::MoveOnGlobe(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::service::motion::v1::MoveOnGlobeRequest* request,
     ::viam::service::motion::v1::MoveOnGlobeResponse* response) noexcept {
     return make_service_helper<Motion>(
@@ -102,7 +102,7 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status MotionServer::GetPose(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::service::motion::v1::GetPoseRequest* request,
     ::viam::service::motion::v1::GetPoseResponse* response) noexcept {
     return make_service_helper<Motion>(
@@ -120,7 +120,7 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
 };
 
 ::grpc::Status MotionServer::GetPlan(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::service::motion::v1::GetPlanRequest* request,
     ::viam::service::motion::v1::GetPlanResponse* response) noexcept {
     return make_service_helper<Motion>(
@@ -155,7 +155,7 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status MotionServer::ListPlanStatuses(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const service::motion::v1::ListPlanStatusesRequest* request,
     service::motion::v1::ListPlanStatusesResponse* response) noexcept {
     return make_service_helper<Motion>(
@@ -173,10 +173,9 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-::grpc::Status MotionServer::StopPlan(
-    ::grpc::ServerContext* context,
-    const ::viam::service::motion::v1::StopPlanRequest* request,
-    ::viam::service::motion::v1::StopPlanResponse* response) noexcept {
+::grpc::Status MotionServer::StopPlan(::grpc::ServerContext*,
+                                      const ::viam::service::motion::v1::StopPlanRequest* request,
+                                      ::viam::service::motion::v1::StopPlanResponse*) noexcept {
     return make_service_helper<Motion>(
         "MotionServer::StopPlan", this, request)([&](auto& helper, auto& motion) {
         const auto& component_name = Name::from_proto(request->component_name());
@@ -185,11 +184,11 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-::grpc::Status MotionServer::DoCommand(::grpc::ServerContext* context,
+::grpc::Status MotionServer::DoCommand(::grpc::ServerContext*,
                                        const ::viam::common::v1::DoCommandRequest* request,
                                        ::viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Motion>(
-        "MotionServer::DoCommand", this, request)([&](auto& helper, auto& motion) {
+        "MotionServer::DoCommand", this, request)([&](auto&, auto& motion) {
         const AttributeMap result = motion->do_command(struct_to_map(request->command()));
         *response->mutable_result() = map_to_struct(result);
     });

@@ -11,11 +11,11 @@ GenericServiceServer::GenericServiceServer(std::shared_ptr<ResourceManager> mana
     : ResourceServer(std::move(manager)){};
 
 ::grpc::Status GenericServiceServer::DoCommand(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::common::v1::DoCommandRequest* request,
     ::viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<GenericService>(
-        "GenericServiceServer::DoCommand", this, request)([&](auto& helper, auto& generic) {
+        "GenericServiceServer::DoCommand", this, request)([&](auto&, auto& generic) {
         const AttributeMap result = generic->do_command(struct_to_map(request->command()));
         *response->mutable_result() = map_to_struct(result);
     });

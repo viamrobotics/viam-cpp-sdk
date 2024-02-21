@@ -25,7 +25,7 @@ MockMLModelService& MockMLModelService::set_infer_handler(infer_handler handler)
 }
 
 std::shared_ptr<sdk::MLModelService::named_tensor_views> MockMLModelService::infer(
-    const named_tensor_views& inputs, const sdk::AttributeMap& extra) {
+    const named_tensor_views& inputs, const sdk::AttributeMap&) {
     return infer_handler_(inputs);
 }
 
@@ -34,7 +34,7 @@ MockMLModelService& MockMLModelService::set_metadata(struct metadata metadata) {
     return *this;
 }
 
-struct sdk::MLModelService::metadata MockMLModelService::metadata(const sdk::AttributeMap& extra) {
+struct sdk::MLModelService::metadata MockMLModelService::metadata(const sdk::AttributeMap&) {
     return metadata_;
 }
 
