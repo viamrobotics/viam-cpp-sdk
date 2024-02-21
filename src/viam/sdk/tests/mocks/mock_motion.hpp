@@ -32,6 +32,7 @@ class MockMotion : public sdk::Motion {
                             const sdk::Name& component_name,
                             const sdk::Name& slam_name,
                             const std::shared_ptr<sdk::motion_configuration>& motion_configuration,
+                            const std::vector<sdk::GeometryConfig>& obstacles,
                             const sdk::AttributeMap& extra) override;
 
     std::string move_on_globe(
@@ -89,6 +90,7 @@ class MockMotion : public sdk::Motion {
     double peek_heading;
     bool peek_stop_plan_called = false;
     std::vector<sdk::geo_obstacle> peek_obstacles;
+    std::vector<sdk::GeometryConfig> peek_map_obstacles;
     std::shared_ptr<constraints> peek_constraints;
     std::shared_ptr<sdk::motion_configuration> peek_motion_configuration;
     std::shared_ptr<sdk::WorldState> peek_world_state;
