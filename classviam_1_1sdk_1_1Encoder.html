@@ -143,9 +143,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab167d6406c03489dc80481cd32551966" id="r_ab167d6406c03489dc80481cd32551966"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="structviam_1_1sdk_1_1Encoder_1_1properties.html">properties</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab167d6406c03489dc80481cd32551966">get_properties</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:ab167d6406c03489dc80481cd32551966"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list of all the position_types that are supported by the encoder.  <br /></td></tr>
 <tr class="separator:ab167d6406c03489dc80481cd32551966"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef72396cfd7e8455be1829e5c06e8e67" id="r_aef72396cfd7e8455be1829e5c06e8e67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> AttributeMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef72396cfd7e8455be1829e5c06e8e67">do_command</a> (AttributeMap <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">command</a>)=0</td></tr>
-<tr class="memdesc:aef72396cfd7e8455be1829e5c06e8e67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
-<tr class="separator:aef72396cfd7e8455be1829e5c06e8e67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63b5f73259620129e12129ace0f2e49f" id="r_a63b5f73259620129e12129ace0f2e49f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> AttributeMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a63b5f73259620129e12129ace0f2e49f">do_command</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">command</a>)=0</td></tr>
+<tr class="memdesc:a63b5f73259620129e12129ace0f2e49f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
+<tr class="separator:a63b5f73259620129e12129ace0f2e49f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2bce43f1fd5975d5583cf44e3a6b6ca" id="r_af2bce43f1fd5975d5583cf44e3a6b6ca"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af2bce43f1fd5975d5583cf44e3a6b6ca">get_geometries</a> ()</td></tr>
 <tr class="memdesc:af2bce43f1fd5975d5583cf44e3a6b6ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling encoder.  <br /></td></tr>
 <tr class="separator:af2bce43f1fd5975d5583cf44e3a6b6ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -241,8 +241,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aef72396cfd7e8455be1829e5c06e8e67" name="aef72396cfd7e8455be1829e5c06e8e67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef72396cfd7e8455be1829e5c06e8e67">&#9670;&#160;</a></span>do_command()</h2>
+<a id="a63b5f73259620129e12129ace0f2e49f" name="a63b5f73259620129e12129ace0f2e49f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63b5f73259620129e12129ace0f2e49f">&#9670;&#160;</a></span>do_command()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -253,7 +253,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> AttributeMap viam::sdk::Encoder::do_command </td>
           <td>(</td>
-          <td class="paramtype">AttributeMap</td>          <td class="paramname"><span class="paramname"><em>command</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>command</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -273,7 +273,7 @@ Protected Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The result of the executed command. </dd></dl>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1EncoderClient.html#ab77dcd3ee7d8412901a2e9c8d342f603">viam::sdk::EncoderClient</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1EncoderClient.html#ac51483d293bdb26abbb04343c86fc1b0">viam::sdk::EncoderClient</a>.</p>
 
 </div>
 </div>

@@ -113,9 +113,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6189a3f720b3fc16103c0268860a2325" id="r_a6189a3f720b3fc16103c0268860a2325"><td class="memItemLeft" align="right" valign="top"><a id="a6189a3f720b3fc16103c0268860a2325" name="a6189a3f720b3fc16103c0268860a2325"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>GenericComponentClient</b> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>, std::shared_ptr&lt; grpc::Channel &gt; channel)</td></tr>
 <tr class="separator:a6189a3f720b3fc16103c0268860a2325"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f81648149b4c31cd3eaf4248ee692d2" id="r_a6f81648149b4c31cd3eaf4248ee692d2"><td class="memItemLeft" align="right" valign="top">AttributeMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f81648149b4c31cd3eaf4248ee692d2">do_command</a> (AttributeMap <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">command</a>) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
-<tr class="memdesc:a6f81648149b4c31cd3eaf4248ee692d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
-<tr class="separator:a6f81648149b4c31cd3eaf4248ee692d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab84329ca2d0a975e81497b3ab53a7cc0" id="r_ab84329ca2d0a975e81497b3ab53a7cc0"><td class="memItemLeft" align="right" valign="top">AttributeMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab84329ca2d0a975e81497b3ab53a7cc0">do_command</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">command</a>) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memdesc:ab84329ca2d0a975e81497b3ab53a7cc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
+<tr class="separator:ab84329ca2d0a975e81497b3ab53a7cc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a5553f87af417fe9982b106147b89c6" id="r_a4a5553f87af417fe9982b106147b89c6"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a5553f87af417fe9982b106147b89c6">get_geometries</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
 <tr class="separator:a4a5553f87af417fe9982b106147b89c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classviam_1_1sdk_1_1GenericComponent"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classviam_1_1sdk_1_1GenericComponent')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1GenericComponent.html">viam::sdk::GenericComponent</a></td></tr>
@@ -158,8 +158,8 @@ Protected Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>gRPC client implementation of a <code><a class="el" href="classviam_1_1sdk_1_1GenericComponent.html" title="A GenericComponent represents any component that can execute arbitrary commands.">GenericComponent</a></code>. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a6f81648149b4c31cd3eaf4248ee692d2" name="a6f81648149b4c31cd3eaf4248ee692d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f81648149b4c31cd3eaf4248ee692d2">&#9670;&#160;</a></span>do_command()</h2>
+<a id="ab84329ca2d0a975e81497b3ab53a7cc0" name="ab84329ca2d0a975e81497b3ab53a7cc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab84329ca2d0a975e81497b3ab53a7cc0">&#9670;&#160;</a></span>do_command()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -170,7 +170,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td class="memname">AttributeMap viam::sdk::GenericComponentClient::do_command </td>
           <td>(</td>
-          <td class="paramtype">AttributeMap</td>          <td class="paramname"><span class="paramname"><em>command</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>command</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -190,7 +190,7 @@ Protected Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The result of the executed command. </dd></dl>
 
-<p>Implements <a class="el" href="classviam_1_1sdk_1_1GenericComponent.html#ab8cc2eec6effad84cf483097d364a797">viam::sdk::GenericComponent</a>.</p>
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1GenericComponent.html#af8070b9190b438faa859369ebb0f6c84">viam::sdk::GenericComponent</a>.</p>
 
 </div>
 </div>
