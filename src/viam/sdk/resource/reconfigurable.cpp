@@ -1,5 +1,6 @@
-#include <memory>
 #include <viam/sdk/resource/reconfigurable.hpp>
+
+#include <memory>
 
 namespace viam {
 namespace sdk {
