@@ -120,9 +120,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afd3827d192d251d13b5686a874bf4bab" id="r_afd3827d192d251d13b5686a874bf4bab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> viam::common::v1::ResourceName&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd3827d192d251d13b5686a874bf4bab">get_resource_name</a> (std::string <a class="el" href="#a52ea612e31f5c09785b500bd2610d97d">name</a>) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a></td></tr>
 <tr class="memdesc:afd3827d192d251d13b5686a874bf4bab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code>ResourceName</code> for a particular resource name.  <br /></td></tr>
 <tr class="separator:afd3827d192d251d13b5686a874bf4bab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7859ab626e1d39c098dd8023c5e96107" id="r_a7859ab626e1d39c098dd8023c5e96107"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7859ab626e1d39c098dd8023c5e96107">reconfigure</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> Dependencies &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">deps</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">cfg</a>)</td></tr>
-<tr class="memdesc:a7859ab626e1d39c098dd8023c5e96107"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconfigures a resource.  <br /></td></tr>
-<tr class="separator:a7859ab626e1d39c098dd8023c5e96107"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52ea612e31f5c09785b500bd2610d97d" id="r_a52ea612e31f5c09785b500bd2610d97d"><td class="memItemLeft" align="right" valign="top"><a id="a52ea612e31f5c09785b500bd2610d97d" name="a52ea612e31f5c09785b500bd2610d97d"></a>
 <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b> () <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a></td></tr>
 <tr class="memdesc:a52ea612e31f5c09785b500bd2610d97d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the resource's name. <br /></td></tr>
@@ -184,46 +181,6 @@ Public Member Functions</h2></td></tr>
 <p>Returns a <code>ResourceName</code> for a particular resource name. </p>
 
 <p>Reimplemented in <a class="el" href="classviam_1_1sdk_1_1Component.html#ae969386d6faa08e81f16fb55ce62aa5d">viam::sdk::Component</a>, and <a class="el" href="classviam_1_1sdk_1_1Service.html#a0567becf814d134f25649c2f5d7ffab0">viam::sdk::Service</a>.</p>
-
-</div>
-</div>
-<a id="a7859ab626e1d39c098dd8023c5e96107" name="a7859ab626e1d39c098dd8023c5e96107"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7859ab626e1d39c098dd8023c5e96107">&#9670;&#160;</a></span>reconfigure()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::Resource::reconfigure </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> Dependencies &amp;</td>          <td class="paramname"><span class="paramname"><em>deps</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>cfg</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Reconfigures a resource. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">deps</td><td>Dependencies of the resource. </td></tr>
-    <tr><td class="paramname">cfg</td><td>The resource's config. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Reimplemented in <a class="el" href="classMyBase.html#a19cf917825bfcb6ba87cf270effd6554">MyBase</a>, <a class="el" href="classMyGizmo.html#a5f5e69a74a46af036f63182617605572">MyGizmo</a>, and <a class="el" href="classMySummation.html#ab99bde6a88e2ba454a952fcea2f42085">MySummation</a>.</p>
 
 </div>
 </div>

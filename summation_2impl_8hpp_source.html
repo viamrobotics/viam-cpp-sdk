@@ -87,32 +87,35 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;api.hpp&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;viam/sdk/resource/reconfigurable.hpp&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">using namespace </span>viam::sdk;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;api.hpp&quot;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// MySummation inherits from the `Summation` class defined in `api.hpp` and</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// implements all relevant methods along with `reconfigure`.</span></div>
-<div class="foldopen" id="foldopen00011" data-start="{" data-end="};">
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="classMySummation.html">   11</a></span><span class="keyword">class </span><a class="code hl_class" href="classMySummation.html">MySummation</a> : <span class="keyword">public</span> <a class="code hl_class" href="classSummation.html">Summation</a> {</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>   <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <a class="code hl_class" href="classMySummation.html">MySummation</a>(std::string <a class="code hl_function" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>, <span class="keywordtype">bool</span> subtract)</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        : <a class="code hl_class" href="classSummation.html">Summation</a>(std::move(<a class="code hl_function" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>)), subtract_(subtract){};</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <a class="code hl_class" href="classMySummation.html">MySummation</a>(<span class="keyword">const</span> Dependencies&amp; deps, <span class="keyword">const</span> <a class="code hl_class" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a>&amp; cfg) : <a class="code hl_class" href="classSummation.html">Summation</a>(cfg.name()) {</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        this-&gt;<a class="code hl_function" href="classMySummation.html#ab99bde6a88e2ba454a952fcea2f42085">reconfigure</a>(deps, cfg);</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    };</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classMySummation.html#ab99bde6a88e2ba454a952fcea2f42085">   18</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMySummation.html#ab99bde6a88e2ba454a952fcea2f42085">reconfigure</a>(<span class="keyword">const</span> Dependencies&amp; deps, <span class="keyword">const</span> <a class="code hl_class" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a>&amp; cfg) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">static</span> std::vector&lt;std::string&gt; validate(<a class="code hl_class" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a> cfg);</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordtype">double</span> sum(std::vector&lt;double&gt; numbers) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">using namespace </span>viam::sdk;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// MySummation inherits from the `Summation` class defined in `api.hpp` and</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// implements all relevant methods along with `reconfigure`.</span></div>
+<div class="foldopen" id="foldopen00013" data-start="{" data-end="};">
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classMySummation.html">   13</a></span><span class="keyword">class </span><a class="code hl_class" href="classMySummation.html">MySummation</a> : <span class="keyword">public</span> <a class="code hl_class" href="classSummation.html">Summation</a>, <span class="keyword">public</span> <a class="code hl_class" href="classviam_1_1sdk_1_1Reconfigurable.html">Reconfigurable</a> {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <a class="code hl_class" href="classMySummation.html">MySummation</a>(std::string <a class="code hl_function" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>, <span class="keywordtype">bool</span> subtract)</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        : <a class="code hl_class" href="classSummation.html">Summation</a>(std::move(<a class="code hl_function" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>)), subtract_(subtract){};</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <a class="code hl_class" href="classMySummation.html">MySummation</a>(<span class="keyword">const</span> Dependencies&amp; deps, <span class="keyword">const</span> <a class="code hl_class" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a>&amp; cfg) : <a class="code hl_class" href="classSummation.html">Summation</a>(cfg.name()) {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        this-&gt;<a class="code hl_function" href="classMySummation.html#ab99bde6a88e2ba454a952fcea2f42085">reconfigure</a>(deps, cfg);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    };</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classMySummation.html#ab99bde6a88e2ba454a952fcea2f42085">   20</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMySummation.html#ab99bde6a88e2ba454a952fcea2f42085">reconfigure</a>(<span class="keyword">const</span> Dependencies&amp; deps, <span class="keyword">const</span> <a class="code hl_class" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a>&amp; cfg) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">static</span> std::vector&lt;std::string&gt; validate(<a class="code hl_class" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a> cfg);</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>   <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">bool</span> subtract_;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>};</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">double</span> sum(std::vector&lt;double&gt; numbers) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">bool</span> subtract_;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>};</div>
 </div>
-<div class="ttc" id="aclassMySummation_html"><div class="ttname"><a href="classMySummation.html">MySummation</a></div><div class="ttdef"><b>Definition</b> impl.hpp:11</div></div>
+<div class="ttc" id="aclassMySummation_html"><div class="ttname"><a href="classMySummation.html">MySummation</a></div><div class="ttdef"><b>Definition</b> impl.hpp:13</div></div>
 <div class="ttc" id="aclassMySummation_html_ab99bde6a88e2ba454a952fcea2f42085"><div class="ttname"><a href="classMySummation.html#ab99bde6a88e2ba454a952fcea2f42085">MySummation::reconfigure</a></div><div class="ttdeci">void reconfigure(const Dependencies &amp;deps, const ResourceConfig &amp;cfg) override</div><div class="ttdoc">Reconfigures a resource.</div></div>
 <div class="ttc" id="aclassSummation_html"><div class="ttname"><a href="classSummation.html">Summation</a></div><div class="ttdef"><b>Definition</b> api.hpp:21</div></div>
+<div class="ttc" id="aclassviam_1_1sdk_1_1Reconfigurable_html"><div class="ttname"><a href="classviam_1_1sdk_1_1Reconfigurable.html">viam::sdk::Reconfigurable</a></div><div class="ttdef"><b>Definition</b> reconfigurable.hpp:9</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ResourceConfig_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ResourceConfig.html">viam::sdk::ResourceConfig</a></div><div class="ttdef"><b>Definition</b> resource.hpp:23</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Resource_html_a52ea612e31f5c09785b500bd2610d97d"><div class="ttname"><a href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">viam::sdk::Resource::name</a></div><div class="ttdeci">virtual std::string name() const</div><div class="ttdoc">Return the resource's name.</div></div>
 </div><!-- fragment --></div><!-- contents -->
