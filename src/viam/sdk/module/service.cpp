@@ -1,11 +1,8 @@
 #include <viam/sdk/module/service.hpp>
 
 #include <exception>
-#include <fstream>
-#include <iostream>
 #include <memory>
 #include <sstream>
-#include <stdexcept>
 #include <string>
 #include <sys/socket.h>
 #include <sys/stat.h>
@@ -33,6 +30,7 @@
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/module/handler_map.hpp>
 #include <viam/sdk/registry/registry.hpp>
+#include <viam/sdk/resource/reconfigurable.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
@@ -121,7 +119,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
                                 " as it doesn't exist.");
     }
     try {
-        res->reconfigure(deps, cfg);
+        Reconfigurable::reconfigure_if_reconfigurable(res, deps, cfg);
         return grpc::Status();
     } catch (const std::exception& exc) {
         return grpc::Status(::grpc::INTERNAL, exc.what());
