@@ -31,11 +31,14 @@ std::string MockMotion::move_on_map(
     const Name& component_name,
     const Name& slam_name,
     const std::shared_ptr<motion_configuration>& motion_configuration,
+    const std::vector<GeometryConfig>& obstacles,
     const AttributeMap&) {
     this->peek_current_pose = destination;
     this->peek_component_name = component_name;
     this->peek_slam_name = slam_name;
     this->current_location.pose = destination;
+    this->peek_motion_configuration = motion_configuration;
+    this->peek_map_obstacles = obstacles;
 
     return "execution-id";
 }

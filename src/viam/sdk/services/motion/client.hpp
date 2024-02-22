@@ -29,6 +29,7 @@ class MotionClient : public Motion {
                             const Name& component_name,
                             const Name& slam_name,
                             const std::shared_ptr<motion_configuration>& motion_configuration,
+                            const std::vector<GeometryConfig>& obstacles,
                             const AttributeMap& extra) override;
 
     std::string move_on_globe(const geo_point& destination,

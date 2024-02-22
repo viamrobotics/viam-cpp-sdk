@@ -17,6 +17,7 @@ BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::Motion::plan_status_with_id)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<viam::sdk::Motion::plan_status_with_id>)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::Motion::plan_with_status)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<viam::sdk::Motion::plan_with_status>)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<viam::sdk::GeometryConfig>)
 
 namespace viam {
 namespace sdktests {
@@ -48,7 +49,7 @@ BOOST_AUTO_TEST_CASE(mock_get_api) {
 BOOST_AUTO_TEST_CASE(mock_move_and_get_pose) {
     std::shared_ptr<MockMotion> motion = MockMotion::get_mock_motion();
 
-    BOOST_CHECK_EQUAL(motion->current_location, std::move(init_fake_pose()));
+    BOOST_CHECK_EQUAL(motion->current_location, init_fake_pose());
 
     Name fake_name({"acme", "service", "motion"}, "fake-remote", "fake-motion");
     auto ws = std::make_shared<WorldState>(mock_world_state());
@@ -57,14 +58,14 @@ BOOST_AUTO_TEST_CASE(mock_move_and_get_pose) {
 
     BOOST_TEST(success);
     BOOST_CHECK_EQUAL(motion->current_location, fake_pose());
-    BOOST_CHECK_EQUAL(motion->peek_component_name, std::move(fake_name));
+    BOOST_CHECK_EQUAL(motion->peek_component_name, fake_name);
     BOOST_CHECK_EQUAL(*(motion->peek_world_state), *ws);
 }
 
 BOOST_AUTO_TEST_CASE(mock_move_on_map) {
     std::shared_ptr<MockMotion> motion = MockMotion::get_mock_motion();
 
-    BOOST_CHECK_EQUAL(motion->current_location, std::move(init_fake_pose()));
+    BOOST_CHECK_EQUAL(motion->current_location, init_fake_pose());
 
     pose new_destination({{3, 4, 5}, {6, 7, 8}, 9});
 
@@ -72,12 +73,15 @@ BOOST_AUTO_TEST_CASE(mock_move_on_map) {
                                                    fake_component_name(),
                                                    fake_slam_name(),
                                                    fake_motion_configuration(),
+                                                   fake_geometries(),
                                                    fake_map());
 
     BOOST_CHECK_EQUAL(execution_id, "execution-id");
     BOOST_CHECK_EQUAL(motion->peek_current_pose, std::move(new_destination));
     BOOST_CHECK_EQUAL(motion->peek_component_name, fake_component_name());
     BOOST_CHECK_EQUAL(motion->peek_slam_name, fake_slam_name());
+    BOOST_CHECK_EQUAL(*(motion->peek_motion_configuration), *(fake_motion_configuration()));
+    BOOST_CHECK_EQUAL(motion->peek_map_obstacles, fake_geometries());
 }
 
 BOOST_AUTO_TEST_CASE(mock_move_on_globe) {
@@ -187,6 +191,7 @@ BOOST_AUTO_TEST_CASE(test_move_on_map) {
                                                       fake_component_name(),
                                                       fake_slam_name(),
                                                       fake_motion_configuration(),
+                                                      fake_geometries(),
                                                       fake_map());
 
         BOOST_CHECK_EQUAL(execution_id, "execution-id");

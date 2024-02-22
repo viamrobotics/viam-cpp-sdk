@@ -45,6 +45,7 @@ std::string MotionClient::move_on_map(
     const Name& component_name,
     const Name& slam_name,
     const std::shared_ptr<motion_configuration>& motion_configuration,
+    const std::vector<GeometryConfig>& obstacles,
     const AttributeMap& extra) {
     return make_client_helper(this, *stub_, &StubType::MoveOnMap)
         .with(extra,
@@ -52,6 +53,11 @@ std::string MotionClient::move_on_map(
                   *request.mutable_destination() = destination.to_proto();
                   *request.mutable_component_name() = component_name.to_proto();
                   *request.mutable_slam_service_name() = slam_name.to_proto();
+
+                  for (const auto& obstacle : obstacles) {
+                      *request.mutable_obstacles()->Add() = obstacle.to_proto();
+                  }
+
                   if (motion_configuration) {
                       *request.mutable_motion_configuration() = motion_configuration->to_proto();
                   }

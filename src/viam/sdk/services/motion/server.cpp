@@ -56,8 +56,14 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
             mc = std::make_shared<motion_configuration>(
                 motion_configuration::from_proto(request->motion_configuration()));
         }
-        const std::string execution_id =
-            motion->move_on_map(destination, component_name, slam_name, mc, helper.getExtra());
+
+        std::vector<GeometryConfig> obstacles;
+        for (const auto& obstacle : request->obstacles()) {
+            obstacles.push_back(GeometryConfig::from_proto(obstacle));
+        }
+
+        const std::string execution_id = motion->move_on_map(
+            destination, component_name, slam_name, mc, obstacles, helper.getExtra());
 
         *response->mutable_execution_id() = execution_id;
     });

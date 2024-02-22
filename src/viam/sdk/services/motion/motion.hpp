@@ -265,8 +265,10 @@ class Motion : public Service {
         const pose& destination,
         const Name& component_name,
         const Name& slam_name,
-        const std::shared_ptr<motion_configuration>& motion_configuration) {
-        return move_on_map(destination, component_name, slam_name, motion_configuration, {});
+        const std::shared_ptr<motion_configuration>& motion_configuration,
+        const std::vector<GeometryConfig>& obstacles) {
+        return move_on_map(
+            destination, component_name, slam_name, motion_configuration, obstacles, {});
     }
 
     /// @brief Moves any component on the robot to a specific destination on a SLAM map.
@@ -281,6 +283,7 @@ class Motion : public Service {
         const Name& component_name,
         const Name& slam_name,
         const std::shared_ptr<motion_configuration>& motion_configuration,
+        const std::vector<GeometryConfig>& obstacles,
         const AttributeMap& extra) = 0;
 
     /// @brief Moves any component on the robot to a specific destination on a globe.
