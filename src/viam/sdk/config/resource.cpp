@@ -89,7 +89,7 @@ void ResourceConfig::fix_api() {
     }
 }
 
-ResourceConfig ResourceConfig::from_proto(viam::app::v1::ComponentConfig proto_cfg) {
+ResourceConfig ResourceConfig::from_proto(const viam::app::v1::ComponentConfig& proto_cfg) {
     ResourceConfig resource(proto_cfg.type());
     resource.name_ = proto_cfg.name();
     resource.namespace__ = proto_cfg.namespace_();
@@ -138,7 +138,7 @@ viam::app::v1::ComponentConfig ResourceConfig::to_proto() const {
     return proto_cfg;
 }
 
-ResourceConfig::ResourceConfig(std::string type) : api_({kRDK, type, ""}), type_(type){};
+ResourceConfig::ResourceConfig(std::string type) : api_({kRDK, type, ""}), type_(std::move(type)){};
 
 }  // namespace sdk
 }  // namespace viam

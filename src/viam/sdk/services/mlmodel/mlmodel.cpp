@@ -104,43 +104,43 @@ MLModelService::tensor_info::data_types MLModelService::tensor_info::tensor_view
     const tensor_views& view) {
     class visitor : public boost::static_visitor<data_types> {
        public:
-        data_types operator()(const MLModelService::tensor_view<std::int8_t>& t) const {
+        data_types operator()(const MLModelService::tensor_view<std::int8_t>&) const {
             return data_types::k_int8;
         }
 
-        data_types operator()(const MLModelService::tensor_view<std::uint8_t>& t) const {
+        data_types operator()(const MLModelService::tensor_view<std::uint8_t>&) const {
             return data_types::k_uint8;
         }
 
-        data_types operator()(const MLModelService::tensor_view<std::int16_t>& t) const {
+        data_types operator()(const MLModelService::tensor_view<std::int16_t>&) const {
             return data_types::k_int16;
         }
 
-        data_types operator()(const MLModelService::tensor_view<std::uint16_t>& t) const {
+        data_types operator()(const MLModelService::tensor_view<std::uint16_t>&) const {
             return data_types::k_uint16;
         }
 
-        data_types operator()(const MLModelService::tensor_view<std::int32_t>& t) const {
+        data_types operator()(const MLModelService::tensor_view<std::int32_t>&) const {
             return data_types::k_int32;
         }
 
-        data_types operator()(const MLModelService::tensor_view<std::uint32_t>& t) const {
+        data_types operator()(const MLModelService::tensor_view<std::uint32_t>&) const {
             return data_types::k_uint32;
         }
 
-        data_types operator()(const MLModelService::tensor_view<std::int64_t>& t) const {
+        data_types operator()(const MLModelService::tensor_view<std::int64_t>&) const {
             return data_types::k_int64;
         }
 
-        data_types operator()(const MLModelService::tensor_view<std::uint64_t>& t) const {
+        data_types operator()(const MLModelService::tensor_view<std::uint64_t>&) const {
             return data_types::k_uint64;
         }
 
-        data_types operator()(const MLModelService::tensor_view<float>& t) const {
+        data_types operator()(const MLModelService::tensor_view<float>&) const {
             return data_types::k_float32;
         }
 
-        data_types operator()(const MLModelService::tensor_view<double>& t) const {
+        data_types operator()(const MLModelService::tensor_view<double>&) const {
             return data_types::k_float64;
         }
     };

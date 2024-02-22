@@ -30,7 +30,7 @@ using google::protobuf::RepeatedPtrField;
 using viam::common::v1::ResourceName;
 using viam::robot::v1::Status;
 
-RobotService_::RobotService_(std::shared_ptr<ResourceManager> manager, Server& server)
+RobotService_::RobotService_(const std::shared_ptr<ResourceManager>& manager, Server& server)
     : ResourceServer(manager) {
     server.register_service(this);
     // register all managed resources with the appropriate resource servers.
@@ -39,17 +39,18 @@ RobotService_::RobotService_(std::shared_ptr<ResourceManager> manager, Server& s
     }
 }
 
-std::vector<ResourceName> RobotService_::generate_metadata() {
+std::vector<ResourceName> RobotService_::generate_metadata_() {
     std::vector<ResourceName> metadata;
     for (const auto& key_and_val : resource_manager()->resources()) {
-        for (const ResourceName& resource : resource_names_for_resource(key_and_val.second)) {
-            metadata.push_back(resource);
+        for (const Name& resource : resource_names_for_resource(key_and_val.second)) {
+            metadata.push_back(resource.to_proto());
         }
     }
     return metadata;
 }
 
-std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName> resource_names) {
+std::vector<Status> RobotService_::generate_status_(
+    const RepeatedPtrField<ResourceName>& resource_names) {
     std::vector<Status> statuses;
     for (const auto& cmp : resource_manager()->resources()) {
         const std::shared_ptr<Resource> resource = cmp.second;
@@ -58,8 +59,8 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
             if (registration->api().resource_subtype() == resource->api().resource_subtype()) {
                 bool resource_present = false;
                 const ResourceName name = resource->get_resource_name(resource->name());
-                for (auto& resource_name : resource_names) {
-                    if (ResourceNameEqual::check_equal(name, resource_name)) {
+                for (const auto& resource_name : resource_names) {
+                    if (name.SerializeAsString() == resource_name.SerializeAsString()) {
                         resource_present = true;
                         break;
                     }
@@ -76,7 +77,7 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
     std::vector<Status> returnable_statuses;
     for (auto& status : statuses) {
         bool status_name_is_known = false;
-        for (auto& resource_name : resource_names) {
+        for (const auto& resource_name : resource_names) {
             if (status.name().SerializeAsString() == resource_name.SerializeAsString()) {
                 status_name_is_known = true;
                 break;
@@ -89,7 +90,7 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
     return returnable_statuses;
 }
 
-::grpc::Status RobotService_::ResourceNames(::grpc::ServerContext* context,
+::grpc::Status RobotService_::ResourceNames(::grpc::ServerContext*,
                                             const viam::robot::v1::ResourceNamesRequest* request,
                                             viam::robot::v1::ResourceNamesResponse* response) {
     if (!request) {
@@ -97,14 +98,14 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
                               "Called [ResourceNames] without a request");
     };
     RepeatedPtrField<ResourceName>* p = response->mutable_resources();
-    for (const ResourceName& name : generate_metadata()) {
+    for (const ResourceName& name : generate_metadata_()) {
         *p->Add() = name;
     }
 
     return ::grpc::Status();
 }
 
-::grpc::Status RobotService_::GetStatus(::grpc::ServerContext* context,
+::grpc::Status RobotService_::GetStatus(::grpc::ServerContext*,
                                         const ::viam::robot::v1::GetStatusRequest* request,
                                         ::viam::robot::v1::GetStatusResponse* response) {
     if (!request) {
@@ -113,7 +114,7 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
     };
 
     RepeatedPtrField<Status>* response_status = response->mutable_status();
-    const std::vector<Status> statuses = generate_status(request->resource_names());
+    const std::vector<Status> statuses = generate_status_(request->resource_names());
     for (const Status& status : statuses) {
         *response_status->Add() = status;
     }
@@ -126,7 +127,7 @@ void RobotService_::stream_status(
     ::grpc::ServerWriter<::viam::robot::v1::StreamStatusResponse>* writer,
     int interval) {
     while (true) {
-        const std::vector<Status> statuses = generate_status(request->resource_names());
+        const std::vector<Status> statuses = generate_status_(request->resource_names());
         viam::robot::v1::StreamStatusResponse response;
         RepeatedPtrField<Status>* response_status = response.mutable_status();
         for (const Status& status : statuses) {
@@ -139,22 +140,23 @@ void RobotService_::stream_status(
 }
 
 ::grpc::Status RobotService_::StreamStatus(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::robot::v1::StreamStatusRequest* request,
     ::grpc::ServerWriter<::viam::robot::v1::StreamStatusResponse>* writer) {
     uint64_t interval = 1;
     if (request->every().seconds() > 0) {
         interval = request->every().seconds();
     }
+
     const RepeatedPtrField<ResourceName> resource_names = request->resource_names();
     std::thread t(&RobotService_::stream_status, this, request, writer, interval);
     t.detach();
     return ::grpc::Status();
 }
 
-::grpc::Status RobotService_::StopAll(::grpc::ServerContext* context,
+::grpc::Status RobotService_::StopAll(::grpc::ServerContext*,
                                       const ::viam::robot::v1::StopAllRequest* request,
-                                      ::viam::robot::v1::StopAllResponse* response) {
+                                      ::viam::robot::v1::StopAllResponse*) {
     const ResourceName r;
     std::unordered_map<std::string, AttributeMap> extra;
     for (const auto& ex : request->extra()) {
@@ -202,7 +204,7 @@ void RobotService_::stream_status(
     return grpc::Status(status, status_message);
 }
 
-std::shared_ptr<Resource> RobotService_::resource_by_name(Name name) {
+std::shared_ptr<Resource> RobotService_::resource_by_name(const Name& name) {
     std::shared_ptr<Resource> r;
     const std::lock_guard<std::mutex> lock(lock_);
     auto resources = resource_manager()->resources();

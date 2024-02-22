@@ -15,19 +15,19 @@ namespace camera {
 
 using namespace viam::sdk;
 
-AttributeMap MockCamera::do_command(AttributeMap command) {
+AttributeMap MockCamera::do_command(const AttributeMap&) {
     return map_;
 }
-Camera::raw_image MockCamera::get_image(std::string mime_type, const AttributeMap& extra) {
+Camera::raw_image MockCamera::get_image(std::string, const AttributeMap&) {
     return image_;
 }
 Camera::image_collection MockCamera::get_images() {
     return images_;
 }
-Camera::point_cloud MockCamera::get_point_cloud(std::string mime_type, const AttributeMap& extra) {
+Camera::point_cloud MockCamera::get_point_cloud(std::string, const AttributeMap&) {
     return pc_;
 }
-std::vector<GeometryConfig> MockCamera::get_geometries(const AttributeMap& extra) {
+std::vector<GeometryConfig> MockCamera::get_geometries(const AttributeMap&) {
     return geometries_;
 }
 Camera::properties MockCamera::get_properties() {

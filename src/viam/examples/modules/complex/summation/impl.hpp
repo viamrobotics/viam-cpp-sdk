@@ -14,7 +14,7 @@ class MySummation : public Summation, public Reconfigurable {
    public:
     MySummation(std::string name, bool subtract)
         : Summation(std::move(name)), subtract_(subtract){};
-    MySummation(Dependencies deps, ResourceConfig cfg) : Summation(cfg.name()) {
+    MySummation(const Dependencies& deps, const ResourceConfig& cfg) : Summation(cfg.name()) {
         this->reconfigure(deps, cfg);
     };
     void reconfigure(const Dependencies& deps, const ResourceConfig& cfg) override;

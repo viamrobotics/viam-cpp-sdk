@@ -60,18 +60,18 @@ Dependencies ModuleService::get_dependencies_(
     return deps;
 }
 
-std::shared_ptr<Resource> ModuleService::get_parent_resource_(Name name) {
+std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) {
     if (!parent_) {
         parent_ = RobotClient::at_local_socket(parent_addr_, {0, boost::none});
     }
 
-    return parent_->resource_by_name(name.to_proto());
+    return parent_->resource_by_name(name);
 }
 
 // TODO(RSDK-6528) - to the extent possible, switch to using `server_helper`
-::grpc::Status ModuleService::AddResource(::grpc::ServerContext* context,
+::grpc::Status ModuleService::AddResource(::grpc::ServerContext*,
                                           const ::viam::module::v1::AddResourceRequest* request,
-                                          ::viam::module::v1::AddResourceResponse* response) {
+                                          ::viam::module::v1::AddResourceResponse*) {
     const viam::app::v1::ComponentConfig& proto = request->config();
     const ResourceConfig cfg = ResourceConfig::from_proto(proto);
     const std::lock_guard<std::mutex> lock(lock_);
@@ -97,9 +97,9 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(Name name) {
 };
 
 ::grpc::Status ModuleService::ReconfigureResource(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::module::v1::ReconfigureResourceRequest* request,
-    ::viam::module::v1::ReconfigureResourceResponse* response) {
+    ::viam::module::v1::ReconfigureResourceResponse*) {
     const viam::app::v1::ComponentConfig& proto = request->config();
     ResourceConfig cfg = ResourceConfig::from_proto(proto);
 
@@ -146,7 +146,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(Name name) {
 };
 
 ::grpc::Status ModuleService::ValidateConfig(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::module::v1::ValidateConfigRequest* request,
     ::viam::module::v1::ValidateConfigResponse* response) {
     const viam::app::v1::ComponentConfig& proto = request->config();
@@ -172,9 +172,9 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(Name name) {
 };
 
 ::grpc::Status ModuleService::RemoveResource(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::module::v1::RemoveResourceRequest* request,
-    ::viam::module::v1::RemoveResourceResponse* response) {
+    ::viam::module::v1::RemoveResourceResponse*) {
     auto name = Name::from_string(request->name());
     auto resource_server = server_->lookup_resource_server(name.api());
     if (!resource_server) {
@@ -198,7 +198,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(Name name) {
     return grpc::Status();
 };
 
-::grpc::Status ModuleService::Ready(::grpc::ServerContext* context,
+::grpc::Status ModuleService::Ready(::grpc::ServerContext*,
                                     const ::viam::module::v1::ReadyRequest* request,
                                     ::viam::module::v1::ReadyResponse* response) {
     const std::lock_guard<std::mutex> lock(lock_);
@@ -214,7 +214,7 @@ ModuleService::ModuleService(std::string addr)
 
 ModuleService::ModuleService(int argc,
                              char** argv,
-                             std::vector<std::shared_ptr<ModelRegistration>> registrations) {
+                             const std::vector<std::shared_ptr<ModelRegistration>>& registrations) {
     if (argc < 2) {
         throw Exception("Need socket path as command line argument");
     }
@@ -265,7 +265,7 @@ ModuleService::~ModuleService() {
 
 void ModuleService::add_model_from_registry_inlock_(API api,
                                                     Model model,
-                                                    const std::lock_guard<std::mutex>& lock) {
+                                                    const std::lock_guard<std::mutex>&) {
     const std::shared_ptr<const ResourceServerRegistration> creator =
         Registry::lookup_resource_server(api);
     std::string name;
@@ -274,13 +274,13 @@ void ModuleService::add_model_from_registry_inlock_(API api,
         name = creator->service_descriptor()->full_name();
         sd = creator->service_descriptor();
     }
-    const RPCSubtype rpc_subtype(api, name, *sd);
-    module_->mutable_handles().add_model(model, rpc_subtype);
+    const RPCSubtype rpc_subtype(std::move(api), name, *sd);
+    module_->mutable_handles().add_model(std::move(model), rpc_subtype);
 };
 
 void ModuleService::add_model_from_registry(API api, Model model) {
     const std::lock_guard<std::mutex> lock(lock_);
-    return add_model_from_registry_inlock_(api, model, lock);
+    return add_model_from_registry_inlock_(std::move(api), std::move(model), lock);
 }
 
 }  // namespace sdk

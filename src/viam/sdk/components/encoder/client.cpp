@@ -46,7 +46,7 @@ std::vector<GeometryConfig> EncoderClient::get_geometries(const AttributeMap& ex
         .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
 };
 
-AttributeMap EncoderClient::do_command(AttributeMap command) {
+AttributeMap EncoderClient::do_command(const AttributeMap& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
         .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
         .invoke([](auto& response) { return struct_to_map(response.result()); });

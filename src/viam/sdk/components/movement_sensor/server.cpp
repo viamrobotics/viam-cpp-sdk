@@ -16,31 +16,31 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
     : ResourceServer(std::move(manager)){};
 
 ::grpc::Status MovementSensorServer::GetLinearVelocity(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const GetLinearVelocityRequest* request,
     GetLinearVelocityResponse* response) noexcept {
     return make_service_helper<MovementSensor>("MovementSensorServer::GetLinearVelocity",
                                                this,
                                                request)([&](auto& helper, auto& movementsensor) {
         const Vector3 result = movementsensor->get_linear_velocity(helper.getExtra());
-        *response->mutable_linear_velocity() = Vector3::to_proto(result);
+        *response->mutable_linear_velocity() = result.to_proto();
     });
 }
 
 ::grpc::Status MovementSensorServer::GetAngularVelocity(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const GetAngularVelocityRequest* request,
     GetAngularVelocityResponse* response) noexcept {
     return make_service_helper<MovementSensor>("MovementSensorServer::GetAngularVelocity",
                                                this,
                                                request)([&](auto& helper, auto& movementsensor) {
         const Vector3 result = movementsensor->get_angular_velocity(helper.getExtra());
-        *response->mutable_angular_velocity() = Vector3::to_proto(result);
+        *response->mutable_angular_velocity() = result.to_proto();
     });
 }
 
 ::grpc::Status MovementSensorServer::GetCompassHeading(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const GetCompassHeadingRequest* request,
     GetCompassHeadingResponse* response) noexcept {
     return make_service_helper<MovementSensor>("MovementSensorServer::GetCompassHeading",
@@ -52,7 +52,7 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
     });
 }
 
-::grpc::Status MovementSensorServer::GetOrientation(::grpc::ServerContext* context,
+::grpc::Status MovementSensorServer::GetOrientation(::grpc::ServerContext*,
                                                     const GetOrientationRequest* request,
                                                     GetOrientationResponse* response) noexcept {
     return make_service_helper<MovementSensor>("MovementSensorServer::GetOrientation",
@@ -64,7 +64,7 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
     });
 }
 
-::grpc::Status MovementSensorServer::GetPosition(::grpc::ServerContext* context,
+::grpc::Status MovementSensorServer::GetPosition(::grpc::ServerContext*,
                                                  const GetPositionRequest* request,
                                                  GetPositionResponse* response) noexcept {
     return make_service_helper<MovementSensor>("MovementSensorServer::GetPosition", this, request)(
@@ -75,7 +75,7 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
         });
 }
 
-::grpc::Status MovementSensorServer::GetProperties(::grpc::ServerContext* context,
+::grpc::Status MovementSensorServer::GetProperties(::grpc::ServerContext*,
                                                    const GetPropertiesRequest* request,
                                                    GetPropertiesResponse* response) noexcept {
     return make_service_helper<MovementSensor>("MovementSensorServer::GetProperties",
@@ -91,7 +91,7 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
     });
 }
 
-::grpc::Status MovementSensorServer::GetAccuracy(::grpc::ServerContext* context,
+::grpc::Status MovementSensorServer::GetAccuracy(::grpc::ServerContext*,
                                                  const GetAccuracyRequest* request,
                                                  GetAccuracyResponse* response) noexcept {
     return make_service_helper<MovementSensor>("MovementSensorServer::GetAccuracy", this, request)(
@@ -104,30 +104,30 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
 }
 
 ::grpc::Status MovementSensorServer::GetLinearAcceleration(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const GetLinearAccelerationRequest* request,
     GetLinearAccelerationResponse* response) noexcept {
     return make_service_helper<MovementSensor>("MovementSensorServer::GetLinearAcceleration",
                                                this,
                                                request)([&](auto& helper, auto& movementsensor) {
         const Vector3 result = movementsensor->get_linear_acceleration(helper.getExtra());
-        *response->mutable_linear_acceleration() = Vector3::to_proto(result);
+        *response->mutable_linear_acceleration() = result.to_proto();
     });
 }
 
 ::grpc::Status MovementSensorServer::DoCommand(
-    grpc::ServerContext* context,
+    grpc::ServerContext*,
     const viam::common::v1::DoCommandRequest* request,
     viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<MovementSensor>(
-        "MovementSensorServer::DoCommand", this, request)([&](auto& helper, auto& movementsensor) {
+        "MovementSensorServer::DoCommand", this, request)([&](auto&, auto& movementsensor) {
         const AttributeMap result = movementsensor->do_command(struct_to_map(request->command()));
         *response->mutable_result() = map_to_struct(result);
     });
 }
 
 ::grpc::Status MovementSensorServer::GetGeometries(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::common::v1::GetGeometriesRequest* request,
     ::viam::common::v1::GetGeometriesResponse* response) noexcept {
     return make_service_helper<MovementSensor>("MovementSensorServer::GetGeometries",

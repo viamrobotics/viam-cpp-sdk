@@ -52,6 +52,7 @@ class ProtoType {
 
     explicit ProtoType(bool b) : proto_type_(std::move(b)) {}
     explicit ProtoType(std::string s) : proto_type_(std::move(s)) {}
+    explicit ProtoType(const char* c) : proto_type_(std::string(c)) {}
     explicit ProtoType(int i) : proto_type_(std::move(i)) {}
     explicit ProtoType(double d) : proto_type_(std::move(d)) {}
     explicit ProtoType(AttributeMap m) : proto_type_(std::move(m)) {}
@@ -82,8 +83,8 @@ class ProtoType {
         proto_type_;
 };
 
-AttributeMap struct_to_map(google::protobuf::Struct struct_);
-google::protobuf::Struct map_to_struct(AttributeMap dict);
+AttributeMap struct_to_map(const google::protobuf::Struct& struct_);
+google::protobuf::Struct map_to_struct(const AttributeMap& dict);
 
 }  // namespace sdk
 }  // namespace viam

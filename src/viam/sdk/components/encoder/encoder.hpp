@@ -50,19 +50,20 @@ class Encoder : public Component {
     static position_type from_proto(viam::component::encoder::v1::PositionType proto);
 
     /// @brief Creates a `position` struct from its proto representation.
-    static position from_proto(viam::component::encoder::v1::GetPositionResponse proto);
+    static position from_proto(const viam::component::encoder::v1::GetPositionResponse& proto);
 
     /// @brief Creates a `properties` struct from its proto representation.
-    static properties from_proto(viam::component::encoder::v1::GetPropertiesResponse proto);
+    static properties from_proto(const viam::component::encoder::v1::GetPropertiesResponse& proto);
 
     /// @brief Converts a `position_type` struct to its proto representation.
     static viam::component::encoder::v1::PositionType to_proto(position_type position_type);
 
     /// @brief Converts a `position` struct to its proto representation.
-    static viam::component::encoder::v1::GetPositionResponse to_proto(position position);
+    static viam::component::encoder::v1::GetPositionResponse to_proto(const position& position);
 
     /// @brief Converts a `properties` struct to its proto representation.
-    static viam::component::encoder::v1::GetPropertiesResponse to_proto(properties properties);
+    static viam::component::encoder::v1::GetPropertiesResponse to_proto(
+        const properties& properties);
 
     /// @brief Returns position of the encoder which can either be ticks since last zeroing for an
     /// incremental encoder or degrees for an absolute encoder.
@@ -103,7 +104,7 @@ class Encoder : public Component {
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.
     /// @return The result of the executed command.
-    virtual AttributeMap do_command(AttributeMap command) = 0;
+    virtual AttributeMap do_command(const AttributeMap& command) = 0;
 
     /// @brief Returns `GeometryConfig`s associated with the calling encoder.
     /// @return The requested `GeometryConfig`s associated with the component.

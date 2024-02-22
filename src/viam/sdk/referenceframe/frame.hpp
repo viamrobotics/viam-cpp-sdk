@@ -13,7 +13,7 @@ namespace sdk {
 class LinkConfig {
    public:
     viam::app::v1::Frame to_proto() const;
-    static LinkConfig from_proto(viam::app::v1::Frame proto);
+    static LinkConfig from_proto(const viam::app::v1::Frame& proto);
     translation get_translation() const;
     OrientationConfig get_orientation_config() const;
     GeometryConfig get_geometry_config() const;

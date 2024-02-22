@@ -14,7 +14,8 @@ class ViamChannel {
    public:
     void close();
     ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* path, void* runtime);
-    static std::shared_ptr<ViamChannel> dial(const char* uri, boost::optional<DialOptions> options);
+    static std::shared_ptr<ViamChannel> dial(const char* uri,
+                                             const boost::optional<DialOptions>& options);
 
     const std::shared_ptr<grpc::Channel>& channel() const;
 

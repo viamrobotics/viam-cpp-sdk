@@ -37,20 +37,20 @@ const char descriptor_table_protodef_google_2fapi_2ffield_5fbehavior_2eproto[] P
   "ECIFIED\020\000\022\014\n\010OPTIONAL\020\001\022\014\n\010REQUIRED\020\002\022\017\n"
   "\013OUTPUT_ONLY\020\003\022\016\n\nINPUT_ONLY\020\004\022\r\n\tIMMUTA"
   "BLE\020\005\022\022\n\016UNORDERED_LIST\020\006\022\025\n\021NON_EMPTY_D"
-  "EFAULT\020\007\022\016\n\nIDENTIFIER\020\010:`\n\016field_behavi"
+  "EFAULT\020\007\022\016\n\nIDENTIFIER\020\010:d\n\016field_behavi"
   "or\022\035.google.protobuf.FieldOptions\030\234\010 \003(\016"
-  "2\031.google.api.FieldBehaviorR\rfieldBehavi"
-  "orBp\n\016com.google.apiB\022FieldBehaviorProto"
-  "P\001ZAgoogle.golang.org/genproto/googleapi"
-  "s/api/annotations;annotations\242\002\004GAPIb\006pr"
-  "oto3"
+  "2\031.google.api.FieldBehaviorB\002\020\000R\rfieldBe"
+  "haviorBp\n\016com.google.apiB\022FieldBehaviorP"
+  "rotoP\001ZAgoogle.golang.org/genproto/googl"
+  "eapis/api/annotations;annotations\242\002\004GAPI"
+  "b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2ffield_5fbehavior_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2fdescriptor_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_google_2fapi_2ffield_5fbehavior_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2ffield_5fbehavior_2eproto = {
-    false, false, 484, descriptor_table_protodef_google_2fapi_2ffield_5fbehavior_2eproto,
+    false, false, 488, descriptor_table_protodef_google_2fapi_2ffield_5fbehavior_2eproto,
     "google/api/field_behavior.proto",
     &descriptor_table_google_2fapi_2ffield_5fbehavior_2eproto_once, descriptor_table_google_2fapi_2ffield_5fbehavior_2eproto_deps, 1, 0,
     schemas, file_default_instances, TableStruct_google_2fapi_2ffield_5fbehavior_2eproto::offsets,
@@ -87,7 +87,7 @@ bool FieldBehavior_IsValid(int value) {
 }
 
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::FieldOptions,
-    ::PROTOBUF_NAMESPACE_ID::internal::RepeatedEnumTypeTraits< ::google::api::FieldBehavior, ::google::api::FieldBehavior_IsValid>, 14, true>
+    ::PROTOBUF_NAMESPACE_ID::internal::RepeatedEnumTypeTraits< ::google::api::FieldBehavior, ::google::api::FieldBehavior_IsValid>, 14, false>
   field_behavior(kFieldBehaviorFieldNumber, static_cast< ::google::api::FieldBehavior >(0), nullptr);
 
 // @@protoc_insertion_point(namespace_scope)

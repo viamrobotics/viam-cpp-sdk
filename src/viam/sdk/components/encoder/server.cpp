@@ -13,7 +13,7 @@ EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)){};
 
 ::grpc::Status EncoderServer::GetPosition(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::component::encoder::v1::GetPositionRequest* request,
     ::viam::component::encoder::v1::GetPositionResponse* response) noexcept {
     return make_service_helper<Encoder>(
@@ -26,15 +26,15 @@ EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status EncoderServer::ResetPosition(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::component::encoder::v1::ResetPositionRequest* request,
-    ::viam::component::encoder::v1::ResetPositionResponse* response) noexcept {
+    ::viam::component::encoder::v1::ResetPositionResponse*) noexcept {
     return make_service_helper<Encoder>("EncoderServer::ResetPosition", this, request)(
         [&](auto& helper, auto& encoder) { encoder->reset_position(helper.getExtra()); });
 }
 
 ::grpc::Status EncoderServer::GetProperties(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::component::encoder::v1::GetPropertiesRequest* request,
     ::viam::component::encoder::v1::GetPropertiesResponse* response) noexcept {
     return make_service_helper<Encoder>(
@@ -46,7 +46,7 @@ EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status EncoderServer::GetGeometries(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::common::v1::GetGeometriesRequest* request,
     ::viam::common::v1::GetGeometriesResponse* response) noexcept {
     return make_service_helper<Encoder>(
@@ -58,11 +58,11 @@ EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-::grpc::Status EncoderServer::DoCommand(grpc::ServerContext* context,
+::grpc::Status EncoderServer::DoCommand(grpc::ServerContext*,
                                         const viam::common::v1::DoCommandRequest* request,
                                         viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Encoder>(
-        "EncoderServer::DoCommand", this, request)([&](auto& helper, auto& encoder) {
+        "EncoderServer::DoCommand", this, request)([&](auto&, auto& encoder) {
         const AttributeMap result = encoder->do_command(struct_to_map(request->command()));
         *response->mutable_result() = map_to_struct(result);
     });

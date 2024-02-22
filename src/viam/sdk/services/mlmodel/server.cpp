@@ -26,7 +26,7 @@ MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> mana
     : ResourceServer(std::move(manager)) {}
 
 ::grpc::Status MLModelServiceServer::Infer(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::service::mlmodel::v1::InferRequest* request,
     ::viam::service::mlmodel::v1::InferResponse* response) noexcept {
     return make_service_helper<MLModelService>(
@@ -73,7 +73,7 @@ MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> mana
 }
 
 ::grpc::Status MLModelServiceServer::Metadata(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::service::mlmodel::v1::MetadataRequest* request,
     ::viam::service::mlmodel::v1::MetadataResponse* response) noexcept {
     return make_service_helper<MLModelService>(

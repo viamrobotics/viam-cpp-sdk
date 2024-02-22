@@ -52,8 +52,8 @@ void BaseClient::set_power(const Vector3& linear,
     return make_client_helper(this, *stub_, &StubType::SetPower)
         .with(extra,
               [&](auto& request) {
-                  *request.mutable_linear() = Vector3::to_proto(linear);
-                  *request.mutable_angular() = Vector3::to_proto(angular);
+                  *request.mutable_linear() = linear.to_proto();
+                  *request.mutable_angular() = angular.to_proto();
               })
         .invoke();
 }
@@ -64,8 +64,8 @@ void BaseClient::set_velocity(const Vector3& linear,
     return make_client_helper(this, *stub_, &StubType::SetVelocity)
         .with(extra,
               [&](auto& request) {
-                  *request.mutable_linear() = Vector3::to_proto(linear);
-                  *request.mutable_angular() = Vector3::to_proto(angular);
+                  *request.mutable_linear() = linear.to_proto();
+                  *request.mutable_angular() = angular.to_proto();
               })
         .invoke();
 }

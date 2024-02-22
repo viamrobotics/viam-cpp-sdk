@@ -22,7 +22,7 @@ viam::app::v1::Frame LinkConfig::to_proto() const {
     return frame;
 };
 
-LinkConfig LinkConfig::from_proto(viam::app::v1::Frame proto) {
+LinkConfig LinkConfig::from_proto(const viam::app::v1::Frame& proto) {
     LinkConfig lc;
 
     lc.parent_ = proto.parent();

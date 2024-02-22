@@ -85,7 +85,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService,
     void stop() noexcept {
         using std::swap;
         try {
-            std::lock_guard<std::mutex> lock(state_lock_);
+            const std::lock_guard<std::mutex> lock(state_lock_);
             if (!stopped_) {
                 stopped_ = true;
                 std::shared_ptr<state> state;
@@ -124,7 +124,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService,
             swap(state_, state);
         }
 
-        state = reconfigure_(std::move(dependencies), std::move(configuration));
+        state = reconfigure_(dependencies, configuration);
 
         // Reconfiguration worked: put the state in under the lock,
         // release the lock, and then notify any callers waiting on
@@ -143,7 +143,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService,
 
     std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs,
                                               const vsdk::AttributeMap& extra) final {
-        const auto state = lease_state_();
+        auto state = lease_state_();
 
         // We serialize access to the interpreter. We use a
         // unique_lock because we will move the lock into the shared
@@ -247,6 +247,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService,
         // inference_result object is destroyed, the lock will be
         // released and the next caller can invoke the interpreter.
         auto* const views = &inference_result->views;
+        // NOLINTNEXTLINE(performance-move-const-arg): C++20
         return {std::move(inference_result), views};
     }
 
@@ -362,7 +363,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService,
         // buffer which we can use with `TfLiteModelCreate`. That
         // still requires that the buffer be kept valid, but that's
         // more easily done.
-        std::ifstream in(*model_path_string, std::ios::in | std::ios::binary);
+        const std::ifstream in(*model_path_string, std::ios::in | std::ios::binary);
         if (!in) {
             std::ostringstream buffer;
             buffer << service_name << ": Failed to open file for `model_path` "

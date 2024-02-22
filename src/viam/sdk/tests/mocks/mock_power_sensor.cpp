@@ -14,16 +14,16 @@ namespace powersensor {
 
 using namespace viam::sdk;
 
-PowerSensor::voltage MockPowerSensor::get_voltage(const AttributeMap& extra) {
+PowerSensor::voltage MockPowerSensor::get_voltage(const AttributeMap&) {
     return this->peek_voltage;
 };
-PowerSensor::current MockPowerSensor::get_current(const AttributeMap& extra) {
+PowerSensor::current MockPowerSensor::get_current(const AttributeMap&) {
     return this->peek_current;
 };
-double MockPowerSensor::get_power(const AttributeMap& extra) {
+double MockPowerSensor::get_power(const AttributeMap&) {
     return this->peek_power;
 };
-AttributeMap MockPowerSensor::get_readings(const AttributeMap& extra) {
+AttributeMap MockPowerSensor::get_readings(const AttributeMap&) {
     return fake_map();
 };
 AttributeMap MockPowerSensor::do_command(const AttributeMap& command) {

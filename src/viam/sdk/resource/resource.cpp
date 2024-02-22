@@ -1,8 +1,5 @@
 #include <viam/sdk/resource/resource.hpp>
 
-#include <stdexcept>
-#include <unordered_map>
-
 #include <grpcpp/support/status.h>
 
 #include <viam/sdk/common/proto_type.hpp>
@@ -11,6 +8,8 @@
 
 namespace viam {
 namespace sdk {
+
+using common::v1::ResourceName;
 
 Resource::~Resource() = default;
 Resource::Resource(std::string name) : name_(std::move(name)) {}

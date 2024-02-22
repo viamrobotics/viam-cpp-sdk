@@ -38,7 +38,8 @@ Encoder::position_type Encoder::from_proto(viam::component::encoder::v1::Positio
     }
 }
 
-Encoder::position Encoder::from_proto(viam::component::encoder::v1::GetPositionResponse proto) {
+Encoder::position Encoder::from_proto(
+    const viam::component::encoder::v1::GetPositionResponse& proto) {
     Encoder::position position;
     position.value = proto.value();
 
@@ -46,7 +47,8 @@ Encoder::position Encoder::from_proto(viam::component::encoder::v1::GetPositionR
     return position;
 }
 
-Encoder::properties Encoder::from_proto(viam::component::encoder::v1::GetPropertiesResponse proto) {
+Encoder::properties Encoder::from_proto(
+    const viam::component::encoder::v1::GetPropertiesResponse& proto) {
     Encoder::properties properties;
     properties.ticks_count_supported = proto.ticks_count_supported();
 
@@ -72,7 +74,7 @@ viam::component::encoder::v1::PositionType Encoder::to_proto(position_type posit
     }
 }
 
-viam::component::encoder::v1::GetPositionResponse Encoder::to_proto(position position) {
+viam::component::encoder::v1::GetPositionResponse Encoder::to_proto(const position& position) {
     viam::component::encoder::v1::GetPositionResponse proto;
     proto.set_value(position.value);
 
@@ -80,7 +82,8 @@ viam::component::encoder::v1::GetPositionResponse Encoder::to_proto(position pos
     return proto;
 }
 
-viam::component::encoder::v1::GetPropertiesResponse Encoder::to_proto(properties properties) {
+viam::component::encoder::v1::GetPropertiesResponse Encoder::to_proto(
+    const properties& properties) {
     viam::component::encoder::v1::GetPropertiesResponse proto;
     proto.set_ticks_count_supported(properties.ticks_count_supported);
 

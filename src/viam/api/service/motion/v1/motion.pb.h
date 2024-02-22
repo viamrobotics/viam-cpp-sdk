@@ -99,12 +99,6 @@ extern MoveOnGlobeRequestDefaultTypeInternal _MoveOnGlobeRequest_default_instanc
 class MoveOnGlobeResponse;
 struct MoveOnGlobeResponseDefaultTypeInternal;
 extern MoveOnGlobeResponseDefaultTypeInternal _MoveOnGlobeResponse_default_instance_;
-class MoveOnMapNewRequest;
-struct MoveOnMapNewRequestDefaultTypeInternal;
-extern MoveOnMapNewRequestDefaultTypeInternal _MoveOnMapNewRequest_default_instance_;
-class MoveOnMapNewResponse;
-struct MoveOnMapNewResponseDefaultTypeInternal;
-extern MoveOnMapNewResponseDefaultTypeInternal _MoveOnMapNewResponse_default_instance_;
 class MoveOnMapRequest;
 struct MoveOnMapRequestDefaultTypeInternal;
 extern MoveOnMapRequestDefaultTypeInternal _MoveOnMapRequest_default_instance_;
@@ -166,8 +160,6 @@ template<> ::viam::service::motion::v1::ListPlanStatusesResponse* Arena::CreateM
 template<> ::viam::service::motion::v1::MotionConfiguration* Arena::CreateMaybeMessage<::viam::service::motion::v1::MotionConfiguration>(Arena*);
 template<> ::viam::service::motion::v1::MoveOnGlobeRequest* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveOnGlobeRequest>(Arena*);
 template<> ::viam::service::motion::v1::MoveOnGlobeResponse* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveOnGlobeResponse>(Arena*);
-template<> ::viam::service::motion::v1::MoveOnMapNewRequest* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveOnMapNewRequest>(Arena*);
-template<> ::viam::service::motion::v1::MoveOnMapNewResponse* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveOnMapNewResponse>(Arena*);
 template<> ::viam::service::motion::v1::MoveOnMapRequest* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveOnMapRequest>(Arena*);
 template<> ::viam::service::motion::v1::MoveOnMapResponse* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveOnMapResponse>(Arena*);
 template<> ::viam::service::motion::v1::MoveRequest* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveRequest>(Arena*);
@@ -610,24 +602,24 @@ class MoveResponse final :
 };
 // -------------------------------------------------------------------
 
-class MoveOnMapNewRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.MoveOnMapNewRequest) */ {
+class MoveOnMapRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.MoveOnMapRequest) */ {
  public:
-  inline MoveOnMapNewRequest() : MoveOnMapNewRequest(nullptr) {}
-  ~MoveOnMapNewRequest() override;
-  explicit PROTOBUF_CONSTEXPR MoveOnMapNewRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline MoveOnMapRequest() : MoveOnMapRequest(nullptr) {}
+  ~MoveOnMapRequest() override;
+  explicit PROTOBUF_CONSTEXPR MoveOnMapRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  MoveOnMapNewRequest(const MoveOnMapNewRequest& from);
-  MoveOnMapNewRequest(MoveOnMapNewRequest&& from) noexcept
-    : MoveOnMapNewRequest() {
+  MoveOnMapRequest(const MoveOnMapRequest& from);
+  MoveOnMapRequest(MoveOnMapRequest&& from) noexcept
+    : MoveOnMapRequest() {
     *this = ::std::move(from);
   }
 
-  inline MoveOnMapNewRequest& operator=(const MoveOnMapNewRequest& from) {
+  inline MoveOnMapRequest& operator=(const MoveOnMapRequest& from) {
     CopyFrom(from);
     return *this;
   }
-  inline MoveOnMapNewRequest& operator=(MoveOnMapNewRequest&& from) noexcept {
+  inline MoveOnMapRequest& operator=(MoveOnMapRequest&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -650,20 +642,20 @@ class MoveOnMapNewRequest final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const MoveOnMapNewRequest& default_instance() {
+  static const MoveOnMapRequest& default_instance() {
     return *internal_default_instance();
   }
-  static inline const MoveOnMapNewRequest* internal_default_instance() {
-    return reinterpret_cast<const MoveOnMapNewRequest*>(
-               &_MoveOnMapNewRequest_default_instance_);
+  static inline const MoveOnMapRequest* internal_default_instance() {
+    return reinterpret_cast<const MoveOnMapRequest*>(
+               &_MoveOnMapRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     2;
 
-  friend void swap(MoveOnMapNewRequest& a, MoveOnMapNewRequest& b) {
+  friend void swap(MoveOnMapRequest& a, MoveOnMapRequest& b) {
     a.Swap(&b);
   }
-  inline void Swap(MoveOnMapNewRequest* other) {
+  inline void Swap(MoveOnMapRequest* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -676,7 +668,7 @@ class MoveOnMapNewRequest final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(MoveOnMapNewRequest* other) {
+  void UnsafeArenaSwap(MoveOnMapRequest* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -684,13 +676,13 @@ class MoveOnMapNewRequest final :
 
   // implements Message ----------------------------------------------
 
-  MoveOnMapNewRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<MoveOnMapNewRequest>(arena);
+  MoveOnMapRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MoveOnMapRequest>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const MoveOnMapNewRequest& from);
+  void CopyFrom(const MoveOnMapRequest& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const MoveOnMapNewRequest& from);
+  void MergeFrom(const MoveOnMapRequest& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
   public:
@@ -707,15 +699,15 @@ class MoveOnMapNewRequest final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(MoveOnMapNewRequest* other);
+  void InternalSwap(MoveOnMapRequest* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.service.motion.v1.MoveOnMapNewRequest";
+    return "viam.service.motion.v1.MoveOnMapRequest";
   }
   protected:
-  explicit MoveOnMapNewRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit MoveOnMapRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -729,6 +721,7 @@ class MoveOnMapNewRequest final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kObstaclesFieldNumber = 6,
     kNameFieldNumber = 1,
     kDestinationFieldNumber = 2,
     kComponentNameFieldNumber = 3,
@@ -736,6 +729,24 @@ class MoveOnMapNewRequest final :
     kMotionConfigurationFieldNumber = 5,
     kExtraFieldNumber = 99,
   };
+  // repeated .viam.common.v1.Geometry obstacles = 6 [json_name = "obstacles"];
+  int obstacles_size() const;
+  private:
+  int _internal_obstacles_size() const;
+  public:
+  void clear_obstacles();
+  ::viam::common::v1::Geometry* mutable_obstacles(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry >*
+      mutable_obstacles();
+  private:
+  const ::viam::common::v1::Geometry& _internal_obstacles(int index) const;
+  ::viam::common::v1::Geometry* _internal_add_obstacles();
+  public:
+  const ::viam::common::v1::Geometry& obstacles(int index) const;
+  ::viam::common::v1::Geometry* add_obstacles();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry >&
+      obstacles() const;
+
   // string name = 1 [json_name = "name"];
   void clear_name();
   const std::string& name() const;
@@ -840,7 +851,7 @@ class MoveOnMapNewRequest final :
       ::PROTOBUF_NAMESPACE_ID::Struct* extra);
   ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
 
-  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.MoveOnMapNewRequest)
+  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.MoveOnMapRequest)
  private:
   class _Internal;
 
@@ -849,388 +860,13 @@ class MoveOnMapNewRequest final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry > obstacles_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::viam::common::v1::Pose* destination_;
   ::viam::common::v1::ResourceName* component_name_;
   ::viam::common::v1::ResourceName* slam_service_name_;
   ::viam::service::motion::v1::MotionConfiguration* motion_configuration_;
   ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
-  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
-};
-// -------------------------------------------------------------------
-
-class MoveOnMapNewResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.MoveOnMapNewResponse) */ {
- public:
-  inline MoveOnMapNewResponse() : MoveOnMapNewResponse(nullptr) {}
-  ~MoveOnMapNewResponse() override;
-  explicit PROTOBUF_CONSTEXPR MoveOnMapNewResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  MoveOnMapNewResponse(const MoveOnMapNewResponse& from);
-  MoveOnMapNewResponse(MoveOnMapNewResponse&& from) noexcept
-    : MoveOnMapNewResponse() {
-    *this = ::std::move(from);
-  }
-
-  inline MoveOnMapNewResponse& operator=(const MoveOnMapNewResponse& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline MoveOnMapNewResponse& operator=(MoveOnMapNewResponse&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const MoveOnMapNewResponse& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const MoveOnMapNewResponse* internal_default_instance() {
-    return reinterpret_cast<const MoveOnMapNewResponse*>(
-               &_MoveOnMapNewResponse_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    3;
-
-  friend void swap(MoveOnMapNewResponse& a, MoveOnMapNewResponse& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(MoveOnMapNewResponse* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(MoveOnMapNewResponse* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  MoveOnMapNewResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<MoveOnMapNewResponse>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const MoveOnMapNewResponse& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const MoveOnMapNewResponse& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(MoveOnMapNewResponse* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.service.motion.v1.MoveOnMapNewResponse";
-  }
-  protected:
-  explicit MoveOnMapNewResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kExecutionIdFieldNumber = 1,
-  };
-  // string execution_id = 1 [json_name = "executionId"];
-  void clear_execution_id();
-  const std::string& execution_id() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_execution_id(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_execution_id();
-  PROTOBUF_NODISCARD std::string* release_execution_id();
-  void set_allocated_execution_id(std::string* execution_id);
-  private:
-  const std::string& _internal_execution_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_execution_id(const std::string& value);
-  std::string* _internal_mutable_execution_id();
-  public:
-
-  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.MoveOnMapNewResponse)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr execution_id_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
-};
-// -------------------------------------------------------------------
-
-class MoveOnMapRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.MoveOnMapRequest) */ {
- public:
-  inline MoveOnMapRequest() : MoveOnMapRequest(nullptr) {}
-  ~MoveOnMapRequest() override;
-  explicit PROTOBUF_CONSTEXPR MoveOnMapRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  MoveOnMapRequest(const MoveOnMapRequest& from);
-  MoveOnMapRequest(MoveOnMapRequest&& from) noexcept
-    : MoveOnMapRequest() {
-    *this = ::std::move(from);
-  }
-
-  inline MoveOnMapRequest& operator=(const MoveOnMapRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline MoveOnMapRequest& operator=(MoveOnMapRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const MoveOnMapRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const MoveOnMapRequest* internal_default_instance() {
-    return reinterpret_cast<const MoveOnMapRequest*>(
-               &_MoveOnMapRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    4;
-
-  friend void swap(MoveOnMapRequest& a, MoveOnMapRequest& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(MoveOnMapRequest* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(MoveOnMapRequest* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  MoveOnMapRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<MoveOnMapRequest>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const MoveOnMapRequest& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const MoveOnMapRequest& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(MoveOnMapRequest* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.service.motion.v1.MoveOnMapRequest";
-  }
-  protected:
-  explicit MoveOnMapRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kNameFieldNumber = 1,
-    kDestinationFieldNumber = 2,
-    kComponentNameFieldNumber = 3,
-    kSlamServiceNameFieldNumber = 4,
-    kExtraFieldNumber = 99,
-  };
-  // string name = 1 [json_name = "name"];
-  void clear_name();
-  const std::string& name() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_name(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_name();
-  PROTOBUF_NODISCARD std::string* release_name();
-  void set_allocated_name(std::string* name);
-  private:
-  const std::string& _internal_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
-  std::string* _internal_mutable_name();
-  public:
-
-  // .viam.common.v1.Pose destination = 2 [json_name = "destination"];
-  bool has_destination() const;
-  private:
-  bool _internal_has_destination() const;
-  public:
-  void clear_destination();
-  const ::viam::common::v1::Pose& destination() const;
-  PROTOBUF_NODISCARD ::viam::common::v1::Pose* release_destination();
-  ::viam::common::v1::Pose* mutable_destination();
-  void set_allocated_destination(::viam::common::v1::Pose* destination);
-  private:
-  const ::viam::common::v1::Pose& _internal_destination() const;
-  ::viam::common::v1::Pose* _internal_mutable_destination();
-  public:
-  void unsafe_arena_set_allocated_destination(
-      ::viam::common::v1::Pose* destination);
-  ::viam::common::v1::Pose* unsafe_arena_release_destination();
-
-  // .viam.common.v1.ResourceName component_name = 3 [json_name = "componentName"];
-  bool has_component_name() const;
-  private:
-  bool _internal_has_component_name() const;
-  public:
-  void clear_component_name();
-  const ::viam::common::v1::ResourceName& component_name() const;
-  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_component_name();
-  ::viam::common::v1::ResourceName* mutable_component_name();
-  void set_allocated_component_name(::viam::common::v1::ResourceName* component_name);
-  private:
-  const ::viam::common::v1::ResourceName& _internal_component_name() const;
-  ::viam::common::v1::ResourceName* _internal_mutable_component_name();
-  public:
-  void unsafe_arena_set_allocated_component_name(
-      ::viam::common::v1::ResourceName* component_name);
-  ::viam::common::v1::ResourceName* unsafe_arena_release_component_name();
-
-  // .viam.common.v1.ResourceName slam_service_name = 4 [json_name = "slamServiceName"];
-  bool has_slam_service_name() const;
-  private:
-  bool _internal_has_slam_service_name() const;
-  public:
-  void clear_slam_service_name();
-  const ::viam::common::v1::ResourceName& slam_service_name() const;
-  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_slam_service_name();
-  ::viam::common::v1::ResourceName* mutable_slam_service_name();
-  void set_allocated_slam_service_name(::viam::common::v1::ResourceName* slam_service_name);
-  private:
-  const ::viam::common::v1::ResourceName& _internal_slam_service_name() const;
-  ::viam::common::v1::ResourceName* _internal_mutable_slam_service_name();
-  public:
-  void unsafe_arena_set_allocated_slam_service_name(
-      ::viam::common::v1::ResourceName* slam_service_name);
-  ::viam::common::v1::ResourceName* unsafe_arena_release_slam_service_name();
-
-  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  bool has_extra() const;
-  private:
-  bool _internal_has_extra() const;
-  public:
-  void clear_extra();
-  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
-  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
-  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
-  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
-  private:
-  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
-  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
-  public:
-  void unsafe_arena_set_allocated_extra(
-      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
-  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
-
-  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.MoveOnMapRequest)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
-  ::viam::common::v1::Pose* destination_;
-  ::viam::common::v1::ResourceName* component_name_;
-  ::viam::common::v1::ResourceName* slam_service_name_;
-  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
 };
 // -------------------------------------------------------------------
@@ -1283,7 +919,7 @@ class MoveOnMapResponse final :
                &_MoveOnMapResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    3;
 
   friend void swap(MoveOnMapResponse& a, MoveOnMapResponse& b) {
     a.Swap(&b);
@@ -1354,15 +990,20 @@ class MoveOnMapResponse final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kSuccessFieldNumber = 1,
+    kExecutionIdFieldNumber = 1,
   };
-  // bool success = 1 [json_name = "success"];
-  void clear_success();
-  bool success() const;
-  void set_success(bool value);
+  // string execution_id = 1 [json_name = "executionId"];
+  void clear_execution_id();
+  const std::string& execution_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_execution_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_execution_id();
+  PROTOBUF_NODISCARD std::string* release_execution_id();
+  void set_allocated_execution_id(std::string* execution_id);
   private:
-  bool _internal_success() const;
-  void _internal_set_success(bool value);
+  const std::string& _internal_execution_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_execution_id(const std::string& value);
+  std::string* _internal_mutable_execution_id();
   public:
 
   // @@protoc_insertion_point(class_scope:viam.service.motion.v1.MoveOnMapResponse)
@@ -1372,7 +1013,7 @@ class MoveOnMapResponse final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  bool success_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr execution_id_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
 };
@@ -1426,7 +1067,7 @@ class ObstacleDetector final :
                &_ObstacleDetector_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    4;
 
   friend void swap(ObstacleDetector& a, ObstacleDetector& b) {
     a.Swap(&b);
@@ -1598,7 +1239,7 @@ class MotionConfiguration final :
                &_MotionConfiguration_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    5;
 
   friend void swap(MotionConfiguration& a, MotionConfiguration& b) {
     a.Swap(&b);
@@ -1826,7 +1467,7 @@ class MoveOnGlobeRequest final :
                &_MoveOnGlobeRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    6;
 
   friend void swap(MoveOnGlobeRequest& a, MoveOnGlobeRequest& b) {
     a.Swap(&b);
@@ -2110,7 +1751,7 @@ class MoveOnGlobeResponse final :
                &_MoveOnGlobeResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    7;
 
   friend void swap(MoveOnGlobeResponse& a, MoveOnGlobeResponse& b) {
     a.Swap(&b);
@@ -2258,7 +1899,7 @@ class GetPoseRequest final :
                &_GetPoseRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    8;
 
   friend void swap(GetPoseRequest& a, GetPoseRequest& b) {
     a.Swap(&b);
@@ -2482,7 +2123,7 @@ class GetPoseResponse final :
                &_GetPoseResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    9;
 
   friend void swap(GetPoseResponse& a, GetPoseResponse& b) {
     a.Swap(&b);
@@ -2634,7 +2275,7 @@ class StopPlanRequest final :
                &_StopPlanRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    10;
 
   friend void swap(StopPlanRequest& a, StopPlanRequest& b) {
     a.Swap(&b);
@@ -2821,7 +2462,7 @@ class StopPlanResponse final :
                &_StopPlanResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    11;
 
   friend void swap(StopPlanResponse& a, StopPlanResponse& b) {
     a.Swap(&b);
@@ -2938,7 +2579,7 @@ class ListPlanStatusesRequest final :
                &_ListPlanStatusesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    12;
 
   friend void swap(ListPlanStatusesRequest& a, ListPlanStatusesRequest& b) {
     a.Swap(&b);
@@ -3117,7 +2758,7 @@ class ListPlanStatusesResponse final :
                &_ListPlanStatusesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    13;
 
   friend void swap(ListPlanStatusesResponse& a, ListPlanStatusesResponse& b) {
     a.Swap(&b);
@@ -3269,7 +2910,7 @@ class GetPlanRequest final :
                &_GetPlanRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    14;
 
   friend void swap(GetPlanRequest& a, GetPlanRequest& b) {
     a.Swap(&b);
@@ -3489,7 +3130,7 @@ class GetPlanResponse final :
                &_GetPlanResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    15;
 
   friend void swap(GetPlanResponse& a, GetPlanResponse& b) {
     a.Swap(&b);
@@ -3661,7 +3302,7 @@ class Constraints final :
                &_Constraints_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    16;
 
   friend void swap(Constraints& a, Constraints& b) {
     a.Swap(&b);
@@ -3853,7 +3494,7 @@ class LinearConstraint final :
                &_LinearConstraint_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    17;
 
   friend void swap(LinearConstraint& a, LinearConstraint& b) {
     a.Swap(&b);
@@ -4016,7 +3657,7 @@ class OrientationConstraint final :
                &_OrientationConstraint_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    18;
 
   friend void swap(OrientationConstraint& a, OrientationConstraint& b) {
     a.Swap(&b);
@@ -4164,7 +3805,7 @@ class CollisionSpecification_AllowedFrameCollisions final :
                &_CollisionSpecification_AllowedFrameCollisions_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    19;
 
   friend void swap(CollisionSpecification_AllowedFrameCollisions& a, CollisionSpecification_AllowedFrameCollisions& b) {
     a.Swap(&b);
@@ -4328,7 +3969,7 @@ class CollisionSpecification final :
                &_CollisionSpecification_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    20;
 
   friend void swap(CollisionSpecification& a, CollisionSpecification& b) {
     a.Swap(&b);
@@ -4482,7 +4123,7 @@ class PlanWithStatus final :
                &_PlanWithStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    21;
 
   friend void swap(PlanWithStatus& a, PlanWithStatus& b) {
     a.Swap(&b);
@@ -4674,7 +4315,7 @@ class PlanStatusWithID final :
                &_PlanStatusWithID_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    22;
 
   friend void swap(PlanStatusWithID& a, PlanStatusWithID& b) {
     a.Swap(&b);
@@ -4878,7 +4519,7 @@ class PlanStatus final :
                &_PlanStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    23;
 
   friend void swap(PlanStatus& a, PlanStatus& b) {
     a.Swap(&b);
@@ -5062,7 +4703,7 @@ class Plan final :
                &_Plan_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    24;
 
   friend void swap(Plan& a, Plan& b) {
     a.Swap(&b);
@@ -5292,7 +4933,7 @@ class PlanStep final :
                &_PlanStep_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    26;
 
   friend void swap(PlanStep& a, PlanStep& b) {
     a.Swap(&b);
@@ -5450,7 +5091,7 @@ class ComponentState final :
                &_ComponentState_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    27;
 
   friend void swap(ComponentState& a, ComponentState& b) {
     a.Swap(&b);
@@ -6071,544 +5712,6 @@ inline void MoveResponse::set_success(bool value) {
 
 // -------------------------------------------------------------------
 
-// MoveOnMapNewRequest
-
-// string name = 1 [json_name = "name"];
-inline void MoveOnMapNewRequest::clear_name() {
-  name_.ClearToEmpty();
-}
-inline const std::string& MoveOnMapNewRequest::name() const {
-  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnMapNewRequest.name)
-  return _internal_name();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void MoveOnMapNewRequest::set_name(ArgT0&& arg0, ArgT... args) {
- 
- name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:viam.service.motion.v1.MoveOnMapNewRequest.name)
-}
-inline std::string* MoveOnMapNewRequest::mutable_name() {
-  std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnMapNewRequest.name)
-  return _s;
-}
-inline const std::string& MoveOnMapNewRequest::_internal_name() const {
-  return name_.Get();
-}
-inline void MoveOnMapNewRequest::_internal_set_name(const std::string& value) {
-  
-  name_.Set(value, GetArenaForAllocation());
-}
-inline std::string* MoveOnMapNewRequest::_internal_mutable_name() {
-  
-  return name_.Mutable(GetArenaForAllocation());
-}
-inline std::string* MoveOnMapNewRequest::release_name() {
-  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnMapNewRequest.name)
-  return name_.Release();
-}
-inline void MoveOnMapNewRequest::set_allocated_name(std::string* name) {
-  if (name != nullptr) {
-    
-  } else {
-    
-  }
-  name_.SetAllocated(name, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (name_.IsDefault()) {
-    name_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnMapNewRequest.name)
-}
-
-// .viam.common.v1.Pose destination = 2 [json_name = "destination"];
-inline bool MoveOnMapNewRequest::_internal_has_destination() const {
-  return this != internal_default_instance() && destination_ != nullptr;
-}
-inline bool MoveOnMapNewRequest::has_destination() const {
-  return _internal_has_destination();
-}
-inline const ::viam::common::v1::Pose& MoveOnMapNewRequest::_internal_destination() const {
-  const ::viam::common::v1::Pose* p = destination_;
-  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::Pose&>(
-      ::viam::common::v1::_Pose_default_instance_);
-}
-inline const ::viam::common::v1::Pose& MoveOnMapNewRequest::destination() const {
-  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnMapNewRequest.destination)
-  return _internal_destination();
-}
-inline void MoveOnMapNewRequest::unsafe_arena_set_allocated_destination(
-    ::viam::common::v1::Pose* destination) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(destination_);
-  }
-  destination_ = destination;
-  if (destination) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveOnMapNewRequest.destination)
-}
-inline ::viam::common::v1::Pose* MoveOnMapNewRequest::release_destination() {
-  
-  ::viam::common::v1::Pose* temp = destination_;
-  destination_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::viam::common::v1::Pose* MoveOnMapNewRequest::unsafe_arena_release_destination() {
-  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnMapNewRequest.destination)
-  
-  ::viam::common::v1::Pose* temp = destination_;
-  destination_ = nullptr;
-  return temp;
-}
-inline ::viam::common::v1::Pose* MoveOnMapNewRequest::_internal_mutable_destination() {
-  
-  if (destination_ == nullptr) {
-    auto* p = CreateMaybeMessage<::viam::common::v1::Pose>(GetArenaForAllocation());
-    destination_ = p;
-  }
-  return destination_;
-}
-inline ::viam::common::v1::Pose* MoveOnMapNewRequest::mutable_destination() {
-  ::viam::common::v1::Pose* _msg = _internal_mutable_destination();
-  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnMapNewRequest.destination)
-  return _msg;
-}
-inline void MoveOnMapNewRequest::set_allocated_destination(::viam::common::v1::Pose* destination) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(destination_);
-  }
-  if (destination) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(destination));
-    if (message_arena != submessage_arena) {
-      destination = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, destination, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  destination_ = destination;
-  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnMapNewRequest.destination)
-}
-
-// .viam.common.v1.ResourceName component_name = 3 [json_name = "componentName"];
-inline bool MoveOnMapNewRequest::_internal_has_component_name() const {
-  return this != internal_default_instance() && component_name_ != nullptr;
-}
-inline bool MoveOnMapNewRequest::has_component_name() const {
-  return _internal_has_component_name();
-}
-inline const ::viam::common::v1::ResourceName& MoveOnMapNewRequest::_internal_component_name() const {
-  const ::viam::common::v1::ResourceName* p = component_name_;
-  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(
-      ::viam::common::v1::_ResourceName_default_instance_);
-}
-inline const ::viam::common::v1::ResourceName& MoveOnMapNewRequest::component_name() const {
-  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnMapNewRequest.component_name)
-  return _internal_component_name();
-}
-inline void MoveOnMapNewRequest::unsafe_arena_set_allocated_component_name(
-    ::viam::common::v1::ResourceName* component_name) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
-  }
-  component_name_ = component_name;
-  if (component_name) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveOnMapNewRequest.component_name)
-}
-inline ::viam::common::v1::ResourceName* MoveOnMapNewRequest::release_component_name() {
-  
-  ::viam::common::v1::ResourceName* temp = component_name_;
-  component_name_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::viam::common::v1::ResourceName* MoveOnMapNewRequest::unsafe_arena_release_component_name() {
-  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnMapNewRequest.component_name)
-  
-  ::viam::common::v1::ResourceName* temp = component_name_;
-  component_name_ = nullptr;
-  return temp;
-}
-inline ::viam::common::v1::ResourceName* MoveOnMapNewRequest::_internal_mutable_component_name() {
-  
-  if (component_name_ == nullptr) {
-    auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
-    component_name_ = p;
-  }
-  return component_name_;
-}
-inline ::viam::common::v1::ResourceName* MoveOnMapNewRequest::mutable_component_name() {
-  ::viam::common::v1::ResourceName* _msg = _internal_mutable_component_name();
-  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnMapNewRequest.component_name)
-  return _msg;
-}
-inline void MoveOnMapNewRequest::set_allocated_component_name(::viam::common::v1::ResourceName* component_name) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
-  }
-  if (component_name) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name));
-    if (message_arena != submessage_arena) {
-      component_name = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, component_name, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  component_name_ = component_name;
-  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnMapNewRequest.component_name)
-}
-
-// .viam.common.v1.ResourceName slam_service_name = 4 [json_name = "slamServiceName"];
-inline bool MoveOnMapNewRequest::_internal_has_slam_service_name() const {
-  return this != internal_default_instance() && slam_service_name_ != nullptr;
-}
-inline bool MoveOnMapNewRequest::has_slam_service_name() const {
-  return _internal_has_slam_service_name();
-}
-inline const ::viam::common::v1::ResourceName& MoveOnMapNewRequest::_internal_slam_service_name() const {
-  const ::viam::common::v1::ResourceName* p = slam_service_name_;
-  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(
-      ::viam::common::v1::_ResourceName_default_instance_);
-}
-inline const ::viam::common::v1::ResourceName& MoveOnMapNewRequest::slam_service_name() const {
-  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnMapNewRequest.slam_service_name)
-  return _internal_slam_service_name();
-}
-inline void MoveOnMapNewRequest::unsafe_arena_set_allocated_slam_service_name(
-    ::viam::common::v1::ResourceName* slam_service_name) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(slam_service_name_);
-  }
-  slam_service_name_ = slam_service_name;
-  if (slam_service_name) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveOnMapNewRequest.slam_service_name)
-}
-inline ::viam::common::v1::ResourceName* MoveOnMapNewRequest::release_slam_service_name() {
-  
-  ::viam::common::v1::ResourceName* temp = slam_service_name_;
-  slam_service_name_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::viam::common::v1::ResourceName* MoveOnMapNewRequest::unsafe_arena_release_slam_service_name() {
-  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnMapNewRequest.slam_service_name)
-  
-  ::viam::common::v1::ResourceName* temp = slam_service_name_;
-  slam_service_name_ = nullptr;
-  return temp;
-}
-inline ::viam::common::v1::ResourceName* MoveOnMapNewRequest::_internal_mutable_slam_service_name() {
-  
-  if (slam_service_name_ == nullptr) {
-    auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
-    slam_service_name_ = p;
-  }
-  return slam_service_name_;
-}
-inline ::viam::common::v1::ResourceName* MoveOnMapNewRequest::mutable_slam_service_name() {
-  ::viam::common::v1::ResourceName* _msg = _internal_mutable_slam_service_name();
-  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnMapNewRequest.slam_service_name)
-  return _msg;
-}
-inline void MoveOnMapNewRequest::set_allocated_slam_service_name(::viam::common::v1::ResourceName* slam_service_name) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(slam_service_name_);
-  }
-  if (slam_service_name) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(slam_service_name));
-    if (message_arena != submessage_arena) {
-      slam_service_name = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, slam_service_name, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  slam_service_name_ = slam_service_name;
-  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnMapNewRequest.slam_service_name)
-}
-
-// optional .viam.service.motion.v1.MotionConfiguration motion_configuration = 5 [json_name = "motionConfiguration"];
-inline bool MoveOnMapNewRequest::_internal_has_motion_configuration() const {
-  bool value = (_has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || motion_configuration_ != nullptr);
-  return value;
-}
-inline bool MoveOnMapNewRequest::has_motion_configuration() const {
-  return _internal_has_motion_configuration();
-}
-inline void MoveOnMapNewRequest::clear_motion_configuration() {
-  if (motion_configuration_ != nullptr) motion_configuration_->Clear();
-  _has_bits_[0] &= ~0x00000001u;
-}
-inline const ::viam::service::motion::v1::MotionConfiguration& MoveOnMapNewRequest::_internal_motion_configuration() const {
-  const ::viam::service::motion::v1::MotionConfiguration* p = motion_configuration_;
-  return p != nullptr ? *p : reinterpret_cast<const ::viam::service::motion::v1::MotionConfiguration&>(
-      ::viam::service::motion::v1::_MotionConfiguration_default_instance_);
-}
-inline const ::viam::service::motion::v1::MotionConfiguration& MoveOnMapNewRequest::motion_configuration() const {
-  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnMapNewRequest.motion_configuration)
-  return _internal_motion_configuration();
-}
-inline void MoveOnMapNewRequest::unsafe_arena_set_allocated_motion_configuration(
-    ::viam::service::motion::v1::MotionConfiguration* motion_configuration) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(motion_configuration_);
-  }
-  motion_configuration_ = motion_configuration;
-  if (motion_configuration) {
-    _has_bits_[0] |= 0x00000001u;
-  } else {
-    _has_bits_[0] &= ~0x00000001u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveOnMapNewRequest.motion_configuration)
-}
-inline ::viam::service::motion::v1::MotionConfiguration* MoveOnMapNewRequest::release_motion_configuration() {
-  _has_bits_[0] &= ~0x00000001u;
-  ::viam::service::motion::v1::MotionConfiguration* temp = motion_configuration_;
-  motion_configuration_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::viam::service::motion::v1::MotionConfiguration* MoveOnMapNewRequest::unsafe_arena_release_motion_configuration() {
-  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnMapNewRequest.motion_configuration)
-  _has_bits_[0] &= ~0x00000001u;
-  ::viam::service::motion::v1::MotionConfiguration* temp = motion_configuration_;
-  motion_configuration_ = nullptr;
-  return temp;
-}
-inline ::viam::service::motion::v1::MotionConfiguration* MoveOnMapNewRequest::_internal_mutable_motion_configuration() {
-  _has_bits_[0] |= 0x00000001u;
-  if (motion_configuration_ == nullptr) {
-    auto* p = CreateMaybeMessage<::viam::service::motion::v1::MotionConfiguration>(GetArenaForAllocation());
-    motion_configuration_ = p;
-  }
-  return motion_configuration_;
-}
-inline ::viam::service::motion::v1::MotionConfiguration* MoveOnMapNewRequest::mutable_motion_configuration() {
-  ::viam::service::motion::v1::MotionConfiguration* _msg = _internal_mutable_motion_configuration();
-  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnMapNewRequest.motion_configuration)
-  return _msg;
-}
-inline void MoveOnMapNewRequest::set_allocated_motion_configuration(::viam::service::motion::v1::MotionConfiguration* motion_configuration) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete motion_configuration_;
-  }
-  if (motion_configuration) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(motion_configuration);
-    if (message_arena != submessage_arena) {
-      motion_configuration = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, motion_configuration, submessage_arena);
-    }
-    _has_bits_[0] |= 0x00000001u;
-  } else {
-    _has_bits_[0] &= ~0x00000001u;
-  }
-  motion_configuration_ = motion_configuration;
-  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnMapNewRequest.motion_configuration)
-}
-
-// .google.protobuf.Struct extra = 99 [json_name = "extra"];
-inline bool MoveOnMapNewRequest::_internal_has_extra() const {
-  return this != internal_default_instance() && extra_ != nullptr;
-}
-inline bool MoveOnMapNewRequest::has_extra() const {
-  return _internal_has_extra();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Struct& MoveOnMapNewRequest::_internal_extra() const {
-  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
-  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
-      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Struct& MoveOnMapNewRequest::extra() const {
-  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnMapNewRequest.extra)
-  return _internal_extra();
-}
-inline void MoveOnMapNewRequest::unsafe_arena_set_allocated_extra(
-    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
-  }
-  extra_ = extra;
-  if (extra) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveOnMapNewRequest.extra)
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* MoveOnMapNewRequest::release_extra() {
-  
-  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
-  extra_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* MoveOnMapNewRequest::unsafe_arena_release_extra() {
-  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnMapNewRequest.extra)
-  
-  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
-  extra_ = nullptr;
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* MoveOnMapNewRequest::_internal_mutable_extra() {
-  
-  if (extra_ == nullptr) {
-    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
-    extra_ = p;
-  }
-  return extra_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* MoveOnMapNewRequest::mutable_extra() {
-  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
-  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnMapNewRequest.extra)
-  return _msg;
-}
-inline void MoveOnMapNewRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
-  }
-  if (extra) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
-    if (message_arena != submessage_arena) {
-      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, extra, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  extra_ = extra;
-  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnMapNewRequest.extra)
-}
-
-// -------------------------------------------------------------------
-
-// MoveOnMapNewResponse
-
-// string execution_id = 1 [json_name = "executionId"];
-inline void MoveOnMapNewResponse::clear_execution_id() {
-  execution_id_.ClearToEmpty();
-}
-inline const std::string& MoveOnMapNewResponse::execution_id() const {
-  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnMapNewResponse.execution_id)
-  return _internal_execution_id();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void MoveOnMapNewResponse::set_execution_id(ArgT0&& arg0, ArgT... args) {
- 
- execution_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:viam.service.motion.v1.MoveOnMapNewResponse.execution_id)
-}
-inline std::string* MoveOnMapNewResponse::mutable_execution_id() {
-  std::string* _s = _internal_mutable_execution_id();
-  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnMapNewResponse.execution_id)
-  return _s;
-}
-inline const std::string& MoveOnMapNewResponse::_internal_execution_id() const {
-  return execution_id_.Get();
-}
-inline void MoveOnMapNewResponse::_internal_set_execution_id(const std::string& value) {
-  
-  execution_id_.Set(value, GetArenaForAllocation());
-}
-inline std::string* MoveOnMapNewResponse::_internal_mutable_execution_id() {
-  
-  return execution_id_.Mutable(GetArenaForAllocation());
-}
-inline std::string* MoveOnMapNewResponse::release_execution_id() {
-  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnMapNewResponse.execution_id)
-  return execution_id_.Release();
-}
-inline void MoveOnMapNewResponse::set_allocated_execution_id(std::string* execution_id) {
-  if (execution_id != nullptr) {
-    
-  } else {
-    
-  }
-  execution_id_.SetAllocated(execution_id, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (execution_id_.IsDefault()) {
-    execution_id_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnMapNewResponse.execution_id)
-}
-
-// -------------------------------------------------------------------
-
 // MoveOnMapRequest
 
 // string name = 1 [json_name = "name"];
@@ -6916,6 +6019,133 @@ inline void MoveOnMapRequest::set_allocated_slam_service_name(::viam::common::v1
   // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnMapRequest.slam_service_name)
 }
 
+// optional .viam.service.motion.v1.MotionConfiguration motion_configuration = 5 [json_name = "motionConfiguration"];
+inline bool MoveOnMapRequest::_internal_has_motion_configuration() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || motion_configuration_ != nullptr);
+  return value;
+}
+inline bool MoveOnMapRequest::has_motion_configuration() const {
+  return _internal_has_motion_configuration();
+}
+inline void MoveOnMapRequest::clear_motion_configuration() {
+  if (motion_configuration_ != nullptr) motion_configuration_->Clear();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const ::viam::service::motion::v1::MotionConfiguration& MoveOnMapRequest::_internal_motion_configuration() const {
+  const ::viam::service::motion::v1::MotionConfiguration* p = motion_configuration_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::service::motion::v1::MotionConfiguration&>(
+      ::viam::service::motion::v1::_MotionConfiguration_default_instance_);
+}
+inline const ::viam::service::motion::v1::MotionConfiguration& MoveOnMapRequest::motion_configuration() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnMapRequest.motion_configuration)
+  return _internal_motion_configuration();
+}
+inline void MoveOnMapRequest::unsafe_arena_set_allocated_motion_configuration(
+    ::viam::service::motion::v1::MotionConfiguration* motion_configuration) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(motion_configuration_);
+  }
+  motion_configuration_ = motion_configuration;
+  if (motion_configuration) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveOnMapRequest.motion_configuration)
+}
+inline ::viam::service::motion::v1::MotionConfiguration* MoveOnMapRequest::release_motion_configuration() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::service::motion::v1::MotionConfiguration* temp = motion_configuration_;
+  motion_configuration_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::service::motion::v1::MotionConfiguration* MoveOnMapRequest::unsafe_arena_release_motion_configuration() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnMapRequest.motion_configuration)
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::service::motion::v1::MotionConfiguration* temp = motion_configuration_;
+  motion_configuration_ = nullptr;
+  return temp;
+}
+inline ::viam::service::motion::v1::MotionConfiguration* MoveOnMapRequest::_internal_mutable_motion_configuration() {
+  _has_bits_[0] |= 0x00000001u;
+  if (motion_configuration_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::service::motion::v1::MotionConfiguration>(GetArenaForAllocation());
+    motion_configuration_ = p;
+  }
+  return motion_configuration_;
+}
+inline ::viam::service::motion::v1::MotionConfiguration* MoveOnMapRequest::mutable_motion_configuration() {
+  ::viam::service::motion::v1::MotionConfiguration* _msg = _internal_mutable_motion_configuration();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnMapRequest.motion_configuration)
+  return _msg;
+}
+inline void MoveOnMapRequest::set_allocated_motion_configuration(::viam::service::motion::v1::MotionConfiguration* motion_configuration) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete motion_configuration_;
+  }
+  if (motion_configuration) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(motion_configuration);
+    if (message_arena != submessage_arena) {
+      motion_configuration = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, motion_configuration, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  motion_configuration_ = motion_configuration;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnMapRequest.motion_configuration)
+}
+
+// repeated .viam.common.v1.Geometry obstacles = 6 [json_name = "obstacles"];
+inline int MoveOnMapRequest::_internal_obstacles_size() const {
+  return obstacles_.size();
+}
+inline int MoveOnMapRequest::obstacles_size() const {
+  return _internal_obstacles_size();
+}
+inline ::viam::common::v1::Geometry* MoveOnMapRequest::mutable_obstacles(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnMapRequest.obstacles)
+  return obstacles_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry >*
+MoveOnMapRequest::mutable_obstacles() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.motion.v1.MoveOnMapRequest.obstacles)
+  return &obstacles_;
+}
+inline const ::viam::common::v1::Geometry& MoveOnMapRequest::_internal_obstacles(int index) const {
+  return obstacles_.Get(index);
+}
+inline const ::viam::common::v1::Geometry& MoveOnMapRequest::obstacles(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnMapRequest.obstacles)
+  return _internal_obstacles(index);
+}
+inline ::viam::common::v1::Geometry* MoveOnMapRequest::_internal_add_obstacles() {
+  return obstacles_.Add();
+}
+inline ::viam::common::v1::Geometry* MoveOnMapRequest::add_obstacles() {
+  ::viam::common::v1::Geometry* _add = _internal_add_obstacles();
+  // @@protoc_insertion_point(field_add:viam.service.motion.v1.MoveOnMapRequest.obstacles)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry >&
+MoveOnMapRequest::obstacles() const {
+  // @@protoc_insertion_point(field_list:viam.service.motion.v1.MoveOnMapRequest.obstacles)
+  return obstacles_;
+}
+
 // .google.protobuf.Struct extra = 99 [json_name = "extra"];
 inline bool MoveOnMapRequest::_internal_has_extra() const {
   return this != internal_default_instance() && extra_ != nullptr;
@@ -7005,24 +6235,54 @@ inline void MoveOnMapRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struc
 
 // MoveOnMapResponse
 
-// bool success = 1 [json_name = "success"];
-inline void MoveOnMapResponse::clear_success() {
-  success_ = false;
+// string execution_id = 1 [json_name = "executionId"];
+inline void MoveOnMapResponse::clear_execution_id() {
+  execution_id_.ClearToEmpty();
 }
-inline bool MoveOnMapResponse::_internal_success() const {
-  return success_;
+inline const std::string& MoveOnMapResponse::execution_id() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnMapResponse.execution_id)
+  return _internal_execution_id();
 }
-inline bool MoveOnMapResponse::success() const {
-  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnMapResponse.success)
-  return _internal_success();
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void MoveOnMapResponse::set_execution_id(ArgT0&& arg0, ArgT... args) {
+ 
+ execution_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.MoveOnMapResponse.execution_id)
 }
-inline void MoveOnMapResponse::_internal_set_success(bool value) {
+inline std::string* MoveOnMapResponse::mutable_execution_id() {
+  std::string* _s = _internal_mutable_execution_id();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnMapResponse.execution_id)
+  return _s;
+}
+inline const std::string& MoveOnMapResponse::_internal_execution_id() const {
+  return execution_id_.Get();
+}
+inline void MoveOnMapResponse::_internal_set_execution_id(const std::string& value) {
   
-  success_ = value;
+  execution_id_.Set(value, GetArenaForAllocation());
 }
-inline void MoveOnMapResponse::set_success(bool value) {
-  _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:viam.service.motion.v1.MoveOnMapResponse.success)
+inline std::string* MoveOnMapResponse::_internal_mutable_execution_id() {
+  
+  return execution_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* MoveOnMapResponse::release_execution_id() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnMapResponse.execution_id)
+  return execution_id_.Release();
+}
+inline void MoveOnMapResponse::set_allocated_execution_id(std::string* execution_id) {
+  if (execution_id != nullptr) {
+    
+  } else {
+    
+  }
+  execution_id_.SetAllocated(execution_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (execution_id_.IsDefault()) {
+    execution_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnMapResponse.execution_id)
 }
 
 // -------------------------------------------------------------------
@@ -10663,10 +9923,6 @@ inline void ComponentState::set_allocated_pose(::viam::common::v1::Pose* pose) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

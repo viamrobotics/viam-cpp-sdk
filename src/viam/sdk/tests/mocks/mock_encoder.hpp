@@ -20,7 +20,7 @@ class MockEncoder : public viam::sdk::Encoder {
     void reset_position(const sdk::AttributeMap& extra) override;
     Encoder::properties get_properties(const sdk::AttributeMap& extra) override;
     std::vector<sdk::GeometryConfig> get_geometries(const sdk::AttributeMap& extra) override;
-    viam::sdk::AttributeMap do_command(viam::sdk::AttributeMap command) override;
+    viam::sdk::AttributeMap do_command(const viam::sdk::AttributeMap& command) override;
     static std::shared_ptr<MockEncoder> get_mock_encoder();
 
     MockEncoder(std::string name) : Encoder(std::move(name)){};

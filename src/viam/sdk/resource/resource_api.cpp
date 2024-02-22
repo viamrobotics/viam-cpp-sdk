@@ -32,7 +32,7 @@ std::string APIType::to_string() const {
 }
 
 APIType::APIType(std::string namespace_, std::string resource_type)
-    : namespace_(namespace_), resource_type_(resource_type){};
+    : namespace_(std::move(namespace_)), resource_type_(std::move(resource_type)){};
 
 std::string API::to_string() const {
     return APIType::to_string() + ":" + resource_subtype_;
@@ -72,10 +72,11 @@ API API::from_string(std::string api) {
 }
 
 API::API(APIType type, std::string resource_subtype)
-    : APIType(type), resource_subtype_(resource_subtype) {}
+    : APIType(std::move(type)), resource_subtype_(std::move(resource_subtype)) {}
 
 API::API(std::string namespace_, std::string resource_type, std::string resource_subtype)
-    : APIType(namespace_, resource_type), resource_subtype_(resource_subtype) {}
+    : APIType(std::move(namespace_), std::move(resource_type)),
+      resource_subtype_(std::move(resource_subtype)) {}
 
 bool API::is_service_type() {
     return (this->resource_type() == "service");
@@ -164,7 +165,7 @@ Name Name::from_string(std::string name) {
 }
 
 Name::Name(API api, std::string remote, std::string name)
-    : api_(api), remote_name_(std::move(remote)), name_(std::move(name)) {}
+    : api_(std::move(api)), remote_name_(std::move(remote)), name_(std::move(name)) {}
 
 bool operator==(const API& lhs, const API& rhs) {
     return lhs.to_string() == rhs.to_string();
@@ -217,7 +218,7 @@ const API& RPCSubtype::api() const {
 };
 
 ModelFamily::ModelFamily(std::string namespace_, std::string family)
-    : namespace_(namespace_), family_(family) {}
+    : namespace_(std::move(namespace_)), family_(std::move(family)) {}
 
 Model::Model(ModelFamily model_family, std::string model_name)
     : model_family_(std::move(model_family)), model_name_(std::move(model_name)) {}

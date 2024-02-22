@@ -15,7 +15,7 @@ using namespace viam::sdk;
 class MyGizmo : public Gizmo, public Reconfigurable {
    public:
     MyGizmo(std::string name, std::string arg1) : Gizmo(std::move(name)), arg1_(std::move(arg1)){};
-    MyGizmo(Dependencies deps, ResourceConfig cfg) : Gizmo(cfg.name()) {
+    MyGizmo(const Dependencies& deps, const ResourceConfig& cfg) : Gizmo(cfg.name()) {
         this->reconfigure(deps, cfg);
     };
     void reconfigure(const Dependencies& deps, const ResourceConfig& cfg) override;
