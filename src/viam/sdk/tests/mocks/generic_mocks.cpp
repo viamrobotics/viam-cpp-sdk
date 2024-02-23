@@ -1,13 +1,7 @@
 #include <viam/sdk/tests/mocks/generic_mocks.hpp>
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/component/camera/v1/camera.grpc.pb.h>
-#include <viam/api/component/camera/v1/camera.pb.h>
-
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/components/generic.hpp>
-#include <viam/sdk/components/private/generic_client.hpp>
-#include <viam/sdk/components/private/generic_server.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
 namespace viam {

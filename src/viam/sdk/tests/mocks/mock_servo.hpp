@@ -1,14 +1,7 @@
 #pragma once
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/component/servo/v1/servo.grpc.pb.h>
-#include <viam/api/component/servo/v1/servo.pb.h>
-
 #include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/components/private/servo_client.hpp>
-#include <viam/sdk/components/private/servo_server.hpp>
 #include <viam/sdk/components/servo.hpp>
-#include <viam/sdk/resource/resource.hpp>
 
 namespace viam {
 namespace sdktests {
