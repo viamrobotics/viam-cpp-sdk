@@ -34,12 +34,12 @@
 #include <viam/sdk/components/private/servo_server.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
-#include <viam/sdk/services/generic/client.hpp>
-#include <viam/sdk/services/generic/server.hpp>
-#include <viam/sdk/services/mlmodel/client.hpp>
-#include <viam/sdk/services/mlmodel/server.hpp>
-#include <viam/sdk/services/motion/client.hpp>
-#include <viam/sdk/services/motion/server.hpp>
+#include <viam/sdk/services/private/generic_client.hpp>
+#include <viam/sdk/services/private/generic_server.hpp>
+#include <viam/sdk/services/private/mlmodel_client.hpp>
+#include <viam/sdk/services/private/mlmodel_server.hpp>
+#include <viam/sdk/services/private/motion_client.hpp>
+#include <viam/sdk/services/private/motion_server.hpp>
 #include <viam/sdk/services/service.hpp>
 
 namespace viam {

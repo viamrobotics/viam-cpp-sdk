@@ -1,4 +1,4 @@
-#include <viam/sdk/services/motion/client.hpp>
+#include <viam/sdk/services/private/motion_client.hpp>
 
 #include <math.h>
 
@@ -10,7 +10,7 @@
 #include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/services/motion/motion.hpp>
+#include <viam/sdk/services/motion.hpp>
 
 namespace viam {
 namespace sdk {

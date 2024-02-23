@@ -18,7 +18,7 @@
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/rpc/server.hpp>
-#include <viam/sdk/services/generic/generic.hpp>
+#include <viam/sdk/services/generic.hpp>
 #include <viam/sdk/services/service.hpp>
 
 using namespace viam::sdk;

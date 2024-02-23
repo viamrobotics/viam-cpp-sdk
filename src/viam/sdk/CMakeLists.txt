@@ -92,16 +92,16 @@ target_sources(viamsdk
     robot/service.cpp
     rpc/dial.cpp
     rpc/server.cpp
-    services/generic/client.cpp
-    services/generic/generic.cpp
-    services/generic/server.cpp
-    services/mlmodel/client.cpp
-    services/mlmodel/mlmodel.cpp
-    services/mlmodel/private/proto.cpp
-    services/mlmodel/server.cpp
-    services/motion/client.cpp
-    services/motion/motion.cpp
-    services/motion/server.cpp
+    services/generic.cpp
+    services/mlmodel.cpp
+    services/motion.cpp
+    services/private/generic_client.cpp
+    services/private/generic_server.cpp
+    services/private/mlmodel_client.cpp
+    services/private/mlmodel_server.cpp
+    services/private/motion_client.cpp
+    services/private/motion_server.cpp
+    services/private/proto.cpp
     services/service.cpp
     spatialmath/geometry.cpp
     spatialmath/orientation.cpp
@@ -146,15 +146,9 @@ target_sources(viamsdk
       ../../viam/sdk/robot/service.hpp
       ../../viam/sdk/rpc/dial.hpp
       ../../viam/sdk/rpc/server.hpp
-      ../../viam/sdk/services/generic/client.hpp
-      ../../viam/sdk/services/generic/generic.hpp
-      ../../viam/sdk/services/generic/server.hpp
-      ../../viam/sdk/services/mlmodel/client.hpp
-      ../../viam/sdk/services/mlmodel/mlmodel.hpp
-      ../../viam/sdk/services/mlmodel/server.hpp
-      ../../viam/sdk/services/motion/client.hpp
-      ../../viam/sdk/services/motion/motion.hpp
-      ../../viam/sdk/services/motion/server.hpp
+      ../../viam/sdk/services/generic.hpp
+      ../../viam/sdk/services/mlmodel.hpp
+      ../../viam/sdk/services/motion.hpp
       ../../viam/sdk/services/service.hpp
       ../../viam/sdk/spatialmath/geometry.hpp
       ../../viam/sdk/spatialmath/orientation.hpp

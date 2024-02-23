@@ -29,7 +29,7 @@
 #include <boost/program_options.hpp>
 
 #include <viam/sdk/robot/client.hpp>
-#include <viam/sdk/services/mlmodel/mlmodel.hpp>
+#include <viam/sdk/services/mlmodel.hpp>
 
 namespace {
 

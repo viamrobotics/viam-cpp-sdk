@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <viam/sdk/services/mlmodel/server.hpp>
+#include <viam/sdk/services/private/mlmodel_server.hpp>
 
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/rpc/server.hpp>
-#include <viam/sdk/services/mlmodel/mlmodel.hpp>
-#include <viam/sdk/services/mlmodel/private/proto.hpp>
+#include <viam/sdk/services/mlmodel.hpp>
+#include <viam/sdk/services/private/proto.hpp>
 
 namespace viam {
 namespace sdk {

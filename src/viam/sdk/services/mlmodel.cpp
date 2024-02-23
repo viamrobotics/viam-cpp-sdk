@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <viam/sdk/services/mlmodel/mlmodel.hpp>
+#include <viam/sdk/services/mlmodel.hpp>
 
 #include <viam/sdk/common/utils.hpp>
 

@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <viam/sdk/services/mlmodel/client.hpp>
+#include <viam/sdk/services/private/mlmodel_client.hpp>
 
 #include <grpcpp/channel.h>
 
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/services/mlmodel/private/proto.hpp>
+#include <viam/sdk/services/private/proto.hpp>
 
 #include <viam/sdk/common/exception.hpp>
 

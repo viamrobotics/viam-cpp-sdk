@@ -18,7 +18,7 @@
 
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
-#include <viam/sdk/services/mlmodel/mlmodel.hpp>
+#include <viam/sdk/services/mlmodel.hpp>
 
 namespace viam {
 namespace sdk {

@@ -1,4 +1,4 @@
-#include <viam/sdk/services/motion/motion.hpp>
+#include <viam/sdk/services/motion.hpp>
 
 #include <math.h>
 

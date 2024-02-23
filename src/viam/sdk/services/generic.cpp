@@ -1,4 +1,4 @@
-#include <viam/sdk/services/generic/generic.hpp>
+#include <viam/sdk/services/generic.hpp>
 
 #include <stdexcept>
 

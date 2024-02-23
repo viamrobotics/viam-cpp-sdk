@@ -1,4 +1,4 @@
-#include <viam/sdk/services/generic/client.hpp>
+#include <viam/sdk/services/private/generic_client.hpp>
 
 #include <utility>
 

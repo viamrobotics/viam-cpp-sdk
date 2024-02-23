@@ -1,4 +1,4 @@
-#include "viam/sdk/services/motion/motion.hpp"
+#include "viam/sdk/services/motion.hpp"
 #include <viam/sdk/tests/mocks/mock_motion.hpp>
 
 #include <chrono>

@@ -1,8 +1,8 @@
-#include <viam/sdk/services/generic/server.hpp>
+#include <viam/sdk/services/private/generic_server.hpp>
 
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/rpc/server.hpp>
-#include <viam/sdk/services/generic/generic.hpp>
+#include <viam/sdk/services/generic.hpp>
 
 namespace viam {
 namespace sdk {

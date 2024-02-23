@@ -8,7 +8,7 @@
 #include <viam/api/service/generic/v1/generic.grpc.pb.h>
 
 #include <viam/sdk/robot/client.hpp>
-#include <viam/sdk/services/generic/generic.hpp>
+#include <viam/sdk/services/generic.hpp>
 
 namespace viam {
 namespace sdk {

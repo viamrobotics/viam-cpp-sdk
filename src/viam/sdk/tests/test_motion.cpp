@@ -4,9 +4,7 @@
 
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/world_state.hpp>
-#include <viam/sdk/services/motion/client.hpp>
-#include <viam/sdk/services/motion/motion.hpp>
-#include <viam/sdk/services/motion/server.hpp>
+#include <viam/sdk/services/motion.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
 #include <viam/sdk/tests/mocks/mock_motion.hpp>
 #include <viam/sdk/tests/test_utils.hpp>

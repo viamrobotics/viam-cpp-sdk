@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <viam/sdk/services/mlmodel/mlmodel.hpp>
+#include <viam/sdk/services/mlmodel.hpp>
 
 #include <memory>
 #include <tuple>
@@ -20,9 +20,7 @@
 
 #include <boost/variant/get.hpp>
 
-#include <viam/sdk/services/mlmodel/client.hpp>
-#include <viam/sdk/services/mlmodel/private/proto.hpp>
-#include <viam/sdk/services/mlmodel/server.hpp>
+#include <viam/sdk/services/private/proto.hpp>
 #include <viam/sdk/tests/mocks/mlmodel_mocks.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 

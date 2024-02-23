@@ -7,7 +7,7 @@
 
 #include <viam/api/service/motion/v1/motion.grpc.pb.h>
 
-#include <viam/sdk/services/motion/motion.hpp>
+#include <viam/sdk/services/motion.hpp>
 
 namespace viam {
 namespace sdk {

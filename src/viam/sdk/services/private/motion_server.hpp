@@ -10,7 +10,7 @@
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
 #include <viam/sdk/rpc/server.hpp>
-#include <viam/sdk/services/motion/motion.hpp>
+#include <viam/sdk/services/motion.hpp>
 
 namespace viam {
 namespace sdk {

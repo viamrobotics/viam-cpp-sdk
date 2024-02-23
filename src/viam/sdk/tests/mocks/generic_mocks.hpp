@@ -1,11 +1,9 @@
 #pragma once
 
-#include "viam/sdk/common/proto_type.hpp"
+#include <viam/sdk/common/proto_type.hpp>
 
 #include <viam/sdk/components/generic.hpp>
-#include <viam/sdk/services/generic/client.hpp>
-#include <viam/sdk/services/generic/generic.hpp>
-#include <viam/sdk/services/generic/server.hpp>
+#include <viam/sdk/services/generic.hpp>
 
 namespace viam {
 namespace sdktests {

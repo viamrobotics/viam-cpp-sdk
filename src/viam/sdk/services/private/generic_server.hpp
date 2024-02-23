@@ -8,7 +8,7 @@
 
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
-#include <viam/sdk/services/generic/generic.hpp>
+#include <viam/sdk/services/generic.hpp>
 
 namespace viam {
 namespace sdk {

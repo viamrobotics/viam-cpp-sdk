@@ -18,7 +18,7 @@
 
 #include <grpcpp/channel.h>
 
-#include <viam/sdk/services/mlmodel/mlmodel.hpp>
+#include <viam/sdk/services/mlmodel.hpp>
 
 namespace viam {
 namespace sdk {
