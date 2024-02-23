@@ -61,11 +61,13 @@ void client_to_mock_pipeline(std::shared_ptr<Resource> mock, F&& test_case) {
     grpc::ChannelArguments args;
     auto test_server = TestServer(server);
     auto grpc_channel = test_server.grpc_in_process_channel(args);
-    ClientType resource_client(mock->name(), grpc_channel);
+
+    auto resource_client = Registry::lookup_resource_client(API::get<ClientType>())
+                               ->create_rpc_client(mock->name(), std::move(grpc_channel));
 
     // Run the passed-in test case on the created stack and give access to the
     // created resource-specific client.
-    std::forward<F>(test_case)(resource_client);
+    std::forward<F>(test_case)(*std::dynamic_pointer_cast<ClientType>(resource_client));
 
     // Shutdown Server afterward.
     server->shutdown();

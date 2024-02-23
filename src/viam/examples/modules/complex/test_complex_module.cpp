@@ -87,7 +87,7 @@ BOOST_AUTO_TEST_SUITE(test_gizmo_client_server)
 
 BOOST_AUTO_TEST_CASE(test_do_one) {
     const auto mock = test_gizmo_impl::get_gizmo();
-    client_to_mock_pipeline<GizmoClient>(mock, [](Gizmo& client) {
+    client_to_mock_pipeline<Gizmo>(mock, [](Gizmo& client) {
         BOOST_CHECK(client.do_one("foo"));
         BOOST_CHECK(!client.do_one("bar"));
     });
@@ -95,7 +95,7 @@ BOOST_AUTO_TEST_CASE(test_do_one) {
 
 BOOST_AUTO_TEST_CASE(test_do_one_client_stream) {
     const auto mock = test_gizmo_impl::get_gizmo();
-    client_to_mock_pipeline<GizmoClient>(mock, [](Gizmo& client) {
+    client_to_mock_pipeline<Gizmo>(mock, [](Gizmo& client) {
         BOOST_CHECK(client.do_one_client_stream({"foo", "foo"}));
         BOOST_CHECK(!client.do_one_client_stream({"foo", "bar"}));
     });
@@ -103,7 +103,7 @@ BOOST_AUTO_TEST_CASE(test_do_one_client_stream) {
 
 BOOST_AUTO_TEST_CASE(test_do_one_server_stream) {
     const auto mock = test_gizmo_impl::get_gizmo();
-    client_to_mock_pipeline<GizmoClient>(mock, [](Gizmo& client) {
+    client_to_mock_pipeline<Gizmo>(mock, [](Gizmo& client) {
         std::vector<bool> ret1 = {true, false, true, false};
         std::vector<bool> ret2 = {false, false, true, false};
         BOOST_CHECK(client.do_one_server_stream("foo") == ret1);
@@ -113,7 +113,7 @@ BOOST_AUTO_TEST_CASE(test_do_one_server_stream) {
 
 BOOST_AUTO_TEST_CASE(test_do_one_bidi_stream) {
     const auto mock = test_gizmo_impl::get_gizmo();
-    client_to_mock_pipeline<GizmoClient>(mock, [](Gizmo& client) {
+    client_to_mock_pipeline<Gizmo>(mock, [](Gizmo& client) {
         std::vector<bool> ret1 = {true, false};
         std::vector<bool> ret2 = {false, true};
         BOOST_CHECK(client.do_one_bidi_stream({"foo", "bar"}) == ret1);
@@ -123,7 +123,7 @@ BOOST_AUTO_TEST_CASE(test_do_one_bidi_stream) {
 
 BOOST_AUTO_TEST_CASE(test_do_two) {
     const auto mock = test_gizmo_impl::get_gizmo();
-    client_to_mock_pipeline<GizmoClient>(mock, [](Gizmo& client) {
+    client_to_mock_pipeline<Gizmo>(mock, [](Gizmo& client) {
         BOOST_CHECK(client.do_two(true) == "arg1=true");
         BOOST_CHECK(client.do_two(false) == "arg1=false");
     });
@@ -151,7 +151,7 @@ BOOST_AUTO_TEST_SUITE(test_summation_client_server)
 
 BOOST_AUTO_TEST_CASE(test_sum) {
     const auto mock = test_summation_impl::get_summation();
-    client_to_mock_pipeline<SummationClient>(mock, [](Summation& client) {
+    client_to_mock_pipeline<Summation>(mock, [](Summation& client) {
         double sum = client.sum({0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0});
         BOOST_CHECK(sum == 45);
     });

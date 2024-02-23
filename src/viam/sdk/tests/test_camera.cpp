@@ -7,14 +7,8 @@
 
 #include <boost/test/included/unit_test.hpp>
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/component/camera/v1/camera.grpc.pb.h>
-#include <viam/api/component/camera/v1/camera.pb.h>
-
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/components/camera.hpp>
-#include <viam/sdk/components/private/camera_client.hpp>
-#include <viam/sdk/components/private/camera_server.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
 #include <viam/sdk/tests/mocks/camera_mocks.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
@@ -39,7 +33,7 @@ BOOST_AUTO_TEST_CASE(mock_get_api) {
 
 BOOST_AUTO_TEST_CASE(test_get_image) {
     std::shared_ptr<MockCamera> mock = MockCamera::get_mock_camera();
-    client_to_mock_pipeline<CameraClient>(mock, [](Camera& client) {
+    client_to_mock_pipeline<Camera>(mock, [](Camera& client) {
         Camera::raw_image image = client.get_image("JPEG");
         Camera::raw_image expected_image = fake_raw_image();
 
@@ -49,7 +43,7 @@ BOOST_AUTO_TEST_CASE(test_get_image) {
 
 BOOST_AUTO_TEST_CASE(test_get_images) {
     std::shared_ptr<MockCamera> mock = MockCamera::get_mock_camera();
-    client_to_mock_pipeline<CameraClient>(mock, [](Camera& client) {
+    client_to_mock_pipeline<Camera>(mock, [](Camera& client) {
         Camera::image_collection expected_images = fake_raw_images();
         Camera::image_collection images = client.get_images();
 
@@ -59,7 +53,7 @@ BOOST_AUTO_TEST_CASE(test_get_images) {
 
 BOOST_AUTO_TEST_CASE(test_get_point_cloud) {
     std::shared_ptr<MockCamera> mock = MockCamera::get_mock_camera();
-    client_to_mock_pipeline<CameraClient>(mock, [](Camera& client) {
+    client_to_mock_pipeline<Camera>(mock, [](Camera& client) {
         Camera::point_cloud pc = client.get_point_cloud("pointcloud/pcd");
         Camera::point_cloud expected = fake_point_cloud();
 
@@ -69,7 +63,7 @@ BOOST_AUTO_TEST_CASE(test_get_point_cloud) {
 
 BOOST_AUTO_TEST_CASE(test_get_properties) {
     std::shared_ptr<MockCamera> mock = MockCamera::get_mock_camera();
-    client_to_mock_pipeline<CameraClient>(mock, [](Camera& client) {
+    client_to_mock_pipeline<Camera>(mock, [](Camera& client) {
         Camera::properties props = client.get_properties();
         Camera::properties expected = fake_properties();
 
@@ -79,7 +73,7 @@ BOOST_AUTO_TEST_CASE(test_get_properties) {
 
 BOOST_AUTO_TEST_CASE(test_get_geometries) {
     std::shared_ptr<MockCamera> mock = MockCamera::get_mock_camera();
-    client_to_mock_pipeline<CameraClient>(mock, [](Camera& client) {
+    client_to_mock_pipeline<Camera>(mock, [](Camera& client) {
         std::vector<GeometryConfig> result_geometries = client.get_geometries();
         std::vector<GeometryConfig> expected_geometries = fake_geometries();
 
@@ -89,7 +83,7 @@ BOOST_AUTO_TEST_CASE(test_get_geometries) {
 
 BOOST_AUTO_TEST_CASE(test_do_command) {
     std::shared_ptr<MockCamera> mock = MockCamera::get_mock_camera();
-    client_to_mock_pipeline<CameraClient>(mock, [](Camera& client) {
+    client_to_mock_pipeline<Camera>(mock, [](Camera& client) {
         AttributeMap command = fake_map();
         AttributeMap expected_map = fake_map();
         AttributeMap result_map = client.do_command(command);

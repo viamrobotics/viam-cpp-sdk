@@ -8,16 +8,10 @@
 #define BOOST_TEST_MODULE test module test_robot
 #include <boost/test/included/unit_test.hpp>
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/robot/v1/robot.grpc.pb.h>
-#include <viam/api/robot/v1/robot.pb.h>
-
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/camera.hpp>
 #include <viam/sdk/components/motor.hpp>
-#include <viam/sdk/components/private/generic_client.hpp>
-#include <viam/sdk/components/private/motor_client.hpp>
 #include <viam/sdk/robot/service.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/tests/mocks/camera_mocks.hpp>
