@@ -105,8 +105,7 @@ BOOST_AUTO_TEST_CASE(test_get_geometries) {
 
 BOOST_AUTO_TEST_CASE(test_is_moving) {
     std::shared_ptr<MockBase> mock = MockBase::get_mock_base();
-    client_to_mock_pipeline<Base>(mock,
-                                        [](Base& client) { BOOST_CHECK(!client.is_moving()); });
+    client_to_mock_pipeline<Base>(mock, [](Base& client) { BOOST_CHECK(!client.is_moving()); });
 }
 
 BOOST_AUTO_TEST_CASE(test_do_command) {
