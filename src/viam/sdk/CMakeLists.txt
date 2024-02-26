@@ -101,7 +101,7 @@ target_sources(viamsdk
     services/private/mlmodel_server.cpp
     services/private/motion_client.cpp
     services/private/motion_server.cpp
-    services/private/proto.cpp
+    services/private/mlmodel.cpp
     services/service.cpp
     spatialmath/geometry.cpp
     spatialmath/orientation.cpp

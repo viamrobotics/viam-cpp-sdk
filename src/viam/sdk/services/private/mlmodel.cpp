@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <viam/sdk/services/private/proto.hpp>
+#include <viam/sdk/services/private/mlmodel.hpp>
 
 #include <memory>
 #include <stack>
@@ -28,7 +28,7 @@
 namespace viam {
 namespace sdk {
 namespace impl {
-namespace mlmodel_details {
+namespace mlmodel {
 
 namespace {
 
@@ -246,7 +246,7 @@ MLModelService::tensor_views make_sdk_tensor_from_api_tensor(
     throw Exception(ErrorCondition::k_not_supported, "Unsupported tensor data type");
 }
 
-}  // namespace mlmodel_details
+}  // namespace mlmodel
 }  // namespace impl
 }  // namespace sdk
 }  // namespace viam

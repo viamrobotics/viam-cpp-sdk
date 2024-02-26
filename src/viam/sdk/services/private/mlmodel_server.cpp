@@ -17,7 +17,7 @@
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/rpc/server.hpp>
 #include <viam/sdk/services/mlmodel.hpp>
-#include <viam/sdk/services/private/proto.hpp>
+#include <viam/sdk/services/private/mlmodel.hpp>
 
 namespace viam {
 namespace sdk {
@@ -48,7 +48,7 @@ MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> mana
                 // those tensors.
                 continue;
             }
-            auto tensor = mlmodel_details::make_sdk_tensor_from_api_tensor(where->second);
+            auto tensor = mlmodel::make_sdk_tensor_from_api_tensor(where->second);
             const auto tensor_type = MLModelService::tensor_info::tensor_views_to_data_type(tensor);
             if (tensor_type != input.data_type) {
                 std::ostringstream message;
@@ -66,7 +66,7 @@ MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> mana
         auto* const output_tensors = response->mutable_output_tensors()->mutable_tensors();
         for (const auto& kv : *outputs) {
             auto& emplaced = (*output_tensors)[kv.first];
-            mlmodel_details::copy_sdk_tensor_to_api_tensor(kv.second, &emplaced);
+            mlmodel::copy_sdk_tensor_to_api_tensor(kv.second, &emplaced);
         }
 
         return ::grpc::Status();

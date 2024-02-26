@@ -17,7 +17,7 @@
 #include <grpcpp/channel.h>
 
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/services/private/proto.hpp>
+#include <viam/sdk/services/private/mlmodel.hpp>
 
 #include <viam/sdk/common/exception.hpp>
 
@@ -56,7 +56,7 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
     auto& input_tensors = *req->mutable_input_tensors()->mutable_tensors();
     for (const auto& kv : inputs) {
         auto& emplaced = input_tensors[kv.first];
-        mlmodel_details::copy_sdk_tensor_to_api_tensor(kv.second, &emplaced);
+        mlmodel::copy_sdk_tensor_to_api_tensor(kv.second, &emplaced);
     }
 
     const auto result = stub_->Infer(ctx, *req, resp);
@@ -68,7 +68,7 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
         // NOTE: We don't need to pass in tensor storage here,
         // because the backing store for the views is the Arena we
         // moved into our result above.
-        auto tensor = mlmodel_details::make_sdk_tensor_from_api_tensor(kv.second);
+        auto tensor = mlmodel::make_sdk_tensor_from_api_tensor(kv.second);
         aav->views.emplace(kv.first, std::move(tensor));
     }
     auto* const tsav_views = &aav->views;
