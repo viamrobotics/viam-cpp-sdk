@@ -47,7 +47,7 @@ class TestServer {
 // without starting another process.
 //
 // The passed in test_case function will have access to the created ResourceClient.
-template <typename ClientType, typename F>
+template <typename ResourceType, typename F>
 void client_to_mock_pipeline(std::shared_ptr<Resource> mock, F&& test_case) {
     auto server = std::make_shared<sdk::Server>();
 
@@ -62,12 +62,12 @@ void client_to_mock_pipeline(std::shared_ptr<Resource> mock, F&& test_case) {
     auto test_server = TestServer(server);
     auto grpc_channel = test_server.grpc_in_process_channel(args);
 
-    auto resource_client = Registry::lookup_resource_client(API::get<ClientType>())
+    auto resource_client = Registry::lookup_resource_client(API::get<ResourceType>())
                                ->create_rpc_client(mock->name(), std::move(grpc_channel));
 
     // Run the passed-in test case on the created stack and give access to the
     // created resource-specific client.
-    std::forward<F>(test_case)(*std::dynamic_pointer_cast<ClientType>(resource_client));
+    std::forward<F>(test_case)(*std::dynamic_pointer_cast<ResourceType>(resource_client));
 
     // Shutdown Server afterward.
     server->shutdown();
