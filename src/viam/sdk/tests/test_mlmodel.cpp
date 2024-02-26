@@ -493,7 +493,6 @@ struct safe_increment {
 };
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(rt_scalar, T, MLModelService::base_types) {
-
     auto mock = std::make_shared<MockMLModelService>();
     mock->set_infer_handler([&](const MLModelService::named_tensor_views& request) {
         return std::make_shared<MLModelService::named_tensor_views>(request);
@@ -505,8 +504,11 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_scalar, T, MLModelService::base_types) {
 
     const auto scalar_tv_type = MLModelService::tensor_info::tensor_views_to_data_type(scalar_tv);
 
-    mock->set_metadata(
-        {"", "", "", {{"x", "", scalar_tv_type, {1}, {}, {}}}, {{"x", "", scalar_tv_type, {1}, {}, {}}}});
+    mock->set_metadata({"",
+                        "",
+                        "",
+                        {{"x", "", scalar_tv_type, {1}, {}, {}}},
+                        {{"x", "", scalar_tv_type, {1}, {}, {}}}});
 
     client_to_mock_pipeline<MLModelService>(mock, [&](auto& client) {
         MLModelService::named_tensor_views request;
