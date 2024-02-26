@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['motion_2ehpp_0',['motion.hpp',['../motion_8hpp.html',1,'']]],
-  ['motor_2ehpp_1',['motor.hpp',['../motor_8hpp.html',1,'']]],
-  ['movement_5fsensor_2ehpp_2',['movement_sensor.hpp',['../movement__sensor_8hpp.html',1,'']]]
+  ['generic_2ehpp_0',['generic.hpp',['../components_2generic_8hpp.html',1,'']]],
+  ['generic_5fclient_2ehpp_1',['generic_client.hpp',['../components_2private_2generic__client_8hpp.html',1,'']]],
+  ['generic_5fserver_2ehpp_2',['generic_server.hpp',['../components_2private_2generic__server_8hpp.html',1,'']]]
 ];

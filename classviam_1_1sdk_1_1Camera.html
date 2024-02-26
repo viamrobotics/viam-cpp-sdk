@@ -89,7 +89,7 @@ $(function() {
 <p>A <code><a class="el" href="classviam_1_1sdk_1_1Camera.html" title="A Camera represents any physical hardware that can capture frames.">Camera</a></code> represents any physical hardware that can capture frames.  
  <a href="#details">More...</a></p>
 
-<p><code>#include &quot;<a class="el" href="camera_8hpp_source.html">components/camera/camera.hpp</a>&quot;</code></p>
+<p><code>#include &quot;<a class="el" href="camera_8hpp_source.html">components/camera.hpp</a>&quot;</code></p>
 <div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for viam::sdk::Camera:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -98,9 +98,9 @@ $(function() {
  <div class="center">
   <img src="classviam_1_1sdk_1_1Camera.png" usemap="#viam::sdk::Camera_map" alt=""/>
   <map id="viam::sdk::Camera_map" name="viam::sdk::Camera_map">
-<area href="classviam_1_1sdk_1_1Component.html" alt="viam::sdk::Component" shape="rect" coords="0,56,145,80"/>
-<area href="classviam_1_1sdk_1_1Resource.html" alt="viam::sdk::Resource" shape="rect" coords="0,0,145,24"/>
-<area href="classviam_1_1sdk_1_1CameraClient.html" title="gRPC client implementation of a Camera component." alt="viam::sdk::CameraClient" shape="rect" coords="0,168,145,192"/>
+<area href="classviam_1_1sdk_1_1Component.html" alt="viam::sdk::Component" shape="rect" coords="0,56,173,80"/>
+<area href="classviam_1_1sdk_1_1Resource.html" alt="viam::sdk::Resource" shape="rect" coords="0,0,173,24"/>
+<area href="classviam_1_1sdk_1_1impl_1_1CameraClient.html" title="gRPC client implementation of a Camera component." alt="viam::sdk::impl::CameraClient" shape="rect" coords="0,168,173,192"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -297,7 +297,7 @@ Protected Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The result of the executed command. </dd></dl>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1CameraClient.html#aca6ce1709b423d13cfa549d03a6645aa">viam::sdk::CameraClient</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1CameraClient.html#a8773e87cd9c8a82ca3f12c78ae313a8e">viam::sdk::impl::CameraClient</a>.</p>
 
 </div>
 </div>
@@ -361,7 +361,7 @@ Protected Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The requested <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the component. </dd></dl>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1CameraClient.html#a7563937669f5f752e072c58a86b547b9">viam::sdk::CameraClient</a>, and <a class="el" href="classviam_1_1sdk_1_1CameraClient.html#abe7df4cceb3020ffe5cd5d770d5900a4">viam::sdk::CameraClient</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1CameraClient.html#af137bbba5c96b46f20ff231f286a71e8">viam::sdk::impl::CameraClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1CameraClient.html#abe7df4cceb3020ffe5cd5d770d5900a4">viam::sdk::impl::CameraClient</a>.</p>
 
 </div>
 </div>
@@ -436,7 +436,7 @@ Protected Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The frame as a <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html" title="the raw bytes, mime type of an image, and name of the source that produced it.">raw_image</a></code>. </dd></dl>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1CameraClient.html#a054337d613d8312d2a5ead40bd219919">viam::sdk::CameraClient</a>, and <a class="el" href="classviam_1_1sdk_1_1CameraClient.html#adb4737c0dbf496e2ffbeeb84035b4722">viam::sdk::CameraClient</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1CameraClient.html#a230db2bc4e965a495f18ac79a4938377">viam::sdk::impl::CameraClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1CameraClient.html#adb4737c0dbf496e2ffbeeb84035b4722">viam::sdk::impl::CameraClient</a>.</p>
 
 </div>
 </div>
@@ -466,7 +466,7 @@ Protected Member Functions</h2></td></tr>
 <p>Get the next images from the camera as a vector of raw images with names and metadata. </p>
 <dl class="section return"><dt>Returns</dt><dd>a vector of raw_images and associated response metadata. </dd></dl>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1CameraClient.html#a8b6119f4697b4ed57fc9b809211525d7">viam::sdk::CameraClient</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1CameraClient.html#a07db636fcd54015502a60cd1dea8350e">viam::sdk::impl::CameraClient</a>.</p>
 
 </div>
 </div>
@@ -541,7 +541,7 @@ Protected Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The requested <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1point__cloud.html" title="The points and mime type of a point cloud.">point_cloud</a></code>. </dd></dl>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1CameraClient.html#a9fb83d33d131774d27f42f6d6a8b7acf">viam::sdk::CameraClient</a>, and <a class="el" href="classviam_1_1sdk_1_1CameraClient.html#adb2256f77dc296668734b1e67b390f17">viam::sdk::CameraClient</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1CameraClient.html#a221224622234c2bb304106afc22ed543">viam::sdk::impl::CameraClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1CameraClient.html#adb2256f77dc296668734b1e67b390f17">viam::sdk::impl::CameraClient</a>.</p>
 
 </div>
 </div>
@@ -571,12 +571,12 @@ Protected Member Functions</h2></td></tr>
 <p>Get the camera's properties. </p>
 <dl class="section return"><dt>Returns</dt><dd>The camera properties. </dd></dl>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1CameraClient.html#a371ead0b808b662f6667261746b171fa">viam::sdk::CameraClient</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1CameraClient.html#a14c832a115345fdb86b0386a4a6dd969">viam::sdk::impl::CameraClient</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/viam/sdk/components/camera/<a class="el" href="camera_8hpp_source.html">camera.hpp</a></li>
+<li>src/viam/sdk/components/<a class="el" href="camera_8hpp_source.html">camera.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

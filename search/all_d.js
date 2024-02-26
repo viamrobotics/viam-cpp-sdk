@@ -17,11 +17,13 @@ var searchData=
   ['power_5fmode_14',['power_mode',['../classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88',1,'viam::sdk::Board']]],
   ['power_5fpct_15',['power_pct',['../structviam_1_1sdk_1_1Motor_1_1power__status.html#a2a0673d493b18e92e14fedd7dab50d1a',1,'viam::sdk::Motor::power_status']]],
   ['power_5fsensor_2ehpp_16',['power_sensor.hpp',['../power__sensor_8hpp.html',1,'']]],
-  ['power_5fstatus_17',['power_status',['../structviam_1_1sdk_1_1Motor_1_1power__status.html',1,'viam::sdk::Motor']]],
-  ['powersensor_18',['PowerSensor',['../classviam_1_1sdk_1_1PowerSensor.html',1,'viam::sdk']]],
-  ['powersensor_20component_19',['Classes related to the PowerSensor component.',['../group__PowerSensor.html',1,'']]],
-  ['powersensorclient_20',['PowerSensorClient',['../classviam_1_1sdk_1_1PowerSensorClient.html',1,'viam::sdk']]],
-  ['powersensorserver_21',['PowerSensorServer',['../classviam_1_1sdk_1_1PowerSensorServer.html',1,'viam::sdk']]],
-  ['properties_22',['properties',['../structviam_1_1sdk_1_1Base_1_1properties.html',1,'viam::sdk::Base::properties'],['../structviam_1_1sdk_1_1Camera_1_1properties.html',1,'viam::sdk::Camera::properties'],['../structviam_1_1sdk_1_1Encoder_1_1properties.html',1,'viam::sdk::Encoder::properties'],['../structviam_1_1sdk_1_1Motor_1_1properties.html',1,'viam::sdk::Motor::properties'],['../structviam_1_1sdk_1_1MovementSensor_1_1properties.html',1,'viam::sdk::MovementSensor::properties']]],
-  ['prototype_23',['ProtoType',['../classviam_1_1sdk_1_1ProtoType.html',1,'viam::sdk']]]
+  ['power_5fsensor_5fclient_2ehpp_17',['power_sensor_client.hpp',['../power__sensor__client_8hpp.html',1,'']]],
+  ['power_5fsensor_5fserver_2ehpp_18',['power_sensor_server.hpp',['../power__sensor__server_8hpp.html',1,'']]],
+  ['power_5fstatus_19',['power_status',['../structviam_1_1sdk_1_1Motor_1_1power__status.html',1,'viam::sdk::Motor']]],
+  ['powersensor_20',['PowerSensor',['../classviam_1_1sdk_1_1PowerSensor.html',1,'viam::sdk']]],
+  ['powersensor_20component_21',['Classes related to the PowerSensor component.',['../group__PowerSensor.html',1,'']]],
+  ['powersensorclient_22',['PowerSensorClient',['../classviam_1_1sdk_1_1impl_1_1PowerSensorClient.html',1,'viam::sdk::impl']]],
+  ['powersensorserver_23',['PowerSensorServer',['../classviam_1_1sdk_1_1impl_1_1PowerSensorServer.html',1,'viam::sdk::impl']]],
+  ['properties_24',['properties',['../structviam_1_1sdk_1_1Base_1_1properties.html',1,'viam::sdk::Base::properties'],['../structviam_1_1sdk_1_1Camera_1_1properties.html',1,'viam::sdk::Camera::properties'],['../structviam_1_1sdk_1_1Encoder_1_1properties.html',1,'viam::sdk::Encoder::properties'],['../structviam_1_1sdk_1_1Motor_1_1properties.html',1,'viam::sdk::Motor::properties'],['../structviam_1_1sdk_1_1MovementSensor_1_1properties.html',1,'viam::sdk::MovementSensor::properties']]],
+  ['prototype_25',['ProtoType',['../classviam_1_1sdk_1_1ProtoType.html',1,'viam::sdk']]]
 ];
