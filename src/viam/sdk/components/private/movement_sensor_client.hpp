@@ -15,6 +15,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 /// @class MovementSensorClient
 /// @brief gRPC client implementation of a `MovementSensor` component.
@@ -50,5 +51,6 @@ class MovementSensorClient : public MovementSensor {
     std::shared_ptr<grpc::Channel> channel_;
 };
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

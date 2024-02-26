@@ -6,6 +6,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 GenericServiceServer::GenericServiceServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)){};
@@ -21,5 +22,6 @@ GenericServiceServer::GenericServiceServer(std::shared_ptr<ResourceManager> mana
     });
 }
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

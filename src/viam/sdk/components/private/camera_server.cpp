@@ -12,6 +12,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)){};
@@ -116,5 +117,6 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

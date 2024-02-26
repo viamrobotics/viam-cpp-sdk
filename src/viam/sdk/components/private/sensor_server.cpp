@@ -10,6 +10,7 @@ using namespace viam::common::v1;
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 SensorServer::SensorServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)){};
@@ -48,5 +49,6 @@ SensorServer::SensorServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

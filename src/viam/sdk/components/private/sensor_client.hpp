@@ -13,6 +13,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 /// @class SensorClient
 /// @brief gRPC client implementation of a `Sensor` component.
@@ -34,5 +35,6 @@ class SensorClient : public Sensor {
     std::shared_ptr<grpc::Channel> channel_;
 };
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

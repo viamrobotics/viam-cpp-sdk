@@ -16,6 +16,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 /// @class BaseClient
 /// @brief gRPC client implementation of a `Base` component.
@@ -61,5 +62,6 @@ class BaseClient : public Base {
     std::shared_ptr<grpc::Channel> channel_;
 };
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

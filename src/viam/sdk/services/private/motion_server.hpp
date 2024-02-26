@@ -14,6 +14,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 /// @class MotionServer
 /// @brief gRPC server implementation of a `Motion` service.
@@ -57,5 +58,6 @@ class MotionServer : public ResourceServer,
                              ::viam::common::v1::DoCommandResponse* response) noexcept override;
 };
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

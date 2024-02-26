@@ -27,6 +27,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 namespace mlmodel_details {
 
 namespace {
@@ -246,5 +247,6 @@ MLModelService::tensor_views make_sdk_tensor_from_api_tensor(
 }
 
 }  // namespace mlmodel_details
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

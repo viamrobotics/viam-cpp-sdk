@@ -18,6 +18,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 MovementSensorClient::MovementSensorClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : MovementSensor(std::move(name)),
@@ -94,5 +95,6 @@ std::vector<GeometryConfig> MovementSensorClient::get_geometries(const Attribute
         .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
 }
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

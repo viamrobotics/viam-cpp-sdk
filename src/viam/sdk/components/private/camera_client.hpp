@@ -15,6 +15,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 /// @class CameraClient
 /// @brief gRPC client implementation of a `Camera` component.
@@ -57,5 +58,6 @@ class CameraClient : public Camera {
     std::shared_ptr<grpc::Channel> channel_;
 };
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

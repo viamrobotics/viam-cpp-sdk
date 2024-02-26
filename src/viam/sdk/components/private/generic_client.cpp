@@ -13,6 +13,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 GenericComponentClient::GenericComponentClient(std::string name,
                                                std::shared_ptr<grpc::Channel> channel)
@@ -32,5 +33,6 @@ std::vector<GeometryConfig> GenericComponentClient::get_geometries(const Attribu
         .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
 }
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

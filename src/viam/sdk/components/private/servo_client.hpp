@@ -14,6 +14,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 /// @class ServoClient
 /// @brief gRPC client implementation of a `Servo` component.
@@ -38,5 +39,7 @@ class ServoClient : public Servo {
     std::unique_ptr<StubType> stub_;
     std::shared_ptr<grpc::Channel> channel_;
 };
+
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

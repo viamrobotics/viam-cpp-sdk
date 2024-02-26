@@ -11,6 +11,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 /// @class MotionClient
 /// @brief gRPC client implementation of a `Motion` service.
@@ -105,5 +106,6 @@ class MotionClient : public Motion {
     std::shared_ptr<grpc::Channel> channel_;
 };
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

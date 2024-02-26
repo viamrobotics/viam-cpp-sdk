@@ -13,6 +13,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 /// @class MotorClient
 /// @brief gRPC client implementation of a `Motor` component.
@@ -58,5 +59,6 @@ class MotorClient : public Motor {
     std::shared_ptr<grpc::Channel> channel_;
 };
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

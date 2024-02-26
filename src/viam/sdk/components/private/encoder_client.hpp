@@ -14,6 +14,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 /// @class EncoderClient
 /// @brief gRPC client implementation of a `Encoder` component.
@@ -48,5 +49,6 @@ class EncoderClient : public Encoder {
     std::shared_ptr<grpc::Channel> channel_;
 };
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

@@ -17,6 +17,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 EncoderClient::EncoderClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Encoder(std::move(name)),
@@ -52,5 +53,6 @@ AttributeMap EncoderClient::do_command(const AttributeMap& command) {
         .invoke([](auto& response) { return struct_to_map(response.result()); });
 }
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

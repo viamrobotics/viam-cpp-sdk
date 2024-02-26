@@ -13,6 +13,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 GenericServiceClient::GenericServiceClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : GenericService(std::move(name)),
@@ -25,5 +26,6 @@ AttributeMap GenericServiceClient::do_command(const AttributeMap& command) {
         .invoke([](auto& response) { return struct_to_map(response.result()); });
 }
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

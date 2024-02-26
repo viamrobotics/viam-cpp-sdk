@@ -14,6 +14,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 /// @class BoardClient
 /// @brief gRPC client implementation of a `Board` component.
@@ -72,5 +73,6 @@ class BoardClient : public Board {
     const std::shared_ptr<grpc::Channel> channel_;
 };
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

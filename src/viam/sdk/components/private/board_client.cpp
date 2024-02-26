@@ -18,6 +18,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 BoardClient::BoardClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Board(std::move(name)),
@@ -156,5 +157,6 @@ std::vector<GeometryConfig> BoardClient::get_geometries(const AttributeMap& extr
         .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
 };
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

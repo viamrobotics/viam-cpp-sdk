@@ -12,6 +12,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 /// @class BoardServer
 /// @brief gRPC server implementation of a `Board` component.
@@ -84,5 +85,6 @@ class BoardServer : public ResourceServer,
         ::viam::common::v1::GetGeometriesResponse* response) noexcept override;
 };
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

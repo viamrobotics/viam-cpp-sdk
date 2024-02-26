@@ -22,6 +22,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 ///
 /// An `MLModelServiceClient` provides client-side access to a
@@ -56,5 +57,6 @@ class MLModelServiceClient : public MLModelService {
     std::unique_ptr<service_type::StubInterface> stub_;
 };
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

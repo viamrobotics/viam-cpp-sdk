@@ -12,6 +12,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 /// @class GenericServiceClient
 /// @brief gRPC client implementation of a `GenericService`.
@@ -37,5 +38,6 @@ class GenericServiceClient : public GenericService {
     std::shared_ptr<grpc::Channel> channel_;
 };
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

@@ -11,6 +11,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)){};
@@ -110,5 +111,6 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

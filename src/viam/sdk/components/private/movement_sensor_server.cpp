@@ -11,6 +11,7 @@ using namespace viam::component::movementsensor::v1;
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)){};
@@ -140,5 +141,6 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
     });
 }
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

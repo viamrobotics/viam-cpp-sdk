@@ -12,6 +12,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 /// @class ServoServer
 /// @brief gRPC server implementation of a `Servo` component.
@@ -50,5 +51,7 @@ class ServoServer : public ResourceServer,
                              const viam::common::v1::DoCommandRequest* request,
                              viam::common::v1::DoCommandResponse* response) noexcept override;
 };
+
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

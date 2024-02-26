@@ -16,6 +16,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 CameraClient::CameraClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Camera(std::move(name)),
@@ -62,5 +63,6 @@ Camera::properties CameraClient::get_properties() {
     });
 };
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

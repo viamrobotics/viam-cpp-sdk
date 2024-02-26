@@ -21,6 +21,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)) {}
@@ -157,5 +158,6 @@ MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> mana
     });
 }
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

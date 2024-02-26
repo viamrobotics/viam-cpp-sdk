@@ -10,6 +10,7 @@ using namespace viam::component::powersensor::v1;
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)){};
@@ -68,5 +69,6 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

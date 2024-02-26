@@ -12,6 +12,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 /// @class GenericComponentServer
 /// @brief gRPC server implementation of a `GenericComponent`.
@@ -32,5 +33,6 @@ class GenericComponentServer : public ResourceServer,
         ::viam::common::v1::GetGeometriesResponse* response) noexcept override;
 };
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

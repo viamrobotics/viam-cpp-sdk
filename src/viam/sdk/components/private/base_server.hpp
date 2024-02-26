@@ -13,6 +13,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 /// @class BaseServer
 /// @brief gRPC server implementation of a `Base` component.
@@ -66,5 +67,6 @@ class BaseServer : public ResourceServer, public viam::component::base::v1::Base
                              viam::common::v1::DoCommandResponse* response) noexcept override;
 };
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

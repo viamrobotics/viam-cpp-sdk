@@ -8,6 +8,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)){};
@@ -68,5 +69,6 @@ EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

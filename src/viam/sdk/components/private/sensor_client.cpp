@@ -16,6 +16,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 SensorClient::SensorClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Sensor(std::move(name)),
@@ -49,5 +50,6 @@ std::vector<GeometryConfig> SensorClient::get_geometries(const AttributeMap& ext
         .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
 }
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

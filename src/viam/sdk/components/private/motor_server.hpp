@@ -12,6 +12,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 /// @class MotorServer
 /// @brief gRPC server implementation of a `Motor` component.
@@ -75,5 +76,6 @@ class MotorServer : public ResourceServer,
                              viam::common::v1::DoCommandResponse* response) noexcept override;
 };
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

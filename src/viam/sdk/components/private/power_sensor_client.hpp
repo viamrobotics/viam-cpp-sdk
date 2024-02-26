@@ -14,6 +14,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 /// @class PowerSensorClient
 /// @brief gRPC client implementation of a `PowerSensor` component.
@@ -39,5 +40,6 @@ class PowerSensorClient : public PowerSensor {
     std::shared_ptr<grpc::Channel> channel_;
 };
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

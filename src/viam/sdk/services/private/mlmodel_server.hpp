@@ -22,6 +22,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 ///
 /// The `MLModelServiceServer` is used to implement new modular
@@ -44,5 +45,6 @@ class MLModelServiceServer : public ResourceServer,
         ::viam::service::mlmodel::v1::MetadataResponse* response) noexcept override;
 };
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

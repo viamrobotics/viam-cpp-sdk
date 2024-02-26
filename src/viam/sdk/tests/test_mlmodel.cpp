@@ -502,13 +502,13 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_scalar, T, MLModelService::base_types) {
 
     auto& input_tensors = *request.mutable_input_tensors()->mutable_tensors();
     auto& input_tensor = input_tensors[""];
-    mlmodel_details::copy_sdk_tensor_to_api_tensor(scalar_tv, &input_tensor);
+    impl::mlmodel_details::copy_sdk_tensor_to_api_tensor(scalar_tv, &input_tensor);
 
     // Try once with tensor storage, and once without
-    auto tsav = std::make_shared<mlmodel_details::tensor_storage>();
+    auto tsav = std::make_shared<impl::mlmodel_details::tensor_storage>();
     for (int i = 0; i != 2; ++i) {
         auto output_tensor =
-            mlmodel_details::make_sdk_tensor_from_api_tensor(input_tensor, tsav.get());
+            impl::mlmodel_details::make_sdk_tensor_from_api_tensor(input_tensor, tsav.get());
         const auto* const output_tensor_as_base_type =
             boost::get<MLModelService::tensor_view<base_type>>(&output_tensor);
         BOOST_TEST_REQUIRE(output_tensor_as_base_type != nullptr);
@@ -552,13 +552,13 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_tensor_shapes, T, MLModelService::base_types) {
 
         auto& input_tensors = *request.mutable_input_tensors()->mutable_tensors();
         auto& input_tensor = input_tensors[""];
-        mlmodel_details::copy_sdk_tensor_to_api_tensor(array_tv, &input_tensor);
+        impl::mlmodel_details::copy_sdk_tensor_to_api_tensor(array_tv, &input_tensor);
 
         // Try once with tensor storage, once without
-        auto tsav = std::make_shared<mlmodel_details::tensor_storage>();
+        auto tsav = std::make_shared<impl::mlmodel_details::tensor_storage>();
         for (int i = 0; i != 2; ++i) {
             auto output_tensor =
-                mlmodel_details::make_sdk_tensor_from_api_tensor(input_tensor, tsav.get());
+                impl::mlmodel_details::make_sdk_tensor_from_api_tensor(input_tensor, tsav.get());
             const auto* const output_tensor_as_base_type =
                 boost::get<MLModelService::tensor_view<base_type>>(&output_tensor);
             BOOST_TEST_REQUIRE(output_tensor_as_base_type != nullptr);

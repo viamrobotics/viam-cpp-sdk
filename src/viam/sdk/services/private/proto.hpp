@@ -20,6 +20,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 namespace mlmodel_details {
 
 using tensor_storage_types = boost::mpl::transform_view<MLModelService::base_types,
@@ -34,5 +35,6 @@ MLModelService::tensor_views make_sdk_tensor_from_api_tensor(
     const ::viam::service::mlmodel::v1::FlatTensor& api_tensor, tensor_storage* storage = nullptr);
 
 }  // namespace mlmodel_details
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

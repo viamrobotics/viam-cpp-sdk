@@ -14,6 +14,7 @@ using namespace viam::common::v1;
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 /// @class SensorServer
 /// @brief gRPC server implementation of a `Sensor` component.
@@ -38,5 +39,6 @@ class SensorServer : public ResourceServer,
                                  GetGeometriesResponse* response) noexcept override;
 };
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

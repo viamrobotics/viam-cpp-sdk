@@ -14,6 +14,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 MotionClient::MotionClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Motion(std::move(name)),
@@ -192,5 +193,6 @@ AttributeMap MotionClient::do_command(const AttributeMap& command) {
         .invoke([](auto& response) { return struct_to_map(response.result()); });
 }
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

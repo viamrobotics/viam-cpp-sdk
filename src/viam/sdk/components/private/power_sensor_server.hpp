@@ -14,6 +14,7 @@ using namespace viam::component::powersensor::v1;
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 /// @class PowerSensorServer
 /// @brief gRPC server implementation of a `PowerSensor` component.
@@ -45,5 +46,6 @@ class PowerSensorServer : public ResourceServer, public PowerSensorService::Serv
                              viam::common::v1::DoCommandResponse* response) noexcept override;
 };
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

@@ -12,6 +12,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 /// @class CameraServer
 /// @brief gRPC server implementation of a `Camera` component.
@@ -51,5 +52,6 @@ class CameraServer : public ResourceServer,
         ::viam::component::camera::v1::GetPropertiesResponse* response) noexcept override;
 };
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

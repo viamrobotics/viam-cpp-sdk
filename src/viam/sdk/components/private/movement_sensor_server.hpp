@@ -12,6 +12,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 /// @class MovementSensorServer
 /// @brief gRPC server implementation of a `MovementSensor` component.
@@ -78,5 +79,6 @@ class MovementSensorServer
         ::viam::common::v1::GetGeometriesResponse* response) noexcept override;
 };
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

@@ -9,6 +9,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)){};
@@ -202,5 +203,6 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

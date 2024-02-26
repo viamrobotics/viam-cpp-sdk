@@ -23,6 +23,7 @@
 
 namespace viam {
 namespace sdk {
+namespace impl {
 
 MLModelServiceClient::MLModelServiceClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : MLModelService(std::move(name)),
@@ -150,5 +151,6 @@ struct MLModelService::metadata MLModelServiceClient::metadata(const AttributeMa
     return result;
 }
 
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam
