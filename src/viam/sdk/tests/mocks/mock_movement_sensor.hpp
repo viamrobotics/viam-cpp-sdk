@@ -1,13 +1,7 @@
 #pragma once
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/component/movementsensor/v1/movementsensor.grpc.pb.h>
-#include <viam/api/component/movementsensor/v1/movementsensor.pb.h>
-
 #include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/components/movement_sensor/client.hpp>
-#include <viam/sdk/components/movement_sensor/movement_sensor.hpp>
-#include <viam/sdk/components/movement_sensor/server.hpp>
+#include <viam/sdk/components/movement_sensor.hpp>
 
 namespace viam {
 namespace sdktests {

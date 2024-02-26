@@ -33,8 +33,7 @@
 #include <viam/sdk/resource/reconfigurable.hpp>
 #include <viam/sdk/resource/stoppable.hpp>
 #include <viam/sdk/rpc/server.hpp>
-#include <viam/sdk/services/mlmodel/mlmodel.hpp>
-#include <viam/sdk/services/mlmodel/server.hpp>
+#include <viam/sdk/services/mlmodel.hpp>
 
 namespace {
 

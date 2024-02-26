@@ -1,13 +1,8 @@
 #include <viam/sdk/tests/mocks/mock_base.hpp>
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/component/base/v1/base.grpc.pb.h>
-#include <viam/api/component/base/v1/base.pb.h>
-
 #include <viam/sdk/common/linear_algebra.hpp>
 #include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/components/base/base.hpp>
-#include <viam/sdk/components/base/server.hpp>
+#include <viam/sdk/components/base.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
 namespace viam {

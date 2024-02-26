@@ -7,14 +7,8 @@
 #include <boost/qvm/all.hpp>
 #include <boost/test/included/unit_test.hpp>
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/component/sensor/v1/sensor.grpc.pb.h>
-#include <viam/api/component/sensor/v1/sensor.pb.h>
-
 #include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/components/sensor/client.hpp>
-#include <viam/sdk/components/sensor/sensor.hpp>
-#include <viam/sdk/components/sensor/server.hpp>
+#include <viam/sdk/components/sensor.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
 #include <viam/sdk/tests/mocks/mock_sensor.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
@@ -41,7 +35,7 @@ BOOST_AUTO_TEST_CASE(mock_get_api) {
 
 BOOST_AUTO_TEST_CASE(test_get_readings) {
     std::shared_ptr<MockSensor> mock = MockSensor::get_mock_sensor();
-    client_to_mock_pipeline<SensorClient>(mock, [](Sensor& client) {
+    client_to_mock_pipeline<Sensor>(mock, [](Sensor& client) {
         AttributeMap expected = fake_map();
 
         AttributeMap readings = client.get_readings();
@@ -54,7 +48,7 @@ BOOST_AUTO_TEST_CASE(test_get_readings) {
 
 BOOST_AUTO_TEST_CASE(test_do_command) {
     std::shared_ptr<MockSensor> mock = MockSensor::get_mock_sensor();
-    client_to_mock_pipeline<SensorClient>(mock, [](Sensor& client) {
+    client_to_mock_pipeline<Sensor>(mock, [](Sensor& client) {
         AttributeMap expected = fake_map();
 
         AttributeMap command = fake_map();
@@ -68,7 +62,7 @@ BOOST_AUTO_TEST_CASE(test_do_command) {
 
 BOOST_AUTO_TEST_CASE(test_get_geometries) {
     std::shared_ptr<MockSensor> mock = MockSensor::get_mock_sensor();
-    client_to_mock_pipeline<SensorClient>(mock, [](Sensor& client) {
+    client_to_mock_pipeline<Sensor>(mock, [](Sensor& client) {
         std::vector<sdk::GeometryConfig> expected = fake_geometries();
         std::vector<sdk::GeometryConfig> geometries = client.get_geometries();
         BOOST_CHECK(expected == geometries);

@@ -10,35 +10,36 @@
 #include <google/protobuf/struct.pb.h>
 #include <grpcpp/channel.h>
 #include <grpcpp/ext/proto_server_reflection_plugin.h>
+
 #include <viam/sdk/common/exception.hpp>
-#include <viam/sdk/components/base/client.hpp>
-#include <viam/sdk/components/base/server.hpp>
-#include <viam/sdk/components/board/client.hpp>
-#include <viam/sdk/components/board/server.hpp>
-#include <viam/sdk/components/camera/client.hpp>
-#include <viam/sdk/components/camera/server.hpp>
-#include <viam/sdk/components/encoder/client.hpp>
-#include <viam/sdk/components/encoder/server.hpp>
-#include <viam/sdk/components/generic/client.hpp>
-#include <viam/sdk/components/generic/server.hpp>
-#include <viam/sdk/components/motor/client.hpp>
-#include <viam/sdk/components/motor/server.hpp>
-#include <viam/sdk/components/movement_sensor/client.hpp>
-#include <viam/sdk/components/movement_sensor/server.hpp>
-#include <viam/sdk/components/power_sensor/client.hpp>
-#include <viam/sdk/components/power_sensor/server.hpp>
-#include <viam/sdk/components/sensor/client.hpp>
-#include <viam/sdk/components/sensor/server.hpp>
-#include <viam/sdk/components/servo/client.hpp>
-#include <viam/sdk/components/servo/server.hpp>
+#include <viam/sdk/components/private/base_client.hpp>
+#include <viam/sdk/components/private/base_server.hpp>
+#include <viam/sdk/components/private/board_client.hpp>
+#include <viam/sdk/components/private/board_server.hpp>
+#include <viam/sdk/components/private/camera_client.hpp>
+#include <viam/sdk/components/private/camera_server.hpp>
+#include <viam/sdk/components/private/encoder_client.hpp>
+#include <viam/sdk/components/private/encoder_server.hpp>
+#include <viam/sdk/components/private/generic_client.hpp>
+#include <viam/sdk/components/private/generic_server.hpp>
+#include <viam/sdk/components/private/motor_client.hpp>
+#include <viam/sdk/components/private/motor_server.hpp>
+#include <viam/sdk/components/private/movement_sensor_client.hpp>
+#include <viam/sdk/components/private/movement_sensor_server.hpp>
+#include <viam/sdk/components/private/power_sensor_client.hpp>
+#include <viam/sdk/components/private/power_sensor_server.hpp>
+#include <viam/sdk/components/private/sensor_client.hpp>
+#include <viam/sdk/components/private/sensor_server.hpp>
+#include <viam/sdk/components/private/servo_client.hpp>
+#include <viam/sdk/components/private/servo_server.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
-#include <viam/sdk/services/generic/client.hpp>
-#include <viam/sdk/services/generic/server.hpp>
-#include <viam/sdk/services/mlmodel/client.hpp>
-#include <viam/sdk/services/mlmodel/server.hpp>
-#include <viam/sdk/services/motion/client.hpp>
-#include <viam/sdk/services/motion/server.hpp>
+#include <viam/sdk/services/private/generic_client.hpp>
+#include <viam/sdk/services/private/generic_server.hpp>
+#include <viam/sdk/services/private/mlmodel_client.hpp>
+#include <viam/sdk/services/private/mlmodel_server.hpp>
+#include <viam/sdk/services/private/motion_client.hpp>
+#include <viam/sdk/services/private/motion_server.hpp>
 #include <viam/sdk/services/service.hpp>
 
 namespace viam {
@@ -162,21 +163,21 @@ const google::protobuf::ServiceDescriptor* ResourceServerRegistration::service_d
 
 void register_resources() {
     // Register all components
-    Registry::register_resource<BaseClient, BaseServer>();
-    Registry::register_resource<BoardClient, BoardServer>();
-    Registry::register_resource<CameraClient, CameraServer>();
-    Registry::register_resource<EncoderClient, EncoderServer>();
-    Registry::register_resource<GenericComponentClient, GenericComponentServer>();
-    Registry::register_resource<MotorClient, MotorServer>();
-    Registry::register_resource<MovementSensorClient, MovementSensorServer>();
-    Registry::register_resource<PowerSensorClient, PowerSensorServer>();
-    Registry::register_resource<SensorClient, SensorServer>();
-    Registry::register_resource<ServoClient, ServoServer>();
+    Registry::register_resource<impl::BaseClient, impl::BaseServer>();
+    Registry::register_resource<impl::BoardClient, impl::BoardServer>();
+    Registry::register_resource<impl::CameraClient, impl::CameraServer>();
+    Registry::register_resource<impl::EncoderClient, impl::EncoderServer>();
+    Registry::register_resource<impl::GenericComponentClient, impl::GenericComponentServer>();
+    Registry::register_resource<impl::MotorClient, impl::MotorServer>();
+    Registry::register_resource<impl::MovementSensorClient, impl::MovementSensorServer>();
+    Registry::register_resource<impl::PowerSensorClient, impl::PowerSensorServer>();
+    Registry::register_resource<impl::SensorClient, impl::SensorServer>();
+    Registry::register_resource<impl::ServoClient, impl::ServoServer>();
 
     // Register all services
-    Registry::register_resource<GenericServiceClient, GenericServiceServer>();
-    Registry::register_resource<MLModelServiceClient, MLModelServiceServer>();
-    Registry::register_resource<MotionClient, MotionServer>();
+    Registry::register_resource<impl::GenericServiceClient, impl::GenericServiceServer>();
+    Registry::register_resource<impl::MLModelServiceClient, impl::MLModelServiceServer>();
+    Registry::register_resource<impl::MotionClient, impl::MotionServer>();
 }
 
 void Registry::initialize() {

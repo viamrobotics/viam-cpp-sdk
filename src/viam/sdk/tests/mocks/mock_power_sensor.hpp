@@ -1,13 +1,7 @@
 #pragma once
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/component/powersensor/v1/powersensor.grpc.pb.h>
-#include <viam/api/component/powersensor/v1/powersensor.pb.h>
-
 #include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/components/power_sensor/client.hpp>
-#include <viam/sdk/components/power_sensor/power_sensor.hpp>
-#include <viam/sdk/components/power_sensor/server.hpp>
+#include <viam/sdk/components/power_sensor.hpp>
 
 namespace viam {
 namespace sdktests {

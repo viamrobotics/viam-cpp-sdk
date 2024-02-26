@@ -17,7 +17,7 @@
 #include <functional>
 
 #include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/services/mlmodel/mlmodel.hpp>
+#include <viam/sdk/services/mlmodel.hpp>
 
 namespace viam {
 namespace sdktests {

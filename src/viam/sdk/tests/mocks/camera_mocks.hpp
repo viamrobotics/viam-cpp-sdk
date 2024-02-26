@@ -1,12 +1,6 @@
 #pragma once
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/component/camera/v1/camera.grpc.pb.h>
-#include <viam/api/component/camera/v1/camera.pb.h>
-
-#include <viam/sdk/components/camera/camera.hpp>
-#include <viam/sdk/components/camera/client.hpp>
-#include <viam/sdk/components/camera/server.hpp>
+#include <viam/sdk/components/camera.hpp>
 
 namespace viam {
 namespace sdktests {
