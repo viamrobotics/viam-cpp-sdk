@@ -311,7 +311,9 @@ RobotClient::RobotClient(std::shared_ptr<ViamChannel> channel)
     : channel_(channel->channel()),
       viam_channel_(std::move(channel)),
       should_close_channel_(false),
-      impl_(std::make_unique<impl>(RobotService::NewStub(channel_))) {}
+      impl_(std::make_unique<impl>(RobotService::NewStub(channel_))) {
+    Registry::initialize();
+}
 
 std::vector<Name> RobotClient::resource_names() const {
     const std::lock_guard<std::mutex> lock(lock_);
