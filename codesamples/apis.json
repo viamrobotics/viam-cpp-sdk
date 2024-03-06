@@ -1,43 +1,43 @@
 {
     "base": {
-        "client": "BaseClient",
+        "client": "Base",
         "func": "is_moving",
         "args": []
     },
     "camera": {
-        "client": "CameraClient",
+        "client": "Camera",
         "func": "get_image",
         "args": [ "std::string(\"image/png\")" ],
         "comment": "Note that the supplied MIME type is just a placeholder. Please update as necessary."
     },
     "encoder": {
-        "client": "EncoderClient",
+        "client": "Encoder",
         "func": "get_properties",
         "args": []
     },
     "motion": {
-        "client": "MotionClient",
+        "client": "Motion",
         "func": "get_pose",
         "args": ["{{\"rdk\", \"component\", \"fake\"}, \"\", \"component\"}", "<destination-frame>", "{}", "nullptr"],
         "comment": "Update with correct component name, destination frame, supplemental transforms, and extra params"
     },
     "motor": {
-        "client": "MotorClient",
+        "client": "Motor",
         "func": "is_moving",
         "args": []
     },
     "movement_sensor": {
-        "client": "MovementSensorClient",
+        "client": "MovementSensor",
         "func": "get_linear_velocity",
         "args": []
     },
     "power_sensor": {
-        "client": "PowerSensorClient",
+        "client": "PowerSensor",
         "func": "get_voltage",
         "args": []
     },
     "sensor": {
-        "client": "SensorClient",
+        "client": "Sensor",
         "func": "get_readings",
         "args": []
     }

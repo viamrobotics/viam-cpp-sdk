@@ -44,7 +44,7 @@ int main() {
     std::vector<Name> resource_names = robot->resource_names();
     std::cout << "Resources" << std::endl;
     for (const Name& resource : resource_names) {
-        std::cout << "\t" << resource << "\n" << std::endl;
+        std::cout << "\t" << resource << "\n";
     }
 
     // ensure we can query statuses
