@@ -1,13 +1,7 @@
 #pragma once
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/component/encoder/v1/encoder.grpc.pb.h>
-#include <viam/api/component/encoder/v1/encoder.pb.h>
-
 #include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/components/encoder/client.hpp>
-#include <viam/sdk/components/encoder/encoder.hpp>
-#include <viam/sdk/components/encoder/server.hpp>
+#include <viam/sdk/components/encoder.hpp>
 
 namespace viam {
 namespace sdktests {

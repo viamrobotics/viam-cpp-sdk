@@ -1,14 +1,8 @@
 #pragma once
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/component/base/v1/base.grpc.pb.h>
-#include <viam/api/component/base/v1/base.pb.h>
-
 #include <viam/sdk/common/linear_algebra.hpp>
 #include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/components/base/base.hpp>
-#include <viam/sdk/components/base/client.hpp>
-#include <viam/sdk/components/base/server.hpp>
+#include <viam/sdk/components/base.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
 
 namespace viam {

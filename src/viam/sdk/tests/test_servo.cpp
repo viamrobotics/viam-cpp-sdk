@@ -7,14 +7,8 @@
 
 #include <boost/test/included/unit_test.hpp>
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/component/servo/v1/servo.grpc.pb.h>
-#include <viam/api/component/servo/v1/servo.pb.h>
-
 #include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/components/servo/client.hpp>
-#include <viam/sdk/components/servo/server.hpp>
-#include <viam/sdk/components/servo/servo.hpp>
+#include <viam/sdk/components/servo.hpp>
 #include <viam/sdk/tests/mocks/mock_servo.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
@@ -85,7 +79,7 @@ BOOST_AUTO_TEST_SUITE(test_servo_client_server)
 
 BOOST_AUTO_TEST_CASE(test_move_and_get_position) {
     std::shared_ptr<MockServo> mock = MockServo::get_mock_servo();
-    client_to_mock_pipeline<ServoClient>(mock, [](Servo& client) {
+    client_to_mock_pipeline<Servo>(mock, [](Servo& client) {
         BOOST_CHECK(!client.is_moving());
         client.move(3);
         BOOST_CHECK_EQUAL(client.get_position(), 3);
@@ -99,7 +93,7 @@ BOOST_AUTO_TEST_CASE(test_move_and_get_position) {
 
 BOOST_AUTO_TEST_CASE(test_stop) {
     std::shared_ptr<MockServo> mock = MockServo::get_mock_servo();
-    client_to_mock_pipeline<ServoClient>(mock, [](Servo& client) {
+    client_to_mock_pipeline<Servo>(mock, [](Servo& client) {
         client.move(3);
         BOOST_CHECK(client.is_moving());
         client.stop();
@@ -109,7 +103,7 @@ BOOST_AUTO_TEST_CASE(test_stop) {
 
 BOOST_AUTO_TEST_CASE(test_get_geometries) {
     std::shared_ptr<MockServo> mock = MockServo::get_mock_servo();
-    client_to_mock_pipeline<ServoClient>(mock, [](Servo& client) {
+    client_to_mock_pipeline<Servo>(mock, [](Servo& client) {
         const auto& geometries = client.get_geometries();
         BOOST_CHECK_EQUAL(geometries, fake_geometries());
     });
@@ -117,7 +111,7 @@ BOOST_AUTO_TEST_CASE(test_get_geometries) {
 
 BOOST_AUTO_TEST_CASE(test_do_command) {
     std::shared_ptr<MockServo> mock = MockServo::get_mock_servo();
-    client_to_mock_pipeline<ServoClient>(mock, [](Servo& client) {
+    client_to_mock_pipeline<Servo>(mock, [](Servo& client) {
         AttributeMap expected = fake_map();
 
         AttributeMap command = fake_map();

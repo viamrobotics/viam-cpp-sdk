@@ -2,14 +2,9 @@
 
 #include <stdexcept>
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/component/motor/v1/motor.grpc.pb.h>
-#include <viam/api/component/motor/v1/motor.pb.h>
-
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/components/motor/motor.hpp>
-#include <viam/sdk/components/motor/server.hpp>
+#include <viam/sdk/components/motor.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 

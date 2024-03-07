@@ -1,11 +1,6 @@
 #include <viam/sdk/tests/mocks/mock_power_sensor.hpp>
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/component/powersensor/v1/powersensor.grpc.pb.h>
-#include <viam/api/component/powersensor/v1/powersensor.pb.h>
-
-#include <viam/sdk/components/power_sensor/power_sensor.hpp>
-#include <viam/sdk/components/power_sensor/server.hpp>
+#include <viam/sdk/components/power_sensor.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
 namespace viam {

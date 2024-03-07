@@ -6,11 +6,7 @@
 
 #include <boost/test/included/unit_test.hpp>
 
-#include <viam/api/common/v1/common.pb.h>
-
-#include <viam/sdk/components/generic/client.hpp>
-#include <viam/sdk/components/generic/generic.hpp>
-#include <viam/sdk/components/generic/server.hpp>
+#include <viam/sdk/components/generic.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
 #include <viam/sdk/tests/mocks/generic_mocks.hpp>
@@ -36,7 +32,7 @@ BOOST_AUTO_TEST_CASE(mock_get_component_api) {
 
 BOOST_AUTO_TEST_CASE(test_component_do_command) {
     std::shared_ptr<MockGenericComponent> mock = MockGenericComponent::get_mock_generic();
-    client_to_mock_pipeline<GenericComponentClient>(mock, [](GenericComponent& client) {
+    client_to_mock_pipeline<GenericComponent>(mock, [](GenericComponent& client) {
         AttributeMap expected = fake_map();
         AttributeMap command;
         AttributeMap result_map = client.do_command(command);
@@ -50,7 +46,7 @@ BOOST_AUTO_TEST_CASE(test_component_do_command) {
 
 BOOST_AUTO_TEST_CASE(test_component_get_geometries) {
     std::shared_ptr<MockGenericComponent> mock = MockGenericComponent::get_mock_generic();
-    client_to_mock_pipeline<GenericComponentClient>(mock, [](GenericComponent& client) {
+    client_to_mock_pipeline<GenericComponent>(mock, [](GenericComponent& client) {
         std::vector<GeometryConfig> expected_geometries = fake_geometries();
         std::vector<GeometryConfig> result_geometries = client.get_geometries(fake_map());
 
@@ -69,7 +65,7 @@ BOOST_AUTO_TEST_CASE(mock_get_service_api) {
 
 BOOST_AUTO_TEST_CASE(test_service_do_command) {
     std::shared_ptr<MockGenericService> mock = MockGenericService::get_mock_generic();
-    client_to_mock_pipeline<GenericServiceClient>(mock, [](GenericService& client) {
+    client_to_mock_pipeline<GenericService>(mock, [](GenericService& client) {
         AttributeMap expected = fake_map();
         AttributeMap command;
         AttributeMap result_map = client.do_command(command);

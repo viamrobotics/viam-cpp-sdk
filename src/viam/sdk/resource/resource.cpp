@@ -1,8 +1,5 @@
 #include <viam/sdk/resource/resource.hpp>
 
-#include <stdexcept>
-#include <unordered_map>
-
 #include <grpcpp/support/status.h>
 
 #include <viam/sdk/common/proto_type.hpp>
@@ -20,8 +17,6 @@ Resource::Resource(std::string name) : name_(std::move(name)) {}
 std::string Resource::name() const {
     return name_;
 }
-
-void Resource::reconfigure(const Dependencies& deps, const ResourceConfig& cfg){};
 
 ResourceName Resource::get_resource_name(std::string name) const {
     ResourceName r;

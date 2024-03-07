@@ -44,37 +44,37 @@ target_sources(viamsdk
     common/service_helper.cpp
     common/utils.cpp
     common/world_state.cpp
-    components/base/base.cpp
-    components/base/client.cpp
-    components/base/server.cpp
-    components/board/board.cpp
-    components/board/client.cpp
-    components/board/server.cpp
-    components/camera/camera.cpp
-    components/camera/client.cpp
-    components/camera/server.cpp
+    components/base.cpp
+    components/board.cpp
+    components/camera.cpp
     components/component.cpp
-    components/encoder/client.cpp
-    components/encoder/encoder.cpp
-    components/encoder/server.cpp
-    components/generic/client.cpp
-    components/generic/generic.cpp
-    components/generic/server.cpp
-    components/motor/motor.cpp
-    components/motor/client.cpp
-    components/motor/server.cpp
-    components/movement_sensor/client.cpp
-    components/movement_sensor/movement_sensor.cpp
-    components/movement_sensor/server.cpp
-    components/power_sensor/client.cpp
-    components/power_sensor/power_sensor.cpp
-    components/power_sensor/server.cpp
-    components/sensor/client.cpp
-    components/sensor/sensor.cpp
-    components/sensor/server.cpp
-    components/servo/client.cpp
-    components/servo/server.cpp
-    components/servo/servo.cpp
+    components/encoder.cpp
+    components/generic.cpp
+    components/motor.cpp
+    components/movement_sensor.cpp
+    components/power_sensor.cpp
+    components/private/base_client.cpp
+    components/private/base_server.cpp
+    components/private/board_client.cpp
+    components/private/board_server.cpp
+    components/private/camera_client.cpp
+    components/private/camera_server.cpp
+    components/private/encoder_client.cpp
+    components/private/encoder_server.cpp
+    components/private/generic_client.cpp
+    components/private/generic_server.cpp
+    components/private/motor_client.cpp
+    components/private/motor_server.cpp
+    components/private/movement_sensor_client.cpp
+    components/private/movement_sensor_server.cpp
+    components/private/power_sensor_client.cpp
+    components/private/power_sensor_server.cpp
+    components/private/sensor_client.cpp
+    components/private/sensor_server.cpp
+    components/private/servo_client.cpp
+    components/private/servo_server.cpp
+    components/sensor.cpp
+    components/servo.cpp
     config/resource.cpp
     module/handler_map.cpp
     module/module.cpp
@@ -82,6 +82,7 @@ target_sources(viamsdk
     module/signal_manager.cpp
     referenceframe/frame.cpp
     registry/registry.cpp
+    resource/reconfigurable.cpp
     resource/resource.cpp
     resource/resource_api.cpp
     resource/resource_manager.cpp
@@ -91,20 +92,20 @@ target_sources(viamsdk
     robot/service.cpp
     rpc/dial.cpp
     rpc/server.cpp
-    services/generic/client.cpp
-    services/generic/generic.cpp
-    services/generic/server.cpp
-    services/mlmodel/client.cpp
-    services/mlmodel/mlmodel.cpp
-    services/mlmodel/private/proto.cpp
-    services/mlmodel/server.cpp
-    services/motion/client.cpp
-    services/motion/motion.cpp
-    services/motion/server.cpp
+    services/generic.cpp
+    services/mlmodel.cpp
+    services/motion.cpp
+    services/private/generic_client.cpp
+    services/private/generic_server.cpp
+    services/private/mlmodel.cpp
+    services/private/mlmodel_client.cpp
+    services/private/mlmodel_server.cpp
+    services/private/motion_client.cpp
+    services/private/motion_server.cpp
     services/service.cpp
     spatialmath/geometry.cpp
-    spatialmath/orientation_types.cpp
     spatialmath/orientation.cpp
+    spatialmath/orientation_types.cpp
   PUBLIC FILE_SET viamsdk_public_includes TYPE HEADERS
     BASE_DIRS
       ../..
@@ -117,37 +118,17 @@ target_sources(viamsdk
       ../../viam/sdk/common/service_helper.hpp
       ../../viam/sdk/common/utils.hpp
       ../../viam/sdk/common/world_state.hpp
-      ../../viam/sdk/components/base/base.hpp
-      ../../viam/sdk/components/base/client.hpp
-      ../../viam/sdk/components/base/server.hpp
-      ../../viam/sdk/components/board/board.hpp
-      ../../viam/sdk/components/board/client.hpp
-      ../../viam/sdk/components/board/server.hpp
-      ../../viam/sdk/components/camera/camera.hpp
-      ../../viam/sdk/components/camera/client.hpp
-      ../../viam/sdk/components/camera/server.hpp
+      ../../viam/sdk/components/base.hpp
+      ../../viam/sdk/components/board.hpp
+      ../../viam/sdk/components/camera.hpp
       ../../viam/sdk/components/component.hpp
-      ../../viam/sdk/components/encoder/client.hpp
-      ../../viam/sdk/components/encoder/encoder.hpp
-      ../../viam/sdk/components/encoder/server.hpp
-      ../../viam/sdk/components/generic/client.hpp
-      ../../viam/sdk/components/generic/generic.hpp
-      ../../viam/sdk/components/generic/server.hpp
-      ../../viam/sdk/components/motor/motor.hpp
-      ../../viam/sdk/components/motor/client.hpp
-      ../../viam/sdk/components/motor/server.hpp
-      ../../viam/sdk/components/movement_sensor/client.hpp
-      ../../viam/sdk/components/movement_sensor/movement_sensor.hpp
-      ../../viam/sdk/components/movement_sensor/server.hpp
-      ../../viam/sdk/components/power_sensor/client.hpp
-      ../../viam/sdk/components/power_sensor/power_sensor.hpp
-      ../../viam/sdk/components/power_sensor/server.hpp
-      ../../viam/sdk/components/sensor/client.hpp
-      ../../viam/sdk/components/sensor/sensor.hpp
-      ../../viam/sdk/components/sensor/server.hpp
-      ../../viam/sdk/components/servo/client.hpp
-      ../../viam/sdk/components/servo/server.hpp
-      ../../viam/sdk/components/servo/servo.hpp
+      ../../viam/sdk/components/encoder.hpp
+      ../../viam/sdk/components/generic.hpp
+      ../../viam/sdk/components/motor.hpp
+      ../../viam/sdk/components/movement_sensor.hpp
+      ../../viam/sdk/components/power_sensor.hpp
+      ../../viam/sdk/components/sensor.hpp
+      ../../viam/sdk/components/servo.hpp
       ../../viam/sdk/config/resource.hpp
       ../../viam/sdk/module/handler_map.hpp
       ../../viam/sdk/module/module.hpp
@@ -155,6 +136,7 @@ target_sources(viamsdk
       ../../viam/sdk/module/signal_manager.hpp
       ../../viam/sdk/referenceframe/frame.hpp
       ../../viam/sdk/registry/registry.hpp
+      ../../viam/sdk/resource/reconfigurable.hpp
       ../../viam/sdk/resource/resource.hpp
       ../../viam/sdk/resource/resource_api.hpp
       ../../viam/sdk/resource/resource_manager.hpp
@@ -164,19 +146,13 @@ target_sources(viamsdk
       ../../viam/sdk/robot/service.hpp
       ../../viam/sdk/rpc/dial.hpp
       ../../viam/sdk/rpc/server.hpp
-      ../../viam/sdk/services/generic/client.hpp
-      ../../viam/sdk/services/generic/generic.hpp
-      ../../viam/sdk/services/generic/server.hpp
-      ../../viam/sdk/services/mlmodel/client.hpp
-      ../../viam/sdk/services/mlmodel/mlmodel.hpp
-      ../../viam/sdk/services/mlmodel/server.hpp
-      ../../viam/sdk/services/motion/client.hpp
-      ../../viam/sdk/services/motion/motion.hpp
-      ../../viam/sdk/services/motion/server.hpp
+      ../../viam/sdk/services/generic.hpp
+      ../../viam/sdk/services/mlmodel.hpp
+      ../../viam/sdk/services/motion.hpp
       ../../viam/sdk/services/service.hpp
       ../../viam/sdk/spatialmath/geometry.hpp
-      ../../viam/sdk/spatialmath/orientation_types.hpp
       ../../viam/sdk/spatialmath/orientation.hpp
+      ../../viam/sdk/spatialmath/orientation_types.hpp
 )
 
 set_target_properties(

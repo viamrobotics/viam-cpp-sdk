@@ -16,7 +16,7 @@
 #include <viam/api/robot/v1/robot.grpc.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
 
-#include <viam/sdk/components/base/client.hpp>
+#include <viam/sdk/components/base.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/robot/service.hpp>
 #include <viam/sdk/rpc/dial.hpp>

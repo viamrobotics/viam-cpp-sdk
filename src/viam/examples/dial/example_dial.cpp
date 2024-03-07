@@ -17,7 +17,7 @@
 #include <viam/api/robot/v1/robot.grpc.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
 
-#include <viam/sdk/components/generic/client.hpp>
+#include <viam/sdk/components/generic.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/robot/service.hpp>
 #include <viam/sdk/rpc/dial.hpp>
@@ -43,7 +43,7 @@ int main() {
     std::vector<Name> resource_names = robot->resource_names();
     std::cout << "Resources" << std::endl;
     for (const Name& resource : resource_names) {
-        std::cout << "\t" << resource << "\n" << std::endl;
+        std::cout << "\t" << resource << "\n";
     }
 
     // ensure we can query statuses

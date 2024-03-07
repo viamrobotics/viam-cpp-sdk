@@ -1,11 +1,6 @@
 #include <viam/sdk/tests/mocks/mock_sensor.hpp>
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/component/sensor/v1/sensor.grpc.pb.h>
-#include <viam/api/component/sensor/v1/sensor.pb.h>
-
-#include <viam/sdk/components/sensor/sensor.hpp>
-#include <viam/sdk/components/sensor/server.hpp>
+#include <viam/sdk/components/sensor.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
 namespace viam {

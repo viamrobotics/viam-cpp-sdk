@@ -1,6 +1,5 @@
 #include <iostream>
 #include <memory>
-#include <signal.h>
 #include <sstream>
 
 #include <boost/log/trivial.hpp>
@@ -15,10 +14,11 @@
 #include <viam/sdk/module/module.hpp>
 #include <viam/sdk/module/service.hpp>
 #include <viam/sdk/registry/registry.hpp>
+#include <viam/sdk/resource/reconfigurable.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/rpc/server.hpp>
-#include <viam/sdk/services/generic/generic.hpp>
+#include <viam/sdk/services/generic.hpp>
 #include <viam/sdk/services/service.hpp>
 
 using namespace viam::sdk;
@@ -26,9 +26,9 @@ using namespace viam::sdk;
 // Printer is a modular resource that can print a to_print value to STDOUT when
 // a DoCommand request is received or when reconfiguring. The to_print value
 // must be provided as an attribute in the config.
-class Printer : public GenericService {
+class Printer : public GenericService, public Reconfigurable {
    public:
-    void reconfigure(Dependencies deps, ResourceConfig cfg) {
+    void reconfigure(const Dependencies& deps, const ResourceConfig& cfg) {
         std::cout << "Printer " << Resource::name() << " is reconfiguring" << std::endl;
         for (auto& dep : deps) {
             std::cout << "dependency: " << dep.first.to_string() << std::endl;

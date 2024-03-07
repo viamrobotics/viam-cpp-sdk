@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <viam/sdk/services/mlmodel/mlmodel.hpp>
+#include <viam/sdk/services/mlmodel.hpp>
 
 #include <memory>
 #include <tuple>
@@ -20,9 +20,6 @@
 
 #include <boost/variant/get.hpp>
 
-#include <viam/sdk/services/mlmodel/client.hpp>
-#include <viam/sdk/services/mlmodel/private/proto.hpp>
-#include <viam/sdk/services/mlmodel/server.hpp>
 #include <viam/sdk/tests/mocks/mlmodel_mocks.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
@@ -205,7 +202,7 @@ BOOST_AUTO_TEST_SUITE(test_mlmodel_client_server)
 BOOST_AUTO_TEST_CASE(mock_metadata_grpc_roundtrip) {
     const auto mock = std::make_shared<MockMLModelService>();
     mock->set_metadata(test_metadata);
-    client_to_mock_pipeline<MLModelServiceClient>(mock, [](auto& client) {
+    client_to_mock_pipeline<MLModelService>(mock, [](auto& client) {
         const auto returned_metadata = client.metadata();
         BOOST_TEST(test_metadata == returned_metadata);
     });
@@ -287,7 +284,7 @@ BOOST_AUTO_TEST_CASE(mock_infer_grpc_roundtrip) {
         return std::shared_ptr<MLModelService::named_tensor_views>{std::move(output), ntvs};
     });
 
-    client_to_mock_pipeline<MLModelServiceClient>(mock, [](auto& client) {
+    client_to_mock_pipeline<MLModelService>(mock, [](auto& client) {
         MLModelService::named_tensor_views request;
 
         std::array<float, 1024> input1_data{};
@@ -496,35 +493,43 @@ struct safe_increment {
 };
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(rt_scalar, T, MLModelService::base_types) {
-    using base_type = T;
-    const std::array<base_type, 1> data = {T{42}};
+    auto mock = std::make_shared<MockMLModelService>();
+    mock->set_infer_handler([&](const MLModelService::named_tensor_views& request) {
+        return std::make_shared<MLModelService::named_tensor_views>(request);
+    });
+
+    const std::array<T, 1> data = {T{42}};
     const auto scalar_tv =
         MLModelService::make_tensor_view(data.data(), data.size(), {data.size()});
-    ::viam::service::mlmodel::v1::InferRequest request;
 
-    auto& input_tensors = *request.mutable_input_tensors()->mutable_tensors();
-    auto& input_tensor = input_tensors[""];
-    mlmodel_details::copy_sdk_tensor_to_api_tensor(scalar_tv, &input_tensor);
+    const auto scalar_tv_type = MLModelService::tensor_info::tensor_views_to_data_type(scalar_tv);
 
-    // Try once with tensor storage, and once without
-    auto tsav = std::make_shared<mlmodel_details::tensor_storage>();
-    for (int i = 0; i != 2; ++i) {
-        auto output_tensor =
-            mlmodel_details::make_sdk_tensor_from_api_tensor(input_tensor, tsav.get());
-        const auto* const output_tensor_as_base_type =
-            boost::get<MLModelService::tensor_view<base_type>>(&output_tensor);
-        BOOST_TEST_REQUIRE(output_tensor_as_base_type != nullptr);
-        BOOST_TEST(output_tensor_as_base_type->shape() == scalar_tv.shape());
-        BOOST_TEST(*output_tensor_as_base_type == scalar_tv);
-        tsav = nullptr;
-    }
+    mock->set_metadata({"",
+                        "",
+                        "",
+                        {{"x", "", scalar_tv_type, {1}, {}, {}}},
+                        {{"x", "", scalar_tv_type, {1}, {}, {}}}});
+
+    client_to_mock_pipeline<MLModelService>(mock, [&](auto& client) {
+        MLModelService::named_tensor_views request;
+        request.emplace("x", scalar_tv);
+        BOOST_REQUIRE(request.size() == 1);
+        BOOST_REQUIRE(request.count("x") == 1);
+        const auto response = client.infer(request);
+        BOOST_REQUIRE(response->size() == 1);
+        BOOST_REQUIRE(response->count("x") == 1);
+        const auto& response_x = response->find("x")->second;
+        const auto* const response_x_t = boost::get<MLModelService::tensor_view<T>>(&response_x);
+        BOOST_REQUIRE(response_x_t);
+        BOOST_TEST(scalar_tv == *response_x_t);
+    });
 }
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(rt_tensor_shapes, T, MLModelService::base_types) {
     using base_type = T;
 
     constexpr size_t data_size = 4096;
-    std::vector<typename MLModelService::tensor_view<base_type>::shape_type> shapes = {
+    const std::vector<typename MLModelService::tensor_view<base_type>::shape_type> shapes = {
         {4096},
         {64, 64},
         {16, 16, 16},
@@ -542,6 +547,11 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_tensor_shapes, T, MLModelService::base_types) {
         {64, 64, 1},
     };
 
+    auto mock = std::make_shared<MockMLModelService>();
+    mock->set_infer_handler([&](const MLModelService::named_tensor_views& request) {
+        return std::make_shared<MLModelService::named_tensor_views>(request);
+    });
+
     for (const auto& shape : shapes) {
         BOOST_TEST_REQUIRE(
             std::accumulate(shape.begin(), shape.end(), 1, std::multiplies<std::size_t>()) ==
@@ -550,24 +560,29 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_tensor_shapes, T, MLModelService::base_types) {
         std::array<base_type, data_size> data{};
         std::iota(data.begin(), data.end(), safe_increment<T>{base_type{0}});
         const auto array_tv = MLModelService::make_tensor_view(data.data(), data.size(), shape);
-        ::viam::service::mlmodel::v1::InferRequest request;
+        const auto array_tv_type = MLModelService::tensor_info::tensor_views_to_data_type(array_tv);
+        const auto array_tv_shape = std::vector<int>{shape.begin(), shape.end()};
 
-        auto& input_tensors = *request.mutable_input_tensors()->mutable_tensors();
-        auto& input_tensor = input_tensors[""];
-        mlmodel_details::copy_sdk_tensor_to_api_tensor(array_tv, &input_tensor);
+        mock->set_metadata({"",
+                            "",
+                            "",
+                            {{"x", "", array_tv_type, array_tv_shape, {}, {}}},
+                            {{"x", "", array_tv_type, array_tv_shape, {}, {}}}});
 
-        // Try once with tensor storage, once without
-        auto tsav = std::make_shared<mlmodel_details::tensor_storage>();
-        for (int i = 0; i != 2; ++i) {
-            auto output_tensor =
-                mlmodel_details::make_sdk_tensor_from_api_tensor(input_tensor, tsav.get());
-            const auto* const output_tensor_as_base_type =
-                boost::get<MLModelService::tensor_view<base_type>>(&output_tensor);
-            BOOST_TEST_REQUIRE(output_tensor_as_base_type != nullptr);
-            BOOST_TEST(output_tensor_as_base_type->shape() == array_tv.shape());
-            BOOST_TEST(*output_tensor_as_base_type == array_tv);
-            tsav = nullptr;
-        }
+        client_to_mock_pipeline<MLModelService>(mock, [&](auto& client) {
+            MLModelService::named_tensor_views request;
+            request.emplace("x", array_tv);
+            BOOST_REQUIRE(request.size() == 1);
+            BOOST_REQUIRE(request.count("x") == 1);
+            const auto response = client.infer(request);
+            BOOST_REQUIRE(response->size() == 1);
+            BOOST_REQUIRE(response->count("x") == 1);
+            const auto& response_x = response->find("x")->second;
+            const auto* const response_x_t =
+                boost::get<MLModelService::tensor_view<T>>(&response_x);
+            BOOST_REQUIRE(response_x_t);
+            BOOST_TEST(array_tv == *response_x_t);
+        });
     }
 }
 
