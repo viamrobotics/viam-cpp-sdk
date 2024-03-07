@@ -103,8 +103,8 @@ BOOST_AUTO_TEST_CASE(test_do_command) {
 
 BOOST_AUTO_TEST_CASE(test_depth_map_encode_decode) {
     const uint64_t width = 2;
-    const uint64_t height = 2;
-    const std::vector<uint16_t> depth_values = {100, 200, 300, 400};
+    const uint64_t height = 3;
+    const std::vector<uint16_t> depth_values = {100, 200, 300, 400, 500, 600};
 
     const Camera::depth_map m{width, height, depth_values};
 

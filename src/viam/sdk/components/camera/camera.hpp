@@ -84,12 +84,6 @@ class Camera : public Component {
         response_metadata metadata;
     };
 
-    /// @brief UTF-8 encoding of 'DEPTHMAP' used in the header of FORMAT_RAW_DEPTH bytes payload.
-    static const uint64_t MAGIC_NUMBER = 0x44455054484D4150ULL;
-
-    /// @brief Number of bytes of the header for FORMAT_RAW_DEPTH payloads
-    static const auto HEADER_SIZE = 8 /*magic num*/ + 8 /*width*/ + 8 /*height*/;
-
     /// @struct depth_map
     /// @brief Represents the dimensions and depth values of a depth map.
     ///
@@ -108,8 +102,16 @@ class Camera : public Component {
         /// @param w Width of the depth map.
         /// @param h Height of the depth map.
         /// @param values A vector of depth values corresponding to each pixel in the depth map.
+        /// @throws std::runtime_error If the number of depth values does not match the width*height.
         depth_map(uint64_t w, uint64_t h, std::vector<uint16_t> values)
-            : width(w), height(h), depth_values(std::move(values)) {}
+            : width(w), height(h), depth_values(std::move(values)) {
+            if (depth_values.size() != width * height) {
+                throw std::runtime_error(
+                    "Number of depth values does not match the specified width and height. Expected: " +
+                    std::to_string(width * height) +
+                    ". Actual: " + std::to_string(depth_values.size()));
+            }
+        }
     };
 
     ///
