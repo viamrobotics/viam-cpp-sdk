@@ -6,8 +6,6 @@
 #include <vector>
 
 #include <boost/test/included/unit_test.hpp>
-#include <xtensor/xarray.hpp>
-#include <xtensor/xio.hpp>
 
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/components/camera.hpp>

@@ -2,10 +2,6 @@
 
 #include <google/protobuf/descriptor.h>
 #include <google/protobuf/util/time_util.h>
-#include <xtensor/xadapt.hpp>
-#include <xtensor/xarray.hpp>
-#include <xtensor/xindex_view.hpp>
-#include <xtensor/xio.hpp>
 
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/camera/v1/camera.grpc.pb.h>

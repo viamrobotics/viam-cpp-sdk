@@ -13,6 +13,7 @@
 
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/camera/v1/camera.pb.h>
+
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
