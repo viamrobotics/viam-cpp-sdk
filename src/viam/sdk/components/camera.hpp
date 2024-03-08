@@ -4,14 +4,15 @@
 #pragma once
 
 #include <bitset>
-#include <boost/endian/conversion.hpp>
 #include <chrono>
 #include <string>
 #include <vector>
 
+#include <boost/endian/conversion.hpp>
+#include <xtensor/xarray.hpp>
+
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/camera/v1/camera.pb.h>
-
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -87,52 +88,27 @@ class Camera : public Component {
     /// @struct depth_map
     /// @brief Represents the dimensions and depth values of a depth map.
     ///
-    /// depth_map holds the width and height of a depth map, along with a vector
-    /// of actual depth values. Each depth value is a 16-bit unsigned integer representing
-    /// the distance from the camera to a point in the scene.
-    struct depth_map {
-        uint64_t width;                      ///< Width of the depth map in pixels.
-        uint64_t height;                     ///< Height of the depth map in pixels.
-        std::vector<uint16_t> depth_values;  ///< A flat vector of depth values.
+    /// depth_map holds the height and width data of a depth map, along with the depth values
+    /// as a 2D xtensor array of 16-bit unsigned integers, where the first axis is height, and
+    /// the second axis is width. Each depth value represents the distance from the camera
+    /// to a point in the scene.
+    using depth_map = xt::xarray<uint16_t>;
 
-        /// Default constructor
-        depth_map() = default;
-
-        /// Parameterized constructor for initializing depth_map with dimensions and depth values.
-        /// @param w Width of the depth map.
-        /// @param h Height of the depth map.
-        /// @param values A vector of depth values corresponding to each pixel in the depth map.
-        /// @throws std::runtime_error If the number of depth values does not match the
-        /// width*height.
-        depth_map(uint64_t w, uint64_t h, std::vector<uint16_t> values)
-            : width(w), height(h), depth_values(std::move(values)) {
-            if (depth_values.size() != width * height) {
-                throw std::runtime_error(
-                    "Number of depth values does not match the specified width and height. "
-                    "Expected: " +
-                    std::to_string(width * height) +
-                    ". Actual: " + std::to_string(depth_values.size()));
-            }
-        }
-    };
-
-    ///
     /// Encodes the dimensions and depth values of a depth map into a raw binary format
     /// (MIME type FORMAT_RAW_DEPTH).
     ///
-    /// This function takes the width and height of a depth map, along with a vector
-    /// of depth values, and encodes this information into a binary blob. The binary
+    /// This function takes a depth_map, and encodes this information into a binary blob. The binary
     /// format consists of "magic number" header (UTF-8 encoding for 'DEPTHMAP' in big-endian),
     /// then the width and height encoded as 64-bit unsigned integers, followed by the depth
     /// values encoded as 16-bit unsigned integers (big-endian format). This format is suitable
     /// for serialization and transmission of depth map data through gRPC.
     ///
-    /// @param depth_map the dimensions and depth values of a depth map.
+    /// @param depth_map A type alias for a 2D xtensor array
     /// @return A std::vector<unsigned char> representing the encoded binary data of the depth
     /// map.
     ///         The vector includes 8 bytes for width, 8 bytes for height, followed by 2 bytes
     ///         per depth value.
-    /// @throws Exception: if the depth data values do not correspond to height and width.
+    /// @throws Exception: if the depth map is not 2D
     ///
     static std::vector<unsigned char> encode_depth_map(const Camera::depth_map& m);
 
@@ -142,8 +118,7 @@ class Camera : public Component {
     /// format and extracts the dimensions and depth values contained within.
     ///
     /// @param data A vector of unsigned chars representing the binary data of the depth map.
-    /// @return A depth_map struct containing the width, height, and depth values extracted from the
-    /// data.
+    /// @return A depth_map (type alias for a 2D xtensor array)
     /// @throws Exception: if the data is misformatted e.g. doesn't contain valid depth information,
     ///         or if the data size does not match the expected size based on the width and height.
     static Camera::depth_map decode_depth_map(const std::vector<unsigned char>& data);

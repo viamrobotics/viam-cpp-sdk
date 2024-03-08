@@ -2,6 +2,10 @@
 
 #include <google/protobuf/descriptor.h>
 #include <google/protobuf/util/time_util.h>
+#include <xtensor/xadapt.hpp>
+#include <xtensor/xarray.hpp>
+#include <xtensor/xindex_view.hpp>
+#include <xtensor/xio.hpp>
 
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/camera/v1/camera.grpc.pb.h>
@@ -44,15 +48,15 @@ void append_uint64_big_endian(std::vector<unsigned char>& data, size_t* offset, 
 
 // Reads a uint64_t value from data in big-endian format and updates the offset.
 // Intended to be used in a sequential manner.
-uint64_t read_uint64_big_endian(const std::vector<unsigned char>& data, size_t& offset) {
-    if (data.size() < offset + sizeof(uint64_t)) {
+uint64_t read_uint64_big_endian(const std::vector<unsigned char>& data, size_t* offset) {
+    if (data.size() < *offset + sizeof(uint64_t)) {
         throw Exception("Attempted to read beyond data bounds.");
     }
 
     uint64_t value;
-    std::memcpy(&value, &data[offset], sizeof(uint64_t));
+    std::memcpy(&value, &data[*offset], sizeof(uint64_t));
     value = boost::endian::big_to_native(value);
-    offset += sizeof(uint64_t);
+    *offset += sizeof(uint64_t);
 
     return value;
 }
@@ -60,26 +64,29 @@ uint64_t read_uint64_big_endian(const std::vector<unsigned char>& data, size_t& 
 }  // namespace
 
 std::vector<unsigned char> Camera::encode_depth_map(const Camera::depth_map& m) {
-    if (m.depth_values.size() != m.width * m.height) {
-        throw Exception(
-            "Number of depth values does not match the specified width and height. Expected: " +
-            std::to_string(m.width * m.height) +
-            ". Actual: " + std::to_string(m.depth_values.size()));
+    const auto& shape = m.shape();
+    if (shape.size() != 2) {
+        throw Exception("Depth map is not a 2D array.");
     }
 
-    const size_t total_byte_count = k_header_size + m.depth_values.size() * sizeof(uint16_t);
+    const size_t height = shape[0];
+    const size_t width = shape[1];
+    const size_t total_byte_count = k_header_size + height * width * sizeof(uint16_t);
     std::vector<unsigned char> data(total_byte_count);
     size_t offset = 0;
 
     // Network data is stored in big-endian, while most host systems are little endian.
     append_uint64_big_endian(data, &offset, k_magic_number);
-    append_uint64_big_endian(data, &offset, m.width);
-    append_uint64_big_endian(data, &offset, m.height);
+    append_uint64_big_endian(data, &offset, width);
+    append_uint64_big_endian(data, &offset, height);
 
-    for (auto value : m.depth_values) {
-        uint16_t value_be = boost::endian::native_to_big(value);
-        std::memcpy(&data[offset], &value_be, sizeof(uint16_t));
-        offset += sizeof(uint16_t);
+    for (size_t i = 0; i < height; ++i) {
+        for (size_t j = 0; j < width; ++j) {
+            const uint16_t value = m(i, j);
+            const uint16_t value_be = boost::endian::native_to_big(value);
+            std::memcpy(&data[offset], &value_be, sizeof(uint16_t));
+            offset += sizeof(uint16_t);
+        }
     }
 
     return data;
@@ -92,15 +99,15 @@ Camera::depth_map Camera::decode_depth_map(const std::vector<unsigned char>& dat
     }
 
     size_t offset = 0;
-    const uint64_t magic_number = read_uint64_big_endian(data, offset);
+    const uint64_t magic_number = read_uint64_big_endian(data, &offset);
     if (magic_number != k_magic_number) {
         throw Exception(
             "Invalid header for a vnd.viam.dep encoded depth image. The data may be corrupted, or "
             "is not a Viam-encoded depth map.");
     }
 
-    const uint64_t width = read_uint64_big_endian(data, offset);
-    const uint64_t height = read_uint64_big_endian(data, offset);
+    const uint64_t width = read_uint64_big_endian(data, &offset);
+    const uint64_t height = read_uint64_big_endian(data, &offset);
 
     const auto expected_size = k_header_size + width * height * sizeof(uint16_t);
     if (data.size() != expected_size) {
@@ -110,16 +117,16 @@ Camera::depth_map Camera::decode_depth_map(const std::vector<unsigned char>& dat
                         ". Width: " + std::to_string(width) + " Height: " + std::to_string(height));
     }
 
-    std::vector<uint16_t> arr;
-    arr.reserve(width * height);
+    std::vector<uint16_t> depth_values;
+    depth_values.reserve(width * height);
     for (size_t i = 0; i < width * height; ++i) {
         const size_t data_index = k_header_size + i * sizeof(uint16_t);
         const uint16_t depth_value = static_cast<uint16_t>(
             data[data_index] << 8 | data[data_index + 1]);  // Assemble from big endian into uint16
-        arr.push_back(depth_value);
+        depth_values.push_back(depth_value);
     }
 
-    return {width, height, std::move(arr)};
+    return xt::adapt(depth_values, std::array<size_t, 2>{height, width});
 }
 
 std::string Camera::normalize_mime_type(const std::string& str) {
