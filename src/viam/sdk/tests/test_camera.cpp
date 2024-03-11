@@ -95,6 +95,30 @@ BOOST_AUTO_TEST_CASE(test_do_command) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(test_depth_map_encode_decode) {
+    xt::xarray<uint16_t> depth_map =
+        xt::xarray<uint16_t>::from_shape({3, 2});  // height = 3, width = 2
+    depth_map(0, 0) = 100;
+    depth_map(0, 1) = 200;
+    depth_map(1, 0) = 300;
+    depth_map(1, 1) = 400;
+    depth_map(2, 0) = 500;
+    depth_map(2, 1) = 600;
+
+    std::vector<unsigned char> data = Camera::encode_depth_map(depth_map);
+    auto result_map = Camera::decode_depth_map(data);
+
+    // Check if the dimensions and values match
+    BOOST_CHECK_EQUAL(result_map.shape()[0], 3);  // height
+    BOOST_CHECK_EQUAL(result_map.shape()[1], 2);  // width
+
+    std::vector<uint16_t> expected_values = {100, 200, 300, 400, 500, 600};
+    std::vector<uint16_t> result_values(result_map.begin(), result_map.end());
+
+    BOOST_CHECK_EQUAL_COLLECTIONS(
+        result_values.begin(), result_values.end(), expected_values.begin(), expected_values.end());
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 }  // namespace sdktests
