@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Viam C++ SDK: Class Members</title>
+<title>Viam C++ SDK: depth_map Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -48,7 +48,6 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -70,12 +69,21 @@ $(function() {
 </div>
 </div>
 
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">depth_map Struct Reference</div></div>
+</div><!--header-->
 <div class="contents">
-<div class="textblock">Here is a list of all documented class members with links to the class documentation for each member:</div>
 
-<h3><a id="index_e" name="index_e"></a>- e -</h3><ul>
-<li>encode_depth_map()&#160;:&#160;<a class="el" href="classviam_1_1sdk_1_1Camera.html#a9e7c515b0e03b7e210cbcb6a02d85fa2">viam::sdk::Camera</a></li>
-<li>execution_id&#160;:&#160;<a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan.html#a9193a7e37c626019ac9abc4dc7a50ecc">viam::sdk::Motion::plan</a>, <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html#a667bfdfe25de5ac95a8ddb277e9f754b">viam::sdk::Motion::plan_status_with_id</a></li>
+<p>Represents the dimensions and depth values of a depth map.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="camera_8hpp_source.html">camera.hpp</a>&gt;</code></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents the dimensions and depth values of a depth map. </p>
+<p><a class="el" href="structdepth__map.html" title="Represents the dimensions and depth values of a depth map.">depth_map</a> holds the height and width data of a depth map, along with the depth values as a 2D xtensor array of 16-bit unsigned integers, where the first axis is height, and the second axis is width. Each depth value represents the distance from the camera to a point in the scene. </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
+<li>src/viam/sdk/components/<a class="el" href="camera_8hpp_source.html">camera.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
