@@ -3,16 +3,16 @@
 #include <unordered_map>
 
 #include <boost/variant/get.hpp>
+#include <boost/variant/recursive_variant.hpp>
 #include <boost/variant/variant.hpp>
 #include <google/protobuf/struct.pb.h>
 
 namespace viam {
 namespace sdk {
 
-class ProtoType;
-using AttributeMap = std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>;
+class AttributeMap;
 
-namespace prototype_details {
+namespace value_type_details {
 
 template <typename T>
 struct get_helper {
@@ -27,64 +27,82 @@ struct get_helper {
     }
 };
 
-template <>
-struct get_helper<AttributeMap> {
-    template <typename V>
-    static AttributeMap get(V& v) {
-        auto* const result = boost::get<AttributeMap>(&v);
-        return result ? *result : nullptr;
-    }
+}  // namespace value_type_details
 
-    template <typename V>
-    static std::shared_ptr<const AttributeMap::element_type> get(const V& v) {
-        auto* const result = boost::get<AttributeMap>(&v);
-        return result ? *result : nullptr;
-    }
-};
-
-}  // namespace prototype_details
-
-class ProtoType {
+class AttributeMap {
    public:
-    ProtoType() {
-        proto_type_ = boost::blank();
-    }
+    class value_type;
 
-    explicit ProtoType(bool b) : proto_type_(std::move(b)) {}
-    explicit ProtoType(std::string s) : proto_type_(std::move(s)) {}
-    explicit ProtoType(const char* c) : proto_type_(std::string(c)) {}
-    explicit ProtoType(int i) : proto_type_(std::move(i)) {}
-    explicit ProtoType(double d) : proto_type_(std::move(d)) {}
-    explicit ProtoType(AttributeMap m) : proto_type_(std::move(m)) {}
-    explicit ProtoType(std::vector<std::shared_ptr<ProtoType>> v) : proto_type_(std::move(v)) {}
-    explicit ProtoType(const google::protobuf::Value& value);
+    using map_type = std::unordered_map<std::string, value_type>;
 
-    google::protobuf::Value proto_value();
-    friend bool operator==(const ProtoType& lhs, const ProtoType& rhs);
+    class value_type {
+       public:
+        template <typename T>
+        auto get() {
+            return value_type_details::get_helper<T>::get(value_);
+        }
 
-    template <typename T>
-    auto get() {
-        return prototype_details::get_helper<T>::get(proto_type_);
-    }
+        template <typename T>
+        auto get() const {
+            return value_type_details::get_helper<T>::get(value_);
+        }
 
-    template <typename T>
-    auto get() const {
-        return prototype_details::get_helper<T>::get(proto_type_);
-    }
+        using base_value_types_ =
+            boost::variant<boost::blank, std::string, const char*, int, float, double, bool>;
+        using value_types = boost::make_recursive_variant<
+            base_value_types_,
+            std::unordered_map<std::string, boost::recursive_variant_>,
+            std::vector<boost::recursive_variant_>>::type;
+
+        value_type();
+        value_type(std::string s);
+        value_type(const char* c);
+        value_type(int i);
+        value_type(float f);
+        value_type(double d);
+        value_type(bool b);
+        value_type(std::vector<value_type> v);
+        value_type(map_type);
+        value_type(google::protobuf::Value value);
+
+        google::protobuf::Value to_proto() const;
+
+       private:
+        value_types value_;
+    };
+
+    AttributeMap();
+    ~AttributeMap();
+    // CR erodkin: add comments to all of this probably
+    google::protobuf::Struct to_proto() const;
+
+    bool contains(const std::string& key) const;
+
+    // CR erodkin: consider how to return a ref or pointer to the value type such that we don't have
+    // to copy the `value_type`, while retaining guarantees of const-ness.
+    value_type get(const std::string& key) const;
+
+    // set a new k/v pair in the AttributeMap
+    void set(std::string key, value_type::value_types value) const;
+    void set(std::string key, value_type value) const;
+
+    // append a single value to a list type within the AttributeMap
+    void append(const std::string& key, value_type::value_types value);
+    void append(const std::string& key, value_type value);
+
+    // add a single key/value pair to a map type within the AttributeMap
+    void insert(const std::string& key, std::pair<std::string, value_type>);
+    void insert(const std::string& key, std::pair<std::string, value_type::value_types>);
+
+    friend bool operator==(const AttributeMap& lhs, const AttributeMap& rhs);
+    friend bool operator!(const AttributeMap& v);
+
+    static AttributeMap from_proto(const google::protobuf::Struct& proto);
 
    private:
-    boost::variant<boost::blank,
-                   bool,
-                   std::string,
-                   int,
-                   double,
-                   AttributeMap,
-                   std::vector<std::shared_ptr<ProtoType>>>
-        proto_type_;
+    map_type map_;
 };
-
-AttributeMap struct_to_map(const google::protobuf::Struct& struct_);
-google::protobuf::Struct map_to_struct(const AttributeMap& dict);
 
 }  // namespace sdk
 }  // namespace viam
+
