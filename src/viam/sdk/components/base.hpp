@@ -102,6 +102,15 @@ class Base : public Component, public Stoppable {
                               const Vector3& angular,
                               const AttributeMap& extra) = 0;
 
+    /// @brief Stops a robot's base
+    inline void stop() {
+        return stop({});
+    }
+
+    /// @brief Stops a robot's base
+    /// @param extra Any additional arguments to the method
+    virtual void stop(const AttributeMap& extra) override = 0;
+
     /// @brief Reports if the base is in motion
     virtual bool is_moving() = 0;
 

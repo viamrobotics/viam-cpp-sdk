@@ -163,6 +163,15 @@ class Motor : public Component, public Stoppable {
     /// @brief Reports if a component is in motion
     virtual bool is_moving() = 0;
 
+    /// @brief Stops a resource from running.
+    inline void stop() {
+        return stop({});
+    }
+
+    /// @brief Stops a resource from running.
+    /// @param extra Extra arguments to pass to the resource's `stop` method.
+    void stop(const AttributeMap& extra) override = 0;
+
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.
     /// @return The result of the executed command.
