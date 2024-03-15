@@ -53,15 +53,6 @@ class Servo : public Component, public Stoppable {
     /// @throws `Exception` if position reporting is not supported
     virtual position get_position(const AttributeMap& extra) = 0;
 
-    /// @brief Stops a resource from running.
-    inline void stop() {
-        return stop({});
-    }
-
-    /// @brief Stops a resource from running.
-    /// @param extra Extra arguments to pass to the resource's `stop` method.
-    void stop(const AttributeMap& extra) override = 0;
-
     /// @brief Reports if a component is in motion
     virtual bool is_moving() = 0;
 
