@@ -71,7 +71,7 @@ option(VIAMCPPSDK_ENFORCE_COMPILER_MINIMA "Control whether we validate the selec
 # Do not use buf.builds remote definitions or services and use the
 # local proto compiler plugins to do generation.
 #
-option(VIAMCPPSDK_OFFLINE_PROTO_GENERATION "Use local tools for proto generation" ON)
+option(VIAMCPPSDK_OFFLINE_PROTO_GENERATION "Use local tools for proto generation" OFF)
 
 
 # - `VIAMCPPSDK_USE_DYNAMIC_PROTOS`
@@ -339,6 +339,8 @@ find_package(gRPC ${VIAMCPPSDK_GRPC_VERSION_MINIMUM} CONFIG)
 if (gRPC_FOUND)
   get_target_property(VIAMCPPSDK_GRPC_CPP_PLUGIN gRPC::grpc_cpp_plugin LOCATION)
   set(VIAMCPPSDK_PROTOBUF_VERSION ${Protobuf_VERSION})
+  set(VIAMCPPSDK_PROTOBUF_VERSION_MAJOR ${Protobuf_VERSION_MAJOR})
+  set(VIAMCPPSDK_PROTOBUF_VERSION_MINOR ${Protobuf_VERSION_MINOR})
 
   # We need a good value for VIAMCPPSDK_PROTOBUF_VERSION in order to
   # interpolate it into our `pkgconfig` requirements. Make sure we
@@ -366,6 +368,8 @@ else()
   pkg_check_modules(GRPCXX REQUIRED grpc++>=${VIAMCPPSDK_GRPC_VERSION_MINIMUM})
 
   set(VIAMCPPSDK_PROTOBUF_VERSION ${PROTOBUF_VERSION})
+  string(REGEX REPLACE "^([0-9]+)\.([0-9]+)\.([0-9]+)$" "\\1" VIAMCPPSDK_PROTOBUF_VERSION_MAJOR ${VIAMCPPSDK_PROTOBUF_VERSION})
+  string(REGEX REPLACE "^([0-9]+)\.([0-9]+)\.([0-9]+)$" "\\2" VIAMCPPSDK_PROTOBUF_VERSION_MINOR ${VIAMCPPSDK_PROTOBUF_VERSION})
   set(VIAMCPPSDK_PROTOBUF_INCLUDE_DIRS ${PROTOBUF_INCLUDE_DIRS})
   set(VIAMCPPSDK_PROTOBUF_LIBRARY_DIRS ${PROTOBUF_LIBRARY_DIRS})
   set(VIAMCPPSDK_PROTOBUF_LIBRARIES ${PROTOBUF_LIBRARIES})
@@ -392,6 +396,11 @@ else()
   set(VIAMCPPSDK_GRPCXX_REFLECTION_LIBRARIES ${VIAMCPPSDK_GRPCXX_LIBRARIES})
   set(VIAMCPPSDK_GRPCXX_REFLECTION_LIB ${VIAMCPPSDK_GRPCXX_ROOT}_reflection)
   list(PREPEND VIAMCPPSDK_GRPCXX_REFLECTION_LIBRARIES ${VIAMCPPSDK_GRPCXX_REFLECTION_LIB})
+endif()
+
+# These are the minimum versions of gRPC and protobuf for which remote plugins with buf are supported.
+if ((VIAMCPPSDK_GRPCXX_VERSION VERSION_GREATER 1.51.1) AND (VIAMCPPSDK_PROTOBUF_VERSION VERSION_GREATER 21.7.0))
+  set(VIAMCPPSDK_BUF_REMOTE_PLUGIN_SUPPORTED 1)
 endif()
 
 include(FetchContent)

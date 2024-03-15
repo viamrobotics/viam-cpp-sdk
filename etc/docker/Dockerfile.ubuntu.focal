@@ -49,7 +49,7 @@ RUN apt-get -y install cmake
 RUN mkdir -p ${HOME}/opt/src
 
 RUN cd ${HOME}/opt/src && \
-    git clone --recurse-submodules -b v1.52.0 --depth 1 --shallow-submodules https://github.com/grpc/grpc && \
+    git clone --recurse-submodules -b v1.62.1 --depth 1 --shallow-submodules https://github.com/grpc/grpc && \
     cd grpc && \
     mkdir -p build && \
     cd build && \
