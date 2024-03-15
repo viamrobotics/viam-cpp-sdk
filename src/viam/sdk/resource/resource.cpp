@@ -29,7 +29,7 @@ ResourceName Resource::get_resource_name(std::string name) const {
     return r;
 }
 
-std::vector<Name> Resource::resource_names() const {
+std::vector<Name> Resource::registered_models() const {
     std::string resource_type;
     std::string resource_subtype;
     std::vector<Name> resource_names;
