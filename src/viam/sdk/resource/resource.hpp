@@ -28,10 +28,6 @@ class Resource {
     /// @brief Return the resource's name.
     virtual std::string name() const;
 
-    /// @brief Returns a list of `Name`s for each registered `Model` that shares its `API` with the
-    /// resource.
-    std::vector<Name> registered_models() const;
-
    private:
     std::string name_;
 };

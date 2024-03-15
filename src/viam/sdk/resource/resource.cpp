@@ -29,27 +29,5 @@ ResourceName Resource::get_resource_name(std::string name) const {
     return r;
 }
 
-std::vector<Name> Resource::registered_models() const {
-    std::string resource_type;
-    std::string resource_subtype;
-    std::vector<Name> resource_names;
-    for (const auto& kv : Registry::registered_models()) {
-        const std::shared_ptr<const ModelRegistration> reg = kv.second;
-        if (reg->api() == api()) {
-            resource_type = reg->api().resource_type();
-            resource_subtype = reg->api().resource_subtype();
-        } else {
-            continue;
-        }
-
-        if (resource_subtype.empty()) {
-            resource_subtype = name();
-        }
-
-        resource_names.push_back({{kRDK, resource_type, resource_subtype}, "", name()});
-    }
-    return resource_names;
-}
-
 }  // namespace sdk
 }  // namespace viam
