@@ -28,6 +28,8 @@ class Resource {
     /// @brief Return the resource's name.
     virtual std::string name() const;
 
+    std::vector<Name> resource_names() const;
+
    private:
     std::string name_;
 };

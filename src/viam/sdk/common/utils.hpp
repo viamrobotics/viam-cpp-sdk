@@ -23,8 +23,6 @@ const std::string kService = "service";
 const std::string kRDK = "rdk";
 const std::string kBuiltin = "builtin";
 
-std::vector<Name> resource_names_for_resource(const std::shared_ptr<Resource>& resource);
-
 struct response_metadata {
     std::chrono::time_point<long long, std::chrono::nanoseconds> captured_at;
 

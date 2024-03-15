@@ -23,29 +23,6 @@ namespace sdk {
 
 using time_point = std::chrono::time_point<long long, std::chrono::nanoseconds>;
 
-// TODO: RSDK-6627 : move this function to `Resource` class.
-std::vector<Name> resource_names_for_resource(const std::shared_ptr<Resource>& resource) {
-    std::string resource_type;
-    std::string resource_subtype;
-    std::vector<Name> resource_names;
-    for (const auto& kv : Registry::registered_models()) {
-        const std::shared_ptr<const ModelRegistration> reg = kv.second;
-        if (reg->api().to_string() == resource->api().to_string()) {
-            resource_type = reg->api().resource_type();
-            resource_subtype = reg->api().resource_subtype();
-        } else {
-            continue;
-        }
-
-        if (resource_subtype.empty()) {
-            resource_subtype = resource->name();
-        }
-
-        resource_names.push_back({{kRDK, resource_type, resource_subtype}, "", resource->name()});
-    }
-    return resource_names;
-}
-
 std::vector<unsigned char> string_to_bytes(const std::string& s) {
     std::vector<unsigned char> bytes(s.begin(), s.end());
     return bytes;
