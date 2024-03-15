@@ -50,5 +50,6 @@ std::vector<Name> Resource::resource_names() const {
     }
     return resource_names;
 }
+
 }  // namespace sdk
 }  // namespace viam
