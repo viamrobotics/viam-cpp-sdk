@@ -30,6 +30,30 @@ using google::protobuf::RepeatedPtrField;
 using viam::common::v1::ResourceName;
 using viam::robot::v1::Status;
 
+namespace {
+std::vector<Name> registered_models_for_resource(const std::shared_ptr<Resource>& resource) {
+    std::string resource_type;
+    std::string resource_subtype;
+    std::vector<Name> resource_names;
+    for (const auto& kv : Registry::registered_models()) {
+        const std::shared_ptr<const ModelRegistration> reg = kv.second;
+        if (reg->api() == resource->api()) {
+            resource_type = reg->api().resource_type();
+            resource_subtype = reg->api().resource_subtype();
+        } else {
+            continue;
+        }
+
+        if (resource_subtype.empty()) {
+            resource_subtype = resource->name();
+        }
+
+        resource_names.push_back({{kRDK, resource_type, resource_subtype}, "", resource->name()});
+    }
+    return resource_names;
+}
+}  // namespace
+
 RobotService_::RobotService_(const std::shared_ptr<ResourceManager>& manager, Server& server)
     : ResourceServer(manager) {
     server.register_service(this);
@@ -42,8 +66,8 @@ RobotService_::RobotService_(const std::shared_ptr<ResourceManager>& manager, Se
 std::vector<ResourceName> RobotService_::generate_metadata_() {
     std::vector<ResourceName> metadata;
     for (const auto& key_and_val : resource_manager()->resources()) {
-        for (const Name& resource : resource_names_for_resource(key_and_val.second)) {
-            metadata.push_back(resource.to_proto());
+        for (const Name& name : registered_models_for_resource(key_and_val.second)) {
+            metadata.push_back(name.to_proto());
         }
     }
     return metadata;
