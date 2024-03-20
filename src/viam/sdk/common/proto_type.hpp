@@ -39,14 +39,18 @@ class value_type {
         return value_type_details::get_helper<T>::get(value_);
     }
 
-    using map_type = std::unordered_map<std::string, std::unique_ptr<value_type>>;
+    using value_types =
+        boost::make_recursive_variant<boost::blank,
+                                      std::string,
+                                      const char*,
+                                      int,
+                                      float,
+                                      double,
+                                      bool,
+                                      std::vector<boost::recursive_variant_>,
+                                      std::unordered_map<std::string, boost::recursive_variant_>>;
 
-    using base_value_types_ =
-        boost::variant<boost::blank, std::string, const char*, int, float, double, bool>;
-    using value_types = boost::make_recursive_variant<
-        base_value_types_,
-        std::unordered_map<std::string, std::unique_ptr<boost::recursive_variant_>>,
-        std::vector<std::unique_ptr<boost::recursive_variant_>>>::type;
+    using map_type = std::unordered_map<std::string, value_type>;
 
     value_type();
     value_type(std::string s);
@@ -55,9 +59,9 @@ class value_type {
     value_type(float f);
     value_type(double d);
     value_type(bool b);
-    value_type(std::vector<std::unique_ptr<value_type>> v);
-    value_type(const std::vector<std::unique_ptr<value_type>>& v);
-    value_type(std::vector<std::unique_ptr<value_type>>&& v);
+    value_type(std::vector<value_type> v);
+    value_type(const std::vector<value_type>& v);
+    value_type(std::vector<value_type>&& v);
     value_type(map_type map);
     value_type(const map_type& map);
     value_type(map_type&& map);
@@ -100,7 +104,7 @@ struct get_helper<attribute_map> {
     }
 
     template <typename V>
-    static std::unique_ptr<const std::unique_ptr<value_type>> get(const V& v) {
+    static const value_type& get(const V& v) {
         auto const result = boost::get<value_type::map_type>(&v);
         return result ? *result : boost::blank();
     }
