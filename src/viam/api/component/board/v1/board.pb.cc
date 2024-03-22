@@ -283,6 +283,34 @@ struct GetDigitalInterruptValueResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetDigitalInterruptValueResponseDefaultTypeInternal _GetDigitalInterruptValueResponse_default_instance_;
+PROTOBUF_CONSTEXPR StreamTicksRequest::StreamTicksRequest(
+    ::_pbi::ConstantInitialized)
+  : pin_names_()
+  , name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , extra_(nullptr){}
+struct StreamTicksRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR StreamTicksRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~StreamTicksRequestDefaultTypeInternal() {}
+  union {
+    StreamTicksRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StreamTicksRequestDefaultTypeInternal _StreamTicksRequest_default_instance_;
+PROTOBUF_CONSTEXPR StreamTicksResponse::StreamTicksResponse(
+    ::_pbi::ConstantInitialized)
+  : pin_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , time_(uint64_t{0u})
+  , high_(false){}
+struct StreamTicksResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR StreamTicksResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~StreamTicksResponseDefaultTypeInternal() {}
+  union {
+    StreamTicksResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StreamTicksResponseDefaultTypeInternal _StreamTicksResponse_default_instance_;
 PROTOBUF_CONSTEXPR SetPowerModeRequest::SetPowerModeRequest(
     ::_pbi::ConstantInitialized)
   : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
@@ -314,7 +342,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 }  // namespace board
 }  // namespace component
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_component_2fboard_2fv1_2fboard_2eproto[22];
+static ::_pb::Metadata file_level_metadata_component_2fboard_2fv1_2fboard_2eproto[24];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_component_2fboard_2fv1_2fboard_2eproto[1];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_component_2fboard_2fv1_2fboard_2eproto = nullptr;
 
@@ -478,6 +506,24 @@ const uint32_t TableStruct_component_2fboard_2fv1_2fboard_2eproto::offsets[] PRO
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::GetDigitalInterruptValueResponse, value_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::StreamTicksRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::StreamTicksRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::StreamTicksRequest, pin_names_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::StreamTicksRequest, extra_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::StreamTicksResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::StreamTicksResponse, pin_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::StreamTicksResponse, time_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::StreamTicksResponse, high_),
   PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPowerModeRequest, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPowerModeRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -520,8 +566,10 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 137, -1, -1, sizeof(::viam::component::board::v1::WriteAnalogResponse)},
   { 143, -1, -1, sizeof(::viam::component::board::v1::GetDigitalInterruptValueRequest)},
   { 152, -1, -1, sizeof(::viam::component::board::v1::GetDigitalInterruptValueResponse)},
-  { 159, 169, -1, sizeof(::viam::component::board::v1::SetPowerModeRequest)},
-  { 173, -1, -1, sizeof(::viam::component::board::v1::SetPowerModeResponse)},
+  { 159, -1, -1, sizeof(::viam::component::board::v1::StreamTicksRequest)},
+  { 168, -1, -1, sizeof(::viam::component::board::v1::StreamTicksResponse)},
+  { 177, 187, -1, sizeof(::viam::component::board::v1::SetPowerModeRequest)},
+  { 191, -1, -1, sizeof(::viam::component::board::v1::SetPowerModeResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -545,6 +593,8 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::component::board::v1::_WriteAnalogResponse_default_instance_._instance,
   &::viam::component::board::v1::_GetDigitalInterruptValueRequest_default_instance_._instance,
   &::viam::component::board::v1::_GetDigitalInterruptValueResponse_default_instance_._instance,
+  &::viam::component::board::v1::_StreamTicksRequest_default_instance_._instance,
+  &::viam::component::board::v1::_StreamTicksResponse_default_instance_._instance,
   &::viam::component::board::v1::_SetPowerModeRequest_default_instance_._instance,
   &::viam::component::board::v1::_SetPowerModeResponse_default_instance_._instance,
 };
@@ -596,71 +646,80 @@ const char descriptor_table_protodef_component_2fboard_2fv1_2fboard_2eproto[] PR
   "igitalInterruptName\022-\n\005extra\030c \001(\0132\027.goo"
   "gle.protobuf.StructR\005extra\"8\n GetDigital"
   "InterruptValueResponse\022\024\n\005value\030\001 \001(\003R\005v"
-  "alue\"\344\001\n\023SetPowerModeRequest\022\022\n\004name\030\001 \001"
-  "(\tR\004name\022A\n\npower_mode\030\002 \001(\0162\".viam.comp"
-  "onent.board.v1.PowerModeR\tpowerMode\022:\n\010d"
-  "uration\030\003 \001(\0132\031.google.protobuf.Duration"
-  "H\000R\010duration\210\001\001\022-\n\005extra\030c \001(\0132\027.google."
-  "protobuf.StructR\005extraB\013\n\t_duration\"\026\n\024S"
-  "etPowerModeResponse*[\n\tPowerMode\022\032\n\026POWE"
-  "R_MODE_UNSPECIFIED\020\000\022\025\n\021POWER_MODE_NORMA"
-  "L\020\001\022\033\n\027POWER_MODE_OFFLINE_DEEP\020\0022\332\020\n\014Boa"
-  "rdService\022\215\001\n\006Status\022&.viam.component.bo"
-  "ard.v1.StatusRequest\032\'.viam.component.bo"
-  "ard.v1.StatusResponse\"2\202\323\344\223\002,\022*/viam/api"
-  "/v1/component/board/{name}/status\022\216\001\n\007Se"
-  "tGPIO\022\'.viam.component.board.v1.SetGPIOR"
-  "equest\032(.viam.component.board.v1.SetGPIO"
-  "Response\"0\202\323\344\223\002*\032(/viam/api/v1/component"
-  "/board/{name}/gpio\022\216\001\n\007GetGPIO\022\'.viam.co"
-  "mponent.board.v1.GetGPIORequest\032(.viam.c"
-  "omponent.board.v1.GetGPIOResponse\"0\202\323\344\223\002"
-  "*\022(/viam/api/v1/component/board/{name}/g"
-  "pio\022\201\001\n\003PWM\022#.viam.component.board.v1.PW"
-  "MRequest\032$.viam.component.board.v1.PWMRe"
-  "sponse\"/\202\323\344\223\002)\022\'/viam/api/v1/component/b"
-  "oard/{name}/pwm\022\212\001\n\006SetPWM\022&.viam.compon"
-  "ent.board.v1.SetPWMRequest\032\'.viam.compon"
-  "ent.board.v1.SetPWMResponse\"/\202\323\344\223\002)\032\'/vi"
-  "am/api/v1/component/board/{name}/pwm\022\241\001\n"
-  "\014PWMFrequency\022,.viam.component.board.v1."
-  "PWMFrequencyRequest\032-.viam.component.boa"
-  "rd.v1.PWMFrequencyResponse\"4\202\323\344\223\002.\022,/via"
-  "m/api/v1/component/board/{name}/pwm_freq"
-  "\022\252\001\n\017SetPWMFrequency\022/.viam.component.bo"
-  "ard.v1.SetPWMFrequencyRequest\0320.viam.com"
-  "ponent.board.v1.SetPWMFrequencyResponse\""
-  "4\202\323\344\223\002.\032,/viam/api/v1/component/board/{n"
-  "ame}/pwm_freq\022\210\001\n\tDoCommand\022 .viam.commo"
-  "n.v1.DoCommandRequest\032!.viam.common.v1.D"
-  "oCommandResponse\"6\202\323\344\223\0020\"./viam/api/v1/c"
-  "omponent/board/{name}/do_command\022\322\001\n\020Rea"
-  "dAnalogReader\0220.viam.component.board.v1."
-  "ReadAnalogReaderRequest\0321.viam.component"
-  ".board.v1.ReadAnalogReaderResponse\"Y\202\323\344\223"
-  "\002S\022Q/viam/api/v1/component/board/{board_"
-  "name}/analog_reader/{analog_reader_name}"
-  "/read\022\242\001\n\013WriteAnalog\022+.viam.component.b"
-  "oard.v1.WriteAnalogRequest\032,.viam.compon"
-  "ent.board.v1.WriteAnalogResponse\"8\202\323\344\223\0022"
-  "\0320/viam/api/v1/component/board/{name}/an"
-  "alog_write\022\363\001\n\030GetDigitalInterruptValue\022"
-  "8.viam.component.board.v1.GetDigitalInte"
-  "rruptValueRequest\0329.viam.component.board"
-  ".v1.GetDigitalInterruptValueResponse\"b\202\323"
-  "\344\223\002\\\022Z/viam/api/v1/component/board/{boar"
-  "d_name}/digital_interrupt/{digital_inter"
-  "rupt_name}/value\022\243\001\n\014SetPowerMode\022,.viam"
-  ".component.board.v1.SetPowerModeRequest\032"
-  "-.viam.component.board.v1.SetPowerModeRe"
-  "sponse\"6\202\323\344\223\0020\032./viam/api/v1/component/b"
-  "oard/{name}/power_mode\022\224\001\n\rGetGeometries"
-  "\022$.viam.common.v1.GetGeometriesRequest\032%"
-  ".viam.common.v1.GetGeometriesResponse\"6\202"
-  "\323\344\223\0020\022./viam/api/v1/component/board/{nam"
-  "e}/geometriesBA\n\033com.viam.component.boar"
-  "d.v1Z\"go.viam.com/api/component/board/v1"
-  "b\006proto3"
+  "alue\"t\n\022StreamTicksRequest\022\022\n\004name\030\001 \001(\t"
+  "R\004name\022\033\n\tpin_names\030\002 \003(\tR\010pinNames\022-\n\005e"
+  "xtra\030c \001(\0132\027.google.protobuf.StructR\005ext"
+  "ra\"X\n\023StreamTicksResponse\022\031\n\010pin_name\030\001 "
+  "\001(\tR\007pinName\022\022\n\004time\030\002 \001(\004R\004time\022\022\n\004high"
+  "\030\003 \001(\010R\004high\"\344\001\n\023SetPowerModeRequest\022\022\n\004"
+  "name\030\001 \001(\tR\004name\022A\n\npower_mode\030\002 \001(\0162\".v"
+  "iam.component.board.v1.PowerModeR\tpowerM"
+  "ode\022:\n\010duration\030\003 \001(\0132\031.google.protobuf."
+  "DurationH\000R\010duration\210\001\001\022-\n\005extra\030c \001(\0132\027"
+  ".google.protobuf.StructR\005extraB\013\n\t_durat"
+  "ion\"\026\n\024SetPowerModeResponse*[\n\tPowerMode"
+  "\022\032\n\026POWER_MODE_UNSPECIFIED\020\000\022\025\n\021POWER_MO"
+  "DE_NORMAL\020\001\022\033\n\027POWER_MODE_OFFLINE_DEEP\020\002"
+  "2\200\022\n\014BoardService\022\215\001\n\006Status\022&.viam.comp"
+  "onent.board.v1.StatusRequest\032\'.viam.comp"
+  "onent.board.v1.StatusResponse\"2\202\323\344\223\002,\022*/"
+  "viam/api/v1/component/board/{name}/statu"
+  "s\022\216\001\n\007SetGPIO\022\'.viam.component.board.v1."
+  "SetGPIORequest\032(.viam.component.board.v1"
+  ".SetGPIOResponse\"0\202\323\344\223\002*\032(/viam/api/v1/c"
+  "omponent/board/{name}/gpio\022\216\001\n\007GetGPIO\022\'"
+  ".viam.component.board.v1.GetGPIORequest\032"
+  "(.viam.component.board.v1.GetGPIORespons"
+  "e\"0\202\323\344\223\002*\022(/viam/api/v1/component/board/"
+  "{name}/gpio\022\201\001\n\003PWM\022#.viam.component.boa"
+  "rd.v1.PWMRequest\032$.viam.component.board."
+  "v1.PWMResponse\"/\202\323\344\223\002)\022\'/viam/api/v1/com"
+  "ponent/board/{name}/pwm\022\212\001\n\006SetPWM\022&.via"
+  "m.component.board.v1.SetPWMRequest\032\'.via"
+  "m.component.board.v1.SetPWMResponse\"/\202\323\344"
+  "\223\002)\032\'/viam/api/v1/component/board/{name}"
+  "/pwm\022\241\001\n\014PWMFrequency\022,.viam.component.b"
+  "oard.v1.PWMFrequencyRequest\032-.viam.compo"
+  "nent.board.v1.PWMFrequencyResponse\"4\202\323\344\223"
+  "\002.\022,/viam/api/v1/component/board/{name}/"
+  "pwm_freq\022\252\001\n\017SetPWMFrequency\022/.viam.comp"
+  "onent.board.v1.SetPWMFrequencyRequest\0320."
+  "viam.component.board.v1.SetPWMFrequencyR"
+  "esponse\"4\202\323\344\223\002.\032,/viam/api/v1/component/"
+  "board/{name}/pwm_freq\022\210\001\n\tDoCommand\022 .vi"
+  "am.common.v1.DoCommandRequest\032!.viam.com"
+  "mon.v1.DoCommandResponse\"6\202\323\344\223\0020\"./viam/"
+  "api/v1/component/board/{name}/do_command"
+  "\022\322\001\n\020ReadAnalogReader\0220.viam.component.b"
+  "oard.v1.ReadAnalogReaderRequest\0321.viam.c"
+  "omponent.board.v1.ReadAnalogReaderRespon"
+  "se\"Y\202\323\344\223\002S\022Q/viam/api/v1/component/board"
+  "/{board_name}/analog_reader/{analog_read"
+  "er_name}/read\022\242\001\n\013WriteAnalog\022+.viam.com"
+  "ponent.board.v1.WriteAnalogRequest\032,.via"
+  "m.component.board.v1.WriteAnalogResponse"
+  "\"8\202\323\344\223\0022\0320/viam/api/v1/component/board/{"
+  "name}/analog_write\022\363\001\n\030GetDigitalInterru"
+  "ptValue\0228.viam.component.board.v1.GetDig"
+  "italInterruptValueRequest\0329.viam.compone"
+  "nt.board.v1.GetDigitalInterruptValueResp"
+  "onse\"b\202\323\344\223\002\\\022Z/viam/api/v1/component/boa"
+  "rd/{board_name}/digital_interrupt/{digit"
+  "al_interrupt_name}/value\022\243\001\n\013StreamTicks"
+  "\022+.viam.component.board.v1.StreamTicksRe"
+  "quest\032,.viam.component.board.v1.StreamTi"
+  "cksResponse\"7\202\323\344\223\0021\022//viam/api/v1/compon"
+  "ent/board/{name}/tick_stream0\001\022\243\001\n\014SetPo"
+  "werMode\022,.viam.component.board.v1.SetPow"
+  "erModeRequest\032-.viam.component.board.v1."
+  "SetPowerModeResponse\"6\202\323\344\223\0020\032./viam/api/"
+  "v1/component/board/{name}/power_mode\022\224\001\n"
+  "\rGetGeometries\022$.viam.common.v1.GetGeome"
+  "triesRequest\032%.viam.common.v1.GetGeometr"
+  "iesResponse\"6\202\323\344\223\0020\022./viam/api/v1/compon"
+  "ent/board/{name}/geometriesBA\n\033com.viam."
+  "component.board.v1Z\"go.viam.com/api/comp"
+  "onent/board/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fboard_2fv1_2fboard_2eproto_deps[4] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -670,9 +729,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fboard_2
 };
 static ::_pbi::once_flag descriptor_table_component_2fboard_2fv1_2fboard_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fboard_2fv1_2fboard_2eproto = {
-    false, false, 4408, descriptor_table_protodef_component_2fboard_2fv1_2fboard_2eproto,
+    false, false, 4782, descriptor_table_protodef_component_2fboard_2fv1_2fboard_2eproto,
     "component/board/v1/board.proto",
-    &descriptor_table_component_2fboard_2fv1_2fboard_2eproto_once, descriptor_table_component_2fboard_2fv1_2fboard_2eproto_deps, 4, 22,
+    &descriptor_table_component_2fboard_2fv1_2fboard_2eproto_once, descriptor_table_component_2fboard_2fv1_2fboard_2eproto_deps, 4, 24,
     schemas, file_default_instances, TableStruct_component_2fboard_2fv1_2fboard_2eproto::offsets,
     file_level_metadata_component_2fboard_2fv1_2fboard_2eproto, file_level_enum_descriptors_component_2fboard_2fv1_2fboard_2eproto,
     file_level_service_descriptors_component_2fboard_2fv1_2fboard_2eproto,
@@ -4923,6 +4982,542 @@ void GetDigitalInterruptValueResponse::InternalSwap(GetDigitalInterruptValueResp
 
 // ===================================================================
 
+class StreamTicksRequest::_Internal {
+ public:
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const StreamTicksRequest* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+StreamTicksRequest::_Internal::extra(const StreamTicksRequest* msg) {
+  return *msg->extra_;
+}
+void StreamTicksRequest::clear_extra() {
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+}
+StreamTicksRequest::StreamTicksRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  pin_names_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.component.board.v1.StreamTicksRequest)
+}
+StreamTicksRequest::StreamTicksRequest(const StreamTicksRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      pin_names_(from.pin_names_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_extra()) {
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.StreamTicksRequest)
+}
+
+inline void StreamTicksRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+extra_ = nullptr;
+}
+
+StreamTicksRequest::~StreamTicksRequest() {
+  // @@protoc_insertion_point(destructor:viam.component.board.v1.StreamTicksRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void StreamTicksRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+  if (this != internal_default_instance()) delete extra_;
+}
+
+void StreamTicksRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void StreamTicksRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.component.board.v1.StreamTicksRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  pin_names_.Clear();
+  name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* StreamTicksRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.component.board.v1.StreamTicksRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string pin_names = 2 [json_name = "pinNames"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_pin_names();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "viam.component.board.v1.StreamTicksRequest.pin_names"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* StreamTicksRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.board.v1.StreamTicksRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.component.board.v1.StreamTicksRequest.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  // repeated string pin_names = 2 [json_name = "pinNames"];
+  for (int i = 0, n = this->_internal_pin_names_size(); i < n; i++) {
+    const auto& s = this->_internal_pin_names(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.component.board.v1.StreamTicksRequest.pin_names");
+    target = stream->WriteString(2, s, target);
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::extra(this),
+        _Internal::extra(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.component.board.v1.StreamTicksRequest)
+  return target;
+}
+
+size_t StreamTicksRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.component.board.v1.StreamTicksRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string pin_names = 2 [json_name = "pinNames"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(pin_names_.size());
+  for (int i = 0, n = pin_names_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      pin_names_.Get(i));
+  }
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *extra_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData StreamTicksRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    StreamTicksRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*StreamTicksRequest::GetClassData() const { return &_class_data_; }
+
+void StreamTicksRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<StreamTicksRequest *>(to)->MergeFrom(
+      static_cast<const StreamTicksRequest &>(from));
+}
+
+
+void StreamTicksRequest::MergeFrom(const StreamTicksRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.StreamTicksRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  pin_names_.MergeFrom(from.pin_names_);
+  if (!from._internal_name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  if (from._internal_has_extra()) {
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void StreamTicksRequest::CopyFrom(const StreamTicksRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.component.board.v1.StreamTicksRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool StreamTicksRequest::IsInitialized() const {
+  return true;
+}
+
+void StreamTicksRequest::InternalSwap(StreamTicksRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  pin_names_.InternalSwap(&other->pin_names_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+  swap(extra_, other->extra_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata StreamTicksRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2fboard_2fv1_2fboard_2eproto_getter, &descriptor_table_component_2fboard_2fv1_2fboard_2eproto_once,
+      file_level_metadata_component_2fboard_2fv1_2fboard_2eproto[20]);
+}
+
+// ===================================================================
+
+class StreamTicksResponse::_Internal {
+ public:
+};
+
+StreamTicksResponse::StreamTicksResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.component.board.v1.StreamTicksResponse)
+}
+StreamTicksResponse::StreamTicksResponse(const StreamTicksResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  pin_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    pin_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_pin_name().empty()) {
+    pin_name_.Set(from._internal_pin_name(), 
+      GetArenaForAllocation());
+  }
+  ::memcpy(&time_, &from.time_,
+    static_cast<size_t>(reinterpret_cast<char*>(&high_) -
+    reinterpret_cast<char*>(&time_)) + sizeof(high_));
+  // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.StreamTicksResponse)
+}
+
+inline void StreamTicksResponse::SharedCtor() {
+pin_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  pin_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&time_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&high_) -
+    reinterpret_cast<char*>(&time_)) + sizeof(high_));
+}
+
+StreamTicksResponse::~StreamTicksResponse() {
+  // @@protoc_insertion_point(destructor:viam.component.board.v1.StreamTicksResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void StreamTicksResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  pin_name_.Destroy();
+}
+
+void StreamTicksResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void StreamTicksResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.component.board.v1.StreamTicksResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  pin_name_.ClearToEmpty();
+  ::memset(&time_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&high_) -
+      reinterpret_cast<char*>(&time_)) + sizeof(high_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* StreamTicksResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string pin_name = 1 [json_name = "pinName"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_pin_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.component.board.v1.StreamTicksResponse.pin_name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 time = 2 [json_name = "time"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          time_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool high = 3 [json_name = "high"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          high_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* StreamTicksResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.board.v1.StreamTicksResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string pin_name = 1 [json_name = "pinName"];
+  if (!this->_internal_pin_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_pin_name().data(), static_cast<int>(this->_internal_pin_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.component.board.v1.StreamTicksResponse.pin_name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_pin_name(), target);
+  }
+
+  // uint64 time = 2 [json_name = "time"];
+  if (this->_internal_time() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(2, this->_internal_time(), target);
+  }
+
+  // bool high = 3 [json_name = "high"];
+  if (this->_internal_high() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(3, this->_internal_high(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.component.board.v1.StreamTicksResponse)
+  return target;
+}
+
+size_t StreamTicksResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.component.board.v1.StreamTicksResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string pin_name = 1 [json_name = "pinName"];
+  if (!this->_internal_pin_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_pin_name());
+  }
+
+  // uint64 time = 2 [json_name = "time"];
+  if (this->_internal_time() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_time());
+  }
+
+  // bool high = 3 [json_name = "high"];
+  if (this->_internal_high() != 0) {
+    total_size += 1 + 1;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData StreamTicksResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    StreamTicksResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*StreamTicksResponse::GetClassData() const { return &_class_data_; }
+
+void StreamTicksResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<StreamTicksResponse *>(to)->MergeFrom(
+      static_cast<const StreamTicksResponse &>(from));
+}
+
+
+void StreamTicksResponse::MergeFrom(const StreamTicksResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.StreamTicksResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_pin_name().empty()) {
+    _internal_set_pin_name(from._internal_pin_name());
+  }
+  if (from._internal_time() != 0) {
+    _internal_set_time(from._internal_time());
+  }
+  if (from._internal_high() != 0) {
+    _internal_set_high(from._internal_high());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void StreamTicksResponse::CopyFrom(const StreamTicksResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.component.board.v1.StreamTicksResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool StreamTicksResponse::IsInitialized() const {
+  return true;
+}
+
+void StreamTicksResponse::InternalSwap(StreamTicksResponse* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &pin_name_, lhs_arena,
+      &other->pin_name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(StreamTicksResponse, high_)
+      + sizeof(StreamTicksResponse::high_)
+      - PROTOBUF_FIELD_OFFSET(StreamTicksResponse, time_)>(
+          reinterpret_cast<char*>(&time_),
+          reinterpret_cast<char*>(&other->time_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata StreamTicksResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2fboard_2fv1_2fboard_2eproto_getter, &descriptor_table_component_2fboard_2fv1_2fboard_2eproto_once,
+      file_level_metadata_component_2fboard_2fv1_2fboard_2eproto[21]);
+}
+
+// ===================================================================
+
 class SetPowerModeRequest::_Internal {
  public:
   using HasBits = decltype(std::declval<SetPowerModeRequest>()._has_bits_);
@@ -5251,7 +5846,7 @@ void SetPowerModeRequest::InternalSwap(SetPowerModeRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata SetPowerModeRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fboard_2fv1_2fboard_2eproto_getter, &descriptor_table_component_2fboard_2fv1_2fboard_2eproto_once,
-      file_level_metadata_component_2fboard_2fv1_2fboard_2eproto[20]);
+      file_level_metadata_component_2fboard_2fv1_2fboard_2eproto[22]);
 }
 
 // ===================================================================
@@ -5290,7 +5885,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SetPowerModeResponse::GetClass
 ::PROTOBUF_NAMESPACE_ID::Metadata SetPowerModeResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fboard_2fv1_2fboard_2eproto_getter, &descriptor_table_component_2fboard_2fv1_2fboard_2eproto_once,
-      file_level_metadata_component_2fboard_2fv1_2fboard_2eproto[21]);
+      file_level_metadata_component_2fboard_2fv1_2fboard_2eproto[23]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -5378,6 +5973,14 @@ Arena::CreateMaybeMessage< ::viam::component::board::v1::GetDigitalInterruptValu
 template<> PROTOBUF_NOINLINE ::viam::component::board::v1::GetDigitalInterruptValueResponse*
 Arena::CreateMaybeMessage< ::viam::component::board::v1::GetDigitalInterruptValueResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::component::board::v1::GetDigitalInterruptValueResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::component::board::v1::StreamTicksRequest*
+Arena::CreateMaybeMessage< ::viam::component::board::v1::StreamTicksRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::board::v1::StreamTicksRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::component::board::v1::StreamTicksResponse*
+Arena::CreateMaybeMessage< ::viam::component::board::v1::StreamTicksResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::board::v1::StreamTicksResponse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::viam::component::board::v1::SetPowerModeRequest*
 Arena::CreateMaybeMessage< ::viam::component::board::v1::SetPowerModeRequest >(Arena* arena) {

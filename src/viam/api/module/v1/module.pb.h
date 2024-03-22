@@ -1411,6 +1411,7 @@ class ReadyRequest final :
 
   enum : int {
     kParentAddressFieldNumber = 1,
+    kWebrtcOfferFieldNumber = 2,
   };
   // string parent_address = 1 [json_name = "parentAddress"];
   void clear_parent_address();
@@ -1426,6 +1427,20 @@ class ReadyRequest final :
   std::string* _internal_mutable_parent_address();
   public:
 
+  // string webrtc_offer = 2 [json_name = "webrtcOffer"];
+  void clear_webrtc_offer();
+  const std::string& webrtc_offer() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_webrtc_offer(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_webrtc_offer();
+  PROTOBUF_NODISCARD std::string* release_webrtc_offer();
+  void set_allocated_webrtc_offer(std::string* webrtc_offer);
+  private:
+  const std::string& _internal_webrtc_offer() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_webrtc_offer(const std::string& value);
+  std::string* _internal_mutable_webrtc_offer();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.module.v1.ReadyRequest)
  private:
   class _Internal;
@@ -1434,6 +1449,7 @@ class ReadyRequest final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr parent_address_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr webrtc_offer_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_module_2fv1_2fmodule_2eproto;
 };
@@ -1558,9 +1574,24 @@ class ReadyResponse final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kWebrtcAnswerFieldNumber = 3,
     kHandlermapFieldNumber = 2,
     kReadyFieldNumber = 1,
   };
+  // string webrtc_answer = 3 [json_name = "webrtcAnswer"];
+  void clear_webrtc_answer();
+  const std::string& webrtc_answer() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_webrtc_answer(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_webrtc_answer();
+  PROTOBUF_NODISCARD std::string* release_webrtc_answer();
+  void set_allocated_webrtc_answer(std::string* webrtc_answer);
+  private:
+  const std::string& _internal_webrtc_answer() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_webrtc_answer(const std::string& value);
+  std::string* _internal_mutable_webrtc_answer();
+  public:
+
   // .viam.module.v1.HandlerMap handlermap = 2 [json_name = "handlermap"];
   bool has_handlermap() const;
   private:
@@ -1595,6 +1626,7 @@ class ReadyResponse final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr webrtc_answer_;
   ::viam::module::v1::HandlerMap* handlermap_;
   bool ready_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -2573,6 +2605,56 @@ inline void ReadyRequest::set_allocated_parent_address(std::string* parent_addre
   // @@protoc_insertion_point(field_set_allocated:viam.module.v1.ReadyRequest.parent_address)
 }
 
+// string webrtc_offer = 2 [json_name = "webrtcOffer"];
+inline void ReadyRequest::clear_webrtc_offer() {
+  webrtc_offer_.ClearToEmpty();
+}
+inline const std::string& ReadyRequest::webrtc_offer() const {
+  // @@protoc_insertion_point(field_get:viam.module.v1.ReadyRequest.webrtc_offer)
+  return _internal_webrtc_offer();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ReadyRequest::set_webrtc_offer(ArgT0&& arg0, ArgT... args) {
+ 
+ webrtc_offer_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.module.v1.ReadyRequest.webrtc_offer)
+}
+inline std::string* ReadyRequest::mutable_webrtc_offer() {
+  std::string* _s = _internal_mutable_webrtc_offer();
+  // @@protoc_insertion_point(field_mutable:viam.module.v1.ReadyRequest.webrtc_offer)
+  return _s;
+}
+inline const std::string& ReadyRequest::_internal_webrtc_offer() const {
+  return webrtc_offer_.Get();
+}
+inline void ReadyRequest::_internal_set_webrtc_offer(const std::string& value) {
+  
+  webrtc_offer_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ReadyRequest::_internal_mutable_webrtc_offer() {
+  
+  return webrtc_offer_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ReadyRequest::release_webrtc_offer() {
+  // @@protoc_insertion_point(field_release:viam.module.v1.ReadyRequest.webrtc_offer)
+  return webrtc_offer_.Release();
+}
+inline void ReadyRequest::set_allocated_webrtc_offer(std::string* webrtc_offer) {
+  if (webrtc_offer != nullptr) {
+    
+  } else {
+    
+  }
+  webrtc_offer_.SetAllocated(webrtc_offer, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (webrtc_offer_.IsDefault()) {
+    webrtc_offer_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.module.v1.ReadyRequest.webrtc_offer)
+}
+
 // -------------------------------------------------------------------
 
 // ReadyResponse
@@ -2685,6 +2767,56 @@ inline void ReadyResponse::set_allocated_handlermap(::viam::module::v1::HandlerM
   }
   handlermap_ = handlermap;
   // @@protoc_insertion_point(field_set_allocated:viam.module.v1.ReadyResponse.handlermap)
+}
+
+// string webrtc_answer = 3 [json_name = "webrtcAnswer"];
+inline void ReadyResponse::clear_webrtc_answer() {
+  webrtc_answer_.ClearToEmpty();
+}
+inline const std::string& ReadyResponse::webrtc_answer() const {
+  // @@protoc_insertion_point(field_get:viam.module.v1.ReadyResponse.webrtc_answer)
+  return _internal_webrtc_answer();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ReadyResponse::set_webrtc_answer(ArgT0&& arg0, ArgT... args) {
+ 
+ webrtc_answer_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.module.v1.ReadyResponse.webrtc_answer)
+}
+inline std::string* ReadyResponse::mutable_webrtc_answer() {
+  std::string* _s = _internal_mutable_webrtc_answer();
+  // @@protoc_insertion_point(field_mutable:viam.module.v1.ReadyResponse.webrtc_answer)
+  return _s;
+}
+inline const std::string& ReadyResponse::_internal_webrtc_answer() const {
+  return webrtc_answer_.Get();
+}
+inline void ReadyResponse::_internal_set_webrtc_answer(const std::string& value) {
+  
+  webrtc_answer_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ReadyResponse::_internal_mutable_webrtc_answer() {
+  
+  return webrtc_answer_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ReadyResponse::release_webrtc_answer() {
+  // @@protoc_insertion_point(field_release:viam.module.v1.ReadyResponse.webrtc_answer)
+  return webrtc_answer_.Release();
+}
+inline void ReadyResponse::set_allocated_webrtc_answer(std::string* webrtc_answer) {
+  if (webrtc_answer != nullptr) {
+    
+  } else {
+    
+  }
+  webrtc_answer_.SetAllocated(webrtc_answer, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (webrtc_answer_.IsDefault()) {
+    webrtc_answer_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.module.v1.ReadyResponse.webrtc_answer)
 }
 
 // -------------------------------------------------------------------
