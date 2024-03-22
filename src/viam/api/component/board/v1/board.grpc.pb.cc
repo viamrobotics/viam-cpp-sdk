@@ -36,6 +36,7 @@ static const char* BoardService_method_names[] = {
   "/viam.component.board.v1.BoardService/ReadAnalogReader",
   "/viam.component.board.v1.BoardService/WriteAnalog",
   "/viam.component.board.v1.BoardService/GetDigitalInterruptValue",
+  "/viam.component.board.v1.BoardService/StreamTicks",
   "/viam.component.board.v1.BoardService/SetPowerMode",
   "/viam.component.board.v1.BoardService/GetGeometries",
 };
@@ -58,8 +59,9 @@ BoardService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chann
   , rpcmethod_ReadAnalogReader_(BoardService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_WriteAnalog_(BoardService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetDigitalInterruptValue_(BoardService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetPowerMode_(BoardService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetGeometries_(BoardService_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_StreamTicks_(BoardService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_SetPowerMode_(BoardService_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGeometries_(BoardService_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status BoardService::Stub::Status(::grpc::ClientContext* context, const ::viam::component::board::v1::StatusRequest& request, ::viam::component::board::v1::StatusResponse* response) {
@@ -315,6 +317,22 @@ void BoardService::Stub::async::GetDigitalInterruptValue(::grpc::ClientContext* 
   return result;
 }
 
+::grpc::ClientReader< ::viam::component::board::v1::StreamTicksResponse>* BoardService::Stub::StreamTicksRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::StreamTicksRequest& request) {
+  return ::grpc::internal::ClientReaderFactory< ::viam::component::board::v1::StreamTicksResponse>::Create(channel_.get(), rpcmethod_StreamTicks_, context, request);
+}
+
+void BoardService::Stub::async::StreamTicks(::grpc::ClientContext* context, const ::viam::component::board::v1::StreamTicksRequest* request, ::grpc::ClientReadReactor< ::viam::component::board::v1::StreamTicksResponse>* reactor) {
+  ::grpc::internal::ClientCallbackReaderFactory< ::viam::component::board::v1::StreamTicksResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_StreamTicks_, context, request, reactor);
+}
+
+::grpc::ClientAsyncReader< ::viam::component::board::v1::StreamTicksResponse>* BoardService::Stub::AsyncStreamTicksRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::StreamTicksRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc::internal::ClientAsyncReaderFactory< ::viam::component::board::v1::StreamTicksResponse>::Create(channel_.get(), cq, rpcmethod_StreamTicks_, context, request, true, tag);
+}
+
+::grpc::ClientAsyncReader< ::viam::component::board::v1::StreamTicksResponse>* BoardService::Stub::PrepareAsyncStreamTicksRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::StreamTicksRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncReaderFactory< ::viam::component::board::v1::StreamTicksResponse>::Create(channel_.get(), cq, rpcmethod_StreamTicks_, context, request, false, nullptr);
+}
+
 ::grpc::Status BoardService::Stub::SetPowerMode(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest& request, ::viam::component::board::v1::SetPowerModeResponse* response) {
   return ::grpc::internal::BlockingUnaryCall< ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetPowerMode_, context, request, response);
 }
@@ -474,6 +492,16 @@ BoardService::Service::Service() {
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BoardService_method_names[11],
+      ::grpc::internal::RpcMethod::SERVER_STREAMING,
+      new ::grpc::internal::ServerStreamingHandler< BoardService::Service, ::viam::component::board::v1::StreamTicksRequest, ::viam::component::board::v1::StreamTicksResponse>(
+          [](BoardService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::component::board::v1::StreamTicksRequest* req,
+             ::grpc::ServerWriter<::viam::component::board::v1::StreamTicksResponse>* writer) {
+               return service->StreamTicks(ctx, req, writer);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      BoardService_method_names[12],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](BoardService::Service* service,
@@ -483,7 +511,7 @@ BoardService::Service::Service() {
                return service->SetPowerMode(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      BoardService_method_names[12],
+      BoardService_method_names[13],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](BoardService::Service* service,
@@ -571,6 +599,13 @@ BoardService::Service::~Service() {
   (void) context;
   (void) request;
   (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status BoardService::Service::StreamTicks(::grpc::ServerContext* context, const ::viam::component::board::v1::StreamTicksRequest* request, ::grpc::ServerWriter< ::viam::component::board::v1::StreamTicksResponse>* writer) {
+  (void) context;
+  (void) request;
+  (void) writer;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 

@@ -380,6 +380,7 @@ class RobotConfig final :
     kServicesFieldNumber = 5,
     kModulesFieldNumber = 9,
     kPackagesFieldNumber = 11,
+    kOverwriteFragmentStatusFieldNumber = 12,
     kCloudFieldNumber = 1,
     kNetworkFieldNumber = 6,
     kAuthFieldNumber = 7,
@@ -494,6 +495,24 @@ class RobotConfig final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::PackageConfig >&
       packages() const;
 
+  // repeated .viam.app.v1.AppValidationStatus overwrite_fragment_status = 12 [json_name = "overwriteFragmentStatus"];
+  int overwrite_fragment_status_size() const;
+  private:
+  int _internal_overwrite_fragment_status_size() const;
+  public:
+  void clear_overwrite_fragment_status();
+  ::viam::app::v1::AppValidationStatus* mutable_overwrite_fragment_status(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::AppValidationStatus >*
+      mutable_overwrite_fragment_status();
+  private:
+  const ::viam::app::v1::AppValidationStatus& _internal_overwrite_fragment_status(int index) const;
+  ::viam::app::v1::AppValidationStatus* _internal_add_overwrite_fragment_status();
+  public:
+  const ::viam::app::v1::AppValidationStatus& overwrite_fragment_status(int index) const;
+  ::viam::app::v1::AppValidationStatus* add_overwrite_fragment_status();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::AppValidationStatus >&
+      overwrite_fragment_status() const;
+
   // .viam.app.v1.CloudConfig cloud = 1 [json_name = "cloud"];
   bool has_cloud() const;
   private:
@@ -589,6 +608,7 @@ class RobotConfig final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::ServiceConfig > services_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::ModuleConfig > modules_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::PackageConfig > packages_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::AppValidationStatus > overwrite_fragment_status_;
   ::viam::app::v1::CloudConfig* cloud_;
   ::viam::app::v1::NetworkConfig* network_;
   ::viam::app::v1::AuthConfig* auth_;
@@ -8334,6 +8354,46 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Package
 RobotConfig::packages() const {
   // @@protoc_insertion_point(field_list:viam.app.v1.RobotConfig.packages)
   return packages_;
+}
+
+// repeated .viam.app.v1.AppValidationStatus overwrite_fragment_status = 12 [json_name = "overwriteFragmentStatus"];
+inline int RobotConfig::_internal_overwrite_fragment_status_size() const {
+  return overwrite_fragment_status_.size();
+}
+inline int RobotConfig::overwrite_fragment_status_size() const {
+  return _internal_overwrite_fragment_status_size();
+}
+inline void RobotConfig::clear_overwrite_fragment_status() {
+  overwrite_fragment_status_.Clear();
+}
+inline ::viam::app::v1::AppValidationStatus* RobotConfig::mutable_overwrite_fragment_status(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RobotConfig.overwrite_fragment_status)
+  return overwrite_fragment_status_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::AppValidationStatus >*
+RobotConfig::mutable_overwrite_fragment_status() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.RobotConfig.overwrite_fragment_status)
+  return &overwrite_fragment_status_;
+}
+inline const ::viam::app::v1::AppValidationStatus& RobotConfig::_internal_overwrite_fragment_status(int index) const {
+  return overwrite_fragment_status_.Get(index);
+}
+inline const ::viam::app::v1::AppValidationStatus& RobotConfig::overwrite_fragment_status(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RobotConfig.overwrite_fragment_status)
+  return _internal_overwrite_fragment_status(index);
+}
+inline ::viam::app::v1::AppValidationStatus* RobotConfig::_internal_add_overwrite_fragment_status() {
+  return overwrite_fragment_status_.Add();
+}
+inline ::viam::app::v1::AppValidationStatus* RobotConfig::add_overwrite_fragment_status() {
+  ::viam::app::v1::AppValidationStatus* _add = _internal_add_overwrite_fragment_status();
+  // @@protoc_insertion_point(field_add:viam.app.v1.RobotConfig.overwrite_fragment_status)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::AppValidationStatus >&
+RobotConfig::overwrite_fragment_status() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.RobotConfig.overwrite_fragment_status)
+  return overwrite_fragment_status_;
 }
 
 // -------------------------------------------------------------------
