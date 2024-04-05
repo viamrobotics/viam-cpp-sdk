@@ -60,6 +60,18 @@ extern IsLegalAcceptedRequestDefaultTypeInternal _IsLegalAcceptedRequest_default
 class IsLegalAcceptedResponse;
 struct IsLegalAcceptedResponseDefaultTypeInternal;
 extern IsLegalAcceptedResponseDefaultTypeInternal _IsLegalAcceptedResponse_default_instance_;
+class RegisterAuthApplicationRequest;
+struct RegisterAuthApplicationRequestDefaultTypeInternal;
+extern RegisterAuthApplicationRequestDefaultTypeInternal _RegisterAuthApplicationRequest_default_instance_;
+class RegisterAuthApplicationResponse;
+struct RegisterAuthApplicationResponseDefaultTypeInternal;
+extern RegisterAuthApplicationResponseDefaultTypeInternal _RegisterAuthApplicationResponse_default_instance_;
+class UpdateAuthApplicationRequest;
+struct UpdateAuthApplicationRequestDefaultTypeInternal;
+extern UpdateAuthApplicationRequestDefaultTypeInternal _UpdateAuthApplicationRequest_default_instance_;
+class UpdateAuthApplicationResponse;
+struct UpdateAuthApplicationResponseDefaultTypeInternal;
+extern UpdateAuthApplicationResponseDefaultTypeInternal _UpdateAuthApplicationResponse_default_instance_;
 }  // namespace v1
 }  // namespace app
 }  // namespace viam
@@ -68,6 +80,10 @@ template<> ::viam::app::v1::AcceptLegalRequest* Arena::CreateMaybeMessage<::viam
 template<> ::viam::app::v1::AcceptLegalResponse* Arena::CreateMaybeMessage<::viam::app::v1::AcceptLegalResponse>(Arena*);
 template<> ::viam::app::v1::IsLegalAcceptedRequest* Arena::CreateMaybeMessage<::viam::app::v1::IsLegalAcceptedRequest>(Arena*);
 template<> ::viam::app::v1::IsLegalAcceptedResponse* Arena::CreateMaybeMessage<::viam::app::v1::IsLegalAcceptedResponse>(Arena*);
+template<> ::viam::app::v1::RegisterAuthApplicationRequest* Arena::CreateMaybeMessage<::viam::app::v1::RegisterAuthApplicationRequest>(Arena*);
+template<> ::viam::app::v1::RegisterAuthApplicationResponse* Arena::CreateMaybeMessage<::viam::app::v1::RegisterAuthApplicationResponse>(Arena*);
+template<> ::viam::app::v1::UpdateAuthApplicationRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateAuthApplicationRequest>(Arena*);
+template<> ::viam::app::v1::UpdateAuthApplicationResponse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateAuthApplicationResponse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace viam {
 namespace app {
@@ -564,6 +580,830 @@ class AcceptLegalResponse final :
   typedef void DestructorSkippable_;
   friend struct ::TableStruct_app_2fv1_2fend_5fuser_2eproto;
 };
+// -------------------------------------------------------------------
+
+class RegisterAuthApplicationRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.RegisterAuthApplicationRequest) */ {
+ public:
+  inline RegisterAuthApplicationRequest() : RegisterAuthApplicationRequest(nullptr) {}
+  ~RegisterAuthApplicationRequest() override;
+  explicit PROTOBUF_CONSTEXPR RegisterAuthApplicationRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  RegisterAuthApplicationRequest(const RegisterAuthApplicationRequest& from);
+  RegisterAuthApplicationRequest(RegisterAuthApplicationRequest&& from) noexcept
+    : RegisterAuthApplicationRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline RegisterAuthApplicationRequest& operator=(const RegisterAuthApplicationRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RegisterAuthApplicationRequest& operator=(RegisterAuthApplicationRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const RegisterAuthApplicationRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const RegisterAuthApplicationRequest* internal_default_instance() {
+    return reinterpret_cast<const RegisterAuthApplicationRequest*>(
+               &_RegisterAuthApplicationRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(RegisterAuthApplicationRequest& a, RegisterAuthApplicationRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(RegisterAuthApplicationRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RegisterAuthApplicationRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  RegisterAuthApplicationRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<RegisterAuthApplicationRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const RegisterAuthApplicationRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const RegisterAuthApplicationRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(RegisterAuthApplicationRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.RegisterAuthApplicationRequest";
+  }
+  protected:
+  explicit RegisterAuthApplicationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOriginUrisFieldNumber = 3,
+    kRedirectUrisFieldNumber = 4,
+    kApplicationNameFieldNumber = 1,
+    kOrgIdFieldNumber = 2,
+    kLogoutUriFieldNumber = 5,
+  };
+  // repeated string origin_uris = 3 [json_name = "originUris"];
+  int origin_uris_size() const;
+  private:
+  int _internal_origin_uris_size() const;
+  public:
+  void clear_origin_uris();
+  const std::string& origin_uris(int index) const;
+  std::string* mutable_origin_uris(int index);
+  void set_origin_uris(int index, const std::string& value);
+  void set_origin_uris(int index, std::string&& value);
+  void set_origin_uris(int index, const char* value);
+  void set_origin_uris(int index, const char* value, size_t size);
+  std::string* add_origin_uris();
+  void add_origin_uris(const std::string& value);
+  void add_origin_uris(std::string&& value);
+  void add_origin_uris(const char* value);
+  void add_origin_uris(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& origin_uris() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_origin_uris();
+  private:
+  const std::string& _internal_origin_uris(int index) const;
+  std::string* _internal_add_origin_uris();
+  public:
+
+  // repeated string redirect_uris = 4 [json_name = "redirectUris"];
+  int redirect_uris_size() const;
+  private:
+  int _internal_redirect_uris_size() const;
+  public:
+  void clear_redirect_uris();
+  const std::string& redirect_uris(int index) const;
+  std::string* mutable_redirect_uris(int index);
+  void set_redirect_uris(int index, const std::string& value);
+  void set_redirect_uris(int index, std::string&& value);
+  void set_redirect_uris(int index, const char* value);
+  void set_redirect_uris(int index, const char* value, size_t size);
+  std::string* add_redirect_uris();
+  void add_redirect_uris(const std::string& value);
+  void add_redirect_uris(std::string&& value);
+  void add_redirect_uris(const char* value);
+  void add_redirect_uris(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& redirect_uris() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_redirect_uris();
+  private:
+  const std::string& _internal_redirect_uris(int index) const;
+  std::string* _internal_add_redirect_uris();
+  public:
+
+  // string application_name = 1 [json_name = "applicationName"];
+  void clear_application_name();
+  const std::string& application_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_application_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_application_name();
+  PROTOBUF_NODISCARD std::string* release_application_name();
+  void set_allocated_application_name(std::string* application_name);
+  private:
+  const std::string& _internal_application_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_application_name(const std::string& value);
+  std::string* _internal_mutable_application_name();
+  public:
+
+  // string org_id = 2 [json_name = "orgId"];
+  void clear_org_id();
+  const std::string& org_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_org_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_org_id();
+  PROTOBUF_NODISCARD std::string* release_org_id();
+  void set_allocated_org_id(std::string* org_id);
+  private:
+  const std::string& _internal_org_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_org_id(const std::string& value);
+  std::string* _internal_mutable_org_id();
+  public:
+
+  // string logout_uri = 5 [json_name = "logoutUri"];
+  void clear_logout_uri();
+  const std::string& logout_uri() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_logout_uri(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_logout_uri();
+  PROTOBUF_NODISCARD std::string* release_logout_uri();
+  void set_allocated_logout_uri(std::string* logout_uri);
+  private:
+  const std::string& _internal_logout_uri() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_logout_uri(const std::string& value);
+  std::string* _internal_mutable_logout_uri();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.RegisterAuthApplicationRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> origin_uris_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> redirect_uris_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr application_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr org_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr logout_uri_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fend_5fuser_2eproto;
+};
+// -------------------------------------------------------------------
+
+class RegisterAuthApplicationResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.RegisterAuthApplicationResponse) */ {
+ public:
+  inline RegisterAuthApplicationResponse() : RegisterAuthApplicationResponse(nullptr) {}
+  ~RegisterAuthApplicationResponse() override;
+  explicit PROTOBUF_CONSTEXPR RegisterAuthApplicationResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  RegisterAuthApplicationResponse(const RegisterAuthApplicationResponse& from);
+  RegisterAuthApplicationResponse(RegisterAuthApplicationResponse&& from) noexcept
+    : RegisterAuthApplicationResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline RegisterAuthApplicationResponse& operator=(const RegisterAuthApplicationResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RegisterAuthApplicationResponse& operator=(RegisterAuthApplicationResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const RegisterAuthApplicationResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const RegisterAuthApplicationResponse* internal_default_instance() {
+    return reinterpret_cast<const RegisterAuthApplicationResponse*>(
+               &_RegisterAuthApplicationResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(RegisterAuthApplicationResponse& a, RegisterAuthApplicationResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(RegisterAuthApplicationResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RegisterAuthApplicationResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  RegisterAuthApplicationResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<RegisterAuthApplicationResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const RegisterAuthApplicationResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const RegisterAuthApplicationResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(RegisterAuthApplicationResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.RegisterAuthApplicationResponse";
+  }
+  protected:
+  explicit RegisterAuthApplicationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kApplicationIdFieldNumber = 1,
+    kApplicationNameFieldNumber = 2,
+    kSecretFieldNumber = 3,
+  };
+  // string application_id = 1 [json_name = "applicationId"];
+  void clear_application_id();
+  const std::string& application_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_application_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_application_id();
+  PROTOBUF_NODISCARD std::string* release_application_id();
+  void set_allocated_application_id(std::string* application_id);
+  private:
+  const std::string& _internal_application_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_application_id(const std::string& value);
+  std::string* _internal_mutable_application_id();
+  public:
+
+  // string application_name = 2 [json_name = "applicationName"];
+  void clear_application_name();
+  const std::string& application_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_application_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_application_name();
+  PROTOBUF_NODISCARD std::string* release_application_name();
+  void set_allocated_application_name(std::string* application_name);
+  private:
+  const std::string& _internal_application_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_application_name(const std::string& value);
+  std::string* _internal_mutable_application_name();
+  public:
+
+  // string secret = 3 [json_name = "secret"];
+  void clear_secret();
+  const std::string& secret() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_secret(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_secret();
+  PROTOBUF_NODISCARD std::string* release_secret();
+  void set_allocated_secret(std::string* secret);
+  private:
+  const std::string& _internal_secret() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_secret(const std::string& value);
+  std::string* _internal_mutable_secret();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.RegisterAuthApplicationResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr application_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr application_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr secret_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fend_5fuser_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UpdateAuthApplicationRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.UpdateAuthApplicationRequest) */ {
+ public:
+  inline UpdateAuthApplicationRequest() : UpdateAuthApplicationRequest(nullptr) {}
+  ~UpdateAuthApplicationRequest() override;
+  explicit PROTOBUF_CONSTEXPR UpdateAuthApplicationRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UpdateAuthApplicationRequest(const UpdateAuthApplicationRequest& from);
+  UpdateAuthApplicationRequest(UpdateAuthApplicationRequest&& from) noexcept
+    : UpdateAuthApplicationRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline UpdateAuthApplicationRequest& operator=(const UpdateAuthApplicationRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UpdateAuthApplicationRequest& operator=(UpdateAuthApplicationRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UpdateAuthApplicationRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UpdateAuthApplicationRequest* internal_default_instance() {
+    return reinterpret_cast<const UpdateAuthApplicationRequest*>(
+               &_UpdateAuthApplicationRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(UpdateAuthApplicationRequest& a, UpdateAuthApplicationRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UpdateAuthApplicationRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UpdateAuthApplicationRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UpdateAuthApplicationRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UpdateAuthApplicationRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const UpdateAuthApplicationRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const UpdateAuthApplicationRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UpdateAuthApplicationRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.UpdateAuthApplicationRequest";
+  }
+  protected:
+  explicit UpdateAuthApplicationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOriginUrisFieldNumber = 4,
+    kRedirectUrisFieldNumber = 5,
+    kOrgIdFieldNumber = 1,
+    kApplicationIdFieldNumber = 2,
+    kApplicationNameFieldNumber = 3,
+    kLogoutUriFieldNumber = 6,
+  };
+  // repeated string origin_uris = 4 [json_name = "originUris"];
+  int origin_uris_size() const;
+  private:
+  int _internal_origin_uris_size() const;
+  public:
+  void clear_origin_uris();
+  const std::string& origin_uris(int index) const;
+  std::string* mutable_origin_uris(int index);
+  void set_origin_uris(int index, const std::string& value);
+  void set_origin_uris(int index, std::string&& value);
+  void set_origin_uris(int index, const char* value);
+  void set_origin_uris(int index, const char* value, size_t size);
+  std::string* add_origin_uris();
+  void add_origin_uris(const std::string& value);
+  void add_origin_uris(std::string&& value);
+  void add_origin_uris(const char* value);
+  void add_origin_uris(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& origin_uris() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_origin_uris();
+  private:
+  const std::string& _internal_origin_uris(int index) const;
+  std::string* _internal_add_origin_uris();
+  public:
+
+  // repeated string redirect_uris = 5 [json_name = "redirectUris"];
+  int redirect_uris_size() const;
+  private:
+  int _internal_redirect_uris_size() const;
+  public:
+  void clear_redirect_uris();
+  const std::string& redirect_uris(int index) const;
+  std::string* mutable_redirect_uris(int index);
+  void set_redirect_uris(int index, const std::string& value);
+  void set_redirect_uris(int index, std::string&& value);
+  void set_redirect_uris(int index, const char* value);
+  void set_redirect_uris(int index, const char* value, size_t size);
+  std::string* add_redirect_uris();
+  void add_redirect_uris(const std::string& value);
+  void add_redirect_uris(std::string&& value);
+  void add_redirect_uris(const char* value);
+  void add_redirect_uris(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& redirect_uris() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_redirect_uris();
+  private:
+  const std::string& _internal_redirect_uris(int index) const;
+  std::string* _internal_add_redirect_uris();
+  public:
+
+  // string org_id = 1 [json_name = "orgId"];
+  void clear_org_id();
+  const std::string& org_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_org_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_org_id();
+  PROTOBUF_NODISCARD std::string* release_org_id();
+  void set_allocated_org_id(std::string* org_id);
+  private:
+  const std::string& _internal_org_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_org_id(const std::string& value);
+  std::string* _internal_mutable_org_id();
+  public:
+
+  // string application_id = 2 [json_name = "applicationId"];
+  void clear_application_id();
+  const std::string& application_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_application_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_application_id();
+  PROTOBUF_NODISCARD std::string* release_application_id();
+  void set_allocated_application_id(std::string* application_id);
+  private:
+  const std::string& _internal_application_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_application_id(const std::string& value);
+  std::string* _internal_mutable_application_id();
+  public:
+
+  // string application_name = 3 [json_name = "applicationName"];
+  void clear_application_name();
+  const std::string& application_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_application_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_application_name();
+  PROTOBUF_NODISCARD std::string* release_application_name();
+  void set_allocated_application_name(std::string* application_name);
+  private:
+  const std::string& _internal_application_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_application_name(const std::string& value);
+  std::string* _internal_mutable_application_name();
+  public:
+
+  // string logout_uri = 6 [json_name = "logoutUri"];
+  void clear_logout_uri();
+  const std::string& logout_uri() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_logout_uri(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_logout_uri();
+  PROTOBUF_NODISCARD std::string* release_logout_uri();
+  void set_allocated_logout_uri(std::string* logout_uri);
+  private:
+  const std::string& _internal_logout_uri() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_logout_uri(const std::string& value);
+  std::string* _internal_mutable_logout_uri();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.UpdateAuthApplicationRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> origin_uris_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> redirect_uris_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr org_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr application_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr application_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr logout_uri_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fend_5fuser_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UpdateAuthApplicationResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.UpdateAuthApplicationResponse) */ {
+ public:
+  inline UpdateAuthApplicationResponse() : UpdateAuthApplicationResponse(nullptr) {}
+  ~UpdateAuthApplicationResponse() override;
+  explicit PROTOBUF_CONSTEXPR UpdateAuthApplicationResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UpdateAuthApplicationResponse(const UpdateAuthApplicationResponse& from);
+  UpdateAuthApplicationResponse(UpdateAuthApplicationResponse&& from) noexcept
+    : UpdateAuthApplicationResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline UpdateAuthApplicationResponse& operator=(const UpdateAuthApplicationResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UpdateAuthApplicationResponse& operator=(UpdateAuthApplicationResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UpdateAuthApplicationResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UpdateAuthApplicationResponse* internal_default_instance() {
+    return reinterpret_cast<const UpdateAuthApplicationResponse*>(
+               &_UpdateAuthApplicationResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  friend void swap(UpdateAuthApplicationResponse& a, UpdateAuthApplicationResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UpdateAuthApplicationResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UpdateAuthApplicationResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UpdateAuthApplicationResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UpdateAuthApplicationResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const UpdateAuthApplicationResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const UpdateAuthApplicationResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UpdateAuthApplicationResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.UpdateAuthApplicationResponse";
+  }
+  protected:
+  explicit UpdateAuthApplicationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kApplicationIdFieldNumber = 1,
+    kApplicationNameFieldNumber = 2,
+  };
+  // string application_id = 1 [json_name = "applicationId"];
+  void clear_application_id();
+  const std::string& application_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_application_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_application_id();
+  PROTOBUF_NODISCARD std::string* release_application_id();
+  void set_allocated_application_id(std::string* application_id);
+  private:
+  const std::string& _internal_application_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_application_id(const std::string& value);
+  std::string* _internal_mutable_application_id();
+  public:
+
+  // string application_name = 2 [json_name = "applicationName"];
+  void clear_application_name();
+  const std::string& application_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_application_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_application_name();
+  PROTOBUF_NODISCARD std::string* release_application_name();
+  void set_allocated_application_name(std::string* application_name);
+  private:
+  const std::string& _internal_application_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_application_name(const std::string& value);
+  std::string* _internal_mutable_application_name();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.UpdateAuthApplicationResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr application_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr application_name_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fend_5fuser_2eproto;
+};
 // ===================================================================
 
 
@@ -607,9 +1447,933 @@ inline void IsLegalAcceptedResponse::set_accepted_legal(bool value) {
 
 // AcceptLegalResponse
 
+// -------------------------------------------------------------------
+
+// RegisterAuthApplicationRequest
+
+// string application_name = 1 [json_name = "applicationName"];
+inline void RegisterAuthApplicationRequest::clear_application_name() {
+  application_name_.ClearToEmpty();
+}
+inline const std::string& RegisterAuthApplicationRequest::application_name() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RegisterAuthApplicationRequest.application_name)
+  return _internal_application_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void RegisterAuthApplicationRequest::set_application_name(ArgT0&& arg0, ArgT... args) {
+ 
+ application_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.RegisterAuthApplicationRequest.application_name)
+}
+inline std::string* RegisterAuthApplicationRequest::mutable_application_name() {
+  std::string* _s = _internal_mutable_application_name();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RegisterAuthApplicationRequest.application_name)
+  return _s;
+}
+inline const std::string& RegisterAuthApplicationRequest::_internal_application_name() const {
+  return application_name_.Get();
+}
+inline void RegisterAuthApplicationRequest::_internal_set_application_name(const std::string& value) {
+  
+  application_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* RegisterAuthApplicationRequest::_internal_mutable_application_name() {
+  
+  return application_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* RegisterAuthApplicationRequest::release_application_name() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.RegisterAuthApplicationRequest.application_name)
+  return application_name_.Release();
+}
+inline void RegisterAuthApplicationRequest::set_allocated_application_name(std::string* application_name) {
+  if (application_name != nullptr) {
+    
+  } else {
+    
+  }
+  application_name_.SetAllocated(application_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (application_name_.IsDefault()) {
+    application_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RegisterAuthApplicationRequest.application_name)
+}
+
+// string org_id = 2 [json_name = "orgId"];
+inline void RegisterAuthApplicationRequest::clear_org_id() {
+  org_id_.ClearToEmpty();
+}
+inline const std::string& RegisterAuthApplicationRequest::org_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RegisterAuthApplicationRequest.org_id)
+  return _internal_org_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void RegisterAuthApplicationRequest::set_org_id(ArgT0&& arg0, ArgT... args) {
+ 
+ org_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.RegisterAuthApplicationRequest.org_id)
+}
+inline std::string* RegisterAuthApplicationRequest::mutable_org_id() {
+  std::string* _s = _internal_mutable_org_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RegisterAuthApplicationRequest.org_id)
+  return _s;
+}
+inline const std::string& RegisterAuthApplicationRequest::_internal_org_id() const {
+  return org_id_.Get();
+}
+inline void RegisterAuthApplicationRequest::_internal_set_org_id(const std::string& value) {
+  
+  org_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* RegisterAuthApplicationRequest::_internal_mutable_org_id() {
+  
+  return org_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* RegisterAuthApplicationRequest::release_org_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.RegisterAuthApplicationRequest.org_id)
+  return org_id_.Release();
+}
+inline void RegisterAuthApplicationRequest::set_allocated_org_id(std::string* org_id) {
+  if (org_id != nullptr) {
+    
+  } else {
+    
+  }
+  org_id_.SetAllocated(org_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (org_id_.IsDefault()) {
+    org_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RegisterAuthApplicationRequest.org_id)
+}
+
+// repeated string origin_uris = 3 [json_name = "originUris"];
+inline int RegisterAuthApplicationRequest::_internal_origin_uris_size() const {
+  return origin_uris_.size();
+}
+inline int RegisterAuthApplicationRequest::origin_uris_size() const {
+  return _internal_origin_uris_size();
+}
+inline void RegisterAuthApplicationRequest::clear_origin_uris() {
+  origin_uris_.Clear();
+}
+inline std::string* RegisterAuthApplicationRequest::add_origin_uris() {
+  std::string* _s = _internal_add_origin_uris();
+  // @@protoc_insertion_point(field_add_mutable:viam.app.v1.RegisterAuthApplicationRequest.origin_uris)
+  return _s;
+}
+inline const std::string& RegisterAuthApplicationRequest::_internal_origin_uris(int index) const {
+  return origin_uris_.Get(index);
+}
+inline const std::string& RegisterAuthApplicationRequest::origin_uris(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RegisterAuthApplicationRequest.origin_uris)
+  return _internal_origin_uris(index);
+}
+inline std::string* RegisterAuthApplicationRequest::mutable_origin_uris(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RegisterAuthApplicationRequest.origin_uris)
+  return origin_uris_.Mutable(index);
+}
+inline void RegisterAuthApplicationRequest::set_origin_uris(int index, const std::string& value) {
+  origin_uris_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.RegisterAuthApplicationRequest.origin_uris)
+}
+inline void RegisterAuthApplicationRequest::set_origin_uris(int index, std::string&& value) {
+  origin_uris_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.app.v1.RegisterAuthApplicationRequest.origin_uris)
+}
+inline void RegisterAuthApplicationRequest::set_origin_uris(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  origin_uris_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.app.v1.RegisterAuthApplicationRequest.origin_uris)
+}
+inline void RegisterAuthApplicationRequest::set_origin_uris(int index, const char* value, size_t size) {
+  origin_uris_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.app.v1.RegisterAuthApplicationRequest.origin_uris)
+}
+inline std::string* RegisterAuthApplicationRequest::_internal_add_origin_uris() {
+  return origin_uris_.Add();
+}
+inline void RegisterAuthApplicationRequest::add_origin_uris(const std::string& value) {
+  origin_uris_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.app.v1.RegisterAuthApplicationRequest.origin_uris)
+}
+inline void RegisterAuthApplicationRequest::add_origin_uris(std::string&& value) {
+  origin_uris_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.app.v1.RegisterAuthApplicationRequest.origin_uris)
+}
+inline void RegisterAuthApplicationRequest::add_origin_uris(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  origin_uris_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.app.v1.RegisterAuthApplicationRequest.origin_uris)
+}
+inline void RegisterAuthApplicationRequest::add_origin_uris(const char* value, size_t size) {
+  origin_uris_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.app.v1.RegisterAuthApplicationRequest.origin_uris)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+RegisterAuthApplicationRequest::origin_uris() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.RegisterAuthApplicationRequest.origin_uris)
+  return origin_uris_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+RegisterAuthApplicationRequest::mutable_origin_uris() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.RegisterAuthApplicationRequest.origin_uris)
+  return &origin_uris_;
+}
+
+// repeated string redirect_uris = 4 [json_name = "redirectUris"];
+inline int RegisterAuthApplicationRequest::_internal_redirect_uris_size() const {
+  return redirect_uris_.size();
+}
+inline int RegisterAuthApplicationRequest::redirect_uris_size() const {
+  return _internal_redirect_uris_size();
+}
+inline void RegisterAuthApplicationRequest::clear_redirect_uris() {
+  redirect_uris_.Clear();
+}
+inline std::string* RegisterAuthApplicationRequest::add_redirect_uris() {
+  std::string* _s = _internal_add_redirect_uris();
+  // @@protoc_insertion_point(field_add_mutable:viam.app.v1.RegisterAuthApplicationRequest.redirect_uris)
+  return _s;
+}
+inline const std::string& RegisterAuthApplicationRequest::_internal_redirect_uris(int index) const {
+  return redirect_uris_.Get(index);
+}
+inline const std::string& RegisterAuthApplicationRequest::redirect_uris(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RegisterAuthApplicationRequest.redirect_uris)
+  return _internal_redirect_uris(index);
+}
+inline std::string* RegisterAuthApplicationRequest::mutable_redirect_uris(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RegisterAuthApplicationRequest.redirect_uris)
+  return redirect_uris_.Mutable(index);
+}
+inline void RegisterAuthApplicationRequest::set_redirect_uris(int index, const std::string& value) {
+  redirect_uris_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.RegisterAuthApplicationRequest.redirect_uris)
+}
+inline void RegisterAuthApplicationRequest::set_redirect_uris(int index, std::string&& value) {
+  redirect_uris_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.app.v1.RegisterAuthApplicationRequest.redirect_uris)
+}
+inline void RegisterAuthApplicationRequest::set_redirect_uris(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  redirect_uris_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.app.v1.RegisterAuthApplicationRequest.redirect_uris)
+}
+inline void RegisterAuthApplicationRequest::set_redirect_uris(int index, const char* value, size_t size) {
+  redirect_uris_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.app.v1.RegisterAuthApplicationRequest.redirect_uris)
+}
+inline std::string* RegisterAuthApplicationRequest::_internal_add_redirect_uris() {
+  return redirect_uris_.Add();
+}
+inline void RegisterAuthApplicationRequest::add_redirect_uris(const std::string& value) {
+  redirect_uris_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.app.v1.RegisterAuthApplicationRequest.redirect_uris)
+}
+inline void RegisterAuthApplicationRequest::add_redirect_uris(std::string&& value) {
+  redirect_uris_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.app.v1.RegisterAuthApplicationRequest.redirect_uris)
+}
+inline void RegisterAuthApplicationRequest::add_redirect_uris(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  redirect_uris_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.app.v1.RegisterAuthApplicationRequest.redirect_uris)
+}
+inline void RegisterAuthApplicationRequest::add_redirect_uris(const char* value, size_t size) {
+  redirect_uris_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.app.v1.RegisterAuthApplicationRequest.redirect_uris)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+RegisterAuthApplicationRequest::redirect_uris() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.RegisterAuthApplicationRequest.redirect_uris)
+  return redirect_uris_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+RegisterAuthApplicationRequest::mutable_redirect_uris() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.RegisterAuthApplicationRequest.redirect_uris)
+  return &redirect_uris_;
+}
+
+// string logout_uri = 5 [json_name = "logoutUri"];
+inline void RegisterAuthApplicationRequest::clear_logout_uri() {
+  logout_uri_.ClearToEmpty();
+}
+inline const std::string& RegisterAuthApplicationRequest::logout_uri() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RegisterAuthApplicationRequest.logout_uri)
+  return _internal_logout_uri();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void RegisterAuthApplicationRequest::set_logout_uri(ArgT0&& arg0, ArgT... args) {
+ 
+ logout_uri_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.RegisterAuthApplicationRequest.logout_uri)
+}
+inline std::string* RegisterAuthApplicationRequest::mutable_logout_uri() {
+  std::string* _s = _internal_mutable_logout_uri();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RegisterAuthApplicationRequest.logout_uri)
+  return _s;
+}
+inline const std::string& RegisterAuthApplicationRequest::_internal_logout_uri() const {
+  return logout_uri_.Get();
+}
+inline void RegisterAuthApplicationRequest::_internal_set_logout_uri(const std::string& value) {
+  
+  logout_uri_.Set(value, GetArenaForAllocation());
+}
+inline std::string* RegisterAuthApplicationRequest::_internal_mutable_logout_uri() {
+  
+  return logout_uri_.Mutable(GetArenaForAllocation());
+}
+inline std::string* RegisterAuthApplicationRequest::release_logout_uri() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.RegisterAuthApplicationRequest.logout_uri)
+  return logout_uri_.Release();
+}
+inline void RegisterAuthApplicationRequest::set_allocated_logout_uri(std::string* logout_uri) {
+  if (logout_uri != nullptr) {
+    
+  } else {
+    
+  }
+  logout_uri_.SetAllocated(logout_uri, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (logout_uri_.IsDefault()) {
+    logout_uri_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RegisterAuthApplicationRequest.logout_uri)
+}
+
+// -------------------------------------------------------------------
+
+// RegisterAuthApplicationResponse
+
+// string application_id = 1 [json_name = "applicationId"];
+inline void RegisterAuthApplicationResponse::clear_application_id() {
+  application_id_.ClearToEmpty();
+}
+inline const std::string& RegisterAuthApplicationResponse::application_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RegisterAuthApplicationResponse.application_id)
+  return _internal_application_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void RegisterAuthApplicationResponse::set_application_id(ArgT0&& arg0, ArgT... args) {
+ 
+ application_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.RegisterAuthApplicationResponse.application_id)
+}
+inline std::string* RegisterAuthApplicationResponse::mutable_application_id() {
+  std::string* _s = _internal_mutable_application_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RegisterAuthApplicationResponse.application_id)
+  return _s;
+}
+inline const std::string& RegisterAuthApplicationResponse::_internal_application_id() const {
+  return application_id_.Get();
+}
+inline void RegisterAuthApplicationResponse::_internal_set_application_id(const std::string& value) {
+  
+  application_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* RegisterAuthApplicationResponse::_internal_mutable_application_id() {
+  
+  return application_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* RegisterAuthApplicationResponse::release_application_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.RegisterAuthApplicationResponse.application_id)
+  return application_id_.Release();
+}
+inline void RegisterAuthApplicationResponse::set_allocated_application_id(std::string* application_id) {
+  if (application_id != nullptr) {
+    
+  } else {
+    
+  }
+  application_id_.SetAllocated(application_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (application_id_.IsDefault()) {
+    application_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RegisterAuthApplicationResponse.application_id)
+}
+
+// string application_name = 2 [json_name = "applicationName"];
+inline void RegisterAuthApplicationResponse::clear_application_name() {
+  application_name_.ClearToEmpty();
+}
+inline const std::string& RegisterAuthApplicationResponse::application_name() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RegisterAuthApplicationResponse.application_name)
+  return _internal_application_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void RegisterAuthApplicationResponse::set_application_name(ArgT0&& arg0, ArgT... args) {
+ 
+ application_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.RegisterAuthApplicationResponse.application_name)
+}
+inline std::string* RegisterAuthApplicationResponse::mutable_application_name() {
+  std::string* _s = _internal_mutable_application_name();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RegisterAuthApplicationResponse.application_name)
+  return _s;
+}
+inline const std::string& RegisterAuthApplicationResponse::_internal_application_name() const {
+  return application_name_.Get();
+}
+inline void RegisterAuthApplicationResponse::_internal_set_application_name(const std::string& value) {
+  
+  application_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* RegisterAuthApplicationResponse::_internal_mutable_application_name() {
+  
+  return application_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* RegisterAuthApplicationResponse::release_application_name() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.RegisterAuthApplicationResponse.application_name)
+  return application_name_.Release();
+}
+inline void RegisterAuthApplicationResponse::set_allocated_application_name(std::string* application_name) {
+  if (application_name != nullptr) {
+    
+  } else {
+    
+  }
+  application_name_.SetAllocated(application_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (application_name_.IsDefault()) {
+    application_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RegisterAuthApplicationResponse.application_name)
+}
+
+// string secret = 3 [json_name = "secret"];
+inline void RegisterAuthApplicationResponse::clear_secret() {
+  secret_.ClearToEmpty();
+}
+inline const std::string& RegisterAuthApplicationResponse::secret() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RegisterAuthApplicationResponse.secret)
+  return _internal_secret();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void RegisterAuthApplicationResponse::set_secret(ArgT0&& arg0, ArgT... args) {
+ 
+ secret_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.RegisterAuthApplicationResponse.secret)
+}
+inline std::string* RegisterAuthApplicationResponse::mutable_secret() {
+  std::string* _s = _internal_mutable_secret();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RegisterAuthApplicationResponse.secret)
+  return _s;
+}
+inline const std::string& RegisterAuthApplicationResponse::_internal_secret() const {
+  return secret_.Get();
+}
+inline void RegisterAuthApplicationResponse::_internal_set_secret(const std::string& value) {
+  
+  secret_.Set(value, GetArenaForAllocation());
+}
+inline std::string* RegisterAuthApplicationResponse::_internal_mutable_secret() {
+  
+  return secret_.Mutable(GetArenaForAllocation());
+}
+inline std::string* RegisterAuthApplicationResponse::release_secret() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.RegisterAuthApplicationResponse.secret)
+  return secret_.Release();
+}
+inline void RegisterAuthApplicationResponse::set_allocated_secret(std::string* secret) {
+  if (secret != nullptr) {
+    
+  } else {
+    
+  }
+  secret_.SetAllocated(secret, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (secret_.IsDefault()) {
+    secret_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RegisterAuthApplicationResponse.secret)
+}
+
+// -------------------------------------------------------------------
+
+// UpdateAuthApplicationRequest
+
+// string org_id = 1 [json_name = "orgId"];
+inline void UpdateAuthApplicationRequest::clear_org_id() {
+  org_id_.ClearToEmpty();
+}
+inline const std::string& UpdateAuthApplicationRequest::org_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateAuthApplicationRequest.org_id)
+  return _internal_org_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateAuthApplicationRequest::set_org_id(ArgT0&& arg0, ArgT... args) {
+ 
+ org_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateAuthApplicationRequest.org_id)
+}
+inline std::string* UpdateAuthApplicationRequest::mutable_org_id() {
+  std::string* _s = _internal_mutable_org_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateAuthApplicationRequest.org_id)
+  return _s;
+}
+inline const std::string& UpdateAuthApplicationRequest::_internal_org_id() const {
+  return org_id_.Get();
+}
+inline void UpdateAuthApplicationRequest::_internal_set_org_id(const std::string& value) {
+  
+  org_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UpdateAuthApplicationRequest::_internal_mutable_org_id() {
+  
+  return org_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UpdateAuthApplicationRequest::release_org_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateAuthApplicationRequest.org_id)
+  return org_id_.Release();
+}
+inline void UpdateAuthApplicationRequest::set_allocated_org_id(std::string* org_id) {
+  if (org_id != nullptr) {
+    
+  } else {
+    
+  }
+  org_id_.SetAllocated(org_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (org_id_.IsDefault()) {
+    org_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateAuthApplicationRequest.org_id)
+}
+
+// string application_id = 2 [json_name = "applicationId"];
+inline void UpdateAuthApplicationRequest::clear_application_id() {
+  application_id_.ClearToEmpty();
+}
+inline const std::string& UpdateAuthApplicationRequest::application_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateAuthApplicationRequest.application_id)
+  return _internal_application_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateAuthApplicationRequest::set_application_id(ArgT0&& arg0, ArgT... args) {
+ 
+ application_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateAuthApplicationRequest.application_id)
+}
+inline std::string* UpdateAuthApplicationRequest::mutable_application_id() {
+  std::string* _s = _internal_mutable_application_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateAuthApplicationRequest.application_id)
+  return _s;
+}
+inline const std::string& UpdateAuthApplicationRequest::_internal_application_id() const {
+  return application_id_.Get();
+}
+inline void UpdateAuthApplicationRequest::_internal_set_application_id(const std::string& value) {
+  
+  application_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UpdateAuthApplicationRequest::_internal_mutable_application_id() {
+  
+  return application_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UpdateAuthApplicationRequest::release_application_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateAuthApplicationRequest.application_id)
+  return application_id_.Release();
+}
+inline void UpdateAuthApplicationRequest::set_allocated_application_id(std::string* application_id) {
+  if (application_id != nullptr) {
+    
+  } else {
+    
+  }
+  application_id_.SetAllocated(application_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (application_id_.IsDefault()) {
+    application_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateAuthApplicationRequest.application_id)
+}
+
+// string application_name = 3 [json_name = "applicationName"];
+inline void UpdateAuthApplicationRequest::clear_application_name() {
+  application_name_.ClearToEmpty();
+}
+inline const std::string& UpdateAuthApplicationRequest::application_name() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateAuthApplicationRequest.application_name)
+  return _internal_application_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateAuthApplicationRequest::set_application_name(ArgT0&& arg0, ArgT... args) {
+ 
+ application_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateAuthApplicationRequest.application_name)
+}
+inline std::string* UpdateAuthApplicationRequest::mutable_application_name() {
+  std::string* _s = _internal_mutable_application_name();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateAuthApplicationRequest.application_name)
+  return _s;
+}
+inline const std::string& UpdateAuthApplicationRequest::_internal_application_name() const {
+  return application_name_.Get();
+}
+inline void UpdateAuthApplicationRequest::_internal_set_application_name(const std::string& value) {
+  
+  application_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UpdateAuthApplicationRequest::_internal_mutable_application_name() {
+  
+  return application_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UpdateAuthApplicationRequest::release_application_name() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateAuthApplicationRequest.application_name)
+  return application_name_.Release();
+}
+inline void UpdateAuthApplicationRequest::set_allocated_application_name(std::string* application_name) {
+  if (application_name != nullptr) {
+    
+  } else {
+    
+  }
+  application_name_.SetAllocated(application_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (application_name_.IsDefault()) {
+    application_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateAuthApplicationRequest.application_name)
+}
+
+// repeated string origin_uris = 4 [json_name = "originUris"];
+inline int UpdateAuthApplicationRequest::_internal_origin_uris_size() const {
+  return origin_uris_.size();
+}
+inline int UpdateAuthApplicationRequest::origin_uris_size() const {
+  return _internal_origin_uris_size();
+}
+inline void UpdateAuthApplicationRequest::clear_origin_uris() {
+  origin_uris_.Clear();
+}
+inline std::string* UpdateAuthApplicationRequest::add_origin_uris() {
+  std::string* _s = _internal_add_origin_uris();
+  // @@protoc_insertion_point(field_add_mutable:viam.app.v1.UpdateAuthApplicationRequest.origin_uris)
+  return _s;
+}
+inline const std::string& UpdateAuthApplicationRequest::_internal_origin_uris(int index) const {
+  return origin_uris_.Get(index);
+}
+inline const std::string& UpdateAuthApplicationRequest::origin_uris(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateAuthApplicationRequest.origin_uris)
+  return _internal_origin_uris(index);
+}
+inline std::string* UpdateAuthApplicationRequest::mutable_origin_uris(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateAuthApplicationRequest.origin_uris)
+  return origin_uris_.Mutable(index);
+}
+inline void UpdateAuthApplicationRequest::set_origin_uris(int index, const std::string& value) {
+  origin_uris_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateAuthApplicationRequest.origin_uris)
+}
+inline void UpdateAuthApplicationRequest::set_origin_uris(int index, std::string&& value) {
+  origin_uris_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateAuthApplicationRequest.origin_uris)
+}
+inline void UpdateAuthApplicationRequest::set_origin_uris(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  origin_uris_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.app.v1.UpdateAuthApplicationRequest.origin_uris)
+}
+inline void UpdateAuthApplicationRequest::set_origin_uris(int index, const char* value, size_t size) {
+  origin_uris_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.app.v1.UpdateAuthApplicationRequest.origin_uris)
+}
+inline std::string* UpdateAuthApplicationRequest::_internal_add_origin_uris() {
+  return origin_uris_.Add();
+}
+inline void UpdateAuthApplicationRequest::add_origin_uris(const std::string& value) {
+  origin_uris_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.app.v1.UpdateAuthApplicationRequest.origin_uris)
+}
+inline void UpdateAuthApplicationRequest::add_origin_uris(std::string&& value) {
+  origin_uris_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.app.v1.UpdateAuthApplicationRequest.origin_uris)
+}
+inline void UpdateAuthApplicationRequest::add_origin_uris(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  origin_uris_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.app.v1.UpdateAuthApplicationRequest.origin_uris)
+}
+inline void UpdateAuthApplicationRequest::add_origin_uris(const char* value, size_t size) {
+  origin_uris_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.app.v1.UpdateAuthApplicationRequest.origin_uris)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+UpdateAuthApplicationRequest::origin_uris() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.UpdateAuthApplicationRequest.origin_uris)
+  return origin_uris_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+UpdateAuthApplicationRequest::mutable_origin_uris() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.UpdateAuthApplicationRequest.origin_uris)
+  return &origin_uris_;
+}
+
+// repeated string redirect_uris = 5 [json_name = "redirectUris"];
+inline int UpdateAuthApplicationRequest::_internal_redirect_uris_size() const {
+  return redirect_uris_.size();
+}
+inline int UpdateAuthApplicationRequest::redirect_uris_size() const {
+  return _internal_redirect_uris_size();
+}
+inline void UpdateAuthApplicationRequest::clear_redirect_uris() {
+  redirect_uris_.Clear();
+}
+inline std::string* UpdateAuthApplicationRequest::add_redirect_uris() {
+  std::string* _s = _internal_add_redirect_uris();
+  // @@protoc_insertion_point(field_add_mutable:viam.app.v1.UpdateAuthApplicationRequest.redirect_uris)
+  return _s;
+}
+inline const std::string& UpdateAuthApplicationRequest::_internal_redirect_uris(int index) const {
+  return redirect_uris_.Get(index);
+}
+inline const std::string& UpdateAuthApplicationRequest::redirect_uris(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateAuthApplicationRequest.redirect_uris)
+  return _internal_redirect_uris(index);
+}
+inline std::string* UpdateAuthApplicationRequest::mutable_redirect_uris(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateAuthApplicationRequest.redirect_uris)
+  return redirect_uris_.Mutable(index);
+}
+inline void UpdateAuthApplicationRequest::set_redirect_uris(int index, const std::string& value) {
+  redirect_uris_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateAuthApplicationRequest.redirect_uris)
+}
+inline void UpdateAuthApplicationRequest::set_redirect_uris(int index, std::string&& value) {
+  redirect_uris_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateAuthApplicationRequest.redirect_uris)
+}
+inline void UpdateAuthApplicationRequest::set_redirect_uris(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  redirect_uris_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.app.v1.UpdateAuthApplicationRequest.redirect_uris)
+}
+inline void UpdateAuthApplicationRequest::set_redirect_uris(int index, const char* value, size_t size) {
+  redirect_uris_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.app.v1.UpdateAuthApplicationRequest.redirect_uris)
+}
+inline std::string* UpdateAuthApplicationRequest::_internal_add_redirect_uris() {
+  return redirect_uris_.Add();
+}
+inline void UpdateAuthApplicationRequest::add_redirect_uris(const std::string& value) {
+  redirect_uris_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.app.v1.UpdateAuthApplicationRequest.redirect_uris)
+}
+inline void UpdateAuthApplicationRequest::add_redirect_uris(std::string&& value) {
+  redirect_uris_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.app.v1.UpdateAuthApplicationRequest.redirect_uris)
+}
+inline void UpdateAuthApplicationRequest::add_redirect_uris(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  redirect_uris_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.app.v1.UpdateAuthApplicationRequest.redirect_uris)
+}
+inline void UpdateAuthApplicationRequest::add_redirect_uris(const char* value, size_t size) {
+  redirect_uris_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.app.v1.UpdateAuthApplicationRequest.redirect_uris)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+UpdateAuthApplicationRequest::redirect_uris() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.UpdateAuthApplicationRequest.redirect_uris)
+  return redirect_uris_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+UpdateAuthApplicationRequest::mutable_redirect_uris() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.UpdateAuthApplicationRequest.redirect_uris)
+  return &redirect_uris_;
+}
+
+// string logout_uri = 6 [json_name = "logoutUri"];
+inline void UpdateAuthApplicationRequest::clear_logout_uri() {
+  logout_uri_.ClearToEmpty();
+}
+inline const std::string& UpdateAuthApplicationRequest::logout_uri() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateAuthApplicationRequest.logout_uri)
+  return _internal_logout_uri();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateAuthApplicationRequest::set_logout_uri(ArgT0&& arg0, ArgT... args) {
+ 
+ logout_uri_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateAuthApplicationRequest.logout_uri)
+}
+inline std::string* UpdateAuthApplicationRequest::mutable_logout_uri() {
+  std::string* _s = _internal_mutable_logout_uri();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateAuthApplicationRequest.logout_uri)
+  return _s;
+}
+inline const std::string& UpdateAuthApplicationRequest::_internal_logout_uri() const {
+  return logout_uri_.Get();
+}
+inline void UpdateAuthApplicationRequest::_internal_set_logout_uri(const std::string& value) {
+  
+  logout_uri_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UpdateAuthApplicationRequest::_internal_mutable_logout_uri() {
+  
+  return logout_uri_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UpdateAuthApplicationRequest::release_logout_uri() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateAuthApplicationRequest.logout_uri)
+  return logout_uri_.Release();
+}
+inline void UpdateAuthApplicationRequest::set_allocated_logout_uri(std::string* logout_uri) {
+  if (logout_uri != nullptr) {
+    
+  } else {
+    
+  }
+  logout_uri_.SetAllocated(logout_uri, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (logout_uri_.IsDefault()) {
+    logout_uri_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateAuthApplicationRequest.logout_uri)
+}
+
+// -------------------------------------------------------------------
+
+// UpdateAuthApplicationResponse
+
+// string application_id = 1 [json_name = "applicationId"];
+inline void UpdateAuthApplicationResponse::clear_application_id() {
+  application_id_.ClearToEmpty();
+}
+inline const std::string& UpdateAuthApplicationResponse::application_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateAuthApplicationResponse.application_id)
+  return _internal_application_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateAuthApplicationResponse::set_application_id(ArgT0&& arg0, ArgT... args) {
+ 
+ application_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateAuthApplicationResponse.application_id)
+}
+inline std::string* UpdateAuthApplicationResponse::mutable_application_id() {
+  std::string* _s = _internal_mutable_application_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateAuthApplicationResponse.application_id)
+  return _s;
+}
+inline const std::string& UpdateAuthApplicationResponse::_internal_application_id() const {
+  return application_id_.Get();
+}
+inline void UpdateAuthApplicationResponse::_internal_set_application_id(const std::string& value) {
+  
+  application_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UpdateAuthApplicationResponse::_internal_mutable_application_id() {
+  
+  return application_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UpdateAuthApplicationResponse::release_application_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateAuthApplicationResponse.application_id)
+  return application_id_.Release();
+}
+inline void UpdateAuthApplicationResponse::set_allocated_application_id(std::string* application_id) {
+  if (application_id != nullptr) {
+    
+  } else {
+    
+  }
+  application_id_.SetAllocated(application_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (application_id_.IsDefault()) {
+    application_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateAuthApplicationResponse.application_id)
+}
+
+// string application_name = 2 [json_name = "applicationName"];
+inline void UpdateAuthApplicationResponse::clear_application_name() {
+  application_name_.ClearToEmpty();
+}
+inline const std::string& UpdateAuthApplicationResponse::application_name() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateAuthApplicationResponse.application_name)
+  return _internal_application_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateAuthApplicationResponse::set_application_name(ArgT0&& arg0, ArgT... args) {
+ 
+ application_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateAuthApplicationResponse.application_name)
+}
+inline std::string* UpdateAuthApplicationResponse::mutable_application_name() {
+  std::string* _s = _internal_mutable_application_name();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateAuthApplicationResponse.application_name)
+  return _s;
+}
+inline const std::string& UpdateAuthApplicationResponse::_internal_application_name() const {
+  return application_name_.Get();
+}
+inline void UpdateAuthApplicationResponse::_internal_set_application_name(const std::string& value) {
+  
+  application_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UpdateAuthApplicationResponse::_internal_mutable_application_name() {
+  
+  return application_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UpdateAuthApplicationResponse::release_application_name() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateAuthApplicationResponse.application_name)
+  return application_name_.Release();
+}
+inline void UpdateAuthApplicationResponse::set_allocated_application_name(std::string* application_name) {
+  if (application_name != nullptr) {
+    
+  } else {
+    
+  }
+  application_name_.SetAllocated(application_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (application_name_.IsDefault()) {
+    application_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateAuthApplicationResponse.application_name)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

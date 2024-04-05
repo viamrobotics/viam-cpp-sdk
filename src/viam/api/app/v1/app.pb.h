@@ -4524,6 +4524,7 @@ class CreateOrganizationInviteRequest final :
     kAuthorizationsFieldNumber = 3,
     kOrganizationIdFieldNumber = 1,
     kEmailFieldNumber = 2,
+    kSendEmailInviteFieldNumber = 4,
   };
   // repeated .viam.app.v1.Authorization authorizations = 3 [json_name = "authorizations"];
   int authorizations_size() const;
@@ -4571,6 +4572,19 @@ class CreateOrganizationInviteRequest final :
   std::string* _internal_mutable_email();
   public:
 
+  // optional bool send_email_invite = 4 [json_name = "sendEmailInvite"];
+  bool has_send_email_invite() const;
+  private:
+  bool _internal_has_send_email_invite() const;
+  public:
+  void clear_send_email_invite();
+  bool send_email_invite() const;
+  void set_send_email_invite(bool value);
+  private:
+  bool _internal_send_email_invite() const;
+  void _internal_set_send_email_invite(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.CreateOrganizationInviteRequest)
  private:
   class _Internal;
@@ -4578,10 +4592,12 @@ class CreateOrganizationInviteRequest final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Authorization > authorizations_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr email_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  bool send_email_invite_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -31726,6 +31742,34 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Authori
 CreateOrganizationInviteRequest::authorizations() const {
   // @@protoc_insertion_point(field_list:viam.app.v1.CreateOrganizationInviteRequest.authorizations)
   return authorizations_;
+}
+
+// optional bool send_email_invite = 4 [json_name = "sendEmailInvite"];
+inline bool CreateOrganizationInviteRequest::_internal_has_send_email_invite() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool CreateOrganizationInviteRequest::has_send_email_invite() const {
+  return _internal_has_send_email_invite();
+}
+inline void CreateOrganizationInviteRequest::clear_send_email_invite() {
+  send_email_invite_ = false;
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline bool CreateOrganizationInviteRequest::_internal_send_email_invite() const {
+  return send_email_invite_;
+}
+inline bool CreateOrganizationInviteRequest::send_email_invite() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateOrganizationInviteRequest.send_email_invite)
+  return _internal_send_email_invite();
+}
+inline void CreateOrganizationInviteRequest::_internal_set_send_email_invite(bool value) {
+  _has_bits_[0] |= 0x00000001u;
+  send_email_invite_ = value;
+}
+inline void CreateOrganizationInviteRequest::set_send_email_invite(bool value) {
+  _internal_set_send_email_invite(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateOrganizationInviteRequest.send_email_invite)
 }
 
 // -------------------------------------------------------------------

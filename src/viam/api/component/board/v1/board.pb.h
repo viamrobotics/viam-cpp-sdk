@@ -114,6 +114,12 @@ extern StatusRequestDefaultTypeInternal _StatusRequest_default_instance_;
 class StatusResponse;
 struct StatusResponseDefaultTypeInternal;
 extern StatusResponseDefaultTypeInternal _StatusResponse_default_instance_;
+class StreamTicksRequest;
+struct StreamTicksRequestDefaultTypeInternal;
+extern StreamTicksRequestDefaultTypeInternal _StreamTicksRequest_default_instance_;
+class StreamTicksResponse;
+struct StreamTicksResponseDefaultTypeInternal;
+extern StreamTicksResponseDefaultTypeInternal _StreamTicksResponse_default_instance_;
 class WriteAnalogRequest;
 struct WriteAnalogRequestDefaultTypeInternal;
 extern WriteAnalogRequestDefaultTypeInternal _WriteAnalogRequest_default_instance_;
@@ -145,6 +151,8 @@ template<> ::viam::component::board::v1::SetPowerModeRequest* Arena::CreateMaybe
 template<> ::viam::component::board::v1::SetPowerModeResponse* Arena::CreateMaybeMessage<::viam::component::board::v1::SetPowerModeResponse>(Arena*);
 template<> ::viam::component::board::v1::StatusRequest* Arena::CreateMaybeMessage<::viam::component::board::v1::StatusRequest>(Arena*);
 template<> ::viam::component::board::v1::StatusResponse* Arena::CreateMaybeMessage<::viam::component::board::v1::StatusResponse>(Arena*);
+template<> ::viam::component::board::v1::StreamTicksRequest* Arena::CreateMaybeMessage<::viam::component::board::v1::StreamTicksRequest>(Arena*);
+template<> ::viam::component::board::v1::StreamTicksResponse* Arena::CreateMaybeMessage<::viam::component::board::v1::StreamTicksResponse>(Arena*);
 template<> ::viam::component::board::v1::WriteAnalogRequest* Arena::CreateMaybeMessage<::viam::component::board::v1::WriteAnalogRequest>(Arena*);
 template<> ::viam::component::board::v1::WriteAnalogResponse* Arena::CreateMaybeMessage<::viam::component::board::v1::WriteAnalogResponse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
@@ -3380,6 +3388,370 @@ class GetDigitalInterruptValueResponse final :
 };
 // -------------------------------------------------------------------
 
+class StreamTicksRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.component.board.v1.StreamTicksRequest) */ {
+ public:
+  inline StreamTicksRequest() : StreamTicksRequest(nullptr) {}
+  ~StreamTicksRequest() override;
+  explicit PROTOBUF_CONSTEXPR StreamTicksRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  StreamTicksRequest(const StreamTicksRequest& from);
+  StreamTicksRequest(StreamTicksRequest&& from) noexcept
+    : StreamTicksRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline StreamTicksRequest& operator=(const StreamTicksRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline StreamTicksRequest& operator=(StreamTicksRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const StreamTicksRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const StreamTicksRequest* internal_default_instance() {
+    return reinterpret_cast<const StreamTicksRequest*>(
+               &_StreamTicksRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    20;
+
+  friend void swap(StreamTicksRequest& a, StreamTicksRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(StreamTicksRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(StreamTicksRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  StreamTicksRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<StreamTicksRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const StreamTicksRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const StreamTicksRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(StreamTicksRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.component.board.v1.StreamTicksRequest";
+  }
+  protected:
+  explicit StreamTicksRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPinNamesFieldNumber = 2,
+    kNameFieldNumber = 1,
+    kExtraFieldNumber = 99,
+  };
+  // repeated string pin_names = 2 [json_name = "pinNames"];
+  int pin_names_size() const;
+  private:
+  int _internal_pin_names_size() const;
+  public:
+  void clear_pin_names();
+  const std::string& pin_names(int index) const;
+  std::string* mutable_pin_names(int index);
+  void set_pin_names(int index, const std::string& value);
+  void set_pin_names(int index, std::string&& value);
+  void set_pin_names(int index, const char* value);
+  void set_pin_names(int index, const char* value, size_t size);
+  std::string* add_pin_names();
+  void add_pin_names(const std::string& value);
+  void add_pin_names(std::string&& value);
+  void add_pin_names(const char* value);
+  void add_pin_names(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& pin_names() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_pin_names();
+  private:
+  const std::string& _internal_pin_names(int index) const;
+  std::string* _internal_add_pin_names();
+  public:
+
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
+  // @@protoc_insertion_point(class_scope:viam.component.board.v1.StreamTicksRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> pin_names_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_component_2fboard_2fv1_2fboard_2eproto;
+};
+// -------------------------------------------------------------------
+
+class StreamTicksResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.component.board.v1.StreamTicksResponse) */ {
+ public:
+  inline StreamTicksResponse() : StreamTicksResponse(nullptr) {}
+  ~StreamTicksResponse() override;
+  explicit PROTOBUF_CONSTEXPR StreamTicksResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  StreamTicksResponse(const StreamTicksResponse& from);
+  StreamTicksResponse(StreamTicksResponse&& from) noexcept
+    : StreamTicksResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline StreamTicksResponse& operator=(const StreamTicksResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline StreamTicksResponse& operator=(StreamTicksResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const StreamTicksResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const StreamTicksResponse* internal_default_instance() {
+    return reinterpret_cast<const StreamTicksResponse*>(
+               &_StreamTicksResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    21;
+
+  friend void swap(StreamTicksResponse& a, StreamTicksResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(StreamTicksResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(StreamTicksResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  StreamTicksResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<StreamTicksResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const StreamTicksResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const StreamTicksResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(StreamTicksResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.component.board.v1.StreamTicksResponse";
+  }
+  protected:
+  explicit StreamTicksResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPinNameFieldNumber = 1,
+    kTimeFieldNumber = 2,
+    kHighFieldNumber = 3,
+  };
+  // string pin_name = 1 [json_name = "pinName"];
+  void clear_pin_name();
+  const std::string& pin_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_pin_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_pin_name();
+  PROTOBUF_NODISCARD std::string* release_pin_name();
+  void set_allocated_pin_name(std::string* pin_name);
+  private:
+  const std::string& _internal_pin_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_pin_name(const std::string& value);
+  std::string* _internal_mutable_pin_name();
+  public:
+
+  // uint64 time = 2 [json_name = "time"];
+  void clear_time();
+  uint64_t time() const;
+  void set_time(uint64_t value);
+  private:
+  uint64_t _internal_time() const;
+  void _internal_set_time(uint64_t value);
+  public:
+
+  // bool high = 3 [json_name = "high"];
+  void clear_high();
+  bool high() const;
+  void set_high(bool value);
+  private:
+  bool _internal_high() const;
+  void _internal_set_high(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.component.board.v1.StreamTicksResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr pin_name_;
+  uint64_t time_;
+  bool high_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_component_2fboard_2fv1_2fboard_2eproto;
+};
+// -------------------------------------------------------------------
+
 class SetPowerModeRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.component.board.v1.SetPowerModeRequest) */ {
  public:
@@ -3428,7 +3800,7 @@ class SetPowerModeRequest final :
                &_SetPowerModeRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    22;
 
   friend void swap(SetPowerModeRequest& a, SetPowerModeRequest& b) {
     a.Swap(&b);
@@ -3627,7 +3999,7 @@ class SetPowerModeResponse final :
                &_SetPowerModeResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    23;
 
   friend void swap(SetPowerModeResponse& a, SetPowerModeResponse& b) {
     a.Swap(&b);
@@ -5848,6 +6220,314 @@ inline void GetDigitalInterruptValueResponse::set_value(int64_t value) {
 
 // -------------------------------------------------------------------
 
+// StreamTicksRequest
+
+// string name = 1 [json_name = "name"];
+inline void StreamTicksRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& StreamTicksRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.component.board.v1.StreamTicksRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void StreamTicksRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.board.v1.StreamTicksRequest.name)
+}
+inline std::string* StreamTicksRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.component.board.v1.StreamTicksRequest.name)
+  return _s;
+}
+inline const std::string& StreamTicksRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void StreamTicksRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* StreamTicksRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* StreamTicksRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.component.board.v1.StreamTicksRequest.name)
+  return name_.Release();
+}
+inline void StreamTicksRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.board.v1.StreamTicksRequest.name)
+}
+
+// repeated string pin_names = 2 [json_name = "pinNames"];
+inline int StreamTicksRequest::_internal_pin_names_size() const {
+  return pin_names_.size();
+}
+inline int StreamTicksRequest::pin_names_size() const {
+  return _internal_pin_names_size();
+}
+inline void StreamTicksRequest::clear_pin_names() {
+  pin_names_.Clear();
+}
+inline std::string* StreamTicksRequest::add_pin_names() {
+  std::string* _s = _internal_add_pin_names();
+  // @@protoc_insertion_point(field_add_mutable:viam.component.board.v1.StreamTicksRequest.pin_names)
+  return _s;
+}
+inline const std::string& StreamTicksRequest::_internal_pin_names(int index) const {
+  return pin_names_.Get(index);
+}
+inline const std::string& StreamTicksRequest::pin_names(int index) const {
+  // @@protoc_insertion_point(field_get:viam.component.board.v1.StreamTicksRequest.pin_names)
+  return _internal_pin_names(index);
+}
+inline std::string* StreamTicksRequest::mutable_pin_names(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.component.board.v1.StreamTicksRequest.pin_names)
+  return pin_names_.Mutable(index);
+}
+inline void StreamTicksRequest::set_pin_names(int index, const std::string& value) {
+  pin_names_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.component.board.v1.StreamTicksRequest.pin_names)
+}
+inline void StreamTicksRequest::set_pin_names(int index, std::string&& value) {
+  pin_names_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.component.board.v1.StreamTicksRequest.pin_names)
+}
+inline void StreamTicksRequest::set_pin_names(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  pin_names_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.component.board.v1.StreamTicksRequest.pin_names)
+}
+inline void StreamTicksRequest::set_pin_names(int index, const char* value, size_t size) {
+  pin_names_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.component.board.v1.StreamTicksRequest.pin_names)
+}
+inline std::string* StreamTicksRequest::_internal_add_pin_names() {
+  return pin_names_.Add();
+}
+inline void StreamTicksRequest::add_pin_names(const std::string& value) {
+  pin_names_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.component.board.v1.StreamTicksRequest.pin_names)
+}
+inline void StreamTicksRequest::add_pin_names(std::string&& value) {
+  pin_names_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.component.board.v1.StreamTicksRequest.pin_names)
+}
+inline void StreamTicksRequest::add_pin_names(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  pin_names_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.component.board.v1.StreamTicksRequest.pin_names)
+}
+inline void StreamTicksRequest::add_pin_names(const char* value, size_t size) {
+  pin_names_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.component.board.v1.StreamTicksRequest.pin_names)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+StreamTicksRequest::pin_names() const {
+  // @@protoc_insertion_point(field_list:viam.component.board.v1.StreamTicksRequest.pin_names)
+  return pin_names_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+StreamTicksRequest::mutable_pin_names() {
+  // @@protoc_insertion_point(field_mutable_list:viam.component.board.v1.StreamTicksRequest.pin_names)
+  return &pin_names_;
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool StreamTicksRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool StreamTicksRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& StreamTicksRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& StreamTicksRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.component.board.v1.StreamTicksRequest.extra)
+  return _internal_extra();
+}
+inline void StreamTicksRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.component.board.v1.StreamTicksRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* StreamTicksRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* StreamTicksRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.component.board.v1.StreamTicksRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* StreamTicksRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* StreamTicksRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.component.board.v1.StreamTicksRequest.extra)
+  return _msg;
+}
+inline void StreamTicksRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.component.board.v1.StreamTicksRequest.extra)
+}
+
+// -------------------------------------------------------------------
+
+// StreamTicksResponse
+
+// string pin_name = 1 [json_name = "pinName"];
+inline void StreamTicksResponse::clear_pin_name() {
+  pin_name_.ClearToEmpty();
+}
+inline const std::string& StreamTicksResponse::pin_name() const {
+  // @@protoc_insertion_point(field_get:viam.component.board.v1.StreamTicksResponse.pin_name)
+  return _internal_pin_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void StreamTicksResponse::set_pin_name(ArgT0&& arg0, ArgT... args) {
+ 
+ pin_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.board.v1.StreamTicksResponse.pin_name)
+}
+inline std::string* StreamTicksResponse::mutable_pin_name() {
+  std::string* _s = _internal_mutable_pin_name();
+  // @@protoc_insertion_point(field_mutable:viam.component.board.v1.StreamTicksResponse.pin_name)
+  return _s;
+}
+inline const std::string& StreamTicksResponse::_internal_pin_name() const {
+  return pin_name_.Get();
+}
+inline void StreamTicksResponse::_internal_set_pin_name(const std::string& value) {
+  
+  pin_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* StreamTicksResponse::_internal_mutable_pin_name() {
+  
+  return pin_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* StreamTicksResponse::release_pin_name() {
+  // @@protoc_insertion_point(field_release:viam.component.board.v1.StreamTicksResponse.pin_name)
+  return pin_name_.Release();
+}
+inline void StreamTicksResponse::set_allocated_pin_name(std::string* pin_name) {
+  if (pin_name != nullptr) {
+    
+  } else {
+    
+  }
+  pin_name_.SetAllocated(pin_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (pin_name_.IsDefault()) {
+    pin_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.board.v1.StreamTicksResponse.pin_name)
+}
+
+// uint64 time = 2 [json_name = "time"];
+inline void StreamTicksResponse::clear_time() {
+  time_ = uint64_t{0u};
+}
+inline uint64_t StreamTicksResponse::_internal_time() const {
+  return time_;
+}
+inline uint64_t StreamTicksResponse::time() const {
+  // @@protoc_insertion_point(field_get:viam.component.board.v1.StreamTicksResponse.time)
+  return _internal_time();
+}
+inline void StreamTicksResponse::_internal_set_time(uint64_t value) {
+  
+  time_ = value;
+}
+inline void StreamTicksResponse::set_time(uint64_t value) {
+  _internal_set_time(value);
+  // @@protoc_insertion_point(field_set:viam.component.board.v1.StreamTicksResponse.time)
+}
+
+// bool high = 3 [json_name = "high"];
+inline void StreamTicksResponse::clear_high() {
+  high_ = false;
+}
+inline bool StreamTicksResponse::_internal_high() const {
+  return high_;
+}
+inline bool StreamTicksResponse::high() const {
+  // @@protoc_insertion_point(field_get:viam.component.board.v1.StreamTicksResponse.high)
+  return _internal_high();
+}
+inline void StreamTicksResponse::_internal_set_high(bool value) {
+  
+  high_ = value;
+}
+inline void StreamTicksResponse::set_high(bool value) {
+  _internal_set_high(value);
+  // @@protoc_insertion_point(field_set:viam.component.board.v1.StreamTicksResponse.high)
+}
+
+// -------------------------------------------------------------------
+
 // SetPowerModeRequest
 
 // string name = 1 [json_name = "name"];
@@ -6099,6 +6779,10 @@ inline void SetPowerModeRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::St
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

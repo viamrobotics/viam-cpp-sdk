@@ -52,7 +52,8 @@ struct GetPositionResponseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPositionResponseDefaultTypeInternal _GetPositionResponse_default_instance_;
 PROTOBUF_CONSTEXPR GetPointCloudMapRequest::GetPointCloudMapRequest(
     ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , return_edited_map_(false){}
 struct GetPointCloudMapRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetPointCloudMapRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -112,7 +113,9 @@ struct GetPropertiesRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPropertiesRequestDefaultTypeInternal _GetPropertiesRequest_default_instance_;
 PROTOBUF_CONSTEXPR GetPropertiesResponse::GetPropertiesResponse(
     ::_pbi::ConstantInitialized)
-  : cloud_slam_(false)
+  : sensor_info_()
+  , internal_state_file_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , cloud_slam_(false)
   , mapping_mode_(0)
 {}
 struct GetPropertiesResponseDefaultTypeInternal {
@@ -124,12 +127,26 @@ struct GetPropertiesResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPropertiesResponseDefaultTypeInternal _GetPropertiesResponse_default_instance_;
+PROTOBUF_CONSTEXPR SensorInfo::SensorInfo(
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , type_(0)
+{}
+struct SensorInfoDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SensorInfoDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SensorInfoDefaultTypeInternal() {}
+  union {
+    SensorInfo _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SensorInfoDefaultTypeInternal _SensorInfo_default_instance_;
 }  // namespace v1
 }  // namespace slam
 }  // namespace service
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_service_2fslam_2fv1_2fslam_2eproto[8];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_service_2fslam_2fv1_2fslam_2eproto[1];
+static ::_pb::Metadata file_level_metadata_service_2fslam_2fv1_2fslam_2eproto[9];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_service_2fslam_2fv1_2fslam_2eproto[2];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_service_2fslam_2fv1_2fslam_2eproto = nullptr;
 
 const uint32_t TableStruct_service_2fslam_2fv1_2fslam_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -149,13 +166,16 @@ const uint32_t TableStruct_service_2fslam_2fv1_2fslam_2eproto::offsets[] PROTOBU
   PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetPositionResponse, pose_),
   PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetPositionResponse, component_reference_),
   PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetPositionResponse, extra_),
-  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetPointCloudMapRequest, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetPointCloudMapRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetPointCloudMapRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetPointCloudMapRequest, return_edited_map_),
+  ~0u,
+  0,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetPointCloudMapResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -184,7 +204,7 @@ const uint32_t TableStruct_service_2fslam_2fv1_2fslam_2eproto::offsets[] PROTOBU
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetPropertiesRequest, name_),
-  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetPropertiesResponse, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetPropertiesResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -192,16 +212,31 @@ const uint32_t TableStruct_service_2fslam_2fv1_2fslam_2eproto::offsets[] PROTOBU
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetPropertiesResponse, cloud_slam_),
   PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetPropertiesResponse, mapping_mode_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetPropertiesResponse, internal_state_file_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetPropertiesResponse, sensor_info_),
+  ~0u,
+  ~0u,
+  0,
+  ~0u,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::SensorInfo, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::SensorInfo, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::SensorInfo, type_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::service::slam::v1::GetPositionRequest)},
   { 7, -1, -1, sizeof(::viam::service::slam::v1::GetPositionResponse)},
-  { 16, -1, -1, sizeof(::viam::service::slam::v1::GetPointCloudMapRequest)},
-  { 23, -1, -1, sizeof(::viam::service::slam::v1::GetPointCloudMapResponse)},
-  { 30, -1, -1, sizeof(::viam::service::slam::v1::GetInternalStateRequest)},
-  { 37, -1, -1, sizeof(::viam::service::slam::v1::GetInternalStateResponse)},
-  { 44, -1, -1, sizeof(::viam::service::slam::v1::GetPropertiesRequest)},
-  { 51, -1, -1, sizeof(::viam::service::slam::v1::GetPropertiesResponse)},
+  { 16, 24, -1, sizeof(::viam::service::slam::v1::GetPointCloudMapRequest)},
+  { 26, -1, -1, sizeof(::viam::service::slam::v1::GetPointCloudMapResponse)},
+  { 33, -1, -1, sizeof(::viam::service::slam::v1::GetInternalStateRequest)},
+  { 40, -1, -1, sizeof(::viam::service::slam::v1::GetInternalStateResponse)},
+  { 47, -1, -1, sizeof(::viam::service::slam::v1::GetPropertiesRequest)},
+  { 54, 64, -1, sizeof(::viam::service::slam::v1::GetPropertiesResponse)},
+  { 68, -1, -1, sizeof(::viam::service::slam::v1::SensorInfo)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -213,6 +248,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::service::slam::v1::_GetInternalStateResponse_default_instance_._instance,
   &::viam::service::slam::v1::_GetPropertiesRequest_default_instance_._instance,
   &::viam::service::slam::v1::_GetPropertiesResponse_default_instance_._instance,
+  &::viam::service::slam::v1::_SensorInfo_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_service_2fslam_2fv1_2fslam_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -224,43 +260,54 @@ const char descriptor_table_protodef_service_2fslam_2fv1_2fslam_2eproto[] PROTOB
   "\022(\n\004pose\030\001 \001(\0132\024.viam.common.v1.PoseR\004po"
   "se\022/\n\023component_reference\030\002 \001(\tR\022compone"
   "ntReference\022-\n\005extra\030c \001(\0132\027.google.prot"
-  "obuf.StructR\005extra\"-\n\027GetPointCloudMapRe"
-  "quest\022\022\n\004name\030\001 \001(\tR\004name\"M\n\030GetPointClo"
-  "udMapResponse\0221\n\025point_cloud_pcd_chunk\030\001"
-  " \001(\014R\022pointCloudPcdChunk\"-\n\027GetInternalS"
-  "tateRequest\022\022\n\004name\030\001 \001(\tR\004name\"L\n\030GetIn"
-  "ternalStateResponse\0220\n\024internal_state_ch"
-  "unk\030\001 \001(\014R\022internalStateChunk\"*\n\024GetProp"
-  "ertiesRequest\022\022\n\004name\030\001 \001(\tR\004name\"|\n\025Get"
-  "PropertiesResponse\022\035\n\ncloud_slam\030\001 \001(\010R\t"
-  "cloudSlam\022D\n\014mapping_mode\030\002 \001(\0162!.viam.s"
-  "ervice.slam.v1.MappingModeR\013mappingMode*"
-  "\222\001\n\013MappingMode\022\034\n\030MAPPING_MODE_UNSPECIF"
-  "IED\020\000\022\037\n\033MAPPING_MODE_CREATE_NEW_MAP\020\001\022\036"
-  "\n\032MAPPING_MODE_LOCALIZE_ONLY\020\002\022$\n MAPPIN"
-  "G_MODE_UPDATE_EXISTING_MAP\020\0032\254\006\n\013SLAMSer"
-  "vice\022\225\001\n\013GetPosition\022(.viam.service.slam"
-  ".v1.GetPositionRequest\032).viam.service.sl"
-  "am.v1.GetPositionResponse\"1\202\323\344\223\002+\022)/viam"
-  "/api/v1/service/slam/{name}/position\022\255\001\n"
-  "\020GetPointCloudMap\022-.viam.service.slam.v1"
-  ".GetPointCloudMapRequest\032..viam.service."
-  "slam.v1.GetPointCloudMapResponse\"8\202\323\344\223\0022"
-  "\0220/viam/api/v1/service/slam/{name}/point"
-  "_cloud_map0\001\022\254\001\n\020GetInternalState\022-.viam"
-  ".service.slam.v1.GetInternalStateRequest"
-  "\032..viam.service.slam.v1.GetInternalState"
-  "Response\"7\202\323\344\223\0021\022//viam/api/v1/service/s"
-  "lam/{name}/internal_state0\001\022\235\001\n\rGetPrope"
-  "rties\022*.viam.service.slam.v1.GetProperti"
-  "esRequest\032+.viam.service.slam.v1.GetProp"
-  "ertiesResponse\"3\202\323\344\223\002-\022+/viam/api/v1/ser"
-  "vice/slam/{name}/properties\022\205\001\n\tDoComman"
-  "d\022 .viam.common.v1.DoCommandRequest\032!.vi"
-  "am.common.v1.DoCommandResponse\"3\202\323\344\223\002-\"+"
-  "/viam/api/v1/service/slam/{name}/do_comm"
-  "andB;\n\030com.viam.service.slam.v1Z\037go.viam"
-  ".com/api/service/slam/v1b\006proto3"
+  "obuf.StructR\005extra\"t\n\027GetPointCloudMapRe"
+  "quest\022\022\n\004name\030\001 \001(\tR\004name\022/\n\021return_edit"
+  "ed_map\030\002 \001(\010H\000R\017returnEditedMap\210\001\001B\024\n\022_r"
+  "eturn_edited_map\"M\n\030GetPointCloudMapResp"
+  "onse\0221\n\025point_cloud_pcd_chunk\030\001 \001(\014R\022poi"
+  "ntCloudPcdChunk\"-\n\027GetInternalStateReque"
+  "st\022\022\n\004name\030\001 \001(\tR\004name\"L\n\030GetInternalSta"
+  "teResponse\0220\n\024internal_state_chunk\030\001 \001(\014"
+  "R\022internalStateChunk\"*\n\024GetPropertiesReq"
+  "uest\022\022\n\004name\030\001 \001(\tR\004name\"\232\002\n\025GetProperti"
+  "esResponse\022\035\n\ncloud_slam\030\001 \001(\010R\tcloudSla"
+  "m\022D\n\014mapping_mode\030\002 \001(\0162!.viam.service.s"
+  "lam.v1.MappingModeR\013mappingMode\022<\n\030inter"
+  "nal_state_file_type\030\003 \001(\tH\000R\025internalSta"
+  "teFileType\210\001\001\022A\n\013sensor_info\030\004 \003(\0132 .via"
+  "m.service.slam.v1.SensorInfoR\nsensorInfo"
+  "B\033\n\031_internal_state_file_type\"V\n\nSensorI"
+  "nfo\022\022\n\004name\030\001 \001(\tR\004name\0224\n\004type\030\002 \001(\0162 ."
+  "viam.service.slam.v1.SensorTypeR\004type*\222\001"
+  "\n\013MappingMode\022\034\n\030MAPPING_MODE_UNSPECIFIE"
+  "D\020\000\022\037\n\033MAPPING_MODE_CREATE_NEW_MAP\020\001\022\036\n\032"
+  "MAPPING_MODE_LOCALIZE_ONLY\020\002\022$\n MAPPING_"
+  "MODE_UPDATE_EXISTING_MAP\020\003*b\n\nSensorType"
+  "\022\033\n\027SENSOR_TYPE_UNSPECIFIED\020\000\022\026\n\022SENSOR_"
+  "TYPE_CAMERA\020\001\022\037\n\033SENSOR_TYPE_MOVEMENT_SE"
+  "NSOR\020\0022\254\006\n\013SLAMService\022\225\001\n\013GetPosition\022("
+  ".viam.service.slam.v1.GetPositionRequest"
+  "\032).viam.service.slam.v1.GetPositionRespo"
+  "nse\"1\202\323\344\223\002+\022)/viam/api/v1/service/slam/{"
+  "name}/position\022\255\001\n\020GetPointCloudMap\022-.vi"
+  "am.service.slam.v1.GetPointCloudMapReque"
+  "st\032..viam.service.slam.v1.GetPointCloudM"
+  "apResponse\"8\202\323\344\223\0022\0220/viam/api/v1/service"
+  "/slam/{name}/point_cloud_map0\001\022\254\001\n\020GetIn"
+  "ternalState\022-.viam.service.slam.v1.GetIn"
+  "ternalStateRequest\032..viam.service.slam.v"
+  "1.GetInternalStateResponse\"7\202\323\344\223\0021\022//via"
+  "m/api/v1/service/slam/{name}/internal_st"
+  "ate0\001\022\235\001\n\rGetProperties\022*.viam.service.s"
+  "lam.v1.GetPropertiesRequest\032+.viam.servi"
+  "ce.slam.v1.GetPropertiesResponse\"3\202\323\344\223\002-"
+  "\022+/viam/api/v1/service/slam/{name}/prope"
+  "rties\022\205\001\n\tDoCommand\022 .viam.common.v1.DoC"
+  "ommandRequest\032!.viam.common.v1.DoCommand"
+  "Response\"3\202\323\344\223\002-\"+/viam/api/v1/service/s"
+  "lam/{name}/do_commandB;\n\030com.viam.servic"
+  "e.slam.v1Z\037go.viam.com/api/service/slam/"
+  "v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fslam_2fv1_2fslam_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -269,9 +316,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fslam_2fv1
 };
 static ::_pbi::once_flag descriptor_table_service_2fslam_2fv1_2fslam_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fslam_2fv1_2fslam_2eproto = {
-    false, false, 1792, descriptor_table_protodef_service_2fslam_2fv1_2fslam_2eproto,
+    false, false, 2210, descriptor_table_protodef_service_2fslam_2fv1_2fslam_2eproto,
     "service/slam/v1/slam.proto",
-    &descriptor_table_service_2fslam_2fv1_2fslam_2eproto_once, descriptor_table_service_2fslam_2fv1_2fslam_2eproto_deps, 3, 8,
+    &descriptor_table_service_2fslam_2fv1_2fslam_2eproto_once, descriptor_table_service_2fslam_2fv1_2fslam_2eproto_deps, 3, 9,
     schemas, file_default_instances, TableStruct_service_2fslam_2fv1_2fslam_2eproto::offsets,
     file_level_metadata_service_2fslam_2fv1_2fslam_2eproto, file_level_enum_descriptors_service_2fslam_2fv1_2fslam_2eproto,
     file_level_service_descriptors_service_2fslam_2fv1_2fslam_2eproto,
@@ -296,6 +343,21 @@ bool MappingMode_IsValid(int value) {
     case 1:
     case 2:
     case 3:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* SensorType_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_service_2fslam_2fv1_2fslam_2eproto);
+  return file_level_enum_descriptors_service_2fslam_2fv1_2fslam_2eproto[1];
+}
+bool SensorType_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
       return true;
     default:
       return false;
@@ -799,6 +861,10 @@ void GetPositionResponse::InternalSwap(GetPositionResponse* other) {
 
 class GetPointCloudMapRequest::_Internal {
  public:
+  using HasBits = decltype(std::declval<GetPointCloudMapRequest>()._has_bits_);
+  static void set_has_return_edited_map(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
 GetPointCloudMapRequest::GetPointCloudMapRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -808,7 +874,8 @@ GetPointCloudMapRequest::GetPointCloudMapRequest(::PROTOBUF_NAMESPACE_ID::Arena*
   // @@protoc_insertion_point(arena_constructor:viam.service.slam.v1.GetPointCloudMapRequest)
 }
 GetPointCloudMapRequest::GetPointCloudMapRequest(const GetPointCloudMapRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -818,6 +885,7 @@ GetPointCloudMapRequest::GetPointCloudMapRequest(const GetPointCloudMapRequest& 
     name_.Set(from._internal_name(), 
       GetArenaForAllocation());
   }
+  return_edited_map_ = from.return_edited_map_;
   // @@protoc_insertion_point(copy_constructor:viam.service.slam.v1.GetPointCloudMapRequest)
 }
 
@@ -826,6 +894,7 @@ name_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   name_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+return_edited_map_ = false;
 }
 
 GetPointCloudMapRequest::~GetPointCloudMapRequest() {
@@ -853,11 +922,14 @@ void GetPointCloudMapRequest::Clear() {
   (void) cached_has_bits;
 
   name_.ClearToEmpty();
+  return_edited_map_ = false;
+  _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* GetPointCloudMapRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
@@ -869,6 +941,15 @@ const char* GetPointCloudMapRequest::_InternalParse(const char* ptr, ::_pbi::Par
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.service.slam.v1.GetPointCloudMapRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional bool return_edited_map = 2 [json_name = "returnEditedMap"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _Internal::set_has_return_edited_map(&has_bits);
+          return_edited_map_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -888,6 +969,7 @@ const char* GetPointCloudMapRequest::_InternalParse(const char* ptr, ::_pbi::Par
     CHK_(ptr != nullptr);
   }  // while
 message_done:
+  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -911,6 +993,12 @@ uint8_t* GetPointCloudMapRequest::_InternalSerialize(
         1, this->_internal_name(), target);
   }
 
+  // optional bool return_edited_map = 2 [json_name = "returnEditedMap"];
+  if (_internal_has_return_edited_map()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_return_edited_map(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -932,6 +1020,12 @@ size_t GetPointCloudMapRequest::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_name());
+  }
+
+  // optional bool return_edited_map = 2 [json_name = "returnEditedMap"];
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 + 1;
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -959,6 +1053,9 @@ void GetPointCloudMapRequest::MergeFrom(const GetPointCloudMapRequest& from) {
   if (!from._internal_name().empty()) {
     _internal_set_name(from._internal_name());
   }
+  if (from._internal_has_return_edited_map()) {
+    _internal_set_return_edited_map(from._internal_return_edited_map());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -978,10 +1075,12 @@ void GetPointCloudMapRequest::InternalSwap(GetPointCloudMapRequest* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &name_, lhs_arena,
       &other->name_, rhs_arena
   );
+  swap(return_edited_map_, other->return_edited_map_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetPointCloudMapRequest::GetMetadata() const {
@@ -1764,17 +1863,32 @@ void GetPropertiesRequest::InternalSwap(GetPropertiesRequest* other) {
 
 class GetPropertiesResponse::_Internal {
  public:
+  using HasBits = decltype(std::declval<GetPropertiesResponse>()._has_bits_);
+  static void set_has_internal_state_file_type(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
 GetPropertiesResponse::GetPropertiesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  sensor_info_(arena) {
   SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.service.slam.v1.GetPropertiesResponse)
 }
 GetPropertiesResponse::GetPropertiesResponse(const GetPropertiesResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_),
+      sensor_info_(from.sensor_info_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  internal_state_file_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    internal_state_file_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (from._internal_has_internal_state_file_type()) {
+    internal_state_file_type_.Set(from._internal_internal_state_file_type(), 
+      GetArenaForAllocation());
+  }
   ::memcpy(&cloud_slam_, &from.cloud_slam_,
     static_cast<size_t>(reinterpret_cast<char*>(&mapping_mode_) -
     reinterpret_cast<char*>(&cloud_slam_)) + sizeof(mapping_mode_));
@@ -1782,6 +1896,10 @@ GetPropertiesResponse::GetPropertiesResponse(const GetPropertiesResponse& from)
 }
 
 inline void GetPropertiesResponse::SharedCtor() {
+internal_state_file_type_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  internal_state_file_type_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&cloud_slam_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&mapping_mode_) -
@@ -1799,6 +1917,7 @@ GetPropertiesResponse::~GetPropertiesResponse() {
 
 inline void GetPropertiesResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  internal_state_file_type_.Destroy();
 }
 
 void GetPropertiesResponse::SetCachedSize(int size) const {
@@ -1811,14 +1930,21 @@ void GetPropertiesResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  sensor_info_.Clear();
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    internal_state_file_type_.ClearNonDefaultToEmpty();
+  }
   ::memset(&cloud_slam_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&mapping_mode_) -
       reinterpret_cast<char*>(&cloud_slam_)) + sizeof(mapping_mode_));
+  _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* GetPropertiesResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
@@ -1840,6 +1966,29 @@ const char* GetPropertiesResponse::_InternalParse(const char* ptr, ::_pbi::Parse
         } else
           goto handle_unusual;
         continue;
+      // optional string internal_state_file_type = 3 [json_name = "internalStateFileType"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_internal_state_file_type();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.service.slam.v1.GetPropertiesResponse.internal_state_file_type"));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .viam.service.slam.v1.SensorInfo sensor_info = 4 [json_name = "sensorInfo"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_sensor_info(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<34>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -1856,6 +2005,7 @@ const char* GetPropertiesResponse::_InternalParse(const char* ptr, ::_pbi::Parse
     CHK_(ptr != nullptr);
   }  // while
 message_done:
+  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -1882,6 +2032,24 @@ uint8_t* GetPropertiesResponse::_InternalSerialize(
       2, this->_internal_mapping_mode(), target);
   }
 
+  // optional string internal_state_file_type = 3 [json_name = "internalStateFileType"];
+  if (_internal_has_internal_state_file_type()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_internal_state_file_type().data(), static_cast<int>(this->_internal_internal_state_file_type().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.service.slam.v1.GetPropertiesResponse.internal_state_file_type");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_internal_state_file_type(), target);
+  }
+
+  // repeated .viam.service.slam.v1.SensorInfo sensor_info = 4 [json_name = "sensorInfo"];
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_sensor_info_size()); i < n; i++) {
+    const auto& repfield = this->_internal_sensor_info(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(4, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1897,6 +2065,21 @@ size_t GetPropertiesResponse::ByteSizeLong() const {
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // repeated .viam.service.slam.v1.SensorInfo sensor_info = 4 [json_name = "sensorInfo"];
+  total_size += 1UL * this->_internal_sensor_info_size();
+  for (const auto& msg : this->sensor_info_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // optional string internal_state_file_type = 3 [json_name = "internalStateFileType"];
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_internal_state_file_type());
+  }
 
   // bool cloud_slam = 1 [json_name = "cloudSlam"];
   if (this->_internal_cloud_slam() != 0) {
@@ -1931,6 +2114,10 @@ void GetPropertiesResponse::MergeFrom(const GetPropertiesResponse& from) {
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  sensor_info_.MergeFrom(from.sensor_info_);
+  if (from._internal_has_internal_state_file_type()) {
+    _internal_set_internal_state_file_type(from._internal_internal_state_file_type());
+  }
   if (from._internal_cloud_slam() != 0) {
     _internal_set_cloud_slam(from._internal_cloud_slam());
   }
@@ -1953,7 +2140,15 @@ bool GetPropertiesResponse::IsInitialized() const {
 
 void GetPropertiesResponse::InternalSwap(GetPropertiesResponse* other) {
   using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
+  sensor_info_.InternalSwap(&other->sensor_info_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &internal_state_file_type_, lhs_arena,
+      &other->internal_state_file_type_, rhs_arena
+  );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, mapping_mode_)
       + sizeof(GetPropertiesResponse::mapping_mode_)
@@ -1966,6 +2161,230 @@ void GetPropertiesResponse::InternalSwap(GetPropertiesResponse* other) {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fslam_2fv1_2fslam_2eproto_getter, &descriptor_table_service_2fslam_2fv1_2fslam_2eproto_once,
       file_level_metadata_service_2fslam_2fv1_2fslam_2eproto[7]);
+}
+
+// ===================================================================
+
+class SensorInfo::_Internal {
+ public:
+};
+
+SensorInfo::SensorInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.service.slam.v1.SensorInfo)
+}
+SensorInfo::SensorInfo(const SensorInfo& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  type_ = from.type_;
+  // @@protoc_insertion_point(copy_constructor:viam.service.slam.v1.SensorInfo)
+}
+
+inline void SensorInfo::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+type_ = 0;
+}
+
+SensorInfo::~SensorInfo() {
+  // @@protoc_insertion_point(destructor:viam.service.slam.v1.SensorInfo)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SensorInfo::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+}
+
+void SensorInfo::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void SensorInfo::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.service.slam.v1.SensorInfo)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  name_.ClearToEmpty();
+  type_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SensorInfo::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.service.slam.v1.SensorInfo.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.service.slam.v1.SensorType type = 2 [json_name = "type"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_type(static_cast<::viam::service::slam::v1::SensorType>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SensorInfo::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.service.slam.v1.SensorInfo)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.service.slam.v1.SensorInfo.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  // .viam.service.slam.v1.SensorType type = 2 [json_name = "type"];
+  if (this->_internal_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      2, this->_internal_type(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.service.slam.v1.SensorInfo)
+  return target;
+}
+
+size_t SensorInfo::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.service.slam.v1.SensorInfo)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // .viam.service.slam.v1.SensorType type = 2 [json_name = "type"];
+  if (this->_internal_type() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_type());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SensorInfo::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    SensorInfo::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SensorInfo::GetClassData() const { return &_class_data_; }
+
+void SensorInfo::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<SensorInfo *>(to)->MergeFrom(
+      static_cast<const SensorInfo &>(from));
+}
+
+
+void SensorInfo::MergeFrom(const SensorInfo& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.slam.v1.SensorInfo)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  if (from._internal_type() != 0) {
+    _internal_set_type(from._internal_type());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SensorInfo::CopyFrom(const SensorInfo& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.service.slam.v1.SensorInfo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SensorInfo::IsInitialized() const {
+  return true;
+}
+
+void SensorInfo::InternalSwap(SensorInfo* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+  swap(type_, other->type_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SensorInfo::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_service_2fslam_2fv1_2fslam_2eproto_getter, &descriptor_table_service_2fslam_2fv1_2fslam_2eproto_once,
+      file_level_metadata_service_2fslam_2fv1_2fslam_2eproto[8]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -2005,6 +2424,10 @@ Arena::CreateMaybeMessage< ::viam::service::slam::v1::GetPropertiesRequest >(Are
 template<> PROTOBUF_NOINLINE ::viam::service::slam::v1::GetPropertiesResponse*
 Arena::CreateMaybeMessage< ::viam::service::slam::v1::GetPropertiesResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::service::slam::v1::GetPropertiesResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::service::slam::v1::SensorInfo*
+Arena::CreateMaybeMessage< ::viam::service::slam::v1::SensorInfo >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::service::slam::v1::SensorInfo >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

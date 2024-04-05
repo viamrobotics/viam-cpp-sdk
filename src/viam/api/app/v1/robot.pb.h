@@ -380,6 +380,7 @@ class RobotConfig final :
     kServicesFieldNumber = 5,
     kModulesFieldNumber = 9,
     kPackagesFieldNumber = 11,
+    kOverwriteFragmentStatusFieldNumber = 12,
     kCloudFieldNumber = 1,
     kNetworkFieldNumber = 6,
     kAuthFieldNumber = 7,
@@ -494,6 +495,24 @@ class RobotConfig final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::PackageConfig >&
       packages() const;
 
+  // repeated .viam.app.v1.AppValidationStatus overwrite_fragment_status = 12 [json_name = "overwriteFragmentStatus"];
+  int overwrite_fragment_status_size() const;
+  private:
+  int _internal_overwrite_fragment_status_size() const;
+  public:
+  void clear_overwrite_fragment_status();
+  ::viam::app::v1::AppValidationStatus* mutable_overwrite_fragment_status(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::AppValidationStatus >*
+      mutable_overwrite_fragment_status();
+  private:
+  const ::viam::app::v1::AppValidationStatus& _internal_overwrite_fragment_status(int index) const;
+  ::viam::app::v1::AppValidationStatus* _internal_add_overwrite_fragment_status();
+  public:
+  const ::viam::app::v1::AppValidationStatus& overwrite_fragment_status(int index) const;
+  ::viam::app::v1::AppValidationStatus* add_overwrite_fragment_status();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::AppValidationStatus >&
+      overwrite_fragment_status() const;
+
   // .viam.app.v1.CloudConfig cloud = 1 [json_name = "cloud"];
   bool has_cloud() const;
   private:
@@ -589,6 +608,7 @@ class RobotConfig final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::ServiceConfig > services_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::ModuleConfig > modules_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::PackageConfig > packages_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::AppValidationStatus > overwrite_fragment_status_;
   ::viam::app::v1::CloudConfig* cloud_;
   ::viam::app::v1::NetworkConfig* network_;
   ::viam::app::v1::AuthConfig* auth_;
@@ -1039,6 +1059,7 @@ class CloudConfig final :
     kSecretFieldNumber = 8,
     kPrimaryOrgIdFieldNumber = 10,
     kLocationIdFieldNumber = 11,
+    kMachineIdFieldNumber = 12,
     kSignalingInsecureFieldNumber = 6,
   };
   // repeated .viam.app.v1.LocationSecret location_secrets = 9 [json_name = "locationSecrets"];
@@ -1185,6 +1206,20 @@ class CloudConfig final :
   std::string* _internal_mutable_location_id();
   public:
 
+  // string machine_id = 12 [json_name = "machineId"];
+  void clear_machine_id();
+  const std::string& machine_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_machine_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_machine_id();
+  PROTOBUF_NODISCARD std::string* release_machine_id();
+  void set_allocated_machine_id(std::string* machine_id);
+  private:
+  const std::string& _internal_machine_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_machine_id(const std::string& value);
+  std::string* _internal_mutable_machine_id();
+  public:
+
   // bool signaling_insecure = 6 [json_name = "signalingInsecure"];
   void clear_signaling_insecure();
   bool signaling_insecure() const;
@@ -1211,6 +1246,7 @@ class CloudConfig final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr secret_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr primary_org_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr location_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr machine_id_;
   bool signaling_insecure_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
@@ -8336,6 +8372,46 @@ RobotConfig::packages() const {
   return packages_;
 }
 
+// repeated .viam.app.v1.AppValidationStatus overwrite_fragment_status = 12 [json_name = "overwriteFragmentStatus"];
+inline int RobotConfig::_internal_overwrite_fragment_status_size() const {
+  return overwrite_fragment_status_.size();
+}
+inline int RobotConfig::overwrite_fragment_status_size() const {
+  return _internal_overwrite_fragment_status_size();
+}
+inline void RobotConfig::clear_overwrite_fragment_status() {
+  overwrite_fragment_status_.Clear();
+}
+inline ::viam::app::v1::AppValidationStatus* RobotConfig::mutable_overwrite_fragment_status(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RobotConfig.overwrite_fragment_status)
+  return overwrite_fragment_status_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::AppValidationStatus >*
+RobotConfig::mutable_overwrite_fragment_status() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.RobotConfig.overwrite_fragment_status)
+  return &overwrite_fragment_status_;
+}
+inline const ::viam::app::v1::AppValidationStatus& RobotConfig::_internal_overwrite_fragment_status(int index) const {
+  return overwrite_fragment_status_.Get(index);
+}
+inline const ::viam::app::v1::AppValidationStatus& RobotConfig::overwrite_fragment_status(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RobotConfig.overwrite_fragment_status)
+  return _internal_overwrite_fragment_status(index);
+}
+inline ::viam::app::v1::AppValidationStatus* RobotConfig::_internal_add_overwrite_fragment_status() {
+  return overwrite_fragment_status_.Add();
+}
+inline ::viam::app::v1::AppValidationStatus* RobotConfig::add_overwrite_fragment_status() {
+  ::viam::app::v1::AppValidationStatus* _add = _internal_add_overwrite_fragment_status();
+  // @@protoc_insertion_point(field_add:viam.app.v1.RobotConfig.overwrite_fragment_status)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::AppValidationStatus >&
+RobotConfig::overwrite_fragment_status() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.RobotConfig.overwrite_fragment_status)
+  return overwrite_fragment_status_;
+}
+
 // -------------------------------------------------------------------
 
 // LocationSecret
@@ -9006,6 +9082,56 @@ inline void CloudConfig::set_allocated_location_id(std::string* location_id) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CloudConfig.location_id)
+}
+
+// string machine_id = 12 [json_name = "machineId"];
+inline void CloudConfig::clear_machine_id() {
+  machine_id_.ClearToEmpty();
+}
+inline const std::string& CloudConfig::machine_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CloudConfig.machine_id)
+  return _internal_machine_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CloudConfig::set_machine_id(ArgT0&& arg0, ArgT... args) {
+ 
+ machine_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CloudConfig.machine_id)
+}
+inline std::string* CloudConfig::mutable_machine_id() {
+  std::string* _s = _internal_mutable_machine_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CloudConfig.machine_id)
+  return _s;
+}
+inline const std::string& CloudConfig::_internal_machine_id() const {
+  return machine_id_.Get();
+}
+inline void CloudConfig::_internal_set_machine_id(const std::string& value) {
+  
+  machine_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CloudConfig::_internal_mutable_machine_id() {
+  
+  return machine_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CloudConfig::release_machine_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CloudConfig.machine_id)
+  return machine_id_.Release();
+}
+inline void CloudConfig::set_allocated_machine_id(std::string* machine_id) {
+  if (machine_id != nullptr) {
+    
+  } else {
+    
+  }
+  machine_id_.SetAllocated(machine_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (machine_id_.IsDefault()) {
+    machine_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CloudConfig.machine_id)
 }
 
 // -------------------------------------------------------------------

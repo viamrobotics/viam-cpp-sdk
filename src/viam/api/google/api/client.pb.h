@@ -809,6 +809,7 @@ class Publishing final :
     kGithubLabelFieldNumber = 104,
     kDocTagPrefixFieldNumber = 106,
     kProtoReferenceDocumentationUriFieldNumber = 110,
+    kRestReferenceDocumentationUriFieldNumber = 111,
     kOrganizationFieldNumber = 107,
   };
   // repeated .google.api.MethodSettings method_settings = 2 [json_name = "methodSettings"];
@@ -955,6 +956,20 @@ class Publishing final :
   std::string* _internal_mutable_proto_reference_documentation_uri();
   public:
 
+  // string rest_reference_documentation_uri = 111 [json_name = "restReferenceDocumentationUri"];
+  void clear_rest_reference_documentation_uri();
+  const std::string& rest_reference_documentation_uri() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_rest_reference_documentation_uri(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_rest_reference_documentation_uri();
+  PROTOBUF_NODISCARD std::string* release_rest_reference_documentation_uri();
+  void set_allocated_rest_reference_documentation_uri(std::string* rest_reference_documentation_uri);
+  private:
+  const std::string& _internal_rest_reference_documentation_uri() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_rest_reference_documentation_uri(const std::string& value);
+  std::string* _internal_mutable_rest_reference_documentation_uri();
+  public:
+
   // .google.api.ClientLibraryOrganization organization = 107 [json_name = "organization"];
   void clear_organization();
   ::google::api::ClientLibraryOrganization organization() const;
@@ -980,6 +995,7 @@ class Publishing final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr github_label_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr doc_tag_prefix_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr proto_reference_documentation_uri_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr rest_reference_documentation_uri_;
   int organization_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_google_2fapi_2fclient_2eproto;
@@ -2866,6 +2882,10 @@ static const int kOauthScopesFieldNumber = 1050;
 extern ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::ServiceOptions,
     ::PROTOBUF_NAMESPACE_ID::internal::StringTypeTraits, 9, false >
   oauth_scopes;
+static const int kApiVersionFieldNumber = 525000001;
+extern ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::ServiceOptions,
+    ::PROTOBUF_NAMESPACE_ID::internal::StringTypeTraits, 9, false >
+  api_version;
 
 // ===================================================================
 
@@ -4259,6 +4279,56 @@ inline void Publishing::set_allocated_proto_reference_documentation_uri(std::str
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:google.api.Publishing.proto_reference_documentation_uri)
+}
+
+// string rest_reference_documentation_uri = 111 [json_name = "restReferenceDocumentationUri"];
+inline void Publishing::clear_rest_reference_documentation_uri() {
+  rest_reference_documentation_uri_.ClearToEmpty();
+}
+inline const std::string& Publishing::rest_reference_documentation_uri() const {
+  // @@protoc_insertion_point(field_get:google.api.Publishing.rest_reference_documentation_uri)
+  return _internal_rest_reference_documentation_uri();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Publishing::set_rest_reference_documentation_uri(ArgT0&& arg0, ArgT... args) {
+ 
+ rest_reference_documentation_uri_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:google.api.Publishing.rest_reference_documentation_uri)
+}
+inline std::string* Publishing::mutable_rest_reference_documentation_uri() {
+  std::string* _s = _internal_mutable_rest_reference_documentation_uri();
+  // @@protoc_insertion_point(field_mutable:google.api.Publishing.rest_reference_documentation_uri)
+  return _s;
+}
+inline const std::string& Publishing::_internal_rest_reference_documentation_uri() const {
+  return rest_reference_documentation_uri_.Get();
+}
+inline void Publishing::_internal_set_rest_reference_documentation_uri(const std::string& value) {
+  
+  rest_reference_documentation_uri_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Publishing::_internal_mutable_rest_reference_documentation_uri() {
+  
+  return rest_reference_documentation_uri_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Publishing::release_rest_reference_documentation_uri() {
+  // @@protoc_insertion_point(field_release:google.api.Publishing.rest_reference_documentation_uri)
+  return rest_reference_documentation_uri_.Release();
+}
+inline void Publishing::set_allocated_rest_reference_documentation_uri(std::string* rest_reference_documentation_uri) {
+  if (rest_reference_documentation_uri != nullptr) {
+    
+  } else {
+    
+  }
+  rest_reference_documentation_uri_.SetAllocated(rest_reference_documentation_uri, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (rest_reference_documentation_uri_.IsDefault()) {
+    rest_reference_documentation_uri_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:google.api.Publishing.rest_reference_documentation_uri)
 }
 
 // -------------------------------------------------------------------
