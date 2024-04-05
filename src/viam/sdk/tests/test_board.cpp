@@ -146,6 +146,11 @@ BOOST_AUTO_TEST_CASE(test_read_digital_interrupt) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(test_stream_ticks) {
+    const auto mock = std::make_shared<MockBoard>("mock_board");
+    
+}
+
 BOOST_AUTO_TEST_CASE(test_get_analog_reader_names) {
     const auto mock = std::make_shared<MockBoard>("mock_board");
     client_to_mock_pipeline<Board>(mock, [&](Board& client) {

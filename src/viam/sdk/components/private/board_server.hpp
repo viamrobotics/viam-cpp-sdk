@@ -74,6 +74,10 @@ class BoardServer : public ResourceServer,
         const ::viam::component::board::v1::GetDigitalInterruptValueRequest* request,
         ::viam::component::board::v1::GetDigitalInterruptValueResponse* response) override;
 
+    ::grpc::Status StreamTicks(::grpc::ServerContext* context, const ::viam::component::board::v1::StreamTicksRequest* request,
+    ::viam::component::board::v1::StreamTicksResponse* response) override;
+
+
     ::grpc::Status SetPowerMode(
         ::grpc::ServerContext* context,
         const ::viam::component::board::v1::SetPowerModeRequest* request,

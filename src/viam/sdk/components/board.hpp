@@ -5,6 +5,7 @@
 
 #include <string>
 #include <unordered_map>
+#include <queue>
 
 #include <viam/api/component/board/v1/board.pb.h>
 
@@ -42,6 +43,15 @@ class Board : public Component {
     struct status {
         std::unordered_map<std::string, analog_value> analog_reader_values;
         std::unordered_map<std::string, digital_value> digital_interrupt_values;
+    };
+
+
+    /// @struct tick
+    /// A board digital interrupt that contains high or low and the time the digital interrupt occured.
+    struct tick {
+        std::string pin_name;
+        bool high;
+        uint64_t time;
     };
 
     /// @enum power_mode
@@ -214,11 +224,24 @@ class Board : public Component {
         return read_digital_interrupt(digital_interrupt_name, {});
     }
 
-    /// @brief Returns the current value of the interrupt which is based on the type of interrupt.
+   // @brief Returns the current value of the interrupt which is based on the type of interrupt.
     /// Consult Viam's `Board` docs for more information.
     /// @param digital_interrupt_name digital interrupt to check
     /// @param extra Any additional arguments to the method
     virtual digital_value read_digital_interrupt(const std::string& digital_interrupt_name,
+                                                 const AttributeMap& extra) = 0;
+
+    /// @brief Returns a stream of digital interrupt ticks.
+    /// @param digital_interrupt_names digital interrupts to stream
+    inline void stream_ticks(const std::string digital_interrupt_names[], const std::queue<tick> ticks) {
+        return stream_ticks(digital_interrupt_names, ticks, {});
+    }
+
+    /// @brief Returns a stream of digital interrupt ticks.
+    /// @param digital_interrupt_names digital interrupts to stream
+    /// @param extra Any additional arguments to the method
+    virtual void stream_ticks(const std::string digital_interrupt_names[],
+                                                 const std::queue<tick> ticks,
                                                  const AttributeMap& extra) = 0;
 
     /// @brief Sets the power consumption mode of the board to the requested setting for the given

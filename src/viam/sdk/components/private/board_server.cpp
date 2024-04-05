@@ -6,6 +6,9 @@
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/rpc/server.hpp>
+#include <queue>
+
+using grpc::ServerWriter;
 
 namespace viam {
 namespace sdk {
@@ -173,6 +176,48 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
 
     return ::grpc::Status();
 }
+
+  ::grpc::Status BoardServer::StreamTicks(
+    ::grpc::ServerContext*,
+    const ::viam::component::board::v1::StreamTicksRequest* request,
+    ::viam::component::board::v1::StreamTicksResponse* response) {
+    if (!request) {
+        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                              "Called [Board::StreamTicks] without a request");
+    };
+
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    if (!rb) {
+        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+    }
+
+    const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
+
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
+    ServerWriter< ::viam::component::board::v1::StreamTicksResponse>* writer;
+
+    std::queue<Board::tick> ticks;
+    board->stream_ticks(request->digital_interrupt_names(), ticks, extra);
+
+
+    while(true) {
+        if(ticks.size() != 0) {
+        Board::tick tick = ticks.front();
+        ticks.pop();
+        response->pin_name = tick.pin_name;
+        response->high = tick.high;
+        response->time = tick.time;
+        writer->Write(response);
+        }
+    }
+    return ::grpc::Status();
+    }
+
+
 
 ::grpc::Status BoardServer::SetPowerMode(
     ::grpc::ServerContext*,
