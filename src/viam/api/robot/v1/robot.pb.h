@@ -6739,6 +6739,8 @@ class GetCloudMetadataResponse final :
     kRobotPartIdFieldNumber = 1,
     kPrimaryOrgIdFieldNumber = 2,
     kLocationIdFieldNumber = 3,
+    kMachineIdFieldNumber = 4,
+    kMachinePartIdFieldNumber = 5,
   };
   // string robot_part_id = 1 [json_name = "robotPartId"];
   void clear_robot_part_id();
@@ -6782,6 +6784,34 @@ class GetCloudMetadataResponse final :
   std::string* _internal_mutable_location_id();
   public:
 
+  // string machine_id = 4 [json_name = "machineId"];
+  void clear_machine_id();
+  const std::string& machine_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_machine_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_machine_id();
+  PROTOBUF_NODISCARD std::string* release_machine_id();
+  void set_allocated_machine_id(std::string* machine_id);
+  private:
+  const std::string& _internal_machine_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_machine_id(const std::string& value);
+  std::string* _internal_mutable_machine_id();
+  public:
+
+  // string machine_part_id = 5 [json_name = "machinePartId"];
+  void clear_machine_part_id();
+  const std::string& machine_part_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_machine_part_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_machine_part_id();
+  PROTOBUF_NODISCARD std::string* release_machine_part_id();
+  void set_allocated_machine_part_id(std::string* machine_part_id);
+  private:
+  const std::string& _internal_machine_part_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_machine_part_id(const std::string& value);
+  std::string* _internal_mutable_machine_part_id();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.robot.v1.GetCloudMetadataResponse)
  private:
   class _Internal;
@@ -6792,6 +6822,8 @@ class GetCloudMetadataResponse final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr robot_part_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr primary_org_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr location_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr machine_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr machine_part_id_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
 };
@@ -10183,6 +10215,106 @@ inline void GetCloudMetadataResponse::set_allocated_location_id(std::string* loc
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.GetCloudMetadataResponse.location_id)
+}
+
+// string machine_id = 4 [json_name = "machineId"];
+inline void GetCloudMetadataResponse::clear_machine_id() {
+  machine_id_.ClearToEmpty();
+}
+inline const std::string& GetCloudMetadataResponse::machine_id() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.GetCloudMetadataResponse.machine_id)
+  return _internal_machine_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetCloudMetadataResponse::set_machine_id(ArgT0&& arg0, ArgT... args) {
+ 
+ machine_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.GetCloudMetadataResponse.machine_id)
+}
+inline std::string* GetCloudMetadataResponse::mutable_machine_id() {
+  std::string* _s = _internal_mutable_machine_id();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.GetCloudMetadataResponse.machine_id)
+  return _s;
+}
+inline const std::string& GetCloudMetadataResponse::_internal_machine_id() const {
+  return machine_id_.Get();
+}
+inline void GetCloudMetadataResponse::_internal_set_machine_id(const std::string& value) {
+  
+  machine_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetCloudMetadataResponse::_internal_mutable_machine_id() {
+  
+  return machine_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetCloudMetadataResponse::release_machine_id() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.GetCloudMetadataResponse.machine_id)
+  return machine_id_.Release();
+}
+inline void GetCloudMetadataResponse::set_allocated_machine_id(std::string* machine_id) {
+  if (machine_id != nullptr) {
+    
+  } else {
+    
+  }
+  machine_id_.SetAllocated(machine_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (machine_id_.IsDefault()) {
+    machine_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.GetCloudMetadataResponse.machine_id)
+}
+
+// string machine_part_id = 5 [json_name = "machinePartId"];
+inline void GetCloudMetadataResponse::clear_machine_part_id() {
+  machine_part_id_.ClearToEmpty();
+}
+inline const std::string& GetCloudMetadataResponse::machine_part_id() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.GetCloudMetadataResponse.machine_part_id)
+  return _internal_machine_part_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetCloudMetadataResponse::set_machine_part_id(ArgT0&& arg0, ArgT... args) {
+ 
+ machine_part_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.GetCloudMetadataResponse.machine_part_id)
+}
+inline std::string* GetCloudMetadataResponse::mutable_machine_part_id() {
+  std::string* _s = _internal_mutable_machine_part_id();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.GetCloudMetadataResponse.machine_part_id)
+  return _s;
+}
+inline const std::string& GetCloudMetadataResponse::_internal_machine_part_id() const {
+  return machine_part_id_.Get();
+}
+inline void GetCloudMetadataResponse::_internal_set_machine_part_id(const std::string& value) {
+  
+  machine_part_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetCloudMetadataResponse::_internal_mutable_machine_part_id() {
+  
+  return machine_part_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetCloudMetadataResponse::release_machine_part_id() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.GetCloudMetadataResponse.machine_part_id)
+  return machine_part_id_.Release();
+}
+inline void GetCloudMetadataResponse::set_allocated_machine_part_id(std::string* machine_part_id) {
+  if (machine_part_id != nullptr) {
+    
+  } else {
+    
+  }
+  machine_part_id_.SetAllocated(machine_part_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (machine_part_id_.IsDefault()) {
+    machine_part_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.GetCloudMetadataResponse.machine_part_id)
 }
 
 #ifdef __GNUC__

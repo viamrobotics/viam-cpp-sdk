@@ -28,7 +28,8 @@ PROTOBUF_CONSTEXPR ResourceName::ResourceName(
   : namespace__(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , subtype_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+  , name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , machine_part_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct ResourceNameDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ResourceNameDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -451,7 +452,7 @@ static const ::_pb::EnumDescriptor* file_level_enum_descriptors_common_2fv1_2fco
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_common_2fv1_2fcommon_2eproto = nullptr;
 
 const uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::ResourceName, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::ResourceName, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -461,6 +462,12 @@ const uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SECT
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::ResourceName, type_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::ResourceName, subtype_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::ResourceName, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::ResourceName, machine_part_id_),
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  0,
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::BoardStatus_AnalogsEntry_DoNotUse, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::BoardStatus_AnalogsEntry_DoNotUse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -731,38 +738,38 @@ const uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SECT
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::LogEntry, fields_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, -1, sizeof(::viam::common::v1::ResourceName)},
-  { 10, 18, -1, sizeof(::viam::common::v1::BoardStatus_AnalogsEntry_DoNotUse)},
-  { 20, 28, -1, sizeof(::viam::common::v1::BoardStatus_DigitalInterruptsEntry_DoNotUse)},
-  { 30, -1, -1, sizeof(::viam::common::v1::BoardStatus)},
-  { 38, -1, -1, sizeof(::viam::common::v1::AnalogStatus)},
-  { 45, -1, -1, sizeof(::viam::common::v1::DigitalInterruptStatus)},
-  { 52, -1, -1, sizeof(::viam::common::v1::Pose)},
-  { 65, -1, -1, sizeof(::viam::common::v1::Orientation)},
-  { 75, -1, -1, sizeof(::viam::common::v1::PoseInFrame)},
-  { 83, -1, -1, sizeof(::viam::common::v1::Vector3)},
-  { 92, -1, -1, sizeof(::viam::common::v1::Sphere)},
-  { 99, -1, -1, sizeof(::viam::common::v1::Capsule)},
-  { 107, -1, -1, sizeof(::viam::common::v1::RectangularPrism)},
-  { 114, -1, -1, sizeof(::viam::common::v1::Geometry)},
-  { 126, -1, -1, sizeof(::viam::common::v1::GeometriesInFrame)},
-  { 134, -1, -1, sizeof(::viam::common::v1::PointCloudObject)},
-  { 142, -1, -1, sizeof(::viam::common::v1::GeoPoint)},
-  { 150, -1, -1, sizeof(::viam::common::v1::GeoObstacle)},
-  { 158, 167, -1, sizeof(::viam::common::v1::Transform)},
-  { 170, -1, -1, sizeof(::viam::common::v1::WorldState)},
-  { 178, -1, -1, sizeof(::viam::common::v1::ActuatorStatus)},
-  { 185, 192, -1, sizeof(::viam::common::v1::ResponseMetadata)},
-  { 193, -1, -1, sizeof(::viam::common::v1::DoCommandRequest)},
-  { 201, -1, -1, sizeof(::viam::common::v1::DoCommandResponse)},
-  { 208, -1, -1, sizeof(::viam::common::v1::GetKinematicsRequest)},
-  { 216, -1, -1, sizeof(::viam::common::v1::GetKinematicsResponse)},
-  { 224, -1, -1, sizeof(::viam::common::v1::GetGeometriesRequest)},
-  { 232, -1, -1, sizeof(::viam::common::v1::GetGeometriesResponse)},
-  { 239, -1, -1, sizeof(::viam::common::v1::GetReadingsRequest)},
-  { 247, 255, -1, sizeof(::viam::common::v1::GetReadingsResponse_ReadingsEntry_DoNotUse)},
-  { 257, -1, -1, sizeof(::viam::common::v1::GetReadingsResponse)},
-  { 264, -1, -1, sizeof(::viam::common::v1::LogEntry)},
+  { 0, 11, -1, sizeof(::viam::common::v1::ResourceName)},
+  { 16, 24, -1, sizeof(::viam::common::v1::BoardStatus_AnalogsEntry_DoNotUse)},
+  { 26, 34, -1, sizeof(::viam::common::v1::BoardStatus_DigitalInterruptsEntry_DoNotUse)},
+  { 36, -1, -1, sizeof(::viam::common::v1::BoardStatus)},
+  { 44, -1, -1, sizeof(::viam::common::v1::AnalogStatus)},
+  { 51, -1, -1, sizeof(::viam::common::v1::DigitalInterruptStatus)},
+  { 58, -1, -1, sizeof(::viam::common::v1::Pose)},
+  { 71, -1, -1, sizeof(::viam::common::v1::Orientation)},
+  { 81, -1, -1, sizeof(::viam::common::v1::PoseInFrame)},
+  { 89, -1, -1, sizeof(::viam::common::v1::Vector3)},
+  { 98, -1, -1, sizeof(::viam::common::v1::Sphere)},
+  { 105, -1, -1, sizeof(::viam::common::v1::Capsule)},
+  { 113, -1, -1, sizeof(::viam::common::v1::RectangularPrism)},
+  { 120, -1, -1, sizeof(::viam::common::v1::Geometry)},
+  { 132, -1, -1, sizeof(::viam::common::v1::GeometriesInFrame)},
+  { 140, -1, -1, sizeof(::viam::common::v1::PointCloudObject)},
+  { 148, -1, -1, sizeof(::viam::common::v1::GeoPoint)},
+  { 156, -1, -1, sizeof(::viam::common::v1::GeoObstacle)},
+  { 164, 173, -1, sizeof(::viam::common::v1::Transform)},
+  { 176, -1, -1, sizeof(::viam::common::v1::WorldState)},
+  { 184, -1, -1, sizeof(::viam::common::v1::ActuatorStatus)},
+  { 191, 198, -1, sizeof(::viam::common::v1::ResponseMetadata)},
+  { 199, -1, -1, sizeof(::viam::common::v1::DoCommandRequest)},
+  { 207, -1, -1, sizeof(::viam::common::v1::DoCommandResponse)},
+  { 214, -1, -1, sizeof(::viam::common::v1::GetKinematicsRequest)},
+  { 222, -1, -1, sizeof(::viam::common::v1::GetKinematicsResponse)},
+  { 230, -1, -1, sizeof(::viam::common::v1::GetGeometriesRequest)},
+  { 238, -1, -1, sizeof(::viam::common::v1::GetGeometriesResponse)},
+  { 245, -1, -1, sizeof(::viam::common::v1::GetReadingsRequest)},
+  { 253, 261, -1, sizeof(::viam::common::v1::GetReadingsResponse_ReadingsEntry_DoNotUse)},
+  { 263, -1, -1, sizeof(::viam::common::v1::GetReadingsResponse)},
+  { 270, -1, -1, sizeof(::viam::common::v1::LogEntry)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -804,100 +811,102 @@ const char descriptor_table_protodef_common_2fv1_2fcommon_2eproto[] PROTOBUF_SEC
   "\n\026common/v1/common.proto\022\016viam.common.v1"
   "\032 google/protobuf/descriptor.proto\032\034goog"
   "le/protobuf/struct.proto\032\037google/protobu"
-  "f/timestamp.proto\"n\n\014ResourceName\022\034\n\tnam"
-  "espace\030\001 \001(\tR\tnamespace\022\022\n\004type\030\002 \001(\tR\004t"
-  "ype\022\030\n\007subtype\030\003 \001(\tR\007subtype\022\022\n\004name\030\004 "
-  "\001(\tR\004name\"\374\002\n\013BoardStatus\022B\n\007analogs\030\001 \003"
-  "(\0132(.viam.common.v1.BoardStatus.AnalogsE"
-  "ntryR\007analogs\022a\n\022digital_interrupts\030\002 \003("
-  "\01322.viam.common.v1.BoardStatus.DigitalIn"
-  "terruptsEntryR\021digitalInterrupts\032X\n\014Anal"
-  "ogsEntry\022\020\n\003key\030\001 \001(\tR\003key\0222\n\005value\030\002 \001("
-  "\0132\034.viam.common.v1.AnalogStatusR\005value:\002"
-  "8\001\032l\n\026DigitalInterruptsEntry\022\020\n\003key\030\001 \001("
-  "\tR\003key\022<\n\005value\030\002 \001(\0132&.viam.common.v1.D"
-  "igitalInterruptStatusR\005value:\0028\001\"$\n\014Anal"
-  "ogStatus\022\024\n\005value\030\001 \001(\005R\005value\".\n\026Digita"
-  "lInterruptStatus\022\024\n\005value\030\001 \001(\003R\005value\"y"
-  "\n\004Pose\022\014\n\001x\030\001 \001(\001R\001x\022\014\n\001y\030\002 \001(\001R\001y\022\014\n\001z\030"
-  "\003 \001(\001R\001z\022\017\n\003o_x\030\004 \001(\001R\002oX\022\017\n\003o_y\030\005 \001(\001R\002"
-  "oY\022\017\n\003o_z\030\006 \001(\001R\002oZ\022\024\n\005theta\030\007 \001(\001R\005thet"
-  "a\"V\n\013Orientation\022\017\n\003o_x\030\001 \001(\001R\002oX\022\017\n\003o_y"
-  "\030\002 \001(\001R\002oY\022\017\n\003o_z\030\003 \001(\001R\002oZ\022\024\n\005theta\030\004 \001"
-  "(\001R\005theta\"`\n\013PoseInFrame\022\'\n\017reference_fr"
-  "ame\030\001 \001(\tR\016referenceFrame\022(\n\004pose\030\002 \001(\0132"
-  "\024.viam.common.v1.PoseR\004pose\"3\n\007Vector3\022\014"
-  "\n\001x\030\001 \001(\001R\001x\022\014\n\001y\030\002 \001(\001R\001y\022\014\n\001z\030\003 \001(\001R\001z"
-  "\"%\n\006Sphere\022\033\n\tradius_mm\030\001 \001(\001R\010radiusMm\""
-  "C\n\007Capsule\022\033\n\tradius_mm\030\001 \001(\001R\010radiusMm\022"
-  "\033\n\tlength_mm\030\002 \001(\001R\010lengthMm\"D\n\020Rectangu"
-  "larPrism\0220\n\007dims_mm\030\001 \001(\0132\027.viam.common."
-  "v1.Vector3R\006dimsMm\"\374\001\n\010Geometry\022,\n\006cente"
-  "r\030\001 \001(\0132\024.viam.common.v1.PoseR\006center\0220\n"
-  "\006sphere\030\002 \001(\0132\026.viam.common.v1.SphereH\000R"
-  "\006sphere\0224\n\003box\030\003 \001(\0132 .viam.common.v1.Re"
-  "ctangularPrismH\000R\003box\0223\n\007capsule\030\005 \001(\0132\027"
-  ".viam.common.v1.CapsuleH\000R\007capsule\022\024\n\005la"
-  "bel\030\004 \001(\tR\005labelB\017\n\rgeometry_type\"v\n\021Geo"
-  "metriesInFrame\022\'\n\017reference_frame\030\001 \001(\tR"
-  "\016referenceFrame\0228\n\ngeometries\030\002 \003(\0132\030.vi"
-  "am.common.v1.GeometryR\ngeometries\"v\n\020Poi"
-  "ntCloudObject\022\037\n\013point_cloud\030\001 \001(\014R\npoin"
-  "tCloud\022A\n\ngeometries\030\002 \001(\0132!.viam.common"
-  ".v1.GeometriesInFrameR\ngeometries\"D\n\010Geo"
-  "Point\022\032\n\010latitude\030\001 \001(\001R\010latitude\022\034\n\tlon"
-  "gitude\030\002 \001(\001R\tlongitude\"}\n\013GeoObstacle\0224"
-  "\n\010location\030\001 \001(\0132\030.viam.common.v1.GeoPoi"
-  "ntR\010location\0228\n\ngeometries\030\002 \003(\0132\030.viam."
-  "common.v1.GeometryR\ngeometries\"\342\001\n\tTrans"
-  "form\022\'\n\017reference_frame\030\001 \001(\tR\016reference"
-  "Frame\022P\n\026pose_in_observer_frame\030\002 \001(\0132\033."
-  "viam.common.v1.PoseInFrameR\023poseInObserv"
-  "erFrame\022F\n\017physical_object\030\003 \001(\0132\030.viam."
-  "common.v1.GeometryH\000R\016physicalObject\210\001\001B"
-  "\022\n\020_physical_object\"\210\001\n\nWorldState\022\?\n\tob"
-  "stacles\030\001 \003(\0132!.viam.common.v1.Geometrie"
-  "sInFrameR\tobstacles\0229\n\ntransforms\030\003 \003(\0132"
-  "\031.viam.common.v1.TransformR\ntransforms\"-"
-  "\n\016ActuatorStatus\022\033\n\tis_moving\030\001 \001(\010R\010isM"
-  "oving\"d\n\020ResponseMetadata\022@\n\013captured_at"
-  "\030\001 \001(\0132\032.google.protobuf.TimestampH\000R\nca"
-  "pturedAt\210\001\001B\016\n\014_captured_at\"Y\n\020DoCommand"
-  "Request\022\022\n\004name\030\001 \001(\tR\004name\0221\n\007command\030\002"
-  " \001(\0132\027.google.protobuf.StructR\007command\"D"
-  "\n\021DoCommandResponse\022/\n\006result\030\001 \001(\0132\027.go"
-  "ogle.protobuf.StructR\006result\"Y\n\024GetKinem"
-  "aticsRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extr"
-  "a\030c \001(\0132\027.google.protobuf.StructR\005extra\""
-  "~\n\025GetKinematicsResponse\022<\n\006format\030\001 \001(\016"
-  "2$.viam.common.v1.KinematicsFileFormatR\006"
-  "format\022\'\n\017kinematics_data\030\002 \001(\014R\016kinemat"
-  "icsData\"Y\n\024GetGeometriesRequest\022\022\n\004name\030"
-  "\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027.google.prot"
-  "obuf.StructR\005extra\"Q\n\025GetGeometriesRespo"
-  "nse\0228\n\ngeometries\030\001 \003(\0132\030.viam.common.v1"
-  ".GeometryR\ngeometries\"W\n\022GetReadingsRequ"
-  "est\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027"
-  ".google.protobuf.StructR\005extra\"\271\001\n\023GetRe"
-  "adingsResponse\022M\n\010readings\030\001 \003(\01321.viam."
-  "common.v1.GetReadingsResponse.ReadingsEn"
-  "tryR\010readings\032S\n\rReadingsEntry\022\020\n\003key\030\001 "
-  "\001(\tR\003key\022,\n\005value\030\002 \001(\0132\026.google.protobu"
-  "f.ValueR\005value:\0028\001\"\227\002\n\010LogEntry\022\022\n\004host\030"
-  "\001 \001(\tR\004host\022\024\n\005level\030\002 \001(\tR\005level\022.\n\004tim"
-  "e\030\003 \001(\0132\032.google.protobuf.TimestampR\004tim"
-  "e\022\037\n\013logger_name\030\004 \001(\tR\nloggerName\022\030\n\007me"
-  "ssage\030\005 \001(\tR\007message\022/\n\006caller\030\006 \001(\0132\027.g"
-  "oogle.protobuf.StructR\006caller\022\024\n\005stack\030\007"
-  " \001(\tR\005stack\022/\n\006fields\030\010 \003(\0132\027.google.pro"
-  "tobuf.StructR\006fields*\177\n\024KinematicsFileFo"
-  "rmat\022&\n\"KINEMATICS_FILE_FORMAT_UNSPECIFI"
-  "ED\020\000\022\036\n\032KINEMATICS_FILE_FORMAT_SVA\020\001\022\037\n\033"
-  "KINEMATICS_FILE_FORMAT_URDF\020\002:a\n\032safety_"
-  "heartbeat_monitored\022\036.google.protobuf.Me"
-  "thodOptions\030\244\222\005 \001(\010R\030safetyHeartbeatMoni"
-  "tored\210\001\001B/\n\022com.viam.common.v1Z\031go.viam."
-  "com/api/common/v1b\006proto3"
+  "f/timestamp.proto\"\257\001\n\014ResourceName\022\034\n\tna"
+  "mespace\030\001 \001(\tR\tnamespace\022\022\n\004type\030\002 \001(\tR\004"
+  "type\022\030\n\007subtype\030\003 \001(\tR\007subtype\022\022\n\004name\030\004"
+  " \001(\tR\004name\022+\n\017machine_part_id\030\005 \001(\tH\000R\rm"
+  "achinePartId\210\001\001B\022\n\020_machine_part_id\"\374\002\n\013"
+  "BoardStatus\022B\n\007analogs\030\001 \003(\0132(.viam.comm"
+  "on.v1.BoardStatus.AnalogsEntryR\007analogs\022"
+  "a\n\022digital_interrupts\030\002 \003(\01322.viam.commo"
+  "n.v1.BoardStatus.DigitalInterruptsEntryR"
+  "\021digitalInterrupts\032X\n\014AnalogsEntry\022\020\n\003ke"
+  "y\030\001 \001(\tR\003key\0222\n\005value\030\002 \001(\0132\034.viam.commo"
+  "n.v1.AnalogStatusR\005value:\0028\001\032l\n\026DigitalI"
+  "nterruptsEntry\022\020\n\003key\030\001 \001(\tR\003key\022<\n\005valu"
+  "e\030\002 \001(\0132&.viam.common.v1.DigitalInterrup"
+  "tStatusR\005value:\0028\001\"$\n\014AnalogStatus\022\024\n\005va"
+  "lue\030\001 \001(\005R\005value\".\n\026DigitalInterruptStat"
+  "us\022\024\n\005value\030\001 \001(\003R\005value\"y\n\004Pose\022\014\n\001x\030\001 "
+  "\001(\001R\001x\022\014\n\001y\030\002 \001(\001R\001y\022\014\n\001z\030\003 \001(\001R\001z\022\017\n\003o_"
+  "x\030\004 \001(\001R\002oX\022\017\n\003o_y\030\005 \001(\001R\002oY\022\017\n\003o_z\030\006 \001("
+  "\001R\002oZ\022\024\n\005theta\030\007 \001(\001R\005theta\"V\n\013Orientati"
+  "on\022\017\n\003o_x\030\001 \001(\001R\002oX\022\017\n\003o_y\030\002 \001(\001R\002oY\022\017\n\003"
+  "o_z\030\003 \001(\001R\002oZ\022\024\n\005theta\030\004 \001(\001R\005theta\"`\n\013P"
+  "oseInFrame\022\'\n\017reference_frame\030\001 \001(\tR\016ref"
+  "erenceFrame\022(\n\004pose\030\002 \001(\0132\024.viam.common."
+  "v1.PoseR\004pose\"3\n\007Vector3\022\014\n\001x\030\001 \001(\001R\001x\022\014"
+  "\n\001y\030\002 \001(\001R\001y\022\014\n\001z\030\003 \001(\001R\001z\"%\n\006Sphere\022\033\n\t"
+  "radius_mm\030\001 \001(\001R\010radiusMm\"C\n\007Capsule\022\033\n\t"
+  "radius_mm\030\001 \001(\001R\010radiusMm\022\033\n\tlength_mm\030\002"
+  " \001(\001R\010lengthMm\"D\n\020RectangularPrism\0220\n\007di"
+  "ms_mm\030\001 \001(\0132\027.viam.common.v1.Vector3R\006di"
+  "msMm\"\374\001\n\010Geometry\022,\n\006center\030\001 \001(\0132\024.viam"
+  ".common.v1.PoseR\006center\0220\n\006sphere\030\002 \001(\0132"
+  "\026.viam.common.v1.SphereH\000R\006sphere\0224\n\003box"
+  "\030\003 \001(\0132 .viam.common.v1.RectangularPrism"
+  "H\000R\003box\0223\n\007capsule\030\005 \001(\0132\027.viam.common.v"
+  "1.CapsuleH\000R\007capsule\022\024\n\005label\030\004 \001(\tR\005lab"
+  "elB\017\n\rgeometry_type\"v\n\021GeometriesInFrame"
+  "\022\'\n\017reference_frame\030\001 \001(\tR\016referenceFram"
+  "e\0228\n\ngeometries\030\002 \003(\0132\030.viam.common.v1.G"
+  "eometryR\ngeometries\"v\n\020PointCloudObject\022"
+  "\037\n\013point_cloud\030\001 \001(\014R\npointCloud\022A\n\ngeom"
+  "etries\030\002 \001(\0132!.viam.common.v1.Geometries"
+  "InFrameR\ngeometries\"D\n\010GeoPoint\022\032\n\010latit"
+  "ude\030\001 \001(\001R\010latitude\022\034\n\tlongitude\030\002 \001(\001R\t"
+  "longitude\"}\n\013GeoObstacle\0224\n\010location\030\001 \001"
+  "(\0132\030.viam.common.v1.GeoPointR\010location\0228"
+  "\n\ngeometries\030\002 \003(\0132\030.viam.common.v1.Geom"
+  "etryR\ngeometries\"\342\001\n\tTransform\022\'\n\017refere"
+  "nce_frame\030\001 \001(\tR\016referenceFrame\022P\n\026pose_"
+  "in_observer_frame\030\002 \001(\0132\033.viam.common.v1"
+  ".PoseInFrameR\023poseInObserverFrame\022F\n\017phy"
+  "sical_object\030\003 \001(\0132\030.viam.common.v1.Geom"
+  "etryH\000R\016physicalObject\210\001\001B\022\n\020_physical_o"
+  "bject\"\210\001\n\nWorldState\022\?\n\tobstacles\030\001 \003(\0132"
+  "!.viam.common.v1.GeometriesInFrameR\tobst"
+  "acles\0229\n\ntransforms\030\003 \003(\0132\031.viam.common."
+  "v1.TransformR\ntransforms\"-\n\016ActuatorStat"
+  "us\022\033\n\tis_moving\030\001 \001(\010R\010isMoving\"d\n\020Respo"
+  "nseMetadata\022@\n\013captured_at\030\001 \001(\0132\032.googl"
+  "e.protobuf.TimestampH\000R\ncapturedAt\210\001\001B\016\n"
+  "\014_captured_at\"Y\n\020DoCommandRequest\022\022\n\004nam"
+  "e\030\001 \001(\tR\004name\0221\n\007command\030\002 \001(\0132\027.google."
+  "protobuf.StructR\007command\"D\n\021DoCommandRes"
+  "ponse\022/\n\006result\030\001 \001(\0132\027.google.protobuf."
+  "StructR\006result\"Y\n\024GetKinematicsRequest\022\022"
+  "\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027.goog"
+  "le.protobuf.StructR\005extra\"~\n\025GetKinemati"
+  "csResponse\022<\n\006format\030\001 \001(\0162$.viam.common"
+  ".v1.KinematicsFileFormatR\006format\022\'\n\017kine"
+  "matics_data\030\002 \001(\014R\016kinematicsData\"Y\n\024Get"
+  "GeometriesRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n"
+  "\005extra\030c \001(\0132\027.google.protobuf.StructR\005e"
+  "xtra\"Q\n\025GetGeometriesResponse\0228\n\ngeometr"
+  "ies\030\001 \003(\0132\030.viam.common.v1.GeometryR\ngeo"
+  "metries\"W\n\022GetReadingsRequest\022\022\n\004name\030\001 "
+  "\001(\tR\004name\022-\n\005extra\030c \001(\0132\027.google.protob"
+  "uf.StructR\005extra\"\271\001\n\023GetReadingsResponse"
+  "\022M\n\010readings\030\001 \003(\01321.viam.common.v1.GetR"
+  "eadingsResponse.ReadingsEntryR\010readings\032"
+  "S\n\rReadingsEntry\022\020\n\003key\030\001 \001(\tR\003key\022,\n\005va"
+  "lue\030\002 \001(\0132\026.google.protobuf.ValueR\005value"
+  ":\0028\001\"\227\002\n\010LogEntry\022\022\n\004host\030\001 \001(\tR\004host\022\024\n"
+  "\005level\030\002 \001(\tR\005level\022.\n\004time\030\003 \001(\0132\032.goog"
+  "le.protobuf.TimestampR\004time\022\037\n\013logger_na"
+  "me\030\004 \001(\tR\nloggerName\022\030\n\007message\030\005 \001(\tR\007m"
+  "essage\022/\n\006caller\030\006 \001(\0132\027.google.protobuf"
+  ".StructR\006caller\022\024\n\005stack\030\007 \001(\tR\005stack\022/\n"
+  "\006fields\030\010 \003(\0132\027.google.protobuf.StructR\006"
+  "fields*\177\n\024KinematicsFileFormat\022&\n\"KINEMA"
+  "TICS_FILE_FORMAT_UNSPECIFIED\020\000\022\036\n\032KINEMA"
+  "TICS_FILE_FORMAT_SVA\020\001\022\037\n\033KINEMATICS_FIL"
+  "E_FORMAT_URDF\020\002:a\n\032safety_heartbeat_moni"
+  "tored\022\036.google.protobuf.MethodOptions\030\244\222"
+  "\005 \001(\010R\030safetyHeartbeatMonitored\210\001\001B/\n\022co"
+  "m.viam.common.v1Z\031go.viam.com/api/common"
+  "/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_common_2fv1_2fcommon_2eproto_deps[3] = {
   &::descriptor_table_google_2fprotobuf_2fdescriptor_2eproto,
@@ -906,7 +915,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_common_2fv1_2fcommo
 };
 static ::_pbi::once_flag descriptor_table_common_2fv1_2fcommon_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_common_2fv1_2fcommon_2eproto = {
-    false, false, 3865, descriptor_table_protodef_common_2fv1_2fcommon_2eproto,
+    false, false, 3931, descriptor_table_protodef_common_2fv1_2fcommon_2eproto,
     "common/v1/common.proto",
     &descriptor_table_common_2fv1_2fcommon_2eproto_once, descriptor_table_common_2fv1_2fcommon_2eproto_deps, 3, 32,
     schemas, file_default_instances, TableStruct_common_2fv1_2fcommon_2eproto::offsets,
@@ -942,6 +951,10 @@ bool KinematicsFileFormat_IsValid(int value) {
 
 class ResourceName::_Internal {
  public:
+  using HasBits = decltype(std::declval<ResourceName>()._has_bits_);
+  static void set_has_machine_part_id(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
 ResourceName::ResourceName(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -951,7 +964,8 @@ ResourceName::ResourceName(::PROTOBUF_NAMESPACE_ID::Arena* arena,
   // @@protoc_insertion_point(arena_constructor:viam.common.v1.ResourceName)
 }
 ResourceName::ResourceName(const ResourceName& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   namespace__.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -985,6 +999,14 @@ ResourceName::ResourceName(const ResourceName& from)
     name_.Set(from._internal_name(), 
       GetArenaForAllocation());
   }
+  machine_part_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    machine_part_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (from._internal_has_machine_part_id()) {
+    machine_part_id_.Set(from._internal_machine_part_id(), 
+      GetArenaForAllocation());
+  }
   // @@protoc_insertion_point(copy_constructor:viam.common.v1.ResourceName)
 }
 
@@ -1005,6 +1027,10 @@ name_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   name_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+machine_part_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  machine_part_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 ResourceName::~ResourceName() {
@@ -1022,6 +1048,7 @@ inline void ResourceName::SharedDtor() {
   type_.Destroy();
   subtype_.Destroy();
   name_.Destroy();
+  machine_part_id_.Destroy();
 }
 
 void ResourceName::SetCachedSize(int size) const {
@@ -1038,11 +1065,17 @@ void ResourceName::Clear() {
   type_.ClearToEmpty();
   subtype_.ClearToEmpty();
   name_.ClearToEmpty();
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    machine_part_id_.ClearNonDefaultToEmpty();
+  }
+  _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* ResourceName::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
@@ -1087,6 +1120,16 @@ const char* ResourceName::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
         } else
           goto handle_unusual;
         continue;
+      // optional string machine_part_id = 5 [json_name = "machinePartId"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          auto str = _internal_mutable_machine_part_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.common.v1.ResourceName.machine_part_id"));
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -1103,6 +1146,7 @@ const char* ResourceName::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
     CHK_(ptr != nullptr);
   }  // while
 message_done:
+  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -1156,6 +1200,16 @@ uint8_t* ResourceName::_InternalSerialize(
         4, this->_internal_name(), target);
   }
 
+  // optional string machine_part_id = 5 [json_name = "machinePartId"];
+  if (_internal_has_machine_part_id()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_machine_part_id().data(), static_cast<int>(this->_internal_machine_part_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.common.v1.ResourceName.machine_part_id");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_machine_part_id(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1200,6 +1254,14 @@ size_t ResourceName::ByteSizeLong() const {
         this->_internal_name());
   }
 
+  // optional string machine_part_id = 5 [json_name = "machinePartId"];
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_machine_part_id());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -1234,6 +1296,9 @@ void ResourceName::MergeFrom(const ResourceName& from) {
   if (!from._internal_name().empty()) {
     _internal_set_name(from._internal_name());
   }
+  if (from._internal_has_machine_part_id()) {
+    _internal_set_machine_part_id(from._internal_machine_part_id());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1253,6 +1318,7 @@ void ResourceName::InternalSwap(ResourceName* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &namespace__, lhs_arena,
       &other->namespace__, rhs_arena
@@ -1268,6 +1334,10 @@ void ResourceName::InternalSwap(ResourceName* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &name_, lhs_arena,
       &other->name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &machine_part_id_, lhs_arena,
+      &other->machine_part_id_, rhs_arena
   );
 }
 

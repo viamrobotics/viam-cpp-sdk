@@ -76,6 +76,9 @@ extern GetPropertiesRequestDefaultTypeInternal _GetPropertiesRequest_default_ins
 class GetPropertiesResponse;
 struct GetPropertiesResponseDefaultTypeInternal;
 extern GetPropertiesResponseDefaultTypeInternal _GetPropertiesResponse_default_instance_;
+class SensorInfo;
+struct SensorInfoDefaultTypeInternal;
+extern SensorInfoDefaultTypeInternal _SensorInfo_default_instance_;
 }  // namespace v1
 }  // namespace slam
 }  // namespace service
@@ -89,6 +92,7 @@ template<> ::viam::service::slam::v1::GetPositionRequest* Arena::CreateMaybeMess
 template<> ::viam::service::slam::v1::GetPositionResponse* Arena::CreateMaybeMessage<::viam::service::slam::v1::GetPositionResponse>(Arena*);
 template<> ::viam::service::slam::v1::GetPropertiesRequest* Arena::CreateMaybeMessage<::viam::service::slam::v1::GetPropertiesRequest>(Arena*);
 template<> ::viam::service::slam::v1::GetPropertiesResponse* Arena::CreateMaybeMessage<::viam::service::slam::v1::GetPropertiesResponse>(Arena*);
+template<> ::viam::service::slam::v1::SensorInfo* Arena::CreateMaybeMessage<::viam::service::slam::v1::SensorInfo>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace viam {
 namespace service {
@@ -121,6 +125,32 @@ inline bool MappingMode_Parse(
     ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, MappingMode* value) {
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<MappingMode>(
     MappingMode_descriptor(), name, value);
+}
+enum SensorType : int {
+  SENSOR_TYPE_UNSPECIFIED = 0,
+  SENSOR_TYPE_CAMERA = 1,
+  SENSOR_TYPE_MOVEMENT_SENSOR = 2,
+  SensorType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  SensorType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool SensorType_IsValid(int value);
+constexpr SensorType SensorType_MIN = SENSOR_TYPE_UNSPECIFIED;
+constexpr SensorType SensorType_MAX = SENSOR_TYPE_MOVEMENT_SENSOR;
+constexpr int SensorType_ARRAYSIZE = SensorType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* SensorType_descriptor();
+template<typename T>
+inline const std::string& SensorType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, SensorType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function SensorType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    SensorType_descriptor(), enum_t_value);
+}
+inline bool SensorType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, SensorType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<SensorType>(
+    SensorType_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -580,6 +610,7 @@ class GetPointCloudMapRequest final :
 
   enum : int {
     kNameFieldNumber = 1,
+    kReturnEditedMapFieldNumber = 2,
   };
   // string name = 1 [json_name = "name"];
   void clear_name();
@@ -595,6 +626,19 @@ class GetPointCloudMapRequest final :
   std::string* _internal_mutable_name();
   public:
 
+  // optional bool return_edited_map = 2 [json_name = "returnEditedMap"];
+  bool has_return_edited_map() const;
+  private:
+  bool _internal_has_return_edited_map() const;
+  public:
+  void clear_return_edited_map();
+  bool return_edited_map() const;
+  void set_return_edited_map(bool value);
+  private:
+  bool _internal_return_edited_map() const;
+  void _internal_set_return_edited_map(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.service.slam.v1.GetPointCloudMapRequest)
  private:
   class _Internal;
@@ -602,8 +646,10 @@ class GetPointCloudMapRequest final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  bool return_edited_map_;
   friend struct ::TableStruct_service_2fslam_2fv1_2fslam_2eproto;
 };
 // -------------------------------------------------------------------
@@ -1319,9 +1365,47 @@ class GetPropertiesResponse final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kSensorInfoFieldNumber = 4,
+    kInternalStateFileTypeFieldNumber = 3,
     kCloudSlamFieldNumber = 1,
     kMappingModeFieldNumber = 2,
   };
+  // repeated .viam.service.slam.v1.SensorInfo sensor_info = 4 [json_name = "sensorInfo"];
+  int sensor_info_size() const;
+  private:
+  int _internal_sensor_info_size() const;
+  public:
+  void clear_sensor_info();
+  ::viam::service::slam::v1::SensorInfo* mutable_sensor_info(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::slam::v1::SensorInfo >*
+      mutable_sensor_info();
+  private:
+  const ::viam::service::slam::v1::SensorInfo& _internal_sensor_info(int index) const;
+  ::viam::service::slam::v1::SensorInfo* _internal_add_sensor_info();
+  public:
+  const ::viam::service::slam::v1::SensorInfo& sensor_info(int index) const;
+  ::viam::service::slam::v1::SensorInfo* add_sensor_info();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::slam::v1::SensorInfo >&
+      sensor_info() const;
+
+  // optional string internal_state_file_type = 3 [json_name = "internalStateFileType"];
+  bool has_internal_state_file_type() const;
+  private:
+  bool _internal_has_internal_state_file_type() const;
+  public:
+  void clear_internal_state_file_type();
+  const std::string& internal_state_file_type() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_internal_state_file_type(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_internal_state_file_type();
+  PROTOBUF_NODISCARD std::string* release_internal_state_file_type();
+  void set_allocated_internal_state_file_type(std::string* internal_state_file_type);
+  private:
+  const std::string& _internal_internal_state_file_type() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_internal_state_file_type(const std::string& value);
+  std::string* _internal_mutable_internal_state_file_type();
+  public:
+
   // bool cloud_slam = 1 [json_name = "cloudSlam"];
   void clear_cloud_slam();
   bool cloud_slam() const;
@@ -1347,8 +1431,170 @@ class GetPropertiesResponse final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::slam::v1::SensorInfo > sensor_info_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr internal_state_file_type_;
   bool cloud_slam_;
   int mapping_mode_;
+  friend struct ::TableStruct_service_2fslam_2fv1_2fslam_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SensorInfo final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.slam.v1.SensorInfo) */ {
+ public:
+  inline SensorInfo() : SensorInfo(nullptr) {}
+  ~SensorInfo() override;
+  explicit PROTOBUF_CONSTEXPR SensorInfo(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SensorInfo(const SensorInfo& from);
+  SensorInfo(SensorInfo&& from) noexcept
+    : SensorInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline SensorInfo& operator=(const SensorInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SensorInfo& operator=(SensorInfo&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SensorInfo& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SensorInfo* internal_default_instance() {
+    return reinterpret_cast<const SensorInfo*>(
+               &_SensorInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(SensorInfo& a, SensorInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SensorInfo* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SensorInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SensorInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SensorInfo>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const SensorInfo& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const SensorInfo& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SensorInfo* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.slam.v1.SensorInfo";
+  }
+  protected:
+  explicit SensorInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kTypeFieldNumber = 2,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // .viam.service.slam.v1.SensorType type = 2 [json_name = "type"];
+  void clear_type();
+  ::viam::service::slam::v1::SensorType type() const;
+  void set_type(::viam::service::slam::v1::SensorType value);
+  private:
+  ::viam::service::slam::v1::SensorType _internal_type() const;
+  void _internal_set_type(::viam::service::slam::v1::SensorType value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.service.slam.v1.SensorInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  int type_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_service_2fslam_2fv1_2fslam_2eproto;
 };
@@ -1691,6 +1937,34 @@ inline void GetPointCloudMapRequest::set_allocated_name(std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:viam.service.slam.v1.GetPointCloudMapRequest.name)
 }
 
+// optional bool return_edited_map = 2 [json_name = "returnEditedMap"];
+inline bool GetPointCloudMapRequest::_internal_has_return_edited_map() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool GetPointCloudMapRequest::has_return_edited_map() const {
+  return _internal_has_return_edited_map();
+}
+inline void GetPointCloudMapRequest::clear_return_edited_map() {
+  return_edited_map_ = false;
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline bool GetPointCloudMapRequest::_internal_return_edited_map() const {
+  return return_edited_map_;
+}
+inline bool GetPointCloudMapRequest::return_edited_map() const {
+  // @@protoc_insertion_point(field_get:viam.service.slam.v1.GetPointCloudMapRequest.return_edited_map)
+  return _internal_return_edited_map();
+}
+inline void GetPointCloudMapRequest::_internal_set_return_edited_map(bool value) {
+  _has_bits_[0] |= 0x00000001u;
+  return_edited_map_ = value;
+}
+inline void GetPointCloudMapRequest::set_return_edited_map(bool value) {
+  _internal_set_return_edited_map(value);
+  // @@protoc_insertion_point(field_set:viam.service.slam.v1.GetPointCloudMapRequest.return_edited_map)
+}
+
 // -------------------------------------------------------------------
 
 // GetPointCloudMapResponse
@@ -1951,9 +2225,193 @@ inline void GetPropertiesResponse::set_mapping_mode(::viam::service::slam::v1::M
   // @@protoc_insertion_point(field_set:viam.service.slam.v1.GetPropertiesResponse.mapping_mode)
 }
 
+// optional string internal_state_file_type = 3 [json_name = "internalStateFileType"];
+inline bool GetPropertiesResponse::_internal_has_internal_state_file_type() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool GetPropertiesResponse::has_internal_state_file_type() const {
+  return _internal_has_internal_state_file_type();
+}
+inline void GetPropertiesResponse::clear_internal_state_file_type() {
+  internal_state_file_type_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& GetPropertiesResponse::internal_state_file_type() const {
+  // @@protoc_insertion_point(field_get:viam.service.slam.v1.GetPropertiesResponse.internal_state_file_type)
+  return _internal_internal_state_file_type();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetPropertiesResponse::set_internal_state_file_type(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ internal_state_file_type_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.slam.v1.GetPropertiesResponse.internal_state_file_type)
+}
+inline std::string* GetPropertiesResponse::mutable_internal_state_file_type() {
+  std::string* _s = _internal_mutable_internal_state_file_type();
+  // @@protoc_insertion_point(field_mutable:viam.service.slam.v1.GetPropertiesResponse.internal_state_file_type)
+  return _s;
+}
+inline const std::string& GetPropertiesResponse::_internal_internal_state_file_type() const {
+  return internal_state_file_type_.Get();
+}
+inline void GetPropertiesResponse::_internal_set_internal_state_file_type(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  internal_state_file_type_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetPropertiesResponse::_internal_mutable_internal_state_file_type() {
+  _has_bits_[0] |= 0x00000001u;
+  return internal_state_file_type_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetPropertiesResponse::release_internal_state_file_type() {
+  // @@protoc_insertion_point(field_release:viam.service.slam.v1.GetPropertiesResponse.internal_state_file_type)
+  if (!_internal_has_internal_state_file_type()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = internal_state_file_type_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (internal_state_file_type_.IsDefault()) {
+    internal_state_file_type_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void GetPropertiesResponse::set_allocated_internal_state_file_type(std::string* internal_state_file_type) {
+  if (internal_state_file_type != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  internal_state_file_type_.SetAllocated(internal_state_file_type, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (internal_state_file_type_.IsDefault()) {
+    internal_state_file_type_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.slam.v1.GetPropertiesResponse.internal_state_file_type)
+}
+
+// repeated .viam.service.slam.v1.SensorInfo sensor_info = 4 [json_name = "sensorInfo"];
+inline int GetPropertiesResponse::_internal_sensor_info_size() const {
+  return sensor_info_.size();
+}
+inline int GetPropertiesResponse::sensor_info_size() const {
+  return _internal_sensor_info_size();
+}
+inline void GetPropertiesResponse::clear_sensor_info() {
+  sensor_info_.Clear();
+}
+inline ::viam::service::slam::v1::SensorInfo* GetPropertiesResponse::mutable_sensor_info(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.service.slam.v1.GetPropertiesResponse.sensor_info)
+  return sensor_info_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::slam::v1::SensorInfo >*
+GetPropertiesResponse::mutable_sensor_info() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.slam.v1.GetPropertiesResponse.sensor_info)
+  return &sensor_info_;
+}
+inline const ::viam::service::slam::v1::SensorInfo& GetPropertiesResponse::_internal_sensor_info(int index) const {
+  return sensor_info_.Get(index);
+}
+inline const ::viam::service::slam::v1::SensorInfo& GetPropertiesResponse::sensor_info(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.slam.v1.GetPropertiesResponse.sensor_info)
+  return _internal_sensor_info(index);
+}
+inline ::viam::service::slam::v1::SensorInfo* GetPropertiesResponse::_internal_add_sensor_info() {
+  return sensor_info_.Add();
+}
+inline ::viam::service::slam::v1::SensorInfo* GetPropertiesResponse::add_sensor_info() {
+  ::viam::service::slam::v1::SensorInfo* _add = _internal_add_sensor_info();
+  // @@protoc_insertion_point(field_add:viam.service.slam.v1.GetPropertiesResponse.sensor_info)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::slam::v1::SensorInfo >&
+GetPropertiesResponse::sensor_info() const {
+  // @@protoc_insertion_point(field_list:viam.service.slam.v1.GetPropertiesResponse.sensor_info)
+  return sensor_info_;
+}
+
+// -------------------------------------------------------------------
+
+// SensorInfo
+
+// string name = 1 [json_name = "name"];
+inline void SensorInfo::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& SensorInfo::name() const {
+  // @@protoc_insertion_point(field_get:viam.service.slam.v1.SensorInfo.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void SensorInfo::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.slam.v1.SensorInfo.name)
+}
+inline std::string* SensorInfo::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.slam.v1.SensorInfo.name)
+  return _s;
+}
+inline const std::string& SensorInfo::_internal_name() const {
+  return name_.Get();
+}
+inline void SensorInfo::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SensorInfo::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* SensorInfo::release_name() {
+  // @@protoc_insertion_point(field_release:viam.service.slam.v1.SensorInfo.name)
+  return name_.Release();
+}
+inline void SensorInfo::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.slam.v1.SensorInfo.name)
+}
+
+// .viam.service.slam.v1.SensorType type = 2 [json_name = "type"];
+inline void SensorInfo::clear_type() {
+  type_ = 0;
+}
+inline ::viam::service::slam::v1::SensorType SensorInfo::_internal_type() const {
+  return static_cast< ::viam::service::slam::v1::SensorType >(type_);
+}
+inline ::viam::service::slam::v1::SensorType SensorInfo::type() const {
+  // @@protoc_insertion_point(field_get:viam.service.slam.v1.SensorInfo.type)
+  return _internal_type();
+}
+inline void SensorInfo::_internal_set_type(::viam::service::slam::v1::SensorType value) {
+  
+  type_ = value;
+}
+inline void SensorInfo::set_type(::viam::service::slam::v1::SensorType value) {
+  _internal_set_type(value);
+  // @@protoc_insertion_point(field_set:viam.service.slam.v1.SensorInfo.type)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -1982,6 +2440,11 @@ template <> struct is_proto_enum< ::viam::service::slam::v1::MappingMode> : ::st
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::viam::service::slam::v1::MappingMode>() {
   return ::viam::service::slam::v1::MappingMode_descriptor();
+}
+template <> struct is_proto_enum< ::viam::service::slam::v1::SensorType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::viam::service::slam::v1::SensorType>() {
+  return ::viam::service::slam::v1::SensorType_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE
