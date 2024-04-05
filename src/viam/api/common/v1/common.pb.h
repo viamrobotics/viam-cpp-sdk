@@ -342,6 +342,7 @@ class ResourceName final :
     kTypeFieldNumber = 2,
     kSubtypeFieldNumber = 3,
     kNameFieldNumber = 4,
+    kMachinePartIdFieldNumber = 5,
   };
   // string namespace = 1 [json_name = "namespace"];
   void clear_namespace_();
@@ -399,6 +400,24 @@ class ResourceName final :
   std::string* _internal_mutable_name();
   public:
 
+  // optional string machine_part_id = 5 [json_name = "machinePartId"];
+  bool has_machine_part_id() const;
+  private:
+  bool _internal_has_machine_part_id() const;
+  public:
+  void clear_machine_part_id();
+  const std::string& machine_part_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_machine_part_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_machine_part_id();
+  PROTOBUF_NODISCARD std::string* release_machine_part_id();
+  void set_allocated_machine_part_id(std::string* machine_part_id);
+  private:
+  const std::string& _internal_machine_part_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_machine_part_id(const std::string& value);
+  std::string* _internal_mutable_machine_part_id();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.common.v1.ResourceName)
  private:
   class _Internal;
@@ -406,11 +425,13 @@ class ResourceName final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr namespace__;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr type_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr subtype_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr machine_part_id_;
   friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
 };
 // -------------------------------------------------------------------
@@ -5471,6 +5492,74 @@ inline void ResourceName::set_allocated_name(std::string* name) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.common.v1.ResourceName.name)
+}
+
+// optional string machine_part_id = 5 [json_name = "machinePartId"];
+inline bool ResourceName::_internal_has_machine_part_id() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool ResourceName::has_machine_part_id() const {
+  return _internal_has_machine_part_id();
+}
+inline void ResourceName::clear_machine_part_id() {
+  machine_part_id_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& ResourceName::machine_part_id() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.ResourceName.machine_part_id)
+  return _internal_machine_part_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ResourceName::set_machine_part_id(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ machine_part_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.common.v1.ResourceName.machine_part_id)
+}
+inline std::string* ResourceName::mutable_machine_part_id() {
+  std::string* _s = _internal_mutable_machine_part_id();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.ResourceName.machine_part_id)
+  return _s;
+}
+inline const std::string& ResourceName::_internal_machine_part_id() const {
+  return machine_part_id_.Get();
+}
+inline void ResourceName::_internal_set_machine_part_id(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  machine_part_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ResourceName::_internal_mutable_machine_part_id() {
+  _has_bits_[0] |= 0x00000001u;
+  return machine_part_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ResourceName::release_machine_part_id() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.ResourceName.machine_part_id)
+  if (!_internal_has_machine_part_id()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = machine_part_id_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (machine_part_id_.IsDefault()) {
+    machine_part_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void ResourceName::set_allocated_machine_part_id(std::string* machine_part_id) {
+  if (machine_part_id != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  machine_part_id_.SetAllocated(machine_part_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (machine_part_id_.IsDefault()) {
+    machine_part_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.ResourceName.machine_part_id)
 }
 
 // -------------------------------------------------------------------

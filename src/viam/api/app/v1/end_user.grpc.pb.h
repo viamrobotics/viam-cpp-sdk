@@ -54,6 +54,22 @@ class EndUserService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::AcceptLegalResponse>> PrepareAsyncAcceptLegal(::grpc::ClientContext* context, const ::viam::app::v1::AcceptLegalRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::AcceptLegalResponse>>(PrepareAsyncAcceptLegalRaw(context, request, cq));
     }
+    // Allows users to register third party auth applications using Viam linked to the indicated organization
+    virtual ::grpc::Status RegisterAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::RegisterAuthApplicationRequest& request, ::viam::app::v1::RegisterAuthApplicationResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::RegisterAuthApplicationResponse>> AsyncRegisterAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::RegisterAuthApplicationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::RegisterAuthApplicationResponse>>(AsyncRegisterAuthApplicationRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::RegisterAuthApplicationResponse>> PrepareAsyncRegisterAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::RegisterAuthApplicationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::RegisterAuthApplicationResponse>>(PrepareAsyncRegisterAuthApplicationRaw(context, request, cq));
+    }
+    // Allows users to update their third party auth applications
+    virtual ::grpc::Status UpdateAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::UpdateAuthApplicationRequest& request, ::viam::app::v1::UpdateAuthApplicationResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UpdateAuthApplicationResponse>> AsyncUpdateAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::UpdateAuthApplicationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UpdateAuthApplicationResponse>>(AsyncUpdateAuthApplicationRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UpdateAuthApplicationResponse>> PrepareAsyncUpdateAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::UpdateAuthApplicationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UpdateAuthApplicationResponse>>(PrepareAsyncUpdateAuthApplicationRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -64,6 +80,12 @@ class EndUserService final {
       // Marks that the specified user has accepted end user license agreements.
       virtual void AcceptLegal(::grpc::ClientContext* context, const ::viam::app::v1::AcceptLegalRequest* request, ::viam::app::v1::AcceptLegalResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void AcceptLegal(::grpc::ClientContext* context, const ::viam::app::v1::AcceptLegalRequest* request, ::viam::app::v1::AcceptLegalResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Allows users to register third party auth applications using Viam linked to the indicated organization
+      virtual void RegisterAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::RegisterAuthApplicationRequest* request, ::viam::app::v1::RegisterAuthApplicationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void RegisterAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::RegisterAuthApplicationRequest* request, ::viam::app::v1::RegisterAuthApplicationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Allows users to update their third party auth applications
+      virtual void UpdateAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::UpdateAuthApplicationRequest* request, ::viam::app::v1::UpdateAuthApplicationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void UpdateAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::UpdateAuthApplicationRequest* request, ::viam::app::v1::UpdateAuthApplicationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -73,6 +95,10 @@ class EndUserService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::IsLegalAcceptedResponse>* PrepareAsyncIsLegalAcceptedRaw(::grpc::ClientContext* context, const ::viam::app::v1::IsLegalAcceptedRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::AcceptLegalResponse>* AsyncAcceptLegalRaw(::grpc::ClientContext* context, const ::viam::app::v1::AcceptLegalRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::AcceptLegalResponse>* PrepareAsyncAcceptLegalRaw(::grpc::ClientContext* context, const ::viam::app::v1::AcceptLegalRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::RegisterAuthApplicationResponse>* AsyncRegisterAuthApplicationRaw(::grpc::ClientContext* context, const ::viam::app::v1::RegisterAuthApplicationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::RegisterAuthApplicationResponse>* PrepareAsyncRegisterAuthApplicationRaw(::grpc::ClientContext* context, const ::viam::app::v1::RegisterAuthApplicationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UpdateAuthApplicationResponse>* AsyncUpdateAuthApplicationRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateAuthApplicationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UpdateAuthApplicationResponse>* PrepareAsyncUpdateAuthApplicationRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateAuthApplicationRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -91,6 +117,20 @@ class EndUserService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::AcceptLegalResponse>> PrepareAsyncAcceptLegal(::grpc::ClientContext* context, const ::viam::app::v1::AcceptLegalRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::AcceptLegalResponse>>(PrepareAsyncAcceptLegalRaw(context, request, cq));
     }
+    ::grpc::Status RegisterAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::RegisterAuthApplicationRequest& request, ::viam::app::v1::RegisterAuthApplicationResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::RegisterAuthApplicationResponse>> AsyncRegisterAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::RegisterAuthApplicationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::RegisterAuthApplicationResponse>>(AsyncRegisterAuthApplicationRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::RegisterAuthApplicationResponse>> PrepareAsyncRegisterAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::RegisterAuthApplicationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::RegisterAuthApplicationResponse>>(PrepareAsyncRegisterAuthApplicationRaw(context, request, cq));
+    }
+    ::grpc::Status UpdateAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::UpdateAuthApplicationRequest& request, ::viam::app::v1::UpdateAuthApplicationResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateAuthApplicationResponse>> AsyncUpdateAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::UpdateAuthApplicationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateAuthApplicationResponse>>(AsyncUpdateAuthApplicationRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateAuthApplicationResponse>> PrepareAsyncUpdateAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::UpdateAuthApplicationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateAuthApplicationResponse>>(PrepareAsyncUpdateAuthApplicationRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -98,6 +138,10 @@ class EndUserService final {
       void IsLegalAccepted(::grpc::ClientContext* context, const ::viam::app::v1::IsLegalAcceptedRequest* request, ::viam::app::v1::IsLegalAcceptedResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void AcceptLegal(::grpc::ClientContext* context, const ::viam::app::v1::AcceptLegalRequest* request, ::viam::app::v1::AcceptLegalResponse* response, std::function<void(::grpc::Status)>) override;
       void AcceptLegal(::grpc::ClientContext* context, const ::viam::app::v1::AcceptLegalRequest* request, ::viam::app::v1::AcceptLegalResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void RegisterAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::RegisterAuthApplicationRequest* request, ::viam::app::v1::RegisterAuthApplicationResponse* response, std::function<void(::grpc::Status)>) override;
+      void RegisterAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::RegisterAuthApplicationRequest* request, ::viam::app::v1::RegisterAuthApplicationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void UpdateAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::UpdateAuthApplicationRequest* request, ::viam::app::v1::UpdateAuthApplicationResponse* response, std::function<void(::grpc::Status)>) override;
+      void UpdateAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::UpdateAuthApplicationRequest* request, ::viam::app::v1::UpdateAuthApplicationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -113,8 +157,14 @@ class EndUserService final {
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::IsLegalAcceptedResponse>* PrepareAsyncIsLegalAcceptedRaw(::grpc::ClientContext* context, const ::viam::app::v1::IsLegalAcceptedRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::AcceptLegalResponse>* AsyncAcceptLegalRaw(::grpc::ClientContext* context, const ::viam::app::v1::AcceptLegalRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::AcceptLegalResponse>* PrepareAsyncAcceptLegalRaw(::grpc::ClientContext* context, const ::viam::app::v1::AcceptLegalRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::RegisterAuthApplicationResponse>* AsyncRegisterAuthApplicationRaw(::grpc::ClientContext* context, const ::viam::app::v1::RegisterAuthApplicationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::RegisterAuthApplicationResponse>* PrepareAsyncRegisterAuthApplicationRaw(::grpc::ClientContext* context, const ::viam::app::v1::RegisterAuthApplicationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateAuthApplicationResponse>* AsyncUpdateAuthApplicationRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateAuthApplicationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateAuthApplicationResponse>* PrepareAsyncUpdateAuthApplicationRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateAuthApplicationRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_IsLegalAccepted_;
     const ::grpc::internal::RpcMethod rpcmethod_AcceptLegal_;
+    const ::grpc::internal::RpcMethod rpcmethod_RegisterAuthApplication_;
+    const ::grpc::internal::RpcMethod rpcmethod_UpdateAuthApplication_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -127,6 +177,10 @@ class EndUserService final {
     virtual ::grpc::Status IsLegalAccepted(::grpc::ServerContext* context, const ::viam::app::v1::IsLegalAcceptedRequest* request, ::viam::app::v1::IsLegalAcceptedResponse* response);
     // Marks that the specified user has accepted end user license agreements.
     virtual ::grpc::Status AcceptLegal(::grpc::ServerContext* context, const ::viam::app::v1::AcceptLegalRequest* request, ::viam::app::v1::AcceptLegalResponse* response);
+    // Allows users to register third party auth applications using Viam linked to the indicated organization
+    virtual ::grpc::Status RegisterAuthApplication(::grpc::ServerContext* context, const ::viam::app::v1::RegisterAuthApplicationRequest* request, ::viam::app::v1::RegisterAuthApplicationResponse* response);
+    // Allows users to update their third party auth applications
+    virtual ::grpc::Status UpdateAuthApplication(::grpc::ServerContext* context, const ::viam::app::v1::UpdateAuthApplicationRequest* request, ::viam::app::v1::UpdateAuthApplicationResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_IsLegalAccepted : public BaseClass {
@@ -168,7 +222,47 @@ class EndUserService final {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_IsLegalAccepted<WithAsyncMethod_AcceptLegal<Service > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_RegisterAuthApplication : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_RegisterAuthApplication() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_RegisterAuthApplication() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RegisterAuthApplication(::grpc::ServerContext* /*context*/, const ::viam::app::v1::RegisterAuthApplicationRequest* /*request*/, ::viam::app::v1::RegisterAuthApplicationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestRegisterAuthApplication(::grpc::ServerContext* context, ::viam::app::v1::RegisterAuthApplicationRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::RegisterAuthApplicationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_UpdateAuthApplication : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_UpdateAuthApplication() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_UpdateAuthApplication() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateAuthApplication(::grpc::ServerContext* /*context*/, const ::viam::app::v1::UpdateAuthApplicationRequest* /*request*/, ::viam::app::v1::UpdateAuthApplicationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestUpdateAuthApplication(::grpc::ServerContext* context, ::viam::app::v1::UpdateAuthApplicationRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::UpdateAuthApplicationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_IsLegalAccepted<WithAsyncMethod_AcceptLegal<WithAsyncMethod_RegisterAuthApplication<WithAsyncMethod_UpdateAuthApplication<Service > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_IsLegalAccepted : public BaseClass {
    private:
@@ -223,7 +317,61 @@ class EndUserService final {
     virtual ::grpc::ServerUnaryReactor* AcceptLegal(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::AcceptLegalRequest* /*request*/, ::viam::app::v1::AcceptLegalResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_IsLegalAccepted<WithCallbackMethod_AcceptLegal<Service > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_RegisterAuthApplication : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_RegisterAuthApplication() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::RegisterAuthApplicationRequest, ::viam::app::v1::RegisterAuthApplicationResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::RegisterAuthApplicationRequest* request, ::viam::app::v1::RegisterAuthApplicationResponse* response) { return this->RegisterAuthApplication(context, request, response); }));}
+    void SetMessageAllocatorFor_RegisterAuthApplication(
+        ::grpc::MessageAllocator< ::viam::app::v1::RegisterAuthApplicationRequest, ::viam::app::v1::RegisterAuthApplicationResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::RegisterAuthApplicationRequest, ::viam::app::v1::RegisterAuthApplicationResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_RegisterAuthApplication() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RegisterAuthApplication(::grpc::ServerContext* /*context*/, const ::viam::app::v1::RegisterAuthApplicationRequest* /*request*/, ::viam::app::v1::RegisterAuthApplicationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* RegisterAuthApplication(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::RegisterAuthApplicationRequest* /*request*/, ::viam::app::v1::RegisterAuthApplicationResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_UpdateAuthApplication : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_UpdateAuthApplication() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateAuthApplicationRequest, ::viam::app::v1::UpdateAuthApplicationResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::UpdateAuthApplicationRequest* request, ::viam::app::v1::UpdateAuthApplicationResponse* response) { return this->UpdateAuthApplication(context, request, response); }));}
+    void SetMessageAllocatorFor_UpdateAuthApplication(
+        ::grpc::MessageAllocator< ::viam::app::v1::UpdateAuthApplicationRequest, ::viam::app::v1::UpdateAuthApplicationResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateAuthApplicationRequest, ::viam::app::v1::UpdateAuthApplicationResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_UpdateAuthApplication() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateAuthApplication(::grpc::ServerContext* /*context*/, const ::viam::app::v1::UpdateAuthApplicationRequest* /*request*/, ::viam::app::v1::UpdateAuthApplicationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* UpdateAuthApplication(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::UpdateAuthApplicationRequest* /*request*/, ::viam::app::v1::UpdateAuthApplicationResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_IsLegalAccepted<WithCallbackMethod_AcceptLegal<WithCallbackMethod_RegisterAuthApplication<WithCallbackMethod_UpdateAuthApplication<Service > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_IsLegalAccepted : public BaseClass {
@@ -255,6 +403,40 @@ class EndUserService final {
     }
     // disable synchronous version of this method
     ::grpc::Status AcceptLegal(::grpc::ServerContext* /*context*/, const ::viam::app::v1::AcceptLegalRequest* /*request*/, ::viam::app::v1::AcceptLegalResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_RegisterAuthApplication : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_RegisterAuthApplication() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_RegisterAuthApplication() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RegisterAuthApplication(::grpc::ServerContext* /*context*/, const ::viam::app::v1::RegisterAuthApplicationRequest* /*request*/, ::viam::app::v1::RegisterAuthApplicationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_UpdateAuthApplication : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_UpdateAuthApplication() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_UpdateAuthApplication() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateAuthApplication(::grpc::ServerContext* /*context*/, const ::viam::app::v1::UpdateAuthApplicationRequest* /*request*/, ::viam::app::v1::UpdateAuthApplicationResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -300,6 +482,46 @@ class EndUserService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_RegisterAuthApplication : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_RegisterAuthApplication() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_RegisterAuthApplication() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RegisterAuthApplication(::grpc::ServerContext* /*context*/, const ::viam::app::v1::RegisterAuthApplicationRequest* /*request*/, ::viam::app::v1::RegisterAuthApplicationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestRegisterAuthApplication(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_UpdateAuthApplication : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_UpdateAuthApplication() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_UpdateAuthApplication() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateAuthApplication(::grpc::ServerContext* /*context*/, const ::viam::app::v1::UpdateAuthApplicationRequest* /*request*/, ::viam::app::v1::UpdateAuthApplicationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestUpdateAuthApplication(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_IsLegalAccepted : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -341,6 +563,50 @@ class EndUserService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* AcceptLegal(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_RegisterAuthApplication : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_RegisterAuthApplication() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RegisterAuthApplication(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_RegisterAuthApplication() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RegisterAuthApplication(::grpc::ServerContext* /*context*/, const ::viam::app::v1::RegisterAuthApplicationRequest* /*request*/, ::viam::app::v1::RegisterAuthApplicationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* RegisterAuthApplication(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_UpdateAuthApplication : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_UpdateAuthApplication() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UpdateAuthApplication(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_UpdateAuthApplication() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateAuthApplication(::grpc::ServerContext* /*context*/, const ::viam::app::v1::UpdateAuthApplicationRequest* /*request*/, ::viam::app::v1::UpdateAuthApplicationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* UpdateAuthApplication(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -397,9 +663,63 @@ class EndUserService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedAcceptLegal(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::AcceptLegalRequest,::viam::app::v1::AcceptLegalResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_IsLegalAccepted<WithStreamedUnaryMethod_AcceptLegal<Service > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_RegisterAuthApplication : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_RegisterAuthApplication() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::v1::RegisterAuthApplicationRequest, ::viam::app::v1::RegisterAuthApplicationResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::v1::RegisterAuthApplicationRequest, ::viam::app::v1::RegisterAuthApplicationResponse>* streamer) {
+                       return this->StreamedRegisterAuthApplication(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_RegisterAuthApplication() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status RegisterAuthApplication(::grpc::ServerContext* /*context*/, const ::viam::app::v1::RegisterAuthApplicationRequest* /*request*/, ::viam::app::v1::RegisterAuthApplicationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedRegisterAuthApplication(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::RegisterAuthApplicationRequest,::viam::app::v1::RegisterAuthApplicationResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_UpdateAuthApplication : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_UpdateAuthApplication() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::v1::UpdateAuthApplicationRequest, ::viam::app::v1::UpdateAuthApplicationResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::v1::UpdateAuthApplicationRequest, ::viam::app::v1::UpdateAuthApplicationResponse>* streamer) {
+                       return this->StreamedUpdateAuthApplication(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_UpdateAuthApplication() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status UpdateAuthApplication(::grpc::ServerContext* /*context*/, const ::viam::app::v1::UpdateAuthApplicationRequest* /*request*/, ::viam::app::v1::UpdateAuthApplicationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedUpdateAuthApplication(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::UpdateAuthApplicationRequest,::viam::app::v1::UpdateAuthApplicationResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_IsLegalAccepted<WithStreamedUnaryMethod_AcceptLegal<WithStreamedUnaryMethod_RegisterAuthApplication<WithStreamedUnaryMethod_UpdateAuthApplication<Service > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_IsLegalAccepted<WithStreamedUnaryMethod_AcceptLegal<Service > > StreamedService;
+  typedef WithStreamedUnaryMethod_IsLegalAccepted<WithStreamedUnaryMethod_AcceptLegal<WithStreamedUnaryMethod_RegisterAuthApplication<WithStreamedUnaryMethod_UpdateAuthApplication<Service > > > > StreamedService;
 };
 
 }  // namespace v1
