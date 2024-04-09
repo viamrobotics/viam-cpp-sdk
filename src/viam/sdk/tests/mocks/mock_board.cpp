@@ -71,15 +71,13 @@ Board::digital_value MockBoard::read_digital_interrupt(const std::string& digita
     return this->peek_read_digital_interrupt_ret;
 }
 
-
-
 void MockBoard::stream_ticks(const std::vector<std::string> digital_interrupt_names,
-                                                std::shared_ptr<std::queue<tick>> ticks,
-                                               const AttributeMap& extra) {
-   for (int i = 0; i < digital_interrupt_names.size(); i++) {
-       this->peek_callbacks[digital_interrupt_names[i]] = *ticks;
-
-   }}
+                             std::shared_ptr<std::queue<tick>> ticks,
+                             const AttributeMap& extra) {
+    for (int i = 0; i < digital_interrupt_names.size(); i++) {
+        this->peek_callbacks[digital_interrupt_names[i]] = *ticks;
+    }
+}
 
 void MockBoard::set_power_mode(power_mode power_mode,
                                const AttributeMap&,

@@ -3,9 +3,9 @@
 /// @brief Defines a `Board` component.
 #pragma once
 
+#include <queue>
 #include <string>
 #include <unordered_map>
-#include <queue>
 
 #include <viam/api/component/board/v1/board.pb.h>
 
@@ -45,9 +45,9 @@ class Board : public Component {
         std::unordered_map<std::string, digital_value> digital_interrupt_values;
     };
 
-
     /// @struct tick
-    /// A board digital interrupt that contains high or low and the time the digital interrupt occured.
+    /// A board digital interrupt that contains high or low and the time the digital interrupt
+    /// occured.
     struct tick {
         std::string pin_name;
         bool high;
@@ -224,7 +224,7 @@ class Board : public Component {
         return read_digital_interrupt(digital_interrupt_name, {});
     }
 
-   // @brief Returns the current value of the interrupt which is based on the type of interrupt.
+    // @brief Returns the current value of the interrupt which is based on the type of interrupt.
     /// Consult Viam's `Board` docs for more information.
     /// @param digital_interrupt_name digital interrupt to check
     /// @param extra Any additional arguments to the method
@@ -233,7 +233,8 @@ class Board : public Component {
 
     /// @brief Returns a stream of digital interrupt ticks.
     /// @param digital_interrupt_names digital interrupts to stream
-    inline void stream_ticks(const std::vector<std::string> digital_interrupt_names,  std::shared_ptr<std::queue<tick>> ticks) {
+    inline void stream_ticks(const std::vector<std::string> digital_interrupt_names,
+                             std::shared_ptr<std::queue<tick>> ticks) {
         return stream_ticks(digital_interrupt_names, ticks, {});
     }
 
@@ -241,8 +242,8 @@ class Board : public Component {
     /// @param digital_interrupt_names digital interrupts to stream
     /// @param extra Any additional arguments to the method
     virtual void stream_ticks(const std::vector<std::string> digital_interrupt_names,
-                                                std::shared_ptr<std::queue<tick>> ticks,
-                                                 const AttributeMap& extra) = 0;
+                              std::shared_ptr<std::queue<tick>> ticks,
+                              const AttributeMap& extra) = 0;
 
     /// @brief Sets the power consumption mode of the board to the requested setting for the given
     /// duration.

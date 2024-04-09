@@ -1,12 +1,12 @@
 #include <viam/sdk/components/private/board_server.hpp>
 
+#include <queue>
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/board.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/rpc/server.hpp>
-#include <queue>
 
 using grpc::ServerWriter;
 
@@ -177,10 +177,10 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
     return ::grpc::Status();
 }
 
-  ::grpc::Status BoardServer::StreamTicks(
+::grpc::Status BoardServer::StreamTicks(
     ::grpc::ServerContext* context,
     const ::viam::component::board::v1::StreamTicksRequest* request,
-    ::grpc::ServerWriter< ::viam::component::board::v1::StreamTicksResponse>* writer) {
+    ::grpc::ServerWriter<::viam::component::board::v1::StreamTicksResponse>* writer) {
     if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [Board::StreamTicks] without a request");
@@ -207,23 +207,22 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
 
     ::viam::component::board::v1::StreamTicksResponse response;
 
-    while(true) {
-        if(ticks->size() != 0) {
-        Board::tick tick = ticks->front();
-        ticks->pop();
-        response.set_pin_name(tick.pin_name);
-        response.set_high(tick.high);
-        response.set_time(tick.time);
-        writer->Write(response);
+    while (true) {
+        if (ticks->size() != 0) {
+            Board::tick tick = ticks->front();
+            ticks->pop();
+            response.set_pin_name(tick.pin_name);
+            response.set_high(tick.high);
+            response.set_time(tick.time);
+            writer->Write(response);
         }
         if (context->IsCancelled()) {
-            return grpc::Status(grpc::StatusCode::CANCELLED, "StreamTicks RPC is cancelled by the client");
+            return grpc::Status(grpc::StatusCode::CANCELLED,
+                                "StreamTicks RPC is cancelled by the client");
         }
     }
     return ::grpc::Status();
-    }
-
-
+}
 
 ::grpc::Status BoardServer::SetPowerMode(
     ::grpc::ServerContext*,

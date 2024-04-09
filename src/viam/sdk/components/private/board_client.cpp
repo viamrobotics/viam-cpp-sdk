@@ -139,11 +139,9 @@ Board::digital_value BoardClient::read_digital_interrupt(const std::string& digi
     return response.value();
 }
 
-
 void BoardClient::stream_ticks(const std::vector<std::string> digital_interrupt_names,
-                                                 std::shared_ptr<std::queue<tick>> ticks,
-                                                 const AttributeMap& extra) {
-
+                               std::shared_ptr<std::queue<tick>> ticks,
+                               const AttributeMap& extra) {
     std::cout << "here stream ticks" << std::endl;
     viam::component::board::v1::StreamTicksRequest request;
     viam::component::board::v1::StreamTicksResponse response;
@@ -153,23 +151,23 @@ void BoardClient::stream_ticks(const std::vector<std::string> digital_interrupt_
 
     request.set_name(this->name());
 
-    for(int i = 0; i<digital_interrupt_names.size(); i++ ) {
-    request.add_pin_names(digital_interrupt_names[i]);
+    for (int i = 0; i < digital_interrupt_names.size(); i++) {
+        request.add_pin_names(digital_interrupt_names[i]);
     }
     *request.mutable_extra() = map_to_struct(extra);
-    std::unique_ptr<::grpc::ClientReaderInterface<::viam::component::board::v1::StreamTicksResponse>> reader = stub_->StreamTicks(ctx, request);
+    std::unique_ptr<
+        ::grpc::ClientReaderInterface<::viam::component::board::v1::StreamTicksResponse>>
+        reader = stub_->StreamTicks(ctx, request);
 
-
-  while(reader->Read(&response)) {
+    while (reader->Read(&response)) {
         Board::tick tick;
         tick.pin_name = response.pin_name();
         tick.high = response.high();
         tick.time = response.time();
         ticks->push(tick);
         reader->Finish();
-        };
-
-    }
+    };
+}
 
 void BoardClient::set_power_mode(power_mode power_mode,
                                  const AttributeMap& extra,

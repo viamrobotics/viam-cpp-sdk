@@ -1,9 +1,9 @@
 #pragma once
 
-#include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/components/board.hpp>
 #include <map>
 #include <queue>
+#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/components/board.hpp>
 
 namespace viam {
 namespace sdktests {
@@ -30,8 +30,8 @@ class MockBoard : public viam::sdk::Board {
     Board::digital_value read_digital_interrupt(const std::string& digital_interrupt_name,
                                                 const sdk::AttributeMap& extra) override;
     void stream_ticks(const std::vector<std::string> digital_interrupt_names,
-                                                 std::shared_ptr<std::queue<tick>> ticks,
-                                                 const sdk::AttributeMap& extra) override;
+                      std::shared_ptr<std::queue<tick>> ticks,
+                      const sdk::AttributeMap& extra) override;
     void set_power_mode(power_mode power_mode,
                         const sdk::AttributeMap& extra,
                         const boost::optional<std::chrono::microseconds>& duration) override;
