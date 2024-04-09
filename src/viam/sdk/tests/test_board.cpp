@@ -150,7 +150,7 @@ BOOST_AUTO_TEST_CASE(test_stream_ticks) {
     const auto mock = std::make_shared<MockBoard>("mock_board");
 
      client_to_mock_pipeline<Board>(mock, [&](Board& client) {
-        std::queue<Board::tick> ticks;
+        std::shared_ptr<std::queue<Board::tick>> ticks;
         std::vector<std::string> pin_names = {"t1", "t2"};
         mock->sdk::Board::stream_ticks(pin_names, ticks);
 

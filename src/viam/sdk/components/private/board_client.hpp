@@ -46,7 +46,7 @@ class BoardClient : public Board {
     std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
 
     void stream_ticks(const std::vector<std::string> digital_interrupt_names,
-                                                 const std::queue<tick> ticks,
+                                                 const std::shared_ptr<std::queue<tick>> ticks,
                                                  const AttributeMap& extra) override;
 
     // the `extra` param is frequently unnecessary but needs to be supported. Ideally, we'd

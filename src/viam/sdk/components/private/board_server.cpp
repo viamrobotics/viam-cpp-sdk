@@ -178,7 +178,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
 }
 
   ::grpc::Status BoardServer::StreamTicks(
-    ::grpc::ServerContext*,
+    ::grpc::ServerContext* context,
     const ::viam::component::board::v1::StreamTicksRequest* request,
     ::grpc::ServerWriter< ::viam::component::board::v1::StreamTicksResponse>* writer) {
     if (!request) {
@@ -198,7 +198,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
         extra = struct_to_map(request->extra());
     }
 
-    std::queue<Board::tick> ticks;
+    std::shared_ptr<std::queue<Board::tick>> ticks;
 
     google::protobuf::RepeatedPtrField<std::__1::string> pin_names = request->pin_names();
     const std::vector<std::string> digital_interrupt_names(pin_names.begin(), pin_names.end());
@@ -208,13 +208,16 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
     ::viam::component::board::v1::StreamTicksResponse response;
 
     while(true) {
-        if(ticks.size() != 0) {
-        Board::tick tick = ticks.front();
-        ticks.pop();
+        if(ticks->size() != 0) {
+        Board::tick tick = ticks->front();
+        ticks->pop();
         response.set_pin_name(tick.pin_name);
         response.set_high(tick.high);
         response.set_time(tick.time);
         writer->Write(response);
+        }
+        if (context->IsCancelled()) {
+            return grpc::Status(grpc::StatusCode::CANCELLED, "StreamTicks RPC is cancelled by the client");
         }
     }
     return ::grpc::Status();
