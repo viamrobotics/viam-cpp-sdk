@@ -233,14 +233,14 @@ class Board : public Component {
 
     /// @brief Returns a stream of digital interrupt ticks.
     /// @param digital_interrupt_names digital interrupts to stream
-    inline void stream_ticks(const std::string digital_interrupt_names[], const std::queue<tick> ticks) {
+    inline void stream_ticks(const std::vector<std::string> digital_interrupt_names, const std::queue<tick> ticks) {
         return stream_ticks(digital_interrupt_names, ticks, {});
     }
 
     /// @brief Returns a stream of digital interrupt ticks.
     /// @param digital_interrupt_names digital interrupts to stream
     /// @param extra Any additional arguments to the method
-    virtual void stream_ticks(const std::string digital_interrupt_names[],
+    virtual void stream_ticks(const std::vector<std::string> digital_interrupt_names,
                                                  const std::queue<tick> ticks,
                                                  const AttributeMap& extra) = 0;
 

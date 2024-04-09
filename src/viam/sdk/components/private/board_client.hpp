@@ -45,7 +45,7 @@ class BoardClient : public Board {
                         const boost::optional<std::chrono::microseconds>& duration) override;
     std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
 
-    void stream_ticks(const std::string digital_interrupt_names[],
+    void stream_ticks(const std::vector<std::string> digital_interrupt_names,
                                                  const std::queue<tick> ticks,
                                                  const AttributeMap& extra) override;
 

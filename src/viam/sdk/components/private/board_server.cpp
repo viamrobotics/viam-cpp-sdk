@@ -180,7 +180,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
   ::grpc::Status BoardServer::StreamTicks(
     ::grpc::ServerContext*,
     const ::viam::component::board::v1::StreamTicksRequest* request,
-    ::viam::component::board::v1::StreamTicksResponse* response) {
+    ::grpc::ServerWriter< ::viam::component::board::v1::StreamTicksResponse>* writer) {
     if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [Board::StreamTicks] without a request");
@@ -198,19 +198,22 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
         extra = struct_to_map(request->extra());
     }
 
-    ServerWriter< ::viam::component::board::v1::StreamTicksResponse>* writer;
-
     std::queue<Board::tick> ticks;
-    board->stream_ticks(request->digital_interrupt_names(), ticks, extra);
 
+    google::protobuf::RepeatedPtrField<std::__1::string> pin_names = request->pin_names();
+    const std::vector<std::string> digital_interrupt_names(pin_names.begin(), pin_names.end());
+
+    board->stream_ticks(digital_interrupt_names, ticks, extra);
+
+    ::viam::component::board::v1::StreamTicksResponse response;
 
     while(true) {
         if(ticks.size() != 0) {
         Board::tick tick = ticks.front();
         ticks.pop();
-        response->pin_name = tick.pin_name;
-        response->high = tick.high;
-        response->time = tick.time;
+        response.set_pin_name(tick.pin_name);
+        response.set_high(tick.high);
+        response.set_time(tick.time);
         writer->Write(response);
         }
     }

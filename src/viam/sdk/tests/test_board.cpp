@@ -148,7 +148,17 @@ BOOST_AUTO_TEST_CASE(test_read_digital_interrupt) {
 
 BOOST_AUTO_TEST_CASE(test_stream_ticks) {
     const auto mock = std::make_shared<MockBoard>("mock_board");
-    
+
+     client_to_mock_pipeline<Board>(mock, [&](Board& client) {
+        std::queue<Board::tick> ticks;
+        std::vector<std::string> pin_names = {"t1", "t2"};
+        mock->sdk::Board::stream_ticks(pin_names, ticks);
+
+        BOOST_CHECK_EQUAL(size(mock->peek_callbacks), 2);
+        BOOST_CHECK_EQUAL(mock->peek_callbacks.begin()->first, "t1");
+        BOOST_CHECK_EQUAL(mock->peek_callbacks.end()->first, "t2");
+     });
+
 }
 
 BOOST_AUTO_TEST_CASE(test_get_analog_reader_names) {
