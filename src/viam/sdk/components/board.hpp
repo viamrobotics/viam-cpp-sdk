@@ -46,7 +46,7 @@ class Board : public Component {
     };
 
     /// @struct tick
-    /// A board digital interrupt that contains high or low and the time the digital interrupt
+    /// A board digital interrupt that contains high/low value and the time the digital interrupt
     /// occured.
     struct tick {
         std::string pin_name;
@@ -224,7 +224,7 @@ class Board : public Component {
         return read_digital_interrupt(digital_interrupt_name, {});
     }
 
-    // @brief Returns the current value of the interrupt which is based on the type of interrupt.
+    /// @brief Returns the current value of the interrupt which is based on the type of interrupt.
     /// Consult Viam's `Board` docs for more information.
     /// @param digital_interrupt_name digital interrupt to check
     /// @param extra Any additional arguments to the method
@@ -233,6 +233,7 @@ class Board : public Component {
 
     /// @brief Returns a stream of digital interrupt ticks.
     /// @param digital_interrupt_names digital interrupts to stream
+    /// @param ticks queue to put the ticks in
     inline void stream_ticks(const std::vector<std::string> digital_interrupt_names,
                              std::shared_ptr<std::queue<tick>> ticks) {
         return stream_ticks(digital_interrupt_names, ticks, {});
@@ -241,6 +242,7 @@ class Board : public Component {
     /// @brief Returns a stream of digital interrupt ticks.
     /// @param digital_interrupt_names digital interrupts to stream
     /// @param extra Any additional arguments to the method
+    /// @param ticks queue to put the ticks in
     virtual void stream_ticks(const std::vector<std::string> digital_interrupt_names,
                               std::shared_ptr<std::queue<tick>> ticks,
                               const AttributeMap& extra) = 0;

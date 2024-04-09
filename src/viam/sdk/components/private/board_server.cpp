@@ -200,15 +200,13 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
 
     std::shared_ptr<std::queue<Board::tick>> ticks;
 
-    google::protobuf::RepeatedPtrField<std::__1::string> pin_names = request->pin_names();
-    const std::vector<std::string> digital_interrupt_names(pin_names.begin(), pin_names.end());
+    const std::vector<std::string> digital_interrupt_names(request->pin_names().begin(), request->pin_names().end());
 
     board->stream_ticks(digital_interrupt_names, ticks, extra);
 
     ::viam::component::board::v1::StreamTicksResponse response;
-
     while (true) {
-        if (ticks->size() != 0) {
+        if (!ticks->empty()) {
             Board::tick tick = ticks->front();
             ticks->pop();
             response.set_pin_name(tick.pin_name);
