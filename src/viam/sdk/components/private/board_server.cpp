@@ -198,8 +198,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
         extra = struct_to_map(request->extra());
     }
 
-    std::shared_ptr<std::queue<Board::tick>> ticks;
-
+    const std::shared_ptr<std::queue<Board::tick>> ticks;
     const std::vector<std::string> digital_interrupt_names(request->pin_names().begin(),
                                                            request->pin_names().end());
 
@@ -208,7 +207,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
     ::viam::component::board::v1::StreamTicksResponse response;
     while (true) {
         if (!ticks->empty()) {
-            Board::tick tick = ticks->front();
+            const Board::tick tick = ticks->front();
             ticks->pop();
             response.set_pin_name(tick.pin_name);
             response.set_high(tick.high);
