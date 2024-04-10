@@ -154,7 +154,7 @@ BOOST_AUTO_TEST_CASE(test_stream_ticks) {
         std::vector<std::string> pin_names = {"t1", "t2"};
         mock->sdk::Board::stream_ticks(pin_names, ticks);
 
-        BOOST_CHECK_EQUAL(size(mock->peek_callbacks), 2);
+        BOOST_CHECK_EQUAL(std::size(mock->peek_callbacks), 2);
         BOOST_CHECK_EQUAL(mock->peek_callbacks.begin()->first, "t1");
         BOOST_CHECK_EQUAL(mock->peek_callbacks.end()->first, "t2");
     });
