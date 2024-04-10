@@ -75,7 +75,7 @@ void MockBoard::stream_ticks(const std::vector<std::string> digital_interrupt_na
                              std::shared_ptr<std::queue<tick>> ticks,
                              const AttributeMap& extra) {
     for (unsigned int i = 0; i < digital_interrupt_names.size(); i++) {
-        this->peek_callbacks[digital_interrupt_names[i]] = *ticks;
+        this->peek_callbacks[digital_interrupt_names[i]] = ticks;
     }
 }
 
