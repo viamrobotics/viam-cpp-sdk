@@ -200,7 +200,8 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
 
     std::shared_ptr<std::queue<Board::tick>> ticks;
 
-    const std::vector<std::string> digital_interrupt_names(request->pin_names().begin(), request->pin_names().end());
+    const std::vector<std::string> digital_interrupt_names(request->pin_names().begin(),
+                                                           request->pin_names().end());
 
     board->stream_ticks(digital_interrupt_names, ticks, extra);
 
