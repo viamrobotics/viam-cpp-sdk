@@ -148,7 +148,7 @@ void BoardClient::stream_ticks(const std::vector<std::string> digital_interrupt_
 
     request.set_name(this->name());
 
-    for (int i = 0; i < digital_interrupt_names.size(); i++) {
+    for (unsigned int i = 0; i < digital_interrupt_names.size(); i++) {
         request.add_pin_names(digital_interrupt_names[i]);
     }
     *request.mutable_extra() = map_to_struct(extra);
