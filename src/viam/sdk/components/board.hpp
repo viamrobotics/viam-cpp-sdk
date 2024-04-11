@@ -3,9 +3,9 @@
 /// @brief Defines a `Board` component.
 #pragma once
 
+#include <chrono>
 #include <queue>
 #include <string>
-#include <chrono>
 #include <unordered_map>
 
 #include <viam/api/component/board/v1/board.pb.h>
@@ -236,7 +236,7 @@ class Board : public Component {
     /// @param digital_interrupt_names digital interrupts to stream
     /// @param ticks queue to put the ticks in
     inline void stream_ticks(std::vector<std::string> const& digital_interrupt_names,
-                            std::shared_ptr<std::queue<tick>> ticks) {
+                             std::shared_ptr<std::queue<tick>> ticks) {
         return stream_ticks(digital_interrupt_names, ticks, {});
     }
 

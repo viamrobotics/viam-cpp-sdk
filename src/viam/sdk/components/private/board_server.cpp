@@ -8,7 +8,6 @@
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/rpc/server.hpp>
 
-
 namespace viam {
 namespace sdk {
 namespace impl {
@@ -179,7 +178,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
 ::grpc::Status BoardServer::StreamTicks(
     ::grpc::ServerContext* context,
     const ::viam::component::board::v1::StreamTicksRequest* request,
-    ::grpc::ServerWriter<::viam::component::board::v1::StreamTicksResponse>* writer) {
+    ::grpc::ServerWriter<::viam::component::board::v1::StreamTicksResponse>* writer) noexcept {
     if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [Board::StreamTicks] without a request");
@@ -197,11 +196,10 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
 
     make_service_helper<Board>(
         "BoardServer::StreamTicks", this, request)([&](auto& helper, auto& board) {
-            const std::vector<std::string> digital_interrupt_names(request->pin_names().begin(),
-                                                           request->pin_names().end());
-            board->stream_ticks(digital_interrupt_names, ticks, helper.getExtra());
-        }
-    );
+        const std::vector<std::string> digital_interrupt_names(request->pin_names().begin(),
+                                                               request->pin_names().end());
+        board->stream_ticks(digital_interrupt_names, ticks, helper.getExtra());
+    });
 
     while (true) {
         if (context->IsCancelled()) {

@@ -16,7 +16,6 @@
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
 
-
 namespace viam {
 namespace sdk {
 namespace impl {
@@ -138,7 +137,6 @@ Board::digital_value BoardClient::read_digital_interrupt(const std::string& digi
     return response.value();
 }
 
-
 void BoardClient::stream_ticks(std::vector<std::string> const& digital_interrupt_names,
                                std::shared_ptr<std::queue<tick>> ticks,
                                const AttributeMap& extra) {
@@ -148,7 +146,7 @@ void BoardClient::stream_ticks(std::vector<std::string> const& digital_interrupt
 
     request.set_name(this->name());
 
-    for (const auto& name: digital_interrupt_names) {
+    for (const auto& name : digital_interrupt_names) {
         request.add_pin_names(name);
     }
     *request.mutable_extra() = map_to_struct(extra);
@@ -156,7 +154,9 @@ void BoardClient::stream_ticks(std::vector<std::string> const& digital_interrupt
     auto reader = stub_->StreamTicks(ctx, request);
 
     while (reader->Read(&response)) {
-        ticks->push({std::move(response.pin_name()), std::chrono::nanoseconds(std::move(response.time())), std::move(response.high()) });
+        ticks->push({std::move(response.pin_name()),
+                     std::chrono::nanoseconds(std::move(response.time())),
+                     std::move(response.high())});
     };
 }
 
