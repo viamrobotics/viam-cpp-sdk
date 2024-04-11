@@ -16,7 +16,6 @@
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
 
-using grpc::ClientReader;
 
 namespace viam {
 namespace sdk {
@@ -139,7 +138,8 @@ Board::digital_value BoardClient::read_digital_interrupt(const std::string& digi
     return response.value();
 }
 
-void BoardClient::stream_ticks(const std::vector<std::string> digital_interrupt_names,
+
+void BoardClient::stream_ticks(std::vector<std::string> const& digital_interrupt_names,
                                std::shared_ptr<std::queue<tick>> ticks,
                                const AttributeMap& extra) {
     viam::component::board::v1::StreamTicksRequest request;
@@ -148,21 +148,15 @@ void BoardClient::stream_ticks(const std::vector<std::string> digital_interrupt_
 
     request.set_name(this->name());
 
-    for (unsigned int i = 0; i < digital_interrupt_names.size(); i++) {
-        request.add_pin_names(digital_interrupt_names[i]);
+    for (const auto& name: digital_interrupt_names) {
+        request.add_pin_names(name);
     }
     *request.mutable_extra() = map_to_struct(extra);
 
-    std::unique_ptr<
-        ::grpc::ClientReaderInterface<::viam::component::board::v1::StreamTicksResponse>>
-        reader = stub_->StreamTicks(ctx, request);
+    auto reader = stub_->StreamTicks(ctx, request);
 
     while (reader->Read(&response)) {
-        Board::tick tick;
-        tick.pin_name = response.pin_name();
-        tick.high = response.high();
-        tick.time = response.time();
-        ticks->push(tick);
+        ticks->push({std::move(response.pin_name()), std::chrono::nanoseconds(std::move(response.time())), std::move(response.high()) });
     };
 }
 

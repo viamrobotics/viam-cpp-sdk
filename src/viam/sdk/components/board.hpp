@@ -5,6 +5,7 @@
 
 #include <queue>
 #include <string>
+#include <chrono>
 #include <unordered_map>
 
 #include <viam/api/component/board/v1/board.pb.h>
@@ -50,8 +51,8 @@ class Board : public Component {
     /// occured.
     struct tick {
         std::string pin_name;
+        std::chrono::nanoseconds time;
         bool high;
-        uint64_t time;
     };
 
     /// @enum power_mode
@@ -234,8 +235,8 @@ class Board : public Component {
     /// @brief Returns a stream of digital interrupt ticks.
     /// @param digital_interrupt_names digital interrupts to stream
     /// @param ticks queue to put the ticks in
-    inline void stream_ticks(const std::vector<std::string> digital_interrupt_names,
-                             std::shared_ptr<std::queue<tick>> ticks) {
+    inline void stream_ticks(std::vector<std::string> const& digital_interrupt_names,
+                            std::shared_ptr<std::queue<tick>> ticks) {
         return stream_ticks(digital_interrupt_names, ticks, {});
     }
 
@@ -243,7 +244,7 @@ class Board : public Component {
     /// @param digital_interrupt_names digital interrupts to stream
     /// @param extra Any additional arguments to the method
     /// @param ticks queue to put the ticks in
-    virtual void stream_ticks(const std::vector<std::string> digital_interrupt_names,
+    virtual void stream_ticks(std::vector<std::string> const& digital_interrupt_names,
                               std::shared_ptr<std::queue<tick>> ticks,
                               const AttributeMap& extra) = 0;
 

@@ -8,7 +8,6 @@
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/rpc/server.hpp>
 
-using grpc::ServerWriter;
 
 namespace viam {
 namespace sdk {
@@ -193,33 +192,31 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
 
     const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    AttributeMap extra;
-    if (request->has_extra()) {
-        extra = struct_to_map(request->extra());
-    }
-
-    const std::shared_ptr<std::queue<Board::tick>> ticks;
-    const std::vector<std::string> digital_interrupt_names(request->pin_names().begin(),
-                                                           request->pin_names().end());
-
-    board->stream_ticks(digital_interrupt_names, ticks, extra);
-
     ::viam::component::board::v1::StreamTicksResponse response;
-    while (true) {
-        if (!ticks->empty()) {
-            const Board::tick tick = ticks->front();
-            ticks->pop();
-            response.set_pin_name(tick.pin_name);
-            response.set_high(tick.high);
-            response.set_time(tick.time);
-            writer->Write(response);
+    std::shared_ptr<std::queue<Board::tick>> ticks;
+
+    make_service_helper<Board>(
+        "BoardServer::StreamTicks", this, request)([&](auto& helper, auto& board) {
+            const std::vector<std::string> digital_interrupt_names(request->pin_names().begin(),
+                                                           request->pin_names().end());
+            board->stream_ticks(digital_interrupt_names, ticks, helper.getExtra());
         }
+    );
+
+    while (true) {
         if (context->IsCancelled()) {
             return grpc::Status(grpc::StatusCode::CANCELLED,
                                 "StreamTicks RPC is cancelled by the client");
         }
+        if (!ticks->empty()) {
+            const auto& tick = ticks->front();
+            ticks->pop();
+            response.set_pin_name(std::move(tick.pin_name));
+            response.set_high(std::move(tick.high));
+            response.set_time(std::move(tick.time.count()));
+            writer->Write(response);
+        }
     }
-    return ::grpc::Status();
 }
 
 ::grpc::Status BoardServer::SetPowerMode(
