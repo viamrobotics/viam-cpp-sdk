@@ -154,9 +154,9 @@ void BoardClient::stream_ticks(std::vector<std::string> const& digital_interrupt
     auto reader = stub_->StreamTicks(ctx, request);
 
     while (reader->Read(&response)) {
-        ticks->push({std::move(response.pin_name()),
-                     std::chrono::nanoseconds(std::move(response.time())),
-                     std::move(response.high())});
+        ticks->push({response.pin_name(),
+                     std::chrono::nanoseconds(response.time()),
+                     response.high()});
     };
 }
 
