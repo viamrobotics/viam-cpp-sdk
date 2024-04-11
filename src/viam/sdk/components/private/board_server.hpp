@@ -77,7 +77,8 @@ class BoardServer : public ResourceServer,
     ::grpc::Status StreamTicks(
         ::grpc::ServerContext* context,
         const ::viam::component::board::v1::StreamTicksRequest* request,
-        ::grpc::ServerWriter<::viam::component::board::v1::StreamTicksResponse>* writer) noexcept override;
+        ::grpc::ServerWriter<::viam::component::board::v1::StreamTicksResponse>* writer) noexcept
+        override;
 
     ::grpc::Status SetPowerMode(
         ::grpc::ServerContext* context,

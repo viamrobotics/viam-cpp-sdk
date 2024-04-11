@@ -40,7 +40,7 @@ class MockBoard : public viam::sdk::Board {
     std::string peek_pin, peek_analog_reader_name, peek_digital_interrupt_name;
     int peek_pin_value;
     Board::status peek_get_status_ret;
-    std::map<std::string, std::queue<tick>> peek_callbacks;
+    std::map<std::string, std::shared_ptr<std::queue<tick>>> peek_callbacks;
     bool peek_set_gpio_high;
     bool peek_get_gpio_ret;
     double peek_get_pwm_duty_cycle_ret;
