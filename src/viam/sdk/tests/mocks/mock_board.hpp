@@ -30,7 +30,7 @@ class MockBoard : public viam::sdk::Board {
     Board::digital_value read_digital_interrupt(const std::string& digital_interrupt_name,
                                                 const sdk::AttributeMap& extra) override;
     void stream_ticks(std::vector<std::string> const& digital_interrupt_names,
-                      std::shared_ptr<std::queue<tick>> ticks,
+                      std::function<bool(Board::Tick tick)>& tick_handler,
                       const sdk::AttributeMap& extra) override;
     void set_power_mode(power_mode power_mode,
                         const sdk::AttributeMap& extra,
@@ -39,8 +39,8 @@ class MockBoard : public viam::sdk::Board {
 
     std::string peek_pin, peek_analog_reader_name, peek_digital_interrupt_name;
     int peek_pin_value;
+    std::map<std::string, std::function<bool(Board::Tick tick)>> peek_callbacks;
     Board::status peek_get_status_ret;
-    std::map<std::string, std::shared_ptr<std::queue<tick>>> peek_callbacks;
     bool peek_set_gpio_high;
     bool peek_get_gpio_ret;
     double peek_get_pwm_duty_cycle_ret;

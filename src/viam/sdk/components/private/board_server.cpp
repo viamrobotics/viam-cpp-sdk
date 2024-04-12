@@ -179,42 +179,26 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
     ::grpc::ServerContext* context,
     const ::viam::component::board::v1::StreamTicksRequest* request,
     ::grpc::ServerWriter<::viam::component::board::v1::StreamTicksResponse>* writer) noexcept {
-    if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [Board::StreamTicks] without a request");
-    };
-
-    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
-    if (!rb) {
-        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
-    }
-
-    const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
-
-    ::viam::component::board::v1::StreamTicksResponse response;
-    std::shared_ptr<std::queue<Board::tick>> ticks;
-
-    make_service_helper<Board>(
+     make_service_helper<Board>(
         "BoardServer::StreamTicks", this, request)([&](auto& helper, auto& board) {
         const std::vector<std::string> digital_interrupt_names(request->pin_names().begin(),
                                                                request->pin_names().end());
-        board->stream_ticks(digital_interrupt_names, ticks, helper.getExtra());
-    });
-
-    while (true) {
-        if (context->IsCancelled()) {
-            return grpc::Status(grpc::StatusCode::CANCELLED,
-                                "StreamTicks RPC is cancelled by the client");
-        }
-        if (!ticks->empty()) {
-            const auto& tick = ticks->front();
-            ticks->pop();
+        std::function<bool(Board::Tick tick)> writeTick = [writer, context](Board::Tick tick) {
+            if (context->IsCancelled()) {
+                // send bool to tell the board to stop calling the callback function.
+                return true;
+            }
+            ::viam::component::board::v1::StreamTicksResponse response;
             response.set_pin_name(tick.pin_name);
             response.set_high(tick.high);
             response.set_time(tick.time.count());
             writer->Write(response);
-        }
-    }
+            return false;
+        };
+        board->stream_ticks(digital_interrupt_names, writeTick, helper.getExtra());
+    });
+
+    return ::grpc::Status();
 }
 
 ::grpc::Status BoardServer::SetPowerMode(

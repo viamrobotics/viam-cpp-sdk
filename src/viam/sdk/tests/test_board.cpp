@@ -150,9 +150,12 @@ BOOST_AUTO_TEST_CASE(test_stream_ticks) {
     const auto mock = std::make_shared<MockBoard>("mock_board");
 
     client_to_mock_pipeline<Board>(mock, [&](Board& client) {
-        std::shared_ptr<std::queue<Board::tick>> ticks;
+        std::function<bool(Board::Tick tick)> tick_handler = [](Board::Tick tick) -> bool {
+            return false;
+        };
+
         std::vector<std::string> pin_names = {"t1", "t2"};
-        mock->sdk::Board::stream_ticks(pin_names, ticks);
+        mock->sdk::Board::stream_ticks(pin_names, tick_handler);
 
         auto iterator = mock->peek_callbacks.begin();
         BOOST_CHECK_EQUAL(iterator->first, "t1");

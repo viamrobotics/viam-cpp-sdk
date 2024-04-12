@@ -49,7 +49,7 @@ class Board : public Component {
     /// @struct tick
     /// A board digital interrupt that contains high/low value and the time the digital interrupt
     /// occured.
-    struct tick {
+    struct Tick {
         std::string pin_name;
         std::chrono::nanoseconds time;
         bool high;
@@ -236,16 +236,15 @@ class Board : public Component {
     /// @param digital_interrupt_names digital interrupts to stream
     /// @param ticks queue to put the ticks in
     inline void stream_ticks(std::vector<std::string> const& digital_interrupt_names,
-                             std::shared_ptr<std::queue<tick>> ticks) {
-        return stream_ticks(digital_interrupt_names, ticks, {});
+                             std::function<bool(Tick tick)>& tick_handler) {
+        return stream_ticks(digital_interrupt_names, tick_handler, {});
     }
 
     /// @brief Returns a stream of digital interrupt ticks.
     /// @param digital_interrupt_names digital interrupts to stream
     /// @param extra Any additional arguments to the method
-    /// @param ticks queue to put the ticks in
     virtual void stream_ticks(std::vector<std::string> const& digital_interrupt_names,
-                              std::shared_ptr<std::queue<tick>> ticks,
+                              std::function<bool(Tick tick)>& tick_handler,
                               const AttributeMap& extra) = 0;
 
     /// @brief Sets the power consumption mode of the board to the requested setting for the given
