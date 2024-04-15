@@ -1,7 +1,6 @@
 #pragma once
 
 #include <map>
-#include <queue>
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/components/board.hpp>
 

@@ -1,6 +1,5 @@
 #include <viam/sdk/components/private/board_server.hpp>
 
-#include <queue>
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/board.hpp>
@@ -179,7 +178,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
     ::grpc::ServerContext* context,
     const ::viam::component::board::v1::StreamTicksRequest* request,
     ::grpc::ServerWriter<::viam::component::board::v1::StreamTicksResponse>* writer) noexcept {
-     make_service_helper<Board>(
+    make_service_helper<Board>(
         "BoardServer::StreamTicks", this, request)([&](auto& helper, auto& board) {
         const std::vector<std::string> digital_interrupt_names(request->pin_names().begin(),
                                                                request->pin_names().end());

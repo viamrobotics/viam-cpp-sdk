@@ -4,7 +4,6 @@
 #pragma once
 
 #include <chrono>
-#include <queue>
 #include <string>
 #include <unordered_map>
 
@@ -234,7 +233,7 @@ class Board : public Component {
 
     /// @brief Returns a stream of digital interrupt ticks.
     /// @param digital_interrupt_names digital interrupts to stream
-    /// @param ticks queue to put the ticks in
+    /// @param tick_handler callback function to call when a tick occurs.
     inline void stream_ticks(std::vector<std::string> const& digital_interrupt_names,
                              std::function<bool(Tick tick)>& tick_handler) {
         return stream_ticks(digital_interrupt_names, tick_handler, {});
@@ -242,6 +241,7 @@ class Board : public Component {
 
     /// @brief Returns a stream of digital interrupt ticks.
     /// @param digital_interrupt_names digital interrupts to stream
+    /// @param tick_handler callback function to call when a tick occurs.
     /// @param extra Any additional arguments to the method
     virtual void stream_ticks(std::vector<std::string> const& digital_interrupt_names,
                               std::function<bool(Tick tick)>& tick_handler,
