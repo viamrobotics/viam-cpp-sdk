@@ -48,11 +48,13 @@ class Board : public Component {
     /// @struct tick
     /// @brief A board's digital interrupt.
     struct Tick {
-        // name of the digital interrupt pin.
+        /// name of the digital interrupt pin.
         std::string pin_name;
-        // time in nanoseconds the tick occured. This does not represent an absolute time.
+
+        /// time in nanoseconds the tick occured. This does not represent an absolute time.
         std::chrono::nanoseconds time;
-        // bool high or low.
+
+        /// bool high or low.
         bool high;
     };
 

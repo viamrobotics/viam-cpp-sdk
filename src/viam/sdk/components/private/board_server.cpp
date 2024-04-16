@@ -182,7 +182,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
         "BoardServer::StreamTicks", this, request)([&](auto& helper, auto& board) {
         const std::vector<std::string> digital_interrupt_names(request->pin_names().begin(),
                                                                request->pin_names().end());
-        auto writeTick = [writer, context](Board::Tick tick) {
+        auto writeTick = [writer, context](Board::Tick&& tick) {
             if (context->IsCancelled()) {
                 // send bool to tell the board to stop calling the callback function.
                 return false;
