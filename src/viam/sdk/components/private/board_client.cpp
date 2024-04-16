@@ -138,7 +138,7 @@ Board::digital_value BoardClient::read_digital_interrupt(const std::string& digi
 }
 
 void BoardClient::stream_ticks(std::vector<std::string> const& digital_interrupt_names,
-                               std::function<bool(Tick tick)>& tick_handler,
+                               std::function<bool(Tick&& tick)> const& tick_handler,
                                const AttributeMap& extra) {
     viam::component::board::v1::StreamTicksRequest request;
     viam::component::board::v1::StreamTicksResponse response;
@@ -154,11 +154,10 @@ void BoardClient::stream_ticks(std::vector<std::string> const& digital_interrupt
     auto reader = stub_->StreamTicks(ctx, request);
 
     while (reader->Read(&response)) {
-        Tick tick =
-            Tick{response.pin_name(), std::chrono::nanoseconds(response.time()), response.high()};
-        bool stop = tick_handler(tick);
-        if (stop) {
-            return;
+        if (!tick_handler({response.pin_name(),
+                           std::chrono::nanoseconds(response.time()),
+                           response.high()})) {
+            break;
         }
     };
 }

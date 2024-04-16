@@ -29,7 +29,7 @@ class MockBoard : public viam::sdk::Board {
     Board::digital_value read_digital_interrupt(const std::string& digital_interrupt_name,
                                                 const sdk::AttributeMap& extra) override;
     void stream_ticks(std::vector<std::string> const& digital_interrupt_names,
-                      std::function<bool(Board::Tick tick)>& tick_handler,
+                      std::function<bool(Board::Tick&& tick)> const& tick_handler,
                       const sdk::AttributeMap& extra) override;
     void set_power_mode(power_mode power_mode,
                         const sdk::AttributeMap& extra,

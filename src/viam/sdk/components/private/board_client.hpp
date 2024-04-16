@@ -46,7 +46,7 @@ class BoardClient : public Board {
     std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
 
     void stream_ticks(std::vector<std::string> const& digital_interrupt_names,
-                      std::function<bool(Tick tick)>& tick_handler,
+                      std::function<bool(Tick&& tick)> const& tick_handler,
                       const AttributeMap& extra) override;
 
     // the `extra` param is frequently unnecessary but needs to be supported. Ideally, we'd

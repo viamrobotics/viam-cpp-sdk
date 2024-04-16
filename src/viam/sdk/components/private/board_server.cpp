@@ -182,17 +182,17 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
         "BoardServer::StreamTicks", this, request)([&](auto& helper, auto& board) {
         const std::vector<std::string> digital_interrupt_names(request->pin_names().begin(),
                                                                request->pin_names().end());
-        std::function<bool(Board::Tick tick)> writeTick = [writer, context](Board::Tick tick) {
+        auto writeTick = [writer, context](Board::Tick tick) {
             if (context->IsCancelled()) {
                 // send bool to tell the board to stop calling the callback function.
-                return true;
+                return false;
             }
             ::viam::component::board::v1::StreamTicksResponse response;
-            response.set_pin_name(tick.pin_name);
-            response.set_high(tick.high);
-            response.set_time(tick.time.count());
-            writer->Write(response);
-            return false;
+            response.set_pin_name(std::move(tick.pin_name));
+            response.set_high(std::move(tick.high));
+            response.set_time(std::move(tick.time.count()));
+            writer->Write(std::move(response));
+            return true;
         };
         board->stream_ticks(digital_interrupt_names, writeTick, helper.getExtra());
     });

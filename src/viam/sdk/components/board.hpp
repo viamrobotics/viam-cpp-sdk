@@ -46,11 +46,13 @@ class Board : public Component {
     };
 
     /// @struct tick
-    /// A board digital interrupt that contains high/low value and the time the digital interrupt
-    /// occured.
+    /// @brief A board's digital interrupt.
     struct Tick {
+        // name of the digital interrupt pin.
         std::string pin_name;
+        // time in nanoseconds the tick occured. This does not represent an absolute time.
         std::chrono::nanoseconds time;
+        // bool high or low.
         bool high;
     };
 
@@ -234,8 +236,10 @@ class Board : public Component {
     /// @brief Returns a stream of digital interrupt ticks.
     /// @param digital_interrupt_names digital interrupts to stream
     /// @param tick_handler callback function to call when a tick occurs.
+    /// This should return true to keep streaming ticks and false to indicate that the stream of
+    /// ticks should terminate. The callback function should not be blocking.
     inline void stream_ticks(std::vector<std::string> const& digital_interrupt_names,
-                             std::function<bool(Tick tick)>& tick_handler) {
+                             std::function<bool(Tick&& tick)> const& tick_handler) {
         return stream_ticks(digital_interrupt_names, tick_handler, {});
     }
 
@@ -244,7 +248,7 @@ class Board : public Component {
     /// @param tick_handler callback function to call when a tick occurs.
     /// @param extra Any additional arguments to the method
     virtual void stream_ticks(std::vector<std::string> const& digital_interrupt_names,
-                              std::function<bool(Tick tick)>& tick_handler,
+                              std::function<bool(Tick&& tick)> const& tick_handler,
                               const AttributeMap& extra) = 0;
 
     /// @brief Sets the power consumption mode of the board to the requested setting for the given
