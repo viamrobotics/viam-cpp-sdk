@@ -191,7 +191,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
             response.set_pin_name(std::move(tick.pin_name));
             response.set_high(std::move(tick.high));
             response.set_time(std::move(tick.time.count()));
-            writer->Write(std::move(response));
+            writer->Write(response);
             return true;
         };
         board->stream_ticks(digital_interrupt_names, writeTick, helper.getExtra());
