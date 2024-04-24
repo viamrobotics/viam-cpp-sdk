@@ -1,5 +1,6 @@
 #pragma once
 
+#include <map>
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/components/board.hpp>
 
@@ -27,6 +28,9 @@ class MockBoard : public viam::sdk::Board {
     void write_analog(const std::string& pin, int value, const sdk::AttributeMap& extra) override;
     Board::digital_value read_digital_interrupt(const std::string& digital_interrupt_name,
                                                 const sdk::AttributeMap& extra) override;
+    void stream_ticks(std::vector<std::string> const& digital_interrupt_names,
+                      std::function<bool(Board::Tick&& tick)> const& tick_handler,
+                      const sdk::AttributeMap& extra) override;
     void set_power_mode(power_mode power_mode,
                         const sdk::AttributeMap& extra,
                         const boost::optional<std::chrono::microseconds>& duration) override;
@@ -34,6 +38,7 @@ class MockBoard : public viam::sdk::Board {
 
     std::string peek_pin, peek_analog_reader_name, peek_digital_interrupt_name;
     int peek_pin_value;
+    std::map<std::string, std::function<bool(Board::Tick tick)>> peek_callbacks;
     Board::status peek_get_status_ret;
     bool peek_set_gpio_high;
     bool peek_get_gpio_ret;

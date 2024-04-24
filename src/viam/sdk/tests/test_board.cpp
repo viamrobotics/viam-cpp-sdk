@@ -146,6 +146,22 @@ BOOST_AUTO_TEST_CASE(test_read_digital_interrupt) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(test_stream_ticks) {
+    const auto mock = std::make_shared<MockBoard>("mock_board");
+
+    client_to_mock_pipeline<Board>(mock, [&](Board& client) {
+        auto tick_handler = [](Board::Tick tick) -> bool { return false; };
+
+        std::vector<std::string> pin_names = {"t1", "t2"};
+        mock->sdk::Board::stream_ticks(pin_names, tick_handler);
+
+        auto iterator = mock->peek_callbacks.begin();
+        BOOST_CHECK_EQUAL(iterator->first, "t1");
+        iterator++;
+        BOOST_CHECK_EQUAL(iterator->first, "t2");
+    });
+}
+
 BOOST_AUTO_TEST_CASE(test_get_analog_reader_names) {
     const auto mock = std::make_shared<MockBoard>("mock_board");
     client_to_mock_pipeline<Board>(mock, [&](Board& client) {

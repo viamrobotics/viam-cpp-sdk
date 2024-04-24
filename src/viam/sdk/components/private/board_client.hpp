@@ -45,6 +45,10 @@ class BoardClient : public Board {
                         const boost::optional<std::chrono::microseconds>& duration) override;
     std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
 
+    void stream_ticks(std::vector<std::string> const& digital_interrupt_names,
+                      std::function<bool(Tick&& tick)> const& tick_handler,
+                      const AttributeMap& extra) override;
+
     // the `extra` param is frequently unnecessary but needs to be supported. Ideally, we'd
     // like to live in a world where implementers of derived classes don't need to go out of
     // their way to support two versions of a method (an `extra` version and a non-`extra`
@@ -65,6 +69,7 @@ class BoardClient : public Board {
     using Board::set_power_mode;
     using Board::set_pwm_duty_cycle;
     using Board::set_pwm_frequency;
+    using Board::stream_ticks;
     using Board::write_analog;
 
    private:

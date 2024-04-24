@@ -174,6 +174,32 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
     return ::grpc::Status();
 }
 
+::grpc::Status BoardServer::StreamTicks(
+    ::grpc::ServerContext* context,
+    const ::viam::component::board::v1::StreamTicksRequest* request,
+    ::grpc::ServerWriter<::viam::component::board::v1::StreamTicksResponse>* writer) noexcept {
+    make_service_helper<Board>(
+        "BoardServer::StreamTicks", this, request)([&](auto& helper, auto& board) {
+        const std::vector<std::string> digital_interrupt_names(request->pin_names().begin(),
+                                                               request->pin_names().end());
+        auto writeTick = [writer, context](Board::Tick&& tick) {
+            if (context->IsCancelled()) {
+                // send bool to tell the board to stop calling the callback function.
+                return false;
+            }
+            ::viam::component::board::v1::StreamTicksResponse response;
+            response.set_pin_name(std::move(tick.pin_name));
+            response.set_high(std::move(tick.high));
+            response.set_time(std::move(tick.time.count()));
+            writer->Write(response);
+            return true;
+        };
+        board->stream_ticks(digital_interrupt_names, writeTick, helper.getExtra());
+    });
+
+    return ::grpc::Status();
+}
+
 ::grpc::Status BoardServer::SetPowerMode(
     ::grpc::ServerContext*,
     const ::viam::component::board::v1::SetPowerModeRequest* request,
