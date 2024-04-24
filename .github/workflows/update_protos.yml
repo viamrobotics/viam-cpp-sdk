@@ -9,11 +9,11 @@ on:
 jobs:
   update-protos:
     if: github.repository_owner == 'viamrobotics'
-    runs-on: [self-hosted, x64]
+    runs-on: ubuntu-latest
     container:
       image: ghcr.io/viamrobotics/canon:amd64
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: setup-grpc
         run: |
           git clone https://github.com/Microsoft/vcpkg.git \
