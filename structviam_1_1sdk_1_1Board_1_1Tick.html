@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Viam C++ SDK: Class Members</title>
+<title>Viam C++ SDK: viam::sdk::Board::Tick Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -48,7 +48,6 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -70,14 +69,36 @@ $(function() {
 </div>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>viam</b></li><li class="navelem"><b>sdk</b></li><li class="navelem"><a class="el" href="classviam_1_1sdk_1_1Board.html">Board</a></li><li class="navelem"><a class="el" href="structviam_1_1sdk_1_1Board_1_1Tick.html">Tick</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="structviam_1_1sdk_1_1Board_1_1Tick-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">viam::sdk::Board::Tick Struct Reference</div></div>
+</div><!--header-->
 <div class="contents">
-<div class="textblock">Here is a list of all documented class members with links to the class documentation for each member:</div>
-
-<h3><a id="index_t" name="index_t"></a>- t -</h3><ul>
-<li>time&#160;:&#160;<a class="el" href="structviam_1_1sdk_1_1Board_1_1Tick.html#a01ab8c12e21ca0022548948dba5735d8">viam::sdk::Board::Tick</a></li>
-<li>timestamp&#160;:&#160;<a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__status.html#a6bf830295f9d18ba3878232a93080082">viam::sdk::Motion::plan_status</a></li>
-<li>to_proto()&#160;:&#160;<a class="el" href="classviam_1_1sdk_1_1Board.html#a8f34ce7b11738c202e7ae35862c262c4">viam::sdk::Board</a>, <a class="el" href="classviam_1_1sdk_1_1Camera.html#a228f388daf0c76826693088d24036372">viam::sdk::Camera</a>, <a class="el" href="classviam_1_1sdk_1_1Encoder.html#afdc4f774d290fcb8421ae5bdeaf87e49">viam::sdk::Encoder</a>, <a class="el" href="classviam_1_1sdk_1_1Motor.html#a033b823de49a3b87f6dd00f982c19673">viam::sdk::Motor</a>, <a class="el" href="classviam_1_1sdk_1_1MovementSensor.html#a7127d4f92982c7dd3283e132cac84ea0">viam::sdk::MovementSensor</a>, <a class="el" href="classviam_1_1sdk_1_1PowerSensor.html#a86961aa04a43d94ac0f145fb2826509b">viam::sdk::PowerSensor</a></li>
-<li>transform_pose()&#160;:&#160;<a class="el" href="classviam_1_1sdk_1_1RobotClient.html#a224a707fe7e12d6ab139c8d123d06ec2">viam::sdk::RobotClient</a></li>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a184710552160686a8e17f997d88f88a1" id="r_a184710552160686a8e17f997d88f88a1"><td class="memItemLeft" align="right" valign="top"><a id="a184710552160686a8e17f997d88f88a1" name="a184710552160686a8e17f997d88f88a1"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>pin_name</b></td></tr>
+<tr class="memdesc:a184710552160686a8e17f997d88f88a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">name of the digital interrupt pin. <br /></td></tr>
+<tr class="separator:a184710552160686a8e17f997d88f88a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01ab8c12e21ca0022548948dba5735d8" id="r_a01ab8c12e21ca0022548948dba5735d8"><td class="memItemLeft" align="right" valign="top"><a id="a01ab8c12e21ca0022548948dba5735d8" name="a01ab8c12e21ca0022548948dba5735d8"></a>
+std::chrono::nanoseconds&#160;</td><td class="memItemRight" valign="bottom"><b>time</b></td></tr>
+<tr class="memdesc:a01ab8c12e21ca0022548948dba5735d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">time in nanoseconds the tick occured. This does not represent an absolute time. <br /></td></tr>
+<tr class="separator:a01ab8c12e21ca0022548948dba5735d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac50f2e1597a07d9a5d8abdd06451b597" id="r_ac50f2e1597a07d9a5d8abdd06451b597"><td class="memItemLeft" align="right" valign="top"><a id="ac50f2e1597a07d9a5d8abdd06451b597" name="ac50f2e1597a07d9a5d8abdd06451b597"></a>
+<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><b>high</b></td></tr>
+<tr class="memdesc:ac50f2e1597a07d9a5d8abdd06451b597"><td class="mdescLeft">&#160;</td><td class="mdescRight">bool high or low. <br /></td></tr>
+<tr class="separator:ac50f2e1597a07d9a5d8abdd06451b597"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>src/viam/sdk/components/<a class="el" href="board_8hpp_source.html">board.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

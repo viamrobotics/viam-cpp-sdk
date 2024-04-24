@@ -109,6 +109,8 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Board_1_1status.html">status</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This contains all of the values for all of the registered analog readers and digital interrupts that have been registered on the board.  <a href="structviam_1_1sdk_1_1Board_1_1status.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Board_1_1Tick.html">Tick</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -160,10 +162,10 @@ std::unordered_map&lt; std::string, <a class="el" href="#a7492deed4439690ea37d47
 <tr class="memitem:af74dd850f6dadf7ede5d2626b0f17a0d" id="r_af74dd850f6dadf7ede5d2626b0f17a0d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af74dd850f6dadf7ede5d2626b0f17a0d">get_gpio</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:af74dd850f6dadf7ede5d2626b0f17a0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the high/low state of the given pin on a board.  <br /></td></tr>
 <tr class="separator:af74dd850f6dadf7ede5d2626b0f17a0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a7223c4236912ae4fb48bd86ad6d966" id="r_a5a7223c4236912ae4fb48bd86ad6d966"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a7223c4236912ae4fb48bd86ad6d966">set_gpio</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">high</a>)</td></tr>
+<tr class="memitem:a5a7223c4236912ae4fb48bd86ad6d966" id="r_a5a7223c4236912ae4fb48bd86ad6d966"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a7223c4236912ae4fb48bd86ad6d966">set_gpio</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a> high)</td></tr>
 <tr class="memdesc:a5a7223c4236912ae4fb48bd86ad6d966"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the gpio high/low state of the given pin on a board.  <br /></td></tr>
 <tr class="separator:a5a7223c4236912ae4fb48bd86ad6d966"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a393f8850e0b48021b02eb8556fba9dac" id="r_a393f8850e0b48021b02eb8556fba9dac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a393f8850e0b48021b02eb8556fba9dac">set_gpio</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">high</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memitem:a393f8850e0b48021b02eb8556fba9dac" id="r_a393f8850e0b48021b02eb8556fba9dac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a393f8850e0b48021b02eb8556fba9dac">set_gpio</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a> high, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:a393f8850e0b48021b02eb8556fba9dac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the gpio high/low state of the given pin on a board.  <br /></td></tr>
 <tr class="separator:a393f8850e0b48021b02eb8556fba9dac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afbff089e26c7d3f959e77561d578c17f" id="r_afbff089e26c7d3f959e77561d578c17f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afbff089e26c7d3f959e77561d578c17f">get_pwm_duty_cycle</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>)</td></tr>
@@ -208,6 +210,12 @@ std::unordered_map&lt; std::string, <a class="el" href="#a7492deed4439690ea37d47
 <tr class="memitem:a50ba13b16e5c715a0e18a6807577ba8b" id="r_a50ba13b16e5c715a0e18a6807577ba8b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="#a7492deed4439690ea37d470fd899919d">digital_value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50ba13b16e5c715a0e18a6807577ba8b">read_digital_interrupt</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">digital_interrupt_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:a50ba13b16e5c715a0e18a6807577ba8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current value of the interrupt which is based on the type of interrupt. Consult Viam's <code><a class="el" href="classviam_1_1sdk_1_1Board.html" title="Represents a physical board with gpio pins, digital interrupts, and analog voltage reading.">Board</a></code> docs for more information.  <br /></td></tr>
 <tr class="separator:a50ba13b16e5c715a0e18a6807577ba8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abebf604f13b3020a0bd92a009a53c3d8" id="r_abebf604f13b3020a0bd92a009a53c3d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abebf604f13b3020a0bd92a009a53c3d8">stream_ticks</a> (std::vector&lt; std::string &gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">digital_interrupt_names</a>, std::function&lt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>(<a class="el" href="structviam_1_1sdk_1_1Board_1_1Tick.html">Tick</a> &amp;&amp;<a class="el" href="structtick.html">tick</a>)&gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">tick_handler</a>)</td></tr>
+<tr class="memdesc:abebf604f13b3020a0bd92a009a53c3d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a stream of digital interrupt ticks.  <br /></td></tr>
+<tr class="separator:abebf604f13b3020a0bd92a009a53c3d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a428fc8861d633cf7966f9ddb0e5594ef" id="r_a428fc8861d633cf7966f9ddb0e5594ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a428fc8861d633cf7966f9ddb0e5594ef">stream_ticks</a> (std::vector&lt; std::string &gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">digital_interrupt_names</a>, std::function&lt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>(<a class="el" href="structviam_1_1sdk_1_1Board_1_1Tick.html">Tick</a> &amp;&amp;<a class="el" href="structtick.html">tick</a>)&gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">tick_handler</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memdesc:a428fc8861d633cf7966f9ddb0e5594ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a stream of digital interrupt ticks.  <br /></td></tr>
+<tr class="separator:a428fc8861d633cf7966f9ddb0e5594ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28c2afa84769f3f311907c1a41b5675e" id="r_a28c2afa84769f3f311907c1a41b5675e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28c2afa84769f3f311907c1a41b5675e">set_power_mode</a> (<a class="el" href="#a166386cf97ecb2e45778d96f5611ce88">power_mode</a> <a class="el" href="#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> boost::optional&lt; std::chrono::microseconds &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">duration</a>={})</td></tr>
 <tr class="memdesc:a28c2afa84769f3f311907c1a41b5675e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the power consumption mode of the board to the requested setting for the given duration.  <br /></td></tr>
 <tr class="separator:a28c2afa84769f3f311907c1a41b5675e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1149,6 +1157,90 @@ Protected Member Functions</h2></td></tr>
 </dl>
 
 <p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1BoardClient.html#a4fae4a0bf79a20f0a1cbf1d67b932efc">viam::sdk::impl::BoardClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1BoardClient.html#a94d36fb1c56ab5732f571f6819cd5c8e">viam::sdk::impl::BoardClient</a>.</p>
+
+</div>
+</div>
+<a id="abebf604f13b3020a0bd92a009a53c3d8" name="abebf604f13b3020a0bd92a009a53c3d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abebf604f13b3020a0bd92a009a53c3d8">&#9670;&#160;</a></span>stream_ticks() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::Board::stream_ticks </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::string &gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>digital_interrupt_names</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::function&lt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>(<a class="el" href="structviam_1_1sdk_1_1Board_1_1Tick.html">Tick</a> &amp;&amp;<a class="el" href="structtick.html">tick</a>)&gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tick_handler</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns a stream of digital interrupt ticks. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">digital_interrupt_names</td><td>digital interrupts to stream </td></tr>
+    <tr><td class="paramname">tick_handler</td><td>callback function to call when a tick occurs. This should return true to keep streaming ticks and false to indicate that the stream of ticks should terminate. The callback function should not be blocking. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a428fc8861d633cf7966f9ddb0e5594ef" name="a428fc8861d633cf7966f9ddb0e5594ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a428fc8861d633cf7966f9ddb0e5594ef">&#9670;&#160;</a></span>stream_ticks() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::Board::stream_ticks </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::string &gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>digital_interrupt_names</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::function&lt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>(<a class="el" href="structviam_1_1sdk_1_1Board_1_1Tick.html">Tick</a> &amp;&amp;<a class="el" href="structtick.html">tick</a>)&gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tick_handler</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns a stream of digital interrupt ticks. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">digital_interrupt_names</td><td>digital interrupts to stream </td></tr>
+    <tr><td class="paramname">tick_handler</td><td>callback function to call when a tick occurs. </td></tr>
+    <tr><td class="paramname">extra</td><td>Any additional arguments to the method </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1BoardClient.html#a9b160f5fb75daeac91787bc15523a56e">viam::sdk::impl::BoardClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1BoardClient.html#a428fc8861d633cf7966f9ddb0e5594ef">viam::sdk::impl::BoardClient</a>.</p>
 
 </div>
 </div>
