@@ -11,12 +11,12 @@ on:
 jobs:
   generate-docs:
     if: github.repository_owner == 'viamrobotics'
-    runs-on: [self-hosted, x64]
+    runs-on: ubuntu-latest
     container:
       image: ghcr.io/viamrobotics/canon:amd64
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
       - name: install Doxygen
         uses: ssciwr/doxygen-install@v1

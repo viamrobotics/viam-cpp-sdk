@@ -5,11 +5,11 @@ on: pull_request
 jobs:
   run-tests:
     if: github.repository_owner == 'viamrobotics'
-    runs-on: [self-hosted, x64]
+    runs-on: ubuntu-latest
     container:
       image: ghcr.io/viamrobotics/canon:amd64
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       ###########################################
       #     necessary installs for building     #
       ###########################################
