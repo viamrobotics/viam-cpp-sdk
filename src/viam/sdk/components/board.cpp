@@ -31,14 +31,6 @@ Board::status Board::from_proto(const viam::common::v1::BoardStatus& proto) {
     return status;
 }
 
-Board::analog_value Board::from_proto(const viam::common::v1::AnalogStatus& proto) {
-    return proto.value();
-}
-
-Board::digital_value Board::from_proto(const viam::common::v1::DigitalInterruptStatus& proto) {
-    return proto.value();
-}
-
 Board::power_mode Board::from_proto(viam::component::board::v1::PowerMode proto) {
     switch (proto) {
         case viam::component::board::v1::POWER_MODE_NORMAL: {
@@ -64,18 +56,6 @@ viam::common::v1::BoardStatus Board::to_proto(const status& status) {
     for (const auto& digital : status.digital_interrupt_values) {
         proto.mutable_digital_interrupts()->insert({digital.first, to_proto(digital.second)});
     }
-    return proto;
-}
-
-viam::common::v1::AnalogStatus Board::to_proto(analog_value analog_value) {
-    viam::common::v1::AnalogStatus proto;
-    proto.set_value(analog_value);
-    return proto;
-}
-
-viam::common::v1::DigitalInterruptStatus Board::to_proto(digital_value digital_value) {
-    viam::common::v1::DigitalInterruptStatus proto;
-    proto.set_value(digital_value);
     return proto;
 }
 

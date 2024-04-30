@@ -68,23 +68,11 @@ class Board : public Component {
     /// @brief Creates a `status` struct from its proto representation.
     static status from_proto(const viam::common::v1::BoardStatus& proto);
 
-    /// @brief Creates a `analog_value` struct from its proto representation.
-    static analog_value from_proto(const viam::common::v1::AnalogStatus& proto);
-
-    /// @brief Creates a `digital_value` struct from its proto representation.
-    static digital_value from_proto(const viam::common::v1::DigitalInterruptStatus& proto);
-
     /// @brief Creates a `power_mode` enum from its proto representation.
     static power_mode from_proto(viam::component::board::v1::PowerMode proto);
 
     /// @brief Converts a `status` struct to its proto representation.
     static viam::common::v1::BoardStatus to_proto(const status& status);
-
-    /// @brief Converts a `analog_value` struct to its proto representation.
-    static viam::common::v1::AnalogStatus to_proto(analog_value analog_value);
-
-    /// @brief Converts a `digital_value` struct to its proto representation.
-    static viam::common::v1::DigitalInterruptStatus to_proto(digital_value digital_value);
 
     /// @brief Converts a `power_mode` enum to its proto representation.
     static viam::component::board::v1::PowerMode to_proto(power_mode power_mode);
