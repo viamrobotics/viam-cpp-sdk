@@ -12,3 +12,6 @@
 
 # ignore doxygen output
 /etc/docs/api/*
+
+# Vim temporary swap files
+*.swp
