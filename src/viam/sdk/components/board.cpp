@@ -20,13 +20,13 @@ API API::traits<Board>::api() {
     return {kRDK, kComponent, "board"};
 }
 
-Board::status Board::from_proto(const viam::common::v1::BoardStatus& proto) {
+Board::status Board::from_proto(const viam::component::board::v1::Status& proto) {
     Board::status status;
     for (const auto& analog : proto.analogs()) {
-        status.analog_reader_values.emplace(analog.first, analog.second.value());
+        status.analog_reader_values.emplace(analog.first, analog.second);
     }
     for (const auto& digital : proto.digital_interrupts()) {
-        status.digital_interrupt_values.emplace(digital.first, digital.second.value());
+        status.digital_interrupt_values.emplace(digital.first, digital.second);
     }
     return status;
 }
@@ -47,14 +47,14 @@ Board::power_mode Board::from_proto(viam::component::board::v1::PowerMode proto)
     }
 }
 
-viam::common::v1::BoardStatus Board::to_proto(const status& status) {
-    viam::common::v1::BoardStatus proto;
+viam::component::board::v1::Status Board::to_proto(const status& status) {
+    viam::component::board::v1::Status proto;
     for (const auto& analog : status.analog_reader_values) {
-        proto.mutable_analogs()->insert({analog.first, to_proto(analog.second)});
+        proto.mutable_analogs()->insert({analog.first, analog.second});
     }
 
     for (const auto& digital : status.digital_interrupt_values) {
-        proto.mutable_digital_interrupts()->insert({digital.first, to_proto(digital.second)});
+        proto.mutable_digital_interrupts()->insert({digital.first, digital.second});
     }
     return proto;
 }

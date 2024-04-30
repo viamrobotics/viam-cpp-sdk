@@ -66,13 +66,13 @@ class Board : public Component {
     API api() const override;
 
     /// @brief Creates a `status` struct from its proto representation.
-    static status from_proto(const viam::common::v1::BoardStatus& proto);
+    static status from_proto(const viam::component::board::v1::Status& proto);
 
     /// @brief Creates a `power_mode` enum from its proto representation.
     static power_mode from_proto(viam::component::board::v1::PowerMode proto);
 
     /// @brief Converts a `status` struct to its proto representation.
-    static viam::common::v1::BoardStatus to_proto(const status& status);
+    static viam::component::board::v1::Status to_proto(const status& status);
 
     /// @brief Converts a `power_mode` enum to its proto representation.
     static viam::component::board::v1::PowerMode to_proto(power_mode power_mode);
