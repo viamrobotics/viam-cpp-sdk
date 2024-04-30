@@ -25,12 +25,6 @@ BoardClient::BoardClient(std::string name, std::shared_ptr<grpc::Channel> channe
       stub_(viam::component::board::v1::BoardService::NewStub(channel)),
       channel_(std::move(channel)){};
 
-Board::status BoardClient::get_status(const AttributeMap& extra) {
-    return make_client_helper(this, *stub_, &StubType::Status)
-        .with(extra)
-        .invoke([](auto& response) { return from_proto(response.status()); });
-}
-
 void BoardClient::set_gpio(const std::string& pin, bool high, const AttributeMap& extra) {
     return make_client_helper(this, *stub_, &StubType::SetGPIO)
         .with(extra,
