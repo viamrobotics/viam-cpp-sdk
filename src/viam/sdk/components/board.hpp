@@ -77,15 +77,6 @@ class Board : public Component {
     /// @brief Converts a `power_mode` enum to its proto representation.
     static viam::component::board::v1::PowerMode to_proto(power_mode power_mode);
 
-    /// @brief Get the status of all of the registered analog readers and digital interrupt readers
-    inline status get_status() {
-        return get_status({});
-    }
-
-    /// @brief Get the status of all of the registered analog readers and digital interrupt readers
-    /// @param extra Any additional arguments to the method
-    virtual status get_status(const AttributeMap& extra) = 0;
-
     /// @brief Get the names of the defined analog readers defined for this board
     /// This information comes from calling `get_status()`
     std::vector<std::string> get_analog_reader_names();
