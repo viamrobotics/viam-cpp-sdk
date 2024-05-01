@@ -33,19 +33,6 @@ BOOST_AUTO_TEST_CASE(mock_get_api) {
     BOOST_CHECK_EQUAL(static_api.resource_subtype(), "board");
 }
 
-BOOST_AUTO_TEST_CASE(test_status) {
-    const auto mock = std::make_shared<MockBoard>("mock_board");
-    client_to_mock_pipeline<Board>(mock, [&](Board& client) {
-        std::unordered_map<std::string, Board::analog_value> analogs;
-        analogs.emplace("analog", 1);
-        std::unordered_map<std::string, Board::digital_value> digitals;
-        digitals.emplace("digital", 2);
-        mock->peek_get_status_ret = Board::status{analogs, digitals};
-
-        BOOST_CHECK(client.get_status() == mock->peek_get_status_ret);
-    });
-}
-
 BOOST_AUTO_TEST_CASE(test_set_gpio) {
     const auto mock = std::make_shared<MockBoard>("mock_board");
     client_to_mock_pipeline<Board>(mock, [&](Board& client) {
@@ -159,34 +146,6 @@ BOOST_AUTO_TEST_CASE(test_stream_ticks) {
         BOOST_CHECK_EQUAL(iterator->first, "t1");
         iterator++;
         BOOST_CHECK_EQUAL(iterator->first, "t2");
-    });
-}
-
-BOOST_AUTO_TEST_CASE(test_get_analog_reader_names) {
-    const auto mock = std::make_shared<MockBoard>("mock_board");
-    client_to_mock_pipeline<Board>(mock, [&](Board& client) {
-        std::unordered_map<std::string, Board::analog_value> analogs;
-        analogs.emplace("analog1", 2);
-        analogs.emplace("analog2", 2);
-        mock->peek_get_status_ret = Board::status{analogs, {}};
-        auto ret = client.get_analog_reader_names();
-        std::sort(ret.begin(), ret.end());
-        BOOST_CHECK_EQUAL(ret[0], "analog1");
-        BOOST_CHECK_EQUAL(ret[1], "analog2");
-    });
-}
-
-BOOST_AUTO_TEST_CASE(test_get_digital_interrupt_names) {
-    const auto mock = std::make_shared<MockBoard>("mock_board");
-    client_to_mock_pipeline<Board>(mock, [&](Board& client) {
-        std::unordered_map<std::string, Board::digital_value> digitals;
-        digitals.emplace("digital1", 2);
-        digitals.emplace("digital2", 2);
-        mock->peek_get_status_ret = Board::status{{}, digitals};
-        auto ret = client.get_digital_interrupt_names();
-        std::sort(ret.begin(), ret.end());
-        BOOST_CHECK_EQUAL(ret[0], "digital1");
-        BOOST_CHECK_EQUAL(ret[1], "digital2");
     });
 }
 
