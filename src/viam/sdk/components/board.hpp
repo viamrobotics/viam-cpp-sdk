@@ -77,14 +77,6 @@ class Board : public Component {
     /// @brief Converts a `power_mode` enum to its proto representation.
     static viam::component::board::v1::PowerMode to_proto(power_mode power_mode);
 
-    /// @brief Get all defined analog readers defined for this board
-    /// This information comes from calling `get_status()`
-    std::unordered_map<std::string, analog_value> get_analog_readers();
-
-    /// @brief Get all defined digital interrupts for this board
-    /// This information comes from calling `get_status()`
-    std::unordered_map<std::string, digital_value> get_digital_interrupts();
-
     /// @brief Gets the high/low state of the given pin on a board.
     /// @param pin board pin name
     /// @return high/low state of the given pin. High = on, low = off

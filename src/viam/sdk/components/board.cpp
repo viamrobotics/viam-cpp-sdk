@@ -73,13 +73,6 @@ viam::component::board::v1::PowerMode Board::to_proto(Board::power_mode power_mo
     }
 }
 
-std::unordered_map<std::string, Board::analog_value> Board::get_analog_readers() {
-    return this->get_status().analog_reader_values;
-}
-
-std::unordered_map<std::string, Board::digital_value> Board::get_digital_interrupts() {
-    return this->get_status().digital_interrupt_values;
-}
 Board::Board(std::string name) : Component(std::move(name)){};
 
 bool operator==(const Board::status& lhs, const Board::status& rhs) {
