@@ -11,7 +11,6 @@ namespace board {
 class MockBoard : public viam::sdk::Board {
    public:
     MockBoard(std::string name);
-    Board::status get_status(const sdk::AttributeMap& extra) override;
     void set_gpio(const std::string& pin, bool high, const sdk::AttributeMap& extra) override;
     bool get_gpio(const std::string& pin, const sdk::AttributeMap& extra) override;
     double get_pwm_duty_cycle(const std::string& pin, const sdk::AttributeMap& extra) override;
@@ -39,7 +38,6 @@ class MockBoard : public viam::sdk::Board {
     std::string peek_pin, peek_analog_reader_name, peek_digital_interrupt_name;
     int peek_pin_value;
     std::map<std::string, std::function<bool(Board::Tick tick)>> peek_callbacks;
-    Board::status peek_get_status_ret;
     bool peek_set_gpio_high;
     bool peek_get_gpio_ret;
     double peek_get_pwm_duty_cycle_ret;
