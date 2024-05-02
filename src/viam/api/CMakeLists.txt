@@ -181,12 +181,98 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/component/servo/v1/servo.grpc.pb.h
     ${PROTO_GEN_DIR}/component/servo/v1/servo.pb.cc
     ${PROTO_GEN_DIR}/component/servo/v1/servo.pb.h
+    ${PROTO_GEN_DIR}/google/api/annotations.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/annotations.grpc.pb.h
     ${PROTO_GEN_DIR}/google/api/annotations.pb.cc
     ${PROTO_GEN_DIR}/google/api/annotations.pb.h
-    ${PROTO_GEN_DIR}/google/api/httpbody.pb.cc
-    ${PROTO_GEN_DIR}/google/api/httpbody.pb.h
+    ${PROTO_GEN_DIR}/google/api/client.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/client.grpc.pb.h
+    ${PROTO_GEN_DIR}/google/api/client.pb.cc
+    ${PROTO_GEN_DIR}/google/api/client.pb.h
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/checked.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/checked.grpc.pb.h
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/checked.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/checked.pb.h
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/eval.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/eval.grpc.pb.h
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/eval.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/eval.pb.h
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/explain.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/explain.grpc.pb.h
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/explain.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/explain.pb.h
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/syntax.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/syntax.grpc.pb.h
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/syntax.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/syntax.pb.h
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/value.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/value.grpc.pb.h
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/value.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/value.pb.h
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/decl.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/decl.grpc.pb.h
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/decl.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/decl.pb.h
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/eval.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/eval.grpc.pb.h
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/eval.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/eval.pb.h
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/expr.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/expr.grpc.pb.h
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/expr.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/expr.pb.h
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/source.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/source.grpc.pb.h
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/source.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/source.pb.h
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/value.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/value.grpc.pb.h
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/value.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/value.pb.h
+    ${PROTO_GEN_DIR}/google/api/field_behavior.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/field_behavior.grpc.pb.h
+    ${PROTO_GEN_DIR}/google/api/field_behavior.pb.cc
+    ${PROTO_GEN_DIR}/google/api/field_behavior.pb.h
+    ${PROTO_GEN_DIR}/google/api/field_info.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/field_info.grpc.pb.h
+    ${PROTO_GEN_DIR}/google/api/field_info.pb.cc
+    ${PROTO_GEN_DIR}/google/api/field_info.pb.h
+    ${PROTO_GEN_DIR}/google/api/http.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/http.grpc.pb.h
     ${PROTO_GEN_DIR}/google/api/http.pb.cc
     ${PROTO_GEN_DIR}/google/api/http.pb.h
+    ${PROTO_GEN_DIR}/google/api/httpbody.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/httpbody.grpc.pb.h
+    ${PROTO_GEN_DIR}/google/api/httpbody.pb.cc
+    ${PROTO_GEN_DIR}/google/api/httpbody.pb.h
+    ${PROTO_GEN_DIR}/google/api/launch_stage.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/launch_stage.grpc.pb.h
+    ${PROTO_GEN_DIR}/google/api/launch_stage.pb.cc
+    ${PROTO_GEN_DIR}/google/api/launch_stage.pb.h
+    ${PROTO_GEN_DIR}/google/api/resource.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/resource.grpc.pb.h
+    ${PROTO_GEN_DIR}/google/api/resource.pb.cc
+    ${PROTO_GEN_DIR}/google/api/resource.pb.h
+    ${PROTO_GEN_DIR}/google/api/visibility.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/visibility.grpc.pb.h
+    ${PROTO_GEN_DIR}/google/api/visibility.pb.cc
+    ${PROTO_GEN_DIR}/google/api/visibility.pb.h
+    ${PROTO_GEN_DIR}/google/rpc/code.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/rpc/code.grpc.pb.h
+    ${PROTO_GEN_DIR}/google/rpc/code.pb.cc
+    ${PROTO_GEN_DIR}/google/rpc/code.pb.h
+    ${PROTO_GEN_DIR}/google/rpc/context/attribute_context.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/rpc/context/attribute_context.grpc.pb.h
+    ${PROTO_GEN_DIR}/google/rpc/context/attribute_context.pb.cc
+    ${PROTO_GEN_DIR}/google/rpc/context/attribute_context.pb.h
+    ${PROTO_GEN_DIR}/google/rpc/error_details.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/rpc/error_details.grpc.pb.h
+    ${PROTO_GEN_DIR}/google/rpc/error_details.pb.cc
+    ${PROTO_GEN_DIR}/google/rpc/error_details.pb.h
+    ${PROTO_GEN_DIR}/google/rpc/status.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/rpc/status.grpc.pb.h
+    ${PROTO_GEN_DIR}/google/rpc/status.pb.cc
+    ${PROTO_GEN_DIR}/google/rpc/status.pb.h
     ${PROTO_GEN_DIR}/module/v1/module.grpc.pb.cc
     ${PROTO_GEN_DIR}/module/v1/module.grpc.pb.h
     ${PROTO_GEN_DIR}/module/v1/module.pb.cc
@@ -288,9 +374,52 @@ target_sources(viamapi
     ${PROTO_GEN_DIR}/component/sensor/v1/sensor.pb.cc
     ${PROTO_GEN_DIR}/component/servo/v1/servo.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/servo/v1/servo.pb.cc
+    ${PROTO_GEN_DIR}/google/api/annotations.grpc.pb.cc
     ${PROTO_GEN_DIR}/google/api/annotations.pb.cc
+    ${PROTO_GEN_DIR}/google/api/client.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/client.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/checked.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/checked.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/eval.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/eval.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/explain.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/explain.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/syntax.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/syntax.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/value.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/value.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/decl.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/decl.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/eval.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/eval.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/expr.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/expr.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/source.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/source.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/value.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/value.pb.cc
+    ${PROTO_GEN_DIR}/google/api/field_behavior.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/field_behavior.pb.cc
+    ${PROTO_GEN_DIR}/google/api/field_info.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/field_info.pb.cc
+    ${PROTO_GEN_DIR}/google/api/http.grpc.pb.cc
     ${PROTO_GEN_DIR}/google/api/http.pb.cc
+    ${PROTO_GEN_DIR}/google/api/httpbody.grpc.pb.cc
     ${PROTO_GEN_DIR}/google/api/httpbody.pb.cc
+    ${PROTO_GEN_DIR}/google/api/launch_stage.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/launch_stage.pb.cc
+    ${PROTO_GEN_DIR}/google/api/resource.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/resource.pb.cc
+    ${PROTO_GEN_DIR}/google/api/visibility.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/api/visibility.pb.cc
+    ${PROTO_GEN_DIR}/google/rpc/code.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/rpc/code.pb.cc
+    ${PROTO_GEN_DIR}/google/rpc/context/attribute_context.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/rpc/context/attribute_context.pb.cc
+    ${PROTO_GEN_DIR}/google/rpc/error_details.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/rpc/error_details.pb.cc
+    ${PROTO_GEN_DIR}/google/rpc/status.grpc.pb.cc
+    ${PROTO_GEN_DIR}/google/rpc/status.pb.cc
     ${PROTO_GEN_DIR}/module/v1/module.grpc.pb.cc
     ${PROTO_GEN_DIR}/module/v1/module.pb.cc
     ${PROTO_GEN_DIR}/robot/v1/robot.grpc.pb.cc
@@ -357,6 +486,8 @@ set_target_properties(
   SOVERSION noabi
   VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
 )
+
+target_link_options(viamapi PRIVATE "LINKER:-z,defs")
 
 target_include_directories(viamapi
   PUBLIC
