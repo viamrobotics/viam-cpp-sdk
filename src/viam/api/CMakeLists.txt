@@ -341,6 +341,7 @@ target_sources(viamapi
       ${PROTO_GEN_DIR}/../../viam/api/google/api/annotations.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/google/api/http.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/google/api/httpbody.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/google/rpc/status.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/module/v1/module.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/module/v1/module.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/robot/v1/robot.grpc.pb.h
