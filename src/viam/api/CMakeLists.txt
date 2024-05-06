@@ -487,8 +487,6 @@ set_target_properties(
   VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
 )
 
-target_link_options(viamapi PRIVATE "LINKER:-z,defs")
-
 target_include_directories(viamapi
   PUBLIC
     # Unfortunately, the generated protos don't say 'viam/api' at
