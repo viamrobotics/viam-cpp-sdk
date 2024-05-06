@@ -187,20 +187,6 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/google/api/httpbody.pb.h
     ${PROTO_GEN_DIR}/google/api/http.pb.cc
     ${PROTO_GEN_DIR}/google/api/http.pb.h
-    ${PROTO_GEN_DIR}/google/rpc/code.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/rpc/code.grpc.pb.h
-    ${PROTO_GEN_DIR}/google/rpc/code.pb.cc
-    ${PROTO_GEN_DIR}/google/rpc/code.pb.h
-    ${PROTO_GEN_DIR}/google/rpc/context/attribute_context.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/rpc/context/attribute_context.grpc.pb.h
-    ${PROTO_GEN_DIR}/google/rpc/context/attribute_context.pb.cc
-    ${PROTO_GEN_DIR}/google/rpc/context/attribute_context.pb.h
-    ${PROTO_GEN_DIR}/google/rpc/error_details.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/rpc/error_details.grpc.pb.h
-    ${PROTO_GEN_DIR}/google/rpc/error_details.pb.cc
-    ${PROTO_GEN_DIR}/google/rpc/error_details.pb.h
-    ${PROTO_GEN_DIR}/google/rpc/status.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/rpc/status.grpc.pb.h
     ${PROTO_GEN_DIR}/google/rpc/status.pb.cc
     ${PROTO_GEN_DIR}/google/rpc/status.pb.h
     ${PROTO_GEN_DIR}/module/v1/module.grpc.pb.cc
@@ -307,13 +293,6 @@ target_sources(viamapi
     ${PROTO_GEN_DIR}/google/api/annotations.pb.cc
     ${PROTO_GEN_DIR}/google/api/http.pb.cc
     ${PROTO_GEN_DIR}/google/api/httpbody.pb.cc
-    ${PROTO_GEN_DIR}/google/rpc/code.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/rpc/code.pb.cc
-    ${PROTO_GEN_DIR}/google/rpc/context/attribute_context.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/rpc/context/attribute_context.pb.cc
-    ${PROTO_GEN_DIR}/google/rpc/error_details.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/rpc/error_details.pb.cc
-    ${PROTO_GEN_DIR}/google/rpc/status.grpc.pb.cc
     ${PROTO_GEN_DIR}/google/rpc/status.pb.cc
     ${PROTO_GEN_DIR}/module/v1/module.grpc.pb.cc
     ${PROTO_GEN_DIR}/module/v1/module.pb.cc
