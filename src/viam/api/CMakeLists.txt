@@ -189,46 +189,6 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/google/api/client.grpc.pb.h
     ${PROTO_GEN_DIR}/google/api/client.pb.cc
     ${PROTO_GEN_DIR}/google/api/client.pb.h
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/checked.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/checked.grpc.pb.h
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/checked.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/checked.pb.h
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/eval.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/eval.grpc.pb.h
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/eval.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/eval.pb.h
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/explain.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/explain.grpc.pb.h
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/explain.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/explain.pb.h
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/syntax.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/syntax.grpc.pb.h
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/syntax.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/syntax.pb.h
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/value.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/value.grpc.pb.h
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/value.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/value.pb.h
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/decl.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/decl.grpc.pb.h
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/decl.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/decl.pb.h
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/eval.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/eval.grpc.pb.h
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/eval.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/eval.pb.h
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/expr.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/expr.grpc.pb.h
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/expr.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/expr.pb.h
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/source.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/source.grpc.pb.h
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/source.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/source.pb.h
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/value.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/value.grpc.pb.h
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/value.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/value.pb.h
     ${PROTO_GEN_DIR}/google/api/field_behavior.grpc.pb.cc
     ${PROTO_GEN_DIR}/google/api/field_behavior.grpc.pb.h
     ${PROTO_GEN_DIR}/google/api/field_behavior.pb.cc
@@ -378,26 +338,6 @@ target_sources(viamapi
     ${PROTO_GEN_DIR}/google/api/annotations.pb.cc
     ${PROTO_GEN_DIR}/google/api/client.grpc.pb.cc
     ${PROTO_GEN_DIR}/google/api/client.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/checked.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/checked.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/eval.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/eval.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/explain.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/explain.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/syntax.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/syntax.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/value.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1alpha1/value.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/decl.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/decl.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/eval.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/eval.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/expr.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/expr.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/source.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/source.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/value.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/expr/v1beta1/value.pb.cc
     ${PROTO_GEN_DIR}/google/api/field_behavior.grpc.pb.cc
     ${PROTO_GEN_DIR}/google/api/field_behavior.pb.cc
     ${PROTO_GEN_DIR}/google/api/field_info.grpc.pb.cc
