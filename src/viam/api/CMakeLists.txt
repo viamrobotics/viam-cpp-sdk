@@ -181,42 +181,12 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/component/servo/v1/servo.grpc.pb.h
     ${PROTO_GEN_DIR}/component/servo/v1/servo.pb.cc
     ${PROTO_GEN_DIR}/component/servo/v1/servo.pb.h
-    ${PROTO_GEN_DIR}/google/api/annotations.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/annotations.grpc.pb.h
     ${PROTO_GEN_DIR}/google/api/annotations.pb.cc
     ${PROTO_GEN_DIR}/google/api/annotations.pb.h
-    ${PROTO_GEN_DIR}/google/api/client.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/client.grpc.pb.h
-    ${PROTO_GEN_DIR}/google/api/client.pb.cc
-    ${PROTO_GEN_DIR}/google/api/client.pb.h
-    ${PROTO_GEN_DIR}/google/api/field_behavior.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/field_behavior.grpc.pb.h
-    ${PROTO_GEN_DIR}/google/api/field_behavior.pb.cc
-    ${PROTO_GEN_DIR}/google/api/field_behavior.pb.h
-    ${PROTO_GEN_DIR}/google/api/field_info.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/field_info.grpc.pb.h
-    ${PROTO_GEN_DIR}/google/api/field_info.pb.cc
-    ${PROTO_GEN_DIR}/google/api/field_info.pb.h
-    ${PROTO_GEN_DIR}/google/api/http.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/http.grpc.pb.h
-    ${PROTO_GEN_DIR}/google/api/http.pb.cc
-    ${PROTO_GEN_DIR}/google/api/http.pb.h
-    ${PROTO_GEN_DIR}/google/api/httpbody.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/httpbody.grpc.pb.h
     ${PROTO_GEN_DIR}/google/api/httpbody.pb.cc
     ${PROTO_GEN_DIR}/google/api/httpbody.pb.h
-    ${PROTO_GEN_DIR}/google/api/launch_stage.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/launch_stage.grpc.pb.h
-    ${PROTO_GEN_DIR}/google/api/launch_stage.pb.cc
-    ${PROTO_GEN_DIR}/google/api/launch_stage.pb.h
-    ${PROTO_GEN_DIR}/google/api/resource.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/resource.grpc.pb.h
-    ${PROTO_GEN_DIR}/google/api/resource.pb.cc
-    ${PROTO_GEN_DIR}/google/api/resource.pb.h
-    ${PROTO_GEN_DIR}/google/api/visibility.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/visibility.grpc.pb.h
-    ${PROTO_GEN_DIR}/google/api/visibility.pb.cc
-    ${PROTO_GEN_DIR}/google/api/visibility.pb.h
+    ${PROTO_GEN_DIR}/google/api/http.pb.cc
+    ${PROTO_GEN_DIR}/google/api/http.pb.h
     ${PROTO_GEN_DIR}/google/rpc/code.grpc.pb.cc
     ${PROTO_GEN_DIR}/google/rpc/code.grpc.pb.h
     ${PROTO_GEN_DIR}/google/rpc/code.pb.cc
@@ -334,24 +304,9 @@ target_sources(viamapi
     ${PROTO_GEN_DIR}/component/sensor/v1/sensor.pb.cc
     ${PROTO_GEN_DIR}/component/servo/v1/servo.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/servo/v1/servo.pb.cc
-    ${PROTO_GEN_DIR}/google/api/annotations.grpc.pb.cc
     ${PROTO_GEN_DIR}/google/api/annotations.pb.cc
-    ${PROTO_GEN_DIR}/google/api/client.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/client.pb.cc
-    ${PROTO_GEN_DIR}/google/api/field_behavior.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/field_behavior.pb.cc
-    ${PROTO_GEN_DIR}/google/api/field_info.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/field_info.pb.cc
-    ${PROTO_GEN_DIR}/google/api/http.grpc.pb.cc
     ${PROTO_GEN_DIR}/google/api/http.pb.cc
-    ${PROTO_GEN_DIR}/google/api/httpbody.grpc.pb.cc
     ${PROTO_GEN_DIR}/google/api/httpbody.pb.cc
-    ${PROTO_GEN_DIR}/google/api/launch_stage.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/launch_stage.pb.cc
-    ${PROTO_GEN_DIR}/google/api/resource.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/resource.pb.cc
-    ${PROTO_GEN_DIR}/google/api/visibility.grpc.pb.cc
-    ${PROTO_GEN_DIR}/google/api/visibility.pb.cc
     ${PROTO_GEN_DIR}/google/rpc/code.grpc.pb.cc
     ${PROTO_GEN_DIR}/google/rpc/code.pb.cc
     ${PROTO_GEN_DIR}/google/rpc/context/attribute_context.grpc.pb.cc
