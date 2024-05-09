@@ -129,9 +129,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a66335e5330d30ed66bd61bf0b1d74962" id="r_a66335e5330d30ed66bd61bf0b1d74962"><td class="memItemLeft" align="right" valign="top">AttributeMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66335e5330d30ed66bd61bf0b1d74962">do_command</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">command</a>) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
 <tr class="memdesc:a66335e5330d30ed66bd61bf0b1d74962"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:a66335e5330d30ed66bd61bf0b1d74962"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49de60a3ff8e7a38059629e495d4de67" id="r_a49de60a3ff8e7a38059629e495d4de67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1Board_1_1status.html">status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a49de60a3ff8e7a38059629e495d4de67">get_status</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
-<tr class="memdesc:a49de60a3ff8e7a38059629e495d4de67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of all of the registered analog readers and digital interrupt readers.  <br /></td></tr>
-<tr class="separator:a49de60a3ff8e7a38059629e495d4de67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c16f6f1845b388f30c52d9e83837b79" id="r_a0c16f6f1845b388f30c52d9e83837b79"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c16f6f1845b388f30c52d9e83837b79">set_gpio</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a> high, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
 <tr class="memdesc:a0c16f6f1845b388f30c52d9e83837b79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the gpio high/low state of the given pin on a board.  <br /></td></tr>
 <tr class="separator:a0c16f6f1845b388f30c52d9e83837b79"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -192,13 +189,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0de92a448c61509ef81c209fb4c2a881" id="r_a0de92a448c61509ef81c209fb4c2a881"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0de92a448c61509ef81c209fb4c2a881">get_pwm_frequency</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:a0de92a448c61509ef81c209fb4c2a881"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the PWM frequency of the given pin on a board.  <br /></td></tr>
 <tr class="separator:a0de92a448c61509ef81c209fb4c2a881"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61d538bedec4cccff569d5b3576d0e61" id="r_a61d538bedec4cccff569d5b3576d0e61"><td class="memItemLeft" align="right" valign="top"><a id="a61d538bedec4cccff569d5b3576d0e61" name="a61d538bedec4cccff569d5b3576d0e61"></a>
-<a class="el" href="structviam_1_1sdk_1_1Board_1_1status.html">status</a>&#160;</td><td class="memItemRight" valign="bottom"><b>get_status</b> ()</td></tr>
-<tr class="memdesc:a61d538bedec4cccff569d5b3576d0e61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of all of the registered analog readers and digital interrupt readers. <br /></td></tr>
-<tr class="separator:a61d538bedec4cccff569d5b3576d0e61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fc3ed6de5bdf2895ca9f93b0ffad0f1" id="r_a0fc3ed6de5bdf2895ca9f93b0ffad0f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="structviam_1_1sdk_1_1Board_1_1status.html">status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0fc3ed6de5bdf2895ca9f93b0ffad0f1">get_status</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
-<tr class="memdesc:a0fc3ed6de5bdf2895ca9f93b0ffad0f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of all of the registered analog readers and digital interrupt readers.  <br /></td></tr>
-<tr class="separator:a0fc3ed6de5bdf2895ca9f93b0ffad0f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1a36821de8c455db14c147a55ddca68" id="r_ad1a36821de8c455db14c147a55ddca68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1Board.html#a99143e61850b1af59f04cdf21e1eea0c">analog_value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad1a36821de8c455db14c147a55ddca68">read_analog</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">analog_reader_name</a>)</td></tr>
 <tr class="memdesc:ad1a36821de8c455db14c147a55ddca68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads off the current value of an analog reader on a board. Consult your ADC's docs or Viam's <code><a class="el" href="classviam_1_1sdk_1_1Board.html" title="Represents a physical board with gpio pins, digital interrupts, and analog voltage reading.">Board</a></code> docs for more information.  <br /></td></tr>
 <tr class="separator:ad1a36821de8c455db14c147a55ddca68"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -251,26 +241,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9a57962efb110275db083e0656417e7b inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_a9a57962efb110275db083e0656417e7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#a9a57962efb110275db083e0656417e7b">api</a> () <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
 <tr class="memdesc:a9a57962efb110275db083e0656417e7b inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code><a class="el" href="classviam_1_1sdk_1_1API.html" title="Extends APIType to additionally define a resource&#39;s subtype (e.g., camera).">API</a></code> associated with a particular resource.  <br /></td></tr>
 <tr class="separator:a9a57962efb110275db083e0656417e7b inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61d538bedec4cccff569d5b3576d0e61 inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_a61d538bedec4cccff569d5b3576d0e61"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="structviam_1_1sdk_1_1Board_1_1status.html">status</a>&#160;</td><td class="memItemRight" valign="bottom"><b>get_status</b> ()</td></tr>
-<tr class="memdesc:a61d538bedec4cccff569d5b3576d0e61 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of all of the registered analog readers and digital interrupt readers. <br /></td></tr>
-<tr class="separator:a61d538bedec4cccff569d5b3576d0e61 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acceb56d80ae99642e07c8b70d9b19c68 inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_acceb56d80ae99642e07c8b70d9b19c68"><td class="memItemLeft" align="right" valign="top">
-std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>get_analog_reader_names</b> ()</td></tr>
-<tr class="memdesc:acceb56d80ae99642e07c8b70d9b19c68 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the names of the defined analog readers defined for this board This information comes from calling <code><a class="el" href="classviam_1_1sdk_1_1Board.html#a61d538bedec4cccff569d5b3576d0e61" title="Get the status of all of the registered analog readers and digital interrupt readers.">get_status()</a></code> <br /></td></tr>
-<tr class="separator:acceb56d80ae99642e07c8b70d9b19c68 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3bed9f3c572f0e5f9b8e735054ab6db8 inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_a3bed9f3c572f0e5f9b8e735054ab6db8"><td class="memItemLeft" align="right" valign="top">
-std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>get_digital_interrupt_names</b> ()</td></tr>
-<tr class="memdesc:a3bed9f3c572f0e5f9b8e735054ab6db8 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the names of the defined digital interrupts for this board This information comes from calling <code><a class="el" href="classviam_1_1sdk_1_1Board.html#a61d538bedec4cccff569d5b3576d0e61" title="Get the status of all of the registered analog readers and digital interrupt readers.">get_status()</a></code> <br /></td></tr>
-<tr class="separator:a3bed9f3c572f0e5f9b8e735054ab6db8 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6e3c094081a7d33a1676264db92af6e inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_aa6e3c094081a7d33a1676264db92af6e"><td class="memItemLeft" align="right" valign="top">
-std::unordered_map&lt; std::string, <a class="el" href="classviam_1_1sdk_1_1Board.html#a99143e61850b1af59f04cdf21e1eea0c">analog_value</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>get_analog_readers</b> ()</td></tr>
-<tr class="memdesc:aa6e3c094081a7d33a1676264db92af6e inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all defined analog readers defined for this board This information comes from calling <code><a class="el" href="classviam_1_1sdk_1_1Board.html#a61d538bedec4cccff569d5b3576d0e61" title="Get the status of all of the registered analog readers and digital interrupt readers.">get_status()</a></code> <br /></td></tr>
-<tr class="separator:aa6e3c094081a7d33a1676264db92af6e inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a648d5aeaa6bd70e6212220192940d1 inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_a1a648d5aeaa6bd70e6212220192940d1"><td class="memItemLeft" align="right" valign="top">
-std::unordered_map&lt; std::string, <a class="el" href="classviam_1_1sdk_1_1Board.html#a7492deed4439690ea37d470fd899919d">digital_value</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>get_digital_interrupts</b> ()</td></tr>
-<tr class="memdesc:a1a648d5aeaa6bd70e6212220192940d1 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all defined digital interrupts for this board This information comes from calling <code><a class="el" href="classviam_1_1sdk_1_1Board.html#a61d538bedec4cccff569d5b3576d0e61" title="Get the status of all of the registered analog readers and digital interrupt readers.">get_status()</a></code> <br /></td></tr>
-<tr class="separator:a1a648d5aeaa6bd70e6212220192940d1 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad064e6d68599a3b6687be69ae97ec4a7 inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_ad064e6d68599a3b6687be69ae97ec4a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#ad064e6d68599a3b6687be69ae97ec4a7">get_gpio</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>)</td></tr>
 <tr class="memdesc:ad064e6d68599a3b6687be69ae97ec4a7 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the high/low state of the given pin on a board.  <br /></td></tr>
 <tr class="separator:ad064e6d68599a3b6687be69ae97ec4a7 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -323,34 +293,18 @@ std::unordered_map&lt; std::string, <a class="el" href="classviam_1_1sdk_1_1Boar
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_static_methods_classviam_1_1sdk_1_1Board"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_methods_classviam_1_1sdk_1_1Board')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Board.html">viam::sdk::Board</a></td></tr>
-<tr class="memitem:a929dbe98a06f8720d148a84b0bbdb9df inherit pub_static_methods_classviam_1_1sdk_1_1Board" id="r_a929dbe98a06f8720d148a84b0bbdb9df"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> <a class="el" href="structviam_1_1sdk_1_1Board_1_1status.html">status</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> viam::common::v1::BoardStatus &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">proto</a>)</td></tr>
-<tr class="memdesc:a929dbe98a06f8720d148a84b0bbdb9df inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <code>status</code> struct from its proto representation. <br /></td></tr>
-<tr class="separator:a929dbe98a06f8720d148a84b0bbdb9df inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01063bfd41baac8d804ca4ea3445a37d inherit pub_static_methods_classviam_1_1sdk_1_1Board" id="r_a01063bfd41baac8d804ca4ea3445a37d"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a99143e61850b1af59f04cdf21e1eea0c">analog_value</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> viam::common::v1::AnalogStatus &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">proto</a>)</td></tr>
-<tr class="memdesc:a01063bfd41baac8d804ca4ea3445a37d inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <code>analog_value</code> struct from its proto representation. <br /></td></tr>
-<tr class="separator:a01063bfd41baac8d804ca4ea3445a37d inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95d63a265cfc52527cba25811d4767e9 inherit pub_static_methods_classviam_1_1sdk_1_1Board" id="r_a95d63a265cfc52527cba25811d4767e9"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a7492deed4439690ea37d470fd899919d">digital_value</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> viam::common::v1::DigitalInterruptStatus &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">proto</a>)</td></tr>
-<tr class="memdesc:a95d63a265cfc52527cba25811d4767e9 inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <code>digital_value</code> struct from its proto representation. <br /></td></tr>
-<tr class="separator:a95d63a265cfc52527cba25811d4767e9 inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fe5b7cf87e3c478b3bd818fa15a4f49 inherit pub_static_methods_classviam_1_1sdk_1_1Board" id="r_a2fe5b7cf87e3c478b3bd818fa15a4f49"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> <a class="el" href="structviam_1_1sdk_1_1Board_1_1status.html">status</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> viam::component::board::v1::Status &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">proto</a>)</td></tr>
+<tr class="memdesc:a2fe5b7cf87e3c478b3bd818fa15a4f49 inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <code>status</code> struct from its proto representation. <br /></td></tr>
+<tr class="separator:a2fe5b7cf87e3c478b3bd818fa15a4f49 inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a313685f387ec287d99b414b5daa84846 inherit pub_static_methods_classviam_1_1sdk_1_1Board" id="r_a313685f387ec287d99b414b5daa84846"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (viam::component::board::v1::PowerMode <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">proto</a>)</td></tr>
 <tr class="memdesc:a313685f387ec287d99b414b5daa84846 inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <code>power_mode</code> enum from its proto representation. <br /></td></tr>
 <tr class="separator:a313685f387ec287d99b414b5daa84846 inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f34ce7b11738c202e7ae35862c262c4 inherit pub_static_methods_classviam_1_1sdk_1_1Board" id="r_a8f34ce7b11738c202e7ae35862c262c4"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> viam::common::v1::BoardStatus&#160;</td><td class="memItemRight" valign="bottom"><b>to_proto</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="structviam_1_1sdk_1_1Board_1_1status.html">status</a> &amp;<a class="el" href="structviam_1_1sdk_1_1Board_1_1status.html">status</a>)</td></tr>
-<tr class="memdesc:a8f34ce7b11738c202e7ae35862c262c4 inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a <code>status</code> struct to its proto representation. <br /></td></tr>
-<tr class="separator:a8f34ce7b11738c202e7ae35862c262c4 inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4d9b9509cf52c1793f8246c85fb6f47 inherit pub_static_methods_classviam_1_1sdk_1_1Board" id="r_ac4d9b9509cf52c1793f8246c85fb6f47"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> viam::common::v1::AnalogStatus&#160;</td><td class="memItemRight" valign="bottom"><b>to_proto</b> (<a class="el" href="classviam_1_1sdk_1_1Board.html#a99143e61850b1af59f04cdf21e1eea0c">analog_value</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a99143e61850b1af59f04cdf21e1eea0c">analog_value</a>)</td></tr>
-<tr class="memdesc:ac4d9b9509cf52c1793f8246c85fb6f47 inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a <code>analog_value</code> struct to its proto representation. <br /></td></tr>
-<tr class="separator:ac4d9b9509cf52c1793f8246c85fb6f47 inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a262c8f75dd01ff2ecf0b7783a4351a9a inherit pub_static_methods_classviam_1_1sdk_1_1Board" id="r_a262c8f75dd01ff2ecf0b7783a4351a9a"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> viam::common::v1::DigitalInterruptStatus&#160;</td><td class="memItemRight" valign="bottom"><b>to_proto</b> (<a class="el" href="classviam_1_1sdk_1_1Board.html#a7492deed4439690ea37d470fd899919d">digital_value</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a7492deed4439690ea37d470fd899919d">digital_value</a>)</td></tr>
-<tr class="memdesc:a262c8f75dd01ff2ecf0b7783a4351a9a inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a <code>digital_value</code> struct to its proto representation. <br /></td></tr>
-<tr class="separator:a262c8f75dd01ff2ecf0b7783a4351a9a inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcb8a382b527c1b9e0571e8695e4a4d3 inherit pub_static_methods_classviam_1_1sdk_1_1Board" id="r_adcb8a382b527c1b9e0571e8695e4a4d3"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> viam::component::board::v1::Status&#160;</td><td class="memItemRight" valign="bottom"><b>to_proto</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="structviam_1_1sdk_1_1Board_1_1status.html">status</a> &amp;<a class="el" href="structviam_1_1sdk_1_1Board_1_1status.html">status</a>)</td></tr>
+<tr class="memdesc:adcb8a382b527c1b9e0571e8695e4a4d3 inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a <code>status</code> struct to its proto representation. <br /></td></tr>
+<tr class="separator:adcb8a382b527c1b9e0571e8695e4a4d3 inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adeffdf6ecdaaea8785ee054c503d3d96 inherit pub_static_methods_classviam_1_1sdk_1_1Board" id="r_adeffdf6ecdaaea8785ee054c503d3d96"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> viam::component::board::v1::PowerMode&#160;</td><td class="memItemRight" valign="bottom"><b>to_proto</b> (<a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>)</td></tr>
 <tr class="memdesc:adeffdf6ecdaaea8785ee054c503d3d96 inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a <code>power_mode</code> enum to its proto representation. <br /></td></tr>
@@ -845,76 +799,6 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Implements <a class="el" href="classviam_1_1sdk_1_1Board.html#a0de92a448c61509ef81c209fb4c2a881">viam::sdk::Board</a>.</p>
-
-</div>
-</div>
-<a id="a49de60a3ff8e7a38059629e495d4de67" name="a49de60a3ff8e7a38059629e495d4de67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a49de60a3ff8e7a38059629e495d4de67">&#9670;&#160;</a></span>get_status() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structviam_1_1sdk_1_1Board_1_1status.html">status</a> viam::sdk::impl::BoardClient::get_status </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the status of all of the registered analog readers and digital interrupt readers. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">extra</td><td>Any additional arguments to the method </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="classviam_1_1sdk_1_1Board.html#a0fc3ed6de5bdf2895ca9f93b0ffad0f1">viam::sdk::Board</a>.</p>
-
-</div>
-</div>
-<a id="a0fc3ed6de5bdf2895ca9f93b0ffad0f1" name="a0fc3ed6de5bdf2895ca9f93b0ffad0f1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0fc3ed6de5bdf2895ca9f93b0ffad0f1">&#9670;&#160;</a></span>get_status() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="structviam_1_1sdk_1_1Board_1_1status.html">status</a> viam::sdk::Board::get_status </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the status of all of the registered analog readers and digital interrupt readers. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">extra</td><td>Any additional arguments to the method </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="classviam_1_1sdk_1_1Board.html#a0fc3ed6de5bdf2895ca9f93b0ffad0f1">viam::sdk::Board</a>.</p>
 
 </div>
 </div>
