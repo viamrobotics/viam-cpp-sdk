@@ -30,7 +30,8 @@ namespace service {
 namespace shell {
 namespace v1 {
 
-// A ShellService service allows access to an interactive shell experience.
+// A ShellService service allows access to an interactive shell experience, including
+// utilities commonly found in tandem with other secure shells.
 class ShellService final {
  public:
   static constexpr char const* service_full_name() {
@@ -49,6 +50,39 @@ class ShellService final {
     std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::service::shell::v1::ShellRequest, ::viam::service::shell::v1::ShellResponse>> PrepareAsyncShell(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::service::shell::v1::ShellRequest, ::viam::service::shell::v1::ShellResponse>>(PrepareAsyncShellRaw(context, cq));
     }
+    // CopyFilesToMachines copies a stream of files from a client to the connected-to machine.
+    // Initially, metadata is sent to describe the destination in the filesystem in addition
+    // to what kind of file(s) are being sent.
+    // Once metadata is sent, the file transfer can proceed where one-by-one, file data is sent
+    // until EOF per file.
+    // After each file is sent, the machine must respond with an ACK before the next file can
+    // be sent. This provides back-pressure and ordering.
+    // The order in which individual files are sent does not matter; that is, if traversing a
+    // directory, copying depth-first, breadth-first, or any other algorithm does not matter.
+    // Permissions and metadata on files copied are only preserved if the preserve option is
+    // set in the initial request metadata.
+    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::viam::service::shell::v1::CopyFilesToMachineRequest, ::viam::service::shell::v1::CopyFilesToMachineResponse>> CopyFilesToMachine(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::viam::service::shell::v1::CopyFilesToMachineRequest, ::viam::service::shell::v1::CopyFilesToMachineResponse>>(CopyFilesToMachineRaw(context));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::service::shell::v1::CopyFilesToMachineRequest, ::viam::service::shell::v1::CopyFilesToMachineResponse>> AsyncCopyFilesToMachine(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::service::shell::v1::CopyFilesToMachineRequest, ::viam::service::shell::v1::CopyFilesToMachineResponse>>(AsyncCopyFilesToMachineRaw(context, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::service::shell::v1::CopyFilesToMachineRequest, ::viam::service::shell::v1::CopyFilesToMachineResponse>> PrepareAsyncCopyFilesToMachine(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::service::shell::v1::CopyFilesToMachineRequest, ::viam::service::shell::v1::CopyFilesToMachineResponse>>(PrepareAsyncCopyFilesToMachineRaw(context, cq));
+    }
+    // CopyFilesFromMachine copies a stream of files from a connected-to machine to the calling client.
+    // Essentially, it is the inverse of CopyFilesToMachine with the same ACK mechanism in reverse.
+    // The initial metadata request will request the paths to copy along with if permissions should
+    // be preserved (and consequently sent over the wire).
+    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::viam::service::shell::v1::CopyFilesFromMachineRequest, ::viam::service::shell::v1::CopyFilesFromMachineResponse>> CopyFilesFromMachine(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::viam::service::shell::v1::CopyFilesFromMachineRequest, ::viam::service::shell::v1::CopyFilesFromMachineResponse>>(CopyFilesFromMachineRaw(context));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::service::shell::v1::CopyFilesFromMachineRequest, ::viam::service::shell::v1::CopyFilesFromMachineResponse>> AsyncCopyFilesFromMachine(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::service::shell::v1::CopyFilesFromMachineRequest, ::viam::service::shell::v1::CopyFilesFromMachineResponse>>(AsyncCopyFilesFromMachineRaw(context, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::service::shell::v1::CopyFilesFromMachineRequest, ::viam::service::shell::v1::CopyFilesFromMachineResponse>> PrepareAsyncCopyFilesFromMachine(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::service::shell::v1::CopyFilesFromMachineRequest, ::viam::service::shell::v1::CopyFilesFromMachineResponse>>(PrepareAsyncCopyFilesFromMachineRaw(context, cq));
+    }
     // DoCommand sends/receives arbitrary commands
     virtual ::grpc::Status DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>> AsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
@@ -62,6 +96,23 @@ class ShellService final {
       virtual ~async_interface() {}
       // Shell starts a shell with an input and output pipe.
       virtual void Shell(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::viam::service::shell::v1::ShellRequest,::viam::service::shell::v1::ShellResponse>* reactor) = 0;
+      // CopyFilesToMachines copies a stream of files from a client to the connected-to machine.
+      // Initially, metadata is sent to describe the destination in the filesystem in addition
+      // to what kind of file(s) are being sent.
+      // Once metadata is sent, the file transfer can proceed where one-by-one, file data is sent
+      // until EOF per file.
+      // After each file is sent, the machine must respond with an ACK before the next file can
+      // be sent. This provides back-pressure and ordering.
+      // The order in which individual files are sent does not matter; that is, if traversing a
+      // directory, copying depth-first, breadth-first, or any other algorithm does not matter.
+      // Permissions and metadata on files copied are only preserved if the preserve option is
+      // set in the initial request metadata.
+      virtual void CopyFilesToMachine(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::viam::service::shell::v1::CopyFilesToMachineRequest,::viam::service::shell::v1::CopyFilesToMachineResponse>* reactor) = 0;
+      // CopyFilesFromMachine copies a stream of files from a connected-to machine to the calling client.
+      // Essentially, it is the inverse of CopyFilesToMachine with the same ACK mechanism in reverse.
+      // The initial metadata request will request the paths to copy along with if permissions should
+      // be preserved (and consequently sent over the wire).
+      virtual void CopyFilesFromMachine(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::viam::service::shell::v1::CopyFilesFromMachineRequest,::viam::service::shell::v1::CopyFilesFromMachineResponse>* reactor) = 0;
       // DoCommand sends/receives arbitrary commands
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
@@ -73,6 +124,12 @@ class ShellService final {
     virtual ::grpc::ClientReaderWriterInterface< ::viam::service::shell::v1::ShellRequest, ::viam::service::shell::v1::ShellResponse>* ShellRaw(::grpc::ClientContext* context) = 0;
     virtual ::grpc::ClientAsyncReaderWriterInterface< ::viam::service::shell::v1::ShellRequest, ::viam::service::shell::v1::ShellResponse>* AsyncShellRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
     virtual ::grpc::ClientAsyncReaderWriterInterface< ::viam::service::shell::v1::ShellRequest, ::viam::service::shell::v1::ShellResponse>* PrepareAsyncShellRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderWriterInterface< ::viam::service::shell::v1::CopyFilesToMachineRequest, ::viam::service::shell::v1::CopyFilesToMachineResponse>* CopyFilesToMachineRaw(::grpc::ClientContext* context) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::viam::service::shell::v1::CopyFilesToMachineRequest, ::viam::service::shell::v1::CopyFilesToMachineResponse>* AsyncCopyFilesToMachineRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::viam::service::shell::v1::CopyFilesToMachineRequest, ::viam::service::shell::v1::CopyFilesToMachineResponse>* PrepareAsyncCopyFilesToMachineRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderWriterInterface< ::viam::service::shell::v1::CopyFilesFromMachineRequest, ::viam::service::shell::v1::CopyFilesFromMachineResponse>* CopyFilesFromMachineRaw(::grpc::ClientContext* context) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::viam::service::shell::v1::CopyFilesFromMachineRequest, ::viam::service::shell::v1::CopyFilesFromMachineResponse>* AsyncCopyFilesFromMachineRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::viam::service::shell::v1::CopyFilesFromMachineRequest, ::viam::service::shell::v1::CopyFilesFromMachineResponse>* PrepareAsyncCopyFilesFromMachineRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
@@ -88,6 +145,24 @@ class ShellService final {
     std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::viam::service::shell::v1::ShellRequest, ::viam::service::shell::v1::ShellResponse>> PrepareAsyncShell(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::viam::service::shell::v1::ShellRequest, ::viam::service::shell::v1::ShellResponse>>(PrepareAsyncShellRaw(context, cq));
     }
+    std::unique_ptr< ::grpc::ClientReaderWriter< ::viam::service::shell::v1::CopyFilesToMachineRequest, ::viam::service::shell::v1::CopyFilesToMachineResponse>> CopyFilesToMachine(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriter< ::viam::service::shell::v1::CopyFilesToMachineRequest, ::viam::service::shell::v1::CopyFilesToMachineResponse>>(CopyFilesToMachineRaw(context));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::viam::service::shell::v1::CopyFilesToMachineRequest, ::viam::service::shell::v1::CopyFilesToMachineResponse>> AsyncCopyFilesToMachine(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::viam::service::shell::v1::CopyFilesToMachineRequest, ::viam::service::shell::v1::CopyFilesToMachineResponse>>(AsyncCopyFilesToMachineRaw(context, cq, tag));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::viam::service::shell::v1::CopyFilesToMachineRequest, ::viam::service::shell::v1::CopyFilesToMachineResponse>> PrepareAsyncCopyFilesToMachine(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::viam::service::shell::v1::CopyFilesToMachineRequest, ::viam::service::shell::v1::CopyFilesToMachineResponse>>(PrepareAsyncCopyFilesToMachineRaw(context, cq));
+    }
+    std::unique_ptr< ::grpc::ClientReaderWriter< ::viam::service::shell::v1::CopyFilesFromMachineRequest, ::viam::service::shell::v1::CopyFilesFromMachineResponse>> CopyFilesFromMachine(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriter< ::viam::service::shell::v1::CopyFilesFromMachineRequest, ::viam::service::shell::v1::CopyFilesFromMachineResponse>>(CopyFilesFromMachineRaw(context));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::viam::service::shell::v1::CopyFilesFromMachineRequest, ::viam::service::shell::v1::CopyFilesFromMachineResponse>> AsyncCopyFilesFromMachine(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::viam::service::shell::v1::CopyFilesFromMachineRequest, ::viam::service::shell::v1::CopyFilesFromMachineResponse>>(AsyncCopyFilesFromMachineRaw(context, cq, tag));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::viam::service::shell::v1::CopyFilesFromMachineRequest, ::viam::service::shell::v1::CopyFilesFromMachineResponse>> PrepareAsyncCopyFilesFromMachine(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::viam::service::shell::v1::CopyFilesFromMachineRequest, ::viam::service::shell::v1::CopyFilesFromMachineResponse>>(PrepareAsyncCopyFilesFromMachineRaw(context, cq));
+    }
     ::grpc::Status DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>> AsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>>(AsyncDoCommandRaw(context, request, cq));
@@ -99,6 +174,8 @@ class ShellService final {
       public StubInterface::async_interface {
      public:
       void Shell(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::viam::service::shell::v1::ShellRequest,::viam::service::shell::v1::ShellResponse>* reactor) override;
+      void CopyFilesToMachine(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::viam::service::shell::v1::CopyFilesToMachineRequest,::viam::service::shell::v1::CopyFilesToMachineResponse>* reactor) override;
+      void CopyFilesFromMachine(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::viam::service::shell::v1::CopyFilesFromMachineRequest,::viam::service::shell::v1::CopyFilesFromMachineResponse>* reactor) override;
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
@@ -115,9 +192,17 @@ class ShellService final {
     ::grpc::ClientReaderWriter< ::viam::service::shell::v1::ShellRequest, ::viam::service::shell::v1::ShellResponse>* ShellRaw(::grpc::ClientContext* context) override;
     ::grpc::ClientAsyncReaderWriter< ::viam::service::shell::v1::ShellRequest, ::viam::service::shell::v1::ShellResponse>* AsyncShellRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
     ::grpc::ClientAsyncReaderWriter< ::viam::service::shell::v1::ShellRequest, ::viam::service::shell::v1::ShellResponse>* PrepareAsyncShellRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReaderWriter< ::viam::service::shell::v1::CopyFilesToMachineRequest, ::viam::service::shell::v1::CopyFilesToMachineResponse>* CopyFilesToMachineRaw(::grpc::ClientContext* context) override;
+    ::grpc::ClientAsyncReaderWriter< ::viam::service::shell::v1::CopyFilesToMachineRequest, ::viam::service::shell::v1::CopyFilesToMachineResponse>* AsyncCopyFilesToMachineRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReaderWriter< ::viam::service::shell::v1::CopyFilesToMachineRequest, ::viam::service::shell::v1::CopyFilesToMachineResponse>* PrepareAsyncCopyFilesToMachineRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReaderWriter< ::viam::service::shell::v1::CopyFilesFromMachineRequest, ::viam::service::shell::v1::CopyFilesFromMachineResponse>* CopyFilesFromMachineRaw(::grpc::ClientContext* context) override;
+    ::grpc::ClientAsyncReaderWriter< ::viam::service::shell::v1::CopyFilesFromMachineRequest, ::viam::service::shell::v1::CopyFilesFromMachineResponse>* AsyncCopyFilesFromMachineRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReaderWriter< ::viam::service::shell::v1::CopyFilesFromMachineRequest, ::viam::service::shell::v1::CopyFilesFromMachineResponse>* PrepareAsyncCopyFilesFromMachineRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Shell_;
+    const ::grpc::internal::RpcMethod rpcmethod_CopyFilesToMachine_;
+    const ::grpc::internal::RpcMethod rpcmethod_CopyFilesFromMachine_;
     const ::grpc::internal::RpcMethod rpcmethod_DoCommand_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
@@ -128,6 +213,23 @@ class ShellService final {
     virtual ~Service();
     // Shell starts a shell with an input and output pipe.
     virtual ::grpc::Status Shell(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::viam::service::shell::v1::ShellResponse, ::viam::service::shell::v1::ShellRequest>* stream);
+    // CopyFilesToMachines copies a stream of files from a client to the connected-to machine.
+    // Initially, metadata is sent to describe the destination in the filesystem in addition
+    // to what kind of file(s) are being sent.
+    // Once metadata is sent, the file transfer can proceed where one-by-one, file data is sent
+    // until EOF per file.
+    // After each file is sent, the machine must respond with an ACK before the next file can
+    // be sent. This provides back-pressure and ordering.
+    // The order in which individual files are sent does not matter; that is, if traversing a
+    // directory, copying depth-first, breadth-first, or any other algorithm does not matter.
+    // Permissions and metadata on files copied are only preserved if the preserve option is
+    // set in the initial request metadata.
+    virtual ::grpc::Status CopyFilesToMachine(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::viam::service::shell::v1::CopyFilesToMachineResponse, ::viam::service::shell::v1::CopyFilesToMachineRequest>* stream);
+    // CopyFilesFromMachine copies a stream of files from a connected-to machine to the calling client.
+    // Essentially, it is the inverse of CopyFilesToMachine with the same ACK mechanism in reverse.
+    // The initial metadata request will request the paths to copy along with if permissions should
+    // be preserved (and consequently sent over the wire).
+    virtual ::grpc::Status CopyFilesFromMachine(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::viam::service::shell::v1::CopyFilesFromMachineResponse, ::viam::service::shell::v1::CopyFilesFromMachineRequest>* stream);
     // DoCommand sends/receives arbitrary commands
     virtual ::grpc::Status DoCommand(::grpc::ServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response);
   };
@@ -152,12 +254,52 @@ class ShellService final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_CopyFilesToMachine : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_CopyFilesToMachine() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_CopyFilesToMachine() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CopyFilesToMachine(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::service::shell::v1::CopyFilesToMachineResponse, ::viam::service::shell::v1::CopyFilesToMachineRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCopyFilesToMachine(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::viam::service::shell::v1::CopyFilesToMachineResponse, ::viam::service::shell::v1::CopyFilesToMachineRequest>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(1, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_CopyFilesFromMachine : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_CopyFilesFromMachine() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_CopyFilesFromMachine() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CopyFilesFromMachine(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::service::shell::v1::CopyFilesFromMachineResponse, ::viam::service::shell::v1::CopyFilesFromMachineRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCopyFilesFromMachine(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::viam::service::shell::v1::CopyFilesFromMachineResponse, ::viam::service::shell::v1::CopyFilesFromMachineRequest>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(2, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DoCommand() {
-      ::grpc::Service::MarkMethodAsync(1);
+      ::grpc::Service::MarkMethodAsync(3);
     }
     ~WithAsyncMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -168,10 +310,10 @@ class ShellService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::viam::common::v1::DoCommandRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::DoCommandResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Shell<WithAsyncMethod_DoCommand<Service > > AsyncService;
+  typedef WithAsyncMethod_Shell<WithAsyncMethod_CopyFilesToMachine<WithAsyncMethod_CopyFilesFromMachine<WithAsyncMethod_DoCommand<Service > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_Shell : public BaseClass {
    private:
@@ -196,18 +338,64 @@ class ShellService final {
       { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_CopyFilesToMachine : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_CopyFilesToMachine() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackBidiHandler< ::viam::service::shell::v1::CopyFilesToMachineRequest, ::viam::service::shell::v1::CopyFilesToMachineResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context) { return this->CopyFilesToMachine(context); }));
+    }
+    ~WithCallbackMethod_CopyFilesToMachine() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CopyFilesToMachine(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::service::shell::v1::CopyFilesToMachineResponse, ::viam::service::shell::v1::CopyFilesToMachineRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerBidiReactor< ::viam::service::shell::v1::CopyFilesToMachineRequest, ::viam::service::shell::v1::CopyFilesToMachineResponse>* CopyFilesToMachine(
+      ::grpc::CallbackServerContext* /*context*/)
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_CopyFilesFromMachine : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_CopyFilesFromMachine() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackBidiHandler< ::viam::service::shell::v1::CopyFilesFromMachineRequest, ::viam::service::shell::v1::CopyFilesFromMachineResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context) { return this->CopyFilesFromMachine(context); }));
+    }
+    ~WithCallbackMethod_CopyFilesFromMachine() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CopyFilesFromMachine(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::service::shell::v1::CopyFilesFromMachineResponse, ::viam::service::shell::v1::CopyFilesFromMachineRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerBidiReactor< ::viam::service::shell::v1::CopyFilesFromMachineRequest, ::viam::service::shell::v1::CopyFilesFromMachineResponse>* CopyFilesFromMachine(
+      ::grpc::CallbackServerContext* /*context*/)
+      { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodCallback(1,
+      ::grpc::Service::MarkMethodCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
     void SetMessageAllocatorFor_DoCommand(
         ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -222,7 +410,7 @@ class ShellService final {
     virtual ::grpc::ServerUnaryReactor* DoCommand(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_Shell<WithCallbackMethod_DoCommand<Service > > CallbackService;
+  typedef WithCallbackMethod_Shell<WithCallbackMethod_CopyFilesToMachine<WithCallbackMethod_CopyFilesFromMachine<WithCallbackMethod_DoCommand<Service > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Shell : public BaseClass {
@@ -242,12 +430,46 @@ class ShellService final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_CopyFilesToMachine : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_CopyFilesToMachine() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_CopyFilesToMachine() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CopyFilesToMachine(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::service::shell::v1::CopyFilesToMachineResponse, ::viam::service::shell::v1::CopyFilesToMachineRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_CopyFilesFromMachine : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_CopyFilesFromMachine() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_CopyFilesFromMachine() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CopyFilesFromMachine(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::service::shell::v1::CopyFilesFromMachineResponse, ::viam::service::shell::v1::CopyFilesFromMachineRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DoCommand() {
-      ::grpc::Service::MarkMethodGeneric(1);
+      ::grpc::Service::MarkMethodGeneric(3);
     }
     ~WithGenericMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -279,12 +501,52 @@ class ShellService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_CopyFilesToMachine : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_CopyFilesToMachine() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_CopyFilesToMachine() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CopyFilesToMachine(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::service::shell::v1::CopyFilesToMachineResponse, ::viam::service::shell::v1::CopyFilesToMachineRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCopyFilesToMachine(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(1, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_CopyFilesFromMachine : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_CopyFilesFromMachine() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_CopyFilesFromMachine() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CopyFilesFromMachine(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::service::shell::v1::CopyFilesFromMachineResponse, ::viam::service::shell::v1::CopyFilesFromMachineRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCopyFilesFromMachine(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(2, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRaw(1);
+      ::grpc::Service::MarkMethodRaw(3);
     }
     ~WithRawMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -295,7 +557,7 @@ class ShellService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -322,12 +584,58 @@ class ShellService final {
       { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_CopyFilesToMachine : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_CopyFilesToMachine() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context) { return this->CopyFilesToMachine(context); }));
+    }
+    ~WithRawCallbackMethod_CopyFilesToMachine() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CopyFilesToMachine(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::service::shell::v1::CopyFilesToMachineResponse, ::viam::service::shell::v1::CopyFilesToMachineRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* CopyFilesToMachine(
+      ::grpc::CallbackServerContext* /*context*/)
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_CopyFilesFromMachine : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_CopyFilesFromMachine() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context) { return this->CopyFilesFromMachine(context); }));
+    }
+    ~WithRawCallbackMethod_CopyFilesFromMachine() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CopyFilesFromMachine(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::service::shell::v1::CopyFilesFromMachineResponse, ::viam::service::shell::v1::CopyFilesFromMachineRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* CopyFilesFromMachine(
+      ::grpc::CallbackServerContext* /*context*/)
+      { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRawCallback(1,
+      ::grpc::Service::MarkMethodRawCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
@@ -349,7 +657,7 @@ class ShellService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DoCommand() {
-      ::grpc::Service::MarkMethodStreamed(1,
+      ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](::grpc::ServerContext* context,

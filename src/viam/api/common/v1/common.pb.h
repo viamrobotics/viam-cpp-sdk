@@ -57,24 +57,9 @@ namespace v1 {
 class ActuatorStatus;
 struct ActuatorStatusDefaultTypeInternal;
 extern ActuatorStatusDefaultTypeInternal _ActuatorStatus_default_instance_;
-class AnalogStatus;
-struct AnalogStatusDefaultTypeInternal;
-extern AnalogStatusDefaultTypeInternal _AnalogStatus_default_instance_;
-class BoardStatus;
-struct BoardStatusDefaultTypeInternal;
-extern BoardStatusDefaultTypeInternal _BoardStatus_default_instance_;
-class BoardStatus_AnalogsEntry_DoNotUse;
-struct BoardStatus_AnalogsEntry_DoNotUseDefaultTypeInternal;
-extern BoardStatus_AnalogsEntry_DoNotUseDefaultTypeInternal _BoardStatus_AnalogsEntry_DoNotUse_default_instance_;
-class BoardStatus_DigitalInterruptsEntry_DoNotUse;
-struct BoardStatus_DigitalInterruptsEntry_DoNotUseDefaultTypeInternal;
-extern BoardStatus_DigitalInterruptsEntry_DoNotUseDefaultTypeInternal _BoardStatus_DigitalInterruptsEntry_DoNotUse_default_instance_;
 class Capsule;
 struct CapsuleDefaultTypeInternal;
 extern CapsuleDefaultTypeInternal _Capsule_default_instance_;
-class DigitalInterruptStatus;
-struct DigitalInterruptStatusDefaultTypeInternal;
-extern DigitalInterruptStatusDefaultTypeInternal _DigitalInterruptStatus_default_instance_;
 class DoCommandRequest;
 struct DoCommandRequestDefaultTypeInternal;
 extern DoCommandRequestDefaultTypeInternal _DoCommandRequest_default_instance_;
@@ -155,12 +140,7 @@ extern WorldStateDefaultTypeInternal _WorldState_default_instance_;
 }  // namespace viam
 PROTOBUF_NAMESPACE_OPEN
 template<> ::viam::common::v1::ActuatorStatus* Arena::CreateMaybeMessage<::viam::common::v1::ActuatorStatus>(Arena*);
-template<> ::viam::common::v1::AnalogStatus* Arena::CreateMaybeMessage<::viam::common::v1::AnalogStatus>(Arena*);
-template<> ::viam::common::v1::BoardStatus* Arena::CreateMaybeMessage<::viam::common::v1::BoardStatus>(Arena*);
-template<> ::viam::common::v1::BoardStatus_AnalogsEntry_DoNotUse* Arena::CreateMaybeMessage<::viam::common::v1::BoardStatus_AnalogsEntry_DoNotUse>(Arena*);
-template<> ::viam::common::v1::BoardStatus_DigitalInterruptsEntry_DoNotUse* Arena::CreateMaybeMessage<::viam::common::v1::BoardStatus_DigitalInterruptsEntry_DoNotUse>(Arena*);
 template<> ::viam::common::v1::Capsule* Arena::CreateMaybeMessage<::viam::common::v1::Capsule>(Arena*);
-template<> ::viam::common::v1::DigitalInterruptStatus* Arena::CreateMaybeMessage<::viam::common::v1::DigitalInterruptStatus>(Arena*);
 template<> ::viam::common::v1::DoCommandRequest* Arena::CreateMaybeMessage<::viam::common::v1::DoCommandRequest>(Arena*);
 template<> ::viam::common::v1::DoCommandResponse* Arena::CreateMaybeMessage<::viam::common::v1::DoCommandResponse>(Arena*);
 template<> ::viam::common::v1::GeoObstacle* Arena::CreateMaybeMessage<::viam::common::v1::GeoObstacle>(Arena*);
@@ -342,7 +322,6 @@ class ResourceName final :
     kTypeFieldNumber = 2,
     kSubtypeFieldNumber = 3,
     kNameFieldNumber = 4,
-    kMachinePartIdFieldNumber = 5,
   };
   // string namespace = 1 [json_name = "namespace"];
   void clear_namespace_();
@@ -400,24 +379,6 @@ class ResourceName final :
   std::string* _internal_mutable_name();
   public:
 
-  // optional string machine_part_id = 5 [json_name = "machinePartId"];
-  bool has_machine_part_id() const;
-  private:
-  bool _internal_has_machine_part_id() const;
-  public:
-  void clear_machine_part_id();
-  const std::string& machine_part_id() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_machine_part_id(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_machine_part_id();
-  PROTOBUF_NODISCARD std::string* release_machine_part_id();
-  void set_allocated_machine_part_id(std::string* machine_part_id);
-  private:
-  const std::string& _internal_machine_part_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_machine_part_id(const std::string& value);
-  std::string* _internal_mutable_machine_part_id();
-  public:
-
   // @@protoc_insertion_point(class_scope:viam.common.v1.ResourceName)
  private:
   class _Internal;
@@ -425,531 +386,10 @@ class ResourceName final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr namespace__;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr type_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr subtype_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr machine_part_id_;
-  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
-};
-// -------------------------------------------------------------------
-
-class BoardStatus_AnalogsEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<BoardStatus_AnalogsEntry_DoNotUse, 
-    std::string, ::viam::common::v1::AnalogStatus,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
-public:
-  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<BoardStatus_AnalogsEntry_DoNotUse, 
-    std::string, ::viam::common::v1::AnalogStatus,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
-  BoardStatus_AnalogsEntry_DoNotUse();
-  explicit PROTOBUF_CONSTEXPR BoardStatus_AnalogsEntry_DoNotUse(
-      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-  explicit BoardStatus_AnalogsEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  void MergeFrom(const BoardStatus_AnalogsEntry_DoNotUse& other);
-  static const BoardStatus_AnalogsEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const BoardStatus_AnalogsEntry_DoNotUse*>(&_BoardStatus_AnalogsEntry_DoNotUse_default_instance_); }
-  static bool ValidateKey(std::string* s) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "viam.common.v1.BoardStatus.AnalogsEntry.key");
- }
-  static bool ValidateValue(void*) { return true; }
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
-};
-
-// -------------------------------------------------------------------
-
-class BoardStatus_DigitalInterruptsEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<BoardStatus_DigitalInterruptsEntry_DoNotUse, 
-    std::string, ::viam::common::v1::DigitalInterruptStatus,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
-public:
-  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<BoardStatus_DigitalInterruptsEntry_DoNotUse, 
-    std::string, ::viam::common::v1::DigitalInterruptStatus,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
-  BoardStatus_DigitalInterruptsEntry_DoNotUse();
-  explicit PROTOBUF_CONSTEXPR BoardStatus_DigitalInterruptsEntry_DoNotUse(
-      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-  explicit BoardStatus_DigitalInterruptsEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  void MergeFrom(const BoardStatus_DigitalInterruptsEntry_DoNotUse& other);
-  static const BoardStatus_DigitalInterruptsEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const BoardStatus_DigitalInterruptsEntry_DoNotUse*>(&_BoardStatus_DigitalInterruptsEntry_DoNotUse_default_instance_); }
-  static bool ValidateKey(std::string* s) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "viam.common.v1.BoardStatus.DigitalInterruptsEntry.key");
- }
-  static bool ValidateValue(void*) { return true; }
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
-};
-
-// -------------------------------------------------------------------
-
-class BoardStatus final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.BoardStatus) */ {
- public:
-  inline BoardStatus() : BoardStatus(nullptr) {}
-  ~BoardStatus() override;
-  explicit PROTOBUF_CONSTEXPR BoardStatus(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  BoardStatus(const BoardStatus& from);
-  BoardStatus(BoardStatus&& from) noexcept
-    : BoardStatus() {
-    *this = ::std::move(from);
-  }
-
-  inline BoardStatus& operator=(const BoardStatus& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline BoardStatus& operator=(BoardStatus&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const BoardStatus& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const BoardStatus* internal_default_instance() {
-    return reinterpret_cast<const BoardStatus*>(
-               &_BoardStatus_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    3;
-
-  friend void swap(BoardStatus& a, BoardStatus& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(BoardStatus* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(BoardStatus* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  BoardStatus* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<BoardStatus>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const BoardStatus& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const BoardStatus& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(BoardStatus* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.common.v1.BoardStatus";
-  }
-  protected:
-  explicit BoardStatus(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  private:
-  static void ArenaDtor(void* object);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kAnalogsFieldNumber = 1,
-    kDigitalInterruptsFieldNumber = 2,
-  };
-  // map<string, .viam.common.v1.AnalogStatus> analogs = 1 [json_name = "analogs"];
-  int analogs_size() const;
-  private:
-  int _internal_analogs_size() const;
-  public:
-  void clear_analogs();
-  private:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::AnalogStatus >&
-      _internal_analogs() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::AnalogStatus >*
-      _internal_mutable_analogs();
-  public:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::AnalogStatus >&
-      analogs() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::AnalogStatus >*
-      mutable_analogs();
-
-  // map<string, .viam.common.v1.DigitalInterruptStatus> digital_interrupts = 2 [json_name = "digitalInterrupts"];
-  int digital_interrupts_size() const;
-  private:
-  int _internal_digital_interrupts_size() const;
-  public:
-  void clear_digital_interrupts();
-  private:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::DigitalInterruptStatus >&
-      _internal_digital_interrupts() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::DigitalInterruptStatus >*
-      _internal_mutable_digital_interrupts();
-  public:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::DigitalInterruptStatus >&
-      digital_interrupts() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::DigitalInterruptStatus >*
-      mutable_digital_interrupts();
-
-  // @@protoc_insertion_point(class_scope:viam.common.v1.BoardStatus)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
-      BoardStatus_AnalogsEntry_DoNotUse,
-      std::string, ::viam::common::v1::AnalogStatus,
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> analogs_;
-  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
-      BoardStatus_DigitalInterruptsEntry_DoNotUse,
-      std::string, ::viam::common::v1::DigitalInterruptStatus,
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> digital_interrupts_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
-};
-// -------------------------------------------------------------------
-
-class AnalogStatus final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.AnalogStatus) */ {
- public:
-  inline AnalogStatus() : AnalogStatus(nullptr) {}
-  ~AnalogStatus() override;
-  explicit PROTOBUF_CONSTEXPR AnalogStatus(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  AnalogStatus(const AnalogStatus& from);
-  AnalogStatus(AnalogStatus&& from) noexcept
-    : AnalogStatus() {
-    *this = ::std::move(from);
-  }
-
-  inline AnalogStatus& operator=(const AnalogStatus& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline AnalogStatus& operator=(AnalogStatus&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const AnalogStatus& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const AnalogStatus* internal_default_instance() {
-    return reinterpret_cast<const AnalogStatus*>(
-               &_AnalogStatus_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    4;
-
-  friend void swap(AnalogStatus& a, AnalogStatus& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(AnalogStatus* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(AnalogStatus* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  AnalogStatus* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<AnalogStatus>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const AnalogStatus& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const AnalogStatus& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(AnalogStatus* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.common.v1.AnalogStatus";
-  }
-  protected:
-  explicit AnalogStatus(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kValueFieldNumber = 1,
-  };
-  // int32 value = 1 [json_name = "value"];
-  void clear_value();
-  int32_t value() const;
-  void set_value(int32_t value);
-  private:
-  int32_t _internal_value() const;
-  void _internal_set_value(int32_t value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:viam.common.v1.AnalogStatus)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  int32_t value_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
-};
-// -------------------------------------------------------------------
-
-class DigitalInterruptStatus final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.DigitalInterruptStatus) */ {
- public:
-  inline DigitalInterruptStatus() : DigitalInterruptStatus(nullptr) {}
-  ~DigitalInterruptStatus() override;
-  explicit PROTOBUF_CONSTEXPR DigitalInterruptStatus(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  DigitalInterruptStatus(const DigitalInterruptStatus& from);
-  DigitalInterruptStatus(DigitalInterruptStatus&& from) noexcept
-    : DigitalInterruptStatus() {
-    *this = ::std::move(from);
-  }
-
-  inline DigitalInterruptStatus& operator=(const DigitalInterruptStatus& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline DigitalInterruptStatus& operator=(DigitalInterruptStatus&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const DigitalInterruptStatus& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const DigitalInterruptStatus* internal_default_instance() {
-    return reinterpret_cast<const DigitalInterruptStatus*>(
-               &_DigitalInterruptStatus_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    5;
-
-  friend void swap(DigitalInterruptStatus& a, DigitalInterruptStatus& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(DigitalInterruptStatus* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(DigitalInterruptStatus* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  DigitalInterruptStatus* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<DigitalInterruptStatus>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const DigitalInterruptStatus& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const DigitalInterruptStatus& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(DigitalInterruptStatus* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.common.v1.DigitalInterruptStatus";
-  }
-  protected:
-  explicit DigitalInterruptStatus(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kValueFieldNumber = 1,
-  };
-  // int64 value = 1 [json_name = "value"];
-  void clear_value();
-  int64_t value() const;
-  void set_value(int64_t value);
-  private:
-  int64_t _internal_value() const;
-  void _internal_set_value(int64_t value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:viam.common.v1.DigitalInterruptStatus)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  int64_t value_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
 };
@@ -1003,7 +443,7 @@ class Pose final :
                &_Pose_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    1;
 
   friend void swap(Pose& a, Pose& b) {
     a.Swap(&b);
@@ -1212,7 +652,7 @@ class Orientation final :
                &_Orientation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    2;
 
   friend void swap(Orientation& a, Orientation& b) {
     a.Swap(&b);
@@ -1388,7 +828,7 @@ class PoseInFrame final :
                &_PoseInFrame_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    3;
 
   friend void swap(PoseInFrame& a, PoseInFrame& b) {
     a.Swap(&b);
@@ -1556,7 +996,7 @@ class Vector3 final :
                &_Vector3_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    4;
 
   friend void swap(Vector3& a, Vector3& b) {
     a.Swap(&b);
@@ -1721,7 +1161,7 @@ class Sphere final :
                &_Sphere_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    5;
 
   friend void swap(Sphere& a, Sphere& b) {
     a.Swap(&b);
@@ -1864,7 +1304,7 @@ class Capsule final :
                &_Capsule_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    6;
 
   friend void swap(Capsule& a, Capsule& b) {
     a.Swap(&b);
@@ -2018,7 +1458,7 @@ class RectangularPrism final :
                &_RectangularPrism_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    7;
 
   friend void swap(RectangularPrism& a, RectangularPrism& b) {
     a.Swap(&b);
@@ -2177,7 +1617,7 @@ class Geometry final :
                &_Geometry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    8;
 
   friend void swap(Geometry& a, Geometry& b) {
     a.Swap(&b);
@@ -2419,7 +1859,7 @@ class GeometriesInFrame final :
                &_GeometriesInFrame_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    9;
 
   friend void swap(GeometriesInFrame& a, GeometriesInFrame& b) {
     a.Swap(&b);
@@ -2587,7 +2027,7 @@ class PointCloudObject final :
                &_PointCloudObject_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    10;
 
   friend void swap(PointCloudObject& a, PointCloudObject& b) {
     a.Swap(&b);
@@ -2755,7 +2195,7 @@ class GeoPoint final :
                &_GeoPoint_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    11;
 
   friend void swap(GeoPoint& a, GeoPoint& b) {
     a.Swap(&b);
@@ -2909,7 +2349,7 @@ class GeoObstacle final :
                &_GeoObstacle_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    12;
 
   friend void swap(GeoObstacle& a, GeoObstacle& b) {
     a.Swap(&b);
@@ -3081,7 +2521,7 @@ class Transform final :
                &_Transform_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    13;
 
   friend void swap(Transform& a, Transform& b) {
     a.Swap(&b);
@@ -3270,7 +2710,7 @@ class WorldState final :
                &_WorldState_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    14;
 
   friend void swap(WorldState& a, WorldState& b) {
     a.Swap(&b);
@@ -3442,7 +2882,7 @@ class ActuatorStatus final :
                &_ActuatorStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    15;
 
   friend void swap(ActuatorStatus& a, ActuatorStatus& b) {
     a.Swap(&b);
@@ -3585,7 +3025,7 @@ class ResponseMetadata final :
                &_ResponseMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    16;
 
   friend void swap(ResponseMetadata& a, ResponseMetadata& b) {
     a.Swap(&b);
@@ -3738,7 +3178,7 @@ class DoCommandRequest final :
                &_DoCommandRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    17;
 
   friend void swap(DoCommandRequest& a, DoCommandRequest& b) {
     a.Swap(&b);
@@ -3906,7 +3346,7 @@ class DoCommandResponse final :
                &_DoCommandResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    18;
 
   friend void swap(DoCommandResponse& a, DoCommandResponse& b) {
     a.Swap(&b);
@@ -4058,7 +3498,7 @@ class GetKinematicsRequest final :
                &_GetKinematicsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    19;
 
   friend void swap(GetKinematicsRequest& a, GetKinematicsRequest& b) {
     a.Swap(&b);
@@ -4226,7 +3666,7 @@ class GetKinematicsResponse final :
                &_GetKinematicsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    20;
 
   friend void swap(GetKinematicsResponse& a, GetKinematicsResponse& b) {
     a.Swap(&b);
@@ -4385,7 +3825,7 @@ class GetGeometriesRequest final :
                &_GetGeometriesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    21;
 
   friend void swap(GetGeometriesRequest& a, GetGeometriesRequest& b) {
     a.Swap(&b);
@@ -4553,7 +3993,7 @@ class GetGeometriesResponse final :
                &_GetGeometriesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    22;
 
   friend void swap(GetGeometriesResponse& a, GetGeometriesResponse& b) {
     a.Swap(&b);
@@ -4705,7 +4145,7 @@ class GetReadingsRequest final :
                &_GetReadingsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    23;
 
   friend void swap(GetReadingsRequest& a, GetReadingsRequest& b) {
     a.Swap(&b);
@@ -4899,7 +4339,7 @@ class GetReadingsResponse final :
                &_GetReadingsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    25;
 
   friend void swap(GetReadingsResponse& a, GetReadingsResponse& b) {
     a.Swap(&b);
@@ -5057,7 +4497,7 @@ class LogEntry final :
                &_LogEntry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    26;
 
   friend void swap(LogEntry& a, LogEntry& b) {
     a.Swap(&b);
@@ -5492,188 +4932,6 @@ inline void ResourceName::set_allocated_name(std::string* name) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.common.v1.ResourceName.name)
-}
-
-// optional string machine_part_id = 5 [json_name = "machinePartId"];
-inline bool ResourceName::_internal_has_machine_part_id() const {
-  bool value = (_has_bits_[0] & 0x00000001u) != 0;
-  return value;
-}
-inline bool ResourceName::has_machine_part_id() const {
-  return _internal_has_machine_part_id();
-}
-inline void ResourceName::clear_machine_part_id() {
-  machine_part_id_.ClearToEmpty();
-  _has_bits_[0] &= ~0x00000001u;
-}
-inline const std::string& ResourceName::machine_part_id() const {
-  // @@protoc_insertion_point(field_get:viam.common.v1.ResourceName.machine_part_id)
-  return _internal_machine_part_id();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void ResourceName::set_machine_part_id(ArgT0&& arg0, ArgT... args) {
- _has_bits_[0] |= 0x00000001u;
- machine_part_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:viam.common.v1.ResourceName.machine_part_id)
-}
-inline std::string* ResourceName::mutable_machine_part_id() {
-  std::string* _s = _internal_mutable_machine_part_id();
-  // @@protoc_insertion_point(field_mutable:viam.common.v1.ResourceName.machine_part_id)
-  return _s;
-}
-inline const std::string& ResourceName::_internal_machine_part_id() const {
-  return machine_part_id_.Get();
-}
-inline void ResourceName::_internal_set_machine_part_id(const std::string& value) {
-  _has_bits_[0] |= 0x00000001u;
-  machine_part_id_.Set(value, GetArenaForAllocation());
-}
-inline std::string* ResourceName::_internal_mutable_machine_part_id() {
-  _has_bits_[0] |= 0x00000001u;
-  return machine_part_id_.Mutable(GetArenaForAllocation());
-}
-inline std::string* ResourceName::release_machine_part_id() {
-  // @@protoc_insertion_point(field_release:viam.common.v1.ResourceName.machine_part_id)
-  if (!_internal_has_machine_part_id()) {
-    return nullptr;
-  }
-  _has_bits_[0] &= ~0x00000001u;
-  auto* p = machine_part_id_.Release();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (machine_part_id_.IsDefault()) {
-    machine_part_id_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  return p;
-}
-inline void ResourceName::set_allocated_machine_part_id(std::string* machine_part_id) {
-  if (machine_part_id != nullptr) {
-    _has_bits_[0] |= 0x00000001u;
-  } else {
-    _has_bits_[0] &= ~0x00000001u;
-  }
-  machine_part_id_.SetAllocated(machine_part_id, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (machine_part_id_.IsDefault()) {
-    machine_part_id_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.ResourceName.machine_part_id)
-}
-
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
-// BoardStatus
-
-// map<string, .viam.common.v1.AnalogStatus> analogs = 1 [json_name = "analogs"];
-inline int BoardStatus::_internal_analogs_size() const {
-  return analogs_.size();
-}
-inline int BoardStatus::analogs_size() const {
-  return _internal_analogs_size();
-}
-inline void BoardStatus::clear_analogs() {
-  analogs_.Clear();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::AnalogStatus >&
-BoardStatus::_internal_analogs() const {
-  return analogs_.GetMap();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::AnalogStatus >&
-BoardStatus::analogs() const {
-  // @@protoc_insertion_point(field_map:viam.common.v1.BoardStatus.analogs)
-  return _internal_analogs();
-}
-inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::AnalogStatus >*
-BoardStatus::_internal_mutable_analogs() {
-  return analogs_.MutableMap();
-}
-inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::AnalogStatus >*
-BoardStatus::mutable_analogs() {
-  // @@protoc_insertion_point(field_mutable_map:viam.common.v1.BoardStatus.analogs)
-  return _internal_mutable_analogs();
-}
-
-// map<string, .viam.common.v1.DigitalInterruptStatus> digital_interrupts = 2 [json_name = "digitalInterrupts"];
-inline int BoardStatus::_internal_digital_interrupts_size() const {
-  return digital_interrupts_.size();
-}
-inline int BoardStatus::digital_interrupts_size() const {
-  return _internal_digital_interrupts_size();
-}
-inline void BoardStatus::clear_digital_interrupts() {
-  digital_interrupts_.Clear();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::DigitalInterruptStatus >&
-BoardStatus::_internal_digital_interrupts() const {
-  return digital_interrupts_.GetMap();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::DigitalInterruptStatus >&
-BoardStatus::digital_interrupts() const {
-  // @@protoc_insertion_point(field_map:viam.common.v1.BoardStatus.digital_interrupts)
-  return _internal_digital_interrupts();
-}
-inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::DigitalInterruptStatus >*
-BoardStatus::_internal_mutable_digital_interrupts() {
-  return digital_interrupts_.MutableMap();
-}
-inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::DigitalInterruptStatus >*
-BoardStatus::mutable_digital_interrupts() {
-  // @@protoc_insertion_point(field_mutable_map:viam.common.v1.BoardStatus.digital_interrupts)
-  return _internal_mutable_digital_interrupts();
-}
-
-// -------------------------------------------------------------------
-
-// AnalogStatus
-
-// int32 value = 1 [json_name = "value"];
-inline void AnalogStatus::clear_value() {
-  value_ = 0;
-}
-inline int32_t AnalogStatus::_internal_value() const {
-  return value_;
-}
-inline int32_t AnalogStatus::value() const {
-  // @@protoc_insertion_point(field_get:viam.common.v1.AnalogStatus.value)
-  return _internal_value();
-}
-inline void AnalogStatus::_internal_set_value(int32_t value) {
-  
-  value_ = value;
-}
-inline void AnalogStatus::set_value(int32_t value) {
-  _internal_set_value(value);
-  // @@protoc_insertion_point(field_set:viam.common.v1.AnalogStatus.value)
-}
-
-// -------------------------------------------------------------------
-
-// DigitalInterruptStatus
-
-// int64 value = 1 [json_name = "value"];
-inline void DigitalInterruptStatus::clear_value() {
-  value_ = int64_t{0};
-}
-inline int64_t DigitalInterruptStatus::_internal_value() const {
-  return value_;
-}
-inline int64_t DigitalInterruptStatus::value() const {
-  // @@protoc_insertion_point(field_get:viam.common.v1.DigitalInterruptStatus.value)
-  return _internal_value();
-}
-inline void DigitalInterruptStatus::_internal_set_value(int64_t value) {
-  
-  value_ = value;
-}
-inline void DigitalInterruptStatus::set_value(int64_t value) {
-  _internal_set_value(value);
-  // @@protoc_insertion_point(field_set:viam.common.v1.DigitalInterruptStatus.value)
 }
 
 // -------------------------------------------------------------------
@@ -8757,16 +8015,6 @@ LogEntry::fields() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

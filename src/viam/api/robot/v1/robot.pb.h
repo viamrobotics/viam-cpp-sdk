@@ -138,6 +138,12 @@ extern ResourceRPCSubtypesRequestDefaultTypeInternal _ResourceRPCSubtypesRequest
 class ResourceRPCSubtypesResponse;
 struct ResourceRPCSubtypesResponseDefaultTypeInternal;
 extern ResourceRPCSubtypesResponseDefaultTypeInternal _ResourceRPCSubtypesResponse_default_instance_;
+class RestartModuleRequest;
+struct RestartModuleRequestDefaultTypeInternal;
+extern RestartModuleRequestDefaultTypeInternal _RestartModuleRequest_default_instance_;
+class RestartModuleResponse;
+struct RestartModuleResponseDefaultTypeInternal;
+extern RestartModuleResponseDefaultTypeInternal _RestartModuleResponse_default_instance_;
 class SendSessionHeartbeatRequest;
 struct SendSessionHeartbeatRequestDefaultTypeInternal;
 extern SendSessionHeartbeatRequestDefaultTypeInternal _SendSessionHeartbeatRequest_default_instance_;
@@ -215,6 +221,8 @@ template<> ::viam::robot::v1::ResourceNamesResponse* Arena::CreateMaybeMessage<:
 template<> ::viam::robot::v1::ResourceRPCSubtype* Arena::CreateMaybeMessage<::viam::robot::v1::ResourceRPCSubtype>(Arena*);
 template<> ::viam::robot::v1::ResourceRPCSubtypesRequest* Arena::CreateMaybeMessage<::viam::robot::v1::ResourceRPCSubtypesRequest>(Arena*);
 template<> ::viam::robot::v1::ResourceRPCSubtypesResponse* Arena::CreateMaybeMessage<::viam::robot::v1::ResourceRPCSubtypesResponse>(Arena*);
+template<> ::viam::robot::v1::RestartModuleRequest* Arena::CreateMaybeMessage<::viam::robot::v1::RestartModuleRequest>(Arena*);
+template<> ::viam::robot::v1::RestartModuleResponse* Arena::CreateMaybeMessage<::viam::robot::v1::RestartModuleResponse>(Arena*);
 template<> ::viam::robot::v1::SendSessionHeartbeatRequest* Arena::CreateMaybeMessage<::viam::robot::v1::SendSessionHeartbeatRequest>(Arena*);
 template<> ::viam::robot::v1::SendSessionHeartbeatResponse* Arena::CreateMaybeMessage<::viam::robot::v1::SendSessionHeartbeatResponse>(Arena*);
 template<> ::viam::robot::v1::Session* Arena::CreateMaybeMessage<::viam::robot::v1::Session>(Arena*);
@@ -6742,14 +6750,14 @@ class GetCloudMetadataResponse final :
     kMachineIdFieldNumber = 4,
     kMachinePartIdFieldNumber = 5,
   };
-  // string robot_part_id = 1 [json_name = "robotPartId"];
-  void clear_robot_part_id();
-  const std::string& robot_part_id() const;
+  // string robot_part_id = 1 [json_name = "robotPartId", deprecated = true];
+  PROTOBUF_DEPRECATED void clear_robot_part_id();
+  PROTOBUF_DEPRECATED const std::string& robot_part_id() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_robot_part_id(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_robot_part_id();
-  PROTOBUF_NODISCARD std::string* release_robot_part_id();
-  void set_allocated_robot_part_id(std::string* robot_part_id);
+  PROTOBUF_DEPRECATED void set_robot_part_id(ArgT0&& arg0, ArgT... args);
+  PROTOBUF_DEPRECATED std::string* mutable_robot_part_id();
+  PROTOBUF_NODISCARD PROTOBUF_DEPRECATED std::string* release_robot_part_id();
+  PROTOBUF_DEPRECATED void set_allocated_robot_part_id(std::string* robot_part_id);
   private:
   const std::string& _internal_robot_part_id() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_robot_part_id(const std::string& value);
@@ -6825,6 +6833,313 @@ class GetCloudMetadataResponse final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr machine_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr machine_part_id_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
+class RestartModuleRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.RestartModuleRequest) */ {
+ public:
+  inline RestartModuleRequest() : RestartModuleRequest(nullptr) {}
+  ~RestartModuleRequest() override;
+  explicit PROTOBUF_CONSTEXPR RestartModuleRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  RestartModuleRequest(const RestartModuleRequest& from);
+  RestartModuleRequest(RestartModuleRequest&& from) noexcept
+    : RestartModuleRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline RestartModuleRequest& operator=(const RestartModuleRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RestartModuleRequest& operator=(RestartModuleRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const RestartModuleRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  enum IdOrNameCase {
+    kModuleId = 1,
+    kModuleName = 2,
+    ID_OR_NAME_NOT_SET = 0,
+  };
+
+  static inline const RestartModuleRequest* internal_default_instance() {
+    return reinterpret_cast<const RestartModuleRequest*>(
+               &_RestartModuleRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    43;
+
+  friend void swap(RestartModuleRequest& a, RestartModuleRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(RestartModuleRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RestartModuleRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  RestartModuleRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<RestartModuleRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const RestartModuleRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const RestartModuleRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(RestartModuleRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.RestartModuleRequest";
+  }
+  protected:
+  explicit RestartModuleRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kModuleIdFieldNumber = 1,
+    kModuleNameFieldNumber = 2,
+  };
+  // string module_id = 1 [json_name = "moduleId"];
+  bool has_module_id() const;
+  private:
+  bool _internal_has_module_id() const;
+  public:
+  void clear_module_id();
+  const std::string& module_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_module_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_module_id();
+  PROTOBUF_NODISCARD std::string* release_module_id();
+  void set_allocated_module_id(std::string* module_id);
+  private:
+  const std::string& _internal_module_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_module_id(const std::string& value);
+  std::string* _internal_mutable_module_id();
+  public:
+
+  // string module_name = 2 [json_name = "moduleName"];
+  bool has_module_name() const;
+  private:
+  bool _internal_has_module_name() const;
+  public:
+  void clear_module_name();
+  const std::string& module_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_module_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_module_name();
+  PROTOBUF_NODISCARD std::string* release_module_name();
+  void set_allocated_module_name(std::string* module_name);
+  private:
+  const std::string& _internal_module_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_module_name(const std::string& value);
+  std::string* _internal_mutable_module_name();
+  public:
+
+  void clear_id_or_name();
+  IdOrNameCase id_or_name_case() const;
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.RestartModuleRequest)
+ private:
+  class _Internal;
+  void set_has_module_id();
+  void set_has_module_name();
+
+  inline bool has_id_or_name() const;
+  inline void clear_has_id_or_name();
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  union IdOrNameUnion {
+    constexpr IdOrNameUnion() : _constinit_{} {}
+      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr module_id_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr module_name_;
+  } id_or_name_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  uint32_t _oneof_case_[1];
+
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
+class RestartModuleResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.robot.v1.RestartModuleResponse) */ {
+ public:
+  inline RestartModuleResponse() : RestartModuleResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR RestartModuleResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  RestartModuleResponse(const RestartModuleResponse& from);
+  RestartModuleResponse(RestartModuleResponse&& from) noexcept
+    : RestartModuleResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline RestartModuleResponse& operator=(const RestartModuleResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RestartModuleResponse& operator=(RestartModuleResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const RestartModuleResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const RestartModuleResponse* internal_default_instance() {
+    return reinterpret_cast<const RestartModuleResponse*>(
+               &_RestartModuleResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    44;
+
+  friend void swap(RestartModuleResponse& a, RestartModuleResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(RestartModuleResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RestartModuleResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  RestartModuleResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<RestartModuleResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const RestartModuleResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const RestartModuleResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.RestartModuleResponse";
+  }
+  protected:
+  explicit RestartModuleResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.RestartModuleResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
   friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
 };
 // ===================================================================
@@ -10067,7 +10382,7 @@ LogRequest::logs() const {
 
 // GetCloudMetadataResponse
 
-// string robot_part_id = 1 [json_name = "robotPartId"];
+// string robot_part_id = 1 [json_name = "robotPartId", deprecated = true];
 inline void GetCloudMetadataResponse::clear_robot_part_id() {
   robot_part_id_.ClearToEmpty();
 }
@@ -10317,9 +10632,184 @@ inline void GetCloudMetadataResponse::set_allocated_machine_part_id(std::string*
   // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.GetCloudMetadataResponse.machine_part_id)
 }
 
+// -------------------------------------------------------------------
+
+// RestartModuleRequest
+
+// string module_id = 1 [json_name = "moduleId"];
+inline bool RestartModuleRequest::_internal_has_module_id() const {
+  return id_or_name_case() == kModuleId;
+}
+inline bool RestartModuleRequest::has_module_id() const {
+  return _internal_has_module_id();
+}
+inline void RestartModuleRequest::set_has_module_id() {
+  _oneof_case_[0] = kModuleId;
+}
+inline void RestartModuleRequest::clear_module_id() {
+  if (_internal_has_module_id()) {
+    id_or_name_.module_id_.Destroy();
+    clear_has_id_or_name();
+  }
+}
+inline const std::string& RestartModuleRequest::module_id() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.RestartModuleRequest.module_id)
+  return _internal_module_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline void RestartModuleRequest::set_module_id(ArgT0&& arg0, ArgT... args) {
+  if (!_internal_has_module_id()) {
+    clear_id_or_name();
+    set_has_module_id();
+    id_or_name_.module_id_.InitDefault();
+  }
+  id_or_name_.module_id_.Set( static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.RestartModuleRequest.module_id)
+}
+inline std::string* RestartModuleRequest::mutable_module_id() {
+  std::string* _s = _internal_mutable_module_id();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.RestartModuleRequest.module_id)
+  return _s;
+}
+inline const std::string& RestartModuleRequest::_internal_module_id() const {
+  if (_internal_has_module_id()) {
+    return id_or_name_.module_id_.Get();
+  }
+  return ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited();
+}
+inline void RestartModuleRequest::_internal_set_module_id(const std::string& value) {
+  if (!_internal_has_module_id()) {
+    clear_id_or_name();
+    set_has_module_id();
+    id_or_name_.module_id_.InitDefault();
+  }
+  id_or_name_.module_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* RestartModuleRequest::_internal_mutable_module_id() {
+  if (!_internal_has_module_id()) {
+    clear_id_or_name();
+    set_has_module_id();
+    id_or_name_.module_id_.InitDefault();
+  }
+  return id_or_name_.module_id_.Mutable(      GetArenaForAllocation());
+}
+inline std::string* RestartModuleRequest::release_module_id() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.RestartModuleRequest.module_id)
+  if (_internal_has_module_id()) {
+    clear_has_id_or_name();
+    return id_or_name_.module_id_.Release();
+  } else {
+    return nullptr;
+  }
+}
+inline void RestartModuleRequest::set_allocated_module_id(std::string* module_id) {
+  if (has_id_or_name()) {
+    clear_id_or_name();
+  }
+  if (module_id != nullptr) {
+    set_has_module_id();
+    id_or_name_.module_id_.InitAllocated(module_id, GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.RestartModuleRequest.module_id)
+}
+
+// string module_name = 2 [json_name = "moduleName"];
+inline bool RestartModuleRequest::_internal_has_module_name() const {
+  return id_or_name_case() == kModuleName;
+}
+inline bool RestartModuleRequest::has_module_name() const {
+  return _internal_has_module_name();
+}
+inline void RestartModuleRequest::set_has_module_name() {
+  _oneof_case_[0] = kModuleName;
+}
+inline void RestartModuleRequest::clear_module_name() {
+  if (_internal_has_module_name()) {
+    id_or_name_.module_name_.Destroy();
+    clear_has_id_or_name();
+  }
+}
+inline const std::string& RestartModuleRequest::module_name() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.RestartModuleRequest.module_name)
+  return _internal_module_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline void RestartModuleRequest::set_module_name(ArgT0&& arg0, ArgT... args) {
+  if (!_internal_has_module_name()) {
+    clear_id_or_name();
+    set_has_module_name();
+    id_or_name_.module_name_.InitDefault();
+  }
+  id_or_name_.module_name_.Set( static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.RestartModuleRequest.module_name)
+}
+inline std::string* RestartModuleRequest::mutable_module_name() {
+  std::string* _s = _internal_mutable_module_name();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.RestartModuleRequest.module_name)
+  return _s;
+}
+inline const std::string& RestartModuleRequest::_internal_module_name() const {
+  if (_internal_has_module_name()) {
+    return id_or_name_.module_name_.Get();
+  }
+  return ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited();
+}
+inline void RestartModuleRequest::_internal_set_module_name(const std::string& value) {
+  if (!_internal_has_module_name()) {
+    clear_id_or_name();
+    set_has_module_name();
+    id_or_name_.module_name_.InitDefault();
+  }
+  id_or_name_.module_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* RestartModuleRequest::_internal_mutable_module_name() {
+  if (!_internal_has_module_name()) {
+    clear_id_or_name();
+    set_has_module_name();
+    id_or_name_.module_name_.InitDefault();
+  }
+  return id_or_name_.module_name_.Mutable(      GetArenaForAllocation());
+}
+inline std::string* RestartModuleRequest::release_module_name() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.RestartModuleRequest.module_name)
+  if (_internal_has_module_name()) {
+    clear_has_id_or_name();
+    return id_or_name_.module_name_.Release();
+  } else {
+    return nullptr;
+  }
+}
+inline void RestartModuleRequest::set_allocated_module_name(std::string* module_name) {
+  if (has_id_or_name()) {
+    clear_id_or_name();
+  }
+  if (module_name != nullptr) {
+    set_has_module_name();
+    id_or_name_.module_name_.InitAllocated(module_name, GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.RestartModuleRequest.module_name)
+}
+
+inline bool RestartModuleRequest::has_id_or_name() const {
+  return id_or_name_case() != ID_OR_NAME_NOT_SET;
+}
+inline void RestartModuleRequest::clear_has_id_or_name() {
+  _oneof_case_[0] = ID_OR_NAME_NOT_SET;
+}
+inline RestartModuleRequest::IdOrNameCase RestartModuleRequest::id_or_name_case() const {
+  return RestartModuleRequest::IdOrNameCase(_oneof_case_[0]);
+}
+// -------------------------------------------------------------------
+
+// RestartModuleResponse
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -194,11 +194,38 @@ struct GetObjectPointCloudsResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetObjectPointCloudsResponseDefaultTypeInternal _GetObjectPointCloudsResponse_default_instance_;
+PROTOBUF_CONSTEXPR GetPropertiesRequest::GetPropertiesRequest(
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , extra_(nullptr){}
+struct GetPropertiesRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetPropertiesRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetPropertiesRequestDefaultTypeInternal() {}
+  union {
+    GetPropertiesRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPropertiesRequestDefaultTypeInternal _GetPropertiesRequest_default_instance_;
+PROTOBUF_CONSTEXPR GetPropertiesResponse::GetPropertiesResponse(
+    ::_pbi::ConstantInitialized)
+  : classifications_supported_(false)
+  , detections_supported_(false)
+  , object_point_clouds_supported_(false){}
+struct GetPropertiesResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetPropertiesResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetPropertiesResponseDefaultTypeInternal() {}
+  union {
+    GetPropertiesResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPropertiesResponseDefaultTypeInternal _GetPropertiesResponse_default_instance_;
 }  // namespace v1
 }  // namespace vision
 }  // namespace service
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_service_2fvision_2fv1_2fvision_2eproto[12];
+static ::_pb::Metadata file_level_metadata_service_2fvision_2fv1_2fvision_2eproto[14];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_service_2fvision_2fv1_2fvision_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_service_2fvision_2fv1_2fvision_2eproto = nullptr;
 
@@ -319,6 +346,23 @@ const uint32_t TableStruct_service_2fvision_2fv1_2fvision_2eproto::offsets[] PRO
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetObjectPointCloudsResponse, mime_type_),
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetObjectPointCloudsResponse, objects_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetPropertiesRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetPropertiesRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetPropertiesRequest, extra_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetPropertiesResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetPropertiesResponse, classifications_supported_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetPropertiesResponse, detections_supported_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetPropertiesResponse, object_point_clouds_supported_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::service::vision::v1::GetDetectionsRequest)},
@@ -333,6 +377,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 90, -1, -1, sizeof(::viam::service::vision::v1::Classification)},
   { 98, -1, -1, sizeof(::viam::service::vision::v1::GetObjectPointCloudsRequest)},
   { 108, -1, -1, sizeof(::viam::service::vision::v1::GetObjectPointCloudsResponse)},
+  { 116, -1, -1, sizeof(::viam::service::vision::v1::GetPropertiesRequest)},
+  { 124, -1, -1, sizeof(::viam::service::vision::v1::GetPropertiesResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -348,6 +394,8 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::service::vision::v1::_Classification_default_instance_._instance,
   &::viam::service::vision::v1::_GetObjectPointCloudsRequest_default_instance_._instance,
   &::viam::service::vision::v1::_GetObjectPointCloudsResponse_default_instance_._instance,
+  &::viam::service::vision::v1::_GetPropertiesRequest_default_instance_._instance,
+  &::viam::service::vision::v1::_GetPropertiesResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_service_2fvision_2fv1_2fvision_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -396,38 +444,49 @@ const char descriptor_table_protodef_service_2fvision_2fv1_2fvision_2eproto[] PR
   "c \001(\0132\027.google.protobuf.StructR\005extra\"w\n"
   "\034GetObjectPointCloudsResponse\022\033\n\tmime_ty"
   "pe\030\001 \001(\tR\010mimeType\022:\n\007objects\030\002 \003(\0132 .vi"
-  "am.common.v1.PointCloudObjectR\007objects2\347"
-  "\010\n\rVisionService\022\310\001\n\027GetDetectionsFromCa"
-  "mera\0226.viam.service.vision.v1.GetDetecti"
-  "onsFromCameraRequest\0327.viam.service.visi"
-  "on.v1.GetDetectionsFromCameraResponse\"<\202"
-  "\323\344\223\0026\"4/viam/api/v1/service/vision/{name"
-  "}/camera_detections\022\243\001\n\rGetDetections\022,."
-  "viam.service.vision.v1.GetDetectionsRequ"
-  "est\032-.viam.service.vision.v1.GetDetectio"
-  "nsResponse\"5\202\323\344\223\002/\"-/viam/api/v1/service"
-  "/vision/{name}/detections\022\334\001\n\034GetClassif"
-  "icationsFromCamera\022;.viam.service.vision"
-  ".v1.GetClassificationsFromCameraRequest\032"
-  "<.viam.service.vision.v1.GetClassificati"
-  "onsFromCameraResponse\"A\202\323\344\223\002;\"9/viam/api"
-  "/v1/service/vision/{name}/camera_classif"
-  "ications\022\267\001\n\022GetClassifications\0221.viam.s"
-  "ervice.vision.v1.GetClassificationsReque"
-  "st\0322.viam.service.vision.v1.GetClassific"
-  "ationsResponse\":\202\323\344\223\0024\"2/viam/api/v1/ser"
-  "vice/vision/{name}/classifications\022\301\001\n\024G"
-  "etObjectPointClouds\0223.viam.service.visio"
-  "n.v1.GetObjectPointCloudsRequest\0324.viam."
-  "service.vision.v1.GetObjectPointCloudsRe"
-  "sponse\">\202\323\344\223\0028\"6/viam/api/v1/service/vis"
-  "ion/{name}/object_point_clouds\022\207\001\n\tDoCom"
-  "mand\022 .viam.common.v1.DoCommandRequest\032!"
-  ".viam.common.v1.DoCommandResponse\"5\202\323\344\223\002"
-  "/\"-/viam/api/v1/service/vision/{name}/do"
-  "_commandB\?\n\032com.viam.service.vision.v1Z!"
-  "go.viam.com/api/service/vision/v1b\006proto"
-  "3"
+  "am.common.v1.PointCloudObjectR\007objects\"Y"
+  "\n\024GetPropertiesRequest\022\022\n\004name\030\001 \001(\tR\004na"
+  "me\022-\n\005extra\030c \001(\0132\027.google.protobuf.Stru"
+  "ctR\005extra\"\312\001\n\025GetPropertiesResponse\022;\n\031c"
+  "lassifications_supported\030\001 \001(\010R\030classifi"
+  "cationsSupported\0221\n\024detections_supported"
+  "\030\002 \001(\010R\023detectionsSupported\022A\n\035object_po"
+  "int_clouds_supported\030\003 \001(\010R\032objectPointC"
+  "loudsSupported2\221\n\n\rVisionService\022\310\001\n\027Get"
+  "DetectionsFromCamera\0226.viam.service.visi"
+  "on.v1.GetDetectionsFromCameraRequest\0327.v"
+  "iam.service.vision.v1.GetDetectionsFromC"
+  "ameraResponse\"<\202\323\344\223\0026\"4/viam/api/v1/serv"
+  "ice/vision/{name}/camera_detections\022\243\001\n\r"
+  "GetDetections\022,.viam.service.vision.v1.G"
+  "etDetectionsRequest\032-.viam.service.visio"
+  "n.v1.GetDetectionsResponse\"5\202\323\344\223\002/\"-/via"
+  "m/api/v1/service/vision/{name}/detection"
+  "s\022\334\001\n\034GetClassificationsFromCamera\022;.via"
+  "m.service.vision.v1.GetClassificationsFr"
+  "omCameraRequest\032<.viam.service.vision.v1"
+  ".GetClassificationsFromCameraResponse\"A\202"
+  "\323\344\223\002;\"9/viam/api/v1/service/vision/{name"
+  "}/camera_classifications\022\267\001\n\022GetClassifi"
+  "cations\0221.viam.service.vision.v1.GetClas"
+  "sificationsRequest\0322.viam.service.vision"
+  ".v1.GetClassificationsResponse\":\202\323\344\223\0024\"2"
+  "/viam/api/v1/service/vision/{name}/class"
+  "ifications\022\301\001\n\024GetObjectPointClouds\0223.vi"
+  "am.service.vision.v1.GetObjectPointCloud"
+  "sRequest\0324.viam.service.vision.v1.GetObj"
+  "ectPointCloudsResponse\">\202\323\344\223\0028\"6/viam/ap"
+  "i/v1/service/vision/{name}/object_point_"
+  "clouds\022\247\001\n\rGetProperties\022,.viam.service."
+  "vision.v1.GetPropertiesRequest\032-.viam.se"
+  "rvice.vision.v1.GetPropertiesResponse\"9\202"
+  "\323\344\223\0023\"1/viam/api/v1/service/vision/{name"
+  "}/get_properties\022\207\001\n\tDoCommand\022 .viam.co"
+  "mmon.v1.DoCommandRequest\032!.viam.common.v"
+  "1.DoCommandResponse\"5\202\323\344\223\002/\"-/viam/api/v"
+  "1/service/vision/{name}/do_commandB\?\n\032co"
+  "m.viam.service.vision.v1Z!go.viam.com/ap"
+  "i/service/vision/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fvision_2fv1_2fvision_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -436,9 +495,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fvision_2f
 };
 static ::_pbi::once_flag descriptor_table_service_2fvision_2fv1_2fvision_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fvision_2fv1_2fvision_2eproto = {
-    false, false, 3041, descriptor_table_protodef_service_2fvision_2fv1_2fvision_2eproto,
+    false, false, 3507, descriptor_table_protodef_service_2fvision_2fv1_2fvision_2eproto,
     "service/vision/v1/vision.proto",
-    &descriptor_table_service_2fvision_2fv1_2fvision_2eproto_once, descriptor_table_service_2fvision_2fv1_2fvision_2eproto_deps, 3, 12,
+    &descriptor_table_service_2fvision_2fv1_2fvision_2eproto_once, descriptor_table_service_2fvision_2fv1_2fvision_2eproto_deps, 3, 14,
     schemas, file_default_instances, TableStruct_service_2fvision_2fv1_2fvision_2eproto::offsets,
     file_level_metadata_service_2fvision_2fv1_2fvision_2eproto, file_level_enum_descriptors_service_2fvision_2fv1_2fvision_2eproto,
     file_level_service_descriptors_service_2fvision_2fv1_2fvision_2eproto,
@@ -3755,6 +3814,476 @@ void GetObjectPointCloudsResponse::InternalSwap(GetObjectPointCloudsResponse* ot
       file_level_metadata_service_2fvision_2fv1_2fvision_2eproto[11]);
 }
 
+// ===================================================================
+
+class GetPropertiesRequest::_Internal {
+ public:
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetPropertiesRequest* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+GetPropertiesRequest::_Internal::extra(const GetPropertiesRequest* msg) {
+  return *msg->extra_;
+}
+void GetPropertiesRequest::clear_extra() {
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+}
+GetPropertiesRequest::GetPropertiesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.service.vision.v1.GetPropertiesRequest)
+}
+GetPropertiesRequest::GetPropertiesRequest(const GetPropertiesRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_extra()) {
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.service.vision.v1.GetPropertiesRequest)
+}
+
+inline void GetPropertiesRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+extra_ = nullptr;
+}
+
+GetPropertiesRequest::~GetPropertiesRequest() {
+  // @@protoc_insertion_point(destructor:viam.service.vision.v1.GetPropertiesRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetPropertiesRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+  if (this != internal_default_instance()) delete extra_;
+}
+
+void GetPropertiesRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetPropertiesRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.service.vision.v1.GetPropertiesRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetPropertiesRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.service.vision.v1.GetPropertiesRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetPropertiesRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.service.vision.v1.GetPropertiesRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.service.vision.v1.GetPropertiesRequest.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::extra(this),
+        _Internal::extra(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.service.vision.v1.GetPropertiesRequest)
+  return target;
+}
+
+size_t GetPropertiesRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.service.vision.v1.GetPropertiesRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *extra_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetPropertiesRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetPropertiesRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetPropertiesRequest::GetClassData() const { return &_class_data_; }
+
+void GetPropertiesRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetPropertiesRequest *>(to)->MergeFrom(
+      static_cast<const GetPropertiesRequest &>(from));
+}
+
+
+void GetPropertiesRequest::MergeFrom(const GetPropertiesRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetPropertiesRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  if (from._internal_has_extra()) {
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetPropertiesRequest::CopyFrom(const GetPropertiesRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.service.vision.v1.GetPropertiesRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetPropertiesRequest::IsInitialized() const {
+  return true;
+}
+
+void GetPropertiesRequest::InternalSwap(GetPropertiesRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+  swap(extra_, other->extra_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetPropertiesRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_service_2fvision_2fv1_2fvision_2eproto_getter, &descriptor_table_service_2fvision_2fv1_2fvision_2eproto_once,
+      file_level_metadata_service_2fvision_2fv1_2fvision_2eproto[12]);
+}
+
+// ===================================================================
+
+class GetPropertiesResponse::_Internal {
+ public:
+};
+
+GetPropertiesResponse::GetPropertiesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.service.vision.v1.GetPropertiesResponse)
+}
+GetPropertiesResponse::GetPropertiesResponse(const GetPropertiesResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&classifications_supported_, &from.classifications_supported_,
+    static_cast<size_t>(reinterpret_cast<char*>(&object_point_clouds_supported_) -
+    reinterpret_cast<char*>(&classifications_supported_)) + sizeof(object_point_clouds_supported_));
+  // @@protoc_insertion_point(copy_constructor:viam.service.vision.v1.GetPropertiesResponse)
+}
+
+inline void GetPropertiesResponse::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&classifications_supported_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&object_point_clouds_supported_) -
+    reinterpret_cast<char*>(&classifications_supported_)) + sizeof(object_point_clouds_supported_));
+}
+
+GetPropertiesResponse::~GetPropertiesResponse() {
+  // @@protoc_insertion_point(destructor:viam.service.vision.v1.GetPropertiesResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetPropertiesResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void GetPropertiesResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetPropertiesResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.service.vision.v1.GetPropertiesResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&classifications_supported_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&object_point_clouds_supported_) -
+      reinterpret_cast<char*>(&classifications_supported_)) + sizeof(object_point_clouds_supported_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetPropertiesResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool classifications_supported = 1 [json_name = "classificationsSupported"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          classifications_supported_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool detections_supported = 2 [json_name = "detectionsSupported"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          detections_supported_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool object_point_clouds_supported = 3 [json_name = "objectPointCloudsSupported"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          object_point_clouds_supported_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetPropertiesResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.service.vision.v1.GetPropertiesResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool classifications_supported = 1 [json_name = "classificationsSupported"];
+  if (this->_internal_classifications_supported() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_classifications_supported(), target);
+  }
+
+  // bool detections_supported = 2 [json_name = "detectionsSupported"];
+  if (this->_internal_detections_supported() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_detections_supported(), target);
+  }
+
+  // bool object_point_clouds_supported = 3 [json_name = "objectPointCloudsSupported"];
+  if (this->_internal_object_point_clouds_supported() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(3, this->_internal_object_point_clouds_supported(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.service.vision.v1.GetPropertiesResponse)
+  return target;
+}
+
+size_t GetPropertiesResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.service.vision.v1.GetPropertiesResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bool classifications_supported = 1 [json_name = "classificationsSupported"];
+  if (this->_internal_classifications_supported() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool detections_supported = 2 [json_name = "detectionsSupported"];
+  if (this->_internal_detections_supported() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool object_point_clouds_supported = 3 [json_name = "objectPointCloudsSupported"];
+  if (this->_internal_object_point_clouds_supported() != 0) {
+    total_size += 1 + 1;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetPropertiesResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetPropertiesResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetPropertiesResponse::GetClassData() const { return &_class_data_; }
+
+void GetPropertiesResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetPropertiesResponse *>(to)->MergeFrom(
+      static_cast<const GetPropertiesResponse &>(from));
+}
+
+
+void GetPropertiesResponse::MergeFrom(const GetPropertiesResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetPropertiesResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_classifications_supported() != 0) {
+    _internal_set_classifications_supported(from._internal_classifications_supported());
+  }
+  if (from._internal_detections_supported() != 0) {
+    _internal_set_detections_supported(from._internal_detections_supported());
+  }
+  if (from._internal_object_point_clouds_supported() != 0) {
+    _internal_set_object_point_clouds_supported(from._internal_object_point_clouds_supported());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetPropertiesResponse::CopyFrom(const GetPropertiesResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.service.vision.v1.GetPropertiesResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetPropertiesResponse::IsInitialized() const {
+  return true;
+}
+
+void GetPropertiesResponse::InternalSwap(GetPropertiesResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, object_point_clouds_supported_)
+      + sizeof(GetPropertiesResponse::object_point_clouds_supported_)
+      - PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, classifications_supported_)>(
+          reinterpret_cast<char*>(&classifications_supported_),
+          reinterpret_cast<char*>(&other->classifications_supported_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetPropertiesResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_service_2fvision_2fv1_2fvision_2eproto_getter, &descriptor_table_service_2fvision_2fv1_2fvision_2eproto_once,
+      file_level_metadata_service_2fvision_2fv1_2fvision_2eproto[13]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace vision
@@ -3808,6 +4337,14 @@ Arena::CreateMaybeMessage< ::viam::service::vision::v1::GetObjectPointCloudsRequ
 template<> PROTOBUF_NOINLINE ::viam::service::vision::v1::GetObjectPointCloudsResponse*
 Arena::CreateMaybeMessage< ::viam::service::vision::v1::GetObjectPointCloudsResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::service::vision::v1::GetObjectPointCloudsResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::service::vision::v1::GetPropertiesRequest*
+Arena::CreateMaybeMessage< ::viam::service::vision::v1::GetPropertiesRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::service::vision::v1::GetPropertiesRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::service::vision::v1::GetPropertiesResponse*
+Arena::CreateMaybeMessage< ::viam::service::vision::v1::GetPropertiesResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::service::vision::v1::GetPropertiesResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

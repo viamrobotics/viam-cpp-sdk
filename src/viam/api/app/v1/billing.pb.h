@@ -1303,6 +1303,9 @@ class GetCurrentMonthUsageResponse final :
     kDiscountAmountFieldNumber = 8,
     kTotalUsageWithDiscountFieldNumber = 9,
     kTotalUsageWithoutDiscountFieldNumber = 10,
+    kPerMachineUsageCostFieldNumber = 11,
+    kBinaryDataCloudStorageUsageCostFieldNumber = 12,
+    kOtherCloudStorageUsageCostFieldNumber = 13,
   };
   // .google.protobuf.Timestamp start_date = 1 [json_name = "startDate"];
   bool has_start_date() const;
@@ -1412,6 +1415,33 @@ class GetCurrentMonthUsageResponse final :
   void _internal_set_total_usage_without_discount(double value);
   public:
 
+  // double per_machine_usage_cost = 11 [json_name = "perMachineUsageCost"];
+  void clear_per_machine_usage_cost();
+  double per_machine_usage_cost() const;
+  void set_per_machine_usage_cost(double value);
+  private:
+  double _internal_per_machine_usage_cost() const;
+  void _internal_set_per_machine_usage_cost(double value);
+  public:
+
+  // double binary_data_cloud_storage_usage_cost = 12 [json_name = "binaryDataCloudStorageUsageCost"];
+  void clear_binary_data_cloud_storage_usage_cost();
+  double binary_data_cloud_storage_usage_cost() const;
+  void set_binary_data_cloud_storage_usage_cost(double value);
+  private:
+  double _internal_binary_data_cloud_storage_usage_cost() const;
+  void _internal_set_binary_data_cloud_storage_usage_cost(double value);
+  public:
+
+  // double other_cloud_storage_usage_cost = 13 [json_name = "otherCloudStorageUsageCost"];
+  void clear_other_cloud_storage_usage_cost();
+  double other_cloud_storage_usage_cost() const;
+  void set_other_cloud_storage_usage_cost(double value);
+  private:
+  double _internal_other_cloud_storage_usage_cost() const;
+  void _internal_set_other_cloud_storage_usage_cost(double value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.GetCurrentMonthUsageResponse)
  private:
   class _Internal;
@@ -1429,6 +1459,9 @@ class GetCurrentMonthUsageResponse final :
   double discount_amount_;
   double total_usage_with_discount_;
   double total_usage_without_discount_;
+  double per_machine_usage_cost_;
+  double binary_data_cloud_storage_usage_cost_;
+  double other_cloud_storage_usage_cost_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
 };
@@ -4022,6 +4055,66 @@ inline void GetCurrentMonthUsageResponse::_internal_set_total_usage_without_disc
 inline void GetCurrentMonthUsageResponse::set_total_usage_without_discount(double value) {
   _internal_set_total_usage_without_discount(value);
   // @@protoc_insertion_point(field_set:viam.app.v1.GetCurrentMonthUsageResponse.total_usage_without_discount)
+}
+
+// double per_machine_usage_cost = 11 [json_name = "perMachineUsageCost"];
+inline void GetCurrentMonthUsageResponse::clear_per_machine_usage_cost() {
+  per_machine_usage_cost_ = 0;
+}
+inline double GetCurrentMonthUsageResponse::_internal_per_machine_usage_cost() const {
+  return per_machine_usage_cost_;
+}
+inline double GetCurrentMonthUsageResponse::per_machine_usage_cost() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetCurrentMonthUsageResponse.per_machine_usage_cost)
+  return _internal_per_machine_usage_cost();
+}
+inline void GetCurrentMonthUsageResponse::_internal_set_per_machine_usage_cost(double value) {
+  
+  per_machine_usage_cost_ = value;
+}
+inline void GetCurrentMonthUsageResponse::set_per_machine_usage_cost(double value) {
+  _internal_set_per_machine_usage_cost(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetCurrentMonthUsageResponse.per_machine_usage_cost)
+}
+
+// double binary_data_cloud_storage_usage_cost = 12 [json_name = "binaryDataCloudStorageUsageCost"];
+inline void GetCurrentMonthUsageResponse::clear_binary_data_cloud_storage_usage_cost() {
+  binary_data_cloud_storage_usage_cost_ = 0;
+}
+inline double GetCurrentMonthUsageResponse::_internal_binary_data_cloud_storage_usage_cost() const {
+  return binary_data_cloud_storage_usage_cost_;
+}
+inline double GetCurrentMonthUsageResponse::binary_data_cloud_storage_usage_cost() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetCurrentMonthUsageResponse.binary_data_cloud_storage_usage_cost)
+  return _internal_binary_data_cloud_storage_usage_cost();
+}
+inline void GetCurrentMonthUsageResponse::_internal_set_binary_data_cloud_storage_usage_cost(double value) {
+  
+  binary_data_cloud_storage_usage_cost_ = value;
+}
+inline void GetCurrentMonthUsageResponse::set_binary_data_cloud_storage_usage_cost(double value) {
+  _internal_set_binary_data_cloud_storage_usage_cost(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetCurrentMonthUsageResponse.binary_data_cloud_storage_usage_cost)
+}
+
+// double other_cloud_storage_usage_cost = 13 [json_name = "otherCloudStorageUsageCost"];
+inline void GetCurrentMonthUsageResponse::clear_other_cloud_storage_usage_cost() {
+  other_cloud_storage_usage_cost_ = 0;
+}
+inline double GetCurrentMonthUsageResponse::_internal_other_cloud_storage_usage_cost() const {
+  return other_cloud_storage_usage_cost_;
+}
+inline double GetCurrentMonthUsageResponse::other_cloud_storage_usage_cost() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetCurrentMonthUsageResponse.other_cloud_storage_usage_cost)
+  return _internal_other_cloud_storage_usage_cost();
+}
+inline void GetCurrentMonthUsageResponse::_internal_set_other_cloud_storage_usage_cost(double value) {
+  
+  other_cloud_storage_usage_cost_ = value;
+}
+inline void GetCurrentMonthUsageResponse::set_other_cloud_storage_usage_cost(double value) {
+  _internal_set_other_cloud_storage_usage_cost(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetCurrentMonthUsageResponse.other_cloud_storage_usage_cost)
 }
 
 // -------------------------------------------------------------------

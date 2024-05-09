@@ -41,6 +41,7 @@ static const char* RobotService_method_names[] = {
   "/viam.robot.v1.RobotService/SendSessionHeartbeat",
   "/viam.robot.v1.RobotService/Log",
   "/viam.robot.v1.RobotService/GetCloudMetadata",
+  "/viam.robot.v1.RobotService/RestartModule",
 };
 
 std::unique_ptr< RobotService::Stub> RobotService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -67,6 +68,7 @@ RobotService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chann
   , rpcmethod_SendSessionHeartbeat_(RobotService_method_names[14], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Log_(RobotService_method_names[15], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetCloudMetadata_(RobotService_method_names[16], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RestartModule_(RobotService_method_names[17], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status RobotService::Stub::GetOperations(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest& request, ::viam::robot::v1::GetOperationsResponse* response) {
@@ -453,6 +455,29 @@ void RobotService::Stub::async::GetCloudMetadata(::grpc::ClientContext* context,
   return result;
 }
 
+::grpc::Status RobotService::Stub::RestartModule(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest& request, ::viam::robot::v1::RestartModuleResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::RestartModuleRequest, ::viam::robot::v1::RestartModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_RestartModule_, context, request, response);
+}
+
+void RobotService::Stub::async::RestartModule(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest* request, ::viam::robot::v1::RestartModuleResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::RestartModuleRequest, ::viam::robot::v1::RestartModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RestartModule_, context, request, response, std::move(f));
+}
+
+void RobotService::Stub::async::RestartModule(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest* request, ::viam::robot::v1::RestartModuleResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RestartModule_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::RestartModuleResponse>* RobotService::Stub::PrepareAsyncRestartModuleRaw(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::RestartModuleResponse, ::viam::robot::v1::RestartModuleRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_RestartModule_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::RestartModuleResponse>* RobotService::Stub::AsyncRestartModuleRaw(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncRestartModuleRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 RobotService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       RobotService_method_names[0],
@@ -624,6 +649,16 @@ RobotService::Service::Service() {
              ::viam::robot::v1::GetCloudMetadataResponse* resp) {
                return service->GetCloudMetadata(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      RobotService_method_names[17],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::RestartModuleRequest, ::viam::robot::v1::RestartModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](RobotService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::robot::v1::RestartModuleRequest* req,
+             ::viam::robot::v1::RestartModuleResponse* resp) {
+               return service->RestartModule(ctx, req, resp);
+             }, this)));
 }
 
 RobotService::Service::~Service() {
@@ -742,6 +777,13 @@ RobotService::Service::~Service() {
 }
 
 ::grpc::Status RobotService::Service::GetCloudMetadata(::grpc::ServerContext* context, const ::viam::robot::v1::GetCloudMetadataRequest* request, ::viam::robot::v1::GetCloudMetadataResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status RobotService::Service::RestartModule(::grpc::ServerContext* context, const ::viam::robot::v1::RestartModuleRequest* request, ::viam::robot::v1::RestartModuleResponse* response) {
   (void) context;
   (void) request;
   (void) response;
