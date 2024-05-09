@@ -25,7 +25,6 @@ namespace board {
 namespace v1 {
 
 static const char* BoardService_method_names[] = {
-  "/viam.component.board.v1.BoardService/Status",
   "/viam.component.board.v1.BoardService/SetGPIO",
   "/viam.component.board.v1.BoardService/GetGPIO",
   "/viam.component.board.v1.BoardService/PWM",
@@ -48,44 +47,20 @@ std::unique_ptr< BoardService::Stub> BoardService::NewStub(const std::shared_ptr
 }
 
 BoardService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_Status_(BoardService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetGPIO_(BoardService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetGPIO_(BoardService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PWM_(BoardService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetPWM_(BoardService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PWMFrequency_(BoardService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetPWMFrequency_(BoardService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DoCommand_(BoardService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ReadAnalogReader_(BoardService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_WriteAnalog_(BoardService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetDigitalInterruptValue_(BoardService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_StreamTicks_(BoardService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
-  , rpcmethod_SetPowerMode_(BoardService_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetGeometries_(BoardService_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_SetGPIO_(BoardService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGPIO_(BoardService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PWM_(BoardService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetPWM_(BoardService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PWMFrequency_(BoardService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetPWMFrequency_(BoardService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DoCommand_(BoardService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ReadAnalogReader_(BoardService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_WriteAnalog_(BoardService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetDigitalInterruptValue_(BoardService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_StreamTicks_(BoardService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_SetPowerMode_(BoardService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGeometries_(BoardService_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
-
-::grpc::Status BoardService::Stub::Status(::grpc::ClientContext* context, const ::viam::component::board::v1::StatusRequest& request, ::viam::component::board::v1::StatusResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::board::v1::StatusRequest, ::viam::component::board::v1::StatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Status_, context, request, response);
-}
-
-void BoardService::Stub::async::Status(::grpc::ClientContext* context, const ::viam::component::board::v1::StatusRequest* request, ::viam::component::board::v1::StatusResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::board::v1::StatusRequest, ::viam::component::board::v1::StatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Status_, context, request, response, std::move(f));
-}
-
-void BoardService::Stub::async::Status(::grpc::ClientContext* context, const ::viam::component::board::v1::StatusRequest* request, ::viam::component::board::v1::StatusResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Status_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::StatusResponse>* BoardService::Stub::PrepareAsyncStatusRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::StatusRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::board::v1::StatusResponse, ::viam::component::board::v1::StatusRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Status_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::StatusResponse>* BoardService::Stub::AsyncStatusRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::StatusRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncStatusRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
 
 ::grpc::Status BoardService::Stub::SetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::SetGPIORequest& request, ::viam::component::board::v1::SetGPIOResponse* response) {
   return ::grpc::internal::BlockingUnaryCall< ::viam::component::board::v1::SetGPIORequest, ::viam::component::board::v1::SetGPIOResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetGPIO_, context, request, response);
@@ -383,16 +358,6 @@ BoardService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BoardService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::StatusRequest, ::viam::component::board::v1::StatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](BoardService::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::viam::component::board::v1::StatusRequest* req,
-             ::viam::component::board::v1::StatusResponse* resp) {
-               return service->Status(ctx, req, resp);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      BoardService_method_names[1],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::SetGPIORequest, ::viam::component::board::v1::SetGPIOResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](BoardService::Service* service,
              ::grpc::ServerContext* ctx,
@@ -401,7 +366,7 @@ BoardService::Service::Service() {
                return service->SetGPIO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      BoardService_method_names[2],
+      BoardService_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::GetGPIORequest, ::viam::component::board::v1::GetGPIOResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](BoardService::Service* service,
@@ -411,7 +376,7 @@ BoardService::Service::Service() {
                return service->GetGPIO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      BoardService_method_names[3],
+      BoardService_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::PWMRequest, ::viam::component::board::v1::PWMResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](BoardService::Service* service,
@@ -421,7 +386,7 @@ BoardService::Service::Service() {
                return service->PWM(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      BoardService_method_names[4],
+      BoardService_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::SetPWMRequest, ::viam::component::board::v1::SetPWMResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](BoardService::Service* service,
@@ -431,7 +396,7 @@ BoardService::Service::Service() {
                return service->SetPWM(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      BoardService_method_names[5],
+      BoardService_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::PWMFrequencyRequest, ::viam::component::board::v1::PWMFrequencyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](BoardService::Service* service,
@@ -441,7 +406,7 @@ BoardService::Service::Service() {
                return service->PWMFrequency(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      BoardService_method_names[6],
+      BoardService_method_names[5],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::SetPWMFrequencyRequest, ::viam::component::board::v1::SetPWMFrequencyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](BoardService::Service* service,
@@ -451,7 +416,7 @@ BoardService::Service::Service() {
                return service->SetPWMFrequency(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      BoardService_method_names[7],
+      BoardService_method_names[6],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](BoardService::Service* service,
@@ -461,7 +426,7 @@ BoardService::Service::Service() {
                return service->DoCommand(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      BoardService_method_names[8],
+      BoardService_method_names[7],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::ReadAnalogReaderRequest, ::viam::component::board::v1::ReadAnalogReaderResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](BoardService::Service* service,
@@ -471,7 +436,7 @@ BoardService::Service::Service() {
                return service->ReadAnalogReader(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      BoardService_method_names[9],
+      BoardService_method_names[8],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::WriteAnalogRequest, ::viam::component::board::v1::WriteAnalogResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](BoardService::Service* service,
@@ -481,7 +446,7 @@ BoardService::Service::Service() {
                return service->WriteAnalog(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      BoardService_method_names[10],
+      BoardService_method_names[9],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::GetDigitalInterruptValueRequest, ::viam::component::board::v1::GetDigitalInterruptValueResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](BoardService::Service* service,
@@ -491,7 +456,7 @@ BoardService::Service::Service() {
                return service->GetDigitalInterruptValue(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      BoardService_method_names[11],
+      BoardService_method_names[10],
       ::grpc::internal::RpcMethod::SERVER_STREAMING,
       new ::grpc::internal::ServerStreamingHandler< BoardService::Service, ::viam::component::board::v1::StreamTicksRequest, ::viam::component::board::v1::StreamTicksResponse>(
           [](BoardService::Service* service,
@@ -501,7 +466,7 @@ BoardService::Service::Service() {
                return service->StreamTicks(ctx, req, writer);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      BoardService_method_names[12],
+      BoardService_method_names[11],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](BoardService::Service* service,
@@ -511,7 +476,7 @@ BoardService::Service::Service() {
                return service->SetPowerMode(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      BoardService_method_names[13],
+      BoardService_method_names[12],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](BoardService::Service* service,
@@ -523,13 +488,6 @@ BoardService::Service::Service() {
 }
 
 BoardService::Service::~Service() {
-}
-
-::grpc::Status BoardService::Service::Status(::grpc::ServerContext* context, const ::viam::component::board::v1::StatusRequest* request, ::viam::component::board::v1::StatusResponse* response) {
-  (void) context;
-  (void) request;
-  (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
 ::grpc::Status BoardService::Service::SetGPIO(::grpc::ServerContext* context, const ::viam::component::board::v1::SetGPIORequest* request, ::viam::component::board::v1::SetGPIOResponse* response) {

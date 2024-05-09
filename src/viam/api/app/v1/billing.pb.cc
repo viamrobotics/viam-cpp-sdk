@@ -112,7 +112,10 @@ PROTOBUF_CONSTEXPR GetCurrentMonthUsageResponse::GetCurrentMonthUsageResponse(
   , standard_compute_usage_cost_(0)
   , discount_amount_(0)
   , total_usage_with_discount_(0)
-  , total_usage_without_discount_(0){}
+  , total_usage_without_discount_(0)
+  , per_machine_usage_cost_(0)
+  , binary_data_cloud_storage_usage_cost_(0)
+  , other_cloud_storage_usage_cost_(0){}
 struct GetCurrentMonthUsageResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetCurrentMonthUsageResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -277,6 +280,9 @@ const uint32_t TableStruct_app_2fv1_2fbilling_2eproto::offsets[] PROTOBUF_SECTIO
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetCurrentMonthUsageResponse, discount_amount_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetCurrentMonthUsageResponse, total_usage_with_discount_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetCurrentMonthUsageResponse, total_usage_without_discount_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetCurrentMonthUsageResponse, per_machine_usage_cost_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetCurrentMonthUsageResponse, binary_data_cloud_storage_usage_cost_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetCurrentMonthUsageResponse, other_cloud_storage_usage_cost_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetOrgBillingInformationRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -336,12 +342,12 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 38, -1, -1, sizeof(::viam::app::v1::PaymentMethodCard)},
   { 46, -1, -1, sizeof(::viam::app::v1::GetCurrentMonthUsageRequest)},
   { 53, -1, -1, sizeof(::viam::app::v1::GetCurrentMonthUsageResponse)},
-  { 69, -1, -1, sizeof(::viam::app::v1::GetOrgBillingInformationRequest)},
-  { 76, 86, -1, sizeof(::viam::app::v1::GetOrgBillingInformationResponse)},
-  { 90, -1, -1, sizeof(::viam::app::v1::GetInvoicesSummaryRequest)},
-  { 97, -1, -1, sizeof(::viam::app::v1::GetInvoicesSummaryResponse)},
-  { 105, -1, -1, sizeof(::viam::app::v1::GetInvoicePdfRequest)},
-  { 113, -1, -1, sizeof(::viam::app::v1::GetInvoicePdfResponse)},
+  { 72, -1, -1, sizeof(::viam::app::v1::GetOrgBillingInformationRequest)},
+  { 79, 89, -1, sizeof(::viam::app::v1::GetOrgBillingInformationResponse)},
+  { 93, -1, -1, sizeof(::viam::app::v1::GetInvoicesSummaryRequest)},
+  { 100, -1, -1, sizeof(::viam::app::v1::GetInvoicesSummaryResponse)},
+  { 108, -1, -1, sizeof(::viam::app::v1::GetInvoicePdfRequest)},
+  { 116, -1, -1, sizeof(::viam::app::v1::GetInvoicePdfResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -386,7 +392,7 @@ const char descriptor_table_protodef_app_2fv1_2fbilling_2eproto[] PROTOBUF_SECTI
   "MethodCard\022\024\n\005brand\030\001 \001(\tR\005brand\022(\n\020last"
   "_four_digits\030\002 \001(\tR\016lastFourDigits\"4\n\033Ge"
   "tCurrentMonthUsageRequest\022\025\n\006org_id\030\001 \001("
-  "\tR\005orgId\"\320\004\n\034GetCurrentMonthUsageRespons"
+  "\tR\005orgId\"\230\006\n\034GetCurrentMonthUsageRespons"
   "e\0229\n\nstart_date\030\001 \001(\0132\032.google.protobuf."
   "TimestampR\tstartDate\0225\n\010end_date\030\002 \001(\0132\032"
   ".google.protobuf.TimestampR\007endDate\0227\n\030c"
@@ -401,7 +407,12 @@ const char descriptor_table_protodef_app_2fv1_2fbilling_2eproto[] PROTOBUF_SECTI
   "9\n\031total_usage_with_discount\030\t \001(\001R\026tota"
   "lUsageWithDiscount\022\?\n\034total_usage_withou"
   "t_discount\030\n \001(\001R\031totalUsageWithoutDisco"
-  "unt\"8\n\037GetOrgBillingInformationRequest\022\025"
+  "unt\0223\n\026per_machine_usage_cost\030\013 \001(\001R\023per"
+  "MachineUsageCost\022M\n$binary_data_cloud_st"
+  "orage_usage_cost\030\014 \001(\001R\037binaryDataCloudS"
+  "torageUsageCost\022B\n\036other_cloud_storage_u"
+  "sage_cost\030\r \001(\001R\032otherCloudStorageUsageC"
+  "ost\"8\n\037GetOrgBillingInformationRequest\022\025"
   "\n\006org_id\030\001 \001(\tR\005orgId\"\374\001\n GetOrgBillingI"
   "nformationResponse\0222\n\004type\030\001 \001(\0162\036.viam."
   "app.v1.PaymentMethodTypeR\004type\022#\n\rbillin"
@@ -437,7 +448,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fbilling_
 };
 static ::_pbi::once_flag descriptor_table_app_2fv1_2fbilling_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2fbilling_2eproto = {
-    false, false, 2819, descriptor_table_protodef_app_2fv1_2fbilling_2eproto,
+    false, false, 3019, descriptor_table_protodef_app_2fv1_2fbilling_2eproto,
     "app/v1/billing.proto",
     &descriptor_table_app_2fv1_2fbilling_2eproto_once, descriptor_table_app_2fv1_2fbilling_2eproto_deps, 1, 12,
     schemas, file_default_instances, TableStruct_app_2fv1_2fbilling_2eproto::offsets,
@@ -2322,16 +2333,16 @@ GetCurrentMonthUsageResponse::GetCurrentMonthUsageResponse(const GetCurrentMonth
     end_date_ = nullptr;
   }
   ::memcpy(&cloud_storage_usage_cost_, &from.cloud_storage_usage_cost_,
-    static_cast<size_t>(reinterpret_cast<char*>(&total_usage_without_discount_) -
-    reinterpret_cast<char*>(&cloud_storage_usage_cost_)) + sizeof(total_usage_without_discount_));
+    static_cast<size_t>(reinterpret_cast<char*>(&other_cloud_storage_usage_cost_) -
+    reinterpret_cast<char*>(&cloud_storage_usage_cost_)) + sizeof(other_cloud_storage_usage_cost_));
   // @@protoc_insertion_point(copy_constructor:viam.app.v1.GetCurrentMonthUsageResponse)
 }
 
 inline void GetCurrentMonthUsageResponse::SharedCtor() {
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&start_date_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&total_usage_without_discount_) -
-    reinterpret_cast<char*>(&start_date_)) + sizeof(total_usage_without_discount_));
+    0, static_cast<size_t>(reinterpret_cast<char*>(&other_cloud_storage_usage_cost_) -
+    reinterpret_cast<char*>(&start_date_)) + sizeof(other_cloud_storage_usage_cost_));
 }
 
 GetCurrentMonthUsageResponse::~GetCurrentMonthUsageResponse() {
@@ -2368,8 +2379,8 @@ void GetCurrentMonthUsageResponse::Clear() {
   }
   end_date_ = nullptr;
   ::memset(&cloud_storage_usage_cost_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&total_usage_without_discount_) -
-      reinterpret_cast<char*>(&cloud_storage_usage_cost_)) + sizeof(total_usage_without_discount_));
+      reinterpret_cast<char*>(&other_cloud_storage_usage_cost_) -
+      reinterpret_cast<char*>(&cloud_storage_usage_cost_)) + sizeof(other_cloud_storage_usage_cost_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2455,6 +2466,30 @@ const char* GetCurrentMonthUsageResponse::_InternalParse(const char* ptr, ::_pbi
       case 10:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 81)) {
           total_usage_without_discount_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // double per_machine_usage_cost = 11 [json_name = "perMachineUsageCost"];
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 89)) {
+          per_machine_usage_cost_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // double binary_data_cloud_storage_usage_cost = 12 [json_name = "binaryDataCloudStorageUsageCost"];
+      case 12:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 97)) {
+          binary_data_cloud_storage_usage_cost_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // double other_cloud_storage_usage_cost = 13 [json_name = "otherCloudStorageUsageCost"];
+      case 13:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 105)) {
+          other_cloud_storage_usage_cost_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
         } else
           goto handle_unusual;
@@ -2582,6 +2617,36 @@ uint8_t* GetCurrentMonthUsageResponse::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteDoubleToArray(10, this->_internal_total_usage_without_discount(), target);
   }
 
+  // double per_machine_usage_cost = 11 [json_name = "perMachineUsageCost"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_per_machine_usage_cost = this->_internal_per_machine_usage_cost();
+  uint64_t raw_per_machine_usage_cost;
+  memcpy(&raw_per_machine_usage_cost, &tmp_per_machine_usage_cost, sizeof(tmp_per_machine_usage_cost));
+  if (raw_per_machine_usage_cost != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(11, this->_internal_per_machine_usage_cost(), target);
+  }
+
+  // double binary_data_cloud_storage_usage_cost = 12 [json_name = "binaryDataCloudStorageUsageCost"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_binary_data_cloud_storage_usage_cost = this->_internal_binary_data_cloud_storage_usage_cost();
+  uint64_t raw_binary_data_cloud_storage_usage_cost;
+  memcpy(&raw_binary_data_cloud_storage_usage_cost, &tmp_binary_data_cloud_storage_usage_cost, sizeof(tmp_binary_data_cloud_storage_usage_cost));
+  if (raw_binary_data_cloud_storage_usage_cost != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(12, this->_internal_binary_data_cloud_storage_usage_cost(), target);
+  }
+
+  // double other_cloud_storage_usage_cost = 13 [json_name = "otherCloudStorageUsageCost"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_other_cloud_storage_usage_cost = this->_internal_other_cloud_storage_usage_cost();
+  uint64_t raw_other_cloud_storage_usage_cost;
+  memcpy(&raw_other_cloud_storage_usage_cost, &tmp_other_cloud_storage_usage_cost, sizeof(tmp_other_cloud_storage_usage_cost));
+  if (raw_other_cloud_storage_usage_cost != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(13, this->_internal_other_cloud_storage_usage_cost(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -2684,6 +2749,33 @@ size_t GetCurrentMonthUsageResponse::ByteSizeLong() const {
     total_size += 1 + 8;
   }
 
+  // double per_machine_usage_cost = 11 [json_name = "perMachineUsageCost"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_per_machine_usage_cost = this->_internal_per_machine_usage_cost();
+  uint64_t raw_per_machine_usage_cost;
+  memcpy(&raw_per_machine_usage_cost, &tmp_per_machine_usage_cost, sizeof(tmp_per_machine_usage_cost));
+  if (raw_per_machine_usage_cost != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double binary_data_cloud_storage_usage_cost = 12 [json_name = "binaryDataCloudStorageUsageCost"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_binary_data_cloud_storage_usage_cost = this->_internal_binary_data_cloud_storage_usage_cost();
+  uint64_t raw_binary_data_cloud_storage_usage_cost;
+  memcpy(&raw_binary_data_cloud_storage_usage_cost, &tmp_binary_data_cloud_storage_usage_cost, sizeof(tmp_binary_data_cloud_storage_usage_cost));
+  if (raw_binary_data_cloud_storage_usage_cost != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double other_cloud_storage_usage_cost = 13 [json_name = "otherCloudStorageUsageCost"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_other_cloud_storage_usage_cost = this->_internal_other_cloud_storage_usage_cost();
+  uint64_t raw_other_cloud_storage_usage_cost;
+  memcpy(&raw_other_cloud_storage_usage_cost, &tmp_other_cloud_storage_usage_cost, sizeof(tmp_other_cloud_storage_usage_cost));
+  if (raw_other_cloud_storage_usage_cost != 0) {
+    total_size += 1 + 8;
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -2768,6 +2860,27 @@ void GetCurrentMonthUsageResponse::MergeFrom(const GetCurrentMonthUsageResponse&
   if (raw_total_usage_without_discount != 0) {
     _internal_set_total_usage_without_discount(from._internal_total_usage_without_discount());
   }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_per_machine_usage_cost = from._internal_per_machine_usage_cost();
+  uint64_t raw_per_machine_usage_cost;
+  memcpy(&raw_per_machine_usage_cost, &tmp_per_machine_usage_cost, sizeof(tmp_per_machine_usage_cost));
+  if (raw_per_machine_usage_cost != 0) {
+    _internal_set_per_machine_usage_cost(from._internal_per_machine_usage_cost());
+  }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_binary_data_cloud_storage_usage_cost = from._internal_binary_data_cloud_storage_usage_cost();
+  uint64_t raw_binary_data_cloud_storage_usage_cost;
+  memcpy(&raw_binary_data_cloud_storage_usage_cost, &tmp_binary_data_cloud_storage_usage_cost, sizeof(tmp_binary_data_cloud_storage_usage_cost));
+  if (raw_binary_data_cloud_storage_usage_cost != 0) {
+    _internal_set_binary_data_cloud_storage_usage_cost(from._internal_binary_data_cloud_storage_usage_cost());
+  }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_other_cloud_storage_usage_cost = from._internal_other_cloud_storage_usage_cost();
+  uint64_t raw_other_cloud_storage_usage_cost;
+  memcpy(&raw_other_cloud_storage_usage_cost, &tmp_other_cloud_storage_usage_cost, sizeof(tmp_other_cloud_storage_usage_cost));
+  if (raw_other_cloud_storage_usage_cost != 0) {
+    _internal_set_other_cloud_storage_usage_cost(from._internal_other_cloud_storage_usage_cost());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -2786,8 +2899,8 @@ void GetCurrentMonthUsageResponse::InternalSwap(GetCurrentMonthUsageResponse* ot
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, total_usage_without_discount_)
-      + sizeof(GetCurrentMonthUsageResponse::total_usage_without_discount_)
+      PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, other_cloud_storage_usage_cost_)
+      + sizeof(GetCurrentMonthUsageResponse::other_cloud_storage_usage_cost_)
       - PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, start_date_)>(
           reinterpret_cast<char*>(&start_date_),
           reinterpret_cast<char*>(&other->start_date_));

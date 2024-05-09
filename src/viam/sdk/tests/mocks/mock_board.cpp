@@ -12,10 +12,6 @@ using namespace viam::sdk;
 
 MockBoard::MockBoard(std::string name) : Board(std::move(name)){};
 
-Board::status MockBoard::get_status(const AttributeMap&) {
-    return this->peek_get_status_ret;
-}
-
 void MockBoard::set_gpio(const std::string& pin, bool high, const AttributeMap&) {
     this->peek_pin = pin;
     this->peek_set_gpio_high = high;

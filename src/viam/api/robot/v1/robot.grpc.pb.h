@@ -172,6 +172,13 @@ class RobotService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::GetCloudMetadataResponse>> PrepareAsyncGetCloudMetadata(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::GetCloudMetadataResponse>>(PrepareAsyncGetCloudMetadataRaw(context, request, cq));
     }
+    virtual ::grpc::Status RestartModule(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest& request, ::viam::robot::v1::RestartModuleResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::RestartModuleResponse>> AsyncRestartModule(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::RestartModuleResponse>>(AsyncRestartModuleRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::RestartModuleResponse>> PrepareAsyncRestartModule(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::RestartModuleResponse>>(PrepareAsyncRestartModuleRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -221,6 +228,8 @@ class RobotService final {
       // GetCloudMetadata returns app-related information about the robot.
       virtual void GetCloudMetadata(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest* request, ::viam::robot::v1::GetCloudMetadataResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetCloudMetadata(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest* request, ::viam::robot::v1::GetCloudMetadataResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void RestartModule(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest* request, ::viam::robot::v1::RestartModuleResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void RestartModule(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest* request, ::viam::robot::v1::RestartModuleResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -261,6 +270,8 @@ class RobotService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::LogResponse>* PrepareAsyncLogRaw(::grpc::ClientContext* context, const ::viam::robot::v1::LogRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::GetCloudMetadataResponse>* AsyncGetCloudMetadataRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::GetCloudMetadataResponse>* PrepareAsyncGetCloudMetadataRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::RestartModuleResponse>* AsyncRestartModuleRaw(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::RestartModuleResponse>* PrepareAsyncRestartModuleRaw(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -386,6 +397,13 @@ class RobotService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetCloudMetadataResponse>> PrepareAsyncGetCloudMetadata(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetCloudMetadataResponse>>(PrepareAsyncGetCloudMetadataRaw(context, request, cq));
     }
+    ::grpc::Status RestartModule(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest& request, ::viam::robot::v1::RestartModuleResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::RestartModuleResponse>> AsyncRestartModule(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::RestartModuleResponse>>(AsyncRestartModuleRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::RestartModuleResponse>> PrepareAsyncRestartModule(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::RestartModuleResponse>>(PrepareAsyncRestartModuleRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -422,6 +440,8 @@ class RobotService final {
       void Log(::grpc::ClientContext* context, const ::viam::robot::v1::LogRequest* request, ::viam::robot::v1::LogResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetCloudMetadata(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest* request, ::viam::robot::v1::GetCloudMetadataResponse* response, std::function<void(::grpc::Status)>) override;
       void GetCloudMetadata(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest* request, ::viam::robot::v1::GetCloudMetadataResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void RestartModule(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest* request, ::viam::robot::v1::RestartModuleResponse* response, std::function<void(::grpc::Status)>) override;
+      void RestartModule(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest* request, ::viam::robot::v1::RestartModuleResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -468,6 +488,8 @@ class RobotService final {
     ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::LogResponse>* PrepareAsyncLogRaw(::grpc::ClientContext* context, const ::viam::robot::v1::LogRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetCloudMetadataResponse>* AsyncGetCloudMetadataRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetCloudMetadataResponse>* PrepareAsyncGetCloudMetadataRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::RestartModuleResponse>* AsyncRestartModuleRaw(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::RestartModuleResponse>* PrepareAsyncRestartModuleRaw(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetOperations_;
     const ::grpc::internal::RpcMethod rpcmethod_GetSessions_;
     const ::grpc::internal::RpcMethod rpcmethod_ResourceNames_;
@@ -485,6 +507,7 @@ class RobotService final {
     const ::grpc::internal::RpcMethod rpcmethod_SendSessionHeartbeat_;
     const ::grpc::internal::RpcMethod rpcmethod_Log_;
     const ::grpc::internal::RpcMethod rpcmethod_GetCloudMetadata_;
+    const ::grpc::internal::RpcMethod rpcmethod_RestartModule_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -522,6 +545,7 @@ class RobotService final {
     virtual ::grpc::Status Log(::grpc::ServerContext* context, const ::viam::robot::v1::LogRequest* request, ::viam::robot::v1::LogResponse* response);
     // GetCloudMetadata returns app-related information about the robot.
     virtual ::grpc::Status GetCloudMetadata(::grpc::ServerContext* context, const ::viam::robot::v1::GetCloudMetadataRequest* request, ::viam::robot::v1::GetCloudMetadataResponse* response);
+    virtual ::grpc::Status RestartModule(::grpc::ServerContext* context, const ::viam::robot::v1::RestartModuleRequest* request, ::viam::robot::v1::RestartModuleResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetOperations : public BaseClass {
@@ -863,7 +887,27 @@ class RobotService final {
       ::grpc::Service::RequestAsyncUnary(16, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetOperations<WithAsyncMethod_GetSessions<WithAsyncMethod_ResourceNames<WithAsyncMethod_ResourceRPCSubtypes<WithAsyncMethod_CancelOperation<WithAsyncMethod_BlockForOperation<WithAsyncMethod_DiscoverComponents<WithAsyncMethod_FrameSystemConfig<WithAsyncMethod_TransformPose<WithAsyncMethod_TransformPCD<WithAsyncMethod_GetStatus<WithAsyncMethod_StreamStatus<WithAsyncMethod_StopAll<WithAsyncMethod_StartSession<WithAsyncMethod_SendSessionHeartbeat<WithAsyncMethod_Log<WithAsyncMethod_GetCloudMetadata<Service > > > > > > > > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_RestartModule : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_RestartModule() {
+      ::grpc::Service::MarkMethodAsync(17);
+    }
+    ~WithAsyncMethod_RestartModule() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RestartModule(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::RestartModuleRequest* /*request*/, ::viam::robot::v1::RestartModuleResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestRestartModule(::grpc::ServerContext* context, ::viam::robot::v1::RestartModuleRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::robot::v1::RestartModuleResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(17, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetOperations<WithAsyncMethod_GetSessions<WithAsyncMethod_ResourceNames<WithAsyncMethod_ResourceRPCSubtypes<WithAsyncMethod_CancelOperation<WithAsyncMethod_BlockForOperation<WithAsyncMethod_DiscoverComponents<WithAsyncMethod_FrameSystemConfig<WithAsyncMethod_TransformPose<WithAsyncMethod_TransformPCD<WithAsyncMethod_GetStatus<WithAsyncMethod_StreamStatus<WithAsyncMethod_StopAll<WithAsyncMethod_StartSession<WithAsyncMethod_SendSessionHeartbeat<WithAsyncMethod_Log<WithAsyncMethod_GetCloudMetadata<WithAsyncMethod_RestartModule<Service > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetOperations : public BaseClass {
    private:
@@ -1318,7 +1362,34 @@ class RobotService final {
     virtual ::grpc::ServerUnaryReactor* GetCloudMetadata(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::GetCloudMetadataRequest* /*request*/, ::viam::robot::v1::GetCloudMetadataResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetOperations<WithCallbackMethod_GetSessions<WithCallbackMethod_ResourceNames<WithCallbackMethod_ResourceRPCSubtypes<WithCallbackMethod_CancelOperation<WithCallbackMethod_BlockForOperation<WithCallbackMethod_DiscoverComponents<WithCallbackMethod_FrameSystemConfig<WithCallbackMethod_TransformPose<WithCallbackMethod_TransformPCD<WithCallbackMethod_GetStatus<WithCallbackMethod_StreamStatus<WithCallbackMethod_StopAll<WithCallbackMethod_StartSession<WithCallbackMethod_SendSessionHeartbeat<WithCallbackMethod_Log<WithCallbackMethod_GetCloudMetadata<Service > > > > > > > > > > > > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_RestartModule : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_RestartModule() {
+      ::grpc::Service::MarkMethodCallback(17,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::RestartModuleRequest, ::viam::robot::v1::RestartModuleResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::robot::v1::RestartModuleRequest* request, ::viam::robot::v1::RestartModuleResponse* response) { return this->RestartModule(context, request, response); }));}
+    void SetMessageAllocatorFor_RestartModule(
+        ::grpc::MessageAllocator< ::viam::robot::v1::RestartModuleRequest, ::viam::robot::v1::RestartModuleResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(17);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::RestartModuleRequest, ::viam::robot::v1::RestartModuleResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_RestartModule() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RestartModule(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::RestartModuleRequest* /*request*/, ::viam::robot::v1::RestartModuleResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* RestartModule(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::RestartModuleRequest* /*request*/, ::viam::robot::v1::RestartModuleResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_GetOperations<WithCallbackMethod_GetSessions<WithCallbackMethod_ResourceNames<WithCallbackMethod_ResourceRPCSubtypes<WithCallbackMethod_CancelOperation<WithCallbackMethod_BlockForOperation<WithCallbackMethod_DiscoverComponents<WithCallbackMethod_FrameSystemConfig<WithCallbackMethod_TransformPose<WithCallbackMethod_TransformPCD<WithCallbackMethod_GetStatus<WithCallbackMethod_StreamStatus<WithCallbackMethod_StopAll<WithCallbackMethod_StartSession<WithCallbackMethod_SendSessionHeartbeat<WithCallbackMethod_Log<WithCallbackMethod_GetCloudMetadata<WithCallbackMethod_RestartModule<Service > > > > > > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetOperations : public BaseClass {
@@ -1605,6 +1676,23 @@ class RobotService final {
     }
     // disable synchronous version of this method
     ::grpc::Status GetCloudMetadata(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::GetCloudMetadataRequest* /*request*/, ::viam::robot::v1::GetCloudMetadataResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_RestartModule : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_RestartModule() {
+      ::grpc::Service::MarkMethodGeneric(17);
+    }
+    ~WithGenericMethod_RestartModule() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RestartModule(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::RestartModuleRequest* /*request*/, ::viam::robot::v1::RestartModuleResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1947,6 +2035,26 @@ class RobotService final {
     }
     void RequestGetCloudMetadata(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(16, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_RestartModule : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_RestartModule() {
+      ::grpc::Service::MarkMethodRaw(17);
+    }
+    ~WithRawMethod_RestartModule() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RestartModule(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::RestartModuleRequest* /*request*/, ::viam::robot::v1::RestartModuleResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestRestartModule(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(17, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2321,6 +2429,28 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* GetCloudMetadata(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_RestartModule : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_RestartModule() {
+      ::grpc::Service::MarkMethodRawCallback(17,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RestartModule(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_RestartModule() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RestartModule(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::RestartModuleRequest* /*request*/, ::viam::robot::v1::RestartModuleResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* RestartModule(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -2755,7 +2885,34 @@ class RobotService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetCloudMetadata(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::robot::v1::GetCloudMetadataRequest,::viam::robot::v1::GetCloudMetadataResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetOperations<WithStreamedUnaryMethod_GetSessions<WithStreamedUnaryMethod_ResourceNames<WithStreamedUnaryMethod_ResourceRPCSubtypes<WithStreamedUnaryMethod_CancelOperation<WithStreamedUnaryMethod_BlockForOperation<WithStreamedUnaryMethod_DiscoverComponents<WithStreamedUnaryMethod_FrameSystemConfig<WithStreamedUnaryMethod_TransformPose<WithStreamedUnaryMethod_TransformPCD<WithStreamedUnaryMethod_GetStatus<WithStreamedUnaryMethod_StopAll<WithStreamedUnaryMethod_StartSession<WithStreamedUnaryMethod_SendSessionHeartbeat<WithStreamedUnaryMethod_Log<WithStreamedUnaryMethod_GetCloudMetadata<Service > > > > > > > > > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_RestartModule : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_RestartModule() {
+      ::grpc::Service::MarkMethodStreamed(17,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::robot::v1::RestartModuleRequest, ::viam::robot::v1::RestartModuleResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::robot::v1::RestartModuleRequest, ::viam::robot::v1::RestartModuleResponse>* streamer) {
+                       return this->StreamedRestartModule(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_RestartModule() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status RestartModule(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::RestartModuleRequest* /*request*/, ::viam::robot::v1::RestartModuleResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedRestartModule(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::robot::v1::RestartModuleRequest,::viam::robot::v1::RestartModuleResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_GetOperations<WithStreamedUnaryMethod_GetSessions<WithStreamedUnaryMethod_ResourceNames<WithStreamedUnaryMethod_ResourceRPCSubtypes<WithStreamedUnaryMethod_CancelOperation<WithStreamedUnaryMethod_BlockForOperation<WithStreamedUnaryMethod_DiscoverComponents<WithStreamedUnaryMethod_FrameSystemConfig<WithStreamedUnaryMethod_TransformPose<WithStreamedUnaryMethod_TransformPCD<WithStreamedUnaryMethod_GetStatus<WithStreamedUnaryMethod_StopAll<WithStreamedUnaryMethod_StartSession<WithStreamedUnaryMethod_SendSessionHeartbeat<WithStreamedUnaryMethod_Log<WithStreamedUnaryMethod_GetCloudMetadata<WithStreamedUnaryMethod_RestartModule<Service > > > > > > > > > > > > > > > > > StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_StreamStatus : public BaseClass {
    private:
@@ -2784,7 +2941,7 @@ class RobotService final {
     virtual ::grpc::Status StreamedStreamStatus(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::viam::robot::v1::StreamStatusRequest,::viam::robot::v1::StreamStatusResponse>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_StreamStatus<Service > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetOperations<WithStreamedUnaryMethod_GetSessions<WithStreamedUnaryMethod_ResourceNames<WithStreamedUnaryMethod_ResourceRPCSubtypes<WithStreamedUnaryMethod_CancelOperation<WithStreamedUnaryMethod_BlockForOperation<WithStreamedUnaryMethod_DiscoverComponents<WithStreamedUnaryMethod_FrameSystemConfig<WithStreamedUnaryMethod_TransformPose<WithStreamedUnaryMethod_TransformPCD<WithStreamedUnaryMethod_GetStatus<WithSplitStreamingMethod_StreamStatus<WithStreamedUnaryMethod_StopAll<WithStreamedUnaryMethod_StartSession<WithStreamedUnaryMethod_SendSessionHeartbeat<WithStreamedUnaryMethod_Log<WithStreamedUnaryMethod_GetCloudMetadata<Service > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetOperations<WithStreamedUnaryMethod_GetSessions<WithStreamedUnaryMethod_ResourceNames<WithStreamedUnaryMethod_ResourceRPCSubtypes<WithStreamedUnaryMethod_CancelOperation<WithStreamedUnaryMethod_BlockForOperation<WithStreamedUnaryMethod_DiscoverComponents<WithStreamedUnaryMethod_FrameSystemConfig<WithStreamedUnaryMethod_TransformPose<WithStreamedUnaryMethod_TransformPCD<WithStreamedUnaryMethod_GetStatus<WithSplitStreamingMethod_StreamStatus<WithStreamedUnaryMethod_StopAll<WithStreamedUnaryMethod_StartSession<WithStreamedUnaryMethod_SendSessionHeartbeat<WithStreamedUnaryMethod_Log<WithStreamedUnaryMethod_GetCloudMetadata<WithStreamedUnaryMethod_RestartModule<Service > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1
