@@ -14,18 +14,6 @@ namespace impl {
 BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)){};
 
-::grpc::Status BoardServer::Status(
-    ::grpc::ServerContext*,
-    const ::viam::component::board::v1::StatusRequest* request,
-    ::viam::component::board::v1::StatusResponse* response) noexcept {
-    return make_service_helper<Board>(
-        "BoardServer::Status", this, request)([&](auto& helper, auto& board) {
-        const viam::common::v1::BoardStatus status =
-            Board::to_proto(board->get_status(helper.getExtra()));
-        *response->mutable_status() = status;
-    });
-}
-
 ::grpc::Status BoardServer::SetGPIO(::grpc::ServerContext*,
                                     const ::viam::component::board::v1::SetGPIORequest* request,
                                     ::viam::component::board::v1::SetGPIOResponse*) noexcept {

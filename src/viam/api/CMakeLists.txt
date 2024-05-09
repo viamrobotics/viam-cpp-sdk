@@ -19,6 +19,7 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
 endif()
 
 set(BUF_PROTO_COMPONENTS
+  app/mltraining
   app/packages
   app/v1
   common
@@ -124,6 +125,8 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     # it sanely? We would need to filter out (or add in) the headers.
 
     # This list is needed for the core library.
+    ${PROTO_GEN_DIR}/app/mltraining/v1/ml_training.pb.cc
+    ${PROTO_GEN_DIR}/app/mltraining/v1/ml_training.pb.h
     ${PROTO_GEN_DIR}/app/packages/v1/packages.pb.cc
     ${PROTO_GEN_DIR}/app/packages/v1/packages.pb.h
     ${PROTO_GEN_DIR}/app/v1/app.grpc.pb.cc
@@ -184,6 +187,8 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/google/api/httpbody.pb.h
     ${PROTO_GEN_DIR}/google/api/http.pb.cc
     ${PROTO_GEN_DIR}/google/api/http.pb.h
+    ${PROTO_GEN_DIR}/google/rpc/status.pb.cc
+    ${PROTO_GEN_DIR}/google/rpc/status.pb.h
     ${PROTO_GEN_DIR}/module/v1/module.grpc.pb.cc
     ${PROTO_GEN_DIR}/module/v1/module.grpc.pb.h
     ${PROTO_GEN_DIR}/module/v1/module.pb.cc
@@ -257,6 +262,7 @@ add_library(viam-cpp-sdk::viamapi ALIAS viamapi)
 
 target_sources(viamapi
   PRIVATE
+    ${PROTO_GEN_DIR}/app/mltraining/v1/ml_training.pb.cc
     ${PROTO_GEN_DIR}/app/packages/v1/packages.pb.cc
     ${PROTO_GEN_DIR}/app/v1/app.grpc.pb.cc
     ${PROTO_GEN_DIR}/app/v1/app.pb.cc
@@ -287,6 +293,7 @@ target_sources(viamapi
     ${PROTO_GEN_DIR}/google/api/annotations.pb.cc
     ${PROTO_GEN_DIR}/google/api/http.pb.cc
     ${PROTO_GEN_DIR}/google/api/httpbody.pb.cc
+    ${PROTO_GEN_DIR}/google/rpc/status.pb.cc
     ${PROTO_GEN_DIR}/module/v1/module.grpc.pb.cc
     ${PROTO_GEN_DIR}/module/v1/module.pb.cc
     ${PROTO_GEN_DIR}/robot/v1/robot.grpc.pb.cc
@@ -303,6 +310,7 @@ target_sources(viamapi
     BASE_DIRS
       ${PROTO_GEN_DIR}/../..
     FILES
+      ${PROTO_GEN_DIR}/../../viam/api/app/mltraining/v1/ml_training.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/app/packages/v1/packages.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/app/v1/app.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/app/v1/app.pb.h
@@ -333,6 +341,7 @@ target_sources(viamapi
       ${PROTO_GEN_DIR}/../../viam/api/google/api/annotations.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/google/api/http.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/google/api/httpbody.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/google/rpc/status.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/module/v1/module.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/module/v1/module.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/robot/v1/robot.grpc.pb.h

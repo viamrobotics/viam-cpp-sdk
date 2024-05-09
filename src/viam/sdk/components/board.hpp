@@ -66,53 +66,16 @@ class Board : public Component {
     API api() const override;
 
     /// @brief Creates a `status` struct from its proto representation.
-    static status from_proto(const viam::common::v1::BoardStatus& proto);
-
-    /// @brief Creates a `analog_value` struct from its proto representation.
-    static analog_value from_proto(const viam::common::v1::AnalogStatus& proto);
-
-    /// @brief Creates a `digital_value` struct from its proto representation.
-    static digital_value from_proto(const viam::common::v1::DigitalInterruptStatus& proto);
+    static status from_proto(const viam::component::board::v1::Status& proto);
 
     /// @brief Creates a `power_mode` enum from its proto representation.
     static power_mode from_proto(viam::component::board::v1::PowerMode proto);
 
     /// @brief Converts a `status` struct to its proto representation.
-    static viam::common::v1::BoardStatus to_proto(const status& status);
-
-    /// @brief Converts a `analog_value` struct to its proto representation.
-    static viam::common::v1::AnalogStatus to_proto(analog_value analog_value);
-
-    /// @brief Converts a `digital_value` struct to its proto representation.
-    static viam::common::v1::DigitalInterruptStatus to_proto(digital_value digital_value);
+    static viam::component::board::v1::Status to_proto(const status& status);
 
     /// @brief Converts a `power_mode` enum to its proto representation.
     static viam::component::board::v1::PowerMode to_proto(power_mode power_mode);
-
-    /// @brief Get the status of all of the registered analog readers and digital interrupt readers
-    inline status get_status() {
-        return get_status({});
-    }
-
-    /// @brief Get the status of all of the registered analog readers and digital interrupt readers
-    /// @param extra Any additional arguments to the method
-    virtual status get_status(const AttributeMap& extra) = 0;
-
-    /// @brief Get the names of the defined analog readers defined for this board
-    /// This information comes from calling `get_status()`
-    std::vector<std::string> get_analog_reader_names();
-
-    /// @brief Get the names of the defined digital interrupts for this board
-    /// This information comes from calling `get_status()`
-    std::vector<std::string> get_digital_interrupt_names();
-
-    /// @brief Get all defined analog readers defined for this board
-    /// This information comes from calling `get_status()`
-    std::unordered_map<std::string, analog_value> get_analog_readers();
-
-    /// @brief Get all defined digital interrupts for this board
-    /// This information comes from calling `get_status()`
-    std::unordered_map<std::string, digital_value> get_digital_interrupts();
 
     /// @brief Gets the high/low state of the given pin on a board.
     /// @param pin board pin name
