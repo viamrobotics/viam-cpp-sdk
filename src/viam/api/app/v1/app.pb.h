@@ -32,6 +32,7 @@
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
+#include "app/mltraining/v1/ml_training.pb.h"
 #include "app/packages/v1/packages.pb.h"
 #include "common/v1/common.pb.h"
 #include <google/protobuf/struct.pb.h>
@@ -384,6 +385,9 @@ extern LocationOrganizationDefaultTypeInternal _LocationOrganization_default_ins
 class MLModelMetadata;
 struct MLModelMetadataDefaultTypeInternal;
 extern MLModelMetadataDefaultTypeInternal _MLModelMetadata_default_instance_;
+class MLTrainingMetadata;
+struct MLTrainingMetadataDefaultTypeInternal;
+extern MLTrainingMetadataDefaultTypeInternal _MLTrainingMetadata_default_instance_;
 class MarkPartAsMainRequest;
 struct MarkPartAsMainRequestDefaultTypeInternal;
 extern MarkPartAsMainRequestDefaultTypeInternal _MarkPartAsMainRequest_default_instance_;
@@ -669,6 +673,7 @@ template<> ::viam::app::v1::LocationAuthRequest* Arena::CreateMaybeMessage<::via
 template<> ::viam::app::v1::LocationAuthResponse* Arena::CreateMaybeMessage<::viam::app::v1::LocationAuthResponse>(Arena*);
 template<> ::viam::app::v1::LocationOrganization* Arena::CreateMaybeMessage<::viam::app::v1::LocationOrganization>(Arena*);
 template<> ::viam::app::v1::MLModelMetadata* Arena::CreateMaybeMessage<::viam::app::v1::MLModelMetadata>(Arena*);
+template<> ::viam::app::v1::MLTrainingMetadata* Arena::CreateMaybeMessage<::viam::app::v1::MLTrainingMetadata>(Arena*);
 template<> ::viam::app::v1::MarkPartAsMainRequest* Arena::CreateMaybeMessage<::viam::app::v1::MarkPartAsMainRequest>(Arena*);
 template<> ::viam::app::v1::MarkPartAsMainResponse* Arena::CreateMaybeMessage<::viam::app::v1::MarkPartAsMainResponse>(Arena*);
 template<> ::viam::app::v1::MarkPartForRestartRequest* Arena::CreateMaybeMessage<::viam::app::v1::MarkPartForRestartRequest>(Arena*);
@@ -20888,6 +20893,197 @@ class MLModelMetadata final :
 };
 // -------------------------------------------------------------------
 
+class MLTrainingMetadata final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.MLTrainingMetadata) */ {
+ public:
+  inline MLTrainingMetadata() : MLTrainingMetadata(nullptr) {}
+  ~MLTrainingMetadata() override;
+  explicit PROTOBUF_CONSTEXPR MLTrainingMetadata(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  MLTrainingMetadata(const MLTrainingMetadata& from);
+  MLTrainingMetadata(MLTrainingMetadata&& from) noexcept
+    : MLTrainingMetadata() {
+    *this = ::std::move(from);
+  }
+
+  inline MLTrainingMetadata& operator=(const MLTrainingMetadata& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MLTrainingMetadata& operator=(MLTrainingMetadata&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MLTrainingMetadata& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MLTrainingMetadata* internal_default_instance() {
+    return reinterpret_cast<const MLTrainingMetadata*>(
+               &_MLTrainingMetadata_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    124;
+
+  friend void swap(MLTrainingMetadata& a, MLTrainingMetadata& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MLTrainingMetadata* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MLTrainingMetadata* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MLTrainingMetadata* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MLTrainingMetadata>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const MLTrainingMetadata& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const MLTrainingMetadata& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MLTrainingMetadata* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.MLTrainingMetadata";
+  }
+  protected:
+  explicit MLTrainingMetadata(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kVersionsFieldNumber = 1,
+    kModelTypeFieldNumber = 2,
+    kModelFrameworkFieldNumber = 3,
+    kDraftFieldNumber = 4,
+  };
+  // repeated string versions = 1 [json_name = "versions"];
+  int versions_size() const;
+  private:
+  int _internal_versions_size() const;
+  public:
+  void clear_versions();
+  const std::string& versions(int index) const;
+  std::string* mutable_versions(int index);
+  void set_versions(int index, const std::string& value);
+  void set_versions(int index, std::string&& value);
+  void set_versions(int index, const char* value);
+  void set_versions(int index, const char* value, size_t size);
+  std::string* add_versions();
+  void add_versions(const std::string& value);
+  void add_versions(std::string&& value);
+  void add_versions(const char* value);
+  void add_versions(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& versions() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_versions();
+  private:
+  const std::string& _internal_versions(int index) const;
+  std::string* _internal_add_versions();
+  public:
+
+  // .viam.app.mltraining.v1.ModelType model_type = 2 [json_name = "modelType"];
+  void clear_model_type();
+  ::viam::app::mltraining::v1::ModelType model_type() const;
+  void set_model_type(::viam::app::mltraining::v1::ModelType value);
+  private:
+  ::viam::app::mltraining::v1::ModelType _internal_model_type() const;
+  void _internal_set_model_type(::viam::app::mltraining::v1::ModelType value);
+  public:
+
+  // .viam.app.mltraining.v1.ModelFramework model_framework = 3 [json_name = "modelFramework"];
+  void clear_model_framework();
+  ::viam::app::mltraining::v1::ModelFramework model_framework() const;
+  void set_model_framework(::viam::app::mltraining::v1::ModelFramework value);
+  private:
+  ::viam::app::mltraining::v1::ModelFramework _internal_model_framework() const;
+  void _internal_set_model_framework(::viam::app::mltraining::v1::ModelFramework value);
+  public:
+
+  // bool draft = 4 [json_name = "draft"];
+  void clear_draft();
+  bool draft() const;
+  void set_draft(bool value);
+  private:
+  bool _internal_draft() const;
+  void _internal_set_draft(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.MLTrainingMetadata)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> versions_;
+  int model_type_;
+  int model_framework_;
+  bool draft_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
 class RegistryItem final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.RegistryItem) */ {
  public:
@@ -20934,6 +21130,7 @@ class RegistryItem final :
   enum MetadataCase {
     kModuleMetadata = 11,
     kMlModelMetadata = 12,
+    kMlTrainingMetadata = 18,
     METADATA_NOT_SET = 0,
   };
 
@@ -20942,7 +21139,7 @@ class RegistryItem final :
                &_RegistryItem_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    124;
+    125;
 
   friend void swap(RegistryItem& a, RegistryItem& b) {
     a.Swap(&b);
@@ -21029,6 +21226,7 @@ class RegistryItem final :
     kTotalExternalOrganizationUsageFieldNumber = 14,
     kModuleMetadataFieldNumber = 11,
     kMlModelMetadataFieldNumber = 12,
+    kMlTrainingMetadataFieldNumber = 18,
   };
   // string item_id = 1 [json_name = "itemId"];
   void clear_item_id();
@@ -21240,6 +21438,24 @@ class RegistryItem final :
       ::viam::app::v1::MLModelMetadata* ml_model_metadata);
   ::viam::app::v1::MLModelMetadata* unsafe_arena_release_ml_model_metadata();
 
+  // .viam.app.v1.MLTrainingMetadata ml_training_metadata = 18 [json_name = "mlTrainingMetadata"];
+  bool has_ml_training_metadata() const;
+  private:
+  bool _internal_has_ml_training_metadata() const;
+  public:
+  void clear_ml_training_metadata();
+  const ::viam::app::v1::MLTrainingMetadata& ml_training_metadata() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::MLTrainingMetadata* release_ml_training_metadata();
+  ::viam::app::v1::MLTrainingMetadata* mutable_ml_training_metadata();
+  void set_allocated_ml_training_metadata(::viam::app::v1::MLTrainingMetadata* ml_training_metadata);
+  private:
+  const ::viam::app::v1::MLTrainingMetadata& _internal_ml_training_metadata() const;
+  ::viam::app::v1::MLTrainingMetadata* _internal_mutable_ml_training_metadata();
+  public:
+  void unsafe_arena_set_allocated_ml_training_metadata(
+      ::viam::app::v1::MLTrainingMetadata* ml_training_metadata);
+  ::viam::app::v1::MLTrainingMetadata* unsafe_arena_release_ml_training_metadata();
+
   void clear_metadata();
   MetadataCase metadata_case() const;
   // @@protoc_insertion_point(class_scope:viam.app.v1.RegistryItem)
@@ -21247,6 +21463,7 @@ class RegistryItem final :
   class _Internal;
   void set_has_module_metadata();
   void set_has_ml_model_metadata();
+  void set_has_ml_training_metadata();
 
   inline bool has_metadata() const;
   inline void clear_has_metadata();
@@ -21273,6 +21490,7 @@ class RegistryItem final :
       ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
     ::viam::app::v1::ModuleMetadata* module_metadata_;
     ::viam::app::v1::MLModelMetadata* ml_model_metadata_;
+    ::viam::app::v1::MLTrainingMetadata* ml_training_metadata_;
   } metadata_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   uint32_t _oneof_case_[1];
@@ -21329,7 +21547,7 @@ class GetRegistryItemRequest final :
                &_GetRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    125;
+    126;
 
   friend void swap(GetRegistryItemRequest& a, GetRegistryItemRequest& b) {
     a.Swap(&b);
@@ -21477,7 +21695,7 @@ class GetRegistryItemResponse final :
                &_GetRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    126;
+    127;
 
   friend void swap(GetRegistryItemResponse& a, GetRegistryItemResponse& b) {
     a.Swap(&b);
@@ -21629,7 +21847,7 @@ class CreateRegistryItemRequest final :
                &_CreateRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    127;
+    128;
 
   friend void swap(CreateRegistryItemRequest& a, CreateRegistryItemRequest& b) {
     a.Swap(&b);
@@ -21803,7 +22021,7 @@ class CreateRegistryItemResponse final :
                &_CreateRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    128;
+    129;
 
   friend void swap(CreateRegistryItemResponse& a, CreateRegistryItemResponse& b) {
     a.Swap(&b);
@@ -21920,7 +22138,7 @@ class UpdateRegistryItemRequest final :
                &_UpdateRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    129;
+    130;
 
   friend void swap(UpdateRegistryItemRequest& a, UpdateRegistryItemRequest& b) {
     a.Swap(&b);
@@ -22105,7 +22323,7 @@ class UpdateRegistryItemResponse final :
                &_UpdateRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    130;
+    131;
 
   friend void swap(UpdateRegistryItemResponse& a, UpdateRegistryItemResponse& b) {
     a.Swap(&b);
@@ -22222,7 +22440,7 @@ class ListRegistryItemsRequest final :
                &_ListRegistryItemsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    131;
+    132;
 
   friend void swap(ListRegistryItemsRequest& a, ListRegistryItemsRequest& b) {
     a.Swap(&b);
@@ -22501,7 +22719,7 @@ class ListRegistryItemsResponse final :
                &_ListRegistryItemsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    132;
+    133;
 
   friend void swap(ListRegistryItemsResponse& a, ListRegistryItemsResponse& b) {
     a.Swap(&b);
@@ -22653,7 +22871,7 @@ class DeleteRegistryItemRequest final :
                &_DeleteRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    133;
+    134;
 
   friend void swap(DeleteRegistryItemRequest& a, DeleteRegistryItemRequest& b) {
     a.Swap(&b);
@@ -22800,7 +23018,7 @@ class DeleteRegistryItemResponse final :
                &_DeleteRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    134;
+    135;
 
   friend void swap(DeleteRegistryItemResponse& a, DeleteRegistryItemResponse& b) {
     a.Swap(&b);
@@ -22917,7 +23135,7 @@ class CreateModuleRequest final :
                &_CreateModuleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    135;
+    136;
 
   friend void swap(CreateModuleRequest& a, CreateModuleRequest& b) {
     a.Swap(&b);
@@ -23081,7 +23299,7 @@ class CreateModuleResponse final :
                &_CreateModuleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    136;
+    137;
 
   friend void swap(CreateModuleResponse& a, CreateModuleResponse& b) {
     a.Swap(&b);
@@ -23245,7 +23463,7 @@ class UpdateModuleRequest final :
                &_UpdateModuleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    137;
+    138;
 
   friend void swap(UpdateModuleRequest& a, UpdateModuleRequest& b) {
     a.Swap(&b);
@@ -23472,7 +23690,7 @@ class UpdateModuleResponse final :
                &_UpdateModuleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    138;
+    139;
 
   friend void swap(UpdateModuleResponse& a, UpdateModuleResponse& b) {
     a.Swap(&b);
@@ -23620,7 +23838,7 @@ class Model final :
                &_Model_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    139;
+    140;
 
   friend void swap(Model& a, Model& b) {
     a.Swap(&b);
@@ -23784,7 +24002,7 @@ class ModuleFileInfo final :
                &_ModuleFileInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    140;
+    141;
 
   friend void swap(ModuleFileInfo& a, ModuleFileInfo& b) {
     a.Swap(&b);
@@ -23970,7 +24188,7 @@ class UploadModuleFileRequest final :
                &_UploadModuleFileRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    141;
+    142;
 
   friend void swap(UploadModuleFileRequest& a, UploadModuleFileRequest& b) {
     a.Swap(&b);
@@ -24155,7 +24373,7 @@ class UploadModuleFileResponse final :
                &_UploadModuleFileResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    142;
+    143;
 
   friend void swap(UploadModuleFileResponse& a, UploadModuleFileResponse& b) {
     a.Swap(&b);
@@ -24303,7 +24521,7 @@ class GetModuleRequest final :
                &_GetModuleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    143;
+    144;
 
   friend void swap(GetModuleRequest& a, GetModuleRequest& b) {
     a.Swap(&b);
@@ -24451,7 +24669,7 @@ class GetModuleResponse final :
                &_GetModuleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    144;
+    145;
 
   friend void swap(GetModuleResponse& a, GetModuleResponse& b) {
     a.Swap(&b);
@@ -24603,7 +24821,7 @@ class Module final :
                &_Module_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    145;
+    146;
 
   friend void swap(Module& a, Module& b) {
     a.Swap(&b);
@@ -24920,7 +25138,7 @@ class VersionHistory final :
                &_VersionHistory_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    146;
+    147;
 
   friend void swap(VersionHistory& a, VersionHistory& b) {
     a.Swap(&b);
@@ -25124,7 +25342,7 @@ class Uploads final :
                &_Uploads_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    147;
+    148;
 
   friend void swap(Uploads& a, Uploads& b) {
     a.Swap(&b);
@@ -25292,7 +25510,7 @@ class ListModulesRequest final :
                &_ListModulesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    148;
+    149;
 
   friend void swap(ListModulesRequest& a, ListModulesRequest& b) {
     a.Swap(&b);
@@ -25445,7 +25663,7 @@ class ListModulesResponse final :
                &_ListModulesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    149;
+    150;
 
   friend void swap(ListModulesResponse& a, ListModulesResponse& b) {
     a.Swap(&b);
@@ -25597,7 +25815,7 @@ class GetUserIDByEmailRequest final :
                &_GetUserIDByEmailRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    150;
+    151;
 
   friend void swap(GetUserIDByEmailRequest& a, GetUserIDByEmailRequest& b) {
     a.Swap(&b);
@@ -25745,7 +25963,7 @@ class GetUserIDByEmailResponse final :
                &_GetUserIDByEmailResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    151;
+    152;
 
   friend void swap(GetUserIDByEmailResponse& a, GetUserIDByEmailResponse& b) {
     a.Swap(&b);
@@ -25893,7 +26111,7 @@ class ListOrganizationsByUserRequest final :
                &_ListOrganizationsByUserRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    152;
+    153;
 
   friend void swap(ListOrganizationsByUserRequest& a, ListOrganizationsByUserRequest& b) {
     a.Swap(&b);
@@ -26041,7 +26259,7 @@ class OrgDetails final :
                &_OrgDetails_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    153;
+    154;
 
   friend void swap(OrgDetails& a, OrgDetails& b) {
     a.Swap(&b);
@@ -26205,7 +26423,7 @@ class ListOrganizationsByUserResponse final :
                &_ListOrganizationsByUserResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    154;
+    155;
 
   friend void swap(ListOrganizationsByUserResponse& a, ListOrganizationsByUserResponse& b) {
     a.Swap(&b);
@@ -26357,7 +26575,7 @@ class CreateKeyRequest final :
                &_CreateKeyRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    155;
+    156;
 
   friend void swap(CreateKeyRequest& a, CreateKeyRequest& b) {
     a.Swap(&b);
@@ -26525,7 +26743,7 @@ class CreateKeyResponse final :
                &_CreateKeyResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    156;
+    157;
 
   friend void swap(CreateKeyResponse& a, CreateKeyResponse& b) {
     a.Swap(&b);
@@ -26689,7 +26907,7 @@ class DeleteKeyRequest final :
                &_DeleteKeyRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    157;
+    158;
 
   friend void swap(DeleteKeyRequest& a, DeleteKeyRequest& b) {
     a.Swap(&b);
@@ -26836,7 +27054,7 @@ class DeleteKeyResponse final :
                &_DeleteKeyResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    158;
+    159;
 
   friend void swap(DeleteKeyResponse& a, DeleteKeyResponse& b) {
     a.Swap(&b);
@@ -26953,7 +27171,7 @@ class AuthorizationDetails final :
                &_AuthorizationDetails_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    159;
+    160;
 
   friend void swap(AuthorizationDetails& a, AuthorizationDetails& b) {
     a.Swap(&b);
@@ -27165,7 +27383,7 @@ class APIKeyWithAuthorizations final :
                &_APIKeyWithAuthorizations_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    160;
+    161;
 
   friend void swap(APIKeyWithAuthorizations& a, APIKeyWithAuthorizations& b) {
     a.Swap(&b);
@@ -27337,7 +27555,7 @@ class ListKeysRequest final :
                &_ListKeysRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    161;
+    162;
 
   friend void swap(ListKeysRequest& a, ListKeysRequest& b) {
     a.Swap(&b);
@@ -27485,7 +27703,7 @@ class ListKeysResponse final :
                &_ListKeysResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    162;
+    163;
 
   friend void swap(ListKeysResponse& a, ListKeysResponse& b) {
     a.Swap(&b);
@@ -27637,7 +27855,7 @@ class RotateKeyRequest final :
                &_RotateKeyRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    163;
+    164;
 
   friend void swap(RotateKeyRequest& a, RotateKeyRequest& b) {
     a.Swap(&b);
@@ -27785,7 +28003,7 @@ class RotateKeyResponse final :
                &_RotateKeyResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    164;
+    165;
 
   friend void swap(RotateKeyResponse& a, RotateKeyResponse& b) {
     a.Swap(&b);
@@ -27949,7 +28167,7 @@ class CreateKeyFromExistingKeyAuthorizationsRequest final :
                &_CreateKeyFromExistingKeyAuthorizationsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    165;
+    166;
 
   friend void swap(CreateKeyFromExistingKeyAuthorizationsRequest& a, CreateKeyFromExistingKeyAuthorizationsRequest& b) {
     a.Swap(&b);
@@ -28097,7 +28315,7 @@ class CreateKeyFromExistingKeyAuthorizationsResponse final :
                &_CreateKeyFromExistingKeyAuthorizationsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    166;
+    167;
 
   friend void swap(CreateKeyFromExistingKeyAuthorizationsResponse& a, CreateKeyFromExistingKeyAuthorizationsResponse& b) {
     a.Swap(&b);
@@ -41384,6 +41602,145 @@ MLModelMetadata::mutable_versions() {
 
 // -------------------------------------------------------------------
 
+// MLTrainingMetadata
+
+// repeated string versions = 1 [json_name = "versions"];
+inline int MLTrainingMetadata::_internal_versions_size() const {
+  return versions_.size();
+}
+inline int MLTrainingMetadata::versions_size() const {
+  return _internal_versions_size();
+}
+inline void MLTrainingMetadata::clear_versions() {
+  versions_.Clear();
+}
+inline std::string* MLTrainingMetadata::add_versions() {
+  std::string* _s = _internal_add_versions();
+  // @@protoc_insertion_point(field_add_mutable:viam.app.v1.MLTrainingMetadata.versions)
+  return _s;
+}
+inline const std::string& MLTrainingMetadata::_internal_versions(int index) const {
+  return versions_.Get(index);
+}
+inline const std::string& MLTrainingMetadata::versions(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.MLTrainingMetadata.versions)
+  return _internal_versions(index);
+}
+inline std::string* MLTrainingMetadata::mutable_versions(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.MLTrainingMetadata.versions)
+  return versions_.Mutable(index);
+}
+inline void MLTrainingMetadata::set_versions(int index, const std::string& value) {
+  versions_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.MLTrainingMetadata.versions)
+}
+inline void MLTrainingMetadata::set_versions(int index, std::string&& value) {
+  versions_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.app.v1.MLTrainingMetadata.versions)
+}
+inline void MLTrainingMetadata::set_versions(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  versions_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.app.v1.MLTrainingMetadata.versions)
+}
+inline void MLTrainingMetadata::set_versions(int index, const char* value, size_t size) {
+  versions_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.app.v1.MLTrainingMetadata.versions)
+}
+inline std::string* MLTrainingMetadata::_internal_add_versions() {
+  return versions_.Add();
+}
+inline void MLTrainingMetadata::add_versions(const std::string& value) {
+  versions_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.app.v1.MLTrainingMetadata.versions)
+}
+inline void MLTrainingMetadata::add_versions(std::string&& value) {
+  versions_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.app.v1.MLTrainingMetadata.versions)
+}
+inline void MLTrainingMetadata::add_versions(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  versions_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.app.v1.MLTrainingMetadata.versions)
+}
+inline void MLTrainingMetadata::add_versions(const char* value, size_t size) {
+  versions_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.app.v1.MLTrainingMetadata.versions)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+MLTrainingMetadata::versions() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.MLTrainingMetadata.versions)
+  return versions_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+MLTrainingMetadata::mutable_versions() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.MLTrainingMetadata.versions)
+  return &versions_;
+}
+
+// .viam.app.mltraining.v1.ModelType model_type = 2 [json_name = "modelType"];
+inline void MLTrainingMetadata::clear_model_type() {
+  model_type_ = 0;
+}
+inline ::viam::app::mltraining::v1::ModelType MLTrainingMetadata::_internal_model_type() const {
+  return static_cast< ::viam::app::mltraining::v1::ModelType >(model_type_);
+}
+inline ::viam::app::mltraining::v1::ModelType MLTrainingMetadata::model_type() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.MLTrainingMetadata.model_type)
+  return _internal_model_type();
+}
+inline void MLTrainingMetadata::_internal_set_model_type(::viam::app::mltraining::v1::ModelType value) {
+  
+  model_type_ = value;
+}
+inline void MLTrainingMetadata::set_model_type(::viam::app::mltraining::v1::ModelType value) {
+  _internal_set_model_type(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.MLTrainingMetadata.model_type)
+}
+
+// .viam.app.mltraining.v1.ModelFramework model_framework = 3 [json_name = "modelFramework"];
+inline void MLTrainingMetadata::clear_model_framework() {
+  model_framework_ = 0;
+}
+inline ::viam::app::mltraining::v1::ModelFramework MLTrainingMetadata::_internal_model_framework() const {
+  return static_cast< ::viam::app::mltraining::v1::ModelFramework >(model_framework_);
+}
+inline ::viam::app::mltraining::v1::ModelFramework MLTrainingMetadata::model_framework() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.MLTrainingMetadata.model_framework)
+  return _internal_model_framework();
+}
+inline void MLTrainingMetadata::_internal_set_model_framework(::viam::app::mltraining::v1::ModelFramework value) {
+  
+  model_framework_ = value;
+}
+inline void MLTrainingMetadata::set_model_framework(::viam::app::mltraining::v1::ModelFramework value) {
+  _internal_set_model_framework(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.MLTrainingMetadata.model_framework)
+}
+
+// bool draft = 4 [json_name = "draft"];
+inline void MLTrainingMetadata::clear_draft() {
+  draft_ = false;
+}
+inline bool MLTrainingMetadata::_internal_draft() const {
+  return draft_;
+}
+inline bool MLTrainingMetadata::draft() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.MLTrainingMetadata.draft)
+  return _internal_draft();
+}
+inline void MLTrainingMetadata::_internal_set_draft(bool value) {
+  
+  draft_ = value;
+}
+inline void MLTrainingMetadata::set_draft(bool value) {
+  _internal_set_draft(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.MLTrainingMetadata.draft)
+}
+
+// -------------------------------------------------------------------
+
 // RegistryItem
 
 // string item_id = 1 [json_name = "itemId"];
@@ -41951,6 +42308,80 @@ inline ::viam::app::v1::MLModelMetadata* RegistryItem::_internal_mutable_ml_mode
 inline ::viam::app::v1::MLModelMetadata* RegistryItem::mutable_ml_model_metadata() {
   ::viam::app::v1::MLModelMetadata* _msg = _internal_mutable_ml_model_metadata();
   // @@protoc_insertion_point(field_mutable:viam.app.v1.RegistryItem.ml_model_metadata)
+  return _msg;
+}
+
+// .viam.app.v1.MLTrainingMetadata ml_training_metadata = 18 [json_name = "mlTrainingMetadata"];
+inline bool RegistryItem::_internal_has_ml_training_metadata() const {
+  return metadata_case() == kMlTrainingMetadata;
+}
+inline bool RegistryItem::has_ml_training_metadata() const {
+  return _internal_has_ml_training_metadata();
+}
+inline void RegistryItem::set_has_ml_training_metadata() {
+  _oneof_case_[0] = kMlTrainingMetadata;
+}
+inline void RegistryItem::clear_ml_training_metadata() {
+  if (_internal_has_ml_training_metadata()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete metadata_.ml_training_metadata_;
+    }
+    clear_has_metadata();
+  }
+}
+inline ::viam::app::v1::MLTrainingMetadata* RegistryItem::release_ml_training_metadata() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.RegistryItem.ml_training_metadata)
+  if (_internal_has_ml_training_metadata()) {
+    clear_has_metadata();
+    ::viam::app::v1::MLTrainingMetadata* temp = metadata_.ml_training_metadata_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    metadata_.ml_training_metadata_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::viam::app::v1::MLTrainingMetadata& RegistryItem::_internal_ml_training_metadata() const {
+  return _internal_has_ml_training_metadata()
+      ? *metadata_.ml_training_metadata_
+      : reinterpret_cast< ::viam::app::v1::MLTrainingMetadata&>(::viam::app::v1::_MLTrainingMetadata_default_instance_);
+}
+inline const ::viam::app::v1::MLTrainingMetadata& RegistryItem::ml_training_metadata() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RegistryItem.ml_training_metadata)
+  return _internal_ml_training_metadata();
+}
+inline ::viam::app::v1::MLTrainingMetadata* RegistryItem::unsafe_arena_release_ml_training_metadata() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:viam.app.v1.RegistryItem.ml_training_metadata)
+  if (_internal_has_ml_training_metadata()) {
+    clear_has_metadata();
+    ::viam::app::v1::MLTrainingMetadata* temp = metadata_.ml_training_metadata_;
+    metadata_.ml_training_metadata_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void RegistryItem::unsafe_arena_set_allocated_ml_training_metadata(::viam::app::v1::MLTrainingMetadata* ml_training_metadata) {
+  clear_metadata();
+  if (ml_training_metadata) {
+    set_has_ml_training_metadata();
+    metadata_.ml_training_metadata_ = ml_training_metadata;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.RegistryItem.ml_training_metadata)
+}
+inline ::viam::app::v1::MLTrainingMetadata* RegistryItem::_internal_mutable_ml_training_metadata() {
+  if (!_internal_has_ml_training_metadata()) {
+    clear_metadata();
+    set_has_ml_training_metadata();
+    metadata_.ml_training_metadata_ = CreateMaybeMessage< ::viam::app::v1::MLTrainingMetadata >(GetArenaForAllocation());
+  }
+  return metadata_.ml_training_metadata_;
+}
+inline ::viam::app::v1::MLTrainingMetadata* RegistryItem::mutable_ml_training_metadata() {
+  ::viam::app::v1::MLTrainingMetadata* _msg = _internal_mutable_ml_training_metadata();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RegistryItem.ml_training_metadata)
   return _msg;
 }
 
@@ -46525,6 +46956,8 @@ inline void CreateKeyFromExistingKeyAuthorizationsResponse::set_allocated_key(st
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
