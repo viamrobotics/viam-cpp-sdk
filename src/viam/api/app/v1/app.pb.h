@@ -22515,6 +22515,7 @@ class ListRegistryItemsRequest final :
     kVisibilitiesFieldNumber = 3,
     kPlatformsFieldNumber = 4,
     kStatusesFieldNumber = 5,
+    kPublicNamespacesFieldNumber = 8,
     kOrganizationIdFieldNumber = 1,
     kSearchTermFieldNumber = 6,
     kPageTokenFieldNumber = 7,
@@ -22594,6 +22595,30 @@ class ListRegistryItemsRequest final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>& statuses() const;
   ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>* mutable_statuses();
 
+  // repeated string public_namespaces = 8 [json_name = "publicNamespaces"];
+  int public_namespaces_size() const;
+  private:
+  int _internal_public_namespaces_size() const;
+  public:
+  void clear_public_namespaces();
+  const std::string& public_namespaces(int index) const;
+  std::string* mutable_public_namespaces(int index);
+  void set_public_namespaces(int index, const std::string& value);
+  void set_public_namespaces(int index, std::string&& value);
+  void set_public_namespaces(int index, const char* value);
+  void set_public_namespaces(int index, const char* value, size_t size);
+  std::string* add_public_namespaces();
+  void add_public_namespaces(const std::string& value);
+  void add_public_namespaces(std::string&& value);
+  void add_public_namespaces(const char* value);
+  void add_public_namespaces(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& public_namespaces() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_public_namespaces();
+  private:
+  const std::string& _internal_public_namespaces(int index) const;
+  std::string* _internal_add_public_namespaces();
+  public:
+
   // optional string organization_id = 1 [json_name = "organizationId"];
   bool has_organization_id() const;
   private:
@@ -22664,6 +22689,7 @@ class ListRegistryItemsRequest final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> platforms_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedField<int> statuses_;
   mutable std::atomic<int> _statuses_cached_byte_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> public_namespaces_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr search_term_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr page_token_;
@@ -43398,6 +43424,81 @@ inline void ListRegistryItemsRequest::set_allocated_page_token(std::string* page
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ListRegistryItemsRequest.page_token)
+}
+
+// repeated string public_namespaces = 8 [json_name = "publicNamespaces"];
+inline int ListRegistryItemsRequest::_internal_public_namespaces_size() const {
+  return public_namespaces_.size();
+}
+inline int ListRegistryItemsRequest::public_namespaces_size() const {
+  return _internal_public_namespaces_size();
+}
+inline void ListRegistryItemsRequest::clear_public_namespaces() {
+  public_namespaces_.Clear();
+}
+inline std::string* ListRegistryItemsRequest::add_public_namespaces() {
+  std::string* _s = _internal_add_public_namespaces();
+  // @@protoc_insertion_point(field_add_mutable:viam.app.v1.ListRegistryItemsRequest.public_namespaces)
+  return _s;
+}
+inline const std::string& ListRegistryItemsRequest::_internal_public_namespaces(int index) const {
+  return public_namespaces_.Get(index);
+}
+inline const std::string& ListRegistryItemsRequest::public_namespaces(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ListRegistryItemsRequest.public_namespaces)
+  return _internal_public_namespaces(index);
+}
+inline std::string* ListRegistryItemsRequest::mutable_public_namespaces(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ListRegistryItemsRequest.public_namespaces)
+  return public_namespaces_.Mutable(index);
+}
+inline void ListRegistryItemsRequest::set_public_namespaces(int index, const std::string& value) {
+  public_namespaces_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.ListRegistryItemsRequest.public_namespaces)
+}
+inline void ListRegistryItemsRequest::set_public_namespaces(int index, std::string&& value) {
+  public_namespaces_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.app.v1.ListRegistryItemsRequest.public_namespaces)
+}
+inline void ListRegistryItemsRequest::set_public_namespaces(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  public_namespaces_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.app.v1.ListRegistryItemsRequest.public_namespaces)
+}
+inline void ListRegistryItemsRequest::set_public_namespaces(int index, const char* value, size_t size) {
+  public_namespaces_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.app.v1.ListRegistryItemsRequest.public_namespaces)
+}
+inline std::string* ListRegistryItemsRequest::_internal_add_public_namespaces() {
+  return public_namespaces_.Add();
+}
+inline void ListRegistryItemsRequest::add_public_namespaces(const std::string& value) {
+  public_namespaces_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.app.v1.ListRegistryItemsRequest.public_namespaces)
+}
+inline void ListRegistryItemsRequest::add_public_namespaces(std::string&& value) {
+  public_namespaces_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.app.v1.ListRegistryItemsRequest.public_namespaces)
+}
+inline void ListRegistryItemsRequest::add_public_namespaces(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  public_namespaces_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.app.v1.ListRegistryItemsRequest.public_namespaces)
+}
+inline void ListRegistryItemsRequest::add_public_namespaces(const char* value, size_t size) {
+  public_namespaces_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.app.v1.ListRegistryItemsRequest.public_namespaces)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+ListRegistryItemsRequest::public_namespaces() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.ListRegistryItemsRequest.public_namespaces)
+  return public_namespaces_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+ListRegistryItemsRequest::mutable_public_namespaces() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.ListRegistryItemsRequest.public_namespaces)
+  return &public_namespaces_;
 }
 
 // -------------------------------------------------------------------
