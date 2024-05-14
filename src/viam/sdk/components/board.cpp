@@ -50,7 +50,7 @@ Board::power_mode Board::from_proto(viam::component::board::v1::PowerMode proto)
 viam::component::board::v1::Status Board::to_proto(const status& status) {
     viam::component::board::v1::Status proto;
     for (const auto& analog : status.analog_reader_values) {
-        proto.mutable_analogs()->insert({analog.first, analog.second});
+        proto.mutable_analogs()->insert({analog.first, analog.second.value});
     }
 
     for (const auto& digital : status.digital_interrupt_values) {

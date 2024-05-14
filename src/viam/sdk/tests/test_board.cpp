@@ -107,8 +107,13 @@ BOOST_AUTO_TEST_CASE(test_do_command) {
 BOOST_AUTO_TEST_CASE(test_read_analog) {
     const auto mock = std::make_shared<MockBoard>("mock_board");
     client_to_mock_pipeline<Board>(mock, [&](Board& client) {
-        mock->peek_read_analog_ret = 5150;
-        BOOST_CHECK_EQUAL(5150, client.read_analog("t1"));
+		sdk::Board::analog_value result = {}
+		result.value = 5150;
+		result.min = 1.0;
+		result.max = 5.0;
+		result.step_size = 0.01
+        mock->peek_read_analog_ret = result;
+        BOOST_CHECK_EQUAL(result, client.read_analog("t1"));
         BOOST_CHECK_EQUAL("t1", mock->peek_analog_reader_name);
     });
 }
