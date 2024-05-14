@@ -27,15 +27,15 @@ class Board : public Component {
    public:
     /// @brief Represents the value received by the registered analog to digital converter (ADC).
     /// The range and conversion mechanism to voltage will vary depending on the specific ADC
-	/// registered to the pin, though the min and max voltages and step_size can often help with
-	/// this conversion. Consult your ADC's documentation and Viam's `Board` documentation for
+    /// registered to the pin, though the min and max voltages and step_size can often help with
+    /// this conversion. Consult your ADC's documentation and Viam's `Board` documentation for
     /// more details.
     struct analog_value {
-		int32_t value;
-		float min_range; // Minimum possible voltage read by the analog reader
-		float max_range; // Maximum possible voltage read by the analog reader
-		float step_size; // Volts represented in each step in the value
-	};
+        int32_t value;
+        float min_range; // Minimum possible voltage read by the analog reader
+        float max_range; // Maximum possible voltage read by the analog reader
+        float step_size; // Volts represented in each step in the value
+    };
 
     /// @brief Depending on the type of digital interrupt, this can have different meanings. If a
     /// `basic` (default) interrupt is configured, then this is the total interrupt count. If a

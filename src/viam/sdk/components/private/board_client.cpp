@@ -99,11 +99,11 @@ Board::analog_value BoardClient::read_analog(const std::string& analog_reader_na
     if (!status.ok()) {
         throw GRPCException(status);
     }
-	Board::analog_value result = {};
-	result.value = response.value();
-	result.min_range = response.min_range();
-	result.max_range = response.max_range();
-	result.step_size = response.step_size();
+    Board::analog_value result = {};
+    result.value = response.value();
+    result.min_range = response.min_range();
+    result.max_range = response.max_range();
+    result.step_size = response.step_size();
     return result;
 }
 
