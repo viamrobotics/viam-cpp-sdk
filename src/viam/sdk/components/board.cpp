@@ -80,5 +80,12 @@ bool operator==(const Board::status& lhs, const Board::status& rhs) {
             lhs.digital_interrupt_values == rhs.digital_interrupt_values);
 }
 
+bool operator==(const Board::analog_value& lhs, const Board::analog_value& rhs) {
+    return (lhs.value == rhs.value &&
+            lhs.min == rhs.min &&
+            lhs.max == rhs.max &&
+            lhs.step_size == rhs.step_size);
+}
+
 }  // namespace sdk
 }  // namespace viam

@@ -267,6 +267,7 @@ struct API::traits<Board> {
 };
 
 bool operator==(const Board::status& lhs, const Board::status& rhs);
+bool operator==(const Board::analog_value& lhs, const Board::analog_value& rhs);
 
 }  // namespace sdk
 }  // namespace viam
