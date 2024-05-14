@@ -32,8 +32,8 @@ class Board : public Component {
     /// more details.
     struct analog_value {
 		int32_t value;
-		float min; // Minimum possible voltage read by the analog reader
-		float max; // Maximum possible voltage read by the analog reader
+		float min_range; // Minimum possible voltage read by the analog reader
+		float max_range; // Maximum possible voltage read by the analog reader
 		float step_size; // Volts represented in each step in the value
 	};
 

@@ -105,8 +105,8 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
 
     const Board::analog_value result = board->read_analog(request->analog_reader_name(), extra);
     response->set_value(result.value);
-    response->set_min(result.min);
-    response->set_max(result.max);
+    response->set_min_range(result.min_range);
+    response->set_max_range(result.max_range);
     response->set_step_size(result.step_size);
 
     return ::grpc::Status();

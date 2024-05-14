@@ -23,7 +23,14 @@ API API::traits<Board>::api() {
 Board::status Board::from_proto(const viam::component::board::v1::Status& proto) {
     Board::status status;
     for (const auto& analog : proto.analogs()) {
-        status.analog_reader_values.emplace(analog.first, analog.second);
+		Board::analog_value result;
+		result.value = analog.second;
+		// The status does not contain the extra data to describe the accuracy of the reader. We
+		// fill those in with 0's instead.
+		result.min_range = 0.0;
+		result.max_range = 0.0;
+		result.step_size = 0.0;
+        status.analog_reader_values.emplace(analog.first, result);
     }
     for (const auto& digital : proto.digital_interrupts()) {
         status.digital_interrupt_values.emplace(digital.first, digital.second);
@@ -82,8 +89,8 @@ bool operator==(const Board::status& lhs, const Board::status& rhs) {
 
 bool operator==(const Board::analog_value& lhs, const Board::analog_value& rhs) {
     return (lhs.value == rhs.value &&
-            lhs.min == rhs.min &&
-            lhs.max == rhs.max &&
+            lhs.min_range == rhs.min_range &&
+            lhs.max_range == rhs.max_range &&
             lhs.step_size == rhs.step_size);
 }
 

@@ -101,8 +101,8 @@ Board::analog_value BoardClient::read_analog(const std::string& analog_reader_na
     }
 	Board::analog_value result = {};
 	result.value = response.value();
-	result.min = response.min();
-	result.max = response.max();
+	result.min_range = response.min_range();
+	result.max_range = response.max_range();
 	result.step_size = response.step_size();
     return result;
 }
