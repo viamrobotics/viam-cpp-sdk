@@ -386,6 +386,7 @@ class RobotConfig final :
     kAuthFieldNumber = 7,
     kDebugFieldNumber = 8,
     kDisablePartialStartFieldNumber = 10,
+    kEnableWebProfileFieldNumber = 13,
   };
   // repeated .viam.app.v1.RemoteConfig remotes = 2 [json_name = "remotes"];
   int remotes_size() const;
@@ -593,6 +594,19 @@ class RobotConfig final :
   void _internal_set_disable_partial_start(bool value);
   public:
 
+  // optional bool enable_web_profile = 13 [json_name = "enableWebProfile"];
+  bool has_enable_web_profile() const;
+  private:
+  bool _internal_has_enable_web_profile() const;
+  public:
+  void clear_enable_web_profile();
+  bool enable_web_profile() const;
+  void set_enable_web_profile(bool value);
+  private:
+  bool _internal_enable_web_profile() const;
+  void _internal_set_enable_web_profile(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.RobotConfig)
  private:
   class _Internal;
@@ -614,6 +628,7 @@ class RobotConfig final :
   ::viam::app::v1::AuthConfig* auth_;
   bool debug_;
   bool disable_partial_start_;
+  bool enable_web_profile_;
   friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
 };
 // -------------------------------------------------------------------
@@ -8410,6 +8425,34 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::AppVali
 RobotConfig::overwrite_fragment_status() const {
   // @@protoc_insertion_point(field_list:viam.app.v1.RobotConfig.overwrite_fragment_status)
   return overwrite_fragment_status_;
+}
+
+// optional bool enable_web_profile = 13 [json_name = "enableWebProfile"];
+inline bool RobotConfig::_internal_has_enable_web_profile() const {
+  bool value = (_has_bits_[0] & 0x00000010u) != 0;
+  return value;
+}
+inline bool RobotConfig::has_enable_web_profile() const {
+  return _internal_has_enable_web_profile();
+}
+inline void RobotConfig::clear_enable_web_profile() {
+  enable_web_profile_ = false;
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline bool RobotConfig::_internal_enable_web_profile() const {
+  return enable_web_profile_;
+}
+inline bool RobotConfig::enable_web_profile() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RobotConfig.enable_web_profile)
+  return _internal_enable_web_profile();
+}
+inline void RobotConfig::_internal_set_enable_web_profile(bool value) {
+  _has_bits_[0] |= 0x00000010u;
+  enable_web_profile_ = value;
+}
+inline void RobotConfig::set_enable_web_profile(bool value) {
+  _internal_set_enable_web_profile(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.RobotConfig.enable_web_profile)
 }
 
 // -------------------------------------------------------------------
