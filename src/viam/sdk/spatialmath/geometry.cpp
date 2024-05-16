@@ -272,7 +272,7 @@ bool operator==(const geo_point& lhs, const geo_point& rhs) {
     return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude;
 }
 
-bool operator==(const geo_obstacle& lhs, const geo_obstacle& rhs) {
+bool operator==(const geo_geometry& lhs, const geo_geometry& rhs) {
     return lhs.location == rhs.location && lhs.geometries == rhs.geometries;
 }
 
@@ -292,7 +292,7 @@ geo_point geo_point::from_proto(const common::v1::GeoPoint& proto) {
     return geo_point;
 }
 
-common::v1::GeoObstacle geo_obstacle::to_proto() const {
+common::v1::GeoObstacle geo_geometry::to_proto() const {
     common::v1::GeoObstacle proto;
     *proto.mutable_location() = location.to_proto();
 
@@ -303,16 +303,16 @@ common::v1::GeoObstacle geo_obstacle::to_proto() const {
     return proto;
 }
 
-geo_obstacle geo_obstacle::from_proto(const common::v1::GeoObstacle& proto) {
-    struct geo_obstacle geo_obstacle;
+geo_geometry geo_geometry::from_proto(const common::v1::GeoObstacle& proto) {
+    struct geo_geometry geo_geometry;
 
-    geo_obstacle.location = geo_point::from_proto(proto.location());
+    geo_geometry.location = geo_point::from_proto(proto.location());
     for (const auto& proto_geometry : proto.geometries()) {
         auto geometry = GeometryConfig::from_proto(proto_geometry);
-        geo_obstacle.geometries.push_back(std::move(geometry));
+        geo_geometry.geometries.push_back(std::move(geometry));
     }
 
-    return geo_obstacle;
+    return geo_geometry;
 }
 
 }  // namespace sdk
