@@ -81,6 +81,21 @@ class VisionService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetObjectPointCloudsResponse>> PrepareAsyncGetObjectPointClouds(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetObjectPointCloudsResponse>>(PrepareAsyncGetObjectPointCloudsRaw(context, request, cq));
     }
+    // GetProperties will return the properties as booleans given the name of the vision service
+    virtual ::grpc::Status GetProperties(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetPropertiesRequest& request, ::viam::service::vision::v1::GetPropertiesResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetPropertiesResponse>> AsyncGetProperties(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetPropertiesResponse>>(AsyncGetPropertiesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetPropertiesResponse>> PrepareAsyncGetProperties(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetPropertiesResponse>>(PrepareAsyncGetPropertiesRaw(context, request, cq));
+    }
+    virtual ::grpc::Status CaptureAllFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest& request, ::viam::service::vision::v1::CaptureAllFromCameraResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::CaptureAllFromCameraResponse>> AsyncCaptureAllFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::CaptureAllFromCameraResponse>>(AsyncCaptureAllFromCameraRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::CaptureAllFromCameraResponse>> PrepareAsyncCaptureAllFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::CaptureAllFromCameraResponse>>(PrepareAsyncCaptureAllFromCameraRaw(context, request, cq));
+    }
     // DoCommand sends/receives arbitrary commands
     virtual ::grpc::Status DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>> AsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
@@ -109,6 +124,11 @@ class VisionService final {
       // A specific MIME type can be requested but may not necessarily be the same one returned.
       virtual void GetObjectPointClouds(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest* request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetObjectPointClouds(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest* request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // GetProperties will return the properties as booleans given the name of the vision service
+      virtual void GetProperties(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetPropertiesRequest* request, ::viam::service::vision::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetProperties(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetPropertiesRequest* request, ::viam::service::vision::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void CaptureAllFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* request, ::viam::service::vision::v1::CaptureAllFromCameraResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void CaptureAllFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* request, ::viam::service::vision::v1::CaptureAllFromCameraResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // DoCommand sends/receives arbitrary commands
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
@@ -127,6 +147,10 @@ class VisionService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetClassificationsResponse>* PrepareAsyncGetClassificationsRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetObjectPointCloudsResponse>* AsyncGetObjectPointCloudsRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetObjectPointCloudsResponse>* PrepareAsyncGetObjectPointCloudsRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetPropertiesResponse>* AsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetPropertiesResponse>* PrepareAsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::CaptureAllFromCameraResponse>* AsyncCaptureAllFromCameraRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::CaptureAllFromCameraResponse>* PrepareAsyncCaptureAllFromCameraRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
@@ -168,6 +192,20 @@ class VisionService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetObjectPointCloudsResponse>> PrepareAsyncGetObjectPointClouds(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetObjectPointCloudsResponse>>(PrepareAsyncGetObjectPointCloudsRaw(context, request, cq));
     }
+    ::grpc::Status GetProperties(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetPropertiesRequest& request, ::viam::service::vision::v1::GetPropertiesResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetPropertiesResponse>> AsyncGetProperties(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetPropertiesResponse>>(AsyncGetPropertiesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetPropertiesResponse>> PrepareAsyncGetProperties(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetPropertiesResponse>>(PrepareAsyncGetPropertiesRaw(context, request, cq));
+    }
+    ::grpc::Status CaptureAllFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest& request, ::viam::service::vision::v1::CaptureAllFromCameraResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::CaptureAllFromCameraResponse>> AsyncCaptureAllFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::CaptureAllFromCameraResponse>>(AsyncCaptureAllFromCameraRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::CaptureAllFromCameraResponse>> PrepareAsyncCaptureAllFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::CaptureAllFromCameraResponse>>(PrepareAsyncCaptureAllFromCameraRaw(context, request, cq));
+    }
     ::grpc::Status DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>> AsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>>(AsyncDoCommandRaw(context, request, cq));
@@ -188,6 +226,10 @@ class VisionService final {
       void GetClassifications(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsRequest* request, ::viam::service::vision::v1::GetClassificationsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetObjectPointClouds(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest* request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response, std::function<void(::grpc::Status)>) override;
       void GetObjectPointClouds(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest* request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetProperties(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetPropertiesRequest* request, ::viam::service::vision::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetProperties(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetPropertiesRequest* request, ::viam::service::vision::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void CaptureAllFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* request, ::viam::service::vision::v1::CaptureAllFromCameraResponse* response, std::function<void(::grpc::Status)>) override;
+      void CaptureAllFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* request, ::viam::service::vision::v1::CaptureAllFromCameraResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
@@ -211,6 +253,10 @@ class VisionService final {
     ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetClassificationsResponse>* PrepareAsyncGetClassificationsRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetObjectPointCloudsResponse>* AsyncGetObjectPointCloudsRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetObjectPointCloudsResponse>* PrepareAsyncGetObjectPointCloudsRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetPropertiesResponse>* AsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetPropertiesResponse>* PrepareAsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::CaptureAllFromCameraResponse>* AsyncCaptureAllFromCameraRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::CaptureAllFromCameraResponse>* PrepareAsyncCaptureAllFromCameraRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetDetectionsFromCamera_;
@@ -218,6 +264,8 @@ class VisionService final {
     const ::grpc::internal::RpcMethod rpcmethod_GetClassificationsFromCamera_;
     const ::grpc::internal::RpcMethod rpcmethod_GetClassifications_;
     const ::grpc::internal::RpcMethod rpcmethod_GetObjectPointClouds_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetProperties_;
+    const ::grpc::internal::RpcMethod rpcmethod_CaptureAllFromCamera_;
     const ::grpc::internal::RpcMethod rpcmethod_DoCommand_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
@@ -238,6 +286,9 @@ class VisionService final {
     // as well as the 3-vector center of each of the found objects.
     // A specific MIME type can be requested but may not necessarily be the same one returned.
     virtual ::grpc::Status GetObjectPointClouds(::grpc::ServerContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest* request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response);
+    // GetProperties will return the properties as booleans given the name of the vision service
+    virtual ::grpc::Status GetProperties(::grpc::ServerContext* context, const ::viam::service::vision::v1::GetPropertiesRequest* request, ::viam::service::vision::v1::GetPropertiesResponse* response);
+    virtual ::grpc::Status CaptureAllFromCamera(::grpc::ServerContext* context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* request, ::viam::service::vision::v1::CaptureAllFromCameraResponse* response);
     // DoCommand sends/receives arbitrary commands
     virtual ::grpc::Status DoCommand(::grpc::ServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response);
   };
@@ -342,12 +393,52 @@ class VisionService final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetProperties() {
+      ::grpc::Service::MarkMethodAsync(5);
+    }
+    ~WithAsyncMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetPropertiesRequest* /*request*/, ::viam::service::vision::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetProperties(::grpc::ServerContext* context, ::viam::service::vision::v1::GetPropertiesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::vision::v1::GetPropertiesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_CaptureAllFromCamera : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_CaptureAllFromCamera() {
+      ::grpc::Service::MarkMethodAsync(6);
+    }
+    ~WithAsyncMethod_CaptureAllFromCamera() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CaptureAllFromCamera(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* /*request*/, ::viam::service::vision::v1::CaptureAllFromCameraResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCaptureAllFromCamera(::grpc::ServerContext* context, ::viam::service::vision::v1::CaptureAllFromCameraRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::vision::v1::CaptureAllFromCameraResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DoCommand() {
-      ::grpc::Service::MarkMethodAsync(5);
+      ::grpc::Service::MarkMethodAsync(7);
     }
     ~WithAsyncMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -358,10 +449,10 @@ class VisionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::viam::common::v1::DoCommandRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::DoCommandResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetDetectionsFromCamera<WithAsyncMethod_GetDetections<WithAsyncMethod_GetClassificationsFromCamera<WithAsyncMethod_GetClassifications<WithAsyncMethod_GetObjectPointClouds<WithAsyncMethod_DoCommand<Service > > > > > > AsyncService;
+  typedef WithAsyncMethod_GetDetectionsFromCamera<WithAsyncMethod_GetDetections<WithAsyncMethod_GetClassificationsFromCamera<WithAsyncMethod_GetClassifications<WithAsyncMethod_GetObjectPointClouds<WithAsyncMethod_GetProperties<WithAsyncMethod_CaptureAllFromCamera<WithAsyncMethod_DoCommand<Service > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetDetectionsFromCamera : public BaseClass {
    private:
@@ -498,18 +589,72 @@ class VisionService final {
       ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetObjectPointCloudsRequest* /*request*/, ::viam::service::vision::v1::GetObjectPointCloudsResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetProperties() {
+      ::grpc::Service::MarkMethodCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetPropertiesRequest, ::viam::service::vision::v1::GetPropertiesResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::vision::v1::GetPropertiesRequest* request, ::viam::service::vision::v1::GetPropertiesResponse* response) { return this->GetProperties(context, request, response); }));}
+    void SetMessageAllocatorFor_GetProperties(
+        ::grpc::MessageAllocator< ::viam::service::vision::v1::GetPropertiesRequest, ::viam::service::vision::v1::GetPropertiesResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetPropertiesRequest, ::viam::service::vision::v1::GetPropertiesResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetPropertiesRequest* /*request*/, ::viam::service::vision::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetProperties(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetPropertiesRequest* /*request*/, ::viam::service::vision::v1::GetPropertiesResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_CaptureAllFromCamera : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_CaptureAllFromCamera() {
+      ::grpc::Service::MarkMethodCallback(6,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::CaptureAllFromCameraRequest, ::viam::service::vision::v1::CaptureAllFromCameraResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* request, ::viam::service::vision::v1::CaptureAllFromCameraResponse* response) { return this->CaptureAllFromCamera(context, request, response); }));}
+    void SetMessageAllocatorFor_CaptureAllFromCamera(
+        ::grpc::MessageAllocator< ::viam::service::vision::v1::CaptureAllFromCameraRequest, ::viam::service::vision::v1::CaptureAllFromCameraResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::CaptureAllFromCameraRequest, ::viam::service::vision::v1::CaptureAllFromCameraResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_CaptureAllFromCamera() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CaptureAllFromCamera(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* /*request*/, ::viam::service::vision::v1::CaptureAllFromCameraResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* CaptureAllFromCamera(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* /*request*/, ::viam::service::vision::v1::CaptureAllFromCameraResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodCallback(5,
+      ::grpc::Service::MarkMethodCallback(7,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
     void SetMessageAllocatorFor_DoCommand(
         ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -524,7 +669,7 @@ class VisionService final {
     virtual ::grpc::ServerUnaryReactor* DoCommand(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetDetectionsFromCamera<WithCallbackMethod_GetDetections<WithCallbackMethod_GetClassificationsFromCamera<WithCallbackMethod_GetClassifications<WithCallbackMethod_GetObjectPointClouds<WithCallbackMethod_DoCommand<Service > > > > > > CallbackService;
+  typedef WithCallbackMethod_GetDetectionsFromCamera<WithCallbackMethod_GetDetections<WithCallbackMethod_GetClassificationsFromCamera<WithCallbackMethod_GetClassifications<WithCallbackMethod_GetObjectPointClouds<WithCallbackMethod_GetProperties<WithCallbackMethod_CaptureAllFromCamera<WithCallbackMethod_DoCommand<Service > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetDetectionsFromCamera : public BaseClass {
@@ -612,12 +757,46 @@ class VisionService final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetProperties() {
+      ::grpc::Service::MarkMethodGeneric(5);
+    }
+    ~WithGenericMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetPropertiesRequest* /*request*/, ::viam::service::vision::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_CaptureAllFromCamera : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_CaptureAllFromCamera() {
+      ::grpc::Service::MarkMethodGeneric(6);
+    }
+    ~WithGenericMethod_CaptureAllFromCamera() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CaptureAllFromCamera(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* /*request*/, ::viam::service::vision::v1::CaptureAllFromCameraResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DoCommand() {
-      ::grpc::Service::MarkMethodGeneric(5);
+      ::grpc::Service::MarkMethodGeneric(7);
     }
     ~WithGenericMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -729,12 +908,52 @@ class VisionService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetProperties() {
+      ::grpc::Service::MarkMethodRaw(5);
+    }
+    ~WithRawMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetPropertiesRequest* /*request*/, ::viam::service::vision::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetProperties(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_CaptureAllFromCamera : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_CaptureAllFromCamera() {
+      ::grpc::Service::MarkMethodRaw(6);
+    }
+    ~WithRawMethod_CaptureAllFromCamera() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CaptureAllFromCamera(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* /*request*/, ::viam::service::vision::v1::CaptureAllFromCameraResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCaptureAllFromCamera(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRaw(5);
+      ::grpc::Service::MarkMethodRaw(7);
     }
     ~WithRawMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -745,7 +964,7 @@ class VisionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -859,12 +1078,56 @@ class VisionService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetProperties() {
+      ::grpc::Service::MarkMethodRawCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetProperties(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetPropertiesRequest* /*request*/, ::viam::service::vision::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetProperties(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_CaptureAllFromCamera : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_CaptureAllFromCamera() {
+      ::grpc::Service::MarkMethodRawCallback(6,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CaptureAllFromCamera(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_CaptureAllFromCamera() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CaptureAllFromCamera(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* /*request*/, ::viam::service::vision::v1::CaptureAllFromCameraResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* CaptureAllFromCamera(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRawCallback(5,
+      ::grpc::Service::MarkMethodRawCallback(7,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
@@ -1016,12 +1279,66 @@ class VisionService final {
     virtual ::grpc::Status StreamedGetObjectPointClouds(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::vision::v1::GetObjectPointCloudsRequest,::viam::service::vision::v1::GetObjectPointCloudsResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetProperties() {
+      ::grpc::Service::MarkMethodStreamed(5,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::vision::v1::GetPropertiesRequest, ::viam::service::vision::v1::GetPropertiesResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::vision::v1::GetPropertiesRequest, ::viam::service::vision::v1::GetPropertiesResponse>* streamer) {
+                       return this->StreamedGetProperties(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetPropertiesRequest* /*request*/, ::viam::service::vision::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetProperties(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::vision::v1::GetPropertiesRequest,::viam::service::vision::v1::GetPropertiesResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_CaptureAllFromCamera : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_CaptureAllFromCamera() {
+      ::grpc::Service::MarkMethodStreamed(6,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::vision::v1::CaptureAllFromCameraRequest, ::viam::service::vision::v1::CaptureAllFromCameraResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::vision::v1::CaptureAllFromCameraRequest, ::viam::service::vision::v1::CaptureAllFromCameraResponse>* streamer) {
+                       return this->StreamedCaptureAllFromCamera(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_CaptureAllFromCamera() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status CaptureAllFromCamera(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* /*request*/, ::viam::service::vision::v1::CaptureAllFromCameraResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedCaptureAllFromCamera(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::vision::v1::CaptureAllFromCameraRequest,::viam::service::vision::v1::CaptureAllFromCameraResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DoCommand() {
-      ::grpc::Service::MarkMethodStreamed(5,
+      ::grpc::Service::MarkMethodStreamed(7,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](::grpc::ServerContext* context,
@@ -1042,9 +1359,9 @@ class VisionService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedDoCommand(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::common::v1::DoCommandRequest,::viam::common::v1::DoCommandResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetDetectionsFromCamera<WithStreamedUnaryMethod_GetDetections<WithStreamedUnaryMethod_GetClassificationsFromCamera<WithStreamedUnaryMethod_GetClassifications<WithStreamedUnaryMethod_GetObjectPointClouds<WithStreamedUnaryMethod_DoCommand<Service > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_GetDetectionsFromCamera<WithStreamedUnaryMethod_GetDetections<WithStreamedUnaryMethod_GetClassificationsFromCamera<WithStreamedUnaryMethod_GetClassifications<WithStreamedUnaryMethod_GetObjectPointClouds<WithStreamedUnaryMethod_GetProperties<WithStreamedUnaryMethod_CaptureAllFromCamera<WithStreamedUnaryMethod_DoCommand<Service > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetDetectionsFromCamera<WithStreamedUnaryMethod_GetDetections<WithStreamedUnaryMethod_GetClassificationsFromCamera<WithStreamedUnaryMethod_GetClassifications<WithStreamedUnaryMethod_GetObjectPointClouds<WithStreamedUnaryMethod_DoCommand<Service > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetDetectionsFromCamera<WithStreamedUnaryMethod_GetDetections<WithStreamedUnaryMethod_GetClassificationsFromCamera<WithStreamedUnaryMethod_GetClassifications<WithStreamedUnaryMethod_GetObjectPointClouds<WithStreamedUnaryMethod_GetProperties<WithStreamedUnaryMethod_CaptureAllFromCamera<WithStreamedUnaryMethod_DoCommand<Service > > > > > > > > StreamedService;
 };
 
 }  // namespace v1

@@ -24,7 +24,6 @@ class BoardClient : public Board {
     using interface_type = Board;
     BoardClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     AttributeMap do_command(const AttributeMap& command) override;
-    status get_status(const AttributeMap& extra) override;
     void set_gpio(const std::string& pin, bool high, const AttributeMap& extra) override;
     bool get_gpio(const std::string& pin, const AttributeMap& extra) override;
     double get_pwm_duty_cycle(const std::string& pin, const AttributeMap& extra) override;
@@ -62,7 +61,6 @@ class BoardClient : public Board {
     using Board::get_gpio;
     using Board::get_pwm_duty_cycle;
     using Board::get_pwm_frequency;
-    using Board::get_status;
     using Board::read_analog;
     using Board::read_digital_interrupt;
     using Board::set_gpio;

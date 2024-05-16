@@ -24,10 +24,6 @@ class BoardServer : public ResourceServer,
     using interface_type = Board;
     explicit BoardServer(std::shared_ptr<ResourceManager> manager);
 
-    ::grpc::Status Status(::grpc::ServerContext* context,
-                          const ::viam::component::board::v1::StatusRequest* request,
-                          ::viam::component::board::v1::StatusResponse* response) noexcept override;
-
     ::grpc::Status SetGPIO(
         ::grpc::ServerContext* context,
         const ::viam::component::board::v1::SetGPIORequest* request,

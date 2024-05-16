@@ -114,12 +114,13 @@ enum PackageType : int {
   PACKAGE_TYPE_ML_MODEL = 2,
   PACKAGE_TYPE_MODULE = 3,
   PACKAGE_TYPE_SLAM_MAP = 4,
+  PACKAGE_TYPE_ML_TRAINING = 5,
   PackageType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   PackageType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool PackageType_IsValid(int value);
 constexpr PackageType PackageType_MIN = PACKAGE_TYPE_UNSPECIFIED;
-constexpr PackageType PackageType_MAX = PACKAGE_TYPE_SLAM_MAP;
+constexpr PackageType PackageType_MAX = PACKAGE_TYPE_ML_TRAINING;
 constexpr int PackageType_ARRAYSIZE = PackageType_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PackageType_descriptor();
