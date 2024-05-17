@@ -309,6 +309,7 @@ class Motion : public Service {
                              movement_sensor_name,
                              obstacles,
                              motion_configuration,
+                             bounding_regions,
                              {});
     }
 
