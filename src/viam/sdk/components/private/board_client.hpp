@@ -34,8 +34,8 @@ class BoardClient : public Board {
     void set_pwm_frequency(const std::string& pin,
                            uint64_t frequency_hz,
                            const AttributeMap& extra) override;
-    analog_result read_analog(const std::string& analog_reader_name,
-                              const AttributeMap& extra) override;
+    analog_response read_analog(const std::string& analog_reader_name,
+                                const AttributeMap& extra) override;
     void write_analog(const std::string& pin, int value, const AttributeMap& extra) override;
     digital_value read_digital_interrupt(const std::string& digital_interrupt_name,
                                          const AttributeMap& extra) override;
