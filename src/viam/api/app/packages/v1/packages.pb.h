@@ -260,6 +260,7 @@ class FileInfo final :
   enum : int {
     kNameFieldNumber = 1,
     kSizeFieldNumber = 2,
+    kIsDirectoryFieldNumber = 3,
   };
   // string name = 1 [json_name = "name"];
   void clear_name();
@@ -284,6 +285,19 @@ class FileInfo final :
   void _internal_set_size(uint64_t value);
   public:
 
+  // optional bool is_directory = 3 [json_name = "isDirectory"];
+  bool has_is_directory() const;
+  private:
+  bool _internal_has_is_directory() const;
+  public:
+  void clear_is_directory();
+  bool is_directory() const;
+  void set_is_directory(bool value);
+  private:
+  bool _internal_is_directory() const;
+  void _internal_set_is_directory(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.packages.v1.FileInfo)
  private:
   class _Internal;
@@ -291,9 +305,11 @@ class FileInfo final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   uint64_t size_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  bool is_directory_;
   friend struct ::TableStruct_app_2fpackages_2fv1_2fpackages_2eproto;
 };
 // -------------------------------------------------------------------
@@ -2231,6 +2247,34 @@ inline void FileInfo::_internal_set_size(uint64_t value) {
 inline void FileInfo::set_size(uint64_t value) {
   _internal_set_size(value);
   // @@protoc_insertion_point(field_set:viam.app.packages.v1.FileInfo.size)
+}
+
+// optional bool is_directory = 3 [json_name = "isDirectory"];
+inline bool FileInfo::_internal_has_is_directory() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool FileInfo::has_is_directory() const {
+  return _internal_has_is_directory();
+}
+inline void FileInfo::clear_is_directory() {
+  is_directory_ = false;
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline bool FileInfo::_internal_is_directory() const {
+  return is_directory_;
+}
+inline bool FileInfo::is_directory() const {
+  // @@protoc_insertion_point(field_get:viam.app.packages.v1.FileInfo.is_directory)
+  return _internal_is_directory();
+}
+inline void FileInfo::_internal_set_is_directory(bool value) {
+  _has_bits_[0] |= 0x00000001u;
+  is_directory_ = value;
+}
+inline void FileInfo::set_is_directory(bool value) {
+  _internal_set_is_directory(value);
+  // @@protoc_insertion_point(field_set:viam.app.packages.v1.FileInfo.is_directory)
 }
 
 // -------------------------------------------------------------------
