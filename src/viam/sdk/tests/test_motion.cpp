@@ -101,6 +101,7 @@ BOOST_AUTO_TEST_CASE(mock_move_on_globe) {
     BOOST_CHECK_EQUAL(motion->peek_movement_sensor_name, fake_movement_sensor_name());
     BOOST_CHECK_EQUAL(motion->peek_obstacles, fake_obstacles());
     BOOST_CHECK_EQUAL(*(motion->peek_motion_configuration), *(fake_motion_configuration()));
+    BOOST_CHECK_EQUAL(motion->peek_bounding_regions, fake_bounding_regions());
 }
 
 BOOST_AUTO_TEST_CASE(mock_get_plan) {

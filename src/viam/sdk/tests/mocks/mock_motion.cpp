@@ -58,7 +58,7 @@ std::string MockMotion::move_on_globe(
     this->peek_destination = destination;
     this->peek_obstacles = obstacles;
     this->peek_motion_configuration = motion_configuration;
-
+    this->peek_bounding_regions= bounding_regions;
     return "execution-id";
 }
 
