@@ -293,7 +293,8 @@ class Motion : public Service {
     /// @param movement_sensor_name The name of the movement sensor used to check robot location.
     /// @param obstacles Obstacles to be considered for motion planning.
     /// @param motion_configuration Optional set of motion configuration options.
-    /// @param bounding_regions Set of obstacles which the robot must remain within while navigating.
+    /// @param bounding_regions Set of obstacles which the robot must remain within while
+    /// navigating.
     /// @return The execution ID of the move_on_globe request.
     inline std::string move_on_globe(
         const geo_point& destination,
@@ -320,7 +321,8 @@ class Motion : public Service {
     /// @param movement_sensor_name The name of the movement sensor used to check robot location.
     /// @param obstacles Obstacles to be considered for motion planning.
     /// @param motion_configuration Optional set of motion configuration options.
-    /// @param bounding_regions Set of obstacles which the robot must remain within while navigating.
+    /// @param bounding_regions Set of obstacles which the robot must remain within while
+    /// navigating.
     /// @param extra Any additional arguments to the method.
     /// @return The execution_id of the move_on_globe request.
     virtual std::string move_on_globe(
