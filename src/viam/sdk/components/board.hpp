@@ -25,13 +25,18 @@ namespace sdk {
 /// specific board implementations. This class cannot be used on its own.
 class Board : public Component {
    public:
-    /// @brief Represents the value received by the registered analog to digital converter (ADC).
-    /// The range and conversion mechanism to voltage will vary depending on the specific ADC
-    /// registered to the pin, though the min and max voltages and step_size can often help with
-    /// this conversion. Consult your ADC's documentation and Viam's `Board` documentation for
-    /// more details.
-    struct analog_value {
-        int32_t value;
+    /// @brief Represents the raw value received by the registered analog to digital converter
+	/// (ADC). The range and conversion mechanism to voltage will vary depending on the specific
+	/// ADC registered to the pin.
+	using analog_value = int32_t;
+
+	/// @brief Represents the response received when reading the registered analog to digital
+	/// converter (ADC). The range and conversion mechanism to voltage will vary depending on the
+	/// specific ADC registered to the pin, though the min and max voltages and step_size can often
+	/// help with this conversion. Consult your ADC's documentation and Viam's `Board`
+	/// documentation for more details.
+    struct analog_response {
+        analog_value value;
         float min_range;  // Minimum possible voltage read by the analog reader
         float max_range;  // Maximum possible voltage read by the analog reader
         float step_size;  // Volts represented in each step in the value
@@ -166,7 +171,7 @@ class Board : public Component {
     /// @brief Reads off the current value of an analog reader on a board. Consult your ADC's docs
     /// or Viam's `Board` docs for more information.
     /// @param analog_reader_name analog reader to read from
-    inline analog_value read_analog(const std::string& analog_reader_name) {
+    inline analog_response read_analog(const std::string& analog_reader_name) {
         return read_analog(analog_reader_name, {});
     }
 
@@ -174,8 +179,8 @@ class Board : public Component {
     /// or Viam's `Board` docs for more information.
     /// @param analog_reader_name analog reader to read from
     /// @param extra Any additional arguments to the method
-    virtual analog_value read_analog(const std::string& analog_reader_name,
-                                     const AttributeMap& extra) = 0;
+    virtual analog_response read_analog(const std::string& analog_reader_name,
+                                        const AttributeMap& extra) = 0;
 
     /// @brief Writes the value to the analog writer of the board.
     /// @param pin the pin to write to
@@ -267,7 +272,6 @@ struct API::traits<Board> {
 };
 
 bool operator==(const Board::status& lhs, const Board::status& rhs);
-bool operator==(const Board::analog_value& lhs, const Board::analog_value& rhs);
 
 }  // namespace sdk
 }  // namespace viam

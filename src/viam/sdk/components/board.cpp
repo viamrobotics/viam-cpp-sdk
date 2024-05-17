@@ -23,14 +23,7 @@ API API::traits<Board>::api() {
 Board::status Board::from_proto(const viam::component::board::v1::Status& proto) {
     Board::status status;
     for (const auto& analog : proto.analogs()) {
-        Board::analog_value result;
-        result.value = analog.second;
-        // The status does not contain the extra data to describe the accuracy of the reader. We
-        // fill those in with 0's instead.
-        result.min_range = 0.0;
-        result.max_range = 0.0;
-        result.step_size = 0.0;
-        status.analog_reader_values.emplace(analog.first, result);
+        status.analog_reader_values.emplace(analog.first, analog.second);
     }
     for (const auto& digital : proto.digital_interrupts()) {
         status.digital_interrupt_values.emplace(digital.first, digital.second);
@@ -57,7 +50,7 @@ Board::power_mode Board::from_proto(viam::component::board::v1::PowerMode proto)
 viam::component::board::v1::Status Board::to_proto(const status& status) {
     viam::component::board::v1::Status proto;
     for (const auto& analog : status.analog_reader_values) {
-        proto.mutable_analogs()->insert({analog.first, analog.second.value});
+        proto.mutable_analogs()->insert({analog.first, analog.second});
     }
 
     for (const auto& digital : status.digital_interrupt_values) {
@@ -85,11 +78,6 @@ Board::Board(std::string name) : Component(std::move(name)){};
 bool operator==(const Board::status& lhs, const Board::status& rhs) {
     return (lhs.analog_reader_values == rhs.analog_reader_values &&
             lhs.digital_interrupt_values == rhs.digital_interrupt_values);
-}
-
-bool operator==(const Board::analog_value& lhs, const Board::analog_value& rhs) {
-    return (lhs.value == rhs.value && lhs.min_range == rhs.min_range &&
-            lhs.max_range == rhs.max_range && lhs.step_size == rhs.step_size);
 }
 
 }  // namespace sdk

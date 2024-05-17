@@ -85,7 +85,7 @@ AttributeMap BoardClient::do_command(const AttributeMap& command) {
 
 // TODO(RSDK-6048) update `client_wrapper` to allow for requests without a `mutable_name()` method,
 // then wrap here.
-Board::analog_value BoardClient::read_analog(const std::string& analog_reader_name,
+Board::analog_result BoardClient::read_analog(const std::string& analog_reader_name,
                                              const AttributeMap& extra) {
     viam::component::board::v1::ReadAnalogReaderRequest request;
     viam::component::board::v1::ReadAnalogReaderResponse response;
@@ -99,12 +99,7 @@ Board::analog_value BoardClient::read_analog(const std::string& analog_reader_na
     if (!status.ok()) {
         throw GRPCException(status);
     }
-    Board::analog_value result = {};
-    result.value = response.value();
-    result.min_range = response.min_range();
-    result.max_range = response.max_range();
-    result.step_size = response.step_size();
-    return result;
+    return {response.value(), response.min_range(), response.max_range, response.step_size()};
 }
 
 void BoardClient::write_analog(const std::string& pin, int value, const AttributeMap& extra) {
