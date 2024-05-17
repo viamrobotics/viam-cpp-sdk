@@ -100,7 +100,7 @@ Board::analog_response BoardClient::read_analog(const std::string& analog_reader
         throw GRPCException(status);
     }
     return Board::analog_response{
-		response.value(), response.min_range(), response.max_range(), response.step_size()};
+        response.value(), response.min_range(), response.max_range(), response.step_size()};
 }
 
 void BoardClient::write_analog(const std::string& pin, int value, const AttributeMap& extra) {

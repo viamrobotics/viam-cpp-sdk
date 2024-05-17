@@ -26,15 +26,15 @@ namespace sdk {
 class Board : public Component {
    public:
     /// @brief Represents the raw value received by the registered analog to digital converter
-	/// (ADC). The range and conversion mechanism to voltage will vary depending on the specific
-	/// ADC registered to the pin.
-	using analog_value = int32_t;
+    /// (ADC). The range and conversion mechanism to voltage will vary depending on the specific
+    /// ADC registered to the pin.
+    using analog_value = int32_t;
 
-	/// @brief Represents the response received when reading the registered analog to digital
-	/// converter (ADC). The range and conversion mechanism to voltage will vary depending on the
-	/// specific ADC registered to the pin, though the min and max voltages and step_size can often
-	/// help with this conversion. Consult your ADC's documentation and Viam's `Board`
-	/// documentation for more details.
+    /// @brief Represents the response received when reading the registered analog to digital
+    /// converter (ADC). The range and conversion mechanism to voltage will vary depending on the
+    /// specific ADC registered to the pin, though the min and max voltages and step_size can often
+    /// help with this conversion. Consult your ADC's documentation and Viam's `Board`
+    /// documentation for more details.
     struct analog_response {
         analog_value value;
         float min_range;  // Minimum possible voltage read by the analog reader
