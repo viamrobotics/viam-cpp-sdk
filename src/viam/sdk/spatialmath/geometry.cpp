@@ -292,8 +292,8 @@ geo_point geo_point::from_proto(const common::v1::GeoPoint& proto) {
     return geo_point;
 }
 
-common::v1::GeoObstacle geo_geometry::to_proto() const {
-    common::v1::GeoObstacle proto;
+common::v1::GeoGeometry geo_geometry::to_proto() const {
+    common::v1::GeoGeometry proto;
     *proto.mutable_location() = location.to_proto();
 
     for (const auto& geometry : geometries) {
@@ -303,7 +303,7 @@ common::v1::GeoObstacle geo_geometry::to_proto() const {
     return proto;
 }
 
-geo_geometry geo_geometry::from_proto(const common::v1::GeoObstacle& proto) {
+geo_geometry geo_geometry::from_proto(const common::v1::GeoGeometry& proto) {
     struct geo_geometry geo_geometry;
 
     geo_geometry.location = geo_point::from_proto(proto.location());
