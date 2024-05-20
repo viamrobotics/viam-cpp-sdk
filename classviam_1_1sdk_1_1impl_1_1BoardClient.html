@@ -114,7 +114,7 @@ Public Types</h2></td></tr>
 <tr class="separator:a166386cf97ecb2e45778d96f5611ce88 inherit pub_types_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99143e61850b1af59f04cdf21e1eea0c inherit pub_types_classviam_1_1sdk_1_1Board" id="r_a99143e61850b1af59f04cdf21e1eea0c"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><b>analog_value</b> = <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int32_t</a></td></tr>
-<tr class="memdesc:a99143e61850b1af59f04cdf21e1eea0c inherit pub_types_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the value received by the registered analog to digital converter (ADC). The range and conversion mechanism to voltage will vary depending on the specific ADC registered to the pin. Consult your ADC's documentation and Viam's <code><a class="el" href="classviam_1_1sdk_1_1Board.html" title="Represents a physical board with gpio pins, digital interrupts, and analog voltage reading.">Board</a></code> documentation for more details. <br /></td></tr>
+<tr class="memdesc:a99143e61850b1af59f04cdf21e1eea0c inherit pub_types_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the raw value received by the registered analog to digital converter (ADC). The range and conversion mechanism to voltage will vary depending on the specific ADC registered to the pin. <br /></td></tr>
 <tr class="separator:a99143e61850b1af59f04cdf21e1eea0c inherit pub_types_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7492deed4439690ea37d470fd899919d inherit pub_types_classviam_1_1sdk_1_1Board" id="r_a7492deed4439690ea37d470fd899919d"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><b>digital_value</b> = <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int64_t</a></td></tr>
@@ -147,9 +147,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4fae4a0bf79a20f0a1cbf1d67b932efc" id="r_a4fae4a0bf79a20f0a1cbf1d67b932efc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fae4a0bf79a20f0a1cbf1d67b932efc">set_pwm_frequency</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">uint64_t</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">frequency_hz</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
 <tr class="memdesc:a4fae4a0bf79a20f0a1cbf1d67b932efc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the given pin on a board to the given PWM frequency. 0 will use the board's default PWM frequency.  <br /></td></tr>
 <tr class="separator:a4fae4a0bf79a20f0a1cbf1d67b932efc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37211b98830c45f7a97decebede023df" id="r_a37211b98830c45f7a97decebede023df"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1Board.html#a99143e61850b1af59f04cdf21e1eea0c">analog_value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37211b98830c45f7a97decebede023df">read_analog</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">analog_reader_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
-<tr class="memdesc:a37211b98830c45f7a97decebede023df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads off the current value of an analog reader on a board. Consult your ADC's docs or Viam's <code><a class="el" href="classviam_1_1sdk_1_1Board.html" title="Represents a physical board with gpio pins, digital interrupts, and analog voltage reading.">Board</a></code> docs for more information.  <br /></td></tr>
-<tr class="separator:a37211b98830c45f7a97decebede023df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c3b33f00284e2a608520e4535240fd7" id="r_a7c3b33f00284e2a608520e4535240fd7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1Board_1_1analog__response.html">analog_response</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c3b33f00284e2a608520e4535240fd7">read_analog</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">analog_reader_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memdesc:a7c3b33f00284e2a608520e4535240fd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads off the current value of an analog reader on a board. Consult your ADC's docs or Viam's <code><a class="el" href="classviam_1_1sdk_1_1Board.html" title="Represents a physical board with gpio pins, digital interrupts, and analog voltage reading.">Board</a></code> docs for more information.  <br /></td></tr>
+<tr class="separator:a7c3b33f00284e2a608520e4535240fd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7885211831098939d6fa65ced1b2aa3f" id="r_a7885211831098939d6fa65ced1b2aa3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7885211831098939d6fa65ced1b2aa3f">write_analog</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int</a> value, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
 <tr class="memdesc:a7885211831098939d6fa65ced1b2aa3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the value to the analog writer of the board.  <br /></td></tr>
 <tr class="separator:a7885211831098939d6fa65ced1b2aa3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -189,12 +189,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0de92a448c61509ef81c209fb4c2a881" id="r_a0de92a448c61509ef81c209fb4c2a881"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0de92a448c61509ef81c209fb4c2a881">get_pwm_frequency</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:a0de92a448c61509ef81c209fb4c2a881"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the PWM frequency of the given pin on a board.  <br /></td></tr>
 <tr class="separator:a0de92a448c61509ef81c209fb4c2a881"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1a36821de8c455db14c147a55ddca68" id="r_ad1a36821de8c455db14c147a55ddca68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1Board.html#a99143e61850b1af59f04cdf21e1eea0c">analog_value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad1a36821de8c455db14c147a55ddca68">read_analog</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">analog_reader_name</a>)</td></tr>
-<tr class="memdesc:ad1a36821de8c455db14c147a55ddca68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads off the current value of an analog reader on a board. Consult your ADC's docs or Viam's <code><a class="el" href="classviam_1_1sdk_1_1Board.html" title="Represents a physical board with gpio pins, digital interrupts, and analog voltage reading.">Board</a></code> docs for more information.  <br /></td></tr>
-<tr class="separator:ad1a36821de8c455db14c147a55ddca68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09fa51b336122e9ab962b7219d3ba009" id="r_a09fa51b336122e9ab962b7219d3ba009"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a99143e61850b1af59f04cdf21e1eea0c">analog_value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a09fa51b336122e9ab962b7219d3ba009">read_analog</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">analog_reader_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
-<tr class="memdesc:a09fa51b336122e9ab962b7219d3ba009"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads off the current value of an analog reader on a board. Consult your ADC's docs or Viam's <code><a class="el" href="classviam_1_1sdk_1_1Board.html" title="Represents a physical board with gpio pins, digital interrupts, and analog voltage reading.">Board</a></code> docs for more information.  <br /></td></tr>
-<tr class="separator:a09fa51b336122e9ab962b7219d3ba009"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5926c728df4a28c5b03913afcd659afb" id="r_a5926c728df4a28c5b03913afcd659afb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1Board_1_1analog__response.html">analog_response</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5926c728df4a28c5b03913afcd659afb">read_analog</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">analog_reader_name</a>)</td></tr>
+<tr class="memdesc:a5926c728df4a28c5b03913afcd659afb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads off the current value of an analog reader on a board. Consult your ADC's docs or Viam's <code><a class="el" href="classviam_1_1sdk_1_1Board.html" title="Represents a physical board with gpio pins, digital interrupts, and analog voltage reading.">Board</a></code> docs for more information.  <br /></td></tr>
+<tr class="separator:a5926c728df4a28c5b03913afcd659afb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa07940df14925d711d1ed78fed22280a" id="r_aa07940df14925d711d1ed78fed22280a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="structviam_1_1sdk_1_1Board_1_1analog__response.html">analog_response</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa07940df14925d711d1ed78fed22280a">read_analog</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">analog_reader_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memdesc:aa07940df14925d711d1ed78fed22280a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads off the current value of an analog reader on a board. Consult your ADC's docs or Viam's <code><a class="el" href="classviam_1_1sdk_1_1Board.html" title="Represents a physical board with gpio pins, digital interrupts, and analog voltage reading.">Board</a></code> docs for more information.  <br /></td></tr>
+<tr class="separator:aa07940df14925d711d1ed78fed22280a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86836c856f9fbfe6b44d3edaa4ffb658" id="r_a86836c856f9fbfe6b44d3edaa4ffb658"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1Board.html#a7492deed4439690ea37d470fd899919d">digital_value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86836c856f9fbfe6b44d3edaa4ffb658">read_digital_interrupt</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">digital_interrupt_name</a>)</td></tr>
 <tr class="memdesc:a86836c856f9fbfe6b44d3edaa4ffb658"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current value of the interrupt which is based on the type of interrupt. Consult Viam's <code><a class="el" href="classviam_1_1sdk_1_1Board.html" title="Represents a physical board with gpio pins, digital interrupts, and analog voltage reading.">Board</a></code> docs for more information.  <br /></td></tr>
 <tr class="separator:a86836c856f9fbfe6b44d3edaa4ffb658"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -259,9 +259,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac752c73b32cf0533e881bb8ee7371afc inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_ac752c73b32cf0533e881bb8ee7371afc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#ac752c73b32cf0533e881bb8ee7371afc">set_pwm_frequency</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">uint64_t</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">frequency_hz</a>)</td></tr>
 <tr class="memdesc:ac752c73b32cf0533e881bb8ee7371afc inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the given pin on a board to the given PWM frequency. 0 will use the board's default PWM frequency.  <br /></td></tr>
 <tr class="separator:ac752c73b32cf0533e881bb8ee7371afc inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1a36821de8c455db14c147a55ddca68 inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_ad1a36821de8c455db14c147a55ddca68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1Board.html#a99143e61850b1af59f04cdf21e1eea0c">analog_value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#ad1a36821de8c455db14c147a55ddca68">read_analog</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">analog_reader_name</a>)</td></tr>
-<tr class="memdesc:ad1a36821de8c455db14c147a55ddca68 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads off the current value of an analog reader on a board. Consult your ADC's docs or Viam's <code><a class="el" href="classviam_1_1sdk_1_1Board.html" title="Represents a physical board with gpio pins, digital interrupts, and analog voltage reading.">Board</a></code> docs for more information.  <br /></td></tr>
-<tr class="separator:ad1a36821de8c455db14c147a55ddca68 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5926c728df4a28c5b03913afcd659afb inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_a5926c728df4a28c5b03913afcd659afb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1Board_1_1analog__response.html">analog_response</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#a5926c728df4a28c5b03913afcd659afb">read_analog</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">analog_reader_name</a>)</td></tr>
+<tr class="memdesc:a5926c728df4a28c5b03913afcd659afb inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads off the current value of an analog reader on a board. Consult your ADC's docs or Viam's <code><a class="el" href="classviam_1_1sdk_1_1Board.html" title="Represents a physical board with gpio pins, digital interrupts, and analog voltage reading.">Board</a></code> docs for more information.  <br /></td></tr>
+<tr class="separator:a5926c728df4a28c5b03913afcd659afb inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc311cfbf00eff084a0984e01dccc0a7 inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_abc311cfbf00eff084a0984e01dccc0a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#abc311cfbf00eff084a0984e01dccc0a7">write_analog</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int</a> value)</td></tr>
 <tr class="memdesc:abc311cfbf00eff084a0984e01dccc0a7 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the value to the analog writer of the board.  <br /></td></tr>
 <tr class="separator:abc311cfbf00eff084a0984e01dccc0a7 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -802,8 +802,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="ad1a36821de8c455db14c147a55ddca68" name="ad1a36821de8c455db14c147a55ddca68"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad1a36821de8c455db14c147a55ddca68">&#9670;&#160;</a></span>read_analog() <span class="overload">[1/3]</span></h2>
+<a id="a5926c728df4a28c5b03913afcd659afb" name="a5926c728df4a28c5b03913afcd659afb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5926c728df4a28c5b03913afcd659afb">&#9670;&#160;</a></span>read_analog() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -812,7 +812,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1Board.html#a99143e61850b1af59f04cdf21e1eea0c">analog_value</a> viam::sdk::Board::read_analog </td>
+          <td class="memname"><a class="el" href="structviam_1_1sdk_1_1Board_1_1analog__response.html">analog_response</a> viam::sdk::Board::read_analog </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>analog_reader_name</em></span></td><td>)</td>
           <td></td>
@@ -835,8 +835,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a37211b98830c45f7a97decebede023df" name="a37211b98830c45f7a97decebede023df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a37211b98830c45f7a97decebede023df">&#9670;&#160;</a></span>read_analog() <span class="overload">[2/3]</span></h2>
+<a id="a7c3b33f00284e2a608520e4535240fd7" name="a7c3b33f00284e2a608520e4535240fd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c3b33f00284e2a608520e4535240fd7">&#9670;&#160;</a></span>read_analog() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -845,7 +845,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1Board.html#a99143e61850b1af59f04cdf21e1eea0c">analog_value</a> viam::sdk::impl::BoardClient::read_analog </td>
+          <td class="memname"><a class="el" href="structviam_1_1sdk_1_1Board_1_1analog__response.html">analog_response</a> viam::sdk::impl::BoardClient::read_analog </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>analog_reader_name</em>, </span></td>
         </tr>
@@ -871,12 +871,12 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classviam_1_1sdk_1_1Board.html#a09fa51b336122e9ab962b7219d3ba009">viam::sdk::Board</a>.</p>
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Board.html#aa07940df14925d711d1ed78fed22280a">viam::sdk::Board</a>.</p>
 
 </div>
 </div>
-<a id="a09fa51b336122e9ab962b7219d3ba009" name="a09fa51b336122e9ab962b7219d3ba009"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09fa51b336122e9ab962b7219d3ba009">&#9670;&#160;</a></span>read_analog() <span class="overload">[3/3]</span></h2>
+<a id="aa07940df14925d711d1ed78fed22280a" name="aa07940df14925d711d1ed78fed22280a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa07940df14925d711d1ed78fed22280a">&#9670;&#160;</a></span>read_analog() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -885,7 +885,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a99143e61850b1af59f04cdf21e1eea0c">analog_value</a> viam::sdk::Board::read_analog </td>
+          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="structviam_1_1sdk_1_1Board_1_1analog__response.html">analog_response</a> viam::sdk::Board::read_analog </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>analog_reader_name</em>, </span></td>
         </tr>
@@ -911,7 +911,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classviam_1_1sdk_1_1Board.html#a09fa51b336122e9ab962b7219d3ba009">viam::sdk::Board</a>.</p>
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Board.html#aa07940df14925d711d1ed78fed22280a">viam::sdk::Board</a>.</p>
 
 </div>
 </div>
