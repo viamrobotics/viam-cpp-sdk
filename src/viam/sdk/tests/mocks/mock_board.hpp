@@ -22,8 +22,8 @@ class MockBoard : public viam::sdk::Board {
                            uint64_t frequency_hz,
                            const sdk::AttributeMap& extra) override;
     viam::sdk::AttributeMap do_command(const viam::sdk::AttributeMap& command) override;
-    Board::analog_value read_analog(const std::string& analog_reader_name,
-                                    const sdk::AttributeMap& extra) override;
+    Board::analog_response read_analog(const std::string& analog_reader_name,
+                                       const sdk::AttributeMap& extra) override;
     void write_analog(const std::string& pin, int value, const sdk::AttributeMap& extra) override;
     Board::digital_value read_digital_interrupt(const std::string& digital_interrupt_name,
                                                 const sdk::AttributeMap& extra) override;
@@ -44,7 +44,7 @@ class MockBoard : public viam::sdk::Board {
     double peek_set_pwm_duty_cycle_pct;
     uint64_t peek_get_pwm_frequency_ret;
     uint64_t peek_set_pwm_frequency_hz;
-    Board::analog_value peek_read_analog_ret;
+    Board::analog_response peek_read_analog_ret;
     Board::digital_value peek_read_digital_interrupt_ret;
     Board::power_mode peek_set_power_mode_power_mode;
     boost::optional<std::chrono::microseconds> peek_set_power_mode_duration;

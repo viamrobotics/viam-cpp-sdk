@@ -50,8 +50,8 @@ AttributeMap MockBoard::do_command(const AttributeMap& command) {
     return command;
 }
 
-Board::analog_value MockBoard::read_analog(const std::string& analog_reader_name,
-                                           const AttributeMap&) {
+Board::analog_response MockBoard::read_analog(const std::string& analog_reader_name,
+                                              const AttributeMap&) {
     this->peek_analog_reader_name = analog_reader_name;
     return this->peek_read_analog_ret;
 }
