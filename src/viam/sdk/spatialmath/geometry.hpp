@@ -86,13 +86,13 @@ struct geo_point {
     friend std::ostream& operator<<(std::ostream& os, const geo_point& v);
 };
 
-struct geo_obstacle {
+struct geo_geometry {
     geo_point location;
     std::vector<GeometryConfig> geometries;
 
-    common::v1::GeoObstacle to_proto() const;
-    static geo_obstacle from_proto(const common::v1::GeoObstacle& proto);
-    friend bool operator==(const geo_obstacle& lhs, const geo_obstacle& rhs);
+    common::v1::GeoGeometry to_proto() const;
+    static geo_geometry from_proto(const common::v1::GeoGeometry& proto);
+    friend bool operator==(const geo_geometry& lhs, const geo_geometry& rhs);
 };
 
 }  // namespace sdk

@@ -708,6 +708,7 @@ class SubmitCustomTrainingJobRequest final :
     kOrganizationIdFieldNumber = 3,
     kModelNameFieldNumber = 4,
     kModelVersionFieldNumber = 5,
+    kRegistryItemVersionFieldNumber = 6,
   };
   // string dataset_id = 1 [json_name = "datasetId", (.tagger.v1.tags) = "bson:\"dataset_id\" json:\"dataset_id\""];
   void clear_dataset_id();
@@ -779,6 +780,20 @@ class SubmitCustomTrainingJobRequest final :
   std::string* _internal_mutable_model_version();
   public:
 
+  // string registry_item_version = 6 [json_name = "registryItemVersion", (.tagger.v1.tags) = "bson:\"registry_item_version\" json:\"registry_item_version\""];
+  void clear_registry_item_version();
+  const std::string& registry_item_version() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_registry_item_version(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_registry_item_version();
+  PROTOBUF_NODISCARD std::string* release_registry_item_version();
+  void set_allocated_registry_item_version(std::string* registry_item_version);
+  private:
+  const std::string& _internal_registry_item_version() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_registry_item_version(const std::string& value);
+  std::string* _internal_mutable_registry_item_version();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.mltraining.v1.SubmitCustomTrainingJobRequest)
  private:
   class _Internal;
@@ -791,6 +806,7 @@ class SubmitCustomTrainingJobRequest final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr model_name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr model_version_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr registry_item_version_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto;
 };
@@ -1682,6 +1698,7 @@ class TrainingJobMetadata final :
     kModelNameFieldNumber = 13,
     kModelVersionFieldNumber = 14,
     kRegistryItemIdFieldNumber = 19,
+    kRegistryItemVersionFieldNumber = 20,
     kRequestFieldNumber = 1,
     kCreatedOnFieldNumber = 3,
     kLastModifiedFieldNumber = 4,
@@ -1813,6 +1830,20 @@ class TrainingJobMetadata final :
   const std::string& _internal_registry_item_id() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_registry_item_id(const std::string& value);
   std::string* _internal_mutable_registry_item_id();
+  public:
+
+  // string registry_item_version = 20 [json_name = "registryItemVersion", (.tagger.v1.tags) = "bson:\"registry_item_version\" json:\"registry_item_version\""];
+  void clear_registry_item_version();
+  const std::string& registry_item_version() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_registry_item_version(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_registry_item_version();
+  PROTOBUF_NODISCARD std::string* release_registry_item_version();
+  void set_allocated_registry_item_version(std::string* registry_item_version);
+  private:
+  const std::string& _internal_registry_item_version() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_registry_item_version(const std::string& value);
+  std::string* _internal_mutable_registry_item_version();
   public:
 
   // .viam.app.mltraining.v1.SubmitTrainingJobRequest request = 1 [json_name = "request", (.tagger.v1.tags) = "bson:\"request\" json:\"request\""];
@@ -1974,6 +2005,7 @@ class TrainingJobMetadata final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr model_name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr model_version_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr registry_item_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr registry_item_version_;
   ::viam::app::mltraining::v1::SubmitTrainingJobRequest* request_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* created_on_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* last_modified_;
@@ -2979,6 +3011,56 @@ inline void SubmitCustomTrainingJobRequest::set_allocated_registry_item_id(std::
   // @@protoc_insertion_point(field_set_allocated:viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.registry_item_id)
 }
 
+// string registry_item_version = 6 [json_name = "registryItemVersion", (.tagger.v1.tags) = "bson:\"registry_item_version\" json:\"registry_item_version\""];
+inline void SubmitCustomTrainingJobRequest::clear_registry_item_version() {
+  registry_item_version_.ClearToEmpty();
+}
+inline const std::string& SubmitCustomTrainingJobRequest::registry_item_version() const {
+  // @@protoc_insertion_point(field_get:viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.registry_item_version)
+  return _internal_registry_item_version();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void SubmitCustomTrainingJobRequest::set_registry_item_version(ArgT0&& arg0, ArgT... args) {
+ 
+ registry_item_version_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.registry_item_version)
+}
+inline std::string* SubmitCustomTrainingJobRequest::mutable_registry_item_version() {
+  std::string* _s = _internal_mutable_registry_item_version();
+  // @@protoc_insertion_point(field_mutable:viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.registry_item_version)
+  return _s;
+}
+inline const std::string& SubmitCustomTrainingJobRequest::_internal_registry_item_version() const {
+  return registry_item_version_.Get();
+}
+inline void SubmitCustomTrainingJobRequest::_internal_set_registry_item_version(const std::string& value) {
+  
+  registry_item_version_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SubmitCustomTrainingJobRequest::_internal_mutable_registry_item_version() {
+  
+  return registry_item_version_.Mutable(GetArenaForAllocation());
+}
+inline std::string* SubmitCustomTrainingJobRequest::release_registry_item_version() {
+  // @@protoc_insertion_point(field_release:viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.registry_item_version)
+  return registry_item_version_.Release();
+}
+inline void SubmitCustomTrainingJobRequest::set_allocated_registry_item_version(std::string* registry_item_version) {
+  if (registry_item_version != nullptr) {
+    
+  } else {
+    
+  }
+  registry_item_version_.SetAllocated(registry_item_version, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (registry_item_version_.IsDefault()) {
+    registry_item_version_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.registry_item_version)
+}
+
 // string organization_id = 3 [json_name = "organizationId", (.tagger.v1.tags) = "bson:\"organization_id\" json:\"organization_id\""];
 inline void SubmitCustomTrainingJobRequest::clear_organization_id() {
   organization_id_.ClearToEmpty();
@@ -3901,6 +3983,56 @@ inline void TrainingJobMetadata::set_allocated_registry_item_id(std::string* reg
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.mltraining.v1.TrainingJobMetadata.registry_item_id)
+}
+
+// string registry_item_version = 20 [json_name = "registryItemVersion", (.tagger.v1.tags) = "bson:\"registry_item_version\" json:\"registry_item_version\""];
+inline void TrainingJobMetadata::clear_registry_item_version() {
+  registry_item_version_.ClearToEmpty();
+}
+inline const std::string& TrainingJobMetadata::registry_item_version() const {
+  // @@protoc_insertion_point(field_get:viam.app.mltraining.v1.TrainingJobMetadata.registry_item_version)
+  return _internal_registry_item_version();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void TrainingJobMetadata::set_registry_item_version(ArgT0&& arg0, ArgT... args) {
+ 
+ registry_item_version_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.mltraining.v1.TrainingJobMetadata.registry_item_version)
+}
+inline std::string* TrainingJobMetadata::mutable_registry_item_version() {
+  std::string* _s = _internal_mutable_registry_item_version();
+  // @@protoc_insertion_point(field_mutable:viam.app.mltraining.v1.TrainingJobMetadata.registry_item_version)
+  return _s;
+}
+inline const std::string& TrainingJobMetadata::_internal_registry_item_version() const {
+  return registry_item_version_.Get();
+}
+inline void TrainingJobMetadata::_internal_set_registry_item_version(const std::string& value) {
+  
+  registry_item_version_.Set(value, GetArenaForAllocation());
+}
+inline std::string* TrainingJobMetadata::_internal_mutable_registry_item_version() {
+  
+  return registry_item_version_.Mutable(GetArenaForAllocation());
+}
+inline std::string* TrainingJobMetadata::release_registry_item_version() {
+  // @@protoc_insertion_point(field_release:viam.app.mltraining.v1.TrainingJobMetadata.registry_item_version)
+  return registry_item_version_.Release();
+}
+inline void TrainingJobMetadata::set_allocated_registry_item_version(std::string* registry_item_version) {
+  if (registry_item_version != nullptr) {
+    
+  } else {
+    
+  }
+  registry_item_version_.SetAllocated(registry_item_version, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (registry_item_version_.IsDefault()) {
+    registry_item_version_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.mltraining.v1.TrainingJobMetadata.registry_item_version)
 }
 
 // .viam.app.mltraining.v1.TrainingStatus status = 2 [json_name = "status", (.tagger.v1.tags) = "bson:\"status\" json:\"status\""];

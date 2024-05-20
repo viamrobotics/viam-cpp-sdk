@@ -2517,22 +2517,22 @@ class GetObstaclesResponse final :
   enum : int {
     kObstaclesFieldNumber = 1,
   };
-  // repeated .viam.common.v1.GeoObstacle obstacles = 1 [json_name = "obstacles"];
+  // repeated .viam.common.v1.GeoGeometry obstacles = 1 [json_name = "obstacles"];
   int obstacles_size() const;
   private:
   int _internal_obstacles_size() const;
   public:
   void clear_obstacles();
-  ::viam::common::v1::GeoObstacle* mutable_obstacles(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoObstacle >*
+  ::viam::common::v1::GeoGeometry* mutable_obstacles(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoGeometry >*
       mutable_obstacles();
   private:
-  const ::viam::common::v1::GeoObstacle& _internal_obstacles(int index) const;
-  ::viam::common::v1::GeoObstacle* _internal_add_obstacles();
+  const ::viam::common::v1::GeoGeometry& _internal_obstacles(int index) const;
+  ::viam::common::v1::GeoGeometry* _internal_add_obstacles();
   public:
-  const ::viam::common::v1::GeoObstacle& obstacles(int index) const;
-  ::viam::common::v1::GeoObstacle* add_obstacles();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoObstacle >&
+  const ::viam::common::v1::GeoGeometry& obstacles(int index) const;
+  ::viam::common::v1::GeoGeometry* add_obstacles();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoGeometry >&
       obstacles() const;
 
   // @@protoc_insertion_point(class_scope:viam.service.navigation.v1.GetObstaclesResponse)
@@ -2542,7 +2542,7 @@ class GetObstaclesResponse final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoObstacle > obstacles_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoGeometry > obstacles_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_service_2fnavigation_2fv1_2fnavigation_2eproto;
 };
@@ -4792,38 +4792,38 @@ inline void GetObstaclesRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::St
 
 // GetObstaclesResponse
 
-// repeated .viam.common.v1.GeoObstacle obstacles = 1 [json_name = "obstacles"];
+// repeated .viam.common.v1.GeoGeometry obstacles = 1 [json_name = "obstacles"];
 inline int GetObstaclesResponse::_internal_obstacles_size() const {
   return obstacles_.size();
 }
 inline int GetObstaclesResponse::obstacles_size() const {
   return _internal_obstacles_size();
 }
-inline ::viam::common::v1::GeoObstacle* GetObstaclesResponse::mutable_obstacles(int index) {
+inline ::viam::common::v1::GeoGeometry* GetObstaclesResponse::mutable_obstacles(int index) {
   // @@protoc_insertion_point(field_mutable:viam.service.navigation.v1.GetObstaclesResponse.obstacles)
   return obstacles_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoObstacle >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoGeometry >*
 GetObstaclesResponse::mutable_obstacles() {
   // @@protoc_insertion_point(field_mutable_list:viam.service.navigation.v1.GetObstaclesResponse.obstacles)
   return &obstacles_;
 }
-inline const ::viam::common::v1::GeoObstacle& GetObstaclesResponse::_internal_obstacles(int index) const {
+inline const ::viam::common::v1::GeoGeometry& GetObstaclesResponse::_internal_obstacles(int index) const {
   return obstacles_.Get(index);
 }
-inline const ::viam::common::v1::GeoObstacle& GetObstaclesResponse::obstacles(int index) const {
+inline const ::viam::common::v1::GeoGeometry& GetObstaclesResponse::obstacles(int index) const {
   // @@protoc_insertion_point(field_get:viam.service.navigation.v1.GetObstaclesResponse.obstacles)
   return _internal_obstacles(index);
 }
-inline ::viam::common::v1::GeoObstacle* GetObstaclesResponse::_internal_add_obstacles() {
+inline ::viam::common::v1::GeoGeometry* GetObstaclesResponse::_internal_add_obstacles() {
   return obstacles_.Add();
 }
-inline ::viam::common::v1::GeoObstacle* GetObstaclesResponse::add_obstacles() {
-  ::viam::common::v1::GeoObstacle* _add = _internal_add_obstacles();
+inline ::viam::common::v1::GeoGeometry* GetObstaclesResponse::add_obstacles() {
+  ::viam::common::v1::GeoGeometry* _add = _internal_add_obstacles();
   // @@protoc_insertion_point(field_add:viam.service.navigation.v1.GetObstaclesResponse.obstacles)
   return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoObstacle >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoGeometry >&
 GetObstaclesResponse::obstacles() const {
   // @@protoc_insertion_point(field_list:viam.service.navigation.v1.GetObstaclesResponse.obstacles)
   return obstacles_;

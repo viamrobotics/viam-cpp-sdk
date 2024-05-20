@@ -520,8 +520,8 @@ const char descriptor_table_protodef_service_2fnavigation_2fv1_2fnavigation_2epr
   "e\"X\n\023GetObstaclesRequest\022\022\n\004name\030\001 \001(\tR\004"
   "name\022-\n\005extra\030c \001(\0132\027.google.protobuf.St"
   "ructR\005extra\"Q\n\024GetObstaclesResponse\0229\n\to"
-  "bstacles\030\001 \003(\0132\033.viam.common.v1.GeoObsta"
-  "cleR\tobstacles\"v\n\004Path\0226\n\027destination_wa"
+  "bstacles\030\001 \003(\0132\033.viam.common.v1.GeoGeome"
+  "tryR\tobstacles\"v\n\004Path\0226\n\027destination_wa"
   "ypoint_id\030\001 \001(\tR\025destinationWaypointId\0226"
   "\n\tgeopoints\030\002 \003(\0132\030.viam.common.v1.GeoPo"
   "intR\tgeopoints\"T\n\017GetPathsRequest\022\022\n\004nam"
@@ -3483,7 +3483,7 @@ const char* GetObstaclesResponse::_InternalParse(const char* ptr, ::_pbi::ParseC
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // repeated .viam.common.v1.GeoObstacle obstacles = 1 [json_name = "obstacles"];
+      // repeated .viam.common.v1.GeoGeometry obstacles = 1 [json_name = "obstacles"];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr -= 1;
@@ -3525,7 +3525,7 @@ uint8_t* GetObstaclesResponse::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .viam.common.v1.GeoObstacle obstacles = 1 [json_name = "obstacles"];
+  // repeated .viam.common.v1.GeoGeometry obstacles = 1 [json_name = "obstacles"];
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_obstacles_size()); i < n; i++) {
     const auto& repfield = this->_internal_obstacles(i);
@@ -3549,7 +3549,7 @@ size_t GetObstaclesResponse::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .viam.common.v1.GeoObstacle obstacles = 1 [json_name = "obstacles"];
+  // repeated .viam.common.v1.GeoGeometry obstacles = 1 [json_name = "obstacles"];
   total_size += 1UL * this->_internal_obstacles_size();
   for (const auto& msg : this->obstacles_) {
     total_size +=

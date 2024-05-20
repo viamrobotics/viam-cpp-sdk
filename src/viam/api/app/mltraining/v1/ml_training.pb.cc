@@ -60,7 +60,8 @@ PROTOBUF_CONSTEXPR SubmitCustomTrainingJobRequest::SubmitCustomTrainingJobReques
   , registry_item_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , organization_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , model_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , model_version_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+  , model_version_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , registry_item_version_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct SubmitCustomTrainingJobRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SubmitCustomTrainingJobRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -142,6 +143,7 @@ PROTOBUF_CONSTEXPR TrainingJobMetadata::TrainingJobMetadata(
   , model_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , model_version_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , registry_item_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , registry_item_version_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , request_(nullptr)
   , created_on_(nullptr)
   , last_modified_(nullptr)
@@ -246,6 +248,7 @@ const uint32_t TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto::offset
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, dataset_id_),
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, registry_item_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, registry_item_version_),
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, organization_id_),
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, model_name_),
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, model_version_),
@@ -301,6 +304,7 @@ const uint32_t TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto::offset
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, model_framework_),
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, is_custom_job_),
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, registry_item_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, registry_item_version_),
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, status_),
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, error_status_),
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, created_on_),
@@ -340,16 +344,16 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 0, -1, -1, sizeof(::viam::app::mltraining::v1::SubmitTrainingJobRequest)},
   { 12, -1, -1, sizeof(::viam::app::mltraining::v1::SubmitTrainingJobResponse)},
   { 19, -1, -1, sizeof(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest)},
-  { 30, -1, -1, sizeof(::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse)},
-  { 37, -1, -1, sizeof(::viam::app::mltraining::v1::GetTrainingJobRequest)},
-  { 44, -1, -1, sizeof(::viam::app::mltraining::v1::GetTrainingJobResponse)},
-  { 51, -1, -1, sizeof(::viam::app::mltraining::v1::ListTrainingJobsRequest)},
-  { 59, -1, -1, sizeof(::viam::app::mltraining::v1::ListTrainingJobsResponse)},
-  { 66, -1, -1, sizeof(::viam::app::mltraining::v1::TrainingJobMetadata)},
-  { 90, -1, -1, sizeof(::viam::app::mltraining::v1::CancelTrainingJobRequest)},
-  { 97, -1, -1, sizeof(::viam::app::mltraining::v1::CancelTrainingJobResponse)},
-  { 103, -1, -1, sizeof(::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest)},
-  { 110, -1, -1, sizeof(::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse)},
+  { 31, -1, -1, sizeof(::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse)},
+  { 38, -1, -1, sizeof(::viam::app::mltraining::v1::GetTrainingJobRequest)},
+  { 45, -1, -1, sizeof(::viam::app::mltraining::v1::GetTrainingJobResponse)},
+  { 52, -1, -1, sizeof(::viam::app::mltraining::v1::ListTrainingJobsRequest)},
+  { 60, -1, -1, sizeof(::viam::app::mltraining::v1::ListTrainingJobsResponse)},
+  { 67, -1, -1, sizeof(::viam::app::mltraining::v1::TrainingJobMetadata)},
+  { 92, -1, -1, sizeof(::viam::app::mltraining::v1::CancelTrainingJobRequest)},
+  { 99, -1, -1, sizeof(::viam::app::mltraining::v1::CancelTrainingJobResponse)},
+  { 105, -1, -1, sizeof(::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest)},
+  { 112, -1, -1, sizeof(::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -386,112 +390,118 @@ const char descriptor_table_protodef_app_2fmltraining_2fv1_2fml_5ftraining_2epro
   "on:\"model_type\" json:\"model_type\"R\tmodel"
   "Type\0220\n\004tags\030\006 \003(\tB\034\232\204\236\003\027bson:\"tags\" jso"
   "n:\"tags\"R\004tagsJ\004\010\001\020\002R\006filter\"+\n\031SubmitTr"
-  "ainingJobResponse\022\016\n\002id\030\001 \001(\tR\002id\"\304\003\n\036Su"
+  "ainingJobResponse\022\016\n\002id\030\001 \001(\tR\002id\"\270\004\n\036Su"
   "bmitCustomTrainingJobRequest\022G\n\ndataset_"
   "id\030\001 \001(\tB(\232\204\236\003#bson:\"dataset_id\" json:\"d"
   "ataset_id\"R\tdatasetId\022^\n\020registry_item_i"
   "d\030\002 \001(\tB4\232\204\236\003/bson:\"registry_item_id\" js"
-  "on:\"registry_item_id\"R\016registryItemId\022[\n"
-  "\017organization_id\030\003 \001(\tB2\232\204\236\003-bson:\"organ"
-  "ization_id\" json:\"organization_id\"R\016orga"
-  "nizationId\022G\n\nmodel_name\030\004 \001(\tB(\232\204\236\003#bso"
-  "n:\"model_name\" json:\"model_name\"R\tmodelN"
-  "ame\022S\n\rmodel_version\030\005 \001(\tB.\232\204\236\003)bson:\"m"
-  "odel_version\" json:\"model_version\"R\014mode"
-  "lVersion\"1\n\037SubmitCustomTrainingJobRespo"
-  "nse\022\016\n\002id\030\001 \001(\tR\002id\"\'\n\025GetTrainingJobReq"
-  "uest\022\016\n\002id\030\001 \001(\tR\002id\"a\n\026GetTrainingJobRe"
-  "sponse\022G\n\010metadata\030\001 \001(\0132+.viam.app.mltr"
-  "aining.v1.TrainingJobMetadataR\010metadata\""
-  "\202\001\n\027ListTrainingJobsRequest\022\'\n\017organizat"
-  "ion_id\030\001 \001(\tR\016organizationId\022>\n\006status\030\002"
-  " \001(\0162&.viam.app.mltraining.v1.TrainingSt"
-  "atusR\006status\"[\n\030ListTrainingJobsResponse"
-  "\022\?\n\004jobs\030\001 \003(\0132+.viam.app.mltraining.v1."
-  "TrainingJobMetadataR\004jobs\"\323\r\n\023TrainingJo"
-  "bMetadata\022n\n\007request\030\001 \001(\01320.viam.app.ml"
-  "training.v1.SubmitTrainingJobRequestB\"\232\204"
-  "\236\003\035bson:\"request\" json:\"request\"R\007reques"
-  "t\0223\n\002id\030\007 \001(\tB#\232\204\236\003\036bson:\"_id\" json:\"id,"
-  "omitempty\"R\002id\022G\n\ndataset_id\030\013 \001(\tB(\232\204\236\003"
-  "#bson:\"dataset_id\" json:\"dataset_id\"R\tda"
-  "tasetId\022[\n\017organization_id\030\014 \001(\tB2\232\204\236\003-b"
-  "son:\"organization_id\" json:\"organization"
-  "_id\"R\016organizationId\022G\n\nmodel_name\030\r \001(\t"
-  "B(\232\204\236\003#bson:\"model_name\" json:\"model_nam"
-  "e\"R\tmodelName\022S\n\rmodel_version\030\016 \001(\tB.\232\204"
-  "\236\003)bson:\"model_version\" json:\"model_vers"
-  "ion\"R\014modelVersion\022j\n\nmodel_type\030\017 \001(\0162!"
-  ".viam.app.mltraining.v1.ModelTypeB(\232\204\236\003#"
-  "bson:\"model_type\" json:\"model_type\"R\tmod"
-  "elType\022\203\001\n\017model_framework\030\021 \001(\0162&.viam."
-  "app.mltraining.v1.ModelFrameworkB2\232\204\236\003-b"
-  "son:\"model_framework\" json:\"model_framew"
-  "ork\"R\016modelFramework\022R\n\ris_custom_job\030\022 "
-  "\001(\010B.\232\204\236\003)bson:\"is_custom_job\" json:\"is_"
-  "custom_job\"R\013isCustomJob\022^\n\020registry_ite"
-  "m_id\030\023 \001(\tB4\232\204\236\003/bson:\"registry_item_id\""
-  " json:\"registry_item_id\"R\016registryItemId"
-  "\022`\n\006status\030\002 \001(\0162&.viam.app.mltraining.v"
-  "1.TrainingStatusB \232\204\236\003\033bson:\"status\" jso"
-  "n:\"status\"R\006status\022c\n\014error_status\030\010 \001(\013"
-  "2\022.google.rpc.StatusB,\232\204\236\003\'bson:\"error_s"
-  "tatus\" json:\"error_status\"R\013errorStatus\022"
-  "c\n\ncreated_on\030\003 \001(\0132\032.google.protobuf.Ti"
-  "mestampB(\232\204\236\003#bson:\"created_on\" json:\"cr"
-  "eated_on\"R\tcreatedOn\022o\n\rlast_modified\030\004 "
-  "\001(\0132\032.google.protobuf.TimestampB.\232\204\236\003)bs"
-  "on:\"last_modified\" json:\"last_modified\"R"
-  "\014lastModified\022{\n\020training_started\030\t \001(\0132"
-  "\032.google.protobuf.TimestampB4\232\204\236\003/bson:\""
-  "training_started\" json:\"training_started"
-  "\"R\017trainingStarted\022s\n\016training_ended\030\n \001"
-  "(\0132\032.google.protobuf.TimestampB0\232\204\236\003+bso"
-  "n:\"training_ended\" json:\"training_ended\""
-  "R\rtrainingEnded\022Z\n\017synced_model_id\030\005 \001(\t"
-  "B2\232\204\236\003-bson:\"synced_model_id\" json:\"sync"
-  "ed_model_id\"R\rsyncedModelId\0220\n\004tags\030\020 \003("
-  "\tB\034\232\204\236\003\027bson:\"tags\" json:\"tags\"R\004tagsJ\004\010"
-  "\006\020\007R\nuser_email\"*\n\030CancelTrainingJobRequ"
-  "est\022\016\n\002id\030\001 \001(\tR\002id\"\033\n\031CancelTrainingJob"
-  "Response\"3\n!DeleteCompletedTrainingJobRe"
-  "quest\022\016\n\002id\030\001 \001(\tR\002id\"$\n\"DeleteCompleted"
-  "TrainingJobResponse*\237\001\n\tModelType\022\032\n\026MOD"
-  "EL_TYPE_UNSPECIFIED\020\000\022*\n&MODEL_TYPE_SING"
-  "LE_LABEL_CLASSIFICATION\020\001\022)\n%MODEL_TYPE_"
-  "MULTI_LABEL_CLASSIFICATION\020\002\022\037\n\033MODEL_TY"
-  "PE_OBJECT_DETECTION\020\003*\244\001\n\016ModelFramework"
-  "\022\037\n\033MODEL_FRAMEWORK_UNSPECIFIED\020\000\022\032\n\026MOD"
-  "EL_FRAMEWORK_TFLITE\020\001\022\036\n\032MODEL_FRAMEWORK"
-  "_TENSORFLOW\020\002\022\033\n\027MODEL_FRAMEWORK_PYTORCH"
-  "\020\003\022\030\n\024MODEL_FRAMEWORK_ONNX\020\004*\347\001\n\016Trainin"
-  "gStatus\022\037\n\033TRAINING_STATUS_UNSPECIFIED\020\000"
-  "\022\033\n\027TRAINING_STATUS_PENDING\020\001\022\037\n\033TRAININ"
-  "G_STATUS_IN_PROGRESS\020\002\022\035\n\031TRAINING_STATU"
-  "S_COMPLETED\020\003\022\032\n\026TRAINING_STATUS_FAILED\020"
-  "\004\022\034\n\030TRAINING_STATUS_CANCELED\020\005\022\035\n\031TRAIN"
-  "ING_STATUS_CANCELING\020\0062\222\006\n\021MLTrainingSer"
-  "vice\022x\n\021SubmitTrainingJob\0220.viam.app.mlt"
-  "raining.v1.SubmitTrainingJobRequest\0321.vi"
-  "am.app.mltraining.v1.SubmitTrainingJobRe"
-  "sponse\022\212\001\n\027SubmitCustomTrainingJob\0226.via"
-  "m.app.mltraining.v1.SubmitCustomTraining"
-  "JobRequest\0327.viam.app.mltraining.v1.Subm"
-  "itCustomTrainingJobResponse\022o\n\016GetTraini"
-  "ngJob\022-.viam.app.mltraining.v1.GetTraini"
-  "ngJobRequest\032..viam.app.mltraining.v1.Ge"
-  "tTrainingJobResponse\022u\n\020ListTrainingJobs"
-  "\022/.viam.app.mltraining.v1.ListTrainingJo"
-  "bsRequest\0320.viam.app.mltraining.v1.ListT"
-  "rainingJobsResponse\022x\n\021CancelTrainingJob"
-  "\0220.viam.app.mltraining.v1.CancelTraining"
-  "JobRequest\0321.viam.app.mltraining.v1.Canc"
-  "elTrainingJobResponse\022\223\001\n\032DeleteComplete"
-  "dTrainingJob\0229.viam.app.mltraining.v1.De"
-  "leteCompletedTrainingJobRequest\032:.viam.a"
-  "pp.mltraining.v1.DeleteCompletedTraining"
-  "JobResponseB#Z!go.viam.com/api/app/mltra"
-  "ining/v1b\006proto3"
+  "on:\"registry_item_id\"R\016registryItemId\022r\n"
+  "\025registry_item_version\030\006 \001(\tB>\232\204\236\0039bson:"
+  "\"registry_item_version\" json:\"registry_i"
+  "tem_version\"R\023registryItemVersion\022[\n\017org"
+  "anization_id\030\003 \001(\tB2\232\204\236\003-bson:\"organizat"
+  "ion_id\" json:\"organization_id\"R\016organiza"
+  "tionId\022G\n\nmodel_name\030\004 \001(\tB(\232\204\236\003#bson:\"m"
+  "odel_name\" json:\"model_name\"R\tmodelName\022"
+  "S\n\rmodel_version\030\005 \001(\tB.\232\204\236\003)bson:\"model"
+  "_version\" json:\"model_version\"R\014modelVer"
+  "sion\"1\n\037SubmitCustomTrainingJobResponse\022"
+  "\016\n\002id\030\001 \001(\tR\002id\"\'\n\025GetTrainingJobRequest"
+  "\022\016\n\002id\030\001 \001(\tR\002id\"a\n\026GetTrainingJobRespon"
+  "se\022G\n\010metadata\030\001 \001(\0132+.viam.app.mltraini"
+  "ng.v1.TrainingJobMetadataR\010metadata\"\202\001\n\027"
+  "ListTrainingJobsRequest\022\'\n\017organization_"
+  "id\030\001 \001(\tR\016organizationId\022>\n\006status\030\002 \001(\016"
+  "2&.viam.app.mltraining.v1.TrainingStatus"
+  "R\006status\"[\n\030ListTrainingJobsResponse\022\?\n\004"
+  "jobs\030\001 \003(\0132+.viam.app.mltraining.v1.Trai"
+  "ningJobMetadataR\004jobs\"\307\016\n\023TrainingJobMet"
+  "adata\022n\n\007request\030\001 \001(\01320.viam.app.mltrai"
+  "ning.v1.SubmitTrainingJobRequestB\"\232\204\236\003\035b"
+  "son:\"request\" json:\"request\"R\007request\0223\n"
+  "\002id\030\007 \001(\tB#\232\204\236\003\036bson:\"_id\" json:\"id,omit"
+  "empty\"R\002id\022G\n\ndataset_id\030\013 \001(\tB(\232\204\236\003#bso"
+  "n:\"dataset_id\" json:\"dataset_id\"R\tdatase"
+  "tId\022[\n\017organization_id\030\014 \001(\tB2\232\204\236\003-bson:"
+  "\"organization_id\" json:\"organization_id\""
+  "R\016organizationId\022G\n\nmodel_name\030\r \001(\tB(\232\204"
+  "\236\003#bson:\"model_name\" json:\"model_name\"R\t"
+  "modelName\022S\n\rmodel_version\030\016 \001(\tB.\232\204\236\003)b"
+  "son:\"model_version\" json:\"model_version\""
+  "R\014modelVersion\022j\n\nmodel_type\030\017 \001(\0162!.via"
+  "m.app.mltraining.v1.ModelTypeB(\232\204\236\003#bson"
+  ":\"model_type\" json:\"model_type\"R\tmodelTy"
+  "pe\022\203\001\n\017model_framework\030\021 \001(\0162&.viam.app."
+  "mltraining.v1.ModelFrameworkB2\232\204\236\003-bson:"
+  "\"model_framework\" json:\"model_framework\""
+  "R\016modelFramework\022R\n\ris_custom_job\030\022 \001(\010B"
+  ".\232\204\236\003)bson:\"is_custom_job\" json:\"is_cust"
+  "om_job\"R\013isCustomJob\022^\n\020registry_item_id"
+  "\030\023 \001(\tB4\232\204\236\003/bson:\"registry_item_id\" jso"
+  "n:\"registry_item_id\"R\016registryItemId\022r\n\025"
+  "registry_item_version\030\024 \001(\tB>\232\204\236\0039bson:\""
+  "registry_item_version\" json:\"registry_it"
+  "em_version\"R\023registryItemVersion\022`\n\006stat"
+  "us\030\002 \001(\0162&.viam.app.mltraining.v1.Traini"
+  "ngStatusB \232\204\236\003\033bson:\"status\" json:\"statu"
+  "s\"R\006status\022c\n\014error_status\030\010 \001(\0132\022.googl"
+  "e.rpc.StatusB,\232\204\236\003\'bson:\"error_status\" j"
+  "son:\"error_status\"R\013errorStatus\022c\n\ncreat"
+  "ed_on\030\003 \001(\0132\032.google.protobuf.TimestampB"
+  "(\232\204\236\003#bson:\"created_on\" json:\"created_on"
+  "\"R\tcreatedOn\022o\n\rlast_modified\030\004 \001(\0132\032.go"
+  "ogle.protobuf.TimestampB.\232\204\236\003)bson:\"last"
+  "_modified\" json:\"last_modified\"R\014lastMod"
+  "ified\022{\n\020training_started\030\t \001(\0132\032.google"
+  ".protobuf.TimestampB4\232\204\236\003/bson:\"training"
+  "_started\" json:\"training_started\"R\017train"
+  "ingStarted\022s\n\016training_ended\030\n \001(\0132\032.goo"
+  "gle.protobuf.TimestampB0\232\204\236\003+bson:\"train"
+  "ing_ended\" json:\"training_ended\"R\rtraini"
+  "ngEnded\022Z\n\017synced_model_id\030\005 \001(\tB2\232\204\236\003-b"
+  "son:\"synced_model_id\" json:\"synced_model"
+  "_id\"R\rsyncedModelId\0220\n\004tags\030\020 \003(\tB\034\232\204\236\003\027"
+  "bson:\"tags\" json:\"tags\"R\004tagsJ\004\010\006\020\007R\nuse"
+  "r_email\"*\n\030CancelTrainingJobRequest\022\016\n\002i"
+  "d\030\001 \001(\tR\002id\"\033\n\031CancelTrainingJobResponse"
+  "\"3\n!DeleteCompletedTrainingJobRequest\022\016\n"
+  "\002id\030\001 \001(\tR\002id\"$\n\"DeleteCompletedTraining"
+  "JobResponse*\237\001\n\tModelType\022\032\n\026MODEL_TYPE_"
+  "UNSPECIFIED\020\000\022*\n&MODEL_TYPE_SINGLE_LABEL"
+  "_CLASSIFICATION\020\001\022)\n%MODEL_TYPE_MULTI_LA"
+  "BEL_CLASSIFICATION\020\002\022\037\n\033MODEL_TYPE_OBJEC"
+  "T_DETECTION\020\003*\244\001\n\016ModelFramework\022\037\n\033MODE"
+  "L_FRAMEWORK_UNSPECIFIED\020\000\022\032\n\026MODEL_FRAME"
+  "WORK_TFLITE\020\001\022\036\n\032MODEL_FRAMEWORK_TENSORF"
+  "LOW\020\002\022\033\n\027MODEL_FRAMEWORK_PYTORCH\020\003\022\030\n\024MO"
+  "DEL_FRAMEWORK_ONNX\020\004*\347\001\n\016TrainingStatus\022"
+  "\037\n\033TRAINING_STATUS_UNSPECIFIED\020\000\022\033\n\027TRAI"
+  "NING_STATUS_PENDING\020\001\022\037\n\033TRAINING_STATUS"
+  "_IN_PROGRESS\020\002\022\035\n\031TRAINING_STATUS_COMPLE"
+  "TED\020\003\022\032\n\026TRAINING_STATUS_FAILED\020\004\022\034\n\030TRA"
+  "INING_STATUS_CANCELED\020\005\022\035\n\031TRAINING_STAT"
+  "US_CANCELING\020\0062\222\006\n\021MLTrainingService\022x\n\021"
+  "SubmitTrainingJob\0220.viam.app.mltraining."
+  "v1.SubmitTrainingJobRequest\0321.viam.app.m"
+  "ltraining.v1.SubmitTrainingJobResponse\022\212"
+  "\001\n\027SubmitCustomTrainingJob\0226.viam.app.ml"
+  "training.v1.SubmitCustomTrainingJobReque"
+  "st\0327.viam.app.mltraining.v1.SubmitCustom"
+  "TrainingJobResponse\022o\n\016GetTrainingJob\022-."
+  "viam.app.mltraining.v1.GetTrainingJobReq"
+  "uest\032..viam.app.mltraining.v1.GetTrainin"
+  "gJobResponse\022u\n\020ListTrainingJobs\022/.viam."
+  "app.mltraining.v1.ListTrainingJobsReques"
+  "t\0320.viam.app.mltraining.v1.ListTrainingJ"
+  "obsResponse\022x\n\021CancelTrainingJob\0220.viam."
+  "app.mltraining.v1.CancelTrainingJobReque"
+  "st\0321.viam.app.mltraining.v1.CancelTraini"
+  "ngJobResponse\022\223\001\n\032DeleteCompletedTrainin"
+  "gJob\0229.viam.app.mltraining.v1.DeleteComp"
+  "letedTrainingJobRequest\032:.viam.app.mltra"
+  "ining.v1.DeleteCompletedTrainingJobRespo"
+  "nseB#Z!go.viam.com/api/app/mltraining/v1"
+  "b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_deps[3] = {
   &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
@@ -500,7 +510,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fmltraining_2f
 };
 static ::_pbi::once_flag descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto = {
-    false, false, 4896, descriptor_table_protodef_app_2fmltraining_2fv1_2fml_5ftraining_2eproto,
+    false, false, 5128, descriptor_table_protodef_app_2fmltraining_2fv1_2fml_5ftraining_2eproto,
     "app/mltraining/v1/ml_training.proto",
     &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once, descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_deps, 3, 13,
     schemas, file_default_instances, TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto::offsets,
@@ -1226,6 +1236,14 @@ SubmitCustomTrainingJobRequest::SubmitCustomTrainingJobRequest(const SubmitCusto
     model_version_.Set(from._internal_model_version(), 
       GetArenaForAllocation());
   }
+  registry_item_version_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    registry_item_version_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_registry_item_version().empty()) {
+    registry_item_version_.Set(from._internal_registry_item_version(), 
+      GetArenaForAllocation());
+  }
   // @@protoc_insertion_point(copy_constructor:viam.app.mltraining.v1.SubmitCustomTrainingJobRequest)
 }
 
@@ -1250,6 +1268,10 @@ model_version_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   model_version_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+registry_item_version_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  registry_item_version_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 SubmitCustomTrainingJobRequest::~SubmitCustomTrainingJobRequest() {
@@ -1268,6 +1290,7 @@ inline void SubmitCustomTrainingJobRequest::SharedDtor() {
   organization_id_.Destroy();
   model_name_.Destroy();
   model_version_.Destroy();
+  registry_item_version_.Destroy();
 }
 
 void SubmitCustomTrainingJobRequest::SetCachedSize(int size) const {
@@ -1285,6 +1308,7 @@ void SubmitCustomTrainingJobRequest::Clear() {
   organization_id_.ClearToEmpty();
   model_name_.ClearToEmpty();
   model_version_.ClearToEmpty();
+  registry_item_version_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1341,6 +1365,16 @@ const char* SubmitCustomTrainingJobRequest::_InternalParse(const char* ptr, ::_p
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.model_version"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string registry_item_version = 6 [json_name = "registryItemVersion", (.tagger.v1.tags) = "bson:\"registry_item_version\" json:\"registry_item_version\""];
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          auto str = _internal_mutable_registry_item_version();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.registry_item_version"));
         } else
           goto handle_unusual;
         continue;
@@ -1423,6 +1457,16 @@ uint8_t* SubmitCustomTrainingJobRequest::_InternalSerialize(
         5, this->_internal_model_version(), target);
   }
 
+  // string registry_item_version = 6 [json_name = "registryItemVersion", (.tagger.v1.tags) = "bson:\"registry_item_version\" json:\"registry_item_version\""];
+  if (!this->_internal_registry_item_version().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_registry_item_version().data(), static_cast<int>(this->_internal_registry_item_version().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.registry_item_version");
+    target = stream->WriteStringMaybeAliased(
+        6, this->_internal_registry_item_version(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1474,6 +1518,13 @@ size_t SubmitCustomTrainingJobRequest::ByteSizeLong() const {
         this->_internal_model_version());
   }
 
+  // string registry_item_version = 6 [json_name = "registryItemVersion", (.tagger.v1.tags) = "bson:\"registry_item_version\" json:\"registry_item_version\""];
+  if (!this->_internal_registry_item_version().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_registry_item_version());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -1510,6 +1561,9 @@ void SubmitCustomTrainingJobRequest::MergeFrom(const SubmitCustomTrainingJobRequ
   }
   if (!from._internal_model_version().empty()) {
     _internal_set_model_version(from._internal_model_version());
+  }
+  if (!from._internal_registry_item_version().empty()) {
+    _internal_set_registry_item_version(from._internal_registry_item_version());
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -1549,6 +1603,10 @@ void SubmitCustomTrainingJobRequest::InternalSwap(SubmitCustomTrainingJobRequest
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &model_version_, lhs_arena,
       &other->model_version_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &registry_item_version_, lhs_arena,
+      &other->registry_item_version_, rhs_arena
   );
 }
 
@@ -2670,6 +2728,14 @@ TrainingJobMetadata::TrainingJobMetadata(const TrainingJobMetadata& from)
     registry_item_id_.Set(from._internal_registry_item_id(), 
       GetArenaForAllocation());
   }
+  registry_item_version_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    registry_item_version_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_registry_item_version().empty()) {
+    registry_item_version_.Set(from._internal_registry_item_version(), 
+      GetArenaForAllocation());
+  }
   if (from._internal_has_request()) {
     request_ = new ::viam::app::mltraining::v1::SubmitTrainingJobRequest(*from.request_);
   } else {
@@ -2735,6 +2801,10 @@ registry_item_id_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   registry_item_id_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+registry_item_version_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  registry_item_version_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&request_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&is_custom_job_) -
@@ -2759,6 +2829,7 @@ inline void TrainingJobMetadata::SharedDtor() {
   model_name_.Destroy();
   model_version_.Destroy();
   registry_item_id_.Destroy();
+  registry_item_version_.Destroy();
   if (this != internal_default_instance()) delete request_;
   if (this != internal_default_instance()) delete created_on_;
   if (this != internal_default_instance()) delete last_modified_;
@@ -2785,6 +2856,7 @@ void TrainingJobMetadata::Clear() {
   model_name_.ClearToEmpty();
   model_version_.ClearToEmpty();
   registry_item_id_.ClearToEmpty();
+  registry_item_version_.ClearToEmpty();
   if (GetArenaForAllocation() == nullptr && request_ != nullptr) {
     delete request_;
   }
@@ -2989,6 +3061,16 @@ const char* TrainingJobMetadata::_InternalParse(const char* ptr, ::_pbi::ParseCo
         } else
           goto handle_unusual;
         continue;
+      // string registry_item_version = 20 [json_name = "registryItemVersion", (.tagger.v1.tags) = "bson:\"registry_item_version\" json:\"registry_item_version\""];
+      case 20:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 162)) {
+          auto str = _internal_mutable_registry_item_version();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.mltraining.v1.TrainingJobMetadata.registry_item_version"));
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -3167,6 +3249,16 @@ uint8_t* TrainingJobMetadata::_InternalSerialize(
         19, this->_internal_registry_item_id(), target);
   }
 
+  // string registry_item_version = 20 [json_name = "registryItemVersion", (.tagger.v1.tags) = "bson:\"registry_item_version\" json:\"registry_item_version\""];
+  if (!this->_internal_registry_item_version().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_registry_item_version().data(), static_cast<int>(this->_internal_registry_item_version().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.mltraining.v1.TrainingJobMetadata.registry_item_version");
+    target = stream->WriteStringMaybeAliased(
+        20, this->_internal_registry_item_version(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -3238,6 +3330,13 @@ size_t TrainingJobMetadata::ByteSizeLong() const {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_registry_item_id());
+  }
+
+  // string registry_item_version = 20 [json_name = "registryItemVersion", (.tagger.v1.tags) = "bson:\"registry_item_version\" json:\"registry_item_version\""];
+  if (!this->_internal_registry_item_version().empty()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_registry_item_version());
   }
 
   // .viam.app.mltraining.v1.SubmitTrainingJobRequest request = 1 [json_name = "request", (.tagger.v1.tags) = "bson:\"request\" json:\"request\""];
@@ -3349,6 +3448,9 @@ void TrainingJobMetadata::MergeFrom(const TrainingJobMetadata& from) {
   if (!from._internal_registry_item_id().empty()) {
     _internal_set_registry_item_id(from._internal_registry_item_id());
   }
+  if (!from._internal_registry_item_version().empty()) {
+    _internal_set_registry_item_version(from._internal_registry_item_version());
+  }
   if (from._internal_has_request()) {
     _internal_mutable_request()->::viam::app::mltraining::v1::SubmitTrainingJobRequest::MergeFrom(from._internal_request());
   }
@@ -3426,6 +3528,10 @@ void TrainingJobMetadata::InternalSwap(TrainingJobMetadata* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &registry_item_id_, lhs_arena,
       &other->registry_item_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &registry_item_version_, lhs_arena,
+      &other->registry_item_version_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, is_custom_job_)

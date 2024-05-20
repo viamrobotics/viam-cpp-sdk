@@ -79,10 +79,11 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
         const auto destination = geo_point::from_proto(request->destination());
         const auto component_name = Name::from_proto(request->component_name());
         const auto movement_sensor_name = Name::from_proto(request->movement_sensor_name());
-        std::vector<geo_obstacle> obstacles;
+        std::vector<geo_geometry> obstacles;
+        std::vector<geo_geometry> bounding_regions;
 
         for (const auto& obstacle : request->obstacles()) {
-            obstacles.push_back(geo_obstacle::from_proto(obstacle));
+            obstacles.push_back(geo_geometry::from_proto(obstacle));
         }
 
         boost::optional<double> heading;
@@ -96,12 +97,17 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
                 motion_configuration::from_proto(request->motion_configuration()));
         }
 
+        for (const auto& bounding_region : request->bounding_regions()) {
+            bounding_regions.push_back(geo_geometry::from_proto(bounding_region));
+        }
+
         const std::string execution_id = motion->move_on_globe(destination,
                                                                heading,
                                                                component_name,
                                                                movement_sensor_name,
                                                                obstacles,
                                                                mc,
+                                                               bounding_regions,
                                                                helper.getExtra());
 
         *response->mutable_execution_id() = execution_id;

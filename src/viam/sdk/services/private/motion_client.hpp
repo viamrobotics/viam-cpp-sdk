@@ -37,8 +37,9 @@ class MotionClient : public Motion {
                               const boost::optional<double>& heading,
                               const Name& component_name,
                               const Name& movement_sensor_name,
-                              const std::vector<geo_obstacle>& obstacles,
+                              const std::vector<geo_geometry>& obstacles,
                               const std::shared_ptr<motion_configuration>& motion_configuration,
+                              const std::vector<geo_geometry>& bounding_regions,
                               const AttributeMap& extra) override;
 
     pose_in_frame get_pose(const Name& component_name,

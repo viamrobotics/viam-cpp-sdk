@@ -17,8 +17,9 @@ sdk::Name fake_component_name();
 sdk::Name fake_slam_name();
 sdk::Name fake_movement_sensor_name();
 sdk::geo_point fake_geo_point();
-std::vector<sdk::geo_obstacle> fake_obstacles();
+std::vector<sdk::geo_geometry> fake_obstacles();
 std::shared_ptr<sdk::motion_configuration> fake_motion_configuration();
+std::vector<sdk::geo_geometry> fake_bounding_regions();
 
 class MockMotion : public sdk::Motion {
    public:
@@ -40,8 +41,9 @@ class MockMotion : public sdk::Motion {
         const boost::optional<double>& heading,
         const sdk::Name& component_name,
         const sdk::Name& movement_sensor_name,
-        const std::vector<sdk::geo_obstacle>& obstacles,
+        const std::vector<sdk::geo_geometry>& obstacles,
         const std::shared_ptr<sdk::motion_configuration>& motion_configuration,
+        const std::vector<sdk::geo_geometry>& bounding_regions,
         const sdk::AttributeMap& extra) override;
 
     sdk::pose_in_frame get_pose(
@@ -89,10 +91,11 @@ class MockMotion : public sdk::Motion {
     std::string peek_destination_frame;
     double peek_heading;
     bool peek_stop_plan_called = false;
-    std::vector<sdk::geo_obstacle> peek_obstacles;
+    std::vector<sdk::geo_geometry> peek_obstacles;
     std::vector<sdk::GeometryConfig> peek_map_obstacles;
     std::shared_ptr<constraints> peek_constraints;
     std::shared_ptr<sdk::motion_configuration> peek_motion_configuration;
+    std::vector<sdk::geo_geometry> peek_bounding_regions;
     std::shared_ptr<sdk::WorldState> peek_world_state;
 
     MockMotion(std::string name)

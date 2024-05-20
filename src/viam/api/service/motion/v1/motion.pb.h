@@ -1539,6 +1539,7 @@ class MoveOnGlobeRequest final :
 
   enum : int {
     kObstaclesFieldNumber = 6,
+    kBoundingRegionsFieldNumber = 8,
     kNameFieldNumber = 1,
     kDestinationFieldNumber = 2,
     kComponentNameFieldNumber = 4,
@@ -1547,23 +1548,41 @@ class MoveOnGlobeRequest final :
     kExtraFieldNumber = 99,
     kHeadingFieldNumber = 3,
   };
-  // repeated .viam.common.v1.GeoObstacle obstacles = 6 [json_name = "obstacles"];
+  // repeated .viam.common.v1.GeoGeometry obstacles = 6 [json_name = "obstacles"];
   int obstacles_size() const;
   private:
   int _internal_obstacles_size() const;
   public:
   void clear_obstacles();
-  ::viam::common::v1::GeoObstacle* mutable_obstacles(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoObstacle >*
+  ::viam::common::v1::GeoGeometry* mutable_obstacles(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoGeometry >*
       mutable_obstacles();
   private:
-  const ::viam::common::v1::GeoObstacle& _internal_obstacles(int index) const;
-  ::viam::common::v1::GeoObstacle* _internal_add_obstacles();
+  const ::viam::common::v1::GeoGeometry& _internal_obstacles(int index) const;
+  ::viam::common::v1::GeoGeometry* _internal_add_obstacles();
   public:
-  const ::viam::common::v1::GeoObstacle& obstacles(int index) const;
-  ::viam::common::v1::GeoObstacle* add_obstacles();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoObstacle >&
+  const ::viam::common::v1::GeoGeometry& obstacles(int index) const;
+  ::viam::common::v1::GeoGeometry* add_obstacles();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoGeometry >&
       obstacles() const;
+
+  // repeated .viam.common.v1.GeoGeometry bounding_regions = 8 [json_name = "boundingRegions"];
+  int bounding_regions_size() const;
+  private:
+  int _internal_bounding_regions_size() const;
+  public:
+  void clear_bounding_regions();
+  ::viam::common::v1::GeoGeometry* mutable_bounding_regions(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoGeometry >*
+      mutable_bounding_regions();
+  private:
+  const ::viam::common::v1::GeoGeometry& _internal_bounding_regions(int index) const;
+  ::viam::common::v1::GeoGeometry* _internal_add_bounding_regions();
+  public:
+  const ::viam::common::v1::GeoGeometry& bounding_regions(int index) const;
+  ::viam::common::v1::GeoGeometry* add_bounding_regions();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoGeometry >&
+      bounding_regions() const;
 
   // string name = 1 [json_name = "name"];
   void clear_name();
@@ -1691,7 +1710,8 @@ class MoveOnGlobeRequest final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoObstacle > obstacles_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoGeometry > obstacles_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoGeometry > bounding_regions_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::viam::common::v1::GeoPoint* destination_;
   ::viam::common::v1::ResourceName* component_name_;
@@ -6980,38 +7000,38 @@ inline void MoveOnGlobeRequest::set_allocated_movement_sensor_name(::viam::commo
   // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnGlobeRequest.movement_sensor_name)
 }
 
-// repeated .viam.common.v1.GeoObstacle obstacles = 6 [json_name = "obstacles"];
+// repeated .viam.common.v1.GeoGeometry obstacles = 6 [json_name = "obstacles"];
 inline int MoveOnGlobeRequest::_internal_obstacles_size() const {
   return obstacles_.size();
 }
 inline int MoveOnGlobeRequest::obstacles_size() const {
   return _internal_obstacles_size();
 }
-inline ::viam::common::v1::GeoObstacle* MoveOnGlobeRequest::mutable_obstacles(int index) {
+inline ::viam::common::v1::GeoGeometry* MoveOnGlobeRequest::mutable_obstacles(int index) {
   // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnGlobeRequest.obstacles)
   return obstacles_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoObstacle >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoGeometry >*
 MoveOnGlobeRequest::mutable_obstacles() {
   // @@protoc_insertion_point(field_mutable_list:viam.service.motion.v1.MoveOnGlobeRequest.obstacles)
   return &obstacles_;
 }
-inline const ::viam::common::v1::GeoObstacle& MoveOnGlobeRequest::_internal_obstacles(int index) const {
+inline const ::viam::common::v1::GeoGeometry& MoveOnGlobeRequest::_internal_obstacles(int index) const {
   return obstacles_.Get(index);
 }
-inline const ::viam::common::v1::GeoObstacle& MoveOnGlobeRequest::obstacles(int index) const {
+inline const ::viam::common::v1::GeoGeometry& MoveOnGlobeRequest::obstacles(int index) const {
   // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeRequest.obstacles)
   return _internal_obstacles(index);
 }
-inline ::viam::common::v1::GeoObstacle* MoveOnGlobeRequest::_internal_add_obstacles() {
+inline ::viam::common::v1::GeoGeometry* MoveOnGlobeRequest::_internal_add_obstacles() {
   return obstacles_.Add();
 }
-inline ::viam::common::v1::GeoObstacle* MoveOnGlobeRequest::add_obstacles() {
-  ::viam::common::v1::GeoObstacle* _add = _internal_add_obstacles();
+inline ::viam::common::v1::GeoGeometry* MoveOnGlobeRequest::add_obstacles() {
+  ::viam::common::v1::GeoGeometry* _add = _internal_add_obstacles();
   // @@protoc_insertion_point(field_add:viam.service.motion.v1.MoveOnGlobeRequest.obstacles)
   return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoObstacle >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoGeometry >&
 MoveOnGlobeRequest::obstacles() const {
   // @@protoc_insertion_point(field_list:viam.service.motion.v1.MoveOnGlobeRequest.obstacles)
   return obstacles_;
@@ -7105,6 +7125,43 @@ inline void MoveOnGlobeRequest::set_allocated_motion_configuration(::viam::servi
   }
   motion_configuration_ = motion_configuration;
   // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnGlobeRequest.motion_configuration)
+}
+
+// repeated .viam.common.v1.GeoGeometry bounding_regions = 8 [json_name = "boundingRegions"];
+inline int MoveOnGlobeRequest::_internal_bounding_regions_size() const {
+  return bounding_regions_.size();
+}
+inline int MoveOnGlobeRequest::bounding_regions_size() const {
+  return _internal_bounding_regions_size();
+}
+inline ::viam::common::v1::GeoGeometry* MoveOnGlobeRequest::mutable_bounding_regions(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnGlobeRequest.bounding_regions)
+  return bounding_regions_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoGeometry >*
+MoveOnGlobeRequest::mutable_bounding_regions() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.motion.v1.MoveOnGlobeRequest.bounding_regions)
+  return &bounding_regions_;
+}
+inline const ::viam::common::v1::GeoGeometry& MoveOnGlobeRequest::_internal_bounding_regions(int index) const {
+  return bounding_regions_.Get(index);
+}
+inline const ::viam::common::v1::GeoGeometry& MoveOnGlobeRequest::bounding_regions(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeRequest.bounding_regions)
+  return _internal_bounding_regions(index);
+}
+inline ::viam::common::v1::GeoGeometry* MoveOnGlobeRequest::_internal_add_bounding_regions() {
+  return bounding_regions_.Add();
+}
+inline ::viam::common::v1::GeoGeometry* MoveOnGlobeRequest::add_bounding_regions() {
+  ::viam::common::v1::GeoGeometry* _add = _internal_add_bounding_regions();
+  // @@protoc_insertion_point(field_add:viam.service.motion.v1.MoveOnGlobeRequest.bounding_regions)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoGeometry >&
+MoveOnGlobeRequest::bounding_regions() const {
+  // @@protoc_insertion_point(field_list:viam.service.motion.v1.MoveOnGlobeRequest.bounding_regions)
+  return bounding_regions_;
 }
 
 // .google.protobuf.Struct extra = 99 [json_name = "extra"];

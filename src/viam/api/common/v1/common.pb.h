@@ -66,9 +66,9 @@ extern DoCommandRequestDefaultTypeInternal _DoCommandRequest_default_instance_;
 class DoCommandResponse;
 struct DoCommandResponseDefaultTypeInternal;
 extern DoCommandResponseDefaultTypeInternal _DoCommandResponse_default_instance_;
-class GeoObstacle;
-struct GeoObstacleDefaultTypeInternal;
-extern GeoObstacleDefaultTypeInternal _GeoObstacle_default_instance_;
+class GeoGeometry;
+struct GeoGeometryDefaultTypeInternal;
+extern GeoGeometryDefaultTypeInternal _GeoGeometry_default_instance_;
 class GeoPoint;
 struct GeoPointDefaultTypeInternal;
 extern GeoPointDefaultTypeInternal _GeoPoint_default_instance_;
@@ -143,7 +143,7 @@ template<> ::viam::common::v1::ActuatorStatus* Arena::CreateMaybeMessage<::viam:
 template<> ::viam::common::v1::Capsule* Arena::CreateMaybeMessage<::viam::common::v1::Capsule>(Arena*);
 template<> ::viam::common::v1::DoCommandRequest* Arena::CreateMaybeMessage<::viam::common::v1::DoCommandRequest>(Arena*);
 template<> ::viam::common::v1::DoCommandResponse* Arena::CreateMaybeMessage<::viam::common::v1::DoCommandResponse>(Arena*);
-template<> ::viam::common::v1::GeoObstacle* Arena::CreateMaybeMessage<::viam::common::v1::GeoObstacle>(Arena*);
+template<> ::viam::common::v1::GeoGeometry* Arena::CreateMaybeMessage<::viam::common::v1::GeoGeometry>(Arena*);
 template<> ::viam::common::v1::GeoPoint* Arena::CreateMaybeMessage<::viam::common::v1::GeoPoint>(Arena*);
 template<> ::viam::common::v1::GeometriesInFrame* Arena::CreateMaybeMessage<::viam::common::v1::GeometriesInFrame>(Arena*);
 template<> ::viam::common::v1::Geometry* Arena::CreateMaybeMessage<::viam::common::v1::Geometry>(Arena*);
@@ -2301,24 +2301,24 @@ class GeoPoint final :
 };
 // -------------------------------------------------------------------
 
-class GeoObstacle final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.GeoObstacle) */ {
+class GeoGeometry final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.GeoGeometry) */ {
  public:
-  inline GeoObstacle() : GeoObstacle(nullptr) {}
-  ~GeoObstacle() override;
-  explicit PROTOBUF_CONSTEXPR GeoObstacle(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline GeoGeometry() : GeoGeometry(nullptr) {}
+  ~GeoGeometry() override;
+  explicit PROTOBUF_CONSTEXPR GeoGeometry(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  GeoObstacle(const GeoObstacle& from);
-  GeoObstacle(GeoObstacle&& from) noexcept
-    : GeoObstacle() {
+  GeoGeometry(const GeoGeometry& from);
+  GeoGeometry(GeoGeometry&& from) noexcept
+    : GeoGeometry() {
     *this = ::std::move(from);
   }
 
-  inline GeoObstacle& operator=(const GeoObstacle& from) {
+  inline GeoGeometry& operator=(const GeoGeometry& from) {
     CopyFrom(from);
     return *this;
   }
-  inline GeoObstacle& operator=(GeoObstacle&& from) noexcept {
+  inline GeoGeometry& operator=(GeoGeometry&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -2341,20 +2341,20 @@ class GeoObstacle final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const GeoObstacle& default_instance() {
+  static const GeoGeometry& default_instance() {
     return *internal_default_instance();
   }
-  static inline const GeoObstacle* internal_default_instance() {
-    return reinterpret_cast<const GeoObstacle*>(
-               &_GeoObstacle_default_instance_);
+  static inline const GeoGeometry* internal_default_instance() {
+    return reinterpret_cast<const GeoGeometry*>(
+               &_GeoGeometry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     12;
 
-  friend void swap(GeoObstacle& a, GeoObstacle& b) {
+  friend void swap(GeoGeometry& a, GeoGeometry& b) {
     a.Swap(&b);
   }
-  inline void Swap(GeoObstacle* other) {
+  inline void Swap(GeoGeometry* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -2367,7 +2367,7 @@ class GeoObstacle final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(GeoObstacle* other) {
+  void UnsafeArenaSwap(GeoGeometry* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -2375,13 +2375,13 @@ class GeoObstacle final :
 
   // implements Message ----------------------------------------------
 
-  GeoObstacle* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<GeoObstacle>(arena);
+  GeoGeometry* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GeoGeometry>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const GeoObstacle& from);
+  void CopyFrom(const GeoGeometry& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const GeoObstacle& from);
+  void MergeFrom(const GeoGeometry& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
   public:
@@ -2398,15 +2398,15 @@ class GeoObstacle final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(GeoObstacle* other);
+  void InternalSwap(GeoGeometry* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.common.v1.GeoObstacle";
+    return "viam.common.v1.GeoGeometry";
   }
   protected:
-  explicit GeoObstacle(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit GeoGeometry(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -2459,7 +2459,7 @@ class GeoObstacle final :
       ::viam::common::v1::GeoPoint* location);
   ::viam::common::v1::GeoPoint* unsafe_arena_release_location();
 
-  // @@protoc_insertion_point(class_scope:viam.common.v1.GeoObstacle)
+  // @@protoc_insertion_point(class_scope:viam.common.v1.GeoGeometry)
  private:
   class _Internal;
 
@@ -6191,31 +6191,31 @@ inline void GeoPoint::set_longitude(double value) {
 
 // -------------------------------------------------------------------
 
-// GeoObstacle
+// GeoGeometry
 
 // .viam.common.v1.GeoPoint location = 1 [json_name = "location"];
-inline bool GeoObstacle::_internal_has_location() const {
+inline bool GeoGeometry::_internal_has_location() const {
   return this != internal_default_instance() && location_ != nullptr;
 }
-inline bool GeoObstacle::has_location() const {
+inline bool GeoGeometry::has_location() const {
   return _internal_has_location();
 }
-inline void GeoObstacle::clear_location() {
+inline void GeoGeometry::clear_location() {
   if (GetArenaForAllocation() == nullptr && location_ != nullptr) {
     delete location_;
   }
   location_ = nullptr;
 }
-inline const ::viam::common::v1::GeoPoint& GeoObstacle::_internal_location() const {
+inline const ::viam::common::v1::GeoPoint& GeoGeometry::_internal_location() const {
   const ::viam::common::v1::GeoPoint* p = location_;
   return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::GeoPoint&>(
       ::viam::common::v1::_GeoPoint_default_instance_);
 }
-inline const ::viam::common::v1::GeoPoint& GeoObstacle::location() const {
-  // @@protoc_insertion_point(field_get:viam.common.v1.GeoObstacle.location)
+inline const ::viam::common::v1::GeoPoint& GeoGeometry::location() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GeoGeometry.location)
   return _internal_location();
 }
-inline void GeoObstacle::unsafe_arena_set_allocated_location(
+inline void GeoGeometry::unsafe_arena_set_allocated_location(
     ::viam::common::v1::GeoPoint* location) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(location_);
@@ -6226,9 +6226,9 @@ inline void GeoObstacle::unsafe_arena_set_allocated_location(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.GeoObstacle.location)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.GeoGeometry.location)
 }
-inline ::viam::common::v1::GeoPoint* GeoObstacle::release_location() {
+inline ::viam::common::v1::GeoPoint* GeoGeometry::release_location() {
   
   ::viam::common::v1::GeoPoint* temp = location_;
   location_ = nullptr;
@@ -6243,14 +6243,14 @@ inline ::viam::common::v1::GeoPoint* GeoObstacle::release_location() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::viam::common::v1::GeoPoint* GeoObstacle::unsafe_arena_release_location() {
-  // @@protoc_insertion_point(field_release:viam.common.v1.GeoObstacle.location)
+inline ::viam::common::v1::GeoPoint* GeoGeometry::unsafe_arena_release_location() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.GeoGeometry.location)
   
   ::viam::common::v1::GeoPoint* temp = location_;
   location_ = nullptr;
   return temp;
 }
-inline ::viam::common::v1::GeoPoint* GeoObstacle::_internal_mutable_location() {
+inline ::viam::common::v1::GeoPoint* GeoGeometry::_internal_mutable_location() {
   
   if (location_ == nullptr) {
     auto* p = CreateMaybeMessage<::viam::common::v1::GeoPoint>(GetArenaForAllocation());
@@ -6258,12 +6258,12 @@ inline ::viam::common::v1::GeoPoint* GeoObstacle::_internal_mutable_location() {
   }
   return location_;
 }
-inline ::viam::common::v1::GeoPoint* GeoObstacle::mutable_location() {
+inline ::viam::common::v1::GeoPoint* GeoGeometry::mutable_location() {
   ::viam::common::v1::GeoPoint* _msg = _internal_mutable_location();
-  // @@protoc_insertion_point(field_mutable:viam.common.v1.GeoObstacle.location)
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.GeoGeometry.location)
   return _msg;
 }
-inline void GeoObstacle::set_allocated_location(::viam::common::v1::GeoPoint* location) {
+inline void GeoGeometry::set_allocated_location(::viam::common::v1::GeoPoint* location) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete location_;
@@ -6280,46 +6280,46 @@ inline void GeoObstacle::set_allocated_location(::viam::common::v1::GeoPoint* lo
     
   }
   location_ = location;
-  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.GeoObstacle.location)
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.GeoGeometry.location)
 }
 
 // repeated .viam.common.v1.Geometry geometries = 2 [json_name = "geometries"];
-inline int GeoObstacle::_internal_geometries_size() const {
+inline int GeoGeometry::_internal_geometries_size() const {
   return geometries_.size();
 }
-inline int GeoObstacle::geometries_size() const {
+inline int GeoGeometry::geometries_size() const {
   return _internal_geometries_size();
 }
-inline void GeoObstacle::clear_geometries() {
+inline void GeoGeometry::clear_geometries() {
   geometries_.Clear();
 }
-inline ::viam::common::v1::Geometry* GeoObstacle::mutable_geometries(int index) {
-  // @@protoc_insertion_point(field_mutable:viam.common.v1.GeoObstacle.geometries)
+inline ::viam::common::v1::Geometry* GeoGeometry::mutable_geometries(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.GeoGeometry.geometries)
   return geometries_.Mutable(index);
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry >*
-GeoObstacle::mutable_geometries() {
-  // @@protoc_insertion_point(field_mutable_list:viam.common.v1.GeoObstacle.geometries)
+GeoGeometry::mutable_geometries() {
+  // @@protoc_insertion_point(field_mutable_list:viam.common.v1.GeoGeometry.geometries)
   return &geometries_;
 }
-inline const ::viam::common::v1::Geometry& GeoObstacle::_internal_geometries(int index) const {
+inline const ::viam::common::v1::Geometry& GeoGeometry::_internal_geometries(int index) const {
   return geometries_.Get(index);
 }
-inline const ::viam::common::v1::Geometry& GeoObstacle::geometries(int index) const {
-  // @@protoc_insertion_point(field_get:viam.common.v1.GeoObstacle.geometries)
+inline const ::viam::common::v1::Geometry& GeoGeometry::geometries(int index) const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GeoGeometry.geometries)
   return _internal_geometries(index);
 }
-inline ::viam::common::v1::Geometry* GeoObstacle::_internal_add_geometries() {
+inline ::viam::common::v1::Geometry* GeoGeometry::_internal_add_geometries() {
   return geometries_.Add();
 }
-inline ::viam::common::v1::Geometry* GeoObstacle::add_geometries() {
+inline ::viam::common::v1::Geometry* GeoGeometry::add_geometries() {
   ::viam::common::v1::Geometry* _add = _internal_add_geometries();
-  // @@protoc_insertion_point(field_add:viam.common.v1.GeoObstacle.geometries)
+  // @@protoc_insertion_point(field_add:viam.common.v1.GeoGeometry.geometries)
   return _add;
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry >&
-GeoObstacle::geometries() const {
-  // @@protoc_insertion_point(field_list:viam.common.v1.GeoObstacle.geometries)
+GeoGeometry::geometries() const {
+  // @@protoc_insertion_point(field_list:viam.common.v1.GeoGeometry.geometries)
   return geometries_;
 }
 
