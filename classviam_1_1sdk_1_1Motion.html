@@ -161,12 +161,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5bacbbb9e830afdaf7bd06d0776df710" id="r_a5bacbbb9e830afdaf7bd06d0776df710"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5bacbbb9e830afdaf7bd06d0776df710">move_on_map</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">destination</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">slam_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a> &gt; &amp;<a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">obstacles</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:a5bacbbb9e830afdaf7bd06d0776df710"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves any component on the robot to a specific destination on a SLAM map.  <br /></td></tr>
 <tr class="separator:a5bacbbb9e830afdaf7bd06d0776df710"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa24bc7e1c187beb889544a78ab61282" id="r_aaa24bc7e1c187beb889544a78ab61282"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa24bc7e1c187beb889544a78ab61282">move_on_globe</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">destination</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">heading</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">movement_sensor_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1geo__obstacle.html">geo_obstacle</a> &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">obstacles</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a> &gt; &amp;<a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a>)</td></tr>
-<tr class="memdesc:aaa24bc7e1c187beb889544a78ab61282"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves any component on the robot to a specific destination on a globe.  <br /></td></tr>
-<tr class="separator:aaa24bc7e1c187beb889544a78ab61282"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa669641fc890b3b68e97d357261a6f95" id="r_aa669641fc890b3b68e97d357261a6f95"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa669641fc890b3b68e97d357261a6f95">move_on_globe</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">destination</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">heading</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">movement_sensor_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1geo__obstacle.html">geo_obstacle</a> &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">obstacles</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a> &gt; &amp;<a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
-<tr class="memdesc:aa669641fc890b3b68e97d357261a6f95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves any component on the robot to a specific destination on a globe.  <br /></td></tr>
-<tr class="separator:aa669641fc890b3b68e97d357261a6f95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46e2cd9d34356b29e6a637b20865c433" id="r_a46e2cd9d34356b29e6a637b20865c433"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46e2cd9d34356b29e6a637b20865c433">move_on_globe</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">destination</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">heading</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">movement_sensor_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1geo__geometry.html">geo_geometry</a> &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">obstacles</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a> &gt; &amp;<a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1geo__geometry.html">geo_geometry</a> &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bounding_regions</a>)</td></tr>
+<tr class="memdesc:a46e2cd9d34356b29e6a637b20865c433"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves any component on the robot to a specific destination on a globe.  <br /></td></tr>
+<tr class="separator:a46e2cd9d34356b29e6a637b20865c433"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58a520e1e8b183be6b5dfb73d4210dd7" id="r_a58a520e1e8b183be6b5dfb73d4210dd7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58a520e1e8b183be6b5dfb73d4210dd7">move_on_globe</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">destination</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">heading</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">movement_sensor_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1geo__geometry.html">geo_geometry</a> &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">obstacles</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a> &gt; &amp;<a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1geo__geometry.html">geo_geometry</a> &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bounding_regions</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memdesc:a58a520e1e8b183be6b5dfb73d4210dd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves any component on the robot to a specific destination on a globe.  <br /></td></tr>
+<tr class="separator:a58a520e1e8b183be6b5dfb73d4210dd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0eb1325754e7e93e066111a87a8b659e" id="r_a0eb1325754e7e93e066111a87a8b659e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0eb1325754e7e93e066111a87a8b659e">get_pose</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">destination_frame</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">WorldState::transform</a> &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">supplemental_transforms</a>)</td></tr>
 <tr class="memdesc:a0eb1325754e7e93e066111a87a8b659e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the pose of any component on the robot.  <br /></td></tr>
 <tr class="separator:a0eb1325754e7e93e066111a87a8b659e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -977,8 +977,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aaa24bc7e1c187beb889544a78ab61282" name="aaa24bc7e1c187beb889544a78ab61282"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaa24bc7e1c187beb889544a78ab61282">&#9670;&#160;</a></span>move_on_globe() <span class="overload">[1/2]</span></h2>
+<a id="a46e2cd9d34356b29e6a637b20865c433" name="a46e2cd9d34356b29e6a637b20865c433"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46e2cd9d34356b29e6a637b20865c433">&#9670;&#160;</a></span>move_on_globe() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1009,12 +1009,17 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1geo__obstacle.html">geo_obstacle</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>obstacles</em>, </span></td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1geo__geometry.html">geo_geometry</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>obstacles</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>motion_configuration</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>motion_configuration</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1geo__geometry.html">geo_geometry</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>bounding_regions</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -1033,6 +1038,7 @@ Protected Member Functions</h2></td></tr>
     <tr><td class="paramname">movement_sensor_name</td><td>The name of the movement sensor used to check robot location. </td></tr>
     <tr><td class="paramname">obstacles</td><td>Obstacles to be considered for motion planning. </td></tr>
     <tr><td class="paramname"><a class="el" href="structviam_1_1sdk_1_1motion__configuration.html" title="Defines configuration options for certain Motion APIs.">motion_configuration</a></td><td>Optional set of motion configuration options. </td></tr>
+    <tr><td class="paramname">bounding_regions</td><td>Set of obstacles which the robot must remain within while navigating. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1040,8 +1046,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aa669641fc890b3b68e97d357261a6f95" name="aa669641fc890b3b68e97d357261a6f95"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa669641fc890b3b68e97d357261a6f95">&#9670;&#160;</a></span>move_on_globe() <span class="overload">[2/2]</span></h2>
+<a id="a58a520e1e8b183be6b5dfb73d4210dd7" name="a58a520e1e8b183be6b5dfb73d4210dd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58a520e1e8b183be6b5dfb73d4210dd7">&#9670;&#160;</a></span>move_on_globe() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1072,12 +1078,17 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1geo__obstacle.html">geo_obstacle</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>obstacles</em>, </span></td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1geo__geometry.html">geo_geometry</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>obstacles</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>motion_configuration</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1geo__geometry.html">geo_geometry</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>bounding_regions</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1101,13 +1112,14 @@ Protected Member Functions</h2></td></tr>
     <tr><td class="paramname">movement_sensor_name</td><td>The name of the movement sensor used to check robot location. </td></tr>
     <tr><td class="paramname">obstacles</td><td>Obstacles to be considered for motion planning. </td></tr>
     <tr><td class="paramname"><a class="el" href="structviam_1_1sdk_1_1motion__configuration.html" title="Defines configuration options for certain Motion APIs.">motion_configuration</a></td><td>Optional set of motion configuration options. </td></tr>
+    <tr><td class="paramname">bounding_regions</td><td>Set of obstacles which the robot must remain within while navigating. </td></tr>
     <tr><td class="paramname">extra</td><td>Any additional arguments to the method. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The execution_id of the move_on_globe request. </dd></dl>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1MotionClient.html#a62047e4297a9b53285acaf2be9d18e13">viam::sdk::impl::MotionClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1MotionClient.html#aa669641fc890b3b68e97d357261a6f95">viam::sdk::impl::MotionClient</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1MotionClient.html#abaab0bac2068b1166e628d6362fd78af">viam::sdk::impl::MotionClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1MotionClient.html#a58a520e1e8b183be6b5dfb73d4210dd7">viam::sdk::impl::MotionClient</a>.</p>
 
 </div>
 </div>
