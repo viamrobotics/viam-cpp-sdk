@@ -48,8 +48,9 @@ std::string MockMotion::move_on_globe(
     const boost::optional<double>& heading,
     const Name& component_name,
     const Name& movement_sensor_name,
-    const std::vector<geo_obstacle>& obstacles,
+    const std::vector<geo_geometry>& obstacles,
     const std::shared_ptr<motion_configuration>& motion_configuration,
+    const std::vector<geo_geometry>& bounding_regions,
     const AttributeMap&) {
     this->peek_heading = *heading;
     this->peek_component_name = component_name;
@@ -57,7 +58,7 @@ std::string MockMotion::move_on_globe(
     this->peek_destination = destination;
     this->peek_obstacles = obstacles;
     this->peek_motion_configuration = motion_configuration;
-
+    this->peek_bounding_regions = bounding_regions;
     return "execution-id";
 }
 
@@ -163,11 +164,22 @@ std::shared_ptr<motion_configuration> fake_motion_configuration() {
     return mc;
 }
 
-std::vector<geo_obstacle> fake_obstacles() {
+std::vector<geo_geometry> fake_obstacles() {
     GeometryConfig gc;
     gc.set_pose({{20, 25, 30}, {35, 40, 45}, 50});
     gc.set_geometry_type(sdk::sphere);
     struct sphere sphere({1});
+    gc.set_geometry_specifics(sphere);
+    gc.set_label("label");
+    gc.set_orientation_config({AxisAngles, {}, axis_angles{1, 2, 3, 4}});
+    return {{fake_geo_point(), {std::move(gc)}}};
+}
+
+std::vector<geo_geometry> fake_bounding_regions() {
+    GeometryConfig gc;
+    gc.set_pose({{1, 2, 3}, {0, 0, 0}, 90});
+    gc.set_geometry_type(sdk::sphere);
+    struct sphere sphere({2});
     gc.set_geometry_specifics(sphere);
     gc.set_label("label");
     gc.set_orientation_config({AxisAngles, {}, axis_angles{1, 2, 3, 4}});

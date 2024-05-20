@@ -71,8 +71,9 @@ std::string MotionClient::move_on_globe(
     const boost::optional<double>& heading,
     const Name& component_name,
     const Name& movement_sensor_name,
-    const std::vector<geo_obstacle>& obstacles,
+    const std::vector<geo_geometry>& obstacles,
     const std::shared_ptr<motion_configuration>& motion_configuration,
+    const std::vector<geo_geometry>& bounding_regions,
     const AttributeMap& extra) {
     return make_client_helper(this, *stub_, &StubType::MoveOnGlobe)
         .with(extra,
@@ -91,6 +92,10 @@ std::string MotionClient::move_on_globe(
 
                   if (motion_configuration) {
                       *request.mutable_motion_configuration() = motion_configuration->to_proto();
+                  }
+
+                  for (const auto& bounding_region : bounding_regions) {
+                      *request.mutable_bounding_regions()->Add() = bounding_region.to_proto();
                   }
               })
         .invoke([](auto& response) { return response.execution_id(); });

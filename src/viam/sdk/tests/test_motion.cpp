@@ -10,7 +10,7 @@
 #include <viam/sdk/tests/test_utils.hpp>
 
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::WorldState)
-BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<viam::sdk::geo_obstacle>)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<viam::sdk::geo_geometry>)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::Motion::plan_status_with_id)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<viam::sdk::Motion::plan_status_with_id>)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::Motion::plan_with_status)
@@ -91,6 +91,7 @@ BOOST_AUTO_TEST_CASE(mock_move_on_globe) {
                                                      fake_movement_sensor_name(),
                                                      fake_obstacles(),
                                                      fake_motion_configuration(),
+                                                     fake_bounding_regions(),
                                                      fake_map());
 
     BOOST_CHECK_EQUAL(execution_id, "execution-id");
@@ -100,6 +101,7 @@ BOOST_AUTO_TEST_CASE(mock_move_on_globe) {
     BOOST_CHECK_EQUAL(motion->peek_movement_sensor_name, fake_movement_sensor_name());
     BOOST_CHECK_EQUAL(motion->peek_obstacles, fake_obstacles());
     BOOST_CHECK_EQUAL(*(motion->peek_motion_configuration), *(fake_motion_configuration()));
+    BOOST_CHECK_EQUAL(motion->peek_bounding_regions, fake_bounding_regions());
 }
 
 BOOST_AUTO_TEST_CASE(mock_get_plan) {
@@ -208,6 +210,7 @@ BOOST_AUTO_TEST_CASE(test_move_on_globe) {
                                                         fake_movement_sensor_name(),
                                                         fake_obstacles(),
                                                         fake_motion_configuration(),
+                                                        fake_bounding_regions(),
                                                         fake_map());
 
         BOOST_CHECK_EQUAL(execution_id, "execution-id");

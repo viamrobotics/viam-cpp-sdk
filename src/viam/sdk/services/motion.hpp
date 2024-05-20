@@ -293,20 +293,24 @@ class Motion : public Service {
     /// @param movement_sensor_name The name of the movement sensor used to check robot location.
     /// @param obstacles Obstacles to be considered for motion planning.
     /// @param motion_configuration Optional set of motion configuration options.
+    /// @param bounding_regions Set of obstacles which the robot must remain within while
+    /// navigating.
     /// @return The execution ID of the move_on_globe request.
     inline std::string move_on_globe(
         const geo_point& destination,
         const boost::optional<double>& heading,
         const Name& component_name,
         const Name& movement_sensor_name,
-        const std::vector<geo_obstacle>& obstacles,
-        const std::shared_ptr<motion_configuration>& motion_configuration) {
+        const std::vector<geo_geometry>& obstacles,
+        const std::shared_ptr<motion_configuration>& motion_configuration,
+        const std::vector<geo_geometry>& bounding_regions) {
         return move_on_globe(destination,
                              heading,
                              component_name,
                              movement_sensor_name,
                              obstacles,
                              motion_configuration,
+                             bounding_regions,
                              {});
     }
 
@@ -317,6 +321,8 @@ class Motion : public Service {
     /// @param movement_sensor_name The name of the movement sensor used to check robot location.
     /// @param obstacles Obstacles to be considered for motion planning.
     /// @param motion_configuration Optional set of motion configuration options.
+    /// @param bounding_regions Set of obstacles which the robot must remain within while
+    /// navigating.
     /// @param extra Any additional arguments to the method.
     /// @return The execution_id of the move_on_globe request.
     virtual std::string move_on_globe(
@@ -324,8 +330,9 @@ class Motion : public Service {
         const boost::optional<double>& heading,
         const Name& component_name,
         const Name& movement_sensor_name,
-        const std::vector<geo_obstacle>& obstacles,
+        const std::vector<geo_geometry>& obstacles,
         const std::shared_ptr<motion_configuration>& motion_configuration,
+        const std::vector<geo_geometry>& bounding_regions,
         const AttributeMap& extra) = 0;
 
     /// @brief Get the pose of any component on the robot.
