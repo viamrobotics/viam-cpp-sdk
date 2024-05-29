@@ -15,6 +15,7 @@ class MockMotor : public Motor {
     void set_power(double power_pct, const sdk::AttributeMap& extra) override;
     void go_for(double rpm, double revolutions, const sdk::AttributeMap& extra) override;
     void go_to(double rpm, double position_revolutions, const sdk::AttributeMap& extra) override;
+    void set_rpm(double rpm, const sdk::AttributeMap& extra) override;
     void reset_zero_position(double offset, const sdk::AttributeMap& extra) override;
     Motor::position get_position(const sdk::AttributeMap& extra) override;
     Motor::properties get_properties(const sdk::AttributeMap& extra) override;
@@ -34,6 +35,7 @@ class MockMotor : public Motor {
     using Motor::get_properties;
     using Motor::go_for;
     using Motor::go_to;
+    using Motor::set_rpm;
     using Motor::reset_zero_position;
     using Motor::set_power;
     using Motor::stop;

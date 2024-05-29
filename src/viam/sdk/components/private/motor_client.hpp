@@ -25,6 +25,7 @@ class MotorClient : public Motor {
     void set_power(double power_pct, const AttributeMap& extra) override;
     void go_for(double rpm, double revolutions, const AttributeMap& extra) override;
     void go_to(double rpm, double position_revolutions, const AttributeMap& extra) override;
+    void set_rpm(double rpm, const AttributeMap& extra) override;
     void reset_zero_position(double offset, const AttributeMap& extra) override;
     position get_position(const AttributeMap& extra) override;
     properties get_properties(const AttributeMap& extra) override;
@@ -49,6 +50,7 @@ class MotorClient : public Motor {
     using Motor::get_properties;
     using Motor::go_for;
     using Motor::go_to;
+    using Motor::set_rpm;
     using Motor::reset_zero_position;
     using Motor::set_power;
     using Motor::stop;
