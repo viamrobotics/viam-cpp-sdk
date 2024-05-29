@@ -38,8 +38,8 @@ class MotorServer : public ResourceServer,
                         ::viam::component::motor::v1::GoToResponse* response) noexcept override;
 
     ::grpc::Status SetRPM(::grpc::ServerContext* context,
-                        const ::viam::component::motor::v1::SetRPMRequest* request,
-                        ::viam::component::motor::v1::SetRPMResponse* response) noexcept override;
+                          const ::viam::component::motor::v1::SetRPMRequest* request,
+                          ::viam::component::motor::v1::SetRPMResponse* response) noexcept override;
 
     ::grpc::Status ResetZeroPosition(
         ::grpc::ServerContext* context,
