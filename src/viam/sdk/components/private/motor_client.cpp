@@ -51,10 +51,7 @@ void MotorClient::go_to(double rpm, double position_revolutions, const Attribute
 
 void MotorClient::set_rpm(double rpm, const AttributeMap& extra) {
     return make_client_helper(this, *stub_, &StubType::GoTo)
-        .with(extra,
-              [&](auto& request) {
-                  request.set_rpm(rpm);
-              })
+        .with(extra, [&](auto& request) { request.set_rpm(rpm); })
         .invoke();
 }
 

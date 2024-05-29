@@ -35,9 +35,9 @@ class MockMotor : public Motor {
     using Motor::get_properties;
     using Motor::go_for;
     using Motor::go_to;
-    using Motor::set_rpm;
     using Motor::reset_zero_position;
     using Motor::set_power;
+    using Motor::set_rpm;
     using Motor::stop;
 
    private:
