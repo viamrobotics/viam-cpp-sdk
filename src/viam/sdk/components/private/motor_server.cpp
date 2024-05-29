@@ -42,8 +42,8 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status MotorServer::SetRPM(::grpc::ServerContext*,
-                                  const ::viam::component::motor::v1::SetRPMRequest* request,
-                                  ::viam::component::motor::v1::SetRPMResponse*) noexcept {
+                                   const ::viam::component::motor::v1::SetRPMRequest* request,
+                                   ::viam::component::motor::v1::SetRPMResponse*) noexcept {
     return make_service_helper<Motor>("MotorServer::SetRPM", this, request)(
         [&](auto& helper, auto& motor) { motor->set_rpm(request->rpm(), helper.getExtra()); });
 }
