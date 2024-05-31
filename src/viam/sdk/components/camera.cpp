@@ -230,6 +230,7 @@ Camera::properties Camera::from_proto(
     const viam::component::camera::v1::GetPropertiesResponse& proto) {
     Camera::distortion_parameters distortion_parameters;
     Camera::intrinsic_parameters intrinsic_parameters;
+    Camera::mime_types mime_types;
     Camera::properties properties;
 
     const viam::component::camera::v1::DistortionParameters& distortion_parameters_proto =
@@ -240,8 +241,11 @@ Camera::properties Camera::from_proto(
         proto.intrinsic_parameters();
     intrinsic_parameters = from_proto(intrinsic_parameters_proto);
 
+    mime_types.assign(proto.mime_types().begin(), proto.mime_types().end()); 
+
     properties.distortion_parameters = distortion_parameters;
     properties.intrinsic_parameters = intrinsic_parameters;
+    properties.mime_types = mime_types;
     properties.supports_pcd = proto.supports_pcd();
 
     return properties;
@@ -258,6 +262,7 @@ viam::component::camera::v1::IntrinsicParameters Camera::to_proto(
     proto.set_center_y_px(params.center_y_px);
     return proto;
 }
+
 viam::component::camera::v1::DistortionParameters Camera::to_proto(
     const Camera::distortion_parameters& params) {
     viam::component::camera::v1::DistortionParameters proto;

@@ -86,11 +86,24 @@ Camera::distortion_parameters fake_distortion_parameters() {
     return distortion_parameters;
 }
 
+Camera::distortion_parameters fake_distortion_parameters() {
+    Camera::distortion_parameters distortion_parameters;
+    distortion_parameters.model = "no distortion";
+    return distortion_parameters;
+}
+
+Camera::mime_types fake_mime_types() {
+    Camera::mime_types mime_types;
+    mime_types.push_back("JPEG");
+    return mime_types;
+}
+
 Camera::properties fake_properties() {
     Camera::properties properties;
     properties.supports_pcd = true;
     properties.intrinsic_parameters = fake_intrinsic_parameters();
     properties.distortion_parameters = fake_distortion_parameters();
+    properties.mime_types = fake_mime_types();
     return properties;
 }
 

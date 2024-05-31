@@ -48,16 +48,22 @@ class Camera : public Component {
         std::vector<double> parameters;
     };
 
+    /// @struct mime_types
+    /// @brief The supported mime types of the camera.
+    using mime_types = std::vector<std::string>
+
     /// @struct properties
     /// @brief The camera's supported features and settings.
     ///
     /// `supports_pcd` indicates whether the camera has a valid implementation of `get_point_cloud`.
     /// `intrinsic_parameters` contains the camera's intrinsic parameters.
     /// `distortion_parameters` contains the camera's distortion parameters.
+    /// `mime_types` contains the mime types the camera supports.
     struct properties {
         bool supports_pcd;
         struct intrinsic_parameters intrinsic_parameters;
         struct distortion_parameters distortion_parameters;
+        mime_types mime_types;
     };
 
     /// @struct point_cloud
