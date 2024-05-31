@@ -86,12 +86,6 @@ Camera::distortion_parameters fake_distortion_parameters() {
     return distortion_parameters;
 }
 
-Camera::distortion_parameters fake_distortion_parameters() {
-    Camera::distortion_parameters distortion_parameters;
-    distortion_parameters.model = "no distortion";
-    return distortion_parameters;
-}
-
 Camera::mime_types fake_mime_types() {
     Camera::mime_types mime_types;
     mime_types.push_back("JPEG");

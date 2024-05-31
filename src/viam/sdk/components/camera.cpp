@@ -241,7 +241,7 @@ Camera::properties Camera::from_proto(
         proto.intrinsic_parameters();
     intrinsic_parameters = from_proto(intrinsic_parameters_proto);
 
-    mime_types.assign(proto.mime_types().begin(), proto.mime_types().end()); 
+    mime_types.assign(proto.mime_types().begin(), proto.mime_types().end());
 
     properties.distortion_parameters = distortion_parameters;
     properties.intrinsic_parameters = intrinsic_parameters;
