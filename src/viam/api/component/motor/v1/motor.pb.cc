@@ -101,6 +101,31 @@ struct GoToResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GoToResponseDefaultTypeInternal _GoToResponse_default_instance_;
+PROTOBUF_CONSTEXPR SetRPMRequest::SetRPMRequest(
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , extra_(nullptr)
+  , rpm_(0){}
+struct SetRPMRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SetRPMRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SetRPMRequestDefaultTypeInternal() {}
+  union {
+    SetRPMRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetRPMRequestDefaultTypeInternal _SetRPMRequest_default_instance_;
+PROTOBUF_CONSTEXPR SetRPMResponse::SetRPMResponse(
+    ::_pbi::ConstantInitialized){}
+struct SetRPMResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SetRPMResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SetRPMResponseDefaultTypeInternal() {}
+  union {
+    SetRPMResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetRPMResponseDefaultTypeInternal _SetRPMResponse_default_instance_;
 PROTOBUF_CONSTEXPR ResetZeroPositionRequest::ResetZeroPositionRequest(
     ::_pbi::ConstantInitialized)
   : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
@@ -268,7 +293,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 }  // namespace motor
 }  // namespace component
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[19];
+static ::_pb::Metadata file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[21];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_component_2fmotor_2fv1_2fmotor_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_component_2fmotor_2fv1_2fmotor_2eproto = nullptr;
 
@@ -316,6 +341,21 @@ const uint32_t TableStruct_component_2fmotor_2fv1_2fmotor_2eproto::offsets[] PRO
   PROTOBUF_FIELD_OFFSET(::viam::component::motor::v1::GoToRequest, extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::motor::v1::GoToResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::motor::v1::SetRPMRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::component::motor::v1::SetRPMRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::motor::v1::SetRPMRequest, rpm_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::motor::v1::SetRPMRequest, extra_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::motor::v1::SetRPMResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
@@ -426,19 +466,21 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 25, -1, -1, sizeof(::viam::component::motor::v1::GoForResponse)},
   { 31, -1, -1, sizeof(::viam::component::motor::v1::GoToRequest)},
   { 41, -1, -1, sizeof(::viam::component::motor::v1::GoToResponse)},
-  { 47, -1, -1, sizeof(::viam::component::motor::v1::ResetZeroPositionRequest)},
-  { 56, -1, -1, sizeof(::viam::component::motor::v1::ResetZeroPositionResponse)},
-  { 62, -1, -1, sizeof(::viam::component::motor::v1::GetPositionRequest)},
-  { 70, -1, -1, sizeof(::viam::component::motor::v1::GetPositionResponse)},
-  { 77, -1, -1, sizeof(::viam::component::motor::v1::StopRequest)},
-  { 85, -1, -1, sizeof(::viam::component::motor::v1::StopResponse)},
-  { 91, -1, -1, sizeof(::viam::component::motor::v1::IsPoweredRequest)},
-  { 99, -1, -1, sizeof(::viam::component::motor::v1::IsPoweredResponse)},
-  { 107, -1, -1, sizeof(::viam::component::motor::v1::GetPropertiesRequest)},
-  { 115, -1, -1, sizeof(::viam::component::motor::v1::GetPropertiesResponse)},
-  { 122, -1, -1, sizeof(::viam::component::motor::v1::Status)},
-  { 131, -1, -1, sizeof(::viam::component::motor::v1::IsMovingRequest)},
-  { 138, -1, -1, sizeof(::viam::component::motor::v1::IsMovingResponse)},
+  { 47, -1, -1, sizeof(::viam::component::motor::v1::SetRPMRequest)},
+  { 56, -1, -1, sizeof(::viam::component::motor::v1::SetRPMResponse)},
+  { 62, -1, -1, sizeof(::viam::component::motor::v1::ResetZeroPositionRequest)},
+  { 71, -1, -1, sizeof(::viam::component::motor::v1::ResetZeroPositionResponse)},
+  { 77, -1, -1, sizeof(::viam::component::motor::v1::GetPositionRequest)},
+  { 85, -1, -1, sizeof(::viam::component::motor::v1::GetPositionResponse)},
+  { 92, -1, -1, sizeof(::viam::component::motor::v1::StopRequest)},
+  { 100, -1, -1, sizeof(::viam::component::motor::v1::StopResponse)},
+  { 106, -1, -1, sizeof(::viam::component::motor::v1::IsPoweredRequest)},
+  { 114, -1, -1, sizeof(::viam::component::motor::v1::IsPoweredResponse)},
+  { 122, -1, -1, sizeof(::viam::component::motor::v1::GetPropertiesRequest)},
+  { 130, -1, -1, sizeof(::viam::component::motor::v1::GetPropertiesResponse)},
+  { 137, -1, -1, sizeof(::viam::component::motor::v1::Status)},
+  { 146, -1, -1, sizeof(::viam::component::motor::v1::IsMovingRequest)},
+  { 153, -1, -1, sizeof(::viam::component::motor::v1::IsMovingResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -448,6 +490,8 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::component::motor::v1::_GoForResponse_default_instance_._instance,
   &::viam::component::motor::v1::_GoToRequest_default_instance_._instance,
   &::viam::component::motor::v1::_GoToResponse_default_instance_._instance,
+  &::viam::component::motor::v1::_SetRPMRequest_default_instance_._instance,
+  &::viam::component::motor::v1::_SetRPMResponse_default_instance_._instance,
   &::viam::component::motor::v1::_ResetZeroPositionRequest_default_instance_._instance,
   &::viam::component::motor::v1::_ResetZeroPositionResponse_default_instance_._instance,
   &::viam::component::motor::v1::_GetPositionRequest_default_instance_._instance,
@@ -478,7 +522,10 @@ const char descriptor_table_protodef_component_2fmotor_2fv1_2fmotor_2eproto[] PR
   "quest\022\022\n\004name\030\001 \001(\tR\004name\022\020\n\003rpm\030\002 \001(\001R\003"
   "rpm\0221\n\024position_revolutions\030\003 \001(\001R\023posit"
   "ionRevolutions\022-\n\005extra\030c \001(\0132\027.google.p"
-  "rotobuf.StructR\005extra\"\016\n\014GoToResponse\"u\n"
+  "rotobuf.StructR\005extra\"\016\n\014GoToResponse\"d\n"
+  "\rSetRPMRequest\022\022\n\004name\030\001 \001(\tR\004name\022\020\n\003rp"
+  "m\030\002 \001(\001R\003rpm\022-\n\005extra\030c \001(\0132\027.google.pro"
+  "tobuf.StructR\005extra\"\020\n\016SetRPMResponse\"u\n"
   "\030ResetZeroPositionRequest\022\022\n\004name\030\001 \001(\tR"
   "\004name\022\026\n\006offset\030\002 \001(\001R\006offset\022-\n\005extra\030c"
   " \001(\0132\027.google.protobuf.StructR\005extra\"\033\n\031"
@@ -501,7 +548,7 @@ const char descriptor_table_protodef_component_2fmotor_2fv1_2fmotor_2eproto[] PR
   "\001(\001R\010position\022\033\n\tis_moving\030\004 \001(\010R\010isMovi"
   "ng\"%\n\017IsMovingRequest\022\022\n\004name\030\001 \001(\tR\004nam"
   "e\"/\n\020IsMovingResponse\022\033\n\tis_moving\030\001 \001(\010"
-  "R\010isMoving2\231\r\n\014MotorService\022\226\001\n\010SetPower"
+  "R\010isMoving2\256\016\n\014MotorService\022\226\001\n\010SetPower"
   "\022(.viam.component.motor.v1.SetPowerReque"
   "st\032).viam.component.motor.v1.SetPowerRes"
   "ponse\"5\240\222)\001\202\323\344\223\002+\032)/viam/api/v1/componen"
@@ -512,40 +559,44 @@ const char descriptor_table_protodef_component_2fmotor_2fv1_2fmotor_2eproto[] PR
   "o_for\022\212\001\n\004GoTo\022$.viam.component.motor.v1"
   ".GoToRequest\032%.viam.component.motor.v1.G"
   "oToResponse\"5\240\222)\001\202\323\344\223\002+\032)/viam/api/v1/co"
-  "mponent/motor/{name}/go_to\022\254\001\n\021ResetZero"
-  "Position\0221.viam.component.motor.v1.Reset"
-  "ZeroPositionRequest\0322.viam.component.mot"
-  "or.v1.ResetZeroPositionResponse\"0\202\323\344\223\002*\032"
-  "(/viam/api/v1/component/motor/{name}/zer"
-  "o\022\236\001\n\013GetPosition\022+.viam.component.motor"
-  ".v1.GetPositionRequest\032,.viam.component."
-  "motor.v1.GetPositionResponse\"4\202\323\344\223\002.\022,/v"
-  "iam/api/v1/component/motor/{name}/positi"
-  "on\022\244\001\n\rGetProperties\022-.viam.component.mo"
-  "tor.v1.GetPropertiesRequest\032..viam.compo"
-  "nent.motor.v1.GetPropertiesResponse\"4\202\323\344"
-  "\223\002.\022,/viam/api/v1/component/motor/{name}"
-  "/features\022\205\001\n\004Stop\022$.viam.component.moto"
-  "r.v1.StopRequest\032%.viam.component.motor."
-  "v1.StopResponse\"0\202\323\344\223\002*\032(/viam/api/v1/co"
-  "mponent/motor/{name}/stop\022\227\001\n\tIsPowered\022"
-  ").viam.component.motor.v1.IsPoweredReque"
-  "st\032*.viam.component.motor.v1.IsPoweredRe"
-  "sponse\"3\202\323\344\223\002-\022+/viam/api/v1/component/m"
-  "otor/{name}/powered\022\226\001\n\010IsMoving\022(.viam."
-  "component.motor.v1.IsMovingRequest\032).via"
-  "m.component.motor.v1.IsMovingResponse\"5\202"
-  "\323\344\223\002/\022-/viam/api/v1/component/motor/{nam"
-  "e}/is_moving\022\210\001\n\tDoCommand\022 .viam.common"
-  ".v1.DoCommandRequest\032!.viam.common.v1.Do"
-  "CommandResponse\"6\202\323\344\223\0020\"./viam/api/v1/co"
-  "mponent/motor/{name}/do_command\022\224\001\n\rGetG"
-  "eometries\022$.viam.common.v1.GetGeometries"
-  "Request\032%.viam.common.v1.GetGeometriesRe"
-  "sponse\"6\202\323\344\223\0020\022./viam/api/v1/component/m"
-  "otor/{name}/geometriesBA\n\033com.viam.compo"
-  "nent.motor.v1Z\"go.viam.com/api/component"
-  "/motor/v1b\006proto3"
+  "mponent/motor/{name}/go_to\022\222\001\n\006SetRPM\022&."
+  "viam.component.motor.v1.SetRPMRequest\032\'."
+  "viam.component.motor.v1.SetRPMResponse\"7"
+  "\240\222)\001\202\323\344\223\002-\032+/viam/api/v1/component/motor"
+  "/{name}/set_rpm\022\254\001\n\021ResetZeroPosition\0221."
+  "viam.component.motor.v1.ResetZeroPositio"
+  "nRequest\0322.viam.component.motor.v1.Reset"
+  "ZeroPositionResponse\"0\202\323\344\223\002*\032(/viam/api/"
+  "v1/component/motor/{name}/zero\022\236\001\n\013GetPo"
+  "sition\022+.viam.component.motor.v1.GetPosi"
+  "tionRequest\032,.viam.component.motor.v1.Ge"
+  "tPositionResponse\"4\202\323\344\223\002.\022,/viam/api/v1/"
+  "component/motor/{name}/position\022\244\001\n\rGetP"
+  "roperties\022-.viam.component.motor.v1.GetP"
+  "ropertiesRequest\032..viam.component.motor."
+  "v1.GetPropertiesResponse\"4\202\323\344\223\002.\022,/viam/"
+  "api/v1/component/motor/{name}/features\022\205"
+  "\001\n\004Stop\022$.viam.component.motor.v1.StopRe"
+  "quest\032%.viam.component.motor.v1.StopResp"
+  "onse\"0\202\323\344\223\002*\032(/viam/api/v1/component/mot"
+  "or/{name}/stop\022\227\001\n\tIsPowered\022).viam.comp"
+  "onent.motor.v1.IsPoweredRequest\032*.viam.c"
+  "omponent.motor.v1.IsPoweredResponse\"3\202\323\344"
+  "\223\002-\022+/viam/api/v1/component/motor/{name}"
+  "/powered\022\226\001\n\010IsMoving\022(.viam.component.m"
+  "otor.v1.IsMovingRequest\032).viam.component"
+  ".motor.v1.IsMovingResponse\"5\202\323\344\223\002/\022-/via"
+  "m/api/v1/component/motor/{name}/is_movin"
+  "g\022\210\001\n\tDoCommand\022 .viam.common.v1.DoComma"
+  "ndRequest\032!.viam.common.v1.DoCommandResp"
+  "onse\"6\202\323\344\223\0020\"./viam/api/v1/component/mot"
+  "or/{name}/do_command\022\224\001\n\rGetGeometries\022$"
+  ".viam.common.v1.GetGeometriesRequest\032%.v"
+  "iam.common.v1.GetGeometriesResponse\"6\202\323\344"
+  "\223\0020\022./viam/api/v1/component/motor/{name}"
+  "/geometriesBA\n\033com.viam.component.motor."
+  "v1Z\"go.viam.com/api/component/motor/v1b\006"
+  "proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -554,9 +605,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fmotor_2
 };
 static ::_pbi::once_flag descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto = {
-    false, false, 3257, descriptor_table_protodef_component_2fmotor_2fv1_2fmotor_2eproto,
+    false, false, 3526, descriptor_table_protodef_component_2fmotor_2fv1_2fmotor_2eproto,
     "component/motor/v1/motor.proto",
-    &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_once, descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_deps, 3, 19,
+    &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_once, descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_deps, 3, 21,
     schemas, file_default_instances, TableStruct_component_2fmotor_2fv1_2fmotor_2eproto::offsets,
     file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto, file_level_enum_descriptors_component_2fmotor_2fv1_2fmotor_2eproto,
     file_level_service_descriptors_component_2fmotor_2fv1_2fmotor_2eproto,
@@ -1628,6 +1679,332 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GoToResponse::GetClassData() c
 
 // ===================================================================
 
+class SetRPMRequest::_Internal {
+ public:
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const SetRPMRequest* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+SetRPMRequest::_Internal::extra(const SetRPMRequest* msg) {
+  return *msg->extra_;
+}
+void SetRPMRequest::clear_extra() {
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+}
+SetRPMRequest::SetRPMRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.component.motor.v1.SetRPMRequest)
+}
+SetRPMRequest::SetRPMRequest(const SetRPMRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_extra()) {
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
+  }
+  rpm_ = from.rpm_;
+  // @@protoc_insertion_point(copy_constructor:viam.component.motor.v1.SetRPMRequest)
+}
+
+inline void SetRPMRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&extra_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&rpm_) -
+    reinterpret_cast<char*>(&extra_)) + sizeof(rpm_));
+}
+
+SetRPMRequest::~SetRPMRequest() {
+  // @@protoc_insertion_point(destructor:viam.component.motor.v1.SetRPMRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SetRPMRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+  if (this != internal_default_instance()) delete extra_;
+}
+
+void SetRPMRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void SetRPMRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.component.motor.v1.SetRPMRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+  rpm_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SetRPMRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.component.motor.v1.SetRPMRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // double rpm = 2 [json_name = "rpm"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 17)) {
+          rpm_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SetRPMRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.motor.v1.SetRPMRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.component.motor.v1.SetRPMRequest.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  // double rpm = 2 [json_name = "rpm"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_rpm = this->_internal_rpm();
+  uint64_t raw_rpm;
+  memcpy(&raw_rpm, &tmp_rpm, sizeof(tmp_rpm));
+  if (raw_rpm != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(2, this->_internal_rpm(), target);
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::extra(this),
+        _Internal::extra(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.component.motor.v1.SetRPMRequest)
+  return target;
+}
+
+size_t SetRPMRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.component.motor.v1.SetRPMRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *extra_);
+  }
+
+  // double rpm = 2 [json_name = "rpm"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_rpm = this->_internal_rpm();
+  uint64_t raw_rpm;
+  memcpy(&raw_rpm, &tmp_rpm, sizeof(tmp_rpm));
+  if (raw_rpm != 0) {
+    total_size += 1 + 8;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SetRPMRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    SetRPMRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SetRPMRequest::GetClassData() const { return &_class_data_; }
+
+void SetRPMRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<SetRPMRequest *>(to)->MergeFrom(
+      static_cast<const SetRPMRequest &>(from));
+}
+
+
+void SetRPMRequest::MergeFrom(const SetRPMRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.motor.v1.SetRPMRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  if (from._internal_has_extra()) {
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_rpm = from._internal_rpm();
+  uint64_t raw_rpm;
+  memcpy(&raw_rpm, &tmp_rpm, sizeof(tmp_rpm));
+  if (raw_rpm != 0) {
+    _internal_set_rpm(from._internal_rpm());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SetRPMRequest::CopyFrom(const SetRPMRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.component.motor.v1.SetRPMRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SetRPMRequest::IsInitialized() const {
+  return true;
+}
+
+void SetRPMRequest::InternalSwap(SetRPMRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(SetRPMRequest, rpm_)
+      + sizeof(SetRPMRequest::rpm_)
+      - PROTOBUF_FIELD_OFFSET(SetRPMRequest, extra_)>(
+          reinterpret_cast<char*>(&extra_),
+          reinterpret_cast<char*>(&other->extra_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SetRPMRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_getter, &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_once,
+      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[6]);
+}
+
+// ===================================================================
+
+class SetRPMResponse::_Internal {
+ public:
+};
+
+SetRPMResponse::SetRPMResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:viam.component.motor.v1.SetRPMResponse)
+}
+SetRPMResponse::SetRPMResponse(const SetRPMResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.component.motor.v1.SetRPMResponse)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SetRPMResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SetRPMResponse::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata SetRPMResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_getter, &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_once,
+      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[7]);
+}
+
+// ===================================================================
+
 class ResetZeroPositionRequest::_Internal {
  public:
   static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const ResetZeroPositionRequest* msg);
@@ -1910,7 +2287,7 @@ void ResetZeroPositionRequest::InternalSwap(ResetZeroPositionRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ResetZeroPositionRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_getter, &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_once,
-      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[6]);
+      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[8]);
 }
 
 // ===================================================================
@@ -1949,7 +2326,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ResetZeroPositionResponse::Get
 ::PROTOBUF_NAMESPACE_ID::Metadata ResetZeroPositionResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_getter, &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_once,
-      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[7]);
+      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[9]);
 }
 
 // ===================================================================
@@ -2192,7 +2569,7 @@ void GetPositionRequest::InternalSwap(GetPositionRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetPositionRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_getter, &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_once,
-      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[8]);
+      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[10]);
 }
 
 // ===================================================================
@@ -2375,7 +2752,7 @@ void GetPositionResponse::InternalSwap(GetPositionResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetPositionResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_getter, &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_once,
-      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[9]);
+      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[11]);
 }
 
 // ===================================================================
@@ -2618,7 +2995,7 @@ void StopRequest::InternalSwap(StopRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata StopRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_getter, &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_once,
-      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[10]);
+      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[12]);
 }
 
 // ===================================================================
@@ -2657,7 +3034,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*StopResponse::GetClassData() c
 ::PROTOBUF_NAMESPACE_ID::Metadata StopResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_getter, &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_once,
-      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[11]);
+      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[13]);
 }
 
 // ===================================================================
@@ -2900,7 +3277,7 @@ void IsPoweredRequest::InternalSwap(IsPoweredRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata IsPoweredRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_getter, &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_once,
-      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[12]);
+      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[14]);
 }
 
 // ===================================================================
@@ -3117,7 +3494,7 @@ void IsPoweredResponse::InternalSwap(IsPoweredResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata IsPoweredResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_getter, &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_once,
-      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[13]);
+      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[15]);
 }
 
 // ===================================================================
@@ -3360,7 +3737,7 @@ void GetPropertiesRequest::InternalSwap(GetPropertiesRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetPropertiesRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_getter, &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_once,
-      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[14]);
+      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[16]);
 }
 
 // ===================================================================
@@ -3531,7 +3908,7 @@ void GetPropertiesResponse::InternalSwap(GetPropertiesResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetPropertiesResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_getter, &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_once,
-      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[15]);
+      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[17]);
 }
 
 // ===================================================================
@@ -3770,7 +4147,7 @@ void Status::InternalSwap(Status* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Status::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_getter, &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_once,
-      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[16]);
+      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[18]);
 }
 
 // ===================================================================
@@ -3965,7 +4342,7 @@ void IsMovingRequest::InternalSwap(IsMovingRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata IsMovingRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_getter, &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_once,
-      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[17]);
+      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[19]);
 }
 
 // ===================================================================
@@ -4136,7 +4513,7 @@ void IsMovingResponse::InternalSwap(IsMovingResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata IsMovingResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_getter, &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_once,
-      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[18]);
+      file_level_metadata_component_2fmotor_2fv1_2fmotor_2eproto[20]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -4168,6 +4545,14 @@ Arena::CreateMaybeMessage< ::viam::component::motor::v1::GoToRequest >(Arena* ar
 template<> PROTOBUF_NOINLINE ::viam::component::motor::v1::GoToResponse*
 Arena::CreateMaybeMessage< ::viam::component::motor::v1::GoToResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::component::motor::v1::GoToResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::component::motor::v1::SetRPMRequest*
+Arena::CreateMaybeMessage< ::viam::component::motor::v1::SetRPMRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::motor::v1::SetRPMRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::component::motor::v1::SetRPMResponse*
+Arena::CreateMaybeMessage< ::viam::component::motor::v1::SetRPMResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::motor::v1::SetRPMResponse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::viam::component::motor::v1::ResetZeroPositionRequest*
 Arena::CreateMaybeMessage< ::viam::component::motor::v1::ResetZeroPositionRequest >(Arena* arena) {

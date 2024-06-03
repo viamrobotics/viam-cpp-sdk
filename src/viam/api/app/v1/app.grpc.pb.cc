@@ -91,6 +91,7 @@ static const char* AppService_method_names[] = {
   "/viam.app.v1.AppService/CreateKey",
   "/viam.app.v1.AppService/DeleteKey",
   "/viam.app.v1.AppService/ListKeys",
+  "/viam.app.v1.AppService/RenameKey",
   "/viam.app.v1.AppService/RotateKey",
   "/viam.app.v1.AppService/CreateKeyFromExistingKeyAuthorizations",
 };
@@ -169,8 +170,9 @@ AppService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel
   , rpcmethod_CreateKey_(AppService_method_names[64], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_DeleteKey_(AppService_method_names[65], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_ListKeys_(AppService_method_names[66], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_RotateKey_(AppService_method_names[67], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreateKeyFromExistingKeyAuthorizations_(AppService_method_names[68], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RenameKey_(AppService_method_names[67], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RotateKey_(AppService_method_names[68], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateKeyFromExistingKeyAuthorizations_(AppService_method_names[69], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status AppService::Stub::GetUserIDByEmail(::grpc::ClientContext* context, const ::viam::app::v1::GetUserIDByEmailRequest& request, ::viam::app::v1::GetUserIDByEmailResponse* response) {
@@ -1700,6 +1702,29 @@ void AppService::Stub::async::ListKeys(::grpc::ClientContext* context, const ::v
   return result;
 }
 
+::grpc::Status AppService::Stub::RenameKey(::grpc::ClientContext* context, const ::viam::app::v1::RenameKeyRequest& request, ::viam::app::v1::RenameKeyResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::RenameKeyRequest, ::viam::app::v1::RenameKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_RenameKey_, context, request, response);
+}
+
+void AppService::Stub::async::RenameKey(::grpc::ClientContext* context, const ::viam::app::v1::RenameKeyRequest* request, ::viam::app::v1::RenameKeyResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::RenameKeyRequest, ::viam::app::v1::RenameKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RenameKey_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::async::RenameKey(::grpc::ClientContext* context, const ::viam::app::v1::RenameKeyRequest* request, ::viam::app::v1::RenameKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RenameKey_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::RenameKeyResponse>* AppService::Stub::PrepareAsyncRenameKeyRaw(::grpc::ClientContext* context, const ::viam::app::v1::RenameKeyRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::RenameKeyResponse, ::viam::app::v1::RenameKeyRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_RenameKey_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::RenameKeyResponse>* AppService::Stub::AsyncRenameKeyRaw(::grpc::ClientContext* context, const ::viam::app::v1::RenameKeyRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncRenameKeyRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ::grpc::Status AppService::Stub::RotateKey(::grpc::ClientContext* context, const ::viam::app::v1::RotateKeyRequest& request, ::viam::app::v1::RotateKeyResponse* response) {
   return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::RotateKeyRequest, ::viam::app::v1::RotateKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_RotateKey_, context, request, response);
 }
@@ -2420,6 +2445,16 @@ AppService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       AppService_method_names[67],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::RenameKeyRequest, ::viam::app::v1::RenameKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](AppService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::v1::RenameKeyRequest* req,
+             ::viam::app::v1::RenameKeyResponse* resp) {
+               return service->RenameKey(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[68],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::RotateKeyRequest, ::viam::app::v1::RotateKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
              ::grpc::ServerContext* ctx,
@@ -2428,7 +2463,7 @@ AppService::Service::Service() {
                return service->RotateKey(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[68],
+      AppService_method_names[69],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -2905,6 +2940,13 @@ AppService::Service::~Service() {
 }
 
 ::grpc::Status AppService::Service::ListKeys(::grpc::ServerContext* context, const ::viam::app::v1::ListKeysRequest* request, ::viam::app::v1::ListKeysResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::RenameKey(::grpc::ServerContext* context, const ::viam::app::v1::RenameKeyRequest* request, ::viam::app::v1::RenameKeyResponse* response) {
   (void) context;
   (void) request;
   (void) response;
