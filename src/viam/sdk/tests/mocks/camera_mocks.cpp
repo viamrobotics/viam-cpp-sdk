@@ -86,11 +86,16 @@ Camera::distortion_parameters fake_distortion_parameters() {
     return distortion_parameters;
 }
 
+Camera::mime_types fake_mime_types() {
+    return {"JPEG"};
+}
+
 Camera::properties fake_properties() {
     Camera::properties properties;
     properties.supports_pcd = true;
     properties.intrinsic_parameters = fake_intrinsic_parameters();
     properties.distortion_parameters = fake_distortion_parameters();
+    properties.mime_types = fake_mime_types();
     return properties;
 }
 
