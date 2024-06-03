@@ -53,16 +53,17 @@ class Camera : public Component {
 
     /// @struct properties
     /// @brief The camera's supported features and settings.
-    ///
-    /// `supports_pcd` indicates whether the camera has a valid implementation of
-    /// `get_point_cloud`.
-    /// `intrinsic_parameters` contains the camera's intrinsic parameters.
-    /// `distortion_parameters` contains the camera's distortion parameters.
-    /// `mime_types` contains the mime types the camera supports.
     struct properties {
+        /// @brief Indicates whether the camera has a valid implementation of `get_point_cloud`.
         bool supports_pcd;
+
+        /// @brief Contains the camera's intrinsic parameters.
         struct intrinsic_parameters intrinsic_parameters;
+
+        /// @brief Contains the camera's distortion parameters.
         struct distortion_parameters distortion_parameters;
+
+        /// @brief Contains the mime types the camera supports.
         Camera::mime_types mime_types;
     };
 
