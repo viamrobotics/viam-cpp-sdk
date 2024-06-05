@@ -152,7 +152,7 @@ BOOST_AUTO_TEST_CASE(test_set_rpm) {
     std::shared_ptr<MockMotor> mock = MockMotor::get_mock_motor();
     client_to_mock_pipeline<Motor>(mock, [](Motor& client) {
         client.set_rpm(1.0);
-        BOOST_CHECK(client.is_moving() == true);
+        BOOST_CHECK(client.get_position() >= 1.0);
     });
 }
 

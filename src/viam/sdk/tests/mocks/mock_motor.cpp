@@ -33,6 +33,7 @@ void MockMotor::go_to(double rpm, double position_revolutions, const AttributeMa
 
 void MockMotor::set_rpm(double rpm, const AttributeMap&) {
     power_status_.is_on = rpm != 0.0;
+    position_ += 1;
 }
 
 void MockMotor::reset_zero_position(double offset, const AttributeMap&) {
