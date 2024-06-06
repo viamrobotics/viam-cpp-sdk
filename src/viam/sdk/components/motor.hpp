@@ -116,6 +116,19 @@ class Motor : public Component, public Stoppable {
     /// @throws `Exception` if position reporting is not supported
     virtual void go_to(double rpm, double position_revolutions, const AttributeMap& extra) = 0;
 
+    /// @brief Move the motor indefinitely at a specified speed which is expressed in RPM.
+    /// @param rpm Speed of motor travel in rotations per minute
+    /// @throws `Exception` if position reporting is not supported
+    inline void set_rpm(double rpm) {
+        return set_rpm(rpm, {});
+    }
+
+    /// @brief Move the motor indefinitely at a specified speed which is expressed in RPM.
+    /// @param rpm Speed of motor travel in rotations per minute
+    /// @param extra Any additional arguments to the method.
+    /// @throws `Exception` if position reporting is not supported
+    virtual void set_rpm(double rpm, const AttributeMap& extra) = 0;
+
     /// @brief Sets the current position of the motor as the new zero position.
     /// @param offset Motor position
     /// @throws `Exception` if position reporting is not supported

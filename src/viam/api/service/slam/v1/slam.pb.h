@@ -33,7 +33,6 @@
 #include <google/protobuf/unknown_field_set.h>
 #include "common/v1/common.pb.h"
 #include "google/api/annotations.pb.h"
-#include <google/protobuf/struct.pb.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_service_2fslam_2fv1_2fslam_2eproto
@@ -421,24 +420,8 @@ class GetPositionResponse final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kComponentReferenceFieldNumber = 2,
     kPoseFieldNumber = 1,
-    kExtraFieldNumber = 99,
   };
-  // string component_reference = 2 [json_name = "componentReference"];
-  void clear_component_reference();
-  const std::string& component_reference() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_component_reference(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_component_reference();
-  PROTOBUF_NODISCARD std::string* release_component_reference();
-  void set_allocated_component_reference(std::string* component_reference);
-  private:
-  const std::string& _internal_component_reference() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_component_reference(const std::string& value);
-  std::string* _internal_mutable_component_reference();
-  public:
-
   // .viam.common.v1.Pose pose = 1 [json_name = "pose"];
   bool has_pose() const;
   private:
@@ -457,24 +440,6 @@ class GetPositionResponse final :
       ::viam::common::v1::Pose* pose);
   ::viam::common::v1::Pose* unsafe_arena_release_pose();
 
-  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  bool has_extra() const;
-  private:
-  bool _internal_has_extra() const;
-  public:
-  void clear_extra();
-  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
-  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
-  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
-  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
-  private:
-  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
-  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
-  public:
-  void unsafe_arena_set_allocated_extra(
-      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
-  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
-
   // @@protoc_insertion_point(class_scope:viam.service.slam.v1.GetPositionResponse)
  private:
   class _Internal;
@@ -482,9 +447,7 @@ class GetPositionResponse final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr component_reference_;
   ::viam::common::v1::Pose* pose_;
-  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_service_2fslam_2fv1_2fslam_2eproto;
 };
@@ -1746,141 +1709,6 @@ inline void GetPositionResponse::set_allocated_pose(::viam::common::v1::Pose* po
   }
   pose_ = pose;
   // @@protoc_insertion_point(field_set_allocated:viam.service.slam.v1.GetPositionResponse.pose)
-}
-
-// string component_reference = 2 [json_name = "componentReference"];
-inline void GetPositionResponse::clear_component_reference() {
-  component_reference_.ClearToEmpty();
-}
-inline const std::string& GetPositionResponse::component_reference() const {
-  // @@protoc_insertion_point(field_get:viam.service.slam.v1.GetPositionResponse.component_reference)
-  return _internal_component_reference();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void GetPositionResponse::set_component_reference(ArgT0&& arg0, ArgT... args) {
- 
- component_reference_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:viam.service.slam.v1.GetPositionResponse.component_reference)
-}
-inline std::string* GetPositionResponse::mutable_component_reference() {
-  std::string* _s = _internal_mutable_component_reference();
-  // @@protoc_insertion_point(field_mutable:viam.service.slam.v1.GetPositionResponse.component_reference)
-  return _s;
-}
-inline const std::string& GetPositionResponse::_internal_component_reference() const {
-  return component_reference_.Get();
-}
-inline void GetPositionResponse::_internal_set_component_reference(const std::string& value) {
-  
-  component_reference_.Set(value, GetArenaForAllocation());
-}
-inline std::string* GetPositionResponse::_internal_mutable_component_reference() {
-  
-  return component_reference_.Mutable(GetArenaForAllocation());
-}
-inline std::string* GetPositionResponse::release_component_reference() {
-  // @@protoc_insertion_point(field_release:viam.service.slam.v1.GetPositionResponse.component_reference)
-  return component_reference_.Release();
-}
-inline void GetPositionResponse::set_allocated_component_reference(std::string* component_reference) {
-  if (component_reference != nullptr) {
-    
-  } else {
-    
-  }
-  component_reference_.SetAllocated(component_reference, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (component_reference_.IsDefault()) {
-    component_reference_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.service.slam.v1.GetPositionResponse.component_reference)
-}
-
-// .google.protobuf.Struct extra = 99 [json_name = "extra"];
-inline bool GetPositionResponse::_internal_has_extra() const {
-  return this != internal_default_instance() && extra_ != nullptr;
-}
-inline bool GetPositionResponse::has_extra() const {
-  return _internal_has_extra();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetPositionResponse::_internal_extra() const {
-  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
-  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
-      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetPositionResponse::extra() const {
-  // @@protoc_insertion_point(field_get:viam.service.slam.v1.GetPositionResponse.extra)
-  return _internal_extra();
-}
-inline void GetPositionResponse::unsafe_arena_set_allocated_extra(
-    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
-  }
-  extra_ = extra;
-  if (extra) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.slam.v1.GetPositionResponse.extra)
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPositionResponse::release_extra() {
-  
-  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
-  extra_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPositionResponse::unsafe_arena_release_extra() {
-  // @@protoc_insertion_point(field_release:viam.service.slam.v1.GetPositionResponse.extra)
-  
-  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
-  extra_ = nullptr;
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPositionResponse::_internal_mutable_extra() {
-  
-  if (extra_ == nullptr) {
-    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
-    extra_ = p;
-  }
-  return extra_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPositionResponse::mutable_extra() {
-  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
-  // @@protoc_insertion_point(field_mutable:viam.service.slam.v1.GetPositionResponse.extra)
-  return _msg;
-}
-inline void GetPositionResponse::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
-  }
-  if (extra) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
-    if (message_arena != submessage_arena) {
-      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, extra, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  extra_ = extra;
-  // @@protoc_insertion_point(field_set_allocated:viam.service.slam.v1.GetPositionResponse.extra)
 }
 
 // -------------------------------------------------------------------

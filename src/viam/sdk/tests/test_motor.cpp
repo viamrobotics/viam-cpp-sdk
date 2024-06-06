@@ -55,6 +55,12 @@ BOOST_AUTO_TEST_CASE(mock_go_to) {
     BOOST_CHECK(motor->get_position() == 1.0);
 }
 
+BOOST_AUTO_TEST_CASE(mock_set_rpm) {
+    std::shared_ptr<MockMotor> motor = MockMotor::get_mock_motor();
+    motor->set_rpm(1.0);
+    BOOST_CHECK(motor->get_power_status().is_on);
+}
+
 BOOST_AUTO_TEST_CASE(mock_reset_zero_position) {
     std::shared_ptr<MockMotor> motor = MockMotor::get_mock_motor();
     motor->go_to(1.0, 1.0);
@@ -139,6 +145,14 @@ BOOST_AUTO_TEST_CASE(test_go_to) {
         BOOST_CHECK(client.get_position() == 1.0);
         client.go_to(0.1, -1.0);
         BOOST_CHECK(client.get_position() == -1.0);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_set_rpm) {
+    std::shared_ptr<MockMotor> mock = MockMotor::get_mock_motor();
+    client_to_mock_pipeline<Motor>(mock, [](Motor& client) {
+        client.set_rpm(1.0);
+        BOOST_CHECK(client.get_position() >= 1.0);
     });
 }
 

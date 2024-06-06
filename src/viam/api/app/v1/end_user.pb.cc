@@ -88,7 +88,7 @@ PROTOBUF_CONSTEXPR RegisterAuthApplicationResponse::RegisterAuthApplicationRespo
     ::_pbi::ConstantInitialized)
   : application_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , application_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , secret_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+  , client_secret_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct RegisterAuthApplicationResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR RegisterAuthApplicationResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -128,10 +128,40 @@ struct UpdateAuthApplicationResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateAuthApplicationResponseDefaultTypeInternal _UpdateAuthApplicationResponse_default_instance_;
+PROTOBUF_CONSTEXPR GetAuthApplicationRequest::GetAuthApplicationRequest(
+    ::_pbi::ConstantInitialized)
+  : org_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , application_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct GetAuthApplicationRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetAuthApplicationRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetAuthApplicationRequestDefaultTypeInternal() {}
+  union {
+    GetAuthApplicationRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetAuthApplicationRequestDefaultTypeInternal _GetAuthApplicationRequest_default_instance_;
+PROTOBUF_CONSTEXPR GetAuthApplicationResponse::GetAuthApplicationResponse(
+    ::_pbi::ConstantInitialized)
+  : origin_uris_()
+  , redirect_uris_()
+  , application_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , application_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , client_secret_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , logout_uri_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct GetAuthApplicationResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetAuthApplicationResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetAuthApplicationResponseDefaultTypeInternal() {}
+  union {
+    GetAuthApplicationResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetAuthApplicationResponseDefaultTypeInternal _GetAuthApplicationResponse_default_instance_;
 }  // namespace v1
 }  // namespace app
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_app_2fv1_2fend_5fuser_2eproto[8];
+static ::_pb::Metadata file_level_metadata_app_2fv1_2fend_5fuser_2eproto[10];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_app_2fv1_2fend_5fuser_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_app_2fv1_2fend_5fuser_2eproto = nullptr;
 
@@ -180,7 +210,7 @@ const uint32_t TableStruct_app_2fv1_2fend_5fuser_2eproto::offsets[] PROTOBUF_SEC
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::RegisterAuthApplicationResponse, application_id_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::RegisterAuthApplicationResponse, application_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::v1::RegisterAuthApplicationResponse, secret_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::RegisterAuthApplicationResponse, client_secret_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::UpdateAuthApplicationRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -201,6 +231,26 @@ const uint32_t TableStruct_app_2fv1_2fend_5fuser_2eproto::offsets[] PROTOBUF_SEC
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::UpdateAuthApplicationResponse, application_id_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::UpdateAuthApplicationResponse, application_name_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetAuthApplicationRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetAuthApplicationRequest, org_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetAuthApplicationRequest, application_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetAuthApplicationResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetAuthApplicationResponse, application_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetAuthApplicationResponse, application_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetAuthApplicationResponse, client_secret_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetAuthApplicationResponse, origin_uris_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetAuthApplicationResponse, redirect_uris_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetAuthApplicationResponse, logout_uri_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::app::v1::IsLegalAcceptedRequest)},
@@ -211,6 +261,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 36, -1, -1, sizeof(::viam::app::v1::RegisterAuthApplicationResponse)},
   { 45, -1, -1, sizeof(::viam::app::v1::UpdateAuthApplicationRequest)},
   { 57, -1, -1, sizeof(::viam::app::v1::UpdateAuthApplicationResponse)},
+  { 65, -1, -1, sizeof(::viam::app::v1::GetAuthApplicationRequest)},
+  { 73, -1, -1, sizeof(::viam::app::v1::GetAuthApplicationResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -222,6 +274,8 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::app::v1::_RegisterAuthApplicationResponse_default_instance_._instance,
   &::viam::app::v1::_UpdateAuthApplicationRequest_default_instance_._instance,
   &::viam::app::v1::_UpdateAuthApplicationResponse_default_instance_._instance,
+  &::viam::app::v1::_GetAuthApplicationRequest_default_instance_._instance,
+  &::viam::app::v1::_GetAuthApplicationResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_app_2fv1_2fend_5fuser_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -234,37 +288,48 @@ const char descriptor_table_protodef_app_2fv1_2fend_5fuser_2eproto[] PROTOBUF_SE
   "icationName\022\025\n\006org_id\030\002 \001(\tR\005orgId\022\037\n\013or"
   "igin_uris\030\003 \003(\tR\noriginUris\022#\n\rredirect_"
   "uris\030\004 \003(\tR\014redirectUris\022\035\n\nlogout_uri\030\005"
-  " \001(\tR\tlogoutUri\"\213\001\n\037RegisterAuthApplicat"
+  " \001(\tR\tlogoutUri\"\230\001\n\037RegisterAuthApplicat"
   "ionResponse\022%\n\016application_id\030\001 \001(\tR\rapp"
   "licationId\022)\n\020application_name\030\002 \001(\tR\017ap"
-  "plicationName\022\026\n\006secret\030\003 \001(\tR\006secret\"\354\001"
-  "\n\034UpdateAuthApplicationRequest\022\025\n\006org_id"
-  "\030\001 \001(\tR\005orgId\022%\n\016application_id\030\002 \001(\tR\ra"
-  "pplicationId\022)\n\020application_name\030\003 \001(\tR\017"
-  "applicationName\022\037\n\013origin_uris\030\004 \003(\tR\nor"
-  "iginUris\022#\n\rredirect_uris\030\005 \003(\tR\014redirec"
-  "tUris\022\035\n\nlogout_uri\030\006 \001(\tR\tlogoutUri\"q\n\035"
-  "UpdateAuthApplicationResponse\022%\n\016applica"
-  "tion_id\030\001 \001(\tR\rapplicationId\022)\n\020applicat"
-  "ion_name\030\002 \001(\tR\017applicationName2\246\003\n\016EndU"
-  "serService\022\\\n\017IsLegalAccepted\022#.viam.app"
-  ".v1.IsLegalAcceptedRequest\032$.viam.app.v1"
-  ".IsLegalAcceptedResponse\022P\n\013AcceptLegal\022"
-  "\037.viam.app.v1.AcceptLegalRequest\032 .viam."
-  "app.v1.AcceptLegalResponse\022t\n\027RegisterAu"
-  "thApplication\022+.viam.app.v1.RegisterAuth"
-  "ApplicationRequest\032,.viam.app.v1.Registe"
-  "rAuthApplicationResponse\022n\n\025UpdateAuthAp"
-  "plication\022).viam.app.v1.UpdateAuthApplic"
-  "ationRequest\032*.viam.app.v1.UpdateAuthApp"
-  "licationResponseB\030Z\026go.viam.com/api/app/"
-  "v1b\006proto3"
+  "plicationName\022#\n\rclient_secret\030\003 \001(\tR\014cl"
+  "ientSecret\"\354\001\n\034UpdateAuthApplicationRequ"
+  "est\022\025\n\006org_id\030\001 \001(\tR\005orgId\022%\n\016applicatio"
+  "n_id\030\002 \001(\tR\rapplicationId\022)\n\020application"
+  "_name\030\003 \001(\tR\017applicationName\022\037\n\013origin_u"
+  "ris\030\004 \003(\tR\noriginUris\022#\n\rredirect_uris\030\005"
+  " \003(\tR\014redirectUris\022\035\n\nlogout_uri\030\006 \001(\tR\t"
+  "logoutUri\"q\n\035UpdateAuthApplicationRespon"
+  "se\022%\n\016application_id\030\001 \001(\tR\rapplicationI"
+  "d\022)\n\020application_name\030\002 \001(\tR\017application"
+  "Name\"Y\n\031GetAuthApplicationRequest\022\025\n\006org"
+  "_id\030\001 \001(\tR\005orgId\022%\n\016application_id\030\002 \001(\t"
+  "R\rapplicationId\"\370\001\n\032GetAuthApplicationRe"
+  "sponse\022%\n\016application_id\030\001 \001(\tR\rapplicat"
+  "ionId\022)\n\020application_name\030\002 \001(\tR\017applica"
+  "tionName\022#\n\rclient_secret\030\003 \001(\tR\014clientS"
+  "ecret\022\037\n\013origin_uris\030\004 \003(\tR\noriginUris\022#"
+  "\n\rredirect_uris\030\005 \003(\tR\014redirectUris\022\035\n\nl"
+  "ogout_uri\030\006 \001(\tR\tlogoutUri2\215\004\n\016EndUserSe"
+  "rvice\022\\\n\017IsLegalAccepted\022#.viam.app.v1.I"
+  "sLegalAcceptedRequest\032$.viam.app.v1.IsLe"
+  "galAcceptedResponse\022P\n\013AcceptLegal\022\037.via"
+  "m.app.v1.AcceptLegalRequest\032 .viam.app.v"
+  "1.AcceptLegalResponse\022t\n\027RegisterAuthApp"
+  "lication\022+.viam.app.v1.RegisterAuthAppli"
+  "cationRequest\032,.viam.app.v1.RegisterAuth"
+  "ApplicationResponse\022n\n\025UpdateAuthApplica"
+  "tion\022).viam.app.v1.UpdateAuthApplication"
+  "Request\032*.viam.app.v1.UpdateAuthApplicat"
+  "ionResponse\022e\n\022GetAuthApplication\022&.viam"
+  ".app.v1.GetAuthApplicationRequest\032\'.viam"
+  ".app.v1.GetAuthApplicationResponseB\030Z\026go"
+  ".viam.com/api/app/v1b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_app_2fv1_2fend_5fuser_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2fend_5fuser_2eproto = {
-    false, false, 1330, descriptor_table_protodef_app_2fv1_2fend_5fuser_2eproto,
+    false, false, 1788, descriptor_table_protodef_app_2fv1_2fend_5fuser_2eproto,
     "app/v1/end_user.proto",
-    &descriptor_table_app_2fv1_2fend_5fuser_2eproto_once, nullptr, 0, 8,
+    &descriptor_table_app_2fv1_2fend_5fuser_2eproto_once, nullptr, 0, 10,
     schemas, file_default_instances, TableStruct_app_2fv1_2fend_5fuser_2eproto::offsets,
     file_level_metadata_app_2fv1_2fend_5fuser_2eproto, file_level_enum_descriptors_app_2fv1_2fend_5fuser_2eproto,
     file_level_service_descriptors_app_2fv1_2fend_5fuser_2eproto,
@@ -965,12 +1030,12 @@ RegisterAuthApplicationResponse::RegisterAuthApplicationResponse(const RegisterA
     application_name_.Set(from._internal_application_name(), 
       GetArenaForAllocation());
   }
-  secret_.InitDefault();
+  client_secret_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    secret_.Set("", GetArenaForAllocation());
+    client_secret_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_secret().empty()) {
-    secret_.Set(from._internal_secret(), 
+  if (!from._internal_client_secret().empty()) {
+    client_secret_.Set(from._internal_client_secret(), 
       GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:viam.app.v1.RegisterAuthApplicationResponse)
@@ -985,9 +1050,9 @@ application_name_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   application_name_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-secret_.InitDefault();
+client_secret_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  secret_.Set("", GetArenaForAllocation());
+  client_secret_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
@@ -1004,7 +1069,7 @@ inline void RegisterAuthApplicationResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   application_id_.Destroy();
   application_name_.Destroy();
-  secret_.Destroy();
+  client_secret_.Destroy();
 }
 
 void RegisterAuthApplicationResponse::SetCachedSize(int size) const {
@@ -1019,7 +1084,7 @@ void RegisterAuthApplicationResponse::Clear() {
 
   application_id_.ClearToEmpty();
   application_name_.ClearToEmpty();
-  secret_.ClearToEmpty();
+  client_secret_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1049,13 +1114,13 @@ const char* RegisterAuthApplicationResponse::_InternalParse(const char* ptr, ::_
         } else
           goto handle_unusual;
         continue;
-      // string secret = 3 [json_name = "secret"];
+      // string client_secret = 3 [json_name = "clientSecret"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          auto str = _internal_mutable_secret();
+          auto str = _internal_mutable_client_secret();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.RegisterAuthApplicationResponse.secret"));
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.RegisterAuthApplicationResponse.client_secret"));
         } else
           goto handle_unusual;
         continue;
@@ -1108,14 +1173,14 @@ uint8_t* RegisterAuthApplicationResponse::_InternalSerialize(
         2, this->_internal_application_name(), target);
   }
 
-  // string secret = 3 [json_name = "secret"];
-  if (!this->_internal_secret().empty()) {
+  // string client_secret = 3 [json_name = "clientSecret"];
+  if (!this->_internal_client_secret().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_secret().data(), static_cast<int>(this->_internal_secret().length()),
+      this->_internal_client_secret().data(), static_cast<int>(this->_internal_client_secret().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "viam.app.v1.RegisterAuthApplicationResponse.secret");
+      "viam.app.v1.RegisterAuthApplicationResponse.client_secret");
     target = stream->WriteStringMaybeAliased(
-        3, this->_internal_secret(), target);
+        3, this->_internal_client_secret(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1148,11 +1213,11 @@ size_t RegisterAuthApplicationResponse::ByteSizeLong() const {
         this->_internal_application_name());
   }
 
-  // string secret = 3 [json_name = "secret"];
-  if (!this->_internal_secret().empty()) {
+  // string client_secret = 3 [json_name = "clientSecret"];
+  if (!this->_internal_client_secret().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_secret());
+        this->_internal_client_secret());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -1183,8 +1248,8 @@ void RegisterAuthApplicationResponse::MergeFrom(const RegisterAuthApplicationRes
   if (!from._internal_application_name().empty()) {
     _internal_set_application_name(from._internal_application_name());
   }
-  if (!from._internal_secret().empty()) {
-    _internal_set_secret(from._internal_secret());
+  if (!from._internal_client_secret().empty()) {
+    _internal_set_client_secret(from._internal_client_secret());
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -1214,8 +1279,8 @@ void RegisterAuthApplicationResponse::InternalSwap(RegisterAuthApplicationRespon
       &other->application_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &secret_, lhs_arena,
-      &other->secret_, rhs_arena
+      &client_secret_, lhs_arena,
+      &other->client_secret_, rhs_arena
   );
 }
 
@@ -1883,6 +1948,664 @@ void UpdateAuthApplicationResponse::InternalSwap(UpdateAuthApplicationResponse* 
       file_level_metadata_app_2fv1_2fend_5fuser_2eproto[7]);
 }
 
+// ===================================================================
+
+class GetAuthApplicationRequest::_Internal {
+ public:
+};
+
+GetAuthApplicationRequest::GetAuthApplicationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.GetAuthApplicationRequest)
+}
+GetAuthApplicationRequest::GetAuthApplicationRequest(const GetAuthApplicationRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  org_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    org_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_org_id().empty()) {
+    org_id_.Set(from._internal_org_id(), 
+      GetArenaForAllocation());
+  }
+  application_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    application_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_application_id().empty()) {
+    application_id_.Set(from._internal_application_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.GetAuthApplicationRequest)
+}
+
+inline void GetAuthApplicationRequest::SharedCtor() {
+org_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  org_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+application_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  application_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+GetAuthApplicationRequest::~GetAuthApplicationRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.GetAuthApplicationRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetAuthApplicationRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  org_id_.Destroy();
+  application_id_.Destroy();
+}
+
+void GetAuthApplicationRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetAuthApplicationRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.GetAuthApplicationRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  org_id_.ClearToEmpty();
+  application_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetAuthApplicationRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string org_id = 1 [json_name = "orgId"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_org_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.GetAuthApplicationRequest.org_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string application_id = 2 [json_name = "applicationId"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_application_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.GetAuthApplicationRequest.application_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetAuthApplicationRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.GetAuthApplicationRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string org_id = 1 [json_name = "orgId"];
+  if (!this->_internal_org_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_org_id().data(), static_cast<int>(this->_internal_org_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.GetAuthApplicationRequest.org_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_org_id(), target);
+  }
+
+  // string application_id = 2 [json_name = "applicationId"];
+  if (!this->_internal_application_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_application_id().data(), static_cast<int>(this->_internal_application_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.GetAuthApplicationRequest.application_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_application_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.GetAuthApplicationRequest)
+  return target;
+}
+
+size_t GetAuthApplicationRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.GetAuthApplicationRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string org_id = 1 [json_name = "orgId"];
+  if (!this->_internal_org_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_org_id());
+  }
+
+  // string application_id = 2 [json_name = "applicationId"];
+  if (!this->_internal_application_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_application_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetAuthApplicationRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetAuthApplicationRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetAuthApplicationRequest::GetClassData() const { return &_class_data_; }
+
+void GetAuthApplicationRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetAuthApplicationRequest *>(to)->MergeFrom(
+      static_cast<const GetAuthApplicationRequest &>(from));
+}
+
+
+void GetAuthApplicationRequest::MergeFrom(const GetAuthApplicationRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.GetAuthApplicationRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_org_id().empty()) {
+    _internal_set_org_id(from._internal_org_id());
+  }
+  if (!from._internal_application_id().empty()) {
+    _internal_set_application_id(from._internal_application_id());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetAuthApplicationRequest::CopyFrom(const GetAuthApplicationRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.GetAuthApplicationRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetAuthApplicationRequest::IsInitialized() const {
+  return true;
+}
+
+void GetAuthApplicationRequest::InternalSwap(GetAuthApplicationRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &org_id_, lhs_arena,
+      &other->org_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &application_id_, lhs_arena,
+      &other->application_id_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetAuthApplicationRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fend_5fuser_2eproto_getter, &descriptor_table_app_2fv1_2fend_5fuser_2eproto_once,
+      file_level_metadata_app_2fv1_2fend_5fuser_2eproto[8]);
+}
+
+// ===================================================================
+
+class GetAuthApplicationResponse::_Internal {
+ public:
+};
+
+GetAuthApplicationResponse::GetAuthApplicationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  origin_uris_(arena),
+  redirect_uris_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.GetAuthApplicationResponse)
+}
+GetAuthApplicationResponse::GetAuthApplicationResponse(const GetAuthApplicationResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      origin_uris_(from.origin_uris_),
+      redirect_uris_(from.redirect_uris_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  application_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    application_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_application_id().empty()) {
+    application_id_.Set(from._internal_application_id(), 
+      GetArenaForAllocation());
+  }
+  application_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    application_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_application_name().empty()) {
+    application_name_.Set(from._internal_application_name(), 
+      GetArenaForAllocation());
+  }
+  client_secret_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    client_secret_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_client_secret().empty()) {
+    client_secret_.Set(from._internal_client_secret(), 
+      GetArenaForAllocation());
+  }
+  logout_uri_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    logout_uri_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_logout_uri().empty()) {
+    logout_uri_.Set(from._internal_logout_uri(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.GetAuthApplicationResponse)
+}
+
+inline void GetAuthApplicationResponse::SharedCtor() {
+application_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  application_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+application_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  application_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+client_secret_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  client_secret_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+logout_uri_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  logout_uri_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+GetAuthApplicationResponse::~GetAuthApplicationResponse() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.GetAuthApplicationResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetAuthApplicationResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  application_id_.Destroy();
+  application_name_.Destroy();
+  client_secret_.Destroy();
+  logout_uri_.Destroy();
+}
+
+void GetAuthApplicationResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetAuthApplicationResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.GetAuthApplicationResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  origin_uris_.Clear();
+  redirect_uris_.Clear();
+  application_id_.ClearToEmpty();
+  application_name_.ClearToEmpty();
+  client_secret_.ClearToEmpty();
+  logout_uri_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetAuthApplicationResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string application_id = 1 [json_name = "applicationId"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_application_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.GetAuthApplicationResponse.application_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string application_name = 2 [json_name = "applicationName"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_application_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.GetAuthApplicationResponse.application_name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string client_secret = 3 [json_name = "clientSecret"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_client_secret();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.GetAuthApplicationResponse.client_secret"));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string origin_uris = 4 [json_name = "originUris"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_origin_uris();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.GetAuthApplicationResponse.origin_uris"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<34>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string redirect_uris = 5 [json_name = "redirectUris"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_redirect_uris();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.GetAuthApplicationResponse.redirect_uris"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<42>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // string logout_uri = 6 [json_name = "logoutUri"];
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          auto str = _internal_mutable_logout_uri();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.GetAuthApplicationResponse.logout_uri"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetAuthApplicationResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.GetAuthApplicationResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string application_id = 1 [json_name = "applicationId"];
+  if (!this->_internal_application_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_application_id().data(), static_cast<int>(this->_internal_application_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.GetAuthApplicationResponse.application_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_application_id(), target);
+  }
+
+  // string application_name = 2 [json_name = "applicationName"];
+  if (!this->_internal_application_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_application_name().data(), static_cast<int>(this->_internal_application_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.GetAuthApplicationResponse.application_name");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_application_name(), target);
+  }
+
+  // string client_secret = 3 [json_name = "clientSecret"];
+  if (!this->_internal_client_secret().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_client_secret().data(), static_cast<int>(this->_internal_client_secret().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.GetAuthApplicationResponse.client_secret");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_client_secret(), target);
+  }
+
+  // repeated string origin_uris = 4 [json_name = "originUris"];
+  for (int i = 0, n = this->_internal_origin_uris_size(); i < n; i++) {
+    const auto& s = this->_internal_origin_uris(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.GetAuthApplicationResponse.origin_uris");
+    target = stream->WriteString(4, s, target);
+  }
+
+  // repeated string redirect_uris = 5 [json_name = "redirectUris"];
+  for (int i = 0, n = this->_internal_redirect_uris_size(); i < n; i++) {
+    const auto& s = this->_internal_redirect_uris(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.GetAuthApplicationResponse.redirect_uris");
+    target = stream->WriteString(5, s, target);
+  }
+
+  // string logout_uri = 6 [json_name = "logoutUri"];
+  if (!this->_internal_logout_uri().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_logout_uri().data(), static_cast<int>(this->_internal_logout_uri().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.GetAuthApplicationResponse.logout_uri");
+    target = stream->WriteStringMaybeAliased(
+        6, this->_internal_logout_uri(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.GetAuthApplicationResponse)
+  return target;
+}
+
+size_t GetAuthApplicationResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.GetAuthApplicationResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string origin_uris = 4 [json_name = "originUris"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(origin_uris_.size());
+  for (int i = 0, n = origin_uris_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      origin_uris_.Get(i));
+  }
+
+  // repeated string redirect_uris = 5 [json_name = "redirectUris"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(redirect_uris_.size());
+  for (int i = 0, n = redirect_uris_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      redirect_uris_.Get(i));
+  }
+
+  // string application_id = 1 [json_name = "applicationId"];
+  if (!this->_internal_application_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_application_id());
+  }
+
+  // string application_name = 2 [json_name = "applicationName"];
+  if (!this->_internal_application_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_application_name());
+  }
+
+  // string client_secret = 3 [json_name = "clientSecret"];
+  if (!this->_internal_client_secret().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_client_secret());
+  }
+
+  // string logout_uri = 6 [json_name = "logoutUri"];
+  if (!this->_internal_logout_uri().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_logout_uri());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetAuthApplicationResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetAuthApplicationResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetAuthApplicationResponse::GetClassData() const { return &_class_data_; }
+
+void GetAuthApplicationResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetAuthApplicationResponse *>(to)->MergeFrom(
+      static_cast<const GetAuthApplicationResponse &>(from));
+}
+
+
+void GetAuthApplicationResponse::MergeFrom(const GetAuthApplicationResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.GetAuthApplicationResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  origin_uris_.MergeFrom(from.origin_uris_);
+  redirect_uris_.MergeFrom(from.redirect_uris_);
+  if (!from._internal_application_id().empty()) {
+    _internal_set_application_id(from._internal_application_id());
+  }
+  if (!from._internal_application_name().empty()) {
+    _internal_set_application_name(from._internal_application_name());
+  }
+  if (!from._internal_client_secret().empty()) {
+    _internal_set_client_secret(from._internal_client_secret());
+  }
+  if (!from._internal_logout_uri().empty()) {
+    _internal_set_logout_uri(from._internal_logout_uri());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetAuthApplicationResponse::CopyFrom(const GetAuthApplicationResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.GetAuthApplicationResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetAuthApplicationResponse::IsInitialized() const {
+  return true;
+}
+
+void GetAuthApplicationResponse::InternalSwap(GetAuthApplicationResponse* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  origin_uris_.InternalSwap(&other->origin_uris_);
+  redirect_uris_.InternalSwap(&other->redirect_uris_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &application_id_, lhs_arena,
+      &other->application_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &application_name_, lhs_arena,
+      &other->application_name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &client_secret_, lhs_arena,
+      &other->client_secret_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &logout_uri_, lhs_arena,
+      &other->logout_uri_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetAuthApplicationResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fend_5fuser_2eproto_getter, &descriptor_table_app_2fv1_2fend_5fuser_2eproto_once,
+      file_level_metadata_app_2fv1_2fend_5fuser_2eproto[9]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace app
@@ -1919,6 +2642,14 @@ Arena::CreateMaybeMessage< ::viam::app::v1::UpdateAuthApplicationRequest >(Arena
 template<> PROTOBUF_NOINLINE ::viam::app::v1::UpdateAuthApplicationResponse*
 Arena::CreateMaybeMessage< ::viam::app::v1::UpdateAuthApplicationResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::app::v1::UpdateAuthApplicationResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::GetAuthApplicationRequest*
+Arena::CreateMaybeMessage< ::viam::app::v1::GetAuthApplicationRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::GetAuthApplicationRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::GetAuthApplicationResponse*
+Arena::CreateMaybeMessage< ::viam::app::v1::GetAuthApplicationResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::GetAuthApplicationResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

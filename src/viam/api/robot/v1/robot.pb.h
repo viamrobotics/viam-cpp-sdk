@@ -153,6 +153,12 @@ extern SendSessionHeartbeatResponseDefaultTypeInternal _SendSessionHeartbeatResp
 class Session;
 struct SessionDefaultTypeInternal;
 extern SessionDefaultTypeInternal _Session_default_instance_;
+class ShutdownRequest;
+struct ShutdownRequestDefaultTypeInternal;
+extern ShutdownRequestDefaultTypeInternal _ShutdownRequest_default_instance_;
+class ShutdownResponse;
+struct ShutdownResponseDefaultTypeInternal;
+extern ShutdownResponseDefaultTypeInternal _ShutdownResponse_default_instance_;
 class StartSessionRequest;
 struct StartSessionRequestDefaultTypeInternal;
 extern StartSessionRequestDefaultTypeInternal _StartSessionRequest_default_instance_;
@@ -226,6 +232,8 @@ template<> ::viam::robot::v1::RestartModuleResponse* Arena::CreateMaybeMessage<:
 template<> ::viam::robot::v1::SendSessionHeartbeatRequest* Arena::CreateMaybeMessage<::viam::robot::v1::SendSessionHeartbeatRequest>(Arena*);
 template<> ::viam::robot::v1::SendSessionHeartbeatResponse* Arena::CreateMaybeMessage<::viam::robot::v1::SendSessionHeartbeatResponse>(Arena*);
 template<> ::viam::robot::v1::Session* Arena::CreateMaybeMessage<::viam::robot::v1::Session>(Arena*);
+template<> ::viam::robot::v1::ShutdownRequest* Arena::CreateMaybeMessage<::viam::robot::v1::ShutdownRequest>(Arena*);
+template<> ::viam::robot::v1::ShutdownResponse* Arena::CreateMaybeMessage<::viam::robot::v1::ShutdownResponse>(Arena*);
 template<> ::viam::robot::v1::StartSessionRequest* Arena::CreateMaybeMessage<::viam::robot::v1::StartSessionRequest>(Arena*);
 template<> ::viam::robot::v1::StartSessionResponse* Arena::CreateMaybeMessage<::viam::robot::v1::StartSessionResponse>(Arena*);
 template<> ::viam::robot::v1::Status* Arena::CreateMaybeMessage<::viam::robot::v1::Status>(Arena*);
@@ -7142,6 +7150,238 @@ class RestartModuleResponse final :
   typedef void DestructorSkippable_;
   friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
 };
+// -------------------------------------------------------------------
+
+class ShutdownRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.robot.v1.ShutdownRequest) */ {
+ public:
+  inline ShutdownRequest() : ShutdownRequest(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR ShutdownRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ShutdownRequest(const ShutdownRequest& from);
+  ShutdownRequest(ShutdownRequest&& from) noexcept
+    : ShutdownRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ShutdownRequest& operator=(const ShutdownRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ShutdownRequest& operator=(ShutdownRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ShutdownRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ShutdownRequest* internal_default_instance() {
+    return reinterpret_cast<const ShutdownRequest*>(
+               &_ShutdownRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    45;
+
+  friend void swap(ShutdownRequest& a, ShutdownRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ShutdownRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ShutdownRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ShutdownRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ShutdownRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const ShutdownRequest& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const ShutdownRequest& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.ShutdownRequest";
+  }
+  protected:
+  explicit ShutdownRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.ShutdownRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ShutdownResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.robot.v1.ShutdownResponse) */ {
+ public:
+  inline ShutdownResponse() : ShutdownResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR ShutdownResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ShutdownResponse(const ShutdownResponse& from);
+  ShutdownResponse(ShutdownResponse&& from) noexcept
+    : ShutdownResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline ShutdownResponse& operator=(const ShutdownResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ShutdownResponse& operator=(ShutdownResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ShutdownResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ShutdownResponse* internal_default_instance() {
+    return reinterpret_cast<const ShutdownResponse*>(
+               &_ShutdownResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    46;
+
+  friend void swap(ShutdownResponse& a, ShutdownResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ShutdownResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ShutdownResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ShutdownResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ShutdownResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const ShutdownResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const ShutdownResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.ShutdownResponse";
+  }
+  protected:
+  explicit ShutdownResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.ShutdownResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
 // ===================================================================
 
 
@@ -10803,9 +11043,21 @@ inline RestartModuleRequest::IdOrNameCase RestartModuleRequest::id_or_name_case(
 
 // RestartModuleResponse
 
+// -------------------------------------------------------------------
+
+// ShutdownRequest
+
+// -------------------------------------------------------------------
+
+// ShutdownResponse
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

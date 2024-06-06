@@ -52,8 +52,8 @@ class MotorService final {
     // GoFor instructs the motor to turn at a specified speed, which is expressed in RPM,
     // for a specified number of rotations relative to its starting position
     // This method will return an error if position reporting is not supported
-    // If revolutions is 0, this will run the motor at rpm indefinitely
     // If revolutions != 0, this will block until the number of revolutions has been completed or another operation comes in.
+    // Deprecated: If revolutions is 0, this will run the motor at rpm indefinitely.
     virtual ::grpc::Status GoFor(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoForRequest& request, ::viam::component::motor::v1::GoForResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::motor::v1::GoForResponse>> AsyncGoFor(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoForRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::motor::v1::GoForResponse>>(AsyncGoForRaw(context, request, cq));
@@ -70,6 +70,14 @@ class MotorService final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::motor::v1::GoToResponse>> PrepareAsyncGoTo(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoToRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::motor::v1::GoToResponse>>(PrepareAsyncGoToRaw(context, request, cq));
+    }
+    // SetRPM instructs the motor to move at the specified RPM indefinitely.
+    virtual ::grpc::Status SetRPM(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetRPMRequest& request, ::viam::component::motor::v1::SetRPMResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::motor::v1::SetRPMResponse>> AsyncSetRPM(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetRPMRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::motor::v1::SetRPMResponse>>(AsyncSetRPMRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::motor::v1::SetRPMResponse>> PrepareAsyncSetRPM(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetRPMRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::motor::v1::SetRPMResponse>>(PrepareAsyncSetRPMRaw(context, request, cq));
     }
     // ResetZeroPosition sets the current position of the motor as the new zero position
     // This method will return an error if position reporting is not supported
@@ -148,8 +156,8 @@ class MotorService final {
       // GoFor instructs the motor to turn at a specified speed, which is expressed in RPM,
       // for a specified number of rotations relative to its starting position
       // This method will return an error if position reporting is not supported
-      // If revolutions is 0, this will run the motor at rpm indefinitely
       // If revolutions != 0, this will block until the number of revolutions has been completed or another operation comes in.
+      // Deprecated: If revolutions is 0, this will run the motor at rpm indefinitely.
       virtual void GoFor(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoForRequest* request, ::viam::component::motor::v1::GoForResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GoFor(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoForRequest* request, ::viam::component::motor::v1::GoForResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // GoTo requests the robot's motor to move to a specific position that
@@ -157,6 +165,9 @@ class MotorService final {
       // This method will return an error if position reporting is not supported
       virtual void GoTo(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoToRequest* request, ::viam::component::motor::v1::GoToResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GoTo(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoToRequest* request, ::viam::component::motor::v1::GoToResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // SetRPM instructs the motor to move at the specified RPM indefinitely.
+      virtual void SetRPM(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetRPMRequest* request, ::viam::component::motor::v1::SetRPMResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetRPM(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetRPMRequest* request, ::viam::component::motor::v1::SetRPMResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // ResetZeroPosition sets the current position of the motor as the new zero position
       // This method will return an error if position reporting is not supported
       virtual void ResetZeroPosition(::grpc::ClientContext* context, const ::viam::component::motor::v1::ResetZeroPositionRequest* request, ::viam::component::motor::v1::ResetZeroPositionResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -194,6 +205,8 @@ class MotorService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::motor::v1::GoForResponse>* PrepareAsyncGoForRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoForRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::motor::v1::GoToResponse>* AsyncGoToRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoToRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::motor::v1::GoToResponse>* PrepareAsyncGoToRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoToRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::motor::v1::SetRPMResponse>* AsyncSetRPMRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetRPMRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::motor::v1::SetRPMResponse>* PrepareAsyncSetRPMRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetRPMRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::motor::v1::ResetZeroPositionResponse>* AsyncResetZeroPositionRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::ResetZeroPositionRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::motor::v1::ResetZeroPositionResponse>* PrepareAsyncResetZeroPositionRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::ResetZeroPositionRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::motor::v1::GetPositionResponse>* AsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -234,6 +247,13 @@ class MotorService final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::GoToResponse>> PrepareAsyncGoTo(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoToRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::GoToResponse>>(PrepareAsyncGoToRaw(context, request, cq));
+    }
+    ::grpc::Status SetRPM(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetRPMRequest& request, ::viam::component::motor::v1::SetRPMResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::SetRPMResponse>> AsyncSetRPM(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetRPMRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::SetRPMResponse>>(AsyncSetRPMRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::SetRPMResponse>> PrepareAsyncSetRPM(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetRPMRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::SetRPMResponse>>(PrepareAsyncSetRPMRaw(context, request, cq));
     }
     ::grpc::Status ResetZeroPosition(::grpc::ClientContext* context, const ::viam::component::motor::v1::ResetZeroPositionRequest& request, ::viam::component::motor::v1::ResetZeroPositionResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::ResetZeroPositionResponse>> AsyncResetZeroPosition(::grpc::ClientContext* context, const ::viam::component::motor::v1::ResetZeroPositionRequest& request, ::grpc::CompletionQueue* cq) {
@@ -300,6 +320,8 @@ class MotorService final {
       void GoFor(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoForRequest* request, ::viam::component::motor::v1::GoForResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GoTo(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoToRequest* request, ::viam::component::motor::v1::GoToResponse* response, std::function<void(::grpc::Status)>) override;
       void GoTo(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoToRequest* request, ::viam::component::motor::v1::GoToResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetRPM(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetRPMRequest* request, ::viam::component::motor::v1::SetRPMResponse* response, std::function<void(::grpc::Status)>) override;
+      void SetRPM(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetRPMRequest* request, ::viam::component::motor::v1::SetRPMResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void ResetZeroPosition(::grpc::ClientContext* context, const ::viam::component::motor::v1::ResetZeroPositionRequest* request, ::viam::component::motor::v1::ResetZeroPositionResponse* response, std::function<void(::grpc::Status)>) override;
       void ResetZeroPosition(::grpc::ClientContext* context, const ::viam::component::motor::v1::ResetZeroPositionRequest* request, ::viam::component::motor::v1::ResetZeroPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetPosition(::grpc::ClientContext* context, const ::viam::component::motor::v1::GetPositionRequest* request, ::viam::component::motor::v1::GetPositionResponse* response, std::function<void(::grpc::Status)>) override;
@@ -333,6 +355,8 @@ class MotorService final {
     ::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::GoForResponse>* PrepareAsyncGoForRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoForRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::GoToResponse>* AsyncGoToRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoToRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::GoToResponse>* PrepareAsyncGoToRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoToRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::SetRPMResponse>* AsyncSetRPMRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetRPMRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::SetRPMResponse>* PrepareAsyncSetRPMRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetRPMRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::ResetZeroPositionResponse>* AsyncResetZeroPositionRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::ResetZeroPositionRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::ResetZeroPositionResponse>* PrepareAsyncResetZeroPositionRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::ResetZeroPositionRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::GetPositionResponse>* AsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -352,6 +376,7 @@ class MotorService final {
     const ::grpc::internal::RpcMethod rpcmethod_SetPower_;
     const ::grpc::internal::RpcMethod rpcmethod_GoFor_;
     const ::grpc::internal::RpcMethod rpcmethod_GoTo_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetRPM_;
     const ::grpc::internal::RpcMethod rpcmethod_ResetZeroPosition_;
     const ::grpc::internal::RpcMethod rpcmethod_GetPosition_;
     const ::grpc::internal::RpcMethod rpcmethod_GetProperties_;
@@ -374,13 +399,15 @@ class MotorService final {
     // GoFor instructs the motor to turn at a specified speed, which is expressed in RPM,
     // for a specified number of rotations relative to its starting position
     // This method will return an error if position reporting is not supported
-    // If revolutions is 0, this will run the motor at rpm indefinitely
     // If revolutions != 0, this will block until the number of revolutions has been completed or another operation comes in.
+    // Deprecated: If revolutions is 0, this will run the motor at rpm indefinitely.
     virtual ::grpc::Status GoFor(::grpc::ServerContext* context, const ::viam::component::motor::v1::GoForRequest* request, ::viam::component::motor::v1::GoForResponse* response);
     // GoTo requests the robot's motor to move to a specific position that
     // is relative to its home position at a specified speed which is expressed in RPM
     // This method will return an error if position reporting is not supported
     virtual ::grpc::Status GoTo(::grpc::ServerContext* context, const ::viam::component::motor::v1::GoToRequest* request, ::viam::component::motor::v1::GoToResponse* response);
+    // SetRPM instructs the motor to move at the specified RPM indefinitely.
+    virtual ::grpc::Status SetRPM(::grpc::ServerContext* context, const ::viam::component::motor::v1::SetRPMRequest* request, ::viam::component::motor::v1::SetRPMResponse* response);
     // ResetZeroPosition sets the current position of the motor as the new zero position
     // This method will return an error if position reporting is not supported
     virtual ::grpc::Status ResetZeroPosition(::grpc::ServerContext* context, const ::viam::component::motor::v1::ResetZeroPositionRequest* request, ::viam::component::motor::v1::ResetZeroPositionResponse* response);
@@ -461,12 +488,32 @@ class MotorService final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_SetRPM : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetRPM() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_SetRPM() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetRPM(::grpc::ServerContext* /*context*/, const ::viam::component::motor::v1::SetRPMRequest* /*request*/, ::viam::component::motor::v1::SetRPMResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetRPM(::grpc::ServerContext* context, ::viam::component::motor::v1::SetRPMRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::motor::v1::SetRPMResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_ResetZeroPosition : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ResetZeroPosition() {
-      ::grpc::Service::MarkMethodAsync(3);
+      ::grpc::Service::MarkMethodAsync(4);
     }
     ~WithAsyncMethod_ResetZeroPosition() override {
       BaseClassMustBeDerivedFromService(this);
@@ -477,7 +524,7 @@ class MotorService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestResetZeroPosition(::grpc::ServerContext* context, ::viam::component::motor::v1::ResetZeroPositionRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::motor::v1::ResetZeroPositionResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -486,7 +533,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetPosition() {
-      ::grpc::Service::MarkMethodAsync(4);
+      ::grpc::Service::MarkMethodAsync(5);
     }
     ~WithAsyncMethod_GetPosition() override {
       BaseClassMustBeDerivedFromService(this);
@@ -497,7 +544,7 @@ class MotorService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetPosition(::grpc::ServerContext* context, ::viam::component::motor::v1::GetPositionRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::motor::v1::GetPositionResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -506,7 +553,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetProperties() {
-      ::grpc::Service::MarkMethodAsync(5);
+      ::grpc::Service::MarkMethodAsync(6);
     }
     ~WithAsyncMethod_GetProperties() override {
       BaseClassMustBeDerivedFromService(this);
@@ -517,7 +564,7 @@ class MotorService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetProperties(::grpc::ServerContext* context, ::viam::component::motor::v1::GetPropertiesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::motor::v1::GetPropertiesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -526,7 +573,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_Stop() {
-      ::grpc::Service::MarkMethodAsync(6);
+      ::grpc::Service::MarkMethodAsync(7);
     }
     ~WithAsyncMethod_Stop() override {
       BaseClassMustBeDerivedFromService(this);
@@ -537,7 +584,7 @@ class MotorService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestStop(::grpc::ServerContext* context, ::viam::component::motor::v1::StopRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::motor::v1::StopResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -546,7 +593,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_IsPowered() {
-      ::grpc::Service::MarkMethodAsync(7);
+      ::grpc::Service::MarkMethodAsync(8);
     }
     ~WithAsyncMethod_IsPowered() override {
       BaseClassMustBeDerivedFromService(this);
@@ -557,7 +604,7 @@ class MotorService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestIsPowered(::grpc::ServerContext* context, ::viam::component::motor::v1::IsPoweredRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::motor::v1::IsPoweredResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -566,7 +613,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_IsMoving() {
-      ::grpc::Service::MarkMethodAsync(8);
+      ::grpc::Service::MarkMethodAsync(9);
     }
     ~WithAsyncMethod_IsMoving() override {
       BaseClassMustBeDerivedFromService(this);
@@ -577,7 +624,7 @@ class MotorService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestIsMoving(::grpc::ServerContext* context, ::viam::component::motor::v1::IsMovingRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::motor::v1::IsMovingResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -586,7 +633,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DoCommand() {
-      ::grpc::Service::MarkMethodAsync(9);
+      ::grpc::Service::MarkMethodAsync(10);
     }
     ~WithAsyncMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -597,7 +644,7 @@ class MotorService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::viam::common::v1::DoCommandRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::DoCommandResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -606,7 +653,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodAsync(10);
+      ::grpc::Service::MarkMethodAsync(11);
     }
     ~WithAsyncMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -617,10 +664,10 @@ class MotorService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetGeometries(::grpc::ServerContext* context, ::viam::common::v1::GetGeometriesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::GetGeometriesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_SetPower<WithAsyncMethod_GoFor<WithAsyncMethod_GoTo<WithAsyncMethod_ResetZeroPosition<WithAsyncMethod_GetPosition<WithAsyncMethod_GetProperties<WithAsyncMethod_Stop<WithAsyncMethod_IsPowered<WithAsyncMethod_IsMoving<WithAsyncMethod_DoCommand<WithAsyncMethod_GetGeometries<Service > > > > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_SetPower<WithAsyncMethod_GoFor<WithAsyncMethod_GoTo<WithAsyncMethod_SetRPM<WithAsyncMethod_ResetZeroPosition<WithAsyncMethod_GetPosition<WithAsyncMethod_GetProperties<WithAsyncMethod_Stop<WithAsyncMethod_IsPowered<WithAsyncMethod_IsMoving<WithAsyncMethod_DoCommand<WithAsyncMethod_GetGeometries<Service > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_SetPower : public BaseClass {
    private:
@@ -703,18 +750,45 @@ class MotorService final {
       ::grpc::CallbackServerContext* /*context*/, const ::viam::component::motor::v1::GoToRequest* /*request*/, ::viam::component::motor::v1::GoToResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_SetRPM : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetRPM() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::motor::v1::SetRPMRequest, ::viam::component::motor::v1::SetRPMResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::component::motor::v1::SetRPMRequest* request, ::viam::component::motor::v1::SetRPMResponse* response) { return this->SetRPM(context, request, response); }));}
+    void SetMessageAllocatorFor_SetRPM(
+        ::grpc::MessageAllocator< ::viam::component::motor::v1::SetRPMRequest, ::viam::component::motor::v1::SetRPMResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::motor::v1::SetRPMRequest, ::viam::component::motor::v1::SetRPMResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetRPM() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetRPM(::grpc::ServerContext* /*context*/, const ::viam::component::motor::v1::SetRPMRequest* /*request*/, ::viam::component::motor::v1::SetRPMResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetRPM(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::motor::v1::SetRPMRequest* /*request*/, ::viam::component::motor::v1::SetRPMResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_ResetZeroPosition : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_ResetZeroPosition() {
-      ::grpc::Service::MarkMethodCallback(3,
+      ::grpc::Service::MarkMethodCallback(4,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::component::motor::v1::ResetZeroPositionRequest, ::viam::component::motor::v1::ResetZeroPositionResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::component::motor::v1::ResetZeroPositionRequest* request, ::viam::component::motor::v1::ResetZeroPositionResponse* response) { return this->ResetZeroPosition(context, request, response); }));}
     void SetMessageAllocatorFor_ResetZeroPosition(
         ::grpc::MessageAllocator< ::viam::component::motor::v1::ResetZeroPositionRequest, ::viam::component::motor::v1::ResetZeroPositionResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::motor::v1::ResetZeroPositionRequest, ::viam::component::motor::v1::ResetZeroPositionResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -735,13 +809,13 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetPosition() {
-      ::grpc::Service::MarkMethodCallback(4,
+      ::grpc::Service::MarkMethodCallback(5,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::component::motor::v1::GetPositionRequest, ::viam::component::motor::v1::GetPositionResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::component::motor::v1::GetPositionRequest* request, ::viam::component::motor::v1::GetPositionResponse* response) { return this->GetPosition(context, request, response); }));}
     void SetMessageAllocatorFor_GetPosition(
         ::grpc::MessageAllocator< ::viam::component::motor::v1::GetPositionRequest, ::viam::component::motor::v1::GetPositionResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::motor::v1::GetPositionRequest, ::viam::component::motor::v1::GetPositionResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -762,13 +836,13 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetProperties() {
-      ::grpc::Service::MarkMethodCallback(5,
+      ::grpc::Service::MarkMethodCallback(6,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::component::motor::v1::GetPropertiesRequest, ::viam::component::motor::v1::GetPropertiesResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::component::motor::v1::GetPropertiesRequest* request, ::viam::component::motor::v1::GetPropertiesResponse* response) { return this->GetProperties(context, request, response); }));}
     void SetMessageAllocatorFor_GetProperties(
         ::grpc::MessageAllocator< ::viam::component::motor::v1::GetPropertiesRequest, ::viam::component::motor::v1::GetPropertiesResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::motor::v1::GetPropertiesRequest, ::viam::component::motor::v1::GetPropertiesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -789,13 +863,13 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_Stop() {
-      ::grpc::Service::MarkMethodCallback(6,
+      ::grpc::Service::MarkMethodCallback(7,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::component::motor::v1::StopRequest, ::viam::component::motor::v1::StopResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::component::motor::v1::StopRequest* request, ::viam::component::motor::v1::StopResponse* response) { return this->Stop(context, request, response); }));}
     void SetMessageAllocatorFor_Stop(
         ::grpc::MessageAllocator< ::viam::component::motor::v1::StopRequest, ::viam::component::motor::v1::StopResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::motor::v1::StopRequest, ::viam::component::motor::v1::StopResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -816,13 +890,13 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_IsPowered() {
-      ::grpc::Service::MarkMethodCallback(7,
+      ::grpc::Service::MarkMethodCallback(8,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::component::motor::v1::IsPoweredRequest, ::viam::component::motor::v1::IsPoweredResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::component::motor::v1::IsPoweredRequest* request, ::viam::component::motor::v1::IsPoweredResponse* response) { return this->IsPowered(context, request, response); }));}
     void SetMessageAllocatorFor_IsPowered(
         ::grpc::MessageAllocator< ::viam::component::motor::v1::IsPoweredRequest, ::viam::component::motor::v1::IsPoweredResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::motor::v1::IsPoweredRequest, ::viam::component::motor::v1::IsPoweredResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -843,13 +917,13 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_IsMoving() {
-      ::grpc::Service::MarkMethodCallback(8,
+      ::grpc::Service::MarkMethodCallback(9,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::component::motor::v1::IsMovingRequest, ::viam::component::motor::v1::IsMovingResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::component::motor::v1::IsMovingRequest* request, ::viam::component::motor::v1::IsMovingResponse* response) { return this->IsMoving(context, request, response); }));}
     void SetMessageAllocatorFor_IsMoving(
         ::grpc::MessageAllocator< ::viam::component::motor::v1::IsMovingRequest, ::viam::component::motor::v1::IsMovingResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::motor::v1::IsMovingRequest, ::viam::component::motor::v1::IsMovingResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -870,13 +944,13 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodCallback(9,
+      ::grpc::Service::MarkMethodCallback(10,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
     void SetMessageAllocatorFor_DoCommand(
         ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -897,13 +971,13 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodCallback(10,
+      ::grpc::Service::MarkMethodCallback(11,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response) { return this->GetGeometries(context, request, response); }));}
     void SetMessageAllocatorFor_GetGeometries(
         ::grpc::MessageAllocator< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -918,7 +992,7 @@ class MotorService final {
     virtual ::grpc::ServerUnaryReactor* GetGeometries(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::GetGeometriesRequest* /*request*/, ::viam::common::v1::GetGeometriesResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_SetPower<WithCallbackMethod_GoFor<WithCallbackMethod_GoTo<WithCallbackMethod_ResetZeroPosition<WithCallbackMethod_GetPosition<WithCallbackMethod_GetProperties<WithCallbackMethod_Stop<WithCallbackMethod_IsPowered<WithCallbackMethod_IsMoving<WithCallbackMethod_DoCommand<WithCallbackMethod_GetGeometries<Service > > > > > > > > > > > CallbackService;
+  typedef WithCallbackMethod_SetPower<WithCallbackMethod_GoFor<WithCallbackMethod_GoTo<WithCallbackMethod_SetRPM<WithCallbackMethod_ResetZeroPosition<WithCallbackMethod_GetPosition<WithCallbackMethod_GetProperties<WithCallbackMethod_Stop<WithCallbackMethod_IsPowered<WithCallbackMethod_IsMoving<WithCallbackMethod_DoCommand<WithCallbackMethod_GetGeometries<Service > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_SetPower : public BaseClass {
@@ -972,12 +1046,29 @@ class MotorService final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_SetRPM : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetRPM() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_SetRPM() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetRPM(::grpc::ServerContext* /*context*/, const ::viam::component::motor::v1::SetRPMRequest* /*request*/, ::viam::component::motor::v1::SetRPMResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_ResetZeroPosition : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ResetZeroPosition() {
-      ::grpc::Service::MarkMethodGeneric(3);
+      ::grpc::Service::MarkMethodGeneric(4);
     }
     ~WithGenericMethod_ResetZeroPosition() override {
       BaseClassMustBeDerivedFromService(this);
@@ -994,7 +1085,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetPosition() {
-      ::grpc::Service::MarkMethodGeneric(4);
+      ::grpc::Service::MarkMethodGeneric(5);
     }
     ~WithGenericMethod_GetPosition() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1011,7 +1102,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetProperties() {
-      ::grpc::Service::MarkMethodGeneric(5);
+      ::grpc::Service::MarkMethodGeneric(6);
     }
     ~WithGenericMethod_GetProperties() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1028,7 +1119,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_Stop() {
-      ::grpc::Service::MarkMethodGeneric(6);
+      ::grpc::Service::MarkMethodGeneric(7);
     }
     ~WithGenericMethod_Stop() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1045,7 +1136,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_IsPowered() {
-      ::grpc::Service::MarkMethodGeneric(7);
+      ::grpc::Service::MarkMethodGeneric(8);
     }
     ~WithGenericMethod_IsPowered() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1062,7 +1153,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_IsMoving() {
-      ::grpc::Service::MarkMethodGeneric(8);
+      ::grpc::Service::MarkMethodGeneric(9);
     }
     ~WithGenericMethod_IsMoving() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1079,7 +1170,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DoCommand() {
-      ::grpc::Service::MarkMethodGeneric(9);
+      ::grpc::Service::MarkMethodGeneric(10);
     }
     ~WithGenericMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1096,7 +1187,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodGeneric(10);
+      ::grpc::Service::MarkMethodGeneric(11);
     }
     ~WithGenericMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1168,12 +1259,32 @@ class MotorService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_SetRPM : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetRPM() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_SetRPM() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetRPM(::grpc::ServerContext* /*context*/, const ::viam::component::motor::v1::SetRPMRequest* /*request*/, ::viam::component::motor::v1::SetRPMResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetRPM(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_ResetZeroPosition : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ResetZeroPosition() {
-      ::grpc::Service::MarkMethodRaw(3);
+      ::grpc::Service::MarkMethodRaw(4);
     }
     ~WithRawMethod_ResetZeroPosition() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1184,7 +1295,7 @@ class MotorService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestResetZeroPosition(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1193,7 +1304,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetPosition() {
-      ::grpc::Service::MarkMethodRaw(4);
+      ::grpc::Service::MarkMethodRaw(5);
     }
     ~WithRawMethod_GetPosition() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1204,7 +1315,7 @@ class MotorService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetPosition(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1213,7 +1324,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetProperties() {
-      ::grpc::Service::MarkMethodRaw(5);
+      ::grpc::Service::MarkMethodRaw(6);
     }
     ~WithRawMethod_GetProperties() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1224,7 +1335,7 @@ class MotorService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetProperties(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1233,7 +1344,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_Stop() {
-      ::grpc::Service::MarkMethodRaw(6);
+      ::grpc::Service::MarkMethodRaw(7);
     }
     ~WithRawMethod_Stop() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1244,7 +1355,7 @@ class MotorService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestStop(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1253,7 +1364,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_IsPowered() {
-      ::grpc::Service::MarkMethodRaw(7);
+      ::grpc::Service::MarkMethodRaw(8);
     }
     ~WithRawMethod_IsPowered() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1264,7 +1375,7 @@ class MotorService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestIsPowered(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1273,7 +1384,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_IsMoving() {
-      ::grpc::Service::MarkMethodRaw(8);
+      ::grpc::Service::MarkMethodRaw(9);
     }
     ~WithRawMethod_IsMoving() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1284,7 +1395,7 @@ class MotorService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestIsMoving(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1293,7 +1404,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRaw(9);
+      ::grpc::Service::MarkMethodRaw(10);
     }
     ~WithRawMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1304,7 +1415,7 @@ class MotorService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1313,7 +1424,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodRaw(10);
+      ::grpc::Service::MarkMethodRaw(11);
     }
     ~WithRawMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1324,7 +1435,7 @@ class MotorService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetGeometries(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1394,12 +1505,34 @@ class MotorService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_SetRPM : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetRPM() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetRPM(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetRPM() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetRPM(::grpc::ServerContext* /*context*/, const ::viam::component::motor::v1::SetRPMRequest* /*request*/, ::viam::component::motor::v1::SetRPMResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetRPM(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_ResetZeroPosition : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_ResetZeroPosition() {
-      ::grpc::Service::MarkMethodRawCallback(3,
+      ::grpc::Service::MarkMethodRawCallback(4,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ResetZeroPosition(context, request, response); }));
@@ -1421,7 +1554,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetPosition() {
-      ::grpc::Service::MarkMethodRawCallback(4,
+      ::grpc::Service::MarkMethodRawCallback(5,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetPosition(context, request, response); }));
@@ -1443,7 +1576,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetProperties() {
-      ::grpc::Service::MarkMethodRawCallback(5,
+      ::grpc::Service::MarkMethodRawCallback(6,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetProperties(context, request, response); }));
@@ -1465,7 +1598,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_Stop() {
-      ::grpc::Service::MarkMethodRawCallback(6,
+      ::grpc::Service::MarkMethodRawCallback(7,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Stop(context, request, response); }));
@@ -1487,7 +1620,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_IsPowered() {
-      ::grpc::Service::MarkMethodRawCallback(7,
+      ::grpc::Service::MarkMethodRawCallback(8,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->IsPowered(context, request, response); }));
@@ -1509,7 +1642,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_IsMoving() {
-      ::grpc::Service::MarkMethodRawCallback(8,
+      ::grpc::Service::MarkMethodRawCallback(9,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->IsMoving(context, request, response); }));
@@ -1531,7 +1664,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRawCallback(9,
+      ::grpc::Service::MarkMethodRawCallback(10,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
@@ -1553,7 +1686,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodRawCallback(10,
+      ::grpc::Service::MarkMethodRawCallback(11,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetGeometries(context, request, response); }));
@@ -1651,12 +1784,39 @@ class MotorService final {
     virtual ::grpc::Status StreamedGoTo(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::motor::v1::GoToRequest,::viam::component::motor::v1::GoToResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_SetRPM : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetRPM() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::component::motor::v1::SetRPMRequest, ::viam::component::motor::v1::SetRPMResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::component::motor::v1::SetRPMRequest, ::viam::component::motor::v1::SetRPMResponse>* streamer) {
+                       return this->StreamedSetRPM(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetRPM() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetRPM(::grpc::ServerContext* /*context*/, const ::viam::component::motor::v1::SetRPMRequest* /*request*/, ::viam::component::motor::v1::SetRPMResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetRPM(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::motor::v1::SetRPMRequest,::viam::component::motor::v1::SetRPMResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_ResetZeroPosition : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ResetZeroPosition() {
-      ::grpc::Service::MarkMethodStreamed(3,
+      ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::motor::v1::ResetZeroPositionRequest, ::viam::component::motor::v1::ResetZeroPositionResponse>(
             [this](::grpc::ServerContext* context,
@@ -1683,7 +1843,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetPosition() {
-      ::grpc::Service::MarkMethodStreamed(4,
+      ::grpc::Service::MarkMethodStreamed(5,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::motor::v1::GetPositionRequest, ::viam::component::motor::v1::GetPositionResponse>(
             [this](::grpc::ServerContext* context,
@@ -1710,7 +1870,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetProperties() {
-      ::grpc::Service::MarkMethodStreamed(5,
+      ::grpc::Service::MarkMethodStreamed(6,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::motor::v1::GetPropertiesRequest, ::viam::component::motor::v1::GetPropertiesResponse>(
             [this](::grpc::ServerContext* context,
@@ -1737,7 +1897,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_Stop() {
-      ::grpc::Service::MarkMethodStreamed(6,
+      ::grpc::Service::MarkMethodStreamed(7,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::motor::v1::StopRequest, ::viam::component::motor::v1::StopResponse>(
             [this](::grpc::ServerContext* context,
@@ -1764,7 +1924,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_IsPowered() {
-      ::grpc::Service::MarkMethodStreamed(7,
+      ::grpc::Service::MarkMethodStreamed(8,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::motor::v1::IsPoweredRequest, ::viam::component::motor::v1::IsPoweredResponse>(
             [this](::grpc::ServerContext* context,
@@ -1791,7 +1951,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_IsMoving() {
-      ::grpc::Service::MarkMethodStreamed(8,
+      ::grpc::Service::MarkMethodStreamed(9,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::motor::v1::IsMovingRequest, ::viam::component::motor::v1::IsMovingResponse>(
             [this](::grpc::ServerContext* context,
@@ -1818,7 +1978,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DoCommand() {
-      ::grpc::Service::MarkMethodStreamed(9,
+      ::grpc::Service::MarkMethodStreamed(10,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](::grpc::ServerContext* context,
@@ -1845,7 +2005,7 @@ class MotorService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodStreamed(10,
+      ::grpc::Service::MarkMethodStreamed(11,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
             [this](::grpc::ServerContext* context,
@@ -1866,9 +2026,9 @@ class MotorService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetGeometries(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::common::v1::GetGeometriesRequest,::viam::common::v1::GetGeometriesResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_SetPower<WithStreamedUnaryMethod_GoFor<WithStreamedUnaryMethod_GoTo<WithStreamedUnaryMethod_ResetZeroPosition<WithStreamedUnaryMethod_GetPosition<WithStreamedUnaryMethod_GetProperties<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsPowered<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetGeometries<Service > > > > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_SetPower<WithStreamedUnaryMethod_GoFor<WithStreamedUnaryMethod_GoTo<WithStreamedUnaryMethod_SetRPM<WithStreamedUnaryMethod_ResetZeroPosition<WithStreamedUnaryMethod_GetPosition<WithStreamedUnaryMethod_GetProperties<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsPowered<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetGeometries<Service > > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_SetPower<WithStreamedUnaryMethod_GoFor<WithStreamedUnaryMethod_GoTo<WithStreamedUnaryMethod_ResetZeroPosition<WithStreamedUnaryMethod_GetPosition<WithStreamedUnaryMethod_GetProperties<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsPowered<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetGeometries<Service > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_SetPower<WithStreamedUnaryMethod_GoFor<WithStreamedUnaryMethod_GoTo<WithStreamedUnaryMethod_SetRPM<WithStreamedUnaryMethod_ResetZeroPosition<WithStreamedUnaryMethod_GetPosition<WithStreamedUnaryMethod_GetProperties<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsPowered<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetGeometries<Service > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1

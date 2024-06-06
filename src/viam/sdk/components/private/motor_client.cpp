@@ -49,6 +49,12 @@ void MotorClient::go_to(double rpm, double position_revolutions, const Attribute
         .invoke();
 }
 
+void MotorClient::set_rpm(double rpm, const AttributeMap& extra) {
+    return make_client_helper(this, *stub_, &StubType::SetRPM)
+        .with(extra, [&](auto& request) { request.set_rpm(rpm); })
+        .invoke();
+}
+
 void MotorClient::reset_zero_position(double offset, const AttributeMap& extra) {
     return make_client_helper(this, *stub_, &StubType::ResetZeroPosition)
         .with(extra, [&](auto& request) { request.set_offset(offset); })

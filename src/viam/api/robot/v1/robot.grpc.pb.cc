@@ -42,6 +42,7 @@ static const char* RobotService_method_names[] = {
   "/viam.robot.v1.RobotService/Log",
   "/viam.robot.v1.RobotService/GetCloudMetadata",
   "/viam.robot.v1.RobotService/RestartModule",
+  "/viam.robot.v1.RobotService/Shutdown",
 };
 
 std::unique_ptr< RobotService::Stub> RobotService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -69,6 +70,7 @@ RobotService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chann
   , rpcmethod_Log_(RobotService_method_names[15], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetCloudMetadata_(RobotService_method_names[16], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_RestartModule_(RobotService_method_names[17], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Shutdown_(RobotService_method_names[18], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status RobotService::Stub::GetOperations(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest& request, ::viam::robot::v1::GetOperationsResponse* response) {
@@ -478,6 +480,29 @@ void RobotService::Stub::async::RestartModule(::grpc::ClientContext* context, co
   return result;
 }
 
+::grpc::Status RobotService::Stub::Shutdown(::grpc::ClientContext* context, const ::viam::robot::v1::ShutdownRequest& request, ::viam::robot::v1::ShutdownResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::ShutdownRequest, ::viam::robot::v1::ShutdownResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Shutdown_, context, request, response);
+}
+
+void RobotService::Stub::async::Shutdown(::grpc::ClientContext* context, const ::viam::robot::v1::ShutdownRequest* request, ::viam::robot::v1::ShutdownResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::ShutdownRequest, ::viam::robot::v1::ShutdownResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Shutdown_, context, request, response, std::move(f));
+}
+
+void RobotService::Stub::async::Shutdown(::grpc::ClientContext* context, const ::viam::robot::v1::ShutdownRequest* request, ::viam::robot::v1::ShutdownResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Shutdown_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::ShutdownResponse>* RobotService::Stub::PrepareAsyncShutdownRaw(::grpc::ClientContext* context, const ::viam::robot::v1::ShutdownRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::ShutdownResponse, ::viam::robot::v1::ShutdownRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Shutdown_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::ShutdownResponse>* RobotService::Stub::AsyncShutdownRaw(::grpc::ClientContext* context, const ::viam::robot::v1::ShutdownRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncShutdownRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 RobotService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       RobotService_method_names[0],
@@ -659,6 +684,16 @@ RobotService::Service::Service() {
              ::viam::robot::v1::RestartModuleResponse* resp) {
                return service->RestartModule(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      RobotService_method_names[18],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::ShutdownRequest, ::viam::robot::v1::ShutdownResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](RobotService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::robot::v1::ShutdownRequest* req,
+             ::viam::robot::v1::ShutdownResponse* resp) {
+               return service->Shutdown(ctx, req, resp);
+             }, this)));
 }
 
 RobotService::Service::~Service() {
@@ -784,6 +819,13 @@ RobotService::Service::~Service() {
 }
 
 ::grpc::Status RobotService::Service::RestartModule(::grpc::ServerContext* context, const ::viam::robot::v1::RestartModuleRequest* request, ::viam::robot::v1::RestartModuleResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status RobotService::Service::Shutdown(::grpc::ServerContext* context, const ::viam::robot::v1::ShutdownRequest* request, ::viam::robot::v1::ShutdownResponse* response) {
   (void) context;
   (void) request;
   (void) response;

@@ -38,9 +38,7 @@ struct GetPositionRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPositionRequestDefaultTypeInternal _GetPositionRequest_default_instance_;
 PROTOBUF_CONSTEXPR GetPositionResponse::GetPositionResponse(
     ::_pbi::ConstantInitialized)
-  : component_reference_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , pose_(nullptr)
-  , extra_(nullptr){}
+  : pose_(nullptr){}
 struct GetPositionResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetPositionResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -164,8 +162,6 @@ const uint32_t TableStruct_service_2fslam_2fv1_2fslam_2eproto::offsets[] PROTOBU
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetPositionResponse, pose_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetPositionResponse, component_reference_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetPositionResponse, extra_),
   PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetPointCloudMapRequest, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::service::slam::v1::GetPointCloudMapRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -230,13 +226,13 @@ const uint32_t TableStruct_service_2fslam_2fv1_2fslam_2eproto::offsets[] PROTOBU
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::service::slam::v1::GetPositionRequest)},
   { 7, -1, -1, sizeof(::viam::service::slam::v1::GetPositionResponse)},
-  { 16, 24, -1, sizeof(::viam::service::slam::v1::GetPointCloudMapRequest)},
-  { 26, -1, -1, sizeof(::viam::service::slam::v1::GetPointCloudMapResponse)},
-  { 33, -1, -1, sizeof(::viam::service::slam::v1::GetInternalStateRequest)},
-  { 40, -1, -1, sizeof(::viam::service::slam::v1::GetInternalStateResponse)},
-  { 47, -1, -1, sizeof(::viam::service::slam::v1::GetPropertiesRequest)},
-  { 54, 64, -1, sizeof(::viam::service::slam::v1::GetPropertiesResponse)},
-  { 68, -1, -1, sizeof(::viam::service::slam::v1::SensorInfo)},
+  { 14, 22, -1, sizeof(::viam::service::slam::v1::GetPointCloudMapRequest)},
+  { 24, -1, -1, sizeof(::viam::service::slam::v1::GetPointCloudMapResponse)},
+  { 31, -1, -1, sizeof(::viam::service::slam::v1::GetInternalStateRequest)},
+  { 38, -1, -1, sizeof(::viam::service::slam::v1::GetInternalStateResponse)},
+  { 45, -1, -1, sizeof(::viam::service::slam::v1::GetPropertiesRequest)},
+  { 52, 62, -1, sizeof(::viam::service::slam::v1::GetPropertiesResponse)},
+  { 66, -1, -1, sizeof(::viam::service::slam::v1::SensorInfo)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -254,71 +250,67 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_service_2fslam_2fv1_2fslam_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\032service/slam/v1/slam.proto\022\024viam.servi"
   "ce.slam.v1\032\026common/v1/common.proto\032\034goog"
-  "le/api/annotations.proto\032\034google/protobu"
-  "f/struct.proto\"(\n\022GetPositionRequest\022\022\n\004"
-  "name\030\001 \001(\tR\004name\"\237\001\n\023GetPositionResponse"
-  "\022(\n\004pose\030\001 \001(\0132\024.viam.common.v1.PoseR\004po"
-  "se\022/\n\023component_reference\030\002 \001(\tR\022compone"
-  "ntReference\022-\n\005extra\030c \001(\0132\027.google.prot"
-  "obuf.StructR\005extra\"t\n\027GetPointCloudMapRe"
-  "quest\022\022\n\004name\030\001 \001(\tR\004name\022/\n\021return_edit"
-  "ed_map\030\002 \001(\010H\000R\017returnEditedMap\210\001\001B\024\n\022_r"
-  "eturn_edited_map\"M\n\030GetPointCloudMapResp"
-  "onse\0221\n\025point_cloud_pcd_chunk\030\001 \001(\014R\022poi"
-  "ntCloudPcdChunk\"-\n\027GetInternalStateReque"
-  "st\022\022\n\004name\030\001 \001(\tR\004name\"L\n\030GetInternalSta"
-  "teResponse\0220\n\024internal_state_chunk\030\001 \001(\014"
-  "R\022internalStateChunk\"*\n\024GetPropertiesReq"
-  "uest\022\022\n\004name\030\001 \001(\tR\004name\"\232\002\n\025GetProperti"
-  "esResponse\022\035\n\ncloud_slam\030\001 \001(\010R\tcloudSla"
-  "m\022D\n\014mapping_mode\030\002 \001(\0162!.viam.service.s"
-  "lam.v1.MappingModeR\013mappingMode\022<\n\030inter"
-  "nal_state_file_type\030\003 \001(\tH\000R\025internalSta"
-  "teFileType\210\001\001\022A\n\013sensor_info\030\004 \003(\0132 .via"
-  "m.service.slam.v1.SensorInfoR\nsensorInfo"
-  "B\033\n\031_internal_state_file_type\"V\n\nSensorI"
-  "nfo\022\022\n\004name\030\001 \001(\tR\004name\0224\n\004type\030\002 \001(\0162 ."
-  "viam.service.slam.v1.SensorTypeR\004type*\222\001"
-  "\n\013MappingMode\022\034\n\030MAPPING_MODE_UNSPECIFIE"
-  "D\020\000\022\037\n\033MAPPING_MODE_CREATE_NEW_MAP\020\001\022\036\n\032"
-  "MAPPING_MODE_LOCALIZE_ONLY\020\002\022$\n MAPPING_"
-  "MODE_UPDATE_EXISTING_MAP\020\003*b\n\nSensorType"
-  "\022\033\n\027SENSOR_TYPE_UNSPECIFIED\020\000\022\026\n\022SENSOR_"
-  "TYPE_CAMERA\020\001\022\037\n\033SENSOR_TYPE_MOVEMENT_SE"
-  "NSOR\020\0022\254\006\n\013SLAMService\022\225\001\n\013GetPosition\022("
-  ".viam.service.slam.v1.GetPositionRequest"
-  "\032).viam.service.slam.v1.GetPositionRespo"
-  "nse\"1\202\323\344\223\002+\022)/viam/api/v1/service/slam/{"
-  "name}/position\022\255\001\n\020GetPointCloudMap\022-.vi"
-  "am.service.slam.v1.GetPointCloudMapReque"
-  "st\032..viam.service.slam.v1.GetPointCloudM"
-  "apResponse\"8\202\323\344\223\0022\0220/viam/api/v1/service"
-  "/slam/{name}/point_cloud_map0\001\022\254\001\n\020GetIn"
-  "ternalState\022-.viam.service.slam.v1.GetIn"
-  "ternalStateRequest\032..viam.service.slam.v"
-  "1.GetInternalStateResponse\"7\202\323\344\223\0021\022//via"
-  "m/api/v1/service/slam/{name}/internal_st"
-  "ate0\001\022\235\001\n\rGetProperties\022*.viam.service.s"
-  "lam.v1.GetPropertiesRequest\032+.viam.servi"
-  "ce.slam.v1.GetPropertiesResponse\"3\202\323\344\223\002-"
-  "\022+/viam/api/v1/service/slam/{name}/prope"
-  "rties\022\205\001\n\tDoCommand\022 .viam.common.v1.DoC"
-  "ommandRequest\032!.viam.common.v1.DoCommand"
-  "Response\"3\202\323\344\223\002-\"+/viam/api/v1/service/s"
-  "lam/{name}/do_commandB;\n\030com.viam.servic"
-  "e.slam.v1Z\037go.viam.com/api/service/slam/"
-  "v1b\006proto3"
+  "le/api/annotations.proto\"(\n\022GetPositionR"
+  "equest\022\022\n\004name\030\001 \001(\tR\004name\"\?\n\023GetPositio"
+  "nResponse\022(\n\004pose\030\001 \001(\0132\024.viam.common.v1"
+  ".PoseR\004pose\"t\n\027GetPointCloudMapRequest\022\022"
+  "\n\004name\030\001 \001(\tR\004name\022/\n\021return_edited_map\030"
+  "\002 \001(\010H\000R\017returnEditedMap\210\001\001B\024\n\022_return_e"
+  "dited_map\"M\n\030GetPointCloudMapResponse\0221\n"
+  "\025point_cloud_pcd_chunk\030\001 \001(\014R\022pointCloud"
+  "PcdChunk\"-\n\027GetInternalStateRequest\022\022\n\004n"
+  "ame\030\001 \001(\tR\004name\"L\n\030GetInternalStateRespo"
+  "nse\0220\n\024internal_state_chunk\030\001 \001(\014R\022inter"
+  "nalStateChunk\"*\n\024GetPropertiesRequest\022\022\n"
+  "\004name\030\001 \001(\tR\004name\"\232\002\n\025GetPropertiesRespo"
+  "nse\022\035\n\ncloud_slam\030\001 \001(\010R\tcloudSlam\022D\n\014ma"
+  "pping_mode\030\002 \001(\0162!.viam.service.slam.v1."
+  "MappingModeR\013mappingMode\022<\n\030internal_sta"
+  "te_file_type\030\003 \001(\tH\000R\025internalStateFileT"
+  "ype\210\001\001\022A\n\013sensor_info\030\004 \003(\0132 .viam.servi"
+  "ce.slam.v1.SensorInfoR\nsensorInfoB\033\n\031_in"
+  "ternal_state_file_type\"V\n\nSensorInfo\022\022\n\004"
+  "name\030\001 \001(\tR\004name\0224\n\004type\030\002 \001(\0162 .viam.se"
+  "rvice.slam.v1.SensorTypeR\004type*\222\001\n\013Mappi"
+  "ngMode\022\034\n\030MAPPING_MODE_UNSPECIFIED\020\000\022\037\n\033"
+  "MAPPING_MODE_CREATE_NEW_MAP\020\001\022\036\n\032MAPPING"
+  "_MODE_LOCALIZE_ONLY\020\002\022$\n MAPPING_MODE_UP"
+  "DATE_EXISTING_MAP\020\003*b\n\nSensorType\022\033\n\027SEN"
+  "SOR_TYPE_UNSPECIFIED\020\000\022\026\n\022SENSOR_TYPE_CA"
+  "MERA\020\001\022\037\n\033SENSOR_TYPE_MOVEMENT_SENSOR\020\0022"
+  "\254\006\n\013SLAMService\022\225\001\n\013GetPosition\022(.viam.s"
+  "ervice.slam.v1.GetPositionRequest\032).viam"
+  ".service.slam.v1.GetPositionResponse\"1\202\323"
+  "\344\223\002+\022)/viam/api/v1/service/slam/{name}/p"
+  "osition\022\255\001\n\020GetPointCloudMap\022-.viam.serv"
+  "ice.slam.v1.GetPointCloudMapRequest\032..vi"
+  "am.service.slam.v1.GetPointCloudMapRespo"
+  "nse\"8\202\323\344\223\0022\0220/viam/api/v1/service/slam/{"
+  "name}/point_cloud_map0\001\022\254\001\n\020GetInternalS"
+  "tate\022-.viam.service.slam.v1.GetInternalS"
+  "tateRequest\032..viam.service.slam.v1.GetIn"
+  "ternalStateResponse\"7\202\323\344\223\0021\022//viam/api/v"
+  "1/service/slam/{name}/internal_state0\001\022\235"
+  "\001\n\rGetProperties\022*.viam.service.slam.v1."
+  "GetPropertiesRequest\032+.viam.service.slam"
+  ".v1.GetPropertiesResponse\"3\202\323\344\223\002-\022+/viam"
+  "/api/v1/service/slam/{name}/properties\022\205"
+  "\001\n\tDoCommand\022 .viam.common.v1.DoCommandR"
+  "equest\032!.viam.common.v1.DoCommandRespons"
+  "e\"3\202\323\344\223\002-\"+/viam/api/v1/service/slam/{na"
+  "me}/do_commandB;\n\030com.viam.service.slam."
+  "v1Z\037go.viam.com/api/service/slam/v1b\006pro"
+  "to3"
   ;
-static const ::_pbi::DescriptorTable* const descriptor_table_service_2fslam_2fv1_2fslam_2eproto_deps[3] = {
+static const ::_pbi::DescriptorTable* const descriptor_table_service_2fslam_2fv1_2fslam_2eproto_deps[2] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
   &::descriptor_table_google_2fapi_2fannotations_2eproto,
-  &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_service_2fslam_2fv1_2fslam_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fslam_2fv1_2fslam_2eproto = {
-    false, false, 2210, descriptor_table_protodef_service_2fslam_2fv1_2fslam_2eproto,
+    false, false, 2083, descriptor_table_protodef_service_2fslam_2fv1_2fslam_2eproto,
     "service/slam/v1/slam.proto",
-    &descriptor_table_service_2fslam_2fv1_2fslam_2eproto_once, descriptor_table_service_2fslam_2fv1_2fslam_2eproto_deps, 3, 9,
+    &descriptor_table_service_2fslam_2fv1_2fslam_2eproto_once, descriptor_table_service_2fslam_2fv1_2fslam_2eproto_deps, 2, 9,
     schemas, file_default_instances, TableStruct_service_2fslam_2fv1_2fslam_2eproto::offsets,
     file_level_metadata_service_2fslam_2fv1_2fslam_2eproto, file_level_enum_descriptors_service_2fslam_2fv1_2fslam_2eproto,
     file_level_service_descriptors_service_2fslam_2fv1_2fslam_2eproto,
@@ -565,28 +557,17 @@ void GetPositionRequest::InternalSwap(GetPositionRequest* other) {
 class GetPositionResponse::_Internal {
  public:
   static const ::viam::common::v1::Pose& pose(const GetPositionResponse* msg);
-  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetPositionResponse* msg);
 };
 
 const ::viam::common::v1::Pose&
 GetPositionResponse::_Internal::pose(const GetPositionResponse* msg) {
   return *msg->pose_;
 }
-const ::PROTOBUF_NAMESPACE_ID::Struct&
-GetPositionResponse::_Internal::extra(const GetPositionResponse* msg) {
-  return *msg->extra_;
-}
 void GetPositionResponse::clear_pose() {
   if (GetArenaForAllocation() == nullptr && pose_ != nullptr) {
     delete pose_;
   }
   pose_ = nullptr;
-}
-void GetPositionResponse::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
-  }
-  extra_ = nullptr;
 }
 GetPositionResponse::GetPositionResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
@@ -597,36 +578,16 @@ GetPositionResponse::GetPositionResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 GetPositionResponse::GetPositionResponse(const GetPositionResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  component_reference_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    component_reference_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_component_reference().empty()) {
-    component_reference_.Set(from._internal_component_reference(), 
-      GetArenaForAllocation());
-  }
   if (from._internal_has_pose()) {
     pose_ = new ::viam::common::v1::Pose(*from.pose_);
   } else {
     pose_ = nullptr;
   }
-  if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
-  }
   // @@protoc_insertion_point(copy_constructor:viam.service.slam.v1.GetPositionResponse)
 }
 
 inline void GetPositionResponse::SharedCtor() {
-component_reference_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  component_reference_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&pose_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&extra_) -
-    reinterpret_cast<char*>(&pose_)) + sizeof(extra_));
+pose_ = nullptr;
 }
 
 GetPositionResponse::~GetPositionResponse() {
@@ -640,9 +601,7 @@ GetPositionResponse::~GetPositionResponse() {
 
 inline void GetPositionResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  component_reference_.Destroy();
   if (this != internal_default_instance()) delete pose_;
-  if (this != internal_default_instance()) delete extra_;
 }
 
 void GetPositionResponse::SetCachedSize(int size) const {
@@ -655,15 +614,10 @@ void GetPositionResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  component_reference_.ClearToEmpty();
   if (GetArenaForAllocation() == nullptr && pose_ != nullptr) {
     delete pose_;
   }
   pose_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
-  }
-  extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -677,24 +631,6 @@ const char* GetPositionResponse::_InternalParse(const char* ptr, ::_pbi::ParseCo
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_pose(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // string component_reference = 2 [json_name = "componentReference"];
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          auto str = _internal_mutable_component_reference();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "viam.service.slam.v1.GetPositionResponse.component_reference"));
-        } else
-          goto handle_unusual;
-        continue;
-      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-      case 99:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -735,23 +671,6 @@ uint8_t* GetPositionResponse::_InternalSerialize(
         _Internal::pose(this).GetCachedSize(), target, stream);
   }
 
-  // string component_reference = 2 [json_name = "componentReference"];
-  if (!this->_internal_component_reference().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_component_reference().data(), static_cast<int>(this->_internal_component_reference().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "viam.service.slam.v1.GetPositionResponse.component_reference");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_component_reference(), target);
-  }
-
-  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(99, _Internal::extra(this),
-        _Internal::extra(this).GetCachedSize(), target, stream);
-  }
-
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -768,25 +687,11 @@ size_t GetPositionResponse::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string component_reference = 2 [json_name = "componentReference"];
-  if (!this->_internal_component_reference().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_component_reference());
-  }
-
   // .viam.common.v1.Pose pose = 1 [json_name = "pose"];
   if (this->_internal_has_pose()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *pose_);
-  }
-
-  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    total_size += 2 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -811,14 +716,8 @@ void GetPositionResponse::MergeFrom(const GetPositionResponse& from) {
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_component_reference().empty()) {
-    _internal_set_component_reference(from._internal_component_reference());
-  }
   if (from._internal_has_pose()) {
     _internal_mutable_pose()->::viam::common::v1::Pose::MergeFrom(from._internal_pose());
-  }
-  if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -836,19 +735,8 @@ bool GetPositionResponse::IsInitialized() const {
 
 void GetPositionResponse::InternalSwap(GetPositionResponse* other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &component_reference_, lhs_arena,
-      &other->component_reference_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(GetPositionResponse, extra_)
-      + sizeof(GetPositionResponse::extra_)
-      - PROTOBUF_FIELD_OFFSET(GetPositionResponse, pose_)>(
-          reinterpret_cast<char*>(&pose_),
-          reinterpret_cast<char*>(&other->pose_));
+  swap(pose_, other->pose_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetPositionResponse::GetMetadata() const {

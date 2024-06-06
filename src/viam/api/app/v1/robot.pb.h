@@ -594,11 +594,7 @@ class RobotConfig final :
   void _internal_set_disable_partial_start(bool value);
   public:
 
-  // optional bool enable_web_profile = 13 [json_name = "enableWebProfile"];
-  bool has_enable_web_profile() const;
-  private:
-  bool _internal_has_enable_web_profile() const;
-  public:
+  // bool enable_web_profile = 13 [json_name = "enableWebProfile"];
   void clear_enable_web_profile();
   bool enable_web_profile() const;
   void set_enable_web_profile(bool value);
@@ -8427,17 +8423,9 @@ RobotConfig::overwrite_fragment_status() const {
   return overwrite_fragment_status_;
 }
 
-// optional bool enable_web_profile = 13 [json_name = "enableWebProfile"];
-inline bool RobotConfig::_internal_has_enable_web_profile() const {
-  bool value = (_has_bits_[0] & 0x00000010u) != 0;
-  return value;
-}
-inline bool RobotConfig::has_enable_web_profile() const {
-  return _internal_has_enable_web_profile();
-}
+// bool enable_web_profile = 13 [json_name = "enableWebProfile"];
 inline void RobotConfig::clear_enable_web_profile() {
   enable_web_profile_ = false;
-  _has_bits_[0] &= ~0x00000010u;
 }
 inline bool RobotConfig::_internal_enable_web_profile() const {
   return enable_web_profile_;
@@ -8447,7 +8435,7 @@ inline bool RobotConfig::enable_web_profile() const {
   return _internal_enable_web_profile();
 }
 inline void RobotConfig::_internal_set_enable_web_profile(bool value) {
-  _has_bits_[0] |= 0x00000010u;
+  
   enable_web_profile_ = value;
 }
 inline void RobotConfig::set_enable_web_profile(bool value) {
