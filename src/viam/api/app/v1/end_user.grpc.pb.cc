@@ -28,6 +28,7 @@ static const char* EndUserService_method_names[] = {
   "/viam.app.v1.EndUserService/AcceptLegal",
   "/viam.app.v1.EndUserService/RegisterAuthApplication",
   "/viam.app.v1.EndUserService/UpdateAuthApplication",
+  "/viam.app.v1.EndUserService/GetAuthApplication",
 };
 
 std::unique_ptr< EndUserService::Stub> EndUserService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -41,6 +42,7 @@ EndUserService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& cha
   , rpcmethod_AcceptLegal_(EndUserService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_RegisterAuthApplication_(EndUserService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_UpdateAuthApplication_(EndUserService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetAuthApplication_(EndUserService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status EndUserService::Stub::IsLegalAccepted(::grpc::ClientContext* context, const ::viam::app::v1::IsLegalAcceptedRequest& request, ::viam::app::v1::IsLegalAcceptedResponse* response) {
@@ -135,6 +137,29 @@ void EndUserService::Stub::async::UpdateAuthApplication(::grpc::ClientContext* c
   return result;
 }
 
+::grpc::Status EndUserService::Stub::GetAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::GetAuthApplicationRequest& request, ::viam::app::v1::GetAuthApplicationResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::GetAuthApplicationRequest, ::viam::app::v1::GetAuthApplicationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetAuthApplication_, context, request, response);
+}
+
+void EndUserService::Stub::async::GetAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::GetAuthApplicationRequest* request, ::viam::app::v1::GetAuthApplicationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::GetAuthApplicationRequest, ::viam::app::v1::GetAuthApplicationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetAuthApplication_, context, request, response, std::move(f));
+}
+
+void EndUserService::Stub::async::GetAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::GetAuthApplicationRequest* request, ::viam::app::v1::GetAuthApplicationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetAuthApplication_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetAuthApplicationResponse>* EndUserService::Stub::PrepareAsyncGetAuthApplicationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetAuthApplicationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::GetAuthApplicationResponse, ::viam::app::v1::GetAuthApplicationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetAuthApplication_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetAuthApplicationResponse>* EndUserService::Stub::AsyncGetAuthApplicationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetAuthApplicationRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetAuthApplicationRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 EndUserService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EndUserService_method_names[0],
@@ -176,6 +201,16 @@ EndUserService::Service::Service() {
              ::viam::app::v1::UpdateAuthApplicationResponse* resp) {
                return service->UpdateAuthApplication(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EndUserService_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EndUserService::Service, ::viam::app::v1::GetAuthApplicationRequest, ::viam::app::v1::GetAuthApplicationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EndUserService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::v1::GetAuthApplicationRequest* req,
+             ::viam::app::v1::GetAuthApplicationResponse* resp) {
+               return service->GetAuthApplication(ctx, req, resp);
+             }, this)));
 }
 
 EndUserService::Service::~Service() {
@@ -203,6 +238,13 @@ EndUserService::Service::~Service() {
 }
 
 ::grpc::Status EndUserService::Service::UpdateAuthApplication(::grpc::ServerContext* context, const ::viam::app::v1::UpdateAuthApplicationRequest* request, ::viam::app::v1::UpdateAuthApplicationResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EndUserService::Service::GetAuthApplication(::grpc::ServerContext* context, const ::viam::app::v1::GetAuthApplicationRequest* request, ::viam::app::v1::GetAuthApplicationResponse* response) {
   (void) context;
   (void) request;
   (void) response;
