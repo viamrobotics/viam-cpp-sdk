@@ -1,7 +1,10 @@
 var searchData=
 [
-  ['state_0',['state',['../structviam_1_1sdk_1_1Motion_1_1plan__status.html#a5bb5da1d6316c3673e3490e59ed374db',1,'viam::sdk::Motion::plan_status']]],
-  ['status_1',['status',['../structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html#a24594dd4ba8f5c1d2ef55fa469c5b4a1',1,'viam::sdk::Motion::plan_status_with_id::status'],['../structviam_1_1sdk_1_1Motion_1_1plan__with__status.html#a276dfc0b121457b4b8bf6ab795870ea2',1,'viam::sdk::Motion::plan_with_status::status']]],
-  ['status_5fhistory_2',['status_history',['../structviam_1_1sdk_1_1Motion_1_1plan__with__status.html#af9e92f1b33c48bb09e153fb107620393',1,'viam::sdk::Motion::plan_with_status']]],
-  ['steps_3',['steps',['../structviam_1_1sdk_1_1Motion_1_1steps.html#a388f94a329f9a07886fee8ac6577836c',1,'viam::sdk::Motion::steps::steps()'],['../structviam_1_1sdk_1_1Motion_1_1plan.html#aa90e964796d954d6110dfe7c4e9468d2',1,'viam::sdk::Motion::plan::steps']]]
+  ['pin_5fname_0',['pin_name',['../structviam_1_1sdk_1_1Board_1_1Tick.html#a184710552160686a8e17f997d88f88a1',1,'viam::sdk::Board::Tick']]],
+  ['plan_1',['plan',['../structviam_1_1sdk_1_1Motion_1_1plan__with__status.html#a0a236586ee8d4f758eb50a2ff9ad2a86',1,'viam::sdk::Motion::plan_with_status']]],
+  ['plan_5fdeviation_5fm_2',['plan_deviation_m',['../structviam_1_1sdk_1_1motion__configuration.html#ac8a390fb620697ac9099c9be03dc2fc4',1,'viam::sdk::motion_configuration']]],
+  ['plan_5fid_3',['plan_id',['../structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html#aeaea77521be70919b2a5c94ac1b73e4b',1,'viam::sdk::Motion::plan_status_with_id']]],
+  ['position_5fpolling_5ffrequency_5fhz_4',['position_polling_frequency_hz',['../structviam_1_1sdk_1_1motion__configuration.html#aba47f2fc7d5d05619681b48efc53dd65',1,'viam::sdk::motion_configuration']]],
+  ['position_5freporting_5',['position_reporting',['../structviam_1_1sdk_1_1Motor_1_1properties.html#a6cfffefae3df6f503ead3e5f8f3b9dd9',1,'viam::sdk::Motor::properties']]],
+  ['power_5fpct_6',['power_pct',['../structviam_1_1sdk_1_1Motor_1_1power__status.html#a2a0673d493b18e92e14fedd7dab50d1a',1,'viam::sdk::Motor::power_status']]]
 ];
