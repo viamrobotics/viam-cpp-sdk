@@ -20948,6 +20948,8 @@ class MLModelMetadata final :
 
   enum : int {
     kVersionsFieldNumber = 1,
+    kModelTypeFieldNumber = 2,
+    kModelFrameworkFieldNumber = 3,
   };
   // repeated string versions = 1 [json_name = "versions"];
   int versions_size() const;
@@ -20973,6 +20975,24 @@ class MLModelMetadata final :
   std::string* _internal_add_versions();
   public:
 
+  // .viam.app.mltraining.v1.ModelType model_type = 2 [json_name = "modelType"];
+  void clear_model_type();
+  ::viam::app::mltraining::v1::ModelType model_type() const;
+  void set_model_type(::viam::app::mltraining::v1::ModelType value);
+  private:
+  ::viam::app::mltraining::v1::ModelType _internal_model_type() const;
+  void _internal_set_model_type(::viam::app::mltraining::v1::ModelType value);
+  public:
+
+  // .viam.app.mltraining.v1.ModelFramework model_framework = 3 [json_name = "modelFramework"];
+  void clear_model_framework();
+  ::viam::app::mltraining::v1::ModelFramework model_framework() const;
+  void set_model_framework(::viam::app::mltraining::v1::ModelFramework value);
+  private:
+  ::viam::app::mltraining::v1::ModelFramework _internal_model_framework() const;
+  void _internal_set_model_framework(::viam::app::mltraining::v1::ModelFramework value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.MLModelMetadata)
  private:
   class _Internal;
@@ -20981,6 +21001,8 @@ class MLModelMetadata final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> versions_;
+  int model_type_;
+  int model_framework_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
@@ -42578,6 +42600,46 @@ inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 MLModelMetadata::mutable_versions() {
   // @@protoc_insertion_point(field_mutable_list:viam.app.v1.MLModelMetadata.versions)
   return &versions_;
+}
+
+// .viam.app.mltraining.v1.ModelType model_type = 2 [json_name = "modelType"];
+inline void MLModelMetadata::clear_model_type() {
+  model_type_ = 0;
+}
+inline ::viam::app::mltraining::v1::ModelType MLModelMetadata::_internal_model_type() const {
+  return static_cast< ::viam::app::mltraining::v1::ModelType >(model_type_);
+}
+inline ::viam::app::mltraining::v1::ModelType MLModelMetadata::model_type() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.MLModelMetadata.model_type)
+  return _internal_model_type();
+}
+inline void MLModelMetadata::_internal_set_model_type(::viam::app::mltraining::v1::ModelType value) {
+  
+  model_type_ = value;
+}
+inline void MLModelMetadata::set_model_type(::viam::app::mltraining::v1::ModelType value) {
+  _internal_set_model_type(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.MLModelMetadata.model_type)
+}
+
+// .viam.app.mltraining.v1.ModelFramework model_framework = 3 [json_name = "modelFramework"];
+inline void MLModelMetadata::clear_model_framework() {
+  model_framework_ = 0;
+}
+inline ::viam::app::mltraining::v1::ModelFramework MLModelMetadata::_internal_model_framework() const {
+  return static_cast< ::viam::app::mltraining::v1::ModelFramework >(model_framework_);
+}
+inline ::viam::app::mltraining::v1::ModelFramework MLModelMetadata::model_framework() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.MLModelMetadata.model_framework)
+  return _internal_model_framework();
+}
+inline void MLModelMetadata::_internal_set_model_framework(::viam::app::mltraining::v1::ModelFramework value) {
+  
+  model_framework_ = value;
+}
+inline void MLModelMetadata::set_model_framework(::viam::app::mltraining::v1::ModelFramework value) {
+  _internal_set_model_framework(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.MLModelMetadata.model_framework)
 }
 
 // -------------------------------------------------------------------
