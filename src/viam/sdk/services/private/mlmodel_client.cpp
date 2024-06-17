@@ -53,8 +53,6 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
     auto* const resp = pb::Arena::VIAM_SDK_PB_CREATE_MESSAGE<mlpb::InferResponse>(arena.get());
     ClientContext ctx;
 
-#undef VIAM_SDK_PB_CREATE_MESSAGE
-
     struct arena_and_views {
         // NOTE: It is not necessary to capture the `resp` pointer
         // here, since the lifetime of that object is subsumed by
