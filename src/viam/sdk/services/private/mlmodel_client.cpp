@@ -36,11 +36,11 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
     namespace mlpb = ::viam::service::mlmodel::v1;
 
     auto arena = std::make_unique<pb::Arena>();
-    auto* const req = pb::Arena::CreateMessage<mlpb::InferRequest>(arena.get());
+    auto* const req = pb::Arena::Create<mlpb::InferRequest>(arena.get());
 
     req->set_name(this->name());
     *req->mutable_extra() = map_to_struct(extra);
-    auto* const resp = pb::Arena::CreateMessage<mlpb::InferResponse>(arena.get());
+    auto* const resp = pb::Arena::Create<mlpb::InferResponse>(arena.get());
     ClientContext ctx;
 
     struct arena_and_views {
