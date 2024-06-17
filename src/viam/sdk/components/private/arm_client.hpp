@@ -28,6 +28,7 @@ class ArmClient : public Arm {
     bool is_moving() override;
     void stop(const AttributeMap& extra) override;
     AttributeMap do_command(const AttributeMap& command) override;
+    Arm::KinematicsData get_kinematics(const AttributeMap& extra) override;
     std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
 
 
@@ -38,6 +39,7 @@ class ArmClient : public Arm {
     using Arm::get_joint_positions;
     using Arm::move_to_joint_positions;
     using Arm::stop;
+    using Arm::get_kinematics;
     using Arm::get_geometries;
 
    private:

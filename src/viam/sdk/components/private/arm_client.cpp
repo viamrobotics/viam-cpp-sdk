@@ -63,6 +63,12 @@ AttributeMap ArmClient::do_command(const AttributeMap& command) {
         .invoke([](auto& response) { return struct_to_map(response.result()); });
 }
 
+Arm::KinematicsData ArmClient::get_kinematics(const AttributeMap& extra) {
+    return make_client_helper(this, *stub_, &StubType::GetKinematics)
+        .with(extra)
+        .invoke([](auto& response) { return Arm::from_proto(response); });
+}
+
 std::vector<GeometryConfig> ArmClient::get_geometries(const AttributeMap& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)

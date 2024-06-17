@@ -95,6 +95,19 @@ class Arm : public Component, public Stoppable {
     /// @return The result of the executed command.
     virtual AttributeMap do_command(const AttributeMap& command) = 0;
 
+    /// @brief Get the kinematics data associated with the arm.
+    /// @param extra Any additional arguments to the method.
+    /// @return A variant of kinematics data, with bytes field containing the raw bytes of the file
+    /// and the object's type indicating the file format.
+    virtual KinematicsData get_kinematics(const AttributeMap& extra) = 0;
+
+    /// @brief Get the kinematics data associated with the arm.
+    /// @return A variant of kinematics data, with bytes field containing the raw bytes of the file
+    /// and the object's type indicating the file format.
+    inline KinematicsData get_kinematics() {
+        return get_kinematics({});
+    }
+
     /// @brief Returns `GeometryConfig`s associated with the calling arm
     inline std::vector<GeometryConfig> get_geometries() {
         return get_geometries({});
