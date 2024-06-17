@@ -21,6 +21,16 @@
 
 #include <viam/sdk/common/exception.hpp>
 
+// As of proto version 27 (full version number 5.27) Arena::CreateMessage is deprecated in favor of
+// Arena::Create. We use this macro to accomodate earlier supported versions of proto where
+// CreateMessage was not yet deprecated, or where it was present but with different,
+// non-substitutable semantics
+#if GOOGLE_PROTOBUF_VERSION >= 5027000
+#define VIAM_SDK_PB_CREATE_MESSAGE Create
+#else
+#define VIAM_SDK_PB_CREATE_MESSAGE CreateMessage
+#endif
+
 namespace viam {
 namespace sdk {
 namespace impl {
@@ -36,12 +46,14 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
     namespace mlpb = ::viam::service::mlmodel::v1;
 
     auto arena = std::make_unique<pb::Arena>();
-    auto* const req = pb::Arena::Create<mlpb::InferRequest>(arena.get());
+    auto* const req = pb::Arena::VIAM_SDK_PB_CREATE_MESSAGE<mlpb::InferRequest>(arena.get());
 
     req->set_name(this->name());
     *req->mutable_extra() = map_to_struct(extra);
-    auto* const resp = pb::Arena::Create<mlpb::InferResponse>(arena.get());
+    auto* const resp = pb::Arena::VIAM_SDK_PB_CREATE_MESSAGE<mlpb::InferResponse>(arena.get());
     ClientContext ctx;
+
+#undef VIAM_SDK_PB_CREATE_MESSAGE
 
     struct arena_and_views {
         // NOTE: It is not necessary to capture the `resp` pointer
