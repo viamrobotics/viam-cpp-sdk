@@ -20,7 +20,7 @@ namespace impl {
 class ArmServer : public ResourceServer, public viam::component::arm::v1::ArmService::Service {
    public:
     using interface_type = Arm;
-    using service_type = component::arm::v1::ArmService::Service;
+    using service_type = component::arm::v1::ArmService;
 
     explicit ArmServer(std::shared_ptr<ResourceManager> manager);
 
