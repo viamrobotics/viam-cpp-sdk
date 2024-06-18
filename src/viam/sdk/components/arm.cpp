@@ -16,9 +16,9 @@ Arm::KinematicsData Arm::from_proto(const viam::common::v1::GetKinematicsRespons
                                      proto.kinematics_data().end());
     switch (proto.format()) {
         case common::v1::KinematicsFileFormat::KINEMATICS_FILE_FORMAT_SVA:
-            return Arm::KinematicsDataSVA{{std::move(bytes)}};
+            return Arm::KinematicsDataSVA(std::move(bytes));
         case common::v1::KinematicsFileFormat::KINEMATICS_FILE_FORMAT_URDF:
-            return Arm::KinematicsDataURDF{{std::move(bytes)}};
+            return Arm::KinematicsDataURDF(std::move(bytes));
         case common::v1::KinematicsFileFormat::KINEMATICS_FILE_FORMAT_UNSPECIFIED:  // fallthrough
         default:
             return Arm::KinematicsDataUnspecified{};

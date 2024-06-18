@@ -29,7 +29,13 @@ class Arm : public Component, public Stoppable {
     // Base class for use below in defining kinematics data strong typedefs
     template <class Tag>
     struct RawBytes {
-        std::vector<unsigned char> bytes;
+        // Pre c++17 our derived classes aren't aggregate initializable so we need to define
+        // and using declare some ctors
+        
+        RawBytes() = default;
+        RawBytes(std::vector<unsigned char> b) : bytes(std::move(b)) {}
+
+        std::vector<unsigned char> bytes{};
     };
 
     // Comparison operator helper for the data types below
@@ -43,8 +49,12 @@ class Arm : public Component, public Stoppable {
    public:
     struct KinematicsDataUnspecified : RawBytes<KinematicsDataUnspecified>,
                                        EqCompare<KinematicsDataUnspecified> {};
-    struct KinematicsDataSVA : RawBytes<KinematicsDataSVA>, EqCompare<KinematicsDataSVA> {};
-    struct KinematicsDataURDF : RawBytes<KinematicsDataURDF>, EqCompare<KinematicsDataURDF> {};
+    struct KinematicsDataSVA : RawBytes<KinematicsDataSVA>, EqCompare<KinematicsDataSVA> {
+        using RawBytes<KinematicsDataSVA>::RawBytes;
+    };
+    struct KinematicsDataURDF : RawBytes<KinematicsDataURDF>, EqCompare<KinematicsDataURDF> {
+        using RawBytes<KinematicsDataURDF>::RawBytes;
+    };
 
     /// @brief The kinematics of the component.
     /// @returns The data in Viam's Spatial Vector Algebra (SVA) format, or URDF.
