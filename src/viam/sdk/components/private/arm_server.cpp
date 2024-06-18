@@ -37,7 +37,7 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
     return make_service_helper<Arm>(
         "ArmServer::GetJointPositions", this, request)([&](auto& helper, auto& arm) {
         const std::vector<double> positions = arm->get_joint_positions(helper.getExtra());
-        response->mutable_positions()->mutable_values()->Assign(positions.begin(), positions.end());
+        *(response->mutable_positions()->mutable_values()) = {positions.begin(), positions.end()};
     });
 }
 

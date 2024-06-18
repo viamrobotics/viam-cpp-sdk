@@ -40,9 +40,8 @@ void ArmClient::move_to_joint_positions(const std::vector<double>& positions,
     return make_client_helper(this, *stub_, &StubType::MoveToJointPositions)
         .with(extra,
               [&](auto& request) {
-                  (request.mutable_positions())
-                      ->mutable_values()
-                      ->Assign(positions.begin(), positions.end());
+                  *(request.mutable_positions()->mutable_values()) = {positions.begin(),
+                                                                      positions.end()};
               })
         .invoke();
 }
