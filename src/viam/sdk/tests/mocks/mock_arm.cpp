@@ -14,8 +14,7 @@ sdk::pose MockArm::get_end_position(const sdk::AttributeMap& extra) {
     return current_location;
 }
 
-std::shared_ptr<MockArm> MockArm::get_mock_arm()
-{
+std::shared_ptr<MockArm> MockArm::get_mock_arm() {
     return std::make_shared<MockArm>("mock_arm");
 }
 

@@ -24,23 +24,23 @@ class ArmClient : public Arm {
     pose get_end_position(const AttributeMap& extra) override;
     void move_to_position(const pose& pose, const AttributeMap& extra) override;
     std::vector<double> get_joint_positions(const AttributeMap& extra) override;
-    void move_to_joint_positions(const std::vector<double>& positions, const AttributeMap& extra) override;
+    void move_to_joint_positions(const std::vector<double>& positions,
+                                 const AttributeMap& extra) override;
     bool is_moving() override;
     void stop(const AttributeMap& extra) override;
     AttributeMap do_command(const AttributeMap& command) override;
     Arm::KinematicsData get_kinematics(const AttributeMap& extra) override;
     std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
 
-
-    // Using declarations to introduce convenience overloads of interface which do not need to be passed the 
-    // AttributeMap parameter. 
+    // Using declarations to introduce convenience overloads of interface which do not need to be
+    // passed the AttributeMap parameter.
     using Arm::get_end_position;
-    using Arm::move_to_position;
-    using Arm::get_joint_positions;
-    using Arm::move_to_joint_positions;
-    using Arm::stop;
-    using Arm::get_kinematics;
     using Arm::get_geometries;
+    using Arm::get_joint_positions;
+    using Arm::get_kinematics;
+    using Arm::move_to_joint_positions;
+    using Arm::move_to_position;
+    using Arm::stop;
 
    private:
     using StubType = viam::component::arm::v1::ArmService::StubInterface;
