@@ -64,13 +64,14 @@ class Arm : public Component, public Stoppable {
     static KinematicsData from_proto(const viam::common::v1::GetKinematicsResponse& proto);
 
     /// @brief Get the current position of the end of the arm.
+    /// @return The `pose` representing the end position of the arm.
     inline pose get_end_position() {
         return get_end_position({});
     }
 
     /// @brief Get the current position of the end of the arm.
-    /// @param pose The destination pose for the arm.
     /// @param extra Any additional arguments to the method.
+    /// @return The `pose` representing the end position of the arm.
     virtual pose get_end_position(const AttributeMap& extra) = 0;
 
     /// @brief Move the end of the arm to @param pose.
