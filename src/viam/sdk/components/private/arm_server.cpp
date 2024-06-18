@@ -10,7 +10,7 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)) {}
 
 ::grpc::Status ArmServer::GetEndPosition(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::component::arm::v1::GetEndPositionRequest* request,
     ::viam::component::arm::v1::GetEndPositionResponse* response) noexcept {
     return make_service_helper<Arm>(
@@ -21,9 +21,9 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status ArmServer::MoveToPosition(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::component::arm::v1::MoveToPositionRequest* request,
-    ::viam::component::arm::v1::MoveToPositionResponse* response) noexcept {
+    ::viam::component::arm::v1::MoveToPositionResponse*) noexcept {
     return make_service_helper<Arm>(
         "ArmServer::MoveToPosition", this, request)([&](auto& helper, auto& arm) {
         arm->move_to_position(pose::from_proto(request->to()), helper.getExtra());
@@ -31,7 +31,7 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status ArmServer::GetJointPositions(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::component::arm::v1::GetJointPositionsRequest* request,
     ::viam::component::arm::v1::GetJointPositionsResponse* response) noexcept {
     return make_service_helper<Arm>(
@@ -42,9 +42,9 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status ArmServer::MoveToJointPositions(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::component::arm::v1::MoveToJointPositionsRequest* request,
-    ::viam::component::arm::v1::MoveToJointPositionsResponse* response) noexcept {
+    ::viam::component::arm::v1::MoveToJointPositionsResponse*) noexcept {
     return make_service_helper<Arm>(
         "ArmServer::MoveToJointPositions", this, request)([&](auto& helper, auto& arm) {
         arm->move_to_joint_positions(
@@ -53,22 +53,22 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-::grpc::Status ArmServer::Stop(::grpc::ServerContext* context,
+::grpc::Status ArmServer::Stop(::grpc::ServerContext*,
                                const ::viam::component::arm::v1::StopRequest* request,
-                               ::viam::component::arm::v1::StopResponse* response) noexcept {
+                               ::viam::component::arm::v1::StopResponse*) noexcept {
     return make_service_helper<Arm>("ArmServer::Stop", this, request)(
         [&](auto& helper, auto& arm) { arm->stop(helper.getExtra()); });
 }
 
 ::grpc::Status ArmServer::IsMoving(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::component::arm::v1::IsMovingRequest* request,
     ::viam::component::arm::v1::IsMovingResponse* response) noexcept {
     return make_service_helper<Arm>("ArmServer::IsMoving", this, request)(
         [&](auto&, auto& arm) { response->set_is_moving(arm->is_moving()); });
 }
 
-::grpc::Status ArmServer::DoCommand(::grpc::ServerContext* context,
+::grpc::Status ArmServer::DoCommand(::grpc::ServerContext*,
                                     const ::viam::common::v1::DoCommandRequest* request,
                                     ::viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Arm>("ArmServer::DoCommand", this, request)([&](auto&, auto& arm) {
@@ -78,7 +78,7 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status ArmServer::GetKinematics(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::common::v1::GetKinematicsRequest* request,
     ::viam::common::v1::GetKinematicsResponse* response) noexcept {
     return make_service_helper<Arm>(
@@ -110,7 +110,7 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status ArmServer::GetGeometries(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::common::v1::GetGeometriesRequest* request,
     ::viam::common::v1::GetGeometriesResponse* response) noexcept {
     return make_service_helper<Arm>(
