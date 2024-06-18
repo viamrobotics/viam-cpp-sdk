@@ -31,7 +31,7 @@ class Arm : public Component, public Stoppable {
     struct RawBytes {
         // Pre c++17 our derived classes aren't aggregate initializable so we need to define
         // and using declare some ctors
-        
+
         RawBytes() = default;
         RawBytes(std::vector<unsigned char> b) : bytes(std::move(b)) {}
 
