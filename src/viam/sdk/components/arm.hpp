@@ -28,12 +28,12 @@ namespace sdk {
 class Arm : public Component, public Stoppable {
     // Base class for use below in defining kinematics data strong typedefs
     template <class Tag>
-    struct RawBytes {
+    struct raw_bytes {
         // Pre c++17 our derived classes aren't aggregate initializable so we need to define
         // and using declare some ctors
 
-        RawBytes() = default;
-        RawBytes(std::vector<unsigned char> b) : bytes(std::move(b)) {}
+        raw_bytes() = default;
+        raw_bytes(std::vector<unsigned char> b) : bytes(std::move(b)) {}
 
         std::vector<unsigned char> bytes{};
     };
@@ -47,13 +47,13 @@ class Arm : public Component, public Stoppable {
     };
 
    public:
-    struct KinematicsDataUnspecified : RawBytes<KinematicsDataUnspecified>,
+    struct KinematicsDataUnspecified : raw_bytes<KinematicsDataUnspecified>,
                                        EqCompare<KinematicsDataUnspecified> {};
-    struct KinematicsDataSVA : RawBytes<KinematicsDataSVA>, EqCompare<KinematicsDataSVA> {
-        using RawBytes<KinematicsDataSVA>::RawBytes;
+    struct KinematicsDataSVA : raw_bytes<KinematicsDataSVA>, EqCompare<KinematicsDataSVA> {
+        using raw_bytes<KinematicsDataSVA>::raw_bytes;
     };
-    struct KinematicsDataURDF : RawBytes<KinematicsDataURDF>, EqCompare<KinematicsDataURDF> {
-        using RawBytes<KinematicsDataURDF>::RawBytes;
+    struct KinematicsDataURDF : raw_bytes<KinematicsDataURDF>, EqCompare<KinematicsDataURDF> {
+        using raw_bytes<KinematicsDataURDF>::raw_bytes;
     };
 
     /// @brief The kinematics of the component.
