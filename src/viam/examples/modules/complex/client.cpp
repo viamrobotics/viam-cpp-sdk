@@ -16,7 +16,7 @@
 #include <viam/api/robot/v1/robot.grpc.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
 
-#include <viam/sdk/components/base.hpp>
+#include <viam/sdk/components/motor.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/robot/service.hpp>
 #include <viam/sdk/rpc/dial.hpp>
@@ -27,12 +27,16 @@
 using namespace viam::sdk;
 
 int main() {
-    const char* uri = "<your robot URI here>";
+    const char* uri = "http://localhost:8080/";  // replace with your URI if connecting securely
     DialOptions dial_options;
-    std::string type = "<your authentication type>";
-    std::string payload = "<your authentication payload>";
-    Credentials credentials(type, payload);
-    dial_options.set_credentials(credentials);
+    dial_options.set_allow_insecure_downgrade(true);  // set to false if connecting securely
+
+    // Uncomment and fill out your credentials details if connecting securely
+    // std::string type = "<your authentication type>";
+    // std::string payload = "<your authentication payload>";
+    // Credentials credentials(type, payload);
+    // dial_options.set_credentials(credentials);
+
     boost::optional<DialOptions> opts(dial_options);
     std::string address(uri);
     Options options(1, opts);
@@ -84,15 +88,15 @@ int main() {
     std::cout << "mysum1 sum of numbers [0, 10) is: " << sum << std::endl;
 
     // Exercise a Base method.
-    auto bc = robot->resource_by_name<Base>("base1");
-    if (!bc) {
-        std::cerr << "could not get 'base1' resource from robot" << std::endl;
+    auto mc = robot->resource_by_name<Motor>("motor1");
+    if (!mc) {
+        std::cerr << "could not get 'motor1' resource from robot" << std::endl;
         return EXIT_FAILURE;
     }
-    if (bc->is_moving()) {
-        std::cout << "base1 is moving" << std::endl;
+    if (mc->is_moving()) {
+        std::cout << "motor1 is moving" << std::endl;
     } else {
-        std::cout << "base1 is not moving" << std::endl;
+        std::cout << "motor1 is not moving" << std::endl;
     }
 
     return EXIT_SUCCESS;
