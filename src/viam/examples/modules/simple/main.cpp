@@ -93,6 +93,7 @@ int main(int argc, char** argv) {
 
     std::vector<std::shared_ptr<ModelRegistration>> mrs = {mr};
     auto my_mod = std::make_shared<ModuleService>(argc, argv, mrs);
+    std::cout << "making my-mod\n";
     my_mod->serve();
 
     return EXIT_SUCCESS;

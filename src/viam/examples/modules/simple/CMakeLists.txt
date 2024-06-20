@@ -25,3 +25,18 @@ install(
   TARGETS simple_module
   COMPONENT examples
 )
+
+add_executable(simple_module_client)
+target_sources(simple_module_client
+  PRIVATE
+    client.cpp
+)
+
+target_link_libraries(simple_module_client
+  viam-cpp-sdk::viamsdk
+)
+
+install(
+  TARGETS simple_module_client
+  COMPONENT examples
+)
