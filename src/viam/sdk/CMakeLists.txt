@@ -44,6 +44,7 @@ target_sources(viamsdk
     common/service_helper.cpp
     common/utils.cpp
     common/world_state.cpp
+    components/arm.cpp
     components/base.cpp
     components/board.cpp
     components/camera.cpp
@@ -53,6 +54,8 @@ target_sources(viamsdk
     components/motor.cpp
     components/movement_sensor.cpp
     components/power_sensor.cpp
+    components/private/arm_client.cpp
+    components/private/arm_server.cpp
     components/private/base_client.cpp
     components/private/base_server.cpp
     components/private/board_client.cpp
@@ -118,6 +121,7 @@ target_sources(viamsdk
       ../../viam/sdk/common/service_helper.hpp
       ../../viam/sdk/common/utils.hpp
       ../../viam/sdk/common/world_state.hpp
+      ../../viam/sdk/components/arm.hpp
       ../../viam/sdk/components/base.hpp
       ../../viam/sdk/components/board.hpp
       ../../viam/sdk/components/camera.hpp

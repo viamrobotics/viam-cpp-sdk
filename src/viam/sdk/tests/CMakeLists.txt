@@ -22,6 +22,7 @@ target_sources(viamsdk_test
     mocks/camera_mocks.cpp
     mocks/generic_mocks.cpp
     mocks/mlmodel_mocks.cpp
+    mocks/mock_arm.cpp
     mocks/mock_base.cpp
     mocks/mock_board.cpp
     mocks/mock_encoder.cpp
@@ -39,6 +40,7 @@ target_link_libraries(viamsdk_test
   PUBLIC viam-cpp-sdk::viamsdk
 )
 
+viamcppsdk_add_boost_test(test_arm.cpp)
 viamcppsdk_add_boost_test(test_base.cpp)
 viamcppsdk_add_boost_test(test_board.cpp)
 viamcppsdk_add_boost_test(test_camera.cpp)
