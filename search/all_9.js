@@ -1,15 +1,7 @@
 var searchData=
 [
-  ['layout_0',['Repository Layout',['../index.html#autotoc_md3',1,'']]],
-  ['license_1',['License',['../index.html#autotoc_md8',1,'']]],
-  ['linear_5fconstraint_2',['linear_constraint',['../structviam_1_1sdk_1_1Motion_1_1linear__constraint.html',1,'viam::sdk::Motion']]],
-  ['linear_5fm_5fper_5fsec_3',['linear_m_per_sec',['../structviam_1_1sdk_1_1motion__configuration.html#a959e4ef1d77474235c8121f9cb619a67',1,'viam::sdk::motion_configuration']]],
-  ['linkconfig_4',['LinkConfig',['../classviam_1_1sdk_1_1LinkConfig.html',1,'viam::sdk']]],
-  ['list_5',['Deprecated List',['../deprecated.html',1,'']]],
-  ['list_5factive_5fplan_5fstatuses_6',['list_active_plan_statuses',['../classviam_1_1sdk_1_1Motion.html#aead6803e8494d297ad16908cb5070e3d',1,'viam::sdk::Motion::list_active_plan_statuses()'],['../classviam_1_1sdk_1_1Motion.html#ae838f17535ae14eaa2b0e38e05851d42',1,'viam::sdk::Motion::list_active_plan_statuses(const AttributeMap &amp;extra)=0'],['../classviam_1_1sdk_1_1impl_1_1MotionClient.html#af966cc9be761e8ed4fe3ce6706438339',1,'viam::sdk::impl::MotionClient::list_active_plan_statuses(const AttributeMap &amp;extra) override'],['../classviam_1_1sdk_1_1impl_1_1MotionClient.html#aead6803e8494d297ad16908cb5070e3d',1,'viam::sdk::impl::MotionClient::list_active_plan_statuses()'],['../classviam_1_1sdk_1_1impl_1_1MotionClient.html#ae838f17535ae14eaa2b0e38e05851d42',1,'viam::sdk::impl::MotionClient::list_active_plan_statuses(const AttributeMap &amp;extra)=0']]],
-  ['list_5fplan_5fstatuses_7',['list_plan_statuses',['../classviam_1_1sdk_1_1Motion.html#a81ae1fd3066cfa2fee74b52cd11af5e1',1,'viam::sdk::Motion::list_plan_statuses()'],['../classviam_1_1sdk_1_1Motion.html#af30e094a9393b8ef90e30a30f8a70f40',1,'viam::sdk::Motion::list_plan_statuses(const AttributeMap &amp;extra)=0'],['../classviam_1_1sdk_1_1impl_1_1MotionClient.html#a35e4e180c8bd52be91c72610a88b8a14',1,'viam::sdk::impl::MotionClient::list_plan_statuses(const AttributeMap &amp;extra) override'],['../classviam_1_1sdk_1_1impl_1_1MotionClient.html#a81ae1fd3066cfa2fee74b52cd11af5e1',1,'viam::sdk::impl::MotionClient::list_plan_statuses()'],['../classviam_1_1sdk_1_1impl_1_1MotionClient.html#af30e094a9393b8ef90e30a30f8a70f40',1,'viam::sdk::impl::MotionClient::list_plan_statuses(const AttributeMap &amp;extra)=0']]],
-  ['locally_20for_20testing_8',['Building Documentation Locally for Testing',['../index.html#autotoc_md6',1,'']]],
-  ['lookup_5fmodel_9',['lookup_model',['../classviam_1_1sdk_1_1Registry.html#a353e0a263914a3e0047cc3e4aa8453d6',1,'viam::sdk::Registry::lookup_model(const std::string &amp;name)'],['../classviam_1_1sdk_1_1Registry.html#a5474802670fe9dbce92899885498a31b',1,'viam::sdk::Registry::lookup_model(const API &amp;api, const Model &amp;model)']]],
-  ['lookup_5fresource_5fclient_10',['lookup_resource_client',['../classviam_1_1sdk_1_1Registry.html#a18deafb10028460abae8a69e40bdc148',1,'viam::sdk::Registry']]],
-  ['lookup_5fresource_5fserver_11',['lookup_resource_server',['../classviam_1_1sdk_1_1Registry.html#a8116342c4ffcd5b537002068c992a49d',1,'viam::sdk::Registry::lookup_resource_server()'],['../classviam_1_1sdk_1_1Server.html#a14b271b6df18c3b0198b1975444569af',1,'viam::sdk::Server::lookup_resource_server()']]]
+  ['kinematicsdata_0',['KinematicsData',['../classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9ccf3ad0775',1,'viam::sdk::Arm']]],
+  ['kinematicsdatasva_1',['KinematicsDataSVA',['../structviam_1_1sdk_1_1Arm_1_1KinematicsDataSVA.html',1,'viam::sdk::Arm']]],
+  ['kinematicsdataunspecified_2',['KinematicsDataUnspecified',['../structviam_1_1sdk_1_1Arm_1_1KinematicsDataUnspecified.html',1,'viam::sdk::Arm']]],
+  ['kinematicsdataurdf_3',['KinematicsDataURDF',['../structviam_1_1sdk_1_1Arm_1_1KinematicsDataURDF.html',1,'viam::sdk::Arm']]]
 ];

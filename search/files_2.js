@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['encoder_2ehpp_0',['encoder.hpp',['../encoder_8hpp.html',1,'']]],
-  ['encoder_5fclient_2ehpp_1',['encoder_client.hpp',['../encoder__client_8hpp.html',1,'']]],
-  ['encoder_5fserver_2ehpp_2',['encoder_server.hpp',['../encoder__server_8hpp.html',1,'']]],
-  ['exception_2ehpp_3',['exception.hpp',['../exception_8hpp.html',1,'']]]
+  ['camera_2ehpp_0',['camera.hpp',['../camera_8hpp.html',1,'']]],
+  ['camera_5fclient_2ehpp_1',['camera_client.hpp',['../camera__client_8hpp.html',1,'']]],
+  ['camera_5fserver_2ehpp_2',['camera_server.hpp',['../camera__server_8hpp.html',1,'']]],
+  ['client_2ehpp_3',['client.hpp',['../client_8hpp.html',1,'']]]
 ];

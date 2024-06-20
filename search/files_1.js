@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['camera_2ehpp_0',['camera.hpp',['../camera_8hpp.html',1,'']]],
-  ['camera_5fclient_2ehpp_1',['camera_client.hpp',['../camera__client_8hpp.html',1,'']]],
-  ['camera_5fserver_2ehpp_2',['camera_server.hpp',['../camera__server_8hpp.html',1,'']]],
-  ['client_2ehpp_3',['client.hpp',['../client_8hpp.html',1,'']]]
+  ['base_2ehpp_0',['base.hpp',['../base_8hpp.html',1,'']]],
+  ['base_5fclient_2ehpp_1',['base_client.hpp',['../base__client_8hpp.html',1,'']]],
+  ['base_5fserver_2ehpp_2',['base_server.hpp',['../base__server_8hpp.html',1,'']]],
+  ['board_2ehpp_3',['board.hpp',['../board_8hpp.html',1,'']]],
+  ['board_5fclient_2ehpp_4',['board_client.hpp',['../board__client_8hpp.html',1,'']]],
+  ['board_5fserver_2ehpp_5',['board_server.hpp',['../board__server_8hpp.html',1,'']]]
 ];

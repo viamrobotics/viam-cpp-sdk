@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['linear_5fconstraint_0',['linear_constraint',['../structviam_1_1sdk_1_1Motion_1_1linear__constraint.html',1,'viam::sdk::Motion']]],
-  ['linkconfig_1',['LinkConfig',['../classviam_1_1sdk_1_1LinkConfig.html',1,'viam::sdk']]]
+  ['kinematicsdatasva_0',['KinematicsDataSVA',['../structviam_1_1sdk_1_1Arm_1_1KinematicsDataSVA.html',1,'viam::sdk::Arm']]],
+  ['kinematicsdataunspecified_1',['KinematicsDataUnspecified',['../structviam_1_1sdk_1_1Arm_1_1KinematicsDataUnspecified.html',1,'viam::sdk::Arm']]],
+  ['kinematicsdataurdf_2',['KinematicsDataURDF',['../structviam_1_1sdk_1_1Arm_1_1KinematicsDataURDF.html',1,'viam::sdk::Arm']]]
 ];
