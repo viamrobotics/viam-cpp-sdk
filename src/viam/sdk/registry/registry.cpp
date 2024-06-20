@@ -12,6 +12,8 @@
 #include <grpcpp/ext/proto_server_reflection_plugin.h>
 
 #include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/components/private/arm_client.hpp>
+#include <viam/sdk/components/private/arm_server.hpp>
 #include <viam/sdk/components/private/base_client.hpp>
 #include <viam/sdk/components/private/base_server.hpp>
 #include <viam/sdk/components/private/board_client.hpp>
@@ -163,6 +165,7 @@ const google::protobuf::ServiceDescriptor* ResourceServerRegistration::service_d
 
 void register_resources() {
     // Register all components
+    Registry::register_resource<impl::ArmClient, impl::ArmServer>();
     Registry::register_resource<impl::BaseClient, impl::BaseServer>();
     Registry::register_resource<impl::BoardClient, impl::BoardServer>();
     Registry::register_resource<impl::CameraClient, impl::CameraServer>();
