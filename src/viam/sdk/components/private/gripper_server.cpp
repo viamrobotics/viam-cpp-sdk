@@ -1,6 +1,5 @@
 #include <viam/sdk/components/private/gripper_server.hpp>
 
-#include "gripper_server.hpp"
 #include <viam/sdk/common/service_helper.hpp>
 
 namespace viam {
