@@ -4,325 +4,353 @@
 #include "google/api/expr/v1beta1/source.pb.h"
 
 #include <algorithm>
-
-#include <google/protobuf/io/coded_stream.h>
-#include <google/protobuf/extension_set.h>
-#include <google/protobuf/wire_format_lite.h>
-#include <google/protobuf/descriptor.h>
-#include <google/protobuf/generated_message_reflection.h>
-#include <google/protobuf/reflection_ops.h>
-#include <google/protobuf/wire_format.h>
+#include "google/protobuf/io/coded_stream.h"
+#include "google/protobuf/extension_set.h"
+#include "google/protobuf/wire_format_lite.h"
+#include "google/protobuf/descriptor.h"
+#include "google/protobuf/generated_message_reflection.h"
+#include "google/protobuf/reflection_ops.h"
+#include "google/protobuf/wire_format.h"
+#include "google/protobuf/generated_message_tctable_impl.h"
 // @@protoc_insertion_point(includes)
-#include <google/protobuf/port_def.inc>
 
+// Must be included last.
+#include "google/protobuf/port_def.inc"
 PROTOBUF_PRAGMA_INIT_SEG
-
-namespace _pb = ::PROTOBUF_NAMESPACE_ID;
-namespace _pbi = _pb::internal;
-
+namespace _pb = ::google::protobuf;
+namespace _pbi = ::google::protobuf::internal;
+namespace _fl = ::google::protobuf::internal::field_layout;
 namespace google {
 namespace api {
 namespace expr {
 namespace v1beta1 {
-PROTOBUF_CONSTEXPR SourceInfo_PositionsEntry_DoNotUse::SourceInfo_PositionsEntry_DoNotUse(
-    ::_pbi::ConstantInitialized){}
-struct SourceInfo_PositionsEntry_DoNotUseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR SourceInfo_PositionsEntry_DoNotUseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~SourceInfo_PositionsEntry_DoNotUseDefaultTypeInternal() {}
-  union {
-    SourceInfo_PositionsEntry_DoNotUse _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SourceInfo_PositionsEntry_DoNotUseDefaultTypeInternal _SourceInfo_PositionsEntry_DoNotUse_default_instance_;
-PROTOBUF_CONSTEXPR SourceInfo::SourceInfo(
-    ::_pbi::ConstantInitialized)
-  : line_offsets_()
-  , _line_offsets_cached_byte_size_(0)
-  , positions_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
-  , location_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
-struct SourceInfoDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR SourceInfoDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~SourceInfoDefaultTypeInternal() {}
-  union {
-    SourceInfo _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SourceInfoDefaultTypeInternal _SourceInfo_default_instance_;
-PROTOBUF_CONSTEXPR SourcePosition::SourcePosition(
-    ::_pbi::ConstantInitialized)
-  : location_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , offset_(0)
-  , line_(0)
-  , column_(0){}
+
+inline constexpr SourcePosition::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : location_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        offset_{0},
+        line_{0},
+        column_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SourcePosition::SourcePosition(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
 struct SourcePositionDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR SourcePositionDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR SourcePositionDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~SourcePositionDefaultTypeInternal() {}
   union {
     SourcePosition _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SourcePositionDefaultTypeInternal _SourcePosition_default_instance_;
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SourcePositionDefaultTypeInternal _SourcePosition_default_instance_;
+      template <typename>
+PROTOBUF_CONSTEXPR SourceInfo_PositionsEntry_DoNotUse::SourceInfo_PositionsEntry_DoNotUse(::_pbi::ConstantInitialized) {}
+struct SourceInfo_PositionsEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SourceInfo_PositionsEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SourceInfo_PositionsEntry_DoNotUseDefaultTypeInternal() {}
+  union {
+    SourceInfo_PositionsEntry_DoNotUse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SourceInfo_PositionsEntry_DoNotUseDefaultTypeInternal _SourceInfo_PositionsEntry_DoNotUse_default_instance_;
+
+inline constexpr SourceInfo::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : line_offsets_{},
+        _line_offsets_cached_byte_size_{0},
+        positions_{},
+        location_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SourceInfo::SourceInfo(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct SourceInfoDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SourceInfoDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SourceInfoDefaultTypeInternal() {}
+  union {
+    SourceInfo _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SourceInfoDefaultTypeInternal _SourceInfo_default_instance_;
 }  // namespace v1beta1
 }  // namespace expr
 }  // namespace api
 }  // namespace google
 static ::_pb::Metadata file_level_metadata_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto[3];
-static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto = nullptr;
-static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto = nullptr;
-
-const uint32_t TableStruct_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourceInfo_PositionsEntry_DoNotUse, _has_bits_),
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourceInfo_PositionsEntry_DoNotUse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourceInfo_PositionsEntry_DoNotUse, key_),
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourceInfo_PositionsEntry_DoNotUse, value_),
-  0,
-  1,
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourceInfo, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourceInfo, location_),
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourceInfo, line_offsets_),
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourceInfo, positions_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourcePosition, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourcePosition, location_),
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourcePosition, offset_),
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourcePosition, line_),
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourcePosition, column_),
+static constexpr const ::_pb::EnumDescriptor**
+    file_level_enum_descriptors_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto = nullptr;
+static constexpr const ::_pb::ServiceDescriptor**
+    file_level_service_descriptors_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto = nullptr;
+const ::uint32_t TableStruct_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
+    protodesc_cold) = {
+    PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourceInfo_PositionsEntry_DoNotUse, _has_bits_),
+    PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourceInfo_PositionsEntry_DoNotUse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourceInfo_PositionsEntry_DoNotUse, key_),
+    PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourceInfo_PositionsEntry_DoNotUse, value_),
+    0,
+    1,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourceInfo, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourceInfo, _impl_.location_),
+    PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourceInfo, _impl_.line_offsets_),
+    PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourceInfo, _impl_.positions_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourcePosition, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourcePosition, _impl_.location_),
+    PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourcePosition, _impl_.offset_),
+    PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourcePosition, _impl_.line_),
+    PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourcePosition, _impl_.column_),
 };
-static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, 8, -1, sizeof(::google::api::expr::v1beta1::SourceInfo_PositionsEntry_DoNotUse)},
-  { 10, -1, -1, sizeof(::google::api::expr::v1beta1::SourceInfo)},
-  { 19, -1, -1, sizeof(::google::api::expr::v1beta1::SourcePosition)},
+
+static const ::_pbi::MigrationSchema
+    schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+        {0, 10, -1, sizeof(::google::api::expr::v1beta1::SourceInfo_PositionsEntry_DoNotUse)},
+        {12, -1, -1, sizeof(::google::api::expr::v1beta1::SourceInfo)},
+        {23, -1, -1, sizeof(::google::api::expr::v1beta1::SourcePosition)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-  &::google::api::expr::v1beta1::_SourceInfo_PositionsEntry_DoNotUse_default_instance_._instance,
-  &::google::api::expr::v1beta1::_SourceInfo_default_instance_._instance,
-  &::google::api::expr::v1beta1::_SourcePosition_default_instance_._instance,
+    &::google::api::expr::v1beta1::_SourceInfo_PositionsEntry_DoNotUse_default_instance_._instance,
+    &::google::api::expr::v1beta1::_SourceInfo_default_instance_._instance,
+    &::google::api::expr::v1beta1::_SourcePosition_default_instance_._instance,
 };
-
-const char descriptor_table_protodef_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n$google/api/expr/v1beta1/source.proto\022\027"
-  "google.api.expr.v1beta1\"\333\001\n\nSourceInfo\022\032"
-  "\n\010location\030\002 \001(\tR\010location\022!\n\014line_offse"
-  "ts\030\003 \003(\005R\013lineOffsets\022P\n\tpositions\030\004 \003(\013"
-  "22.google.api.expr.v1beta1.SourceInfo.Po"
-  "sitionsEntryR\tpositions\032<\n\016PositionsEntr"
-  "y\022\020\n\003key\030\001 \001(\005R\003key\022\024\n\005value\030\002 \001(\005R\005valu"
-  "e:\0028\001\"p\n\016SourcePosition\022\032\n\010location\030\001 \001("
-  "\tR\010location\022\026\n\006offset\030\002 \001(\005R\006offset\022\022\n\004l"
-  "ine\030\003 \001(\005R\004line\022\026\n\006column\030\004 \001(\005R\006columnB"
-  "l\n\033com.google.api.expr.v1beta1B\013SourcePr"
-  "otoP\001Z;google.golang.org/genproto/google"
-  "apis/api/expr/v1beta1;expr\370\001\001b\006proto3"
-  ;
-static ::_pbi::once_flag descriptor_table_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto_once;
+const char descriptor_table_protodef_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+    "\n$google/api/expr/v1beta1/source.proto\022\027"
+    "google.api.expr.v1beta1\"\333\001\n\nSourceInfo\022\032"
+    "\n\010location\030\002 \001(\tR\010location\022!\n\014line_offse"
+    "ts\030\003 \003(\005R\013lineOffsets\022P\n\tpositions\030\004 \003(\013"
+    "22.google.api.expr.v1beta1.SourceInfo.Po"
+    "sitionsEntryR\tpositions\032<\n\016PositionsEntr"
+    "y\022\020\n\003key\030\001 \001(\005R\003key\022\024\n\005value\030\002 \001(\005R\005valu"
+    "e:\0028\001\"p\n\016SourcePosition\022\032\n\010location\030\001 \001("
+    "\tR\010location\022\026\n\006offset\030\002 \001(\005R\006offset\022\022\n\004l"
+    "ine\030\003 \001(\005R\004line\022\026\n\006column\030\004 \001(\005R\006columnB"
+    "\351\001\n\033com.google.api.expr.v1beta1B\013SourceP"
+    "rotoP\001Z;google.golang.org/genproto/googl"
+    "eapis/api/expr/v1beta1;expr\370\001\001\242\002\003GAE\252\002\027G"
+    "oogle.Api.Expr.V1beta1\312\002\027Google\\Api\\Expr"
+    "\\V1beta1\342\002#Google\\Api\\Expr\\V1beta1\\GPBMe"
+    "tadata\352\002\032Google::Api::Expr::V1beta1b\006pro"
+    "to3"
+};
+static ::absl::once_flag descriptor_table_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto = {
-    false, false, 517, descriptor_table_protodef_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto,
+    false,
+    false,
+    643,
+    descriptor_table_protodef_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto,
     "google/api/expr/v1beta1/source.proto",
-    &descriptor_table_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto_once, nullptr, 0, 3,
-    schemas, file_default_instances, TableStruct_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto::offsets,
-    file_level_metadata_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto, file_level_enum_descriptors_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto,
+    &descriptor_table_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto_once,
+    nullptr,
+    0,
+    3,
+    schemas,
+    file_default_instances,
+    TableStruct_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto::offsets,
+    file_level_metadata_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto,
+    file_level_enum_descriptors_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto,
     file_level_service_descriptors_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto,
 };
+
+// This function exists to be marked as weak.
+// It can significantly speed up compilation by breaking up LLVM's SCC
+// in the .pb.cc translation units. Large translation units see a
+// reduction of more than 35% of walltime for optimized builds. Without
+// the weak attribute all the messages in the file, including all the
+// vtables and everything they use become part of the same SCC through
+// a cycle like:
+// GetMetadata -> descriptor table -> default instances ->
+//   vtables -> GetMetadata
+// By adding a weak function here we break the connection from the
+// individual vtables back into the descriptor table.
 PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto_getter() {
   return &descriptor_table_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto;
 }
-
 // Force running AddDescriptors() at dynamic initialization time.
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto(&descriptor_table_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
+static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto(&descriptor_table_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto);
 namespace google {
 namespace api {
 namespace expr {
 namespace v1beta1 {
-
 // ===================================================================
 
 SourceInfo_PositionsEntry_DoNotUse::SourceInfo_PositionsEntry_DoNotUse() {}
-SourceInfo_PositionsEntry_DoNotUse::SourceInfo_PositionsEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+SourceInfo_PositionsEntry_DoNotUse::SourceInfo_PositionsEntry_DoNotUse(::google::protobuf::Arena* arena)
     : SuperType(arena) {}
-void SourceInfo_PositionsEntry_DoNotUse::MergeFrom(const SourceInfo_PositionsEntry_DoNotUse& other) {
-  MergeFromInternal(other);
-}
-::PROTOBUF_NAMESPACE_ID::Metadata SourceInfo_PositionsEntry_DoNotUse::GetMetadata() const {
+::google::protobuf::Metadata SourceInfo_PositionsEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto_getter, &descriptor_table_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto_once,
       file_level_metadata_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto[0]);
 }
-
 // ===================================================================
 
 class SourceInfo::_Internal {
  public:
 };
 
-SourceInfo::SourceInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  line_offsets_(arena),
-  positions_(arena) {
-  SharedCtor();
-  if (arena != nullptr && !is_message_owned) {
-    arena->OwnCustomDestructor(this, &SourceInfo::ArenaDtor);
-  }
+SourceInfo::SourceInfo(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:google.api.expr.v1beta1.SourceInfo)
 }
-SourceInfo::SourceInfo(const SourceInfo& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      line_offsets_(from.line_offsets_) {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  positions_.MergeFrom(from.positions_);
-  location_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    location_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_location().empty()) {
-    location_.Set(from._internal_location(), 
-      GetArenaForAllocation());
-  }
+inline PROTOBUF_NDEBUG_INLINE SourceInfo::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : line_offsets_{visibility, arena, from.line_offsets_},
+        _line_offsets_cached_byte_size_{0},
+        positions_{visibility, arena, from.positions_},
+        location_(arena, from.location_),
+        _cached_size_{0} {}
+
+SourceInfo::SourceInfo(
+    ::google::protobuf::Arena* arena,
+    const SourceInfo& from)
+    : ::google::protobuf::Message(arena) {
+  SourceInfo* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
   // @@protoc_insertion_point(copy_constructor:google.api.expr.v1beta1.SourceInfo)
 }
+inline PROTOBUF_NDEBUG_INLINE SourceInfo::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : line_offsets_{visibility, arena},
+        _line_offsets_cached_byte_size_{0},
+        positions_{visibility, arena},
+        location_(arena),
+        _cached_size_{0} {}
 
-inline void SourceInfo::SharedCtor() {
-location_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  location_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void SourceInfo::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
 }
-
 SourceInfo::~SourceInfo() {
   // @@protoc_insertion_point(destructor:google.api.expr.v1beta1.SourceInfo)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    ArenaDtor(this);
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void SourceInfo::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  positions_.Destruct();
-  location_.Destroy();
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.location_.Destroy();
+  _impl_.~Impl_();
 }
 
-void SourceInfo::ArenaDtor(void* object) {
-  SourceInfo* _this = reinterpret_cast< SourceInfo* >(object);
-  _this->positions_.Destruct();
-}
-void SourceInfo::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void SourceInfo::Clear() {
+PROTOBUF_NOINLINE void SourceInfo::Clear() {
 // @@protoc_insertion_point(message_clear_start:google.api.expr.v1beta1.SourceInfo)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  line_offsets_.Clear();
-  positions_.Clear();
-  location_.ClearToEmpty();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_.line_offsets_.Clear();
+  _impl_.positions_.Clear();
+  _impl_.location_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* SourceInfo::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string location = 2 [json_name = "location"];
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          auto str = _internal_mutable_location();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "google.api.expr.v1beta1.SourceInfo.location"));
-        } else
-          goto handle_unusual;
-        continue;
-      // repeated int32 line_offsets = 3 [json_name = "lineOffsets"];
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedInt32Parser(_internal_mutable_line_offsets(), ptr, ctx);
-          CHK_(ptr);
-        } else if (static_cast<uint8_t>(tag) == 24) {
-          _internal_add_line_offsets(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // map<int32, int32> positions = 4 [json_name = "positions"];
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(&positions_, ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<34>(ptr));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* SourceInfo::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* SourceInfo::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 3, 1, 51, 2> SourceInfo::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    4, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967281,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_SourceInfo_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string location = 2 [json_name = "location"];
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(SourceInfo, _impl_.location_)}},
+    // repeated int32 line_offsets = 3 [json_name = "lineOffsets"];
+    {::_pbi::TcParser::FastV32P1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(SourceInfo, _impl_.line_offsets_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string location = 2 [json_name = "location"];
+    {PROTOBUF_FIELD_OFFSET(SourceInfo, _impl_.location_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // repeated int32 line_offsets = 3 [json_name = "lineOffsets"];
+    {PROTOBUF_FIELD_OFFSET(SourceInfo, _impl_.line_offsets_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
+    // map<int32, int32> positions = 4 [json_name = "positions"];
+    {PROTOBUF_FIELD_OFFSET(SourceInfo, _impl_.positions_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
+  }}, {{
+    {::_pbi::TcParser::GetMapAuxInfo<
+        decltype(SourceInfo()._impl_.positions_)>(
+        1, 0, 0, 5,
+        5)},
+  }}, {{
+    "\42\10\0\0\0\0\0\0"
+    "google.api.expr.v1beta1.SourceInfo"
+    "location"
+  }},
+};
+
+::uint8_t* SourceInfo::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:google.api.expr.v1beta1.SourceInfo)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string location = 2 [json_name = "location"];
   if (!this->_internal_location().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_location().data(), static_cast<int>(this->_internal_location().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "google.api.expr.v1beta1.SourceInfo.location");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_location(), target);
+    const std::string& _s = this->_internal_location();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "google.api.expr.v1beta1.SourceInfo.location");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
   // repeated int32 line_offsets = 3 [json_name = "lineOffsets"];
   {
-    int byte_size = _line_offsets_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _impl_._line_offsets_cached_byte_size_.Get();
     if (byte_size > 0) {
       target = stream->WriteInt32Packed(
           3, _internal_line_offsets(), byte_size, target);
@@ -330,96 +358,94 @@ uint8_t* SourceInfo::_InternalSerialize(
   }
 
   // map<int32, int32> positions = 4 [json_name = "positions"];
-  if (!this->_internal_positions().empty()) {
-    using MapType = ::_pb::Map<int32_t, int32_t>;
-    using WireHelper = SourceInfo_PositionsEntry_DoNotUse::Funcs;
-    const auto& map_field = this->_internal_positions();
+  if (!_internal_positions().empty()) {
+    using MapType = ::google::protobuf::Map<::int32_t, ::int32_t>;
+    using WireHelper = _pbi::MapEntryFuncs<::int32_t, ::int32_t,
+                                   _pbi::WireFormatLite::TYPE_INT32,
+                                   _pbi::WireFormatLite::TYPE_INT32>;
+    const auto& field = _internal_positions();
 
-    if (stream->IsSerializationDeterministic() && map_field.size() > 1) {
-      for (const auto& entry : ::_pbi::MapSorterFlat<MapType>(map_field)) {
-        target = WireHelper::InternalSerialize(4, entry.first, entry.second, target, stream);
+    if (stream->IsSerializationDeterministic() && field.size() > 1) {
+      for (const auto& entry : ::google::protobuf::internal::MapSorterFlat<MapType>(field)) {
+        target = WireHelper::InternalSerialize(
+            4, entry.first, entry.second, target, stream);
       }
     } else {
-      for (const auto& entry : map_field) {
-        target = WireHelper::InternalSerialize(4, entry.first, entry.second, target, stream);
+      for (const auto& entry : field) {
+        target = WireHelper::InternalSerialize(
+            4, entry.first, entry.second, target, stream);
       }
     }
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:google.api.expr.v1beta1.SourceInfo)
   return target;
 }
 
-size_t SourceInfo::ByteSizeLong() const {
+::size_t SourceInfo::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:google.api.expr.v1beta1.SourceInfo)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated int32 line_offsets = 3 [json_name = "lineOffsets"];
   {
-    size_t data_size = ::_pbi::WireFormatLite::
-      Int32Size(this->line_offsets_);
-    if (data_size > 0) {
-      total_size += 1 +
-        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
-    }
-    int cached_size = ::_pbi::ToCachedSize(data_size);
-    _line_offsets_cached_byte_size_.store(cached_size,
-                                    std::memory_order_relaxed);
-    total_size += data_size;
+    std::size_t data_size = ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_line_offsets())
+    ;
+    _impl_._line_offsets_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
   }
-
   // map<int32, int32> positions = 4 [json_name = "positions"];
-  total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_positions_size());
-  for (::PROTOBUF_NAMESPACE_ID::Map< int32_t, int32_t >::const_iterator
-      it = this->_internal_positions().begin();
-      it != this->_internal_positions().end(); ++it) {
-    total_size += SourceInfo_PositionsEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
+  total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_positions_size());
+  for (const auto& entry : _internal_positions()) {
+    total_size += _pbi::MapEntryFuncs<::int32_t, ::int32_t,
+                                   _pbi::WireFormatLite::TYPE_INT32,
+                                   _pbi::WireFormatLite::TYPE_INT32>::ByteSizeLong(entry.first, entry.second);
   }
-
   // string location = 2 [json_name = "location"];
   if (!this->_internal_location().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_location());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_location());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SourceInfo::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    SourceInfo::MergeImpl
+const ::google::protobuf::Message::ClassData SourceInfo::_class_data_ = {
+    SourceInfo::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SourceInfo::GetClassData() const { return &_class_data_; }
-
-void SourceInfo::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<SourceInfo *>(to)->MergeFrom(
-      static_cast<const SourceInfo &>(from));
+const ::google::protobuf::Message::ClassData* SourceInfo::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void SourceInfo::MergeFrom(const SourceInfo& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1beta1.SourceInfo)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void SourceInfo::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<SourceInfo*>(&to_msg);
+  auto& from = static_cast<const SourceInfo&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1beta1.SourceInfo)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  line_offsets_.MergeFrom(from.line_offsets_);
-  positions_.MergeFrom(from.positions_);
+  _this->_internal_mutable_line_offsets()->MergeFrom(from._internal_line_offsets());
+  _this->_impl_.positions_.MergeFrom(from._impl_.positions_);
   if (!from._internal_location().empty()) {
-    _internal_set_location(from._internal_location());
+    _this->_internal_set_location(from._internal_location());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void SourceInfo::CopyFrom(const SourceInfo& from) {
@@ -429,270 +455,271 @@ void SourceInfo::CopyFrom(const SourceInfo& from) {
   MergeFrom(from);
 }
 
-bool SourceInfo::IsInitialized() const {
+PROTOBUF_NOINLINE bool SourceInfo::IsInitialized() const {
   return true;
 }
 
-void SourceInfo::InternalSwap(SourceInfo* other) {
+::_pbi::CachedSize* SourceInfo::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void SourceInfo::InternalSwap(SourceInfo* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  line_offsets_.InternalSwap(&other->line_offsets_);
-  positions_.InternalSwap(&other->positions_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &location_, lhs_arena,
-      &other->location_, rhs_arena
-  );
+  _impl_.line_offsets_.InternalSwap(&other->_impl_.line_offsets_);
+  _impl_.positions_.InternalSwap(&other->_impl_.positions_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.location_, &other->_impl_.location_, arena);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata SourceInfo::GetMetadata() const {
+::google::protobuf::Metadata SourceInfo::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto_getter, &descriptor_table_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto_once,
       file_level_metadata_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto[1]);
 }
-
 // ===================================================================
 
 class SourcePosition::_Internal {
  public:
 };
 
-SourcePosition::SourcePosition(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+SourcePosition::SourcePosition(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:google.api.expr.v1beta1.SourcePosition)
 }
-SourcePosition::SourcePosition(const SourcePosition& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  location_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    location_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_location().empty()) {
-    location_.Set(from._internal_location(), 
-      GetArenaForAllocation());
-  }
-  ::memcpy(&offset_, &from.offset_,
-    static_cast<size_t>(reinterpret_cast<char*>(&column_) -
-    reinterpret_cast<char*>(&offset_)) + sizeof(column_));
+inline PROTOBUF_NDEBUG_INLINE SourcePosition::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : location_(arena, from.location_),
+        _cached_size_{0} {}
+
+SourcePosition::SourcePosition(
+    ::google::protobuf::Arena* arena,
+    const SourcePosition& from)
+    : ::google::protobuf::Message(arena) {
+  SourcePosition* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, offset_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, offset_),
+           offsetof(Impl_, column_) -
+               offsetof(Impl_, offset_) +
+               sizeof(Impl_::column_));
+
   // @@protoc_insertion_point(copy_constructor:google.api.expr.v1beta1.SourcePosition)
 }
+inline PROTOBUF_NDEBUG_INLINE SourcePosition::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : location_(arena),
+        _cached_size_{0} {}
 
-inline void SourcePosition::SharedCtor() {
-location_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  location_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&offset_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&column_) -
-    reinterpret_cast<char*>(&offset_)) + sizeof(column_));
+inline void SourcePosition::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, offset_),
+           0,
+           offsetof(Impl_, column_) -
+               offsetof(Impl_, offset_) +
+               sizeof(Impl_::column_));
 }
-
 SourcePosition::~SourcePosition() {
   // @@protoc_insertion_point(destructor:google.api.expr.v1beta1.SourcePosition)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void SourcePosition::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  location_.Destroy();
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.location_.Destroy();
+  _impl_.~Impl_();
 }
 
-void SourcePosition::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void SourcePosition::Clear() {
+PROTOBUF_NOINLINE void SourcePosition::Clear() {
 // @@protoc_insertion_point(message_clear_start:google.api.expr.v1beta1.SourcePosition)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  location_.ClearToEmpty();
-  ::memset(&offset_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&column_) -
-      reinterpret_cast<char*>(&offset_)) + sizeof(column_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_.location_.ClearToEmpty();
+  ::memset(&_impl_.offset_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.column_) -
+      reinterpret_cast<char*>(&_impl_.offset_)) + sizeof(_impl_.column_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* SourcePosition::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string location = 1 [json_name = "location"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_location();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "google.api.expr.v1beta1.SourcePosition.location"));
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 offset = 2 [json_name = "offset"];
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          offset_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 line = 3 [json_name = "line"];
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          line_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 column = 4 [json_name = "column"];
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          column_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* SourcePosition::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* SourcePosition::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 4, 0, 55, 2> SourcePosition::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    4, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967280,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    4,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_SourcePosition_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // int32 column = 4 [json_name = "column"];
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SourcePosition, _impl_.column_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(SourcePosition, _impl_.column_)}},
+    // string location = 1 [json_name = "location"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(SourcePosition, _impl_.location_)}},
+    // int32 offset = 2 [json_name = "offset"];
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SourcePosition, _impl_.offset_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(SourcePosition, _impl_.offset_)}},
+    // int32 line = 3 [json_name = "line"];
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SourcePosition, _impl_.line_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(SourcePosition, _impl_.line_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string location = 1 [json_name = "location"];
+    {PROTOBUF_FIELD_OFFSET(SourcePosition, _impl_.location_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // int32 offset = 2 [json_name = "offset"];
+    {PROTOBUF_FIELD_OFFSET(SourcePosition, _impl_.offset_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 line = 3 [json_name = "line"];
+    {PROTOBUF_FIELD_OFFSET(SourcePosition, _impl_.line_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 column = 4 [json_name = "column"];
+    {PROTOBUF_FIELD_OFFSET(SourcePosition, _impl_.column_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+  }},
+  // no aux_entries
+  {{
+    "\46\10\0\0\0\0\0\0"
+    "google.api.expr.v1beta1.SourcePosition"
+    "location"
+  }},
+};
+
+::uint8_t* SourcePosition::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:google.api.expr.v1beta1.SourcePosition)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string location = 1 [json_name = "location"];
   if (!this->_internal_location().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_location().data(), static_cast<int>(this->_internal_location().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "google.api.expr.v1beta1.SourcePosition.location");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_location(), target);
+    const std::string& _s = this->_internal_location();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "google.api.expr.v1beta1.SourcePosition.location");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
   // int32 offset = 2 [json_name = "offset"];
   if (this->_internal_offset() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(2, this->_internal_offset(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<2>(
+            stream, this->_internal_offset(), target);
   }
 
   // int32 line = 3 [json_name = "line"];
   if (this->_internal_line() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_line(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<3>(
+            stream, this->_internal_line(), target);
   }
 
   // int32 column = 4 [json_name = "column"];
   if (this->_internal_column() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(4, this->_internal_column(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<4>(
+            stream, this->_internal_column(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:google.api.expr.v1beta1.SourcePosition)
   return target;
 }
 
-size_t SourcePosition::ByteSizeLong() const {
+::size_t SourcePosition::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:google.api.expr.v1beta1.SourcePosition)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string location = 1 [json_name = "location"];
   if (!this->_internal_location().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_location());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_location());
   }
 
   // int32 offset = 2 [json_name = "offset"];
   if (this->_internal_offset() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_offset());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_offset());
   }
 
   // int32 line = 3 [json_name = "line"];
   if (this->_internal_line() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_line());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_line());
   }
 
   // int32 column = 4 [json_name = "column"];
   if (this->_internal_column() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_column());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_column());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SourcePosition::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    SourcePosition::MergeImpl
+const ::google::protobuf::Message::ClassData SourcePosition::_class_data_ = {
+    SourcePosition::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SourcePosition::GetClassData() const { return &_class_data_; }
-
-void SourcePosition::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<SourcePosition *>(to)->MergeFrom(
-      static_cast<const SourcePosition &>(from));
+const ::google::protobuf::Message::ClassData* SourcePosition::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void SourcePosition::MergeFrom(const SourcePosition& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1beta1.SourcePosition)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void SourcePosition::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<SourcePosition*>(&to_msg);
+  auto& from = static_cast<const SourcePosition&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1beta1.SourcePosition)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_location().empty()) {
-    _internal_set_location(from._internal_location());
+    _this->_internal_set_location(from._internal_location());
   }
   if (from._internal_offset() != 0) {
-    _internal_set_offset(from._internal_offset());
+    _this->_internal_set_offset(from._internal_offset());
   }
   if (from._internal_line() != 0) {
-    _internal_set_line(from._internal_line());
+    _this->_internal_set_line(from._internal_line());
   }
   if (from._internal_column() != 0) {
-    _internal_set_column(from._internal_column());
+    _this->_internal_set_column(from._internal_column());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void SourcePosition::CopyFrom(const SourcePosition& from) {
@@ -702,52 +729,40 @@ void SourcePosition::CopyFrom(const SourcePosition& from) {
   MergeFrom(from);
 }
 
-bool SourcePosition::IsInitialized() const {
+PROTOBUF_NOINLINE bool SourcePosition::IsInitialized() const {
   return true;
 }
 
-void SourcePosition::InternalSwap(SourcePosition* other) {
+::_pbi::CachedSize* SourcePosition::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void SourcePosition::InternalSwap(SourcePosition* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &location_, lhs_arena,
-      &other->location_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(SourcePosition, column_)
-      + sizeof(SourcePosition::column_)
-      - PROTOBUF_FIELD_OFFSET(SourcePosition, offset_)>(
-          reinterpret_cast<char*>(&offset_),
-          reinterpret_cast<char*>(&other->offset_));
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.location_, &other->_impl_.location_, arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(SourcePosition, _impl_.column_)
+      + sizeof(SourcePosition::_impl_.column_)
+      - PROTOBUF_FIELD_OFFSET(SourcePosition, _impl_.offset_)>(
+          reinterpret_cast<char*>(&_impl_.offset_),
+          reinterpret_cast<char*>(&other->_impl_.offset_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata SourcePosition::GetMetadata() const {
+::google::protobuf::Metadata SourcePosition::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto_getter, &descriptor_table_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto_once,
       file_level_metadata_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto[2]);
 }
-
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1beta1
 }  // namespace expr
 }  // namespace api
 }  // namespace google
-PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::google::api::expr::v1beta1::SourceInfo_PositionsEntry_DoNotUse*
-Arena::CreateMaybeMessage< ::google::api::expr::v1beta1::SourceInfo_PositionsEntry_DoNotUse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::google::api::expr::v1beta1::SourceInfo_PositionsEntry_DoNotUse >(arena);
-}
-template<> PROTOBUF_NOINLINE ::google::api::expr::v1beta1::SourceInfo*
-Arena::CreateMaybeMessage< ::google::api::expr::v1beta1::SourceInfo >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::google::api::expr::v1beta1::SourceInfo >(arena);
-}
-template<> PROTOBUF_NOINLINE ::google::api::expr::v1beta1::SourcePosition*
-Arena::CreateMaybeMessage< ::google::api::expr::v1beta1::SourcePosition >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::google::api::expr::v1beta1::SourcePosition >(arena);
-}
-PROTOBUF_NAMESPACE_CLOSE
-
+namespace google {
+namespace protobuf {
+}  // namespace protobuf
+}  // namespace google
 // @@protoc_insertion_point(global_scope)
-#include <google/protobuf/port_undef.inc>
+#include "google/protobuf/port_undef.inc"
