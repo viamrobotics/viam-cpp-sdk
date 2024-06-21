@@ -157,5 +157,24 @@ proto::Orientation OrientationConfig::to_proto() const {
     }
 }
 
+const OrientationType& OrientationConfig::get_type() const {
+    return type_;
+};
+OrientationType OrientationConfig::get_type() {
+    return type_;
+};
+const std::vector<std::uint8_t>& OrientationConfig::get_value() const {
+    return value_;
+};
+std::vector<std::uint8_t> OrientationConfig::get_value() {
+    return value_;
+};
+const orientation& OrientationConfig::get_orientation() const {
+    return orientation_;
+}
+orientation OrientationConfig::get_orientation() {
+    return orientation_;
+}
+
 }  // namespace sdk
 }  // namespace viam
