@@ -27,6 +27,10 @@ class OrientationConfig {
     // Defaults to sentinel no rotation value
     OrientationConfig();
 
+    OrientationType get_type() const;
+    const std::vector<std::uint8_t>& get_value() const;
+    const orientation& get_orientation() const;
+
    private:
     OrientationType type_;
     std::vector<std::uint8_t> value_;
