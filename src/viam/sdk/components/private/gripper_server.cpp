@@ -20,8 +20,10 @@ GripperServer::GripperServer(std::shared_ptr<ResourceManager> manager)
     ::grpc::ServerContext*,
     const ::viam::component::gripper::v1::GrabRequest* request,
     ::viam::component::gripper::v1::GrabResponse* response) noexcept {
-    return make_service_helper<Gripper>("GripperServer::Grab", this, request)(
-        [&](auto&, auto& gripper) { response->set_success(gripper->grab()); });
+    return make_service_helper<Gripper>(
+        "GripperServer::Grab", this, request)([&](auto& helper, auto& gripper) {
+        response->set_success(gripper->grab(helper.getExtra()));
+    });
 }
 
 ::grpc::Status GripperServer::Stop(::grpc::ServerContext*,
