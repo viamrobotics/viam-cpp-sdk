@@ -261,3 +261,10 @@ install(FILES
 
 
 add_subdirectory(tests)
+
+set(CPACK_GENERATOR "DEB")
+set(CPACK_ARCHIVE_COMPONENT_INSTALL ON)
+set(CPACK_COMPONENTS_ALL viam-cpp-sdk_dev)
+set(CPACK_PACKAGE_CONTACT "packaging@viam.com")
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "libprotobuf-dev, libgrpc++-dev, libboost-log-dev")
+include(CPack)
