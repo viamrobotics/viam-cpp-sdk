@@ -51,6 +51,7 @@ target_sources(viamsdk
     components/component.cpp
     components/encoder.cpp
     components/generic.cpp
+    components/gripper.cpp
     components/motor.cpp
     components/movement_sensor.cpp
     components/power_sensor.cpp
@@ -65,6 +66,8 @@ target_sources(viamsdk
     components/private/encoder_client.cpp
     components/private/encoder_server.cpp
     components/private/generic_client.cpp
+    components/private/gripper_client.cpp
+    components/private/gripper_server.cpp
     components/private/generic_server.cpp
     components/private/motor_client.cpp
     components/private/motor_server.cpp
@@ -128,6 +131,7 @@ target_sources(viamsdk
       ../../viam/sdk/components/component.hpp
       ../../viam/sdk/components/encoder.hpp
       ../../viam/sdk/components/generic.hpp
+      ../../viam/sdk/components/gripper.hpp
       ../../viam/sdk/components/motor.hpp
       ../../viam/sdk/components/movement_sensor.hpp
       ../../viam/sdk/components/power_sensor.hpp
