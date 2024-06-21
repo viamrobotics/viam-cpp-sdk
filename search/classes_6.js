@@ -15,5 +15,8 @@ var searchData=
   ['gizmo_12',['Gizmo',['../classGizmo.html',1,'']]],
   ['gizmoclient_13',['GizmoClient',['../classGizmoClient.html',1,'']]],
   ['gizmoserver_14',['GizmoServer',['../classGizmoServer.html',1,'']]],
-  ['grpcexception_15',['GRPCException',['../classviam_1_1sdk_1_1GRPCException.html',1,'viam::sdk']]]
+  ['gripper_15',['Gripper',['../classviam_1_1sdk_1_1Gripper.html',1,'viam::sdk']]],
+  ['gripperclient_16',['GripperClient',['../classviam_1_1sdk_1_1impl_1_1GripperClient.html',1,'viam::sdk::impl']]],
+  ['gripperserver_17',['GripperServer',['../classviam_1_1sdk_1_1impl_1_1GripperServer.html',1,'viam::sdk::impl']]],
+  ['grpcexception_18',['GRPCException',['../classviam_1_1sdk_1_1GRPCException.html',1,'viam::sdk']]]
 ];
