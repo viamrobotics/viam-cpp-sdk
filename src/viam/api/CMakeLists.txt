@@ -169,6 +169,10 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/component/generic/v1/generic.grpc.pb.h
     ${PROTO_GEN_DIR}/component/generic/v1/generic.pb.cc
     ${PROTO_GEN_DIR}/component/generic/v1/generic.pb.h
+    ${PROTO_GEN_DIR}/component/gripper/v1/gripper.grpc.pb.cc
+    ${PROTO_GEN_DIR}/component/gripper/v1/gripper.grpc.pb.h
+    ${PROTO_GEN_DIR}/component/gripper/v1/gripper.pb.cc
+    ${PROTO_GEN_DIR}/component/gripper/v1/gripper.pb.h
     ${PROTO_GEN_DIR}/component/motor/v1/motor.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/motor/v1/motor.grpc.pb.h
     ${PROTO_GEN_DIR}/component/motor/v1/motor.pb.cc
@@ -288,10 +292,12 @@ target_sources(viamapi
     ${PROTO_GEN_DIR}/component/camera/v1/camera.pb.cc
     ${PROTO_GEN_DIR}/component/encoder/v1/encoder.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/encoder/v1/encoder.pb.cc
-    ${PROTO_GEN_DIR}/component/generic/v1/generic.grpc.pb.cc
-    ${PROTO_GEN_DIR}/component/generic/v1/generic.pb.cc
     ${PROTO_GEN_DIR}/component/gantry/v1/gantry.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/gantry/v1/gantry.pb.cc
+    ${PROTO_GEN_DIR}/component/generic/v1/generic.grpc.pb.cc
+    ${PROTO_GEN_DIR}/component/generic/v1/generic.pb.cc
+    ${PROTO_GEN_DIR}/component/gripper/v1/gripper.grpc.pb.cc
+    ${PROTO_GEN_DIR}/component/gripper/v1/gripper.pb.cc
     ${PROTO_GEN_DIR}/component/motor/v1/motor.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/motor/v1/motor.pb.cc
     ${PROTO_GEN_DIR}/component/movementsensor/v1/movementsensor.grpc.pb.cc
@@ -344,6 +350,8 @@ target_sources(viamapi
       ${PROTO_GEN_DIR}/../../viam/api/component/gantry/v1/gantry.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/generic/v1/generic.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/generic/v1/generic.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/component/gripper/v1/gripper.grpc.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/component/gripper/v1/gripper.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/motor/v1/motor.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/motor/v1/motor.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/movementsensor/v1/movementsensor.grpc.pb.h

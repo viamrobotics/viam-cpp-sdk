@@ -24,6 +24,8 @@
 #include <viam/sdk/components/private/encoder_server.hpp>
 #include <viam/sdk/components/private/generic_client.hpp>
 #include <viam/sdk/components/private/generic_server.hpp>
+#include <viam/sdk/components/private/gripper_client.hpp>
+#include <viam/sdk/components/private/gripper_server.hpp>
 #include <viam/sdk/components/private/motor_client.hpp>
 #include <viam/sdk/components/private/motor_server.hpp>
 #include <viam/sdk/components/private/movement_sensor_client.hpp>
@@ -171,6 +173,7 @@ void register_resources() {
     Registry::register_resource<impl::CameraClient, impl::CameraServer>();
     Registry::register_resource<impl::EncoderClient, impl::EncoderServer>();
     Registry::register_resource<impl::GenericComponentClient, impl::GenericComponentServer>();
+    Registry::register_resource<impl::GripperClient, impl::GripperServer>();
     Registry::register_resource<impl::MotorClient, impl::MotorServer>();
     Registry::register_resource<impl::MovementSensorClient, impl::MovementSensorServer>();
     Registry::register_resource<impl::PowerSensorClient, impl::PowerSensorServer>();

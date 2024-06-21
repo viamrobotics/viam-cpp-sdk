@@ -1,0 +1,75 @@
+/// @file components/gripper.hpp
+///
+/// @brief Defines a `Gripper` component
+#pragma once
+
+#include <string>
+
+#include <viam/api/common/v1/common.pb.h>
+#include <viam/api/component/gripper/v1/gripper.pb.h>
+
+#include <viam/sdk/resource/stoppable.hpp>
+
+namespace viam {
+namespace sdk {
+
+/// @defgroup Gripper Classes related to the Gripper component.
+
+/// @class Gripper gripper.hpp "components/gripper.hpp"
+/// @brief A `Gripper` represents a physical robotic gripper.
+/// @ingroup Gripper
+///
+/// This acts as an abstract parent class to be inherited from by any drivers representing
+/// specific gripper implementations. This class cannot be used on its own.
+class Gripper : public Component, public Stoppable {
+   public:
+    /// @brief Open the gripper.
+    inline void open() {
+        return open({});
+    }
+
+    /// @brief Open the gripper.
+    /// @param extra Any additional arguments to the method.
+    virtual void open(const AttributeMap& extra) = 0;
+
+    /// @brief Instruct the gripper to grab.
+    /// @return bool indicating if the gripper grabbed something.
+    inline bool grab() {
+        return grab({});
+    }
+
+    /// @brief Instruct the gripper to grab.
+    /// @param extra Any additional arguments to the method.
+    /// @return bool indicating if the gripper grabbed something.
+    virtual bool grab(const AttributeMap& extra) = 0;
+
+    /// @brief Reports if the gripper is in motion.
+    virtual bool is_moving() = 0;
+
+    /// @brief Send/receive arbitrary commands to the resource.
+    /// @param Command the command to execute.
+    /// @return The result of the executed command.
+    virtual AttributeMap do_command(const AttributeMap& command) = 0;
+
+    /// @brief Returns `GeometryConfig`s associated with the calling arm
+    inline std::vector<GeometryConfig> get_geometries() {
+        return get_geometries({});
+    }
+
+    /// @brief Returns `GeometryConfig`s associated with the calling arm
+    /// @param extra Any additional arguments to the method
+    virtual std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) = 0;
+
+    API api() const override;
+
+   protected:
+    explicit Gripper(std::string name);
+};
+
+template <>
+struct API::traits<Gripper> {
+    static API api();
+};
+
+}  // namespace sdk
+}  // namespace viam
