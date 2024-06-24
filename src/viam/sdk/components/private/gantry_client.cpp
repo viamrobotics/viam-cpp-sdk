@@ -10,8 +10,6 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-namespace gantry_component = viam::component::gantry::v1;
-
 GantryClient::GantryClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Gantry(std::move(name)),
       stub_(viam::component::gantry::v1::GantryService::NewStub(channel)),
