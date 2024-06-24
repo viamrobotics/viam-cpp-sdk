@@ -20,6 +20,9 @@ namespace impl {
 class GantryServer : public ResourceServer,
                      public viam::component::gantry::v1::GantryService::Service {
    public:
+    using interface_type = Gantry;
+    using service_type = component::gantry::v1::GantryService;
+
     explicit GantryServer(std::shared_ptr<ResourceManager> manager);
 
     virtual ::grpc::Status GetPosition(
