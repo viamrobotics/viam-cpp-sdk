@@ -12,6 +12,9 @@ namespace viam {
 namespace sdk {
 
 Server::Server() : builder_(std::make_unique<grpc::ServerBuilder>()) {
+    builder_->SetMaxReceiveMessageSize(1 << 25);
+    builder_->SetMaxSendMessageSize(1 << 25);
+    builder_->SetMaxMessageSize(1 << 25);
     Registry::initialize();
     for (const auto& rr : Registry::registered_resource_servers()) {
         auto new_manager = std::make_shared<ResourceManager>();
