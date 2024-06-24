@@ -67,6 +67,7 @@ target_sources(viamsdk
     components/private/encoder_client.cpp
     components/private/encoder_server.cpp
     components/private/gantry_client.cpp
+    components/private/gantry_server.cpp
     components/private/generic_client.cpp
     components/private/gripper_client.cpp
     components/private/gripper_server.cpp
