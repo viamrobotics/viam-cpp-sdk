@@ -50,6 +50,7 @@ target_sources(viamsdk
     components/camera.cpp
     components/component.cpp
     components/encoder.cpp
+    components/gantry.cpp
     components/generic.cpp
     components/gripper.cpp
     components/motor.cpp
@@ -130,6 +131,7 @@ target_sources(viamsdk
       ../../viam/sdk/components/camera.hpp
       ../../viam/sdk/components/component.hpp
       ../../viam/sdk/components/encoder.hpp
+      ../../viam/sdk/components/gantry.hpp
       ../../viam/sdk/components/generic.hpp
       ../../viam/sdk/components/gripper.hpp
       ../../viam/sdk/components/motor.hpp
