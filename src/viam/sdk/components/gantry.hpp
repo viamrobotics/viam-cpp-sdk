@@ -89,6 +89,15 @@ class Gantry : public Component, public Stoppable {
     /// @return The result of the executed command.
     virtual AttributeMap do_command(const AttributeMap& command) = 0;
 
+    /// @brief Returns `GeometryConfig`s associated with the calling gantry
+    inline std::vector<GeometryConfig> get_geometries() {
+        return get_geometries({});
+    }
+
+    /// @brief Returns `GeometryConfig`s associated with the calling gantry
+    /// @param extra Any additional arguments to the method
+    virtual std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) = 0;
+
     API api() const override;
 
    protected:

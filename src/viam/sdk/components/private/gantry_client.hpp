@@ -29,7 +29,9 @@ class GantryClient : public Gantry {
     bool is_moving() override;
     void stop(const AttributeMap& extra) override;
     AttributeMap do_command(const AttributeMap& command) override;
+    std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
 
+    using Gantry::get_geometries;
     using Gantry::get_lengths;
     using Gantry::get_position;
     using Gantry::home;

@@ -70,6 +70,12 @@ AttributeMap GantryClient::do_command(const AttributeMap& command) {
         .invoke([](auto& response) { return struct_to_map(response.result()); });
 }
 
+std::vector<GeometryConfig> GantryClient::get_geometries(const AttributeMap& extra) {
+    return make_client_helper(this, *stub_, &StubType::GetGeometries)
+        .with(extra)
+        .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
+}
+
 }  // namespace impl
 }  // namespace sdk
 }  // namespace viam
