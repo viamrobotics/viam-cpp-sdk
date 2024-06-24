@@ -4,414 +4,461 @@
 #include "component/posetracker/v1/pose_tracker.pb.h"
 
 #include <algorithm>
-
-#include <google/protobuf/io/coded_stream.h>
-#include <google/protobuf/extension_set.h>
-#include <google/protobuf/wire_format_lite.h>
-#include <google/protobuf/descriptor.h>
-#include <google/protobuf/generated_message_reflection.h>
-#include <google/protobuf/reflection_ops.h>
-#include <google/protobuf/wire_format.h>
+#include "google/protobuf/io/coded_stream.h"
+#include "google/protobuf/extension_set.h"
+#include "google/protobuf/wire_format_lite.h"
+#include "google/protobuf/descriptor.h"
+#include "google/protobuf/generated_message_reflection.h"
+#include "google/protobuf/reflection_ops.h"
+#include "google/protobuf/wire_format.h"
+#include "google/protobuf/generated_message_tctable_impl.h"
 // @@protoc_insertion_point(includes)
-#include <google/protobuf/port_def.inc>
 
+// Must be included last.
+#include "google/protobuf/port_def.inc"
 PROTOBUF_PRAGMA_INIT_SEG
-
-namespace _pb = ::PROTOBUF_NAMESPACE_ID;
-namespace _pbi = _pb::internal;
-
+namespace _pb = ::google::protobuf;
+namespace _pbi = ::google::protobuf::internal;
+namespace _fl = ::google::protobuf::internal::field_layout;
 namespace viam {
 namespace component {
 namespace posetracker {
 namespace v1 {
-PROTOBUF_CONSTEXPR GetPosesRequest::GetPosesRequest(
-    ::_pbi::ConstantInitialized)
-  : body_names_()
-  , name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
+
+inline constexpr GetPosesRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        body_names_{},
+        name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        extra_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetPosesRequest::GetPosesRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
 struct GetPosesRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetPosesRequestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR GetPosesRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~GetPosesRequestDefaultTypeInternal() {}
   union {
     GetPosesRequest _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPosesRequestDefaultTypeInternal _GetPosesRequest_default_instance_;
-PROTOBUF_CONSTEXPR GetPosesResponse_BodyPosesEntry_DoNotUse::GetPosesResponse_BodyPosesEntry_DoNotUse(
-    ::_pbi::ConstantInitialized){}
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPosesRequestDefaultTypeInternal _GetPosesRequest_default_instance_;
+      template <typename>
+PROTOBUF_CONSTEXPR GetPosesResponse_BodyPosesEntry_DoNotUse::GetPosesResponse_BodyPosesEntry_DoNotUse(::_pbi::ConstantInitialized) {}
 struct GetPosesResponse_BodyPosesEntry_DoNotUseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetPosesResponse_BodyPosesEntry_DoNotUseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR GetPosesResponse_BodyPosesEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~GetPosesResponse_BodyPosesEntry_DoNotUseDefaultTypeInternal() {}
   union {
     GetPosesResponse_BodyPosesEntry_DoNotUse _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPosesResponse_BodyPosesEntry_DoNotUseDefaultTypeInternal _GetPosesResponse_BodyPosesEntry_DoNotUse_default_instance_;
-PROTOBUF_CONSTEXPR GetPosesResponse::GetPosesResponse(
-    ::_pbi::ConstantInitialized)
-  : body_poses_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}){}
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPosesResponse_BodyPosesEntry_DoNotUseDefaultTypeInternal _GetPosesResponse_BodyPosesEntry_DoNotUse_default_instance_;
+
+inline constexpr GetPosesResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : body_poses_{},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetPosesResponse::GetPosesResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
 struct GetPosesResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetPosesResponseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR GetPosesResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~GetPosesResponseDefaultTypeInternal() {}
   union {
     GetPosesResponse _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPosesResponseDefaultTypeInternal _GetPosesResponse_default_instance_;
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPosesResponseDefaultTypeInternal _GetPosesResponse_default_instance_;
 }  // namespace v1
 }  // namespace posetracker
 }  // namespace component
 }  // namespace viam
 static ::_pb::Metadata file_level_metadata_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto[3];
-static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto = nullptr;
-static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto = nullptr;
-
-const uint32_t TableStruct_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesRequest, body_names_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesRequest, extra_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesResponse_BodyPosesEntry_DoNotUse, _has_bits_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesResponse_BodyPosesEntry_DoNotUse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesResponse_BodyPosesEntry_DoNotUse, key_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesResponse_BodyPosesEntry_DoNotUse, value_),
-  0,
-  1,
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesResponse, body_poses_),
+static constexpr const ::_pb::EnumDescriptor**
+    file_level_enum_descriptors_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto = nullptr;
+static constexpr const ::_pb::ServiceDescriptor**
+    file_level_service_descriptors_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto = nullptr;
+const ::uint32_t TableStruct_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
+    protodesc_cold) = {
+    PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesRequest, _impl_.name_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesRequest, _impl_.body_names_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesRequest, _impl_.extra_),
+    ~0u,
+    ~0u,
+    0,
+    PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesResponse_BodyPosesEntry_DoNotUse, _has_bits_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesResponse_BodyPosesEntry_DoNotUse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesResponse_BodyPosesEntry_DoNotUse, key_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesResponse_BodyPosesEntry_DoNotUse, value_),
+    0,
+    1,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesResponse, _impl_.body_poses_),
 };
-static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, -1, sizeof(::viam::component::posetracker::v1::GetPosesRequest)},
-  { 9, 17, -1, sizeof(::viam::component::posetracker::v1::GetPosesResponse_BodyPosesEntry_DoNotUse)},
-  { 19, -1, -1, sizeof(::viam::component::posetracker::v1::GetPosesResponse)},
+
+static const ::_pbi::MigrationSchema
+    schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+        {0, 11, -1, sizeof(::viam::component::posetracker::v1::GetPosesRequest)},
+        {14, 24, -1, sizeof(::viam::component::posetracker::v1::GetPosesResponse_BodyPosesEntry_DoNotUse)},
+        {26, -1, -1, sizeof(::viam::component::posetracker::v1::GetPosesResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-  &::viam::component::posetracker::v1::_GetPosesRequest_default_instance_._instance,
-  &::viam::component::posetracker::v1::_GetPosesResponse_BodyPosesEntry_DoNotUse_default_instance_._instance,
-  &::viam::component::posetracker::v1::_GetPosesResponse_default_instance_._instance,
+    &::viam::component::posetracker::v1::_GetPosesRequest_default_instance_._instance,
+    &::viam::component::posetracker::v1::_GetPosesResponse_BodyPosesEntry_DoNotUse_default_instance_._instance,
+    &::viam::component::posetracker::v1::_GetPosesResponse_default_instance_._instance,
 };
-
-const char descriptor_table_protodef_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n+component/posetracker/v1/pose_tracker."
-  "proto\022\035viam.component.posetracker.v1\032\026co"
-  "mmon/v1/common.proto\032\034google/api/annotat"
-  "ions.proto\032\034google/protobuf/struct.proto"
-  "\"s\n\017GetPosesRequest\022\022\n\004name\030\001 \001(\tR\004name\022"
-  "\035\n\nbody_names\030\002 \003(\tR\tbodyNames\022-\n\005extra\030"
-  "c \001(\0132\027.google.protobuf.StructR\005extra\"\314\001"
-  "\n\020GetPosesResponse\022]\n\nbody_poses\030\001 \003(\0132>"
-  ".viam.component.posetracker.v1.GetPosesR"
-  "esponse.BodyPosesEntryR\tbodyPoses\032Y\n\016Bod"
-  "yPosesEntry\022\020\n\003key\030\001 \001(\tR\003key\0221\n\005value\030\002"
-  " \001(\0132\033.viam.common.v1.PoseInFrameR\005value"
-  ":\0028\0012\354\003\n\022PoseTrackerService\022\245\001\n\010GetPoses"
-  "\022..viam.component.posetracker.v1.GetPose"
-  "sRequest\032/.viam.component.posetracker.v1"
-  ".GetPosesResponse\"8\202\323\344\223\0022\0220/viam/api/v1/"
-  "component/pose_tracker/{name}/poses\022\217\001\n\t"
-  "DoCommand\022 .viam.common.v1.DoCommandRequ"
-  "est\032!.viam.common.v1.DoCommandResponse\"="
-  "\202\323\344\223\0027\"5/viam/api/v1/component/pose_trac"
-  "ker/{name}/do_command\022\233\001\n\rGetGeometries\022"
-  "$.viam.common.v1.GetGeometriesRequest\032%."
-  "viam.common.v1.GetGeometriesResponse\"=\202\323"
-  "\344\223\0027\0225/viam/api/v1/component/pose_tracke"
-  "r/{name}/geometriesB5\n\025com.viam.componen"
-  "t.v1Z\034go.viam.com/api/component/v1b\006prot"
-  "o3"
-  ;
-static const ::_pbi::DescriptorTable* const descriptor_table_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto_deps[3] = {
-  &::descriptor_table_common_2fv1_2fcommon_2eproto,
-  &::descriptor_table_google_2fapi_2fannotations_2eproto,
-  &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
+const char descriptor_table_protodef_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+    "\n+component/posetracker/v1/pose_tracker."
+    "proto\022\035viam.component.posetracker.v1\032\026co"
+    "mmon/v1/common.proto\032\034google/api/annotat"
+    "ions.proto\032\034google/protobuf/struct.proto"
+    "\"s\n\017GetPosesRequest\022\022\n\004name\030\001 \001(\tR\004name\022"
+    "\035\n\nbody_names\030\002 \003(\tR\tbodyNames\022-\n\005extra\030"
+    "c \001(\0132\027.google.protobuf.StructR\005extra\"\314\001"
+    "\n\020GetPosesResponse\022]\n\nbody_poses\030\001 \003(\0132>"
+    ".viam.component.posetracker.v1.GetPosesR"
+    "esponse.BodyPosesEntryR\tbodyPoses\032Y\n\016Bod"
+    "yPosesEntry\022\020\n\003key\030\001 \001(\tR\003key\0221\n\005value\030\002"
+    " \001(\0132\033.viam.common.v1.PoseInFrameR\005value"
+    ":\0028\0012\354\003\n\022PoseTrackerService\022\245\001\n\010GetPoses"
+    "\022..viam.component.posetracker.v1.GetPose"
+    "sRequest\032/.viam.component.posetracker.v1"
+    ".GetPosesResponse\"8\202\323\344\223\0022\0220/viam/api/v1/"
+    "component/pose_tracker/{name}/poses\022\217\001\n\t"
+    "DoCommand\022 .viam.common.v1.DoCommandRequ"
+    "est\032!.viam.common.v1.DoCommandResponse\"="
+    "\202\323\344\223\0027\"5/viam/api/v1/component/pose_trac"
+    "ker/{name}/do_command\022\233\001\n\rGetGeometries\022"
+    "$.viam.common.v1.GetGeometriesRequest\032%."
+    "viam.common.v1.GetGeometriesResponse\"=\202\323"
+    "\344\223\0027\0225/viam/api/v1/component/pose_tracke"
+    "r/{name}/geometriesB\352\001\n!com.viam.compone"
+    "nt.posetracker.v1B\020PoseTrackerProtoP\001Z\034g"
+    "o.viam.com/api/component/v1\242\002\003VCP\252\002\035Viam"
+    ".Component.Posetracker.V1\312\002\035Viam\\Compone"
+    "nt\\Posetracker\\V1\342\002)Viam\\Component\\Poset"
+    "racker\\V1\\GPBMetadata\352\002 Viam::Component:"
+    ":Posetracker::V1b\006proto3"
 };
-static ::_pbi::once_flag descriptor_table_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto_once;
+static const ::_pbi::DescriptorTable* const descriptor_table_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto_deps[3] =
+    {
+        &::descriptor_table_common_2fv1_2fcommon_2eproto,
+        &::descriptor_table_google_2fapi_2fannotations_2eproto,
+        &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
+};
+static ::absl::once_flag descriptor_table_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto = {
-    false, false, 1042, descriptor_table_protodef_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto,
+    false,
+    false,
+    1224,
+    descriptor_table_protodef_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto,
     "component/posetracker/v1/pose_tracker.proto",
-    &descriptor_table_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto_once, descriptor_table_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto_deps, 3, 3,
-    schemas, file_default_instances, TableStruct_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto::offsets,
-    file_level_metadata_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto, file_level_enum_descriptors_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto,
+    &descriptor_table_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto_once,
+    descriptor_table_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto_deps,
+    3,
+    3,
+    schemas,
+    file_default_instances,
+    TableStruct_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto::offsets,
+    file_level_metadata_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto,
+    file_level_enum_descriptors_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto,
     file_level_service_descriptors_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto,
 };
+
+// This function exists to be marked as weak.
+// It can significantly speed up compilation by breaking up LLVM's SCC
+// in the .pb.cc translation units. Large translation units see a
+// reduction of more than 35% of walltime for optimized builds. Without
+// the weak attribute all the messages in the file, including all the
+// vtables and everything they use become part of the same SCC through
+// a cycle like:
+// GetMetadata -> descriptor table -> default instances ->
+//   vtables -> GetMetadata
+// By adding a weak function here we break the connection from the
+// individual vtables back into the descriptor table.
 PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto_getter() {
   return &descriptor_table_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto;
 }
-
 // Force running AddDescriptors() at dynamic initialization time.
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto(&descriptor_table_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
+static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto(&descriptor_table_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto);
 namespace viam {
 namespace component {
 namespace posetracker {
 namespace v1 {
-
 // ===================================================================
 
 class GetPosesRequest::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetPosesRequest* msg);
+  using HasBits = decltype(std::declval<GetPosesRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(GetPosesRequest, _impl_._has_bits_);
+  static const ::google::protobuf::Struct& extra(const GetPosesRequest* msg);
+  static void set_has_extra(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Struct&
-GetPosesRequest::_Internal::extra(const GetPosesRequest* msg) {
-  return *msg->extra_;
+const ::google::protobuf::Struct& GetPosesRequest::_Internal::extra(const GetPosesRequest* msg) {
+  return *msg->_impl_.extra_;
 }
 void GetPosesRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
-  }
-  extra_ = nullptr;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.extra_ != nullptr) _impl_.extra_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
-GetPosesRequest::GetPosesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  body_names_(arena) {
-  SharedCtor();
+GetPosesRequest::GetPosesRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:viam.component.posetracker.v1.GetPosesRequest)
 }
-GetPosesRequest::GetPosesRequest(const GetPosesRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      body_names_(from.body_names_) {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
-  }
-  if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
-  }
+inline PROTOBUF_NDEBUG_INLINE GetPosesRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        body_names_{visibility, arena, from.body_names_},
+        name_(arena, from.name_) {}
+
+GetPosesRequest::GetPosesRequest(
+    ::google::protobuf::Arena* arena,
+    const GetPosesRequest& from)
+    : ::google::protobuf::Message(arena) {
+  GetPosesRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.extra_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::google::protobuf::Struct>(arena, *from._impl_.extra_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:viam.component.posetracker.v1.GetPosesRequest)
 }
+inline PROTOBUF_NDEBUG_INLINE GetPosesRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        body_names_{visibility, arena},
+        name_(arena) {}
 
-inline void GetPosesRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void GetPosesRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.extra_ = {};
 }
-
 GetPosesRequest::~GetPosesRequest() {
   // @@protoc_insertion_point(destructor:viam.component.posetracker.v1.GetPosesRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void GetPosesRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.name_.Destroy();
+  delete _impl_.extra_;
+  _impl_.~Impl_();
 }
 
-void GetPosesRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void GetPosesRequest::Clear() {
+PROTOBUF_NOINLINE void GetPosesRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.component.posetracker.v1.GetPosesRequest)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  body_names_.Clear();
-  name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.body_names_.Clear();
+  _impl_.name_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.extra_ != nullptr);
+    _impl_.extra_->Clear();
   }
-  extra_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetPosesRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string name = 1 [json_name = "name"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_name();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "viam.component.posetracker.v1.GetPosesRequest.name"));
-        } else
-          goto handle_unusual;
-        continue;
-      // repeated string body_names = 2 [json_name = "bodyNames"];
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            auto str = _internal_add_body_names();
-            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-            CHK_(ptr);
-            CHK_(::_pbi::VerifyUTF8(str, "viam.component.posetracker.v1.GetPosesRequest.body_names"));
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
-        } else
-          goto handle_unusual;
-        continue;
-      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-      case 99:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* GetPosesRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* GetPosesRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 1, 68, 7> GetPosesRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(GetPosesRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    99, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetPosesRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string name = 1 [json_name = "name"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetPosesRequest, _impl_.name_)}},
+    // repeated string body_names = 2 [json_name = "bodyNames"];
+    {::_pbi::TcParser::FastUR1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(GetPosesRequest, _impl_.body_names_)}},
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {::_pbi::TcParser::FastMtS2,
+     {1690, 0, 0, PROTOBUF_FIELD_OFFSET(GetPosesRequest, _impl_.extra_)}},
+  }}, {{
+    99, 0, 1,
+    65534, 2,
+    65535, 65535
+  }}, {{
+    // string name = 1 [json_name = "name"];
+    {PROTOBUF_FIELD_OFFSET(GetPosesRequest, _impl_.name_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // repeated string body_names = 2 [json_name = "bodyNames"];
+    {PROTOBUF_FIELD_OFFSET(GetPosesRequest, _impl_.body_names_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {PROTOBUF_FIELD_OFFSET(GetPosesRequest, _impl_.extra_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::google::protobuf::Struct>()},
+  }}, {{
+    "\55\4\12\0\0\0\0\0"
+    "viam.component.posetracker.v1.GetPosesRequest"
+    "name"
+    "body_names"
+  }},
+};
+
+::uint8_t* GetPosesRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:viam.component.posetracker.v1.GetPosesRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "viam.component.posetracker.v1.GetPosesRequest.name");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_name(), target);
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.component.posetracker.v1.GetPosesRequest.name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
   // repeated string body_names = 2 [json_name = "bodyNames"];
-  for (int i = 0, n = this->_internal_body_names_size(); i < n; i++) {
-    const auto& s = this->_internal_body_names(i);
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      s.data(), static_cast<int>(s.length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "viam.component.posetracker.v1.GetPosesRequest.body_names");
+  for (int i = 0, n = this->_internal_body_names_size(); i < n; ++i) {
+    const auto& s = this->_internal_body_names().Get(i);
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.component.posetracker.v1.GetPosesRequest.body_names");
     target = stream->WriteString(2, s, target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(99, _Internal::extra(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        99, _Internal::extra(this),
         _Internal::extra(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.component.posetracker.v1.GetPosesRequest)
   return target;
 }
 
-size_t GetPosesRequest::ByteSizeLong() const {
+::size_t GetPosesRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.component.posetracker.v1.GetPosesRequest)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated string body_names = 2 [json_name = "bodyNames"];
-  total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(body_names_.size());
-  for (int i = 0, n = body_names_.size(); i < n; i++) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      body_names_.Get(i));
+  total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_body_names().size());
+  for (int i = 0, n = _internal_body_names().size(); i < n; ++i) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+        _internal_body_names().Get(i));
   }
-
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_name());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    total_size += 2 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        2 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetPosesRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetPosesRequest::MergeImpl
+const ::google::protobuf::Message::ClassData GetPosesRequest::_class_data_ = {
+    GetPosesRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetPosesRequest::GetClassData() const { return &_class_data_; }
-
-void GetPosesRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetPosesRequest *>(to)->MergeFrom(
-      static_cast<const GetPosesRequest &>(from));
+const ::google::protobuf::Message::ClassData* GetPosesRequest::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void GetPosesRequest::MergeFrom(const GetPosesRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.posetracker.v1.GetPosesRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void GetPosesRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetPosesRequest*>(&to_msg);
+  auto& from = static_cast<const GetPosesRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.posetracker.v1.GetPosesRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  body_names_.MergeFrom(from.body_names_);
+  _this->_internal_mutable_body_names()->MergeFrom(from._internal_body_names());
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
-  if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_extra()->::google::protobuf::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetPosesRequest::CopyFrom(const GetPosesRequest& from) {
@@ -421,43 +468,39 @@ void GetPosesRequest::CopyFrom(const GetPosesRequest& from) {
   MergeFrom(from);
 }
 
-bool GetPosesRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetPosesRequest::IsInitialized() const {
   return true;
 }
 
-void GetPosesRequest::InternalSwap(GetPosesRequest* other) {
+::_pbi::CachedSize* GetPosesRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetPosesRequest::InternalSwap(GetPosesRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  body_names_.InternalSwap(&other->body_names_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
-  );
-  swap(extra_, other->extra_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.body_names_.InternalSwap(&other->_impl_.body_names_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetPosesRequest::GetMetadata() const {
+::google::protobuf::Metadata GetPosesRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto_getter, &descriptor_table_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto_once,
       file_level_metadata_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto[0]);
 }
-
 // ===================================================================
 
 GetPosesResponse_BodyPosesEntry_DoNotUse::GetPosesResponse_BodyPosesEntry_DoNotUse() {}
-GetPosesResponse_BodyPosesEntry_DoNotUse::GetPosesResponse_BodyPosesEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+GetPosesResponse_BodyPosesEntry_DoNotUse::GetPosesResponse_BodyPosesEntry_DoNotUse(::google::protobuf::Arena* arena)
     : SuperType(arena) {}
-void GetPosesResponse_BodyPosesEntry_DoNotUse::MergeFrom(const GetPosesResponse_BodyPosesEntry_DoNotUse& other) {
-  MergeFromInternal(other);
-}
-::PROTOBUF_NAMESPACE_ID::Metadata GetPosesResponse_BodyPosesEntry_DoNotUse::GetMetadata() const {
+::google::protobuf::Metadata GetPosesResponse_BodyPosesEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto_getter, &descriptor_table_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto_once,
       file_level_metadata_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto[1]);
 }
-
 // ===================================================================
 
 class GetPosesResponse::_Internal {
@@ -465,184 +508,183 @@ class GetPosesResponse::_Internal {
 };
 
 void GetPosesResponse::clear_body_poses() {
-  body_poses_.Clear();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.body_poses_.Clear();
 }
-GetPosesResponse::GetPosesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  body_poses_(arena) {
-  SharedCtor();
-  if (arena != nullptr && !is_message_owned) {
-    arena->OwnCustomDestructor(this, &GetPosesResponse::ArenaDtor);
-  }
+GetPosesResponse::GetPosesResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:viam.component.posetracker.v1.GetPosesResponse)
 }
-GetPosesResponse::GetPosesResponse(const GetPosesResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  body_poses_.MergeFrom(from.body_poses_);
+inline PROTOBUF_NDEBUG_INLINE GetPosesResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : body_poses_{visibility, arena, from.body_poses_},
+        _cached_size_{0} {}
+
+GetPosesResponse::GetPosesResponse(
+    ::google::protobuf::Arena* arena,
+    const GetPosesResponse& from)
+    : ::google::protobuf::Message(arena) {
+  GetPosesResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
   // @@protoc_insertion_point(copy_constructor:viam.component.posetracker.v1.GetPosesResponse)
 }
+inline PROTOBUF_NDEBUG_INLINE GetPosesResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : body_poses_{visibility, arena},
+        _cached_size_{0} {}
 
-inline void GetPosesResponse::SharedCtor() {
+inline void GetPosesResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
 }
-
 GetPosesResponse::~GetPosesResponse() {
   // @@protoc_insertion_point(destructor:viam.component.posetracker.v1.GetPosesResponse)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    ArenaDtor(this);
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void GetPosesResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  body_poses_.Destruct();
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
 }
 
-void GetPosesResponse::ArenaDtor(void* object) {
-  GetPosesResponse* _this = reinterpret_cast< GetPosesResponse* >(object);
-  _this->body_poses_.Destruct();
-}
-void GetPosesResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void GetPosesResponse::Clear() {
+PROTOBUF_NOINLINE void GetPosesResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.component.posetracker.v1.GetPosesResponse)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  body_poses_.Clear();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_.body_poses_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetPosesResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // map<string, .viam.common.v1.PoseInFrame> body_poses = 1 [json_name = "bodyPoses"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(&body_poses_, ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* GetPosesResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* GetPosesResponse::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 2, 65, 2> GetPosesResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetPosesResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // map<string, .viam.common.v1.PoseInFrame> body_poses = 1 [json_name = "bodyPoses"];
+    {PROTOBUF_FIELD_OFFSET(GetPosesResponse, _impl_.body_poses_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
+  }}, {{
+    {::_pbi::TcParser::GetMapAuxInfo<
+        decltype(GetPosesResponse()._impl_.body_poses_)>(
+        1, 0, 0, 9,
+        11)},
+    {::_pbi::TcParser::CreateInArenaStorageCb<::viam::common::v1::PoseInFrame>},
+  }}, {{
+    "\56\12\0\0\0\0\0\0"
+    "viam.component.posetracker.v1.GetPosesResponse"
+    "body_poses"
+  }},
+};
+
+::uint8_t* GetPosesResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:viam.component.posetracker.v1.GetPosesResponse)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // map<string, .viam.common.v1.PoseInFrame> body_poses = 1 [json_name = "bodyPoses"];
-  if (!this->_internal_body_poses().empty()) {
-    using MapType = ::_pb::Map<std::string, ::viam::common::v1::PoseInFrame>;
-    using WireHelper = GetPosesResponse_BodyPosesEntry_DoNotUse::Funcs;
-    const auto& map_field = this->_internal_body_poses();
-    auto check_utf8 = [](const MapType::value_type& entry) {
-      (void)entry;
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-        entry.first.data(), static_cast<int>(entry.first.length()),
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-        "viam.component.posetracker.v1.GetPosesResponse.BodyPosesEntry.key");
-    };
+  if (!_internal_body_poses().empty()) {
+    using MapType = ::google::protobuf::Map<std::string, ::viam::common::v1::PoseInFrame>;
+    using WireHelper = _pbi::MapEntryFuncs<std::string, ::viam::common::v1::PoseInFrame,
+                                   _pbi::WireFormatLite::TYPE_STRING,
+                                   _pbi::WireFormatLite::TYPE_MESSAGE>;
+    const auto& field = _internal_body_poses();
 
-    if (stream->IsSerializationDeterministic() && map_field.size() > 1) {
-      for (const auto& entry : ::_pbi::MapSorterPtr<MapType>(map_field)) {
-        target = WireHelper::InternalSerialize(1, entry.first, entry.second, target, stream);
-        check_utf8(entry);
+    if (stream->IsSerializationDeterministic() && field.size() > 1) {
+      for (const auto& entry : ::google::protobuf::internal::MapSorterPtr<MapType>(field)) {
+        target = WireHelper::InternalSerialize(
+            1, entry.first, entry.second, target, stream);
+        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            entry.first.data(), static_cast<int>(entry.first.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.component.posetracker.v1.GetPosesResponse.body_poses");
       }
     } else {
-      for (const auto& entry : map_field) {
-        target = WireHelper::InternalSerialize(1, entry.first, entry.second, target, stream);
-        check_utf8(entry);
+      for (const auto& entry : field) {
+        target = WireHelper::InternalSerialize(
+            1, entry.first, entry.second, target, stream);
+        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            entry.first.data(), static_cast<int>(entry.first.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.component.posetracker.v1.GetPosesResponse.body_poses");
       }
     }
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.component.posetracker.v1.GetPosesResponse)
   return target;
 }
 
-size_t GetPosesResponse::ByteSizeLong() const {
+::size_t GetPosesResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.component.posetracker.v1.GetPosesResponse)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // map<string, .viam.common.v1.PoseInFrame> body_poses = 1 [json_name = "bodyPoses"];
-  total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_body_poses_size());
-  for (::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::PoseInFrame >::const_iterator
-      it = this->_internal_body_poses().begin();
-      it != this->_internal_body_poses().end(); ++it) {
-    total_size += GetPosesResponse_BodyPosesEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
+  total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_body_poses_size());
+  for (const auto& entry : _internal_body_poses()) {
+    total_size += _pbi::MapEntryFuncs<std::string, ::viam::common::v1::PoseInFrame,
+                                   _pbi::WireFormatLite::TYPE_STRING,
+                                   _pbi::WireFormatLite::TYPE_MESSAGE>::ByteSizeLong(entry.first, entry.second);
   }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetPosesResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetPosesResponse::MergeImpl
+const ::google::protobuf::Message::ClassData GetPosesResponse::_class_data_ = {
+    GetPosesResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetPosesResponse::GetClassData() const { return &_class_data_; }
-
-void GetPosesResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetPosesResponse *>(to)->MergeFrom(
-      static_cast<const GetPosesResponse &>(from));
+const ::google::protobuf::Message::ClassData* GetPosesResponse::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void GetPosesResponse::MergeFrom(const GetPosesResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.posetracker.v1.GetPosesResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void GetPosesResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetPosesResponse*>(&to_msg);
+  auto& from = static_cast<const GetPosesResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.posetracker.v1.GetPosesResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  body_poses_.MergeFrom(from.body_poses_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.body_poses_.MergeFrom(from._impl_.body_poses_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetPosesResponse::CopyFrom(const GetPosesResponse& from) {
@@ -652,41 +694,32 @@ void GetPosesResponse::CopyFrom(const GetPosesResponse& from) {
   MergeFrom(from);
 }
 
-bool GetPosesResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetPosesResponse::IsInitialized() const {
   return true;
 }
 
-void GetPosesResponse::InternalSwap(GetPosesResponse* other) {
+::_pbi::CachedSize* GetPosesResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetPosesResponse::InternalSwap(GetPosesResponse* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  body_poses_.InternalSwap(&other->body_poses_);
+  _impl_.body_poses_.InternalSwap(&other->_impl_.body_poses_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetPosesResponse::GetMetadata() const {
+::google::protobuf::Metadata GetPosesResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto_getter, &descriptor_table_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto_once,
       file_level_metadata_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto[2]);
 }
-
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace posetracker
 }  // namespace component
 }  // namespace viam
-PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::viam::component::posetracker::v1::GetPosesRequest*
-Arena::CreateMaybeMessage< ::viam::component::posetracker::v1::GetPosesRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::posetracker::v1::GetPosesRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::component::posetracker::v1::GetPosesResponse_BodyPosesEntry_DoNotUse*
-Arena::CreateMaybeMessage< ::viam::component::posetracker::v1::GetPosesResponse_BodyPosesEntry_DoNotUse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::posetracker::v1::GetPosesResponse_BodyPosesEntry_DoNotUse >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::component::posetracker::v1::GetPosesResponse*
-Arena::CreateMaybeMessage< ::viam::component::posetracker::v1::GetPosesResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::posetracker::v1::GetPosesResponse >(arena);
-}
-PROTOBUF_NAMESPACE_CLOSE
-
+namespace google {
+namespace protobuf {
+}  // namespace protobuf
+}  // namespace google
 // @@protoc_insertion_point(global_scope)
-#include <google/protobuf/port_undef.inc>
+#include "google/protobuf/port_undef.inc"
