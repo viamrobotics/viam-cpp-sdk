@@ -27,7 +27,7 @@ void MockGantry::move_to_position(const std::vector<sdk::Gantry::movement_coordi
 }
 
 bool MockGantry::home(const sdk::AttributeMap&) {
-    return true;
+    return (peek_home_called = true);
 }
 
 std::vector<double> MockGantry::get_lengths(const sdk::AttributeMap&) {

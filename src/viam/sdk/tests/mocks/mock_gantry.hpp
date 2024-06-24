@@ -26,6 +26,7 @@ class MockGantry : public sdk::Gantry {
 
     std::vector<double> peek_positions;
     bool peek_stop_called{false};
+    bool peek_home_called{false};
     sdk::AttributeMap peek_command;
 };
 }  // namespace gantry
