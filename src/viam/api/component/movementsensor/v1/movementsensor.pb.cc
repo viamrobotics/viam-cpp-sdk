@@ -4,795 +4,1014 @@
 #include "component/movementsensor/v1/movementsensor.pb.h"
 
 #include <algorithm>
-
-#include <google/protobuf/io/coded_stream.h>
-#include <google/protobuf/extension_set.h>
-#include <google/protobuf/wire_format_lite.h>
-#include <google/protobuf/descriptor.h>
-#include <google/protobuf/generated_message_reflection.h>
-#include <google/protobuf/reflection_ops.h>
-#include <google/protobuf/wire_format.h>
+#include "google/protobuf/io/coded_stream.h"
+#include "google/protobuf/extension_set.h"
+#include "google/protobuf/wire_format_lite.h"
+#include "google/protobuf/descriptor.h"
+#include "google/protobuf/generated_message_reflection.h"
+#include "google/protobuf/reflection_ops.h"
+#include "google/protobuf/wire_format.h"
+#include "google/protobuf/generated_message_tctable_impl.h"
 // @@protoc_insertion_point(includes)
-#include <google/protobuf/port_def.inc>
 
+// Must be included last.
+#include "google/protobuf/port_def.inc"
 PROTOBUF_PRAGMA_INIT_SEG
-
-namespace _pb = ::PROTOBUF_NAMESPACE_ID;
-namespace _pbi = _pb::internal;
-
+namespace _pb = ::google::protobuf;
+namespace _pbi = ::google::protobuf::internal;
+namespace _fl = ::google::protobuf::internal::field_layout;
 namespace viam {
 namespace component {
 namespace movementsensor {
 namespace v1 {
-PROTOBUF_CONSTEXPR GetLinearVelocityRequest::GetLinearVelocityRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
-struct GetLinearVelocityRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetLinearVelocityRequestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetLinearVelocityRequestDefaultTypeInternal() {}
-  union {
-    GetLinearVelocityRequest _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetLinearVelocityRequestDefaultTypeInternal _GetLinearVelocityRequest_default_instance_;
-PROTOBUF_CONSTEXPR GetLinearVelocityResponse::GetLinearVelocityResponse(
-    ::_pbi::ConstantInitialized)
-  : linear_velocity_(nullptr){}
-struct GetLinearVelocityResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetLinearVelocityResponseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetLinearVelocityResponseDefaultTypeInternal() {}
-  union {
-    GetLinearVelocityResponse _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetLinearVelocityResponseDefaultTypeInternal _GetLinearVelocityResponse_default_instance_;
-PROTOBUF_CONSTEXPR GetAngularVelocityRequest::GetAngularVelocityRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
-struct GetAngularVelocityRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetAngularVelocityRequestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetAngularVelocityRequestDefaultTypeInternal() {}
-  union {
-    GetAngularVelocityRequest _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetAngularVelocityRequestDefaultTypeInternal _GetAngularVelocityRequest_default_instance_;
-PROTOBUF_CONSTEXPR GetAngularVelocityResponse::GetAngularVelocityResponse(
-    ::_pbi::ConstantInitialized)
-  : angular_velocity_(nullptr){}
-struct GetAngularVelocityResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetAngularVelocityResponseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetAngularVelocityResponseDefaultTypeInternal() {}
-  union {
-    GetAngularVelocityResponse _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetAngularVelocityResponseDefaultTypeInternal _GetAngularVelocityResponse_default_instance_;
-PROTOBUF_CONSTEXPR GetCompassHeadingRequest::GetCompassHeadingRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
-struct GetCompassHeadingRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetCompassHeadingRequestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetCompassHeadingRequestDefaultTypeInternal() {}
-  union {
-    GetCompassHeadingRequest _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetCompassHeadingRequestDefaultTypeInternal _GetCompassHeadingRequest_default_instance_;
-PROTOBUF_CONSTEXPR GetCompassHeadingResponse::GetCompassHeadingResponse(
-    ::_pbi::ConstantInitialized)
-  : value_(0){}
-struct GetCompassHeadingResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetCompassHeadingResponseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetCompassHeadingResponseDefaultTypeInternal() {}
-  union {
-    GetCompassHeadingResponse _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetCompassHeadingResponseDefaultTypeInternal _GetCompassHeadingResponse_default_instance_;
-PROTOBUF_CONSTEXPR GetOrientationRequest::GetOrientationRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
-struct GetOrientationRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetOrientationRequestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetOrientationRequestDefaultTypeInternal() {}
-  union {
-    GetOrientationRequest _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetOrientationRequestDefaultTypeInternal _GetOrientationRequest_default_instance_;
-PROTOBUF_CONSTEXPR GetOrientationResponse::GetOrientationResponse(
-    ::_pbi::ConstantInitialized)
-  : orientation_(nullptr){}
-struct GetOrientationResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetOrientationResponseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetOrientationResponseDefaultTypeInternal() {}
-  union {
-    GetOrientationResponse _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetOrientationResponseDefaultTypeInternal _GetOrientationResponse_default_instance_;
-PROTOBUF_CONSTEXPR GetPositionRequest::GetPositionRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
-struct GetPositionRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetPositionRequestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetPositionRequestDefaultTypeInternal() {}
-  union {
-    GetPositionRequest _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPositionRequestDefaultTypeInternal _GetPositionRequest_default_instance_;
-PROTOBUF_CONSTEXPR GetPositionResponse::GetPositionResponse(
-    ::_pbi::ConstantInitialized)
-  : coordinate_(nullptr)
-  , altitude_m_(0){}
-struct GetPositionResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetPositionResponseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetPositionResponseDefaultTypeInternal() {}
-  union {
-    GetPositionResponse _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPositionResponseDefaultTypeInternal _GetPositionResponse_default_instance_;
-PROTOBUF_CONSTEXPR GetPropertiesRequest::GetPropertiesRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
-struct GetPropertiesRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetPropertiesRequestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetPropertiesRequestDefaultTypeInternal() {}
-  union {
-    GetPropertiesRequest _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPropertiesRequestDefaultTypeInternal _GetPropertiesRequest_default_instance_;
-PROTOBUF_CONSTEXPR GetPropertiesResponse::GetPropertiesResponse(
-    ::_pbi::ConstantInitialized)
-  : linear_velocity_supported_(false)
-  , angular_velocity_supported_(false)
-  , orientation_supported_(false)
-  , position_supported_(false)
-  , compass_heading_supported_(false)
-  , linear_acceleration_supported_(false){}
+
+inline constexpr GetPropertiesResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : linear_velocity_supported_{false},
+        angular_velocity_supported_{false},
+        orientation_supported_{false},
+        position_supported_{false},
+        compass_heading_supported_{false},
+        linear_acceleration_supported_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetPropertiesResponse::GetPropertiesResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
 struct GetPropertiesResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetPropertiesResponseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR GetPropertiesResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~GetPropertiesResponseDefaultTypeInternal() {}
   union {
     GetPropertiesResponse _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPropertiesResponseDefaultTypeInternal _GetPropertiesResponse_default_instance_;
-PROTOBUF_CONSTEXPR GetAccuracyRequest::GetAccuracyRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
-struct GetAccuracyRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetAccuracyRequestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetAccuracyRequestDefaultTypeInternal() {}
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPropertiesResponseDefaultTypeInternal _GetPropertiesResponse_default_instance_;
+
+inline constexpr GetCompassHeadingResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : value_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetCompassHeadingResponse::GetCompassHeadingResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetCompassHeadingResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetCompassHeadingResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetCompassHeadingResponseDefaultTypeInternal() {}
   union {
-    GetAccuracyRequest _instance;
+    GetCompassHeadingResponse _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetAccuracyRequestDefaultTypeInternal _GetAccuracyRequest_default_instance_;
-PROTOBUF_CONSTEXPR GetAccuracyResponse_AccuracyEntry_DoNotUse::GetAccuracyResponse_AccuracyEntry_DoNotUse(
-    ::_pbi::ConstantInitialized){}
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetCompassHeadingResponseDefaultTypeInternal _GetCompassHeadingResponse_default_instance_;
+      template <typename>
+PROTOBUF_CONSTEXPR GetAccuracyResponse_AccuracyEntry_DoNotUse::GetAccuracyResponse_AccuracyEntry_DoNotUse(::_pbi::ConstantInitialized) {}
 struct GetAccuracyResponse_AccuracyEntry_DoNotUseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetAccuracyResponse_AccuracyEntry_DoNotUseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR GetAccuracyResponse_AccuracyEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~GetAccuracyResponse_AccuracyEntry_DoNotUseDefaultTypeInternal() {}
   union {
     GetAccuracyResponse_AccuracyEntry_DoNotUse _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetAccuracyResponse_AccuracyEntry_DoNotUseDefaultTypeInternal _GetAccuracyResponse_AccuracyEntry_DoNotUse_default_instance_;
-PROTOBUF_CONSTEXPR GetAccuracyResponse::GetAccuracyResponse(
-    ::_pbi::ConstantInitialized)
-  : accuracy_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
-  , position_hdop_(0)
-  , position_vdop_(0)
-  , position_nmea_gga_fix_(0)
-  , compass_degrees_error_(0){}
-struct GetAccuracyResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetAccuracyResponseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetAccuracyResponseDefaultTypeInternal() {}
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetAccuracyResponse_AccuracyEntry_DoNotUseDefaultTypeInternal _GetAccuracyResponse_AccuracyEntry_DoNotUse_default_instance_;
+
+inline constexpr GetPropertiesRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        extra_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetPropertiesRequest::GetPropertiesRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetPropertiesRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetPropertiesRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetPropertiesRequestDefaultTypeInternal() {}
   union {
-    GetAccuracyResponse _instance;
+    GetPropertiesRequest _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetAccuracyResponseDefaultTypeInternal _GetAccuracyResponse_default_instance_;
-PROTOBUF_CONSTEXPR GetLinearAccelerationRequest::GetLinearAccelerationRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
-struct GetLinearAccelerationRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetLinearAccelerationRequestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetLinearAccelerationRequestDefaultTypeInternal() {}
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPropertiesRequestDefaultTypeInternal _GetPropertiesRequest_default_instance_;
+
+inline constexpr GetPositionResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        coordinate_{nullptr},
+        altitude_m_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetPositionResponse::GetPositionResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetPositionResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetPositionResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetPositionResponseDefaultTypeInternal() {}
   union {
-    GetLinearAccelerationRequest _instance;
+    GetPositionResponse _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetLinearAccelerationRequestDefaultTypeInternal _GetLinearAccelerationRequest_default_instance_;
-PROTOBUF_CONSTEXPR GetLinearAccelerationResponse::GetLinearAccelerationResponse(
-    ::_pbi::ConstantInitialized)
-  : linear_acceleration_(nullptr){}
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPositionResponseDefaultTypeInternal _GetPositionResponse_default_instance_;
+
+inline constexpr GetPositionRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        extra_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetPositionRequest::GetPositionRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetPositionRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetPositionRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetPositionRequestDefaultTypeInternal() {}
+  union {
+    GetPositionRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPositionRequestDefaultTypeInternal _GetPositionRequest_default_instance_;
+
+inline constexpr GetOrientationResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        orientation_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetOrientationResponse::GetOrientationResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetOrientationResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetOrientationResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetOrientationResponseDefaultTypeInternal() {}
+  union {
+    GetOrientationResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetOrientationResponseDefaultTypeInternal _GetOrientationResponse_default_instance_;
+
+inline constexpr GetOrientationRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        extra_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetOrientationRequest::GetOrientationRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetOrientationRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetOrientationRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetOrientationRequestDefaultTypeInternal() {}
+  union {
+    GetOrientationRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetOrientationRequestDefaultTypeInternal _GetOrientationRequest_default_instance_;
+
+inline constexpr GetLinearVelocityResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        linear_velocity_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetLinearVelocityResponse::GetLinearVelocityResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetLinearVelocityResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetLinearVelocityResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetLinearVelocityResponseDefaultTypeInternal() {}
+  union {
+    GetLinearVelocityResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetLinearVelocityResponseDefaultTypeInternal _GetLinearVelocityResponse_default_instance_;
+
+inline constexpr GetLinearVelocityRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        extra_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetLinearVelocityRequest::GetLinearVelocityRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetLinearVelocityRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetLinearVelocityRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetLinearVelocityRequestDefaultTypeInternal() {}
+  union {
+    GetLinearVelocityRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetLinearVelocityRequestDefaultTypeInternal _GetLinearVelocityRequest_default_instance_;
+
+inline constexpr GetLinearAccelerationResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        linear_acceleration_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetLinearAccelerationResponse::GetLinearAccelerationResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
 struct GetLinearAccelerationResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetLinearAccelerationResponseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR GetLinearAccelerationResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~GetLinearAccelerationResponseDefaultTypeInternal() {}
   union {
     GetLinearAccelerationResponse _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetLinearAccelerationResponseDefaultTypeInternal _GetLinearAccelerationResponse_default_instance_;
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetLinearAccelerationResponseDefaultTypeInternal _GetLinearAccelerationResponse_default_instance_;
+
+inline constexpr GetLinearAccelerationRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        extra_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetLinearAccelerationRequest::GetLinearAccelerationRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetLinearAccelerationRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetLinearAccelerationRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetLinearAccelerationRequestDefaultTypeInternal() {}
+  union {
+    GetLinearAccelerationRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetLinearAccelerationRequestDefaultTypeInternal _GetLinearAccelerationRequest_default_instance_;
+
+inline constexpr GetCompassHeadingRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        extra_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetCompassHeadingRequest::GetCompassHeadingRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetCompassHeadingRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetCompassHeadingRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetCompassHeadingRequestDefaultTypeInternal() {}
+  union {
+    GetCompassHeadingRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetCompassHeadingRequestDefaultTypeInternal _GetCompassHeadingRequest_default_instance_;
+
+inline constexpr GetAngularVelocityResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        angular_velocity_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetAngularVelocityResponse::GetAngularVelocityResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetAngularVelocityResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetAngularVelocityResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetAngularVelocityResponseDefaultTypeInternal() {}
+  union {
+    GetAngularVelocityResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetAngularVelocityResponseDefaultTypeInternal _GetAngularVelocityResponse_default_instance_;
+
+inline constexpr GetAngularVelocityRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        extra_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetAngularVelocityRequest::GetAngularVelocityRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetAngularVelocityRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetAngularVelocityRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetAngularVelocityRequestDefaultTypeInternal() {}
+  union {
+    GetAngularVelocityRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetAngularVelocityRequestDefaultTypeInternal _GetAngularVelocityRequest_default_instance_;
+
+inline constexpr GetAccuracyResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        accuracy_{},
+        position_hdop_{0},
+        position_vdop_{0},
+        position_nmea_gga_fix_{0},
+        compass_degrees_error_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetAccuracyResponse::GetAccuracyResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetAccuracyResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetAccuracyResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetAccuracyResponseDefaultTypeInternal() {}
+  union {
+    GetAccuracyResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetAccuracyResponseDefaultTypeInternal _GetAccuracyResponse_default_instance_;
+
+inline constexpr GetAccuracyRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        extra_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetAccuracyRequest::GetAccuracyRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetAccuracyRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetAccuracyRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetAccuracyRequestDefaultTypeInternal() {}
+  union {
+    GetAccuracyRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetAccuracyRequestDefaultTypeInternal _GetAccuracyRequest_default_instance_;
 }  // namespace v1
 }  // namespace movementsensor
 }  // namespace component
 }  // namespace viam
 static ::_pb::Metadata file_level_metadata_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto[17];
-static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto = nullptr;
-static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto = nullptr;
-
-const uint32_t TableStruct_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetLinearVelocityRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetLinearVelocityRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetLinearVelocityRequest, extra_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetLinearVelocityResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetLinearVelocityResponse, linear_velocity_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAngularVelocityRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAngularVelocityRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAngularVelocityRequest, extra_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAngularVelocityResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAngularVelocityResponse, angular_velocity_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetCompassHeadingRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetCompassHeadingRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetCompassHeadingRequest, extra_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetCompassHeadingResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetCompassHeadingResponse, value_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetOrientationRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetOrientationRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetOrientationRequest, extra_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetOrientationResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetOrientationResponse, orientation_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPositionRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPositionRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPositionRequest, extra_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPositionResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPositionResponse, coordinate_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPositionResponse, altitude_m_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPropertiesRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPropertiesRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPropertiesRequest, extra_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPropertiesResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPropertiesResponse, linear_velocity_supported_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPropertiesResponse, angular_velocity_supported_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPropertiesResponse, orientation_supported_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPropertiesResponse, position_supported_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPropertiesResponse, compass_heading_supported_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPropertiesResponse, linear_acceleration_supported_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyRequest, extra_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse_AccuracyEntry_DoNotUse, _has_bits_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse_AccuracyEntry_DoNotUse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse_AccuracyEntry_DoNotUse, key_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse_AccuracyEntry_DoNotUse, value_),
-  0,
-  1,
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse, _has_bits_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse, accuracy_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse, position_hdop_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse, position_vdop_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse, position_nmea_gga_fix_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse, compass_degrees_error_),
-  ~0u,
-  0,
-  1,
-  2,
-  3,
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetLinearAccelerationRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetLinearAccelerationRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetLinearAccelerationRequest, extra_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetLinearAccelerationResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetLinearAccelerationResponse, linear_acceleration_),
+static constexpr const ::_pb::EnumDescriptor**
+    file_level_enum_descriptors_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto = nullptr;
+static constexpr const ::_pb::ServiceDescriptor**
+    file_level_service_descriptors_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto = nullptr;
+const ::uint32_t TableStruct_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
+    protodesc_cold) = {
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetLinearVelocityRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetLinearVelocityRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetLinearVelocityRequest, _impl_.name_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetLinearVelocityRequest, _impl_.extra_),
+    ~0u,
+    0,
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetLinearVelocityResponse, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetLinearVelocityResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetLinearVelocityResponse, _impl_.linear_velocity_),
+    0,
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAngularVelocityRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAngularVelocityRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAngularVelocityRequest, _impl_.name_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAngularVelocityRequest, _impl_.extra_),
+    ~0u,
+    0,
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAngularVelocityResponse, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAngularVelocityResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAngularVelocityResponse, _impl_.angular_velocity_),
+    0,
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetCompassHeadingRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetCompassHeadingRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetCompassHeadingRequest, _impl_.name_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetCompassHeadingRequest, _impl_.extra_),
+    ~0u,
+    0,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetCompassHeadingResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetCompassHeadingResponse, _impl_.value_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetOrientationRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetOrientationRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetOrientationRequest, _impl_.name_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetOrientationRequest, _impl_.extra_),
+    ~0u,
+    0,
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetOrientationResponse, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetOrientationResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetOrientationResponse, _impl_.orientation_),
+    0,
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPositionRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPositionRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPositionRequest, _impl_.name_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPositionRequest, _impl_.extra_),
+    ~0u,
+    0,
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPositionResponse, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPositionResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPositionResponse, _impl_.coordinate_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPositionResponse, _impl_.altitude_m_),
+    0,
+    ~0u,
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPropertiesRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPropertiesRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPropertiesRequest, _impl_.name_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPropertiesRequest, _impl_.extra_),
+    ~0u,
+    0,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPropertiesResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPropertiesResponse, _impl_.linear_velocity_supported_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPropertiesResponse, _impl_.angular_velocity_supported_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPropertiesResponse, _impl_.orientation_supported_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPropertiesResponse, _impl_.position_supported_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPropertiesResponse, _impl_.compass_heading_supported_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetPropertiesResponse, _impl_.linear_acceleration_supported_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyRequest, _impl_.name_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyRequest, _impl_.extra_),
+    ~0u,
+    0,
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse_AccuracyEntry_DoNotUse, _has_bits_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse_AccuracyEntry_DoNotUse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse_AccuracyEntry_DoNotUse, key_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse_AccuracyEntry_DoNotUse, value_),
+    0,
+    1,
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse, _impl_.accuracy_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse, _impl_.position_hdop_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse, _impl_.position_vdop_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse, _impl_.position_nmea_gga_fix_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse, _impl_.compass_degrees_error_),
+    ~0u,
+    0,
+    1,
+    2,
+    3,
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetLinearAccelerationRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetLinearAccelerationRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetLinearAccelerationRequest, _impl_.name_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetLinearAccelerationRequest, _impl_.extra_),
+    ~0u,
+    0,
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetLinearAccelerationResponse, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetLinearAccelerationResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetLinearAccelerationResponse, _impl_.linear_acceleration_),
+    0,
 };
-static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, -1, sizeof(::viam::component::movementsensor::v1::GetLinearVelocityRequest)},
-  { 8, -1, -1, sizeof(::viam::component::movementsensor::v1::GetLinearVelocityResponse)},
-  { 15, -1, -1, sizeof(::viam::component::movementsensor::v1::GetAngularVelocityRequest)},
-  { 23, -1, -1, sizeof(::viam::component::movementsensor::v1::GetAngularVelocityResponse)},
-  { 30, -1, -1, sizeof(::viam::component::movementsensor::v1::GetCompassHeadingRequest)},
-  { 38, -1, -1, sizeof(::viam::component::movementsensor::v1::GetCompassHeadingResponse)},
-  { 45, -1, -1, sizeof(::viam::component::movementsensor::v1::GetOrientationRequest)},
-  { 53, -1, -1, sizeof(::viam::component::movementsensor::v1::GetOrientationResponse)},
-  { 60, -1, -1, sizeof(::viam::component::movementsensor::v1::GetPositionRequest)},
-  { 68, -1, -1, sizeof(::viam::component::movementsensor::v1::GetPositionResponse)},
-  { 76, -1, -1, sizeof(::viam::component::movementsensor::v1::GetPropertiesRequest)},
-  { 84, -1, -1, sizeof(::viam::component::movementsensor::v1::GetPropertiesResponse)},
-  { 96, -1, -1, sizeof(::viam::component::movementsensor::v1::GetAccuracyRequest)},
-  { 104, 112, -1, sizeof(::viam::component::movementsensor::v1::GetAccuracyResponse_AccuracyEntry_DoNotUse)},
-  { 114, 125, -1, sizeof(::viam::component::movementsensor::v1::GetAccuracyResponse)},
-  { 130, -1, -1, sizeof(::viam::component::movementsensor::v1::GetLinearAccelerationRequest)},
-  { 138, -1, -1, sizeof(::viam::component::movementsensor::v1::GetLinearAccelerationResponse)},
+
+static const ::_pbi::MigrationSchema
+    schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+        {0, 10, -1, sizeof(::viam::component::movementsensor::v1::GetLinearVelocityRequest)},
+        {12, 21, -1, sizeof(::viam::component::movementsensor::v1::GetLinearVelocityResponse)},
+        {22, 32, -1, sizeof(::viam::component::movementsensor::v1::GetAngularVelocityRequest)},
+        {34, 43, -1, sizeof(::viam::component::movementsensor::v1::GetAngularVelocityResponse)},
+        {44, 54, -1, sizeof(::viam::component::movementsensor::v1::GetCompassHeadingRequest)},
+        {56, -1, -1, sizeof(::viam::component::movementsensor::v1::GetCompassHeadingResponse)},
+        {65, 75, -1, sizeof(::viam::component::movementsensor::v1::GetOrientationRequest)},
+        {77, 86, -1, sizeof(::viam::component::movementsensor::v1::GetOrientationResponse)},
+        {87, 97, -1, sizeof(::viam::component::movementsensor::v1::GetPositionRequest)},
+        {99, 109, -1, sizeof(::viam::component::movementsensor::v1::GetPositionResponse)},
+        {111, 121, -1, sizeof(::viam::component::movementsensor::v1::GetPropertiesRequest)},
+        {123, -1, -1, sizeof(::viam::component::movementsensor::v1::GetPropertiesResponse)},
+        {137, 147, -1, sizeof(::viam::component::movementsensor::v1::GetAccuracyRequest)},
+        {149, 159, -1, sizeof(::viam::component::movementsensor::v1::GetAccuracyResponse_AccuracyEntry_DoNotUse)},
+        {161, 174, -1, sizeof(::viam::component::movementsensor::v1::GetAccuracyResponse)},
+        {179, 189, -1, sizeof(::viam::component::movementsensor::v1::GetLinearAccelerationRequest)},
+        {191, 200, -1, sizeof(::viam::component::movementsensor::v1::GetLinearAccelerationResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-  &::viam::component::movementsensor::v1::_GetLinearVelocityRequest_default_instance_._instance,
-  &::viam::component::movementsensor::v1::_GetLinearVelocityResponse_default_instance_._instance,
-  &::viam::component::movementsensor::v1::_GetAngularVelocityRequest_default_instance_._instance,
-  &::viam::component::movementsensor::v1::_GetAngularVelocityResponse_default_instance_._instance,
-  &::viam::component::movementsensor::v1::_GetCompassHeadingRequest_default_instance_._instance,
-  &::viam::component::movementsensor::v1::_GetCompassHeadingResponse_default_instance_._instance,
-  &::viam::component::movementsensor::v1::_GetOrientationRequest_default_instance_._instance,
-  &::viam::component::movementsensor::v1::_GetOrientationResponse_default_instance_._instance,
-  &::viam::component::movementsensor::v1::_GetPositionRequest_default_instance_._instance,
-  &::viam::component::movementsensor::v1::_GetPositionResponse_default_instance_._instance,
-  &::viam::component::movementsensor::v1::_GetPropertiesRequest_default_instance_._instance,
-  &::viam::component::movementsensor::v1::_GetPropertiesResponse_default_instance_._instance,
-  &::viam::component::movementsensor::v1::_GetAccuracyRequest_default_instance_._instance,
-  &::viam::component::movementsensor::v1::_GetAccuracyResponse_AccuracyEntry_DoNotUse_default_instance_._instance,
-  &::viam::component::movementsensor::v1::_GetAccuracyResponse_default_instance_._instance,
-  &::viam::component::movementsensor::v1::_GetLinearAccelerationRequest_default_instance_._instance,
-  &::viam::component::movementsensor::v1::_GetLinearAccelerationResponse_default_instance_._instance,
+    &::viam::component::movementsensor::v1::_GetLinearVelocityRequest_default_instance_._instance,
+    &::viam::component::movementsensor::v1::_GetLinearVelocityResponse_default_instance_._instance,
+    &::viam::component::movementsensor::v1::_GetAngularVelocityRequest_default_instance_._instance,
+    &::viam::component::movementsensor::v1::_GetAngularVelocityResponse_default_instance_._instance,
+    &::viam::component::movementsensor::v1::_GetCompassHeadingRequest_default_instance_._instance,
+    &::viam::component::movementsensor::v1::_GetCompassHeadingResponse_default_instance_._instance,
+    &::viam::component::movementsensor::v1::_GetOrientationRequest_default_instance_._instance,
+    &::viam::component::movementsensor::v1::_GetOrientationResponse_default_instance_._instance,
+    &::viam::component::movementsensor::v1::_GetPositionRequest_default_instance_._instance,
+    &::viam::component::movementsensor::v1::_GetPositionResponse_default_instance_._instance,
+    &::viam::component::movementsensor::v1::_GetPropertiesRequest_default_instance_._instance,
+    &::viam::component::movementsensor::v1::_GetPropertiesResponse_default_instance_._instance,
+    &::viam::component::movementsensor::v1::_GetAccuracyRequest_default_instance_._instance,
+    &::viam::component::movementsensor::v1::_GetAccuracyResponse_AccuracyEntry_DoNotUse_default_instance_._instance,
+    &::viam::component::movementsensor::v1::_GetAccuracyResponse_default_instance_._instance,
+    &::viam::component::movementsensor::v1::_GetLinearAccelerationRequest_default_instance_._instance,
+    &::viam::component::movementsensor::v1::_GetLinearAccelerationResponse_default_instance_._instance,
 };
-
-const char descriptor_table_protodef_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n0component/movementsensor/v1/movementse"
-  "nsor.proto\022 viam.component.movementsenso"
-  "r.v1\032\026common/v1/common.proto\032\034google/api"
-  "/annotations.proto\032\034google/protobuf/stru"
-  "ct.proto\"]\n\030GetLinearVelocityRequest\022\022\n\004"
-  "name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027.google"
-  ".protobuf.StructR\005extra\"]\n\031GetLinearVelo"
-  "cityResponse\022@\n\017linear_velocity\030\001 \001(\0132\027."
-  "viam.common.v1.Vector3R\016linearVelocity\"^"
-  "\n\031GetAngularVelocityRequest\022\022\n\004name\030\001 \001("
-  "\tR\004name\022-\n\005extra\030c \001(\0132\027.google.protobuf"
-  ".StructR\005extra\"`\n\032GetAngularVelocityResp"
-  "onse\022B\n\020angular_velocity\030\001 \001(\0132\027.viam.co"
-  "mmon.v1.Vector3R\017angularVelocity\"]\n\030GetC"
-  "ompassHeadingRequest\022\022\n\004name\030\001 \001(\tR\004name"
-  "\022-\n\005extra\030c \001(\0132\027.google.protobuf.Struct"
-  "R\005extra\"1\n\031GetCompassHeadingResponse\022\024\n\005"
-  "value\030\001 \001(\001R\005value\"Z\n\025GetOrientationRequ"
-  "est\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027"
-  ".google.protobuf.StructR\005extra\"W\n\026GetOri"
-  "entationResponse\022=\n\013orientation\030\001 \001(\0132\033."
-  "viam.common.v1.OrientationR\013orientation\""
-  "W\n\022GetPositionRequest\022\022\n\004name\030\001 \001(\tR\004nam"
-  "e\022-\n\005extra\030c \001(\0132\027.google.protobuf.Struc"
-  "tR\005extra\"n\n\023GetPositionResponse\0228\n\ncoord"
-  "inate\030\001 \001(\0132\030.viam.common.v1.GeoPointR\nc"
-  "oordinate\022\035\n\naltitude_m\030\002 \001(\002R\taltitudeM"
-  "\"Y\n\024GetPropertiesRequest\022\022\n\004name\030\001 \001(\tR\004"
-  "name\022-\n\005extra\030c \001(\0132\027.google.protobuf.St"
-  "ructR\005extra\"\365\002\n\025GetPropertiesResponse\022:\n"
-  "\031linear_velocity_supported\030\001 \001(\010R\027linear"
-  "VelocitySupported\022<\n\032angular_velocity_su"
-  "pported\030\002 \001(\010R\030angularVelocitySupported\022"
-  "3\n\025orientation_supported\030\003 \001(\010R\024orientat"
-  "ionSupported\022-\n\022position_supported\030\004 \001(\010"
-  "R\021positionSupported\022:\n\031compass_heading_s"
-  "upported\030\005 \001(\010R\027compassHeadingSupported\022"
-  "B\n\035linear_acceleration_supported\030\006 \001(\010R\033"
-  "linearAccelerationSupported\"W\n\022GetAccura"
-  "cyRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c"
-  " \001(\0132\027.google.protobuf.StructR\005extra\"\320\003\n"
-  "\023GetAccuracyResponse\022_\n\010accuracy\030\001 \003(\0132C"
-  ".viam.component.movementsensor.v1.GetAcc"
-  "uracyResponse.AccuracyEntryR\010accuracy\022(\n"
-  "\rposition_hdop\030\002 \001(\002H\000R\014positionHdop\210\001\001\022"
-  "(\n\rposition_vdop\030\003 \001(\002H\001R\014positionVdop\210\001"
-  "\001\0226\n\025position_nmea_gga_fix\030\004 \001(\005H\002R\022posi"
-  "tionNmeaGgaFix\210\001\001\0227\n\025compass_degrees_err"
-  "or\030\005 \001(\002H\003R\023compassDegreesError\210\001\001\032;\n\rAc"
-  "curacyEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002"
-  " \001(\002R\005value:\0028\001B\020\n\016_position_hdopB\020\n\016_po"
-  "sition_vdopB\030\n\026_position_nmea_gga_fixB\030\n"
-  "\026_compass_degrees_error\"a\n\034GetLinearAcce"
-  "lerationRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005e"
-  "xtra\030c \001(\0132\027.google.protobuf.StructR\005ext"
-  "ra\"i\n\035GetLinearAccelerationResponse\022H\n\023l"
-  "inear_acceleration\030\001 \001(\0132\027.viam.common.v"
-  "1.Vector3R\022linearAcceleration2\317\020\n\025Moveme"
-  "ntSensorService\022\322\001\n\021GetLinearVelocity\022:."
-  "viam.component.movementsensor.v1.GetLine"
-  "arVelocityRequest\032;.viam.component.movem"
-  "entsensor.v1.GetLinearVelocityResponse\"D"
-  "\202\323\344\223\002>\022</viam/api/v1/component/movements"
-  "ensor/{name}/linear_velocity\022\326\001\n\022GetAngu"
-  "larVelocity\022;.viam.component.movementsen"
-  "sor.v1.GetAngularVelocityRequest\032<.viam."
-  "component.movementsensor.v1.GetAngularVe"
-  "locityResponse\"E\202\323\344\223\002\?\022=/viam/api/v1/com"
-  "ponent/movementsensor/{name}/angular_vel"
-  "ocity\022\322\001\n\021GetCompassHeading\022:.viam.compo"
-  "nent.movementsensor.v1.GetCompassHeading"
-  "Request\032;.viam.component.movementsensor."
-  "v1.GetCompassHeadingResponse\"D\202\323\344\223\002>\022</v"
-  "iam/api/v1/component/movementsensor/{nam"
-  "e}/compass_heading\022\305\001\n\016GetOrientation\0227."
-  "viam.component.movementsensor.v1.GetOrie"
-  "ntationRequest\0328.viam.component.movement"
-  "sensor.v1.GetOrientationResponse\"@\202\323\344\223\002:"
-  "\0228/viam/api/v1/component/movementsensor/"
-  "{name}/orientation\022\271\001\n\013GetPosition\0224.via"
-  "m.component.movementsensor.v1.GetPositio"
-  "nRequest\0325.viam.component.movementsensor"
-  ".v1.GetPositionResponse\"=\202\323\344\223\0027\0225/viam/a"
-  "pi/v1/component/movementsensor/{name}/po"
-  "sition\022\301\001\n\rGetProperties\0226.viam.componen"
-  "t.movementsensor.v1.GetPropertiesRequest"
-  "\0327.viam.component.movementsensor.v1.GetP"
-  "ropertiesResponse\"\?\202\323\344\223\0029\0227/viam/api/v1/"
-  "component/movementsensor/{name}/properti"
-  "es\022\271\001\n\013GetAccuracy\0224.viam.component.move"
-  "mentsensor.v1.GetAccuracyRequest\0325.viam."
-  "component.movementsensor.v1.GetAccuracyR"
-  "esponse\"=\202\323\344\223\0027\0225/viam/api/v1/component/"
-  "movementsensor/{name}/accuracy\022\342\001\n\025GetLi"
-  "nearAcceleration\022>.viam.component.moveme"
-  "ntsensor.v1.GetLinearAccelerationRequest"
-  "\032\?.viam.component.movementsensor.v1.GetL"
-  "inearAccelerationResponse\"H\202\323\344\223\002B\022@/viam"
-  "/api/v1/component/movementsensor/{name}/"
-  "linear_acceleration\022\221\001\n\tDoCommand\022 .viam"
-  ".common.v1.DoCommandRequest\032!.viam.commo"
-  "n.v1.DoCommandResponse\"\?\202\323\344\223\0029\"7/viam/ap"
-  "i/v1/component/movementsensor/{name}/do_"
-  "command\022\235\001\n\rGetGeometries\022$.viam.common."
-  "v1.GetGeometriesRequest\032%.viam.common.v1"
-  ".GetGeometriesResponse\"\?\202\323\344\223\0029\0227/viam/ap"
-  "i/v1/component/movementsensor/{name}/geo"
-  "metries\022\225\001\n\013GetReadings\022\".viam.common.v1"
-  ".GetReadingsRequest\032#.viam.common.v1.Get"
-  "ReadingsResponse\"=\202\323\344\223\0027\0225/viam/api/v1/c"
-  "omponent/movementsensor/{name}/readingsB"
-  "S\n$com.viam.component.movementsensor.v1Z"
-  "+go.viam.com/api/component/movementsenso"
-  "r/v1b\006proto3"
-  ;
-static const ::_pbi::DescriptorTable* const descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_deps[3] = {
-  &::descriptor_table_common_2fv1_2fcommon_2eproto,
-  &::descriptor_table_google_2fapi_2fannotations_2eproto,
-  &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
+const char descriptor_table_protodef_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+    "\n0component/movementsensor/v1/movementse"
+    "nsor.proto\022 viam.component.movementsenso"
+    "r.v1\032\026common/v1/common.proto\032\034google/api"
+    "/annotations.proto\032\034google/protobuf/stru"
+    "ct.proto\"]\n\030GetLinearVelocityRequest\022\022\n\004"
+    "name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027.google"
+    ".protobuf.StructR\005extra\"]\n\031GetLinearVelo"
+    "cityResponse\022@\n\017linear_velocity\030\001 \001(\0132\027."
+    "viam.common.v1.Vector3R\016linearVelocity\"^"
+    "\n\031GetAngularVelocityRequest\022\022\n\004name\030\001 \001("
+    "\tR\004name\022-\n\005extra\030c \001(\0132\027.google.protobuf"
+    ".StructR\005extra\"`\n\032GetAngularVelocityResp"
+    "onse\022B\n\020angular_velocity\030\001 \001(\0132\027.viam.co"
+    "mmon.v1.Vector3R\017angularVelocity\"]\n\030GetC"
+    "ompassHeadingRequest\022\022\n\004name\030\001 \001(\tR\004name"
+    "\022-\n\005extra\030c \001(\0132\027.google.protobuf.Struct"
+    "R\005extra\"1\n\031GetCompassHeadingResponse\022\024\n\005"
+    "value\030\001 \001(\001R\005value\"Z\n\025GetOrientationRequ"
+    "est\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027"
+    ".google.protobuf.StructR\005extra\"W\n\026GetOri"
+    "entationResponse\022=\n\013orientation\030\001 \001(\0132\033."
+    "viam.common.v1.OrientationR\013orientation\""
+    "W\n\022GetPositionRequest\022\022\n\004name\030\001 \001(\tR\004nam"
+    "e\022-\n\005extra\030c \001(\0132\027.google.protobuf.Struc"
+    "tR\005extra\"n\n\023GetPositionResponse\0228\n\ncoord"
+    "inate\030\001 \001(\0132\030.viam.common.v1.GeoPointR\nc"
+    "oordinate\022\035\n\naltitude_m\030\002 \001(\002R\taltitudeM"
+    "\"Y\n\024GetPropertiesRequest\022\022\n\004name\030\001 \001(\tR\004"
+    "name\022-\n\005extra\030c \001(\0132\027.google.protobuf.St"
+    "ructR\005extra\"\365\002\n\025GetPropertiesResponse\022:\n"
+    "\031linear_velocity_supported\030\001 \001(\010R\027linear"
+    "VelocitySupported\022<\n\032angular_velocity_su"
+    "pported\030\002 \001(\010R\030angularVelocitySupported\022"
+    "3\n\025orientation_supported\030\003 \001(\010R\024orientat"
+    "ionSupported\022-\n\022position_supported\030\004 \001(\010"
+    "R\021positionSupported\022:\n\031compass_heading_s"
+    "upported\030\005 \001(\010R\027compassHeadingSupported\022"
+    "B\n\035linear_acceleration_supported\030\006 \001(\010R\033"
+    "linearAccelerationSupported\"W\n\022GetAccura"
+    "cyRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c"
+    " \001(\0132\027.google.protobuf.StructR\005extra\"\320\003\n"
+    "\023GetAccuracyResponse\022_\n\010accuracy\030\001 \003(\0132C"
+    ".viam.component.movementsensor.v1.GetAcc"
+    "uracyResponse.AccuracyEntryR\010accuracy\022(\n"
+    "\rposition_hdop\030\002 \001(\002H\000R\014positionHdop\210\001\001\022"
+    "(\n\rposition_vdop\030\003 \001(\002H\001R\014positionVdop\210\001"
+    "\001\0226\n\025position_nmea_gga_fix\030\004 \001(\005H\002R\022posi"
+    "tionNmeaGgaFix\210\001\001\0227\n\025compass_degrees_err"
+    "or\030\005 \001(\002H\003R\023compassDegreesError\210\001\001\032;\n\rAc"
+    "curacyEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002"
+    " \001(\002R\005value:\0028\001B\020\n\016_position_hdopB\020\n\016_po"
+    "sition_vdopB\030\n\026_position_nmea_gga_fixB\030\n"
+    "\026_compass_degrees_error\"a\n\034GetLinearAcce"
+    "lerationRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005e"
+    "xtra\030c \001(\0132\027.google.protobuf.StructR\005ext"
+    "ra\"i\n\035GetLinearAccelerationResponse\022H\n\023l"
+    "inear_acceleration\030\001 \001(\0132\027.viam.common.v"
+    "1.Vector3R\022linearAcceleration2\317\020\n\025Moveme"
+    "ntSensorService\022\322\001\n\021GetLinearVelocity\022:."
+    "viam.component.movementsensor.v1.GetLine"
+    "arVelocityRequest\032;.viam.component.movem"
+    "entsensor.v1.GetLinearVelocityResponse\"D"
+    "\202\323\344\223\002>\022</viam/api/v1/component/movements"
+    "ensor/{name}/linear_velocity\022\326\001\n\022GetAngu"
+    "larVelocity\022;.viam.component.movementsen"
+    "sor.v1.GetAngularVelocityRequest\032<.viam."
+    "component.movementsensor.v1.GetAngularVe"
+    "locityResponse\"E\202\323\344\223\002\?\022=/viam/api/v1/com"
+    "ponent/movementsensor/{name}/angular_vel"
+    "ocity\022\322\001\n\021GetCompassHeading\022:.viam.compo"
+    "nent.movementsensor.v1.GetCompassHeading"
+    "Request\032;.viam.component.movementsensor."
+    "v1.GetCompassHeadingResponse\"D\202\323\344\223\002>\022</v"
+    "iam/api/v1/component/movementsensor/{nam"
+    "e}/compass_heading\022\305\001\n\016GetOrientation\0227."
+    "viam.component.movementsensor.v1.GetOrie"
+    "ntationRequest\0328.viam.component.movement"
+    "sensor.v1.GetOrientationResponse\"@\202\323\344\223\002:"
+    "\0228/viam/api/v1/component/movementsensor/"
+    "{name}/orientation\022\271\001\n\013GetPosition\0224.via"
+    "m.component.movementsensor.v1.GetPositio"
+    "nRequest\0325.viam.component.movementsensor"
+    ".v1.GetPositionResponse\"=\202\323\344\223\0027\0225/viam/a"
+    "pi/v1/component/movementsensor/{name}/po"
+    "sition\022\301\001\n\rGetProperties\0226.viam.componen"
+    "t.movementsensor.v1.GetPropertiesRequest"
+    "\0327.viam.component.movementsensor.v1.GetP"
+    "ropertiesResponse\"\?\202\323\344\223\0029\0227/viam/api/v1/"
+    "component/movementsensor/{name}/properti"
+    "es\022\271\001\n\013GetAccuracy\0224.viam.component.move"
+    "mentsensor.v1.GetAccuracyRequest\0325.viam."
+    "component.movementsensor.v1.GetAccuracyR"
+    "esponse\"=\202\323\344\223\0027\0225/viam/api/v1/component/"
+    "movementsensor/{name}/accuracy\022\342\001\n\025GetLi"
+    "nearAcceleration\022>.viam.component.moveme"
+    "ntsensor.v1.GetLinearAccelerationRequest"
+    "\032\?.viam.component.movementsensor.v1.GetL"
+    "inearAccelerationResponse\"H\202\323\344\223\002B\022@/viam"
+    "/api/v1/component/movementsensor/{name}/"
+    "linear_acceleration\022\221\001\n\tDoCommand\022 .viam"
+    ".common.v1.DoCommandRequest\032!.viam.commo"
+    "n.v1.DoCommandResponse\"\?\202\323\344\223\0029\"7/viam/ap"
+    "i/v1/component/movementsensor/{name}/do_"
+    "command\022\235\001\n\rGetGeometries\022$.viam.common."
+    "v1.GetGeometriesRequest\032%.viam.common.v1"
+    ".GetGeometriesResponse\"\?\202\323\344\223\0029\0227/viam/ap"
+    "i/v1/component/movementsensor/{name}/geo"
+    "metries\022\225\001\n\013GetReadings\022\".viam.common.v1"
+    ".GetReadingsRequest\032#.viam.common.v1.Get"
+    "ReadingsResponse\"=\202\323\344\223\0027\0225/viam/api/v1/c"
+    "omponent/movementsensor/{name}/readingsB"
+    "\213\002\n$com.viam.component.movementsensor.v1"
+    "B\023MovementsensorProtoP\001Z+go.viam.com/api"
+    "/component/movementsensor/v1\242\002\003VCM\252\002 Via"
+    "m.Component.Movementsensor.V1\312\002 Viam\\Com"
+    "ponent\\Movementsensor\\V1\342\002,Viam\\Componen"
+    "t\\Movementsensor\\V1\\GPBMetadata\352\002#Viam::"
+    "Component::Movementsensor::V1b\006proto3"
 };
-static ::_pbi::once_flag descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once;
+static const ::_pbi::DescriptorTable* const descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_deps[3] =
+    {
+        &::descriptor_table_common_2fv1_2fcommon_2eproto,
+        &::descriptor_table_google_2fapi_2fannotations_2eproto,
+        &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
+};
+static ::absl::once_flag descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto = {
-    false, false, 4532, descriptor_table_protodef_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto,
+    false,
+    false,
+    4717,
+    descriptor_table_protodef_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto,
     "component/movementsensor/v1/movementsensor.proto",
-    &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once, descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_deps, 3, 17,
-    schemas, file_default_instances, TableStruct_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto::offsets,
-    file_level_metadata_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto, file_level_enum_descriptors_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto,
+    &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once,
+    descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_deps,
+    3,
+    17,
+    schemas,
+    file_default_instances,
+    TableStruct_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto::offsets,
+    file_level_metadata_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto,
+    file_level_enum_descriptors_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto,
     file_level_service_descriptors_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto,
 };
+
+// This function exists to be marked as weak.
+// It can significantly speed up compilation by breaking up LLVM's SCC
+// in the .pb.cc translation units. Large translation units see a
+// reduction of more than 35% of walltime for optimized builds. Without
+// the weak attribute all the messages in the file, including all the
+// vtables and everything they use become part of the same SCC through
+// a cycle like:
+// GetMetadata -> descriptor table -> default instances ->
+//   vtables -> GetMetadata
+// By adding a weak function here we break the connection from the
+// individual vtables back into the descriptor table.
 PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_getter() {
   return &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto;
 }
-
 // Force running AddDescriptors() at dynamic initialization time.
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto(&descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
+static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto(&descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto);
 namespace viam {
 namespace component {
 namespace movementsensor {
 namespace v1 {
-
 // ===================================================================
 
 class GetLinearVelocityRequest::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetLinearVelocityRequest* msg);
+  using HasBits = decltype(std::declval<GetLinearVelocityRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(GetLinearVelocityRequest, _impl_._has_bits_);
+  static const ::google::protobuf::Struct& extra(const GetLinearVelocityRequest* msg);
+  static void set_has_extra(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Struct&
-GetLinearVelocityRequest::_Internal::extra(const GetLinearVelocityRequest* msg) {
-  return *msg->extra_;
+const ::google::protobuf::Struct& GetLinearVelocityRequest::_Internal::extra(const GetLinearVelocityRequest* msg) {
+  return *msg->_impl_.extra_;
 }
 void GetLinearVelocityRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
-  }
-  extra_ = nullptr;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.extra_ != nullptr) _impl_.extra_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
-GetLinearVelocityRequest::GetLinearVelocityRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+GetLinearVelocityRequest::GetLinearVelocityRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:viam.component.movementsensor.v1.GetLinearVelocityRequest)
 }
-GetLinearVelocityRequest::GetLinearVelocityRequest(const GetLinearVelocityRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
-  }
-  if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
-  }
+inline PROTOBUF_NDEBUG_INLINE GetLinearVelocityRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        name_(arena, from.name_) {}
+
+GetLinearVelocityRequest::GetLinearVelocityRequest(
+    ::google::protobuf::Arena* arena,
+    const GetLinearVelocityRequest& from)
+    : ::google::protobuf::Message(arena) {
+  GetLinearVelocityRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.extra_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::google::protobuf::Struct>(arena, *from._impl_.extra_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:viam.component.movementsensor.v1.GetLinearVelocityRequest)
 }
+inline PROTOBUF_NDEBUG_INLINE GetLinearVelocityRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        name_(arena) {}
 
-inline void GetLinearVelocityRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void GetLinearVelocityRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.extra_ = {};
 }
-
 GetLinearVelocityRequest::~GetLinearVelocityRequest() {
   // @@protoc_insertion_point(destructor:viam.component.movementsensor.v1.GetLinearVelocityRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void GetLinearVelocityRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.name_.Destroy();
+  delete _impl_.extra_;
+  _impl_.~Impl_();
 }
 
-void GetLinearVelocityRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void GetLinearVelocityRequest::Clear() {
+PROTOBUF_NOINLINE void GetLinearVelocityRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.component.movementsensor.v1.GetLinearVelocityRequest)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.extra_ != nullptr);
+    _impl_.extra_->Clear();
   }
-  extra_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetLinearVelocityRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string name = 1 [json_name = "name"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_name();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "viam.component.movementsensor.v1.GetLinearVelocityRequest.name"));
-        } else
-          goto handle_unusual;
-        continue;
-      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-      case 99:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* GetLinearVelocityRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* GetLinearVelocityRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 2, 1, 70, 7> GetLinearVelocityRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(GetLinearVelocityRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    99, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetLinearVelocityRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string name = 1 [json_name = "name"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetLinearVelocityRequest, _impl_.name_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {::_pbi::TcParser::FastMtS2,
+     {1690, 0, 0, PROTOBUF_FIELD_OFFSET(GetLinearVelocityRequest, _impl_.extra_)}},
+  }}, {{
+    99, 0, 1,
+    65534, 1,
+    65535, 65535
+  }}, {{
+    // string name = 1 [json_name = "name"];
+    {PROTOBUF_FIELD_OFFSET(GetLinearVelocityRequest, _impl_.name_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {PROTOBUF_FIELD_OFFSET(GetLinearVelocityRequest, _impl_.extra_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::google::protobuf::Struct>()},
+  }}, {{
+    "\71\4\0\0\0\0\0\0"
+    "viam.component.movementsensor.v1.GetLinearVelocityRequest"
+    "name"
+  }},
+};
+
+::uint8_t* GetLinearVelocityRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:viam.component.movementsensor.v1.GetLinearVelocityRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "viam.component.movementsensor.v1.GetLinearVelocityRequest.name");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_name(), target);
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.component.movementsensor.v1.GetLinearVelocityRequest.name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(99, _Internal::extra(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        99, _Internal::extra(this),
         _Internal::extra(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.component.movementsensor.v1.GetLinearVelocityRequest)
   return target;
 }
 
-size_t GetLinearVelocityRequest::ByteSizeLong() const {
+::size_t GetLinearVelocityRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.component.movementsensor.v1.GetLinearVelocityRequest)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_name());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    total_size += 2 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        2 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetLinearVelocityRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetLinearVelocityRequest::MergeImpl
+const ::google::protobuf::Message::ClassData GetLinearVelocityRequest::_class_data_ = {
+    GetLinearVelocityRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetLinearVelocityRequest::GetClassData() const { return &_class_data_; }
-
-void GetLinearVelocityRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetLinearVelocityRequest *>(to)->MergeFrom(
-      static_cast<const GetLinearVelocityRequest &>(from));
+const ::google::protobuf::Message::ClassData* GetLinearVelocityRequest::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void GetLinearVelocityRequest::MergeFrom(const GetLinearVelocityRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetLinearVelocityRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void GetLinearVelocityRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetLinearVelocityRequest*>(&to_msg);
+  auto& from = static_cast<const GetLinearVelocityRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetLinearVelocityRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
-  if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_extra()->::google::protobuf::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetLinearVelocityRequest::CopyFrom(const GetLinearVelocityRequest& from) {
@@ -802,196 +1021,212 @@ void GetLinearVelocityRequest::CopyFrom(const GetLinearVelocityRequest& from) {
   MergeFrom(from);
 }
 
-bool GetLinearVelocityRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetLinearVelocityRequest::IsInitialized() const {
   return true;
 }
 
-void GetLinearVelocityRequest::InternalSwap(GetLinearVelocityRequest* other) {
+::_pbi::CachedSize* GetLinearVelocityRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetLinearVelocityRequest::InternalSwap(GetLinearVelocityRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
-  );
-  swap(extra_, other->extra_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetLinearVelocityRequest::GetMetadata() const {
+::google::protobuf::Metadata GetLinearVelocityRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_getter, &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once,
       file_level_metadata_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto[0]);
 }
-
 // ===================================================================
 
 class GetLinearVelocityResponse::_Internal {
  public:
+  using HasBits = decltype(std::declval<GetLinearVelocityResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(GetLinearVelocityResponse, _impl_._has_bits_);
   static const ::viam::common::v1::Vector3& linear_velocity(const GetLinearVelocityResponse* msg);
+  static void set_has_linear_velocity(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
-const ::viam::common::v1::Vector3&
-GetLinearVelocityResponse::_Internal::linear_velocity(const GetLinearVelocityResponse* msg) {
-  return *msg->linear_velocity_;
+const ::viam::common::v1::Vector3& GetLinearVelocityResponse::_Internal::linear_velocity(const GetLinearVelocityResponse* msg) {
+  return *msg->_impl_.linear_velocity_;
 }
 void GetLinearVelocityResponse::clear_linear_velocity() {
-  if (GetArenaForAllocation() == nullptr && linear_velocity_ != nullptr) {
-    delete linear_velocity_;
-  }
-  linear_velocity_ = nullptr;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.linear_velocity_ != nullptr) _impl_.linear_velocity_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
-GetLinearVelocityResponse::GetLinearVelocityResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+GetLinearVelocityResponse::GetLinearVelocityResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:viam.component.movementsensor.v1.GetLinearVelocityResponse)
 }
-GetLinearVelocityResponse::GetLinearVelocityResponse(const GetLinearVelocityResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_linear_velocity()) {
-    linear_velocity_ = new ::viam::common::v1::Vector3(*from.linear_velocity_);
-  } else {
-    linear_velocity_ = nullptr;
-  }
+inline PROTOBUF_NDEBUG_INLINE GetLinearVelocityResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+GetLinearVelocityResponse::GetLinearVelocityResponse(
+    ::google::protobuf::Arena* arena,
+    const GetLinearVelocityResponse& from)
+    : ::google::protobuf::Message(arena) {
+  GetLinearVelocityResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.linear_velocity_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::viam::common::v1::Vector3>(arena, *from._impl_.linear_velocity_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:viam.component.movementsensor.v1.GetLinearVelocityResponse)
 }
+inline PROTOBUF_NDEBUG_INLINE GetLinearVelocityResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
 
-inline void GetLinearVelocityResponse::SharedCtor() {
-linear_velocity_ = nullptr;
+inline void GetLinearVelocityResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.linear_velocity_ = {};
 }
-
 GetLinearVelocityResponse::~GetLinearVelocityResponse() {
   // @@protoc_insertion_point(destructor:viam.component.movementsensor.v1.GetLinearVelocityResponse)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void GetLinearVelocityResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete linear_velocity_;
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.linear_velocity_;
+  _impl_.~Impl_();
 }
 
-void GetLinearVelocityResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void GetLinearVelocityResponse::Clear() {
+PROTOBUF_NOINLINE void GetLinearVelocityResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.component.movementsensor.v1.GetLinearVelocityResponse)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && linear_velocity_ != nullptr) {
-    delete linear_velocity_;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.linear_velocity_ != nullptr);
+    _impl_.linear_velocity_->Clear();
   }
-  linear_velocity_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetLinearVelocityResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // .viam.common.v1.Vector3 linear_velocity = 1 [json_name = "linearVelocity"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_linear_velocity(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* GetLinearVelocityResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* GetLinearVelocityResponse::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:viam.component.movementsensor.v1.GetLinearVelocityResponse)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
 
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> GetLinearVelocityResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(GetLinearVelocityResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetLinearVelocityResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .viam.common.v1.Vector3 linear_velocity = 1 [json_name = "linearVelocity"];
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(GetLinearVelocityResponse, _impl_.linear_velocity_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .viam.common.v1.Vector3 linear_velocity = 1 [json_name = "linearVelocity"];
+    {PROTOBUF_FIELD_OFFSET(GetLinearVelocityResponse, _impl_.linear_velocity_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::viam::common::v1::Vector3>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* GetLinearVelocityResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.movementsensor.v1.GetLinearVelocityResponse)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
   // .viam.common.v1.Vector3 linear_velocity = 1 [json_name = "linearVelocity"];
-  if (this->_internal_has_linear_velocity()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, _Internal::linear_velocity(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, _Internal::linear_velocity(this),
         _Internal::linear_velocity(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.component.movementsensor.v1.GetLinearVelocityResponse)
   return target;
 }
 
-size_t GetLinearVelocityResponse::ByteSizeLong() const {
+::size_t GetLinearVelocityResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.component.movementsensor.v1.GetLinearVelocityResponse)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // .viam.common.v1.Vector3 linear_velocity = 1 [json_name = "linearVelocity"];
-  if (this->_internal_has_linear_velocity()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *linear_velocity_);
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.linear_velocity_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetLinearVelocityResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetLinearVelocityResponse::MergeImpl
+const ::google::protobuf::Message::ClassData GetLinearVelocityResponse::_class_data_ = {
+    GetLinearVelocityResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetLinearVelocityResponse::GetClassData() const { return &_class_data_; }
-
-void GetLinearVelocityResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetLinearVelocityResponse *>(to)->MergeFrom(
-      static_cast<const GetLinearVelocityResponse &>(from));
+const ::google::protobuf::Message::ClassData* GetLinearVelocityResponse::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void GetLinearVelocityResponse::MergeFrom(const GetLinearVelocityResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetLinearVelocityResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void GetLinearVelocityResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetLinearVelocityResponse*>(&to_msg);
+  auto& from = static_cast<const GetLinearVelocityResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetLinearVelocityResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_linear_velocity()) {
-    _internal_mutable_linear_velocity()->::viam::common::v1::Vector3::MergeFrom(from._internal_linear_velocity());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_linear_velocity()->::viam::common::v1::Vector3::MergeFrom(
+        from._internal_linear_velocity());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetLinearVelocityResponse::CopyFrom(const GetLinearVelocityResponse& from) {
@@ -1001,234 +1236,243 @@ void GetLinearVelocityResponse::CopyFrom(const GetLinearVelocityResponse& from) 
   MergeFrom(from);
 }
 
-bool GetLinearVelocityResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetLinearVelocityResponse::IsInitialized() const {
   return true;
 }
 
-void GetLinearVelocityResponse::InternalSwap(GetLinearVelocityResponse* other) {
+::_pbi::CachedSize* GetLinearVelocityResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetLinearVelocityResponse::InternalSwap(GetLinearVelocityResponse* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(linear_velocity_, other->linear_velocity_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.linear_velocity_, other->_impl_.linear_velocity_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetLinearVelocityResponse::GetMetadata() const {
+::google::protobuf::Metadata GetLinearVelocityResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_getter, &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once,
       file_level_metadata_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto[1]);
 }
-
 // ===================================================================
 
 class GetAngularVelocityRequest::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetAngularVelocityRequest* msg);
+  using HasBits = decltype(std::declval<GetAngularVelocityRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(GetAngularVelocityRequest, _impl_._has_bits_);
+  static const ::google::protobuf::Struct& extra(const GetAngularVelocityRequest* msg);
+  static void set_has_extra(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Struct&
-GetAngularVelocityRequest::_Internal::extra(const GetAngularVelocityRequest* msg) {
-  return *msg->extra_;
+const ::google::protobuf::Struct& GetAngularVelocityRequest::_Internal::extra(const GetAngularVelocityRequest* msg) {
+  return *msg->_impl_.extra_;
 }
 void GetAngularVelocityRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
-  }
-  extra_ = nullptr;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.extra_ != nullptr) _impl_.extra_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
-GetAngularVelocityRequest::GetAngularVelocityRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+GetAngularVelocityRequest::GetAngularVelocityRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:viam.component.movementsensor.v1.GetAngularVelocityRequest)
 }
-GetAngularVelocityRequest::GetAngularVelocityRequest(const GetAngularVelocityRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
-  }
-  if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
-  }
+inline PROTOBUF_NDEBUG_INLINE GetAngularVelocityRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        name_(arena, from.name_) {}
+
+GetAngularVelocityRequest::GetAngularVelocityRequest(
+    ::google::protobuf::Arena* arena,
+    const GetAngularVelocityRequest& from)
+    : ::google::protobuf::Message(arena) {
+  GetAngularVelocityRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.extra_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::google::protobuf::Struct>(arena, *from._impl_.extra_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:viam.component.movementsensor.v1.GetAngularVelocityRequest)
 }
+inline PROTOBUF_NDEBUG_INLINE GetAngularVelocityRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        name_(arena) {}
 
-inline void GetAngularVelocityRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void GetAngularVelocityRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.extra_ = {};
 }
-
 GetAngularVelocityRequest::~GetAngularVelocityRequest() {
   // @@protoc_insertion_point(destructor:viam.component.movementsensor.v1.GetAngularVelocityRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void GetAngularVelocityRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.name_.Destroy();
+  delete _impl_.extra_;
+  _impl_.~Impl_();
 }
 
-void GetAngularVelocityRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void GetAngularVelocityRequest::Clear() {
+PROTOBUF_NOINLINE void GetAngularVelocityRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.component.movementsensor.v1.GetAngularVelocityRequest)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.extra_ != nullptr);
+    _impl_.extra_->Clear();
   }
-  extra_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetAngularVelocityRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string name = 1 [json_name = "name"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_name();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "viam.component.movementsensor.v1.GetAngularVelocityRequest.name"));
-        } else
-          goto handle_unusual;
-        continue;
-      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-      case 99:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* GetAngularVelocityRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* GetAngularVelocityRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 2, 1, 71, 7> GetAngularVelocityRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(GetAngularVelocityRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    99, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetAngularVelocityRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string name = 1 [json_name = "name"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetAngularVelocityRequest, _impl_.name_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {::_pbi::TcParser::FastMtS2,
+     {1690, 0, 0, PROTOBUF_FIELD_OFFSET(GetAngularVelocityRequest, _impl_.extra_)}},
+  }}, {{
+    99, 0, 1,
+    65534, 1,
+    65535, 65535
+  }}, {{
+    // string name = 1 [json_name = "name"];
+    {PROTOBUF_FIELD_OFFSET(GetAngularVelocityRequest, _impl_.name_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {PROTOBUF_FIELD_OFFSET(GetAngularVelocityRequest, _impl_.extra_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::google::protobuf::Struct>()},
+  }}, {{
+    "\72\4\0\0\0\0\0\0"
+    "viam.component.movementsensor.v1.GetAngularVelocityRequest"
+    "name"
+  }},
+};
+
+::uint8_t* GetAngularVelocityRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:viam.component.movementsensor.v1.GetAngularVelocityRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "viam.component.movementsensor.v1.GetAngularVelocityRequest.name");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_name(), target);
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.component.movementsensor.v1.GetAngularVelocityRequest.name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(99, _Internal::extra(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        99, _Internal::extra(this),
         _Internal::extra(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.component.movementsensor.v1.GetAngularVelocityRequest)
   return target;
 }
 
-size_t GetAngularVelocityRequest::ByteSizeLong() const {
+::size_t GetAngularVelocityRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.component.movementsensor.v1.GetAngularVelocityRequest)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_name());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    total_size += 2 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        2 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetAngularVelocityRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetAngularVelocityRequest::MergeImpl
+const ::google::protobuf::Message::ClassData GetAngularVelocityRequest::_class_data_ = {
+    GetAngularVelocityRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetAngularVelocityRequest::GetClassData() const { return &_class_data_; }
-
-void GetAngularVelocityRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetAngularVelocityRequest *>(to)->MergeFrom(
-      static_cast<const GetAngularVelocityRequest &>(from));
+const ::google::protobuf::Message::ClassData* GetAngularVelocityRequest::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void GetAngularVelocityRequest::MergeFrom(const GetAngularVelocityRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetAngularVelocityRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void GetAngularVelocityRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetAngularVelocityRequest*>(&to_msg);
+  auto& from = static_cast<const GetAngularVelocityRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetAngularVelocityRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
-  if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_extra()->::google::protobuf::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetAngularVelocityRequest::CopyFrom(const GetAngularVelocityRequest& from) {
@@ -1238,196 +1482,212 @@ void GetAngularVelocityRequest::CopyFrom(const GetAngularVelocityRequest& from) 
   MergeFrom(from);
 }
 
-bool GetAngularVelocityRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetAngularVelocityRequest::IsInitialized() const {
   return true;
 }
 
-void GetAngularVelocityRequest::InternalSwap(GetAngularVelocityRequest* other) {
+::_pbi::CachedSize* GetAngularVelocityRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetAngularVelocityRequest::InternalSwap(GetAngularVelocityRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
-  );
-  swap(extra_, other->extra_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetAngularVelocityRequest::GetMetadata() const {
+::google::protobuf::Metadata GetAngularVelocityRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_getter, &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once,
       file_level_metadata_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto[2]);
 }
-
 // ===================================================================
 
 class GetAngularVelocityResponse::_Internal {
  public:
+  using HasBits = decltype(std::declval<GetAngularVelocityResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(GetAngularVelocityResponse, _impl_._has_bits_);
   static const ::viam::common::v1::Vector3& angular_velocity(const GetAngularVelocityResponse* msg);
+  static void set_has_angular_velocity(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
-const ::viam::common::v1::Vector3&
-GetAngularVelocityResponse::_Internal::angular_velocity(const GetAngularVelocityResponse* msg) {
-  return *msg->angular_velocity_;
+const ::viam::common::v1::Vector3& GetAngularVelocityResponse::_Internal::angular_velocity(const GetAngularVelocityResponse* msg) {
+  return *msg->_impl_.angular_velocity_;
 }
 void GetAngularVelocityResponse::clear_angular_velocity() {
-  if (GetArenaForAllocation() == nullptr && angular_velocity_ != nullptr) {
-    delete angular_velocity_;
-  }
-  angular_velocity_ = nullptr;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.angular_velocity_ != nullptr) _impl_.angular_velocity_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
-GetAngularVelocityResponse::GetAngularVelocityResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+GetAngularVelocityResponse::GetAngularVelocityResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:viam.component.movementsensor.v1.GetAngularVelocityResponse)
 }
-GetAngularVelocityResponse::GetAngularVelocityResponse(const GetAngularVelocityResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_angular_velocity()) {
-    angular_velocity_ = new ::viam::common::v1::Vector3(*from.angular_velocity_);
-  } else {
-    angular_velocity_ = nullptr;
-  }
+inline PROTOBUF_NDEBUG_INLINE GetAngularVelocityResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+GetAngularVelocityResponse::GetAngularVelocityResponse(
+    ::google::protobuf::Arena* arena,
+    const GetAngularVelocityResponse& from)
+    : ::google::protobuf::Message(arena) {
+  GetAngularVelocityResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.angular_velocity_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::viam::common::v1::Vector3>(arena, *from._impl_.angular_velocity_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:viam.component.movementsensor.v1.GetAngularVelocityResponse)
 }
+inline PROTOBUF_NDEBUG_INLINE GetAngularVelocityResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
 
-inline void GetAngularVelocityResponse::SharedCtor() {
-angular_velocity_ = nullptr;
+inline void GetAngularVelocityResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.angular_velocity_ = {};
 }
-
 GetAngularVelocityResponse::~GetAngularVelocityResponse() {
   // @@protoc_insertion_point(destructor:viam.component.movementsensor.v1.GetAngularVelocityResponse)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void GetAngularVelocityResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete angular_velocity_;
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.angular_velocity_;
+  _impl_.~Impl_();
 }
 
-void GetAngularVelocityResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void GetAngularVelocityResponse::Clear() {
+PROTOBUF_NOINLINE void GetAngularVelocityResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.component.movementsensor.v1.GetAngularVelocityResponse)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && angular_velocity_ != nullptr) {
-    delete angular_velocity_;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.angular_velocity_ != nullptr);
+    _impl_.angular_velocity_->Clear();
   }
-  angular_velocity_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetAngularVelocityResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // .viam.common.v1.Vector3 angular_velocity = 1 [json_name = "angularVelocity"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_angular_velocity(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* GetAngularVelocityResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* GetAngularVelocityResponse::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:viam.component.movementsensor.v1.GetAngularVelocityResponse)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
 
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> GetAngularVelocityResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(GetAngularVelocityResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetAngularVelocityResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .viam.common.v1.Vector3 angular_velocity = 1 [json_name = "angularVelocity"];
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(GetAngularVelocityResponse, _impl_.angular_velocity_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .viam.common.v1.Vector3 angular_velocity = 1 [json_name = "angularVelocity"];
+    {PROTOBUF_FIELD_OFFSET(GetAngularVelocityResponse, _impl_.angular_velocity_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::viam::common::v1::Vector3>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* GetAngularVelocityResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.movementsensor.v1.GetAngularVelocityResponse)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
   // .viam.common.v1.Vector3 angular_velocity = 1 [json_name = "angularVelocity"];
-  if (this->_internal_has_angular_velocity()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, _Internal::angular_velocity(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, _Internal::angular_velocity(this),
         _Internal::angular_velocity(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.component.movementsensor.v1.GetAngularVelocityResponse)
   return target;
 }
 
-size_t GetAngularVelocityResponse::ByteSizeLong() const {
+::size_t GetAngularVelocityResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.component.movementsensor.v1.GetAngularVelocityResponse)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // .viam.common.v1.Vector3 angular_velocity = 1 [json_name = "angularVelocity"];
-  if (this->_internal_has_angular_velocity()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *angular_velocity_);
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.angular_velocity_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetAngularVelocityResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetAngularVelocityResponse::MergeImpl
+const ::google::protobuf::Message::ClassData GetAngularVelocityResponse::_class_data_ = {
+    GetAngularVelocityResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetAngularVelocityResponse::GetClassData() const { return &_class_data_; }
-
-void GetAngularVelocityResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetAngularVelocityResponse *>(to)->MergeFrom(
-      static_cast<const GetAngularVelocityResponse &>(from));
+const ::google::protobuf::Message::ClassData* GetAngularVelocityResponse::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void GetAngularVelocityResponse::MergeFrom(const GetAngularVelocityResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetAngularVelocityResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void GetAngularVelocityResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetAngularVelocityResponse*>(&to_msg);
+  auto& from = static_cast<const GetAngularVelocityResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetAngularVelocityResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_angular_velocity()) {
-    _internal_mutable_angular_velocity()->::viam::common::v1::Vector3::MergeFrom(from._internal_angular_velocity());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_angular_velocity()->::viam::common::v1::Vector3::MergeFrom(
+        from._internal_angular_velocity());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetAngularVelocityResponse::CopyFrom(const GetAngularVelocityResponse& from) {
@@ -1437,234 +1697,243 @@ void GetAngularVelocityResponse::CopyFrom(const GetAngularVelocityResponse& from
   MergeFrom(from);
 }
 
-bool GetAngularVelocityResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetAngularVelocityResponse::IsInitialized() const {
   return true;
 }
 
-void GetAngularVelocityResponse::InternalSwap(GetAngularVelocityResponse* other) {
+::_pbi::CachedSize* GetAngularVelocityResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetAngularVelocityResponse::InternalSwap(GetAngularVelocityResponse* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(angular_velocity_, other->angular_velocity_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.angular_velocity_, other->_impl_.angular_velocity_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetAngularVelocityResponse::GetMetadata() const {
+::google::protobuf::Metadata GetAngularVelocityResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_getter, &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once,
       file_level_metadata_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto[3]);
 }
-
 // ===================================================================
 
 class GetCompassHeadingRequest::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetCompassHeadingRequest* msg);
+  using HasBits = decltype(std::declval<GetCompassHeadingRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(GetCompassHeadingRequest, _impl_._has_bits_);
+  static const ::google::protobuf::Struct& extra(const GetCompassHeadingRequest* msg);
+  static void set_has_extra(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Struct&
-GetCompassHeadingRequest::_Internal::extra(const GetCompassHeadingRequest* msg) {
-  return *msg->extra_;
+const ::google::protobuf::Struct& GetCompassHeadingRequest::_Internal::extra(const GetCompassHeadingRequest* msg) {
+  return *msg->_impl_.extra_;
 }
 void GetCompassHeadingRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
-  }
-  extra_ = nullptr;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.extra_ != nullptr) _impl_.extra_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
-GetCompassHeadingRequest::GetCompassHeadingRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+GetCompassHeadingRequest::GetCompassHeadingRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:viam.component.movementsensor.v1.GetCompassHeadingRequest)
 }
-GetCompassHeadingRequest::GetCompassHeadingRequest(const GetCompassHeadingRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
-  }
-  if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
-  }
+inline PROTOBUF_NDEBUG_INLINE GetCompassHeadingRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        name_(arena, from.name_) {}
+
+GetCompassHeadingRequest::GetCompassHeadingRequest(
+    ::google::protobuf::Arena* arena,
+    const GetCompassHeadingRequest& from)
+    : ::google::protobuf::Message(arena) {
+  GetCompassHeadingRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.extra_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::google::protobuf::Struct>(arena, *from._impl_.extra_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:viam.component.movementsensor.v1.GetCompassHeadingRequest)
 }
+inline PROTOBUF_NDEBUG_INLINE GetCompassHeadingRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        name_(arena) {}
 
-inline void GetCompassHeadingRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void GetCompassHeadingRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.extra_ = {};
 }
-
 GetCompassHeadingRequest::~GetCompassHeadingRequest() {
   // @@protoc_insertion_point(destructor:viam.component.movementsensor.v1.GetCompassHeadingRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void GetCompassHeadingRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.name_.Destroy();
+  delete _impl_.extra_;
+  _impl_.~Impl_();
 }
 
-void GetCompassHeadingRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void GetCompassHeadingRequest::Clear() {
+PROTOBUF_NOINLINE void GetCompassHeadingRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.component.movementsensor.v1.GetCompassHeadingRequest)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.extra_ != nullptr);
+    _impl_.extra_->Clear();
   }
-  extra_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetCompassHeadingRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string name = 1 [json_name = "name"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_name();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "viam.component.movementsensor.v1.GetCompassHeadingRequest.name"));
-        } else
-          goto handle_unusual;
-        continue;
-      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-      case 99:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* GetCompassHeadingRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* GetCompassHeadingRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 2, 1, 70, 7> GetCompassHeadingRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(GetCompassHeadingRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    99, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetCompassHeadingRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string name = 1 [json_name = "name"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetCompassHeadingRequest, _impl_.name_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {::_pbi::TcParser::FastMtS2,
+     {1690, 0, 0, PROTOBUF_FIELD_OFFSET(GetCompassHeadingRequest, _impl_.extra_)}},
+  }}, {{
+    99, 0, 1,
+    65534, 1,
+    65535, 65535
+  }}, {{
+    // string name = 1 [json_name = "name"];
+    {PROTOBUF_FIELD_OFFSET(GetCompassHeadingRequest, _impl_.name_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {PROTOBUF_FIELD_OFFSET(GetCompassHeadingRequest, _impl_.extra_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::google::protobuf::Struct>()},
+  }}, {{
+    "\71\4\0\0\0\0\0\0"
+    "viam.component.movementsensor.v1.GetCompassHeadingRequest"
+    "name"
+  }},
+};
+
+::uint8_t* GetCompassHeadingRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:viam.component.movementsensor.v1.GetCompassHeadingRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "viam.component.movementsensor.v1.GetCompassHeadingRequest.name");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_name(), target);
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.component.movementsensor.v1.GetCompassHeadingRequest.name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(99, _Internal::extra(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        99, _Internal::extra(this),
         _Internal::extra(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.component.movementsensor.v1.GetCompassHeadingRequest)
   return target;
 }
 
-size_t GetCompassHeadingRequest::ByteSizeLong() const {
+::size_t GetCompassHeadingRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.component.movementsensor.v1.GetCompassHeadingRequest)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_name());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    total_size += 2 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        2 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetCompassHeadingRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetCompassHeadingRequest::MergeImpl
+const ::google::protobuf::Message::ClassData GetCompassHeadingRequest::_class_data_ = {
+    GetCompassHeadingRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetCompassHeadingRequest::GetClassData() const { return &_class_data_; }
-
-void GetCompassHeadingRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetCompassHeadingRequest *>(to)->MergeFrom(
-      static_cast<const GetCompassHeadingRequest &>(from));
+const ::google::protobuf::Message::ClassData* GetCompassHeadingRequest::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void GetCompassHeadingRequest::MergeFrom(const GetCompassHeadingRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetCompassHeadingRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void GetCompassHeadingRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetCompassHeadingRequest*>(&to_msg);
+  auto& from = static_cast<const GetCompassHeadingRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetCompassHeadingRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
-  if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_extra()->::google::protobuf::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetCompassHeadingRequest::CopyFrom(const GetCompassHeadingRequest& from) {
@@ -1674,186 +1943,185 @@ void GetCompassHeadingRequest::CopyFrom(const GetCompassHeadingRequest& from) {
   MergeFrom(from);
 }
 
-bool GetCompassHeadingRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetCompassHeadingRequest::IsInitialized() const {
   return true;
 }
 
-void GetCompassHeadingRequest::InternalSwap(GetCompassHeadingRequest* other) {
+::_pbi::CachedSize* GetCompassHeadingRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetCompassHeadingRequest::InternalSwap(GetCompassHeadingRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
-  );
-  swap(extra_, other->extra_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetCompassHeadingRequest::GetMetadata() const {
+::google::protobuf::Metadata GetCompassHeadingRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_getter, &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once,
       file_level_metadata_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto[4]);
 }
-
 // ===================================================================
 
 class GetCompassHeadingResponse::_Internal {
  public:
 };
 
-GetCompassHeadingResponse::GetCompassHeadingResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+GetCompassHeadingResponse::GetCompassHeadingResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:viam.component.movementsensor.v1.GetCompassHeadingResponse)
 }
-GetCompassHeadingResponse::GetCompassHeadingResponse(const GetCompassHeadingResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  value_ = from.value_;
-  // @@protoc_insertion_point(copy_constructor:viam.component.movementsensor.v1.GetCompassHeadingResponse)
+GetCompassHeadingResponse::GetCompassHeadingResponse(
+    ::google::protobuf::Arena* arena, const GetCompassHeadingResponse& from)
+    : GetCompassHeadingResponse(arena) {
+  MergeFrom(from);
 }
+inline PROTOBUF_NDEBUG_INLINE GetCompassHeadingResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
 
-inline void GetCompassHeadingResponse::SharedCtor() {
-value_ = 0;
+inline void GetCompassHeadingResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.value_ = {};
 }
-
 GetCompassHeadingResponse::~GetCompassHeadingResponse() {
   // @@protoc_insertion_point(destructor:viam.component.movementsensor.v1.GetCompassHeadingResponse)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void GetCompassHeadingResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
 }
 
-void GetCompassHeadingResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void GetCompassHeadingResponse::Clear() {
+PROTOBUF_NOINLINE void GetCompassHeadingResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.component.movementsensor.v1.GetCompassHeadingResponse)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  value_ = 0;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_.value_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetCompassHeadingResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // double value = 1 [json_name = "value"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 9)) {
-          value_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
-          ptr += sizeof(double);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* GetCompassHeadingResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* GetCompassHeadingResponse::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> GetCompassHeadingResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_GetCompassHeadingResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // double value = 1 [json_name = "value"];
+    {::_pbi::TcParser::FastF64S1,
+     {9, 63, 0, PROTOBUF_FIELD_OFFSET(GetCompassHeadingResponse, _impl_.value_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // double value = 1 [json_name = "value"];
+    {PROTOBUF_FIELD_OFFSET(GetCompassHeadingResponse, _impl_.value_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* GetCompassHeadingResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:viam.component.movementsensor.v1.GetCompassHeadingResponse)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // double value = 1 [json_name = "value"];
-  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
   double tmp_value = this->_internal_value();
-  uint64_t raw_value;
+  ::uint64_t raw_value;
   memcpy(&raw_value, &tmp_value, sizeof(tmp_value));
   if (raw_value != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteDoubleToArray(1, this->_internal_value(), target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(
+        1, this->_internal_value(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.component.movementsensor.v1.GetCompassHeadingResponse)
   return target;
 }
 
-size_t GetCompassHeadingResponse::ByteSizeLong() const {
+::size_t GetCompassHeadingResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.component.movementsensor.v1.GetCompassHeadingResponse)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // double value = 1 [json_name = "value"];
-  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
   double tmp_value = this->_internal_value();
-  uint64_t raw_value;
+  ::uint64_t raw_value;
   memcpy(&raw_value, &tmp_value, sizeof(tmp_value));
   if (raw_value != 0) {
-    total_size += 1 + 8;
+    total_size += 9;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetCompassHeadingResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetCompassHeadingResponse::MergeImpl
+const ::google::protobuf::Message::ClassData GetCompassHeadingResponse::_class_data_ = {
+    GetCompassHeadingResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetCompassHeadingResponse::GetClassData() const { return &_class_data_; }
-
-void GetCompassHeadingResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetCompassHeadingResponse *>(to)->MergeFrom(
-      static_cast<const GetCompassHeadingResponse &>(from));
+const ::google::protobuf::Message::ClassData* GetCompassHeadingResponse::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void GetCompassHeadingResponse::MergeFrom(const GetCompassHeadingResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetCompassHeadingResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void GetCompassHeadingResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetCompassHeadingResponse*>(&to_msg);
+  auto& from = static_cast<const GetCompassHeadingResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetCompassHeadingResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
   double tmp_value = from._internal_value();
-  uint64_t raw_value;
+  ::uint64_t raw_value;
   memcpy(&raw_value, &tmp_value, sizeof(tmp_value));
   if (raw_value != 0) {
-    _internal_set_value(from._internal_value());
+    _this->_internal_set_value(from._internal_value());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetCompassHeadingResponse::CopyFrom(const GetCompassHeadingResponse& from) {
@@ -1863,234 +2131,242 @@ void GetCompassHeadingResponse::CopyFrom(const GetCompassHeadingResponse& from) 
   MergeFrom(from);
 }
 
-bool GetCompassHeadingResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetCompassHeadingResponse::IsInitialized() const {
   return true;
 }
 
-void GetCompassHeadingResponse::InternalSwap(GetCompassHeadingResponse* other) {
+::_pbi::CachedSize* GetCompassHeadingResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetCompassHeadingResponse::InternalSwap(GetCompassHeadingResponse* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(value_, other->value_);
+        swap(_impl_.value_, other->_impl_.value_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetCompassHeadingResponse::GetMetadata() const {
+::google::protobuf::Metadata GetCompassHeadingResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_getter, &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once,
       file_level_metadata_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto[5]);
 }
-
 // ===================================================================
 
 class GetOrientationRequest::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetOrientationRequest* msg);
+  using HasBits = decltype(std::declval<GetOrientationRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(GetOrientationRequest, _impl_._has_bits_);
+  static const ::google::protobuf::Struct& extra(const GetOrientationRequest* msg);
+  static void set_has_extra(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Struct&
-GetOrientationRequest::_Internal::extra(const GetOrientationRequest* msg) {
-  return *msg->extra_;
+const ::google::protobuf::Struct& GetOrientationRequest::_Internal::extra(const GetOrientationRequest* msg) {
+  return *msg->_impl_.extra_;
 }
 void GetOrientationRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
-  }
-  extra_ = nullptr;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.extra_ != nullptr) _impl_.extra_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
-GetOrientationRequest::GetOrientationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+GetOrientationRequest::GetOrientationRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:viam.component.movementsensor.v1.GetOrientationRequest)
 }
-GetOrientationRequest::GetOrientationRequest(const GetOrientationRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
-  }
-  if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
-  }
+inline PROTOBUF_NDEBUG_INLINE GetOrientationRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        name_(arena, from.name_) {}
+
+GetOrientationRequest::GetOrientationRequest(
+    ::google::protobuf::Arena* arena,
+    const GetOrientationRequest& from)
+    : ::google::protobuf::Message(arena) {
+  GetOrientationRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.extra_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::google::protobuf::Struct>(arena, *from._impl_.extra_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:viam.component.movementsensor.v1.GetOrientationRequest)
 }
+inline PROTOBUF_NDEBUG_INLINE GetOrientationRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        name_(arena) {}
 
-inline void GetOrientationRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void GetOrientationRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.extra_ = {};
 }
-
 GetOrientationRequest::~GetOrientationRequest() {
   // @@protoc_insertion_point(destructor:viam.component.movementsensor.v1.GetOrientationRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void GetOrientationRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.name_.Destroy();
+  delete _impl_.extra_;
+  _impl_.~Impl_();
 }
 
-void GetOrientationRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void GetOrientationRequest::Clear() {
+PROTOBUF_NOINLINE void GetOrientationRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.component.movementsensor.v1.GetOrientationRequest)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.extra_ != nullptr);
+    _impl_.extra_->Clear();
   }
-  extra_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetOrientationRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string name = 1 [json_name = "name"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_name();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "viam.component.movementsensor.v1.GetOrientationRequest.name"));
-        } else
-          goto handle_unusual;
-        continue;
-      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-      case 99:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* GetOrientationRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* GetOrientationRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 2, 1, 67, 7> GetOrientationRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(GetOrientationRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    99, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetOrientationRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string name = 1 [json_name = "name"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetOrientationRequest, _impl_.name_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {::_pbi::TcParser::FastMtS2,
+     {1690, 0, 0, PROTOBUF_FIELD_OFFSET(GetOrientationRequest, _impl_.extra_)}},
+  }}, {{
+    99, 0, 1,
+    65534, 1,
+    65535, 65535
+  }}, {{
+    // string name = 1 [json_name = "name"];
+    {PROTOBUF_FIELD_OFFSET(GetOrientationRequest, _impl_.name_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {PROTOBUF_FIELD_OFFSET(GetOrientationRequest, _impl_.extra_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::google::protobuf::Struct>()},
+  }}, {{
+    "\66\4\0\0\0\0\0\0"
+    "viam.component.movementsensor.v1.GetOrientationRequest"
+    "name"
+  }},
+};
+
+::uint8_t* GetOrientationRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:viam.component.movementsensor.v1.GetOrientationRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "viam.component.movementsensor.v1.GetOrientationRequest.name");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_name(), target);
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.component.movementsensor.v1.GetOrientationRequest.name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(99, _Internal::extra(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        99, _Internal::extra(this),
         _Internal::extra(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.component.movementsensor.v1.GetOrientationRequest)
   return target;
 }
 
-size_t GetOrientationRequest::ByteSizeLong() const {
+::size_t GetOrientationRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.component.movementsensor.v1.GetOrientationRequest)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_name());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    total_size += 2 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        2 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetOrientationRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetOrientationRequest::MergeImpl
+const ::google::protobuf::Message::ClassData GetOrientationRequest::_class_data_ = {
+    GetOrientationRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetOrientationRequest::GetClassData() const { return &_class_data_; }
-
-void GetOrientationRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetOrientationRequest *>(to)->MergeFrom(
-      static_cast<const GetOrientationRequest &>(from));
+const ::google::protobuf::Message::ClassData* GetOrientationRequest::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void GetOrientationRequest::MergeFrom(const GetOrientationRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetOrientationRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void GetOrientationRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetOrientationRequest*>(&to_msg);
+  auto& from = static_cast<const GetOrientationRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetOrientationRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
-  if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_extra()->::google::protobuf::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetOrientationRequest::CopyFrom(const GetOrientationRequest& from) {
@@ -2100,196 +2376,212 @@ void GetOrientationRequest::CopyFrom(const GetOrientationRequest& from) {
   MergeFrom(from);
 }
 
-bool GetOrientationRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetOrientationRequest::IsInitialized() const {
   return true;
 }
 
-void GetOrientationRequest::InternalSwap(GetOrientationRequest* other) {
+::_pbi::CachedSize* GetOrientationRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetOrientationRequest::InternalSwap(GetOrientationRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
-  );
-  swap(extra_, other->extra_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetOrientationRequest::GetMetadata() const {
+::google::protobuf::Metadata GetOrientationRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_getter, &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once,
       file_level_metadata_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto[6]);
 }
-
 // ===================================================================
 
 class GetOrientationResponse::_Internal {
  public:
+  using HasBits = decltype(std::declval<GetOrientationResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(GetOrientationResponse, _impl_._has_bits_);
   static const ::viam::common::v1::Orientation& orientation(const GetOrientationResponse* msg);
+  static void set_has_orientation(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
-const ::viam::common::v1::Orientation&
-GetOrientationResponse::_Internal::orientation(const GetOrientationResponse* msg) {
-  return *msg->orientation_;
+const ::viam::common::v1::Orientation& GetOrientationResponse::_Internal::orientation(const GetOrientationResponse* msg) {
+  return *msg->_impl_.orientation_;
 }
 void GetOrientationResponse::clear_orientation() {
-  if (GetArenaForAllocation() == nullptr && orientation_ != nullptr) {
-    delete orientation_;
-  }
-  orientation_ = nullptr;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.orientation_ != nullptr) _impl_.orientation_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
-GetOrientationResponse::GetOrientationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+GetOrientationResponse::GetOrientationResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:viam.component.movementsensor.v1.GetOrientationResponse)
 }
-GetOrientationResponse::GetOrientationResponse(const GetOrientationResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_orientation()) {
-    orientation_ = new ::viam::common::v1::Orientation(*from.orientation_);
-  } else {
-    orientation_ = nullptr;
-  }
+inline PROTOBUF_NDEBUG_INLINE GetOrientationResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+GetOrientationResponse::GetOrientationResponse(
+    ::google::protobuf::Arena* arena,
+    const GetOrientationResponse& from)
+    : ::google::protobuf::Message(arena) {
+  GetOrientationResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.orientation_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::viam::common::v1::Orientation>(arena, *from._impl_.orientation_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:viam.component.movementsensor.v1.GetOrientationResponse)
 }
+inline PROTOBUF_NDEBUG_INLINE GetOrientationResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
 
-inline void GetOrientationResponse::SharedCtor() {
-orientation_ = nullptr;
+inline void GetOrientationResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.orientation_ = {};
 }
-
 GetOrientationResponse::~GetOrientationResponse() {
   // @@protoc_insertion_point(destructor:viam.component.movementsensor.v1.GetOrientationResponse)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void GetOrientationResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete orientation_;
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.orientation_;
+  _impl_.~Impl_();
 }
 
-void GetOrientationResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void GetOrientationResponse::Clear() {
+PROTOBUF_NOINLINE void GetOrientationResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.component.movementsensor.v1.GetOrientationResponse)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && orientation_ != nullptr) {
-    delete orientation_;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.orientation_ != nullptr);
+    _impl_.orientation_->Clear();
   }
-  orientation_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetOrientationResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // .viam.common.v1.Orientation orientation = 1 [json_name = "orientation"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_orientation(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* GetOrientationResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* GetOrientationResponse::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:viam.component.movementsensor.v1.GetOrientationResponse)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
 
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> GetOrientationResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(GetOrientationResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetOrientationResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .viam.common.v1.Orientation orientation = 1 [json_name = "orientation"];
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(GetOrientationResponse, _impl_.orientation_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .viam.common.v1.Orientation orientation = 1 [json_name = "orientation"];
+    {PROTOBUF_FIELD_OFFSET(GetOrientationResponse, _impl_.orientation_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::viam::common::v1::Orientation>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* GetOrientationResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.movementsensor.v1.GetOrientationResponse)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
   // .viam.common.v1.Orientation orientation = 1 [json_name = "orientation"];
-  if (this->_internal_has_orientation()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, _Internal::orientation(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, _Internal::orientation(this),
         _Internal::orientation(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.component.movementsensor.v1.GetOrientationResponse)
   return target;
 }
 
-size_t GetOrientationResponse::ByteSizeLong() const {
+::size_t GetOrientationResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.component.movementsensor.v1.GetOrientationResponse)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // .viam.common.v1.Orientation orientation = 1 [json_name = "orientation"];
-  if (this->_internal_has_orientation()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *orientation_);
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.orientation_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetOrientationResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetOrientationResponse::MergeImpl
+const ::google::protobuf::Message::ClassData GetOrientationResponse::_class_data_ = {
+    GetOrientationResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetOrientationResponse::GetClassData() const { return &_class_data_; }
-
-void GetOrientationResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetOrientationResponse *>(to)->MergeFrom(
-      static_cast<const GetOrientationResponse &>(from));
+const ::google::protobuf::Message::ClassData* GetOrientationResponse::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void GetOrientationResponse::MergeFrom(const GetOrientationResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetOrientationResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void GetOrientationResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetOrientationResponse*>(&to_msg);
+  auto& from = static_cast<const GetOrientationResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetOrientationResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_orientation()) {
-    _internal_mutable_orientation()->::viam::common::v1::Orientation::MergeFrom(from._internal_orientation());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_orientation()->::viam::common::v1::Orientation::MergeFrom(
+        from._internal_orientation());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetOrientationResponse::CopyFrom(const GetOrientationResponse& from) {
@@ -2299,234 +2591,243 @@ void GetOrientationResponse::CopyFrom(const GetOrientationResponse& from) {
   MergeFrom(from);
 }
 
-bool GetOrientationResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetOrientationResponse::IsInitialized() const {
   return true;
 }
 
-void GetOrientationResponse::InternalSwap(GetOrientationResponse* other) {
+::_pbi::CachedSize* GetOrientationResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetOrientationResponse::InternalSwap(GetOrientationResponse* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(orientation_, other->orientation_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.orientation_, other->_impl_.orientation_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetOrientationResponse::GetMetadata() const {
+::google::protobuf::Metadata GetOrientationResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_getter, &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once,
       file_level_metadata_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto[7]);
 }
-
 // ===================================================================
 
 class GetPositionRequest::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetPositionRequest* msg);
+  using HasBits = decltype(std::declval<GetPositionRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(GetPositionRequest, _impl_._has_bits_);
+  static const ::google::protobuf::Struct& extra(const GetPositionRequest* msg);
+  static void set_has_extra(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Struct&
-GetPositionRequest::_Internal::extra(const GetPositionRequest* msg) {
-  return *msg->extra_;
+const ::google::protobuf::Struct& GetPositionRequest::_Internal::extra(const GetPositionRequest* msg) {
+  return *msg->_impl_.extra_;
 }
 void GetPositionRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
-  }
-  extra_ = nullptr;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.extra_ != nullptr) _impl_.extra_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
-GetPositionRequest::GetPositionRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+GetPositionRequest::GetPositionRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:viam.component.movementsensor.v1.GetPositionRequest)
 }
-GetPositionRequest::GetPositionRequest(const GetPositionRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
-  }
-  if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
-  }
+inline PROTOBUF_NDEBUG_INLINE GetPositionRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        name_(arena, from.name_) {}
+
+GetPositionRequest::GetPositionRequest(
+    ::google::protobuf::Arena* arena,
+    const GetPositionRequest& from)
+    : ::google::protobuf::Message(arena) {
+  GetPositionRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.extra_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::google::protobuf::Struct>(arena, *from._impl_.extra_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:viam.component.movementsensor.v1.GetPositionRequest)
 }
+inline PROTOBUF_NDEBUG_INLINE GetPositionRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        name_(arena) {}
 
-inline void GetPositionRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void GetPositionRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.extra_ = {};
 }
-
 GetPositionRequest::~GetPositionRequest() {
   // @@protoc_insertion_point(destructor:viam.component.movementsensor.v1.GetPositionRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void GetPositionRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.name_.Destroy();
+  delete _impl_.extra_;
+  _impl_.~Impl_();
 }
 
-void GetPositionRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void GetPositionRequest::Clear() {
+PROTOBUF_NOINLINE void GetPositionRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.component.movementsensor.v1.GetPositionRequest)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.extra_ != nullptr);
+    _impl_.extra_->Clear();
   }
-  extra_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetPositionRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string name = 1 [json_name = "name"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_name();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "viam.component.movementsensor.v1.GetPositionRequest.name"));
-        } else
-          goto handle_unusual;
-        continue;
-      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-      case 99:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* GetPositionRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* GetPositionRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 2, 1, 64, 7> GetPositionRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(GetPositionRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    99, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetPositionRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string name = 1 [json_name = "name"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetPositionRequest, _impl_.name_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {::_pbi::TcParser::FastMtS2,
+     {1690, 0, 0, PROTOBUF_FIELD_OFFSET(GetPositionRequest, _impl_.extra_)}},
+  }}, {{
+    99, 0, 1,
+    65534, 1,
+    65535, 65535
+  }}, {{
+    // string name = 1 [json_name = "name"];
+    {PROTOBUF_FIELD_OFFSET(GetPositionRequest, _impl_.name_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {PROTOBUF_FIELD_OFFSET(GetPositionRequest, _impl_.extra_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::google::protobuf::Struct>()},
+  }}, {{
+    "\63\4\0\0\0\0\0\0"
+    "viam.component.movementsensor.v1.GetPositionRequest"
+    "name"
+  }},
+};
+
+::uint8_t* GetPositionRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:viam.component.movementsensor.v1.GetPositionRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "viam.component.movementsensor.v1.GetPositionRequest.name");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_name(), target);
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.component.movementsensor.v1.GetPositionRequest.name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(99, _Internal::extra(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        99, _Internal::extra(this),
         _Internal::extra(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.component.movementsensor.v1.GetPositionRequest)
   return target;
 }
 
-size_t GetPositionRequest::ByteSizeLong() const {
+::size_t GetPositionRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.component.movementsensor.v1.GetPositionRequest)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_name());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    total_size += 2 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        2 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetPositionRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetPositionRequest::MergeImpl
+const ::google::protobuf::Message::ClassData GetPositionRequest::_class_data_ = {
+    GetPositionRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetPositionRequest::GetClassData() const { return &_class_data_; }
-
-void GetPositionRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetPositionRequest *>(to)->MergeFrom(
-      static_cast<const GetPositionRequest &>(from));
+const ::google::protobuf::Message::ClassData* GetPositionRequest::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void GetPositionRequest::MergeFrom(const GetPositionRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetPositionRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void GetPositionRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetPositionRequest*>(&to_msg);
+  auto& from = static_cast<const GetPositionRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetPositionRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
-  if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_extra()->::google::protobuf::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetPositionRequest::CopyFrom(const GetPositionRequest& from) {
@@ -2536,235 +2837,255 @@ void GetPositionRequest::CopyFrom(const GetPositionRequest& from) {
   MergeFrom(from);
 }
 
-bool GetPositionRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetPositionRequest::IsInitialized() const {
   return true;
 }
 
-void GetPositionRequest::InternalSwap(GetPositionRequest* other) {
+::_pbi::CachedSize* GetPositionRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetPositionRequest::InternalSwap(GetPositionRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
-  );
-  swap(extra_, other->extra_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetPositionRequest::GetMetadata() const {
+::google::protobuf::Metadata GetPositionRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_getter, &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once,
       file_level_metadata_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto[8]);
 }
-
 // ===================================================================
 
 class GetPositionResponse::_Internal {
  public:
+  using HasBits = decltype(std::declval<GetPositionResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(GetPositionResponse, _impl_._has_bits_);
   static const ::viam::common::v1::GeoPoint& coordinate(const GetPositionResponse* msg);
+  static void set_has_coordinate(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
-const ::viam::common::v1::GeoPoint&
-GetPositionResponse::_Internal::coordinate(const GetPositionResponse* msg) {
-  return *msg->coordinate_;
+const ::viam::common::v1::GeoPoint& GetPositionResponse::_Internal::coordinate(const GetPositionResponse* msg) {
+  return *msg->_impl_.coordinate_;
 }
 void GetPositionResponse::clear_coordinate() {
-  if (GetArenaForAllocation() == nullptr && coordinate_ != nullptr) {
-    delete coordinate_;
-  }
-  coordinate_ = nullptr;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.coordinate_ != nullptr) _impl_.coordinate_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
-GetPositionResponse::GetPositionResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+GetPositionResponse::GetPositionResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:viam.component.movementsensor.v1.GetPositionResponse)
 }
-GetPositionResponse::GetPositionResponse(const GetPositionResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_coordinate()) {
-    coordinate_ = new ::viam::common::v1::GeoPoint(*from.coordinate_);
-  } else {
-    coordinate_ = nullptr;
-  }
-  altitude_m_ = from.altitude_m_;
+inline PROTOBUF_NDEBUG_INLINE GetPositionResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+GetPositionResponse::GetPositionResponse(
+    ::google::protobuf::Arena* arena,
+    const GetPositionResponse& from)
+    : ::google::protobuf::Message(arena) {
+  GetPositionResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.coordinate_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::viam::common::v1::GeoPoint>(arena, *from._impl_.coordinate_)
+                : nullptr;
+  _impl_.altitude_m_ = from._impl_.altitude_m_;
+
   // @@protoc_insertion_point(copy_constructor:viam.component.movementsensor.v1.GetPositionResponse)
 }
+inline PROTOBUF_NDEBUG_INLINE GetPositionResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
 
-inline void GetPositionResponse::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&coordinate_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&altitude_m_) -
-    reinterpret_cast<char*>(&coordinate_)) + sizeof(altitude_m_));
+inline void GetPositionResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, coordinate_),
+           0,
+           offsetof(Impl_, altitude_m_) -
+               offsetof(Impl_, coordinate_) +
+               sizeof(Impl_::altitude_m_));
 }
-
 GetPositionResponse::~GetPositionResponse() {
   // @@protoc_insertion_point(destructor:viam.component.movementsensor.v1.GetPositionResponse)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void GetPositionResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete coordinate_;
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.coordinate_;
+  _impl_.~Impl_();
 }
 
-void GetPositionResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void GetPositionResponse::Clear() {
+PROTOBUF_NOINLINE void GetPositionResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.component.movementsensor.v1.GetPositionResponse)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && coordinate_ != nullptr) {
-    delete coordinate_;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.coordinate_ != nullptr);
+    _impl_.coordinate_->Clear();
   }
-  coordinate_ = nullptr;
-  altitude_m_ = 0;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_.altitude_m_ = 0;
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetPositionResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // .viam.common.v1.GeoPoint coordinate = 1 [json_name = "coordinate"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_coordinate(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // float altitude_m = 2 [json_name = "altitudeM"];
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
-          altitude_m_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
-          ptr += sizeof(float);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* GetPositionResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* GetPositionResponse::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:viam.component.movementsensor.v1.GetPositionResponse)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
 
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 0, 2> GetPositionResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(GetPositionResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetPositionResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // float altitude_m = 2 [json_name = "altitudeM"];
+    {::_pbi::TcParser::FastF32S1,
+     {21, 63, 0, PROTOBUF_FIELD_OFFSET(GetPositionResponse, _impl_.altitude_m_)}},
+    // .viam.common.v1.GeoPoint coordinate = 1 [json_name = "coordinate"];
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(GetPositionResponse, _impl_.coordinate_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .viam.common.v1.GeoPoint coordinate = 1 [json_name = "coordinate"];
+    {PROTOBUF_FIELD_OFFSET(GetPositionResponse, _impl_.coordinate_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // float altitude_m = 2 [json_name = "altitudeM"];
+    {PROTOBUF_FIELD_OFFSET(GetPositionResponse, _impl_.altitude_m_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::viam::common::v1::GeoPoint>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* GetPositionResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.movementsensor.v1.GetPositionResponse)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
   // .viam.common.v1.GeoPoint coordinate = 1 [json_name = "coordinate"];
-  if (this->_internal_has_coordinate()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, _Internal::coordinate(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, _Internal::coordinate(this),
         _Internal::coordinate(this).GetCachedSize(), target, stream);
   }
 
   // float altitude_m = 2 [json_name = "altitudeM"];
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
   float tmp_altitude_m = this->_internal_altitude_m();
-  uint32_t raw_altitude_m;
+  ::uint32_t raw_altitude_m;
   memcpy(&raw_altitude_m, &tmp_altitude_m, sizeof(tmp_altitude_m));
   if (raw_altitude_m != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(2, this->_internal_altitude_m(), target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(
+        2, this->_internal_altitude_m(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.component.movementsensor.v1.GetPositionResponse)
   return target;
 }
 
-size_t GetPositionResponse::ByteSizeLong() const {
+::size_t GetPositionResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.component.movementsensor.v1.GetPositionResponse)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // .viam.common.v1.GeoPoint coordinate = 1 [json_name = "coordinate"];
-  if (this->_internal_has_coordinate()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *coordinate_);
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.coordinate_);
   }
 
   // float altitude_m = 2 [json_name = "altitudeM"];
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
   float tmp_altitude_m = this->_internal_altitude_m();
-  uint32_t raw_altitude_m;
+  ::uint32_t raw_altitude_m;
   memcpy(&raw_altitude_m, &tmp_altitude_m, sizeof(tmp_altitude_m));
   if (raw_altitude_m != 0) {
-    total_size += 1 + 4;
+    total_size += 5;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetPositionResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetPositionResponse::MergeImpl
+const ::google::protobuf::Message::ClassData GetPositionResponse::_class_data_ = {
+    GetPositionResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetPositionResponse::GetClassData() const { return &_class_data_; }
-
-void GetPositionResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetPositionResponse *>(to)->MergeFrom(
-      static_cast<const GetPositionResponse &>(from));
+const ::google::protobuf::Message::ClassData* GetPositionResponse::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void GetPositionResponse::MergeFrom(const GetPositionResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetPositionResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void GetPositionResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetPositionResponse*>(&to_msg);
+  auto& from = static_cast<const GetPositionResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetPositionResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_coordinate()) {
-    _internal_mutable_coordinate()->::viam::common::v1::GeoPoint::MergeFrom(from._internal_coordinate());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_coordinate()->::viam::common::v1::GeoPoint::MergeFrom(
+        from._internal_coordinate());
   }
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
   float tmp_altitude_m = from._internal_altitude_m();
-  uint32_t raw_altitude_m;
+  ::uint32_t raw_altitude_m;
   memcpy(&raw_altitude_m, &tmp_altitude_m, sizeof(tmp_altitude_m));
   if (raw_altitude_m != 0) {
-    _internal_set_altitude_m(from._internal_altitude_m());
+    _this->_internal_set_altitude_m(from._internal_altitude_m());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetPositionResponse::CopyFrom(const GetPositionResponse& from) {
@@ -2774,239 +3095,248 @@ void GetPositionResponse::CopyFrom(const GetPositionResponse& from) {
   MergeFrom(from);
 }
 
-bool GetPositionResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetPositionResponse::IsInitialized() const {
   return true;
 }
 
-void GetPositionResponse::InternalSwap(GetPositionResponse* other) {
+::_pbi::CachedSize* GetPositionResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetPositionResponse::InternalSwap(GetPositionResponse* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(GetPositionResponse, altitude_m_)
-      + sizeof(GetPositionResponse::altitude_m_)
-      - PROTOBUF_FIELD_OFFSET(GetPositionResponse, coordinate_)>(
-          reinterpret_cast<char*>(&coordinate_),
-          reinterpret_cast<char*>(&other->coordinate_));
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GetPositionResponse, _impl_.altitude_m_)
+      + sizeof(GetPositionResponse::_impl_.altitude_m_)
+      - PROTOBUF_FIELD_OFFSET(GetPositionResponse, _impl_.coordinate_)>(
+          reinterpret_cast<char*>(&_impl_.coordinate_),
+          reinterpret_cast<char*>(&other->_impl_.coordinate_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetPositionResponse::GetMetadata() const {
+::google::protobuf::Metadata GetPositionResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_getter, &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once,
       file_level_metadata_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto[9]);
 }
-
 // ===================================================================
 
 class GetPropertiesRequest::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetPropertiesRequest* msg);
+  using HasBits = decltype(std::declval<GetPropertiesRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(GetPropertiesRequest, _impl_._has_bits_);
+  static const ::google::protobuf::Struct& extra(const GetPropertiesRequest* msg);
+  static void set_has_extra(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Struct&
-GetPropertiesRequest::_Internal::extra(const GetPropertiesRequest* msg) {
-  return *msg->extra_;
+const ::google::protobuf::Struct& GetPropertiesRequest::_Internal::extra(const GetPropertiesRequest* msg) {
+  return *msg->_impl_.extra_;
 }
 void GetPropertiesRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
-  }
-  extra_ = nullptr;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.extra_ != nullptr) _impl_.extra_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
-GetPropertiesRequest::GetPropertiesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+GetPropertiesRequest::GetPropertiesRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:viam.component.movementsensor.v1.GetPropertiesRequest)
 }
-GetPropertiesRequest::GetPropertiesRequest(const GetPropertiesRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
-  }
-  if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
-  }
+inline PROTOBUF_NDEBUG_INLINE GetPropertiesRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        name_(arena, from.name_) {}
+
+GetPropertiesRequest::GetPropertiesRequest(
+    ::google::protobuf::Arena* arena,
+    const GetPropertiesRequest& from)
+    : ::google::protobuf::Message(arena) {
+  GetPropertiesRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.extra_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::google::protobuf::Struct>(arena, *from._impl_.extra_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:viam.component.movementsensor.v1.GetPropertiesRequest)
 }
+inline PROTOBUF_NDEBUG_INLINE GetPropertiesRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        name_(arena) {}
 
-inline void GetPropertiesRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void GetPropertiesRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.extra_ = {};
 }
-
 GetPropertiesRequest::~GetPropertiesRequest() {
   // @@protoc_insertion_point(destructor:viam.component.movementsensor.v1.GetPropertiesRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void GetPropertiesRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.name_.Destroy();
+  delete _impl_.extra_;
+  _impl_.~Impl_();
 }
 
-void GetPropertiesRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void GetPropertiesRequest::Clear() {
+PROTOBUF_NOINLINE void GetPropertiesRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.component.movementsensor.v1.GetPropertiesRequest)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.extra_ != nullptr);
+    _impl_.extra_->Clear();
   }
-  extra_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetPropertiesRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string name = 1 [json_name = "name"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_name();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "viam.component.movementsensor.v1.GetPropertiesRequest.name"));
-        } else
-          goto handle_unusual;
-        continue;
-      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-      case 99:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* GetPropertiesRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* GetPropertiesRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 2, 1, 66, 7> GetPropertiesRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(GetPropertiesRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    99, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetPropertiesRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string name = 1 [json_name = "name"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetPropertiesRequest, _impl_.name_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {::_pbi::TcParser::FastMtS2,
+     {1690, 0, 0, PROTOBUF_FIELD_OFFSET(GetPropertiesRequest, _impl_.extra_)}},
+  }}, {{
+    99, 0, 1,
+    65534, 1,
+    65535, 65535
+  }}, {{
+    // string name = 1 [json_name = "name"];
+    {PROTOBUF_FIELD_OFFSET(GetPropertiesRequest, _impl_.name_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {PROTOBUF_FIELD_OFFSET(GetPropertiesRequest, _impl_.extra_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::google::protobuf::Struct>()},
+  }}, {{
+    "\65\4\0\0\0\0\0\0"
+    "viam.component.movementsensor.v1.GetPropertiesRequest"
+    "name"
+  }},
+};
+
+::uint8_t* GetPropertiesRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:viam.component.movementsensor.v1.GetPropertiesRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "viam.component.movementsensor.v1.GetPropertiesRequest.name");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_name(), target);
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.component.movementsensor.v1.GetPropertiesRequest.name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(99, _Internal::extra(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        99, _Internal::extra(this),
         _Internal::extra(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.component.movementsensor.v1.GetPropertiesRequest)
   return target;
 }
 
-size_t GetPropertiesRequest::ByteSizeLong() const {
+::size_t GetPropertiesRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.component.movementsensor.v1.GetPropertiesRequest)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_name());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    total_size += 2 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        2 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetPropertiesRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetPropertiesRequest::MergeImpl
+const ::google::protobuf::Message::ClassData GetPropertiesRequest::_class_data_ = {
+    GetPropertiesRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetPropertiesRequest::GetClassData() const { return &_class_data_; }
-
-void GetPropertiesRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetPropertiesRequest *>(to)->MergeFrom(
-      static_cast<const GetPropertiesRequest &>(from));
+const ::google::protobuf::Message::ClassData* GetPropertiesRequest::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void GetPropertiesRequest::MergeFrom(const GetPropertiesRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetPropertiesRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void GetPropertiesRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetPropertiesRequest*>(&to_msg);
+  auto& from = static_cast<const GetPropertiesRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetPropertiesRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
-  if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_extra()->::google::protobuf::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetPropertiesRequest::CopyFrom(const GetPropertiesRequest& from) {
@@ -3016,291 +3346,284 @@ void GetPropertiesRequest::CopyFrom(const GetPropertiesRequest& from) {
   MergeFrom(from);
 }
 
-bool GetPropertiesRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetPropertiesRequest::IsInitialized() const {
   return true;
 }
 
-void GetPropertiesRequest::InternalSwap(GetPropertiesRequest* other) {
+::_pbi::CachedSize* GetPropertiesRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetPropertiesRequest::InternalSwap(GetPropertiesRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
-  );
-  swap(extra_, other->extra_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetPropertiesRequest::GetMetadata() const {
+::google::protobuf::Metadata GetPropertiesRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_getter, &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once,
       file_level_metadata_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto[10]);
 }
-
 // ===================================================================
 
 class GetPropertiesResponse::_Internal {
  public:
 };
 
-GetPropertiesResponse::GetPropertiesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+GetPropertiesResponse::GetPropertiesResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:viam.component.movementsensor.v1.GetPropertiesResponse)
 }
-GetPropertiesResponse::GetPropertiesResponse(const GetPropertiesResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&linear_velocity_supported_, &from.linear_velocity_supported_,
-    static_cast<size_t>(reinterpret_cast<char*>(&linear_acceleration_supported_) -
-    reinterpret_cast<char*>(&linear_velocity_supported_)) + sizeof(linear_acceleration_supported_));
-  // @@protoc_insertion_point(copy_constructor:viam.component.movementsensor.v1.GetPropertiesResponse)
+GetPropertiesResponse::GetPropertiesResponse(
+    ::google::protobuf::Arena* arena, const GetPropertiesResponse& from)
+    : GetPropertiesResponse(arena) {
+  MergeFrom(from);
 }
+inline PROTOBUF_NDEBUG_INLINE GetPropertiesResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
 
-inline void GetPropertiesResponse::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&linear_velocity_supported_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&linear_acceleration_supported_) -
-    reinterpret_cast<char*>(&linear_velocity_supported_)) + sizeof(linear_acceleration_supported_));
+inline void GetPropertiesResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, linear_velocity_supported_),
+           0,
+           offsetof(Impl_, linear_acceleration_supported_) -
+               offsetof(Impl_, linear_velocity_supported_) +
+               sizeof(Impl_::linear_acceleration_supported_));
 }
-
 GetPropertiesResponse::~GetPropertiesResponse() {
   // @@protoc_insertion_point(destructor:viam.component.movementsensor.v1.GetPropertiesResponse)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void GetPropertiesResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
 }
 
-void GetPropertiesResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void GetPropertiesResponse::Clear() {
+PROTOBUF_NOINLINE void GetPropertiesResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.component.movementsensor.v1.GetPropertiesResponse)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&linear_velocity_supported_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&linear_acceleration_supported_) -
-      reinterpret_cast<char*>(&linear_velocity_supported_)) + sizeof(linear_acceleration_supported_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  ::memset(&_impl_.linear_velocity_supported_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.linear_acceleration_supported_) -
+      reinterpret_cast<char*>(&_impl_.linear_velocity_supported_)) + sizeof(_impl_.linear_acceleration_supported_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetPropertiesResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // bool linear_velocity_supported = 1 [json_name = "linearVelocitySupported"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          linear_velocity_supported_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // bool angular_velocity_supported = 2 [json_name = "angularVelocitySupported"];
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          angular_velocity_supported_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // bool orientation_supported = 3 [json_name = "orientationSupported"];
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          orientation_supported_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // bool position_supported = 4 [json_name = "positionSupported"];
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          position_supported_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // bool compass_heading_supported = 5 [json_name = "compassHeadingSupported"];
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
-          compass_heading_supported_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // bool linear_acceleration_supported = 6 [json_name = "linearAccelerationSupported"];
-      case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
-          linear_acceleration_supported_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* GetPropertiesResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* GetPropertiesResponse::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 6, 0, 0, 2> GetPropertiesResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    6, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967232,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    6,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_GetPropertiesResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // bool linear_velocity_supported = 1 [json_name = "linearVelocitySupported"];
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(GetPropertiesResponse, _impl_.linear_velocity_supported_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, _impl_.linear_velocity_supported_)}},
+    // bool angular_velocity_supported = 2 [json_name = "angularVelocitySupported"];
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(GetPropertiesResponse, _impl_.angular_velocity_supported_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, _impl_.angular_velocity_supported_)}},
+    // bool orientation_supported = 3 [json_name = "orientationSupported"];
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(GetPropertiesResponse, _impl_.orientation_supported_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, _impl_.orientation_supported_)}},
+    // bool position_supported = 4 [json_name = "positionSupported"];
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(GetPropertiesResponse, _impl_.position_supported_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, _impl_.position_supported_)}},
+    // bool compass_heading_supported = 5 [json_name = "compassHeadingSupported"];
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(GetPropertiesResponse, _impl_.compass_heading_supported_), 63>(),
+     {40, 63, 0, PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, _impl_.compass_heading_supported_)}},
+    // bool linear_acceleration_supported = 6 [json_name = "linearAccelerationSupported"];
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(GetPropertiesResponse, _impl_.linear_acceleration_supported_), 63>(),
+     {48, 63, 0, PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, _impl_.linear_acceleration_supported_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool linear_velocity_supported = 1 [json_name = "linearVelocitySupported"];
+    {PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, _impl_.linear_velocity_supported_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bool angular_velocity_supported = 2 [json_name = "angularVelocitySupported"];
+    {PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, _impl_.angular_velocity_supported_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bool orientation_supported = 3 [json_name = "orientationSupported"];
+    {PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, _impl_.orientation_supported_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bool position_supported = 4 [json_name = "positionSupported"];
+    {PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, _impl_.position_supported_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bool compass_heading_supported = 5 [json_name = "compassHeadingSupported"];
+    {PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, _impl_.compass_heading_supported_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bool linear_acceleration_supported = 6 [json_name = "linearAccelerationSupported"];
+    {PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, _impl_.linear_acceleration_supported_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* GetPropertiesResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:viam.component.movementsensor.v1.GetPropertiesResponse)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // bool linear_velocity_supported = 1 [json_name = "linearVelocitySupported"];
   if (this->_internal_linear_velocity_supported() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_linear_velocity_supported(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        1, this->_internal_linear_velocity_supported(), target);
   }
 
   // bool angular_velocity_supported = 2 [json_name = "angularVelocitySupported"];
   if (this->_internal_angular_velocity_supported() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_angular_velocity_supported(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        2, this->_internal_angular_velocity_supported(), target);
   }
 
   // bool orientation_supported = 3 [json_name = "orientationSupported"];
   if (this->_internal_orientation_supported() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(3, this->_internal_orientation_supported(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        3, this->_internal_orientation_supported(), target);
   }
 
   // bool position_supported = 4 [json_name = "positionSupported"];
   if (this->_internal_position_supported() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(4, this->_internal_position_supported(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        4, this->_internal_position_supported(), target);
   }
 
   // bool compass_heading_supported = 5 [json_name = "compassHeadingSupported"];
   if (this->_internal_compass_heading_supported() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(5, this->_internal_compass_heading_supported(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        5, this->_internal_compass_heading_supported(), target);
   }
 
   // bool linear_acceleration_supported = 6 [json_name = "linearAccelerationSupported"];
   if (this->_internal_linear_acceleration_supported() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(6, this->_internal_linear_acceleration_supported(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        6, this->_internal_linear_acceleration_supported(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.component.movementsensor.v1.GetPropertiesResponse)
   return target;
 }
 
-size_t GetPropertiesResponse::ByteSizeLong() const {
+::size_t GetPropertiesResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.component.movementsensor.v1.GetPropertiesResponse)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // bool linear_velocity_supported = 1 [json_name = "linearVelocitySupported"];
   if (this->_internal_linear_velocity_supported() != 0) {
-    total_size += 1 + 1;
+    total_size += 2;
   }
 
   // bool angular_velocity_supported = 2 [json_name = "angularVelocitySupported"];
   if (this->_internal_angular_velocity_supported() != 0) {
-    total_size += 1 + 1;
+    total_size += 2;
   }
 
   // bool orientation_supported = 3 [json_name = "orientationSupported"];
   if (this->_internal_orientation_supported() != 0) {
-    total_size += 1 + 1;
+    total_size += 2;
   }
 
   // bool position_supported = 4 [json_name = "positionSupported"];
   if (this->_internal_position_supported() != 0) {
-    total_size += 1 + 1;
+    total_size += 2;
   }
 
   // bool compass_heading_supported = 5 [json_name = "compassHeadingSupported"];
   if (this->_internal_compass_heading_supported() != 0) {
-    total_size += 1 + 1;
+    total_size += 2;
   }
 
   // bool linear_acceleration_supported = 6 [json_name = "linearAccelerationSupported"];
   if (this->_internal_linear_acceleration_supported() != 0) {
-    total_size += 1 + 1;
+    total_size += 2;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetPropertiesResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetPropertiesResponse::MergeImpl
+const ::google::protobuf::Message::ClassData GetPropertiesResponse::_class_data_ = {
+    GetPropertiesResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetPropertiesResponse::GetClassData() const { return &_class_data_; }
-
-void GetPropertiesResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetPropertiesResponse *>(to)->MergeFrom(
-      static_cast<const GetPropertiesResponse &>(from));
+const ::google::protobuf::Message::ClassData* GetPropertiesResponse::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void GetPropertiesResponse::MergeFrom(const GetPropertiesResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetPropertiesResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void GetPropertiesResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetPropertiesResponse*>(&to_msg);
+  auto& from = static_cast<const GetPropertiesResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetPropertiesResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_linear_velocity_supported() != 0) {
-    _internal_set_linear_velocity_supported(from._internal_linear_velocity_supported());
+    _this->_internal_set_linear_velocity_supported(from._internal_linear_velocity_supported());
   }
   if (from._internal_angular_velocity_supported() != 0) {
-    _internal_set_angular_velocity_supported(from._internal_angular_velocity_supported());
+    _this->_internal_set_angular_velocity_supported(from._internal_angular_velocity_supported());
   }
   if (from._internal_orientation_supported() != 0) {
-    _internal_set_orientation_supported(from._internal_orientation_supported());
+    _this->_internal_set_orientation_supported(from._internal_orientation_supported());
   }
   if (from._internal_position_supported() != 0) {
-    _internal_set_position_supported(from._internal_position_supported());
+    _this->_internal_set_position_supported(from._internal_position_supported());
   }
   if (from._internal_compass_heading_supported() != 0) {
-    _internal_set_compass_heading_supported(from._internal_compass_heading_supported());
+    _this->_internal_set_compass_heading_supported(from._internal_compass_heading_supported());
   }
   if (from._internal_linear_acceleration_supported() != 0) {
-    _internal_set_linear_acceleration_supported(from._internal_linear_acceleration_supported());
+    _this->_internal_set_linear_acceleration_supported(from._internal_linear_acceleration_supported());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetPropertiesResponse::CopyFrom(const GetPropertiesResponse& from) {
@@ -3310,239 +3633,247 @@ void GetPropertiesResponse::CopyFrom(const GetPropertiesResponse& from) {
   MergeFrom(from);
 }
 
-bool GetPropertiesResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetPropertiesResponse::IsInitialized() const {
   return true;
 }
 
-void GetPropertiesResponse::InternalSwap(GetPropertiesResponse* other) {
+::_pbi::CachedSize* GetPropertiesResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetPropertiesResponse::InternalSwap(GetPropertiesResponse* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, linear_acceleration_supported_)
-      + sizeof(GetPropertiesResponse::linear_acceleration_supported_)
-      - PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, linear_velocity_supported_)>(
-          reinterpret_cast<char*>(&linear_velocity_supported_),
-          reinterpret_cast<char*>(&other->linear_velocity_supported_));
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, _impl_.linear_acceleration_supported_)
+      + sizeof(GetPropertiesResponse::_impl_.linear_acceleration_supported_)
+      - PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, _impl_.linear_velocity_supported_)>(
+          reinterpret_cast<char*>(&_impl_.linear_velocity_supported_),
+          reinterpret_cast<char*>(&other->_impl_.linear_velocity_supported_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetPropertiesResponse::GetMetadata() const {
+::google::protobuf::Metadata GetPropertiesResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_getter, &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once,
       file_level_metadata_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto[11]);
 }
-
 // ===================================================================
 
 class GetAccuracyRequest::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetAccuracyRequest* msg);
+  using HasBits = decltype(std::declval<GetAccuracyRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(GetAccuracyRequest, _impl_._has_bits_);
+  static const ::google::protobuf::Struct& extra(const GetAccuracyRequest* msg);
+  static void set_has_extra(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Struct&
-GetAccuracyRequest::_Internal::extra(const GetAccuracyRequest* msg) {
-  return *msg->extra_;
+const ::google::protobuf::Struct& GetAccuracyRequest::_Internal::extra(const GetAccuracyRequest* msg) {
+  return *msg->_impl_.extra_;
 }
 void GetAccuracyRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
-  }
-  extra_ = nullptr;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.extra_ != nullptr) _impl_.extra_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
-GetAccuracyRequest::GetAccuracyRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+GetAccuracyRequest::GetAccuracyRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:viam.component.movementsensor.v1.GetAccuracyRequest)
 }
-GetAccuracyRequest::GetAccuracyRequest(const GetAccuracyRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
-  }
-  if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
-  }
+inline PROTOBUF_NDEBUG_INLINE GetAccuracyRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        name_(arena, from.name_) {}
+
+GetAccuracyRequest::GetAccuracyRequest(
+    ::google::protobuf::Arena* arena,
+    const GetAccuracyRequest& from)
+    : ::google::protobuf::Message(arena) {
+  GetAccuracyRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.extra_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::google::protobuf::Struct>(arena, *from._impl_.extra_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:viam.component.movementsensor.v1.GetAccuracyRequest)
 }
+inline PROTOBUF_NDEBUG_INLINE GetAccuracyRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        name_(arena) {}
 
-inline void GetAccuracyRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void GetAccuracyRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.extra_ = {};
 }
-
 GetAccuracyRequest::~GetAccuracyRequest() {
   // @@protoc_insertion_point(destructor:viam.component.movementsensor.v1.GetAccuracyRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void GetAccuracyRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.name_.Destroy();
+  delete _impl_.extra_;
+  _impl_.~Impl_();
 }
 
-void GetAccuracyRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void GetAccuracyRequest::Clear() {
+PROTOBUF_NOINLINE void GetAccuracyRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.component.movementsensor.v1.GetAccuracyRequest)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.extra_ != nullptr);
+    _impl_.extra_->Clear();
   }
-  extra_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetAccuracyRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string name = 1 [json_name = "name"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_name();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "viam.component.movementsensor.v1.GetAccuracyRequest.name"));
-        } else
-          goto handle_unusual;
-        continue;
-      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-      case 99:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* GetAccuracyRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* GetAccuracyRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 2, 1, 64, 7> GetAccuracyRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(GetAccuracyRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    99, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetAccuracyRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string name = 1 [json_name = "name"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetAccuracyRequest, _impl_.name_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {::_pbi::TcParser::FastMtS2,
+     {1690, 0, 0, PROTOBUF_FIELD_OFFSET(GetAccuracyRequest, _impl_.extra_)}},
+  }}, {{
+    99, 0, 1,
+    65534, 1,
+    65535, 65535
+  }}, {{
+    // string name = 1 [json_name = "name"];
+    {PROTOBUF_FIELD_OFFSET(GetAccuracyRequest, _impl_.name_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {PROTOBUF_FIELD_OFFSET(GetAccuracyRequest, _impl_.extra_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::google::protobuf::Struct>()},
+  }}, {{
+    "\63\4\0\0\0\0\0\0"
+    "viam.component.movementsensor.v1.GetAccuracyRequest"
+    "name"
+  }},
+};
+
+::uint8_t* GetAccuracyRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:viam.component.movementsensor.v1.GetAccuracyRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "viam.component.movementsensor.v1.GetAccuracyRequest.name");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_name(), target);
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.component.movementsensor.v1.GetAccuracyRequest.name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(99, _Internal::extra(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        99, _Internal::extra(this),
         _Internal::extra(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.component.movementsensor.v1.GetAccuracyRequest)
   return target;
 }
 
-size_t GetAccuracyRequest::ByteSizeLong() const {
+::size_t GetAccuracyRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.component.movementsensor.v1.GetAccuracyRequest)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_name());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    total_size += 2 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        2 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetAccuracyRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetAccuracyRequest::MergeImpl
+const ::google::protobuf::Message::ClassData GetAccuracyRequest::_class_data_ = {
+    GetAccuracyRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetAccuracyRequest::GetClassData() const { return &_class_data_; }
-
-void GetAccuracyRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetAccuracyRequest *>(to)->MergeFrom(
-      static_cast<const GetAccuracyRequest &>(from));
+const ::google::protobuf::Message::ClassData* GetAccuracyRequest::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void GetAccuracyRequest::MergeFrom(const GetAccuracyRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetAccuracyRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void GetAccuracyRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetAccuracyRequest*>(&to_msg);
+  auto& from = static_cast<const GetAccuracyRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetAccuracyRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
-  if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_extra()->::google::protobuf::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetAccuracyRequest::CopyFrom(const GetAccuracyRequest& from) {
@@ -3552,47 +3883,45 @@ void GetAccuracyRequest::CopyFrom(const GetAccuracyRequest& from) {
   MergeFrom(from);
 }
 
-bool GetAccuracyRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetAccuracyRequest::IsInitialized() const {
   return true;
 }
 
-void GetAccuracyRequest::InternalSwap(GetAccuracyRequest* other) {
+::_pbi::CachedSize* GetAccuracyRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetAccuracyRequest::InternalSwap(GetAccuracyRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
-  );
-  swap(extra_, other->extra_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetAccuracyRequest::GetMetadata() const {
+::google::protobuf::Metadata GetAccuracyRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_getter, &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once,
       file_level_metadata_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto[12]);
 }
-
 // ===================================================================
 
 GetAccuracyResponse_AccuracyEntry_DoNotUse::GetAccuracyResponse_AccuracyEntry_DoNotUse() {}
-GetAccuracyResponse_AccuracyEntry_DoNotUse::GetAccuracyResponse_AccuracyEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+GetAccuracyResponse_AccuracyEntry_DoNotUse::GetAccuracyResponse_AccuracyEntry_DoNotUse(::google::protobuf::Arena* arena)
     : SuperType(arena) {}
-void GetAccuracyResponse_AccuracyEntry_DoNotUse::MergeFrom(const GetAccuracyResponse_AccuracyEntry_DoNotUse& other) {
-  MergeFromInternal(other);
-}
-::PROTOBUF_NAMESPACE_ID::Metadata GetAccuracyResponse_AccuracyEntry_DoNotUse::GetMetadata() const {
+::google::protobuf::Metadata GetAccuracyResponse_AccuracyEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_getter, &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once,
       file_level_metadata_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto[13]);
 }
-
 // ===================================================================
 
 class GetAccuracyResponse::_Internal {
  public:
-  using HasBits = decltype(std::declval<GetAccuracyResponse>()._has_bits_);
+  using HasBits = decltype(std::declval<GetAccuracyResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(GetAccuracyResponse, _impl_._has_bits_);
   static void set_has_position_hdop(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
@@ -3607,298 +3936,292 @@ class GetAccuracyResponse::_Internal {
   }
 };
 
-GetAccuracyResponse::GetAccuracyResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  accuracy_(arena) {
-  SharedCtor();
-  if (arena != nullptr && !is_message_owned) {
-    arena->OwnCustomDestructor(this, &GetAccuracyResponse::ArenaDtor);
-  }
+GetAccuracyResponse::GetAccuracyResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:viam.component.movementsensor.v1.GetAccuracyResponse)
 }
-GetAccuracyResponse::GetAccuracyResponse(const GetAccuracyResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _has_bits_(from._has_bits_) {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  accuracy_.MergeFrom(from.accuracy_);
-  ::memcpy(&position_hdop_, &from.position_hdop_,
-    static_cast<size_t>(reinterpret_cast<char*>(&compass_degrees_error_) -
-    reinterpret_cast<char*>(&position_hdop_)) + sizeof(compass_degrees_error_));
+inline PROTOBUF_NDEBUG_INLINE GetAccuracyResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        accuracy_{visibility, arena, from.accuracy_} {}
+
+GetAccuracyResponse::GetAccuracyResponse(
+    ::google::protobuf::Arena* arena,
+    const GetAccuracyResponse& from)
+    : ::google::protobuf::Message(arena) {
+  GetAccuracyResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, position_hdop_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, position_hdop_),
+           offsetof(Impl_, compass_degrees_error_) -
+               offsetof(Impl_, position_hdop_) +
+               sizeof(Impl_::compass_degrees_error_));
+
   // @@protoc_insertion_point(copy_constructor:viam.component.movementsensor.v1.GetAccuracyResponse)
 }
+inline PROTOBUF_NDEBUG_INLINE GetAccuracyResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        accuracy_{visibility, arena} {}
 
-inline void GetAccuracyResponse::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&position_hdop_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&compass_degrees_error_) -
-    reinterpret_cast<char*>(&position_hdop_)) + sizeof(compass_degrees_error_));
+inline void GetAccuracyResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, position_hdop_),
+           0,
+           offsetof(Impl_, compass_degrees_error_) -
+               offsetof(Impl_, position_hdop_) +
+               sizeof(Impl_::compass_degrees_error_));
 }
-
 GetAccuracyResponse::~GetAccuracyResponse() {
   // @@protoc_insertion_point(destructor:viam.component.movementsensor.v1.GetAccuracyResponse)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    ArenaDtor(this);
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void GetAccuracyResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  accuracy_.Destruct();
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
 }
 
-void GetAccuracyResponse::ArenaDtor(void* object) {
-  GetAccuracyResponse* _this = reinterpret_cast< GetAccuracyResponse* >(object);
-  _this->accuracy_.Destruct();
-}
-void GetAccuracyResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void GetAccuracyResponse::Clear() {
+PROTOBUF_NOINLINE void GetAccuracyResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.component.movementsensor.v1.GetAccuracyResponse)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  accuracy_.Clear();
-  cached_has_bits = _has_bits_[0];
+  _impl_.accuracy_.Clear();
+  cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x0000000fu) {
-    ::memset(&position_hdop_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&compass_degrees_error_) -
-        reinterpret_cast<char*>(&position_hdop_)) + sizeof(compass_degrees_error_));
+    ::memset(&_impl_.position_hdop_, 0, static_cast<::size_t>(
+        reinterpret_cast<char*>(&_impl_.compass_degrees_error_) -
+        reinterpret_cast<char*>(&_impl_.position_hdop_)) + sizeof(_impl_.compass_degrees_error_));
   }
-  _has_bits_.Clear();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetAccuracyResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  _Internal::HasBits has_bits{};
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // map<string, float> accuracy = 1 [json_name = "accuracy"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(&accuracy_, ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else
-          goto handle_unusual;
-        continue;
-      // optional float position_hdop = 2 [json_name = "positionHdop"];
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
-          _Internal::set_has_position_hdop(&has_bits);
-          position_hdop_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
-          ptr += sizeof(float);
-        } else
-          goto handle_unusual;
-        continue;
-      // optional float position_vdop = 3 [json_name = "positionVdop"];
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 29)) {
-          _Internal::set_has_position_vdop(&has_bits);
-          position_vdop_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
-          ptr += sizeof(float);
-        } else
-          goto handle_unusual;
-        continue;
-      // optional int32 position_nmea_gga_fix = 4 [json_name = "positionNmeaGgaFix"];
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          _Internal::set_has_position_nmea_gga_fix(&has_bits);
-          position_nmea_gga_fix_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // optional float compass_degrees_error = 5 [json_name = "compassDegreesError"];
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 45)) {
-          _Internal::set_has_compass_degrees_error(&has_bits);
-          compass_degrees_error_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
-          ptr += sizeof(float);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  _has_bits_.Or(has_bits);
+const char* GetAccuracyResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* GetAccuracyResponse::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 5, 1, 69, 2> GetAccuracyResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(GetAccuracyResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    5, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967264,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    5,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetAccuracyResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // optional int32 position_nmea_gga_fix = 4 [json_name = "positionNmeaGgaFix"];
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetAccuracyResponse, _impl_.position_nmea_gga_fix_), 2>(),
+     {32, 2, 0, PROTOBUF_FIELD_OFFSET(GetAccuracyResponse, _impl_.position_nmea_gga_fix_)}},
+    // optional float compass_degrees_error = 5 [json_name = "compassDegreesError"];
+    {::_pbi::TcParser::FastF32S1,
+     {45, 3, 0, PROTOBUF_FIELD_OFFSET(GetAccuracyResponse, _impl_.compass_degrees_error_)}},
+    // optional float position_hdop = 2 [json_name = "positionHdop"];
+    {::_pbi::TcParser::FastF32S1,
+     {21, 0, 0, PROTOBUF_FIELD_OFFSET(GetAccuracyResponse, _impl_.position_hdop_)}},
+    // optional float position_vdop = 3 [json_name = "positionVdop"];
+    {::_pbi::TcParser::FastF32S1,
+     {29, 1, 0, PROTOBUF_FIELD_OFFSET(GetAccuracyResponse, _impl_.position_vdop_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // map<string, float> accuracy = 1 [json_name = "accuracy"];
+    {PROTOBUF_FIELD_OFFSET(GetAccuracyResponse, _impl_.accuracy_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
+    // optional float position_hdop = 2 [json_name = "positionHdop"];
+    {PROTOBUF_FIELD_OFFSET(GetAccuracyResponse, _impl_.position_hdop_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kFloat)},
+    // optional float position_vdop = 3 [json_name = "positionVdop"];
+    {PROTOBUF_FIELD_OFFSET(GetAccuracyResponse, _impl_.position_vdop_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kFloat)},
+    // optional int32 position_nmea_gga_fix = 4 [json_name = "positionNmeaGgaFix"];
+    {PROTOBUF_FIELD_OFFSET(GetAccuracyResponse, _impl_.position_nmea_gga_fix_), _Internal::kHasBitsOffset + 2, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kInt32)},
+    // optional float compass_degrees_error = 5 [json_name = "compassDegreesError"];
+    {PROTOBUF_FIELD_OFFSET(GetAccuracyResponse, _impl_.compass_degrees_error_), _Internal::kHasBitsOffset + 3, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kFloat)},
+  }}, {{
+    {::_pbi::TcParser::GetMapAuxInfo<
+        decltype(GetAccuracyResponse()._impl_.accuracy_)>(
+        1, 0, 0, 9,
+        2)},
+  }}, {{
+    "\64\10\0\0\0\0\0\0"
+    "viam.component.movementsensor.v1.GetAccuracyResponse"
+    "accuracy"
+  }},
+};
+
+::uint8_t* GetAccuracyResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:viam.component.movementsensor.v1.GetAccuracyResponse)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // map<string, float> accuracy = 1 [json_name = "accuracy"];
-  if (!this->_internal_accuracy().empty()) {
-    using MapType = ::_pb::Map<std::string, float>;
-    using WireHelper = GetAccuracyResponse_AccuracyEntry_DoNotUse::Funcs;
-    const auto& map_field = this->_internal_accuracy();
-    auto check_utf8 = [](const MapType::value_type& entry) {
-      (void)entry;
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-        entry.first.data(), static_cast<int>(entry.first.length()),
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-        "viam.component.movementsensor.v1.GetAccuracyResponse.AccuracyEntry.key");
-    };
+  if (!_internal_accuracy().empty()) {
+    using MapType = ::google::protobuf::Map<std::string, float>;
+    using WireHelper = _pbi::MapEntryFuncs<std::string, float,
+                                   _pbi::WireFormatLite::TYPE_STRING,
+                                   _pbi::WireFormatLite::TYPE_FLOAT>;
+    const auto& field = _internal_accuracy();
 
-    if (stream->IsSerializationDeterministic() && map_field.size() > 1) {
-      for (const auto& entry : ::_pbi::MapSorterPtr<MapType>(map_field)) {
-        target = WireHelper::InternalSerialize(1, entry.first, entry.second, target, stream);
-        check_utf8(entry);
+    if (stream->IsSerializationDeterministic() && field.size() > 1) {
+      for (const auto& entry : ::google::protobuf::internal::MapSorterPtr<MapType>(field)) {
+        target = WireHelper::InternalSerialize(
+            1, entry.first, entry.second, target, stream);
+        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            entry.first.data(), static_cast<int>(entry.first.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.component.movementsensor.v1.GetAccuracyResponse.accuracy");
       }
     } else {
-      for (const auto& entry : map_field) {
-        target = WireHelper::InternalSerialize(1, entry.first, entry.second, target, stream);
-        check_utf8(entry);
+      for (const auto& entry : field) {
+        target = WireHelper::InternalSerialize(
+            1, entry.first, entry.second, target, stream);
+        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            entry.first.data(), static_cast<int>(entry.first.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.component.movementsensor.v1.GetAccuracyResponse.accuracy");
       }
     }
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
   // optional float position_hdop = 2 [json_name = "positionHdop"];
-  if (_internal_has_position_hdop()) {
+  if (cached_has_bits & 0x00000001u) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(2, this->_internal_position_hdop(), target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(
+        2, this->_internal_position_hdop(), target);
   }
 
   // optional float position_vdop = 3 [json_name = "positionVdop"];
-  if (_internal_has_position_vdop()) {
+  if (cached_has_bits & 0x00000002u) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(3, this->_internal_position_vdop(), target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(
+        3, this->_internal_position_vdop(), target);
   }
 
   // optional int32 position_nmea_gga_fix = 4 [json_name = "positionNmeaGgaFix"];
-  if (_internal_has_position_nmea_gga_fix()) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(4, this->_internal_position_nmea_gga_fix(), target);
+  if (cached_has_bits & 0x00000004u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<4>(
+            stream, this->_internal_position_nmea_gga_fix(), target);
   }
 
   // optional float compass_degrees_error = 5 [json_name = "compassDegreesError"];
-  if (_internal_has_compass_degrees_error()) {
+  if (cached_has_bits & 0x00000008u) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(5, this->_internal_compass_degrees_error(), target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(
+        5, this->_internal_compass_degrees_error(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.component.movementsensor.v1.GetAccuracyResponse)
   return target;
 }
 
-size_t GetAccuracyResponse::ByteSizeLong() const {
+::size_t GetAccuracyResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.component.movementsensor.v1.GetAccuracyResponse)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // map<string, float> accuracy = 1 [json_name = "accuracy"];
-  total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_accuracy_size());
-  for (::PROTOBUF_NAMESPACE_ID::Map< std::string, float >::const_iterator
-      it = this->_internal_accuracy().begin();
-      it != this->_internal_accuracy().end(); ++it) {
-    total_size += GetAccuracyResponse_AccuracyEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
+  total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_accuracy_size());
+  for (const auto& entry : _internal_accuracy()) {
+    total_size += _pbi::MapEntryFuncs<std::string, float,
+                                   _pbi::WireFormatLite::TYPE_STRING,
+                                   _pbi::WireFormatLite::TYPE_FLOAT>::ByteSizeLong(entry.first, entry.second);
   }
-
-  cached_has_bits = _has_bits_[0];
+  cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x0000000fu) {
     // optional float position_hdop = 2 [json_name = "positionHdop"];
     if (cached_has_bits & 0x00000001u) {
-      total_size += 1 + 4;
+      total_size += 5;
     }
 
     // optional float position_vdop = 3 [json_name = "positionVdop"];
     if (cached_has_bits & 0x00000002u) {
-      total_size += 1 + 4;
+      total_size += 5;
     }
 
     // optional int32 position_nmea_gga_fix = 4 [json_name = "positionNmeaGgaFix"];
     if (cached_has_bits & 0x00000004u) {
-      total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_position_nmea_gga_fix());
+      total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+          this->_internal_position_nmea_gga_fix());
     }
 
     // optional float compass_degrees_error = 5 [json_name = "compassDegreesError"];
     if (cached_has_bits & 0x00000008u) {
-      total_size += 1 + 4;
+      total_size += 5;
     }
 
   }
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetAccuracyResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetAccuracyResponse::MergeImpl
+const ::google::protobuf::Message::ClassData GetAccuracyResponse::_class_data_ = {
+    GetAccuracyResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetAccuracyResponse::GetClassData() const { return &_class_data_; }
-
-void GetAccuracyResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetAccuracyResponse *>(to)->MergeFrom(
-      static_cast<const GetAccuracyResponse &>(from));
+const ::google::protobuf::Message::ClassData* GetAccuracyResponse::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void GetAccuracyResponse::MergeFrom(const GetAccuracyResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetAccuracyResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void GetAccuracyResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetAccuracyResponse*>(&to_msg);
+  auto& from = static_cast<const GetAccuracyResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetAccuracyResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  accuracy_.MergeFrom(from.accuracy_);
-  cached_has_bits = from._has_bits_[0];
+  _this->_impl_.accuracy_.MergeFrom(from._impl_.accuracy_);
+  cached_has_bits = from._impl_._has_bits_[0];
   if (cached_has_bits & 0x0000000fu) {
     if (cached_has_bits & 0x00000001u) {
-      position_hdop_ = from.position_hdop_;
+      _this->_impl_.position_hdop_ = from._impl_.position_hdop_;
     }
     if (cached_has_bits & 0x00000002u) {
-      position_vdop_ = from.position_vdop_;
+      _this->_impl_.position_vdop_ = from._impl_.position_vdop_;
     }
     if (cached_has_bits & 0x00000004u) {
-      position_nmea_gga_fix_ = from.position_nmea_gga_fix_;
+      _this->_impl_.position_nmea_gga_fix_ = from._impl_.position_nmea_gga_fix_;
     }
     if (cached_has_bits & 0x00000008u) {
-      compass_degrees_error_ = from.compass_degrees_error_;
+      _this->_impl_.compass_degrees_error_ = from._impl_.compass_degrees_error_;
     }
-    _has_bits_[0] |= cached_has_bits;
+    _this->_impl_._has_bits_[0] |= cached_has_bits;
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetAccuracyResponse::CopyFrom(const GetAccuracyResponse& from) {
@@ -3908,241 +4231,249 @@ void GetAccuracyResponse::CopyFrom(const GetAccuracyResponse& from) {
   MergeFrom(from);
 }
 
-bool GetAccuracyResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetAccuracyResponse::IsInitialized() const {
   return true;
 }
 
-void GetAccuracyResponse::InternalSwap(GetAccuracyResponse* other) {
+::_pbi::CachedSize* GetAccuracyResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetAccuracyResponse::InternalSwap(GetAccuracyResponse* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_has_bits_[0], other->_has_bits_[0]);
-  accuracy_.InternalSwap(&other->accuracy_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(GetAccuracyResponse, compass_degrees_error_)
-      + sizeof(GetAccuracyResponse::compass_degrees_error_)
-      - PROTOBUF_FIELD_OFFSET(GetAccuracyResponse, position_hdop_)>(
-          reinterpret_cast<char*>(&position_hdop_),
-          reinterpret_cast<char*>(&other->position_hdop_));
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.accuracy_.InternalSwap(&other->_impl_.accuracy_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GetAccuracyResponse, _impl_.compass_degrees_error_)
+      + sizeof(GetAccuracyResponse::_impl_.compass_degrees_error_)
+      - PROTOBUF_FIELD_OFFSET(GetAccuracyResponse, _impl_.position_hdop_)>(
+          reinterpret_cast<char*>(&_impl_.position_hdop_),
+          reinterpret_cast<char*>(&other->_impl_.position_hdop_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetAccuracyResponse::GetMetadata() const {
+::google::protobuf::Metadata GetAccuracyResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_getter, &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once,
       file_level_metadata_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto[14]);
 }
-
 // ===================================================================
 
 class GetLinearAccelerationRequest::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetLinearAccelerationRequest* msg);
+  using HasBits = decltype(std::declval<GetLinearAccelerationRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(GetLinearAccelerationRequest, _impl_._has_bits_);
+  static const ::google::protobuf::Struct& extra(const GetLinearAccelerationRequest* msg);
+  static void set_has_extra(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Struct&
-GetLinearAccelerationRequest::_Internal::extra(const GetLinearAccelerationRequest* msg) {
-  return *msg->extra_;
+const ::google::protobuf::Struct& GetLinearAccelerationRequest::_Internal::extra(const GetLinearAccelerationRequest* msg) {
+  return *msg->_impl_.extra_;
 }
 void GetLinearAccelerationRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
-  }
-  extra_ = nullptr;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.extra_ != nullptr) _impl_.extra_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
-GetLinearAccelerationRequest::GetLinearAccelerationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+GetLinearAccelerationRequest::GetLinearAccelerationRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:viam.component.movementsensor.v1.GetLinearAccelerationRequest)
 }
-GetLinearAccelerationRequest::GetLinearAccelerationRequest(const GetLinearAccelerationRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
-  }
-  if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
-  }
+inline PROTOBUF_NDEBUG_INLINE GetLinearAccelerationRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        name_(arena, from.name_) {}
+
+GetLinearAccelerationRequest::GetLinearAccelerationRequest(
+    ::google::protobuf::Arena* arena,
+    const GetLinearAccelerationRequest& from)
+    : ::google::protobuf::Message(arena) {
+  GetLinearAccelerationRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.extra_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::google::protobuf::Struct>(arena, *from._impl_.extra_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:viam.component.movementsensor.v1.GetLinearAccelerationRequest)
 }
+inline PROTOBUF_NDEBUG_INLINE GetLinearAccelerationRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        name_(arena) {}
 
-inline void GetLinearAccelerationRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void GetLinearAccelerationRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.extra_ = {};
 }
-
 GetLinearAccelerationRequest::~GetLinearAccelerationRequest() {
   // @@protoc_insertion_point(destructor:viam.component.movementsensor.v1.GetLinearAccelerationRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void GetLinearAccelerationRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.name_.Destroy();
+  delete _impl_.extra_;
+  _impl_.~Impl_();
 }
 
-void GetLinearAccelerationRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void GetLinearAccelerationRequest::Clear() {
+PROTOBUF_NOINLINE void GetLinearAccelerationRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.component.movementsensor.v1.GetLinearAccelerationRequest)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.extra_ != nullptr);
+    _impl_.extra_->Clear();
   }
-  extra_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetLinearAccelerationRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string name = 1 [json_name = "name"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_name();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "viam.component.movementsensor.v1.GetLinearAccelerationRequest.name"));
-        } else
-          goto handle_unusual;
-        continue;
-      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-      case 99:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* GetLinearAccelerationRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* GetLinearAccelerationRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 2, 1, 74, 7> GetLinearAccelerationRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(GetLinearAccelerationRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    99, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetLinearAccelerationRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string name = 1 [json_name = "name"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetLinearAccelerationRequest, _impl_.name_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {::_pbi::TcParser::FastMtS2,
+     {1690, 0, 0, PROTOBUF_FIELD_OFFSET(GetLinearAccelerationRequest, _impl_.extra_)}},
+  }}, {{
+    99, 0, 1,
+    65534, 1,
+    65535, 65535
+  }}, {{
+    // string name = 1 [json_name = "name"];
+    {PROTOBUF_FIELD_OFFSET(GetLinearAccelerationRequest, _impl_.name_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {PROTOBUF_FIELD_OFFSET(GetLinearAccelerationRequest, _impl_.extra_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::google::protobuf::Struct>()},
+  }}, {{
+    "\75\4\0\0\0\0\0\0"
+    "viam.component.movementsensor.v1.GetLinearAccelerationRequest"
+    "name"
+  }},
+};
+
+::uint8_t* GetLinearAccelerationRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:viam.component.movementsensor.v1.GetLinearAccelerationRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "viam.component.movementsensor.v1.GetLinearAccelerationRequest.name");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_name(), target);
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.component.movementsensor.v1.GetLinearAccelerationRequest.name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(99, _Internal::extra(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        99, _Internal::extra(this),
         _Internal::extra(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.component.movementsensor.v1.GetLinearAccelerationRequest)
   return target;
 }
 
-size_t GetLinearAccelerationRequest::ByteSizeLong() const {
+::size_t GetLinearAccelerationRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.component.movementsensor.v1.GetLinearAccelerationRequest)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_name());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    total_size += 2 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        2 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetLinearAccelerationRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetLinearAccelerationRequest::MergeImpl
+const ::google::protobuf::Message::ClassData GetLinearAccelerationRequest::_class_data_ = {
+    GetLinearAccelerationRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetLinearAccelerationRequest::GetClassData() const { return &_class_data_; }
-
-void GetLinearAccelerationRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetLinearAccelerationRequest *>(to)->MergeFrom(
-      static_cast<const GetLinearAccelerationRequest &>(from));
+const ::google::protobuf::Message::ClassData* GetLinearAccelerationRequest::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void GetLinearAccelerationRequest::MergeFrom(const GetLinearAccelerationRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetLinearAccelerationRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void GetLinearAccelerationRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetLinearAccelerationRequest*>(&to_msg);
+  auto& from = static_cast<const GetLinearAccelerationRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetLinearAccelerationRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
-  if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_extra()->::google::protobuf::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetLinearAccelerationRequest::CopyFrom(const GetLinearAccelerationRequest& from) {
@@ -4152,196 +4483,212 @@ void GetLinearAccelerationRequest::CopyFrom(const GetLinearAccelerationRequest& 
   MergeFrom(from);
 }
 
-bool GetLinearAccelerationRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetLinearAccelerationRequest::IsInitialized() const {
   return true;
 }
 
-void GetLinearAccelerationRequest::InternalSwap(GetLinearAccelerationRequest* other) {
+::_pbi::CachedSize* GetLinearAccelerationRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetLinearAccelerationRequest::InternalSwap(GetLinearAccelerationRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
-  );
-  swap(extra_, other->extra_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetLinearAccelerationRequest::GetMetadata() const {
+::google::protobuf::Metadata GetLinearAccelerationRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_getter, &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once,
       file_level_metadata_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto[15]);
 }
-
 // ===================================================================
 
 class GetLinearAccelerationResponse::_Internal {
  public:
+  using HasBits = decltype(std::declval<GetLinearAccelerationResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(GetLinearAccelerationResponse, _impl_._has_bits_);
   static const ::viam::common::v1::Vector3& linear_acceleration(const GetLinearAccelerationResponse* msg);
+  static void set_has_linear_acceleration(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
-const ::viam::common::v1::Vector3&
-GetLinearAccelerationResponse::_Internal::linear_acceleration(const GetLinearAccelerationResponse* msg) {
-  return *msg->linear_acceleration_;
+const ::viam::common::v1::Vector3& GetLinearAccelerationResponse::_Internal::linear_acceleration(const GetLinearAccelerationResponse* msg) {
+  return *msg->_impl_.linear_acceleration_;
 }
 void GetLinearAccelerationResponse::clear_linear_acceleration() {
-  if (GetArenaForAllocation() == nullptr && linear_acceleration_ != nullptr) {
-    delete linear_acceleration_;
-  }
-  linear_acceleration_ = nullptr;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.linear_acceleration_ != nullptr) _impl_.linear_acceleration_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
-GetLinearAccelerationResponse::GetLinearAccelerationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+GetLinearAccelerationResponse::GetLinearAccelerationResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:viam.component.movementsensor.v1.GetLinearAccelerationResponse)
 }
-GetLinearAccelerationResponse::GetLinearAccelerationResponse(const GetLinearAccelerationResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_linear_acceleration()) {
-    linear_acceleration_ = new ::viam::common::v1::Vector3(*from.linear_acceleration_);
-  } else {
-    linear_acceleration_ = nullptr;
-  }
+inline PROTOBUF_NDEBUG_INLINE GetLinearAccelerationResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+GetLinearAccelerationResponse::GetLinearAccelerationResponse(
+    ::google::protobuf::Arena* arena,
+    const GetLinearAccelerationResponse& from)
+    : ::google::protobuf::Message(arena) {
+  GetLinearAccelerationResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.linear_acceleration_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::viam::common::v1::Vector3>(arena, *from._impl_.linear_acceleration_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:viam.component.movementsensor.v1.GetLinearAccelerationResponse)
 }
+inline PROTOBUF_NDEBUG_INLINE GetLinearAccelerationResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
 
-inline void GetLinearAccelerationResponse::SharedCtor() {
-linear_acceleration_ = nullptr;
+inline void GetLinearAccelerationResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.linear_acceleration_ = {};
 }
-
 GetLinearAccelerationResponse::~GetLinearAccelerationResponse() {
   // @@protoc_insertion_point(destructor:viam.component.movementsensor.v1.GetLinearAccelerationResponse)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void GetLinearAccelerationResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete linear_acceleration_;
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.linear_acceleration_;
+  _impl_.~Impl_();
 }
 
-void GetLinearAccelerationResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void GetLinearAccelerationResponse::Clear() {
+PROTOBUF_NOINLINE void GetLinearAccelerationResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.component.movementsensor.v1.GetLinearAccelerationResponse)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && linear_acceleration_ != nullptr) {
-    delete linear_acceleration_;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.linear_acceleration_ != nullptr);
+    _impl_.linear_acceleration_->Clear();
   }
-  linear_acceleration_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetLinearAccelerationResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // .viam.common.v1.Vector3 linear_acceleration = 1 [json_name = "linearAcceleration"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_linear_acceleration(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* GetLinearAccelerationResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* GetLinearAccelerationResponse::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:viam.component.movementsensor.v1.GetLinearAccelerationResponse)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
 
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> GetLinearAccelerationResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(GetLinearAccelerationResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetLinearAccelerationResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .viam.common.v1.Vector3 linear_acceleration = 1 [json_name = "linearAcceleration"];
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(GetLinearAccelerationResponse, _impl_.linear_acceleration_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .viam.common.v1.Vector3 linear_acceleration = 1 [json_name = "linearAcceleration"];
+    {PROTOBUF_FIELD_OFFSET(GetLinearAccelerationResponse, _impl_.linear_acceleration_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::viam::common::v1::Vector3>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* GetLinearAccelerationResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.movementsensor.v1.GetLinearAccelerationResponse)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
   // .viam.common.v1.Vector3 linear_acceleration = 1 [json_name = "linearAcceleration"];
-  if (this->_internal_has_linear_acceleration()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, _Internal::linear_acceleration(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, _Internal::linear_acceleration(this),
         _Internal::linear_acceleration(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.component.movementsensor.v1.GetLinearAccelerationResponse)
   return target;
 }
 
-size_t GetLinearAccelerationResponse::ByteSizeLong() const {
+::size_t GetLinearAccelerationResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.component.movementsensor.v1.GetLinearAccelerationResponse)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // .viam.common.v1.Vector3 linear_acceleration = 1 [json_name = "linearAcceleration"];
-  if (this->_internal_has_linear_acceleration()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *linear_acceleration_);
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.linear_acceleration_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetLinearAccelerationResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetLinearAccelerationResponse::MergeImpl
+const ::google::protobuf::Message::ClassData GetLinearAccelerationResponse::_class_data_ = {
+    GetLinearAccelerationResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetLinearAccelerationResponse::GetClassData() const { return &_class_data_; }
-
-void GetLinearAccelerationResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetLinearAccelerationResponse *>(to)->MergeFrom(
-      static_cast<const GetLinearAccelerationResponse &>(from));
+const ::google::protobuf::Message::ClassData* GetLinearAccelerationResponse::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void GetLinearAccelerationResponse::MergeFrom(const GetLinearAccelerationResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetLinearAccelerationResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void GetLinearAccelerationResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetLinearAccelerationResponse*>(&to_msg);
+  auto& from = static_cast<const GetLinearAccelerationResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.movementsensor.v1.GetLinearAccelerationResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_linear_acceleration()) {
-    _internal_mutable_linear_acceleration()->::viam::common::v1::Vector3::MergeFrom(from._internal_linear_acceleration());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_linear_acceleration()->::viam::common::v1::Vector3::MergeFrom(
+        from._internal_linear_acceleration());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetLinearAccelerationResponse::CopyFrom(const GetLinearAccelerationResponse& from) {
@@ -4351,97 +4698,33 @@ void GetLinearAccelerationResponse::CopyFrom(const GetLinearAccelerationResponse
   MergeFrom(from);
 }
 
-bool GetLinearAccelerationResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetLinearAccelerationResponse::IsInitialized() const {
   return true;
 }
 
-void GetLinearAccelerationResponse::InternalSwap(GetLinearAccelerationResponse* other) {
+::_pbi::CachedSize* GetLinearAccelerationResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetLinearAccelerationResponse::InternalSwap(GetLinearAccelerationResponse* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(linear_acceleration_, other->linear_acceleration_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.linear_acceleration_, other->_impl_.linear_acceleration_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetLinearAccelerationResponse::GetMetadata() const {
+::google::protobuf::Metadata GetLinearAccelerationResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_getter, &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once,
       file_level_metadata_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto[16]);
 }
-
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace movementsensor
 }  // namespace component
 }  // namespace viam
-PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::viam::component::movementsensor::v1::GetLinearVelocityRequest*
-Arena::CreateMaybeMessage< ::viam::component::movementsensor::v1::GetLinearVelocityRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::movementsensor::v1::GetLinearVelocityRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::component::movementsensor::v1::GetLinearVelocityResponse*
-Arena::CreateMaybeMessage< ::viam::component::movementsensor::v1::GetLinearVelocityResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::movementsensor::v1::GetLinearVelocityResponse >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::component::movementsensor::v1::GetAngularVelocityRequest*
-Arena::CreateMaybeMessage< ::viam::component::movementsensor::v1::GetAngularVelocityRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::movementsensor::v1::GetAngularVelocityRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::component::movementsensor::v1::GetAngularVelocityResponse*
-Arena::CreateMaybeMessage< ::viam::component::movementsensor::v1::GetAngularVelocityResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::movementsensor::v1::GetAngularVelocityResponse >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::component::movementsensor::v1::GetCompassHeadingRequest*
-Arena::CreateMaybeMessage< ::viam::component::movementsensor::v1::GetCompassHeadingRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::movementsensor::v1::GetCompassHeadingRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::component::movementsensor::v1::GetCompassHeadingResponse*
-Arena::CreateMaybeMessage< ::viam::component::movementsensor::v1::GetCompassHeadingResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::movementsensor::v1::GetCompassHeadingResponse >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::component::movementsensor::v1::GetOrientationRequest*
-Arena::CreateMaybeMessage< ::viam::component::movementsensor::v1::GetOrientationRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::movementsensor::v1::GetOrientationRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::component::movementsensor::v1::GetOrientationResponse*
-Arena::CreateMaybeMessage< ::viam::component::movementsensor::v1::GetOrientationResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::movementsensor::v1::GetOrientationResponse >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::component::movementsensor::v1::GetPositionRequest*
-Arena::CreateMaybeMessage< ::viam::component::movementsensor::v1::GetPositionRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::movementsensor::v1::GetPositionRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::component::movementsensor::v1::GetPositionResponse*
-Arena::CreateMaybeMessage< ::viam::component::movementsensor::v1::GetPositionResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::movementsensor::v1::GetPositionResponse >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::component::movementsensor::v1::GetPropertiesRequest*
-Arena::CreateMaybeMessage< ::viam::component::movementsensor::v1::GetPropertiesRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::movementsensor::v1::GetPropertiesRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::component::movementsensor::v1::GetPropertiesResponse*
-Arena::CreateMaybeMessage< ::viam::component::movementsensor::v1::GetPropertiesResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::movementsensor::v1::GetPropertiesResponse >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::component::movementsensor::v1::GetAccuracyRequest*
-Arena::CreateMaybeMessage< ::viam::component::movementsensor::v1::GetAccuracyRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::movementsensor::v1::GetAccuracyRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::component::movementsensor::v1::GetAccuracyResponse_AccuracyEntry_DoNotUse*
-Arena::CreateMaybeMessage< ::viam::component::movementsensor::v1::GetAccuracyResponse_AccuracyEntry_DoNotUse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::movementsensor::v1::GetAccuracyResponse_AccuracyEntry_DoNotUse >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::component::movementsensor::v1::GetAccuracyResponse*
-Arena::CreateMaybeMessage< ::viam::component::movementsensor::v1::GetAccuracyResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::movementsensor::v1::GetAccuracyResponse >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::component::movementsensor::v1::GetLinearAccelerationRequest*
-Arena::CreateMaybeMessage< ::viam::component::movementsensor::v1::GetLinearAccelerationRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::movementsensor::v1::GetLinearAccelerationRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::component::movementsensor::v1::GetLinearAccelerationResponse*
-Arena::CreateMaybeMessage< ::viam::component::movementsensor::v1::GetLinearAccelerationResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::movementsensor::v1::GetLinearAccelerationResponse >(arena);
-}
-PROTOBUF_NAMESPACE_CLOSE
-
+namespace google {
+namespace protobuf {
+}  // namespace protobuf
+}  // namespace google
 // @@protoc_insertion_point(global_scope)
-#include <google/protobuf/port_undef.inc>
+#include "google/protobuf/port_undef.inc"

@@ -4,456 +4,556 @@
 #include "component/powersensor/v1/powersensor.pb.h"
 
 #include <algorithm>
-
-#include <google/protobuf/io/coded_stream.h>
-#include <google/protobuf/extension_set.h>
-#include <google/protobuf/wire_format_lite.h>
-#include <google/protobuf/descriptor.h>
-#include <google/protobuf/generated_message_reflection.h>
-#include <google/protobuf/reflection_ops.h>
-#include <google/protobuf/wire_format.h>
+#include "google/protobuf/io/coded_stream.h"
+#include "google/protobuf/extension_set.h"
+#include "google/protobuf/wire_format_lite.h"
+#include "google/protobuf/descriptor.h"
+#include "google/protobuf/generated_message_reflection.h"
+#include "google/protobuf/reflection_ops.h"
+#include "google/protobuf/wire_format.h"
+#include "google/protobuf/generated_message_tctable_impl.h"
 // @@protoc_insertion_point(includes)
-#include <google/protobuf/port_def.inc>
 
+// Must be included last.
+#include "google/protobuf/port_def.inc"
 PROTOBUF_PRAGMA_INIT_SEG
-
-namespace _pb = ::PROTOBUF_NAMESPACE_ID;
-namespace _pbi = _pb::internal;
-
+namespace _pb = ::google::protobuf;
+namespace _pbi = ::google::protobuf::internal;
+namespace _fl = ::google::protobuf::internal::field_layout;
 namespace viam {
 namespace component {
 namespace powersensor {
 namespace v1 {
-PROTOBUF_CONSTEXPR GetVoltageRequest::GetVoltageRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
-struct GetVoltageRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetVoltageRequestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetVoltageRequestDefaultTypeInternal() {}
-  union {
-    GetVoltageRequest _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetVoltageRequestDefaultTypeInternal _GetVoltageRequest_default_instance_;
-PROTOBUF_CONSTEXPR GetVoltageResponse::GetVoltageResponse(
-    ::_pbi::ConstantInitialized)
-  : volts_(0)
-  , is_ac_(false){}
+
+inline constexpr GetVoltageResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : volts_{0},
+        is_ac_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetVoltageResponse::GetVoltageResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
 struct GetVoltageResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetVoltageResponseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR GetVoltageResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~GetVoltageResponseDefaultTypeInternal() {}
   union {
     GetVoltageResponse _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetVoltageResponseDefaultTypeInternal _GetVoltageResponse_default_instance_;
-PROTOBUF_CONSTEXPR GetCurrentRequest::GetCurrentRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
-struct GetCurrentRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetCurrentRequestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetCurrentRequestDefaultTypeInternal() {}
-  union {
-    GetCurrentRequest _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetCurrentRequestDefaultTypeInternal _GetCurrentRequest_default_instance_;
-PROTOBUF_CONSTEXPR GetCurrentResponse::GetCurrentResponse(
-    ::_pbi::ConstantInitialized)
-  : amperes_(0)
-  , is_ac_(false){}
-struct GetCurrentResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetCurrentResponseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetCurrentResponseDefaultTypeInternal() {}
-  union {
-    GetCurrentResponse _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetCurrentResponseDefaultTypeInternal _GetCurrentResponse_default_instance_;
-PROTOBUF_CONSTEXPR GetPowerRequest::GetPowerRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
-struct GetPowerRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetPowerRequestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetPowerRequestDefaultTypeInternal() {}
-  union {
-    GetPowerRequest _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPowerRequestDefaultTypeInternal _GetPowerRequest_default_instance_;
-PROTOBUF_CONSTEXPR GetPowerResponse::GetPowerResponse(
-    ::_pbi::ConstantInitialized)
-  : watts_(0){}
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetVoltageResponseDefaultTypeInternal _GetVoltageResponse_default_instance_;
+
+inline constexpr GetPowerResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : watts_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetPowerResponse::GetPowerResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
 struct GetPowerResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetPowerResponseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR GetPowerResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~GetPowerResponseDefaultTypeInternal() {}
   union {
     GetPowerResponse _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPowerResponseDefaultTypeInternal _GetPowerResponse_default_instance_;
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPowerResponseDefaultTypeInternal _GetPowerResponse_default_instance_;
+
+inline constexpr GetCurrentResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : amperes_{0},
+        is_ac_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetCurrentResponse::GetCurrentResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetCurrentResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetCurrentResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetCurrentResponseDefaultTypeInternal() {}
+  union {
+    GetCurrentResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetCurrentResponseDefaultTypeInternal _GetCurrentResponse_default_instance_;
+
+inline constexpr GetVoltageRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        extra_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetVoltageRequest::GetVoltageRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetVoltageRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetVoltageRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetVoltageRequestDefaultTypeInternal() {}
+  union {
+    GetVoltageRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetVoltageRequestDefaultTypeInternal _GetVoltageRequest_default_instance_;
+
+inline constexpr GetPowerRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        extra_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetPowerRequest::GetPowerRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetPowerRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetPowerRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetPowerRequestDefaultTypeInternal() {}
+  union {
+    GetPowerRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPowerRequestDefaultTypeInternal _GetPowerRequest_default_instance_;
+
+inline constexpr GetCurrentRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        extra_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetCurrentRequest::GetCurrentRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetCurrentRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetCurrentRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetCurrentRequestDefaultTypeInternal() {}
+  union {
+    GetCurrentRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetCurrentRequestDefaultTypeInternal _GetCurrentRequest_default_instance_;
 }  // namespace v1
 }  // namespace powersensor
 }  // namespace component
 }  // namespace viam
 static ::_pb::Metadata file_level_metadata_component_2fpowersensor_2fv1_2fpowersensor_2eproto[6];
-static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_component_2fpowersensor_2fv1_2fpowersensor_2eproto = nullptr;
-static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_component_2fpowersensor_2fv1_2fpowersensor_2eproto = nullptr;
-
-const uint32_t TableStruct_component_2fpowersensor_2fv1_2fpowersensor_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetVoltageRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetVoltageRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetVoltageRequest, extra_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetVoltageResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetVoltageResponse, volts_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetVoltageResponse, is_ac_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetCurrentRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetCurrentRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetCurrentRequest, extra_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetCurrentResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetCurrentResponse, amperes_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetCurrentResponse, is_ac_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetPowerRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetPowerRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetPowerRequest, extra_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetPowerResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetPowerResponse, watts_),
+static constexpr const ::_pb::EnumDescriptor**
+    file_level_enum_descriptors_component_2fpowersensor_2fv1_2fpowersensor_2eproto = nullptr;
+static constexpr const ::_pb::ServiceDescriptor**
+    file_level_service_descriptors_component_2fpowersensor_2fv1_2fpowersensor_2eproto = nullptr;
+const ::uint32_t TableStruct_component_2fpowersensor_2fv1_2fpowersensor_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
+    protodesc_cold) = {
+    PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetVoltageRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetVoltageRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetVoltageRequest, _impl_.name_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetVoltageRequest, _impl_.extra_),
+    ~0u,
+    0,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetVoltageResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetVoltageResponse, _impl_.volts_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetVoltageResponse, _impl_.is_ac_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetCurrentRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetCurrentRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetCurrentRequest, _impl_.name_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetCurrentRequest, _impl_.extra_),
+    ~0u,
+    0,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetCurrentResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetCurrentResponse, _impl_.amperes_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetCurrentResponse, _impl_.is_ac_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetPowerRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetPowerRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetPowerRequest, _impl_.name_),
+    PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetPowerRequest, _impl_.extra_),
+    ~0u,
+    0,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetPowerResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::component::powersensor::v1::GetPowerResponse, _impl_.watts_),
 };
-static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, -1, sizeof(::viam::component::powersensor::v1::GetVoltageRequest)},
-  { 8, -1, -1, sizeof(::viam::component::powersensor::v1::GetVoltageResponse)},
-  { 16, -1, -1, sizeof(::viam::component::powersensor::v1::GetCurrentRequest)},
-  { 24, -1, -1, sizeof(::viam::component::powersensor::v1::GetCurrentResponse)},
-  { 32, -1, -1, sizeof(::viam::component::powersensor::v1::GetPowerRequest)},
-  { 40, -1, -1, sizeof(::viam::component::powersensor::v1::GetPowerResponse)},
+
+static const ::_pbi::MigrationSchema
+    schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+        {0, 10, -1, sizeof(::viam::component::powersensor::v1::GetVoltageRequest)},
+        {12, -1, -1, sizeof(::viam::component::powersensor::v1::GetVoltageResponse)},
+        {22, 32, -1, sizeof(::viam::component::powersensor::v1::GetCurrentRequest)},
+        {34, -1, -1, sizeof(::viam::component::powersensor::v1::GetCurrentResponse)},
+        {44, 54, -1, sizeof(::viam::component::powersensor::v1::GetPowerRequest)},
+        {56, -1, -1, sizeof(::viam::component::powersensor::v1::GetPowerResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-  &::viam::component::powersensor::v1::_GetVoltageRequest_default_instance_._instance,
-  &::viam::component::powersensor::v1::_GetVoltageResponse_default_instance_._instance,
-  &::viam::component::powersensor::v1::_GetCurrentRequest_default_instance_._instance,
-  &::viam::component::powersensor::v1::_GetCurrentResponse_default_instance_._instance,
-  &::viam::component::powersensor::v1::_GetPowerRequest_default_instance_._instance,
-  &::viam::component::powersensor::v1::_GetPowerResponse_default_instance_._instance,
+    &::viam::component::powersensor::v1::_GetVoltageRequest_default_instance_._instance,
+    &::viam::component::powersensor::v1::_GetVoltageResponse_default_instance_._instance,
+    &::viam::component::powersensor::v1::_GetCurrentRequest_default_instance_._instance,
+    &::viam::component::powersensor::v1::_GetCurrentResponse_default_instance_._instance,
+    &::viam::component::powersensor::v1::_GetPowerRequest_default_instance_._instance,
+    &::viam::component::powersensor::v1::_GetPowerResponse_default_instance_._instance,
 };
-
-const char descriptor_table_protodef_component_2fpowersensor_2fv1_2fpowersensor_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n*component/powersensor/v1/powersensor.p"
-  "roto\022\035viam.component.powersensor.v1\032\026com"
-  "mon/v1/common.proto\032\034google/api/annotati"
-  "ons.proto\032\034google/protobuf/struct.proto\""
-  "V\n\021GetVoltageRequest\022\022\n\004name\030\001 \001(\tR\004name"
-  "\022-\n\005extra\030c \001(\0132\027.google.protobuf.Struct"
-  "R\005extra\"\?\n\022GetVoltageResponse\022\024\n\005volts\030\001"
-  " \001(\001R\005volts\022\023\n\005is_ac\030\002 \001(\010R\004isAc\"V\n\021GetC"
-  "urrentRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005ext"
-  "ra\030c \001(\0132\027.google.protobuf.StructR\005extra"
-  "\"C\n\022GetCurrentResponse\022\030\n\007amperes\030\001 \001(\001R"
-  "\007amperes\022\023\n\005is_ac\030\002 \001(\010R\004isAc\"T\n\017GetPowe"
-  "rRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c "
-  "\001(\0132\027.google.protobuf.StructR\005extra\"(\n\020G"
-  "etPowerResponse\022\024\n\005watts\030\001 \001(\001R\005watts2\304\006"
-  "\n\022PowerSensorService\022\255\001\n\nGetVoltage\0220.vi"
-  "am.component.powersensor.v1.GetVoltageRe"
-  "quest\0321.viam.component.powersensor.v1.Ge"
-  "tVoltageResponse\":\202\323\344\223\0024\0222/viam/api/v1/c"
-  "omponent/power_sensor/{name}/voltage\022\255\001\n"
-  "\nGetCurrent\0220.viam.component.powersensor"
-  ".v1.GetCurrentRequest\0321.viam.component.p"
-  "owersensor.v1.GetCurrentResponse\":\202\323\344\223\0024"
-  "\0222/viam/api/v1/component/power_sensor/{n"
-  "ame}/current\022\245\001\n\010GetPower\022..viam.compone"
-  "nt.powersensor.v1.GetPowerRequest\032/.viam"
-  ".component.powersensor.v1.GetPowerRespon"
-  "se\"8\202\323\344\223\0022\0220/viam/api/v1/component/power"
-  "_sensor/{name}/power\022\223\001\n\013GetReadings\022\".v"
-  "iam.common.v1.GetReadingsRequest\032#.viam."
-  "common.v1.GetReadingsResponse\";\202\323\344\223\0025\0223/"
-  "viam/api/v1/component/power_sensor/{name"
-  "}/readings\022\217\001\n\tDoCommand\022 .viam.common.v"
-  "1.DoCommandRequest\032!.viam.common.v1.DoCo"
-  "mmandResponse\"=\202\323\344\223\0027\"5/viam/api/v1/comp"
-  "onent/power_sensor/{name}/do_commandBM\n!"
-  "com.viam.component.powersensor.v1Z(go.vi"
-  "am.com/api/component/powersensor/v1b\006pro"
-  "to3"
-  ;
-static const ::_pbi::DescriptorTable* const descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_deps[3] = {
-  &::descriptor_table_common_2fv1_2fcommon_2eproto,
-  &::descriptor_table_google_2fapi_2fannotations_2eproto,
-  &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
+const char descriptor_table_protodef_component_2fpowersensor_2fv1_2fpowersensor_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+    "\n*component/powersensor/v1/powersensor.p"
+    "roto\022\035viam.component.powersensor.v1\032\026com"
+    "mon/v1/common.proto\032\034google/api/annotati"
+    "ons.proto\032\034google/protobuf/struct.proto\""
+    "V\n\021GetVoltageRequest\022\022\n\004name\030\001 \001(\tR\004name"
+    "\022-\n\005extra\030c \001(\0132\027.google.protobuf.Struct"
+    "R\005extra\"\?\n\022GetVoltageResponse\022\024\n\005volts\030\001"
+    " \001(\001R\005volts\022\023\n\005is_ac\030\002 \001(\010R\004isAc\"V\n\021GetC"
+    "urrentRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005ext"
+    "ra\030c \001(\0132\027.google.protobuf.StructR\005extra"
+    "\"C\n\022GetCurrentResponse\022\030\n\007amperes\030\001 \001(\001R"
+    "\007amperes\022\023\n\005is_ac\030\002 \001(\010R\004isAc\"T\n\017GetPowe"
+    "rRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c "
+    "\001(\0132\027.google.protobuf.StructR\005extra\"(\n\020G"
+    "etPowerResponse\022\024\n\005watts\030\001 \001(\001R\005watts2\304\006"
+    "\n\022PowerSensorService\022\255\001\n\nGetVoltage\0220.vi"
+    "am.component.powersensor.v1.GetVoltageRe"
+    "quest\0321.viam.component.powersensor.v1.Ge"
+    "tVoltageResponse\":\202\323\344\223\0024\0222/viam/api/v1/c"
+    "omponent/power_sensor/{name}/voltage\022\255\001\n"
+    "\nGetCurrent\0220.viam.component.powersensor"
+    ".v1.GetCurrentRequest\0321.viam.component.p"
+    "owersensor.v1.GetCurrentResponse\":\202\323\344\223\0024"
+    "\0222/viam/api/v1/component/power_sensor/{n"
+    "ame}/current\022\245\001\n\010GetPower\022..viam.compone"
+    "nt.powersensor.v1.GetPowerRequest\032/.viam"
+    ".component.powersensor.v1.GetPowerRespon"
+    "se\"8\202\323\344\223\0022\0220/viam/api/v1/component/power"
+    "_sensor/{name}/power\022\223\001\n\013GetReadings\022\".v"
+    "iam.common.v1.GetReadingsRequest\032#.viam."
+    "common.v1.GetReadingsResponse\";\202\323\344\223\0025\0223/"
+    "viam/api/v1/component/power_sensor/{name"
+    "}/readings\022\217\001\n\tDoCommand\022 .viam.common.v"
+    "1.DoCommandRequest\032!.viam.common.v1.DoCo"
+    "mmandResponse\"=\202\323\344\223\0027\"5/viam/api/v1/comp"
+    "onent/power_sensor/{name}/do_commandB\366\001\n"
+    "!com.viam.component.powersensor.v1B\020Powe"
+    "rsensorProtoP\001Z(go.viam.com/api/componen"
+    "t/powersensor/v1\242\002\003VCP\252\002\035Viam.Component."
+    "Powersensor.V1\312\002\035Viam\\Component\\Powersen"
+    "sor\\V1\342\002)Viam\\Component\\Powersensor\\V1\\G"
+    "PBMetadata\352\002 Viam::Component::Powersenso"
+    "r::V1b\006proto3"
 };
-static ::_pbi::once_flag descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_once;
+static const ::_pbi::DescriptorTable* const descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_deps[3] =
+    {
+        &::descriptor_table_common_2fv1_2fcommon_2eproto,
+        &::descriptor_table_google_2fapi_2fannotations_2eproto,
+        &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
+};
+static ::absl::once_flag descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto = {
-    false, false, 1523, descriptor_table_protodef_component_2fpowersensor_2fv1_2fpowersensor_2eproto,
+    false,
+    false,
+    1693,
+    descriptor_table_protodef_component_2fpowersensor_2fv1_2fpowersensor_2eproto,
     "component/powersensor/v1/powersensor.proto",
-    &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_once, descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_deps, 3, 6,
-    schemas, file_default_instances, TableStruct_component_2fpowersensor_2fv1_2fpowersensor_2eproto::offsets,
-    file_level_metadata_component_2fpowersensor_2fv1_2fpowersensor_2eproto, file_level_enum_descriptors_component_2fpowersensor_2fv1_2fpowersensor_2eproto,
+    &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_once,
+    descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_deps,
+    3,
+    6,
+    schemas,
+    file_default_instances,
+    TableStruct_component_2fpowersensor_2fv1_2fpowersensor_2eproto::offsets,
+    file_level_metadata_component_2fpowersensor_2fv1_2fpowersensor_2eproto,
+    file_level_enum_descriptors_component_2fpowersensor_2fv1_2fpowersensor_2eproto,
     file_level_service_descriptors_component_2fpowersensor_2fv1_2fpowersensor_2eproto,
 };
+
+// This function exists to be marked as weak.
+// It can significantly speed up compilation by breaking up LLVM's SCC
+// in the .pb.cc translation units. Large translation units see a
+// reduction of more than 35% of walltime for optimized builds. Without
+// the weak attribute all the messages in the file, including all the
+// vtables and everything they use become part of the same SCC through
+// a cycle like:
+// GetMetadata -> descriptor table -> default instances ->
+//   vtables -> GetMetadata
+// By adding a weak function here we break the connection from the
+// individual vtables back into the descriptor table.
 PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_getter() {
   return &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto;
 }
-
 // Force running AddDescriptors() at dynamic initialization time.
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_component_2fpowersensor_2fv1_2fpowersensor_2eproto(&descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
+static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_component_2fpowersensor_2fv1_2fpowersensor_2eproto(&descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto);
 namespace viam {
 namespace component {
 namespace powersensor {
 namespace v1 {
-
 // ===================================================================
 
 class GetVoltageRequest::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetVoltageRequest* msg);
+  using HasBits = decltype(std::declval<GetVoltageRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(GetVoltageRequest, _impl_._has_bits_);
+  static const ::google::protobuf::Struct& extra(const GetVoltageRequest* msg);
+  static void set_has_extra(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Struct&
-GetVoltageRequest::_Internal::extra(const GetVoltageRequest* msg) {
-  return *msg->extra_;
+const ::google::protobuf::Struct& GetVoltageRequest::_Internal::extra(const GetVoltageRequest* msg) {
+  return *msg->_impl_.extra_;
 }
 void GetVoltageRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
-  }
-  extra_ = nullptr;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.extra_ != nullptr) _impl_.extra_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
-GetVoltageRequest::GetVoltageRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+GetVoltageRequest::GetVoltageRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:viam.component.powersensor.v1.GetVoltageRequest)
 }
-GetVoltageRequest::GetVoltageRequest(const GetVoltageRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
-  }
-  if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
-  }
+inline PROTOBUF_NDEBUG_INLINE GetVoltageRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        name_(arena, from.name_) {}
+
+GetVoltageRequest::GetVoltageRequest(
+    ::google::protobuf::Arena* arena,
+    const GetVoltageRequest& from)
+    : ::google::protobuf::Message(arena) {
+  GetVoltageRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.extra_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::google::protobuf::Struct>(arena, *from._impl_.extra_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:viam.component.powersensor.v1.GetVoltageRequest)
 }
+inline PROTOBUF_NDEBUG_INLINE GetVoltageRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        name_(arena) {}
 
-inline void GetVoltageRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void GetVoltageRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.extra_ = {};
 }
-
 GetVoltageRequest::~GetVoltageRequest() {
   // @@protoc_insertion_point(destructor:viam.component.powersensor.v1.GetVoltageRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void GetVoltageRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.name_.Destroy();
+  delete _impl_.extra_;
+  _impl_.~Impl_();
 }
 
-void GetVoltageRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void GetVoltageRequest::Clear() {
+PROTOBUF_NOINLINE void GetVoltageRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.component.powersensor.v1.GetVoltageRequest)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.extra_ != nullptr);
+    _impl_.extra_->Clear();
   }
-  extra_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetVoltageRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string name = 1 [json_name = "name"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_name();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "viam.component.powersensor.v1.GetVoltageRequest.name"));
-        } else
-          goto handle_unusual;
-        continue;
-      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-      case 99:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* GetVoltageRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* GetVoltageRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 2, 1, 60, 7> GetVoltageRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(GetVoltageRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    99, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetVoltageRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string name = 1 [json_name = "name"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetVoltageRequest, _impl_.name_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {::_pbi::TcParser::FastMtS2,
+     {1690, 0, 0, PROTOBUF_FIELD_OFFSET(GetVoltageRequest, _impl_.extra_)}},
+  }}, {{
+    99, 0, 1,
+    65534, 1,
+    65535, 65535
+  }}, {{
+    // string name = 1 [json_name = "name"];
+    {PROTOBUF_FIELD_OFFSET(GetVoltageRequest, _impl_.name_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {PROTOBUF_FIELD_OFFSET(GetVoltageRequest, _impl_.extra_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::google::protobuf::Struct>()},
+  }}, {{
+    "\57\4\0\0\0\0\0\0"
+    "viam.component.powersensor.v1.GetVoltageRequest"
+    "name"
+  }},
+};
+
+::uint8_t* GetVoltageRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:viam.component.powersensor.v1.GetVoltageRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "viam.component.powersensor.v1.GetVoltageRequest.name");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_name(), target);
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.component.powersensor.v1.GetVoltageRequest.name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(99, _Internal::extra(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        99, _Internal::extra(this),
         _Internal::extra(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.component.powersensor.v1.GetVoltageRequest)
   return target;
 }
 
-size_t GetVoltageRequest::ByteSizeLong() const {
+::size_t GetVoltageRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.component.powersensor.v1.GetVoltageRequest)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_name());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    total_size += 2 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        2 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetVoltageRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetVoltageRequest::MergeImpl
+const ::google::protobuf::Message::ClassData GetVoltageRequest::_class_data_ = {
+    GetVoltageRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetVoltageRequest::GetClassData() const { return &_class_data_; }
-
-void GetVoltageRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetVoltageRequest *>(to)->MergeFrom(
-      static_cast<const GetVoltageRequest &>(from));
+const ::google::protobuf::Message::ClassData* GetVoltageRequest::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void GetVoltageRequest::MergeFrom(const GetVoltageRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.powersensor.v1.GetVoltageRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void GetVoltageRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetVoltageRequest*>(&to_msg);
+  auto& from = static_cast<const GetVoltageRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.powersensor.v1.GetVoltageRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
-  if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_extra()->::google::protobuf::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetVoltageRequest::CopyFrom(const GetVoltageRequest& from) {
@@ -463,215 +563,213 @@ void GetVoltageRequest::CopyFrom(const GetVoltageRequest& from) {
   MergeFrom(from);
 }
 
-bool GetVoltageRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetVoltageRequest::IsInitialized() const {
   return true;
 }
 
-void GetVoltageRequest::InternalSwap(GetVoltageRequest* other) {
+::_pbi::CachedSize* GetVoltageRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetVoltageRequest::InternalSwap(GetVoltageRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
-  );
-  swap(extra_, other->extra_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetVoltageRequest::GetMetadata() const {
+::google::protobuf::Metadata GetVoltageRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_getter, &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_once,
       file_level_metadata_component_2fpowersensor_2fv1_2fpowersensor_2eproto[0]);
 }
-
 // ===================================================================
 
 class GetVoltageResponse::_Internal {
  public:
 };
 
-GetVoltageResponse::GetVoltageResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+GetVoltageResponse::GetVoltageResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:viam.component.powersensor.v1.GetVoltageResponse)
 }
-GetVoltageResponse::GetVoltageResponse(const GetVoltageResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&volts_, &from.volts_,
-    static_cast<size_t>(reinterpret_cast<char*>(&is_ac_) -
-    reinterpret_cast<char*>(&volts_)) + sizeof(is_ac_));
-  // @@protoc_insertion_point(copy_constructor:viam.component.powersensor.v1.GetVoltageResponse)
+GetVoltageResponse::GetVoltageResponse(
+    ::google::protobuf::Arena* arena, const GetVoltageResponse& from)
+    : GetVoltageResponse(arena) {
+  MergeFrom(from);
 }
+inline PROTOBUF_NDEBUG_INLINE GetVoltageResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
 
-inline void GetVoltageResponse::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&volts_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&is_ac_) -
-    reinterpret_cast<char*>(&volts_)) + sizeof(is_ac_));
+inline void GetVoltageResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, volts_),
+           0,
+           offsetof(Impl_, is_ac_) -
+               offsetof(Impl_, volts_) +
+               sizeof(Impl_::is_ac_));
 }
-
 GetVoltageResponse::~GetVoltageResponse() {
   // @@protoc_insertion_point(destructor:viam.component.powersensor.v1.GetVoltageResponse)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void GetVoltageResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
 }
 
-void GetVoltageResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void GetVoltageResponse::Clear() {
+PROTOBUF_NOINLINE void GetVoltageResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.component.powersensor.v1.GetVoltageResponse)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&volts_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&is_ac_) -
-      reinterpret_cast<char*>(&volts_)) + sizeof(is_ac_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  ::memset(&_impl_.volts_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.is_ac_) -
+      reinterpret_cast<char*>(&_impl_.volts_)) + sizeof(_impl_.is_ac_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetVoltageResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // double volts = 1 [json_name = "volts"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 9)) {
-          volts_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
-          ptr += sizeof(double);
-        } else
-          goto handle_unusual;
-        continue;
-      // bool is_ac = 2 [json_name = "isAc"];
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          is_ac_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* GetVoltageResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* GetVoltageResponse::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> GetVoltageResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_GetVoltageResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // bool is_ac = 2 [json_name = "isAc"];
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(GetVoltageResponse, _impl_.is_ac_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(GetVoltageResponse, _impl_.is_ac_)}},
+    // double volts = 1 [json_name = "volts"];
+    {::_pbi::TcParser::FastF64S1,
+     {9, 63, 0, PROTOBUF_FIELD_OFFSET(GetVoltageResponse, _impl_.volts_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // double volts = 1 [json_name = "volts"];
+    {PROTOBUF_FIELD_OFFSET(GetVoltageResponse, _impl_.volts_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
+    // bool is_ac = 2 [json_name = "isAc"];
+    {PROTOBUF_FIELD_OFFSET(GetVoltageResponse, _impl_.is_ac_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* GetVoltageResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:viam.component.powersensor.v1.GetVoltageResponse)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // double volts = 1 [json_name = "volts"];
-  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
   double tmp_volts = this->_internal_volts();
-  uint64_t raw_volts;
+  ::uint64_t raw_volts;
   memcpy(&raw_volts, &tmp_volts, sizeof(tmp_volts));
   if (raw_volts != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteDoubleToArray(1, this->_internal_volts(), target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(
+        1, this->_internal_volts(), target);
   }
 
   // bool is_ac = 2 [json_name = "isAc"];
   if (this->_internal_is_ac() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_is_ac(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        2, this->_internal_is_ac(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.component.powersensor.v1.GetVoltageResponse)
   return target;
 }
 
-size_t GetVoltageResponse::ByteSizeLong() const {
+::size_t GetVoltageResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.component.powersensor.v1.GetVoltageResponse)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // double volts = 1 [json_name = "volts"];
-  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
   double tmp_volts = this->_internal_volts();
-  uint64_t raw_volts;
+  ::uint64_t raw_volts;
   memcpy(&raw_volts, &tmp_volts, sizeof(tmp_volts));
   if (raw_volts != 0) {
-    total_size += 1 + 8;
+    total_size += 9;
   }
 
   // bool is_ac = 2 [json_name = "isAc"];
   if (this->_internal_is_ac() != 0) {
-    total_size += 1 + 1;
+    total_size += 2;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetVoltageResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetVoltageResponse::MergeImpl
+const ::google::protobuf::Message::ClassData GetVoltageResponse::_class_data_ = {
+    GetVoltageResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetVoltageResponse::GetClassData() const { return &_class_data_; }
-
-void GetVoltageResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetVoltageResponse *>(to)->MergeFrom(
-      static_cast<const GetVoltageResponse &>(from));
+const ::google::protobuf::Message::ClassData* GetVoltageResponse::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void GetVoltageResponse::MergeFrom(const GetVoltageResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.powersensor.v1.GetVoltageResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void GetVoltageResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetVoltageResponse*>(&to_msg);
+  auto& from = static_cast<const GetVoltageResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.powersensor.v1.GetVoltageResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
   double tmp_volts = from._internal_volts();
-  uint64_t raw_volts;
+  ::uint64_t raw_volts;
   memcpy(&raw_volts, &tmp_volts, sizeof(tmp_volts));
   if (raw_volts != 0) {
-    _internal_set_volts(from._internal_volts());
+    _this->_internal_set_volts(from._internal_volts());
   }
   if (from._internal_is_ac() != 0) {
-    _internal_set_is_ac(from._internal_is_ac());
+    _this->_internal_set_is_ac(from._internal_is_ac());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetVoltageResponse::CopyFrom(const GetVoltageResponse& from) {
@@ -681,239 +779,247 @@ void GetVoltageResponse::CopyFrom(const GetVoltageResponse& from) {
   MergeFrom(from);
 }
 
-bool GetVoltageResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetVoltageResponse::IsInitialized() const {
   return true;
 }
 
-void GetVoltageResponse::InternalSwap(GetVoltageResponse* other) {
+::_pbi::CachedSize* GetVoltageResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetVoltageResponse::InternalSwap(GetVoltageResponse* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(GetVoltageResponse, is_ac_)
-      + sizeof(GetVoltageResponse::is_ac_)
-      - PROTOBUF_FIELD_OFFSET(GetVoltageResponse, volts_)>(
-          reinterpret_cast<char*>(&volts_),
-          reinterpret_cast<char*>(&other->volts_));
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GetVoltageResponse, _impl_.is_ac_)
+      + sizeof(GetVoltageResponse::_impl_.is_ac_)
+      - PROTOBUF_FIELD_OFFSET(GetVoltageResponse, _impl_.volts_)>(
+          reinterpret_cast<char*>(&_impl_.volts_),
+          reinterpret_cast<char*>(&other->_impl_.volts_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetVoltageResponse::GetMetadata() const {
+::google::protobuf::Metadata GetVoltageResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_getter, &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_once,
       file_level_metadata_component_2fpowersensor_2fv1_2fpowersensor_2eproto[1]);
 }
-
 // ===================================================================
 
 class GetCurrentRequest::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetCurrentRequest* msg);
+  using HasBits = decltype(std::declval<GetCurrentRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(GetCurrentRequest, _impl_._has_bits_);
+  static const ::google::protobuf::Struct& extra(const GetCurrentRequest* msg);
+  static void set_has_extra(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Struct&
-GetCurrentRequest::_Internal::extra(const GetCurrentRequest* msg) {
-  return *msg->extra_;
+const ::google::protobuf::Struct& GetCurrentRequest::_Internal::extra(const GetCurrentRequest* msg) {
+  return *msg->_impl_.extra_;
 }
 void GetCurrentRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
-  }
-  extra_ = nullptr;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.extra_ != nullptr) _impl_.extra_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
-GetCurrentRequest::GetCurrentRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+GetCurrentRequest::GetCurrentRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:viam.component.powersensor.v1.GetCurrentRequest)
 }
-GetCurrentRequest::GetCurrentRequest(const GetCurrentRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
-  }
-  if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
-  }
+inline PROTOBUF_NDEBUG_INLINE GetCurrentRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        name_(arena, from.name_) {}
+
+GetCurrentRequest::GetCurrentRequest(
+    ::google::protobuf::Arena* arena,
+    const GetCurrentRequest& from)
+    : ::google::protobuf::Message(arena) {
+  GetCurrentRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.extra_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::google::protobuf::Struct>(arena, *from._impl_.extra_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:viam.component.powersensor.v1.GetCurrentRequest)
 }
+inline PROTOBUF_NDEBUG_INLINE GetCurrentRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        name_(arena) {}
 
-inline void GetCurrentRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void GetCurrentRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.extra_ = {};
 }
-
 GetCurrentRequest::~GetCurrentRequest() {
   // @@protoc_insertion_point(destructor:viam.component.powersensor.v1.GetCurrentRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void GetCurrentRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.name_.Destroy();
+  delete _impl_.extra_;
+  _impl_.~Impl_();
 }
 
-void GetCurrentRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void GetCurrentRequest::Clear() {
+PROTOBUF_NOINLINE void GetCurrentRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.component.powersensor.v1.GetCurrentRequest)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.extra_ != nullptr);
+    _impl_.extra_->Clear();
   }
-  extra_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetCurrentRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string name = 1 [json_name = "name"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_name();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "viam.component.powersensor.v1.GetCurrentRequest.name"));
-        } else
-          goto handle_unusual;
-        continue;
-      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-      case 99:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* GetCurrentRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* GetCurrentRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 2, 1, 60, 7> GetCurrentRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(GetCurrentRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    99, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetCurrentRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string name = 1 [json_name = "name"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetCurrentRequest, _impl_.name_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {::_pbi::TcParser::FastMtS2,
+     {1690, 0, 0, PROTOBUF_FIELD_OFFSET(GetCurrentRequest, _impl_.extra_)}},
+  }}, {{
+    99, 0, 1,
+    65534, 1,
+    65535, 65535
+  }}, {{
+    // string name = 1 [json_name = "name"];
+    {PROTOBUF_FIELD_OFFSET(GetCurrentRequest, _impl_.name_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {PROTOBUF_FIELD_OFFSET(GetCurrentRequest, _impl_.extra_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::google::protobuf::Struct>()},
+  }}, {{
+    "\57\4\0\0\0\0\0\0"
+    "viam.component.powersensor.v1.GetCurrentRequest"
+    "name"
+  }},
+};
+
+::uint8_t* GetCurrentRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:viam.component.powersensor.v1.GetCurrentRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "viam.component.powersensor.v1.GetCurrentRequest.name");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_name(), target);
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.component.powersensor.v1.GetCurrentRequest.name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(99, _Internal::extra(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        99, _Internal::extra(this),
         _Internal::extra(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.component.powersensor.v1.GetCurrentRequest)
   return target;
 }
 
-size_t GetCurrentRequest::ByteSizeLong() const {
+::size_t GetCurrentRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.component.powersensor.v1.GetCurrentRequest)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_name());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    total_size += 2 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        2 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetCurrentRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetCurrentRequest::MergeImpl
+const ::google::protobuf::Message::ClassData GetCurrentRequest::_class_data_ = {
+    GetCurrentRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetCurrentRequest::GetClassData() const { return &_class_data_; }
-
-void GetCurrentRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetCurrentRequest *>(to)->MergeFrom(
-      static_cast<const GetCurrentRequest &>(from));
+const ::google::protobuf::Message::ClassData* GetCurrentRequest::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void GetCurrentRequest::MergeFrom(const GetCurrentRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.powersensor.v1.GetCurrentRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void GetCurrentRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetCurrentRequest*>(&to_msg);
+  auto& from = static_cast<const GetCurrentRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.powersensor.v1.GetCurrentRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
-  if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_extra()->::google::protobuf::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetCurrentRequest::CopyFrom(const GetCurrentRequest& from) {
@@ -923,215 +1029,213 @@ void GetCurrentRequest::CopyFrom(const GetCurrentRequest& from) {
   MergeFrom(from);
 }
 
-bool GetCurrentRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetCurrentRequest::IsInitialized() const {
   return true;
 }
 
-void GetCurrentRequest::InternalSwap(GetCurrentRequest* other) {
+::_pbi::CachedSize* GetCurrentRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetCurrentRequest::InternalSwap(GetCurrentRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
-  );
-  swap(extra_, other->extra_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetCurrentRequest::GetMetadata() const {
+::google::protobuf::Metadata GetCurrentRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_getter, &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_once,
       file_level_metadata_component_2fpowersensor_2fv1_2fpowersensor_2eproto[2]);
 }
-
 // ===================================================================
 
 class GetCurrentResponse::_Internal {
  public:
 };
 
-GetCurrentResponse::GetCurrentResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+GetCurrentResponse::GetCurrentResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:viam.component.powersensor.v1.GetCurrentResponse)
 }
-GetCurrentResponse::GetCurrentResponse(const GetCurrentResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&amperes_, &from.amperes_,
-    static_cast<size_t>(reinterpret_cast<char*>(&is_ac_) -
-    reinterpret_cast<char*>(&amperes_)) + sizeof(is_ac_));
-  // @@protoc_insertion_point(copy_constructor:viam.component.powersensor.v1.GetCurrentResponse)
+GetCurrentResponse::GetCurrentResponse(
+    ::google::protobuf::Arena* arena, const GetCurrentResponse& from)
+    : GetCurrentResponse(arena) {
+  MergeFrom(from);
 }
+inline PROTOBUF_NDEBUG_INLINE GetCurrentResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
 
-inline void GetCurrentResponse::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&amperes_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&is_ac_) -
-    reinterpret_cast<char*>(&amperes_)) + sizeof(is_ac_));
+inline void GetCurrentResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, amperes_),
+           0,
+           offsetof(Impl_, is_ac_) -
+               offsetof(Impl_, amperes_) +
+               sizeof(Impl_::is_ac_));
 }
-
 GetCurrentResponse::~GetCurrentResponse() {
   // @@protoc_insertion_point(destructor:viam.component.powersensor.v1.GetCurrentResponse)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void GetCurrentResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
 }
 
-void GetCurrentResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void GetCurrentResponse::Clear() {
+PROTOBUF_NOINLINE void GetCurrentResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.component.powersensor.v1.GetCurrentResponse)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&amperes_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&is_ac_) -
-      reinterpret_cast<char*>(&amperes_)) + sizeof(is_ac_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  ::memset(&_impl_.amperes_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.is_ac_) -
+      reinterpret_cast<char*>(&_impl_.amperes_)) + sizeof(_impl_.is_ac_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetCurrentResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // double amperes = 1 [json_name = "amperes"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 9)) {
-          amperes_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
-          ptr += sizeof(double);
-        } else
-          goto handle_unusual;
-        continue;
-      // bool is_ac = 2 [json_name = "isAc"];
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          is_ac_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* GetCurrentResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* GetCurrentResponse::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> GetCurrentResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_GetCurrentResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // bool is_ac = 2 [json_name = "isAc"];
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(GetCurrentResponse, _impl_.is_ac_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(GetCurrentResponse, _impl_.is_ac_)}},
+    // double amperes = 1 [json_name = "amperes"];
+    {::_pbi::TcParser::FastF64S1,
+     {9, 63, 0, PROTOBUF_FIELD_OFFSET(GetCurrentResponse, _impl_.amperes_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // double amperes = 1 [json_name = "amperes"];
+    {PROTOBUF_FIELD_OFFSET(GetCurrentResponse, _impl_.amperes_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
+    // bool is_ac = 2 [json_name = "isAc"];
+    {PROTOBUF_FIELD_OFFSET(GetCurrentResponse, _impl_.is_ac_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* GetCurrentResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:viam.component.powersensor.v1.GetCurrentResponse)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // double amperes = 1 [json_name = "amperes"];
-  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
   double tmp_amperes = this->_internal_amperes();
-  uint64_t raw_amperes;
+  ::uint64_t raw_amperes;
   memcpy(&raw_amperes, &tmp_amperes, sizeof(tmp_amperes));
   if (raw_amperes != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteDoubleToArray(1, this->_internal_amperes(), target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(
+        1, this->_internal_amperes(), target);
   }
 
   // bool is_ac = 2 [json_name = "isAc"];
   if (this->_internal_is_ac() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_is_ac(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        2, this->_internal_is_ac(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.component.powersensor.v1.GetCurrentResponse)
   return target;
 }
 
-size_t GetCurrentResponse::ByteSizeLong() const {
+::size_t GetCurrentResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.component.powersensor.v1.GetCurrentResponse)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // double amperes = 1 [json_name = "amperes"];
-  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
   double tmp_amperes = this->_internal_amperes();
-  uint64_t raw_amperes;
+  ::uint64_t raw_amperes;
   memcpy(&raw_amperes, &tmp_amperes, sizeof(tmp_amperes));
   if (raw_amperes != 0) {
-    total_size += 1 + 8;
+    total_size += 9;
   }
 
   // bool is_ac = 2 [json_name = "isAc"];
   if (this->_internal_is_ac() != 0) {
-    total_size += 1 + 1;
+    total_size += 2;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetCurrentResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetCurrentResponse::MergeImpl
+const ::google::protobuf::Message::ClassData GetCurrentResponse::_class_data_ = {
+    GetCurrentResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetCurrentResponse::GetClassData() const { return &_class_data_; }
-
-void GetCurrentResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetCurrentResponse *>(to)->MergeFrom(
-      static_cast<const GetCurrentResponse &>(from));
+const ::google::protobuf::Message::ClassData* GetCurrentResponse::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void GetCurrentResponse::MergeFrom(const GetCurrentResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.powersensor.v1.GetCurrentResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void GetCurrentResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetCurrentResponse*>(&to_msg);
+  auto& from = static_cast<const GetCurrentResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.powersensor.v1.GetCurrentResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
   double tmp_amperes = from._internal_amperes();
-  uint64_t raw_amperes;
+  ::uint64_t raw_amperes;
   memcpy(&raw_amperes, &tmp_amperes, sizeof(tmp_amperes));
   if (raw_amperes != 0) {
-    _internal_set_amperes(from._internal_amperes());
+    _this->_internal_set_amperes(from._internal_amperes());
   }
   if (from._internal_is_ac() != 0) {
-    _internal_set_is_ac(from._internal_is_ac());
+    _this->_internal_set_is_ac(from._internal_is_ac());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetCurrentResponse::CopyFrom(const GetCurrentResponse& from) {
@@ -1141,239 +1245,247 @@ void GetCurrentResponse::CopyFrom(const GetCurrentResponse& from) {
   MergeFrom(from);
 }
 
-bool GetCurrentResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetCurrentResponse::IsInitialized() const {
   return true;
 }
 
-void GetCurrentResponse::InternalSwap(GetCurrentResponse* other) {
+::_pbi::CachedSize* GetCurrentResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetCurrentResponse::InternalSwap(GetCurrentResponse* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(GetCurrentResponse, is_ac_)
-      + sizeof(GetCurrentResponse::is_ac_)
-      - PROTOBUF_FIELD_OFFSET(GetCurrentResponse, amperes_)>(
-          reinterpret_cast<char*>(&amperes_),
-          reinterpret_cast<char*>(&other->amperes_));
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GetCurrentResponse, _impl_.is_ac_)
+      + sizeof(GetCurrentResponse::_impl_.is_ac_)
+      - PROTOBUF_FIELD_OFFSET(GetCurrentResponse, _impl_.amperes_)>(
+          reinterpret_cast<char*>(&_impl_.amperes_),
+          reinterpret_cast<char*>(&other->_impl_.amperes_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetCurrentResponse::GetMetadata() const {
+::google::protobuf::Metadata GetCurrentResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_getter, &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_once,
       file_level_metadata_component_2fpowersensor_2fv1_2fpowersensor_2eproto[3]);
 }
-
 // ===================================================================
 
 class GetPowerRequest::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetPowerRequest* msg);
+  using HasBits = decltype(std::declval<GetPowerRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(GetPowerRequest, _impl_._has_bits_);
+  static const ::google::protobuf::Struct& extra(const GetPowerRequest* msg);
+  static void set_has_extra(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Struct&
-GetPowerRequest::_Internal::extra(const GetPowerRequest* msg) {
-  return *msg->extra_;
+const ::google::protobuf::Struct& GetPowerRequest::_Internal::extra(const GetPowerRequest* msg) {
+  return *msg->_impl_.extra_;
 }
 void GetPowerRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
-  }
-  extra_ = nullptr;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.extra_ != nullptr) _impl_.extra_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
-GetPowerRequest::GetPowerRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+GetPowerRequest::GetPowerRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:viam.component.powersensor.v1.GetPowerRequest)
 }
-GetPowerRequest::GetPowerRequest(const GetPowerRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
-  }
-  if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
-  }
+inline PROTOBUF_NDEBUG_INLINE GetPowerRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        name_(arena, from.name_) {}
+
+GetPowerRequest::GetPowerRequest(
+    ::google::protobuf::Arena* arena,
+    const GetPowerRequest& from)
+    : ::google::protobuf::Message(arena) {
+  GetPowerRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.extra_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::google::protobuf::Struct>(arena, *from._impl_.extra_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:viam.component.powersensor.v1.GetPowerRequest)
 }
+inline PROTOBUF_NDEBUG_INLINE GetPowerRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        name_(arena) {}
 
-inline void GetPowerRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void GetPowerRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.extra_ = {};
 }
-
 GetPowerRequest::~GetPowerRequest() {
   // @@protoc_insertion_point(destructor:viam.component.powersensor.v1.GetPowerRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void GetPowerRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.name_.Destroy();
+  delete _impl_.extra_;
+  _impl_.~Impl_();
 }
 
-void GetPowerRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void GetPowerRequest::Clear() {
+PROTOBUF_NOINLINE void GetPowerRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.component.powersensor.v1.GetPowerRequest)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.extra_ != nullptr);
+    _impl_.extra_->Clear();
   }
-  extra_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetPowerRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string name = 1 [json_name = "name"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_name();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "viam.component.powersensor.v1.GetPowerRequest.name"));
-        } else
-          goto handle_unusual;
-        continue;
-      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-      case 99:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* GetPowerRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* GetPowerRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 2, 1, 58, 7> GetPowerRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(GetPowerRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    99, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetPowerRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string name = 1 [json_name = "name"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetPowerRequest, _impl_.name_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {::_pbi::TcParser::FastMtS2,
+     {1690, 0, 0, PROTOBUF_FIELD_OFFSET(GetPowerRequest, _impl_.extra_)}},
+  }}, {{
+    99, 0, 1,
+    65534, 1,
+    65535, 65535
+  }}, {{
+    // string name = 1 [json_name = "name"];
+    {PROTOBUF_FIELD_OFFSET(GetPowerRequest, _impl_.name_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {PROTOBUF_FIELD_OFFSET(GetPowerRequest, _impl_.extra_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::google::protobuf::Struct>()},
+  }}, {{
+    "\55\4\0\0\0\0\0\0"
+    "viam.component.powersensor.v1.GetPowerRequest"
+    "name"
+  }},
+};
+
+::uint8_t* GetPowerRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:viam.component.powersensor.v1.GetPowerRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "viam.component.powersensor.v1.GetPowerRequest.name");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_name(), target);
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.component.powersensor.v1.GetPowerRequest.name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(99, _Internal::extra(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        99, _Internal::extra(this),
         _Internal::extra(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.component.powersensor.v1.GetPowerRequest)
   return target;
 }
 
-size_t GetPowerRequest::ByteSizeLong() const {
+::size_t GetPowerRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.component.powersensor.v1.GetPowerRequest)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_name());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    total_size += 2 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        2 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetPowerRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetPowerRequest::MergeImpl
+const ::google::protobuf::Message::ClassData GetPowerRequest::_class_data_ = {
+    GetPowerRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetPowerRequest::GetClassData() const { return &_class_data_; }
-
-void GetPowerRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetPowerRequest *>(to)->MergeFrom(
-      static_cast<const GetPowerRequest &>(from));
+const ::google::protobuf::Message::ClassData* GetPowerRequest::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void GetPowerRequest::MergeFrom(const GetPowerRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.powersensor.v1.GetPowerRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void GetPowerRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetPowerRequest*>(&to_msg);
+  auto& from = static_cast<const GetPowerRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.powersensor.v1.GetPowerRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
-  if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_extra()->::google::protobuf::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetPowerRequest::CopyFrom(const GetPowerRequest& from) {
@@ -1383,186 +1495,185 @@ void GetPowerRequest::CopyFrom(const GetPowerRequest& from) {
   MergeFrom(from);
 }
 
-bool GetPowerRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetPowerRequest::IsInitialized() const {
   return true;
 }
 
-void GetPowerRequest::InternalSwap(GetPowerRequest* other) {
+::_pbi::CachedSize* GetPowerRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetPowerRequest::InternalSwap(GetPowerRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
-  );
-  swap(extra_, other->extra_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetPowerRequest::GetMetadata() const {
+::google::protobuf::Metadata GetPowerRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_getter, &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_once,
       file_level_metadata_component_2fpowersensor_2fv1_2fpowersensor_2eproto[4]);
 }
-
 // ===================================================================
 
 class GetPowerResponse::_Internal {
  public:
 };
 
-GetPowerResponse::GetPowerResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+GetPowerResponse::GetPowerResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:viam.component.powersensor.v1.GetPowerResponse)
 }
-GetPowerResponse::GetPowerResponse(const GetPowerResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  watts_ = from.watts_;
-  // @@protoc_insertion_point(copy_constructor:viam.component.powersensor.v1.GetPowerResponse)
+GetPowerResponse::GetPowerResponse(
+    ::google::protobuf::Arena* arena, const GetPowerResponse& from)
+    : GetPowerResponse(arena) {
+  MergeFrom(from);
 }
+inline PROTOBUF_NDEBUG_INLINE GetPowerResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
 
-inline void GetPowerResponse::SharedCtor() {
-watts_ = 0;
+inline void GetPowerResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.watts_ = {};
 }
-
 GetPowerResponse::~GetPowerResponse() {
   // @@protoc_insertion_point(destructor:viam.component.powersensor.v1.GetPowerResponse)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void GetPowerResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
 }
 
-void GetPowerResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void GetPowerResponse::Clear() {
+PROTOBUF_NOINLINE void GetPowerResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.component.powersensor.v1.GetPowerResponse)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  watts_ = 0;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_.watts_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetPowerResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // double watts = 1 [json_name = "watts"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 9)) {
-          watts_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
-          ptr += sizeof(double);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* GetPowerResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* GetPowerResponse::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> GetPowerResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_GetPowerResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // double watts = 1 [json_name = "watts"];
+    {::_pbi::TcParser::FastF64S1,
+     {9, 63, 0, PROTOBUF_FIELD_OFFSET(GetPowerResponse, _impl_.watts_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // double watts = 1 [json_name = "watts"];
+    {PROTOBUF_FIELD_OFFSET(GetPowerResponse, _impl_.watts_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* GetPowerResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:viam.component.powersensor.v1.GetPowerResponse)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // double watts = 1 [json_name = "watts"];
-  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
   double tmp_watts = this->_internal_watts();
-  uint64_t raw_watts;
+  ::uint64_t raw_watts;
   memcpy(&raw_watts, &tmp_watts, sizeof(tmp_watts));
   if (raw_watts != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteDoubleToArray(1, this->_internal_watts(), target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(
+        1, this->_internal_watts(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.component.powersensor.v1.GetPowerResponse)
   return target;
 }
 
-size_t GetPowerResponse::ByteSizeLong() const {
+::size_t GetPowerResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.component.powersensor.v1.GetPowerResponse)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // double watts = 1 [json_name = "watts"];
-  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
   double tmp_watts = this->_internal_watts();
-  uint64_t raw_watts;
+  ::uint64_t raw_watts;
   memcpy(&raw_watts, &tmp_watts, sizeof(tmp_watts));
   if (raw_watts != 0) {
-    total_size += 1 + 8;
+    total_size += 9;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetPowerResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GetPowerResponse::MergeImpl
+const ::google::protobuf::Message::ClassData GetPowerResponse::_class_data_ = {
+    GetPowerResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetPowerResponse::GetClassData() const { return &_class_data_; }
-
-void GetPowerResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetPowerResponse *>(to)->MergeFrom(
-      static_cast<const GetPowerResponse &>(from));
+const ::google::protobuf::Message::ClassData* GetPowerResponse::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void GetPowerResponse::MergeFrom(const GetPowerResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.powersensor.v1.GetPowerResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void GetPowerResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetPowerResponse*>(&to_msg);
+  auto& from = static_cast<const GetPowerResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.powersensor.v1.GetPowerResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
   double tmp_watts = from._internal_watts();
-  uint64_t raw_watts;
+  ::uint64_t raw_watts;
   memcpy(&raw_watts, &tmp_watts, sizeof(tmp_watts));
   if (raw_watts != 0) {
-    _internal_set_watts(from._internal_watts());
+    _this->_internal_set_watts(from._internal_watts());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetPowerResponse::CopyFrom(const GetPowerResponse& from) {
@@ -1572,53 +1683,32 @@ void GetPowerResponse::CopyFrom(const GetPowerResponse& from) {
   MergeFrom(from);
 }
 
-bool GetPowerResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetPowerResponse::IsInitialized() const {
   return true;
 }
 
-void GetPowerResponse::InternalSwap(GetPowerResponse* other) {
+::_pbi::CachedSize* GetPowerResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetPowerResponse::InternalSwap(GetPowerResponse* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(watts_, other->watts_);
+        swap(_impl_.watts_, other->_impl_.watts_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GetPowerResponse::GetMetadata() const {
+::google::protobuf::Metadata GetPowerResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_getter, &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_once,
       file_level_metadata_component_2fpowersensor_2fv1_2fpowersensor_2eproto[5]);
 }
-
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace powersensor
 }  // namespace component
 }  // namespace viam
-PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::viam::component::powersensor::v1::GetVoltageRequest*
-Arena::CreateMaybeMessage< ::viam::component::powersensor::v1::GetVoltageRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::powersensor::v1::GetVoltageRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::component::powersensor::v1::GetVoltageResponse*
-Arena::CreateMaybeMessage< ::viam::component::powersensor::v1::GetVoltageResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::powersensor::v1::GetVoltageResponse >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::component::powersensor::v1::GetCurrentRequest*
-Arena::CreateMaybeMessage< ::viam::component::powersensor::v1::GetCurrentRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::powersensor::v1::GetCurrentRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::component::powersensor::v1::GetCurrentResponse*
-Arena::CreateMaybeMessage< ::viam::component::powersensor::v1::GetCurrentResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::powersensor::v1::GetCurrentResponse >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::component::powersensor::v1::GetPowerRequest*
-Arena::CreateMaybeMessage< ::viam::component::powersensor::v1::GetPowerRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::powersensor::v1::GetPowerRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::component::powersensor::v1::GetPowerResponse*
-Arena::CreateMaybeMessage< ::viam::component::powersensor::v1::GetPowerResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::powersensor::v1::GetPowerResponse >(arena);
-}
-PROTOBUF_NAMESPACE_CLOSE
-
+namespace google {
+namespace protobuf {
+}  // namespace protobuf
+}  // namespace google
 // @@protoc_insertion_point(global_scope)
-#include <google/protobuf/port_undef.inc>
+#include "google/protobuf/port_undef.inc"
