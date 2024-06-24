@@ -26,6 +26,7 @@ target_sources(viamsdk_test
     mocks/mock_base.cpp
     mocks/mock_board.cpp
     mocks/mock_encoder.cpp
+    mocks/mock_gantry.cpp
     mocks/mock_gripper.cpp
     mocks/mock_motor.cpp
     mocks/mock_motion.cpp
