@@ -4,283 +4,334 @@
 #include "google/api/visibility.pb.h"
 
 #include <algorithm>
-
-#include <google/protobuf/io/coded_stream.h>
-#include <google/protobuf/extension_set.h>
-#include <google/protobuf/wire_format_lite.h>
-#include <google/protobuf/descriptor.h>
-#include <google/protobuf/generated_message_reflection.h>
-#include <google/protobuf/reflection_ops.h>
-#include <google/protobuf/wire_format.h>
+#include "google/protobuf/io/coded_stream.h"
+#include "google/protobuf/extension_set.h"
+#include "google/protobuf/wire_format_lite.h"
+#include "google/protobuf/descriptor.h"
+#include "google/protobuf/generated_message_reflection.h"
+#include "google/protobuf/reflection_ops.h"
+#include "google/protobuf/wire_format.h"
+#include "google/protobuf/generated_message_tctable_impl.h"
 // @@protoc_insertion_point(includes)
-#include <google/protobuf/port_def.inc>
 
+// Must be included last.
+#include "google/protobuf/port_def.inc"
 PROTOBUF_PRAGMA_INIT_SEG
-
-namespace _pb = ::PROTOBUF_NAMESPACE_ID;
-namespace _pbi = _pb::internal;
-
+namespace _pb = ::google::protobuf;
+namespace _pbi = ::google::protobuf::internal;
+namespace _fl = ::google::protobuf::internal::field_layout;
 namespace google {
 namespace api {
-PROTOBUF_CONSTEXPR Visibility::Visibility(
-    ::_pbi::ConstantInitialized)
-  : rules_(){}
-struct VisibilityDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR VisibilityDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~VisibilityDefaultTypeInternal() {}
-  union {
-    Visibility _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 VisibilityDefaultTypeInternal _Visibility_default_instance_;
-PROTOBUF_CONSTEXPR VisibilityRule::VisibilityRule(
-    ::_pbi::ConstantInitialized)
-  : selector_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , restriction_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+
+inline constexpr VisibilityRule::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : selector_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        restriction_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR VisibilityRule::VisibilityRule(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
 struct VisibilityRuleDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR VisibilityRuleDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR VisibilityRuleDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~VisibilityRuleDefaultTypeInternal() {}
   union {
     VisibilityRule _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 VisibilityRuleDefaultTypeInternal _VisibilityRule_default_instance_;
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 VisibilityRuleDefaultTypeInternal _VisibilityRule_default_instance_;
+
+inline constexpr Visibility::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : rules_{},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Visibility::Visibility(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct VisibilityDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR VisibilityDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~VisibilityDefaultTypeInternal() {}
+  union {
+    Visibility _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 VisibilityDefaultTypeInternal _Visibility_default_instance_;
 }  // namespace api
 }  // namespace google
 static ::_pb::Metadata file_level_metadata_google_2fapi_2fvisibility_2eproto[2];
-static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_google_2fapi_2fvisibility_2eproto = nullptr;
-static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_google_2fapi_2fvisibility_2eproto = nullptr;
-
-const uint32_t TableStruct_google_2fapi_2fvisibility_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::google::api::Visibility, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::Visibility, rules_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::google::api::VisibilityRule, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::VisibilityRule, selector_),
-  PROTOBUF_FIELD_OFFSET(::google::api::VisibilityRule, restriction_),
+static constexpr const ::_pb::EnumDescriptor**
+    file_level_enum_descriptors_google_2fapi_2fvisibility_2eproto = nullptr;
+static constexpr const ::_pb::ServiceDescriptor**
+    file_level_service_descriptors_google_2fapi_2fvisibility_2eproto = nullptr;
+const ::uint32_t TableStruct_google_2fapi_2fvisibility_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
+    protodesc_cold) = {
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::google::api::Visibility, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::google::api::Visibility, _impl_.rules_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::google::api::VisibilityRule, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::google::api::VisibilityRule, _impl_.selector_),
+    PROTOBUF_FIELD_OFFSET(::google::api::VisibilityRule, _impl_.restriction_),
 };
-static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, -1, sizeof(::google::api::Visibility)},
-  { 7, -1, -1, sizeof(::google::api::VisibilityRule)},
+
+static const ::_pbi::MigrationSchema
+    schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+        {0, -1, -1, sizeof(::google::api::Visibility)},
+        {9, -1, -1, sizeof(::google::api::VisibilityRule)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-  &::google::api::_Visibility_default_instance_._instance,
-  &::google::api::_VisibilityRule_default_instance_._instance,
+    &::google::api::_Visibility_default_instance_._instance,
+    &::google::api::_VisibilityRule_default_instance_._instance,
 };
-
-const char descriptor_table_protodef_google_2fapi_2fvisibility_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\033google/api/visibility.proto\022\ngoogle.ap"
-  "i\032 google/protobuf/descriptor.proto\">\n\nV"
-  "isibility\0220\n\005rules\030\001 \003(\0132\032.google.api.Vi"
-  "sibilityRuleR\005rules\"N\n\016VisibilityRule\022\032\n"
-  "\010selector\030\001 \001(\tR\010selector\022 \n\013restriction"
-  "\030\002 \001(\tR\013restriction:d\n\017enum_visibility\022\034"
-  ".google.protobuf.EnumOptions\030\257\312\274\" \001(\0132\032."
-  "google.api.VisibilityRuleR\016enumVisibilit"
-  "y:k\n\020value_visibility\022!.google.protobuf."
-  "EnumValueOptions\030\257\312\274\" \001(\0132\032.google.api.V"
-  "isibilityRuleR\017valueVisibility:g\n\020field_"
-  "visibility\022\035.google.protobuf.FieldOption"
-  "s\030\257\312\274\" \001(\0132\032.google.api.VisibilityRuleR\017"
-  "fieldVisibility:m\n\022message_visibility\022\037."
-  "google.protobuf.MessageOptions\030\257\312\274\" \001(\0132"
-  "\032.google.api.VisibilityRuleR\021messageVisi"
-  "bility:j\n\021method_visibility\022\036.google.pro"
-  "tobuf.MethodOptions\030\257\312\274\" \001(\0132\032.google.ap"
-  "i.VisibilityRuleR\020methodVisibility:e\n\016ap"
-  "i_visibility\022\037.google.protobuf.ServiceOp"
-  "tions\030\257\312\274\" \001(\0132\032.google.api.VisibilityRu"
-  "leR\rapiVisibilityBn\n\016com.google.apiB\017Vis"
-  "ibilityProtoP\001Z\?google.golang.org/genpro"
-  "to/googleapis/api/visibility;visibility\370"
-  "\001\001\242\002\004GAPIb\006proto3"
-  ;
-static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fvisibility_2eproto_deps[1] = {
-  &::descriptor_table_google_2fprotobuf_2fdescriptor_2eproto,
+const char descriptor_table_protodef_google_2fapi_2fvisibility_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+    "\n\033google/api/visibility.proto\022\ngoogle.ap"
+    "i\032 google/protobuf/descriptor.proto\">\n\nV"
+    "isibility\0220\n\005rules\030\001 \003(\0132\032.google.api.Vi"
+    "sibilityRuleR\005rules\"N\n\016VisibilityRule\022\032\n"
+    "\010selector\030\001 \001(\tR\010selector\022 \n\013restriction"
+    "\030\002 \001(\tR\013restriction:d\n\017enum_visibility\022\034"
+    ".google.protobuf.EnumOptions\030\257\312\274\" \001(\0132\032."
+    "google.api.VisibilityRuleR\016enumVisibilit"
+    "y:k\n\020value_visibility\022!.google.protobuf."
+    "EnumValueOptions\030\257\312\274\" \001(\0132\032.google.api.V"
+    "isibilityRuleR\017valueVisibility:g\n\020field_"
+    "visibility\022\035.google.protobuf.FieldOption"
+    "s\030\257\312\274\" \001(\0132\032.google.api.VisibilityRuleR\017"
+    "fieldVisibility:m\n\022message_visibility\022\037."
+    "google.protobuf.MessageOptions\030\257\312\274\" \001(\0132"
+    "\032.google.api.VisibilityRuleR\021messageVisi"
+    "bility:j\n\021method_visibility\022\036.google.pro"
+    "tobuf.MethodOptions\030\257\312\274\" \001(\0132\032.google.ap"
+    "i.VisibilityRuleR\020methodVisibility:e\n\016ap"
+    "i_visibility\022\037.google.protobuf.ServiceOp"
+    "tions\030\257\312\274\" \001(\0132\032.google.api.VisibilityRu"
+    "leR\rapiVisibilityB\256\001\n\016com.google.apiB\017Vi"
+    "sibilityProtoP\001Z\?google.golang.org/genpr"
+    "oto/googleapis/api/visibility;visibility"
+    "\370\001\001\242\002\003GAX\252\002\nGoogle.Api\312\002\nGoogle\\Api\342\002\026Go"
+    "ogle\\Api\\GPBMetadata\352\002\013Google::Apib\006prot"
+    "o3"
 };
-static ::_pbi::once_flag descriptor_table_google_2fapi_2fvisibility_2eproto_once;
+static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fvisibility_2eproto_deps[1] =
+    {
+        &::descriptor_table_google_2fprotobuf_2fdescriptor_2eproto,
+};
+static ::absl::once_flag descriptor_table_google_2fapi_2fvisibility_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2fvisibility_2eproto = {
-    false, false, 977, descriptor_table_protodef_google_2fapi_2fvisibility_2eproto,
+    false,
+    false,
+    1042,
+    descriptor_table_protodef_google_2fapi_2fvisibility_2eproto,
     "google/api/visibility.proto",
-    &descriptor_table_google_2fapi_2fvisibility_2eproto_once, descriptor_table_google_2fapi_2fvisibility_2eproto_deps, 1, 2,
-    schemas, file_default_instances, TableStruct_google_2fapi_2fvisibility_2eproto::offsets,
-    file_level_metadata_google_2fapi_2fvisibility_2eproto, file_level_enum_descriptors_google_2fapi_2fvisibility_2eproto,
+    &descriptor_table_google_2fapi_2fvisibility_2eproto_once,
+    descriptor_table_google_2fapi_2fvisibility_2eproto_deps,
+    1,
+    2,
+    schemas,
+    file_default_instances,
+    TableStruct_google_2fapi_2fvisibility_2eproto::offsets,
+    file_level_metadata_google_2fapi_2fvisibility_2eproto,
+    file_level_enum_descriptors_google_2fapi_2fvisibility_2eproto,
     file_level_service_descriptors_google_2fapi_2fvisibility_2eproto,
 };
+
+// This function exists to be marked as weak.
+// It can significantly speed up compilation by breaking up LLVM's SCC
+// in the .pb.cc translation units. Large translation units see a
+// reduction of more than 35% of walltime for optimized builds. Without
+// the weak attribute all the messages in the file, including all the
+// vtables and everything they use become part of the same SCC through
+// a cycle like:
+// GetMetadata -> descriptor table -> default instances ->
+//   vtables -> GetMetadata
+// By adding a weak function here we break the connection from the
+// individual vtables back into the descriptor table.
 PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_google_2fapi_2fvisibility_2eproto_getter() {
   return &descriptor_table_google_2fapi_2fvisibility_2eproto;
 }
-
 // Force running AddDescriptors() at dynamic initialization time.
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_google_2fapi_2fvisibility_2eproto(&descriptor_table_google_2fapi_2fvisibility_2eproto);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
+static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_google_2fapi_2fvisibility_2eproto(&descriptor_table_google_2fapi_2fvisibility_2eproto);
 namespace google {
 namespace api {
-
 // ===================================================================
 
 class Visibility::_Internal {
  public:
 };
 
-Visibility::Visibility(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  rules_(arena) {
-  SharedCtor();
+Visibility::Visibility(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:google.api.Visibility)
 }
-Visibility::Visibility(const Visibility& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      rules_(from.rules_) {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+inline PROTOBUF_NDEBUG_INLINE Visibility::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : rules_{visibility, arena, from.rules_},
+        _cached_size_{0} {}
+
+Visibility::Visibility(
+    ::google::protobuf::Arena* arena,
+    const Visibility& from)
+    : ::google::protobuf::Message(arena) {
+  Visibility* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
   // @@protoc_insertion_point(copy_constructor:google.api.Visibility)
 }
+inline PROTOBUF_NDEBUG_INLINE Visibility::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : rules_{visibility, arena},
+        _cached_size_{0} {}
 
-inline void Visibility::SharedCtor() {
+inline void Visibility::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
 }
-
 Visibility::~Visibility() {
   // @@protoc_insertion_point(destructor:google.api.Visibility)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void Visibility::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
 }
 
-void Visibility::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void Visibility::Clear() {
+PROTOBUF_NOINLINE void Visibility::Clear() {
 // @@protoc_insertion_point(message_clear_start:google.api.Visibility)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  rules_.Clear();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_.rules_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* Visibility::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // repeated .google.api.VisibilityRule rules = 1 [json_name = "rules"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_rules(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* Visibility::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* Visibility::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> Visibility::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_Visibility_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated .google.api.VisibilityRule rules = 1 [json_name = "rules"];
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Visibility, _impl_.rules_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .google.api.VisibilityRule rules = 1 [json_name = "rules"];
+    {PROTOBUF_FIELD_OFFSET(Visibility, _impl_.rules_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::google::api::VisibilityRule>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* Visibility::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:google.api.Visibility)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // repeated .google.api.VisibilityRule rules = 1 [json_name = "rules"];
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_rules_size()); i < n; i++) {
-    const auto& repfield = this->_internal_rules(i);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+    const auto& repfield = this->_internal_rules().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
         InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:google.api.Visibility)
   return target;
 }
 
-size_t Visibility::ByteSizeLong() const {
+::size_t Visibility::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:google.api.Visibility)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated .google.api.VisibilityRule rules = 1 [json_name = "rules"];
   total_size += 1UL * this->_internal_rules_size();
-  for (const auto& msg : this->rules_) {
+  for (const auto& msg : this->_internal_rules()) {
     total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
   }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Visibility::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    Visibility::MergeImpl
+const ::google::protobuf::Message::ClassData Visibility::_class_data_ = {
+    Visibility::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Visibility::GetClassData() const { return &_class_data_; }
-
-void Visibility::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Visibility *>(to)->MergeFrom(
-      static_cast<const Visibility &>(from));
+const ::google::protobuf::Message::ClassData* Visibility::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void Visibility::MergeFrom(const Visibility& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:google.api.Visibility)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void Visibility::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<Visibility*>(&to_msg);
+  auto& from = static_cast<const Visibility&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.Visibility)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  rules_.MergeFrom(from.rules_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_mutable_rules()->MergeFrom(
+      from._internal_rules());
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Visibility::CopyFrom(const Visibility& from) {
@@ -290,231 +341,213 @@ void Visibility::CopyFrom(const Visibility& from) {
   MergeFrom(from);
 }
 
-bool Visibility::IsInitialized() const {
+PROTOBUF_NOINLINE bool Visibility::IsInitialized() const {
   return true;
 }
 
-void Visibility::InternalSwap(Visibility* other) {
+::_pbi::CachedSize* Visibility::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void Visibility::InternalSwap(Visibility* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  rules_.InternalSwap(&other->rules_);
+  _impl_.rules_.InternalSwap(&other->_impl_.rules_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata Visibility::GetMetadata() const {
+::google::protobuf::Metadata Visibility::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2fapi_2fvisibility_2eproto_getter, &descriptor_table_google_2fapi_2fvisibility_2eproto_once,
       file_level_metadata_google_2fapi_2fvisibility_2eproto[0]);
 }
-
 // ===================================================================
 
 class VisibilityRule::_Internal {
  public:
 };
 
-VisibilityRule::VisibilityRule(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+VisibilityRule::VisibilityRule(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:google.api.VisibilityRule)
 }
-VisibilityRule::VisibilityRule(const VisibilityRule& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  selector_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    selector_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_selector().empty()) {
-    selector_.Set(from._internal_selector(), 
-      GetArenaForAllocation());
-  }
-  restriction_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    restriction_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_restriction().empty()) {
-    restriction_.Set(from._internal_restriction(), 
-      GetArenaForAllocation());
-  }
+inline PROTOBUF_NDEBUG_INLINE VisibilityRule::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : selector_(arena, from.selector_),
+        restriction_(arena, from.restriction_),
+        _cached_size_{0} {}
+
+VisibilityRule::VisibilityRule(
+    ::google::protobuf::Arena* arena,
+    const VisibilityRule& from)
+    : ::google::protobuf::Message(arena) {
+  VisibilityRule* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
   // @@protoc_insertion_point(copy_constructor:google.api.VisibilityRule)
 }
+inline PROTOBUF_NDEBUG_INLINE VisibilityRule::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : selector_(arena),
+        restriction_(arena),
+        _cached_size_{0} {}
 
-inline void VisibilityRule::SharedCtor() {
-selector_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  selector_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-restriction_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  restriction_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void VisibilityRule::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
 }
-
 VisibilityRule::~VisibilityRule() {
   // @@protoc_insertion_point(destructor:google.api.VisibilityRule)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void VisibilityRule::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  selector_.Destroy();
-  restriction_.Destroy();
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.selector_.Destroy();
+  _impl_.restriction_.Destroy();
+  _impl_.~Impl_();
 }
 
-void VisibilityRule::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void VisibilityRule::Clear() {
+PROTOBUF_NOINLINE void VisibilityRule::Clear() {
 // @@protoc_insertion_point(message_clear_start:google.api.VisibilityRule)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  selector_.ClearToEmpty();
-  restriction_.ClearToEmpty();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_.selector_.ClearToEmpty();
+  _impl_.restriction_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* VisibilityRule::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string selector = 1 [json_name = "selector"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_selector();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "google.api.VisibilityRule.selector"));
-        } else
-          goto handle_unusual;
-        continue;
-      // string restriction = 2 [json_name = "restriction"];
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          auto str = _internal_mutable_restriction();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "google.api.VisibilityRule.restriction"));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* VisibilityRule::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* VisibilityRule::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 53, 2> VisibilityRule::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_VisibilityRule_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string restriction = 2 [json_name = "restriction"];
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(VisibilityRule, _impl_.restriction_)}},
+    // string selector = 1 [json_name = "selector"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(VisibilityRule, _impl_.selector_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string selector = 1 [json_name = "selector"];
+    {PROTOBUF_FIELD_OFFSET(VisibilityRule, _impl_.selector_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string restriction = 2 [json_name = "restriction"];
+    {PROTOBUF_FIELD_OFFSET(VisibilityRule, _impl_.restriction_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\31\10\13\0\0\0\0\0"
+    "google.api.VisibilityRule"
+    "selector"
+    "restriction"
+  }},
+};
+
+::uint8_t* VisibilityRule::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:google.api.VisibilityRule)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string selector = 1 [json_name = "selector"];
   if (!this->_internal_selector().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_selector().data(), static_cast<int>(this->_internal_selector().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "google.api.VisibilityRule.selector");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_selector(), target);
+    const std::string& _s = this->_internal_selector();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "google.api.VisibilityRule.selector");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
   // string restriction = 2 [json_name = "restriction"];
   if (!this->_internal_restriction().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_restriction().data(), static_cast<int>(this->_internal_restriction().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "google.api.VisibilityRule.restriction");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_restriction(), target);
+    const std::string& _s = this->_internal_restriction();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "google.api.VisibilityRule.restriction");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:google.api.VisibilityRule)
   return target;
 }
 
-size_t VisibilityRule::ByteSizeLong() const {
+::size_t VisibilityRule::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:google.api.VisibilityRule)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string selector = 1 [json_name = "selector"];
   if (!this->_internal_selector().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_selector());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_selector());
   }
 
   // string restriction = 2 [json_name = "restriction"];
   if (!this->_internal_restriction().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_restriction());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_restriction());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData VisibilityRule::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    VisibilityRule::MergeImpl
+const ::google::protobuf::Message::ClassData VisibilityRule::_class_data_ = {
+    VisibilityRule::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*VisibilityRule::GetClassData() const { return &_class_data_; }
-
-void VisibilityRule::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<VisibilityRule *>(to)->MergeFrom(
-      static_cast<const VisibilityRule &>(from));
+const ::google::protobuf::Message::ClassData* VisibilityRule::GetClassData() const {
+  return &_class_data_;
 }
 
-
-void VisibilityRule::MergeFrom(const VisibilityRule& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:google.api.VisibilityRule)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
+void VisibilityRule::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<VisibilityRule*>(&to_msg);
+  auto& from = static_cast<const VisibilityRule&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.VisibilityRule)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_selector().empty()) {
-    _internal_set_selector(from._internal_selector());
+    _this->_internal_set_selector(from._internal_selector());
   }
   if (!from._internal_restriction().empty()) {
-    _internal_set_restriction(from._internal_restriction());
+    _this->_internal_set_restriction(from._internal_restriction());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void VisibilityRule::CopyFrom(const VisibilityRule& from) {
@@ -524,62 +557,51 @@ void VisibilityRule::CopyFrom(const VisibilityRule& from) {
   MergeFrom(from);
 }
 
-bool VisibilityRule::IsInitialized() const {
+PROTOBUF_NOINLINE bool VisibilityRule::IsInitialized() const {
   return true;
 }
 
-void VisibilityRule::InternalSwap(VisibilityRule* other) {
+::_pbi::CachedSize* VisibilityRule::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void VisibilityRule::InternalSwap(VisibilityRule* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &selector_, lhs_arena,
-      &other->selector_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &restriction_, lhs_arena,
-      &other->restriction_, rhs_arena
-  );
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.selector_, &other->_impl_.selector_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.restriction_, &other->_impl_.restriction_, arena);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata VisibilityRule::GetMetadata() const {
+::google::protobuf::Metadata VisibilityRule::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2fapi_2fvisibility_2eproto_getter, &descriptor_table_google_2fapi_2fvisibility_2eproto_once,
       file_level_metadata_google_2fapi_2fvisibility_2eproto[1]);
 }
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::EnumOptions,
-    ::PROTOBUF_NAMESPACE_ID::internal::MessageTypeTraits< ::google::api::VisibilityRule >, 11, false>
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::EnumOptions,
+    ::google::protobuf::internal::MessageTypeTraits< ::google::api::VisibilityRule >, 11, false>
   enum_visibility(kEnumVisibilityFieldNumber, ::google::api::VisibilityRule::default_instance(), nullptr);
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::EnumValueOptions,
-    ::PROTOBUF_NAMESPACE_ID::internal::MessageTypeTraits< ::google::api::VisibilityRule >, 11, false>
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::EnumValueOptions,
+    ::google::protobuf::internal::MessageTypeTraits< ::google::api::VisibilityRule >, 11, false>
   value_visibility(kValueVisibilityFieldNumber, ::google::api::VisibilityRule::default_instance(), nullptr);
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::FieldOptions,
-    ::PROTOBUF_NAMESPACE_ID::internal::MessageTypeTraits< ::google::api::VisibilityRule >, 11, false>
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::FieldOptions,
+    ::google::protobuf::internal::MessageTypeTraits< ::google::api::VisibilityRule >, 11, false>
   field_visibility(kFieldVisibilityFieldNumber, ::google::api::VisibilityRule::default_instance(), nullptr);
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::MessageOptions,
-    ::PROTOBUF_NAMESPACE_ID::internal::MessageTypeTraits< ::google::api::VisibilityRule >, 11, false>
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::MessageOptions,
+    ::google::protobuf::internal::MessageTypeTraits< ::google::api::VisibilityRule >, 11, false>
   message_visibility(kMessageVisibilityFieldNumber, ::google::api::VisibilityRule::default_instance(), nullptr);
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::MethodOptions,
-    ::PROTOBUF_NAMESPACE_ID::internal::MessageTypeTraits< ::google::api::VisibilityRule >, 11, false>
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::MethodOptions,
+    ::google::protobuf::internal::MessageTypeTraits< ::google::api::VisibilityRule >, 11, false>
   method_visibility(kMethodVisibilityFieldNumber, ::google::api::VisibilityRule::default_instance(), nullptr);
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::ServiceOptions,
-    ::PROTOBUF_NAMESPACE_ID::internal::MessageTypeTraits< ::google::api::VisibilityRule >, 11, false>
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::ServiceOptions,
+    ::google::protobuf::internal::MessageTypeTraits< ::google::api::VisibilityRule >, 11, false>
   api_visibility(kApiVisibilityFieldNumber, ::google::api::VisibilityRule::default_instance(), nullptr);
-
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace api
 }  // namespace google
-PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::google::api::Visibility*
-Arena::CreateMaybeMessage< ::google::api::Visibility >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::google::api::Visibility >(arena);
-}
-template<> PROTOBUF_NOINLINE ::google::api::VisibilityRule*
-Arena::CreateMaybeMessage< ::google::api::VisibilityRule >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::google::api::VisibilityRule >(arena);
-}
-PROTOBUF_NAMESPACE_CLOSE
-
+namespace google {
+namespace protobuf {
+}  // namespace protobuf
+}  // namespace google
 // @@protoc_insertion_point(global_scope)
-#include <google/protobuf/port_undef.inc>
+#include "google/protobuf/port_undef.inc"
