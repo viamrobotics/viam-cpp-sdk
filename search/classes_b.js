@@ -16,10 +16,11 @@ var searchData=
   ['motor_13',['Motor',['../classviam_1_1sdk_1_1Motor.html',1,'viam::sdk']]],
   ['motorclient_14',['MotorClient',['../classviam_1_1sdk_1_1impl_1_1MotorClient.html',1,'viam::sdk::impl']]],
   ['motorserver_15',['MotorServer',['../classviam_1_1sdk_1_1impl_1_1MotorServer.html',1,'viam::sdk::impl']]],
-  ['movementsensor_16',['MovementSensor',['../classviam_1_1sdk_1_1MovementSensor.html',1,'viam::sdk']]],
-  ['movementsensorclient_17',['MovementSensorClient',['../classviam_1_1sdk_1_1impl_1_1MovementSensorClient.html',1,'viam::sdk::impl']]],
-  ['movementsensorserver_18',['MovementSensorServer',['../classviam_1_1sdk_1_1impl_1_1MovementSensorServer.html',1,'viam::sdk::impl']]],
-  ['mybase_19',['MyBase',['../classMyBase.html',1,'']]],
-  ['mygizmo_20',['MyGizmo',['../classMyGizmo.html',1,'']]],
-  ['mysummation_21',['MySummation',['../classMySummation.html',1,'']]]
+  ['movement_5fcoordinate_16',['movement_coordinate',['../structviam_1_1sdk_1_1Gantry_1_1movement__coordinate.html',1,'viam::sdk::Gantry']]],
+  ['movementsensor_17',['MovementSensor',['../classviam_1_1sdk_1_1MovementSensor.html',1,'viam::sdk']]],
+  ['movementsensorclient_18',['MovementSensorClient',['../classviam_1_1sdk_1_1impl_1_1MovementSensorClient.html',1,'viam::sdk::impl']]],
+  ['movementsensorserver_19',['MovementSensorServer',['../classviam_1_1sdk_1_1impl_1_1MovementSensorServer.html',1,'viam::sdk::impl']]],
+  ['mybase_20',['MyBase',['../classMyBase.html',1,'']]],
+  ['mygizmo_21',['MyGizmo',['../classMyGizmo.html',1,'']]],
+  ['mysummation_22',['MySummation',['../classMySummation.html',1,'']]]
 ];
