@@ -1,6 +1,5 @@
 #include <viam/sdk/components/private/gantry_server.hpp>
 
-#include "gantry_server.hpp"
 #include <viam/sdk/common/service_helper.hpp>
 
 namespace viam {

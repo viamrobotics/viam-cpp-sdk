@@ -3,7 +3,6 @@
 #include <viam/api/component/gantry/v1/gantry.grpc.pb.h>
 #include <viam/api/component/gantry/v1/gantry.pb.h>
 
-#include "gantry_client.hpp"
 #include <viam/sdk/common/client_helper.hpp>
 
 namespace viam {

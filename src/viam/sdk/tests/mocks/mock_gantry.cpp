@@ -1,6 +1,5 @@
 #include <viam/sdk/tests/mocks/mock_gantry.hpp>
 
-#include "mock_gantry.hpp"
 #include <viam/sdk/tests/test_utils.hpp>
 
 namespace viam {
