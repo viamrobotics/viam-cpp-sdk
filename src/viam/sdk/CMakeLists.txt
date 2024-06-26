@@ -55,6 +55,7 @@ target_sources(viamsdk
     components/gripper.cpp
     components/motor.cpp
     components/movement_sensor.cpp
+    components/pose_tracker.cpp
     components/power_sensor.cpp
     components/private/arm_client.cpp
     components/private/arm_server.cpp
@@ -138,6 +139,7 @@ target_sources(viamsdk
       ../../viam/sdk/components/gripper.hpp
       ../../viam/sdk/components/motor.hpp
       ../../viam/sdk/components/movement_sensor.hpp
+      ../../viam/sdk/components/pose_tracker.hpp
       ../../viam/sdk/components/power_sensor.hpp
       ../../viam/sdk/components/sensor.hpp
       ../../viam/sdk/components/servo.hpp
