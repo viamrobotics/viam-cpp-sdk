@@ -13,7 +13,7 @@ namespace sdk {
 namespace impl {
 
 PoseTrackerServer::PoseTrackerServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)) {};
+    : ResourceServer(std::move(manager)){}
 
 ::grpc::Status PoseTrackerServer::GetPoses(
     ::grpc::ServerContext* context,
