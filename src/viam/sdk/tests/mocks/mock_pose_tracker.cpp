@@ -1,6 +1,5 @@
 #include <viam/sdk/tests/mocks/mock_pose_tracker.hpp>
 
-#include "mock_pose_tracker.hpp"
 #include <viam/sdk/tests/test_utils.hpp>
 
 namespace viam {
@@ -22,7 +21,17 @@ std::shared_ptr<MockPoseTracker> MockPoseTracker::get_mock_pose_tracker() {
 
 std::unordered_map<std::string, sdk::pose_in_frame> MockPoseTracker::get_poses(
     const std::vector<std::string>& body_names, const sdk::AttributeMap&) {
-    return std::unordered_map<std::string, sdk::pose_in_frame>();
+    auto full_map = fake_poses();
+
+    if (body_names.empty())
+        return full_map;
+
+    std::unordered_map<std::string, sdk::pose_in_frame> result;
+    for (const auto& pair : full_map)
+        if (std::find(body_names.begin(), body_names.end(), pair.first) != body_names.end())
+            result.insert(pair);
+
+    return result;
 }
 
 AttributeMap MockPoseTracker::do_command(const AttributeMap& command) {
