@@ -77,6 +77,7 @@ target_sources(viamsdk
     components/private/motor_server.cpp
     components/private/movement_sensor_client.cpp
     components/private/movement_sensor_server.cpp
+    components/private/pose_tracker_client.cpp
     components/private/power_sensor_client.cpp
     components/private/power_sensor_server.cpp
     components/private/sensor_client.cpp
