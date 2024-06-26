@@ -4,7 +4,6 @@
 #include <viam/api/component/posetracker/v1/pose_tracker.grpc.pb.h>
 #include <viam/api/component/posetracker/v1/pose_tracker.pb.h>
 
-#include "pose_tracker_client.hpp"
 #include <viam/sdk/common/client_helper.hpp>
 
 namespace viam {

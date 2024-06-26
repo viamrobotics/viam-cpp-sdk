@@ -2,7 +2,6 @@
 
 #include <viam/api/component/posetracker/v1/pose_tracker.pb.h>
 
-#include "pose_tracker_server.hpp"
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/pose_tracker.hpp>
