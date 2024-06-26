@@ -16,7 +16,7 @@ PoseTrackerServer::PoseTrackerServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)){}
 
 ::grpc::Status PoseTrackerServer::GetPoses(
-    ::grpc::ServerContext* context,
+    ::grpc::ServerContext*,
     const ::viam::component::posetracker::v1::GetPosesRequest* request,
     ::viam::component::posetracker::v1::GetPosesResponse* response) noexcept {
     return make_service_helper<PoseTracker>(
@@ -27,8 +27,9 @@ PoseTrackerServer::PoseTrackerServer(std::shared_ptr<ResourceManager> manager)
         const PoseTracker::pose_map result = pose_tracker->get_poses(
             {request->body_names().begin(), request->body_names().end()}, helper.getExtra());
 
-        for (const auto& pair : result)
-            response->mutable_body_poses()->emplace(pair.first, pair.second.to_proto());
+        for (const auto& pair : result) {
+            response->mutable_body_poses()->insert({pair.first, pair.second.to_proto()});
+        }
     });
 }
 
