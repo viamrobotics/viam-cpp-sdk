@@ -25,10 +25,8 @@ PoseTrackerServer::PoseTrackerServer(std::shared_ptr<ResourceManager> manager)
         const std::vector<std::string> body_names(
             {request->body_names().begin(), request->body_names().end()});
 
-        const std::unordered_map<std::string, pose_in_frame> result =
-            pose_tracker->get_poses(request->name(),
-                                    {request->body_names().begin(), request->body_names().end()},
-                                    helper.getExtra());
+        const std::unordered_map<std::string, pose_in_frame> result = pose_tracker->get_poses(
+            {request->body_names().begin(), request->body_names().end()}, helper.getExtra());
 
         for (const auto& pair : result)
             response->mutable_body_poses()->emplace(pair.first, pair.second.to_proto());

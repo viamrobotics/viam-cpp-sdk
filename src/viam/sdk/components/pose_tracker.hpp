@@ -34,8 +34,8 @@ class PoseTracker : public Component {
     /// then all available poses are returned.
     /// @return A mapping of each body to its pose.
     inline std::unordered_map<std::string, pose_in_frame> get_poses(
-        const std::string& tracker_name, const std::vector<std::string>& body_names) {
-        return get_poses(tracker_name, body_names, {});
+        const std::vector<std::string>& body_names) {
+        return get_poses(body_names, {});
     }
 
     /// @brief Get the poses of each body tracked by the pose tracker.
@@ -45,9 +45,7 @@ class PoseTracker : public Component {
     /// @param extra Any additional arguments to the method.
     /// @return A mapping of each body to its pose.
     virtual std::unordered_map<std::string, pose_in_frame> get_poses(
-        const std::string& tracker_name,
-        const std::vector<std::string>& body_names,
-        const AttributeMap& extra) = 0;
+        const std::vector<std::string>& body_names, const AttributeMap& extra) = 0;
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.
