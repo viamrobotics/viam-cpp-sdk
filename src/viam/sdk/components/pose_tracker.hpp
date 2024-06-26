@@ -12,6 +12,7 @@
 
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/components/component.hpp>
+#include <viam/sdk/spatialmath/geometry.hpp>
 
 namespace viam {
 namespace sdk {
