@@ -26,6 +26,8 @@ namespace sdk {
 /// pose tracker implementations
 class PoseTracker : public Component {
    public:
+    using pose_map = std::unordered_map<std::string, pose_in_frame>;
+
     API api() const override;
 
     /// @brief Get the poses of each body tracked by the pose tracker.
@@ -33,8 +35,7 @@ class PoseTracker : public Component {
     /// @param body_names Names of bodies whose poses are being requested. If the vector is empty
     /// then all available poses are returned.
     /// @return A mapping of each body to its pose.
-    inline std::unordered_map<std::string, pose_in_frame> get_poses(
-        const std::vector<std::string>& body_names) {
+    inline pose_map get_poses(const std::vector<std::string>& body_names) {
         return get_poses(body_names, {});
     }
 
@@ -44,8 +45,8 @@ class PoseTracker : public Component {
     /// then all available poses are returned.
     /// @param extra Any additional arguments to the method.
     /// @return A mapping of each body to its pose.
-    virtual std::unordered_map<std::string, pose_in_frame> get_poses(
-        const std::vector<std::string>& body_names, const AttributeMap& extra) = 0;
+    virtual pose_map get_poses(const std::vector<std::string>& body_names,
+                               const AttributeMap& extra) = 0;
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.

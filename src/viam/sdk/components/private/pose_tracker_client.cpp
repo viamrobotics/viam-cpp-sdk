@@ -16,14 +16,14 @@ PoseTrackerClient::PoseTrackerClient(std::string name, std::shared_ptr<grpc::Cha
       stub_(viam::component::posetracker::v1::PoseTrackerService::NewStub(channel)),
       channel_(std::move(channel)) {}
 
-std::unordered_map<std::string, pose_in_frame> PoseTrackerClient::get_poses(
-    const std::vector<std::string>& body_names, const AttributeMap& extra) {
+PoseTracker::pose_map PoseTrackerClient::get_poses(const std::vector<std::string>& body_names,
+                                                   const AttributeMap& extra) {
     return make_client_helper(this, *stub_, &StubType::GetPoses)
         .with([&](viam::component::posetracker::v1::GetPosesRequest& request) {
             *request.mutable_body_names() = {body_names.begin(), body_names.end()};
         })
         .invoke([](const viam::component::posetracker::v1::GetPosesResponse& response) {
-            std::unordered_map<std::string, pose_in_frame> result;
+            PoseTracker::pose_map result;
 
             for (const auto& pair : response.body_poses())
                 result.emplace(pair.first, pose_in_frame::from_proto(pair.second));

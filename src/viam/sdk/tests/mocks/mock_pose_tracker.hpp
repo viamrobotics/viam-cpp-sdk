@@ -10,7 +10,7 @@ namespace pose_tracker {
 constexpr const char* body1 = "b1";
 constexpr const char* body2 = "b2";
 
-std::unordered_map<std::string, sdk::pose_in_frame> fake_poses();
+sdk::PoseTracker::pose_map fake_poses();
 
 class MockPoseTracker : public sdk::PoseTracker {
    public:
@@ -18,8 +18,8 @@ class MockPoseTracker : public sdk::PoseTracker {
 
     MockPoseTracker(std::string name) : sdk::PoseTracker(std::move(name)) {}
 
-    std::unordered_map<std::string, sdk::pose_in_frame> get_poses(
-        const std::vector<std::string>& body_names, const sdk::AttributeMap& extra) override;
+    sdk::PoseTracker::pose_map get_poses(const std::vector<std::string>& body_names,
+                                         const sdk::AttributeMap& extra) override;
 
     sdk::AttributeMap do_command(const sdk::AttributeMap& command) override;
 

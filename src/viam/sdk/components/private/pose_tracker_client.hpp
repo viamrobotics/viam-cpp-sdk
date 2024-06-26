@@ -22,8 +22,8 @@ class PoseTrackerClient : public PoseTracker {
 
     PoseTrackerClient(std::string name, std::shared_ptr<grpc::Channel> channel);
 
-    std::unordered_map<std::string, pose_in_frame> get_poses(
-        const std::vector<std::string>& body_names, const AttributeMap& extra) override;
+    PoseTracker::pose_map get_poses(const std::vector<std::string>& body_names,
+                                    const AttributeMap& extra) override;
 
     AttributeMap do_command(const AttributeMap& command) override;
 
