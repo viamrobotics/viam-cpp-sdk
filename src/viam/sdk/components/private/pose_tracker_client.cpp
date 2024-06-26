@@ -16,7 +16,7 @@ PoseTrackerClient::PoseTrackerClient(std::string name, std::shared_ptr<grpc::Cha
       channel_(std::move(channel)) {}
 
 PoseTracker::pose_map PoseTrackerClient::get_poses(const std::vector<std::string>& body_names,
-                                                   const AttributeMap& extra) {
+                                                   const AttributeMap&) {
     return make_client_helper(this, *stub_, &StubType::GetPoses)
         .with([&](viam::component::posetracker::v1::GetPosesRequest& request) {
             *request.mutable_body_names() = {body_names.begin(), body_names.end()};
@@ -24,8 +24,9 @@ PoseTracker::pose_map PoseTrackerClient::get_poses(const std::vector<std::string
         .invoke([](const viam::component::posetracker::v1::GetPosesResponse& response) {
             PoseTracker::pose_map result;
 
-            for (const auto& pair : response.body_poses())
+            for (const auto& pair : response.body_poses()) {
                 result.emplace(pair.first, pose_in_frame::from_proto(pair.second));
+            }
 
             return result;
         });

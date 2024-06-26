@@ -27,9 +27,11 @@ PoseTracker::pose_map MockPoseTracker::get_poses(const std::vector<std::string>&
         return full_map;
 
     PoseTracker::pose_map result;
-    for (const auto& pair : full_map)
-        if (std::find(body_names.begin(), body_names.end(), pair.first) != body_names.end())
+    for (const auto& pair : full_map) {
+        if (std::find(body_names.begin(), body_names.end(), pair.first) != body_names.end()) {
             result.insert(pair);
+        }
+    }
 
     return result;
 }
