@@ -21,9 +21,6 @@ PoseTrackerServer::PoseTrackerServer(std::shared_ptr<ResourceManager> manager)
     ::viam::component::posetracker::v1::GetPosesResponse* response) noexcept {
     return make_service_helper<PoseTracker>(
         "PoseTrackerServer::GetPoses", this, request)([&](auto& helper, auto& pose_tracker) {
-        const std::vector<std::string> body_names(
-            {request->body_names().begin(), request->body_names().end()});
-
         const PoseTracker::pose_map result = pose_tracker->get_poses(
             {request->body_names().begin(), request->body_names().end()}, helper.getExtra());
 
