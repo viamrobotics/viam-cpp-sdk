@@ -32,6 +32,8 @@
 #include <viam/sdk/components/private/motor_server.hpp>
 #include <viam/sdk/components/private/movement_sensor_client.hpp>
 #include <viam/sdk/components/private/movement_sensor_server.hpp>
+#include <viam/sdk/components/private/pose_tracker_client.hpp>
+#include <viam/sdk/components/private/pose_tracker_server.hpp>
 #include <viam/sdk/components/private/power_sensor_client.hpp>
 #include <viam/sdk/components/private/power_sensor_server.hpp>
 #include <viam/sdk/components/private/sensor_client.hpp>
@@ -179,6 +181,7 @@ void register_resources() {
     Registry::register_resource<impl::GripperClient, impl::GripperServer>();
     Registry::register_resource<impl::MotorClient, impl::MotorServer>();
     Registry::register_resource<impl::MovementSensorClient, impl::MovementSensorServer>();
+    Registry::register_resource<impl::PoseTrackerClient, impl::PoseTrackerServer>();
     Registry::register_resource<impl::PowerSensorClient, impl::PowerSensorServer>();
     Registry::register_resource<impl::SensorClient, impl::SensorServer>();
     Registry::register_resource<impl::ServoClient, impl::ServoServer>();
