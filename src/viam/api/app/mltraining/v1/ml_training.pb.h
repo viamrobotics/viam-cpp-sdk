@@ -2290,7 +2290,6 @@ class TrainingJobMetadata final :
     kModelVersionFieldNumber = 14,
     kRegistryItemIdFieldNumber = 19,
     kRegistryItemVersionFieldNumber = 20,
-    kRequestFieldNumber = 1,
     kCreatedOnFieldNumber = 3,
     kLastModifiedFieldNumber = 4,
     kErrorStatusFieldNumber = 8,
@@ -2457,21 +2456,6 @@ class TrainingJobMetadata final :
   std::string* _internal_mutable_registry_item_version();
 
   public:
-  // .viam.app.mltraining.v1.SubmitTrainingJobRequest request = 1 [json_name = "request", (.tagger.v1.tags) = "bson:\"request\" json:\"request\""];
-  bool has_request() const;
-  void clear_request() ;
-  const ::viam::app::mltraining::v1::SubmitTrainingJobRequest& request() const;
-  PROTOBUF_NODISCARD ::viam::app::mltraining::v1::SubmitTrainingJobRequest* release_request();
-  ::viam::app::mltraining::v1::SubmitTrainingJobRequest* mutable_request();
-  void set_allocated_request(::viam::app::mltraining::v1::SubmitTrainingJobRequest* value);
-  void unsafe_arena_set_allocated_request(::viam::app::mltraining::v1::SubmitTrainingJobRequest* value);
-  ::viam::app::mltraining::v1::SubmitTrainingJobRequest* unsafe_arena_release_request();
-
-  private:
-  const ::viam::app::mltraining::v1::SubmitTrainingJobRequest& _internal_request() const;
-  ::viam::app::mltraining::v1::SubmitTrainingJobRequest* _internal_mutable_request();
-
-  public:
   // .google.protobuf.Timestamp created_on = 3 [json_name = "createdOn", (.tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
   bool has_created_on() const;
   void clear_created_on() ;
@@ -2593,7 +2577,7 @@ class TrainingJobMetadata final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      5, 19, 6,
+      5, 18, 5,
       173, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -2621,7 +2605,6 @@ class TrainingJobMetadata final :
     ::google::protobuf::internal::ArenaStringPtr model_version_;
     ::google::protobuf::internal::ArenaStringPtr registry_item_id_;
     ::google::protobuf::internal::ArenaStringPtr registry_item_version_;
-    ::viam::app::mltraining::v1::SubmitTrainingJobRequest* request_;
     ::google::protobuf::Timestamp* created_on_;
     ::google::protobuf::Timestamp* last_modified_;
     ::google::rpc::Status* error_status_;
@@ -4083,102 +4066,6 @@ ListTrainingJobsResponse::_internal_mutable_jobs() {
 
 // TrainingJobMetadata
 
-// .viam.app.mltraining.v1.SubmitTrainingJobRequest request = 1 [json_name = "request", (.tagger.v1.tags) = "bson:\"request\" json:\"request\""];
-inline bool TrainingJobMetadata::has_request() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.request_ != nullptr);
-  return value;
-}
-inline void TrainingJobMetadata::clear_request() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (_impl_.request_ != nullptr) _impl_.request_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-inline const ::viam::app::mltraining::v1::SubmitTrainingJobRequest& TrainingJobMetadata::_internal_request() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::viam::app::mltraining::v1::SubmitTrainingJobRequest* p = _impl_.request_;
-  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::mltraining::v1::SubmitTrainingJobRequest&>(::viam::app::mltraining::v1::_SubmitTrainingJobRequest_default_instance_);
-}
-inline const ::viam::app::mltraining::v1::SubmitTrainingJobRequest& TrainingJobMetadata::request() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:viam.app.mltraining.v1.TrainingJobMetadata.request)
-  return _internal_request();
-}
-inline void TrainingJobMetadata::unsafe_arena_set_allocated_request(::viam::app::mltraining::v1::SubmitTrainingJobRequest* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.request_);
-  }
-  _impl_.request_ = reinterpret_cast<::viam::app::mltraining::v1::SubmitTrainingJobRequest*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.mltraining.v1.TrainingJobMetadata.request)
-}
-inline ::viam::app::mltraining::v1::SubmitTrainingJobRequest* TrainingJobMetadata::release_request() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::viam::app::mltraining::v1::SubmitTrainingJobRequest* released = _impl_.request_;
-  _impl_.request_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  if (GetArena() == nullptr) {
-    delete old;
-  }
-#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArena() != nullptr) {
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return released;
-}
-inline ::viam::app::mltraining::v1::SubmitTrainingJobRequest* TrainingJobMetadata::unsafe_arena_release_request() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:viam.app.mltraining.v1.TrainingJobMetadata.request)
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::viam::app::mltraining::v1::SubmitTrainingJobRequest* temp = _impl_.request_;
-  _impl_.request_ = nullptr;
-  return temp;
-}
-inline ::viam::app::mltraining::v1::SubmitTrainingJobRequest* TrainingJobMetadata::_internal_mutable_request() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  if (_impl_.request_ == nullptr) {
-    auto* p = CreateMaybeMessage<::viam::app::mltraining::v1::SubmitTrainingJobRequest>(GetArena());
-    _impl_.request_ = reinterpret_cast<::viam::app::mltraining::v1::SubmitTrainingJobRequest*>(p);
-  }
-  return _impl_.request_;
-}
-inline ::viam::app::mltraining::v1::SubmitTrainingJobRequest* TrainingJobMetadata::mutable_request() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::viam::app::mltraining::v1::SubmitTrainingJobRequest* _msg = _internal_mutable_request();
-  // @@protoc_insertion_point(field_mutable:viam.app.mltraining.v1.TrainingJobMetadata.request)
-  return _msg;
-}
-inline void TrainingJobMetadata::set_allocated_request(::viam::app::mltraining::v1::SubmitTrainingJobRequest* value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (message_arena == nullptr) {
-    delete reinterpret_cast<::viam::app::mltraining::v1::SubmitTrainingJobRequest*>(_impl_.request_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::viam::app::mltraining::v1::SubmitTrainingJobRequest*>(value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-
-  _impl_.request_ = reinterpret_cast<::viam::app::mltraining::v1::SubmitTrainingJobRequest*>(value);
-  // @@protoc_insertion_point(field_set_allocated:viam.app.mltraining.v1.TrainingJobMetadata.request)
-}
-
 // string id = 7 [json_name = "id", (.tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
 inline void TrainingJobMetadata::clear_id() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
@@ -4644,7 +4531,7 @@ inline void TrainingJobMetadata::_internal_set_status(::viam::app::mltraining::v
 
 // .google.rpc.Status error_status = 8 [json_name = "errorStatus", (.tagger.v1.tags) = "bson:\"error_status\" json:\"error_status\""];
 inline bool TrainingJobMetadata::has_error_status() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.error_status_ != nullptr);
   return value;
 }
@@ -4664,16 +4551,16 @@ inline void TrainingJobMetadata::unsafe_arena_set_allocated_error_status(::googl
   }
   _impl_.error_status_ = reinterpret_cast<::google::rpc::Status*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000008u;
+    _impl_._has_bits_[0] |= 0x00000004u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000008u;
+    _impl_._has_bits_[0] &= ~0x00000004u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.mltraining.v1.TrainingJobMetadata.error_status)
 }
 inline ::google::rpc::Status* TrainingJobMetadata::release_error_status() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
-  _impl_._has_bits_[0] &= ~0x00000008u;
+  _impl_._has_bits_[0] &= ~0x00000004u;
   ::google::rpc::Status* released = _impl_.error_status_;
   _impl_.error_status_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -4693,14 +4580,14 @@ inline ::google::rpc::Status* TrainingJobMetadata::unsafe_arena_release_error_st
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   // @@protoc_insertion_point(field_release:viam.app.mltraining.v1.TrainingJobMetadata.error_status)
 
-  _impl_._has_bits_[0] &= ~0x00000008u;
+  _impl_._has_bits_[0] &= ~0x00000004u;
   ::google::rpc::Status* temp = _impl_.error_status_;
   _impl_.error_status_ = nullptr;
   return temp;
 }
 inline ::google::rpc::Status* TrainingJobMetadata::_internal_mutable_error_status() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000008u;
+  _impl_._has_bits_[0] |= 0x00000004u;
   if (_impl_.error_status_ == nullptr) {
     auto* p = CreateMaybeMessage<::google::rpc::Status>(GetArena());
     _impl_.error_status_ = reinterpret_cast<::google::rpc::Status*>(p);
@@ -4724,9 +4611,9 @@ inline void TrainingJobMetadata::set_allocated_error_status(::google::rpc::Statu
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000008u;
+    _impl_._has_bits_[0] |= 0x00000004u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000008u;
+    _impl_._has_bits_[0] &= ~0x00000004u;
   }
 
   _impl_.error_status_ = reinterpret_cast<::google::rpc::Status*>(value);
@@ -4735,7 +4622,7 @@ inline void TrainingJobMetadata::set_allocated_error_status(::google::rpc::Statu
 
 // .google.protobuf.Timestamp created_on = 3 [json_name = "createdOn", (.tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
 inline bool TrainingJobMetadata::has_created_on() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.created_on_ != nullptr);
   return value;
 }
@@ -4755,16 +4642,16 @@ inline void TrainingJobMetadata::unsafe_arena_set_allocated_created_on(::google:
   }
   _impl_.created_on_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000002u;
+    _impl_._has_bits_[0] |= 0x00000001u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
+    _impl_._has_bits_[0] &= ~0x00000001u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.mltraining.v1.TrainingJobMetadata.created_on)
 }
 inline ::google::protobuf::Timestamp* TrainingJobMetadata::release_created_on() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
-  _impl_._has_bits_[0] &= ~0x00000002u;
+  _impl_._has_bits_[0] &= ~0x00000001u;
   ::google::protobuf::Timestamp* released = _impl_.created_on_;
   _impl_.created_on_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -4784,14 +4671,14 @@ inline ::google::protobuf::Timestamp* TrainingJobMetadata::unsafe_arena_release_
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   // @@protoc_insertion_point(field_release:viam.app.mltraining.v1.TrainingJobMetadata.created_on)
 
-  _impl_._has_bits_[0] &= ~0x00000002u;
+  _impl_._has_bits_[0] &= ~0x00000001u;
   ::google::protobuf::Timestamp* temp = _impl_.created_on_;
   _impl_.created_on_ = nullptr;
   return temp;
 }
 inline ::google::protobuf::Timestamp* TrainingJobMetadata::_internal_mutable_created_on() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.created_on_ == nullptr) {
     auto* p = CreateMaybeMessage<::google::protobuf::Timestamp>(GetArena());
     _impl_.created_on_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
@@ -4815,9 +4702,9 @@ inline void TrainingJobMetadata::set_allocated_created_on(::google::protobuf::Ti
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000002u;
+    _impl_._has_bits_[0] |= 0x00000001u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
+    _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
   _impl_.created_on_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
@@ -4826,7 +4713,7 @@ inline void TrainingJobMetadata::set_allocated_created_on(::google::protobuf::Ti
 
 // .google.protobuf.Timestamp last_modified = 4 [json_name = "lastModified", (.tagger.v1.tags) = "bson:\"last_modified\" json:\"last_modified\""];
 inline bool TrainingJobMetadata::has_last_modified() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.last_modified_ != nullptr);
   return value;
 }
@@ -4846,16 +4733,16 @@ inline void TrainingJobMetadata::unsafe_arena_set_allocated_last_modified(::goog
   }
   _impl_.last_modified_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000004u;
+    _impl_._has_bits_[0] |= 0x00000002u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000004u;
+    _impl_._has_bits_[0] &= ~0x00000002u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.mltraining.v1.TrainingJobMetadata.last_modified)
 }
 inline ::google::protobuf::Timestamp* TrainingJobMetadata::release_last_modified() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
-  _impl_._has_bits_[0] &= ~0x00000004u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
   ::google::protobuf::Timestamp* released = _impl_.last_modified_;
   _impl_.last_modified_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -4875,14 +4762,14 @@ inline ::google::protobuf::Timestamp* TrainingJobMetadata::unsafe_arena_release_
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   // @@protoc_insertion_point(field_release:viam.app.mltraining.v1.TrainingJobMetadata.last_modified)
 
-  _impl_._has_bits_[0] &= ~0x00000004u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
   ::google::protobuf::Timestamp* temp = _impl_.last_modified_;
   _impl_.last_modified_ = nullptr;
   return temp;
 }
 inline ::google::protobuf::Timestamp* TrainingJobMetadata::_internal_mutable_last_modified() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_._has_bits_[0] |= 0x00000002u;
   if (_impl_.last_modified_ == nullptr) {
     auto* p = CreateMaybeMessage<::google::protobuf::Timestamp>(GetArena());
     _impl_.last_modified_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
@@ -4906,9 +4793,9 @@ inline void TrainingJobMetadata::set_allocated_last_modified(::google::protobuf:
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000004u;
+    _impl_._has_bits_[0] |= 0x00000002u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000004u;
+    _impl_._has_bits_[0] &= ~0x00000002u;
   }
 
   _impl_.last_modified_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
@@ -4917,7 +4804,7 @@ inline void TrainingJobMetadata::set_allocated_last_modified(::google::protobuf:
 
 // .google.protobuf.Timestamp training_started = 9 [json_name = "trainingStarted", (.tagger.v1.tags) = "bson:\"training_started\" json:\"training_started\""];
 inline bool TrainingJobMetadata::has_training_started() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.training_started_ != nullptr);
   return value;
 }
@@ -4937,16 +4824,16 @@ inline void TrainingJobMetadata::unsafe_arena_set_allocated_training_started(::g
   }
   _impl_.training_started_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000010u;
+    _impl_._has_bits_[0] |= 0x00000008u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000010u;
+    _impl_._has_bits_[0] &= ~0x00000008u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.mltraining.v1.TrainingJobMetadata.training_started)
 }
 inline ::google::protobuf::Timestamp* TrainingJobMetadata::release_training_started() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
-  _impl_._has_bits_[0] &= ~0x00000010u;
+  _impl_._has_bits_[0] &= ~0x00000008u;
   ::google::protobuf::Timestamp* released = _impl_.training_started_;
   _impl_.training_started_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -4966,14 +4853,14 @@ inline ::google::protobuf::Timestamp* TrainingJobMetadata::unsafe_arena_release_
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   // @@protoc_insertion_point(field_release:viam.app.mltraining.v1.TrainingJobMetadata.training_started)
 
-  _impl_._has_bits_[0] &= ~0x00000010u;
+  _impl_._has_bits_[0] &= ~0x00000008u;
   ::google::protobuf::Timestamp* temp = _impl_.training_started_;
   _impl_.training_started_ = nullptr;
   return temp;
 }
 inline ::google::protobuf::Timestamp* TrainingJobMetadata::_internal_mutable_training_started() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000010u;
+  _impl_._has_bits_[0] |= 0x00000008u;
   if (_impl_.training_started_ == nullptr) {
     auto* p = CreateMaybeMessage<::google::protobuf::Timestamp>(GetArena());
     _impl_.training_started_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
@@ -4997,9 +4884,9 @@ inline void TrainingJobMetadata::set_allocated_training_started(::google::protob
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000010u;
+    _impl_._has_bits_[0] |= 0x00000008u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000010u;
+    _impl_._has_bits_[0] &= ~0x00000008u;
   }
 
   _impl_.training_started_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
@@ -5008,7 +4895,7 @@ inline void TrainingJobMetadata::set_allocated_training_started(::google::protob
 
 // .google.protobuf.Timestamp training_ended = 10 [json_name = "trainingEnded", (.tagger.v1.tags) = "bson:\"training_ended\" json:\"training_ended\""];
 inline bool TrainingJobMetadata::has_training_ended() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000020u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.training_ended_ != nullptr);
   return value;
 }
@@ -5028,16 +4915,16 @@ inline void TrainingJobMetadata::unsafe_arena_set_allocated_training_ended(::goo
   }
   _impl_.training_ended_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000020u;
+    _impl_._has_bits_[0] |= 0x00000010u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000020u;
+    _impl_._has_bits_[0] &= ~0x00000010u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.mltraining.v1.TrainingJobMetadata.training_ended)
 }
 inline ::google::protobuf::Timestamp* TrainingJobMetadata::release_training_ended() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
-  _impl_._has_bits_[0] &= ~0x00000020u;
+  _impl_._has_bits_[0] &= ~0x00000010u;
   ::google::protobuf::Timestamp* released = _impl_.training_ended_;
   _impl_.training_ended_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -5057,14 +4944,14 @@ inline ::google::protobuf::Timestamp* TrainingJobMetadata::unsafe_arena_release_
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   // @@protoc_insertion_point(field_release:viam.app.mltraining.v1.TrainingJobMetadata.training_ended)
 
-  _impl_._has_bits_[0] &= ~0x00000020u;
+  _impl_._has_bits_[0] &= ~0x00000010u;
   ::google::protobuf::Timestamp* temp = _impl_.training_ended_;
   _impl_.training_ended_ = nullptr;
   return temp;
 }
 inline ::google::protobuf::Timestamp* TrainingJobMetadata::_internal_mutable_training_ended() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000020u;
+  _impl_._has_bits_[0] |= 0x00000010u;
   if (_impl_.training_ended_ == nullptr) {
     auto* p = CreateMaybeMessage<::google::protobuf::Timestamp>(GetArena());
     _impl_.training_ended_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
@@ -5088,9 +4975,9 @@ inline void TrainingJobMetadata::set_allocated_training_ended(::google::protobuf
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000020u;
+    _impl_._has_bits_[0] |= 0x00000010u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000020u;
+    _impl_._has_bits_[0] &= ~0x00000010u;
   }
 
   _impl_.training_ended_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
