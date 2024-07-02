@@ -272,7 +272,6 @@ inline constexpr TrainingJobMetadata::Impl_::Impl_(
         registry_item_version_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        request_{nullptr},
         created_on_{nullptr},
         last_modified_{nullptr},
         error_status_{nullptr},
@@ -436,7 +435,6 @@ const ::uint32_t TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto::offs
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.request_),
     PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.id_),
     PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.dataset_id_),
     PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.organization_id_),
@@ -455,7 +453,6 @@ const ::uint32_t TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto::offs
     PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.training_ended_),
     PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.synced_model_id_),
     PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.tags_),
-    0,
     ~0u,
     ~0u,
     ~0u,
@@ -467,11 +464,11 @@ const ::uint32_t TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto::offs
     ~0u,
     ~0u,
     ~0u,
-    3,
-    1,
     2,
+    0,
+    1,
+    3,
     4,
-    5,
     ~0u,
     ~0u,
     ~0u,  // no _has_bits_
@@ -520,11 +517,11 @@ static const ::_pbi::MigrationSchema
         {55, 64, -1, sizeof(::viam::app::mltraining::v1::GetTrainingJobResponse)},
         {65, -1, -1, sizeof(::viam::app::mltraining::v1::ListTrainingJobsRequest)},
         {75, -1, -1, sizeof(::viam::app::mltraining::v1::ListTrainingJobsResponse)},
-        {84, 111, -1, sizeof(::viam::app::mltraining::v1::TrainingJobMetadata)},
-        {130, -1, -1, sizeof(::viam::app::mltraining::v1::CancelTrainingJobRequest)},
-        {139, -1, -1, sizeof(::viam::app::mltraining::v1::CancelTrainingJobResponse)},
-        {147, -1, -1, sizeof(::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest)},
-        {156, -1, -1, sizeof(::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse)},
+        {84, 110, -1, sizeof(::viam::app::mltraining::v1::TrainingJobMetadata)},
+        {128, -1, -1, sizeof(::viam::app::mltraining::v1::CancelTrainingJobRequest)},
+        {137, -1, -1, sizeof(::viam::app::mltraining::v1::CancelTrainingJobResponse)},
+        {145, -1, -1, sizeof(::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest)},
+        {154, -1, -1, sizeof(::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -585,97 +582,94 @@ const char descriptor_table_protodef_app_2fmltraining_2fv1_2fml_5ftraining_2epro
     "2&.viam.app.mltraining.v1.TrainingStatus"
     "R\006status\"[\n\030ListTrainingJobsResponse\022\?\n\004"
     "jobs\030\001 \003(\0132+.viam.app.mltraining.v1.Trai"
-    "ningJobMetadataR\004jobs\"\307\016\n\023TrainingJobMet"
-    "adata\022n\n\007request\030\001 \001(\01320.viam.app.mltrai"
-    "ning.v1.SubmitTrainingJobRequestB\"\232\204\236\003\035b"
-    "son:\"request\" json:\"request\"R\007request\0223\n"
-    "\002id\030\007 \001(\tB#\232\204\236\003\036bson:\"_id\" json:\"id,omit"
-    "empty\"R\002id\022G\n\ndataset_id\030\013 \001(\tB(\232\204\236\003#bso"
-    "n:\"dataset_id\" json:\"dataset_id\"R\tdatase"
-    "tId\022[\n\017organization_id\030\014 \001(\tB2\232\204\236\003-bson:"
-    "\"organization_id\" json:\"organization_id\""
-    "R\016organizationId\022G\n\nmodel_name\030\r \001(\tB(\232\204"
-    "\236\003#bson:\"model_name\" json:\"model_name\"R\t"
-    "modelName\022S\n\rmodel_version\030\016 \001(\tB.\232\204\236\003)b"
-    "son:\"model_version\" json:\"model_version\""
-    "R\014modelVersion\022j\n\nmodel_type\030\017 \001(\0162!.via"
-    "m.app.mltraining.v1.ModelTypeB(\232\204\236\003#bson"
-    ":\"model_type\" json:\"model_type\"R\tmodelTy"
-    "pe\022\203\001\n\017model_framework\030\021 \001(\0162&.viam.app."
-    "mltraining.v1.ModelFrameworkB2\232\204\236\003-bson:"
-    "\"model_framework\" json:\"model_framework\""
-    "R\016modelFramework\022R\n\ris_custom_job\030\022 \001(\010B"
-    ".\232\204\236\003)bson:\"is_custom_job\" json:\"is_cust"
-    "om_job\"R\013isCustomJob\022^\n\020registry_item_id"
-    "\030\023 \001(\tB4\232\204\236\003/bson:\"registry_item_id\" jso"
-    "n:\"registry_item_id\"R\016registryItemId\022r\n\025"
-    "registry_item_version\030\024 \001(\tB>\232\204\236\0039bson:\""
-    "registry_item_version\" json:\"registry_it"
-    "em_version\"R\023registryItemVersion\022`\n\006stat"
-    "us\030\002 \001(\0162&.viam.app.mltraining.v1.Traini"
-    "ngStatusB \232\204\236\003\033bson:\"status\" json:\"statu"
-    "s\"R\006status\022c\n\014error_status\030\010 \001(\0132\022.googl"
-    "e.rpc.StatusB,\232\204\236\003\'bson:\"error_status\" j"
-    "son:\"error_status\"R\013errorStatus\022c\n\ncreat"
-    "ed_on\030\003 \001(\0132\032.google.protobuf.TimestampB"
-    "(\232\204\236\003#bson:\"created_on\" json:\"created_on"
-    "\"R\tcreatedOn\022o\n\rlast_modified\030\004 \001(\0132\032.go"
-    "ogle.protobuf.TimestampB.\232\204\236\003)bson:\"last"
-    "_modified\" json:\"last_modified\"R\014lastMod"
-    "ified\022{\n\020training_started\030\t \001(\0132\032.google"
-    ".protobuf.TimestampB4\232\204\236\003/bson:\"training"
-    "_started\" json:\"training_started\"R\017train"
-    "ingStarted\022s\n\016training_ended\030\n \001(\0132\032.goo"
-    "gle.protobuf.TimestampB0\232\204\236\003+bson:\"train"
-    "ing_ended\" json:\"training_ended\"R\rtraini"
-    "ngEnded\022Z\n\017synced_model_id\030\005 \001(\tB2\232\204\236\003-b"
-    "son:\"synced_model_id\" json:\"synced_model"
-    "_id\"R\rsyncedModelId\0220\n\004tags\030\020 \003(\tB\034\232\204\236\003\027"
-    "bson:\"tags\" json:\"tags\"R\004tagsJ\004\010\006\020\007R\nuse"
-    "r_email\"*\n\030CancelTrainingJobRequest\022\016\n\002i"
-    "d\030\001 \001(\tR\002id\"\033\n\031CancelTrainingJobResponse"
-    "\"3\n!DeleteCompletedTrainingJobRequest\022\016\n"
-    "\002id\030\001 \001(\tR\002id\"$\n\"DeleteCompletedTraining"
-    "JobResponse*\237\001\n\tModelType\022\032\n\026MODEL_TYPE_"
-    "UNSPECIFIED\020\000\022*\n&MODEL_TYPE_SINGLE_LABEL"
-    "_CLASSIFICATION\020\001\022)\n%MODEL_TYPE_MULTI_LA"
-    "BEL_CLASSIFICATION\020\002\022\037\n\033MODEL_TYPE_OBJEC"
-    "T_DETECTION\020\003*\244\001\n\016ModelFramework\022\037\n\033MODE"
-    "L_FRAMEWORK_UNSPECIFIED\020\000\022\032\n\026MODEL_FRAME"
-    "WORK_TFLITE\020\001\022\036\n\032MODEL_FRAMEWORK_TENSORF"
-    "LOW\020\002\022\033\n\027MODEL_FRAMEWORK_PYTORCH\020\003\022\030\n\024MO"
-    "DEL_FRAMEWORK_ONNX\020\004*\347\001\n\016TrainingStatus\022"
-    "\037\n\033TRAINING_STATUS_UNSPECIFIED\020\000\022\033\n\027TRAI"
-    "NING_STATUS_PENDING\020\001\022\037\n\033TRAINING_STATUS"
-    "_IN_PROGRESS\020\002\022\035\n\031TRAINING_STATUS_COMPLE"
-    "TED\020\003\022\032\n\026TRAINING_STATUS_FAILED\020\004\022\034\n\030TRA"
-    "INING_STATUS_CANCELED\020\005\022\035\n\031TRAINING_STAT"
-    "US_CANCELING\020\0062\222\006\n\021MLTrainingService\022x\n\021"
-    "SubmitTrainingJob\0220.viam.app.mltraining."
-    "v1.SubmitTrainingJobRequest\0321.viam.app.m"
-    "ltraining.v1.SubmitTrainingJobResponse\022\212"
-    "\001\n\027SubmitCustomTrainingJob\0226.viam.app.ml"
-    "training.v1.SubmitCustomTrainingJobReque"
-    "st\0327.viam.app.mltraining.v1.SubmitCustom"
-    "TrainingJobResponse\022o\n\016GetTrainingJob\022-."
-    "viam.app.mltraining.v1.GetTrainingJobReq"
-    "uest\032..viam.app.mltraining.v1.GetTrainin"
-    "gJobResponse\022u\n\020ListTrainingJobs\022/.viam."
-    "app.mltraining.v1.ListTrainingJobsReques"
-    "t\0320.viam.app.mltraining.v1.ListTrainingJ"
-    "obsResponse\022x\n\021CancelTrainingJob\0220.viam."
-    "app.mltraining.v1.CancelTrainingJobReque"
-    "st\0321.viam.app.mltraining.v1.CancelTraini"
-    "ngJobResponse\022\223\001\n\032DeleteCompletedTrainin"
-    "gJob\0229.viam.app.mltraining.v1.DeleteComp"
-    "letedTrainingJobRequest\032:.viam.app.mltra"
-    "ining.v1.DeleteCompletedTrainingJobRespo"
-    "nseB\313\001\n\032com.viam.app.mltraining.v1B\017MlTr"
-    "ainingProtoP\001Z!go.viam.com/api/app/mltra"
-    "ining/v1\242\002\003VAM\252\002\026Viam.App.Mltraining.V1\312"
-    "\002\026Viam\\App\\Mltraining\\V1\342\002\"Viam\\App\\Mltr"
-    "aining\\V1\\GPBMetadata\352\002\031Viam::App::Mltra"
-    "ining::V1b\006proto3"
+    "ningJobMetadataR\004jobs\"\346\r\n\023TrainingJobMet"
+    "adata\0223\n\002id\030\007 \001(\tB#\232\204\236\003\036bson:\"_id\" json:"
+    "\"id,omitempty\"R\002id\022G\n\ndataset_id\030\013 \001(\tB("
+    "\232\204\236\003#bson:\"dataset_id\" json:\"dataset_id\""
+    "R\tdatasetId\022[\n\017organization_id\030\014 \001(\tB2\232\204"
+    "\236\003-bson:\"organization_id\" json:\"organiza"
+    "tion_id\"R\016organizationId\022G\n\nmodel_name\030\r"
+    " \001(\tB(\232\204\236\003#bson:\"model_name\" json:\"model"
+    "_name\"R\tmodelName\022S\n\rmodel_version\030\016 \001(\t"
+    "B.\232\204\236\003)bson:\"model_version\" json:\"model_"
+    "version\"R\014modelVersion\022j\n\nmodel_type\030\017 \001"
+    "(\0162!.viam.app.mltraining.v1.ModelTypeB(\232"
+    "\204\236\003#bson:\"model_type\" json:\"model_type\"R"
+    "\tmodelType\022\203\001\n\017model_framework\030\021 \001(\0162&.v"
+    "iam.app.mltraining.v1.ModelFrameworkB2\232\204"
+    "\236\003-bson:\"model_framework\" json:\"model_fr"
+    "amework\"R\016modelFramework\022R\n\ris_custom_jo"
+    "b\030\022 \001(\010B.\232\204\236\003)bson:\"is_custom_job\" json:"
+    "\"is_custom_job\"R\013isCustomJob\022^\n\020registry"
+    "_item_id\030\023 \001(\tB4\232\204\236\003/bson:\"registry_item"
+    "_id\" json:\"registry_item_id\"R\016registryIt"
+    "emId\022r\n\025registry_item_version\030\024 \001(\tB>\232\204\236"
+    "\0039bson:\"registry_item_version\" json:\"reg"
+    "istry_item_version\"R\023registryItemVersion"
+    "\022`\n\006status\030\002 \001(\0162&.viam.app.mltraining.v"
+    "1.TrainingStatusB \232\204\236\003\033bson:\"status\" jso"
+    "n:\"status\"R\006status\022c\n\014error_status\030\010 \001(\013"
+    "2\022.google.rpc.StatusB,\232\204\236\003\'bson:\"error_s"
+    "tatus\" json:\"error_status\"R\013errorStatus\022"
+    "c\n\ncreated_on\030\003 \001(\0132\032.google.protobuf.Ti"
+    "mestampB(\232\204\236\003#bson:\"created_on\" json:\"cr"
+    "eated_on\"R\tcreatedOn\022o\n\rlast_modified\030\004 "
+    "\001(\0132\032.google.protobuf.TimestampB.\232\204\236\003)bs"
+    "on:\"last_modified\" json:\"last_modified\"R"
+    "\014lastModified\022{\n\020training_started\030\t \001(\0132"
+    "\032.google.protobuf.TimestampB4\232\204\236\003/bson:\""
+    "training_started\" json:\"training_started"
+    "\"R\017trainingStarted\022s\n\016training_ended\030\n \001"
+    "(\0132\032.google.protobuf.TimestampB0\232\204\236\003+bso"
+    "n:\"training_ended\" json:\"training_ended\""
+    "R\rtrainingEnded\022Z\n\017synced_model_id\030\005 \001(\t"
+    "B2\232\204\236\003-bson:\"synced_model_id\" json:\"sync"
+    "ed_model_id\"R\rsyncedModelId\0220\n\004tags\030\020 \003("
+    "\tB\034\232\204\236\003\027bson:\"tags\" json:\"tags\"R\004tagsJ\004\010"
+    "\001\020\002J\004\010\006\020\007R\007requestR\nuser_email\"*\n\030Cancel"
+    "TrainingJobRequest\022\016\n\002id\030\001 \001(\tR\002id\"\033\n\031Ca"
+    "ncelTrainingJobResponse\"3\n!DeleteComplet"
+    "edTrainingJobRequest\022\016\n\002id\030\001 \001(\tR\002id\"$\n\""
+    "DeleteCompletedTrainingJobResponse*\237\001\n\tM"
+    "odelType\022\032\n\026MODEL_TYPE_UNSPECIFIED\020\000\022*\n&"
+    "MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION\020\001"
+    "\022)\n%MODEL_TYPE_MULTI_LABEL_CLASSIFICATIO"
+    "N\020\002\022\037\n\033MODEL_TYPE_OBJECT_DETECTION\020\003*\244\001\n"
+    "\016ModelFramework\022\037\n\033MODEL_FRAMEWORK_UNSPE"
+    "CIFIED\020\000\022\032\n\026MODEL_FRAMEWORK_TFLITE\020\001\022\036\n\032"
+    "MODEL_FRAMEWORK_TENSORFLOW\020\002\022\033\n\027MODEL_FR"
+    "AMEWORK_PYTORCH\020\003\022\030\n\024MODEL_FRAMEWORK_ONN"
+    "X\020\004*\347\001\n\016TrainingStatus\022\037\n\033TRAINING_STATU"
+    "S_UNSPECIFIED\020\000\022\033\n\027TRAINING_STATUS_PENDI"
+    "NG\020\001\022\037\n\033TRAINING_STATUS_IN_PROGRESS\020\002\022\035\n"
+    "\031TRAINING_STATUS_COMPLETED\020\003\022\032\n\026TRAINING"
+    "_STATUS_FAILED\020\004\022\034\n\030TRAINING_STATUS_CANC"
+    "ELED\020\005\022\035\n\031TRAINING_STATUS_CANCELING\020\0062\222\006"
+    "\n\021MLTrainingService\022x\n\021SubmitTrainingJob"
+    "\0220.viam.app.mltraining.v1.SubmitTraining"
+    "JobRequest\0321.viam.app.mltraining.v1.Subm"
+    "itTrainingJobResponse\022\212\001\n\027SubmitCustomTr"
+    "ainingJob\0226.viam.app.mltraining.v1.Submi"
+    "tCustomTrainingJobRequest\0327.viam.app.mlt"
+    "raining.v1.SubmitCustomTrainingJobRespon"
+    "se\022o\n\016GetTrainingJob\022-.viam.app.mltraini"
+    "ng.v1.GetTrainingJobRequest\032..viam.app.m"
+    "ltraining.v1.GetTrainingJobResponse\022u\n\020L"
+    "istTrainingJobs\022/.viam.app.mltraining.v1"
+    ".ListTrainingJobsRequest\0320.viam.app.mltr"
+    "aining.v1.ListTrainingJobsResponse\022x\n\021Ca"
+    "ncelTrainingJob\0220.viam.app.mltraining.v1"
+    ".CancelTrainingJobRequest\0321.viam.app.mlt"
+    "raining.v1.CancelTrainingJobResponse\022\223\001\n"
+    "\032DeleteCompletedTrainingJob\0229.viam.app.m"
+    "ltraining.v1.DeleteCompletedTrainingJobR"
+    "equest\032:.viam.app.mltraining.v1.DeleteCo"
+    "mpletedTrainingJobResponseB\313\001\n\032com.viam."
+    "app.mltraining.v1B\017MlTrainingProtoP\001Z!go"
+    ".viam.com/api/app/mltraining/v1\242\002\003VAM\252\002\026"
+    "Viam.App.Mltraining.V1\312\002\026Viam\\App\\Mltrai"
+    "ning\\V1\342\002\"Viam\\App\\Mltraining\\V1\\GPBMeta"
+    "data\352\002\031Viam::App::Mltraining::V1b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_deps[3] =
     {
@@ -687,7 +681,7 @@ static ::absl::once_flag descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_
 const ::_pbi::DescriptorTable descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto = {
     false,
     false,
-    5297,
+    5200,
     descriptor_table_protodef_app_2fmltraining_2fv1_2fml_5ftraining_2eproto,
     "app/mltraining/v1/ml_training.proto",
     &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once,
@@ -2601,35 +2595,28 @@ class TrainingJobMetadata::_Internal {
   using HasBits = decltype(std::declval<TrainingJobMetadata>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
     8 * PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_._has_bits_);
-  static const ::viam::app::mltraining::v1::SubmitTrainingJobRequest& request(const TrainingJobMetadata* msg);
-  static void set_has_request(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
-  }
   static const ::google::rpc::Status& error_status(const TrainingJobMetadata* msg);
   static void set_has_error_status(HasBits* has_bits) {
-    (*has_bits)[0] |= 8u;
+    (*has_bits)[0] |= 4u;
   }
   static const ::google::protobuf::Timestamp& created_on(const TrainingJobMetadata* msg);
   static void set_has_created_on(HasBits* has_bits) {
-    (*has_bits)[0] |= 2u;
+    (*has_bits)[0] |= 1u;
   }
   static const ::google::protobuf::Timestamp& last_modified(const TrainingJobMetadata* msg);
   static void set_has_last_modified(HasBits* has_bits) {
-    (*has_bits)[0] |= 4u;
+    (*has_bits)[0] |= 2u;
   }
   static const ::google::protobuf::Timestamp& training_started(const TrainingJobMetadata* msg);
   static void set_has_training_started(HasBits* has_bits) {
-    (*has_bits)[0] |= 16u;
+    (*has_bits)[0] |= 8u;
   }
   static const ::google::protobuf::Timestamp& training_ended(const TrainingJobMetadata* msg);
   static void set_has_training_ended(HasBits* has_bits) {
-    (*has_bits)[0] |= 32u;
+    (*has_bits)[0] |= 16u;
   }
 };
 
-const ::viam::app::mltraining::v1::SubmitTrainingJobRequest& TrainingJobMetadata::_Internal::request(const TrainingJobMetadata* msg) {
-  return *msg->_impl_.request_;
-}
 const ::google::rpc::Status& TrainingJobMetadata::_Internal::error_status(const TrainingJobMetadata* msg) {
   return *msg->_impl_.error_status_;
 }
@@ -2648,27 +2635,27 @@ const ::google::protobuf::Timestamp& TrainingJobMetadata::_Internal::training_en
 void TrainingJobMetadata::clear_error_status() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (_impl_.error_status_ != nullptr) _impl_.error_status_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000008u;
+  _impl_._has_bits_[0] &= ~0x00000004u;
 }
 void TrainingJobMetadata::clear_created_on() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (_impl_.created_on_ != nullptr) _impl_.created_on_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000002u;
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
 void TrainingJobMetadata::clear_last_modified() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (_impl_.last_modified_ != nullptr) _impl_.last_modified_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000004u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
 }
 void TrainingJobMetadata::clear_training_started() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (_impl_.training_started_ != nullptr) _impl_.training_started_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000010u;
+  _impl_._has_bits_[0] &= ~0x00000008u;
 }
 void TrainingJobMetadata::clear_training_ended() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (_impl_.training_ended_ != nullptr) _impl_.training_ended_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000020u;
+  _impl_._has_bits_[0] &= ~0x00000010u;
 }
 TrainingJobMetadata::TrainingJobMetadata(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
@@ -2700,22 +2687,19 @@ TrainingJobMetadata::TrainingJobMetadata(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
   ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.request_ = (cached_has_bits & 0x00000001u)
-                ? CreateMaybeMessage<::viam::app::mltraining::v1::SubmitTrainingJobRequest>(arena, *from._impl_.request_)
-                : nullptr;
-  _impl_.created_on_ = (cached_has_bits & 0x00000002u)
+  _impl_.created_on_ = (cached_has_bits & 0x00000001u)
                 ? CreateMaybeMessage<::google::protobuf::Timestamp>(arena, *from._impl_.created_on_)
                 : nullptr;
-  _impl_.last_modified_ = (cached_has_bits & 0x00000004u)
+  _impl_.last_modified_ = (cached_has_bits & 0x00000002u)
                 ? CreateMaybeMessage<::google::protobuf::Timestamp>(arena, *from._impl_.last_modified_)
                 : nullptr;
-  _impl_.error_status_ = (cached_has_bits & 0x00000008u)
+  _impl_.error_status_ = (cached_has_bits & 0x00000004u)
                 ? CreateMaybeMessage<::google::rpc::Status>(arena, *from._impl_.error_status_)
                 : nullptr;
-  _impl_.training_started_ = (cached_has_bits & 0x00000010u)
+  _impl_.training_started_ = (cached_has_bits & 0x00000008u)
                 ? CreateMaybeMessage<::google::protobuf::Timestamp>(arena, *from._impl_.training_started_)
                 : nullptr;
-  _impl_.training_ended_ = (cached_has_bits & 0x00000020u)
+  _impl_.training_ended_ = (cached_has_bits & 0x00000010u)
                 ? CreateMaybeMessage<::google::protobuf::Timestamp>(arena, *from._impl_.training_ended_)
                 : nullptr;
   ::memcpy(reinterpret_cast<char *>(&_impl_) +
@@ -2745,10 +2729,10 @@ inline PROTOBUF_NDEBUG_INLINE TrainingJobMetadata::Impl_::Impl_(
 inline void TrainingJobMetadata::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, request_),
+               offsetof(Impl_, created_on_),
            0,
            offsetof(Impl_, is_custom_job_) -
-               offsetof(Impl_, request_) +
+               offsetof(Impl_, created_on_) +
                sizeof(Impl_::is_custom_job_));
 }
 TrainingJobMetadata::~TrainingJobMetadata() {
@@ -2766,7 +2750,6 @@ inline void TrainingJobMetadata::SharedDtor() {
   _impl_.model_version_.Destroy();
   _impl_.registry_item_id_.Destroy();
   _impl_.registry_item_version_.Destroy();
-  delete _impl_.request_;
   delete _impl_.created_on_;
   delete _impl_.last_modified_;
   delete _impl_.error_status_;
@@ -2792,28 +2775,24 @@ PROTOBUF_NOINLINE void TrainingJobMetadata::Clear() {
   _impl_.registry_item_id_.ClearToEmpty();
   _impl_.registry_item_version_.ClearToEmpty();
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x0000003fu) {
+  if (cached_has_bits & 0x0000001fu) {
     if (cached_has_bits & 0x00000001u) {
-      ABSL_DCHECK(_impl_.request_ != nullptr);
-      _impl_.request_->Clear();
-    }
-    if (cached_has_bits & 0x00000002u) {
       ABSL_DCHECK(_impl_.created_on_ != nullptr);
       _impl_.created_on_->Clear();
     }
-    if (cached_has_bits & 0x00000004u) {
+    if (cached_has_bits & 0x00000002u) {
       ABSL_DCHECK(_impl_.last_modified_ != nullptr);
       _impl_.last_modified_->Clear();
     }
-    if (cached_has_bits & 0x00000008u) {
+    if (cached_has_bits & 0x00000004u) {
       ABSL_DCHECK(_impl_.error_status_ != nullptr);
       _impl_.error_status_->Clear();
     }
-    if (cached_has_bits & 0x00000010u) {
+    if (cached_has_bits & 0x00000008u) {
       ABSL_DCHECK(_impl_.training_started_ != nullptr);
       _impl_.training_started_->Clear();
     }
-    if (cached_has_bits & 0x00000020u) {
+    if (cached_has_bits & 0x00000010u) {
       ABSL_DCHECK(_impl_.training_ended_ != nullptr);
       _impl_.training_ended_->Clear();
     }
@@ -2833,33 +2812,31 @@ const char* TrainingJobMetadata::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<5, 19, 6, 173, 2> TrainingJobMetadata::_table_ = {
+const ::_pbi::TcParseTable<5, 18, 5, 173, 2> TrainingJobMetadata::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_._has_bits_),
     0, // no _extensions_
     20, 248,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4293918752,  // skipmap
+    4293918753,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    19,  // num_field_entries
-    6,  // num_aux_entries
+    18,  // num_field_entries
+    5,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_TrainingJobMetadata_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
-    // .viam.app.mltraining.v1.SubmitTrainingJobRequest request = 1 [json_name = "request", (.tagger.v1.tags) = "bson:\"request\" json:\"request\""];
-    {::_pbi::TcParser::FastMtS1,
-     {10, 0, 0, PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.request_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // .viam.app.mltraining.v1.TrainingStatus status = 2 [json_name = "status", (.tagger.v1.tags) = "bson:\"status\" json:\"status\""];
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(TrainingJobMetadata, _impl_.status_), 63>(),
      {16, 63, 0, PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.status_)}},
     // .google.protobuf.Timestamp created_on = 3 [json_name = "createdOn", (.tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
     {::_pbi::TcParser::FastMtS1,
-     {26, 1, 1, PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.created_on_)}},
+     {26, 0, 0, PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.created_on_)}},
     // .google.protobuf.Timestamp last_modified = 4 [json_name = "lastModified", (.tagger.v1.tags) = "bson:\"last_modified\" json:\"last_modified\""];
     {::_pbi::TcParser::FastMtS1,
-     {34, 2, 2, PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.last_modified_)}},
+     {34, 1, 1, PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.last_modified_)}},
     // string synced_model_id = 5 [json_name = "syncedModelId", (.tagger.v1.tags) = "bson:\"synced_model_id\" json:\"synced_model_id\""];
     {::_pbi::TcParser::FastUS1,
      {42, 63, 0, PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.synced_model_id_)}},
@@ -2869,13 +2846,13 @@ const ::_pbi::TcParseTable<5, 19, 6, 173, 2> TrainingJobMetadata::_table_ = {
      {58, 63, 0, PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.id_)}},
     // .google.rpc.Status error_status = 8 [json_name = "errorStatus", (.tagger.v1.tags) = "bson:\"error_status\" json:\"error_status\""];
     {::_pbi::TcParser::FastMtS1,
-     {66, 3, 3, PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.error_status_)}},
+     {66, 2, 2, PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.error_status_)}},
     // .google.protobuf.Timestamp training_started = 9 [json_name = "trainingStarted", (.tagger.v1.tags) = "bson:\"training_started\" json:\"training_started\""];
     {::_pbi::TcParser::FastMtS1,
-     {74, 4, 4, PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.training_started_)}},
+     {74, 3, 3, PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.training_started_)}},
     // .google.protobuf.Timestamp training_ended = 10 [json_name = "trainingEnded", (.tagger.v1.tags) = "bson:\"training_ended\" json:\"training_ended\""];
     {::_pbi::TcParser::FastMtS1,
-     {82, 5, 5, PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.training_ended_)}},
+     {82, 4, 4, PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.training_ended_)}},
     // string dataset_id = 11 [json_name = "datasetId", (.tagger.v1.tags) = "bson:\"dataset_id\" json:\"dataset_id\""];
     {::_pbi::TcParser::FastUS1,
      {90, 63, 0, PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.dataset_id_)}},
@@ -2920,17 +2897,14 @@ const ::_pbi::TcParseTable<5, 19, 6, 173, 2> TrainingJobMetadata::_table_ = {
   }}, {{
     65535, 65535
   }}, {{
-    // .viam.app.mltraining.v1.SubmitTrainingJobRequest request = 1 [json_name = "request", (.tagger.v1.tags) = "bson:\"request\" json:\"request\""];
-    {PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.request_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
     // .viam.app.mltraining.v1.TrainingStatus status = 2 [json_name = "status", (.tagger.v1.tags) = "bson:\"status\" json:\"status\""];
     {PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.status_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
     // .google.protobuf.Timestamp created_on = 3 [json_name = "createdOn", (.tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
-    {PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.created_on_), _Internal::kHasBitsOffset + 1, 1,
+    {PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.created_on_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
     // .google.protobuf.Timestamp last_modified = 4 [json_name = "lastModified", (.tagger.v1.tags) = "bson:\"last_modified\" json:\"last_modified\""];
-    {PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.last_modified_), _Internal::kHasBitsOffset + 2, 2,
+    {PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.last_modified_), _Internal::kHasBitsOffset + 1, 1,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
     // string synced_model_id = 5 [json_name = "syncedModelId", (.tagger.v1.tags) = "bson:\"synced_model_id\" json:\"synced_model_id\""];
     {PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.synced_model_id_), -1, 0,
@@ -2939,13 +2913,13 @@ const ::_pbi::TcParseTable<5, 19, 6, 173, 2> TrainingJobMetadata::_table_ = {
     {PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.id_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // .google.rpc.Status error_status = 8 [json_name = "errorStatus", (.tagger.v1.tags) = "bson:\"error_status\" json:\"error_status\""];
-    {PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.error_status_), _Internal::kHasBitsOffset + 3, 3,
+    {PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.error_status_), _Internal::kHasBitsOffset + 2, 2,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
     // .google.protobuf.Timestamp training_started = 9 [json_name = "trainingStarted", (.tagger.v1.tags) = "bson:\"training_started\" json:\"training_started\""];
-    {PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.training_started_), _Internal::kHasBitsOffset + 4, 4,
+    {PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.training_started_), _Internal::kHasBitsOffset + 3, 3,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
     // .google.protobuf.Timestamp training_ended = 10 [json_name = "trainingEnded", (.tagger.v1.tags) = "bson:\"training_ended\" json:\"training_ended\""];
-    {PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.training_ended_), _Internal::kHasBitsOffset + 5, 5,
+    {PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.training_ended_), _Internal::kHasBitsOffset + 4, 4,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
     // string dataset_id = 11 [json_name = "datasetId", (.tagger.v1.tags) = "bson:\"dataset_id\" json:\"dataset_id\""];
     {PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.dataset_id_), -1, 0,
@@ -2978,14 +2952,13 @@ const ::_pbi::TcParseTable<5, 19, 6, 173, 2> TrainingJobMetadata::_table_ = {
     {PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.registry_item_version_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }}, {{
-    {::_pbi::TcParser::GetTable<::viam::app::mltraining::v1::SubmitTrainingJobRequest>()},
     {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
     {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
     {::_pbi::TcParser::GetTable<::google::rpc::Status>()},
     {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
     {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
   }}, {{
-    "\52\0\0\0\0\17\2\0\0\0\12\17\12\15\0\4\0\0\20\25\0\0\0\0"
+    "\52\0\0\0\17\2\0\0\0\12\17\12\15\0\4\0\0\20\25\0\0\0\0\0"
     "viam.app.mltraining.v1.TrainingJobMetadata"
     "synced_model_id"
     "id"
@@ -3006,14 +2979,6 @@ const ::_pbi::TcParseTable<5, 19, 6, 173, 2> TrainingJobMetadata::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
-  // .viam.app.mltraining.v1.SubmitTrainingJobRequest request = 1 [json_name = "request", (.tagger.v1.tags) = "bson:\"request\" json:\"request\""];
-  if (cached_has_bits & 0x00000001u) {
-    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        1, _Internal::request(this),
-        _Internal::request(this).GetCachedSize(), target, stream);
-  }
-
   // .viam.app.mltraining.v1.TrainingStatus status = 2 [json_name = "status", (.tagger.v1.tags) = "bson:\"status\" json:\"status\""];
   if (this->_internal_status() != 0) {
     target = stream->EnsureSpace(target);
@@ -3021,15 +2986,16 @@ const ::_pbi::TcParseTable<5, 19, 6, 173, 2> TrainingJobMetadata::_table_ = {
         2, this->_internal_status(), target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
   // .google.protobuf.Timestamp created_on = 3 [json_name = "createdOn", (.tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
-  if (cached_has_bits & 0x00000002u) {
+  if (cached_has_bits & 0x00000001u) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         3, _Internal::created_on(this),
         _Internal::created_on(this).GetCachedSize(), target, stream);
   }
 
   // .google.protobuf.Timestamp last_modified = 4 [json_name = "lastModified", (.tagger.v1.tags) = "bson:\"last_modified\" json:\"last_modified\""];
-  if (cached_has_bits & 0x00000004u) {
+  if (cached_has_bits & 0x00000002u) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         4, _Internal::last_modified(this),
         _Internal::last_modified(this).GetCachedSize(), target, stream);
@@ -3052,21 +3018,21 @@ const ::_pbi::TcParseTable<5, 19, 6, 173, 2> TrainingJobMetadata::_table_ = {
   }
 
   // .google.rpc.Status error_status = 8 [json_name = "errorStatus", (.tagger.v1.tags) = "bson:\"error_status\" json:\"error_status\""];
-  if (cached_has_bits & 0x00000008u) {
+  if (cached_has_bits & 0x00000004u) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         8, _Internal::error_status(this),
         _Internal::error_status(this).GetCachedSize(), target, stream);
   }
 
   // .google.protobuf.Timestamp training_started = 9 [json_name = "trainingStarted", (.tagger.v1.tags) = "bson:\"training_started\" json:\"training_started\""];
-  if (cached_has_bits & 0x00000010u) {
+  if (cached_has_bits & 0x00000008u) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         9, _Internal::training_started(this),
         _Internal::training_started(this).GetCachedSize(), target, stream);
   }
 
   // .google.protobuf.Timestamp training_ended = 10 [json_name = "trainingEnded", (.tagger.v1.tags) = "bson:\"training_ended\" json:\"training_ended\""];
-  if (cached_has_bits & 0x00000020u) {
+  if (cached_has_bits & 0x00000010u) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         10, _Internal::training_ended(this),
         _Internal::training_ended(this).GetCachedSize(), target, stream);
@@ -3221,39 +3187,33 @@ const ::_pbi::TcParseTable<5, 19, 6, 173, 2> TrainingJobMetadata::_table_ = {
   }
 
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x0000003fu) {
-    // .viam.app.mltraining.v1.SubmitTrainingJobRequest request = 1 [json_name = "request", (.tagger.v1.tags) = "bson:\"request\" json:\"request\""];
-    if (cached_has_bits & 0x00000001u) {
-      total_size +=
-          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.request_);
-    }
-
+  if (cached_has_bits & 0x0000001fu) {
     // .google.protobuf.Timestamp created_on = 3 [json_name = "createdOn", (.tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
-    if (cached_has_bits & 0x00000002u) {
+    if (cached_has_bits & 0x00000001u) {
       total_size +=
           1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.created_on_);
     }
 
     // .google.protobuf.Timestamp last_modified = 4 [json_name = "lastModified", (.tagger.v1.tags) = "bson:\"last_modified\" json:\"last_modified\""];
-    if (cached_has_bits & 0x00000004u) {
+    if (cached_has_bits & 0x00000002u) {
       total_size +=
           1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.last_modified_);
     }
 
     // .google.rpc.Status error_status = 8 [json_name = "errorStatus", (.tagger.v1.tags) = "bson:\"error_status\" json:\"error_status\""];
-    if (cached_has_bits & 0x00000008u) {
+    if (cached_has_bits & 0x00000004u) {
       total_size +=
           1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.error_status_);
     }
 
     // .google.protobuf.Timestamp training_started = 9 [json_name = "trainingStarted", (.tagger.v1.tags) = "bson:\"training_started\" json:\"training_started\""];
-    if (cached_has_bits & 0x00000010u) {
+    if (cached_has_bits & 0x00000008u) {
       total_size +=
           1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.training_started_);
     }
 
     // .google.protobuf.Timestamp training_ended = 10 [json_name = "trainingEnded", (.tagger.v1.tags) = "bson:\"training_ended\" json:\"training_ended\""];
-    if (cached_has_bits & 0x00000020u) {
+    if (cached_has_bits & 0x00000010u) {
       total_size +=
           1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.training_ended_);
     }
@@ -3327,28 +3287,24 @@ void TrainingJobMetadata::MergeImpl(::google::protobuf::Message& to_msg, const :
     _this->_internal_set_registry_item_version(from._internal_registry_item_version());
   }
   cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x0000003fu) {
+  if (cached_has_bits & 0x0000001fu) {
     if (cached_has_bits & 0x00000001u) {
-      _this->_internal_mutable_request()->::viam::app::mltraining::v1::SubmitTrainingJobRequest::MergeFrom(
-          from._internal_request());
-    }
-    if (cached_has_bits & 0x00000002u) {
       _this->_internal_mutable_created_on()->::google::protobuf::Timestamp::MergeFrom(
           from._internal_created_on());
     }
-    if (cached_has_bits & 0x00000004u) {
+    if (cached_has_bits & 0x00000002u) {
       _this->_internal_mutable_last_modified()->::google::protobuf::Timestamp::MergeFrom(
           from._internal_last_modified());
     }
-    if (cached_has_bits & 0x00000008u) {
+    if (cached_has_bits & 0x00000004u) {
       _this->_internal_mutable_error_status()->::google::rpc::Status::MergeFrom(
           from._internal_error_status());
     }
-    if (cached_has_bits & 0x00000010u) {
+    if (cached_has_bits & 0x00000008u) {
       _this->_internal_mutable_training_started()->::google::protobuf::Timestamp::MergeFrom(
           from._internal_training_started());
     }
-    if (cached_has_bits & 0x00000020u) {
+    if (cached_has_bits & 0x00000010u) {
       _this->_internal_mutable_training_ended()->::google::protobuf::Timestamp::MergeFrom(
           from._internal_training_ended());
     }
@@ -3400,9 +3356,9 @@ void TrainingJobMetadata::InternalSwap(TrainingJobMetadata* PROTOBUF_RESTRICT ot
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.is_custom_job_)
       + sizeof(TrainingJobMetadata::_impl_.is_custom_job_)
-      - PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.request_)>(
-          reinterpret_cast<char*>(&_impl_.request_),
-          reinterpret_cast<char*>(&other->_impl_.request_));
+      - PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.created_on_)>(
+          reinterpret_cast<char*>(&_impl_.created_on_),
+          reinterpret_cast<char*>(&other->_impl_.created_on_));
 }
 
 ::google::protobuf::Metadata TrainingJobMetadata::GetMetadata() const {
