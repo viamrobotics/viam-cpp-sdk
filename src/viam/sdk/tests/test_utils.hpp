@@ -5,6 +5,7 @@
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
+#include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/rpc/server.hpp>
 
 namespace viam {
@@ -58,9 +59,8 @@ void client_to_mock_pipeline(std::shared_ptr<Resource> mock, F&& test_case) {
 
     // Create a resource-specific client to the mock over an established
     // in-process gRPC channel.
-    grpc::ChannelArguments args;
     auto test_server = TestServer(server);
-    auto grpc_channel = test_server.grpc_in_process_channel(args);
+    auto grpc_channel = test_server.grpc_in_process_channel(sdk::default_channel_args());
 
     auto resource_client = Registry::lookup_resource_client(API::get<ResourceType>())
                                ->create_rpc_client(mock->name(), std::move(grpc_channel));
