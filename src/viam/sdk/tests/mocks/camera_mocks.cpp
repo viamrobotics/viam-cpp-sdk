@@ -64,7 +64,7 @@ Camera::image_collection fake_raw_images() {
 Camera::point_cloud fake_point_cloud() {
     Camera::point_cloud point_cloud;
     point_cloud.mime_type = "pointcloud/pcd";
-    std::vector<unsigned char> bytes = {'a', 'b', 'c'};
+    std::vector<unsigned char> bytes(1 << 24, 'a');
     point_cloud.pc = bytes;
     return point_cloud;
 }

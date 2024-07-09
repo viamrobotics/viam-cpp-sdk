@@ -12,7 +12,6 @@
 #include <boost/log/trivial.hpp>
 #include <grpcpp/channel.h>
 #include <grpcpp/client_context.h>
-#include <grpcpp/create_channel.h>
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/support/status.h>
 
@@ -26,6 +25,7 @@
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/rpc/dial.hpp>
+#include <viam/sdk/rpc/private/viam_grpc_channel.hpp>
 #include <viam/sdk/services/service.hpp>
 
 namespace viam {
@@ -354,7 +354,7 @@ std::shared_ptr<RobotClient> RobotClient::at_local_socket(const std::string& add
     const std::string addr = "unix://" + address;
     const char* uri = addr.c_str();
     const std::shared_ptr<grpc::Channel> channel =
-        grpc::CreateChannel(uri, grpc::InsecureChannelCredentials());
+        sdk::impl::create_viam_channel(uri, grpc::InsecureChannelCredentials());
     auto viam_channel = std::make_shared<ViamChannel>(channel, address.c_str(), nullptr);
     std::shared_ptr<RobotClient> robot = RobotClient::with_channel(viam_channel, options);
     robot->should_close_channel_ = true;

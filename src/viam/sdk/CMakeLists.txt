@@ -104,6 +104,7 @@ target_sources(viamsdk
     robot/service.cpp
     rpc/dial.cpp
     rpc/server.cpp
+    rpc/private/viam_grpc_channel.cpp
     services/generic.cpp
     services/mlmodel.cpp
     services/motion.cpp
@@ -161,6 +162,7 @@ target_sources(viamsdk
       ../../viam/sdk/robot/client.hpp
       ../../viam/sdk/robot/service.hpp
       ../../viam/sdk/rpc/dial.hpp
+      ../../viam/sdk/rpc/message_sizes.hpp
       ../../viam/sdk/rpc/server.hpp
       ../../viam/sdk/services/generic.hpp
       ../../viam/sdk/services/mlmodel.hpp

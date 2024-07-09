@@ -4,6 +4,7 @@
 
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/rpc/message_sizes.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
 #include <viam/sdk/spatialmath/orientation.hpp>
 #include <viam/sdk/spatialmath/orientation_types.hpp>
@@ -60,12 +61,14 @@ std::vector<GeometryConfig> fake_geometries() {
             std::move(capsule_config)};
 }
 
-TestServer::TestServer(std::shared_ptr<Server> sdk_server) : sdk_server_(sdk_server){};
+TestServer::TestServer(std::shared_ptr<Server> sdk_server) : sdk_server_(sdk_server) {}
 
 TestServer::~TestServer() = default;
 
-std::shared_ptr<grpc::Channel> TestServer::grpc_in_process_channel(
-    const grpc::ChannelArguments& args) {
+std::shared_ptr<grpc::Channel> TestServer::grpc_in_process_channel() {
+    grpc::ChannelArguments args;
+    args.SetMaxSendMessageSize(kMaxMessageSize);
+    args.SetMaxReceiveMessageSize(kMaxMessageSize);
     return sdk_server_->server_->InProcessChannel(args);
 }
 

@@ -6,12 +6,12 @@
 #include <boost/none.hpp>
 #include <boost/optional.hpp>
 #include <grpcpp/channel.h>
-#include <grpcpp/create_channel.h>
 #include <grpcpp/security/credentials.h>
 
 #include <viam/api/robot/v1/robot.grpc.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
 #include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/rpc/private/viam_grpc_channel.hpp>
 
 extern "C" void* init_rust_runtime();
 extern "C" int free_rust_runtime(void* ptr);
@@ -110,7 +110,7 @@ std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
     std::string address("unix://");
     address += socket_path;
     const std::shared_ptr<grpc::Channel> channel =
-        grpc::CreateChannel(address, grpc::InsecureChannelCredentials());
+        impl::create_viam_channel(address, grpc::InsecureChannelCredentials());
     const std::unique_ptr<viam::robot::v1::RobotService::Stub> st =
         viam::robot::v1::RobotService::NewStub(channel);
     return std::make_shared<ViamChannel>(channel, socket_path, ptr);
@@ -125,10 +125,10 @@ const boost::optional<DialOptions>& Options::dial_options() const {
 }
 
 Credentials::Credentials(std::string payload)
-    : type_("robot-location-secret"), payload_(std::move(payload)){};
+    : type_("robot-location-secret"), payload_(std::move(payload)) {}
 
 Credentials::Credentials(std::string type, std::string payload)
-    : type_(std::move(type)), payload_(std::move(payload)){};
+    : type_(std::move(type)), payload_(std::move(payload)) {}
 
 }  // namespace sdk
 }  // namespace viam

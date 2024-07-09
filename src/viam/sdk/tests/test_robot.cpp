@@ -52,9 +52,8 @@ void robot_client_to_mocks_pipeline(F&& test_case) {
 
     // Create a RobotClient to the MockRobotService over an established
     // in-process gRPC channel.
-    grpc::ChannelArguments args;
     auto test_server = TestServer(server);
-    auto grpc_channel = test_server.grpc_in_process_channel(args);
+    auto grpc_channel = test_server.grpc_in_process_channel();
     auto viam_channel = std::make_shared<ViamChannel>(grpc_channel, "", nullptr);
     auto client = RobotClient::with_channel(viam_channel, Options(0, boost::none));
 

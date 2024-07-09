@@ -22,7 +22,7 @@ class TestServer {
     TestServer(std::shared_ptr<Server> sdk_server);
     ~TestServer();
 
-    std::shared_ptr<grpc::Channel> grpc_in_process_channel(const grpc::ChannelArguments& args);
+    std::shared_ptr<grpc::Channel> grpc_in_process_channel();
 
    private:
     std::shared_ptr<Server> sdk_server_;
@@ -58,9 +58,8 @@ void client_to_mock_pipeline(std::shared_ptr<Resource> mock, F&& test_case) {
 
     // Create a resource-specific client to the mock over an established
     // in-process gRPC channel.
-    grpc::ChannelArguments args;
     auto test_server = TestServer(server);
-    auto grpc_channel = test_server.grpc_in_process_channel(args);
+    auto grpc_channel = test_server.grpc_in_process_channel();
 
     auto resource_client = Registry::lookup_resource_client(API::get<ResourceType>())
                                ->create_rpc_client(mock->name(), std::move(grpc_channel));
