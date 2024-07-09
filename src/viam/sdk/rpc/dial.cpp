@@ -125,10 +125,10 @@ const boost::optional<DialOptions>& Options::dial_options() const {
 }
 
 Credentials::Credentials(std::string payload)
-    : type_("robot-location-secret"), payload_(std::move(payload)) {};
+    : type_("robot-location-secret"), payload_(std::move(payload)) {}
 
 Credentials::Credentials(std::string type, std::string payload)
-    : type_(std::move(type)), payload_(std::move(payload)) {};
+    : type_(std::move(type)), payload_(std::move(payload)) {}
 
 }  // namespace sdk
 }  // namespace viam

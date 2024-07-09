@@ -61,7 +61,7 @@ std::vector<GeometryConfig> fake_geometries() {
             std::move(capsule_config)};
 }
 
-TestServer::TestServer(std::shared_ptr<Server> sdk_server) : sdk_server_(sdk_server) {};
+TestServer::TestServer(std::shared_ptr<Server> sdk_server) : sdk_server_(sdk_server) {}
 
 TestServer::~TestServer() = default;
 
