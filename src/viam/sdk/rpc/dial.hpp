@@ -5,12 +5,9 @@
 
 #include <boost/optional.hpp>
 #include <grpcpp/channel.h>
-#include <grpcpp/support/channel_arguments.h>
 
 namespace viam {
 namespace sdk {
-
-grpc::ChannelArguments default_channel_args();
 
 class DialOptions;
 class ViamChannel {
