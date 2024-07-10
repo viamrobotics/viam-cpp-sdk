@@ -77,6 +77,9 @@ class ClientHelper {
         client_helper_details::errorHandlerReturnedUnexpectedly(result);
     }
 
+    // A version of invoke for gRPC calls returning `(stream ResponseType)`.
+    // ResponseHandlerCallable will be called for every response in the reader, and should return
+    // false to indicate it is no longer interested in the stream.
     template <typename ResponseHandlerCallable>
     auto invoke_stream(ResponseHandlerCallable rhc) {
         *request_.mutable_name() = client_->name();
