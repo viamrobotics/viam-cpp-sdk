@@ -14,14 +14,16 @@ namespace client_helper_details {
 [[noreturn]] void errorHandlerReturnedUnexpectedly(const ::grpc::Status&) noexcept;
 }  // namespace client_helper_details
 
-template <class StubType, class RequestType, class ResponseType>
-using StreamingMethodType = std::unique_ptr<::grpc::ClientReaderInterface<ResponseType>> (
-    StubType::*)(::grpc::ClientContext*, const RequestType&);
-
+// Method type for a gRPC call that returns a response message type.
 template <class StubType, class RequestType, class ResponseType>
 using SyncMethodType = ::grpc::Status (StubType::*)(::grpc::ClientContext*,
                                                     const RequestType&,
                                                     ResponseType*);
+
+// Method type for a gRPC call that returns a stream of response message type.
+template <class StubType, class RequestType, class ResponseType>
+using StreamingMethodType = std::unique_ptr<::grpc::ClientReaderInterface<ResponseType>> (
+    StubType::*)(::grpc::ClientContext*, const RequestType&);
 
 template <typename ClientType,
           typename StubType,
