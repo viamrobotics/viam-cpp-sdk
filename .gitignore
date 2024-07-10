@@ -1,8 +1,9 @@
 # Please try to keep this file as empty as possible,
 # and document what cannot be avoided.
 
-# Give users an ignored place to build
-/build/*
+# Give users an ignored place to build, either a /build/ directory or one with 
+# config parameters such as /build-arm-Debug/
+/build*/*
 
 # For now, ignore any viam_rust_utils library in the root.
 /libviam_rust_utils*
@@ -12,3 +13,6 @@
 
 # ignore doxygen output
 /etc/docs/api/*
+
+# ignore vscode customization
+/.vscode/*
