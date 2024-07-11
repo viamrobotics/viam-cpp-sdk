@@ -87,10 +87,7 @@ class ClientHelper {
 
         auto reader = (stub_->*pfn_)(ctx, request_);
 
-        while (reader->Read(&response_)) {
-            if (!rhc(response_)) {
-                break;
-            }
+        while (reader->Read(&response_) && rhc(response_)) {
         }
     }
 
