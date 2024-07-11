@@ -80,8 +80,9 @@ class ClientHelper {
     // A version of invoke for gRPC calls returning `(stream ResponseType)`.
     // ResponseHandlerCallable will be called for every response in the reader, and should return
     // false to indicate it is no longer interested in the stream.
-    template <typename ResponseHandlerCallable>
-    auto invoke_stream(ResponseHandlerCallable rhc) {
+    template <typename ResponseHandlerCallable,
+              typename ErrorHandlerCallable = decltype(default_ehc_)>
+    auto invoke_stream(ResponseHandlerCallable rhc, ErrorHandlerCallable&& ehc = default_ehc_) {
         *request_.mutable_name() = client_->name();
         ClientContext ctx;
 
@@ -89,6 +90,16 @@ class ClientHelper {
 
         while (reader->Read(&response_) && rhc(response_)) {
         }
+
+        static_cast<::grpc::ClientContext*>(ctx)->TryCancel();
+
+        const auto result = reader->Finish();
+        if (result.ok() || result.error_code() == ::grpc::StatusCode::CANCELLED) {
+            return;
+        }
+
+        std::forward<ErrorHandlerCallable>(ehc)(result);
+        client_helper_details::errorHandlerReturnedUnexpectedly(result);
     }
 
    private:
