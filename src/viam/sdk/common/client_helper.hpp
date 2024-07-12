@@ -1,6 +1,8 @@
 #pragma once
 
 #include <grpcpp/client_context.h>
+#include <grpcpp/support/sync_stream.h>
+
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/common/utils.hpp>
@@ -12,7 +14,22 @@ namespace client_helper_details {
 [[noreturn]] void errorHandlerReturnedUnexpectedly(const ::grpc::Status&) noexcept;
 }  // namespace client_helper_details
 
-template <typename ClientType, typename StubType, typename RequestType, typename ResponseType>
+// Method type for a gRPC call that returns a response message type.
+template <typename StubType, typename RequestType, typename ResponseType>
+using SyncMethodType = ::grpc::Status (StubType::*)(::grpc::ClientContext*,
+                                                    const RequestType&,
+                                                    ResponseType*);
+
+// Method type for a gRPC call that returns a stream of response message type.
+template <typename StubType, typename RequestType, typename ResponseType>
+using StreamingMethodType = std::unique_ptr<::grpc::ClientReaderInterface<ResponseType>> (
+    StubType::*)(::grpc::ClientContext*, const RequestType&);
+
+template <typename ClientType,
+          typename StubType,
+          typename RequestType,
+          typename ResponseType,
+          typename MethodType>
 class ClientHelper {
     static void default_rsc_(RequestType&) {}
     static void default_rhc_(const ResponseType&) {}
@@ -21,10 +38,7 @@ class ClientHelper {
     }
 
    public:
-    using PFn = ::grpc::Status (StubType::*)(::grpc::ClientContext*,
-                                             const RequestType&,
-                                             ResponseType*);
-    explicit ClientHelper(ClientType* client, StubType* stub, PFn pfn)
+    explicit ClientHelper(ClientType* client, StubType* stub, MethodType pfn)
         : client_(client), stub_(stub), pfn_(pfn) {}
 
     ClientHelper& with(const AttributeMap& extra) {
@@ -63,10 +77,42 @@ class ClientHelper {
         client_helper_details::errorHandlerReturnedUnexpectedly(result);
     }
 
+    // A version of invoke for gRPC calls returning `(stream ResponseType)`.
+    // ResponseHandlerCallable will be called for every response in the reader, and should return
+    // false to indicate it is no longer interested in the stream.
+    template <typename ResponseHandlerCallable,
+              typename ErrorHandlerCallable = decltype(default_ehc_)>
+    auto invoke_stream(ResponseHandlerCallable rhc, ErrorHandlerCallable&& ehc = default_ehc_) {
+        *request_.mutable_name() = client_->name();
+        ClientContext ctx;
+
+        auto reader = (stub_->*pfn_)(ctx, request_);
+
+        bool cancelled_by_handler = false;
+
+        while (reader->Read(&response_)) {
+            if (!rhc(response_)) {
+                cancelled_by_handler = true;
+                static_cast<::grpc::ClientContext*>(ctx)->TryCancel();
+                break;
+            }
+        }
+
+        const auto result = reader->Finish();
+
+        if (result.ok() ||
+            (cancelled_by_handler && result.error_code() == ::grpc::StatusCode::CANCELLED)) {
+            return;
+        }
+
+        std::forward<ErrorHandlerCallable>(ehc)(result);
+        client_helper_details::errorHandlerReturnedUnexpectedly(result);
+    }
+
    private:
     ClientType* client_;
     StubType* stub_;
-    PFn pfn_;
+    MethodType pfn_;
     RequestType request_;
     ResponseType response_;
 };
@@ -74,10 +120,24 @@ class ClientHelper {
 template <typename ClientType, typename StubType, typename RequestType, typename ResponseType>
 auto make_client_helper(ClientType* client,
                         StubType& stub,
-                        ::grpc::Status (StubType::*method)(::grpc::ClientContext*,
-                                                           const RequestType&,
-                                                           ResponseType*)) {
-    return ClientHelper<ClientType, StubType, RequestType, ResponseType>(client, &stub, method);
+                        SyncMethodType<StubType, RequestType, ResponseType> method) {
+    return ClientHelper<ClientType,
+                        StubType,
+                        RequestType,
+                        ResponseType,
+                        SyncMethodType<StubType, RequestType, ResponseType>>(client, &stub, method);
+}
+
+template <typename ClientType, typename StubType, typename RequestType, typename ResponseType>
+auto make_client_helper(ClientType* client,
+                        StubType& stub,
+                        StreamingMethodType<StubType, RequestType, ResponseType> method) {
+    return ClientHelper<ClientType,
+                        StubType,
+                        RequestType,
+                        ResponseType,
+                        StreamingMethodType<StubType, RequestType, ResponseType>>(
+        client, &stub, method);
 }
 
 }  // namespace sdk
