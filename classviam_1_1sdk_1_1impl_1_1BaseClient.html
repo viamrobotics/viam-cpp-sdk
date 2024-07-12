@@ -105,7 +105,7 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:a16e247395fd20329c6c2ddc759291346" id="r_a16e247395fd20329c6c2ddc759291346"><td class="memItemLeft" align="right" valign="top"><a id="a16e247395fd20329c6c2ddc759291346" name="a16e247395fd20329c6c2ddc759291346"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><b>interface_type</b> = <a class="el" href="classviam_1_1sdk_1_1Base.html">Base</a></td></tr>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>interface_type</b> = <a class="el" href="classviam_1_1sdk_1_1Base.html">Base</a></td></tr>
 <tr class="separator:a16e247395fd20329c6c2ddc759291346"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -113,81 +113,81 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a04e1d1d30a7f80e639ace31edaa1f993" id="r_a04e1d1d30a7f80e639ace31edaa1f993"><td class="memItemLeft" align="right" valign="top"><a id="a04e1d1d30a7f80e639ace31edaa1f993" name="a04e1d1d30a7f80e639ace31edaa1f993"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>BaseClient</b> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>, std::shared_ptr&lt; grpc::Channel &gt; channel)</td></tr>
 <tr class="separator:a04e1d1d30a7f80e639ace31edaa1f993"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b7caed175871f21270547c823741b94" id="r_a4b7caed175871f21270547c823741b94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b7caed175871f21270547c823741b94">move_straight</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int64_t</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">distance_mm</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">mm_per_sec</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:a4b7caed175871f21270547c823741b94" id="r_a4b7caed175871f21270547c823741b94"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b7caed175871f21270547c823741b94">move_straight</a> (int64_t distance_mm, double mm_per_sec, const AttributeMap &amp;extra) override</td></tr>
 <tr class="memdesc:a4b7caed175871f21270547c823741b94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move a robot's base in a straight line by a given distance. This method blocks until completed or cancelled.  <br /></td></tr>
 <tr class="separator:a4b7caed175871f21270547c823741b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a206f586a43a9fa4b72f98b52f37b2216" id="r_a206f586a43a9fa4b72f98b52f37b2216"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a206f586a43a9fa4b72f98b52f37b2216">spin</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">angle_deg</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">degs_per_sec</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:a206f586a43a9fa4b72f98b52f37b2216" id="r_a206f586a43a9fa4b72f98b52f37b2216"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a206f586a43a9fa4b72f98b52f37b2216">spin</a> (double angle_deg, double degs_per_sec, const AttributeMap &amp;extra) override</td></tr>
 <tr class="memdesc:a206f586a43a9fa4b72f98b52f37b2216"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spins a robot's base by an given angle, expressed in degrees. This method blocks until completed or cancelled.  <br /></td></tr>
 <tr class="separator:a206f586a43a9fa4b72f98b52f37b2216"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ae71e9c8fe627c879016c1da30bd01c" id="r_a6ae71e9c8fe627c879016c1da30bd01c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ae71e9c8fe627c879016c1da30bd01c">set_power</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">linear</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">angular</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:a6ae71e9c8fe627c879016c1da30bd01c" id="r_a6ae71e9c8fe627c879016c1da30bd01c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ae71e9c8fe627c879016c1da30bd01c">set_power</a> (const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;linear, const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;angular, const AttributeMap &amp;extra) override</td></tr>
 <tr class="memdesc:a6ae71e9c8fe627c879016c1da30bd01c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the linear and angular power of a base -1 -&gt; 1 in terms of power for each direction.  <br /></td></tr>
 <tr class="separator:a6ae71e9c8fe627c879016c1da30bd01c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79a19c6a78be201b81f089817a4f84b2" id="r_a79a19c6a78be201b81f089817a4f84b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a79a19c6a78be201b81f089817a4f84b2">set_velocity</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">linear</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">angular</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:a79a19c6a78be201b81f089817a4f84b2" id="r_a79a19c6a78be201b81f089817a4f84b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a79a19c6a78be201b81f089817a4f84b2">set_velocity</a> (const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;linear, const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;angular, const AttributeMap &amp;extra) override</td></tr>
 <tr class="memdesc:a79a19c6a78be201b81f089817a4f84b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the linear and angular velocity of a base.  <br /></td></tr>
 <tr class="separator:a79a19c6a78be201b81f089817a4f84b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a127472742f395e443231e24f9196dfab" id="r_a127472742f395e443231e24f9196dfab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a127472742f395e443231e24f9196dfab">stop</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:a127472742f395e443231e24f9196dfab" id="r_a127472742f395e443231e24f9196dfab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a127472742f395e443231e24f9196dfab">stop</a> (const AttributeMap &amp;extra) override</td></tr>
 <tr class="memdesc:a127472742f395e443231e24f9196dfab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a resource from running.  <br /></td></tr>
 <tr class="separator:a127472742f395e443231e24f9196dfab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67e9b83777ea7ff46fea5861ba2a29ae" id="r_a67e9b83777ea7ff46fea5861ba2a29ae"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67e9b83777ea7ff46fea5861ba2a29ae">get_geometries</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:a67e9b83777ea7ff46fea5861ba2a29ae" id="r_a67e9b83777ea7ff46fea5861ba2a29ae"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67e9b83777ea7ff46fea5861ba2a29ae">get_geometries</a> (const AttributeMap &amp;extra) override</td></tr>
 <tr class="memdesc:a67e9b83777ea7ff46fea5861ba2a29ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling base.  <br /></td></tr>
 <tr class="separator:a67e9b83777ea7ff46fea5861ba2a29ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a077acc30edfe35f0ba6ba12b40badfb0" id="r_a077acc30edfe35f0ba6ba12b40badfb0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1Base_1_1properties.html">properties</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a077acc30edfe35f0ba6ba12b40badfb0">get_properties</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:a077acc30edfe35f0ba6ba12b40badfb0" id="r_a077acc30edfe35f0ba6ba12b40badfb0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1Base_1_1properties.html">properties</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a077acc30edfe35f0ba6ba12b40badfb0">get_properties</a> (const AttributeMap &amp;extra) override</td></tr>
 <tr class="memdesc:a077acc30edfe35f0ba6ba12b40badfb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns physical properties of the base (width, turning radius, wheel circumference)  <br /></td></tr>
 <tr class="separator:a077acc30edfe35f0ba6ba12b40badfb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2093034febc9514619a3d0fe201bb360" id="r_a2093034febc9514619a3d0fe201bb360"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2093034febc9514619a3d0fe201bb360">is_moving</a> () <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:a2093034febc9514619a3d0fe201bb360" id="r_a2093034febc9514619a3d0fe201bb360"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2093034febc9514619a3d0fe201bb360">is_moving</a> () override</td></tr>
 <tr class="memdesc:a2093034febc9514619a3d0fe201bb360"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports if the base is in motion.  <br /></td></tr>
 <tr class="separator:a2093034febc9514619a3d0fe201bb360"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57bbf539882c32c3c05cca0e2dd69a92" id="r_a57bbf539882c32c3c05cca0e2dd69a92"><td class="memItemLeft" align="right" valign="top">AttributeMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a57bbf539882c32c3c05cca0e2dd69a92">do_command</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">command</a>) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:a57bbf539882c32c3c05cca0e2dd69a92" id="r_a57bbf539882c32c3c05cca0e2dd69a92"><td class="memItemLeft" align="right" valign="top">AttributeMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a57bbf539882c32c3c05cca0e2dd69a92">do_command</a> (const AttributeMap &amp;command) override</td></tr>
 <tr class="memdesc:a57bbf539882c32c3c05cca0e2dd69a92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:a57bbf539882c32c3c05cca0e2dd69a92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab11116e6d1e741cc7518c3cbb9a796ba" id="r_ab11116e6d1e741cc7518c3cbb9a796ba"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab11116e6d1e741cc7518c3cbb9a796ba">get_geometries</a> ()</td></tr>
 <tr class="memdesc:ab11116e6d1e741cc7518c3cbb9a796ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling base.  <br /></td></tr>
 <tr class="separator:ab11116e6d1e741cc7518c3cbb9a796ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86d7b1c2c8f26e36608c1015fff8561c" id="r_a86d7b1c2c8f26e36608c1015fff8561c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86d7b1c2c8f26e36608c1015fff8561c">get_geometries</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memitem:a86d7b1c2c8f26e36608c1015fff8561c" id="r_a86d7b1c2c8f26e36608c1015fff8561c"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86d7b1c2c8f26e36608c1015fff8561c">get_geometries</a> (const AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:a86d7b1c2c8f26e36608c1015fff8561c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling base.  <br /></td></tr>
 <tr class="separator:a86d7b1c2c8f26e36608c1015fff8561c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c4677b65f8dd412a6495f986940265e" id="r_a8c4677b65f8dd412a6495f986940265e"><td class="memItemLeft" align="right" valign="top"><a id="a8c4677b65f8dd412a6495f986940265e" name="a8c4677b65f8dd412a6495f986940265e"></a>
 <a class="el" href="structviam_1_1sdk_1_1Base_1_1properties.html">properties</a>&#160;</td><td class="memItemRight" valign="bottom"><b>get_properties</b> ()</td></tr>
 <tr class="memdesc:a8c4677b65f8dd412a6495f986940265e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns physical properties of the base (width, turning radius, wheel circumference) <br /></td></tr>
 <tr class="separator:a8c4677b65f8dd412a6495f986940265e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8988c42e86c2f34fe4cdcafa4604cb70" id="r_a8988c42e86c2f34fe4cdcafa4604cb70"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="structviam_1_1sdk_1_1Base_1_1properties.html">properties</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8988c42e86c2f34fe4cdcafa4604cb70">get_properties</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memitem:a8988c42e86c2f34fe4cdcafa4604cb70" id="r_a8988c42e86c2f34fe4cdcafa4604cb70"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structviam_1_1sdk_1_1Base_1_1properties.html">properties</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8988c42e86c2f34fe4cdcafa4604cb70">get_properties</a> (const AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:a8988c42e86c2f34fe4cdcafa4604cb70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns physical properties of the base (width, turning radius, wheel circumference)  <br /></td></tr>
 <tr class="separator:a8988c42e86c2f34fe4cdcafa4604cb70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab34dd8861d60a40d556e87652218e993" id="r_ab34dd8861d60a40d556e87652218e993"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab34dd8861d60a40d556e87652218e993">move_straight</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int64_t</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">distance_mm</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">mm_per_sec</a>)</td></tr>
+<tr class="memitem:ab34dd8861d60a40d556e87652218e993" id="r_ab34dd8861d60a40d556e87652218e993"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab34dd8861d60a40d556e87652218e993">move_straight</a> (int64_t distance_mm, double mm_per_sec)</td></tr>
 <tr class="memdesc:ab34dd8861d60a40d556e87652218e993"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move a robot's base in a straight line by a given distance. This method blocks until completed or cancelled.  <br /></td></tr>
 <tr class="separator:ab34dd8861d60a40d556e87652218e993"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a801587d5ce2e8e3b4703dc18eaa7ce16" id="r_a801587d5ce2e8e3b4703dc18eaa7ce16"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a801587d5ce2e8e3b4703dc18eaa7ce16">move_straight</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int64_t</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">distance_mm</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">mm_per_sec</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memitem:a801587d5ce2e8e3b4703dc18eaa7ce16" id="r_a801587d5ce2e8e3b4703dc18eaa7ce16"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a801587d5ce2e8e3b4703dc18eaa7ce16">move_straight</a> (int64_t distance_mm, double mm_per_sec, const AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:a801587d5ce2e8e3b4703dc18eaa7ce16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move a robot's base in a straight line by a given distance. This method blocks until completed or cancelled.  <br /></td></tr>
 <tr class="separator:a801587d5ce2e8e3b4703dc18eaa7ce16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4afeee00c6dc7ccf9d8b6258fc663b88" id="r_a4afeee00c6dc7ccf9d8b6258fc663b88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4afeee00c6dc7ccf9d8b6258fc663b88">set_power</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">linear</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">angular</a>)</td></tr>
+<tr class="memitem:a4afeee00c6dc7ccf9d8b6258fc663b88" id="r_a4afeee00c6dc7ccf9d8b6258fc663b88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4afeee00c6dc7ccf9d8b6258fc663b88">set_power</a> (const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;linear, const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;angular)</td></tr>
 <tr class="memdesc:a4afeee00c6dc7ccf9d8b6258fc663b88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the linear and angular power of a base -1 -&gt; 1 in terms of power for each direction.  <br /></td></tr>
 <tr class="separator:a4afeee00c6dc7ccf9d8b6258fc663b88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2af54315dab70d8bd2f09cf300cc8a3f" id="r_a2af54315dab70d8bd2f09cf300cc8a3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2af54315dab70d8bd2f09cf300cc8a3f">set_power</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">linear</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">angular</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memitem:a2af54315dab70d8bd2f09cf300cc8a3f" id="r_a2af54315dab70d8bd2f09cf300cc8a3f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2af54315dab70d8bd2f09cf300cc8a3f">set_power</a> (const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;linear, const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;angular, const AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:a2af54315dab70d8bd2f09cf300cc8a3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the linear and angular power of a base -1 -&gt; 1 in terms of power for each direction.  <br /></td></tr>
 <tr class="separator:a2af54315dab70d8bd2f09cf300cc8a3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad969e703314a8819284d43b22f84b1e6" id="r_ad969e703314a8819284d43b22f84b1e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad969e703314a8819284d43b22f84b1e6">set_velocity</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">linear</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">angular</a>)</td></tr>
+<tr class="memitem:ad969e703314a8819284d43b22f84b1e6" id="r_ad969e703314a8819284d43b22f84b1e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad969e703314a8819284d43b22f84b1e6">set_velocity</a> (const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;linear, const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;angular)</td></tr>
 <tr class="memdesc:ad969e703314a8819284d43b22f84b1e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the linear and angular velocity of a base.  <br /></td></tr>
 <tr class="separator:ad969e703314a8819284d43b22f84b1e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e97fe80eb6d25687894e2b5c6924680" id="r_a0e97fe80eb6d25687894e2b5c6924680"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e97fe80eb6d25687894e2b5c6924680">set_velocity</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">linear</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">angular</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memitem:a0e97fe80eb6d25687894e2b5c6924680" id="r_a0e97fe80eb6d25687894e2b5c6924680"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e97fe80eb6d25687894e2b5c6924680">set_velocity</a> (const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;linear, const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;angular, const AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:a0e97fe80eb6d25687894e2b5c6924680"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the linear and angular velocity of a base.  <br /></td></tr>
 <tr class="separator:a0e97fe80eb6d25687894e2b5c6924680"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abab089b25f7b86158dc5b1f0d047f380" id="r_abab089b25f7b86158dc5b1f0d047f380"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abab089b25f7b86158dc5b1f0d047f380">spin</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">angle_deg</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">degs_per_sec</a>)</td></tr>
+<tr class="memitem:abab089b25f7b86158dc5b1f0d047f380" id="r_abab089b25f7b86158dc5b1f0d047f380"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abab089b25f7b86158dc5b1f0d047f380">spin</a> (double angle_deg, double degs_per_sec)</td></tr>
 <tr class="memdesc:abab089b25f7b86158dc5b1f0d047f380"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spins a robot's base by an given angle, expressed in degrees. This method blocks until completed or cancelled.  <br /></td></tr>
 <tr class="separator:abab089b25f7b86158dc5b1f0d047f380"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af287a769fe07d0ac61d1986feffaa67c" id="r_af287a769fe07d0ac61d1986feffaa67c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af287a769fe07d0ac61d1986feffaa67c">spin</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">angle_deg</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">degs_per_sec</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memitem:af287a769fe07d0ac61d1986feffaa67c" id="r_af287a769fe07d0ac61d1986feffaa67c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af287a769fe07d0ac61d1986feffaa67c">spin</a> (double angle_deg, double degs_per_sec, const AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:af287a769fe07d0ac61d1986feffaa67c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spins a robot's base by an given angle, expressed in degrees. This method blocks until completed or cancelled.  <br /></td></tr>
 <tr class="separator:af287a769fe07d0ac61d1986feffaa67c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classviam_1_1sdk_1_1Base"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classviam_1_1sdk_1_1Base')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Base.html">viam::sdk::Base</a></td></tr>
-<tr class="memitem:ab34dd8861d60a40d556e87652218e993 inherit pub_methods_classviam_1_1sdk_1_1Base" id="r_ab34dd8861d60a40d556e87652218e993"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Base.html#ab34dd8861d60a40d556e87652218e993">move_straight</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int64_t</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">distance_mm</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">mm_per_sec</a>)</td></tr>
+<tr class="memitem:ab34dd8861d60a40d556e87652218e993 inherit pub_methods_classviam_1_1sdk_1_1Base" id="r_ab34dd8861d60a40d556e87652218e993"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Base.html#ab34dd8861d60a40d556e87652218e993">move_straight</a> (int64_t distance_mm, double mm_per_sec)</td></tr>
 <tr class="memdesc:ab34dd8861d60a40d556e87652218e993 inherit pub_methods_classviam_1_1sdk_1_1Base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move a robot's base in a straight line by a given distance. This method blocks until completed or cancelled.  <br /></td></tr>
 <tr class="separator:ab34dd8861d60a40d556e87652218e993 inherit pub_methods_classviam_1_1sdk_1_1Base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abab089b25f7b86158dc5b1f0d047f380 inherit pub_methods_classviam_1_1sdk_1_1Base" id="r_abab089b25f7b86158dc5b1f0d047f380"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Base.html#abab089b25f7b86158dc5b1f0d047f380">spin</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">angle_deg</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">degs_per_sec</a>)</td></tr>
+<tr class="memitem:abab089b25f7b86158dc5b1f0d047f380 inherit pub_methods_classviam_1_1sdk_1_1Base" id="r_abab089b25f7b86158dc5b1f0d047f380"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Base.html#abab089b25f7b86158dc5b1f0d047f380">spin</a> (double angle_deg, double degs_per_sec)</td></tr>
 <tr class="memdesc:abab089b25f7b86158dc5b1f0d047f380 inherit pub_methods_classviam_1_1sdk_1_1Base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spins a robot's base by an given angle, expressed in degrees. This method blocks until completed or cancelled.  <br /></td></tr>
 <tr class="separator:abab089b25f7b86158dc5b1f0d047f380 inherit pub_methods_classviam_1_1sdk_1_1Base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4afeee00c6dc7ccf9d8b6258fc663b88 inherit pub_methods_classviam_1_1sdk_1_1Base" id="r_a4afeee00c6dc7ccf9d8b6258fc663b88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Base.html#a4afeee00c6dc7ccf9d8b6258fc663b88">set_power</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">linear</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">angular</a>)</td></tr>
+<tr class="memitem:a4afeee00c6dc7ccf9d8b6258fc663b88 inherit pub_methods_classviam_1_1sdk_1_1Base" id="r_a4afeee00c6dc7ccf9d8b6258fc663b88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Base.html#a4afeee00c6dc7ccf9d8b6258fc663b88">set_power</a> (const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;linear, const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;angular)</td></tr>
 <tr class="memdesc:a4afeee00c6dc7ccf9d8b6258fc663b88 inherit pub_methods_classviam_1_1sdk_1_1Base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the linear and angular power of a base -1 -&gt; 1 in terms of power for each direction.  <br /></td></tr>
 <tr class="separator:a4afeee00c6dc7ccf9d8b6258fc663b88 inherit pub_methods_classviam_1_1sdk_1_1Base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad969e703314a8819284d43b22f84b1e6 inherit pub_methods_classviam_1_1sdk_1_1Base" id="r_ad969e703314a8819284d43b22f84b1e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Base.html#ad969e703314a8819284d43b22f84b1e6">set_velocity</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">linear</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">angular</a>)</td></tr>
+<tr class="memitem:ad969e703314a8819284d43b22f84b1e6 inherit pub_methods_classviam_1_1sdk_1_1Base" id="r_ad969e703314a8819284d43b22f84b1e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Base.html#ad969e703314a8819284d43b22f84b1e6">set_velocity</a> (const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;linear, const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;angular)</td></tr>
 <tr class="memdesc:ad969e703314a8819284d43b22f84b1e6 inherit pub_methods_classviam_1_1sdk_1_1Base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the linear and angular velocity of a base.  <br /></td></tr>
 <tr class="separator:ad969e703314a8819284d43b22f84b1e6 inherit pub_methods_classviam_1_1sdk_1_1Base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c4677b65f8dd412a6495f986940265e inherit pub_methods_classviam_1_1sdk_1_1Base" id="r_a8c4677b65f8dd412a6495f986940265e"><td class="memItemLeft" align="right" valign="top">
@@ -197,11 +197,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab11116e6d1e741cc7518c3cbb9a796ba inherit pub_methods_classviam_1_1sdk_1_1Base" id="r_ab11116e6d1e741cc7518c3cbb9a796ba"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Base.html#ab11116e6d1e741cc7518c3cbb9a796ba">get_geometries</a> ()</td></tr>
 <tr class="memdesc:ab11116e6d1e741cc7518c3cbb9a796ba inherit pub_methods_classviam_1_1sdk_1_1Base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling base.  <br /></td></tr>
 <tr class="separator:ab11116e6d1e741cc7518c3cbb9a796ba inherit pub_methods_classviam_1_1sdk_1_1Base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe3debc2840a61e979eb0f9b3d254cb8 inherit pub_methods_classviam_1_1sdk_1_1Base" id="r_afe3debc2840a61e979eb0f9b3d254cb8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Base.html#afe3debc2840a61e979eb0f9b3d254cb8">api</a> () <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:afe3debc2840a61e979eb0f9b3d254cb8 inherit pub_methods_classviam_1_1sdk_1_1Base" id="r_afe3debc2840a61e979eb0f9b3d254cb8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Base.html#afe3debc2840a61e979eb0f9b3d254cb8">api</a> () const override</td></tr>
 <tr class="memdesc:afe3debc2840a61e979eb0f9b3d254cb8 inherit pub_methods_classviam_1_1sdk_1_1Base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code><a class="el" href="classviam_1_1sdk_1_1API.html" title="Extends APIType to additionally define a resource&#39;s subtype (e.g., camera).">API</a></code> associated with a particular resource.  <br /></td></tr>
 <tr class="separator:afe3debc2840a61e979eb0f9b3d254cb8 inherit pub_methods_classviam_1_1sdk_1_1Base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classviam_1_1sdk_1_1Component"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classviam_1_1sdk_1_1Component')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Component.html">viam::sdk::Component</a></td></tr>
-<tr class="memitem:ae969386d6faa08e81f16fb55ce62aa5d inherit pub_methods_classviam_1_1sdk_1_1Component" id="r_ae969386d6faa08e81f16fb55ce62aa5d"><td class="memItemLeft" align="right" valign="top">viam::common::v1::ResourceName&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Component.html#ae969386d6faa08e81f16fb55ce62aa5d">get_resource_name</a> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:ae969386d6faa08e81f16fb55ce62aa5d inherit pub_methods_classviam_1_1sdk_1_1Component" id="r_ae969386d6faa08e81f16fb55ce62aa5d"><td class="memItemLeft" align="right" valign="top">viam::common::v1::ResourceName&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Component.html#ae969386d6faa08e81f16fb55ce62aa5d">get_resource_name</a> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>) const override</td></tr>
 <tr class="memdesc:ae969386d6faa08e81f16fb55ce62aa5d inherit pub_methods_classviam_1_1sdk_1_1Component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code>ResourceName</code> for a particular resource name.  <br /></td></tr>
 <tr class="separator:ae969386d6faa08e81f16fb55ce62aa5d inherit pub_methods_classviam_1_1sdk_1_1Component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classviam_1_1sdk_1_1Resource"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classviam_1_1sdk_1_1Resource')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Resource.html">viam::sdk::Resource</a></td></tr>
@@ -209,22 +209,22 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Resource</b> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>)</td></tr>
 <tr class="separator:abf8ddf617ac01708fb4a8b2a868b27f0 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52ea612e31f5c09785b500bd2610d97d inherit pub_methods_classviam_1_1sdk_1_1Resource" id="r_a52ea612e31f5c09785b500bd2610d97d"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b> () <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a></td></tr>
+virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b> () const</td></tr>
 <tr class="memdesc:a52ea612e31f5c09785b500bd2610d97d inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the resource's name. <br /></td></tr>
 <tr class="separator:a52ea612e31f5c09785b500bd2610d97d inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classviam_1_1sdk_1_1Stoppable"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classviam_1_1sdk_1_1Stoppable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Stoppable.html">viam::sdk::Stoppable</a></td></tr>
 <tr class="memitem:a5248adce66d2ff61cf1c69daaf4cf754 inherit pub_methods_classviam_1_1sdk_1_1Stoppable" id="r_a5248adce66d2ff61cf1c69daaf4cf754"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
 <tr class="memdesc:a5248adce66d2ff61cf1c69daaf4cf754 inherit pub_methods_classviam_1_1sdk_1_1Stoppable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a resource from running. <br /></td></tr>
 <tr class="separator:a5248adce66d2ff61cf1c69daaf4cf754 inherit pub_methods_classviam_1_1sdk_1_1Stoppable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_methods_classviam_1_1sdk_1_1Stoppable')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Stoppable.html">viam::sdk::Stoppable</a></td></tr>
-<tr class="memitem:aedbf79884c7ddb737880b7d72e2c2468 inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable" id="r_aedbf79884c7ddb737880b7d72e2c2468"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Stoppable.html#aedbf79884c7ddb737880b7d72e2c2468">stop_if_stoppable</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; &amp;resource, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)</td></tr>
+<tr class="memitem:aedbf79884c7ddb737880b7d72e2c2468 inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable" id="r_aedbf79884c7ddb737880b7d72e2c2468"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Stoppable.html#aedbf79884c7ddb737880b7d72e2c2468">stop_if_stoppable</a> (const std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; &amp;resource, const AttributeMap &amp;extra)</td></tr>
 <tr class="memdesc:aedbf79884c7ddb737880b7d72e2c2468 inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> if it is <a class="el" href="classviam_1_1sdk_1_1Stoppable.html">Stoppable</a>.  <br /></td></tr>
 <tr class="separator:aedbf79884c7ddb737880b7d72e2c2468 inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7a35a13e39132052b910f5b8718f29d inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable" id="r_ab7a35a13e39132052b910f5b8718f29d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Stoppable.html#ab7a35a13e39132052b910f5b8718f29d">stop_if_stoppable</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; &amp;resource)</td></tr>
+<tr class="memitem:ab7a35a13e39132052b910f5b8718f29d inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable" id="r_ab7a35a13e39132052b910f5b8718f29d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Stoppable.html#ab7a35a13e39132052b910f5b8718f29d">stop_if_stoppable</a> (const std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; &amp;resource)</td></tr>
 <tr class="memdesc:ab7a35a13e39132052b910f5b8718f29d inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> if it is <a class="el" href="classviam_1_1sdk_1_1Stoppable.html">Stoppable</a>.  <br /></td></tr>
 <tr class="separator:ab7a35a13e39132052b910f5b8718f29d inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classviam_1_1sdk_1_1Base"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classviam_1_1sdk_1_1Base')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Base.html">viam::sdk::Base</a></td></tr>
@@ -251,7 +251,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">AttributeMap viam::sdk::impl::BaseClient::do_command </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>command</em></span></td><td>)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>command</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -315,7 +315,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt; viam::sdk::impl::BaseClient::get_geometries </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -349,9 +349,9 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt; viam::sdk::Base::get_geometries </td>
+          <td class="memname">virtual std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt; viam::sdk::Base::get_geometries </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -387,7 +387,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="structviam_1_1sdk_1_1Base_1_1properties.html">properties</a> viam::sdk::impl::BaseClient::get_properties </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -420,9 +420,9 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="structviam_1_1sdk_1_1Base_1_1properties.html">properties</a> viam::sdk::Base::get_properties </td>
+          <td class="memname">virtual <a class="el" href="structviam_1_1sdk_1_1Base_1_1properties.html">properties</a> viam::sdk::Base::get_properties </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -455,7 +455,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a> viam::sdk::impl::BaseClient::is_moving </td>
+          <td class="memname">bool viam::sdk::impl::BaseClient::is_moving </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -484,14 +484,14 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::Base::move_straight </td>
+          <td class="memname">void viam::sdk::Base::move_straight </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int64_t</a></td>          <td class="paramname"><span class="paramname"><em>distance_mm</em>, </span></td>
+          <td class="paramtype">int64_t</td>          <td class="paramname"><span class="paramname"><em>distance_mm</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a></td>          <td class="paramname"><span class="paramname"><em>mm_per_sec</em></span>&#160;)</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>mm_per_sec</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -522,19 +522,19 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::impl::BaseClient::move_straight </td>
+          <td class="memname">void viam::sdk::impl::BaseClient::move_straight </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int64_t</a></td>          <td class="paramname"><span class="paramname"><em>distance_mm</em>, </span></td>
+          <td class="paramtype">int64_t</td>          <td class="paramname"><span class="paramname"><em>distance_mm</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a></td>          <td class="paramname"><span class="paramname"><em>mm_per_sec</em>, </span></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>mm_per_sec</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -568,19 +568,19 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::Base::move_straight </td>
+          <td class="memname">virtual void viam::sdk::Base::move_straight </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int64_t</a></td>          <td class="paramname"><span class="paramname"><em>distance_mm</em>, </span></td>
+          <td class="paramtype">int64_t</td>          <td class="paramname"><span class="paramname"><em>distance_mm</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a></td>          <td class="paramname"><span class="paramname"><em>mm_per_sec</em>, </span></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>mm_per_sec</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -614,14 +614,14 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::Base::set_power </td>
+          <td class="memname">void viam::sdk::Base::set_power </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>linear</em>, </span></td>
+          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>linear</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>angular</em></span>&#160;)</td>
+          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>angular</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -652,19 +652,19 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::impl::BaseClient::set_power </td>
+          <td class="memname">void viam::sdk::impl::BaseClient::set_power </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>linear</em>, </span></td>
+          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>linear</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>angular</em>, </span></td>
+          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>angular</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -698,19 +698,19 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::Base::set_power </td>
+          <td class="memname">virtual void viam::sdk::Base::set_power </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>linear</em>, </span></td>
+          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>linear</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>angular</em>, </span></td>
+          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>angular</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -744,14 +744,14 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::Base::set_velocity </td>
+          <td class="memname">void viam::sdk::Base::set_velocity </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>linear</em>, </span></td>
+          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>linear</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>angular</em></span>&#160;)</td>
+          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>angular</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -782,19 +782,19 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::impl::BaseClient::set_velocity </td>
+          <td class="memname">void viam::sdk::impl::BaseClient::set_velocity </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>linear</em>, </span></td>
+          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>linear</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>angular</em>, </span></td>
+          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>angular</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -828,19 +828,19 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::Base::set_velocity </td>
+          <td class="memname">virtual void viam::sdk::Base::set_velocity </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>linear</em>, </span></td>
+          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>linear</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>angular</em>, </span></td>
+          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>angular</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -874,14 +874,14 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::Base::spin </td>
+          <td class="memname">void viam::sdk::Base::spin </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a></td>          <td class="paramname"><span class="paramname"><em>angle_deg</em>, </span></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>angle_deg</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a></td>          <td class="paramname"><span class="paramname"><em>degs_per_sec</em></span>&#160;)</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>degs_per_sec</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -912,19 +912,19 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::impl::BaseClient::spin </td>
+          <td class="memname">void viam::sdk::impl::BaseClient::spin </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a></td>          <td class="paramname"><span class="paramname"><em>angle_deg</em>, </span></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>angle_deg</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a></td>          <td class="paramname"><span class="paramname"><em>degs_per_sec</em>, </span></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>degs_per_sec</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -958,19 +958,19 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::Base::spin </td>
+          <td class="memname">virtual void viam::sdk::Base::spin </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a></td>          <td class="paramname"><span class="paramname"><em>angle_deg</em>, </span></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>angle_deg</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a></td>          <td class="paramname"><span class="paramname"><em>degs_per_sec</em>, </span></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>degs_per_sec</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -1004,9 +1004,9 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::impl::BaseClient::stop </td>
+          <td class="memname">void viam::sdk::impl::BaseClient::stop </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>

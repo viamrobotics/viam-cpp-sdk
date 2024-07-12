@@ -104,7 +104,7 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:a96ccadec03762bf825244652070ba9ad" id="r_a96ccadec03762bf825244652070ba9ad"><td class="memItemLeft" align="right" valign="top"><a id="a96ccadec03762bf825244652070ba9ad" name="a96ccadec03762bf825244652070ba9ad"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><b>interface_type</b> = <a class="el" href="classviam_1_1sdk_1_1Board.html">Board</a></td></tr>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>interface_type</b> = <a class="el" href="classviam_1_1sdk_1_1Board.html">Board</a></td></tr>
 <tr class="separator:a96ccadec03762bf825244652070ba9ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_types_classviam_1_1sdk_1_1Board"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_types_classviam_1_1sdk_1_1Board')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classviam_1_1sdk_1_1Board.html">viam::sdk::Board</a></td></tr>
 <tr class="memitem:a166386cf97ecb2e45778d96f5611ce88 inherit pub_types_classviam_1_1sdk_1_1Board" id="r_a166386cf97ecb2e45778d96f5611ce88"><td class="memItemLeft" align="right" valign="top"><a id="a166386cf97ecb2e45778d96f5611ce88" name="a166386cf97ecb2e45778d96f5611ce88"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a> : uint8_t { <b>normal</b> = 0
@@ -113,11 +113,11 @@ Public Types</h2></td></tr>
 <tr class="memdesc:a166386cf97ecb2e45778d96f5611ce88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Power mode of the board The effect of these power modes depends on your physical board. <br /></td></tr>
 <tr class="separator:a166386cf97ecb2e45778d96f5611ce88 inherit pub_types_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99143e61850b1af59f04cdf21e1eea0c inherit pub_types_classviam_1_1sdk_1_1Board" id="r_a99143e61850b1af59f04cdf21e1eea0c"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><b>analog_value</b> = <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int32_t</a></td></tr>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>analog_value</b> = int32_t</td></tr>
 <tr class="memdesc:a99143e61850b1af59f04cdf21e1eea0c inherit pub_types_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the raw value received by the registered analog to digital converter (ADC). The range and conversion mechanism to voltage will vary depending on the specific ADC registered to the pin. <br /></td></tr>
 <tr class="separator:a99143e61850b1af59f04cdf21e1eea0c inherit pub_types_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7492deed4439690ea37d470fd899919d inherit pub_types_classviam_1_1sdk_1_1Board" id="r_a7492deed4439690ea37d470fd899919d"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><b>digital_value</b> = <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int64_t</a></td></tr>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>digital_value</b> = int64_t</td></tr>
 <tr class="memdesc:a7492deed4439690ea37d470fd899919d inherit pub_types_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Depending on the type of digital interrupt, this can have different meanings. If a <code>basic</code> (default) interrupt is configured, then this is the total interrupt count. If a <code>servo</code> interrupt is configured this tracks the pulse width value. Consult Viam's <code><a class="el" href="classviam_1_1sdk_1_1Board.html" title="Represents a physical board with gpio pins, digital interrupts, and analog voltage reading.">Board</a></code> documentation for more details. <br /></td></tr>
 <tr class="separator:a7492deed4439690ea37d470fd899919d inherit pub_types_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -126,159 +126,159 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aca32cd3de88bd4b5b9db86da513095ad" id="r_aca32cd3de88bd4b5b9db86da513095ad"><td class="memItemLeft" align="right" valign="top"><a id="aca32cd3de88bd4b5b9db86da513095ad" name="aca32cd3de88bd4b5b9db86da513095ad"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>BoardClient</b> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>, std::shared_ptr&lt; grpc::Channel &gt; channel)</td></tr>
 <tr class="separator:aca32cd3de88bd4b5b9db86da513095ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66335e5330d30ed66bd61bf0b1d74962" id="r_a66335e5330d30ed66bd61bf0b1d74962"><td class="memItemLeft" align="right" valign="top">AttributeMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66335e5330d30ed66bd61bf0b1d74962">do_command</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">command</a>) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:a66335e5330d30ed66bd61bf0b1d74962" id="r_a66335e5330d30ed66bd61bf0b1d74962"><td class="memItemLeft" align="right" valign="top">AttributeMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66335e5330d30ed66bd61bf0b1d74962">do_command</a> (const AttributeMap &amp;command) override</td></tr>
 <tr class="memdesc:a66335e5330d30ed66bd61bf0b1d74962"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:a66335e5330d30ed66bd61bf0b1d74962"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c16f6f1845b388f30c52d9e83837b79" id="r_a0c16f6f1845b388f30c52d9e83837b79"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c16f6f1845b388f30c52d9e83837b79">set_gpio</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a> high, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:a0c16f6f1845b388f30c52d9e83837b79" id="r_a0c16f6f1845b388f30c52d9e83837b79"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c16f6f1845b388f30c52d9e83837b79">set_gpio</a> (const std::string &amp;pin, bool high, const AttributeMap &amp;extra) override</td></tr>
 <tr class="memdesc:a0c16f6f1845b388f30c52d9e83837b79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the gpio high/low state of the given pin on a board.  <br /></td></tr>
 <tr class="separator:a0c16f6f1845b388f30c52d9e83837b79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaec8a4b78b6b3b476765643b4d7461c5" id="r_aaec8a4b78b6b3b476765643b4d7461c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaec8a4b78b6b3b476765643b4d7461c5">get_gpio</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:aaec8a4b78b6b3b476765643b4d7461c5" id="r_aaec8a4b78b6b3b476765643b4d7461c5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaec8a4b78b6b3b476765643b4d7461c5">get_gpio</a> (const std::string &amp;pin, const AttributeMap &amp;extra) override</td></tr>
 <tr class="memdesc:aaec8a4b78b6b3b476765643b4d7461c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the high/low state of the given pin on a board.  <br /></td></tr>
 <tr class="separator:aaec8a4b78b6b3b476765643b4d7461c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1449db84ca42adf273426608564f11cc" id="r_a1449db84ca42adf273426608564f11cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1449db84ca42adf273426608564f11cc">get_pwm_duty_cycle</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:a1449db84ca42adf273426608564f11cc" id="r_a1449db84ca42adf273426608564f11cc"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1449db84ca42adf273426608564f11cc">get_pwm_duty_cycle</a> (const std::string &amp;pin, const AttributeMap &amp;extra) override</td></tr>
 <tr class="memdesc:a1449db84ca42adf273426608564f11cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the duty cycle of the given pin on a board.  <br /></td></tr>
 <tr class="separator:a1449db84ca42adf273426608564f11cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ad1e13e3caa275c41a6e1be1367cb3e" id="r_a8ad1e13e3caa275c41a6e1be1367cb3e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ad1e13e3caa275c41a6e1be1367cb3e">set_pwm_duty_cycle</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">duty_cycle_pct</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:a8ad1e13e3caa275c41a6e1be1367cb3e" id="r_a8ad1e13e3caa275c41a6e1be1367cb3e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ad1e13e3caa275c41a6e1be1367cb3e">set_pwm_duty_cycle</a> (const std::string &amp;pin, double duty_cycle_pct, const AttributeMap &amp;extra) override</td></tr>
 <tr class="memdesc:a8ad1e13e3caa275c41a6e1be1367cb3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the given pin of a board to the given duty cycle.  <br /></td></tr>
 <tr class="separator:a8ad1e13e3caa275c41a6e1be1367cb3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e2185f9ec889b67970ae73bbea9477a" id="r_a5e2185f9ec889b67970ae73bbea9477a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e2185f9ec889b67970ae73bbea9477a">get_pwm_frequency</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:a5e2185f9ec889b67970ae73bbea9477a" id="r_a5e2185f9ec889b67970ae73bbea9477a"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e2185f9ec889b67970ae73bbea9477a">get_pwm_frequency</a> (const std::string &amp;pin, const AttributeMap &amp;extra) override</td></tr>
 <tr class="memdesc:a5e2185f9ec889b67970ae73bbea9477a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the PWM frequency of the given pin on a board.  <br /></td></tr>
 <tr class="separator:a5e2185f9ec889b67970ae73bbea9477a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fae4a0bf79a20f0a1cbf1d67b932efc" id="r_a4fae4a0bf79a20f0a1cbf1d67b932efc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fae4a0bf79a20f0a1cbf1d67b932efc">set_pwm_frequency</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">uint64_t</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">frequency_hz</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:a4fae4a0bf79a20f0a1cbf1d67b932efc" id="r_a4fae4a0bf79a20f0a1cbf1d67b932efc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fae4a0bf79a20f0a1cbf1d67b932efc">set_pwm_frequency</a> (const std::string &amp;pin, uint64_t frequency_hz, const AttributeMap &amp;extra) override</td></tr>
 <tr class="memdesc:a4fae4a0bf79a20f0a1cbf1d67b932efc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the given pin on a board to the given PWM frequency. 0 will use the board's default PWM frequency.  <br /></td></tr>
 <tr class="separator:a4fae4a0bf79a20f0a1cbf1d67b932efc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c3b33f00284e2a608520e4535240fd7" id="r_a7c3b33f00284e2a608520e4535240fd7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1Board_1_1analog__response.html">analog_response</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c3b33f00284e2a608520e4535240fd7">read_analog</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">analog_reader_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:a7c3b33f00284e2a608520e4535240fd7" id="r_a7c3b33f00284e2a608520e4535240fd7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1Board_1_1analog__response.html">analog_response</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c3b33f00284e2a608520e4535240fd7">read_analog</a> (const std::string &amp;analog_reader_name, const AttributeMap &amp;extra) override</td></tr>
 <tr class="memdesc:a7c3b33f00284e2a608520e4535240fd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads off the current value of an analog reader on a board. Consult your ADC's docs or Viam's <code><a class="el" href="classviam_1_1sdk_1_1Board.html" title="Represents a physical board with gpio pins, digital interrupts, and analog voltage reading.">Board</a></code> docs for more information.  <br /></td></tr>
 <tr class="separator:a7c3b33f00284e2a608520e4535240fd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7885211831098939d6fa65ced1b2aa3f" id="r_a7885211831098939d6fa65ced1b2aa3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7885211831098939d6fa65ced1b2aa3f">write_analog</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int</a> value, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:a7885211831098939d6fa65ced1b2aa3f" id="r_a7885211831098939d6fa65ced1b2aa3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7885211831098939d6fa65ced1b2aa3f">write_analog</a> (const std::string &amp;pin, int value, const AttributeMap &amp;extra) override</td></tr>
 <tr class="memdesc:a7885211831098939d6fa65ced1b2aa3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the value to the analog writer of the board.  <br /></td></tr>
 <tr class="separator:a7885211831098939d6fa65ced1b2aa3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a443af860754834524377029d68a910ae" id="r_a443af860754834524377029d68a910ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1Board.html#a7492deed4439690ea37d470fd899919d">digital_value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a443af860754834524377029d68a910ae">read_digital_interrupt</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">digital_interrupt_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:a443af860754834524377029d68a910ae" id="r_a443af860754834524377029d68a910ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1Board.html#a7492deed4439690ea37d470fd899919d">digital_value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a443af860754834524377029d68a910ae">read_digital_interrupt</a> (const std::string &amp;digital_interrupt_name, const AttributeMap &amp;extra) override</td></tr>
 <tr class="memdesc:a443af860754834524377029d68a910ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current value of the interrupt which is based on the type of interrupt. Consult Viam's <code><a class="el" href="classviam_1_1sdk_1_1Board.html" title="Represents a physical board with gpio pins, digital interrupts, and analog voltage reading.">Board</a></code> docs for more information.  <br /></td></tr>
 <tr class="separator:a443af860754834524377029d68a910ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70a22b365b4d6324f955910921aa378e" id="r_a70a22b365b4d6324f955910921aa378e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70a22b365b4d6324f955910921aa378e">set_power_mode</a> (<a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> boost::optional&lt; std::chrono::microseconds &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">duration</a>) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:a70a22b365b4d6324f955910921aa378e" id="r_a70a22b365b4d6324f955910921aa378e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70a22b365b4d6324f955910921aa378e">set_power_mode</a> (<a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>, const AttributeMap &amp;extra, const boost::optional&lt; std::chrono::microseconds &gt; &amp;duration) override</td></tr>
 <tr class="memdesc:a70a22b365b4d6324f955910921aa378e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the power consumption mode of the board to the requested setting for the given duration.  <br /></td></tr>
 <tr class="separator:a70a22b365b4d6324f955910921aa378e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aedd18b0d62afc0e442d33838e4cc8af3" id="r_aedd18b0d62afc0e442d33838e4cc8af3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aedd18b0d62afc0e442d33838e4cc8af3">get_geometries</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:aedd18b0d62afc0e442d33838e4cc8af3" id="r_aedd18b0d62afc0e442d33838e4cc8af3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aedd18b0d62afc0e442d33838e4cc8af3">get_geometries</a> (const AttributeMap &amp;extra) override</td></tr>
 <tr class="memdesc:aedd18b0d62afc0e442d33838e4cc8af3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling board.  <br /></td></tr>
 <tr class="separator:aedd18b0d62afc0e442d33838e4cc8af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b160f5fb75daeac91787bc15523a56e" id="r_a9b160f5fb75daeac91787bc15523a56e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b160f5fb75daeac91787bc15523a56e">stream_ticks</a> (std::vector&lt; std::string &gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">digital_interrupt_names</a>, std::function&lt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>(<a class="el" href="structviam_1_1sdk_1_1Board_1_1Tick.html">Tick</a> &amp;&amp;<a class="el" href="structtick.html">tick</a>)&gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">tick_handler</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:a9b160f5fb75daeac91787bc15523a56e" id="r_a9b160f5fb75daeac91787bc15523a56e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b160f5fb75daeac91787bc15523a56e">stream_ticks</a> (std::vector&lt; std::string &gt; const &amp;digital_interrupt_names, std::function&lt; bool(<a class="el" href="structviam_1_1sdk_1_1Board_1_1Tick.html">Tick</a> &amp;&amp;<a class="el" href="structtick.html">tick</a>)&gt; const &amp;tick_handler, const AttributeMap &amp;extra) override</td></tr>
 <tr class="memdesc:a9b160f5fb75daeac91787bc15523a56e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a stream of digital interrupt ticks.  <br /></td></tr>
 <tr class="separator:a9b160f5fb75daeac91787bc15523a56e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2458b6edfd5e668cb79c3221b9ec1177" id="r_a2458b6edfd5e668cb79c3221b9ec1177"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2458b6edfd5e668cb79c3221b9ec1177">get_geometries</a> ()</td></tr>
 <tr class="memdesc:a2458b6edfd5e668cb79c3221b9ec1177"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling board.  <br /></td></tr>
 <tr class="separator:a2458b6edfd5e668cb79c3221b9ec1177"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0df8d6f1a5f05d0a817931a48272b9a" id="r_af0df8d6f1a5f05d0a817931a48272b9a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0df8d6f1a5f05d0a817931a48272b9a">get_geometries</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memitem:af0df8d6f1a5f05d0a817931a48272b9a" id="r_af0df8d6f1a5f05d0a817931a48272b9a"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0df8d6f1a5f05d0a817931a48272b9a">get_geometries</a> (const AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:af0df8d6f1a5f05d0a817931a48272b9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling board.  <br /></td></tr>
 <tr class="separator:af0df8d6f1a5f05d0a817931a48272b9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad064e6d68599a3b6687be69ae97ec4a7" id="r_ad064e6d68599a3b6687be69ae97ec4a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad064e6d68599a3b6687be69ae97ec4a7">get_gpio</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>)</td></tr>
+<tr class="memitem:ad064e6d68599a3b6687be69ae97ec4a7" id="r_ad064e6d68599a3b6687be69ae97ec4a7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad064e6d68599a3b6687be69ae97ec4a7">get_gpio</a> (const std::string &amp;pin)</td></tr>
 <tr class="memdesc:ad064e6d68599a3b6687be69ae97ec4a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the high/low state of the given pin on a board.  <br /></td></tr>
 <tr class="separator:ad064e6d68599a3b6687be69ae97ec4a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af74dd850f6dadf7ede5d2626b0f17a0d" id="r_af74dd850f6dadf7ede5d2626b0f17a0d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af74dd850f6dadf7ede5d2626b0f17a0d">get_gpio</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memitem:af74dd850f6dadf7ede5d2626b0f17a0d" id="r_af74dd850f6dadf7ede5d2626b0f17a0d"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af74dd850f6dadf7ede5d2626b0f17a0d">get_gpio</a> (const std::string &amp;pin, const AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:af74dd850f6dadf7ede5d2626b0f17a0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the high/low state of the given pin on a board.  <br /></td></tr>
 <tr class="separator:af74dd850f6dadf7ede5d2626b0f17a0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afbff089e26c7d3f959e77561d578c17f" id="r_afbff089e26c7d3f959e77561d578c17f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afbff089e26c7d3f959e77561d578c17f">get_pwm_duty_cycle</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>)</td></tr>
+<tr class="memitem:afbff089e26c7d3f959e77561d578c17f" id="r_afbff089e26c7d3f959e77561d578c17f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afbff089e26c7d3f959e77561d578c17f">get_pwm_duty_cycle</a> (const std::string &amp;pin)</td></tr>
 <tr class="memdesc:afbff089e26c7d3f959e77561d578c17f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the duty cycle of the given pin on a board.  <br /></td></tr>
 <tr class="separator:afbff089e26c7d3f959e77561d578c17f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b28c397b00e8c51067907ab2d8133e5" id="r_a9b28c397b00e8c51067907ab2d8133e5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b28c397b00e8c51067907ab2d8133e5">get_pwm_duty_cycle</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memitem:a9b28c397b00e8c51067907ab2d8133e5" id="r_a9b28c397b00e8c51067907ab2d8133e5"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b28c397b00e8c51067907ab2d8133e5">get_pwm_duty_cycle</a> (const std::string &amp;pin, const AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:a9b28c397b00e8c51067907ab2d8133e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the duty cycle of the given pin on a board.  <br /></td></tr>
 <tr class="separator:a9b28c397b00e8c51067907ab2d8133e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a641efc51dec6b93b9df0ab6ab6278701" id="r_a641efc51dec6b93b9df0ab6ab6278701"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a641efc51dec6b93b9df0ab6ab6278701">get_pwm_frequency</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>)</td></tr>
+<tr class="memitem:a641efc51dec6b93b9df0ab6ab6278701" id="r_a641efc51dec6b93b9df0ab6ab6278701"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a641efc51dec6b93b9df0ab6ab6278701">get_pwm_frequency</a> (const std::string &amp;pin)</td></tr>
 <tr class="memdesc:a641efc51dec6b93b9df0ab6ab6278701"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the PWM frequency of the given pin on a board.  <br /></td></tr>
 <tr class="separator:a641efc51dec6b93b9df0ab6ab6278701"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0de92a448c61509ef81c209fb4c2a881" id="r_a0de92a448c61509ef81c209fb4c2a881"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0de92a448c61509ef81c209fb4c2a881">get_pwm_frequency</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memitem:a0de92a448c61509ef81c209fb4c2a881" id="r_a0de92a448c61509ef81c209fb4c2a881"><td class="memItemLeft" align="right" valign="top">virtual uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0de92a448c61509ef81c209fb4c2a881">get_pwm_frequency</a> (const std::string &amp;pin, const AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:a0de92a448c61509ef81c209fb4c2a881"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the PWM frequency of the given pin on a board.  <br /></td></tr>
 <tr class="separator:a0de92a448c61509ef81c209fb4c2a881"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5926c728df4a28c5b03913afcd659afb" id="r_a5926c728df4a28c5b03913afcd659afb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1Board_1_1analog__response.html">analog_response</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5926c728df4a28c5b03913afcd659afb">read_analog</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">analog_reader_name</a>)</td></tr>
+<tr class="memitem:a5926c728df4a28c5b03913afcd659afb" id="r_a5926c728df4a28c5b03913afcd659afb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1Board_1_1analog__response.html">analog_response</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5926c728df4a28c5b03913afcd659afb">read_analog</a> (const std::string &amp;analog_reader_name)</td></tr>
 <tr class="memdesc:a5926c728df4a28c5b03913afcd659afb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads off the current value of an analog reader on a board. Consult your ADC's docs or Viam's <code><a class="el" href="classviam_1_1sdk_1_1Board.html" title="Represents a physical board with gpio pins, digital interrupts, and analog voltage reading.">Board</a></code> docs for more information.  <br /></td></tr>
 <tr class="separator:a5926c728df4a28c5b03913afcd659afb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa07940df14925d711d1ed78fed22280a" id="r_aa07940df14925d711d1ed78fed22280a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="structviam_1_1sdk_1_1Board_1_1analog__response.html">analog_response</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa07940df14925d711d1ed78fed22280a">read_analog</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">analog_reader_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memitem:aa07940df14925d711d1ed78fed22280a" id="r_aa07940df14925d711d1ed78fed22280a"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structviam_1_1sdk_1_1Board_1_1analog__response.html">analog_response</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa07940df14925d711d1ed78fed22280a">read_analog</a> (const std::string &amp;analog_reader_name, const AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:aa07940df14925d711d1ed78fed22280a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads off the current value of an analog reader on a board. Consult your ADC's docs or Viam's <code><a class="el" href="classviam_1_1sdk_1_1Board.html" title="Represents a physical board with gpio pins, digital interrupts, and analog voltage reading.">Board</a></code> docs for more information.  <br /></td></tr>
 <tr class="separator:aa07940df14925d711d1ed78fed22280a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86836c856f9fbfe6b44d3edaa4ffb658" id="r_a86836c856f9fbfe6b44d3edaa4ffb658"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1Board.html#a7492deed4439690ea37d470fd899919d">digital_value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86836c856f9fbfe6b44d3edaa4ffb658">read_digital_interrupt</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">digital_interrupt_name</a>)</td></tr>
+<tr class="memitem:a86836c856f9fbfe6b44d3edaa4ffb658" id="r_a86836c856f9fbfe6b44d3edaa4ffb658"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1Board.html#a7492deed4439690ea37d470fd899919d">digital_value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86836c856f9fbfe6b44d3edaa4ffb658">read_digital_interrupt</a> (const std::string &amp;digital_interrupt_name)</td></tr>
 <tr class="memdesc:a86836c856f9fbfe6b44d3edaa4ffb658"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current value of the interrupt which is based on the type of interrupt. Consult Viam's <code><a class="el" href="classviam_1_1sdk_1_1Board.html" title="Represents a physical board with gpio pins, digital interrupts, and analog voltage reading.">Board</a></code> docs for more information.  <br /></td></tr>
 <tr class="separator:a86836c856f9fbfe6b44d3edaa4ffb658"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50ba13b16e5c715a0e18a6807577ba8b" id="r_a50ba13b16e5c715a0e18a6807577ba8b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a7492deed4439690ea37d470fd899919d">digital_value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50ba13b16e5c715a0e18a6807577ba8b">read_digital_interrupt</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">digital_interrupt_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memitem:a50ba13b16e5c715a0e18a6807577ba8b" id="r_a50ba13b16e5c715a0e18a6807577ba8b"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classviam_1_1sdk_1_1Board.html#a7492deed4439690ea37d470fd899919d">digital_value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50ba13b16e5c715a0e18a6807577ba8b">read_digital_interrupt</a> (const std::string &amp;digital_interrupt_name, const AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:a50ba13b16e5c715a0e18a6807577ba8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current value of the interrupt which is based on the type of interrupt. Consult Viam's <code><a class="el" href="classviam_1_1sdk_1_1Board.html" title="Represents a physical board with gpio pins, digital interrupts, and analog voltage reading.">Board</a></code> docs for more information.  <br /></td></tr>
 <tr class="separator:a50ba13b16e5c715a0e18a6807577ba8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a7223c4236912ae4fb48bd86ad6d966" id="r_a5a7223c4236912ae4fb48bd86ad6d966"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a7223c4236912ae4fb48bd86ad6d966">set_gpio</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a> high)</td></tr>
+<tr class="memitem:a5a7223c4236912ae4fb48bd86ad6d966" id="r_a5a7223c4236912ae4fb48bd86ad6d966"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a7223c4236912ae4fb48bd86ad6d966">set_gpio</a> (const std::string &amp;pin, bool high)</td></tr>
 <tr class="memdesc:a5a7223c4236912ae4fb48bd86ad6d966"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the gpio high/low state of the given pin on a board.  <br /></td></tr>
 <tr class="separator:a5a7223c4236912ae4fb48bd86ad6d966"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a393f8850e0b48021b02eb8556fba9dac" id="r_a393f8850e0b48021b02eb8556fba9dac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a393f8850e0b48021b02eb8556fba9dac">set_gpio</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a> high, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memitem:a393f8850e0b48021b02eb8556fba9dac" id="r_a393f8850e0b48021b02eb8556fba9dac"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a393f8850e0b48021b02eb8556fba9dac">set_gpio</a> (const std::string &amp;pin, bool high, const AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:a393f8850e0b48021b02eb8556fba9dac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the gpio high/low state of the given pin on a board.  <br /></td></tr>
 <tr class="separator:a393f8850e0b48021b02eb8556fba9dac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28c2afa84769f3f311907c1a41b5675e" id="r_a28c2afa84769f3f311907c1a41b5675e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28c2afa84769f3f311907c1a41b5675e">set_power_mode</a> (<a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> boost::optional&lt; std::chrono::microseconds &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">duration</a>={})</td></tr>
+<tr class="memitem:a28c2afa84769f3f311907c1a41b5675e" id="r_a28c2afa84769f3f311907c1a41b5675e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28c2afa84769f3f311907c1a41b5675e">set_power_mode</a> (<a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>, const boost::optional&lt; std::chrono::microseconds &gt; &amp;duration={})</td></tr>
 <tr class="memdesc:a28c2afa84769f3f311907c1a41b5675e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the power consumption mode of the board to the requested setting for the given duration.  <br /></td></tr>
 <tr class="separator:a28c2afa84769f3f311907c1a41b5675e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8745905d68c020184c7cc92a93076bb2" id="r_a8745905d68c020184c7cc92a93076bb2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8745905d68c020184c7cc92a93076bb2">set_power_mode</a> (<a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> boost::optional&lt; std::chrono::microseconds &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">duration</a>={})=0</td></tr>
+<tr class="memitem:a8745905d68c020184c7cc92a93076bb2" id="r_a8745905d68c020184c7cc92a93076bb2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8745905d68c020184c7cc92a93076bb2">set_power_mode</a> (<a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>, const AttributeMap &amp;extra, const boost::optional&lt; std::chrono::microseconds &gt; &amp;duration={})=0</td></tr>
 <tr class="memdesc:a8745905d68c020184c7cc92a93076bb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the power consumption mode of the board to the requested setting for the given duration.  <br /></td></tr>
 <tr class="separator:a8745905d68c020184c7cc92a93076bb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f412d9c182efa8af908e82bfe8d6a3b" id="r_a8f412d9c182efa8af908e82bfe8d6a3b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f412d9c182efa8af908e82bfe8d6a3b">set_pwm_duty_cycle</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">duty_cycle_pct</a>)</td></tr>
+<tr class="memitem:a8f412d9c182efa8af908e82bfe8d6a3b" id="r_a8f412d9c182efa8af908e82bfe8d6a3b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f412d9c182efa8af908e82bfe8d6a3b">set_pwm_duty_cycle</a> (const std::string &amp;pin, double duty_cycle_pct)</td></tr>
 <tr class="memdesc:a8f412d9c182efa8af908e82bfe8d6a3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the given pin of a board to the given duty cycle.  <br /></td></tr>
 <tr class="separator:a8f412d9c182efa8af908e82bfe8d6a3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b54b6c98761df1e16fb3ede39d00452" id="r_a9b54b6c98761df1e16fb3ede39d00452"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b54b6c98761df1e16fb3ede39d00452">set_pwm_duty_cycle</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">duty_cycle_pct</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memitem:a9b54b6c98761df1e16fb3ede39d00452" id="r_a9b54b6c98761df1e16fb3ede39d00452"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b54b6c98761df1e16fb3ede39d00452">set_pwm_duty_cycle</a> (const std::string &amp;pin, double duty_cycle_pct, const AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:a9b54b6c98761df1e16fb3ede39d00452"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the given pin of a board to the given duty cycle.  <br /></td></tr>
 <tr class="separator:a9b54b6c98761df1e16fb3ede39d00452"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac752c73b32cf0533e881bb8ee7371afc" id="r_ac752c73b32cf0533e881bb8ee7371afc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac752c73b32cf0533e881bb8ee7371afc">set_pwm_frequency</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">uint64_t</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">frequency_hz</a>)</td></tr>
+<tr class="memitem:ac752c73b32cf0533e881bb8ee7371afc" id="r_ac752c73b32cf0533e881bb8ee7371afc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac752c73b32cf0533e881bb8ee7371afc">set_pwm_frequency</a> (const std::string &amp;pin, uint64_t frequency_hz)</td></tr>
 <tr class="memdesc:ac752c73b32cf0533e881bb8ee7371afc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the given pin on a board to the given PWM frequency. 0 will use the board's default PWM frequency.  <br /></td></tr>
 <tr class="separator:ac752c73b32cf0533e881bb8ee7371afc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94d36fb1c56ab5732f571f6819cd5c8e" id="r_a94d36fb1c56ab5732f571f6819cd5c8e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94d36fb1c56ab5732f571f6819cd5c8e">set_pwm_frequency</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">uint64_t</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">frequency_hz</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memitem:a94d36fb1c56ab5732f571f6819cd5c8e" id="r_a94d36fb1c56ab5732f571f6819cd5c8e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94d36fb1c56ab5732f571f6819cd5c8e">set_pwm_frequency</a> (const std::string &amp;pin, uint64_t frequency_hz, const AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:a94d36fb1c56ab5732f571f6819cd5c8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the given pin on a board to the given PWM frequency. 0 will use the board's default PWM frequency.  <br /></td></tr>
 <tr class="separator:a94d36fb1c56ab5732f571f6819cd5c8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abebf604f13b3020a0bd92a009a53c3d8" id="r_abebf604f13b3020a0bd92a009a53c3d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abebf604f13b3020a0bd92a009a53c3d8">stream_ticks</a> (std::vector&lt; std::string &gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">digital_interrupt_names</a>, std::function&lt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>(<a class="el" href="structviam_1_1sdk_1_1Board_1_1Tick.html">Tick</a> &amp;&amp;<a class="el" href="structtick.html">tick</a>)&gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">tick_handler</a>)</td></tr>
+<tr class="memitem:abebf604f13b3020a0bd92a009a53c3d8" id="r_abebf604f13b3020a0bd92a009a53c3d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abebf604f13b3020a0bd92a009a53c3d8">stream_ticks</a> (std::vector&lt; std::string &gt; const &amp;digital_interrupt_names, std::function&lt; bool(<a class="el" href="structviam_1_1sdk_1_1Board_1_1Tick.html">Tick</a> &amp;&amp;<a class="el" href="structtick.html">tick</a>)&gt; const &amp;tick_handler)</td></tr>
 <tr class="memdesc:abebf604f13b3020a0bd92a009a53c3d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a stream of digital interrupt ticks.  <br /></td></tr>
 <tr class="separator:abebf604f13b3020a0bd92a009a53c3d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a428fc8861d633cf7966f9ddb0e5594ef" id="r_a428fc8861d633cf7966f9ddb0e5594ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a428fc8861d633cf7966f9ddb0e5594ef">stream_ticks</a> (std::vector&lt; std::string &gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">digital_interrupt_names</a>, std::function&lt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>(<a class="el" href="structviam_1_1sdk_1_1Board_1_1Tick.html">Tick</a> &amp;&amp;<a class="el" href="structtick.html">tick</a>)&gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">tick_handler</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memitem:a428fc8861d633cf7966f9ddb0e5594ef" id="r_a428fc8861d633cf7966f9ddb0e5594ef"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a428fc8861d633cf7966f9ddb0e5594ef">stream_ticks</a> (std::vector&lt; std::string &gt; const &amp;digital_interrupt_names, std::function&lt; bool(<a class="el" href="structviam_1_1sdk_1_1Board_1_1Tick.html">Tick</a> &amp;&amp;<a class="el" href="structtick.html">tick</a>)&gt; const &amp;tick_handler, const AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:a428fc8861d633cf7966f9ddb0e5594ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a stream of digital interrupt ticks.  <br /></td></tr>
 <tr class="separator:a428fc8861d633cf7966f9ddb0e5594ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc311cfbf00eff084a0984e01dccc0a7" id="r_abc311cfbf00eff084a0984e01dccc0a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc311cfbf00eff084a0984e01dccc0a7">write_analog</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int</a> value)</td></tr>
+<tr class="memitem:abc311cfbf00eff084a0984e01dccc0a7" id="r_abc311cfbf00eff084a0984e01dccc0a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc311cfbf00eff084a0984e01dccc0a7">write_analog</a> (const std::string &amp;pin, int value)</td></tr>
 <tr class="memdesc:abc311cfbf00eff084a0984e01dccc0a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the value to the analog writer of the board.  <br /></td></tr>
 <tr class="separator:abc311cfbf00eff084a0984e01dccc0a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a297d9addb2d2a3d5bddf0f97c9f33c65" id="r_a297d9addb2d2a3d5bddf0f97c9f33c65"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a297d9addb2d2a3d5bddf0f97c9f33c65">write_analog</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int</a> value, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memitem:a297d9addb2d2a3d5bddf0f97c9f33c65" id="r_a297d9addb2d2a3d5bddf0f97c9f33c65"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a297d9addb2d2a3d5bddf0f97c9f33c65">write_analog</a> (const std::string &amp;pin, int value, const AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:a297d9addb2d2a3d5bddf0f97c9f33c65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the value to the analog writer of the board.  <br /></td></tr>
 <tr class="separator:a297d9addb2d2a3d5bddf0f97c9f33c65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classviam_1_1sdk_1_1Board"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classviam_1_1sdk_1_1Board')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Board.html">viam::sdk::Board</a></td></tr>
-<tr class="memitem:a9a57962efb110275db083e0656417e7b inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_a9a57962efb110275db083e0656417e7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#a9a57962efb110275db083e0656417e7b">api</a> () <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:a9a57962efb110275db083e0656417e7b inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_a9a57962efb110275db083e0656417e7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#a9a57962efb110275db083e0656417e7b">api</a> () const override</td></tr>
 <tr class="memdesc:a9a57962efb110275db083e0656417e7b inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code><a class="el" href="classviam_1_1sdk_1_1API.html" title="Extends APIType to additionally define a resource&#39;s subtype (e.g., camera).">API</a></code> associated with a particular resource.  <br /></td></tr>
 <tr class="separator:a9a57962efb110275db083e0656417e7b inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad064e6d68599a3b6687be69ae97ec4a7 inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_ad064e6d68599a3b6687be69ae97ec4a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#ad064e6d68599a3b6687be69ae97ec4a7">get_gpio</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>)</td></tr>
+<tr class="memitem:ad064e6d68599a3b6687be69ae97ec4a7 inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_ad064e6d68599a3b6687be69ae97ec4a7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#ad064e6d68599a3b6687be69ae97ec4a7">get_gpio</a> (const std::string &amp;pin)</td></tr>
 <tr class="memdesc:ad064e6d68599a3b6687be69ae97ec4a7 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the high/low state of the given pin on a board.  <br /></td></tr>
 <tr class="separator:ad064e6d68599a3b6687be69ae97ec4a7 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a7223c4236912ae4fb48bd86ad6d966 inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_a5a7223c4236912ae4fb48bd86ad6d966"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#a5a7223c4236912ae4fb48bd86ad6d966">set_gpio</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a> high)</td></tr>
+<tr class="memitem:a5a7223c4236912ae4fb48bd86ad6d966 inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_a5a7223c4236912ae4fb48bd86ad6d966"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#a5a7223c4236912ae4fb48bd86ad6d966">set_gpio</a> (const std::string &amp;pin, bool high)</td></tr>
 <tr class="memdesc:a5a7223c4236912ae4fb48bd86ad6d966 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the gpio high/low state of the given pin on a board.  <br /></td></tr>
 <tr class="separator:a5a7223c4236912ae4fb48bd86ad6d966 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afbff089e26c7d3f959e77561d578c17f inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_afbff089e26c7d3f959e77561d578c17f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#afbff089e26c7d3f959e77561d578c17f">get_pwm_duty_cycle</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>)</td></tr>
+<tr class="memitem:afbff089e26c7d3f959e77561d578c17f inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_afbff089e26c7d3f959e77561d578c17f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#afbff089e26c7d3f959e77561d578c17f">get_pwm_duty_cycle</a> (const std::string &amp;pin)</td></tr>
 <tr class="memdesc:afbff089e26c7d3f959e77561d578c17f inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the duty cycle of the given pin on a board.  <br /></td></tr>
 <tr class="separator:afbff089e26c7d3f959e77561d578c17f inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f412d9c182efa8af908e82bfe8d6a3b inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_a8f412d9c182efa8af908e82bfe8d6a3b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#a8f412d9c182efa8af908e82bfe8d6a3b">set_pwm_duty_cycle</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">duty_cycle_pct</a>)</td></tr>
+<tr class="memitem:a8f412d9c182efa8af908e82bfe8d6a3b inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_a8f412d9c182efa8af908e82bfe8d6a3b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#a8f412d9c182efa8af908e82bfe8d6a3b">set_pwm_duty_cycle</a> (const std::string &amp;pin, double duty_cycle_pct)</td></tr>
 <tr class="memdesc:a8f412d9c182efa8af908e82bfe8d6a3b inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the given pin of a board to the given duty cycle.  <br /></td></tr>
 <tr class="separator:a8f412d9c182efa8af908e82bfe8d6a3b inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a641efc51dec6b93b9df0ab6ab6278701 inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_a641efc51dec6b93b9df0ab6ab6278701"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#a641efc51dec6b93b9df0ab6ab6278701">get_pwm_frequency</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>)</td></tr>
+<tr class="memitem:a641efc51dec6b93b9df0ab6ab6278701 inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_a641efc51dec6b93b9df0ab6ab6278701"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#a641efc51dec6b93b9df0ab6ab6278701">get_pwm_frequency</a> (const std::string &amp;pin)</td></tr>
 <tr class="memdesc:a641efc51dec6b93b9df0ab6ab6278701 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the PWM frequency of the given pin on a board.  <br /></td></tr>
 <tr class="separator:a641efc51dec6b93b9df0ab6ab6278701 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac752c73b32cf0533e881bb8ee7371afc inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_ac752c73b32cf0533e881bb8ee7371afc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#ac752c73b32cf0533e881bb8ee7371afc">set_pwm_frequency</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">uint64_t</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">frequency_hz</a>)</td></tr>
+<tr class="memitem:ac752c73b32cf0533e881bb8ee7371afc inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_ac752c73b32cf0533e881bb8ee7371afc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#ac752c73b32cf0533e881bb8ee7371afc">set_pwm_frequency</a> (const std::string &amp;pin, uint64_t frequency_hz)</td></tr>
 <tr class="memdesc:ac752c73b32cf0533e881bb8ee7371afc inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the given pin on a board to the given PWM frequency. 0 will use the board's default PWM frequency.  <br /></td></tr>
 <tr class="separator:ac752c73b32cf0533e881bb8ee7371afc inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5926c728df4a28c5b03913afcd659afb inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_a5926c728df4a28c5b03913afcd659afb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1Board_1_1analog__response.html">analog_response</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#a5926c728df4a28c5b03913afcd659afb">read_analog</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">analog_reader_name</a>)</td></tr>
+<tr class="memitem:a5926c728df4a28c5b03913afcd659afb inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_a5926c728df4a28c5b03913afcd659afb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1Board_1_1analog__response.html">analog_response</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#a5926c728df4a28c5b03913afcd659afb">read_analog</a> (const std::string &amp;analog_reader_name)</td></tr>
 <tr class="memdesc:a5926c728df4a28c5b03913afcd659afb inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads off the current value of an analog reader on a board. Consult your ADC's docs or Viam's <code><a class="el" href="classviam_1_1sdk_1_1Board.html" title="Represents a physical board with gpio pins, digital interrupts, and analog voltage reading.">Board</a></code> docs for more information.  <br /></td></tr>
 <tr class="separator:a5926c728df4a28c5b03913afcd659afb inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc311cfbf00eff084a0984e01dccc0a7 inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_abc311cfbf00eff084a0984e01dccc0a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#abc311cfbf00eff084a0984e01dccc0a7">write_analog</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">pin</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int</a> value)</td></tr>
+<tr class="memitem:abc311cfbf00eff084a0984e01dccc0a7 inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_abc311cfbf00eff084a0984e01dccc0a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#abc311cfbf00eff084a0984e01dccc0a7">write_analog</a> (const std::string &amp;pin, int value)</td></tr>
 <tr class="memdesc:abc311cfbf00eff084a0984e01dccc0a7 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the value to the analog writer of the board.  <br /></td></tr>
 <tr class="separator:abc311cfbf00eff084a0984e01dccc0a7 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86836c856f9fbfe6b44d3edaa4ffb658 inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_a86836c856f9fbfe6b44d3edaa4ffb658"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1Board.html#a7492deed4439690ea37d470fd899919d">digital_value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#a86836c856f9fbfe6b44d3edaa4ffb658">read_digital_interrupt</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">digital_interrupt_name</a>)</td></tr>
+<tr class="memitem:a86836c856f9fbfe6b44d3edaa4ffb658 inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_a86836c856f9fbfe6b44d3edaa4ffb658"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1Board.html#a7492deed4439690ea37d470fd899919d">digital_value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#a86836c856f9fbfe6b44d3edaa4ffb658">read_digital_interrupt</a> (const std::string &amp;digital_interrupt_name)</td></tr>
 <tr class="memdesc:a86836c856f9fbfe6b44d3edaa4ffb658 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current value of the interrupt which is based on the type of interrupt. Consult Viam's <code><a class="el" href="classviam_1_1sdk_1_1Board.html" title="Represents a physical board with gpio pins, digital interrupts, and analog voltage reading.">Board</a></code> docs for more information.  <br /></td></tr>
 <tr class="separator:a86836c856f9fbfe6b44d3edaa4ffb658 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abebf604f13b3020a0bd92a009a53c3d8 inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_abebf604f13b3020a0bd92a009a53c3d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#abebf604f13b3020a0bd92a009a53c3d8">stream_ticks</a> (std::vector&lt; std::string &gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">digital_interrupt_names</a>, std::function&lt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>(<a class="el" href="structviam_1_1sdk_1_1Board_1_1Tick.html">Tick</a> &amp;&amp;<a class="el" href="structtick.html">tick</a>)&gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">tick_handler</a>)</td></tr>
+<tr class="memitem:abebf604f13b3020a0bd92a009a53c3d8 inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_abebf604f13b3020a0bd92a009a53c3d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#abebf604f13b3020a0bd92a009a53c3d8">stream_ticks</a> (std::vector&lt; std::string &gt; const &amp;digital_interrupt_names, std::function&lt; bool(<a class="el" href="structviam_1_1sdk_1_1Board_1_1Tick.html">Tick</a> &amp;&amp;<a class="el" href="structtick.html">tick</a>)&gt; const &amp;tick_handler)</td></tr>
 <tr class="memdesc:abebf604f13b3020a0bd92a009a53c3d8 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a stream of digital interrupt ticks.  <br /></td></tr>
 <tr class="separator:abebf604f13b3020a0bd92a009a53c3d8 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28c2afa84769f3f311907c1a41b5675e inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_a28c2afa84769f3f311907c1a41b5675e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#a28c2afa84769f3f311907c1a41b5675e">set_power_mode</a> (<a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> boost::optional&lt; std::chrono::microseconds &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">duration</a>={})</td></tr>
+<tr class="memitem:a28c2afa84769f3f311907c1a41b5675e inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_a28c2afa84769f3f311907c1a41b5675e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#a28c2afa84769f3f311907c1a41b5675e">set_power_mode</a> (<a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>, const boost::optional&lt; std::chrono::microseconds &gt; &amp;duration={})</td></tr>
 <tr class="memdesc:a28c2afa84769f3f311907c1a41b5675e inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the power consumption mode of the board to the requested setting for the given duration.  <br /></td></tr>
 <tr class="separator:a28c2afa84769f3f311907c1a41b5675e inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2458b6edfd5e668cb79c3221b9ec1177 inherit pub_methods_classviam_1_1sdk_1_1Board" id="r_a2458b6edfd5e668cb79c3221b9ec1177"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Board.html#a2458b6edfd5e668cb79c3221b9ec1177">get_geometries</a> ()</td></tr>
 <tr class="memdesc:a2458b6edfd5e668cb79c3221b9ec1177 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling board.  <br /></td></tr>
 <tr class="separator:a2458b6edfd5e668cb79c3221b9ec1177 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classviam_1_1sdk_1_1Component"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classviam_1_1sdk_1_1Component')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Component.html">viam::sdk::Component</a></td></tr>
-<tr class="memitem:ae969386d6faa08e81f16fb55ce62aa5d inherit pub_methods_classviam_1_1sdk_1_1Component" id="r_ae969386d6faa08e81f16fb55ce62aa5d"><td class="memItemLeft" align="right" valign="top">viam::common::v1::ResourceName&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Component.html#ae969386d6faa08e81f16fb55ce62aa5d">get_resource_name</a> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:ae969386d6faa08e81f16fb55ce62aa5d inherit pub_methods_classviam_1_1sdk_1_1Component" id="r_ae969386d6faa08e81f16fb55ce62aa5d"><td class="memItemLeft" align="right" valign="top">viam::common::v1::ResourceName&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Component.html#ae969386d6faa08e81f16fb55ce62aa5d">get_resource_name</a> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>) const override</td></tr>
 <tr class="memdesc:ae969386d6faa08e81f16fb55ce62aa5d inherit pub_methods_classviam_1_1sdk_1_1Component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code>ResourceName</code> for a particular resource name.  <br /></td></tr>
 <tr class="separator:ae969386d6faa08e81f16fb55ce62aa5d inherit pub_methods_classviam_1_1sdk_1_1Component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classviam_1_1sdk_1_1Resource"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classviam_1_1sdk_1_1Resource')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Resource.html">viam::sdk::Resource</a></td></tr>
@@ -286,7 +286,7 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Resource</b> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>)</td></tr>
 <tr class="separator:abf8ddf617ac01708fb4a8b2a868b27f0 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52ea612e31f5c09785b500bd2610d97d inherit pub_methods_classviam_1_1sdk_1_1Resource" id="r_a52ea612e31f5c09785b500bd2610d97d"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b> () <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a></td></tr>
+virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b> () const</td></tr>
 <tr class="memdesc:a52ea612e31f5c09785b500bd2610d97d inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the resource's name. <br /></td></tr>
 <tr class="separator:a52ea612e31f5c09785b500bd2610d97d inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -294,19 +294,19 @@ Public Member Functions</h2></td></tr>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_static_methods_classviam_1_1sdk_1_1Board"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_methods_classviam_1_1sdk_1_1Board')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Board.html">viam::sdk::Board</a></td></tr>
 <tr class="memitem:a2fe5b7cf87e3c478b3bd818fa15a4f49 inherit pub_static_methods_classviam_1_1sdk_1_1Board" id="r_a2fe5b7cf87e3c478b3bd818fa15a4f49"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> <a class="el" href="structviam_1_1sdk_1_1Board_1_1status.html">status</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> viam::component::board::v1::Status &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">proto</a>)</td></tr>
+static <a class="el" href="structviam_1_1sdk_1_1Board_1_1status.html">status</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (const viam::component::board::v1::Status &amp;proto)</td></tr>
 <tr class="memdesc:a2fe5b7cf87e3c478b3bd818fa15a4f49 inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <code>status</code> struct from its proto representation. <br /></td></tr>
 <tr class="separator:a2fe5b7cf87e3c478b3bd818fa15a4f49 inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a313685f387ec287d99b414b5daa84846 inherit pub_static_methods_classviam_1_1sdk_1_1Board" id="r_a313685f387ec287d99b414b5daa84846"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (viam::component::board::v1::PowerMode <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">proto</a>)</td></tr>
+static <a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (viam::component::board::v1::PowerMode proto)</td></tr>
 <tr class="memdesc:a313685f387ec287d99b414b5daa84846 inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <code>power_mode</code> enum from its proto representation. <br /></td></tr>
 <tr class="separator:a313685f387ec287d99b414b5daa84846 inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adcb8a382b527c1b9e0571e8695e4a4d3 inherit pub_static_methods_classviam_1_1sdk_1_1Board" id="r_adcb8a382b527c1b9e0571e8695e4a4d3"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> viam::component::board::v1::Status&#160;</td><td class="memItemRight" valign="bottom"><b>to_proto</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="structviam_1_1sdk_1_1Board_1_1status.html">status</a> &amp;<a class="el" href="structviam_1_1sdk_1_1Board_1_1status.html">status</a>)</td></tr>
+static viam::component::board::v1::Status&#160;</td><td class="memItemRight" valign="bottom"><b>to_proto</b> (const <a class="el" href="structviam_1_1sdk_1_1Board_1_1status.html">status</a> &amp;<a class="el" href="structviam_1_1sdk_1_1Board_1_1status.html">status</a>)</td></tr>
 <tr class="memdesc:adcb8a382b527c1b9e0571e8695e4a4d3 inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a <code>status</code> struct to its proto representation. <br /></td></tr>
 <tr class="separator:adcb8a382b527c1b9e0571e8695e4a4d3 inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adeffdf6ecdaaea8785ee054c503d3d96 inherit pub_static_methods_classviam_1_1sdk_1_1Board" id="r_adeffdf6ecdaaea8785ee054c503d3d96"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> viam::component::board::v1::PowerMode&#160;</td><td class="memItemRight" valign="bottom"><b>to_proto</b> (<a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>)</td></tr>
+static viam::component::board::v1::PowerMode&#160;</td><td class="memItemRight" valign="bottom"><b>to_proto</b> (<a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a>)</td></tr>
 <tr class="memdesc:adeffdf6ecdaaea8785ee054c503d3d96 inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a <code>power_mode</code> enum to its proto representation. <br /></td></tr>
 <tr class="separator:adeffdf6ecdaaea8785ee054c503d3d96 inherit pub_static_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classviam_1_1sdk_1_1Board"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classviam_1_1sdk_1_1Board')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Board.html">viam::sdk::Board</a></td></tr>
@@ -333,7 +333,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">AttributeMap viam::sdk::impl::BoardClient::do_command </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>command</em></span></td><td>)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>command</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -397,7 +397,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt; viam::sdk::impl::BoardClient::get_geometries </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -431,9 +431,9 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt; viam::sdk::Board::get_geometries </td>
+          <td class="memname">virtual std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt; viam::sdk::Board::get_geometries </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -467,9 +467,9 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a> viam::sdk::Board::get_gpio </td>
+          <td class="memname">bool viam::sdk::Board::get_gpio </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em></span></td><td>)</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -501,14 +501,14 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a> viam::sdk::impl::BoardClient::get_gpio </td>
+          <td class="memname">bool viam::sdk::impl::BoardClient::get_gpio </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -542,14 +542,14 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a> viam::sdk::Board::get_gpio </td>
+          <td class="memname">virtual bool viam::sdk::Board::get_gpio </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -583,9 +583,9 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> viam::sdk::Board::get_pwm_duty_cycle </td>
+          <td class="memname">double viam::sdk::Board::get_pwm_duty_cycle </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em></span></td><td>)</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -617,14 +617,14 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> viam::sdk::impl::BoardClient::get_pwm_duty_cycle </td>
+          <td class="memname">double viam::sdk::impl::BoardClient::get_pwm_duty_cycle </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -658,14 +658,14 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> viam::sdk::Board::get_pwm_duty_cycle </td>
+          <td class="memname">virtual double viam::sdk::Board::get_pwm_duty_cycle </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -699,9 +699,9 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">uint64_t</a> viam::sdk::Board::get_pwm_frequency </td>
+          <td class="memname">uint64_t viam::sdk::Board::get_pwm_frequency </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em></span></td><td>)</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -732,14 +732,14 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">uint64_t</a> viam::sdk::impl::BoardClient::get_pwm_frequency </td>
+          <td class="memname">uint64_t viam::sdk::impl::BoardClient::get_pwm_frequency </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -772,14 +772,14 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">uint64_t</a> viam::sdk::Board::get_pwm_frequency </td>
+          <td class="memname">virtual uint64_t viam::sdk::Board::get_pwm_frequency </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -814,7 +814,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="structviam_1_1sdk_1_1Board_1_1analog__response.html">analog_response</a> viam::sdk::Board::read_analog </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>analog_reader_name</em></span></td><td>)</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>analog_reader_name</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -847,12 +847,12 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="structviam_1_1sdk_1_1Board_1_1analog__response.html">analog_response</a> viam::sdk::impl::BoardClient::read_analog </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>analog_reader_name</em>, </span></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>analog_reader_name</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -885,14 +885,14 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="structviam_1_1sdk_1_1Board_1_1analog__response.html">analog_response</a> viam::sdk::Board::read_analog </td>
+          <td class="memname">virtual <a class="el" href="structviam_1_1sdk_1_1Board_1_1analog__response.html">analog_response</a> viam::sdk::Board::read_analog </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>analog_reader_name</em>, </span></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>analog_reader_name</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -927,7 +927,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="classviam_1_1sdk_1_1Board.html#a7492deed4439690ea37d470fd899919d">digital_value</a> viam::sdk::Board::read_digital_interrupt </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>digital_interrupt_name</em></span></td><td>)</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>digital_interrupt_name</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -960,12 +960,12 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="classviam_1_1sdk_1_1Board.html#a7492deed4439690ea37d470fd899919d">digital_value</a> viam::sdk::impl::BoardClient::read_digital_interrupt </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>digital_interrupt_name</em>, </span></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>digital_interrupt_name</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -998,14 +998,14 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1Board.html#a7492deed4439690ea37d470fd899919d">digital_value</a> viam::sdk::Board::read_digital_interrupt </td>
+          <td class="memname">virtual <a class="el" href="classviam_1_1sdk_1_1Board.html#a7492deed4439690ea37d470fd899919d">digital_value</a> viam::sdk::Board::read_digital_interrupt </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>digital_interrupt_name</em>, </span></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>digital_interrupt_name</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -1038,14 +1038,14 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::Board::set_gpio </td>
+          <td class="memname">void viam::sdk::Board::set_gpio </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a></td>          <td class="paramname"><span class="paramname"><em>high</em></span>&#160;)</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>high</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -1075,19 +1075,19 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::impl::BoardClient::set_gpio </td>
+          <td class="memname">void viam::sdk::impl::BoardClient::set_gpio </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a></td>          <td class="paramname"><span class="paramname"><em>high</em>, </span></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>high</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -1120,19 +1120,19 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::Board::set_gpio </td>
+          <td class="memname">virtual void viam::sdk::Board::set_gpio </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a></td>          <td class="paramname"><span class="paramname"><em>high</em>, </span></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>high</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -1165,19 +1165,19 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::impl::BoardClient::set_power_mode </td>
+          <td class="memname">void viam::sdk::impl::BoardClient::set_power_mode </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a></td>          <td class="paramname"><span class="paramname"><em>power_mode</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em>, </span></td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> boost::optional&lt; std::chrono::microseconds &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>duration</em></span>&#160;)</td>
+          <td class="paramtype">const boost::optional&lt; std::chrono::microseconds &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>duration</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -1211,19 +1211,19 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::Board::set_power_mode </td>
+          <td class="memname">virtual void viam::sdk::Board::set_power_mode </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a></td>          <td class="paramname"><span class="paramname"><em>power_mode</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em>, </span></td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> boost::optional&lt; std::chrono::microseconds &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>duration</em><span class="paramdefsep"> = </span><span class="paramdefval">{}</span></span>&#160;)</td>
+          <td class="paramtype">const boost::optional&lt; std::chrono::microseconds &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>duration</em><span class="paramdefsep"> = </span><span class="paramdefval">{}</span></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -1257,14 +1257,14 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::Board::set_power_mode </td>
+          <td class="memname">void viam::sdk::Board::set_power_mode </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88">power_mode</a></td>          <td class="paramname"><span class="paramname"><em>power_mode</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> boost::optional&lt; std::chrono::microseconds &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>duration</em><span class="paramdefsep"> = </span><span class="paramdefval">{}</span></span>&#160;)</td>
+          <td class="paramtype">const boost::optional&lt; std::chrono::microseconds &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>duration</em><span class="paramdefsep"> = </span><span class="paramdefval">{}</span></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -1295,14 +1295,14 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::Board::set_pwm_duty_cycle </td>
+          <td class="memname">void viam::sdk::Board::set_pwm_duty_cycle </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a></td>          <td class="paramname"><span class="paramname"><em>duty_cycle_pct</em></span>&#160;)</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>duty_cycle_pct</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -1333,19 +1333,19 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::impl::BoardClient::set_pwm_duty_cycle </td>
+          <td class="memname">void viam::sdk::impl::BoardClient::set_pwm_duty_cycle </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a></td>          <td class="paramname"><span class="paramname"><em>duty_cycle_pct</em>, </span></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>duty_cycle_pct</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -1379,19 +1379,19 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::Board::set_pwm_duty_cycle </td>
+          <td class="memname">virtual void viam::sdk::Board::set_pwm_duty_cycle </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a></td>          <td class="paramname"><span class="paramname"><em>duty_cycle_pct</em>, </span></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>duty_cycle_pct</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -1425,14 +1425,14 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::Board::set_pwm_frequency </td>
+          <td class="memname">void viam::sdk::Board::set_pwm_frequency </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">uint64_t</a></td>          <td class="paramname"><span class="paramname"><em>frequency_hz</em></span>&#160;)</td>
+          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>frequency_hz</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -1463,19 +1463,19 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::impl::BoardClient::set_pwm_frequency </td>
+          <td class="memname">void viam::sdk::impl::BoardClient::set_pwm_frequency </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">uint64_t</a></td>          <td class="paramname"><span class="paramname"><em>frequency_hz</em>, </span></td>
+          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>frequency_hz</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -1509,19 +1509,19 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::Board::set_pwm_frequency </td>
+          <td class="memname">virtual void viam::sdk::Board::set_pwm_frequency </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">uint64_t</a></td>          <td class="paramname"><span class="paramname"><em>frequency_hz</em>, </span></td>
+          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>frequency_hz</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -1555,14 +1555,14 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::Board::stream_ticks </td>
+          <td class="memname">void viam::sdk::Board::stream_ticks </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; std::string &gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>digital_interrupt_names</em>, </span></td>
+          <td class="paramtype">std::vector&lt; std::string &gt; const &amp;</td>          <td class="paramname"><span class="paramname"><em>digital_interrupt_names</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::function&lt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>(<a class="el" href="structviam_1_1sdk_1_1Board_1_1Tick.html">Tick</a> &amp;&amp;<a class="el" href="structtick.html">tick</a>)&gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tick_handler</em></span>&#160;)</td>
+          <td class="paramtype">std::function&lt; bool(<a class="el" href="structviam_1_1sdk_1_1Board_1_1Tick.html">Tick</a> &amp;&amp;<a class="el" href="structtick.html">tick</a>)&gt; const &amp;</td>          <td class="paramname"><span class="paramname"><em>tick_handler</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -1593,19 +1593,19 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::impl::BoardClient::stream_ticks </td>
+          <td class="memname">void viam::sdk::impl::BoardClient::stream_ticks </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; std::string &gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>digital_interrupt_names</em>, </span></td>
+          <td class="paramtype">std::vector&lt; std::string &gt; const &amp;</td>          <td class="paramname"><span class="paramname"><em>digital_interrupt_names</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::function&lt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>(<a class="el" href="structviam_1_1sdk_1_1Board_1_1Tick.html">Tick</a> &amp;&amp;<a class="el" href="structtick.html">tick</a>)&gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tick_handler</em>, </span></td>
+          <td class="paramtype">std::function&lt; bool(<a class="el" href="structviam_1_1sdk_1_1Board_1_1Tick.html">Tick</a> &amp;&amp;<a class="el" href="structtick.html">tick</a>)&gt; const &amp;</td>          <td class="paramname"><span class="paramname"><em>tick_handler</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -1639,19 +1639,19 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::Board::stream_ticks </td>
+          <td class="memname">virtual void viam::sdk::Board::stream_ticks </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; std::string &gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>digital_interrupt_names</em>, </span></td>
+          <td class="paramtype">std::vector&lt; std::string &gt; const &amp;</td>          <td class="paramname"><span class="paramname"><em>digital_interrupt_names</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::function&lt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>(<a class="el" href="structviam_1_1sdk_1_1Board_1_1Tick.html">Tick</a> &amp;&amp;<a class="el" href="structtick.html">tick</a>)&gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tick_handler</em>, </span></td>
+          <td class="paramtype">std::function&lt; bool(<a class="el" href="structviam_1_1sdk_1_1Board_1_1Tick.html">Tick</a> &amp;&amp;<a class="el" href="structtick.html">tick</a>)&gt; const &amp;</td>          <td class="paramname"><span class="paramname"><em>tick_handler</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -1685,14 +1685,14 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::Board::write_analog </td>
+          <td class="memname">void viam::sdk::Board::write_analog </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int</a></td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -1723,19 +1723,19 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::impl::BoardClient::write_analog </td>
+          <td class="memname">void viam::sdk::impl::BoardClient::write_analog </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int</a></td>          <td class="paramname"><span class="paramname"><em>value</em>, </span></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>value</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -1769,19 +1769,19 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::Board::write_analog </td>
+          <td class="memname">virtual void viam::sdk::Board::write_analog </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int</a></td>          <td class="paramname"><span class="paramname"><em>value</em>, </span></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>value</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>

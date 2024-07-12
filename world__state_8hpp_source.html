@@ -102,7 +102,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        std::vector&lt;GeometryConfig&gt; geometries;</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        std::string reference_frame;</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        common::v1::GeometriesInFrame to_proto() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <span class="keyword">static</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1WorldState_1_1geometries__in__frame.html">geometries_in_frame</a> from_proto(<span class="keyword">const</span> common::v1::GeometriesInFrame&amp; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">proto</a>);</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <span class="keyword">static</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1WorldState_1_1geometries__in__frame.html">geometries_in_frame</a> from_proto(<span class="keyword">const</span> common::v1::GeometriesInFrame&amp; proto);</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    };</div>
 </div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
@@ -113,17 +113,17 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        std::shared_ptr&lt;GeometryConfig&gt; physical_object;</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        common::v1::Transform to_proto() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keyword">static</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">transform</a> from_proto(<span class="keyword">const</span> common::v1::Transform&amp; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">proto</a>);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keyword">static</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">transform</a> from_proto(<span class="keyword">const</span> common::v1::Transform&amp; proto);</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <a class="code hl_struct" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">transform</a>() {}</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    };</div>
 </div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    common::v1::WorldState to_proto() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">static</span> <a class="code hl_class" href="classviam_1_1sdk_1_1WorldState.html">WorldState</a> from_proto(<span class="keyword">const</span> common::v1::WorldState&amp; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">ws</a>);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">static</span> <a class="code hl_class" href="classviam_1_1sdk_1_1WorldState.html">WorldState</a> from_proto(<span class="keyword">const</span> common::v1::WorldState&amp; ws);</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1WorldState.html">WorldState</a>() {}</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1WorldState.html">WorldState</a>(std::vector&lt;geometries_in_frame&gt; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">obstacles</a>, std::vector&lt;transform&gt; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">transforms</a>)</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        : obstacles_(std::move(<a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">obstacles</a>)), transforms_(std::move(<a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">transforms</a>)) {}</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1WorldState.html">WorldState</a>(std::vector&lt;geometries_in_frame&gt; obstacles, std::vector&lt;transform&gt; transforms)</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        : obstacles_(std::move(obstacles)), transforms_(std::move(transforms)) {}</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> WorldState&amp; lhs, <span class="keyword">const</span> WorldState&amp; rhs);</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> geometries_in_frame&amp; lhs, <span class="keyword">const</span> geometries_in_frame&amp; rhs);</div>
@@ -137,7 +137,6 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>}  <span class="comment">// namespace sdk</span></div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}  <span class="comment">// namespace viam</span></div>
-<div class="ttc" id="aclassviam_1_1sdk_1_1ClientHelper_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ClientHelper.html">viam::sdk::ClientHelper</a></div><div class="ttdef"><b>Definition</b> client_helper.hpp:16</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1WorldState_html"><div class="ttname"><a href="classviam_1_1sdk_1_1WorldState.html">viam::sdk::WorldState</a></div><div class="ttdef"><b>Definition</b> world_state.hpp:12</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1WorldState_1_1geometries__in__frame_html"><div class="ttname"><a href="structviam_1_1sdk_1_1WorldState_1_1geometries__in__frame.html">viam::sdk::WorldState::geometries_in_frame</a></div><div class="ttdef"><b>Definition</b> world_state.hpp:14</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1WorldState_1_1transform_html"><div class="ttname"><a href="structviam_1_1sdk_1_1WorldState_1_1transform.html">viam::sdk::WorldState::transform</a></div><div class="ttdef"><b>Definition</b> world_state.hpp:21</div></div>

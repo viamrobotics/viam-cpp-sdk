@@ -118,14 +118,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abf8ddf617ac01708fb4a8b2a868b27f0" id="r_abf8ddf617ac01708fb4a8b2a868b27f0"><td class="memItemLeft" align="right" valign="top"><a id="abf8ddf617ac01708fb4a8b2a868b27f0" name="abf8ddf617ac01708fb4a8b2a868b27f0"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Resource</b> (std::string <a class="el" href="#a52ea612e31f5c09785b500bd2610d97d">name</a>)</td></tr>
 <tr class="separator:abf8ddf617ac01708fb4a8b2a868b27f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb06db1f356533b597bc5cdb91ded2f0" id="r_adb06db1f356533b597bc5cdb91ded2f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb06db1f356533b597bc5cdb91ded2f0">api</a> () <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> =0</td></tr>
+<tr class="memitem:adb06db1f356533b597bc5cdb91ded2f0" id="r_adb06db1f356533b597bc5cdb91ded2f0"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb06db1f356533b597bc5cdb91ded2f0">api</a> () const =0</td></tr>
 <tr class="memdesc:adb06db1f356533b597bc5cdb91ded2f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code><a class="el" href="classviam_1_1sdk_1_1API.html" title="Extends APIType to additionally define a resource&#39;s subtype (e.g., camera).">API</a></code> associated with a particular resource.  <br /></td></tr>
 <tr class="separator:adb06db1f356533b597bc5cdb91ded2f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd3827d192d251d13b5686a874bf4bab" id="r_afd3827d192d251d13b5686a874bf4bab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> viam::common::v1::ResourceName&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd3827d192d251d13b5686a874bf4bab">get_resource_name</a> (std::string <a class="el" href="#a52ea612e31f5c09785b500bd2610d97d">name</a>) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a></td></tr>
+<tr class="memitem:afd3827d192d251d13b5686a874bf4bab" id="r_afd3827d192d251d13b5686a874bf4bab"><td class="memItemLeft" align="right" valign="top">virtual viam::common::v1::ResourceName&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd3827d192d251d13b5686a874bf4bab">get_resource_name</a> (std::string <a class="el" href="#a52ea612e31f5c09785b500bd2610d97d">name</a>) const</td></tr>
 <tr class="memdesc:afd3827d192d251d13b5686a874bf4bab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code>ResourceName</code> for a particular resource name.  <br /></td></tr>
 <tr class="separator:afd3827d192d251d13b5686a874bf4bab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52ea612e31f5c09785b500bd2610d97d" id="r_a52ea612e31f5c09785b500bd2610d97d"><td class="memItemLeft" align="right" valign="top"><a id="a52ea612e31f5c09785b500bd2610d97d" name="a52ea612e31f5c09785b500bd2610d97d"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b> () <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a></td></tr>
+virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b> () const</td></tr>
 <tr class="memdesc:a52ea612e31f5c09785b500bd2610d97d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the resource's name. <br /></td></tr>
 <tr class="separator:a52ea612e31f5c09785b500bd2610d97d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -140,7 +140,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1API.html">API</a> viam::sdk::Resource::api </td>
+          <td class="memname">virtual <a class="el" href="classviam_1_1sdk_1_1API.html">API</a> viam::sdk::Resource::api </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td> const</td>
@@ -169,7 +169,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> viam::common::v1::ResourceName viam::sdk::Resource::get_resource_name </td>
+          <td class="memname">virtual viam::common::v1::ResourceName viam::sdk::Resource::get_resource_name </td>
           <td>(</td>
           <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
           <td> const</td>

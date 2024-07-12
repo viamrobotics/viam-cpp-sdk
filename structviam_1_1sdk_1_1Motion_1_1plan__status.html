@@ -93,16 +93,16 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a519092740db2668eaf38c4db3cec8522" id="r_a519092740db2668eaf38c4db3cec8522"><td class="memItemLeft" align="right" valign="top"><a id="a519092740db2668eaf38c4db3cec8522" name="a519092740db2668eaf38c4db3cec8522"></a>
-service::motion::v1::PlanStatus&#160;</td><td class="memItemRight" valign="bottom"><b>to_proto</b> () <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a></td></tr>
+service::motion::v1::PlanStatus&#160;</td><td class="memItemRight" valign="bottom"><b>to_proto</b> () const</td></tr>
 <tr class="separator:a519092740db2668eaf38c4db3cec8522"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a2fe18320033ee2e360412d320c7d9608" id="r_a2fe18320033ee2e360412d320c7d9608"><td class="memItemLeft" align="right" valign="top"><a id="a2fe18320033ee2e360412d320c7d9608" name="a2fe18320033ee2e360412d320c7d9608"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__status.html">plan_status</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> service::motion::v1::PlanStatus &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">proto</a>)</td></tr>
+static <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__status.html">plan_status</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (const service::motion::v1::PlanStatus &amp;proto)</td></tr>
 <tr class="separator:a2fe18320033ee2e360412d320c7d9608"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8747378149ace1bd30c85d99f8735c2c" id="r_a8747378149ace1bd30c85d99f8735c2c"><td class="memItemLeft" align="right" valign="top"><a id="a8747378149ace1bd30c85d99f8735c2c" name="a8747378149ace1bd30c85d99f8735c2c"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__status.html">plan_status</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> google::protobuf::RepeatedPtrField&lt; service::motion::v1::PlanStatus &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">proto</a>)</td></tr>
+static std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__status.html">plan_status</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (const google::protobuf::RepeatedPtrField&lt; service::motion::v1::PlanStatus &gt; &amp;proto)</td></tr>
 <tr class="separator:a8747378149ace1bd30c85d99f8735c2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -112,7 +112,7 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a5bb5da1d6316c3673e3490e59ed374db"><td class="mdescLeft">&#160;</td><td class="mdescRight">The state of the plan execution. <br /></td></tr>
 <tr class="separator:a5bb5da1d6316c3673e3490e59ed374db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6bf830295f9d18ba3878232a93080082" id="r_a6bf830295f9d18ba3878232a93080082"><td class="memItemLeft" align="right" valign="top"><a id="a6bf830295f9d18ba3878232a93080082" name="a6bf830295f9d18ba3878232a93080082"></a>
-std::chrono::time_point&lt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">long</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">long</a>, std::chrono::nanoseconds &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>timestamp</b></td></tr>
+std::chrono::time_point&lt; long long, std::chrono::nanoseconds &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>timestamp</b></td></tr>
 <tr class="memdesc:a6bf830295f9d18ba3878232a93080082"><td class="mdescLeft">&#160;</td><td class="mdescRight">The time the executing plan transitioned to the state. <br /></td></tr>
 <tr class="separator:a6bf830295f9d18ba3878232a93080082"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8eb9b5f3f556d0faefbb55c1913e092" id="r_ad8eb9b5f3f556d0faefbb55c1913e092"><td class="memItemLeft" align="right" valign="top"><a id="ad8eb9b5f3f556d0faefbb55c1913e092" name="ad8eb9b5f3f556d0faefbb55c1913e092"></a>
@@ -123,7 +123,7 @@ boost::optional&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
 <tr class="memitem:a0f48b32e676e43f52e9866588bda32dd" id="r_a0f48b32e676e43f52e9866588bda32dd"><td class="memItemLeft" align="right" valign="top"><a id="a0f48b32e676e43f52e9866588bda32dd" name="a0f48b32e676e43f52e9866588bda32dd"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__status.html">plan_status</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">lhs</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__status.html">plan_status</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">rhs</a>)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__status.html">plan_status</a> &amp;lhs, const <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__status.html">plan_status</a> &amp;rhs)</td></tr>
 <tr class="separator:a0f48b32e676e43f52e9866588bda32dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>

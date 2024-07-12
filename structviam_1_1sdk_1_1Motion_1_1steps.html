@@ -93,17 +93,17 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:a95d89a24eee5afd54fe58954f8f43146" id="r_a95d89a24eee5afd54fe58954f8f43146"><td class="memItemLeft" align="right" valign="top"><a id="a95d89a24eee5afd54fe58954f8f43146" name="a95d89a24eee5afd54fe58954f8f43146"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">typedef</a> std::unordered_map&lt; std::string, <a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>step</b></td></tr>
+typedef std::unordered_map&lt; std::string, <a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>step</b></td></tr>
 <tr class="memdesc:a95d89a24eee5afd54fe58954f8f43146"><td class="mdescLeft">&#160;</td><td class="mdescRight">An individual "step", representing the state each component (keyed as a fully qualified component name) should reach while executing that step of the plan. <br /></td></tr>
 <tr class="separator:a95d89a24eee5afd54fe58954f8f43146"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a1ae8be415a5485ebab55ff4c9dc61827" id="r_a1ae8be415a5485ebab55ff4c9dc61827"><td class="memItemLeft" align="right" valign="top"><a id="a1ae8be415a5485ebab55ff4c9dc61827" name="a1ae8be415a5485ebab55ff4c9dc61827"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">struct</a> <a class="el" href="structviam_1_1sdk_1_1Motion_1_1steps.html">steps</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> google::protobuf::RepeatedPtrField&lt; service::motion::v1::PlanStep &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">proto</a>)</td></tr>
+static struct <a class="el" href="structviam_1_1sdk_1_1Motion_1_1steps.html">steps</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (const google::protobuf::RepeatedPtrField&lt; service::motion::v1::PlanStep &gt; &amp;proto)</td></tr>
 <tr class="separator:a1ae8be415a5485ebab55ff4c9dc61827"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7562d61151692bafd9ec9a46903b67dd" id="r_a7562d61151692bafd9ec9a46903b67dd"><td class="memItemLeft" align="right" valign="top"><a id="a7562d61151692bafd9ec9a46903b67dd" name="a7562d61151692bafd9ec9a46903b67dd"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> service::motion::v1::PlanStep&#160;</td><td class="memItemRight" valign="bottom"><b>to_proto</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="#a95d89a24eee5afd54fe58954f8f43146">step</a> &amp;<a class="el" href="#a95d89a24eee5afd54fe58954f8f43146">step</a>)</td></tr>
+static service::motion::v1::PlanStep&#160;</td><td class="memItemRight" valign="bottom"><b>to_proto</b> (const <a class="el" href="#a95d89a24eee5afd54fe58954f8f43146">step</a> &amp;<a class="el" href="#a95d89a24eee5afd54fe58954f8f43146">step</a>)</td></tr>
 <tr class="separator:a7562d61151692bafd9ec9a46903b67dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -116,7 +116,7 @@ std::vector&lt; <a class="el" href="#a95d89a24eee5afd54fe58954f8f43146">step</a>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
 <tr class="memitem:aaccd7486d43f0cf273d228fe565755d2" id="r_aaccd7486d43f0cf273d228fe565755d2"><td class="memItemLeft" align="right" valign="top"><a id="aaccd7486d43f0cf273d228fe565755d2" name="aaccd7486d43f0cf273d228fe565755d2"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">struct</a> <a class="el" href="structviam_1_1sdk_1_1Motion_1_1steps.html">steps</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">lhs</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">struct</a> <a class="el" href="structviam_1_1sdk_1_1Motion_1_1steps.html">steps</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">rhs</a>)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const struct <a class="el" href="structviam_1_1sdk_1_1Motion_1_1steps.html">steps</a> &amp;lhs, const struct <a class="el" href="structviam_1_1sdk_1_1Motion_1_1steps.html">steps</a> &amp;rhs)</td></tr>
 <tr class="separator:aaccd7486d43f0cf273d228fe565755d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>

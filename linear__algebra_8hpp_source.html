@@ -100,7 +100,7 @@ $(function() { codefold.init(0); });
 <div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1Vector3.html">   15</a></span><span class="keyword">class </span><a class="code hl_class" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> {</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>   <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">using </span>scalar_type = <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">double</a>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">using </span>scalar_type = double;</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a>(scalar_type x, scalar_type y, scalar_type z);</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a>();</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
@@ -114,7 +114,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">const</span> std::array&lt;scalar_type, 3&gt;&amp; data() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    std::array&lt;scalar_type, 3&gt;&amp; data();</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    viam::common::v1::Vector3 to_proto() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">static</span> <a class="code hl_class" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> from_proto(<span class="keyword">const</span> viam::common::v1::Vector3&amp; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">vec</a>);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">static</span> <a class="code hl_class" href="classviam_1_1sdk_1_1Vector3.html">Vector3</a> from_proto(<span class="keyword">const</span> viam::common::v1::Vector3&amp; vec);</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>   <span class="keyword">private</span>:</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    std::array&lt;scalar_type, 3&gt; data_;</div>
@@ -132,23 +132,23 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="structboost_1_1qvm_1_1vec__traits_3_01viam_1_1sdk_1_1Vector3_01_4.html">   47</a></span><span class="keyword">struct </span>vec_traits&lt;viam::sdk::Vector3&gt; {</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">static</span> <span class="keywordtype">int</span> <span class="keyword">const</span> dim = 3;</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keyword">using </span><a class="code hl_class" href="classviam_1_1sdk_1_1Vector3.html">vec_type</a> = <a class="code hl_class" href="classviam_1_1sdk_1_1Vector3.html">::viam::sdk::Vector3</a>;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">using </span><a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">scalar_type</a> = <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">vec_type::scalar_type</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">using </span>scalar_type = vec_type::scalar_type;</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> I&gt;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">scalar_type</a>&amp; write_element(<a class="code hl_class" href="classviam_1_1sdk_1_1Vector3.html">vec_type</a>&amp; v) {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">static</span> <span class="keyword">inline</span> scalar_type&amp; write_element(<a class="code hl_class" href="classviam_1_1sdk_1_1Vector3.html">vec_type</a>&amp; v) {</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordflow">return</span> v.data()[I];</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    }</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> I&gt;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">scalar_type</a> read_element(<a class="code hl_class" href="classviam_1_1sdk_1_1Vector3.html">vec_type</a> <span class="keyword">const</span>&amp; v) {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keyword">static</span> <span class="keyword">inline</span> scalar_type read_element(<a class="code hl_class" href="classviam_1_1sdk_1_1Vector3.html">vec_type</a> <span class="keyword">const</span>&amp; v) {</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keywordflow">return</span> v.data()[I];</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    }</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">scalar_type</a>&amp; write_element_idx(<span class="keywordtype">int</span> i, <a class="code hl_class" href="classviam_1_1sdk_1_1Vector3.html">vec_type</a>&amp; v) {</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keyword">static</span> <span class="keyword">inline</span> scalar_type&amp; write_element_idx(<span class="keywordtype">int</span> i, <a class="code hl_class" href="classviam_1_1sdk_1_1Vector3.html">vec_type</a>&amp; v) {</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="keywordflow">return</span> v.data()[i];</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    }</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">scalar_type</a> read_element_idx(<span class="keywordtype">int</span> i, <a class="code hl_class" href="classviam_1_1sdk_1_1Vector3.html">vec_type</a> <span class="keyword">const</span>&amp; v) {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keyword">static</span> <span class="keyword">inline</span> scalar_type read_element_idx(<span class="keywordtype">int</span> i, <a class="code hl_class" href="classviam_1_1sdk_1_1Vector3.html">vec_type</a> <span class="keyword">const</span>&amp; v) {</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordflow">return</span> v.data()[i];</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    }</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>};</div>
@@ -156,7 +156,6 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>}  <span class="comment">// namespace qvm</span></div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>}  <span class="comment">// namespace boost</span></div>
-<div class="ttc" id="aclassviam_1_1sdk_1_1ClientHelper_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ClientHelper.html">viam::sdk::ClientHelper</a></div><div class="ttdef"><b>Definition</b> client_helper.hpp:16</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Vector3_html"><div class="ttname"><a href="classviam_1_1sdk_1_1Vector3.html">viam::sdk::Vector3</a></div><div class="ttdef"><b>Definition</b> linear_algebra.hpp:15</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Vector3_html_ad082518c70490f827e19d817cbc57d01"><div class="ttname"><a href="classviam_1_1sdk_1_1Vector3.html#ad082518c70490f827e19d817cbc57d01">viam::sdk::Vector3::set_y</a></div><div class="ttdeci">Vector3 &amp; set_y(scalar_type y)</div><div class="ttdoc">Set the y value of the vector (can be chained)</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Vector3_html_adcab4ab40e44dfeb2f20248fc95f7383"><div class="ttname"><a href="classviam_1_1sdk_1_1Vector3.html#adcab4ab40e44dfeb2f20248fc95f7383">viam::sdk::Vector3::set_z</a></div><div class="ttdeci">Vector3 &amp; set_z(scalar_type z)</div><div class="ttdoc">Set the z value of the vector (can be chained)</div></div>

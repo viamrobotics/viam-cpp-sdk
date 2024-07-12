@@ -92,25 +92,25 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a516eba73399ca8a68096ca4c635d8c98" id="r_a516eba73399ca8a68096ca4c635d8c98"><td class="memItemLeft" align="right" valign="top"><a id="a516eba73399ca8a68096ca4c635d8c98" name="a516eba73399ca8a68096ca4c635d8c98"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>to_string</b> () <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a></td></tr>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>to_string</b> () const</td></tr>
 <tr class="separator:a516eba73399ca8a68096ca4c635d8c98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5627c78c56599a8b0f707f1d1050fb3a" id="r_a5627c78c56599a8b0f707f1d1050fb3a"><td class="memItemLeft" align="right" valign="top"><a id="a5627c78c56599a8b0f707f1d1050fb3a" name="a5627c78c56599a8b0f707f1d1050fb3a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Model</b> (std::string namespace_, std::string <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">family</a>, std::string <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">model_name</a>)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Model</b> (std::string namespace_, std::string family, std::string model_name)</td></tr>
 <tr class="separator:a5627c78c56599a8b0f707f1d1050fb3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08b0758504793b000ca70d62f157f84f" id="r_a08b0758504793b000ca70d62f157f84f"><td class="memItemLeft" align="right" valign="top"><a id="a08b0758504793b000ca70d62f157f84f" name="a08b0758504793b000ca70d62f157f84f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Model</b> (<a class="el" href="classviam_1_1sdk_1_1ModelFamily.html">ModelFamily</a> model, std::string <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">model_name</a>)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Model</b> (<a class="el" href="classviam_1_1sdk_1_1ModelFamily.html">ModelFamily</a> model, std::string model_name)</td></tr>
 <tr class="separator:a08b0758504793b000ca70d62f157f84f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a556dde7b55041d14d6ee4afc208615d6" id="r_a556dde7b55041d14d6ee4afc208615d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> <a class="el" href="classviam_1_1sdk_1_1Model.html">Model</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a556dde7b55041d14d6ee4afc208615d6">from_str</a> (std::string model)</td></tr>
+<tr class="memitem:a556dde7b55041d14d6ee4afc208615d6" id="r_a556dde7b55041d14d6ee4afc208615d6"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classviam_1_1sdk_1_1Model.html">Model</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a556dde7b55041d14d6ee4afc208615d6">from_str</a> (std::string model)</td></tr>
 <tr class="memdesc:a556dde7b55041d14d6ee4afc208615d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a single model string into a <a class="el" href="classviam_1_1sdk_1_1Model.html" title="Defines the namespace_, family, and name for a particular resource model.">Model</a>, using default values for namespace and family if not provided.  <br /></td></tr>
 <tr class="separator:a556dde7b55041d14d6ee4afc208615d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
 <tr class="memitem:a268b30882917f3fccdce5593cc3493ad" id="r_a268b30882917f3fccdce5593cc3493ad"><td class="memItemLeft" align="right" valign="top"><a id="a268b30882917f3fccdce5593cc3493ad" name="a268b30882917f3fccdce5593cc3493ad"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Model.html">Model</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">lhs</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Model.html">Model</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">rhs</a>)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classviam_1_1sdk_1_1Model.html">Model</a> &amp;lhs, const <a class="el" href="classviam_1_1sdk_1_1Model.html">Model</a> &amp;rhs)</td></tr>
 <tr class="separator:a268b30882917f3fccdce5593cc3493ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -126,7 +126,7 @@ Friends</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> <a class="el" href="classviam_1_1sdk_1_1Model.html">Model</a> viam::sdk::Model::from_str </td>
+          <td class="memname">static <a class="el" href="classviam_1_1sdk_1_1Model.html">Model</a> viam::sdk::Model::from_str </td>
           <td>(</td>
           <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>model</em></span></td><td>)</td>
           <td></td>

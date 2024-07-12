@@ -128,47 +128,47 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:ad07b74c95a1fb9435323b4bf590112cd" id="r_ad07b74c95a1fb9435323b4bf590112cd"><td class="memItemLeft" align="right" valign="top"><a id="ad07b74c95a1fb9435323b4bf590112cd" name="ad07b74c95a1fb9435323b4bf590112cd"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mime_types</b> = std::vector&lt;std::string&gt;</td></tr>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>mime_types</b> = std::vector&lt;std::string&gt;</td></tr>
 <tr class="memdesc:ad07b74c95a1fb9435323b4bf590112cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The supported mime types of the camera— a type alias. <br /></td></tr>
 <tr class="separator:ad07b74c95a1fb9435323b4bf590112cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7607e380f5e40f5f94e1948b0e961c7" id="r_aa7607e380f5e40f5f94e1948b0e961c7"><td class="memItemLeft" align="right" valign="top"><a id="aa7607e380f5e40f5f94e1948b0e961c7" name="aa7607e380f5e40f5f94e1948b0e961c7"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><b>depth_map</b> = xt::xarray&lt;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">uint16_t</a>&gt;</td></tr>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>depth_map</b> = xt::xarray&lt;uint16_t&gt;</td></tr>
 <tr class="separator:aa7607e380f5e40f5f94e1948b0e961c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a116b8dda02954d144a4ed18104875da8" id="r_a116b8dda02954d144a4ed18104875da8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> AttributeMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a116b8dda02954d144a4ed18104875da8">do_command</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">command</a>)=0</td></tr>
+<tr class="memitem:a116b8dda02954d144a4ed18104875da8" id="r_a116b8dda02954d144a4ed18104875da8"><td class="memItemLeft" align="right" valign="top">virtual AttributeMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a116b8dda02954d144a4ed18104875da8">do_command</a> (const AttributeMap &amp;command)=0</td></tr>
 <tr class="memdesc:a116b8dda02954d144a4ed18104875da8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:a116b8dda02954d144a4ed18104875da8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38a947544d389d2915cf6ea932abf7a0" id="r_a38a947544d389d2915cf6ea932abf7a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html">raw_image</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38a947544d389d2915cf6ea932abf7a0">get_image</a> (std::string mime_type)</td></tr>
 <tr class="memdesc:a38a947544d389d2915cf6ea932abf7a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the next image from the camera as a raw image.  <br /></td></tr>
 <tr class="separator:a38a947544d389d2915cf6ea932abf7a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb4737c0dbf496e2ffbeeb84035b4722" id="r_adb4737c0dbf496e2ffbeeb84035b4722"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html">raw_image</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb4737c0dbf496e2ffbeeb84035b4722">get_image</a> (std::string mime_type, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memitem:adb4737c0dbf496e2ffbeeb84035b4722" id="r_adb4737c0dbf496e2ffbeeb84035b4722"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html">raw_image</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb4737c0dbf496e2ffbeeb84035b4722">get_image</a> (std::string mime_type, const AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:adb4737c0dbf496e2ffbeeb84035b4722"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the next image from the camera as a raw image.  <br /></td></tr>
 <tr class="separator:adb4737c0dbf496e2ffbeeb84035b4722"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69526705dcf1559c99f89a84aa38f4a0" id="r_a69526705dcf1559c99f89a84aa38f4a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="structviam_1_1sdk_1_1Camera_1_1image__collection.html">image_collection</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69526705dcf1559c99f89a84aa38f4a0">get_images</a> ()=0</td></tr>
+<tr class="memitem:a69526705dcf1559c99f89a84aa38f4a0" id="r_a69526705dcf1559c99f89a84aa38f4a0"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structviam_1_1sdk_1_1Camera_1_1image__collection.html">image_collection</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69526705dcf1559c99f89a84aa38f4a0">get_images</a> ()=0</td></tr>
 <tr class="memdesc:a69526705dcf1559c99f89a84aa38f4a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the next images from the camera as a vector of raw images with names and metadata.  <br /></td></tr>
 <tr class="separator:a69526705dcf1559c99f89a84aa38f4a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4b40cf691f42ee3b7e1cc13973e66c8" id="r_ab4b40cf691f42ee3b7e1cc13973e66c8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1Camera_1_1point__cloud.html">point_cloud</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4b40cf691f42ee3b7e1cc13973e66c8">get_point_cloud</a> (std::string mime_type)</td></tr>
 <tr class="memdesc:ab4b40cf691f42ee3b7e1cc13973e66c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the next <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1point__cloud.html" title="The points and mime type of a point cloud.">point_cloud</a></code> from the camera.  <br /></td></tr>
 <tr class="separator:ab4b40cf691f42ee3b7e1cc13973e66c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb2256f77dc296668734b1e67b390f17" id="r_adb2256f77dc296668734b1e67b390f17"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="structviam_1_1sdk_1_1Camera_1_1point__cloud.html">point_cloud</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb2256f77dc296668734b1e67b390f17">get_point_cloud</a> (std::string mime_type, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memitem:adb2256f77dc296668734b1e67b390f17" id="r_adb2256f77dc296668734b1e67b390f17"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structviam_1_1sdk_1_1Camera_1_1point__cloud.html">point_cloud</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb2256f77dc296668734b1e67b390f17">get_point_cloud</a> (std::string mime_type, const AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:adb2256f77dc296668734b1e67b390f17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the next <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1point__cloud.html" title="The points and mime type of a point cloud.">point_cloud</a></code> from the camera.  <br /></td></tr>
 <tr class="separator:adb2256f77dc296668734b1e67b390f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a844a808a1469034de98776399f23c661" id="r_a844a808a1469034de98776399f23c661"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a844a808a1469034de98776399f23c661">get_geometries</a> ()</td></tr>
 <tr class="memdesc:a844a808a1469034de98776399f23c661"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling camera.  <br /></td></tr>
 <tr class="separator:a844a808a1469034de98776399f23c661"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe7df4cceb3020ffe5cd5d770d5900a4" id="r_abe7df4cceb3020ffe5cd5d770d5900a4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe7df4cceb3020ffe5cd5d770d5900a4">get_geometries</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memitem:abe7df4cceb3020ffe5cd5d770d5900a4" id="r_abe7df4cceb3020ffe5cd5d770d5900a4"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe7df4cceb3020ffe5cd5d770d5900a4">get_geometries</a> (const AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:abe7df4cceb3020ffe5cd5d770d5900a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling camera.  <br /></td></tr>
 <tr class="separator:abe7df4cceb3020ffe5cd5d770d5900a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ea3343a476f71a783ccb5e673e0f6b1" id="r_a6ea3343a476f71a783ccb5e673e0f6b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="structviam_1_1sdk_1_1Camera_1_1properties.html">properties</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ea3343a476f71a783ccb5e673e0f6b1">get_properties</a> ()=0</td></tr>
+<tr class="memitem:a6ea3343a476f71a783ccb5e673e0f6b1" id="r_a6ea3343a476f71a783ccb5e673e0f6b1"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structviam_1_1sdk_1_1Camera_1_1properties.html">properties</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ea3343a476f71a783ccb5e673e0f6b1">get_properties</a> ()=0</td></tr>
 <tr class="memdesc:a6ea3343a476f71a783ccb5e673e0f6b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the camera's properties.  <br /></td></tr>
 <tr class="separator:a6ea3343a476f71a783ccb5e673e0f6b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d3bfbe851b162c960e73980ac164cda" id="r_a6d3bfbe851b162c960e73980ac164cda"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d3bfbe851b162c960e73980ac164cda">api</a> () <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:a6d3bfbe851b162c960e73980ac164cda" id="r_a6d3bfbe851b162c960e73980ac164cda"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d3bfbe851b162c960e73980ac164cda">api</a> () const override</td></tr>
 <tr class="memdesc:a6d3bfbe851b162c960e73980ac164cda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code><a class="el" href="classviam_1_1sdk_1_1API.html" title="Extends APIType to additionally define a resource&#39;s subtype (e.g., camera).">API</a></code> associated with a particular resource.  <br /></td></tr>
 <tr class="separator:a6d3bfbe851b162c960e73980ac164cda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classviam_1_1sdk_1_1Component"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classviam_1_1sdk_1_1Component')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Component.html">viam::sdk::Component</a></td></tr>
-<tr class="memitem:ae969386d6faa08e81f16fb55ce62aa5d inherit pub_methods_classviam_1_1sdk_1_1Component" id="r_ae969386d6faa08e81f16fb55ce62aa5d"><td class="memItemLeft" align="right" valign="top">viam::common::v1::ResourceName&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Component.html#ae969386d6faa08e81f16fb55ce62aa5d">get_resource_name</a> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memitem:ae969386d6faa08e81f16fb55ce62aa5d inherit pub_methods_classviam_1_1sdk_1_1Component" id="r_ae969386d6faa08e81f16fb55ce62aa5d"><td class="memItemLeft" align="right" valign="top">viam::common::v1::ResourceName&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Component.html#ae969386d6faa08e81f16fb55ce62aa5d">get_resource_name</a> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>) const override</td></tr>
 <tr class="memdesc:ae969386d6faa08e81f16fb55ce62aa5d inherit pub_methods_classviam_1_1sdk_1_1Component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code>ResourceName</code> for a particular resource name.  <br /></td></tr>
 <tr class="separator:ae969386d6faa08e81f16fb55ce62aa5d inherit pub_methods_classviam_1_1sdk_1_1Component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classviam_1_1sdk_1_1Resource"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classviam_1_1sdk_1_1Resource')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Resource.html">viam::sdk::Resource</a></td></tr>
@@ -176,65 +176,65 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Resource</b> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>)</td></tr>
 <tr class="separator:abf8ddf617ac01708fb4a8b2a868b27f0 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52ea612e31f5c09785b500bd2610d97d inherit pub_methods_classviam_1_1sdk_1_1Resource" id="r_a52ea612e31f5c09785b500bd2610d97d"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b> () <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a></td></tr>
+virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b> () const</td></tr>
 <tr class="memdesc:a52ea612e31f5c09785b500bd2610d97d inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the resource's name. <br /></td></tr>
 <tr class="separator:a52ea612e31f5c09785b500bd2610d97d inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a9e7c515b0e03b7e210cbcb6a02d85fa2" id="r_a9e7c515b0e03b7e210cbcb6a02d85fa2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">unsigned</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">char</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e7c515b0e03b7e210cbcb6a02d85fa2">encode_depth_map</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> Camera::depth_map &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">m</a>)</td></tr>
+<tr class="memitem:a9e7c515b0e03b7e210cbcb6a02d85fa2" id="r_a9e7c515b0e03b7e210cbcb6a02d85fa2"><td class="memItemLeft" align="right" valign="top">static std::vector&lt; unsigned char &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e7c515b0e03b7e210cbcb6a02d85fa2">encode_depth_map</a> (const Camera::depth_map &amp;m)</td></tr>
 <tr class="separator:a9e7c515b0e03b7e210cbcb6a02d85fa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f7d35471084304c589ccab820d6c312" id="r_a4f7d35471084304c589ccab820d6c312"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> Camera::depth_map&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f7d35471084304c589ccab820d6c312">decode_depth_map</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">unsigned</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">char</a> &gt; &amp;data)</td></tr>
+<tr class="memitem:a4f7d35471084304c589ccab820d6c312" id="r_a4f7d35471084304c589ccab820d6c312"><td class="memItemLeft" align="right" valign="top">static Camera::depth_map&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f7d35471084304c589ccab820d6c312">decode_depth_map</a> (const std::vector&lt; unsigned char &gt; &amp;data)</td></tr>
 <tr class="separator:a4f7d35471084304c589ccab820d6c312"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1347ee02a13c6027cc7cb166de3b56b" id="r_ae1347ee02a13c6027cc7cb166de3b56b"><td class="memItemLeft" align="right" valign="top"><a id="ae1347ee02a13c6027cc7cb166de3b56b" name="ae1347ee02a13c6027cc7cb166de3b56b"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> std::string&#160;</td><td class="memItemRight" valign="bottom"><b>normalize_mime_type</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">str</a>)</td></tr>
+static std::string&#160;</td><td class="memItemRight" valign="bottom"><b>normalize_mime_type</b> (const std::string &amp;str)</td></tr>
 <tr class="memdesc:ae1347ee02a13c6027cc7cb166de3b56b"><td class="mdescLeft">&#160;</td><td class="mdescRight">remove any extra suffix's from the mime type string. <br /></td></tr>
 <tr class="separator:ae1347ee02a13c6027cc7cb166de3b56b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af352e8696f1cc9fffaffd990d63ad63e" id="r_af352e8696f1cc9fffaffd990d63ad63e"><td class="memItemLeft" align="right" valign="top"><a id="af352e8696f1cc9fffaffd990d63ad63e" name="af352e8696f1cc9fffaffd990d63ad63e"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> std::string&#160;</td><td class="memItemRight" valign="bottom"><b>format_to_MIME_string</b> (viam::component::camera::v1::Format <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">format</a>)</td></tr>
+static std::string&#160;</td><td class="memItemRight" valign="bottom"><b>format_to_MIME_string</b> (viam::component::camera::v1::Format format)</td></tr>
 <tr class="memdesc:af352e8696f1cc9fffaffd990d63ad63e"><td class="mdescLeft">&#160;</td><td class="mdescRight">convert a protobuf format enum with a MIME type string. <br /></td></tr>
 <tr class="separator:af352e8696f1cc9fffaffd990d63ad63e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae66cc224dbf0cb7a0b516cc48b1ede93" id="r_ae66cc224dbf0cb7a0b516cc48b1ede93"><td class="memItemLeft" align="right" valign="top"><a id="ae66cc224dbf0cb7a0b516cc48b1ede93" name="ae66cc224dbf0cb7a0b516cc48b1ede93"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> viam::component::camera::v1::Format&#160;</td><td class="memItemRight" valign="bottom"><b>MIME_string_to_format</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">mime_string</a>)</td></tr>
+static viam::component::camera::v1::Format&#160;</td><td class="memItemRight" valign="bottom"><b>MIME_string_to_format</b> (const std::string &amp;mime_string)</td></tr>
 <tr class="memdesc:ae66cc224dbf0cb7a0b516cc48b1ede93"><td class="mdescLeft">&#160;</td><td class="mdescRight">convert a MIME type string with a protobuf format enum. <br /></td></tr>
 <tr class="separator:ae66cc224dbf0cb7a0b516cc48b1ede93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2216ad635a0ffc87afc3e83ba6c856d8" id="r_a2216ad635a0ffc87afc3e83ba6c856d8"><td class="memItemLeft" align="right" valign="top"><a id="a2216ad635a0ffc87afc3e83ba6c856d8" name="a2216ad635a0ffc87afc3e83ba6c856d8"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> <a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html">raw_image</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> viam::component::camera::v1::GetImageResponse &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">proto</a>)</td></tr>
+static <a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html">raw_image</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (const viam::component::camera::v1::GetImageResponse &amp;proto)</td></tr>
 <tr class="memdesc:a2216ad635a0ffc87afc3e83ba6c856d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html" title="the raw bytes, mime type of an image, and name of the source that produced it.">raw_image</a></code> struct from its proto representation. <br /></td></tr>
 <tr class="separator:a2216ad635a0ffc87afc3e83ba6c856d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a056cf9312286cc73d45f91838d29e2" id="r_a4a056cf9312286cc73d45f91838d29e2"><td class="memItemLeft" align="right" valign="top"><a id="a4a056cf9312286cc73d45f91838d29e2" name="a4a056cf9312286cc73d45f91838d29e2"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> <a class="el" href="structviam_1_1sdk_1_1Camera_1_1image__collection.html">image_collection</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> viam::component::camera::v1::GetImagesResponse &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">proto</a>)</td></tr>
+static <a class="el" href="structviam_1_1sdk_1_1Camera_1_1image__collection.html">image_collection</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (const viam::component::camera::v1::GetImagesResponse &amp;proto)</td></tr>
 <tr class="memdesc:a4a056cf9312286cc73d45f91838d29e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1image__collection.html" title="a collection of images that were collected from a camera all at the same time.">image_collection</a></code> struct from its proto representation. <br /></td></tr>
 <tr class="separator:a4a056cf9312286cc73d45f91838d29e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adeb0dc5f3c2477e4d981e3b723354cd2" id="r_adeb0dc5f3c2477e4d981e3b723354cd2"><td class="memItemLeft" align="right" valign="top"><a id="adeb0dc5f3c2477e4d981e3b723354cd2" name="adeb0dc5f3c2477e4d981e3b723354cd2"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> <a class="el" href="structviam_1_1sdk_1_1Camera_1_1point__cloud.html">point_cloud</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> viam::component::camera::v1::GetPointCloudResponse &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">proto</a>)</td></tr>
+static <a class="el" href="structviam_1_1sdk_1_1Camera_1_1point__cloud.html">point_cloud</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (const viam::component::camera::v1::GetPointCloudResponse &amp;proto)</td></tr>
 <tr class="memdesc:adeb0dc5f3c2477e4d981e3b723354cd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1point__cloud.html" title="The points and mime type of a point cloud.">point_cloud</a></code> struct from its proto representation. <br /></td></tr>
 <tr class="separator:adeb0dc5f3c2477e4d981e3b723354cd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea1c7b6ca25b72c63acb027978920ce0" id="r_aea1c7b6ca25b72c63acb027978920ce0"><td class="memItemLeft" align="right" valign="top"><a id="aea1c7b6ca25b72c63acb027978920ce0" name="aea1c7b6ca25b72c63acb027978920ce0"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> <a class="el" href="structviam_1_1sdk_1_1Camera_1_1intrinsic__parameters.html">intrinsic_parameters</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> viam::component::camera::v1::IntrinsicParameters &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">proto</a>)</td></tr>
+static <a class="el" href="structviam_1_1sdk_1_1Camera_1_1intrinsic__parameters.html">intrinsic_parameters</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (const viam::component::camera::v1::IntrinsicParameters &amp;proto)</td></tr>
 <tr class="memdesc:aea1c7b6ca25b72c63acb027978920ce0"><td class="mdescLeft">&#160;</td><td class="mdescRight">creates an <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1intrinsic__parameters.html">intrinsic_parameters</a></code> struct from its proto representation. <br /></td></tr>
 <tr class="separator:aea1c7b6ca25b72c63acb027978920ce0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7eb253c94c1b0ac582a35d96bd61a1d" id="r_ae7eb253c94c1b0ac582a35d96bd61a1d"><td class="memItemLeft" align="right" valign="top"><a id="ae7eb253c94c1b0ac582a35d96bd61a1d" name="ae7eb253c94c1b0ac582a35d96bd61a1d"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> <a class="el" href="structviam_1_1sdk_1_1Camera_1_1distortion__parameters.html">distortion_parameters</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> viam::component::camera::v1::DistortionParameters &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">proto</a>)</td></tr>
+static <a class="el" href="structviam_1_1sdk_1_1Camera_1_1distortion__parameters.html">distortion_parameters</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (const viam::component::camera::v1::DistortionParameters &amp;proto)</td></tr>
 <tr class="memdesc:ae7eb253c94c1b0ac582a35d96bd61a1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">creats a <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1distortion__parameters.html" title="The distortion parameters of the camera.">distortion_parameters</a></code> struct from its proto representation. <br /></td></tr>
 <tr class="separator:ae7eb253c94c1b0ac582a35d96bd61a1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1953465f3c859004dc995ed683427d02" id="r_a1953465f3c859004dc995ed683427d02"><td class="memItemLeft" align="right" valign="top"><a id="a1953465f3c859004dc995ed683427d02" name="a1953465f3c859004dc995ed683427d02"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> <a class="el" href="structviam_1_1sdk_1_1Camera_1_1properties.html">properties</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> viam::component::camera::v1::GetPropertiesResponse &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">proto</a>)</td></tr>
+static <a class="el" href="structviam_1_1sdk_1_1Camera_1_1properties.html">properties</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (const viam::component::camera::v1::GetPropertiesResponse &amp;proto)</td></tr>
 <tr class="memdesc:a1953465f3c859004dc995ed683427d02"><td class="mdescLeft">&#160;</td><td class="mdescRight">creates a <code>properties</code> struct from its proto representation. <br /></td></tr>
 <tr class="separator:a1953465f3c859004dc995ed683427d02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a228f388daf0c76826693088d24036372" id="r_a228f388daf0c76826693088d24036372"><td class="memItemLeft" align="right" valign="top"><a id="a228f388daf0c76826693088d24036372" name="a228f388daf0c76826693088d24036372"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> viam::component::camera::v1::DistortionParameters&#160;</td><td class="memItemRight" valign="bottom"><b>to_proto</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="structviam_1_1sdk_1_1Camera_1_1distortion__parameters.html">distortion_parameters</a> &amp;)</td></tr>
+static viam::component::camera::v1::DistortionParameters&#160;</td><td class="memItemRight" valign="bottom"><b>to_proto</b> (const <a class="el" href="structviam_1_1sdk_1_1Camera_1_1distortion__parameters.html">distortion_parameters</a> &amp;)</td></tr>
 <tr class="memdesc:a228f388daf0c76826693088d24036372"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts a <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1distortion__parameters.html" title="The distortion parameters of the camera.">distortion_parameters</a></code> struct to its proto representation. <br /></td></tr>
 <tr class="separator:a228f388daf0c76826693088d24036372"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6bf2b65bc7f94457d4b3dae3deccd81" id="r_aa6bf2b65bc7f94457d4b3dae3deccd81"><td class="memItemLeft" align="right" valign="top"><a id="aa6bf2b65bc7f94457d4b3dae3deccd81" name="aa6bf2b65bc7f94457d4b3dae3deccd81"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> viam::component::camera::v1::IntrinsicParameters&#160;</td><td class="memItemRight" valign="bottom"><b>to_proto</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="structviam_1_1sdk_1_1Camera_1_1intrinsic__parameters.html">intrinsic_parameters</a> &amp;)</td></tr>
+static viam::component::camera::v1::IntrinsicParameters&#160;</td><td class="memItemRight" valign="bottom"><b>to_proto</b> (const <a class="el" href="structviam_1_1sdk_1_1Camera_1_1intrinsic__parameters.html">intrinsic_parameters</a> &amp;)</td></tr>
 <tr class="memdesc:aa6bf2b65bc7f94457d4b3dae3deccd81"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts an <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1intrinsic__parameters.html">intrinsic_parameters</a></code> struct to its proto representation. <br /></td></tr>
 <tr class="separator:aa6bf2b65bc7f94457d4b3dae3deccd81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:acbf602c362ba100b67568c902103a093" id="r_acbf602c362ba100b67568c902103a093"><td class="memItemLeft" align="right" valign="top"><a id="acbf602c362ba100b67568c902103a093" name="acbf602c362ba100b67568c902103a093"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string&#160;</td><td class="memItemRight" valign="bottom"><b>lazy_suffix</b></td></tr>
+static const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>lazy_suffix</b></td></tr>
 <tr class="separator:acbf602c362ba100b67568c902103a093"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
@@ -290,9 +290,9 @@ Protected Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> Camera::depth_map viam::sdk::Camera::decode_depth_map </td>
+          <td class="memname">static Camera::depth_map viam::sdk::Camera::decode_depth_map </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">unsigned</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">char</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span></td><td>)</td>
+          <td class="paramtype">const std::vector&lt; unsigned char &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -330,9 +330,9 @@ Protected Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> AttributeMap viam::sdk::Camera::do_command </td>
+          <td class="memname">virtual AttributeMap viam::sdk::Camera::do_command </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>command</em></span></td><td>)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>command</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -366,9 +366,9 @@ Protected Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">unsigned</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">char</a> &gt; viam::sdk::Camera::encode_depth_map </td>
+          <td class="memname">static std::vector&lt; unsigned char &gt; viam::sdk::Camera::encode_depth_map </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> Camera::depth_map &amp;</td>          <td class="paramname"><span class="paramname"><em>m</em></span></td><td>)</td>
+          <td class="paramtype">const Camera::depth_map &amp;</td>          <td class="paramname"><span class="paramname"><em>m</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -434,9 +434,9 @@ Protected Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt; viam::sdk::Camera::get_geometries </td>
+          <td class="memname">virtual std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt; viam::sdk::Camera::get_geometries </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -504,14 +504,14 @@ Protected Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html">raw_image</a> viam::sdk::Camera::get_image </td>
+          <td class="memname">virtual <a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html">raw_image</a> viam::sdk::Camera::get_image </td>
           <td>(</td>
           <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>mime_type</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -545,7 +545,7 @@ Protected Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="structviam_1_1sdk_1_1Camera_1_1image__collection.html">image_collection</a> viam::sdk::Camera::get_images </td>
+          <td class="memname">virtual <a class="el" href="structviam_1_1sdk_1_1Camera_1_1image__collection.html">image_collection</a> viam::sdk::Camera::get_images </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -609,14 +609,14 @@ Protected Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="structviam_1_1sdk_1_1Camera_1_1point__cloud.html">point_cloud</a> viam::sdk::Camera::get_point_cloud </td>
+          <td class="memname">virtual <a class="el" href="structviam_1_1sdk_1_1Camera_1_1point__cloud.html">point_cloud</a> viam::sdk::Camera::get_point_cloud </td>
           <td>(</td>
           <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>mime_type</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -650,7 +650,7 @@ Protected Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="structviam_1_1sdk_1_1Camera_1_1properties.html">properties</a> viam::sdk::Camera::get_properties </td>
+          <td class="memname">virtual <a class="el" href="structviam_1_1sdk_1_1Camera_1_1properties.html">properties</a> viam::sdk::Camera::get_properties </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>

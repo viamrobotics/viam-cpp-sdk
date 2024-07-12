@@ -96,37 +96,37 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ade4fdbad63b1a2eb21e52b123e014f54" id="r_ade4fdbad63b1a2eb21e52b123e014f54"><td class="memItemLeft" align="right" valign="top"><a id="ade4fdbad63b1a2eb21e52b123e014f54" name="ade4fdbad63b1a2eb21e52b123e014f54"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ServiceHelper</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">char</a> *method, <a class="el" href="classviam_1_1sdk_1_1ResourceServer.html">ResourceServer</a> *<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">rs</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">RequestType</a> *<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">request</a>) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">noexcept</a></td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ServiceHelper</b> (const char *method, <a class="el" href="classviam_1_1sdk_1_1ResourceServer.html">ResourceServer</a> *rs, RequestType *request) noexcept</td></tr>
 <tr class="separator:ade4fdbad63b1a2eb21e52b123e014f54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1893edd32d10ce84889afde03e66d1cd" id="r_a1893edd32d10ce84889afde03e66d1cd"><td class="memTemplParams" colspan="2"><a id="a1893edd32d10ce84889afde03e66d1cd" name="a1893edd32d10ce84889afde03e66d1cd"></a>
-template&lt;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">typename</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">Callable</a> &gt; </td></tr>
-<tr class="memitem:a1893edd32d10ce84889afde03e66d1cd"><td class="memTemplItemLeft" align="right" valign="top">::grpc::Status&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">Callable</a> &amp;&amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">callable</a>) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">noexcept</a></td></tr>
+template&lt;typename Callable &gt; </td></tr>
+<tr class="memitem:a1893edd32d10ce84889afde03e66d1cd"><td class="memTemplItemLeft" align="right" valign="top">::grpc::Status&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (Callable &amp;&amp;callable) const noexcept</td></tr>
 <tr class="separator:a1893edd32d10ce84889afde03e66d1cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc4eaa0b6f0b8bc52474be552c6e4214" id="r_adc4eaa0b6f0b8bc52474be552c6e4214"><td class="memItemLeft" align="right" valign="top"><a id="adc4eaa0b6f0b8bc52474be552c6e4214" name="adc4eaa0b6f0b8bc52474be552c6e4214"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getExtra</b> () <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a></td></tr>
+auto&#160;</td><td class="memItemRight" valign="bottom"><b>getExtra</b> () const</td></tr>
 <tr class="separator:adc4eaa0b6f0b8bc52474be552c6e4214"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classviam_1_1sdk_1_1ServiceHelperBase"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classviam_1_1sdk_1_1ServiceHelperBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1ServiceHelperBase.html">viam::sdk::ServiceHelperBase</a></td></tr>
 <tr class="memitem:accbacad10bf454fbe9ed00683198d57a inherit pub_methods_classviam_1_1sdk_1_1ServiceHelperBase" id="r_accbacad10bf454fbe9ed00683198d57a"><td class="memItemLeft" align="right" valign="top">
-::grpc::Status&#160;</td><td class="memItemRight" valign="bottom"><b>fail</b> (::grpc::StatusCode <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">code</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">char</a> *<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">message</a>) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">noexcept</a></td></tr>
+::grpc::Status&#160;</td><td class="memItemRight" valign="bottom"><b>fail</b> (::grpc::StatusCode code, const char *message) const noexcept</td></tr>
 <tr class="separator:accbacad10bf454fbe9ed00683198d57a inherit pub_methods_classviam_1_1sdk_1_1ServiceHelperBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5602fa549f6a90e45767777b75013d0 inherit pub_methods_classviam_1_1sdk_1_1ServiceHelperBase" id="r_ab5602fa549f6a90e45767777b75013d0"><td class="memItemLeft" align="right" valign="top">
-::grpc::Status&#160;</td><td class="memItemRight" valign="bottom"><b>failNoRequest</b> () <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">noexcept</a></td></tr>
+::grpc::Status&#160;</td><td class="memItemRight" valign="bottom"><b>failNoRequest</b> () const noexcept</td></tr>
 <tr class="separator:ab5602fa549f6a90e45767777b75013d0 inherit pub_methods_classviam_1_1sdk_1_1ServiceHelperBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5b8156ca26dd0a13c0b8f0dc09fad5b inherit pub_methods_classviam_1_1sdk_1_1ServiceHelperBase" id="r_ac5b8156ca26dd0a13c0b8f0dc09fad5b"><td class="memItemLeft" align="right" valign="top">
-::grpc::Status&#160;</td><td class="memItemRight" valign="bottom"><b>failNoResource</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;name) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">noexcept</a></td></tr>
+::grpc::Status&#160;</td><td class="memItemRight" valign="bottom"><b>failNoResource</b> (const std::string &amp;name) const noexcept</td></tr>
 <tr class="separator:ac5b8156ca26dd0a13c0b8f0dc09fad5b inherit pub_methods_classviam_1_1sdk_1_1ServiceHelperBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09d3c869d323f573b064de5a7cd9b88e inherit pub_methods_classviam_1_1sdk_1_1ServiceHelperBase" id="r_a09d3c869d323f573b064de5a7cd9b88e"><td class="memItemLeft" align="right" valign="top">
-::grpc::Status&#160;</td><td class="memItemRight" valign="bottom"><b>failStdException</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::exception &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">xcp</a>) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">noexcept</a></td></tr>
+::grpc::Status&#160;</td><td class="memItemRight" valign="bottom"><b>failStdException</b> (const std::exception &amp;xcp) const noexcept</td></tr>
 <tr class="separator:a09d3c869d323f573b064de5a7cd9b88e inherit pub_methods_classviam_1_1sdk_1_1ServiceHelperBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adfcd1ef7115cdac24d02b3505d18c6ba inherit pub_methods_classviam_1_1sdk_1_1ServiceHelperBase" id="r_adfcd1ef7115cdac24d02b3505d18c6ba"><td class="memItemLeft" align="right" valign="top">
-::grpc::Status&#160;</td><td class="memItemRight" valign="bottom"><b>failUnknownException</b> () <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">noexcept</a></td></tr>
+::grpc::Status&#160;</td><td class="memItemRight" valign="bottom"><b>failUnknownException</b> () const noexcept</td></tr>
 <tr class="separator:adfcd1ef7115cdac24d02b3505d18c6ba inherit pub_methods_classviam_1_1sdk_1_1ServiceHelperBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_methods_classviam_1_1sdk_1_1ServiceHelperBase"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classviam_1_1sdk_1_1ServiceHelperBase')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1ServiceHelperBase.html">viam::sdk::ServiceHelperBase</a></td></tr>
 <tr class="memitem:a6d1d0055a57dff4d417e89c888592709 inherit pro_methods_classviam_1_1sdk_1_1ServiceHelperBase" id="r_a6d1d0055a57dff4d417e89c888592709"><td class="memItemLeft" align="right" valign="top">
-&#160;</td><td class="memItemRight" valign="bottom"><b>ServiceHelperBase</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">char</a> *method) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">noexcept</a></td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ServiceHelperBase</b> (const char *method) noexcept</td></tr>
 <tr class="separator:a6d1d0055a57dff4d417e89c888592709 inherit pro_methods_classviam_1_1sdk_1_1ServiceHelperBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
