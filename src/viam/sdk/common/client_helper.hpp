@@ -88,13 +88,20 @@ class ClientHelper {
 
         auto reader = (stub_->*pfn_)(ctx, request_);
 
-        while (reader->Read(&response_) && rhc(response_)) {
+        bool cancelled_by_handler = false;
+
+        while (reader->Read(&response_)) {
+            if (!rhc(response_)) {
+                cancelled_by_handler = true;
+                static_cast<::grpc::ClientContext*>(ctx)->TryCancel();
+                break;
+            }
         }
 
-        static_cast<::grpc::ClientContext*>(ctx)->TryCancel();
-
         const auto result = reader->Finish();
-        if (result.ok() || result.error_code() == ::grpc::StatusCode::CANCELLED) {
+
+        if (result.ok() ||
+            (cancelled_by_handler && result.error_code() == ::grpc::StatusCode::CANCELLED)) {
             return;
         }
 
