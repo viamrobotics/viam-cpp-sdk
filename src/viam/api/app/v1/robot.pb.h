@@ -112,6 +112,9 @@ extern LocationSecretDefaultTypeInternal _LocationSecret_default_instance_;
 class LogConfiguration;
 struct LogConfigurationDefaultTypeInternal;
 extern LogConfigurationDefaultTypeInternal _LogConfiguration_default_instance_;
+class LogPatternConfig;
+struct LogPatternConfigDefaultTypeInternal;
+extern LogPatternConfigDefaultTypeInternal _LogPatternConfig_default_instance_;
 class LogRequest;
 struct LogRequestDefaultTypeInternal;
 extern LogRequestDefaultTypeInternal _LogRequest_default_instance_;
@@ -299,7 +302,7 @@ class Translation final :
                &_Translation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   friend void swap(Translation& a, Translation& b) {
     a.Swap(&b);
@@ -498,7 +501,7 @@ class RemoteAuth_Credentials final :
                &_RemoteAuth_Credentials_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    27;
 
   friend void swap(RemoteAuth_Credentials& a, RemoteAuth_Credentials& b) {
     a.Swap(&b);
@@ -721,7 +724,7 @@ class Orientation_Quaternion final :
                &_Orientation_Quaternion_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    24;
 
   friend void swap(Orientation_Quaternion& a, Orientation_Quaternion& b) {
     a.Swap(&b);
@@ -932,7 +935,7 @@ class Orientation_OrientationVectorRadians final :
                &_Orientation_OrientationVectorRadians_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   friend void swap(Orientation_OrientationVectorRadians& a, Orientation_OrientationVectorRadians& b) {
     a.Swap(&b);
@@ -1143,7 +1146,7 @@ class Orientation_OrientationVectorDegrees final :
                &_Orientation_OrientationVectorDegrees_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    21;
 
   friend void swap(Orientation_OrientationVectorDegrees& a, Orientation_OrientationVectorDegrees& b) {
     a.Swap(&b);
@@ -1353,7 +1356,7 @@ class Orientation_NoOrientation final :
                &_Orientation_NoOrientation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   friend void swap(Orientation_NoOrientation& a, Orientation_NoOrientation& b) {
     a.Swap(&b);
@@ -1490,7 +1493,7 @@ class Orientation_EulerAngles final :
                &_Orientation_EulerAngles_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    22;
 
   friend void swap(Orientation_EulerAngles& a, Orientation_EulerAngles& b) {
     a.Swap(&b);
@@ -1689,7 +1692,7 @@ class Orientation_AxisAngles final :
                &_Orientation_AxisAngles_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    23;
 
   friend void swap(Orientation_AxisAngles& a, Orientation_AxisAngles& b) {
     a.Swap(&b);
@@ -1900,7 +1903,7 @@ class NeedsRestartRequest final :
                &_NeedsRestartRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    35;
+    36;
 
   friend void swap(NeedsRestartRequest& a, NeedsRestartRequest& b) {
     a.Swap(&b);
@@ -2110,7 +2113,7 @@ class LogResponse final :
                &_LogResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    34;
+    35;
 
   friend void swap(LogResponse& a, LogResponse& b) {
     a.Swap(&b);
@@ -2188,6 +2191,205 @@ class LogResponse final :
   friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
 };// -------------------------------------------------------------------
 
+class LogPatternConfig final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.LogPatternConfig) */ {
+ public:
+  inline LogPatternConfig() : LogPatternConfig(nullptr) {}
+  ~LogPatternConfig() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR LogPatternConfig(::google::protobuf::internal::ConstantInitialized);
+
+  inline LogPatternConfig(const LogPatternConfig& from)
+      : LogPatternConfig(nullptr, from) {}
+  LogPatternConfig(LogPatternConfig&& from) noexcept
+    : LogPatternConfig() {
+    *this = ::std::move(from);
+  }
+
+  inline LogPatternConfig& operator=(const LogPatternConfig& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline LogPatternConfig& operator=(LogPatternConfig&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const LogPatternConfig& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const LogPatternConfig* internal_default_instance() {
+    return reinterpret_cast<const LogPatternConfig*>(
+               &_LogPatternConfig_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(LogPatternConfig& a, LogPatternConfig& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(LogPatternConfig* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(LogPatternConfig* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  LogPatternConfig* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<LogPatternConfig>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const LogPatternConfig& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const LogPatternConfig& from) {
+    LogPatternConfig::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(LogPatternConfig* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.app.v1.LogPatternConfig";
+  }
+  protected:
+  explicit LogPatternConfig(::google::protobuf::Arena* arena);
+  LogPatternConfig(::google::protobuf::Arena* arena, const LogPatternConfig& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPatternFieldNumber = 1,
+    kLevelFieldNumber = 2,
+  };
+  // string pattern = 1 [json_name = "pattern"];
+  void clear_pattern() ;
+  const std::string& pattern() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_pattern(Arg_&& arg, Args_... args);
+  std::string* mutable_pattern();
+  PROTOBUF_NODISCARD std::string* release_pattern();
+  void set_allocated_pattern(std::string* value);
+
+  private:
+  const std::string& _internal_pattern() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_pattern(
+      const std::string& value);
+  std::string* _internal_mutable_pattern();
+
+  public:
+  // string level = 2 [json_name = "level"];
+  void clear_level() ;
+  const std::string& level() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_level(Arg_&& arg, Args_... args);
+  std::string* mutable_level();
+  PROTOBUF_NODISCARD std::string* release_level();
+  void set_allocated_level(std::string* value);
+
+  private:
+  const std::string& _internal_level() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_level(
+      const std::string& value);
+  std::string* _internal_mutable_level();
+
+  public:
+  // @@protoc_insertion_point(class_scope:viam.app.v1.LogPatternConfig)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      49, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr pattern_;
+    ::google::protobuf::internal::ArenaStringPtr level_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
+};// -------------------------------------------------------------------
+
 class LogConfiguration final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.LogConfiguration) */ {
  public:
@@ -2247,7 +2449,7 @@ class LogConfiguration final :
                &_LogConfiguration_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   friend void swap(LogConfiguration& a, LogConfiguration& b) {
     a.Swap(&b);
@@ -2428,7 +2630,7 @@ class LocationSecret final :
                &_LocationSecret_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    2;
 
   friend void swap(LocationSecret& a, LocationSecret& b) {
     a.Swap(&b);
@@ -2627,7 +2829,7 @@ class CertificateResponse final :
                &_CertificateResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    33;
 
   friend void swap(CertificateResponse& a, CertificateResponse& b) {
     a.Swap(&b);
@@ -2844,7 +3046,7 @@ class CertificateRequest final :
                &_CertificateRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    32;
 
   friend void swap(CertificateRequest& a, CertificateRequest& b) {
     a.Swap(&b);
@@ -3025,7 +3227,7 @@ class AppValidationStatus final :
                &_AppValidationStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    3;
 
   friend void swap(AppValidationStatus& a, AppValidationStatus& b) {
     a.Swap(&b);
@@ -3206,7 +3408,7 @@ class AgentInfo final :
                &_AgentInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    29;
 
   friend void swap(AgentInfo& a, AgentInfo& b) {
     a.Swap(&b);
@@ -3491,7 +3693,7 @@ class SessionsConfig final :
                &_SessionsConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(SessionsConfig& a, SessionsConfig& b) {
     a.Swap(&b);
@@ -3672,7 +3874,7 @@ class ResourceLevelServiceConfig final :
                &_ResourceLevelServiceConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   friend void swap(ResourceLevelServiceConfig& a, ResourceLevelServiceConfig& b) {
     a.Swap(&b);
@@ -3871,7 +4073,7 @@ class RemoteAuth final :
                &_RemoteAuth_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    28;
 
   friend void swap(RemoteAuth& a, RemoteAuth& b) {
     a.Swap(&b);
@@ -4072,7 +4274,7 @@ class ProcessConfig final :
                &_ProcessConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(ProcessConfig& a, ProcessConfig& b) {
     a.Swap(&b);
@@ -4394,7 +4596,7 @@ class PackageConfig final :
                &_PackageConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    39;
+    40;
 
   friend void swap(PackageConfig& a, PackageConfig& b) {
     a.Swap(&b);
@@ -4657,7 +4859,7 @@ class Orientation final :
                &_Orientation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    25;
 
   friend void swap(Orientation& a, Orientation& b) {
     a.Swap(&b);
@@ -4970,7 +5172,7 @@ class NeedsRestartResponse final :
                &_NeedsRestartResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    36;
+    37;
 
   friend void swap(NeedsRestartResponse& a, NeedsRestartResponse& b) {
     a.Swap(&b);
@@ -5181,7 +5383,7 @@ class ModuleConfig final :
                &_ModuleConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    38;
+    39;
 
   friend void swap(ModuleConfig& a, ModuleConfig& b) {
     a.Swap(&b);
@@ -5473,7 +5675,7 @@ class JWKSFile final :
                &_JWKSFile_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(JWKSFile& a, JWKSFile& b) {
     a.Swap(&b);
@@ -5654,7 +5856,7 @@ class ConfigRequest final :
                &_ConfigRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    30;
 
   friend void swap(ConfigRequest& a, ConfigRequest& b) {
     a.Swap(&b);
@@ -5853,7 +6055,7 @@ class CloudConfig final :
                &_CloudConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    4;
 
   friend void swap(CloudConfig& a, CloudConfig& b) {
     a.Swap(&b);
@@ -6228,7 +6430,7 @@ class AuthHandlerConfig final :
                &_AuthHandlerConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(AuthHandlerConfig& a, AuthHandlerConfig& b) {
     a.Swap(&b);
@@ -6421,7 +6623,7 @@ class ServiceConfig final :
                &_ServiceConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(ServiceConfig& a, ServiceConfig& b) {
     a.Swap(&b);
@@ -6759,7 +6961,7 @@ class NetworkConfig final :
                &_NetworkConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(NetworkConfig& a, NetworkConfig& b) {
     a.Swap(&b);
@@ -7012,7 +7214,7 @@ class LogRequest final :
                &_LogRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    34;
 
   friend void swap(LogRequest& a, LogRequest& b) {
     a.Swap(&b);
@@ -7213,7 +7415,7 @@ class ExternalAuthConfig final :
                &_ExternalAuthConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(ExternalAuthConfig& a, ExternalAuthConfig& b) {
     a.Swap(&b);
@@ -7394,7 +7596,7 @@ class Frame final :
                &_Frame_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(Frame& a, Frame& b) {
     a.Swap(&b);
@@ -7627,7 +7829,7 @@ class AuthConfig final :
                &_AuthConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(AuthConfig& a, AuthConfig& b) {
     a.Swap(&b);
@@ -7858,7 +8060,7 @@ class RemoteConfig final :
                &_RemoteConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    26;
 
   friend void swap(RemoteConfig& a, RemoteConfig& b) {
     a.Swap(&b);
@@ -8194,7 +8396,7 @@ class ComponentConfig final :
                &_ComponentConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(ComponentConfig& a, ComponentConfig& b) {
     a.Swap(&b);
@@ -8629,6 +8831,8 @@ class RobotConfig final :
     kModulesFieldNumber = 9,
     kPackagesFieldNumber = 11,
     kOverwriteFragmentStatusFieldNumber = 12,
+    kLogFieldNumber = 14,
+    kRevisionFieldNumber = 15,
     kCloudFieldNumber = 1,
     kNetworkFieldNumber = 6,
     kAuthFieldNumber = 7,
@@ -8762,6 +8966,40 @@ class RobotConfig final :
   ::viam::app::v1::AppValidationStatus* add_overwrite_fragment_status();
   const ::google::protobuf::RepeatedPtrField< ::viam::app::v1::AppValidationStatus >&
       overwrite_fragment_status() const;
+  // repeated .viam.app.v1.LogPatternConfig log = 14 [json_name = "log"];
+  int log_size() const;
+  private:
+  int _internal_log_size() const;
+
+  public:
+  void clear_log() ;
+  ::viam::app::v1::LogPatternConfig* mutable_log(int index);
+  ::google::protobuf::RepeatedPtrField< ::viam::app::v1::LogPatternConfig >*
+      mutable_log();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::viam::app::v1::LogPatternConfig>& _internal_log() const;
+  ::google::protobuf::RepeatedPtrField<::viam::app::v1::LogPatternConfig>* _internal_mutable_log();
+  public:
+  const ::viam::app::v1::LogPatternConfig& log(int index) const;
+  ::viam::app::v1::LogPatternConfig* add_log();
+  const ::google::protobuf::RepeatedPtrField< ::viam::app::v1::LogPatternConfig >&
+      log() const;
+  // string revision = 15 [json_name = "revision"];
+  void clear_revision() ;
+  const std::string& revision() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_revision(Arg_&& arg, Args_... args);
+  std::string* mutable_revision();
+  PROTOBUF_NODISCARD std::string* release_revision();
+  void set_allocated_revision(std::string* value);
+
+  private:
+  const std::string& _internal_revision() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_revision(
+      const std::string& value);
+  std::string* _internal_mutable_revision();
+
+  public:
   // .viam.app.v1.CloudConfig cloud = 1 [json_name = "cloud"];
   bool has_cloud() const;
   void clear_cloud() ;
@@ -8845,8 +9083,8 @@ class RobotConfig final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 13, 10,
-      0, 2>
+      4, 15, 11,
+      48, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -8871,6 +9109,8 @@ class RobotConfig final :
     ::google::protobuf::RepeatedPtrField< ::viam::app::v1::ModuleConfig > modules_;
     ::google::protobuf::RepeatedPtrField< ::viam::app::v1::PackageConfig > packages_;
     ::google::protobuf::RepeatedPtrField< ::viam::app::v1::AppValidationStatus > overwrite_fragment_status_;
+    ::google::protobuf::RepeatedPtrField< ::viam::app::v1::LogPatternConfig > log_;
+    ::google::protobuf::internal::ArenaStringPtr revision_;
     ::viam::app::v1::CloudConfig* cloud_;
     ::viam::app::v1::NetworkConfig* network_;
     ::viam::app::v1::AuthConfig* auth_;
@@ -8942,7 +9182,7 @@ class ConfigResponse final :
                &_ConfigResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    31;
 
   friend void swap(ConfigResponse& a, ConfigResponse& b) {
     a.Swap(&b);
@@ -9788,6 +10028,218 @@ inline void RobotConfig::_internal_set_enable_web_profile(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.enable_web_profile_ = value;
+}
+
+// repeated .viam.app.v1.LogPatternConfig log = 14 [json_name = "log"];
+inline int RobotConfig::_internal_log_size() const {
+  return _internal_log().size();
+}
+inline int RobotConfig::log_size() const {
+  return _internal_log_size();
+}
+inline void RobotConfig::clear_log() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.log_.Clear();
+}
+inline ::viam::app::v1::LogPatternConfig* RobotConfig::mutable_log(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RobotConfig.log)
+  return _internal_mutable_log()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::viam::app::v1::LogPatternConfig>* RobotConfig::mutable_log()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.RobotConfig.log)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_log();
+}
+inline const ::viam::app::v1::LogPatternConfig& RobotConfig::log(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RobotConfig.log)
+  return _internal_log().Get(index);
+}
+inline ::viam::app::v1::LogPatternConfig* RobotConfig::add_log() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::viam::app::v1::LogPatternConfig* _add = _internal_mutable_log()->Add();
+  // @@protoc_insertion_point(field_add:viam.app.v1.RobotConfig.log)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::viam::app::v1::LogPatternConfig>& RobotConfig::log() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:viam.app.v1.RobotConfig.log)
+  return _internal_log();
+}
+inline const ::google::protobuf::RepeatedPtrField<::viam::app::v1::LogPatternConfig>&
+RobotConfig::_internal_log() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.log_;
+}
+inline ::google::protobuf::RepeatedPtrField<::viam::app::v1::LogPatternConfig>*
+RobotConfig::_internal_mutable_log() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.log_;
+}
+
+// string revision = 15 [json_name = "revision"];
+inline void RobotConfig::clear_revision() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.revision_.ClearToEmpty();
+}
+inline const std::string& RobotConfig::revision() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RobotConfig.revision)
+  return _internal_revision();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void RobotConfig::set_revision(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.revision_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.app.v1.RobotConfig.revision)
+}
+inline std::string* RobotConfig::mutable_revision() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_revision();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RobotConfig.revision)
+  return _s;
+}
+inline const std::string& RobotConfig::_internal_revision() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.revision_.Get();
+}
+inline void RobotConfig::_internal_set_revision(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.revision_.Set(value, GetArena());
+}
+inline std::string* RobotConfig::_internal_mutable_revision() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.revision_.Mutable( GetArena());
+}
+inline std::string* RobotConfig::release_revision() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.v1.RobotConfig.revision)
+  return _impl_.revision_.Release();
+}
+inline void RobotConfig::set_allocated_revision(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.revision_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.revision_.IsDefault()) {
+          _impl_.revision_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RobotConfig.revision)
+}
+
+// -------------------------------------------------------------------
+
+// LogPatternConfig
+
+// string pattern = 1 [json_name = "pattern"];
+inline void LogPatternConfig::clear_pattern() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.pattern_.ClearToEmpty();
+}
+inline const std::string& LogPatternConfig::pattern() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.LogPatternConfig.pattern)
+  return _internal_pattern();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void LogPatternConfig::set_pattern(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.pattern_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.app.v1.LogPatternConfig.pattern)
+}
+inline std::string* LogPatternConfig::mutable_pattern() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_pattern();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.LogPatternConfig.pattern)
+  return _s;
+}
+inline const std::string& LogPatternConfig::_internal_pattern() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.pattern_.Get();
+}
+inline void LogPatternConfig::_internal_set_pattern(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.pattern_.Set(value, GetArena());
+}
+inline std::string* LogPatternConfig::_internal_mutable_pattern() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.pattern_.Mutable( GetArena());
+}
+inline std::string* LogPatternConfig::release_pattern() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.v1.LogPatternConfig.pattern)
+  return _impl_.pattern_.Release();
+}
+inline void LogPatternConfig::set_allocated_pattern(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.pattern_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.pattern_.IsDefault()) {
+          _impl_.pattern_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.LogPatternConfig.pattern)
+}
+
+// string level = 2 [json_name = "level"];
+inline void LogPatternConfig::clear_level() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.level_.ClearToEmpty();
+}
+inline const std::string& LogPatternConfig::level() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.LogPatternConfig.level)
+  return _internal_level();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void LogPatternConfig::set_level(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.level_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.app.v1.LogPatternConfig.level)
+}
+inline std::string* LogPatternConfig::mutable_level() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_level();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.LogPatternConfig.level)
+  return _s;
+}
+inline const std::string& LogPatternConfig::_internal_level() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.level_.Get();
+}
+inline void LogPatternConfig::_internal_set_level(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.level_.Set(value, GetArena());
+}
+inline std::string* LogPatternConfig::_internal_mutable_level() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.level_.Mutable( GetArena());
+}
+inline std::string* LogPatternConfig::release_level() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.v1.LogPatternConfig.level)
+  return _impl_.level_.Release();
+}
+inline void LogPatternConfig::set_allocated_level(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.level_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.level_.IsDefault()) {
+          _impl_.level_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.LogPatternConfig.level)
 }
 
 // -------------------------------------------------------------------
