@@ -534,6 +534,9 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr ResourceStatus::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
+        revision_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
         name_{nullptr},
         last_updated_{nullptr},
         state_{static_cast< ::viam::robot::v1::ResourceStatus_State >(0)} {}
@@ -679,6 +682,28 @@ struct DiscoverComponentsRequestDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DiscoverComponentsRequestDefaultTypeInternal _DiscoverComponentsRequest_default_instance_;
+
+inline constexpr ConfigStatus::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        revision_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        last_updated_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR ConfigStatus::ConfigStatus(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct ConfigStatusDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ConfigStatusDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ConfigStatusDefaultTypeInternal() {}
+  union {
+    ConfigStatus _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ConfigStatusDefaultTypeInternal _ConfigStatus_default_instance_;
 
 inline constexpr TransformPoseResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -834,8 +859,9 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr GetMachineStatusResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : resources_{},
-        _cached_size_{0} {}
+      : _cached_size_{0},
+        resources_{},
+        config_{nullptr} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR GetMachineStatusResponse::GetMachineStatusResponse(::_pbi::ConstantInitialized)
@@ -953,7 +979,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 }  // namespace v1
 }  // namespace robot
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_robot_2fv1_2frobot_2eproto[50];
+static ::_pb::Metadata file_level_metadata_robot_2fv1_2frobot_2eproto[51];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_robot_2fv1_2frobot_2eproto[2];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_robot_2fv1_2frobot_2eproto = nullptr;
@@ -1432,7 +1458,7 @@ const ::uint32_t TableStruct_robot_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECT
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::viam::robot::v1::GetMachineStatusResponse, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::viam::robot::v1::GetMachineStatusResponse, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
@@ -1441,6 +1467,9 @@ const ::uint32_t TableStruct_robot_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECT
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::viam::robot::v1::GetMachineStatusResponse, _impl_.resources_),
+    PROTOBUF_FIELD_OFFSET(::viam::robot::v1::GetMachineStatusResponse, _impl_.config_),
+    ~0u,
+    0,
     PROTOBUF_FIELD_OFFSET(::viam::robot::v1::ResourceStatus, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::viam::robot::v1::ResourceStatus, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -1452,9 +1481,23 @@ const ::uint32_t TableStruct_robot_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECT
     PROTOBUF_FIELD_OFFSET(::viam::robot::v1::ResourceStatus, _impl_.name_),
     PROTOBUF_FIELD_OFFSET(::viam::robot::v1::ResourceStatus, _impl_.state_),
     PROTOBUF_FIELD_OFFSET(::viam::robot::v1::ResourceStatus, _impl_.last_updated_),
+    PROTOBUF_FIELD_OFFSET(::viam::robot::v1::ResourceStatus, _impl_.revision_),
     0,
     ~0u,
     1,
+    ~0u,
+    PROTOBUF_FIELD_OFFSET(::viam::robot::v1::ConfigStatus, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::viam::robot::v1::ConfigStatus, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::robot::v1::ConfigStatus, _impl_.revision_),
+    PROTOBUF_FIELD_OFFSET(::viam::robot::v1::ConfigStatus, _impl_.last_updated_),
+    ~0u,
+    0,
 };
 
 static const ::_pbi::MigrationSchema
@@ -1507,8 +1550,9 @@ static const ::_pbi::MigrationSchema
         {449, -1, -1, sizeof(::viam::robot::v1::ShutdownRequest)},
         {457, -1, -1, sizeof(::viam::robot::v1::ShutdownResponse)},
         {465, -1, -1, sizeof(::viam::robot::v1::GetMachineStatusRequest)},
-        {473, -1, -1, sizeof(::viam::robot::v1::GetMachineStatusResponse)},
-        {482, 493, -1, sizeof(::viam::robot::v1::ResourceStatus)},
+        {473, 483, -1, sizeof(::viam::robot::v1::GetMachineStatusResponse)},
+        {485, 497, -1, sizeof(::viam::robot::v1::ResourceStatus)},
+        {501, 511, -1, sizeof(::viam::robot::v1::ConfigStatus)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1562,6 +1606,7 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::viam::robot::v1::_GetMachineStatusRequest_default_instance_._instance,
     &::viam::robot::v1::_GetMachineStatusResponse_default_instance_._instance,
     &::viam::robot::v1::_ResourceStatus_default_instance_._instance,
+    &::viam::robot::v1::_ConfigStatus_default_instance_._instance,
 };
 const char descriptor_table_protodef_robot_2fv1_2frobot_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\024robot/v1/robot.proto\022\rviam.robot.v1\032\026c"
@@ -1667,90 +1712,95 @@ const char descriptor_table_protodef_robot_2fv1_2frobot_2eproto[] PROTOBUF_SECTI
     "\n\013module_name\030\002 \001(\tH\000R\nmoduleNameB\014\n\nid_"
     "or_name\"\027\n\025RestartModuleResponse\"\021\n\017Shut"
     "downRequest\"\022\n\020ShutdownResponse\"\031\n\027GetMa"
-    "chineStatusRequest\"W\n\030GetMachineStatusRe"
-    "sponse\022;\n\tresources\030\001 \003(\0132\035.viam.robot.v"
-    "1.ResourceStatusR\tresources\"\260\002\n\016Resource"
-    "Status\0220\n\004name\030\001 \001(\0132\034.viam.common.v1.Re"
-    "sourceNameR\004name\0229\n\005state\030\002 \001(\0162#.viam.r"
-    "obot.v1.ResourceStatus.StateR\005state\022=\n\014l"
-    "ast_updated\030\003 \001(\0132\032.google.protobuf.Time"
-    "stampR\013lastUpdated\"r\n\005State\022\025\n\021STATE_UNS"
-    "PECIFIED\020\000\022\026\n\022STATE_UNCONFIGURED\020\001\022\025\n\021ST"
-    "ATE_CONFIGURING\020\002\022\017\n\013STATE_READY\020\003\022\022\n\016ST"
-    "ATE_REMOVING\020\004*z\n\022PeerConnectionType\022$\n "
-    "PEER_CONNECTION_TYPE_UNSPECIFIED\020\000\022\035\n\031PE"
-    "ER_CONNECTION_TYPE_GRPC\020\001\022\037\n\033PEER_CONNEC"
-    "TION_TYPE_WEBRTC\020\0022\332\024\n\014RobotService\022\200\001\n\r"
-    "GetOperations\022#.viam.robot.v1.GetOperati"
-    "onsRequest\032$.viam.robot.v1.GetOperations"
-    "Response\"$\202\323\344\223\002\036\022\034/viam/api/v1/operation"
-    "s/list\022x\n\013GetSessions\022!.viam.robot.v1.Ge"
-    "tSessionsRequest\032\".viam.robot.v1.GetSess"
-    "ionsResponse\"\"\202\323\344\223\002\034\022\032/viam/api/v1/sessi"
-    "ons/list\022\177\n\rResourceNames\022#.viam.robot.v"
-    "1.ResourceNamesRequest\032$.viam.robot.v1.R"
-    "esourceNamesResponse\"#\202\323\344\223\002\035\022\033/viam/api/"
-    "v1/resources/list\022\235\001\n\023ResourceRPCSubtype"
-    "s\022).viam.robot.v1.ResourceRPCSubtypesReq"
-    "uest\032*.viam.robot.v1.ResourceRPCSubtypes"
-    "Response\"/\202\323\344\223\002)\022\'/viam/api/v1/resource_"
-    "rpc_subtypes/list\022\210\001\n\017CancelOperation\022%."
-    "viam.robot.v1.CancelOperationRequest\032&.v"
-    "iam.robot.v1.CancelOperationResponse\"&\202\323"
-    "\344\223\002 \"\036/viam/api/v1/operations/cancel\022\215\001\n"
-    "\021BlockForOperation\022\'.viam.robot.v1.Block"
-    "ForOperationRequest\032(.viam.robot.v1.Bloc"
-    "kForOperationResponse\"%\202\323\344\223\002\037\"\035/viam/api"
-    "/v1/operations/block\022\224\001\n\022DiscoverCompone"
-    "nts\022(.viam.robot.v1.DiscoverComponentsRe"
-    "quest\032).viam.robot.v1.DiscoverComponents"
-    "Response\")\202\323\344\223\002#\022!/viam/api/v1/discovery"
-    "/components\022\220\001\n\021FrameSystemConfig\022\'.viam"
-    ".robot.v1.FrameSystemConfigRequest\032(.via"
-    "m.robot.v1.FrameSystemConfigResponse\"(\202\323"
-    "\344\223\002\"\022 /viam/api/v1/frame_system/config\022\214"
-    "\001\n\rTransformPose\022#.viam.robot.v1.Transfo"
-    "rmPoseRequest\032$.viam.robot.v1.TransformP"
-    "oseResponse\"0\202\323\344\223\002*\022(/viam/api/v1/frame_"
-    "system/transform_pose\022\210\001\n\014TransformPCD\022\""
-    ".viam.robot.v1.TransformPCDRequest\032#.via"
-    "m.robot.v1.TransformPCDResponse\"/\202\323\344\223\002)\022"
-    "\'/viam/api/v1/frame_system/transform_pcd"
-    "\022n\n\tGetStatus\022\037.viam.robot.v1.GetStatusR"
-    "equest\032 .viam.robot.v1.GetStatusResponse"
-    "\"\036\210\002\001\202\323\344\223\002\025\022\023/viam/api/v1/status\022\200\001\n\014Str"
-    "eamStatus\022\".viam.robot.v1.StreamStatusRe"
-    "quest\032#.viam.robot.v1.StreamStatusRespon"
-    "se\"%\210\002\001\202\323\344\223\002\034\022\032/viam/api/v1/status/strea"
-    "m0\001\022g\n\007StopAll\022\035.viam.robot.v1.StopAllRe"
-    "quest\032\036.viam.robot.v1.StopAllResponse\"\035\202"
-    "\323\344\223\002\027\022\025/viam/api/v1/stop_all\022v\n\014StartSes"
-    "sion\022\".viam.robot.v1.StartSessionRequest"
-    "\032#.viam.robot.v1.StartSessionResponse\"\035\202"
-    "\323\344\223\002\027\"\025/viam/api/v1/sessions\022\235\001\n\024SendSes"
-    "sionHeartbeat\022*.viam.robot.v1.SendSessio"
-    "nHeartbeatRequest\032+.viam.robot.v1.SendSe"
-    "ssionHeartbeatResponse\",\202\323\344\223\002&\"$/viam/ap"
-    "i/v1/sessions/{id}/heartbeat\022V\n\003Log\022\031.vi"
-    "am.robot.v1.LogRequest\032\032.viam.robot.v1.L"
-    "ogResponse\"\030\202\323\344\223\002\022\"\020/viam/api/v1/log\022\210\001\n"
-    "\020GetCloudMetadata\022&.viam.robot.v1.GetClo"
-    "udMetadataRequest\032\'.viam.robot.v1.GetClo"
-    "udMetadataResponse\"#\202\323\344\223\002\035\022\033/viam/api/v1"
-    "/cloud_metadata\022\177\n\rRestartModule\022#.viam."
-    "robot.v1.RestartModuleRequest\032$.viam.rob"
-    "ot.v1.RestartModuleResponse\"#\202\323\344\223\002\035\"\033/vi"
-    "am/api/v1/restart_module\022j\n\010Shutdown\022\036.v"
-    "iam.robot.v1.ShutdownRequest\032\037.viam.robo"
-    "t.v1.ShutdownResponse\"\035\202\323\344\223\002\027\"\025/viam/api"
-    "/v1/shutdown\022\210\001\n\020GetMachineStatus\022&.viam"
-    ".robot.v1.GetMachineStatusRequest\032\'.viam"
-    ".robot.v1.GetMachineStatusResponse\"#\202\323\344\223"
-    "\002\035\022\033/viam/api/v1/machine_statusB\217\001\n\021com."
-    "viam.robot.v1B\nRobotProtoP\001Z\030go.viam.com"
-    "/api/robot/v1\242\002\003VRX\252\002\rViam.Robot.V1\312\002\rVi"
-    "am\\Robot\\V1\342\002\031Viam\\Robot\\V1\\GPBMetadata\352"
-    "\002\017Viam::Robot::V1b\006proto3"
+    "chineStatusRequest\"\214\001\n\030GetMachineStatusR"
+    "esponse\022;\n\tresources\030\001 \003(\0132\035.viam.robot."
+    "v1.ResourceStatusR\tresources\0223\n\006config\030\002"
+    " \001(\0132\033.viam.robot.v1.ConfigStatusR\006confi"
+    "g\"\314\002\n\016ResourceStatus\0220\n\004name\030\001 \001(\0132\034.via"
+    "m.common.v1.ResourceNameR\004name\0229\n\005state\030"
+    "\002 \001(\0162#.viam.robot.v1.ResourceStatus.Sta"
+    "teR\005state\022=\n\014last_updated\030\003 \001(\0132\032.google"
+    ".protobuf.TimestampR\013lastUpdated\022\032\n\010revi"
+    "sion\030\004 \001(\tR\010revision\"r\n\005State\022\025\n\021STATE_U"
+    "NSPECIFIED\020\000\022\026\n\022STATE_UNCONFIGURED\020\001\022\025\n\021"
+    "STATE_CONFIGURING\020\002\022\017\n\013STATE_READY\020\003\022\022\n\016"
+    "STATE_REMOVING\020\004\"i\n\014ConfigStatus\022\032\n\010revi"
+    "sion\030\001 \001(\tR\010revision\022=\n\014last_updated\030\002 \001"
+    "(\0132\032.google.protobuf.TimestampR\013lastUpda"
+    "ted*z\n\022PeerConnectionType\022$\n PEER_CONNEC"
+    "TION_TYPE_UNSPECIFIED\020\000\022\035\n\031PEER_CONNECTI"
+    "ON_TYPE_GRPC\020\001\022\037\n\033PEER_CONNECTION_TYPE_W"
+    "EBRTC\020\0022\332\024\n\014RobotService\022\200\001\n\rGetOperatio"
+    "ns\022#.viam.robot.v1.GetOperationsRequest\032"
+    "$.viam.robot.v1.GetOperationsResponse\"$\202"
+    "\323\344\223\002\036\022\034/viam/api/v1/operations/list\022x\n\013G"
+    "etSessions\022!.viam.robot.v1.GetSessionsRe"
+    "quest\032\".viam.robot.v1.GetSessionsRespons"
+    "e\"\"\202\323\344\223\002\034\022\032/viam/api/v1/sessions/list\022\177\n"
+    "\rResourceNames\022#.viam.robot.v1.ResourceN"
+    "amesRequest\032$.viam.robot.v1.ResourceName"
+    "sResponse\"#\202\323\344\223\002\035\022\033/viam/api/v1/resource"
+    "s/list\022\235\001\n\023ResourceRPCSubtypes\022).viam.ro"
+    "bot.v1.ResourceRPCSubtypesRequest\032*.viam"
+    ".robot.v1.ResourceRPCSubtypesResponse\"/\202"
+    "\323\344\223\002)\022\'/viam/api/v1/resource_rpc_subtype"
+    "s/list\022\210\001\n\017CancelOperation\022%.viam.robot."
+    "v1.CancelOperationRequest\032&.viam.robot.v"
+    "1.CancelOperationResponse\"&\202\323\344\223\002 \"\036/viam"
+    "/api/v1/operations/cancel\022\215\001\n\021BlockForOp"
+    "eration\022\'.viam.robot.v1.BlockForOperatio"
+    "nRequest\032(.viam.robot.v1.BlockForOperati"
+    "onResponse\"%\202\323\344\223\002\037\"\035/viam/api/v1/operati"
+    "ons/block\022\224\001\n\022DiscoverComponents\022(.viam."
+    "robot.v1.DiscoverComponentsRequest\032).via"
+    "m.robot.v1.DiscoverComponentsResponse\")\202"
+    "\323\344\223\002#\022!/viam/api/v1/discovery/components"
+    "\022\220\001\n\021FrameSystemConfig\022\'.viam.robot.v1.F"
+    "rameSystemConfigRequest\032(.viam.robot.v1."
+    "FrameSystemConfigResponse\"(\202\323\344\223\002\"\022 /viam"
+    "/api/v1/frame_system/config\022\214\001\n\rTransfor"
+    "mPose\022#.viam.robot.v1.TransformPoseReque"
+    "st\032$.viam.robot.v1.TransformPoseResponse"
+    "\"0\202\323\344\223\002*\022(/viam/api/v1/frame_system/tran"
+    "sform_pose\022\210\001\n\014TransformPCD\022\".viam.robot"
+    ".v1.TransformPCDRequest\032#.viam.robot.v1."
+    "TransformPCDResponse\"/\202\323\344\223\002)\022\'/viam/api/"
+    "v1/frame_system/transform_pcd\022n\n\tGetStat"
+    "us\022\037.viam.robot.v1.GetStatusRequest\032 .vi"
+    "am.robot.v1.GetStatusResponse\"\036\210\002\001\202\323\344\223\002\025"
+    "\022\023/viam/api/v1/status\022\200\001\n\014StreamStatus\022\""
+    ".viam.robot.v1.StreamStatusRequest\032#.via"
+    "m.robot.v1.StreamStatusResponse\"%\210\002\001\202\323\344\223"
+    "\002\034\022\032/viam/api/v1/status/stream0\001\022g\n\007Stop"
+    "All\022\035.viam.robot.v1.StopAllRequest\032\036.via"
+    "m.robot.v1.StopAllResponse\"\035\202\323\344\223\002\027\022\025/via"
+    "m/api/v1/stop_all\022v\n\014StartSession\022\".viam"
+    ".robot.v1.StartSessionRequest\032#.viam.rob"
+    "ot.v1.StartSessionResponse\"\035\202\323\344\223\002\027\"\025/via"
+    "m/api/v1/sessions\022\235\001\n\024SendSessionHeartbe"
+    "at\022*.viam.robot.v1.SendSessionHeartbeatR"
+    "equest\032+.viam.robot.v1.SendSessionHeartb"
+    "eatResponse\",\202\323\344\223\002&\"$/viam/api/v1/sessio"
+    "ns/{id}/heartbeat\022V\n\003Log\022\031.viam.robot.v1"
+    ".LogRequest\032\032.viam.robot.v1.LogResponse\""
+    "\030\202\323\344\223\002\022\"\020/viam/api/v1/log\022\210\001\n\020GetCloudMe"
+    "tadata\022&.viam.robot.v1.GetCloudMetadataR"
+    "equest\032\'.viam.robot.v1.GetCloudMetadataR"
+    "esponse\"#\202\323\344\223\002\035\022\033/viam/api/v1/cloud_meta"
+    "data\022\177\n\rRestartModule\022#.viam.robot.v1.Re"
+    "startModuleRequest\032$.viam.robot.v1.Resta"
+    "rtModuleResponse\"#\202\323\344\223\002\035\"\033/viam/api/v1/r"
+    "estart_module\022j\n\010Shutdown\022\036.viam.robot.v"
+    "1.ShutdownRequest\032\037.viam.robot.v1.Shutdo"
+    "wnResponse\"\035\202\323\344\223\002\027\"\025/viam/api/v1/shutdow"
+    "n\022\210\001\n\020GetMachineStatus\022&.viam.robot.v1.G"
+    "etMachineStatusRequest\032\'.viam.robot.v1.G"
+    "etMachineStatusResponse\"#\202\323\344\223\002\035\022\033/viam/a"
+    "pi/v1/machine_statusB\217\001\n\021com.viam.robot."
+    "v1B\nRobotProtoP\001Z\030go.viam.com/api/robot/"
+    "v1\242\002\003VRX\252\002\rViam.Robot.V1\312\002\rViam\\Robot\\V1"
+    "\342\002\031Viam\\Robot\\V1\\GPBMetadata\352\002\017Viam::Rob"
+    "ot::V1b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_robot_2fv1_2frobot_2eproto_deps[5] =
     {
@@ -1764,13 +1814,13 @@ static ::absl::once_flag descriptor_table_robot_2fv1_2frobot_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_robot_2fv1_2frobot_2eproto = {
     false,
     false,
-    7465,
+    7654,
     descriptor_table_protodef_robot_2fv1_2frobot_2eproto,
     "robot/v1/robot.proto",
     &descriptor_table_robot_2fv1_2frobot_2eproto_once,
     descriptor_table_robot_2fv1_2frobot_2eproto_deps,
     5,
-    50,
+    51,
     schemas,
     file_default_instances,
     TableStruct_robot_2fv1_2frobot_2eproto::offsets,
@@ -9937,8 +9987,18 @@ GetMachineStatusRequest::GetMachineStatusRequest(
 
 class GetMachineStatusResponse::_Internal {
  public:
+  using HasBits = decltype(std::declval<GetMachineStatusResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(GetMachineStatusResponse, _impl_._has_bits_);
+  static const ::viam::robot::v1::ConfigStatus& config(const GetMachineStatusResponse* msg);
+  static void set_has_config(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
+const ::viam::robot::v1::ConfigStatus& GetMachineStatusResponse::_Internal::config(const GetMachineStatusResponse* msg) {
+  return *msg->_impl_.config_;
+}
 GetMachineStatusResponse::GetMachineStatusResponse(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
@@ -9947,8 +10007,9 @@ GetMachineStatusResponse::GetMachineStatusResponse(::google::protobuf::Arena* ar
 inline PROTOBUF_NDEBUG_INLINE GetMachineStatusResponse::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : resources_{visibility, arena, from.resources_},
-        _cached_size_{0} {}
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        resources_{visibility, arena, from.resources_} {}
 
 GetMachineStatusResponse::GetMachineStatusResponse(
     ::google::protobuf::Arena* arena,
@@ -9959,17 +10020,22 @@ GetMachineStatusResponse::GetMachineStatusResponse(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.config_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::viam::robot::v1::ConfigStatus>(arena, *from._impl_.config_)
+                : nullptr;
 
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.GetMachineStatusResponse)
 }
 inline PROTOBUF_NDEBUG_INLINE GetMachineStatusResponse::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : resources_{visibility, arena},
-        _cached_size_{0} {}
+      : _cached_size_{0},
+        resources_{visibility, arena} {}
 
 inline void GetMachineStatusResponse::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.config_ = {};
 }
 GetMachineStatusResponse::~GetMachineStatusResponse() {
   // @@protoc_insertion_point(destructor:viam.robot.v1.GetMachineStatusResponse)
@@ -9978,6 +10044,7 @@ GetMachineStatusResponse::~GetMachineStatusResponse() {
 }
 inline void GetMachineStatusResponse::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.config_;
   _impl_.~Impl_();
 }
 
@@ -9989,6 +10056,12 @@ PROTOBUF_NOINLINE void GetMachineStatusResponse::Clear() {
   (void) cached_has_bits;
 
   _impl_.resources_.Clear();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.config_ != nullptr);
+    _impl_.config_->Clear();
+  }
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -10000,20 +10073,23 @@ const char* GetMachineStatusResponse::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 1, 0, 2> GetMachineStatusResponse::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 2, 0, 2> GetMachineStatusResponse::_table_ = {
   {
-    0,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(GetMachineStatusResponse, _impl_._has_bits_),
     0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
+    2, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
+    4294967292,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
-    1,  // num_aux_entries
+    2,  // num_field_entries
+    2,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_GetMachineStatusResponse_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
+    // .viam.robot.v1.ConfigStatus config = 2 [json_name = "config"];
+    {::_pbi::TcParser::FastMtS1,
+     {18, 0, 1, PROTOBUF_FIELD_OFFSET(GetMachineStatusResponse, _impl_.config_)}},
     // repeated .viam.robot.v1.ResourceStatus resources = 1 [json_name = "resources"];
     {::_pbi::TcParser::FastMtR1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetMachineStatusResponse, _impl_.resources_)}},
@@ -10021,10 +10097,14 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> GetMachineStatusResponse::_table_ = {
     65535, 65535
   }}, {{
     // repeated .viam.robot.v1.ResourceStatus resources = 1 [json_name = "resources"];
-    {PROTOBUF_FIELD_OFFSET(GetMachineStatusResponse, _impl_.resources_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(GetMachineStatusResponse, _impl_.resources_), -1, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .viam.robot.v1.ConfigStatus config = 2 [json_name = "config"];
+    {PROTOBUF_FIELD_OFFSET(GetMachineStatusResponse, _impl_.config_), _Internal::kHasBitsOffset + 0, 1,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
     {::_pbi::TcParser::GetTable<::viam::robot::v1::ResourceStatus>()},
+    {::_pbi::TcParser::GetTable<::viam::robot::v1::ConfigStatus>()},
   }}, {{
   }},
 };
@@ -10042,6 +10122,14 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> GetMachineStatusResponse::_table_ = {
     const auto& repfield = this->_internal_resources().Get(i);
     target = ::google::protobuf::internal::WireFormatLite::
         InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .viam.robot.v1.ConfigStatus config = 2 [json_name = "config"];
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        2, _Internal::config(this),
+        _Internal::config(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -10067,6 +10155,13 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> GetMachineStatusResponse::_table_ = {
     total_size +=
       ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
   }
+  // .viam.robot.v1.ConfigStatus config = 2 [json_name = "config"];
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.config_);
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -10088,6 +10183,10 @@ void GetMachineStatusResponse::MergeImpl(::google::protobuf::Message& to_msg, co
 
   _this->_internal_mutable_resources()->MergeFrom(
       from._internal_resources());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_config()->::viam::robot::v1::ConfigStatus::MergeFrom(
+        from._internal_config());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -10108,7 +10207,9 @@ PROTOBUF_NOINLINE bool GetMachineStatusResponse::IsInitialized() const {
 void GetMachineStatusResponse::InternalSwap(GetMachineStatusResponse* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.resources_.InternalSwap(&other->_impl_.resources_);
+  swap(_impl_.config_, other->_impl_.config_);
 }
 
 ::google::protobuf::Metadata GetMachineStatusResponse::GetMetadata() const {
@@ -10158,7 +10259,8 @@ inline PROTOBUF_NDEBUG_INLINE ResourceStatus::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
       : _has_bits_{from._has_bits_},
-        _cached_size_{0} {}
+        _cached_size_{0},
+        revision_(arena, from.revision_) {}
 
 ResourceStatus::ResourceStatus(
     ::google::protobuf::Arena* arena,
@@ -10183,7 +10285,8 @@ ResourceStatus::ResourceStatus(
 inline PROTOBUF_NDEBUG_INLINE ResourceStatus::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : _cached_size_{0} {}
+      : _cached_size_{0},
+        revision_(arena) {}
 
 inline void ResourceStatus::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -10201,6 +10304,7 @@ ResourceStatus::~ResourceStatus() {
 }
 inline void ResourceStatus::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.revision_.Destroy();
   delete _impl_.name_;
   delete _impl_.last_updated_;
   _impl_.~Impl_();
@@ -10213,6 +10317,7 @@ PROTOBUF_NOINLINE void ResourceStatus::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  _impl_.revision_.ClearToEmpty();
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000003u) {
     if (cached_has_bits & 0x00000001u) {
@@ -10237,21 +10342,23 @@ const char* ResourceStatus::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 2, 0, 2> ResourceStatus::_table_ = {
+const ::_pbi::TcParseTable<2, 4, 2, 45, 2> ResourceStatus::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(ResourceStatus, _impl_._has_bits_),
     0, // no _extensions_
-    3, 24,  // max_field_number, fast_idx_mask
+    4, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
+    4294967280,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
+    4,  // num_field_entries
     2,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_ResourceStatus_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
+    // string revision = 4 [json_name = "revision"];
+    {::_pbi::TcParser::FastUS1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(ResourceStatus, _impl_.revision_)}},
     // .viam.common.v1.ResourceName name = 1 [json_name = "name"];
     {::_pbi::TcParser::FastMtS1,
      {10, 0, 0, PROTOBUF_FIELD_OFFSET(ResourceStatus, _impl_.name_)}},
@@ -10273,10 +10380,16 @@ const ::_pbi::TcParseTable<2, 3, 2, 0, 2> ResourceStatus::_table_ = {
     // .google.protobuf.Timestamp last_updated = 3 [json_name = "lastUpdated"];
     {PROTOBUF_FIELD_OFFSET(ResourceStatus, _impl_.last_updated_), _Internal::kHasBitsOffset + 1, 1,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // string revision = 4 [json_name = "revision"];
+    {PROTOBUF_FIELD_OFFSET(ResourceStatus, _impl_.revision_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }}, {{
     {::_pbi::TcParser::GetTable<::viam::common::v1::ResourceName>()},
     {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
   }}, {{
+    "\34\0\0\0\10\0\0\0"
+    "viam.robot.v1.ResourceStatus"
+    "revision"
   }},
 };
 
@@ -10309,6 +10422,14 @@ const ::_pbi::TcParseTable<2, 3, 2, 0, 2> ResourceStatus::_table_ = {
         _Internal::last_updated(this).GetCachedSize(), target, stream);
   }
 
+  // string revision = 4 [json_name = "revision"];
+  if (!this->_internal_revision().empty()) {
+    const std::string& _s = this->_internal_revision();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.robot.v1.ResourceStatus.revision");
+    target = stream->WriteStringMaybeAliased(4, _s, target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -10325,6 +10446,12 @@ const ::_pbi::TcParseTable<2, 3, 2, 0, 2> ResourceStatus::_table_ = {
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // string revision = 4 [json_name = "revision"];
+  if (!this->_internal_revision().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_revision());
+  }
 
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000003u) {
@@ -10366,6 +10493,9 @@ void ResourceStatus::MergeImpl(::google::protobuf::Message& to_msg, const ::goog
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (!from._internal_revision().empty()) {
+    _this->_internal_set_revision(from._internal_revision());
+  }
   cached_has_bits = from._impl_._has_bits_[0];
   if (cached_has_bits & 0x00000003u) {
     if (cached_has_bits & 0x00000001u) {
@@ -10399,8 +10529,11 @@ PROTOBUF_NOINLINE bool ResourceStatus::IsInitialized() const {
 }
 void ResourceStatus::InternalSwap(ResourceStatus* PROTOBUF_RESTRICT other) {
   using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.revision_, &other->_impl_.revision_, arena);
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(ResourceStatus, _impl_.state_)
       + sizeof(ResourceStatus::_impl_.state_)
@@ -10413,6 +10546,251 @@ void ResourceStatus::InternalSwap(ResourceStatus* PROTOBUF_RESTRICT other) {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
       file_level_metadata_robot_2fv1_2frobot_2eproto[49]);
+}
+// ===================================================================
+
+class ConfigStatus::_Internal {
+ public:
+  using HasBits = decltype(std::declval<ConfigStatus>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(ConfigStatus, _impl_._has_bits_);
+  static const ::google::protobuf::Timestamp& last_updated(const ConfigStatus* msg);
+  static void set_has_last_updated(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::google::protobuf::Timestamp& ConfigStatus::_Internal::last_updated(const ConfigStatus* msg) {
+  return *msg->_impl_.last_updated_;
+}
+void ConfigStatus::clear_last_updated() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.last_updated_ != nullptr) _impl_.last_updated_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+ConfigStatus::ConfigStatus(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:viam.robot.v1.ConfigStatus)
+}
+inline PROTOBUF_NDEBUG_INLINE ConfigStatus::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        revision_(arena, from.revision_) {}
+
+ConfigStatus::ConfigStatus(
+    ::google::protobuf::Arena* arena,
+    const ConfigStatus& from)
+    : ::google::protobuf::Message(arena) {
+  ConfigStatus* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.last_updated_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::google::protobuf::Timestamp>(arena, *from._impl_.last_updated_)
+                : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:viam.robot.v1.ConfigStatus)
+}
+inline PROTOBUF_NDEBUG_INLINE ConfigStatus::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        revision_(arena) {}
+
+inline void ConfigStatus::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.last_updated_ = {};
+}
+ConfigStatus::~ConfigStatus() {
+  // @@protoc_insertion_point(destructor:viam.robot.v1.ConfigStatus)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ConfigStatus::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.revision_.Destroy();
+  delete _impl_.last_updated_;
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void ConfigStatus::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.robot.v1.ConfigStatus)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.revision_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.last_updated_ != nullptr);
+    _impl_.last_updated_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ConfigStatus::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 43, 2> ConfigStatus::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(ConfigStatus, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_ConfigStatus_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .google.protobuf.Timestamp last_updated = 2 [json_name = "lastUpdated"];
+    {::_pbi::TcParser::FastMtS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(ConfigStatus, _impl_.last_updated_)}},
+    // string revision = 1 [json_name = "revision"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(ConfigStatus, _impl_.revision_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string revision = 1 [json_name = "revision"];
+    {PROTOBUF_FIELD_OFFSET(ConfigStatus, _impl_.revision_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .google.protobuf.Timestamp last_updated = 2 [json_name = "lastUpdated"];
+    {PROTOBUF_FIELD_OFFSET(ConfigStatus, _impl_.last_updated_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
+  }}, {{
+    "\32\10\0\0\0\0\0\0"
+    "viam.robot.v1.ConfigStatus"
+    "revision"
+  }},
+};
+
+::uint8_t* ConfigStatus::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.robot.v1.ConfigStatus)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string revision = 1 [json_name = "revision"];
+  if (!this->_internal_revision().empty()) {
+    const std::string& _s = this->_internal_revision();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.robot.v1.ConfigStatus.revision");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .google.protobuf.Timestamp last_updated = 2 [json_name = "lastUpdated"];
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        2, _Internal::last_updated(this),
+        _Internal::last_updated(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.robot.v1.ConfigStatus)
+  return target;
+}
+
+::size_t ConfigStatus::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.robot.v1.ConfigStatus)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string revision = 1 [json_name = "revision"];
+  if (!this->_internal_revision().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_revision());
+  }
+
+  // .google.protobuf.Timestamp last_updated = 2 [json_name = "lastUpdated"];
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.last_updated_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ConfigStatus::_class_data_ = {
+    ConfigStatus::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* ConfigStatus::GetClassData() const {
+  return &_class_data_;
+}
+
+void ConfigStatus::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ConfigStatus*>(&to_msg);
+  auto& from = static_cast<const ConfigStatus&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.ConfigStatus)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_revision().empty()) {
+    _this->_internal_set_revision(from._internal_revision());
+  }
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_last_updated()->::google::protobuf::Timestamp::MergeFrom(
+        from._internal_last_updated());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ConfigStatus::CopyFrom(const ConfigStatus& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.robot.v1.ConfigStatus)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ConfigStatus::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* ConfigStatus::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void ConfigStatus::InternalSwap(ConfigStatus* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.revision_, &other->_impl_.revision_, arena);
+  swap(_impl_.last_updated_, other->_impl_.last_updated_);
+}
+
+::google::protobuf::Metadata ConfigStatus::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
+      file_level_metadata_robot_2fv1_2frobot_2eproto[50]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
