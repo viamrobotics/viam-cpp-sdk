@@ -77,6 +77,9 @@ extern CancelOperationRequestDefaultTypeInternal _CancelOperationRequest_default
 class CancelOperationResponse;
 struct CancelOperationResponseDefaultTypeInternal;
 extern CancelOperationResponseDefaultTypeInternal _CancelOperationResponse_default_instance_;
+class ConfigStatus;
+struct ConfigStatusDefaultTypeInternal;
+extern ConfigStatusDefaultTypeInternal _ConfigStatus_default_instance_;
 class DiscoverComponentsRequest;
 struct DiscoverComponentsRequestDefaultTypeInternal;
 extern DiscoverComponentsRequestDefaultTypeInternal _DiscoverComponentsRequest_default_instance_;
@@ -5381,10 +5384,27 @@ class ResourceStatus final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kRevisionFieldNumber = 4,
     kNameFieldNumber = 1,
     kLastUpdatedFieldNumber = 3,
     kStateFieldNumber = 2,
   };
+  // string revision = 4 [json_name = "revision"];
+  void clear_revision() ;
+  const std::string& revision() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_revision(Arg_&& arg, Args_... args);
+  std::string* mutable_revision();
+  PROTOBUF_NODISCARD std::string* release_revision();
+  void set_allocated_revision(std::string* value);
+
+  private:
+  const std::string& _internal_revision() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_revision(
+      const std::string& value);
+  std::string* _internal_mutable_revision();
+
+  public:
   // .viam.common.v1.ResourceName name = 1 [json_name = "name"];
   bool has_name() const;
   void clear_name() ;
@@ -5431,8 +5451,8 @@ class ResourceStatus final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 2,
-      0, 2>
+      2, 4, 2,
+      45, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -5450,6 +5470,7 @@ class ResourceStatus final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr revision_;
     ::viam::common::v1::ResourceName* name_;
     ::google::protobuf::Timestamp* last_updated_;
     int state_;
@@ -6652,6 +6673,205 @@ class DiscoverComponentsRequest final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::RepeatedPtrField< ::viam::robot::v1::DiscoveryQuery > queries_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};// -------------------------------------------------------------------
+
+class ConfigStatus final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.ConfigStatus) */ {
+ public:
+  inline ConfigStatus() : ConfigStatus(nullptr) {}
+  ~ConfigStatus() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ConfigStatus(::google::protobuf::internal::ConstantInitialized);
+
+  inline ConfigStatus(const ConfigStatus& from)
+      : ConfigStatus(nullptr, from) {}
+  ConfigStatus(ConfigStatus&& from) noexcept
+    : ConfigStatus() {
+    *this = ::std::move(from);
+  }
+
+  inline ConfigStatus& operator=(const ConfigStatus& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ConfigStatus& operator=(ConfigStatus&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ConfigStatus& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ConfigStatus* internal_default_instance() {
+    return reinterpret_cast<const ConfigStatus*>(
+               &_ConfigStatus_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    50;
+
+  friend void swap(ConfigStatus& a, ConfigStatus& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ConfigStatus* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ConfigStatus* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ConfigStatus* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ConfigStatus>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ConfigStatus& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ConfigStatus& from) {
+    ConfigStatus::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(ConfigStatus* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.robot.v1.ConfigStatus";
+  }
+  protected:
+  explicit ConfigStatus(::google::protobuf::Arena* arena);
+  ConfigStatus(::google::protobuf::Arena* arena, const ConfigStatus& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRevisionFieldNumber = 1,
+    kLastUpdatedFieldNumber = 2,
+  };
+  // string revision = 1 [json_name = "revision"];
+  void clear_revision() ;
+  const std::string& revision() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_revision(Arg_&& arg, Args_... args);
+  std::string* mutable_revision();
+  PROTOBUF_NODISCARD std::string* release_revision();
+  void set_allocated_revision(std::string* value);
+
+  private:
+  const std::string& _internal_revision() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_revision(
+      const std::string& value);
+  std::string* _internal_mutable_revision();
+
+  public:
+  // .google.protobuf.Timestamp last_updated = 2 [json_name = "lastUpdated"];
+  bool has_last_updated() const;
+  void clear_last_updated() ;
+  const ::google::protobuf::Timestamp& last_updated() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_last_updated();
+  ::google::protobuf::Timestamp* mutable_last_updated();
+  void set_allocated_last_updated(::google::protobuf::Timestamp* value);
+  void unsafe_arena_set_allocated_last_updated(::google::protobuf::Timestamp* value);
+  ::google::protobuf::Timestamp* unsafe_arena_release_last_updated();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_last_updated() const;
+  ::google::protobuf::Timestamp* _internal_mutable_last_updated();
+
+  public:
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.ConfigStatus)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 1,
+      43, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr revision_;
+    ::google::protobuf::Timestamp* last_updated_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -8253,6 +8473,7 @@ class GetMachineStatusResponse final :
 
   enum : int {
     kResourcesFieldNumber = 1,
+    kConfigFieldNumber = 2,
   };
   // repeated .viam.robot.v1.ResourceStatus resources = 1 [json_name = "resources"];
   int resources_size() const;
@@ -8272,13 +8493,28 @@ class GetMachineStatusResponse final :
   ::viam::robot::v1::ResourceStatus* add_resources();
   const ::google::protobuf::RepeatedPtrField< ::viam::robot::v1::ResourceStatus >&
       resources() const;
+  // .viam.robot.v1.ConfigStatus config = 2 [json_name = "config"];
+  bool has_config() const;
+  void clear_config() ;
+  const ::viam::robot::v1::ConfigStatus& config() const;
+  PROTOBUF_NODISCARD ::viam::robot::v1::ConfigStatus* release_config();
+  ::viam::robot::v1::ConfigStatus* mutable_config();
+  void set_allocated_config(::viam::robot::v1::ConfigStatus* value);
+  void unsafe_arena_set_allocated_config(::viam::robot::v1::ConfigStatus* value);
+  ::viam::robot::v1::ConfigStatus* unsafe_arena_release_config();
+
+  private:
+  const ::viam::robot::v1::ConfigStatus& _internal_config() const;
+  ::viam::robot::v1::ConfigStatus* _internal_mutable_config();
+
+  public:
   // @@protoc_insertion_point(class_scope:viam.robot.v1.GetMachineStatusResponse)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 1,
+      1, 2, 2,
       0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -8295,8 +8531,10 @@ class GetMachineStatusResponse final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::RepeatedPtrField< ::viam::robot::v1::ResourceStatus > resources_;
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField< ::viam::robot::v1::ResourceStatus > resources_;
+    ::viam::robot::v1::ConfigStatus* config_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -13322,6 +13560,102 @@ GetMachineStatusResponse::_internal_mutable_resources() {
   return &_impl_.resources_;
 }
 
+// .viam.robot.v1.ConfigStatus config = 2 [json_name = "config"];
+inline bool GetMachineStatusResponse::has_config() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.config_ != nullptr);
+  return value;
+}
+inline void GetMachineStatusResponse::clear_config() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.config_ != nullptr) _impl_.config_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::viam::robot::v1::ConfigStatus& GetMachineStatusResponse::_internal_config() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::viam::robot::v1::ConfigStatus* p = _impl_.config_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::robot::v1::ConfigStatus&>(::viam::robot::v1::_ConfigStatus_default_instance_);
+}
+inline const ::viam::robot::v1::ConfigStatus& GetMachineStatusResponse::config() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.GetMachineStatusResponse.config)
+  return _internal_config();
+}
+inline void GetMachineStatusResponse::unsafe_arena_set_allocated_config(::viam::robot::v1::ConfigStatus* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.config_);
+  }
+  _impl_.config_ = reinterpret_cast<::viam::robot::v1::ConfigStatus*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.robot.v1.GetMachineStatusResponse.config)
+}
+inline ::viam::robot::v1::ConfigStatus* GetMachineStatusResponse::release_config() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::viam::robot::v1::ConfigStatus* released = _impl_.config_;
+  _impl_.config_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::viam::robot::v1::ConfigStatus* GetMachineStatusResponse::unsafe_arena_release_config() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.robot.v1.GetMachineStatusResponse.config)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::viam::robot::v1::ConfigStatus* temp = _impl_.config_;
+  _impl_.config_ = nullptr;
+  return temp;
+}
+inline ::viam::robot::v1::ConfigStatus* GetMachineStatusResponse::_internal_mutable_config() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.config_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::robot::v1::ConfigStatus>(GetArena());
+    _impl_.config_ = reinterpret_cast<::viam::robot::v1::ConfigStatus*>(p);
+  }
+  return _impl_.config_;
+}
+inline ::viam::robot::v1::ConfigStatus* GetMachineStatusResponse::mutable_config() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::viam::robot::v1::ConfigStatus* _msg = _internal_mutable_config();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.GetMachineStatusResponse.config)
+  return _msg;
+}
+inline void GetMachineStatusResponse::set_allocated_config(::viam::robot::v1::ConfigStatus* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::viam::robot::v1::ConfigStatus*>(_impl_.config_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::viam::robot::v1::ConfigStatus*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.config_ = reinterpret_cast<::viam::robot::v1::ConfigStatus*>(value);
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.GetMachineStatusResponse.config)
+}
+
 // -------------------------------------------------------------------
 
 // ResourceStatus
@@ -13529,6 +13863,207 @@ inline void ResourceStatus::set_allocated_last_updated(::google::protobuf::Times
 
   _impl_.last_updated_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
   // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.ResourceStatus.last_updated)
+}
+
+// string revision = 4 [json_name = "revision"];
+inline void ResourceStatus::clear_revision() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.revision_.ClearToEmpty();
+}
+inline const std::string& ResourceStatus::revision() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.ResourceStatus.revision)
+  return _internal_revision();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ResourceStatus::set_revision(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.revision_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.ResourceStatus.revision)
+}
+inline std::string* ResourceStatus::mutable_revision() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_revision();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.ResourceStatus.revision)
+  return _s;
+}
+inline const std::string& ResourceStatus::_internal_revision() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.revision_.Get();
+}
+inline void ResourceStatus::_internal_set_revision(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.revision_.Set(value, GetArena());
+}
+inline std::string* ResourceStatus::_internal_mutable_revision() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.revision_.Mutable( GetArena());
+}
+inline std::string* ResourceStatus::release_revision() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.robot.v1.ResourceStatus.revision)
+  return _impl_.revision_.Release();
+}
+inline void ResourceStatus::set_allocated_revision(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.revision_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.revision_.IsDefault()) {
+          _impl_.revision_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.ResourceStatus.revision)
+}
+
+// -------------------------------------------------------------------
+
+// ConfigStatus
+
+// string revision = 1 [json_name = "revision"];
+inline void ConfigStatus::clear_revision() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.revision_.ClearToEmpty();
+}
+inline const std::string& ConfigStatus::revision() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.ConfigStatus.revision)
+  return _internal_revision();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ConfigStatus::set_revision(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.revision_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.ConfigStatus.revision)
+}
+inline std::string* ConfigStatus::mutable_revision() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_revision();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.ConfigStatus.revision)
+  return _s;
+}
+inline const std::string& ConfigStatus::_internal_revision() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.revision_.Get();
+}
+inline void ConfigStatus::_internal_set_revision(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.revision_.Set(value, GetArena());
+}
+inline std::string* ConfigStatus::_internal_mutable_revision() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.revision_.Mutable( GetArena());
+}
+inline std::string* ConfigStatus::release_revision() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.robot.v1.ConfigStatus.revision)
+  return _impl_.revision_.Release();
+}
+inline void ConfigStatus::set_allocated_revision(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.revision_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.revision_.IsDefault()) {
+          _impl_.revision_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.ConfigStatus.revision)
+}
+
+// .google.protobuf.Timestamp last_updated = 2 [json_name = "lastUpdated"];
+inline bool ConfigStatus::has_last_updated() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.last_updated_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Timestamp& ConfigStatus::_internal_last_updated() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::google::protobuf::Timestamp* p = _impl_.last_updated_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
+}
+inline const ::google::protobuf::Timestamp& ConfigStatus::last_updated() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.ConfigStatus.last_updated)
+  return _internal_last_updated();
+}
+inline void ConfigStatus::unsafe_arena_set_allocated_last_updated(::google::protobuf::Timestamp* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.last_updated_);
+  }
+  _impl_.last_updated_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.robot.v1.ConfigStatus.last_updated)
+}
+inline ::google::protobuf::Timestamp* ConfigStatus::release_last_updated() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::protobuf::Timestamp* released = _impl_.last_updated_;
+  _impl_.last_updated_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::google::protobuf::Timestamp* ConfigStatus::unsafe_arena_release_last_updated() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.robot.v1.ConfigStatus.last_updated)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::protobuf::Timestamp* temp = _impl_.last_updated_;
+  _impl_.last_updated_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Timestamp* ConfigStatus::_internal_mutable_last_updated() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.last_updated_ == nullptr) {
+    auto* p = CreateMaybeMessage<::google::protobuf::Timestamp>(GetArena());
+    _impl_.last_updated_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+  }
+  return _impl_.last_updated_;
+}
+inline ::google::protobuf::Timestamp* ConfigStatus::mutable_last_updated() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_last_updated();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.ConfigStatus.last_updated)
+  return _msg;
+}
+inline void ConfigStatus::set_allocated_last_updated(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.last_updated_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.last_updated_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.ConfigStatus.last_updated)
 }
 
 #ifdef __GNUC__
