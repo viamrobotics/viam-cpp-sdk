@@ -56,10 +56,6 @@ class SignalManager {
     /// @return The return value of the underlying call to POSIX sigwait.
     int wait();
 
-    const signal_map& map() const {
-        return signal_map_;
-    }
-
    private:
     template <typename Callable>
     void for_each_entry(Callable&& c);
