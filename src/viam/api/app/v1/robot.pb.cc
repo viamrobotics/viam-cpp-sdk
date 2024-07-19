@@ -245,6 +245,30 @@ struct LogResponseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LogResponseDefaultTypeInternal _LogResponse_default_instance_;
 
+inline constexpr LogPatternConfig::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : pattern_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        level_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR LogPatternConfig::LogPatternConfig(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct LogPatternConfigDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR LogPatternConfigDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~LogPatternConfigDefaultTypeInternal() {}
+  union {
+    LogPatternConfig _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LogPatternConfigDefaultTypeInternal _LogPatternConfig_default_instance_;
+
 inline constexpr LogConfiguration::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : level_(
@@ -947,6 +971,10 @@ inline constexpr RobotConfig::Impl_::Impl_(
         modules_{},
         packages_{},
         overwrite_fragment_status_{},
+        log_{},
+        revision_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
         cloud_{nullptr},
         network_{nullptr},
         auth_{nullptr},
@@ -989,7 +1017,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 }  // namespace v1
 }  // namespace app
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_app_2fv1_2frobot_2eproto[40];
+static ::_pb::Metadata file_level_metadata_app_2fv1_2frobot_2eproto[41];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_app_2fv1_2frobot_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_app_2fv1_2frobot_2eproto = nullptr;
@@ -1016,6 +1044,8 @@ const ::uint32_t TableStruct_app_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTIO
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::RobotConfig, _impl_.packages_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::RobotConfig, _impl_.overwrite_fragment_status_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::RobotConfig, _impl_.enable_web_profile_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::RobotConfig, _impl_.log_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::RobotConfig, _impl_.revision_),
     0,
     ~0u,
     ~0u,
@@ -1029,6 +1059,18 @@ const ::uint32_t TableStruct_app_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTIO
     ~0u,
     ~0u,
     ~0u,
+    ~0u,
+    ~0u,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::LogPatternConfig, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::LogPatternConfig, _impl_.pattern_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::LogPatternConfig, _impl_.level_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::LocationSecret, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -1573,50 +1615,52 @@ const ::uint32_t TableStruct_app_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTIO
 
 static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-        {0, 21, -1, sizeof(::viam::app::v1::RobotConfig)},
-        {34, -1, -1, sizeof(::viam::app::v1::LocationSecret)},
-        {44, -1, -1, sizeof(::viam::app::v1::AppValidationStatus)},
-        {53, -1, -1, sizeof(::viam::app::v1::CloudConfig)},
-        {73, 91, -1, sizeof(::viam::app::v1::ComponentConfig)},
-        {101, 111, -1, sizeof(::viam::app::v1::ResourceLevelServiceConfig)},
-        {113, 123, -1, sizeof(::viam::app::v1::ProcessConfig_EnvEntry_DoNotUse)},
-        {125, 142, -1, sizeof(::viam::app::v1::ProcessConfig)},
-        {151, 168, -1, sizeof(::viam::app::v1::ServiceConfig)},
-        {177, 190, -1, sizeof(::viam::app::v1::NetworkConfig)},
-        {195, 204, -1, sizeof(::viam::app::v1::SessionsConfig)},
-        {205, 216, -1, sizeof(::viam::app::v1::AuthConfig)},
-        {219, 228, -1, sizeof(::viam::app::v1::JWKSFile)},
-        {229, 238, -1, sizeof(::viam::app::v1::ExternalAuthConfig)},
-        {239, 249, -1, sizeof(::viam::app::v1::AuthHandlerConfig)},
-        {251, 263, -1, sizeof(::viam::app::v1::Frame)},
-        {267, -1, -1, sizeof(::viam::app::v1::LogConfiguration)},
-        {276, -1, -1, sizeof(::viam::app::v1::Translation)},
-        {287, -1, -1, sizeof(::viam::app::v1::Orientation_NoOrientation)},
-        {295, -1, -1, sizeof(::viam::app::v1::Orientation_OrientationVectorRadians)},
-        {307, -1, -1, sizeof(::viam::app::v1::Orientation_OrientationVectorDegrees)},
-        {319, -1, -1, sizeof(::viam::app::v1::Orientation_EulerAngles)},
-        {330, -1, -1, sizeof(::viam::app::v1::Orientation_AxisAngles)},
-        {342, -1, -1, sizeof(::viam::app::v1::Orientation_Quaternion)},
-        {354, -1, -1, sizeof(::viam::app::v1::Orientation)},
-        {369, 387, -1, sizeof(::viam::app::v1::RemoteConfig)},
-        {397, -1, -1, sizeof(::viam::app::v1::RemoteAuth_Credentials)},
-        {407, 417, -1, sizeof(::viam::app::v1::RemoteAuth)},
-        {419, 433, -1, sizeof(::viam::app::v1::AgentInfo)},
-        {439, 449, -1, sizeof(::viam::app::v1::ConfigRequest)},
-        {451, 460, -1, sizeof(::viam::app::v1::ConfigResponse)},
-        {461, -1, -1, sizeof(::viam::app::v1::CertificateRequest)},
-        {470, -1, -1, sizeof(::viam::app::v1::CertificateResponse)},
-        {481, -1, -1, sizeof(::viam::app::v1::LogRequest)},
-        {491, -1, -1, sizeof(::viam::app::v1::LogResponse)},
-        {499, -1, -1, sizeof(::viam::app::v1::NeedsRestartRequest)},
-        {508, 519, -1, sizeof(::viam::app::v1::NeedsRestartResponse)},
-        {522, 532, -1, sizeof(::viam::app::v1::ModuleConfig_EnvEntry_DoNotUse)},
-        {534, 549, -1, sizeof(::viam::app::v1::ModuleConfig)},
-        {556, 569, -1, sizeof(::viam::app::v1::PackageConfig)},
+        {0, 23, -1, sizeof(::viam::app::v1::RobotConfig)},
+        {38, -1, -1, sizeof(::viam::app::v1::LogPatternConfig)},
+        {48, -1, -1, sizeof(::viam::app::v1::LocationSecret)},
+        {58, -1, -1, sizeof(::viam::app::v1::AppValidationStatus)},
+        {67, -1, -1, sizeof(::viam::app::v1::CloudConfig)},
+        {87, 105, -1, sizeof(::viam::app::v1::ComponentConfig)},
+        {115, 125, -1, sizeof(::viam::app::v1::ResourceLevelServiceConfig)},
+        {127, 137, -1, sizeof(::viam::app::v1::ProcessConfig_EnvEntry_DoNotUse)},
+        {139, 156, -1, sizeof(::viam::app::v1::ProcessConfig)},
+        {165, 182, -1, sizeof(::viam::app::v1::ServiceConfig)},
+        {191, 204, -1, sizeof(::viam::app::v1::NetworkConfig)},
+        {209, 218, -1, sizeof(::viam::app::v1::SessionsConfig)},
+        {219, 230, -1, sizeof(::viam::app::v1::AuthConfig)},
+        {233, 242, -1, sizeof(::viam::app::v1::JWKSFile)},
+        {243, 252, -1, sizeof(::viam::app::v1::ExternalAuthConfig)},
+        {253, 263, -1, sizeof(::viam::app::v1::AuthHandlerConfig)},
+        {265, 277, -1, sizeof(::viam::app::v1::Frame)},
+        {281, -1, -1, sizeof(::viam::app::v1::LogConfiguration)},
+        {290, -1, -1, sizeof(::viam::app::v1::Translation)},
+        {301, -1, -1, sizeof(::viam::app::v1::Orientation_NoOrientation)},
+        {309, -1, -1, sizeof(::viam::app::v1::Orientation_OrientationVectorRadians)},
+        {321, -1, -1, sizeof(::viam::app::v1::Orientation_OrientationVectorDegrees)},
+        {333, -1, -1, sizeof(::viam::app::v1::Orientation_EulerAngles)},
+        {344, -1, -1, sizeof(::viam::app::v1::Orientation_AxisAngles)},
+        {356, -1, -1, sizeof(::viam::app::v1::Orientation_Quaternion)},
+        {368, -1, -1, sizeof(::viam::app::v1::Orientation)},
+        {383, 401, -1, sizeof(::viam::app::v1::RemoteConfig)},
+        {411, -1, -1, sizeof(::viam::app::v1::RemoteAuth_Credentials)},
+        {421, 431, -1, sizeof(::viam::app::v1::RemoteAuth)},
+        {433, 447, -1, sizeof(::viam::app::v1::AgentInfo)},
+        {453, 463, -1, sizeof(::viam::app::v1::ConfigRequest)},
+        {465, 474, -1, sizeof(::viam::app::v1::ConfigResponse)},
+        {475, -1, -1, sizeof(::viam::app::v1::CertificateRequest)},
+        {484, -1, -1, sizeof(::viam::app::v1::CertificateResponse)},
+        {495, -1, -1, sizeof(::viam::app::v1::LogRequest)},
+        {505, -1, -1, sizeof(::viam::app::v1::LogResponse)},
+        {513, -1, -1, sizeof(::viam::app::v1::NeedsRestartRequest)},
+        {522, 533, -1, sizeof(::viam::app::v1::NeedsRestartResponse)},
+        {536, 546, -1, sizeof(::viam::app::v1::ModuleConfig_EnvEntry_DoNotUse)},
+        {548, 563, -1, sizeof(::viam::app::v1::ModuleConfig)},
+        {570, 583, -1, sizeof(::viam::app::v1::PackageConfig)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
     &::viam::app::v1::_RobotConfig_default_instance_._instance,
+    &::viam::app::v1::_LogPatternConfig_default_instance_._instance,
     &::viam::app::v1::_LocationSecret_default_instance_._instance,
     &::viam::app::v1::_AppValidationStatus_default_instance_._instance,
     &::viam::app::v1::_CloudConfig_default_instance_._instance,
@@ -1661,7 +1705,7 @@ const char descriptor_table_protodef_app_2fv1_2frobot_2eproto[] PROTOBUF_SECTION
     "\n\022app/v1/robot.proto\022\013viam.app.v1\032\026commo"
     "n/v1/common.proto\032\036google/protobuf/durat"
     "ion.proto\032\034google/protobuf/struct.proto\032"
-    "\026tagger/v1/tagger.proto\"\225\006\n\013RobotConfig\022"
+    "\026tagger/v1/tagger.proto\"\342\006\n\013RobotConfig\022"
     ".\n\005cloud\030\001 \001(\0132\030.viam.app.v1.CloudConfig"
     "R\005cloud\0223\n\007remotes\030\002 \003(\0132\031.viam.app.v1.R"
     "emoteConfigR\007remotes\022<\n\ncomponents\030\003 \003(\013"
@@ -1679,172 +1723,175 @@ const char descriptor_table_protodef_app_2fv1_2frobot_2eproto[] PROTOBUF_SECTION
     "geConfigR\010packages\022\\\n\031overwrite_fragment"
     "_status\030\014 \003(\0132 .viam.app.v1.AppValidatio"
     "nStatusR\027overwriteFragmentStatus\022,\n\022enab"
-    "le_web_profile\030\r \001(\010R\020enableWebProfileB\n"
-    "\n\010_networkB\007\n\005_authB\010\n\006_debugB\030\n\026_disabl"
-    "e_partial_start\"8\n\016LocationSecret\022\016\n\002id\030"
-    "\001 \001(\tR\002id\022\026\n\006secret\030\002 \001(\tR\006secret\"+\n\023App"
-    "ValidationStatus\022\024\n\005error\030\001 \001(\tR\005error\"\276"
-    "\003\n\013CloudConfig\022\016\n\002id\030\001 \001(\tR\002id\022\022\n\004fqdn\030\002"
-    " \001(\tR\004fqdn\022\035\n\nlocal_fqdn\030\003 \001(\tR\tlocalFqd"
-    "n\022\035\n\nmanaged_by\030\004 \001(\tR\tmanagedBy\022+\n\021sign"
-    "aling_address\030\005 \001(\tR\020signalingAddress\022-\n"
-    "\022signaling_insecure\030\006 \001(\010R\021signalingInse"
-    "cure\022+\n\017location_secret\030\007 \001(\tB\002\030\001R\016locat"
-    "ionSecret\022\026\n\006secret\030\010 \001(\tR\006secret\022F\n\020loc"
-    "ation_secrets\030\t \003(\0132\033.viam.app.v1.Locati"
-    "onSecretR\017locationSecrets\022$\n\016primary_org"
-    "_id\030\n \001(\tR\014primaryOrgId\022\037\n\013location_id\030\013"
-    " \001(\tR\nlocationId\022\035\n\nmachine_id\030\014 \001(\tR\tma"
-    "chineId\"\273\003\n\017ComponentConfig\022\022\n\004name\030\001 \001("
-    "\tR\004name\022\034\n\tnamespace\030\002 \001(\tR\tnamespace\022\022\n"
-    "\004type\030\003 \001(\tR\004type\022\024\n\005model\030\004 \001(\tR\005model\022"
-    "(\n\005frame\030\005 \001(\0132\022.viam.app.v1.FrameR\005fram"
-    "e\022\035\n\ndepends_on\030\006 \003(\tR\tdependsOn\022l\n\017serv"
-    "ice_configs\030\007 \003(\0132\'.viam.app.v1.Resource"
-    "LevelServiceConfigB\032\232\204\236\003\025json:\"service_c"
-    "onfig\"R\016serviceConfigs\0227\n\nattributes\030\010 \001"
-    "(\0132\027.google.protobuf.StructR\nattributes\022"
-    "\020\n\003api\030\t \001(\tR\003api\022J\n\021log_configuration\030\n"
-    " \001(\0132\035.viam.app.v1.LogConfigurationR\020log"
-    "Configuration\"i\n\032ResourceLevelServiceCon"
-    "fig\022\022\n\004type\030\001 \001(\tR\004type\0227\n\nattributes\030\002 "
-    "\001(\0132\027.google.protobuf.StructR\nattributes"
-    "\"\324\002\n\rProcessConfig\022\016\n\002id\030\001 \001(\tR\002id\022\022\n\004na"
-    "me\030\002 \001(\tR\004name\022\022\n\004args\030\003 \003(\tR\004args\022\020\n\003cw"
-    "d\030\004 \001(\tR\003cwd\022\031\n\010one_shot\030\005 \001(\010R\007oneShot\022"
-    "\020\n\003log\030\006 \001(\010R\003log\022\037\n\013stop_signal\030\007 \001(\005R\n"
-    "stopSignal\022<\n\014stop_timeout\030\010 \001(\0132\031.googl"
-    "e.protobuf.DurationR\013stopTimeout\0225\n\003env\030"
-    "\t \003(\0132#.viam.app.v1.ProcessConfig.EnvEnt"
-    "ryR\003env\0326\n\010EnvEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n"
-    "\005value\030\002 \001(\tR\005value:\0028\001\"\217\003\n\rServiceConfi"
-    "g\022\022\n\004name\030\001 \001(\tR\004name\022\034\n\tnamespace\030\002 \001(\t"
-    "R\tnamespace\022\022\n\004type\030\003 \001(\tR\004type\0227\n\nattri"
-    "butes\030\004 \001(\0132\027.google.protobuf.StructR\nat"
-    "tributes\022\035\n\ndepends_on\030\005 \003(\tR\tdependsOn\022"
-    "\024\n\005model\030\006 \001(\tR\005model\022\020\n\003api\030\t \001(\tR\003api\022"
-    "l\n\017service_configs\030\n \003(\0132\'.viam.app.v1.R"
-    "esourceLevelServiceConfigB\032\232\204\236\003\025json:\"se"
-    "rvice_config\"R\016serviceConfigs\022J\n\021log_con"
-    "figuration\030\013 \001(\0132\035.viam.app.v1.LogConfig"
-    "urationR\020logConfiguration\"\305\001\n\rNetworkCon"
-    "fig\022\022\n\004fqdn\030\001 \001(\tR\004fqdn\022!\n\014bind_address\030"
-    "\002 \001(\tR\013bindAddress\022\"\n\rtls_cert_file\030\003 \001("
-    "\tR\013tlsCertFile\022 \n\014tls_key_file\030\004 \001(\tR\ntl"
-    "sKeyFile\0227\n\010sessions\030\005 \001(\0132\033.viam.app.v1"
-    ".SessionsConfigR\010sessions\"V\n\016SessionsCon"
-    "fig\022D\n\020heartbeat_window\030\001 \001(\0132\031.google.p"
-    "rotobuf.DurationR\017heartbeatWindow\"\345\001\n\nAu"
-    "thConfig\022:\n\010handlers\030\001 \003(\0132\036.viam.app.v1"
-    ".AuthHandlerConfigR\010handlers\022*\n\021tls_auth"
-    "_entities\030\002 \003(\tR\017tlsAuthEntities\022V\n\024exte"
-    "rnal_auth_config\030\003 \001(\0132\037.viam.app.v1.Ext"
-    "ernalAuthConfigH\000R\022externalAuthConfig\210\001\001"
-    "B\027\n\025_external_auth_config\"7\n\010JWKSFile\022+\n"
-    "\004json\030\001 \001(\0132\027.google.protobuf.StructR\004js"
-    "on\"\?\n\022ExternalAuthConfig\022)\n\004jwks\030\001 \001(\0132\025"
-    ".viam.app.v1.JWKSFileR\004jwks\"v\n\021AuthHandl"
-    "erConfig\0220\n\004type\030\001 \001(\0162\034.viam.app.v1.Cre"
-    "dentialsTypeR\004type\022/\n\006config\030\005 \001(\0132\027.goo"
-    "gle.protobuf.StructR\006config\"\315\001\n\005Frame\022\026\n"
-    "\006parent\030\001 \001(\tR\006parent\022:\n\013translation\030\002 \001"
-    "(\0132\030.viam.app.v1.TranslationR\013translatio"
-    "n\022:\n\013orientation\030\003 \001(\0132\030.viam.app.v1.Ori"
-    "entationR\013orientation\0224\n\010geometry\030\004 \001(\0132"
-    "\030.viam.common.v1.GeometryR\010geometry\"(\n\020L"
-    "ogConfiguration\022\024\n\005level\030\001 \001(\tR\005level\"7\n"
-    "\013Translation\022\014\n\001x\030\001 \001(\001R\001x\022\014\n\001y\030\002 \001(\001R\001y"
-    "\022\014\n\001z\030\003 \001(\001R\001z\"\320\007\n\013Orientation\022O\n\016no_ori"
-    "entation\030\001 \001(\0132&.viam.app.v1.Orientation"
-    ".NoOrientationH\000R\rnoOrientation\022Z\n\016vecto"
-    "r_radians\030\002 \001(\01321.viam.app.v1.Orientatio"
-    "n.OrientationVectorRadiansH\000R\rvectorRadi"
-    "ans\022Z\n\016vector_degrees\030\003 \001(\01321.viam.app.v"
-    "1.Orientation.OrientationVectorDegreesH\000"
-    "R\rvectorDegrees\022I\n\014euler_angles\030\004 \001(\0132$."
-    "viam.app.v1.Orientation.EulerAnglesH\000R\013e"
-    "ulerAngles\022F\n\013axis_angles\030\005 \001(\0132#.viam.a"
-    "pp.v1.Orientation.AxisAnglesH\000R\naxisAngl"
-    "es\022E\n\nquaternion\030\006 \001(\0132#.viam.app.v1.Ori"
-    "entation.QuaternionH\000R\nquaternion\032\017\n\rNoO"
-    "rientation\032j\n\030OrientationVectorRadians\022$"
-    "\n\005theta\030\001 \001(\001B\016\232\204\236\003\tjson:\"th\"R\005theta\022\014\n\001"
-    "x\030\002 \001(\001R\001x\022\014\n\001y\030\003 \001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001z\032j"
-    "\n\030OrientationVectorDegrees\022$\n\005theta\030\001 \001("
-    "\001B\016\232\204\236\003\tjson:\"th\"R\005theta\022\014\n\001x\030\002 \001(\001R\001x\022\014"
-    "\n\001y\030\003 \001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001z\032I\n\013EulerAngle"
-    "s\022\022\n\004roll\030\001 \001(\001R\004roll\022\024\n\005pitch\030\002 \001(\001R\005pi"
-    "tch\022\020\n\003yaw\030\003 \001(\001R\003yaw\032\\\n\nAxisAngles\022$\n\005t"
-    "heta\030\001 \001(\001B\016\232\204\236\003\tjson:\"th\"R\005theta\022\014\n\001x\030\002"
-    " \001(\001R\001x\022\014\n\001y\030\003 \001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001z\032D\n\nQ"
-    "uaternion\022\014\n\001w\030\001 \001(\001R\001w\022\014\n\001x\030\002 \001(\001R\001x\022\014\n"
-    "\001y\030\003 \001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001zB\006\n\004type\"\365\003\n\014Re"
-    "moteConfig\022\022\n\004name\030\001 \001(\tR\004name\022\030\n\007addres"
-    "s\030\002 \001(\tR\007address\022(\n\005frame\030\003 \001(\0132\022.viam.a"
-    "pp.v1.FrameR\005frame\022+\n\004auth\030\004 \001(\0132\027.viam."
-    "app.v1.RemoteAuthR\004auth\022\035\n\nmanaged_by\030\005 "
-    "\001(\tR\tmanagedBy\022\032\n\010insecure\030\006 \001(\010R\010insecu"
-    "re\022U\n\031connection_check_interval\030\007 \001(\0132\031."
-    "google.protobuf.DurationR\027connectionChec"
-    "kInterval\022H\n\022reconnect_interval\030\010 \001(\0132\031."
-    "google.protobuf.DurationR\021reconnectInter"
-    "val\022l\n\017service_configs\030\t \003(\0132\'.viam.app."
-    "v1.ResourceLevelServiceConfigB\032\232\204\236\003\025json"
-    ":\"service_config\"R\016serviceConfigs\022\026\n\006sec"
-    "ret\030\n \001(\tR\006secret\"\306\001\n\nRemoteAuth\022E\n\013cred"
-    "entials\030\001 \001(\0132#.viam.app.v1.RemoteAuth.C"
-    "redentialsR\013credentials\022\026\n\006entity\030\002 \001(\tR"
-    "\006entity\032Y\n\013Credentials\0220\n\004type\030\001 \001(\0162\034.v"
-    "iam.app.v1.CredentialsTypeR\004type\022\030\n\007payl"
-    "oad\030\002 \001(\tR\007payload\"\254\001\n\tAgentInfo\022\022\n\004host"
-    "\030\001 \001(\tR\004host\022\016\n\002os\030\002 \001(\tR\002os\022\020\n\003ips\030\003 \003("
-    "\tR\003ips\022\030\n\007version\030\004 \001(\tR\007version\022!\n\014git_"
-    "revision\030\005 \001(\tR\013gitRevision\022\037\n\010platform\030"
-    "\006 \001(\tH\000R\010platform\210\001\001B\013\n\t_platform\"j\n\rCon"
-    "figRequest\022\016\n\002id\030\001 \001(\tR\002id\022:\n\nagent_info"
-    "\030\002 \001(\0132\026.viam.app.v1.AgentInfoH\000R\tagentI"
-    "nfo\210\001\001B\r\n\013_agent_info\"B\n\016ConfigResponse\022"
-    "0\n\006config\030\001 \001(\0132\030.viam.app.v1.RobotConfi"
-    "gR\006config\"$\n\022CertificateRequest\022\016\n\002id\030\001 "
-    "\001(\tR\002id\"v\n\023CertificateResponse\022\016\n\002id\030\001 \001"
-    "(\tR\002id\022\'\n\017tls_certificate\030\002 \001(\tR\016tlsCert"
-    "ificate\022&\n\017tls_private_key\030\003 \001(\tR\rtlsPri"
-    "vateKey\"J\n\nLogRequest\022\016\n\002id\030\001 \001(\tR\002id\022,\n"
-    "\004logs\030\002 \003(\0132\030.viam.common.v1.LogEntryR\004l"
-    "ogs\"\r\n\013LogResponse\"%\n\023NeedsRestartReques"
-    "t\022\016\n\002id\030\001 \001(\tR\002id\"\232\001\n\024NeedsRestartRespon"
-    "se\022\016\n\002id\030\001 \001(\tR\002id\022!\n\014must_restart\030\002 \001(\010"
-    "R\013mustRestart\022O\n\026restart_check_interval\030"
-    "\003 \001(\0132\031.google.protobuf.DurationR\024restar"
-    "tCheckInterval\"\254\002\n\014ModuleConfig\022\022\n\004name\030"
-    "\001 \001(\tR\004name\022\022\n\004path\030\002 \001(\tR\004path\022\033\n\tlog_l"
-    "evel\030\003 \001(\tR\010logLevel\022\022\n\004type\030\004 \001(\tR\004type"
-    "\022\033\n\tmodule_id\030\005 \001(\tR\010moduleId\0224\n\003env\030\006 \003"
-    "(\0132\".viam.app.v1.ModuleConfig.EnvEntryR\003"
-    "env\0228\n\006status\030\007 \001(\0132 .viam.app.v1.AppVal"
-    "idationStatusR\006status\0326\n\010EnvEntry\022\020\n\003key"
-    "\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\"\245\001"
-    "\n\rPackageConfig\022\022\n\004name\030\001 \001(\tR\004name\022\030\n\007p"
-    "ackage\030\002 \001(\tR\007package\022\030\n\007version\030\003 \001(\tR\007"
-    "version\022\022\n\004type\030\004 \001(\tR\004type\0228\n\006status\030\005 "
-    "\001(\0132 .viam.app.v1.AppValidationStatusR\006s"
-    "tatus*\277\001\n\017CredentialsType\022 \n\034CREDENTIALS"
-    "_TYPE_UNSPECIFIED\020\000\022\035\n\031CREDENTIALS_TYPE_"
-    "INTERNAL\020\001\022\034\n\030CREDENTIALS_TYPE_API_KEY\020\002"
-    "\022!\n\035CREDENTIALS_TYPE_ROBOT_SECRET\020\003\022*\n&C"
-    "REDENTIALS_TYPE_ROBOT_LOCATION_SECRET\020\0042"
-    "\262\002\n\014RobotService\022A\n\006Config\022\032.viam.app.v1"
-    ".ConfigRequest\032\033.viam.app.v1.ConfigRespo"
-    "nse\022P\n\013Certificate\022\037.viam.app.v1.Certifi"
-    "cateRequest\032 .viam.app.v1.CertificateRes"
-    "ponse\0228\n\003Log\022\027.viam.app.v1.LogRequest\032\030."
-    "viam.app.v1.LogResponse\022S\n\014NeedsRestart\022"
-    " .viam.app.v1.NeedsRestartRequest\032!.viam"
-    ".app.v1.NeedsRestartResponseB\203\001\n\017com.via"
-    "m.app.v1B\nRobotProtoP\001Z\026go.viam.com/api/"
-    "app/v1\242\002\003VAX\252\002\013Viam.App.V1\312\002\013Viam\\App\\V1"
-    "\342\002\027Viam\\App\\V1\\GPBMetadata\352\002\rViam::App::"
-    "V1b\006proto3"
+    "le_web_profile\030\r \001(\010R\020enableWebProfile\022/"
+    "\n\003log\030\016 \003(\0132\035.viam.app.v1.LogPatternConf"
+    "igR\003log\022\032\n\010revision\030\017 \001(\tR\010revisionB\n\n\010_"
+    "networkB\007\n\005_authB\010\n\006_debugB\030\n\026_disable_p"
+    "artial_start\"B\n\020LogPatternConfig\022\030\n\007patt"
+    "ern\030\001 \001(\tR\007pattern\022\024\n\005level\030\002 \001(\tR\005level"
+    "\"8\n\016LocationSecret\022\016\n\002id\030\001 \001(\tR\002id\022\026\n\006se"
+    "cret\030\002 \001(\tR\006secret\"+\n\023AppValidationStatu"
+    "s\022\024\n\005error\030\001 \001(\tR\005error\"\276\003\n\013CloudConfig\022"
+    "\016\n\002id\030\001 \001(\tR\002id\022\022\n\004fqdn\030\002 \001(\tR\004fqdn\022\035\n\nl"
+    "ocal_fqdn\030\003 \001(\tR\tlocalFqdn\022\035\n\nmanaged_by"
+    "\030\004 \001(\tR\tmanagedBy\022+\n\021signaling_address\030\005"
+    " \001(\tR\020signalingAddress\022-\n\022signaling_inse"
+    "cure\030\006 \001(\010R\021signalingInsecure\022+\n\017locatio"
+    "n_secret\030\007 \001(\tB\002\030\001R\016locationSecret\022\026\n\006se"
+    "cret\030\010 \001(\tR\006secret\022F\n\020location_secrets\030\t"
+    " \003(\0132\033.viam.app.v1.LocationSecretR\017locat"
+    "ionSecrets\022$\n\016primary_org_id\030\n \001(\tR\014prim"
+    "aryOrgId\022\037\n\013location_id\030\013 \001(\tR\nlocationI"
+    "d\022\035\n\nmachine_id\030\014 \001(\tR\tmachineId\"\273\003\n\017Com"
+    "ponentConfig\022\022\n\004name\030\001 \001(\tR\004name\022\034\n\tname"
+    "space\030\002 \001(\tR\tnamespace\022\022\n\004type\030\003 \001(\tR\004ty"
+    "pe\022\024\n\005model\030\004 \001(\tR\005model\022(\n\005frame\030\005 \001(\0132"
+    "\022.viam.app.v1.FrameR\005frame\022\035\n\ndepends_on"
+    "\030\006 \003(\tR\tdependsOn\022l\n\017service_configs\030\007 \003"
+    "(\0132\'.viam.app.v1.ResourceLevelServiceCon"
+    "figB\032\232\204\236\003\025json:\"service_config\"R\016service"
+    "Configs\0227\n\nattributes\030\010 \001(\0132\027.google.pro"
+    "tobuf.StructR\nattributes\022\020\n\003api\030\t \001(\tR\003a"
+    "pi\022J\n\021log_configuration\030\n \001(\0132\035.viam.app"
+    ".v1.LogConfigurationR\020logConfiguration\"i"
+    "\n\032ResourceLevelServiceConfig\022\022\n\004type\030\001 \001"
+    "(\tR\004type\0227\n\nattributes\030\002 \001(\0132\027.google.pr"
+    "otobuf.StructR\nattributes\"\324\002\n\rProcessCon"
+    "fig\022\016\n\002id\030\001 \001(\tR\002id\022\022\n\004name\030\002 \001(\tR\004name\022"
+    "\022\n\004args\030\003 \003(\tR\004args\022\020\n\003cwd\030\004 \001(\tR\003cwd\022\031\n"
+    "\010one_shot\030\005 \001(\010R\007oneShot\022\020\n\003log\030\006 \001(\010R\003l"
+    "og\022\037\n\013stop_signal\030\007 \001(\005R\nstopSignal\022<\n\014s"
+    "top_timeout\030\010 \001(\0132\031.google.protobuf.Dura"
+    "tionR\013stopTimeout\0225\n\003env\030\t \003(\0132#.viam.ap"
+    "p.v1.ProcessConfig.EnvEntryR\003env\0326\n\010EnvE"
+    "ntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005v"
+    "alue:\0028\001\"\217\003\n\rServiceConfig\022\022\n\004name\030\001 \001(\t"
+    "R\004name\022\034\n\tnamespace\030\002 \001(\tR\tnamespace\022\022\n\004"
+    "type\030\003 \001(\tR\004type\0227\n\nattributes\030\004 \001(\0132\027.g"
+    "oogle.protobuf.StructR\nattributes\022\035\n\ndep"
+    "ends_on\030\005 \003(\tR\tdependsOn\022\024\n\005model\030\006 \001(\tR"
+    "\005model\022\020\n\003api\030\t \001(\tR\003api\022l\n\017service_conf"
+    "igs\030\n \003(\0132\'.viam.app.v1.ResourceLevelSer"
+    "viceConfigB\032\232\204\236\003\025json:\"service_config\"R\016"
+    "serviceConfigs\022J\n\021log_configuration\030\013 \001("
+    "\0132\035.viam.app.v1.LogConfigurationR\020logCon"
+    "figuration\"\305\001\n\rNetworkConfig\022\022\n\004fqdn\030\001 \001"
+    "(\tR\004fqdn\022!\n\014bind_address\030\002 \001(\tR\013bindAddr"
+    "ess\022\"\n\rtls_cert_file\030\003 \001(\tR\013tlsCertFile\022"
+    " \n\014tls_key_file\030\004 \001(\tR\ntlsKeyFile\0227\n\010ses"
+    "sions\030\005 \001(\0132\033.viam.app.v1.SessionsConfig"
+    "R\010sessions\"V\n\016SessionsConfig\022D\n\020heartbea"
+    "t_window\030\001 \001(\0132\031.google.protobuf.Duratio"
+    "nR\017heartbeatWindow\"\345\001\n\nAuthConfig\022:\n\010han"
+    "dlers\030\001 \003(\0132\036.viam.app.v1.AuthHandlerCon"
+    "figR\010handlers\022*\n\021tls_auth_entities\030\002 \003(\t"
+    "R\017tlsAuthEntities\022V\n\024external_auth_confi"
+    "g\030\003 \001(\0132\037.viam.app.v1.ExternalAuthConfig"
+    "H\000R\022externalAuthConfig\210\001\001B\027\n\025_external_a"
+    "uth_config\"7\n\010JWKSFile\022+\n\004json\030\001 \001(\0132\027.g"
+    "oogle.protobuf.StructR\004json\"\?\n\022ExternalA"
+    "uthConfig\022)\n\004jwks\030\001 \001(\0132\025.viam.app.v1.JW"
+    "KSFileR\004jwks\"v\n\021AuthHandlerConfig\0220\n\004typ"
+    "e\030\001 \001(\0162\034.viam.app.v1.CredentialsTypeR\004t"
+    "ype\022/\n\006config\030\005 \001(\0132\027.google.protobuf.St"
+    "ructR\006config\"\315\001\n\005Frame\022\026\n\006parent\030\001 \001(\tR\006"
+    "parent\022:\n\013translation\030\002 \001(\0132\030.viam.app.v"
+    "1.TranslationR\013translation\022:\n\013orientatio"
+    "n\030\003 \001(\0132\030.viam.app.v1.OrientationR\013orien"
+    "tation\0224\n\010geometry\030\004 \001(\0132\030.viam.common.v"
+    "1.GeometryR\010geometry\"(\n\020LogConfiguration"
+    "\022\024\n\005level\030\001 \001(\tR\005level\"7\n\013Translation\022\014\n"
+    "\001x\030\001 \001(\001R\001x\022\014\n\001y\030\002 \001(\001R\001y\022\014\n\001z\030\003 \001(\001R\001z\""
+    "\320\007\n\013Orientation\022O\n\016no_orientation\030\001 \001(\0132"
+    "&.viam.app.v1.Orientation.NoOrientationH"
+    "\000R\rnoOrientation\022Z\n\016vector_radians\030\002 \001(\013"
+    "21.viam.app.v1.Orientation.OrientationVe"
+    "ctorRadiansH\000R\rvectorRadians\022Z\n\016vector_d"
+    "egrees\030\003 \001(\01321.viam.app.v1.Orientation.O"
+    "rientationVectorDegreesH\000R\rvectorDegrees"
+    "\022I\n\014euler_angles\030\004 \001(\0132$.viam.app.v1.Ori"
+    "entation.EulerAnglesH\000R\013eulerAngles\022F\n\013a"
+    "xis_angles\030\005 \001(\0132#.viam.app.v1.Orientati"
+    "on.AxisAnglesH\000R\naxisAngles\022E\n\nquaternio"
+    "n\030\006 \001(\0132#.viam.app.v1.Orientation.Quater"
+    "nionH\000R\nquaternion\032\017\n\rNoOrientation\032j\n\030O"
+    "rientationVectorRadians\022$\n\005theta\030\001 \001(\001B\016"
+    "\232\204\236\003\tjson:\"th\"R\005theta\022\014\n\001x\030\002 \001(\001R\001x\022\014\n\001y"
+    "\030\003 \001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001z\032j\n\030OrientationVe"
+    "ctorDegrees\022$\n\005theta\030\001 \001(\001B\016\232\204\236\003\tjson:\"t"
+    "h\"R\005theta\022\014\n\001x\030\002 \001(\001R\001x\022\014\n\001y\030\003 \001(\001R\001y\022\014\n"
+    "\001z\030\004 \001(\001R\001z\032I\n\013EulerAngles\022\022\n\004roll\030\001 \001(\001"
+    "R\004roll\022\024\n\005pitch\030\002 \001(\001R\005pitch\022\020\n\003yaw\030\003 \001("
+    "\001R\003yaw\032\\\n\nAxisAngles\022$\n\005theta\030\001 \001(\001B\016\232\204\236"
+    "\003\tjson:\"th\"R\005theta\022\014\n\001x\030\002 \001(\001R\001x\022\014\n\001y\030\003 "
+    "\001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001z\032D\n\nQuaternion\022\014\n\001w\030"
+    "\001 \001(\001R\001w\022\014\n\001x\030\002 \001(\001R\001x\022\014\n\001y\030\003 \001(\001R\001y\022\014\n\001"
+    "z\030\004 \001(\001R\001zB\006\n\004type\"\365\003\n\014RemoteConfig\022\022\n\004n"
+    "ame\030\001 \001(\tR\004name\022\030\n\007address\030\002 \001(\tR\007addres"
+    "s\022(\n\005frame\030\003 \001(\0132\022.viam.app.v1.FrameR\005fr"
+    "ame\022+\n\004auth\030\004 \001(\0132\027.viam.app.v1.RemoteAu"
+    "thR\004auth\022\035\n\nmanaged_by\030\005 \001(\tR\tmanagedBy\022"
+    "\032\n\010insecure\030\006 \001(\010R\010insecure\022U\n\031connectio"
+    "n_check_interval\030\007 \001(\0132\031.google.protobuf"
+    ".DurationR\027connectionCheckInterval\022H\n\022re"
+    "connect_interval\030\010 \001(\0132\031.google.protobuf"
+    ".DurationR\021reconnectInterval\022l\n\017service_"
+    "configs\030\t \003(\0132\'.viam.app.v1.ResourceLeve"
+    "lServiceConfigB\032\232\204\236\003\025json:\"service_confi"
+    "g\"R\016serviceConfigs\022\026\n\006secret\030\n \001(\tR\006secr"
+    "et\"\306\001\n\nRemoteAuth\022E\n\013credentials\030\001 \001(\0132#"
+    ".viam.app.v1.RemoteAuth.CredentialsR\013cre"
+    "dentials\022\026\n\006entity\030\002 \001(\tR\006entity\032Y\n\013Cred"
+    "entials\0220\n\004type\030\001 \001(\0162\034.viam.app.v1.Cred"
+    "entialsTypeR\004type\022\030\n\007payload\030\002 \001(\tR\007payl"
+    "oad\"\254\001\n\tAgentInfo\022\022\n\004host\030\001 \001(\tR\004host\022\016\n"
+    "\002os\030\002 \001(\tR\002os\022\020\n\003ips\030\003 \003(\tR\003ips\022\030\n\007versi"
+    "on\030\004 \001(\tR\007version\022!\n\014git_revision\030\005 \001(\tR"
+    "\013gitRevision\022\037\n\010platform\030\006 \001(\tH\000R\010platfo"
+    "rm\210\001\001B\013\n\t_platform\"j\n\rConfigRequest\022\016\n\002i"
+    "d\030\001 \001(\tR\002id\022:\n\nagent_info\030\002 \001(\0132\026.viam.a"
+    "pp.v1.AgentInfoH\000R\tagentInfo\210\001\001B\r\n\013_agen"
+    "t_info\"B\n\016ConfigResponse\0220\n\006config\030\001 \001(\013"
+    "2\030.viam.app.v1.RobotConfigR\006config\"$\n\022Ce"
+    "rtificateRequest\022\016\n\002id\030\001 \001(\tR\002id\"v\n\023Cert"
+    "ificateResponse\022\016\n\002id\030\001 \001(\tR\002id\022\'\n\017tls_c"
+    "ertificate\030\002 \001(\tR\016tlsCertificate\022&\n\017tls_"
+    "private_key\030\003 \001(\tR\rtlsPrivateKey\"J\n\nLogR"
+    "equest\022\016\n\002id\030\001 \001(\tR\002id\022,\n\004logs\030\002 \003(\0132\030.v"
+    "iam.common.v1.LogEntryR\004logs\"\r\n\013LogRespo"
+    "nse\"%\n\023NeedsRestartRequest\022\016\n\002id\030\001 \001(\tR\002"
+    "id\"\232\001\n\024NeedsRestartResponse\022\016\n\002id\030\001 \001(\tR"
+    "\002id\022!\n\014must_restart\030\002 \001(\010R\013mustRestart\022O"
+    "\n\026restart_check_interval\030\003 \001(\0132\031.google."
+    "protobuf.DurationR\024restartCheckInterval\""
+    "\254\002\n\014ModuleConfig\022\022\n\004name\030\001 \001(\tR\004name\022\022\n\004"
+    "path\030\002 \001(\tR\004path\022\033\n\tlog_level\030\003 \001(\tR\010log"
+    "Level\022\022\n\004type\030\004 \001(\tR\004type\022\033\n\tmodule_id\030\005"
+    " \001(\tR\010moduleId\0224\n\003env\030\006 \003(\0132\".viam.app.v"
+    "1.ModuleConfig.EnvEntryR\003env\0228\n\006status\030\007"
+    " \001(\0132 .viam.app.v1.AppValidationStatusR\006"
+    "status\0326\n\010EnvEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005"
+    "value\030\002 \001(\tR\005value:\0028\001\"\245\001\n\rPackageConfig"
+    "\022\022\n\004name\030\001 \001(\tR\004name\022\030\n\007package\030\002 \001(\tR\007p"
+    "ackage\022\030\n\007version\030\003 \001(\tR\007version\022\022\n\004type"
+    "\030\004 \001(\tR\004type\0228\n\006status\030\005 \001(\0132 .viam.app."
+    "v1.AppValidationStatusR\006status*\277\001\n\017Crede"
+    "ntialsType\022 \n\034CREDENTIALS_TYPE_UNSPECIFI"
+    "ED\020\000\022\035\n\031CREDENTIALS_TYPE_INTERNAL\020\001\022\034\n\030C"
+    "REDENTIALS_TYPE_API_KEY\020\002\022!\n\035CREDENTIALS"
+    "_TYPE_ROBOT_SECRET\020\003\022*\n&CREDENTIALS_TYPE"
+    "_ROBOT_LOCATION_SECRET\020\0042\262\002\n\014RobotServic"
+    "e\022A\n\006Config\022\032.viam.app.v1.ConfigRequest\032"
+    "\033.viam.app.v1.ConfigResponse\022P\n\013Certific"
+    "ate\022\037.viam.app.v1.CertificateRequest\032 .v"
+    "iam.app.v1.CertificateResponse\0228\n\003Log\022\027."
+    "viam.app.v1.LogRequest\032\030.viam.app.v1.Log"
+    "Response\022S\n\014NeedsRestart\022 .viam.app.v1.N"
+    "eedsRestartRequest\032!.viam.app.v1.NeedsRe"
+    "startResponseB\203\001\n\017com.viam.app.v1B\nRobot"
+    "ProtoP\001Z\026go.viam.com/api/app/v1\242\002\003VAX\252\002\013"
+    "Viam.App.V1\312\002\013Viam\\App\\V1\342\002\027Viam\\App\\V1\\"
+    "GPBMetadata\352\002\rViam::App::V1b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2frobot_2eproto_deps[4] =
     {
@@ -1857,13 +1904,13 @@ static ::absl::once_flag descriptor_table_app_2fv1_2frobot_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2frobot_2eproto = {
     false,
     false,
-    7450,
+    7595,
     descriptor_table_protodef_app_2fv1_2frobot_2eproto,
     "app/v1/robot.proto",
     &descriptor_table_app_2fv1_2frobot_2eproto_once,
     descriptor_table_app_2fv1_2frobot_2eproto_deps,
     4,
-    40,
+    41,
     schemas,
     file_default_instances,
     TableStruct_app_2fv1_2frobot_2eproto::offsets,
@@ -1953,7 +2000,9 @@ inline PROTOBUF_NDEBUG_INLINE RobotConfig::Impl_::Impl_(
         services_{visibility, arena, from.services_},
         modules_{visibility, arena, from.modules_},
         packages_{visibility, arena, from.packages_},
-        overwrite_fragment_status_{visibility, arena, from.overwrite_fragment_status_} {}
+        overwrite_fragment_status_{visibility, arena, from.overwrite_fragment_status_},
+        log_{visibility, arena, from.log_},
+        revision_(arena, from.revision_) {}
 
 RobotConfig::RobotConfig(
     ::google::protobuf::Arena* arena,
@@ -1994,7 +2043,9 @@ inline PROTOBUF_NDEBUG_INLINE RobotConfig::Impl_::Impl_(
         services_{visibility, arena},
         modules_{visibility, arena},
         packages_{visibility, arena},
-        overwrite_fragment_status_{visibility, arena} {}
+        overwrite_fragment_status_{visibility, arena},
+        log_{visibility, arena},
+        revision_(arena) {}
 
 inline void RobotConfig::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -2012,6 +2063,7 @@ RobotConfig::~RobotConfig() {
 }
 inline void RobotConfig::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.revision_.Destroy();
   delete _impl_.cloud_;
   delete _impl_.network_;
   delete _impl_.auth_;
@@ -2032,6 +2084,8 @@ PROTOBUF_NOINLINE void RobotConfig::Clear() {
   _impl_.modules_.Clear();
   _impl_.packages_.Clear();
   _impl_.overwrite_fragment_status_.Clear();
+  _impl_.log_.Clear();
+  _impl_.revision_.ClearToEmpty();
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000007u) {
     if (cached_has_bits & 0x00000001u) {
@@ -2063,16 +2117,16 @@ const char* RobotConfig::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<4, 13, 10, 0, 2> RobotConfig::_table_ = {
+const ::_pbi::TcParseTable<4, 15, 11, 48, 2> RobotConfig::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(RobotConfig, _impl_._has_bits_),
     0, // no _extensions_
-    13, 120,  // max_field_number, fast_idx_mask
+    15, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294959104,  // skipmap
+    4294934528,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    13,  // num_field_entries
-    10,  // num_aux_entries
+    15,  // num_field_entries
+    11,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_RobotConfig_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
@@ -2117,8 +2171,12 @@ const ::_pbi::TcParseTable<4, 13, 10, 0, 2> RobotConfig::_table_ = {
     // bool enable_web_profile = 13 [json_name = "enableWebProfile"];
     {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(RobotConfig, _impl_.enable_web_profile_), 63>(),
      {104, 63, 0, PROTOBUF_FIELD_OFFSET(RobotConfig, _impl_.enable_web_profile_)}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
+    // repeated .viam.app.v1.LogPatternConfig log = 14 [json_name = "log"];
+    {::_pbi::TcParser::FastMtR1,
+     {114, 63, 10, PROTOBUF_FIELD_OFFSET(RobotConfig, _impl_.log_)}},
+    // string revision = 15 [json_name = "revision"];
+    {::_pbi::TcParser::FastUS1,
+     {122, 63, 0, PROTOBUF_FIELD_OFFSET(RobotConfig, _impl_.revision_)}},
   }}, {{
     65535, 65535
   }}, {{
@@ -2161,6 +2219,12 @@ const ::_pbi::TcParseTable<4, 13, 10, 0, 2> RobotConfig::_table_ = {
     // bool enable_web_profile = 13 [json_name = "enableWebProfile"];
     {PROTOBUF_FIELD_OFFSET(RobotConfig, _impl_.enable_web_profile_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // repeated .viam.app.v1.LogPatternConfig log = 14 [json_name = "log"];
+    {PROTOBUF_FIELD_OFFSET(RobotConfig, _impl_.log_), -1, 10,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // string revision = 15 [json_name = "revision"];
+    {PROTOBUF_FIELD_OFFSET(RobotConfig, _impl_.revision_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }}, {{
     {::_pbi::TcParser::GetTable<::viam::app::v1::CloudConfig>()},
     {::_pbi::TcParser::GetTable<::viam::app::v1::RemoteConfig>()},
@@ -2172,7 +2236,11 @@ const ::_pbi::TcParseTable<4, 13, 10, 0, 2> RobotConfig::_table_ = {
     {::_pbi::TcParser::GetTable<::viam::app::v1::ModuleConfig>()},
     {::_pbi::TcParser::GetTable<::viam::app::v1::PackageConfig>()},
     {::_pbi::TcParser::GetTable<::viam::app::v1::AppValidationStatus>()},
+    {::_pbi::TcParser::GetTable<::viam::app::v1::LogPatternConfig>()},
   }}, {{
+    "\27\0\0\0\0\0\0\0\0\0\0\0\0\0\0\10"
+    "viam.app.v1.RobotConfig"
+    "revision"
   }},
 };
 
@@ -2282,6 +2350,22 @@ const ::_pbi::TcParseTable<4, 13, 10, 0, 2> RobotConfig::_table_ = {
         13, this->_internal_enable_web_profile(), target);
   }
 
+  // repeated .viam.app.v1.LogPatternConfig log = 14 [json_name = "log"];
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_log_size()); i < n; i++) {
+    const auto& repfield = this->_internal_log().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
+        InternalWriteMessage(14, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // string revision = 15 [json_name = "revision"];
+  if (!this->_internal_revision().empty()) {
+    const std::string& _s = this->_internal_revision();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.v1.RobotConfig.revision");
+    target = stream->WriteStringMaybeAliased(15, _s, target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -2341,6 +2425,18 @@ const ::_pbi::TcParseTable<4, 13, 10, 0, 2> RobotConfig::_table_ = {
     total_size +=
       ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
   }
+  // repeated .viam.app.v1.LogPatternConfig log = 14 [json_name = "log"];
+  total_size += 1UL * this->_internal_log_size();
+  for (const auto& msg : this->_internal_log()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  }
+  // string revision = 15 [json_name = "revision"];
+  if (!this->_internal_revision().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_revision());
+  }
+
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x0000001fu) {
     // .viam.app.v1.CloudConfig cloud = 1 [json_name = "cloud"];
@@ -2410,6 +2506,11 @@ void RobotConfig::MergeImpl(::google::protobuf::Message& to_msg, const ::google:
       from._internal_packages());
   _this->_internal_mutable_overwrite_fragment_status()->MergeFrom(
       from._internal_overwrite_fragment_status());
+  _this->_internal_mutable_log()->MergeFrom(
+      from._internal_log());
+  if (!from._internal_revision().empty()) {
+    _this->_internal_set_revision(from._internal_revision());
+  }
   cached_has_bits = from._impl_._has_bits_[0];
   if (cached_has_bits & 0x0000001fu) {
     if (cached_has_bits & 0x00000001u) {
@@ -2454,6 +2555,8 @@ PROTOBUF_NOINLINE bool RobotConfig::IsInitialized() const {
 }
 void RobotConfig::InternalSwap(RobotConfig* PROTOBUF_RESTRICT other) {
   using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.remotes_.InternalSwap(&other->_impl_.remotes_);
@@ -2463,6 +2566,8 @@ void RobotConfig::InternalSwap(RobotConfig* PROTOBUF_RESTRICT other) {
   _impl_.modules_.InternalSwap(&other->_impl_.modules_);
   _impl_.packages_.InternalSwap(&other->_impl_.packages_);
   _impl_.overwrite_fragment_status_.InternalSwap(&other->_impl_.overwrite_fragment_status_);
+  _impl_.log_.InternalSwap(&other->_impl_.log_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.revision_, &other->_impl_.revision_, arena);
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(RobotConfig, _impl_.enable_web_profile_)
       + sizeof(RobotConfig::_impl_.enable_web_profile_)
@@ -2475,6 +2580,225 @@ void RobotConfig::InternalSwap(RobotConfig* PROTOBUF_RESTRICT other) {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
       file_level_metadata_app_2fv1_2frobot_2eproto[0]);
+}
+// ===================================================================
+
+class LogPatternConfig::_Internal {
+ public:
+};
+
+LogPatternConfig::LogPatternConfig(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.LogPatternConfig)
+}
+inline PROTOBUF_NDEBUG_INLINE LogPatternConfig::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : pattern_(arena, from.pattern_),
+        level_(arena, from.level_),
+        _cached_size_{0} {}
+
+LogPatternConfig::LogPatternConfig(
+    ::google::protobuf::Arena* arena,
+    const LogPatternConfig& from)
+    : ::google::protobuf::Message(arena) {
+  LogPatternConfig* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.LogPatternConfig)
+}
+inline PROTOBUF_NDEBUG_INLINE LogPatternConfig::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : pattern_(arena),
+        level_(arena),
+        _cached_size_{0} {}
+
+inline void LogPatternConfig::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+LogPatternConfig::~LogPatternConfig() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.LogPatternConfig)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void LogPatternConfig::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.pattern_.Destroy();
+  _impl_.level_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void LogPatternConfig::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.LogPatternConfig)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.pattern_.ClearToEmpty();
+  _impl_.level_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* LogPatternConfig::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 49, 2> LogPatternConfig::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_LogPatternConfig_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string level = 2 [json_name = "level"];
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(LogPatternConfig, _impl_.level_)}},
+    // string pattern = 1 [json_name = "pattern"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(LogPatternConfig, _impl_.pattern_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string pattern = 1 [json_name = "pattern"];
+    {PROTOBUF_FIELD_OFFSET(LogPatternConfig, _impl_.pattern_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string level = 2 [json_name = "level"];
+    {PROTOBUF_FIELD_OFFSET(LogPatternConfig, _impl_.level_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\34\7\5\0\0\0\0\0"
+    "viam.app.v1.LogPatternConfig"
+    "pattern"
+    "level"
+  }},
+};
+
+::uint8_t* LogPatternConfig::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.LogPatternConfig)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string pattern = 1 [json_name = "pattern"];
+  if (!this->_internal_pattern().empty()) {
+    const std::string& _s = this->_internal_pattern();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.v1.LogPatternConfig.pattern");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // string level = 2 [json_name = "level"];
+  if (!this->_internal_level().empty()) {
+    const std::string& _s = this->_internal_level();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.v1.LogPatternConfig.level");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.LogPatternConfig)
+  return target;
+}
+
+::size_t LogPatternConfig::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.LogPatternConfig)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string pattern = 1 [json_name = "pattern"];
+  if (!this->_internal_pattern().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_pattern());
+  }
+
+  // string level = 2 [json_name = "level"];
+  if (!this->_internal_level().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_level());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData LogPatternConfig::_class_data_ = {
+    LogPatternConfig::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* LogPatternConfig::GetClassData() const {
+  return &_class_data_;
+}
+
+void LogPatternConfig::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<LogPatternConfig*>(&to_msg);
+  auto& from = static_cast<const LogPatternConfig&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.LogPatternConfig)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_pattern().empty()) {
+    _this->_internal_set_pattern(from._internal_pattern());
+  }
+  if (!from._internal_level().empty()) {
+    _this->_internal_set_level(from._internal_level());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void LogPatternConfig::CopyFrom(const LogPatternConfig& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.LogPatternConfig)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool LogPatternConfig::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* LogPatternConfig::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void LogPatternConfig::InternalSwap(LogPatternConfig* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.pattern_, &other->_impl_.pattern_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.level_, &other->_impl_.level_, arena);
+}
+
+::google::protobuf::Metadata LogPatternConfig::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
+      file_level_metadata_app_2fv1_2frobot_2eproto[1]);
 }
 // ===================================================================
 
@@ -2693,7 +3017,7 @@ void LocationSecret::InternalSwap(LocationSecret* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata LocationSecret::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[1]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[2]);
 }
 // ===================================================================
 
@@ -2883,7 +3207,7 @@ void AppValidationStatus::InternalSwap(AppValidationStatus* PROTOBUF_RESTRICT ot
 ::google::protobuf::Metadata AppValidationStatus::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[2]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[3]);
 }
 // ===================================================================
 
@@ -3389,7 +3713,7 @@ void CloudConfig::InternalSwap(CloudConfig* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata CloudConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[3]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[4]);
 }
 // ===================================================================
 
@@ -3904,7 +4228,7 @@ void ComponentConfig::InternalSwap(ComponentConfig* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata ComponentConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[4]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[5]);
 }
 // ===================================================================
 
@@ -4149,7 +4473,7 @@ void ResourceLevelServiceConfig::InternalSwap(ResourceLevelServiceConfig* PROTOB
 ::google::protobuf::Metadata ResourceLevelServiceConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[5]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[6]);
 }
 // ===================================================================
 
@@ -4159,7 +4483,7 @@ ProcessConfig_EnvEntry_DoNotUse::ProcessConfig_EnvEntry_DoNotUse(::google::proto
 ::google::protobuf::Metadata ProcessConfig_EnvEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[6]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[7]);
 }
 // ===================================================================
 
@@ -4625,7 +4949,7 @@ void ProcessConfig::InternalSwap(ProcessConfig* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata ProcessConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[7]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[8]);
 }
 // ===================================================================
 
@@ -5102,7 +5426,7 @@ void ServiceConfig::InternalSwap(ServiceConfig* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata ServiceConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[8]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[9]);
 }
 // ===================================================================
 
@@ -5432,7 +5756,7 @@ void NetworkConfig::InternalSwap(NetworkConfig* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata NetworkConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[9]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[10]);
 }
 // ===================================================================
 
@@ -5644,7 +5968,7 @@ void SessionsConfig::InternalSwap(SessionsConfig* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata SessionsConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[10]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[11]);
 }
 // ===================================================================
 
@@ -5907,7 +6231,7 @@ void AuthConfig::InternalSwap(AuthConfig* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata AuthConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[11]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[12]);
 }
 // ===================================================================
 
@@ -6119,7 +6443,7 @@ void JWKSFile::InternalSwap(JWKSFile* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata JWKSFile::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[12]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[13]);
 }
 // ===================================================================
 
@@ -6326,7 +6650,7 @@ void ExternalAuthConfig::InternalSwap(ExternalAuthConfig* PROTOBUF_RESTRICT othe
 ::google::protobuf::Metadata ExternalAuthConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[13]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[14]);
 }
 // ===================================================================
 
@@ -6569,7 +6893,7 @@ void AuthHandlerConfig::InternalSwap(AuthHandlerConfig* PROTOBUF_RESTRICT other)
 ::google::protobuf::Metadata AuthHandlerConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[14]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[15]);
 }
 // ===================================================================
 
@@ -6909,7 +7233,7 @@ void Frame::InternalSwap(Frame* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata Frame::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[15]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[16]);
 }
 // ===================================================================
 
@@ -7099,7 +7423,7 @@ void LogConfiguration::InternalSwap(LogConfiguration* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata LogConfiguration::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[16]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[17]);
 }
 // ===================================================================
 
@@ -7368,7 +7692,7 @@ void Translation::InternalSwap(Translation* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata Translation::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[17]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[18]);
 }
 // ===================================================================
 
@@ -7403,7 +7727,7 @@ Orientation_NoOrientation::Orientation_NoOrientation(
 ::google::protobuf::Metadata Orientation_NoOrientation::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[18]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[19]);
 }
 // ===================================================================
 
@@ -7707,7 +8031,7 @@ void Orientation_OrientationVectorRadians::InternalSwap(Orientation_OrientationV
 ::google::protobuf::Metadata Orientation_OrientationVectorRadians::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[19]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[20]);
 }
 // ===================================================================
 
@@ -8011,7 +8335,7 @@ void Orientation_OrientationVectorDegrees::InternalSwap(Orientation_OrientationV
 ::google::protobuf::Metadata Orientation_OrientationVectorDegrees::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[20]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[21]);
 }
 // ===================================================================
 
@@ -8280,7 +8604,7 @@ void Orientation_EulerAngles::InternalSwap(Orientation_EulerAngles* PROTOBUF_RES
 ::google::protobuf::Metadata Orientation_EulerAngles::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[21]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[22]);
 }
 // ===================================================================
 
@@ -8584,7 +8908,7 @@ void Orientation_AxisAngles::InternalSwap(Orientation_AxisAngles* PROTOBUF_RESTR
 ::google::protobuf::Metadata Orientation_AxisAngles::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[22]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[23]);
 }
 // ===================================================================
 
@@ -8888,7 +9212,7 @@ void Orientation_Quaternion::InternalSwap(Orientation_Quaternion* PROTOBUF_RESTR
 ::google::protobuf::Metadata Orientation_Quaternion::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[23]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[24]);
 }
 // ===================================================================
 
@@ -9369,7 +9693,7 @@ void Orientation::InternalSwap(Orientation* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata Orientation::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[24]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[25]);
 }
 // ===================================================================
 
@@ -9896,7 +10220,7 @@ void RemoteConfig::InternalSwap(RemoteConfig* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata RemoteConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[25]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[26]);
 }
 // ===================================================================
 
@@ -10112,7 +10436,7 @@ void RemoteAuth_Credentials::InternalSwap(RemoteAuth_Credentials* PROTOBUF_RESTR
 ::google::protobuf::Metadata RemoteAuth_Credentials::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[26]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[27]);
 }
 // ===================================================================
 
@@ -10352,7 +10676,7 @@ void RemoteAuth::InternalSwap(RemoteAuth* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata RemoteAuth::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[27]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[28]);
 }
 // ===================================================================
 
@@ -10700,7 +11024,7 @@ void AgentInfo::InternalSwap(AgentInfo* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata AgentInfo::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[28]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[29]);
 }
 // ===================================================================
 
@@ -10940,7 +11264,7 @@ void ConfigRequest::InternalSwap(ConfigRequest* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata ConfigRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[29]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[30]);
 }
 // ===================================================================
 
@@ -11147,7 +11471,7 @@ void ConfigResponse::InternalSwap(ConfigResponse* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata ConfigResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[30]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[31]);
 }
 // ===================================================================
 
@@ -11337,7 +11661,7 @@ void CertificateRequest::InternalSwap(CertificateRequest* PROTOBUF_RESTRICT othe
 ::google::protobuf::Metadata CertificateRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[31]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[32]);
 }
 // ===================================================================
 
@@ -11586,7 +11910,7 @@ void CertificateResponse::InternalSwap(CertificateResponse* PROTOBUF_RESTRICT ot
 ::google::protobuf::Metadata CertificateResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[32]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[33]);
 }
 // ===================================================================
 
@@ -11806,7 +12130,7 @@ void LogRequest::InternalSwap(LogRequest* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata LogRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[33]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[34]);
 }
 // ===================================================================
 
@@ -11841,7 +12165,7 @@ LogResponse::LogResponse(
 ::google::protobuf::Metadata LogResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[34]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[35]);
 }
 // ===================================================================
 
@@ -12031,7 +12355,7 @@ void NeedsRestartRequest::InternalSwap(NeedsRestartRequest* PROTOBUF_RESTRICT ot
 ::google::protobuf::Metadata NeedsRestartRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[35]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[36]);
 }
 // ===================================================================
 
@@ -12310,7 +12634,7 @@ void NeedsRestartResponse::InternalSwap(NeedsRestartResponse* PROTOBUF_RESTRICT 
 ::google::protobuf::Metadata NeedsRestartResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[36]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[37]);
 }
 // ===================================================================
 
@@ -12320,7 +12644,7 @@ ModuleConfig_EnvEntry_DoNotUse::ModuleConfig_EnvEntry_DoNotUse(::google::protobu
 ::google::protobuf::Metadata ModuleConfig_EnvEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[37]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[38]);
 }
 // ===================================================================
 
@@ -12731,7 +13055,7 @@ void ModuleConfig::InternalSwap(ModuleConfig* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata ModuleConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[38]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[39]);
 }
 // ===================================================================
 
@@ -13061,7 +13385,7 @@ void PackageConfig::InternalSwap(PackageConfig* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata PackageConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[39]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[40]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1

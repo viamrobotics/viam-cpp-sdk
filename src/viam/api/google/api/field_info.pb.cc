@@ -23,9 +23,31 @@ namespace _fl = ::google::protobuf::internal::field_layout;
 namespace google {
 namespace api {
 
+inline constexpr TypeReference::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : type_name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR TypeReference::TypeReference(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct TypeReferenceDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR TypeReferenceDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~TypeReferenceDefaultTypeInternal() {}
+  union {
+    TypeReference _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TypeReferenceDefaultTypeInternal _TypeReference_default_instance_;
+
 inline constexpr FieldInfo::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : format_{static_cast< ::google::api::FieldInfo_Format >(0)},
+      : referenced_types_{},
+        format_{static_cast< ::google::api::FieldInfo_Format >(0)},
         _cached_size_{0} {}
 
 template <typename>
@@ -43,7 +65,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FieldInfoDefaultTypeInternal _FieldInfo_default_instance_;
 }  // namespace api
 }  // namespace google
-static ::_pb::Metadata file_level_metadata_google_2fapi_2ffield_5finfo_2eproto[1];
+static ::_pb::Metadata file_level_metadata_google_2fapi_2ffield_5finfo_2eproto[2];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_google_2fapi_2ffield_5finfo_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_google_2fapi_2ffield_5finfo_2eproto = nullptr;
@@ -58,30 +80,45 @@ const ::uint32_t TableStruct_google_2fapi_2ffield_5finfo_2eproto::offsets[] PROT
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::google::api::FieldInfo, _impl_.format_),
+    PROTOBUF_FIELD_OFFSET(::google::api::FieldInfo, _impl_.referenced_types_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::google::api::TypeReference, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::google::api::TypeReference, _impl_.type_name_),
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::google::api::FieldInfo)},
+        {10, -1, -1, sizeof(::google::api::TypeReference)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
     &::google::api::_FieldInfo_default_instance_._instance,
+    &::google::api::_TypeReference_default_instance_._instance,
 };
 const char descriptor_table_protodef_google_2fapi_2ffield_5finfo_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\033google/api/field_info.proto\022\ngoogle.ap"
-    "i\032 google/protobuf/descriptor.proto\"\224\001\n\t"
+    "i\032 google/protobuf/descriptor.proto\"\332\001\n\t"
     "FieldInfo\0224\n\006format\030\001 \001(\0162\034.google.api.F"
-    "ieldInfo.FormatR\006format\"Q\n\006Format\022\026\n\022FOR"
-    "MAT_UNSPECIFIED\020\000\022\t\n\005UUID4\020\001\022\010\n\004IPV4\020\002\022\010"
-    "\n\004IPV6\020\003\022\020\n\014IPV4_OR_IPV6\020\004:W\n\nfield_info"
-    "\022\035.google.protobuf.FieldOptions\030\314\361\371\212\001 \001("
-    "\0132\025.google.api.FieldInfoR\tfieldInfoB\254\001\n\016"
-    "com.google.apiB\016FieldInfoProtoP\001ZAgoogle"
-    ".golang.org/genproto/googleapis/api/anno"
-    "tations;annotations\242\002\003GAX\252\002\nGoogle.Api\312\002"
-    "\nGoogle\\Api\342\002\026Google\\Api\\GPBMetadata\352\002\013G"
-    "oogle::Apib\006proto3"
+    "ieldInfo.FormatR\006format\022D\n\020referenced_ty"
+    "pes\030\002 \003(\0132\031.google.api.TypeReferenceR\017re"
+    "ferencedTypes\"Q\n\006Format\022\026\n\022FORMAT_UNSPEC"
+    "IFIED\020\000\022\t\n\005UUID4\020\001\022\010\n\004IPV4\020\002\022\010\n\004IPV6\020\003\022\020"
+    "\n\014IPV4_OR_IPV6\020\004\",\n\rTypeReference\022\033\n\ttyp"
+    "e_name\030\001 \001(\tR\010typeName:W\n\nfield_info\022\035.g"
+    "oogle.protobuf.FieldOptions\030\314\361\371\212\001 \001(\0132\025."
+    "google.api.FieldInfoR\tfieldInfoB\254\001\n\016com."
+    "google.apiB\016FieldInfoProtoP\001ZAgoogle.gol"
+    "ang.org/genproto/googleapis/api/annotati"
+    "ons;annotations\242\002\003GAX\252\002\nGoogle.Api\312\002\nGoo"
+    "gle\\Api\342\002\026Google\\Api\\GPBMetadata\352\002\013Googl"
+    "e::Apib\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2ffield_5finfo_2eproto_deps[1] =
     {
@@ -91,13 +128,13 @@ static ::absl::once_flag descriptor_table_google_2fapi_2ffield_5finfo_2eproto_on
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2ffield_5finfo_2eproto = {
     false,
     false,
-    498,
+    614,
     descriptor_table_protodef_google_2fapi_2ffield_5finfo_2eproto,
     "google/api/field_info.proto",
     &descriptor_table_google_2fapi_2ffield_5finfo_2eproto_once,
     descriptor_table_google_2fapi_2ffield_5finfo_2eproto_deps,
     1,
-    1,
+    2,
     schemas,
     file_default_instances,
     TableStruct_google_2fapi_2ffield_5finfo_2eproto::offsets,
@@ -159,15 +196,30 @@ FieldInfo::FieldInfo(::google::protobuf::Arena* arena)
   SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:google.api.FieldInfo)
 }
+inline PROTOBUF_NDEBUG_INLINE FieldInfo::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : referenced_types_{visibility, arena, from.referenced_types_},
+        _cached_size_{0} {}
+
 FieldInfo::FieldInfo(
-    ::google::protobuf::Arena* arena, const FieldInfo& from)
-    : FieldInfo(arena) {
-  MergeFrom(from);
+    ::google::protobuf::Arena* arena,
+    const FieldInfo& from)
+    : ::google::protobuf::Message(arena) {
+  FieldInfo* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.format_ = from._impl_.format_;
+
+  // @@protoc_insertion_point(copy_constructor:google.api.FieldInfo)
 }
 inline PROTOBUF_NDEBUG_INLINE FieldInfo::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : _cached_size_{0} {}
+      : referenced_types_{visibility, arena},
+        _cached_size_{0} {}
 
 inline void FieldInfo::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -190,6 +242,7 @@ PROTOBUF_NOINLINE void FieldInfo::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  _impl_.referenced_types_.Clear();
   _impl_.format_ = 0;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -202,20 +255,23 @@ const char* FieldInfo::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 0, 2> FieldInfo::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 1, 0, 2> FieldInfo::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
+    2, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
+    4294967292,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
     &_FieldInfo_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
+    // repeated .google.api.TypeReference referenced_types = 2 [json_name = "referencedTypes"];
+    {::_pbi::TcParser::FastMtR1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(FieldInfo, _impl_.referenced_types_)}},
     // .google.api.FieldInfo.Format format = 1 [json_name = "format"];
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(FieldInfo, _impl_.format_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(FieldInfo, _impl_.format_)}},
@@ -225,9 +281,12 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> FieldInfo::_table_ = {
     // .google.api.FieldInfo.Format format = 1 [json_name = "format"];
     {PROTOBUF_FIELD_OFFSET(FieldInfo, _impl_.format_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
-  }},
-  // no aux_entries
-  {{
+    // repeated .google.api.TypeReference referenced_types = 2 [json_name = "referencedTypes"];
+    {PROTOBUF_FIELD_OFFSET(FieldInfo, _impl_.referenced_types_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::google::api::TypeReference>()},
+  }}, {{
   }},
 };
 
@@ -243,6 +302,14 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> FieldInfo::_table_ = {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
         1, this->_internal_format(), target);
+  }
+
+  // repeated .google.api.TypeReference referenced_types = 2 [json_name = "referencedTypes"];
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_referenced_types_size()); i < n; i++) {
+    const auto& repfield = this->_internal_referenced_types().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
+        InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -262,6 +329,12 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> FieldInfo::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  // repeated .google.api.TypeReference referenced_types = 2 [json_name = "referencedTypes"];
+  total_size += 1UL * this->_internal_referenced_types_size();
+  for (const auto& msg : this->_internal_referenced_types()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  }
   // .google.api.FieldInfo.Format format = 1 [json_name = "format"];
   if (this->_internal_format() != 0) {
     total_size += 1 +
@@ -287,6 +360,8 @@ void FieldInfo::MergeImpl(::google::protobuf::Message& to_msg, const ::google::p
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  _this->_internal_mutable_referenced_types()->MergeFrom(
+      from._internal_referenced_types());
   if (from._internal_format() != 0) {
     _this->_internal_set_format(from._internal_format());
   }
@@ -310,6 +385,7 @@ PROTOBUF_NOINLINE bool FieldInfo::IsInitialized() const {
 void FieldInfo::InternalSwap(FieldInfo* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.referenced_types_.InternalSwap(&other->_impl_.referenced_types_);
   swap(_impl_.format_, other->_impl_.format_);
 }
 
@@ -317,6 +393,196 @@ void FieldInfo::InternalSwap(FieldInfo* PROTOBUF_RESTRICT other) {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2fapi_2ffield_5finfo_2eproto_getter, &descriptor_table_google_2fapi_2ffield_5finfo_2eproto_once,
       file_level_metadata_google_2fapi_2ffield_5finfo_2eproto[0]);
+}
+// ===================================================================
+
+class TypeReference::_Internal {
+ public:
+};
+
+TypeReference::TypeReference(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:google.api.TypeReference)
+}
+inline PROTOBUF_NDEBUG_INLINE TypeReference::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : type_name_(arena, from.type_name_),
+        _cached_size_{0} {}
+
+TypeReference::TypeReference(
+    ::google::protobuf::Arena* arena,
+    const TypeReference& from)
+    : ::google::protobuf::Message(arena) {
+  TypeReference* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:google.api.TypeReference)
+}
+inline PROTOBUF_NDEBUG_INLINE TypeReference::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : type_name_(arena),
+        _cached_size_{0} {}
+
+inline void TypeReference::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+TypeReference::~TypeReference() {
+  // @@protoc_insertion_point(destructor:google.api.TypeReference)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void TypeReference::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.type_name_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void TypeReference::Clear() {
+// @@protoc_insertion_point(message_clear_start:google.api.TypeReference)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.type_name_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* TypeReference::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 42, 2> TypeReference::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_TypeReference_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string type_name = 1 [json_name = "typeName"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(TypeReference, _impl_.type_name_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string type_name = 1 [json_name = "typeName"];
+    {PROTOBUF_FIELD_OFFSET(TypeReference, _impl_.type_name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\30\11\0\0\0\0\0\0"
+    "google.api.TypeReference"
+    "type_name"
+  }},
+};
+
+::uint8_t* TypeReference::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:google.api.TypeReference)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string type_name = 1 [json_name = "typeName"];
+  if (!this->_internal_type_name().empty()) {
+    const std::string& _s = this->_internal_type_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "google.api.TypeReference.type_name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:google.api.TypeReference)
+  return target;
+}
+
+::size_t TypeReference::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:google.api.TypeReference)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string type_name = 1 [json_name = "typeName"];
+  if (!this->_internal_type_name().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_type_name());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData TypeReference::_class_data_ = {
+    TypeReference::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* TypeReference::GetClassData() const {
+  return &_class_data_;
+}
+
+void TypeReference::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<TypeReference*>(&to_msg);
+  auto& from = static_cast<const TypeReference&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.TypeReference)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_type_name().empty()) {
+    _this->_internal_set_type_name(from._internal_type_name());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void TypeReference::CopyFrom(const TypeReference& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:google.api.TypeReference)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool TypeReference::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* TypeReference::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void TypeReference::InternalSwap(TypeReference* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.type_name_, &other->_impl_.type_name_, arena);
+}
+
+::google::protobuf::Metadata TypeReference::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_google_2fapi_2ffield_5finfo_2eproto_getter, &descriptor_table_google_2fapi_2ffield_5finfo_2eproto_once,
+      file_level_metadata_google_2fapi_2ffield_5finfo_2eproto[1]);
 }
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::FieldOptions,
     ::google::protobuf::internal::MessageTypeTraits< ::google::api::FieldInfo >, 11, false>
