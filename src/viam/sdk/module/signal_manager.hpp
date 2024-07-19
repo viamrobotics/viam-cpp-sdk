@@ -4,8 +4,6 @@
 
 #include <functional>
 
-#include <boost/hana/map.hpp>
-
 namespace viam {
 namespace sdk {
 
