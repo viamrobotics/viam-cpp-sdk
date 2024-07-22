@@ -47,7 +47,7 @@ class SignalManager {
     };
 
     /// @brief Creates a new SignalManager which waits until SIGINT or SIGTERM are received.
-    explicit SignalManager() : SignalManager({}) {}
+    explicit SignalManager() : SignalManager(signal_map{}) {}
 
     /// @brief Creates a SignalManager with blocking set and callback behavior defined by sig_map.
     SignalManager(signal_map&& sig_map);
