@@ -53,7 +53,7 @@ void SignalManager::for_each_entry(Callable&& c) {
     namespace mp11 = boost::mp11;
     mp11::tuple_for_each(
         mp11::tuple_transform(
-            [this](auto ptr) -> const auto& { return signal_map_.*ptr; },pmd_tuple),
+            [this](auto ptr) -> const auto& { return signal_map_.*ptr; }, pmd_tuple),
         std::forward<Callable>(c));
 }
 
