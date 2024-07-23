@@ -50,11 +50,11 @@ find_package(viam-cpp-sdk CONFIG REQUIRED viamsdk)
 # files into executables, but as parts of separate projects rather than
 # being built-in to the SDK build.
 add_executable(example_dial
-  ../../dial/example_dial.cpp
+  ${PROJECT_SOURCE_DIR}/../../dial/example_dial.cpp
 )
 
 add_executable(example_module
-  ../../modules/example_module.cpp)
+  ${PROJECT_SOURCE_DIR}/../../modules/simple/main.cpp)
 
 # Declaring the link dependency on the viam-cpp-sdk::viamcpp library
 # will automatically wire up the required include paths and transitive

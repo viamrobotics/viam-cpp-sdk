@@ -12,7 +12,7 @@ example_dial.o: ../../dial/example_dial.cpp
 example_dial: example_dial.o
 	$(CXX) $(LINKFLAGS) -o $@ $^
 
-example_module.o: ../../modules/example_module.cpp
+example_module.o: ../../modules/simple/main.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $^
 
 example_module: example_module.o
