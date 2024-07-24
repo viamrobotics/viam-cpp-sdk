@@ -1461,6 +1461,7 @@ class UpdateRegistryItemRequest final :
   enum : int {
     kItemIdFieldNumber = 1,
     kDescriptionFieldNumber = 3,
+    kUrlFieldNumber = 5,
     kTypeFieldNumber = 2,
     kVisibilityFieldNumber = 4,
   };
@@ -1496,6 +1497,23 @@ class UpdateRegistryItemRequest final :
   std::string* _internal_mutable_description();
 
   public:
+  // optional string url = 5 [json_name = "url"];
+  bool has_url() const;
+  void clear_url() ;
+  const std::string& url() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_url(Arg_&& arg, Args_... args);
+  std::string* mutable_url();
+  PROTOBUF_NODISCARD std::string* release_url();
+  void set_allocated_url(std::string* value);
+
+  private:
+  const std::string& _internal_url() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_url(
+      const std::string& value);
+  std::string* _internal_mutable_url();
+
+  public:
   // .viam.app.packages.v1.PackageType type = 2 [json_name = "type"];
   void clear_type() ;
   ::viam::app::packages::v1::PackageType type() const;
@@ -1522,8 +1540,8 @@ class UpdateRegistryItemRequest final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 4, 0,
-      64, 2>
+      3, 5, 0,
+      67, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1539,11 +1557,13 @@ class UpdateRegistryItemRequest final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr item_id_;
     ::google::protobuf::internal::ArenaStringPtr description_;
+    ::google::protobuf::internal::ArenaStringPtr url_;
     int type_;
     int visibility_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -52960,6 +52980,77 @@ inline void UpdateRegistryItemRequest::_internal_set_visibility(::viam::app::v1:
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.visibility_ = value;
+}
+
+// optional string url = 5 [json_name = "url"];
+inline bool UpdateRegistryItemRequest::has_url() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline void UpdateRegistryItemRequest::clear_url() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.url_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& UpdateRegistryItemRequest::url() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateRegistryItemRequest.url)
+  return _internal_url();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void UpdateRegistryItemRequest::set_url(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.url_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateRegistryItemRequest.url)
+}
+inline std::string* UpdateRegistryItemRequest::mutable_url() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_url();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateRegistryItemRequest.url)
+  return _s;
+}
+inline const std::string& UpdateRegistryItemRequest::_internal_url() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.url_.Get();
+}
+inline void UpdateRegistryItemRequest::_internal_set_url(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.url_.Set(value, GetArena());
+}
+inline std::string* UpdateRegistryItemRequest::_internal_mutable_url() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.url_.Mutable( GetArena());
+}
+inline std::string* UpdateRegistryItemRequest::release_url() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateRegistryItemRequest.url)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.url_.Release();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.url_.Set("", GetArena());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return released;
+}
+inline void UpdateRegistryItemRequest::set_allocated_url(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.url_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.url_.IsDefault()) {
+          _impl_.url_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateRegistryItemRequest.url)
 }
 
 // -------------------------------------------------------------------
