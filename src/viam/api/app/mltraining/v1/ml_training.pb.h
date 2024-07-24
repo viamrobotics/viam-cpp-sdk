@@ -76,6 +76,12 @@ extern DeleteCompletedTrainingJobRequestDefaultTypeInternal _DeleteCompletedTrai
 class DeleteCompletedTrainingJobResponse;
 struct DeleteCompletedTrainingJobResponseDefaultTypeInternal;
 extern DeleteCompletedTrainingJobResponseDefaultTypeInternal _DeleteCompletedTrainingJobResponse_default_instance_;
+class GetTrainingJobLogsRequest;
+struct GetTrainingJobLogsRequestDefaultTypeInternal;
+extern GetTrainingJobLogsRequestDefaultTypeInternal _GetTrainingJobLogsRequest_default_instance_;
+class GetTrainingJobLogsResponse;
+struct GetTrainingJobLogsResponseDefaultTypeInternal;
+extern GetTrainingJobLogsResponseDefaultTypeInternal _GetTrainingJobLogsResponse_default_instance_;
 class GetTrainingJobRequest;
 struct GetTrainingJobRequestDefaultTypeInternal;
 extern GetTrainingJobRequestDefaultTypeInternal _GetTrainingJobRequest_default_instance_;
@@ -100,6 +106,9 @@ extern SubmitTrainingJobRequestDefaultTypeInternal _SubmitTrainingJobRequest_def
 class SubmitTrainingJobResponse;
 struct SubmitTrainingJobResponseDefaultTypeInternal;
 extern SubmitTrainingJobResponseDefaultTypeInternal _SubmitTrainingJobResponse_default_instance_;
+class TrainingJobLogEntry;
+struct TrainingJobLogEntryDefaultTypeInternal;
+extern TrainingJobLogEntryDefaultTypeInternal _TrainingJobLogEntry_default_instance_;
 class TrainingJobMetadata;
 struct TrainingJobMetadataDefaultTypeInternal;
 extern TrainingJobMetadataDefaultTypeInternal _TrainingJobMetadata_default_instance_;
@@ -1515,6 +1524,207 @@ class GetTrainingJobRequest final :
   friend struct ::TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto;
 };// -------------------------------------------------------------------
 
+class GetTrainingJobLogsRequest final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.app.mltraining.v1.GetTrainingJobLogsRequest) */ {
+ public:
+  inline GetTrainingJobLogsRequest() : GetTrainingJobLogsRequest(nullptr) {}
+  ~GetTrainingJobLogsRequest() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR GetTrainingJobLogsRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline GetTrainingJobLogsRequest(const GetTrainingJobLogsRequest& from)
+      : GetTrainingJobLogsRequest(nullptr, from) {}
+  GetTrainingJobLogsRequest(GetTrainingJobLogsRequest&& from) noexcept
+    : GetTrainingJobLogsRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetTrainingJobLogsRequest& operator=(const GetTrainingJobLogsRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetTrainingJobLogsRequest& operator=(GetTrainingJobLogsRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetTrainingJobLogsRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetTrainingJobLogsRequest* internal_default_instance() {
+    return reinterpret_cast<const GetTrainingJobLogsRequest*>(
+               &_GetTrainingJobLogsRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    14;
+
+  friend void swap(GetTrainingJobLogsRequest& a, GetTrainingJobLogsRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetTrainingJobLogsRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetTrainingJobLogsRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetTrainingJobLogsRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetTrainingJobLogsRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const GetTrainingJobLogsRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const GetTrainingJobLogsRequest& from) {
+    GetTrainingJobLogsRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(GetTrainingJobLogsRequest* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.app.mltraining.v1.GetTrainingJobLogsRequest";
+  }
+  protected:
+  explicit GetTrainingJobLogsRequest(::google::protobuf::Arena* arena);
+  GetTrainingJobLogsRequest(::google::protobuf::Arena* arena, const GetTrainingJobLogsRequest& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIdFieldNumber = 1,
+    kPageTokenFieldNumber = 2,
+  };
+  // string id = 1 [json_name = "id"];
+  void clear_id() ;
+  const std::string& id() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_id(Arg_&& arg, Args_... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* value);
+
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(
+      const std::string& value);
+  std::string* _internal_mutable_id();
+
+  public:
+  // optional string page_token = 2 [json_name = "pageToken"];
+  bool has_page_token() const;
+  void clear_page_token() ;
+  const std::string& page_token() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_page_token(Arg_&& arg, Args_... args);
+  std::string* mutable_page_token();
+  PROTOBUF_NODISCARD std::string* release_page_token();
+  void set_allocated_page_token(std::string* value);
+
+  private:
+  const std::string& _internal_page_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_page_token(
+      const std::string& value);
+  std::string* _internal_mutable_page_token();
+
+  public:
+  // @@protoc_insertion_point(class_scope:viam.app.mltraining.v1.GetTrainingJobLogsRequest)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      69, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr id_;
+    ::google::protobuf::internal::ArenaStringPtr page_token_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto;
+};// -------------------------------------------------------------------
+
 class DeleteCompletedTrainingJobResponse final :
     public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.mltraining.v1.DeleteCompletedTrainingJobResponse) */ {
  public:
@@ -2149,6 +2359,223 @@ class CancelTrainingJobRequest final :
   friend struct ::TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto;
 };// -------------------------------------------------------------------
 
+class TrainingJobLogEntry final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.app.mltraining.v1.TrainingJobLogEntry) */ {
+ public:
+  inline TrainingJobLogEntry() : TrainingJobLogEntry(nullptr) {}
+  ~TrainingJobLogEntry() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR TrainingJobLogEntry(::google::protobuf::internal::ConstantInitialized);
+
+  inline TrainingJobLogEntry(const TrainingJobLogEntry& from)
+      : TrainingJobLogEntry(nullptr, from) {}
+  TrainingJobLogEntry(TrainingJobLogEntry&& from) noexcept
+    : TrainingJobLogEntry() {
+    *this = ::std::move(from);
+  }
+
+  inline TrainingJobLogEntry& operator=(const TrainingJobLogEntry& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TrainingJobLogEntry& operator=(TrainingJobLogEntry&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TrainingJobLogEntry& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TrainingJobLogEntry* internal_default_instance() {
+    return reinterpret_cast<const TrainingJobLogEntry*>(
+               &_TrainingJobLogEntry_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    13;
+
+  friend void swap(TrainingJobLogEntry& a, TrainingJobLogEntry& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TrainingJobLogEntry* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TrainingJobLogEntry* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  TrainingJobLogEntry* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<TrainingJobLogEntry>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const TrainingJobLogEntry& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const TrainingJobLogEntry& from) {
+    TrainingJobLogEntry::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(TrainingJobLogEntry* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.app.mltraining.v1.TrainingJobLogEntry";
+  }
+  protected:
+  explicit TrainingJobLogEntry(::google::protobuf::Arena* arena);
+  TrainingJobLogEntry(::google::protobuf::Arena* arena, const TrainingJobLogEntry& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLevelFieldNumber = 1,
+    kMessageFieldNumber = 3,
+    kTimeFieldNumber = 2,
+  };
+  // string level = 1 [json_name = "level"];
+  void clear_level() ;
+  const std::string& level() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_level(Arg_&& arg, Args_... args);
+  std::string* mutable_level();
+  PROTOBUF_NODISCARD std::string* release_level();
+  void set_allocated_level(std::string* value);
+
+  private:
+  const std::string& _internal_level() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_level(
+      const std::string& value);
+  std::string* _internal_mutable_level();
+
+  public:
+  // string message = 3 [json_name = "message"];
+  void clear_message() ;
+  const std::string& message() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_message(Arg_&& arg, Args_... args);
+  std::string* mutable_message();
+  PROTOBUF_NODISCARD std::string* release_message();
+  void set_allocated_message(std::string* value);
+
+  private:
+  const std::string& _internal_message() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_message(
+      const std::string& value);
+  std::string* _internal_mutable_message();
+
+  public:
+  // .google.protobuf.Timestamp time = 2 [json_name = "time"];
+  bool has_time() const;
+  void clear_time() ;
+  const ::google::protobuf::Timestamp& time() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_time();
+  ::google::protobuf::Timestamp* mutable_time();
+  void set_allocated_time(::google::protobuf::Timestamp* value);
+  void unsafe_arena_set_allocated_time(::google::protobuf::Timestamp* value);
+  ::google::protobuf::Timestamp* unsafe_arena_release_time();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_time() const;
+  ::google::protobuf::Timestamp* _internal_mutable_time();
+
+  public:
+  // @@protoc_insertion_point(class_scope:viam.app.mltraining.v1.TrainingJobLogEntry)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 1,
+      63, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr level_;
+    ::google::protobuf::internal::ArenaStringPtr message_;
+    ::google::protobuf::Timestamp* time_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto;
+};// -------------------------------------------------------------------
+
 class TrainingJobMetadata final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.app.mltraining.v1.TrainingJobMetadata) */ {
  public:
@@ -2614,6 +3041,207 @@ class TrainingJobMetadata final :
     int model_type_;
     int model_framework_;
     bool is_custom_job_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto;
+};// -------------------------------------------------------------------
+
+class GetTrainingJobLogsResponse final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.app.mltraining.v1.GetTrainingJobLogsResponse) */ {
+ public:
+  inline GetTrainingJobLogsResponse() : GetTrainingJobLogsResponse(nullptr) {}
+  ~GetTrainingJobLogsResponse() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR GetTrainingJobLogsResponse(::google::protobuf::internal::ConstantInitialized);
+
+  inline GetTrainingJobLogsResponse(const GetTrainingJobLogsResponse& from)
+      : GetTrainingJobLogsResponse(nullptr, from) {}
+  GetTrainingJobLogsResponse(GetTrainingJobLogsResponse&& from) noexcept
+    : GetTrainingJobLogsResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetTrainingJobLogsResponse& operator=(const GetTrainingJobLogsResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetTrainingJobLogsResponse& operator=(GetTrainingJobLogsResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetTrainingJobLogsResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetTrainingJobLogsResponse* internal_default_instance() {
+    return reinterpret_cast<const GetTrainingJobLogsResponse*>(
+               &_GetTrainingJobLogsResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    15;
+
+  friend void swap(GetTrainingJobLogsResponse& a, GetTrainingJobLogsResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetTrainingJobLogsResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetTrainingJobLogsResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetTrainingJobLogsResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetTrainingJobLogsResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const GetTrainingJobLogsResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const GetTrainingJobLogsResponse& from) {
+    GetTrainingJobLogsResponse::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(GetTrainingJobLogsResponse* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.app.mltraining.v1.GetTrainingJobLogsResponse";
+  }
+  protected:
+  explicit GetTrainingJobLogsResponse(::google::protobuf::Arena* arena);
+  GetTrainingJobLogsResponse(::google::protobuf::Arena* arena, const GetTrainingJobLogsResponse& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLogsFieldNumber = 1,
+    kNextPageTokenFieldNumber = 2,
+  };
+  // repeated .viam.app.mltraining.v1.TrainingJobLogEntry logs = 1 [json_name = "logs"];
+  int logs_size() const;
+  private:
+  int _internal_logs_size() const;
+
+  public:
+  void clear_logs() ;
+  ::viam::app::mltraining::v1::TrainingJobLogEntry* mutable_logs(int index);
+  ::google::protobuf::RepeatedPtrField< ::viam::app::mltraining::v1::TrainingJobLogEntry >*
+      mutable_logs();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::viam::app::mltraining::v1::TrainingJobLogEntry>& _internal_logs() const;
+  ::google::protobuf::RepeatedPtrField<::viam::app::mltraining::v1::TrainingJobLogEntry>* _internal_mutable_logs();
+  public:
+  const ::viam::app::mltraining::v1::TrainingJobLogEntry& logs(int index) const;
+  ::viam::app::mltraining::v1::TrainingJobLogEntry* add_logs();
+  const ::google::protobuf::RepeatedPtrField< ::viam::app::mltraining::v1::TrainingJobLogEntry >&
+      logs() const;
+  // string next_page_token = 2 [json_name = "nextPageToken"];
+  void clear_next_page_token() ;
+  const std::string& next_page_token() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_next_page_token(Arg_&& arg, Args_... args);
+  std::string* mutable_next_page_token();
+  PROTOBUF_NODISCARD std::string* release_next_page_token();
+  void set_allocated_next_page_token(std::string* value);
+
+  private:
+  const std::string& _internal_next_page_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_next_page_token(
+      const std::string& value);
+  std::string* _internal_mutable_next_page_token();
+
+  public:
+  // @@protoc_insertion_point(class_scope:viam.app.mltraining.v1.GetTrainingJobLogsResponse)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 1,
+      73, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::RepeatedPtrField< ::viam::app::mltraining::v1::TrainingJobLogEntry > logs_;
+    ::google::protobuf::internal::ArenaStringPtr next_page_token_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -5259,6 +5887,441 @@ inline void DeleteCompletedTrainingJobRequest::set_allocated_id(std::string* val
 // -------------------------------------------------------------------
 
 // DeleteCompletedTrainingJobResponse
+
+// -------------------------------------------------------------------
+
+// TrainingJobLogEntry
+
+// string level = 1 [json_name = "level"];
+inline void TrainingJobLogEntry::clear_level() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.level_.ClearToEmpty();
+}
+inline const std::string& TrainingJobLogEntry::level() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.mltraining.v1.TrainingJobLogEntry.level)
+  return _internal_level();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void TrainingJobLogEntry::set_level(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.level_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.app.mltraining.v1.TrainingJobLogEntry.level)
+}
+inline std::string* TrainingJobLogEntry::mutable_level() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_level();
+  // @@protoc_insertion_point(field_mutable:viam.app.mltraining.v1.TrainingJobLogEntry.level)
+  return _s;
+}
+inline const std::string& TrainingJobLogEntry::_internal_level() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.level_.Get();
+}
+inline void TrainingJobLogEntry::_internal_set_level(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.level_.Set(value, GetArena());
+}
+inline std::string* TrainingJobLogEntry::_internal_mutable_level() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.level_.Mutable( GetArena());
+}
+inline std::string* TrainingJobLogEntry::release_level() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.mltraining.v1.TrainingJobLogEntry.level)
+  return _impl_.level_.Release();
+}
+inline void TrainingJobLogEntry::set_allocated_level(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.level_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.level_.IsDefault()) {
+          _impl_.level_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.mltraining.v1.TrainingJobLogEntry.level)
+}
+
+// .google.protobuf.Timestamp time = 2 [json_name = "time"];
+inline bool TrainingJobLogEntry::has_time() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.time_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Timestamp& TrainingJobLogEntry::_internal_time() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::google::protobuf::Timestamp* p = _impl_.time_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
+}
+inline const ::google::protobuf::Timestamp& TrainingJobLogEntry::time() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.mltraining.v1.TrainingJobLogEntry.time)
+  return _internal_time();
+}
+inline void TrainingJobLogEntry::unsafe_arena_set_allocated_time(::google::protobuf::Timestamp* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.time_);
+  }
+  _impl_.time_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.mltraining.v1.TrainingJobLogEntry.time)
+}
+inline ::google::protobuf::Timestamp* TrainingJobLogEntry::release_time() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::protobuf::Timestamp* released = _impl_.time_;
+  _impl_.time_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::google::protobuf::Timestamp* TrainingJobLogEntry::unsafe_arena_release_time() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.mltraining.v1.TrainingJobLogEntry.time)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::protobuf::Timestamp* temp = _impl_.time_;
+  _impl_.time_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Timestamp* TrainingJobLogEntry::_internal_mutable_time() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.time_ == nullptr) {
+    auto* p = CreateMaybeMessage<::google::protobuf::Timestamp>(GetArena());
+    _impl_.time_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+  }
+  return _impl_.time_;
+}
+inline ::google::protobuf::Timestamp* TrainingJobLogEntry::mutable_time() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_time();
+  // @@protoc_insertion_point(field_mutable:viam.app.mltraining.v1.TrainingJobLogEntry.time)
+  return _msg;
+}
+inline void TrainingJobLogEntry::set_allocated_time(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.time_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.time_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:viam.app.mltraining.v1.TrainingJobLogEntry.time)
+}
+
+// string message = 3 [json_name = "message"];
+inline void TrainingJobLogEntry::clear_message() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.message_.ClearToEmpty();
+}
+inline const std::string& TrainingJobLogEntry::message() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.mltraining.v1.TrainingJobLogEntry.message)
+  return _internal_message();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void TrainingJobLogEntry::set_message(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.message_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.app.mltraining.v1.TrainingJobLogEntry.message)
+}
+inline std::string* TrainingJobLogEntry::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_message();
+  // @@protoc_insertion_point(field_mutable:viam.app.mltraining.v1.TrainingJobLogEntry.message)
+  return _s;
+}
+inline const std::string& TrainingJobLogEntry::_internal_message() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.message_.Get();
+}
+inline void TrainingJobLogEntry::_internal_set_message(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.message_.Set(value, GetArena());
+}
+inline std::string* TrainingJobLogEntry::_internal_mutable_message() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.message_.Mutable( GetArena());
+}
+inline std::string* TrainingJobLogEntry::release_message() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.mltraining.v1.TrainingJobLogEntry.message)
+  return _impl_.message_.Release();
+}
+inline void TrainingJobLogEntry::set_allocated_message(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.message_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.message_.IsDefault()) {
+          _impl_.message_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.mltraining.v1.TrainingJobLogEntry.message)
+}
+
+// -------------------------------------------------------------------
+
+// GetTrainingJobLogsRequest
+
+// string id = 1 [json_name = "id"];
+inline void GetTrainingJobLogsRequest::clear_id() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.id_.ClearToEmpty();
+}
+inline const std::string& GetTrainingJobLogsRequest::id() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.mltraining.v1.GetTrainingJobLogsRequest.id)
+  return _internal_id();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void GetTrainingJobLogsRequest::set_id(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.app.mltraining.v1.GetTrainingJobLogsRequest.id)
+}
+inline std::string* GetTrainingJobLogsRequest::mutable_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.mltraining.v1.GetTrainingJobLogsRequest.id)
+  return _s;
+}
+inline const std::string& GetTrainingJobLogsRequest::_internal_id() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.id_.Get();
+}
+inline void GetTrainingJobLogsRequest::_internal_set_id(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.id_.Set(value, GetArena());
+}
+inline std::string* GetTrainingJobLogsRequest::_internal_mutable_id() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.id_.Mutable( GetArena());
+}
+inline std::string* GetTrainingJobLogsRequest::release_id() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.mltraining.v1.GetTrainingJobLogsRequest.id)
+  return _impl_.id_.Release();
+}
+inline void GetTrainingJobLogsRequest::set_allocated_id(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.id_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.id_.IsDefault()) {
+          _impl_.id_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.mltraining.v1.GetTrainingJobLogsRequest.id)
+}
+
+// optional string page_token = 2 [json_name = "pageToken"];
+inline bool GetTrainingJobLogsRequest::has_page_token() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline void GetTrainingJobLogsRequest::clear_page_token() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.page_token_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& GetTrainingJobLogsRequest::page_token() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.mltraining.v1.GetTrainingJobLogsRequest.page_token)
+  return _internal_page_token();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void GetTrainingJobLogsRequest::set_page_token(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.page_token_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.app.mltraining.v1.GetTrainingJobLogsRequest.page_token)
+}
+inline std::string* GetTrainingJobLogsRequest::mutable_page_token() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_page_token();
+  // @@protoc_insertion_point(field_mutable:viam.app.mltraining.v1.GetTrainingJobLogsRequest.page_token)
+  return _s;
+}
+inline const std::string& GetTrainingJobLogsRequest::_internal_page_token() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.page_token_.Get();
+}
+inline void GetTrainingJobLogsRequest::_internal_set_page_token(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.page_token_.Set(value, GetArena());
+}
+inline std::string* GetTrainingJobLogsRequest::_internal_mutable_page_token() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.page_token_.Mutable( GetArena());
+}
+inline std::string* GetTrainingJobLogsRequest::release_page_token() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.mltraining.v1.GetTrainingJobLogsRequest.page_token)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.page_token_.Release();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.page_token_.Set("", GetArena());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return released;
+}
+inline void GetTrainingJobLogsRequest::set_allocated_page_token(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.page_token_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.page_token_.IsDefault()) {
+          _impl_.page_token_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.mltraining.v1.GetTrainingJobLogsRequest.page_token)
+}
+
+// -------------------------------------------------------------------
+
+// GetTrainingJobLogsResponse
+
+// repeated .viam.app.mltraining.v1.TrainingJobLogEntry logs = 1 [json_name = "logs"];
+inline int GetTrainingJobLogsResponse::_internal_logs_size() const {
+  return _internal_logs().size();
+}
+inline int GetTrainingJobLogsResponse::logs_size() const {
+  return _internal_logs_size();
+}
+inline void GetTrainingJobLogsResponse::clear_logs() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.logs_.Clear();
+}
+inline ::viam::app::mltraining::v1::TrainingJobLogEntry* GetTrainingJobLogsResponse::mutable_logs(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:viam.app.mltraining.v1.GetTrainingJobLogsResponse.logs)
+  return _internal_mutable_logs()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::viam::app::mltraining::v1::TrainingJobLogEntry>* GetTrainingJobLogsResponse::mutable_logs()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.mltraining.v1.GetTrainingJobLogsResponse.logs)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_logs();
+}
+inline const ::viam::app::mltraining::v1::TrainingJobLogEntry& GetTrainingJobLogsResponse::logs(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.mltraining.v1.GetTrainingJobLogsResponse.logs)
+  return _internal_logs().Get(index);
+}
+inline ::viam::app::mltraining::v1::TrainingJobLogEntry* GetTrainingJobLogsResponse::add_logs() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::viam::app::mltraining::v1::TrainingJobLogEntry* _add = _internal_mutable_logs()->Add();
+  // @@protoc_insertion_point(field_add:viam.app.mltraining.v1.GetTrainingJobLogsResponse.logs)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::viam::app::mltraining::v1::TrainingJobLogEntry>& GetTrainingJobLogsResponse::logs() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:viam.app.mltraining.v1.GetTrainingJobLogsResponse.logs)
+  return _internal_logs();
+}
+inline const ::google::protobuf::RepeatedPtrField<::viam::app::mltraining::v1::TrainingJobLogEntry>&
+GetTrainingJobLogsResponse::_internal_logs() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.logs_;
+}
+inline ::google::protobuf::RepeatedPtrField<::viam::app::mltraining::v1::TrainingJobLogEntry>*
+GetTrainingJobLogsResponse::_internal_mutable_logs() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.logs_;
+}
+
+// string next_page_token = 2 [json_name = "nextPageToken"];
+inline void GetTrainingJobLogsResponse::clear_next_page_token() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.next_page_token_.ClearToEmpty();
+}
+inline const std::string& GetTrainingJobLogsResponse::next_page_token() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.mltraining.v1.GetTrainingJobLogsResponse.next_page_token)
+  return _internal_next_page_token();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void GetTrainingJobLogsResponse::set_next_page_token(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.next_page_token_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.app.mltraining.v1.GetTrainingJobLogsResponse.next_page_token)
+}
+inline std::string* GetTrainingJobLogsResponse::mutable_next_page_token() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_next_page_token();
+  // @@protoc_insertion_point(field_mutable:viam.app.mltraining.v1.GetTrainingJobLogsResponse.next_page_token)
+  return _s;
+}
+inline const std::string& GetTrainingJobLogsResponse::_internal_next_page_token() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.next_page_token_.Get();
+}
+inline void GetTrainingJobLogsResponse::_internal_set_next_page_token(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.next_page_token_.Set(value, GetArena());
+}
+inline std::string* GetTrainingJobLogsResponse::_internal_mutable_next_page_token() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.next_page_token_.Mutable( GetArena());
+}
+inline std::string* GetTrainingJobLogsResponse::release_next_page_token() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.mltraining.v1.GetTrainingJobLogsResponse.next_page_token)
+  return _impl_.next_page_token_.Release();
+}
+inline void GetTrainingJobLogsResponse::set_allocated_next_page_token(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.next_page_token_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.next_page_token_.IsDefault()) {
+          _impl_.next_page_token_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.mltraining.v1.GetTrainingJobLogsResponse.next_page_token)
+}
 
 #ifdef __GNUC__
 #pragma GCC diagnostic pop
