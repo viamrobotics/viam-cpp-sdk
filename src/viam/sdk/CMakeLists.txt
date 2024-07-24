@@ -20,7 +20,7 @@ target_include_directories(viamsdk
 )
 
 # Configure the SDK version file
-set(VIAMCPPSDK_API_PROTO_LABEL "v0.1.325")
+set(VIAMCPPSDK_API_PROTO_LABEL "v0.1.327")
 set(VIAMCPPSDK_SDK_VERSION ${CMAKE_PROJECT_VERSION})
 configure_file(common/version.cpp.in common/version.cpp @ONLY)
 
