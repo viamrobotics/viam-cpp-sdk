@@ -1,4 +1,4 @@
-#include <viam/sdk/common/version.hpp>
+#include <viam/sdk/common/private/version.hpp>
 
 namespace viam {
 namespace sdk {
