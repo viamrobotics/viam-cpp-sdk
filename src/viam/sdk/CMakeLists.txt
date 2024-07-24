@@ -21,7 +21,7 @@ target_include_directories(viamsdk
 
 # Configure the SDK version file
 set(VIAMCPPSDK_API_PROTO_LABEL "v0.1.327")
-configure_file(common/version.cpp.in common/version.cpp @ONLY)
+configure_file(common/private/version.cpp.in common/private/version.cpp @ONLY)
 
 
 # Set compile and link options based on arguments
