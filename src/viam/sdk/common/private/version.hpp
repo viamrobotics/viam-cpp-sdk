@@ -3,7 +3,7 @@
 namespace viam {
 namespace sdk {
 
-extern const char* const k_version;
+extern const char k_version[];
 
 }  // namespace sdk
 }  // namespace viam

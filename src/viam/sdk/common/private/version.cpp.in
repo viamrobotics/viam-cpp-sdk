@@ -3,7 +3,7 @@
 namespace viam {
 namespace sdk {
 
-const char* const k_version = "cpp;@VIAMCPPSDK_SDK_VERSION@;@VIAMCPPSDK_API_PROTO_LABEL@";
+constexpr char k_version[] = "cpp;@CMAKE_PROJECT_VERSION@;@VIAMCPPSDK_API_PROTO_LABEL@";
 
 }  // namespace sdk
 }  // namespace viam

@@ -21,7 +21,6 @@ target_include_directories(viamsdk
 
 # Configure the SDK version file
 set(VIAMCPPSDK_API_PROTO_LABEL "v0.1.327")
-set(VIAMCPPSDK_SDK_VERSION ${CMAKE_PROJECT_VERSION})
 configure_file(common/version.cpp.in common/version.cpp @ONLY)
 
 
@@ -45,10 +44,10 @@ target_sources(viamsdk
     common/exception.cpp
     common/linear_algebra.cpp
     common/pose.cpp
+    common/private/version.cpp
     common/proto_type.cpp
     common/service_helper.cpp
     common/utils.cpp
-    common/version.cpp
     common/world_state.cpp
     components/arm.cpp
     components/base.cpp
@@ -136,7 +135,6 @@ target_sources(viamsdk
       ../../viam/sdk/common/proto_type.hpp
       ../../viam/sdk/common/service_helper.hpp
       ../../viam/sdk/common/utils.hpp
-      ../../viam/sdk/common/version.hpp
       ../../viam/sdk/common/world_state.hpp
       ../../viam/sdk/components/arm.hpp
       ../../viam/sdk/components/base.hpp
