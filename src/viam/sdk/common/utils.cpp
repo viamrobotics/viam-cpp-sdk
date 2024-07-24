@@ -15,7 +15,7 @@
 
 #include <viam/api/common/v1/common.pb.h>
 
-#include <viam/sdk/common/private/version.hpp>
+#include <viam/sdk/common/private/version_metadata.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/registry/registry.hpp>
 
