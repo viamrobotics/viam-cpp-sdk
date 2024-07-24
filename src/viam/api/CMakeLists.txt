@@ -261,7 +261,7 @@ endif(VIAMCPPSDK_USE_DYNAMIC_PROTOS)
 
 add_custom_target(
   update-buf
-  COMMAND buf mod update ${CMAKE_CURRENT_SOURCE_DIR}
+  COMMAND buf dep update ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 # Declare the viamcpp library, and attach sources,

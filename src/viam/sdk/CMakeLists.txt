@@ -19,6 +19,11 @@ target_include_directories(viamsdk
     "$<BUILD_INTERFACE:$<TARGET_PROPERTY:viam-cpp-sdk::viamapi,INTERFACE_INCLUDE_DIRECTORIES>>"
 )
 
+# Configure the SDK version file
+set(VIAMCPPSDK_API_PROTO_LABEL "v0.1.325")
+set(VIAMCPPSDK_SDK_VERSION ${CMAKE_PROJECT_VERSION})
+configure_file(common/version.cpp.in common/version.cpp @ONLY)
+
 
 # Set compile and link options based on arguments
 if (VIAMCPPSDK_USE_WALL_WERROR)
@@ -43,6 +48,7 @@ target_sources(viamsdk
     common/proto_type.cpp
     common/service_helper.cpp
     common/utils.cpp
+    common/version.cpp
     common/world_state.cpp
     components/arm.cpp
     components/base.cpp
@@ -130,6 +136,7 @@ target_sources(viamsdk
       ../../viam/sdk/common/proto_type.hpp
       ../../viam/sdk/common/service_helper.hpp
       ../../viam/sdk/common/utils.hpp
+      ../../viam/sdk/common/version.hpp
       ../../viam/sdk/common/world_state.hpp
       ../../viam/sdk/components/arm.hpp
       ../../viam/sdk/components/base.hpp
