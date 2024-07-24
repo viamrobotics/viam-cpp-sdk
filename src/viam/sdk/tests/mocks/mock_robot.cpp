@@ -7,7 +7,7 @@
 #include <common/v1/common.pb.h>
 #include <robot/v1/robot.pb.h>
 
-#include <viam/sdk/common/private/version_metadata.hpp>
+#include <src/viam/sdk/common/private/version_metadata.hpp>
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
@@ -273,7 +273,7 @@ std::vector<FrameSystemConfig> mock_proto_config_response() {
     const ::viam::robot::v1::FrameSystemConfigRequest*,
     ::viam::robot::v1::FrameSystemConfigResponse* response) {
     auto client_info = context->client_metadata().find("viam_client");
-    if (client_info->second != k_version) {
+    if (client_info->second != impl::k_version) {
         return ::grpc::Status(::grpc::StatusCode::FAILED_PRECONDITION,
                               "viam_client info not properly set in metadata");
     }
@@ -289,7 +289,7 @@ std::vector<FrameSystemConfig> mock_proto_config_response() {
     const ::viam::robot::v1::DiscoverComponentsRequest*,
     ::viam::robot::v1::DiscoverComponentsResponse* response) {
     auto client_info = context->client_metadata().find("viam_client");
-    if (client_info->second != k_version) {
+    if (client_info->second != impl::k_version) {
         return ::grpc::Status(::grpc::StatusCode::FAILED_PRECONDITION,
                               "viam_client info not properly set in metadata");
     }
@@ -304,7 +304,7 @@ std::vector<FrameSystemConfig> mock_proto_config_response() {
                                                const ::viam::robot::v1::TransformPoseRequest*,
                                                ::viam::robot::v1::TransformPoseResponse* response) {
     auto client_info = context->client_metadata().find("viam_client");
-    if (client_info->second != k_version) {
+    if (client_info->second != impl::k_version) {
         return ::grpc::Status(::grpc::StatusCode::FAILED_PRECONDITION,
                               "viam_client info not properly set in metadata");
     }
@@ -316,7 +316,7 @@ std::vector<FrameSystemConfig> mock_proto_config_response() {
                                                const ::viam::robot::v1::GetOperationsRequest*,
                                                ::viam::robot::v1::GetOperationsResponse* response) {
     auto client_info = context->client_metadata().find("viam_client");
-    if (client_info->second != k_version) {
+    if (client_info->second != impl::k_version) {
         return ::grpc::Status(::grpc::StatusCode::FAILED_PRECONDITION,
                               "viam_client info not properly set in metadata");
     }

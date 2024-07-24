@@ -17,6 +17,7 @@ add_library(viam-cpp-sdk::viamsdk ALIAS viamsdk)
 target_include_directories(viamsdk
   PUBLIC
     "$<BUILD_INTERFACE:$<TARGET_PROPERTY:viam-cpp-sdk::viamapi,INTERFACE_INCLUDE_DIRECTORIES>>"
+  PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/../.."
 )
 
 # Configure the SDK version file

@@ -1,6 +1,5 @@
 #include <viam/sdk/common/utils.hpp>
 
-#include <tuple>
 #include <unordered_map>
 #include <vector>
 
@@ -110,7 +109,7 @@ void ClientContext::set_client_ctx_authority_() {
 }
 
 void ClientContext::add_viam_client_version_() {
-    wrapped_context_.AddMetadata("viam_client", k_version);
+    wrapped_context_.AddMetadata("viam_client", impl::k_version);
 }
 
 ClientContext::ClientContext() {
