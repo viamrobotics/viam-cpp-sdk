@@ -47,7 +47,7 @@ jobs:
       - name: cleanup
         run: rm -rf boost/ && rm -rf vcpkg/
       - name: Update proto tag
-        run: sed -i -e 's/VIAMCPPSDK_API_PROTO_LABEL "v[0-9]*\.[0-9]*\.[0-9]*"/VIAMCPPSDK_API_PROTO_LABEL "${{ github.event.client_payload.tag }}"' src/viam/sdk/CMakeLists.txt
+        run: sed -i -e 's/VIAMCPPSDK_API_PROTO_LABEL "v[0-9]*\.[0-9]*\.[0-9]*"/VIAMCPPSDK_API_PROTO_LABEL "${{ github.event.client_payload.tag }}"/' src/viam/sdk/CMakeLists.txt
       - name: Add + Commit + Open PR
         uses: peter-evans/create-pull-request@v3
         with:
