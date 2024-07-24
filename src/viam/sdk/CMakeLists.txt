@@ -21,7 +21,7 @@ target_include_directories(viamsdk
 
 # Configure the SDK version file
 set(VIAMCPPSDK_API_PROTO_LABEL "v0.1.327")
-configure_file(common/private/version.cpp.in common/private/version.cpp @ONLY)
+configure_file(common/private/version_metadata.hpp.in common/private/version_metadata.hpp @ONLY)
 
 
 # Set compile and link options based on arguments
@@ -44,7 +44,6 @@ target_sources(viamsdk
     common/exception.cpp
     common/linear_algebra.cpp
     common/pose.cpp
-    common/private/version.cpp
     common/proto_type.cpp
     common/service_helper.cpp
     common/utils.cpp
