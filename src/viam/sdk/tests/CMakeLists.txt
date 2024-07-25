@@ -17,6 +17,10 @@ enable_testing()
 include(viamcppsdk_utils)
 add_library(viamsdk_test)
 
+target_include_directories(viamsdk_test
+  PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/../../.."
+)
+
 target_sources(viamsdk_test
   PRIVATE
     mocks/camera_mocks.cpp
