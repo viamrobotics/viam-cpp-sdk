@@ -17,7 +17,6 @@ add_library(viam-cpp-sdk::viamsdk ALIAS viamsdk)
 target_include_directories(viamsdk
   PUBLIC
     "$<BUILD_INTERFACE:$<TARGET_PROPERTY:viam-cpp-sdk::viamapi,INTERFACE_INCLUDE_DIRECTORIES>>"
-  PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/../.."
 )
 
 # Configure the SDK version file
@@ -28,7 +27,6 @@ else()
   string(REGEX REPLACE "\n$" "" VIAMCPPSDK_API_PROTO_LABEL "${VIAMCPPSDK_API_PROTO_LABEL}")
 endif()
 message(WARNING "api proto label is ${VIAMCPPSDK_API_PROTO_LABEL}")
-#set(VIAMCPPSDK_API_PROTO_LABEL "v0.1.327")
 configure_file(common/private/version_metadata.hpp.in common/private/version_metadata.hpp @ONLY)
 
 
@@ -201,6 +199,8 @@ target_include_directories(viamsdk
     "$<INSTALL_INTERFACE:${VIAMCPPSDK_GRPC_INCLUDE_DIRS}>"
     "$<BUILD_INTERFACE:${VIAMCPPSDK_PROTOBUF_INCLUDE_DIRS}>"
     "$<INSTALL_INTERFACE:${VIAMCPPSDK_PROTOBUF_INCLUDE_DIRS}>"
+  PRIVATE
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/../..>"
 )
 
 target_link_directories(viamsdk
