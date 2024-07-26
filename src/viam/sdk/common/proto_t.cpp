@@ -13,9 +13,8 @@ namespace sdk {
 using google::protobuf::Struct;
 using google::protobuf::Value;
 
-// NOLINTNEXTLINE(misc-no-recursion)
-ProtoT::ProtoT(const Value& value)
-    : ProtoT([](const Value& v) {
+ProtoT::ProtoT(const Value& value)  // NOLINT(misc-no-recursion)
+    : ProtoT([](const Value& v) {   // NOLINT(misc-no-recursion)
           switch (v.kind_case()) {
               case Value::KindCase::kBoolValue: {
                   return ProtoT(v.bool_value());
