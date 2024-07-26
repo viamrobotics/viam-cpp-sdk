@@ -13,6 +13,7 @@ namespace sdk {
 using google::protobuf::Struct;
 using google::protobuf::Value;
 
+// NOLINTNEXTLINE(misc-no-recursion)
 ProtoT ctor_helper(const Value& value) {
     switch (value.kind_case()) {
         case Value::KindCase::kBoolValue: {
