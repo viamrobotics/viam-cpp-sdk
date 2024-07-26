@@ -14,38 +14,37 @@ using google::protobuf::Struct;
 using google::protobuf::Value;
 
 // NOLINTNEXTLINE(misc-no-recursion)
-ProtoT ctor_helper(const Value& value) {
-    switch (value.kind_case()) {
-        case Value::KindCase::kBoolValue: {
-            return ProtoT(value.bool_value());
-        }
-        case Value::KindCase::kStringValue: {
-            return ProtoT(value.string_value());
-        }
-        case Value::KindCase::kNumberValue: {
-            return ProtoT(value.number_value());
-        }
-        case Value::KindCase::kListValue: {
-            return ProtoT(std::vector<ProtoT>(value.list_value().values().begin(),
-                                              value.list_value().values().end()));
-        }
-        case Value::KindCase::kStructValue: {
-            std::unordered_map<std::string, ProtoT> map;
+ProtoT::ProtoT(const Value& value)
+    : ProtoT([](const Value& v) {
+          switch (v.kind_case()) {
+              case Value::KindCase::kBoolValue: {
+                  return ProtoT(v.bool_value());
+              }
+              case Value::KindCase::kStringValue: {
+                  return ProtoT(v.string_value());
+              }
+              case Value::KindCase::kNumberValue: {
+                  return ProtoT(v.number_value());
+              }
+              case Value::KindCase::kListValue: {
+                  return ProtoT(std::vector<ProtoT>(v.list_value().values().begin(),
+                                                    v.list_value().values().end()));
+              }
+              case Value::KindCase::kStructValue: {
+                  std::unordered_map<std::string, ProtoT> map;
 
-            for (const auto& val : value.struct_value().fields()) {
-                map.emplace(val.first, ProtoT(val.second));
-            }
+                  for (const auto& val : v.struct_value().fields()) {
+                      map.emplace(val.first, ProtoT(val.second));
+                  }
 
-            return ProtoT(std::move(map));
-        }
-        case Value::KindCase::KIND_NOT_SET:
-        case Value::KindCase::kNullValue:
-        default:
-            return ProtoT();
-    }
-}
-
-ProtoT::ProtoT(const Value& value) : ProtoT(ctor_helper(value)) {}
+                  return ProtoT(std::move(map));
+              }
+              case Value::KindCase::KIND_NOT_SET:
+              case Value::KindCase::kNullValue:
+              default:
+                  return ProtoT();
+          }
+      }(value)) {}
 
 google::protobuf::Value to_proto_value(std::nullptr_t) {
     Value v;
