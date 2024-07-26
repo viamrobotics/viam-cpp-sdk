@@ -27,6 +27,10 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
     BOOST_CHECK(ProtoT(5) == ProtoT(5));
     BOOST_CHECK(!(ProtoT(6) == ProtoT(5)));
 
+    // heterogeneous arithmetic types do not "inuitively" compare equal
+    BOOST_CHECK(!(ProtoT(false) == ProtoT(0)));
+    BOOST_CHECK(!(ProtoT(0) == ProtoT(0.0)));
+
     // roundtrip integer conversion is not idempotent because the integer gets coerced to a double
     {
         ProtoT i5(5);

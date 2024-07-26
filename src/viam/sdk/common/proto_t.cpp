@@ -5,13 +5,7 @@
 #include <unordered_map>
 #include <vector>
 
-#include <boost/blank.hpp>
-#include <boost/variant/get.hpp>
-#include <boost/variant/variant.hpp>
 #include <google/protobuf/struct.pb.h>
-
-#include <viam/sdk/common/exception.hpp>
-#include <viam/sdk/config/resource.hpp>
 
 namespace viam {
 namespace sdk {
