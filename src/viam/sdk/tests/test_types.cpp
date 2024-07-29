@@ -111,17 +111,27 @@ BOOST_AUTO_TEST_CASE(test_nested_objects) {
     BOOST_CHECK(val.ShortDebugString() == val2.ShortDebugString());
 }
 
-BOOST_AUTO_TEST_CASE(test_manual_list_conversion) {
-    auto test_cases = std::make_tuple(
-        std::make_pair(std::string("string"), &Value::template set_string_value<std::string>),
-        std::make_pair(3.0, &Value::set_number_value),
-        std::make_pair(false, &Value::set_bool_value));
+void set_proto_value(Value& val, bool b) {
+    val.set_bool_value(b);
+}
+void set_proto_value(Value& val, int i) {
+    val.set_number_value(i);
+}
+void set_proto_value(Value& val, double d) {
+    val.set_number_value(d);
+}
+void set_proto_value(Value& val, std::string s) {
+    val.set_string_value(std::move(s));
+}
 
-    boost::mp11::tuple_for_each(test_cases, [](auto test_pair) {
-        ProtoT val(test_pair.first);
+BOOST_AUTO_TEST_CASE(test_manual_list_conversion) {
+    auto test_cases = std::make_tuple(std::string("string"), 3.0, false);
+
+    boost::mp11::tuple_for_each(test_cases, [](auto test_val) {
+        ProtoT val(test_val);
 
         Value protoval;
-        (protoval.*(test_pair.second))(std::move(test_pair.first));
+        set_proto_value(protoval, test_val);
 
         ProtoT from_value(protoval);
         BOOST_CHECK(val == from_value);
@@ -137,11 +147,11 @@ BOOST_AUTO_TEST_CASE(test_manual_list_conversion) {
     std::vector<ProtoT> proto_vec;
     google::protobuf::ListValue lv;
 
-    boost::mp11::tuple_for_each(test_cases, [&](auto test_pair) {
-        proto_vec.push_back(test_pair.first);
+    boost::mp11::tuple_for_each(test_cases, [&](auto test_val) {
+        proto_vec.push_back(test_val);
 
         Value val;
-        (val.*(test_pair.second))(std::move(test_pair.first));
+        set_proto_value(val, test_val);
         *lv.add_values() = val;
     });
 
@@ -157,21 +167,19 @@ BOOST_AUTO_TEST_CASE(test_manual_list_conversion) {
 }
 
 BOOST_AUTO_TEST_CASE(test_manual_map_conversion) {
-    auto test_case =
-        std::make_tuple(std::make_pair(std::make_pair("string", std::string("s")),
-                                       &Value::template set_string_value<std::string>),
-                        std::make_pair(std::make_pair("double", 3.0), &Value::set_number_value),
-                        std::make_pair(std::make_pair("bool", true), &Value::set_bool_value));
+    auto test_case = std::make_tuple(std::make_pair("string", std::string("s")),
+                                     std::make_pair("double", 3.0),
+                                     std::make_pair("bool", true));
 
     AttrMap m;
     google::protobuf::Map<std::string, Value> proto_map;
 
-    boost::mp11::tuple_for_each(test_case, [&](auto test_pair) {
-        m.insert(test_pair.first);
+    boost::mp11::tuple_for_each(test_case, [&](auto map_pair) {
+        m.insert(map_pair);
         Value v;
 
-        (v.*(test_pair.second))(std::move(test_pair.first.second));
-        proto_map.insert({{test_pair.first.first, v}});
+        set_proto_value(v, map_pair.second);
+        proto_map.insert({{map_pair.first, v}});
     });
 
     google::protobuf::Struct proto_struct;
