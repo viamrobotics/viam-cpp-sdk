@@ -113,7 +113,7 @@ BOOST_AUTO_TEST_CASE(test_nested_objects) {
 
 BOOST_AUTO_TEST_CASE(test_manual_list_conversion) {
     auto test_cases = std::make_tuple(
-        std::make_pair(std::string("string"), &Value::set_string_value<std::string>),
+        std::make_pair(std::string("string"), &Value::template set_string_value<std::string>),
         std::make_pair(3.0, &Value::set_number_value),
         std::make_pair(false, &Value::set_bool_value));
 
@@ -159,7 +159,7 @@ BOOST_AUTO_TEST_CASE(test_manual_list_conversion) {
 BOOST_AUTO_TEST_CASE(test_manual_map_conversion) {
     auto test_case =
         std::make_tuple(std::make_pair(std::make_pair("string", std::string("s")),
-                                       &Value::set_string_value<std::string>),
+                                       &Value::template set_string_value<std::string>),
                         std::make_pair(std::make_pair("double", 3.0), &Value::set_number_value),
                         std::make_pair(std::make_pair("bool", true), &Value::set_bool_value));
 
