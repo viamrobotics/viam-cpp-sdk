@@ -1,8 +1,15 @@
 #pragma once
 
+#include <memory>
+#include <string>
 #include <unordered_map>
+#include <vector>
 
-#include <google/protobuf/struct.pb.h>
+namespace google {
+namespace protobuf {
+class Value;
+}
+}  // namespace google
 
 namespace viam {
 namespace sdk {
@@ -22,9 +29,6 @@ class ProtoT {
     // Deduction helper constructor for string from string literal
     ProtoT(const char* str) : ProtoT(std::string(str)) {}
 
-    // Create from proto value
-    ProtoT(const google::protobuf::Value&);
-
     ProtoT(ProtoT&&) noexcept = default;
     ProtoT(const ProtoT& other) : self_(other.self_->copy()) {}
 
@@ -41,6 +45,12 @@ class ProtoT {
     // Thus, bool{false}, int{0}, and double{0.0} do not compare equal.
     friend bool operator==(const ProtoT& lhs, const ProtoT& rhs) {
         return lhs.self_->equal_to(*rhs.self_);
+    }
+
+    // Construct from proto value
+    template <typename Value = google::protobuf::Value>
+    static ProtoT from_proto_value(const Value& v) {
+        return ProtoT(&v);
     }
 
     // Convert to protobuf Value.
@@ -90,20 +100,13 @@ class ProtoT {
         T data;
     };
 
+    ProtoT(const google::protobuf::Value* value);
+
     // TODO this could be replaced with an SBO storage class to save a heap allocation on
     std::unique_ptr<concept_t> self_;
 };
 
 using AttrMap = std::unordered_map<std::string, ProtoT>;
-
-google::protobuf::Value to_proto_value(std::nullptr_t);
-google::protobuf::Value to_proto_value(bool b);
-google::protobuf::Value to_proto_value(int i);
-google::protobuf::Value to_proto_value(double d);
-google::protobuf::Value to_proto_value(std::string s);
-google::protobuf::Value to_proto_value(const std::vector<ProtoT>& vec);
-google::protobuf::Value to_proto_value(const AttrMap& m);
-google::protobuf::Value to_proto_value(const ProtoT& t);
 
 void to_proto_value(std::nullptr_t, google::protobuf::Value* v);
 void to_proto_value(bool b, google::protobuf::Value* v);
@@ -113,6 +116,14 @@ void to_proto_value(std::string s, google::protobuf::Value* v);
 void to_proto_value(const std::vector<ProtoT>& vec, google::protobuf::Value* v);
 void to_proto_value(const AttrMap& m, google::protobuf::Value* v);
 void to_proto_value(const ProtoT& t, google::protobuf::Value* v);
+
+template <class T, class Value = google::protobuf::Value>
+Value to_proto_value(T&& t) {
+    Value v;
+    to_proto_value(std::forward<T>(t), &v);
+
+    return v;
+}
 
 // Type trait for constant value of each kind.
 // In practice, the concept requirement for constructing a ProtoT is that this type trait be well
