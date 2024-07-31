@@ -107,5 +107,54 @@ google::protobuf::Value to_proto_value(const std::unordered_map<std::string, Pro
     return v;
 }
 
+Value to_proto_value(const ProtoT& t) {
+    return t.self_->to_proto_value();
+}
+
+void to_proto_value(std::nullptr_t, Value* v) {
+    v->set_null_value(::google::protobuf::NULL_VALUE);
+}
+
+void to_proto_value(bool b, Value* v) {
+    v->set_bool_value(b);
+}
+
+void to_proto_value(int i, Value* v) {
+    v->set_number_value(i);
+}
+
+void to_proto_value(double d, Value* v) {
+    v->set_number_value(d);
+}
+
+void to_proto_value(std::string s, Value* v) {
+    v->set_string_value(std::move(s));
+}
+
+void to_proto_value(const std::vector<ProtoT>& vec, Value* v) {
+    ::google::protobuf::ListValue l;
+    for (const auto& val : vec) {
+        *l.add_values() = to_proto_value(val);
+    }
+    *(v->mutable_list_value()) = l;
+}
+
+void to_proto_value(const std::unordered_map<std::string, ProtoT>& m, Value* v) {
+    Struct s;
+
+    for (const auto& kv : m) {
+        const std::string key = kv.first;
+        const Value val = to_proto_value(kv.second);
+        const google::protobuf::MapPair<std::string, Value> mp(key, val);
+        s.mutable_fields()->insert(mp);
+    }
+
+    *(v->mutable_struct_value()) = s;
+}
+
+void to_proto_value(const ProtoT& t, Value* v) {
+    t.self_->to_proto_value(v);
+}
+
 }  // namespace sdk
 }  // namespace viam
