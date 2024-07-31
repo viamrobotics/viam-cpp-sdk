@@ -5,6 +5,8 @@
 
 #include <google/protobuf/struct.pb.h>
 
+#include <boost/mp11/algorithm.hpp>
+#include <boost/mp11/integer_sequence.hpp>
 #include <boost/mp11/tuple.hpp>
 #include <boost/test/included/unit_test.hpp>
 
@@ -17,6 +19,7 @@ namespace viam {
 namespace sdktests {
 
 using namespace viam::sdk;
+using namespace boost::mp11;
 
 using google::protobuf::Value;
 
@@ -26,6 +29,8 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
     // null is always equal
     BOOST_CHECK(ProtoT() == ProtoT());
     BOOST_CHECK(ProtoT().is_a<std::nullptr_t>());
+    BOOST_CHECK(dyn_cast<std::nullptr_t>(ProtoT()));
+    BOOST_CHECK(!dyn_cast<int>(ProtoT()));
 
     BOOST_CHECK(ProtoT(5) == ProtoT(5));
     BOOST_CHECK(!(ProtoT(6) == ProtoT(5)));
@@ -69,6 +74,13 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
         ProtoT v1(test_pair.first);
         BOOST_CHECK(v1.kind() == kind);
         BOOST_CHECK(v1.is_a<test_type>());
+        BOOST_CHECK(!dyn_cast<int>(v1));
+
+        {
+            const test_type* ptr = dyn_cast<test_type>(v1);
+            BOOST_REQUIRE(ptr);
+            BOOST_CHECK(*ptr == test_pair.first);
+        }
 
         ProtoT v2(test_pair.first);
         BOOST_CHECK(v1 == v2);
@@ -78,6 +90,18 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
 
         BOOST_CHECK(!(v1 == v3));
         BOOST_CHECK(v3 == v4);
+
+        {
+            // test copy construction and mutating through copy
+            auto v1_copy = v1;
+            BOOST_CHECK(v1_copy == v1);
+
+            test_type* ptr = dyn_cast<test_type>(v1_copy);
+            BOOST_REQUIRE(ptr);
+            *ptr = test_pair.second;
+            BOOST_CHECK(!(v1_copy == v1));
+            BOOST_CHECK(v1_copy == v3);
+        }
 
         Value converted = to_proto_value(v3);
         auto roundtrip = ProtoT::from_proto_value(converted);
@@ -166,6 +190,23 @@ BOOST_AUTO_TEST_CASE(test_manual_list_conversion) {
     });
 
     ProtoT proto(proto_vec);
+
+    {
+        // check that we can cast and type check vector elements
+        const auto* ptr = dyn_cast<std::vector<ProtoT>>(proto);
+        BOOST_REQUIRE(ptr);
+
+        using TupleType = decltype(test_cases);
+
+        mp_for_each<mp_iota_c<mp_size<TupleType>{}>>([&](auto I) {
+            auto tuple_elem = std::get<I()>(test_cases);
+            const ProtoT& elem = (*ptr)[I()];
+            const auto* elem_p = dyn_cast<decltype(tuple_elem)>(elem);
+            BOOST_REQUIRE(elem_p);
+            BOOST_CHECK(*elem_p == tuple_elem);
+        });
+    }
+
     Value v;
     *v.mutable_list_value() = lv;
 
@@ -200,6 +241,19 @@ BOOST_AUTO_TEST_CASE(test_manual_map_conversion) {
     auto from_proto = ProtoT::from_proto_value(v);
     ProtoT from_map(m);
     BOOST_CHECK(from_proto == from_map);
+
+    const AttrMap* ptr = dyn_cast<AttrMap>(from_map);
+    BOOST_REQUIRE(ptr);
+
+    using TupleType = decltype(test_case);
+    mp_for_each<mp_iota_c<mp_size<TupleType>{}>>([&](auto I) {
+        auto map_pair = std::get<I>(test_case);
+
+        const ProtoT& map_elem = ptr->at(map_pair.first);
+        const auto* elem_ptr = dyn_cast<decltype(map_pair.second)>(map_elem);
+        BOOST_REQUIRE(elem_ptr);
+        BOOST_CHECK(*elem_ptr == map_pair.second);
+    });
 }
 
 BOOST_AUTO_TEST_CASE(test_prototype_equality) {

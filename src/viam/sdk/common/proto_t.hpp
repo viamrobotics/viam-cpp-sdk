@@ -65,6 +65,12 @@ class ProtoT {
     template <typename T>
     bool is_a() const;
 
+    template <typename T>
+    friend T* dyn_cast(ProtoT&);
+
+    template <typename T>
+    friend T const* dyn_cast(const ProtoT&);
+
    private:
     // ABC interface class for type erasure.
     struct concept_t {
@@ -169,6 +175,24 @@ int ProtoT::model<T>::kind() const {
 template <typename T>
 bool ProtoT::is_a() const {
     return kind_t<T>::value == kind();
+}
+
+template <typename T>
+T* dyn_cast(ProtoT& pt) {
+    if (pt.is_a<T>()) {
+        return &(static_cast<ProtoT::model<T>*>(pt.self_.get())->data);
+    }
+
+    return nullptr;
+}
+
+template <typename T>
+T const* dyn_cast(const ProtoT& pt) {
+    if (pt.is_a<T>()) {
+        return &(static_cast<const ProtoT::model<T>*>(pt.self_.get())->data);
+    }
+
+    return nullptr;
 }
 
 }  // namespace sdk
