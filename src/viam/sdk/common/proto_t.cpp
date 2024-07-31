@@ -108,7 +108,10 @@ google::protobuf::Value to_proto_value(const std::unordered_map<std::string, Pro
 }
 
 Value to_proto_value(const ProtoT& t) {
-    return t.self_->to_proto_value();
+    Value v;
+    to_proto_value(t, &v);
+
+    return v;
 }
 
 void to_proto_value(std::nullptr_t, Value* v) {

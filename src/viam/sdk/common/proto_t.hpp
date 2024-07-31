@@ -44,7 +44,6 @@ class ProtoT {
     }
 
     // Convert to protobuf Value.
-    friend google::protobuf::Value to_proto_value(const ProtoT& t);
     friend void to_proto_value(const ProtoT& t, google::protobuf::Value* v);
 
     // Obtain integer constant representing the stored data type.
@@ -59,7 +58,6 @@ class ProtoT {
 
         virtual std::unique_ptr<concept_t> copy() const = 0;
 
-        virtual google::protobuf::Value to_proto_value() const = 0;
         virtual void to_proto_value(google::protobuf::Value* v) const = 0;
 
         virtual int kind() const = 0;
@@ -77,7 +75,6 @@ class ProtoT {
             return std::make_unique<model>(*this);
         }
 
-        google::protobuf::Value to_proto_value() const override;
         void to_proto_value(google::protobuf::Value*) const override;
 
         int kind() const override;
@@ -145,13 +142,8 @@ template <>
 struct kind_t<AttrMap> : std::integral_constant<int, 6> {};
 
 template <typename T>
-google::protobuf::Value ProtoT::model<T>::to_proto_value() const {
-    return viam::sdk::to_proto_value(data);
-}
-
-template <typename T>
 void ProtoT::model<T>::to_proto_value(google::protobuf::Value* v) const {
-    return viam::sdk::to_proto_value(data, v);
+    viam::sdk::to_proto_value(data, v);
 }
 
 template <typename T>
