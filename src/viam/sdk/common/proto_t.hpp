@@ -61,6 +61,10 @@ class ProtoT {
         return self_->kind();
     }
 
+    // Checks whether this ProtoT is an instance of type T.
+    template <typename T>
+    bool is_a() const;
+
    private:
     // ABC interface class for type erasure.
     struct concept_t {
@@ -94,7 +98,7 @@ class ProtoT {
                 return false;
             }
 
-            return data == reinterpret_cast<const model<T>*>(&other)->data;
+            return data == static_cast<const model<T>&>(other).data;
         }
 
         T data;
@@ -160,6 +164,11 @@ void ProtoT::model<T>::to_proto_value(google::protobuf::Value* v) const {
 template <typename T>
 int ProtoT::model<T>::kind() const {
     return kind_t<T>::value;
+}
+
+template <typename T>
+bool ProtoT::is_a() const {
+    return kind_t<T>::value == kind();
 }
 
 }  // namespace sdk

@@ -25,6 +25,7 @@ BOOST_AUTO_TEST_SUITE(test_prototype)
 BOOST_AUTO_TEST_CASE(test_object_equality) {
     // null is always equal
     BOOST_CHECK(ProtoT() == ProtoT());
+    BOOST_CHECK(ProtoT().is_a<std::nullptr_t>());
 
     BOOST_CHECK(ProtoT(5) == ProtoT(5));
     BOOST_CHECK(!(ProtoT(6) == ProtoT(5)));
@@ -38,7 +39,11 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
         ProtoT i5(5);
         auto int_roundtrip = ProtoT::from_proto_value(to_proto_value(i5));
         BOOST_CHECK(i5.kind() == kind_t<int>{});
+        BOOST_CHECK(i5.is_a<int>());
+
         BOOST_CHECK(int_roundtrip.kind() == kind_t<double>{});
+        BOOST_CHECK(int_roundtrip.is_a<double>());
+
         BOOST_CHECK(!(i5 == int_roundtrip));
         BOOST_CHECK(int_roundtrip == ProtoT(5.0));
     }
@@ -56,11 +61,14 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
                                 {"vec", std::vector<ProtoT>({ProtoT{3.0}, ProtoT{"str"}})}})));
 
     boost::mp11::tuple_for_each(test_cases, [](auto test_pair) {
-        constexpr auto kind = kind_t<typename decltype(test_pair)::first_type>::value;
+        using test_type = typename decltype(test_pair)::first_type;
+
+        constexpr auto kind = kind_t<test_type>::value;
         BOOST_TEST_MESSAGE("Testing with kind " << kind);
 
         ProtoT v1(test_pair.first);
         BOOST_CHECK(v1.kind() == kind);
+        BOOST_CHECK(v1.is_a<test_type>());
 
         ProtoT v2(test_pair.first);
         BOOST_CHECK(v1 == v2);
