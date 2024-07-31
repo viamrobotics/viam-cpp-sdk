@@ -199,6 +199,9 @@ inline constexpr Expr_Comprehension::Impl_::Impl_(
         accu_var_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
+        iter_var2_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
         iter_range_{nullptr},
         accu_init_{nullptr},
         loop_condition_{nullptr},
@@ -475,12 +478,14 @@ const ::uint32_t TableStruct_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto::of
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::Expr_Comprehension, _impl_.iter_var_),
+    PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::Expr_Comprehension, _impl_.iter_var2_),
     PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::Expr_Comprehension, _impl_.iter_range_),
     PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::Expr_Comprehension, _impl_.accu_var_),
     PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::Expr_Comprehension, _impl_.accu_init_),
     PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::Expr_Comprehension, _impl_.loop_condition_),
     PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::Expr_Comprehension, _impl_.loop_step_),
     PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::Expr_Comprehension, _impl_.result_),
+    ~0u,
     ~0u,
     0,
     ~0u,
@@ -608,15 +613,15 @@ static const ::_pbi::MigrationSchema
         {49, -1, -1, sizeof(::google::api::expr::v1alpha1::Expr_CreateList)},
         {59, 73, -1, sizeof(::google::api::expr::v1alpha1::Expr_CreateStruct_Entry)},
         {78, -1, -1, sizeof(::google::api::expr::v1alpha1::Expr_CreateStruct)},
-        {88, 103, -1, sizeof(::google::api::expr::v1alpha1::Expr_Comprehension)},
-        {110, -1, -1, sizeof(::google::api::expr::v1alpha1::Expr)},
-        {127, -1, -1, sizeof(::google::api::expr::v1alpha1::Constant)},
-        {145, -1, -1, sizeof(::google::api::expr::v1alpha1::SourceInfo_Extension_Version)},
-        {155, 166, -1, sizeof(::google::api::expr::v1alpha1::SourceInfo_Extension)},
-        {169, 179, -1, sizeof(::google::api::expr::v1alpha1::SourceInfo_PositionsEntry_DoNotUse)},
-        {181, 191, -1, sizeof(::google::api::expr::v1alpha1::SourceInfo_MacroCallsEntry_DoNotUse)},
-        {193, -1, -1, sizeof(::google::api::expr::v1alpha1::SourceInfo)},
-        {207, -1, -1, sizeof(::google::api::expr::v1alpha1::SourcePosition)},
+        {88, 104, -1, sizeof(::google::api::expr::v1alpha1::Expr_Comprehension)},
+        {112, -1, -1, sizeof(::google::api::expr::v1alpha1::Expr)},
+        {129, -1, -1, sizeof(::google::api::expr::v1alpha1::Constant)},
+        {147, -1, -1, sizeof(::google::api::expr::v1alpha1::SourceInfo_Extension_Version)},
+        {157, 168, -1, sizeof(::google::api::expr::v1alpha1::SourceInfo_Extension)},
+        {171, 181, -1, sizeof(::google::api::expr::v1alpha1::SourceInfo_PositionsEntry_DoNotUse)},
+        {183, 193, -1, sizeof(::google::api::expr::v1alpha1::SourceInfo_MacroCallsEntry_DoNotUse)},
+        {195, -1, -1, sizeof(::google::api::expr::v1alpha1::SourceInfo)},
+        {209, -1, -1, sizeof(::google::api::expr::v1alpha1::SourcePosition)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -645,7 +650,7 @@ const char descriptor_table_protodef_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2ep
     "\"\207\001\n\nParsedExpr\0222\n\004expr\030\002 \001(\0132\036.google.a"
     "pi.expr.v1alpha1.ExprR\004expr\022E\n\013source_in"
     "fo\030\003 \001(\0132$.google.api.expr.v1alpha1.Sour"
-    "ceInfoR\nsourceInfo\"\256\r\n\004Expr\022\016\n\002id\030\002 \001(\003R"
+    "ceInfoR\nsourceInfo\"\313\r\n\004Expr\022\016\n\002id\030\002 \001(\003R"
     "\002id\022C\n\nconst_expr\030\003 \001(\0132\".google.api.exp"
     "r.v1alpha1.ConstantH\000R\tconstExpr\022E\n\niden"
     "t_expr\030\004 \001(\0132$.google.api.expr.v1alpha1."
@@ -678,60 +683,61 @@ const char descriptor_table_protodef_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2ep
     ".expr.v1alpha1.ExprH\000R\006mapKey\0224\n\005value\030\004"
     " \001(\0132\036.google.api.expr.v1alpha1.ExprR\005va"
     "lue\022%\n\016optional_entry\030\005 \001(\010R\roptionalEnt"
-    "ryB\n\n\010key_kind\032\375\002\n\rComprehension\022\031\n\010iter"
-    "_var\030\001 \001(\tR\007iterVar\022=\n\niter_range\030\002 \001(\0132"
-    "\036.google.api.expr.v1alpha1.ExprR\titerRan"
-    "ge\022\031\n\010accu_var\030\003 \001(\tR\007accuVar\022;\n\taccu_in"
-    "it\030\004 \001(\0132\036.google.api.expr.v1alpha1.Expr"
-    "R\010accuInit\022E\n\016loop_condition\030\005 \001(\0132\036.goo"
-    "gle.api.expr.v1alpha1.ExprR\rloopConditio"
-    "n\022;\n\tloop_step\030\006 \001(\0132\036.google.api.expr.v"
-    "1alpha1.ExprR\010loopStep\0226\n\006result\030\007 \001(\0132\036"
-    ".google.api.expr.v1alpha1.ExprR\006resultB\013"
-    "\n\texpr_kind\"\301\003\n\010Constant\022;\n\nnull_value\030\001"
-    " \001(\0162\032.google.protobuf.NullValueH\000R\tnull"
-    "Value\022\037\n\nbool_value\030\002 \001(\010H\000R\tboolValue\022!"
-    "\n\013int64_value\030\003 \001(\003H\000R\nint64Value\022#\n\014uin"
-    "t64_value\030\004 \001(\004H\000R\013uint64Value\022#\n\014double"
-    "_value\030\005 \001(\001H\000R\013doubleValue\022#\n\014string_va"
-    "lue\030\006 \001(\tH\000R\013stringValue\022!\n\013bytes_value\030"
-    "\007 \001(\014H\000R\nbytesValue\022F\n\016duration_value\030\010 "
-    "\001(\0132\031.google.protobuf.DurationB\002\030\001H\000R\rdu"
-    "rationValue\022I\n\017timestamp_value\030\t \001(\0132\032.g"
-    "oogle.protobuf.TimestampB\002\030\001H\000R\016timestam"
-    "pValueB\017\n\rconstant_kind\"\214\007\n\nSourceInfo\022%"
-    "\n\016syntax_version\030\001 \001(\tR\rsyntaxVersion\022\032\n"
-    "\010location\030\002 \001(\tR\010location\022!\n\014line_offset"
-    "s\030\003 \003(\005R\013lineOffsets\022Q\n\tpositions\030\004 \003(\0132"
-    "3.google.api.expr.v1alpha1.SourceInfo.Po"
-    "sitionsEntryR\tpositions\022U\n\013macro_calls\030\005"
-    " \003(\01324.google.api.expr.v1alpha1.SourceIn"
-    "fo.MacroCallsEntryR\nmacroCalls\022N\n\nextens"
-    "ions\030\006 \003(\0132..google.api.expr.v1alpha1.So"
-    "urceInfo.ExtensionR\nextensions\032\200\003\n\tExten"
-    "sion\022\016\n\002id\030\001 \001(\tR\002id\022i\n\023affected_compone"
-    "nts\030\002 \003(\01628.google.api.expr.v1alpha1.Sou"
-    "rceInfo.Extension.ComponentR\022affectedCom"
-    "ponents\022P\n\007version\030\003 \001(\01326.google.api.ex"
-    "pr.v1alpha1.SourceInfo.Extension.Version"
-    "R\007version\0325\n\007Version\022\024\n\005major\030\001 \001(\003R\005maj"
-    "or\022\024\n\005minor\030\002 \001(\003R\005minor\"o\n\tComponent\022\031\n"
-    "\025COMPONENT_UNSPECIFIED\020\000\022\024\n\020COMPONENT_PA"
-    "RSER\020\001\022\032\n\026COMPONENT_TYPE_CHECKER\020\002\022\025\n\021CO"
-    "MPONENT_RUNTIME\020\003\032<\n\016PositionsEntry\022\020\n\003k"
-    "ey\030\001 \001(\003R\003key\022\024\n\005value\030\002 \001(\005R\005value:\0028\001\032"
-    "]\n\017MacroCallsEntry\022\020\n\003key\030\001 \001(\003R\003key\0224\n\005"
-    "value\030\002 \001(\0132\036.google.api.expr.v1alpha1.E"
-    "xprR\005value:\0028\001\"p\n\016SourcePosition\022\032\n\010loca"
-    "tion\030\001 \001(\tR\010location\022\026\n\006offset\030\002 \001(\005R\006of"
-    "fset\022\022\n\004line\030\003 \001(\005R\004line\022\026\n\006column\030\004 \001(\005"
-    "R\006columnB\357\001\n\034com.google.api.expr.v1alpha"
-    "1B\013SyntaxProtoP\001Z<google.golang.org/genp"
-    "roto/googleapis/api/expr/v1alpha1;expr\370\001"
-    "\001\242\002\003GAE\252\002\030Google.Api.Expr.V1alpha1\312\002\030Goo"
-    "gle\\Api\\Expr\\V1alpha1\342\002$Google\\Api\\Expr\\"
-    "V1alpha1\\GPBMetadata\352\002\033Google::Api::Expr"
-    "::V1alpha1b\006proto3"
+    "ryB\n\n\010key_kind\032\232\003\n\rComprehension\022\031\n\010iter"
+    "_var\030\001 \001(\tR\007iterVar\022\033\n\titer_var2\030\010 \001(\tR\010"
+    "iterVar2\022=\n\niter_range\030\002 \001(\0132\036.google.ap"
+    "i.expr.v1alpha1.ExprR\titerRange\022\031\n\010accu_"
+    "var\030\003 \001(\tR\007accuVar\022;\n\taccu_init\030\004 \001(\0132\036."
+    "google.api.expr.v1alpha1.ExprR\010accuInit\022"
+    "E\n\016loop_condition\030\005 \001(\0132\036.google.api.exp"
+    "r.v1alpha1.ExprR\rloopCondition\022;\n\tloop_s"
+    "tep\030\006 \001(\0132\036.google.api.expr.v1alpha1.Exp"
+    "rR\010loopStep\0226\n\006result\030\007 \001(\0132\036.google.api"
+    ".expr.v1alpha1.ExprR\006resultB\013\n\texpr_kind"
+    "\"\301\003\n\010Constant\022;\n\nnull_value\030\001 \001(\0162\032.goog"
+    "le.protobuf.NullValueH\000R\tnullValue\022\037\n\nbo"
+    "ol_value\030\002 \001(\010H\000R\tboolValue\022!\n\013int64_val"
+    "ue\030\003 \001(\003H\000R\nint64Value\022#\n\014uint64_value\030\004"
+    " \001(\004H\000R\013uint64Value\022#\n\014double_value\030\005 \001("
+    "\001H\000R\013doubleValue\022#\n\014string_value\030\006 \001(\tH\000"
+    "R\013stringValue\022!\n\013bytes_value\030\007 \001(\014H\000R\nby"
+    "tesValue\022F\n\016duration_value\030\010 \001(\0132\031.googl"
+    "e.protobuf.DurationB\002\030\001H\000R\rdurationValue"
+    "\022I\n\017timestamp_value\030\t \001(\0132\032.google.proto"
+    "buf.TimestampB\002\030\001H\000R\016timestampValueB\017\n\rc"
+    "onstant_kind\"\214\007\n\nSourceInfo\022%\n\016syntax_ve"
+    "rsion\030\001 \001(\tR\rsyntaxVersion\022\032\n\010location\030\002"
+    " \001(\tR\010location\022!\n\014line_offsets\030\003 \003(\005R\013li"
+    "neOffsets\022Q\n\tpositions\030\004 \003(\01323.google.ap"
+    "i.expr.v1alpha1.SourceInfo.PositionsEntr"
+    "yR\tpositions\022U\n\013macro_calls\030\005 \003(\01324.goog"
+    "le.api.expr.v1alpha1.SourceInfo.MacroCal"
+    "lsEntryR\nmacroCalls\022N\n\nextensions\030\006 \003(\0132"
+    "..google.api.expr.v1alpha1.SourceInfo.Ex"
+    "tensionR\nextensions\032\200\003\n\tExtension\022\016\n\002id\030"
+    "\001 \001(\tR\002id\022i\n\023affected_components\030\002 \003(\01628"
+    ".google.api.expr.v1alpha1.SourceInfo.Ext"
+    "ension.ComponentR\022affectedComponents\022P\n\007"
+    "version\030\003 \001(\01326.google.api.expr.v1alpha1"
+    ".SourceInfo.Extension.VersionR\007version\0325"
+    "\n\007Version\022\024\n\005major\030\001 \001(\003R\005major\022\024\n\005minor"
+    "\030\002 \001(\003R\005minor\"o\n\tComponent\022\031\n\025COMPONENT_"
+    "UNSPECIFIED\020\000\022\024\n\020COMPONENT_PARSER\020\001\022\032\n\026C"
+    "OMPONENT_TYPE_CHECKER\020\002\022\025\n\021COMPONENT_RUN"
+    "TIME\020\003\032<\n\016PositionsEntry\022\020\n\003key\030\001 \001(\003R\003k"
+    "ey\022\024\n\005value\030\002 \001(\005R\005value:\0028\001\032]\n\017MacroCal"
+    "lsEntry\022\020\n\003key\030\001 \001(\003R\003key\0224\n\005value\030\002 \001(\013"
+    "2\036.google.api.expr.v1alpha1.ExprR\005value:"
+    "\0028\001\"p\n\016SourcePosition\022\032\n\010location\030\001 \001(\tR"
+    "\010location\022\026\n\006offset\030\002 \001(\005R\006offset\022\022\n\004lin"
+    "e\030\003 \001(\005R\004line\022\026\n\006column\030\004 \001(\005R\006columnB\357\001"
+    "\n\034com.google.api.expr.v1alpha1B\013SyntaxPr"
+    "otoP\001Z<google.golang.org/genproto/google"
+    "apis/api/expr/v1alpha1;expr\370\001\001\242\002\003GAE\252\002\030G"
+    "oogle.Api.Expr.V1alpha1\312\002\030Google\\Api\\Exp"
+    "r\\V1alpha1\342\002$Google\\Api\\Expr\\V1alpha1\\GP"
+    "BMetadata\352\002\033Google::Api::Expr::V1alpha1b"
+    "\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_deps[3] =
     {
@@ -743,7 +749,7 @@ static ::absl::once_flag descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsynta
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto = {
     false,
     false,
-    3738,
+    3767,
     descriptor_table_protodef_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto,
     "google/api/expr/v1alpha1/syntax.proto",
     &descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_once,
@@ -2679,7 +2685,8 @@ inline PROTOBUF_NDEBUG_INLINE Expr_Comprehension::Impl_::Impl_(
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
         iter_var_(arena, from.iter_var_),
-        accu_var_(arena, from.accu_var_) {}
+        accu_var_(arena, from.accu_var_),
+        iter_var2_(arena, from.iter_var2_) {}
 
 Expr_Comprehension::Expr_Comprehension(
     ::google::protobuf::Arena* arena,
@@ -2714,7 +2721,8 @@ inline PROTOBUF_NDEBUG_INLINE Expr_Comprehension::Impl_::Impl_(
     ::google::protobuf::Arena* arena)
       : _cached_size_{0},
         iter_var_(arena),
-        accu_var_(arena) {}
+        accu_var_(arena),
+        iter_var2_(arena) {}
 
 inline void Expr_Comprehension::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -2734,6 +2742,7 @@ inline void Expr_Comprehension::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.iter_var_.Destroy();
   _impl_.accu_var_.Destroy();
+  _impl_.iter_var2_.Destroy();
   delete _impl_.iter_range_;
   delete _impl_.accu_init_;
   delete _impl_.loop_condition_;
@@ -2751,6 +2760,7 @@ PROTOBUF_NOINLINE void Expr_Comprehension::Clear() {
 
   _impl_.iter_var_.ClearToEmpty();
   _impl_.accu_var_.ClearToEmpty();
+  _impl_.iter_var2_.ClearToEmpty();
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x0000001fu) {
     if (cached_has_bits & 0x00000001u) {
@@ -2786,21 +2796,23 @@ const char* Expr_Comprehension::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 7, 5, 68, 2> Expr_Comprehension::_table_ = {
+const ::_pbi::TcParseTable<3, 8, 5, 85, 2> Expr_Comprehension::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(Expr_Comprehension, _impl_._has_bits_),
     0, // no _extensions_
-    7, 56,  // max_field_number, fast_idx_mask
+    8, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967168,  // skipmap
+    4294967040,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    7,  // num_field_entries
+    8,  // num_field_entries
     5,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_Expr_Comprehension_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
+    // string iter_var2 = 8 [json_name = "iterVar2"];
+    {::_pbi::TcParser::FastUS1,
+     {66, 63, 0, PROTOBUF_FIELD_OFFSET(Expr_Comprehension, _impl_.iter_var2_)}},
     // string iter_var = 1 [json_name = "iterVar"];
     {::_pbi::TcParser::FastUS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(Expr_Comprehension, _impl_.iter_var_)}},
@@ -2846,6 +2858,9 @@ const ::_pbi::TcParseTable<3, 7, 5, 68, 2> Expr_Comprehension::_table_ = {
     // .google.api.expr.v1alpha1.Expr result = 7 [json_name = "result"];
     {PROTOBUF_FIELD_OFFSET(Expr_Comprehension, _impl_.result_), _Internal::kHasBitsOffset + 4, 4,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // string iter_var2 = 8 [json_name = "iterVar2"];
+    {PROTOBUF_FIELD_OFFSET(Expr_Comprehension, _impl_.iter_var2_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }}, {{
     {::_pbi::TcParser::GetTable<::google::api::expr::v1alpha1::Expr>()},
     {::_pbi::TcParser::GetTable<::google::api::expr::v1alpha1::Expr>()},
@@ -2853,10 +2868,11 @@ const ::_pbi::TcParseTable<3, 7, 5, 68, 2> Expr_Comprehension::_table_ = {
     {::_pbi::TcParser::GetTable<::google::api::expr::v1alpha1::Expr>()},
     {::_pbi::TcParser::GetTable<::google::api::expr::v1alpha1::Expr>()},
   }}, {{
-    "\53\10\0\10\0\0\0\0"
+    "\53\10\0\10\0\0\0\0\11\0\0\0\0\0\0\0"
     "google.api.expr.v1alpha1.Expr.Comprehension"
     "iter_var"
     "accu_var"
+    "iter_var2"
   }},
 };
 
@@ -2919,6 +2935,14 @@ const ::_pbi::TcParseTable<3, 7, 5, 68, 2> Expr_Comprehension::_table_ = {
         _Internal::result(this).GetCachedSize(), target, stream);
   }
 
+  // string iter_var2 = 8 [json_name = "iterVar2"];
+  if (!this->_internal_iter_var2().empty()) {
+    const std::string& _s = this->_internal_iter_var2();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "google.api.expr.v1alpha1.Expr.Comprehension.iter_var2");
+    target = stream->WriteStringMaybeAliased(8, _s, target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -2946,6 +2970,12 @@ const ::_pbi::TcParseTable<3, 7, 5, 68, 2> Expr_Comprehension::_table_ = {
   if (!this->_internal_accu_var().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                     this->_internal_accu_var());
+  }
+
+  // string iter_var2 = 8 [json_name = "iterVar2"];
+  if (!this->_internal_iter_var2().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_iter_var2());
   }
 
   cached_has_bits = _impl_._has_bits_[0];
@@ -3006,6 +3036,9 @@ void Expr_Comprehension::MergeImpl(::google::protobuf::Message& to_msg, const ::
   if (!from._internal_accu_var().empty()) {
     _this->_internal_set_accu_var(from._internal_accu_var());
   }
+  if (!from._internal_iter_var2().empty()) {
+    _this->_internal_set_iter_var2(from._internal_iter_var2());
+  }
   cached_has_bits = from._impl_._has_bits_[0];
   if (cached_has_bits & 0x0000001fu) {
     if (cached_has_bits & 0x00000001u) {
@@ -3054,6 +3087,7 @@ void Expr_Comprehension::InternalSwap(Expr_Comprehension* PROTOBUF_RESTRICT othe
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.iter_var_, &other->_impl_.iter_var_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.accu_var_, &other->_impl_.accu_var_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.iter_var2_, &other->_impl_.iter_var2_, arena);
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Expr_Comprehension, _impl_.result_)
       + sizeof(Expr_Comprehension::_impl_.result_)
