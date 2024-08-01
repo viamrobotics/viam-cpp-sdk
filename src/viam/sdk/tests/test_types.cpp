@@ -29,8 +29,9 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
     // null is always equal
     BOOST_CHECK(ProtoT() == ProtoT());
     BOOST_CHECK(ProtoT().is_a<std::nullptr_t>());
-    BOOST_CHECK(dyn_cast<std::nullptr_t>(ProtoT()));
-    BOOST_CHECK(!dyn_cast<int>(ProtoT()));
+
+    BOOST_CHECK(!(ProtoT() == ProtoT(5)));
+    BOOST_CHECK(!(ProtoT(false) == ProtoT(nullptr)));
 
     BOOST_CHECK(ProtoT(5) == ProtoT(5));
     BOOST_CHECK(!(ProtoT(6) == ProtoT(5)));
@@ -51,6 +52,14 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
 
         BOOST_CHECK(!(i5 == int_roundtrip));
         BOOST_CHECK(int_roundtrip == ProtoT(5.0));
+
+        ProtoT i5_copy(i5);
+        BOOST_CHECK(i5_copy == i5);
+
+        ProtoT i5_move(std::move(i5));
+        BOOST_CHECK(i5_copy == i5_move);
+        BOOST_CHECK(!(i5 == i5_move));
+        BOOST_CHECK(i5.is_a<std::nullptr_t>());
     }
 
     auto test_cases = std::make_tuple(
@@ -91,16 +100,20 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
         BOOST_CHECK(!(v1 == v3));
         BOOST_CHECK(v3 == v4);
 
-        {
-            // test copy construction and mutating through copy
-            auto v1_copy = v1;
-            BOOST_CHECK(v1_copy == v1);
+        // test copy construction
+        auto v1_copy = v1;
+        BOOST_CHECK(v1_copy == v1);
 
-            test_type* ptr = dyn_cast<test_type>(v1_copy);
+        {
+            // mutate through copy
+            auto v1_copy_to_change = v1;
+            BOOST_CHECK(v1_copy_to_change == v1);
+
+            test_type* ptr = dyn_cast<test_type>(v1_copy_to_change);
             BOOST_REQUIRE(ptr);
             *ptr = test_pair.second;
-            BOOST_CHECK(!(v1_copy == v1));
-            BOOST_CHECK(v1_copy == v3);
+            BOOST_CHECK(!(v1_copy_to_change == v1));
+            BOOST_CHECK(v1_copy_to_change == v3);
         }
 
         Value converted = to_proto_value(v3);
@@ -115,6 +128,11 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
 
         BOOST_CHECK(v3 == roundtrip);
         BOOST_CHECK(string1 == string2);
+
+        auto v1_move = std::move(v1);
+        BOOST_CHECK(v1_copy == v1_move);
+        BOOST_CHECK(!(v1_move == v1));
+        BOOST_CHECK(v1.is_a<std::nullptr_t>());
     });
 }
 

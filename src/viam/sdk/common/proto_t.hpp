@@ -3,6 +3,7 @@
 #include <memory>
 #include <string>
 #include <unordered_map>
+#include <utility>
 #include <vector>
 
 namespace google {
@@ -20,7 +21,10 @@ namespace sdk {
 class ProtoT {
    public:
     // Construct an empty object.
-    ProtoT() : ProtoT(nullptr) {}
+    ProtoT() noexcept = default;
+
+    // Explicitly construct an empty object from nullptr
+    ProtoT(std::nullptr_t) : ProtoT() {}
 
     // Construct a nonempty object.
     template <typename T>
@@ -29,14 +33,18 @@ class ProtoT {
     // Deduction helper constructor for string from string literal
     ProtoT(const char* str) : ProtoT(std::string(str)) {}
 
-    ProtoT(ProtoT&&) noexcept = default;
-    ProtoT(const ProtoT& other) : self_(other.self_->copy()) {}
+    // Move construction this from other, leaving other as a valid nullptr value
+    ProtoT(ProtoT&& other) noexcept : self_(std::exchange(other.self_, holder{})) {}
 
-    ProtoT& operator=(ProtoT&&) noexcept = default;
-    ProtoT& operator=(const ProtoT& other) {
-        self_ = other.self_->copy();
+    ProtoT(const ProtoT& other) = default;
+
+    // Move assignment from other, leaving other as a valid nullptr value
+    ProtoT& operator=(ProtoT&& other) noexcept {
+        self_ = std::exchange(other.self_, holder{});
         return *this;
     }
+
+    ProtoT& operator=(const ProtoT& other) = default;
 
     ~ProtoT() = default;
 
@@ -44,7 +52,7 @@ class ProtoT {
     // Note that "intuitive" arithmetic equality is not supported, but could be.
     // Thus, bool{false}, int{0}, and double{0.0} do not compare equal.
     friend bool operator==(const ProtoT& lhs, const ProtoT& rhs) {
-        return lhs.self_->equal_to(*rhs.self_);
+        return lhs.self_.equal_to(rhs.self_);
     }
 
     // Construct from proto value
@@ -58,16 +66,18 @@ class ProtoT {
 
     // Obtain integer constant representing the stored data type.
     int kind() const {
-        return self_->kind();
+        return self_.kind();
     }
 
     // Checks whether this ProtoT is an instance of type T.
     template <typename T>
     bool is_a() const;
 
+    // Checking cast to T, returns non-owning non-null pointer if argument is_a<T>()
     template <typename T>
     friend T* dyn_cast(ProtoT&);
 
+    // Checking cast to T, returns non-owning non-null pointer if argument is_a<T>()
     template <typename T>
     friend T const* dyn_cast(const ProtoT&);
 
@@ -84,6 +94,9 @@ class ProtoT {
 
         virtual bool equal_to(const concept_t& other) const = 0;
     };
+
+    template <typename T>
+    struct model;
 
     // Concrete model of interface.
     template <typename T>
@@ -110,10 +123,42 @@ class ProtoT {
         T data;
     };
 
+    struct holder {
+        holder() = default;
+
+        template <typename T>
+        holder(std::unique_ptr<model<T>> p) : ptr(std::move(p)) {
+            static_assert(!std::is_same<T, std::nullptr_t>{}, "Use default ctor for nullptr value");
+        }
+
+        holder(holder&&) = default;
+
+        holder(const holder& other)
+            : ptr(other.ptr ? other.ptr->copy() : std::unique_ptr<concept_t>{}) {}
+
+        holder& operator=(holder&&) = default;
+
+        holder& operator=(const holder& other) {
+            ptr = other.ptr ? other.ptr->copy() : std::unique_ptr<concept_t>{};
+            return *this;
+        }
+
+        void to_proto_value(google::protobuf::Value*) const;
+
+        int kind() const;
+
+        bool equal_to(const holder& other) const;
+
+        std::unique_ptr<concept_t> ptr;
+    };
+
     ProtoT(const google::protobuf::Value* value);
 
-    // TODO this could be replaced with an SBO storage class to save a heap allocation on
-    std::unique_ptr<concept_t> self_;
+    // TODO this could be replaced with an SBO storage class to save a heap allocation on small,
+    // trivially copyable types. Pending that, holder special-cases the nullptr_t value to store
+    // nothing. This gives us noexcept default construction and move operations, and allows move ops
+    // to leave the object in a null state.
+    holder self_;
 };
 
 using AttrMap = std::unordered_map<std::string, ProtoT>;
@@ -179,8 +224,9 @@ bool ProtoT::is_a() const {
 
 template <typename T>
 T* dyn_cast(ProtoT& pt) {
+    static_assert(!std::is_same<T, std::nullptr_t>{}, "Please do not dyn_cast to nullptr");
     if (pt.is_a<T>()) {
-        return &(static_cast<ProtoT::model<T>*>(pt.self_.get())->data);
+        return &(static_cast<ProtoT::model<T>*>(pt.self_.ptr.get())->data);
     }
 
     return nullptr;
@@ -188,8 +234,9 @@ T* dyn_cast(ProtoT& pt) {
 
 template <typename T>
 T const* dyn_cast(const ProtoT& pt) {
+    static_assert(!std::is_same<T, std::nullptr_t>{}, "Please do not dyn_cast to nullptr");
     if (pt.is_a<T>()) {
-        return &(static_cast<const ProtoT::model<T>*>(pt.self_.get())->data);
+        return &(static_cast<const ProtoT::model<T>*>(pt.self_.ptr.get())->data);
     }
 
     return nullptr;
