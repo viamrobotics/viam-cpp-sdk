@@ -95,9 +95,6 @@ class ProtoT {
         virtual bool equal_to(const concept_t& other) const = 0;
     };
 
-    template <typename T>
-    struct model;
-
     // Concrete model of interface.
     template <typename T>
     struct model final : concept_t {
