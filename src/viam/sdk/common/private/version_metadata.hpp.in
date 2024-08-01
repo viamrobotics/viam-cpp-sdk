@@ -1,0 +1,11 @@
+#pragma once
+
+namespace viam {
+namespace sdk {
+namespace impl {
+
+constexpr char k_version[] = "cpp;v@CMAKE_PROJECT_VERSION@;@VIAMCPPSDK_API_PROTO_LABEL@";
+
+}  // namespace impl
+}  // namespace sdk
+}  // namespace viam

@@ -19,6 +19,16 @@ target_include_directories(viamsdk
     "$<BUILD_INTERFACE:$<TARGET_PROPERTY:viam-cpp-sdk::viamapi,INTERFACE_INCLUDE_DIRECTORIES>>"
 )
 
+# Configure the SDK version file
+if (VIAMCPPSDK_USE_LOCAL_PROTOS)
+  set(VIAMCPPSDK_API_PROTO_LABEL "unknown (local generation)")
+else()
+  file(READ "${CMAKE_CURRENT_SOURCE_DIR}/../api/api_proto_tag.lock" VIAMCPPSDK_API_PROTO_LABEL)
+  string(REGEX REPLACE "\n$" "" VIAMCPPSDK_API_PROTO_LABEL "${VIAMCPPSDK_API_PROTO_LABEL}")
+endif()
+message(WARNING "api proto label is ${VIAMCPPSDK_API_PROTO_LABEL}")
+configure_file(common/private/version_metadata.hpp.in common/private/version_metadata.hpp @ONLY)
+
 
 # Set compile and link options based on arguments
 if (VIAMCPPSDK_USE_WALL_WERROR)
@@ -191,6 +201,8 @@ target_include_directories(viamsdk
     "$<INSTALL_INTERFACE:${VIAMCPPSDK_GRPC_INCLUDE_DIRS}>"
     "$<BUILD_INTERFACE:${VIAMCPPSDK_PROTOBUF_INCLUDE_DIRS}>"
     "$<INSTALL_INTERFACE:${VIAMCPPSDK_PROTOBUF_INCLUDE_DIRS}>"
+  PRIVATE
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/../..>"
 )
 
 target_link_directories(viamsdk
