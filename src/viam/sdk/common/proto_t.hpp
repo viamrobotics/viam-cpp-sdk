@@ -8,8 +8,13 @@
 
 namespace google {
 namespace protobuf {
+
+// Forward declaration of google::protobuf::Value.
+// The class below is written so as to keep Value out of the ABI, and as such can be instantiated
+// with Value as an incomplete type.
+
 class Value;
-}
+}  // namespace protobuf
 }  // namespace google
 
 namespace viam {
@@ -56,6 +61,10 @@ class ProtoT {
     }
 
     // Construct from proto value
+    // This method is trivially templated to insulate Value from our API/ABI.
+    // In a translation unit which includes <google/protobuf/struct.pb.h> you can call
+    // this function on a Value instance without specifying a template parameter and it will "just
+    // work"
     template <typename Value = google::protobuf::Value>
     static ProtoT from_proto_value(const Value& v) {
         return ProtoT(&v);
@@ -120,6 +129,11 @@ class ProtoT {
         T data;
     };
 
+    // Storage class for holding concept_t.
+    // This class is special-cased on nullptr values, which are stored as a null pointer with no
+    // heap allocation. All other types require heap allocation, but this allows us to give ProtoT
+    // noexcept default construction and move operations while having the move operations
+    // leave ProtoT in a valid, null state.
     struct holder {
         holder() = default;
 
@@ -152,9 +166,7 @@ class ProtoT {
     ProtoT(const google::protobuf::Value* value);
 
     // TODO this could be replaced with an SBO storage class to save a heap allocation on small,
-    // trivially copyable types. Pending that, holder special-cases the nullptr_t value to store
-    // nothing. This gives us noexcept default construction and move operations, and allows move ops
-    // to leave the object in a null state.
+    // trivially copyable types. Pending that we use holder as a stopgap; see remarks above.
     holder self_;
 };
 
@@ -169,6 +181,11 @@ void to_proto_value(const std::vector<ProtoT>& vec, google::protobuf::Value* v);
 void to_proto_value(const AttrMap& m, google::protobuf::Value* v);
 void to_proto_value(const ProtoT& t, google::protobuf::Value* v);
 
+// Convert a type to proto value.
+// This method is trivially templated to insulate Value from our API/ABI.
+// In a translation unit which includes <google/protobuf/struct.pb.h> you can call
+// this function to create a Value instance without specifying a template parameter and it will
+// "just work"
 template <class T, class Value = google::protobuf::Value>
 Value to_proto_value(T&& t) {
     Value v;
