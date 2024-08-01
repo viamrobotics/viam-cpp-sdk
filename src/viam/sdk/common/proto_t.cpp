@@ -57,7 +57,7 @@ int ProtoT::holder::kind() const {
         return ptr->kind();
     }
 
-    return kind_t<nullptr_t>::value;
+    return kind_t<std::nullptr_t>::value;
 }
 
 bool ProtoT::holder::equal_to(const ProtoT::holder& other) const {
