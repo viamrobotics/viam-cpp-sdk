@@ -46,6 +46,8 @@ jobs:
           BOOST_ROOT: ${{ github.workspace }}/boost/boost
       - name: cleanup
         run: rm -rf boost/ && rm -rf vcpkg/
+      - name: Update proto tag
+        run: echo "${{ github.event.client_payload.tag }}" > src/viam/api/api_proto_tag.lock
       - name: Add + Commit + Open PR
         uses: peter-evans/create-pull-request@v3
         with:
