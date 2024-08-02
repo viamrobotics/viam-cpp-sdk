@@ -24,40 +24,52 @@ namespace sdk {
 // The "simple" value types are empty, bool, int, double, and string.
 // Moreover, a ProtoT can be a vector or string-map of ProtoT.
 class ProtoT {
-   public:
-    // Construct an empty object.
-    ProtoT() noexcept = default;
+    static constexpr std::size_t small_size = sizeof(std::unordered_map<std::string, std::string>);
 
-    // Explicitly construct an empty object from nullptr
-    ProtoT(std::nullptr_t) : ProtoT() {}
+   public:
+    // Construct a null object.
+    ProtoT() noexcept : ProtoT(nullptr) {}
 
     // Construct a nonempty object.
     template <typename T>
-    ProtoT(T t) : self_(std::make_unique<model<T>>(std::move(t))) {}
+    ProtoT(T t) : vtable_{model_t<T>::vtable}, self_{std::move(t)} {}
 
     // Deduction helper constructor for string from string literal
     ProtoT(const char* str) : ProtoT(std::string(str)) {}
 
-    // Move construction this from other, leaving other as a valid nullptr value
-    ProtoT(ProtoT&& other) noexcept : self_(std::exchange(other.self_, holder{})) {}
+    // Move construction this from other, leaving other in the "unspecified but valid state" of its
+    // moved-from type
+    ProtoT(ProtoT&& other) noexcept
+        : vtable_(std::move(other.vtable_)), self_(std::move(other.self_), vtable_) {}
 
-    ProtoT(const ProtoT& other) = default;
+    ProtoT(const ProtoT& other) : vtable_(other.vtable_), self_(other.self_, other.vtable_) {}
 
-    // Move assignment from other, leaving other as a valid nullptr value
+    // Move assignment from other, leaving other in the "unspecified but valid state" of its
+    // moved-from type.
     ProtoT& operator=(ProtoT&& other) noexcept {
-        self_ = std::exchange(other.self_, holder{});
+        ProtoT(std::move(other)).swap(*this);
         return *this;
     }
 
-    ProtoT& operator=(const ProtoT& other) = default;
+    ProtoT& operator=(const ProtoT& other) {
+        ProtoT(other).swap(*this);
+        return *this;
+    }
 
-    ~ProtoT() = default;
+    ~ProtoT() {
+        self_.destruct(vtable_);
+    }
 
     // Test equality of two types.
     // Note that "intuitive" arithmetic equality is not supported, but could be.
     // Thus, bool{false}, int{0}, and double{0.0} do not compare equal.
     friend bool operator==(const ProtoT& lhs, const ProtoT& rhs) {
-        return lhs.self_.equal_to(rhs.self_);
+        return lhs.vtable_.equal_to(lhs.self_.get(), rhs.self_.get(), rhs.vtable_);
+    }
+
+    void swap(ProtoT& other) {
+        self_.swap(vtable_, other.self_, other.vtable_);
+        std::swap(vtable_, other.vtable_);
     }
 
     // Construct from proto value
@@ -75,7 +87,7 @@ class ProtoT {
 
     // Obtain integer constant representing the stored data type.
     int kind() const {
-        return self_.kind();
+        return vtable_.kind();
     }
 
     // Checks whether this ProtoT is an instance of type T.
@@ -91,83 +103,105 @@ class ProtoT {
     friend T const* dyn_cast(const ProtoT&);
 
    private:
-    // ABC interface class for type erasure.
-    struct concept_t {
-        virtual ~concept_t() = default;
-
-        virtual std::unique_ptr<concept_t> copy() const = 0;
-
-        virtual void to_proto_value(google::protobuf::Value* v) const = 0;
-
-        virtual int kind() const = 0;
-
-        virtual bool equal_to(const concept_t& other) const = 0;
+    struct vtable_t {
+        void (*dtor)(void*) noexcept;
+        void (*copy)(void const*, void*);
+        void (*move)(void*, void*) noexcept;
+        void (*to_proto_value)(void const*, google::protobuf::Value*);
+        int (*kind)() noexcept;
+        bool (*equal_to)(void const*, void const*, const vtable_t&);
     };
 
-    // Concrete model of interface.
     template <typename T>
-    struct model final : concept_t {
-        model(T t) : data(std::move(t)) {}
-        ~model() override = default;
+    struct model_t {
+        model_t(T t) : data(std::move(t)) {}
 
-        std::unique_ptr<concept_t> copy() const override {
-            return std::make_unique<model>(*this);
+        static void dtor(void* self) noexcept {
+            static_cast<model_t*>(self)->~model_t();
         }
 
-        void to_proto_value(google::protobuf::Value*) const override;
+        static void copy(void const* self, void* dest) {
+            new (dest) model_t(*static_cast<model_t const*>(self));
+        }
 
-        int kind() const override;
+        static void move(void* self, void* dest) noexcept {
+            new (dest) model_t(std::move(*static_cast<model_t*>(self)));
+        }
 
-        virtual bool equal_to(const concept_t& other) const override {
-            if (this->kind() != other.kind()) {
+        static void to_proto_value(void const* self, google::protobuf::Value* v);
+
+        static int kind() noexcept;
+
+        static bool equal_to(void const* self, void const* other, const vtable_t& other_vtable) {
+            if (model_t::kind() != other_vtable.kind()) {
                 return false;
             }
 
-            return data == static_cast<const model<T>&>(other).data;
+            return *static_cast<T const*>(self) == *static_cast<T const*>(other);
         }
 
+        static constexpr vtable_t vtable{dtor, copy, move, to_proto_value, kind, equal_to};
         T data;
     };
 
-    // Storage class for holding concept_t.
-    // This class is special-cased on nullptr values, which are stored as a null pointer with no
-    // heap allocation. All other types require heap allocation, but this allows us to give ProtoT
-    // noexcept default construction and move operations while having the move operations
-    // leave ProtoT in a valid, null state.
-    struct holder {
-        holder() = default;
-
+    struct storage_t {
         template <typename T>
-        holder(std::unique_ptr<model<T>> p) : ptr(std::move(p)) {
-            static_assert(!std::is_same<T, std::nullptr_t>{}, "Use default ctor for nullptr value");
+        storage_t(T t) {
+            static_assert(sizeof(model_t<T>) <= small_size, "Too big!");
+            new (&buf_) model_t<T>(std::move(t));
         }
 
-        holder(holder&&) = default;
+        storage_t(const storage_t&) = delete;
+        storage_t(storage_t&&) = delete;
+        storage_t& operator=(const storage_t&) = delete;
+        storage_t& operator=(storage_t&&) = delete;
 
-        holder(const holder& other)
-            : ptr(other.ptr ? other.ptr->copy() : std::unique_ptr<concept_t>{}) {}
-
-        holder& operator=(holder&&) = default;
-
-        holder& operator=(const holder& other) {
-            ptr = other.ptr ? other.ptr->copy() : std::unique_ptr<concept_t>{};
-            return *this;
+        storage_t(const storage_t& other, const vtable_t& vtable) {
+            vtable.copy(other.get(), this->get());
         }
 
-        void to_proto_value(google::protobuf::Value*) const;
+        storage_t(storage_t&& other, const vtable_t& vtable) {
+            vtable.move(other.get(), this->get());
+        }
 
-        int kind() const;
+        void swap(const vtable_t& this_vtable, storage_t& other, const vtable_t& other_vtable) {
+            if (this == &other) {
+                return;
+            }
 
-        bool equal_to(const holder& other) const;
+            unsigned char tmp[small_size];
+            other_vtable.move(other.get(), &tmp);
+            other_vtable.dtor(other.get());
 
-        std::unique_ptr<concept_t> ptr;
+            this_vtable.move(this->get(), other.get());
+            this_vtable.dtor(this->get());
+
+            other_vtable.move(&tmp, this->get());
+            other_vtable.dtor(&tmp);
+        }
+
+        void destruct(const vtable_t& vtable) {
+            vtable.dtor(this->get());
+        }
+
+        template <typename T = void>
+        T* get() {
+            return static_cast<T*>(static_cast<void*>(&buf_));
+        }
+
+        template <typename T = void>
+        T const* get() const {
+            return static_cast<T const*>(static_cast<void const*>(&buf_));
+        }
+
+        unsigned char buf_[small_size];
     };
 
     ProtoT(const google::protobuf::Value* value);
 
-    // TODO this could be replaced with an SBO storage class to save a heap allocation on small,
-    // trivially copyable types. Pending that we use holder as a stopgap; see remarks above.
-    holder self_;
+    static constexpr vtable_t trivial_vtable{[](void*) noexcept {}};
+    vtable_t vtable_ = trivial_vtable;
+    storage_t self_;
 };
 
 using AttrMap = std::unordered_map<std::string, ProtoT>;
@@ -222,12 +256,12 @@ template <>
 struct kind_t<AttrMap> : std::integral_constant<int, 6> {};
 
 template <typename T>
-void ProtoT::model<T>::to_proto_value(google::protobuf::Value* v) const {
-    viam::sdk::to_proto_value(data, v);
+void ProtoT::model_t<T>::to_proto_value(void const* self, google::protobuf::Value* v) {
+    viam::sdk::to_proto_value(static_cast<model_t const*>(self)->data, v);
 }
 
 template <typename T>
-int ProtoT::model<T>::kind() const {
+int ProtoT::model_t<T>::kind() noexcept {
     return kind_t<T>::value;
 }
 
@@ -240,7 +274,7 @@ template <typename T>
 T* dyn_cast(ProtoT& pt) {
     static_assert(!std::is_same<T, std::nullptr_t>{}, "Please do not dyn_cast to nullptr");
     if (pt.is_a<T>()) {
-        return &(static_cast<ProtoT::model<T>*>(pt.self_.ptr.get())->data);
+        return pt.self_.template get<T>();
     }
 
     return nullptr;
@@ -250,7 +284,7 @@ template <typename T>
 T const* dyn_cast(const ProtoT& pt) {
     static_assert(!std::is_same<T, std::nullptr_t>{}, "Please do not dyn_cast to nullptr");
     if (pt.is_a<T>()) {
-        return &(static_cast<const ProtoT::model<T>*>(pt.self_.ptr.get())->data);
+        return pt.self_.template get<T>();
     }
 
     return nullptr;

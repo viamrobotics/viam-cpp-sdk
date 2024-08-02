@@ -58,8 +58,7 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
 
         ProtoT i5_move(std::move(i5));
         BOOST_CHECK(i5_copy == i5_move);
-        BOOST_CHECK(!(i5 == i5_move));
-        BOOST_CHECK(i5.is_a<std::nullptr_t>());
+        BOOST_CHECK(i5.is_a<int>());
     }
 
     auto test_cases = std::make_tuple(
@@ -131,8 +130,44 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
 
         auto v1_move = std::move(v1);
         BOOST_CHECK(v1_copy == v1_move);
-        BOOST_CHECK(!(v1_move == v1));
-        BOOST_CHECK(v1.is_a<std::nullptr_t>());
+        BOOST_CHECK(v1.is_a<test_type>());
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_move_validity) {
+    auto test_cases =
+        std::make_tuple(std::string("str"),
+                        std::vector<ProtoT>{{ProtoT("asdf"), ProtoT(true)}},
+                        AttrMap{{"asdf", true}, {"vec", std::vector<ProtoT>{{ProtoT(5)}}}});
+
+    tuple_for_each(test_cases, [](auto test_elem) {
+        using TestType = decltype(test_elem);
+
+        ProtoT move_construct_src(test_elem);
+        ProtoT move_assign_src(test_elem);
+
+        ProtoT move_construct(std::move(move_construct_src));
+        ProtoT move_assign;
+        move_assign = std::move(move_assign_src);
+
+        // in practice pretty much any implementation would set the containers to empty, but we just
+        // want to check that they are in an unspecified but valid state bc that is all that is
+        // guaranteed
+
+        for (TestType* ptr :
+             {dyn_cast<TestType>(move_construct), dyn_cast<TestType>(move_assign)}) {
+            BOOST_REQUIRE(ptr);
+            BOOST_CHECK(*ptr == test_elem);
+        }
+
+        for (TestType* moved_from_ptr :
+             {dyn_cast<TestType>(move_construct), dyn_cast<TestType>(move_assign)}) {
+            BOOST_REQUIRE(moved_from_ptr);
+            auto sample_value = *test_elem.begin();
+            moved_from_ptr->clear();
+            moved_from_ptr->insert(moved_from_ptr->end(), sample_value);
+            BOOST_CHECK(moved_from_ptr->size() == 1);
+        }
     });
 }
 

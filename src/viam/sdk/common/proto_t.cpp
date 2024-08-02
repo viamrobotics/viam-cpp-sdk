@@ -44,30 +44,6 @@ ProtoT::ProtoT(const Value* value)  // NOLINT(misc-no-recursion)
           }
       }(*value)) {}
 
-void ProtoT::holder::to_proto_value(Value* v) const {
-    if (ptr) {
-        ptr->to_proto_value(v);
-    } else {
-        viam::sdk::to_proto_value(nullptr, v);
-    }
-}
-
-int ProtoT::holder::kind() const {
-    if (ptr) {
-        return ptr->kind();
-    }
-
-    return kind_t<std::nullptr_t>::value;
-}
-
-bool ProtoT::holder::equal_to(const ProtoT::holder& other) const {
-    if (!ptr || !other.ptr) {
-        return !ptr && !other.ptr;
-    }
-
-    return ptr->equal_to(*other.ptr);
-}
-
 void to_proto_value(std::nullptr_t, Value* v) {
     v->set_null_value(::google::protobuf::NULL_VALUE);
 }
@@ -110,7 +86,7 @@ void to_proto_value(const std::unordered_map<std::string, ProtoT>& m, Value* v) 
 }
 
 void to_proto_value(const ProtoT& t, Value* v) {
-    t.self_.to_proto_value(v);
+    return t.vtable_.to_proto_value(t.self_.get(), v);
 }
 
 }  // namespace sdk
