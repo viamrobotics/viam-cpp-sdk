@@ -131,6 +131,12 @@ extern GetStatusRequestDefaultTypeInternal _GetStatusRequest_default_instance_;
 class GetStatusResponse;
 struct GetStatusResponseDefaultTypeInternal;
 extern GetStatusResponseDefaultTypeInternal _GetStatusResponse_default_instance_;
+class GetVersionRequest;
+struct GetVersionRequestDefaultTypeInternal;
+extern GetVersionRequestDefaultTypeInternal _GetVersionRequest_default_instance_;
+class GetVersionResponse;
+struct GetVersionResponseDefaultTypeInternal;
+extern GetVersionResponseDefaultTypeInternal _GetVersionResponse_default_instance_;
 class LogRequest;
 struct LogRequestDefaultTypeInternal;
 extern LogRequestDefaultTypeInternal _LogRequest_default_instance_;
@@ -235,6 +241,7 @@ enum ResourceStatus_State : int {
   ResourceStatus_State_STATE_CONFIGURING = 2,
   ResourceStatus_State_STATE_READY = 3,
   ResourceStatus_State_STATE_REMOVING = 4,
+  ResourceStatus_State_STATE_UNHEALTHY = 5,
   ResourceStatus_State_ResourceStatus_State_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   ResourceStatus_State_ResourceStatus_State_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -244,8 +251,8 @@ enum ResourceStatus_State : int {
 bool ResourceStatus_State_IsValid(int value);
 extern const uint32_t ResourceStatus_State_internal_data_[];
 constexpr ResourceStatus_State ResourceStatus_State_State_MIN = static_cast<ResourceStatus_State>(0);
-constexpr ResourceStatus_State ResourceStatus_State_State_MAX = static_cast<ResourceStatus_State>(4);
-constexpr int ResourceStatus_State_State_ARRAYSIZE = 4 + 1;
+constexpr ResourceStatus_State ResourceStatus_State_State_MAX = static_cast<ResourceStatus_State>(5);
+constexpr int ResourceStatus_State_State_ARRAYSIZE = 5 + 1;
 const ::google::protobuf::EnumDescriptor*
 ResourceStatus_State_descriptor();
 template <typename T>
@@ -258,7 +265,7 @@ const std::string& ResourceStatus_State_Name(T value) {
 template <>
 inline const std::string& ResourceStatus_State_Name(ResourceStatus_State value) {
   return ::google::protobuf::internal::NameOfDenseEnum<ResourceStatus_State_descriptor,
-                                                 0, 4>(
+                                                 0, 5>(
       static_cast<int>(value));
 }
 inline bool ResourceStatus_State_Parse(absl::string_view name, ResourceStatus_State* value) {
@@ -2565,6 +2572,359 @@ class LogResponse final :
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:viam.robot.v1.LogResponse)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};// -------------------------------------------------------------------
+
+class GetVersionResponse final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.GetVersionResponse) */ {
+ public:
+  inline GetVersionResponse() : GetVersionResponse(nullptr) {}
+  ~GetVersionResponse() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR GetVersionResponse(::google::protobuf::internal::ConstantInitialized);
+
+  inline GetVersionResponse(const GetVersionResponse& from)
+      : GetVersionResponse(nullptr, from) {}
+  GetVersionResponse(GetVersionResponse&& from) noexcept
+    : GetVersionResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetVersionResponse& operator=(const GetVersionResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetVersionResponse& operator=(GetVersionResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetVersionResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetVersionResponse* internal_default_instance() {
+    return reinterpret_cast<const GetVersionResponse*>(
+               &_GetVersionResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    52;
+
+  friend void swap(GetVersionResponse& a, GetVersionResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetVersionResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetVersionResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetVersionResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetVersionResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const GetVersionResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const GetVersionResponse& from) {
+    GetVersionResponse::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(GetVersionResponse* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.robot.v1.GetVersionResponse";
+  }
+  protected:
+  explicit GetVersionResponse(::google::protobuf::Arena* arena);
+  GetVersionResponse(::google::protobuf::Arena* arena, const GetVersionResponse& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPlatformFieldNumber = 1,
+    kVersionFieldNumber = 2,
+    kApiVersionFieldNumber = 3,
+  };
+  // string platform = 1 [json_name = "platform"];
+  void clear_platform() ;
+  const std::string& platform() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_platform(Arg_&& arg, Args_... args);
+  std::string* mutable_platform();
+  PROTOBUF_NODISCARD std::string* release_platform();
+  void set_allocated_platform(std::string* value);
+
+  private:
+  const std::string& _internal_platform() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_platform(
+      const std::string& value);
+  std::string* _internal_mutable_platform();
+
+  public:
+  // string version = 2 [json_name = "version"];
+  void clear_version() ;
+  const std::string& version() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_version(Arg_&& arg, Args_... args);
+  std::string* mutable_version();
+  PROTOBUF_NODISCARD std::string* release_version();
+  void set_allocated_version(std::string* value);
+
+  private:
+  const std::string& _internal_version() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_version(
+      const std::string& value);
+  std::string* _internal_mutable_version();
+
+  public:
+  // string api_version = 3 [json_name = "apiVersion"];
+  void clear_api_version() ;
+  const std::string& api_version() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_api_version(Arg_&& arg, Args_... args);
+  std::string* mutable_api_version();
+  PROTOBUF_NODISCARD std::string* release_api_version();
+  void set_allocated_api_version(std::string* value);
+
+  private:
+  const std::string& _internal_api_version() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_api_version(
+      const std::string& value);
+  std::string* _internal_mutable_api_version();
+
+  public:
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.GetVersionResponse)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 0,
+      67, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr platform_;
+    ::google::protobuf::internal::ArenaStringPtr version_;
+    ::google::protobuf::internal::ArenaStringPtr api_version_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};// -------------------------------------------------------------------
+
+class GetVersionRequest final :
+    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.robot.v1.GetVersionRequest) */ {
+ public:
+  inline GetVersionRequest() : GetVersionRequest(nullptr) {}
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR GetVersionRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline GetVersionRequest(const GetVersionRequest& from)
+      : GetVersionRequest(nullptr, from) {}
+  GetVersionRequest(GetVersionRequest&& from) noexcept
+    : GetVersionRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetVersionRequest& operator=(const GetVersionRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetVersionRequest& operator=(GetVersionRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetVersionRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetVersionRequest* internal_default_instance() {
+    return reinterpret_cast<const GetVersionRequest*>(
+               &_GetVersionRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    51;
+
+  friend void swap(GetVersionRequest& a, GetVersionRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetVersionRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetVersionRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetVersionRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetVersionRequest>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const GetVersionRequest& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const GetVersionRequest& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+  public:
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.robot.v1.GetVersionRequest";
+  }
+  protected:
+  explicit GetVersionRequest(::google::protobuf::Arena* arena);
+  GetVersionRequest(::google::protobuf::Arena* arena, const GetVersionRequest& from);
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.GetVersionRequest)
  private:
   class _Internal;
 
@@ -5364,6 +5724,7 @@ class ResourceStatus final :
   static constexpr State STATE_CONFIGURING = ResourceStatus_State_STATE_CONFIGURING;
   static constexpr State STATE_READY = ResourceStatus_State_STATE_READY;
   static constexpr State STATE_REMOVING = ResourceStatus_State_STATE_REMOVING;
+  static constexpr State STATE_UNHEALTHY = ResourceStatus_State_STATE_UNHEALTHY;
   static inline bool State_IsValid(int value) {
     return ResourceStatus_State_IsValid(value);
   }
@@ -5385,6 +5746,7 @@ class ResourceStatus final :
 
   enum : int {
     kRevisionFieldNumber = 4,
+    kErrorFieldNumber = 5,
     kNameFieldNumber = 1,
     kLastUpdatedFieldNumber = 3,
     kStateFieldNumber = 2,
@@ -5403,6 +5765,22 @@ class ResourceStatus final :
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_revision(
       const std::string& value);
   std::string* _internal_mutable_revision();
+
+  public:
+  // string error = 5 [json_name = "error"];
+  void clear_error() ;
+  const std::string& error() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_error(Arg_&& arg, Args_... args);
+  std::string* mutable_error();
+  PROTOBUF_NODISCARD std::string* release_error();
+  void set_allocated_error(std::string* value);
+
+  private:
+  const std::string& _internal_error() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_error(
+      const std::string& value);
+  std::string* _internal_mutable_error();
 
   public:
   // .viam.common.v1.ResourceName name = 1 [json_name = "name"];
@@ -5451,8 +5829,8 @@ class ResourceStatus final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 4, 2,
-      45, 2>
+      3, 5, 2,
+      50, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -5471,6 +5849,7 @@ class ResourceStatus final :
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr revision_;
+    ::google::protobuf::internal::ArenaStringPtr error_;
     ::viam::common::v1::ResourceName* name_;
     ::google::protobuf::Timestamp* last_updated_;
     int state_;
@@ -13918,6 +14297,59 @@ inline void ResourceStatus::set_allocated_revision(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.ResourceStatus.revision)
 }
 
+// string error = 5 [json_name = "error"];
+inline void ResourceStatus::clear_error() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.error_.ClearToEmpty();
+}
+inline const std::string& ResourceStatus::error() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.ResourceStatus.error)
+  return _internal_error();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ResourceStatus::set_error(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.error_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.ResourceStatus.error)
+}
+inline std::string* ResourceStatus::mutable_error() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_error();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.ResourceStatus.error)
+  return _s;
+}
+inline const std::string& ResourceStatus::_internal_error() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.error_.Get();
+}
+inline void ResourceStatus::_internal_set_error(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.error_.Set(value, GetArena());
+}
+inline std::string* ResourceStatus::_internal_mutable_error() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.error_.Mutable( GetArena());
+}
+inline std::string* ResourceStatus::release_error() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.robot.v1.ResourceStatus.error)
+  return _impl_.error_.Release();
+}
+inline void ResourceStatus::set_allocated_error(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.error_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.error_.IsDefault()) {
+          _impl_.error_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.ResourceStatus.error)
+}
+
 // -------------------------------------------------------------------
 
 // ConfigStatus
@@ -14064,6 +14496,173 @@ inline void ConfigStatus::set_allocated_last_updated(::google::protobuf::Timesta
 
   _impl_.last_updated_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
   // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.ConfigStatus.last_updated)
+}
+
+// -------------------------------------------------------------------
+
+// GetVersionRequest
+
+// -------------------------------------------------------------------
+
+// GetVersionResponse
+
+// string platform = 1 [json_name = "platform"];
+inline void GetVersionResponse::clear_platform() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.platform_.ClearToEmpty();
+}
+inline const std::string& GetVersionResponse::platform() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.GetVersionResponse.platform)
+  return _internal_platform();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void GetVersionResponse::set_platform(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.platform_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.GetVersionResponse.platform)
+}
+inline std::string* GetVersionResponse::mutable_platform() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_platform();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.GetVersionResponse.platform)
+  return _s;
+}
+inline const std::string& GetVersionResponse::_internal_platform() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.platform_.Get();
+}
+inline void GetVersionResponse::_internal_set_platform(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.platform_.Set(value, GetArena());
+}
+inline std::string* GetVersionResponse::_internal_mutable_platform() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.platform_.Mutable( GetArena());
+}
+inline std::string* GetVersionResponse::release_platform() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.robot.v1.GetVersionResponse.platform)
+  return _impl_.platform_.Release();
+}
+inline void GetVersionResponse::set_allocated_platform(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.platform_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.platform_.IsDefault()) {
+          _impl_.platform_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.GetVersionResponse.platform)
+}
+
+// string version = 2 [json_name = "version"];
+inline void GetVersionResponse::clear_version() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.version_.ClearToEmpty();
+}
+inline const std::string& GetVersionResponse::version() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.GetVersionResponse.version)
+  return _internal_version();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void GetVersionResponse::set_version(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.version_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.GetVersionResponse.version)
+}
+inline std::string* GetVersionResponse::mutable_version() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_version();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.GetVersionResponse.version)
+  return _s;
+}
+inline const std::string& GetVersionResponse::_internal_version() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.version_.Get();
+}
+inline void GetVersionResponse::_internal_set_version(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.version_.Set(value, GetArena());
+}
+inline std::string* GetVersionResponse::_internal_mutable_version() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.version_.Mutable( GetArena());
+}
+inline std::string* GetVersionResponse::release_version() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.robot.v1.GetVersionResponse.version)
+  return _impl_.version_.Release();
+}
+inline void GetVersionResponse::set_allocated_version(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.version_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.version_.IsDefault()) {
+          _impl_.version_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.GetVersionResponse.version)
+}
+
+// string api_version = 3 [json_name = "apiVersion"];
+inline void GetVersionResponse::clear_api_version() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.api_version_.ClearToEmpty();
+}
+inline const std::string& GetVersionResponse::api_version() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.GetVersionResponse.api_version)
+  return _internal_api_version();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void GetVersionResponse::set_api_version(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.api_version_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.GetVersionResponse.api_version)
+}
+inline std::string* GetVersionResponse::mutable_api_version() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_api_version();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.GetVersionResponse.api_version)
+  return _s;
+}
+inline const std::string& GetVersionResponse::_internal_api_version() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.api_version_.Get();
+}
+inline void GetVersionResponse::_internal_set_api_version(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.api_version_.Set(value, GetArena());
+}
+inline std::string* GetVersionResponse::_internal_mutable_api_version() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.api_version_.Mutable( GetArena());
+}
+inline std::string* GetVersionResponse::release_api_version() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.robot.v1.GetVersionResponse.api_version)
+  return _impl_.api_version_.Release();
+}
+inline void GetVersionResponse::set_allocated_api_version(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.api_version_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.api_version_.IsDefault()) {
+          _impl_.api_version_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.GetVersionResponse.api_version)
 }
 
 #ifdef __GNUC__
