@@ -24,8 +24,6 @@ namespace sdk {
 // The "simple" value types are empty, bool, int, double, and string.
 // Moreover, a ProtoT can be a vector or string-map of ProtoT.
 class ProtoT {
-    static constexpr std::size_t small_size = sizeof(std::unordered_map<std::string, std::string>);
-
    public:
     // Construct a null object.
     ProtoT() noexcept : ProtoT(nullptr) {}
@@ -145,6 +143,8 @@ class ProtoT {
     };
 
     struct storage_t {
+        static constexpr std::size_t small_size =
+            sizeof(std::unordered_map<std::string, std::string>);
         template <typename T>
         storage_t(T t) {
             static_assert(sizeof(model_t<T>) <= small_size, "Too big!");
@@ -199,8 +199,7 @@ class ProtoT {
 
     ProtoT(const google::protobuf::Value* value);
 
-    static constexpr vtable_t trivial_vtable{[](void*) noexcept {}};
-    vtable_t vtable_ = trivial_vtable;
+    vtable_t vtable_;
     storage_t self_;
 };
 
