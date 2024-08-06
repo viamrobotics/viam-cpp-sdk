@@ -177,6 +177,30 @@ struct GetTrainingJobRequestDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetTrainingJobRequestDefaultTypeInternal _GetTrainingJobRequest_default_instance_;
+
+inline constexpr GetTrainingJobLogsRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        page_token_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()) {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetTrainingJobLogsRequest::GetTrainingJobLogsRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetTrainingJobLogsRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetTrainingJobLogsRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetTrainingJobLogsRequestDefaultTypeInternal() {}
+  union {
+    GetTrainingJobLogsRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetTrainingJobLogsRequestDefaultTypeInternal _GetTrainingJobLogsRequest_default_instance_;
       template <typename>
 PROTOBUF_CONSTEXPR DeleteCompletedTrainingJobResponse::DeleteCompletedTrainingJobResponse(::_pbi::ConstantInitialized) {}
 struct DeleteCompletedTrainingJobResponseDefaultTypeInternal {
@@ -244,6 +268,31 @@ struct CancelTrainingJobRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CancelTrainingJobRequestDefaultTypeInternal _CancelTrainingJobRequest_default_instance_;
 
+inline constexpr TrainingJobLogEntry::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        level_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        message_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        time_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR TrainingJobLogEntry::TrainingJobLogEntry(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct TrainingJobLogEntryDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR TrainingJobLogEntryDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~TrainingJobLogEntryDefaultTypeInternal() {}
+  union {
+    TrainingJobLogEntry _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TrainingJobLogEntryDefaultTypeInternal _TrainingJobLogEntry_default_instance_;
+
 inline constexpr TrainingJobMetadata::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -296,6 +345,28 @@ struct TrainingJobMetadataDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TrainingJobMetadataDefaultTypeInternal _TrainingJobMetadata_default_instance_;
 
+inline constexpr GetTrainingJobLogsResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : logs_{},
+        next_page_token_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetTrainingJobLogsResponse::GetTrainingJobLogsResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetTrainingJobLogsResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetTrainingJobLogsResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetTrainingJobLogsResponseDefaultTypeInternal() {}
+  union {
+    GetTrainingJobLogsResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetTrainingJobLogsResponseDefaultTypeInternal _GetTrainingJobLogsResponse_default_instance_;
+
 inline constexpr ListTrainingJobsResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : jobs_{},
@@ -337,7 +408,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 }  // namespace mltraining
 }  // namespace app
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[13];
+static ::_pb::Metadata file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[16];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[3];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_app_2fmltraining_2fv1_2fml_5ftraining_2eproto = nullptr;
@@ -505,6 +576,42 @@ const ::uint32_t TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto::offs
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobLogEntry, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobLogEntry, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobLogEntry, _impl_.level_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobLogEntry, _impl_.time_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobLogEntry, _impl_.message_),
+    ~0u,
+    0,
+    ~0u,
+    PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::GetTrainingJobLogsRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::GetTrainingJobLogsRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::GetTrainingJobLogsRequest, _impl_.id_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::GetTrainingJobLogsRequest, _impl_.page_token_),
+    ~0u,
+    0,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::GetTrainingJobLogsResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::GetTrainingJobLogsResponse, _impl_.logs_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::GetTrainingJobLogsResponse, _impl_.next_page_token_),
 };
 
 static const ::_pbi::MigrationSchema
@@ -522,6 +629,9 @@ static const ::_pbi::MigrationSchema
         {137, -1, -1, sizeof(::viam::app::mltraining::v1::CancelTrainingJobResponse)},
         {145, -1, -1, sizeof(::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest)},
         {154, -1, -1, sizeof(::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse)},
+        {162, 173, -1, sizeof(::viam::app::mltraining::v1::TrainingJobLogEntry)},
+        {176, 186, -1, sizeof(::viam::app::mltraining::v1::GetTrainingJobLogsRequest)},
+        {188, -1, -1, sizeof(::viam::app::mltraining::v1::GetTrainingJobLogsResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -538,6 +648,9 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::viam::app::mltraining::v1::_CancelTrainingJobResponse_default_instance_._instance,
     &::viam::app::mltraining::v1::_DeleteCompletedTrainingJobRequest_default_instance_._instance,
     &::viam::app::mltraining::v1::_DeleteCompletedTrainingJobResponse_default_instance_._instance,
+    &::viam::app::mltraining::v1::_TrainingJobLogEntry_default_instance_._instance,
+    &::viam::app::mltraining::v1::_GetTrainingJobLogsRequest_default_instance_._instance,
+    &::viam::app::mltraining::v1::_GetTrainingJobLogsResponse_default_instance_._instance,
 };
 const char descriptor_table_protodef_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n#app/mltraining/v1/ml_training.proto\022\026v"
@@ -630,46 +743,58 @@ const char descriptor_table_protodef_app_2fmltraining_2fv1_2fml_5ftraining_2epro
     "TrainingJobRequest\022\016\n\002id\030\001 \001(\tR\002id\"\033\n\031Ca"
     "ncelTrainingJobResponse\"3\n!DeleteComplet"
     "edTrainingJobRequest\022\016\n\002id\030\001 \001(\tR\002id\"$\n\""
-    "DeleteCompletedTrainingJobResponse*\237\001\n\tM"
-    "odelType\022\032\n\026MODEL_TYPE_UNSPECIFIED\020\000\022*\n&"
-    "MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION\020\001"
-    "\022)\n%MODEL_TYPE_MULTI_LABEL_CLASSIFICATIO"
-    "N\020\002\022\037\n\033MODEL_TYPE_OBJECT_DETECTION\020\003*\244\001\n"
-    "\016ModelFramework\022\037\n\033MODEL_FRAMEWORK_UNSPE"
-    "CIFIED\020\000\022\032\n\026MODEL_FRAMEWORK_TFLITE\020\001\022\036\n\032"
-    "MODEL_FRAMEWORK_TENSORFLOW\020\002\022\033\n\027MODEL_FR"
-    "AMEWORK_PYTORCH\020\003\022\030\n\024MODEL_FRAMEWORK_ONN"
-    "X\020\004*\347\001\n\016TrainingStatus\022\037\n\033TRAINING_STATU"
-    "S_UNSPECIFIED\020\000\022\033\n\027TRAINING_STATUS_PENDI"
-    "NG\020\001\022\037\n\033TRAINING_STATUS_IN_PROGRESS\020\002\022\035\n"
-    "\031TRAINING_STATUS_COMPLETED\020\003\022\032\n\026TRAINING"
-    "_STATUS_FAILED\020\004\022\034\n\030TRAINING_STATUS_CANC"
-    "ELED\020\005\022\035\n\031TRAINING_STATUS_CANCELING\020\0062\222\006"
-    "\n\021MLTrainingService\022x\n\021SubmitTrainingJob"
-    "\0220.viam.app.mltraining.v1.SubmitTraining"
-    "JobRequest\0321.viam.app.mltraining.v1.Subm"
-    "itTrainingJobResponse\022\212\001\n\027SubmitCustomTr"
-    "ainingJob\0226.viam.app.mltraining.v1.Submi"
-    "tCustomTrainingJobRequest\0327.viam.app.mlt"
-    "raining.v1.SubmitCustomTrainingJobRespon"
-    "se\022o\n\016GetTrainingJob\022-.viam.app.mltraini"
-    "ng.v1.GetTrainingJobRequest\032..viam.app.m"
-    "ltraining.v1.GetTrainingJobResponse\022u\n\020L"
-    "istTrainingJobs\022/.viam.app.mltraining.v1"
-    ".ListTrainingJobsRequest\0320.viam.app.mltr"
-    "aining.v1.ListTrainingJobsResponse\022x\n\021Ca"
-    "ncelTrainingJob\0220.viam.app.mltraining.v1"
-    ".CancelTrainingJobRequest\0321.viam.app.mlt"
-    "raining.v1.CancelTrainingJobResponse\022\223\001\n"
-    "\032DeleteCompletedTrainingJob\0229.viam.app.m"
-    "ltraining.v1.DeleteCompletedTrainingJobR"
-    "equest\032:.viam.app.mltraining.v1.DeleteCo"
-    "mpletedTrainingJobResponseB\313\001\n\032com.viam."
-    "app.mltraining.v1B\017MlTrainingProtoP\001Z!go"
-    ".viam.com/api/app/mltraining/v1\242\002\003VAM\252\002\026"
-    "Viam.App.Mltraining.V1\312\002\026Viam\\App\\Mltrai"
-    "ning\\V1\342\002\"Viam\\App\\Mltraining\\V1\\GPBMeta"
-    "data\352\002\031Viam::App::Mltraining::V1b\006proto3"
+    "DeleteCompletedTrainingJobResponse\"u\n\023Tr"
+    "ainingJobLogEntry\022\024\n\005level\030\001 \001(\tR\005level\022"
+    ".\n\004time\030\002 \001(\0132\032.google.protobuf.Timestam"
+    "pR\004time\022\030\n\007message\030\003 \001(\tR\007message\"^\n\031Get"
+    "TrainingJobLogsRequest\022\016\n\002id\030\001 \001(\tR\002id\022\""
+    "\n\npage_token\030\002 \001(\tH\000R\tpageToken\210\001\001B\r\n\013_p"
+    "age_token\"\205\001\n\032GetTrainingJobLogsResponse"
+    "\022\?\n\004logs\030\001 \003(\0132+.viam.app.mltraining.v1."
+    "TrainingJobLogEntryR\004logs\022&\n\017next_page_t"
+    "oken\030\002 \001(\tR\rnextPageToken*\237\001\n\tModelType\022"
+    "\032\n\026MODEL_TYPE_UNSPECIFIED\020\000\022*\n&MODEL_TYP"
+    "E_SINGLE_LABEL_CLASSIFICATION\020\001\022)\n%MODEL"
+    "_TYPE_MULTI_LABEL_CLASSIFICATION\020\002\022\037\n\033MO"
+    "DEL_TYPE_OBJECT_DETECTION\020\003*\244\001\n\016ModelFra"
+    "mework\022\037\n\033MODEL_FRAMEWORK_UNSPECIFIED\020\000\022"
+    "\032\n\026MODEL_FRAMEWORK_TFLITE\020\001\022\036\n\032MODEL_FRA"
+    "MEWORK_TENSORFLOW\020\002\022\033\n\027MODEL_FRAMEWORK_P"
+    "YTORCH\020\003\022\030\n\024MODEL_FRAMEWORK_ONNX\020\004*\347\001\n\016T"
+    "rainingStatus\022\037\n\033TRAINING_STATUS_UNSPECI"
+    "FIED\020\000\022\033\n\027TRAINING_STATUS_PENDING\020\001\022\037\n\033T"
+    "RAINING_STATUS_IN_PROGRESS\020\002\022\035\n\031TRAINING"
+    "_STATUS_COMPLETED\020\003\022\032\n\026TRAINING_STATUS_F"
+    "AILED\020\004\022\034\n\030TRAINING_STATUS_CANCELED\020\005\022\035\n"
+    "\031TRAINING_STATUS_CANCELING\020\0062\217\007\n\021MLTrain"
+    "ingService\022x\n\021SubmitTrainingJob\0220.viam.a"
+    "pp.mltraining.v1.SubmitTrainingJobReques"
+    "t\0321.viam.app.mltraining.v1.SubmitTrainin"
+    "gJobResponse\022\212\001\n\027SubmitCustomTrainingJob"
+    "\0226.viam.app.mltraining.v1.SubmitCustomTr"
+    "ainingJobRequest\0327.viam.app.mltraining.v"
+    "1.SubmitCustomTrainingJobResponse\022o\n\016Get"
+    "TrainingJob\022-.viam.app.mltraining.v1.Get"
+    "TrainingJobRequest\032..viam.app.mltraining"
+    ".v1.GetTrainingJobResponse\022u\n\020ListTraini"
+    "ngJobs\022/.viam.app.mltraining.v1.ListTrai"
+    "ningJobsRequest\0320.viam.app.mltraining.v1"
+    ".ListTrainingJobsResponse\022x\n\021CancelTrain"
+    "ingJob\0220.viam.app.mltraining.v1.CancelTr"
+    "ainingJobRequest\0321.viam.app.mltraining.v"
+    "1.CancelTrainingJobResponse\022\223\001\n\032DeleteCo"
+    "mpletedTrainingJob\0229.viam.app.mltraining"
+    ".v1.DeleteCompletedTrainingJobRequest\032:."
+    "viam.app.mltraining.v1.DeleteCompletedTr"
+    "ainingJobResponse\022{\n\022GetTrainingJobLogs\022"
+    "1.viam.app.mltraining.v1.GetTrainingJobL"
+    "ogsRequest\0322.viam.app.mltraining.v1.GetT"
+    "rainingJobLogsResponseB\313\001\n\032com.viam.app."
+    "mltraining.v1B\017MlTrainingProtoP\001Z!go.via"
+    "m.com/api/app/mltraining/v1\242\002\003VAM\252\002\026Viam"
+    ".App.Mltraining.V1\312\002\026Viam\\App\\Mltraining"
+    "\\V1\342\002\"Viam\\App\\Mltraining\\V1\\GPBMetadata"
+    "\352\002\031Viam::App::Mltraining::V1b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_deps[3] =
     {
@@ -681,13 +806,13 @@ static ::absl::once_flag descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_
 const ::_pbi::DescriptorTable descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto = {
     false,
     false,
-    5200,
+    5676,
     descriptor_table_protodef_app_2fmltraining_2fv1_2fml_5ftraining_2eproto,
     "app/mltraining/v1/ml_training.proto",
     &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once,
     descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_deps,
     3,
-    13,
+    16,
     schemas,
     file_default_instances,
     TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto::offsets,
@@ -3815,6 +3940,730 @@ DeleteCompletedTrainingJobResponse::DeleteCompletedTrainingJobResponse(
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_getter, &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once,
       file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[12]);
+}
+// ===================================================================
+
+class TrainingJobLogEntry::_Internal {
+ public:
+  using HasBits = decltype(std::declval<TrainingJobLogEntry>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(TrainingJobLogEntry, _impl_._has_bits_);
+  static const ::google::protobuf::Timestamp& time(const TrainingJobLogEntry* msg);
+  static void set_has_time(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::google::protobuf::Timestamp& TrainingJobLogEntry::_Internal::time(const TrainingJobLogEntry* msg) {
+  return *msg->_impl_.time_;
+}
+void TrainingJobLogEntry::clear_time() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.time_ != nullptr) _impl_.time_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+TrainingJobLogEntry::TrainingJobLogEntry(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:viam.app.mltraining.v1.TrainingJobLogEntry)
+}
+inline PROTOBUF_NDEBUG_INLINE TrainingJobLogEntry::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        level_(arena, from.level_),
+        message_(arena, from.message_) {}
+
+TrainingJobLogEntry::TrainingJobLogEntry(
+    ::google::protobuf::Arena* arena,
+    const TrainingJobLogEntry& from)
+    : ::google::protobuf::Message(arena) {
+  TrainingJobLogEntry* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.time_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::google::protobuf::Timestamp>(arena, *from._impl_.time_)
+                : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:viam.app.mltraining.v1.TrainingJobLogEntry)
+}
+inline PROTOBUF_NDEBUG_INLINE TrainingJobLogEntry::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        level_(arena),
+        message_(arena) {}
+
+inline void TrainingJobLogEntry::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.time_ = {};
+}
+TrainingJobLogEntry::~TrainingJobLogEntry() {
+  // @@protoc_insertion_point(destructor:viam.app.mltraining.v1.TrainingJobLogEntry)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void TrainingJobLogEntry::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.level_.Destroy();
+  _impl_.message_.Destroy();
+  delete _impl_.time_;
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void TrainingJobLogEntry::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.mltraining.v1.TrainingJobLogEntry)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.level_.ClearToEmpty();
+  _impl_.message_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.time_ != nullptr);
+    _impl_.time_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* TrainingJobLogEntry::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 1, 63, 2> TrainingJobLogEntry::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(TrainingJobLogEntry, _impl_._has_bits_),
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_TrainingJobLogEntry_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string level = 1 [json_name = "level"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(TrainingJobLogEntry, _impl_.level_)}},
+    // .google.protobuf.Timestamp time = 2 [json_name = "time"];
+    {::_pbi::TcParser::FastMtS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(TrainingJobLogEntry, _impl_.time_)}},
+    // string message = 3 [json_name = "message"];
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(TrainingJobLogEntry, _impl_.message_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string level = 1 [json_name = "level"];
+    {PROTOBUF_FIELD_OFFSET(TrainingJobLogEntry, _impl_.level_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .google.protobuf.Timestamp time = 2 [json_name = "time"];
+    {PROTOBUF_FIELD_OFFSET(TrainingJobLogEntry, _impl_.time_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // string message = 3 [json_name = "message"];
+    {PROTOBUF_FIELD_OFFSET(TrainingJobLogEntry, _impl_.message_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
+  }}, {{
+    "\52\5\0\7\0\0\0\0"
+    "viam.app.mltraining.v1.TrainingJobLogEntry"
+    "level"
+    "message"
+  }},
+};
+
+::uint8_t* TrainingJobLogEntry::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.mltraining.v1.TrainingJobLogEntry)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string level = 1 [json_name = "level"];
+  if (!this->_internal_level().empty()) {
+    const std::string& _s = this->_internal_level();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.mltraining.v1.TrainingJobLogEntry.level");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .google.protobuf.Timestamp time = 2 [json_name = "time"];
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        2, _Internal::time(this),
+        _Internal::time(this).GetCachedSize(), target, stream);
+  }
+
+  // string message = 3 [json_name = "message"];
+  if (!this->_internal_message().empty()) {
+    const std::string& _s = this->_internal_message();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.mltraining.v1.TrainingJobLogEntry.message");
+    target = stream->WriteStringMaybeAliased(3, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.mltraining.v1.TrainingJobLogEntry)
+  return target;
+}
+
+::size_t TrainingJobLogEntry::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.mltraining.v1.TrainingJobLogEntry)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string level = 1 [json_name = "level"];
+  if (!this->_internal_level().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_level());
+  }
+
+  // string message = 3 [json_name = "message"];
+  if (!this->_internal_message().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_message());
+  }
+
+  // .google.protobuf.Timestamp time = 2 [json_name = "time"];
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.time_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData TrainingJobLogEntry::_class_data_ = {
+    TrainingJobLogEntry::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* TrainingJobLogEntry::GetClassData() const {
+  return &_class_data_;
+}
+
+void TrainingJobLogEntry::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<TrainingJobLogEntry*>(&to_msg);
+  auto& from = static_cast<const TrainingJobLogEntry&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.TrainingJobLogEntry)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_level().empty()) {
+    _this->_internal_set_level(from._internal_level());
+  }
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_time()->::google::protobuf::Timestamp::MergeFrom(
+        from._internal_time());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void TrainingJobLogEntry::CopyFrom(const TrainingJobLogEntry& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.mltraining.v1.TrainingJobLogEntry)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool TrainingJobLogEntry::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* TrainingJobLogEntry::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void TrainingJobLogEntry::InternalSwap(TrainingJobLogEntry* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.level_, &other->_impl_.level_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+  swap(_impl_.time_, other->_impl_.time_);
+}
+
+::google::protobuf::Metadata TrainingJobLogEntry::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_getter, &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once,
+      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[13]);
+}
+// ===================================================================
+
+class GetTrainingJobLogsRequest::_Internal {
+ public:
+  using HasBits = decltype(std::declval<GetTrainingJobLogsRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(GetTrainingJobLogsRequest, _impl_._has_bits_);
+  static void set_has_page_token(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+GetTrainingJobLogsRequest::GetTrainingJobLogsRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:viam.app.mltraining.v1.GetTrainingJobLogsRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE GetTrainingJobLogsRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        id_(arena, from.id_),
+        page_token_(arena, from.page_token_) {}
+
+GetTrainingJobLogsRequest::GetTrainingJobLogsRequest(
+    ::google::protobuf::Arena* arena,
+    const GetTrainingJobLogsRequest& from)
+    : ::google::protobuf::Message(arena) {
+  GetTrainingJobLogsRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:viam.app.mltraining.v1.GetTrainingJobLogsRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE GetTrainingJobLogsRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        id_(arena),
+        page_token_(arena) {}
+
+inline void GetTrainingJobLogsRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+GetTrainingJobLogsRequest::~GetTrainingJobLogsRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.mltraining.v1.GetTrainingJobLogsRequest)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void GetTrainingJobLogsRequest::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.id_.Destroy();
+  _impl_.page_token_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void GetTrainingJobLogsRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.mltraining.v1.GetTrainingJobLogsRequest)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.id_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    _impl_.page_token_.ClearNonDefaultToEmpty();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* GetTrainingJobLogsRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 69, 2> GetTrainingJobLogsRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(GetTrainingJobLogsRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_GetTrainingJobLogsRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // optional string page_token = 2 [json_name = "pageToken"];
+    {::_pbi::TcParser::FastUS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(GetTrainingJobLogsRequest, _impl_.page_token_)}},
+    // string id = 1 [json_name = "id"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetTrainingJobLogsRequest, _impl_.id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string id = 1 [json_name = "id"];
+    {PROTOBUF_FIELD_OFFSET(GetTrainingJobLogsRequest, _impl_.id_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // optional string page_token = 2 [json_name = "pageToken"];
+    {PROTOBUF_FIELD_OFFSET(GetTrainingJobLogsRequest, _impl_.page_token_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\60\2\12\0\0\0\0\0"
+    "viam.app.mltraining.v1.GetTrainingJobLogsRequest"
+    "id"
+    "page_token"
+  }},
+};
+
+::uint8_t* GetTrainingJobLogsRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.mltraining.v1.GetTrainingJobLogsRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string id = 1 [json_name = "id"];
+  if (!this->_internal_id().empty()) {
+    const std::string& _s = this->_internal_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.mltraining.v1.GetTrainingJobLogsRequest.id");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // optional string page_token = 2 [json_name = "pageToken"];
+  if (cached_has_bits & 0x00000001u) {
+    const std::string& _s = this->_internal_page_token();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.mltraining.v1.GetTrainingJobLogsRequest.page_token");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.mltraining.v1.GetTrainingJobLogsRequest)
+  return target;
+}
+
+::size_t GetTrainingJobLogsRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.mltraining.v1.GetTrainingJobLogsRequest)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string id = 1 [json_name = "id"];
+  if (!this->_internal_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_id());
+  }
+
+  // optional string page_token = 2 [json_name = "pageToken"];
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_page_token());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData GetTrainingJobLogsRequest::_class_data_ = {
+    GetTrainingJobLogsRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* GetTrainingJobLogsRequest::GetClassData() const {
+  return &_class_data_;
+}
+
+void GetTrainingJobLogsRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetTrainingJobLogsRequest*>(&to_msg);
+  auto& from = static_cast<const GetTrainingJobLogsRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.GetTrainingJobLogsRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_id().empty()) {
+    _this->_internal_set_id(from._internal_id());
+  }
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_set_page_token(from._internal_page_token());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetTrainingJobLogsRequest::CopyFrom(const GetTrainingJobLogsRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.mltraining.v1.GetTrainingJobLogsRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool GetTrainingJobLogsRequest::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* GetTrainingJobLogsRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetTrainingJobLogsRequest::InternalSwap(GetTrainingJobLogsRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.id_, &other->_impl_.id_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.page_token_, &other->_impl_.page_token_, arena);
+}
+
+::google::protobuf::Metadata GetTrainingJobLogsRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_getter, &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once,
+      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[14]);
+}
+// ===================================================================
+
+class GetTrainingJobLogsResponse::_Internal {
+ public:
+};
+
+GetTrainingJobLogsResponse::GetTrainingJobLogsResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:viam.app.mltraining.v1.GetTrainingJobLogsResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE GetTrainingJobLogsResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : logs_{visibility, arena, from.logs_},
+        next_page_token_(arena, from.next_page_token_),
+        _cached_size_{0} {}
+
+GetTrainingJobLogsResponse::GetTrainingJobLogsResponse(
+    ::google::protobuf::Arena* arena,
+    const GetTrainingJobLogsResponse& from)
+    : ::google::protobuf::Message(arena) {
+  GetTrainingJobLogsResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:viam.app.mltraining.v1.GetTrainingJobLogsResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE GetTrainingJobLogsResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : logs_{visibility, arena},
+        next_page_token_(arena),
+        _cached_size_{0} {}
+
+inline void GetTrainingJobLogsResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+GetTrainingJobLogsResponse::~GetTrainingJobLogsResponse() {
+  // @@protoc_insertion_point(destructor:viam.app.mltraining.v1.GetTrainingJobLogsResponse)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void GetTrainingJobLogsResponse::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.next_page_token_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void GetTrainingJobLogsResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.mltraining.v1.GetTrainingJobLogsResponse)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.logs_.Clear();
+  _impl_.next_page_token_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* GetTrainingJobLogsResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 73, 2> GetTrainingJobLogsResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetTrainingJobLogsResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string next_page_token = 2 [json_name = "nextPageToken"];
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(GetTrainingJobLogsResponse, _impl_.next_page_token_)}},
+    // repeated .viam.app.mltraining.v1.TrainingJobLogEntry logs = 1 [json_name = "logs"];
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetTrainingJobLogsResponse, _impl_.logs_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .viam.app.mltraining.v1.TrainingJobLogEntry logs = 1 [json_name = "logs"];
+    {PROTOBUF_FIELD_OFFSET(GetTrainingJobLogsResponse, _impl_.logs_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // string next_page_token = 2 [json_name = "nextPageToken"];
+    {PROTOBUF_FIELD_OFFSET(GetTrainingJobLogsResponse, _impl_.next_page_token_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::viam::app::mltraining::v1::TrainingJobLogEntry>()},
+  }}, {{
+    "\61\0\17\0\0\0\0\0"
+    "viam.app.mltraining.v1.GetTrainingJobLogsResponse"
+    "next_page_token"
+  }},
+};
+
+::uint8_t* GetTrainingJobLogsResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.mltraining.v1.GetTrainingJobLogsResponse)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // repeated .viam.app.mltraining.v1.TrainingJobLogEntry logs = 1 [json_name = "logs"];
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_logs_size()); i < n; i++) {
+    const auto& repfield = this->_internal_logs().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // string next_page_token = 2 [json_name = "nextPageToken"];
+  if (!this->_internal_next_page_token().empty()) {
+    const std::string& _s = this->_internal_next_page_token();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.mltraining.v1.GetTrainingJobLogsResponse.next_page_token");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.mltraining.v1.GetTrainingJobLogsResponse)
+  return target;
+}
+
+::size_t GetTrainingJobLogsResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.mltraining.v1.GetTrainingJobLogsResponse)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .viam.app.mltraining.v1.TrainingJobLogEntry logs = 1 [json_name = "logs"];
+  total_size += 1UL * this->_internal_logs_size();
+  for (const auto& msg : this->_internal_logs()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  }
+  // string next_page_token = 2 [json_name = "nextPageToken"];
+  if (!this->_internal_next_page_token().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_next_page_token());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData GetTrainingJobLogsResponse::_class_data_ = {
+    GetTrainingJobLogsResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* GetTrainingJobLogsResponse::GetClassData() const {
+  return &_class_data_;
+}
+
+void GetTrainingJobLogsResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetTrainingJobLogsResponse*>(&to_msg);
+  auto& from = static_cast<const GetTrainingJobLogsResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.GetTrainingJobLogsResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_logs()->MergeFrom(
+      from._internal_logs());
+  if (!from._internal_next_page_token().empty()) {
+    _this->_internal_set_next_page_token(from._internal_next_page_token());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetTrainingJobLogsResponse::CopyFrom(const GetTrainingJobLogsResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.mltraining.v1.GetTrainingJobLogsResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool GetTrainingJobLogsResponse::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* GetTrainingJobLogsResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetTrainingJobLogsResponse::InternalSwap(GetTrainingJobLogsResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.logs_.InternalSwap(&other->_impl_.logs_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.next_page_token_, &other->_impl_.next_page_token_, arena);
+}
+
+::google::protobuf::Metadata GetTrainingJobLogsResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_getter, &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once,
+      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[15]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
