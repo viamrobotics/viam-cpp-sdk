@@ -1,13 +1,13 @@
 CXX = c++
 
-VIAM_PREFIX ?= ../../../../../build/install
-PKG_CONFIG_PATH ?= $(VIAM_PREFIX)/lib/pkgconfig
+# Technically the SDK supports building with c++14, but note that more recent
+# versions of abseil will force c++17, so this may be needed to make things
+# work out of the box.
+CXX_STANDARD ?= c++17
 
-
-CXXFLAGS = -std=c++17
-CXXFLAGS += `PKG_CONFIG_PATH=$(PKG_CONFIG_PATH) pkg-config --cflags viam-cpp-sdk-libviamsdk`
-LINKFLAGS = `PKG_CONFIG_PATH=$(PKG_CONFIG_PATH) pkg-config --libs viam-cpp-sdk-libviamsdk`
-LDFLAGS ="-Wl,-rpath,$(VIAM_PREFIX)/"
+CXXFLAGS += -std=$(CXX_STANDARD)
+CXXFLAGS += `pkg-config --cflags viam-cpp-sdk-libviamsdk`
+LDFLAGS += `pkg-config --libs viam-cpp-sdk-libviamsdk`
 
 all: example_dial example_module
 
