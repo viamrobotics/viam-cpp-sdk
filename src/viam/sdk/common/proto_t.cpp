@@ -30,7 +30,7 @@ ProtoT::ProtoT(const Value* value)  // NOLINT(misc-no-recursion)
                   return ProtoT(std::move(vec));
               }
               case Value::KindCase::kStructValue: {
-                  return ProtoT(struct_to_map(&v.struct_value()));
+                  return ProtoT(struct_to_map(v.struct_value()));
               }
               case Value::KindCase::KIND_NOT_SET:
               case Value::KindCase::kNullValue:
