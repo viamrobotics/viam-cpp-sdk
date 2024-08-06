@@ -9,11 +9,12 @@
 namespace google {
 namespace protobuf {
 
-// Forward declaration of google::protobuf::Value.
+// Forward declaration of google::protobuf Value and Struct.
 // The class below is written so as to keep Value out of the ABI, and as such can be instantiated
 // with Value as an incomplete type.
 
 class Value;
+class Struct;
 }  // namespace protobuf
 }  // namespace google
 
@@ -214,12 +215,33 @@ void to_proto_value(const std::vector<ProtoT>& vec, google::protobuf::Value* v);
 void to_proto_value(const AttrMap& m, google::protobuf::Value* v);
 void to_proto_value(const ProtoT& t, google::protobuf::Value* v);
 
+AttrMap struct_to_map(google::protobuf::Struct const* s);
+void map_to_struct(const AttrMap& m, google::protobuf::Struct* s);
+
+// Convert map to proto struct.
+// This method is trivially templated to insulate Value from our API/ABI.
+// In a translation unit which includes <google/protobuf/struct.pb.h> you can call
+// this function to create a Value instance without specifying a template parameter and it will
+// "just work"
+template <typename Struct = google::protobuf::Struct>
+Struct map_to_struct(const AttrMap& m) {
+    Struct s;
+    map_to_struct(m, &s);
+
+    return s;
+}
+
+template <typename Struct = google::protobuf::Struct>
+AttrMap struct_to_map(const Struct& s) {
+    return struct_to_map(&s);
+}
+
 // Convert a type to proto value.
 // This method is trivially templated to insulate Value from our API/ABI.
 // In a translation unit which includes <google/protobuf/struct.pb.h> you can call
 // this function to create a Value instance without specifying a template parameter and it will
 // "just work"
-template <class T, class Value = google::protobuf::Value>
+template <typename T, typename Value = google::protobuf::Value>
 Value to_proto_value(T&& t) {
     Value v;
     to_proto_value(std::forward<T>(t), &v);
