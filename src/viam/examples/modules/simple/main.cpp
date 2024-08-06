@@ -10,6 +10,7 @@
 #include <viam/api/robot/v1/robot.pb.h>
 #include <viam/api/service/generic/v1/generic.grpc.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/module/module.hpp>
 #include <viam/sdk/module/service.hpp>
@@ -72,7 +73,7 @@ class Printer : public GenericService, public Reconfigurable {
     std::string to_print_;
 };
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv) try {
     API generic = API::get<GenericService>();
     Model m("viam", "generic", "printer");
 
@@ -96,4 +97,7 @@ int main(int argc, char** argv) {
     my_mod->serve();
 
     return EXIT_SUCCESS;
-};
+} catch (const viam::sdk::Exception& ex) {
+    std::cerr << ex.what() << "\n";
+    return ex.condition().value();
+}

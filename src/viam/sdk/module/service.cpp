@@ -216,7 +216,7 @@ ModuleService::ModuleService(int argc,
                              char** argv,
                              const std::vector<std::shared_ptr<ModelRegistration>>& registrations) {
     if (argc < 2) {
-        throw Exception("Need socket path as command line argument");
+        throw Exception(ErrorCondition::k_connection, "Need socket path as command line argument");
     }
     module_ = std::make_unique<Module>(argv[1]);
     server_ = std::make_unique<Server>();
