@@ -2074,6 +2074,7 @@ class Expr_Comprehension final :
   enum : int {
     kIterVarFieldNumber = 1,
     kAccuVarFieldNumber = 3,
+    kIterVar2FieldNumber = 8,
     kIterRangeFieldNumber = 2,
     kAccuInitFieldNumber = 4,
     kLoopConditionFieldNumber = 5,
@@ -2110,6 +2111,22 @@ class Expr_Comprehension final :
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_accu_var(
       const std::string& value);
   std::string* _internal_mutable_accu_var();
+
+  public:
+  // string iter_var2 = 8 [json_name = "iterVar2"];
+  void clear_iter_var2() ;
+  const std::string& iter_var2() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_iter_var2(Arg_&& arg, Args_... args);
+  std::string* mutable_iter_var2();
+  PROTOBUF_NODISCARD std::string* release_iter_var2();
+  void set_allocated_iter_var2(std::string* value);
+
+  private:
+  const std::string& _internal_iter_var2() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_iter_var2(
+      const std::string& value);
+  std::string* _internal_mutable_iter_var2();
 
   public:
   // .google.api.expr.v1alpha1.Expr iter_range = 2 [json_name = "iterRange"];
@@ -2193,8 +2210,8 @@ class Expr_Comprehension final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 7, 5,
-      68, 2>
+      3, 8, 5,
+      85, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -2214,6 +2231,7 @@ class Expr_Comprehension final :
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr iter_var_;
     ::google::protobuf::internal::ArenaStringPtr accu_var_;
+    ::google::protobuf::internal::ArenaStringPtr iter_var2_;
     ::google::api::expr::v1alpha1::Expr* iter_range_;
     ::google::api::expr::v1alpha1::Expr* accu_init_;
     ::google::api::expr::v1alpha1::Expr* loop_condition_;
@@ -4831,6 +4849,59 @@ inline void Expr_Comprehension::set_allocated_iter_var(std::string* value) {
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:google.api.expr.v1alpha1.Expr.Comprehension.iter_var)
+}
+
+// string iter_var2 = 8 [json_name = "iterVar2"];
+inline void Expr_Comprehension::clear_iter_var2() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.iter_var2_.ClearToEmpty();
+}
+inline const std::string& Expr_Comprehension::iter_var2() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:google.api.expr.v1alpha1.Expr.Comprehension.iter_var2)
+  return _internal_iter_var2();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Expr_Comprehension::set_iter_var2(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.iter_var2_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:google.api.expr.v1alpha1.Expr.Comprehension.iter_var2)
+}
+inline std::string* Expr_Comprehension::mutable_iter_var2() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_iter_var2();
+  // @@protoc_insertion_point(field_mutable:google.api.expr.v1alpha1.Expr.Comprehension.iter_var2)
+  return _s;
+}
+inline const std::string& Expr_Comprehension::_internal_iter_var2() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.iter_var2_.Get();
+}
+inline void Expr_Comprehension::_internal_set_iter_var2(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.iter_var2_.Set(value, GetArena());
+}
+inline std::string* Expr_Comprehension::_internal_mutable_iter_var2() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.iter_var2_.Mutable( GetArena());
+}
+inline std::string* Expr_Comprehension::release_iter_var2() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:google.api.expr.v1alpha1.Expr.Comprehension.iter_var2)
+  return _impl_.iter_var2_.Release();
+}
+inline void Expr_Comprehension::set_allocated_iter_var2(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.iter_var2_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.iter_var2_.IsDefault()) {
+          _impl_.iter_var2_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:google.api.expr.v1alpha1.Expr.Comprehension.iter_var2)
 }
 
 // .google.api.expr.v1alpha1.Expr iter_range = 2 [json_name = "iterRange"];

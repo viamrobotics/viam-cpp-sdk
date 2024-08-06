@@ -61,6 +61,7 @@ class ClientContext {
 
    private:
     void set_client_ctx_authority_();
+    void add_viam_client_version_();
     grpc::ClientContext wrapped_context_;
 };
 
