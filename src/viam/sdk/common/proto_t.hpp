@@ -31,7 +31,7 @@ class ProtoT {
 
     // Construct a nonempty object.
     template <typename T>
-    ProtoT(T t) : vtable_{model_t<T>::vtable}, self_{std::move(t)} {}
+    ProtoT(T t) : vtable_{model<T>::vtable}, self_{std::move(t)} {}
 
     // Deduction helper constructor for string from string literal
     ProtoT(const char* str) : ProtoT(std::string(str)) {}
@@ -112,19 +112,19 @@ class ProtoT {
     };
 
     template <typename T>
-    struct model_t {
-        model_t(T t) : data(std::move(t)) {}
+    struct model {
+        model(T t) : data(std::move(t)) {}
 
         static void dtor(void* self) noexcept {
-            static_cast<model_t*>(self)->~model_t();
+            static_cast<model*>(self)->~model();
         }
 
         static void copy(void const* self, void* dest) {
-            new (dest) model_t(*static_cast<model_t const*>(self));
+            new (dest) model(*static_cast<model const*>(self));
         }
 
         static void move(void* self, void* dest) noexcept {
-            new (dest) model_t(std::move(*static_cast<model_t*>(self)));
+            new (dest) model(std::move(*static_cast<model*>(self)));
         }
 
         static void to_proto_value(void const* self, google::protobuf::Value* v);
@@ -132,7 +132,7 @@ class ProtoT {
         static int kind() noexcept;
 
         static bool equal_to(void const* self, void const* other, const vtable& other_vtable) {
-            if (model_t::kind() != other_vtable.kind()) {
+            if (model::kind() != other_vtable.kind()) {
                 return false;
             }
 
@@ -148,8 +148,8 @@ class ProtoT {
             sizeof(std::unordered_map<std::string, std::string>);
         template <typename T>
         storage_t(T t) {
-            static_assert(sizeof(model_t<T>) <= small_size, "Too big!");
-            new (&buf_) model_t<T>(std::move(t));
+            static_assert(sizeof(model<T>) <= small_size, "Too big!");
+            new (&buf_) model<T>(std::move(t));
         }
 
         storage_t(const storage_t&) = delete;
@@ -277,12 +277,12 @@ template <>
 struct kind_t<AttrMap> : std::integral_constant<int, 6> {};
 
 template <typename T>
-void ProtoT::model_t<T>::to_proto_value(void const* self, google::protobuf::Value* v) {
-    viam::sdk::to_proto_value(static_cast<model_t const*>(self)->data, v);
+void ProtoT::model<T>::to_proto_value(void const* self, google::protobuf::Value* v) {
+    viam::sdk::to_proto_value(static_cast<model const*>(self)->data, v);
 }
 
 template <typename T>
-int ProtoT::model_t<T>::kind() noexcept {
+int ProtoT::model<T>::kind() noexcept {
     return kind_t<T>::value;
 }
 
