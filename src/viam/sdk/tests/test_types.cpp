@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
     // roundtrip integer conversion is not idempotent because the integer gets coerced to a double
     {
         ProtoT i5(5);
-        auto int_roundtrip = ProtoT::from_proto_value(to_proto_value(i5));
+        auto int_roundtrip = ProtoT::from_proto(to_proto(i5));
         BOOST_CHECK(i5.kind() == kind_t<int>{});
         BOOST_CHECK(i5.is_a<int>());
 
@@ -115,9 +115,9 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
             BOOST_CHECK(v1_copy_to_change == v3);
         }
 
-        Value converted = to_proto_value(v3);
-        auto roundtrip = ProtoT::from_proto_value(converted);
-        Value value_roundtrip = to_proto_value(roundtrip);
+        Value converted = to_proto(v3);
+        auto roundtrip = ProtoT::from_proto(converted);
+        Value value_roundtrip = to_proto(roundtrip);
 
         BOOST_CHECK(v3.kind() == roundtrip.kind());
 
@@ -189,9 +189,9 @@ BOOST_AUTO_TEST_CASE(test_nested_objects) {
 
     ProtoT map_proto(map);
 
-    Value val = to_proto_value(map_proto);
-    auto roundtrip = ProtoT::from_proto_value(val);
-    Value val2 = to_proto_value(roundtrip);
+    Value val = to_proto(map_proto);
+    auto roundtrip = ProtoT::from_proto(val);
+    Value val2 = to_proto(roundtrip);
 
     BOOST_CHECK(map_proto == roundtrip);
 
@@ -220,13 +220,13 @@ BOOST_AUTO_TEST_CASE(test_manual_list_conversion) {
         Value protoval;
         set_proto_value(protoval, test_val);
 
-        auto from_value = ProtoT::from_proto_value(protoval);
+        auto from_value = ProtoT::from_proto(protoval);
         BOOST_CHECK(val == from_value);
 
-        Value converted_to_value = to_proto_value(val);
+        Value converted_to_value = to_proto(val);
         BOOST_CHECK(protoval.ShortDebugString() == converted_to_value.ShortDebugString());
 
-        auto roundtrip = ProtoT::from_proto_value(converted_to_value);
+        auto roundtrip = ProtoT::from_proto(converted_to_value);
 
         BOOST_CHECK(val == roundtrip);
     });
@@ -263,10 +263,10 @@ BOOST_AUTO_TEST_CASE(test_manual_list_conversion) {
     Value v;
     *v.mutable_list_value() = lv;
 
-    Value value_from_proto = to_proto_value(proto);
+    Value value_from_proto = to_proto(proto);
     BOOST_CHECK(v.ShortDebugString() == value_from_proto.ShortDebugString());
 
-    auto roundtrip = ProtoT::from_proto_value(value_from_proto);
+    auto roundtrip = ProtoT::from_proto(value_from_proto);
     BOOST_CHECK(proto == roundtrip);
 }
 
@@ -291,7 +291,7 @@ BOOST_AUTO_TEST_CASE(test_manual_map_conversion) {
     Value v;
     *v.mutable_struct_value() = proto_struct;
 
-    auto from_proto = ProtoT::from_proto_value(v);
+    auto from_proto = ProtoT::from_proto(v);
     ProtoT from_map(m);
     BOOST_CHECK(from_proto == from_map);
 

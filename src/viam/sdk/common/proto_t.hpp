@@ -77,12 +77,12 @@ class ProtoT {
     // this function on a Value instance without specifying a template parameter and it will "just
     // work"
     template <typename Value = google::protobuf::Value>
-    static ProtoT from_proto_value(const Value& v) {
+    static ProtoT from_proto(const Value& v) {
         return ProtoT(&v);
     }
 
     // Convert to protobuf Value.
-    friend void to_proto_value(const ProtoT& t, google::protobuf::Value* v);
+    friend void to_proto(const ProtoT& t, google::protobuf::Value* v);
 
     // Obtain integer constant representing the stored data type.
     int kind() const {
@@ -106,7 +106,7 @@ class ProtoT {
         void (*dtor)(void*);
         void (*copy)(void const*, void*);
         void (*move)(void*, void*);
-        void (*to_proto_value)(void const*, google::protobuf::Value*);
+        void (*to_proto)(void const*, google::protobuf::Value*);
         int (*kind)();
         bool (*equal_to)(void const*, void const*, const vtable&);
     };
@@ -127,7 +127,7 @@ class ProtoT {
             new (dest) model(std::move(*static_cast<model*>(self)));
         }
 
-        static void to_proto_value(void const* self, google::protobuf::Value* v);
+        static void to_proto(void const* self, google::protobuf::Value* v);
 
         static int kind() noexcept;
 
@@ -139,7 +139,7 @@ class ProtoT {
             return *static_cast<T const*>(self) == *static_cast<T const*>(other);
         }
 
-        static constexpr vtable vtable{dtor, copy, move, to_proto_value, kind, equal_to};
+        static constexpr vtable vtable{dtor, copy, move, to_proto, kind, equal_to};
         T data;
     };
 
@@ -206,14 +206,14 @@ class ProtoT {
 
 using AttrMap = std::unordered_map<std::string, ProtoT>;
 
-void to_proto_value(std::nullptr_t, google::protobuf::Value* v);
-void to_proto_value(bool b, google::protobuf::Value* v);
-void to_proto_value(int i, google::protobuf::Value* v);
-void to_proto_value(double d, google::protobuf::Value* v);
-void to_proto_value(std::string s, google::protobuf::Value* v);
-void to_proto_value(const std::vector<ProtoT>& vec, google::protobuf::Value* v);
-void to_proto_value(const AttrMap& m, google::protobuf::Value* v);
-void to_proto_value(const ProtoT& t, google::protobuf::Value* v);
+void to_proto(std::nullptr_t, google::protobuf::Value* v);
+void to_proto(bool b, google::protobuf::Value* v);
+void to_proto(int i, google::protobuf::Value* v);
+void to_proto(double d, google::protobuf::Value* v);
+void to_proto(std::string s, google::protobuf::Value* v);
+void to_proto(const std::vector<ProtoT>& vec, google::protobuf::Value* v);
+void to_proto(const AttrMap& m, google::protobuf::Value* v);
+void to_proto(const ProtoT& t, google::protobuf::Value* v);
 
 AttrMap struct_to_map(google::protobuf::Struct const* s);
 void map_to_struct(const AttrMap& m, google::protobuf::Struct* s);
@@ -242,9 +242,9 @@ AttrMap struct_to_map(const Struct& s) {
 // this function to create a Value instance without specifying a template parameter and it will
 // "just work"
 template <typename T, typename Value = google::protobuf::Value>
-Value to_proto_value(T&& t) {
+Value to_proto(T&& t) {
     Value v;
-    to_proto_value(std::forward<T>(t), &v);
+    to_proto(std::forward<T>(t), &v);
 
     return v;
 }
@@ -277,8 +277,8 @@ template <>
 struct kind_t<AttrMap> : std::integral_constant<int, 6> {};
 
 template <typename T>
-void ProtoT::model<T>::to_proto_value(void const* self, google::protobuf::Value* v) {
-    viam::sdk::to_proto_value(static_cast<model const*>(self)->data, v);
+void ProtoT::model<T>::to_proto(void const* self, google::protobuf::Value* v) {
+    viam::sdk::to_proto(static_cast<model const*>(self)->data, v);
 }
 
 template <typename T>
