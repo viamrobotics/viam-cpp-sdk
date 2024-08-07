@@ -12,7 +12,10 @@ ProtoT::ProtoT() noexcept : ProtoT(nullptr) {}
 
 template <typename T>
 ProtoT::ProtoT(T t) noexcept(std::is_nothrow_move_constructible<T>{})
-    : vtable_{model<T>::vtable}, self_{std::move(t)} {}
+    : vtable_{model<T>::vtable}, self_{std::move(t)} {
+    static_assert(!std::is_base_of<std::false_type, kind_t<T>>{},
+                  "Attempted to construct ProtoT from invalid type.");
+}
 
 // -- explicit instantiations of by-value constructors -- //
 template ProtoT::ProtoT(std::nullptr_t) noexcept;
@@ -143,11 +146,18 @@ bool ProtoT::model<T>::equal_to(void const* self,
 // --- ProtoT::storage definitions --- //
 template <typename T>
 ProtoT::storage::storage(T t) noexcept(std::is_nothrow_move_constructible<T>{}) {
-    static_assert(sizeof(model<T>) <= local_storage_size,
-                  "ProtoT class does not fit in local storage");
-
-    static_assert(sizeof(model<AttrMap>) <= local_storage_size,
-                  "Local storage size misconfigured to hold largest model class");
+    // Since ProtoT is an incomplete type at time of definition of struct storage, static_assert
+    // post facto to make sure we sized and aligned the storage correctly
+    static_assert(std::is_same<BufType,
+                               std::aligned_union_t<0,
+                                                    std::nullptr_t,
+                                                    bool,
+                                                    int,
+                                                    double,
+                                                    std::string,
+                                                    std::vector<ProtoT>,
+                                                    AttrMap>>{},
+                  "storage class storage is misconfigured for possible ProtoT types");
 
     new (&buf_) model<T>(std::move(t));
 }
@@ -167,7 +177,7 @@ void ProtoT::storage::swap(const ProtoT::vtable& this_vtable,
         return;
     }
 
-    unsigned char tmp[local_storage_size];
+    BufType tmp;
     other_vtable.move(other.get(), &tmp);
     other_vtable.dtor(other.get());
 

@@ -121,6 +121,8 @@ class ProtoT {
         static constexpr std::size_t local_storage_size =
             sizeof(std::unordered_map<std::string, std::string>);
 
+        using BufType = std::aligned_storage_t<local_storage_size>;
+
         template <typename T>
         storage(T t) noexcept(std::is_nothrow_move_constructible<T>{});
 
@@ -147,7 +149,7 @@ class ProtoT {
             return static_cast<T const*>(static_cast<void const*>(&buf_));
         }
 
-        unsigned char buf_[local_storage_size];
+        BufType buf_;
     };
 
     ProtoT(const google::protobuf::Value* value);
@@ -172,11 +174,14 @@ void to_proto(const std::vector<ProtoT>& vec, google::protobuf::Value* v);
 void to_proto(const AttrMap& m, google::protobuf::Value* v);
 void to_proto(const ProtoT& t, google::protobuf::Value* v);
 
+AttrMap struct_to_map(google::protobuf::Struct const* s);
+void map_to_struct(const AttrMap& m, google::protobuf::Struct* s);
+
+// The following methods are trivially templated to insulate Value and Struct from our API/ABI.
+// In a translation unit which includes <google/protobuf/struct.pb.h>, you can call them without
+// specifying a template parameter and it will "just work".
+
 // Convert a type to proto value.
-// This method is trivially templated to insulate Value from our API/ABI.
-// In a translation unit which includes <google/protobuf/struct.pb.h> you can call
-// this function to create a Value instance without specifying a template parameter and it will
-// "just work"
 template <typename T, typename Value = google::protobuf::Value>
 Value to_proto(T&& t) {
     Value v;
@@ -185,19 +190,13 @@ Value to_proto(T&& t) {
     return v;
 }
 
-AttrMap struct_to_map(google::protobuf::Struct const* s);
-void map_to_struct(const AttrMap& m, google::protobuf::Struct* s);
-
+// Convert a proto struct to a map.
 template <typename Struct = google::protobuf::Struct>
 AttrMap struct_to_map(const Struct& s) {
     return struct_to_map(&s);
 }
 
 // Convert map to proto struct.
-// This method is trivially templated to insulate Value from our API/ABI.
-// In a translation unit which includes <google/protobuf/struct.pb.h> you can call
-// this function to create a Value instance without specifying a template parameter and it will
-// "just work"
 template <typename Struct = google::protobuf::Struct>
 Struct map_to_struct(const AttrMap& m) {
     Struct s;
@@ -207,10 +206,10 @@ Struct map_to_struct(const AttrMap& m) {
 }
 
 // Type trait for constant value of each kind.
-// In practice, the concept requirement for constructing a ProtoT is that this type trait be well
-// formed.
+// In practice, the concept requirement for constructing a ProtoT is that this type trait
+// inherits from an integral_constant.
 template <typename T>
-struct kind_t;
+struct kind_t : std::false_type {};
 
 template <>
 struct kind_t<std::nullptr_t> : std::integral_constant<int, 0> {};
