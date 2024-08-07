@@ -64,7 +64,7 @@ void to_proto_value(const std::vector<ProtoT>& vec, Value* v) {
     for (const auto& val : vec) {
         *l.add_values() = to_proto_value(val);
     }
-    *(v->mutable_list_value()) = l;
+    *(v->mutable_list_value()) = std::move(l);
 }
 
 void to_proto_value(const AttrMap& m, Value* v) {
