@@ -102,13 +102,13 @@ class ProtoT {
     friend T const* dyn_cast(const ProtoT&);
 
    private:
-    struct vtable_t {
-        void (*dtor)(void*) noexcept;
+    struct vtable {
+        void (*dtor)(void*);
         void (*copy)(void const*, void*);
-        void (*move)(void*, void*) noexcept;
+        void (*move)(void*, void*);
         void (*to_proto_value)(void const*, google::protobuf::Value*);
-        int (*kind)() noexcept;
-        bool (*equal_to)(void const*, void const*, const vtable_t&);
+        int (*kind)();
+        bool (*equal_to)(void const*, void const*, const vtable&);
     };
 
     template <typename T>
@@ -131,7 +131,7 @@ class ProtoT {
 
         static int kind() noexcept;
 
-        static bool equal_to(void const* self, void const* other, const vtable_t& other_vtable) {
+        static bool equal_to(void const* self, void const* other, const vtable& other_vtable) {
             if (model_t::kind() != other_vtable.kind()) {
                 return false;
             }
@@ -139,7 +139,7 @@ class ProtoT {
             return *static_cast<T const*>(self) == *static_cast<T const*>(other);
         }
 
-        static constexpr vtable_t vtable{dtor, copy, move, to_proto_value, kind, equal_to};
+        static constexpr vtable vtable{dtor, copy, move, to_proto_value, kind, equal_to};
         T data;
     };
 
@@ -157,15 +157,15 @@ class ProtoT {
         storage_t& operator=(const storage_t&) = delete;
         storage_t& operator=(storage_t&&) = delete;
 
-        storage_t(const storage_t& other, const vtable_t& vtable) {
+        storage_t(const storage_t& other, const vtable& vtable) {
             vtable.copy(other.get(), this->get());
         }
 
-        storage_t(storage_t&& other, const vtable_t& vtable) {
+        storage_t(storage_t&& other, const vtable& vtable) {
             vtable.move(other.get(), this->get());
         }
 
-        void swap(const vtable_t& this_vtable, storage_t& other, const vtable_t& other_vtable) {
+        void swap(const vtable& this_vtable, storage_t& other, const vtable& other_vtable) {
             if (this == &other) {
                 return;
             }
@@ -181,7 +181,7 @@ class ProtoT {
             other_vtable.dtor(&tmp);
         }
 
-        void destruct(const vtable_t& vtable) {
+        void destruct(const vtable& vtable) {
             vtable.dtor(this->get());
         }
 
@@ -200,7 +200,7 @@ class ProtoT {
 
     ProtoT(const google::protobuf::Value* value);
 
-    vtable_t vtable_;
+    vtable vtable_;
     storage_t self_;
 };
 
