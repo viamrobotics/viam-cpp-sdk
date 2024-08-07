@@ -143,29 +143,29 @@ class ProtoT {
         T data;
     };
 
-    struct storage_t {
+    struct storage {
         static constexpr std::size_t small_size =
             sizeof(std::unordered_map<std::string, std::string>);
         template <typename T>
-        storage_t(T t) {
+        storage(T t) {
             static_assert(sizeof(model<T>) <= small_size, "Too big!");
             new (&buf_) model<T>(std::move(t));
         }
 
-        storage_t(const storage_t&) = delete;
-        storage_t(storage_t&&) = delete;
-        storage_t& operator=(const storage_t&) = delete;
-        storage_t& operator=(storage_t&&) = delete;
+        storage(const storage&) = delete;
+        storage(storage&&) = delete;
+        storage& operator=(const storage&) = delete;
+        storage& operator=(storage&&) = delete;
 
-        storage_t(const storage_t& other, const vtable& vtable) {
+        storage(const storage& other, const vtable& vtable) {
             vtable.copy(other.get(), this->get());
         }
 
-        storage_t(storage_t&& other, const vtable& vtable) {
+        storage(storage&& other, const vtable& vtable) {
             vtable.move(other.get(), this->get());
         }
 
-        void swap(const vtable& this_vtable, storage_t& other, const vtable& other_vtable) {
+        void swap(const vtable& this_vtable, storage& other, const vtable& other_vtable) {
             if (this == &other) {
                 return;
             }
@@ -201,7 +201,7 @@ class ProtoT {
     ProtoT(const google::protobuf::Value* value);
 
     vtable vtable_;
-    storage_t self_;
+    storage self_;
 };
 
 using AttrMap = std::unordered_map<std::string, ProtoT>;
