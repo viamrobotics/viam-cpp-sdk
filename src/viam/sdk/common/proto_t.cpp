@@ -71,7 +71,7 @@ void to_proto_value(const AttrMap& m, Value* v) {
     Struct s;
     map_to_struct(m, &s);
 
-    *(v->mutable_struct_value()) = s;
+    *(v->mutable_struct_value()) = std::move(s);
 }
 
 void to_proto_value(const ProtoT& t, Value* v) {
@@ -89,10 +89,8 @@ AttrMap struct_to_map(Struct const* s) {
 
 void map_to_struct(const AttrMap& m, Struct* s) {
     for (const auto& kv : m) {
-        const std::string key = kv.first;
-        const Value val = to_proto_value(kv.second);
-        const google::protobuf::MapPair<std::string, Value> mp(key, val);
-        s->mutable_fields()->insert(mp);
+        s->mutable_fields()->insert(
+            google::protobuf::MapPair<std::string, Value>(kv.first, to_proto_value(kv.second)));
     }
 }
 
