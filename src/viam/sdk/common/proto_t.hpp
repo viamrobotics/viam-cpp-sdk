@@ -205,7 +205,9 @@ Struct map_to_struct(const AttrMap& m) {
     return s;
 }
 
-// Type trait for constant value of each kind.
+// ProtoT RTTI type trait.
+// This type trait is used to implement the ProtoT::kind method which provides the type
+// discriminator constant that is used in the casting API.
 // In practice, the concept requirement for constructing a ProtoT is that this type trait be well
 // formed.
 template <typename T>
