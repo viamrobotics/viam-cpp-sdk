@@ -8,6 +8,32 @@ namespace sdk {
 using google::protobuf::Struct;
 using google::protobuf::Value;
 
+ProtoT::ProtoT() noexcept : ProtoT(nullptr) {}
+
+template <typename T>
+ProtoT::ProtoT(T t) noexcept(std::is_nothrow_move_constructible<T>{})
+    : vtable_{model<T>::vtable}, self_{std::move(t)} {}
+
+// -- explicit instantiations of by-value constructors -- //
+template ProtoT::ProtoT(std::nullptr_t) noexcept;
+template ProtoT::ProtoT(bool) noexcept;
+template ProtoT::ProtoT(int) noexcept;
+template ProtoT::ProtoT(double) noexcept;
+template ProtoT::ProtoT(std::string) noexcept(std::is_nothrow_move_constructible<std::string>{});
+template ProtoT::ProtoT(std::vector<ProtoT>) noexcept(
+    std::is_nothrow_move_constructible<std::vector<ProtoT>>{});
+template ProtoT::ProtoT(AttrMap m) noexcept(std::is_nothrow_move_constructible<AttrMap>{});
+
+ProtoT::ProtoT(const char* str) : ProtoT(std::string(str)) {}
+
+template <typename Self>
+ProtoT::ProtoT(ProtoT&& other) noexcept(typename Self::is_always_nothrow_move_constructible{})
+    : vtable_(std::move(other.vtable_)), self_(std::move(other.self_), vtable_) {}
+
+template ProtoT::ProtoT(ProtoT&& other) noexcept(ProtoT::is_always_nothrow_move_constructible{});
+
+ProtoT::ProtoT(const ProtoT& other) : vtable_(other.vtable_), self_(other.self_, other.vtable_) {}
+
 ProtoT::ProtoT(const Value* value)  // NOLINT(misc-no-recursion)
     : ProtoT([](const Value& v) {   // NOLINT(misc-no-recursion)
           switch (v.kind_case()) {
@@ -35,9 +61,126 @@ ProtoT::ProtoT(const Value* value)  // NOLINT(misc-no-recursion)
               case Value::KindCase::KIND_NOT_SET:
               case Value::KindCase::kNullValue:
               default:
-                  return ProtoT();
+                  return ProtoT(nullptr);
           }
       }(*value)) {}
+
+ProtoT& ProtoT::operator=(ProtoT&& other) {
+    ProtoT(std::move(other)).swap(*this);
+    return *this;
+}
+
+ProtoT& ProtoT::operator=(const ProtoT& other) {
+    ProtoT(other).swap(*this);
+    return *this;
+}
+
+ProtoT::~ProtoT() {
+    self_.destruct(vtable_);
+}
+
+bool operator==(const ProtoT& lhs, const ProtoT& rhs) {
+    return lhs.vtable_.equal_to(lhs.self_.get(), rhs.self_.get(), rhs.vtable_);
+}
+
+void ProtoT::swap(ProtoT& other) {
+    self_.swap(vtable_, other.self_, other.vtable_);
+    std::swap(vtable_, other.vtable_);
+}
+
+template <typename Val>
+ProtoT ProtoT::from_proto(const Val& v) {
+    return ProtoT(&v);
+}
+
+template ProtoT ProtoT::from_proto(const Value&);
+
+int ProtoT::kind() const {
+    return vtable_.kind();
+}
+
+// --- ProtoT::model<T> definitions --- //
+template <typename T>
+ProtoT::model<T>::model(T t) noexcept(std::is_nothrow_move_constructible<T>{})
+    : data(std::move(t)) {}
+
+template <typename T>
+void ProtoT::model<T>::dtor(void* self) noexcept {
+    static_cast<model*>(self)->~model();
+}
+
+template <typename T>
+void ProtoT::model<T>::copy(void const* self, void* dest) {
+    new (dest) model(*static_cast<model const*>(self));
+}
+
+template <typename T>
+void ProtoT::model<T>::move(void* self, void* dest) {
+    new (dest) model(std::move(*static_cast<model*>(self)));
+}
+
+template <typename T>
+void ProtoT::model<T>::to_proto(void const* self, google::protobuf::Value* v) {
+    viam::sdk::to_proto(static_cast<model const*>(self)->data, v);
+}
+
+template <typename T>
+int ProtoT::model<T>::kind() noexcept {
+    return kind_t<T>::value;
+}
+
+template <typename T>
+bool ProtoT::model<T>::equal_to(void const* self,
+                                void const* other,
+                                const ProtoT::vtable& other_vtable) {
+    if (model::kind() != other_vtable.kind()) {
+        return false;
+    }
+
+    return *static_cast<T const*>(self) == *static_cast<T const*>(other);
+}
+
+// --- ProtoT::storage definitions --- //
+template <typename T>
+ProtoT::storage::storage(T t) noexcept(std::is_nothrow_move_constructible<T>{}) {
+    static_assert(sizeof(model<T>) <= local_storage_size,
+                  "ProtoT class does not fit in local storage");
+
+    static_assert(sizeof(model<AttrMap>) <= local_storage_size,
+                  "Local storage size misconfigured to hold largest model class");
+
+    new (&buf_) model<T>(std::move(t));
+}
+
+ProtoT::storage::storage(const ProtoT::storage& other, const ProtoT::vtable& vtab) {
+    vtab.copy(other.get(), this->get());
+}
+
+ProtoT::storage::storage(ProtoT::storage&& other, const ProtoT::vtable& vtab) {
+    vtab.move(other.get(), this->get());
+}
+
+void ProtoT::storage::swap(const ProtoT::vtable& this_vtable,
+                           ProtoT::storage& other,
+                           const ProtoT::vtable& other_vtable) {
+    if (this == &other) {
+        return;
+    }
+
+    unsigned char tmp[local_storage_size];
+    other_vtable.move(other.get(), &tmp);
+    other_vtable.dtor(other.get());
+
+    this_vtable.move(this->get(), other.get());
+    this_vtable.dtor(this->get());
+
+    other_vtable.move(&tmp, this->get());
+    other_vtable.dtor(&tmp);
+}
+
+void ProtoT::storage::destruct(const ProtoT::vtable& vtab) {
+    vtab.dtor(this->get());
+}
 
 void to_proto(std::nullptr_t, Value* v) {
     v->set_null_value(::google::protobuf::NULL_VALUE);

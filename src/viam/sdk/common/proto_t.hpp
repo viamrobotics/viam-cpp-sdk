@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <string>
+#include <type_traits>
 #include <unordered_map>
 #include <utility>
 #include <vector>
@@ -25,51 +26,40 @@ namespace sdk {
 // The "simple" value types are empty, bool, int, double, and string.
 // Moreover, a ProtoT can be a vector or string-map of ProtoT.
 class ProtoT {
+    struct is_always_nothrow_move_constructible;
+
    public:
     // Construct a null object.
-    ProtoT() noexcept : ProtoT(nullptr) {}
+    ProtoT() noexcept;
 
     // Construct a nonempty object.
     template <typename T>
-    ProtoT(T t) : vtable_{model<T>::vtable}, self_{std::move(t)} {}
+    ProtoT(T t) noexcept(std::is_nothrow_move_constructible<T>{});
 
     // Deduction helper constructor for string from string literal
-    ProtoT(const char* str) : ProtoT(std::string(str)) {}
+    ProtoT(const char* str);
 
     // Move construction this from other, leaving other in the "unspecified but valid state" of its
     // moved-from type
-    ProtoT(ProtoT&& other) noexcept
-        : vtable_(std::move(other.vtable_)), self_(std::move(other.self_), vtable_) {}
+    template <typename Self = ProtoT>
+    ProtoT(ProtoT&& other) noexcept(typename Self::is_always_nothrow_move_constructible{});
 
-    ProtoT(const ProtoT& other) : vtable_(other.vtable_), self_(other.self_, other.vtable_) {}
+    ProtoT(const ProtoT& other);
 
     // Move assignment from other, leaving other in the "unspecified but valid state" of its
     // moved-from type.
-    ProtoT& operator=(ProtoT&& other) noexcept {
-        ProtoT(std::move(other)).swap(*this);
-        return *this;
-    }
+    ProtoT& operator=(ProtoT&& other);
 
-    ProtoT& operator=(const ProtoT& other) {
-        ProtoT(other).swap(*this);
-        return *this;
-    }
+    ProtoT& operator=(const ProtoT& other);
 
-    ~ProtoT() {
-        self_.destruct(vtable_);
-    }
+    ~ProtoT();
 
     // Test equality of two types.
     // Note that "intuitive" arithmetic equality is not supported, but could be.
     // Thus, bool{false}, int{0}, and double{0.0} do not compare equal.
-    friend bool operator==(const ProtoT& lhs, const ProtoT& rhs) {
-        return lhs.vtable_.equal_to(lhs.self_.get(), rhs.self_.get(), rhs.vtable_);
-    }
+    friend bool operator==(const ProtoT& lhs, const ProtoT& rhs);
 
-    void swap(ProtoT& other) {
-        self_.swap(vtable_, other.self_, other.vtable_);
-        std::swap(vtable_, other.vtable_);
-    }
+    void swap(ProtoT& other);
 
     // Construct from proto value
     // This method is trivially templated to insulate Value from our API/ABI.
@@ -77,17 +67,13 @@ class ProtoT {
     // this function on a Value instance without specifying a template parameter and it will "just
     // work"
     template <typename Value = google::protobuf::Value>
-    static ProtoT from_proto(const Value& v) {
-        return ProtoT(&v);
-    }
+    static ProtoT from_proto(const Value& v);
 
     // Convert to protobuf Value.
     friend void to_proto(const ProtoT& t, google::protobuf::Value* v);
 
     // Obtain integer constant representing the stored data type.
-    int kind() const {
-        return vtable_.kind();
-    }
+    int kind() const;
 
     // Checks whether this ProtoT is an instance of type T.
     template <typename T>
@@ -113,77 +99,43 @@ class ProtoT {
 
     template <typename T>
     struct model {
-        model(T t) : data(std::move(t)) {}
+        model(T t) noexcept(std::is_nothrow_move_constructible<T>{});
 
-        static void dtor(void* self) noexcept {
-            static_cast<model*>(self)->~model();
-        }
+        static void dtor(void* self) noexcept;
 
-        static void copy(void const* self, void* dest) {
-            new (dest) model(*static_cast<model const*>(self));
-        }
+        static void copy(void const* self, void* dest);
 
-        static void move(void* self, void* dest) noexcept {
-            new (dest) model(std::move(*static_cast<model*>(self)));
-        }
+        static void move(void* self, void* dest);
 
         static void to_proto(void const* self, google::protobuf::Value* v);
 
         static int kind() noexcept;
 
-        static bool equal_to(void const* self, void const* other, const vtable& other_vtable) {
-            if (model::kind() != other_vtable.kind()) {
-                return false;
-            }
-
-            return *static_cast<T const*>(self) == *static_cast<T const*>(other);
-        }
+        static bool equal_to(void const* self, void const* other, const vtable& other_vtable);
 
         static constexpr vtable vtable{dtor, copy, move, to_proto, kind, equal_to};
         T data;
     };
 
     struct storage {
-        static constexpr std::size_t small_size =
+        static constexpr std::size_t local_storage_size =
             sizeof(std::unordered_map<std::string, std::string>);
+
         template <typename T>
-        storage(T t) {
-            static_assert(sizeof(model<T>) <= small_size, "Too big!");
-            new (&buf_) model<T>(std::move(t));
-        }
+        storage(T t) noexcept(std::is_nothrow_move_constructible<T>{});
 
         storage(const storage&) = delete;
         storage(storage&&) = delete;
         storage& operator=(const storage&) = delete;
         storage& operator=(storage&&) = delete;
 
-        storage(const storage& other, const vtable& vtable) {
-            vtable.copy(other.get(), this->get());
-        }
+        storage(const storage& other, const vtable& vtable);
 
-        storage(storage&& other, const vtable& vtable) {
-            vtable.move(other.get(), this->get());
-        }
+        storage(storage&& other, const vtable& vtable);
 
-        void swap(const vtable& this_vtable, storage& other, const vtable& other_vtable) {
-            if (this == &other) {
-                return;
-            }
+        void swap(const vtable& this_vtable, storage& other, const vtable& other_vtable);
 
-            unsigned char tmp[small_size];
-            other_vtable.move(other.get(), &tmp);
-            other_vtable.dtor(other.get());
-
-            this_vtable.move(this->get(), other.get());
-            this_vtable.dtor(this->get());
-
-            other_vtable.move(&tmp, this->get());
-            other_vtable.dtor(&tmp);
-        }
-
-        void destruct(const vtable& vtable) {
-            vtable.dtor(this->get());
-        }
+        void destruct(const vtable& vtable);
 
         template <typename T = void>
         T* get() {
@@ -195,7 +147,7 @@ class ProtoT {
             return static_cast<T const*>(static_cast<void const*>(&buf_));
         }
 
-        unsigned char buf_[small_size];
+        unsigned char buf_[local_storage_size];
     };
 
     ProtoT(const google::protobuf::Value* value);
@@ -206,6 +158,11 @@ class ProtoT {
 
 using AttrMap = std::unordered_map<std::string, ProtoT>;
 
+struct ProtoT::is_always_nothrow_move_constructible
+    : std::integral_constant<bool,
+                             std::is_nothrow_move_constructible<std::vector<ProtoT>>{} &&
+                                 std::is_nothrow_move_constructible<AttrMap>{}> {};
+
 void to_proto(std::nullptr_t, google::protobuf::Value* v);
 void to_proto(bool b, google::protobuf::Value* v);
 void to_proto(int i, google::protobuf::Value* v);
@@ -214,27 +171,6 @@ void to_proto(std::string s, google::protobuf::Value* v);
 void to_proto(const std::vector<ProtoT>& vec, google::protobuf::Value* v);
 void to_proto(const AttrMap& m, google::protobuf::Value* v);
 void to_proto(const ProtoT& t, google::protobuf::Value* v);
-
-AttrMap struct_to_map(google::protobuf::Struct const* s);
-void map_to_struct(const AttrMap& m, google::protobuf::Struct* s);
-
-// Convert map to proto struct.
-// This method is trivially templated to insulate Value from our API/ABI.
-// In a translation unit which includes <google/protobuf/struct.pb.h> you can call
-// this function to create a Value instance without specifying a template parameter and it will
-// "just work"
-template <typename Struct = google::protobuf::Struct>
-Struct map_to_struct(const AttrMap& m) {
-    Struct s;
-    map_to_struct(m, &s);
-
-    return s;
-}
-
-template <typename Struct = google::protobuf::Struct>
-AttrMap struct_to_map(const Struct& s) {
-    return struct_to_map(&s);
-}
 
 // Convert a type to proto value.
 // This method is trivially templated to insulate Value from our API/ABI.
@@ -247,6 +183,27 @@ Value to_proto(T&& t) {
     to_proto(std::forward<T>(t), &v);
 
     return v;
+}
+
+AttrMap struct_to_map(google::protobuf::Struct const* s);
+void map_to_struct(const AttrMap& m, google::protobuf::Struct* s);
+
+template <typename Struct = google::protobuf::Struct>
+AttrMap struct_to_map(const Struct& s) {
+    return struct_to_map(&s);
+}
+
+// Convert map to proto struct.
+// This method is trivially templated to insulate Value from our API/ABI.
+// In a translation unit which includes <google/protobuf/struct.pb.h> you can call
+// this function to create a Value instance without specifying a template parameter and it will
+// "just work"
+template <typename Struct = google::protobuf::Struct>
+Struct map_to_struct(const AttrMap& m) {
+    Struct s;
+    map_to_struct(m, &s);
+
+    return s;
 }
 
 // Type trait for constant value of each kind.
@@ -275,16 +232,6 @@ struct kind_t<std::vector<ProtoT>> : std::integral_constant<int, 5> {};
 
 template <>
 struct kind_t<AttrMap> : std::integral_constant<int, 6> {};
-
-template <typename T>
-void ProtoT::model<T>::to_proto(void const* self, google::protobuf::Value* v) {
-    viam::sdk::to_proto(static_cast<model const*>(self)->data, v);
-}
-
-template <typename T>
-int ProtoT::model<T>::kind() noexcept {
-    return kind_t<T>::value;
-}
 
 template <typename T>
 bool ProtoT::is_a() const {
