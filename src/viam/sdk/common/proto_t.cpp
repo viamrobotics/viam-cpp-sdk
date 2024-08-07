@@ -12,10 +12,7 @@ ProtoT::ProtoT() noexcept : ProtoT(nullptr) {}
 
 template <typename T>
 ProtoT::ProtoT(T t) noexcept(std::is_nothrow_move_constructible<T>{})
-    : vtable_{model<T>::vtable}, self_{std::move(t)} {
-    static_assert(!std::is_base_of<std::false_type, kind_t<T>>{},
-                  "Attempted to construct ProtoT from invalid type.");
-}
+    : vtable_{model<T>::vtable}, self_{std::move(t)} {}
 
 // -- explicit instantiations of by-value constructors -- //
 template ProtoT::ProtoT(std::nullptr_t) noexcept;

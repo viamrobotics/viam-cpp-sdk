@@ -206,10 +206,10 @@ Struct map_to_struct(const AttrMap& m) {
 }
 
 // Type trait for constant value of each kind.
-// In practice, the concept requirement for constructing a ProtoT is that this type trait
-// inherits from an integral_constant.
+// In practice, the concept requirement for constructing a ProtoT is that this type trait be well
+// formed.
 template <typename T>
-struct kind_t : std::false_type {};
+struct kind_t;
 
 template <>
 struct kind_t<std::nullptr_t> : std::integral_constant<int, 0> {};
