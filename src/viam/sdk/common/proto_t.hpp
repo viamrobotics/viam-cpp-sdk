@@ -30,9 +30,11 @@ struct move_may_throw {
 };
 
 // Type trait for determining if move operations on ProtoValue are noexcept.
-// conditional noexcept-ness of move construction on vector and unordered_map is not
+// Conditional noexcept-ness of move construction on vector and unordered_map is not
 // guaranteed until c++17, and even then not fully. Thus define a traits class to check whether the
 // containers have nothrow move ops, and use that to determine if ProtoValue's move ops are nothrow.
+// We use move_may_throw as an illustrative dummy class since, perhaps surprisingly, nothrow
+// movability of vector and unordered_map doesn't depend on their stored type.
 struct all_proto_moves_noexcept
     : std::integral_constant<bool,
                              std::is_nothrow_move_constructible<std::vector<move_may_throw>>{} &&
@@ -41,69 +43,80 @@ struct all_proto_moves_noexcept
 
 }  // namespace impl
 
-// Type erased value for storing protobuf Value types.
-// The "simple" value types are empty, bool, int, double, and string.
-// Moreover, a ProtoValue can be a vector or string-map of ProtoValue.
+/// @brief Type-erased value for storing google::protobuf::Value types.
+/// A ProtoValue can be nullptr, bool, int, double, std::string, or, recursively, a vector or
+/// string-map of ProtoValue.
+/// This type is used at API/ABI boundaries for interfacing with grpc/proto code.
 class ProtoValue {
    public:
-    // Construct a null object.
+    /// @brief Construct a null object.
     ProtoValue() noexcept;
 
-    // Construct a nonempty object.
+    /// @brief Construct a nonempty object.
     template <typename T>
     ProtoValue(T t) noexcept(std::is_nothrow_move_constructible<T>{});
 
-    // Deduction helper constructor for string from string literal
+    /// @brief Deduction helper constructor for string from string literal
     ProtoValue(const char* str);
 
-    // Move construction this from other, leaving other in the "unspecified but valid state" of its
-    // moved-from type
+    /// @brief Move construct this from other, leaving other in its unspecified-but-valid moved from
+    /// state.
     ProtoValue(ProtoValue&& other) noexcept(impl::all_proto_moves_noexcept{});
 
     ProtoValue(const ProtoValue& other);
 
-    // Move assignment from other, leaving other in the "unspecified but valid state" of its
-    // moved-from type.
+    /// @brief Move assignment from other, leaving other in its unspecified-but-valid moved from
+    /// state.
     ProtoValue& operator=(ProtoValue&& other) noexcept(impl::all_proto_moves_noexcept{});
 
     ProtoValue& operator=(const ProtoValue& other);
 
     ~ProtoValue();
 
-    // Test equality of two types.
-    // Note that "intuitive" arithmetic equality is not supported, but could be.
-    // Thus, bool{false}, int{0}, and double{0.0} do not compare equal.
+    /// @brief Test equality of two types.
+    /// @note "Intuitive" arithmetic equality is not supported, but could be.
+    /// Thus, bool{false}, int{0}, and double{0.0} do not compare equal.
     friend bool operator==(const ProtoValue& lhs, const ProtoValue& rhs);
 
     void swap(ProtoValue& other) noexcept(impl::all_proto_moves_noexcept{});
 
-    // Construct from proto value
-    // This method is trivially templated to insulate Value from our API/ABI.
-    // In a translation unit which includes <google/protobuf/struct.pb.h> you can call
-    // this function on a Value instance without specifying a template parameter and it will "just
-    // work"
+    /// @brief Construct from proto value
+    /// @note This method is trivially templated to insulate google::protobuf::Value from our
+    /// API/ABI. It is meant to be called with no template parameters in a translation unit which
+    /// includes <google/protobuf/struct.pb.h>
     template <typename Value = google::protobuf::Value>
     static ProtoValue from_proto(const Value& v);
 
-    // Convert to protobuf Value.
     friend void to_proto(const ProtoValue& t, google::protobuf::Value* v);
 
-    // Obtain integer constant representing the stored data type.
+    /// @name Casting API
+    ///@{
+
+    /// @brief Obtain integer constant representing the stored data type.
     int kind() const;
 
-    // Checks whether this ProtoT is an instance of type T.
+    /// @brief Checks whether this ProtoT is an instance of type T.
     template <typename T>
     bool is_a() const;
 
-    // Checking cast to T, returns non-owning non-null pointer if argument is_a<T>()
+    /// @brief Checking cast to T, returns non-owning non-null pointer if argument is_a<T>()
     template <typename T>
     friend T* dyn_cast(ProtoValue&);
 
-    // Checking cast to T, returns non-owning non-null pointer if argument is_a<T>()
+    /// @brief Checking cast to T, returns non-owning non-null pointer if argument is_a<T>()
     template <typename T>
     friend T const* dyn_cast(const ProtoValue&);
 
+    ///@}
+
    private:
+    // This struct is our implementation of a virtual table, similar to what is created by the
+    // compiler for polymorphic types. We can't use actual polymorphic types because the
+    // implementation uses aligned stack storage, so we DIY it insted.
+    // The vtable can be thought of as defining a concept or interface which our ProtoValue types
+    // must satisfy.
+    // The first void [const]* parameter in any of the pointers below is always the `this` or `self`
+    // pointer.
     struct vtable {
         void (*dtor)(void*);
         void (*copy)(void const*, void*);
@@ -113,6 +126,8 @@ class ProtoValue {
         bool (*equal_to)(void const*, void const*, const vtable&);
     };
 
+    // Class template for a concrete model of the concept described by vtable.
+    // All construction and equality operations are implemented using defaults of the stored T.
     template <typename T>
     struct model {
         model(T t) noexcept(std::is_nothrow_move_constructible<T>{});
@@ -135,28 +150,44 @@ class ProtoValue {
         T data;
     };
 
+    // Stack-based storage for instances of model<T>.
+    // This is an RAII class which manages lifetime, pointer access, and construction of a
+    // type-erased model<T>. Note that all lifetime operations require a vtable to which the
+    // implementation defers.
     struct storage {
+        // Size of the stack buffer, configured to be large enough to store ProtoStruct which is the
+        // largest possible type that can be in a ProtoValue.
         static constexpr std::size_t local_storage_size =
             sizeof(std::unordered_map<std::string, std::string>);
 
         using BufType = std::aligned_storage_t<local_storage_size>;
 
+        // Construct this to store a model<T>.
         template <typename T>
         storage(T t) noexcept(std::is_nothrow_move_constructible<T>{});
 
+        // These default special member functions are deleted in favor of overloads below which take
+        // a vtable parameter.
+        // We need the vtable because otherwise we have no way to perform the requisite copy, move,
+        // or destructor operations.
         storage(const storage&) = delete;
         storage(storage&&) = delete;
         storage& operator=(const storage&) = delete;
         storage& operator=(storage&&) = delete;
 
+        // Copy construct this storage from other, using the copy operation in vtable.
         storage(const storage& other, const vtable& vtable);
 
+        // Move construct this storage from other, using the move operation in vtable.
         storage(storage&& other, const vtable& vtable) noexcept(impl::all_proto_moves_noexcept{});
 
+        // Swap this storage with other, with operations on this provided by this_vtable, and
+        // operations on other provided by other_vtable.
         void swap(const vtable& this_vtable,
                   storage& other,
                   const vtable& other_vtable) noexcept(impl::all_proto_moves_noexcept{});
 
+        // Destroy this storage, using the destructor from vtable.
         void destruct(const vtable& vtable) noexcept;
 
         template <typename T = void>
@@ -178,6 +209,9 @@ class ProtoValue {
     storage self_;
 };
 
+/// @brief Alias declaration for map of string to type-erased ProtoValue representing
+/// google::protobuf::Struct.
+/// This stores structured data as a map where the keys can be thought of as member names.
 using ProtoStruct = std::unordered_map<std::string, ProtoValue>;
 
 void to_proto(std::nullptr_t, google::protobuf::Value* v);
@@ -192,11 +226,10 @@ void to_proto(const ProtoValue& t, google::protobuf::Value* v);
 ProtoStruct struct_to_map(google::protobuf::Struct const* s);
 void map_to_struct(const ProtoStruct& m, google::protobuf::Struct* s);
 
-// The following methods are trivially templated to insulate Value and Struct from our API/ABI.
-// In a translation unit which includes <google/protobuf/struct.pb.h>, you can call them without
-// specifying a template parameter and it will "just work".
-
-// Convert a type to proto value.
+/// @brief Convert a type to a google::protobuf::Value.
+/// @note This method is trivially templated to insulate google::protobuf::Value from our
+/// API/ABI. It is meant to be called with no template parameters in a translation unit which
+/// includes <google/protobuf/struct.pb.h>
 template <typename T, typename Value = google::protobuf::Value>
 Value to_proto(T&& t) {
     Value v;
@@ -205,13 +238,19 @@ Value to_proto(T&& t) {
     return v;
 }
 
-// Convert a proto struct to a map.
+/// @brief Convert a google::protobuf::Struct to a ProtoStruct.
+/// @note This method is trivially templated to insulate google::protobuf::Struct from our
+/// API/ABI. It is meant to be called with no template parameters in a translation unit which
+/// includes <google/protobuf/struct.pb.h>
 template <typename Struct = google::protobuf::Struct>
 ProtoStruct struct_to_map(const Struct& s) {
     return struct_to_map(&s);
 }
 
-// Convert map to proto struct.
+/// @brief Convert a ProtoStruct to a google::protobuf::Struct.
+/// @note This method is trivially templated to insulate google::protobuf::Struct from our
+/// API/ABI. It is meant to be called with no template parameters in a translation unit which
+/// includes <google/protobuf/struct.pb.h>
 template <typename Struct = google::protobuf::Struct>
 Struct map_to_struct(const ProtoStruct& m) {
     Struct s;
@@ -220,8 +259,10 @@ Struct map_to_struct(const ProtoStruct& m) {
     return s;
 }
 
-// ProtoT RTTI type trait.
-// This type trait is used to implement the ProtoT::kind method which provides the type
+namespace impl {
+
+// ProtoValue RTTI type trait.
+// This type trait is used to implement the ProtoValue::kind method which provides the type
 // discriminator constant that is used in the casting API.
 // In practice, the concept requirement for constructing a ProtoT is that this type trait be well
 // formed.
@@ -249,9 +290,11 @@ struct kind_t<std::vector<ProtoValue>> : std::integral_constant<int, 5> {};
 template <>
 struct kind_t<ProtoStruct> : std::integral_constant<int, 6> {};
 
+}  // namespace impl
+
 template <typename T>
 bool ProtoValue::is_a() const {
-    return kind_t<T>::value == kind();
+    return impl::kind_t<T>::value == kind();
 }
 
 template <typename T>
