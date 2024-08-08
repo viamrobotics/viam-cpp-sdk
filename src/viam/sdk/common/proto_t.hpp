@@ -24,43 +24,43 @@ namespace sdk {
 
 // Type erased value for storing protobuf Value types.
 // The "simple" value types are empty, bool, int, double, and string.
-// Moreover, a ProtoT can be a vector or string-map of ProtoT.
-class ProtoT {
+// Moreover, a ProtoValue can be a vector or string-map of ProtoValue.
+class ProtoValue {
     // Delayed instantiation type trait for determining if all move operations are noexcept.
     struct is_always_nothrow_move_constructible;
 
    public:
     // Construct a null object.
-    ProtoT() noexcept;
+    ProtoValue() noexcept;
 
     // Construct a nonempty object.
     template <typename T>
-    ProtoT(T t) noexcept(std::is_nothrow_move_constructible<T>{});
+    ProtoValue(T t) noexcept(std::is_nothrow_move_constructible<T>{});
 
     // Deduction helper constructor for string from string literal
-    ProtoT(const char* str);
+    ProtoValue(const char* str);
 
     // Move construction this from other, leaving other in the "unspecified but valid state" of its
     // moved-from type
-    template <typename Self = ProtoT>
-    ProtoT(ProtoT&& other) noexcept(typename Self::is_always_nothrow_move_constructible{});
+    template <typename Self = ProtoValue>
+    ProtoValue(ProtoValue&& other) noexcept(typename Self::is_always_nothrow_move_constructible{});
 
-    ProtoT(const ProtoT& other);
+    ProtoValue(const ProtoValue& other);
 
     // Move assignment from other, leaving other in the "unspecified but valid state" of its
     // moved-from type.
-    ProtoT& operator=(ProtoT&& other);
+    ProtoValue& operator=(ProtoValue&& other);
 
-    ProtoT& operator=(const ProtoT& other);
+    ProtoValue& operator=(const ProtoValue& other);
 
-    ~ProtoT();
+    ~ProtoValue();
 
     // Test equality of two types.
     // Note that "intuitive" arithmetic equality is not supported, but could be.
     // Thus, bool{false}, int{0}, and double{0.0} do not compare equal.
-    friend bool operator==(const ProtoT& lhs, const ProtoT& rhs);
+    friend bool operator==(const ProtoValue& lhs, const ProtoValue& rhs);
 
-    void swap(ProtoT& other);
+    void swap(ProtoValue& other);
 
     // Construct from proto value
     // This method is trivially templated to insulate Value from our API/ABI.
@@ -68,10 +68,10 @@ class ProtoT {
     // this function on a Value instance without specifying a template parameter and it will "just
     // work"
     template <typename Value = google::protobuf::Value>
-    static ProtoT from_proto(const Value& v);
+    static ProtoValue from_proto(const Value& v);
 
     // Convert to protobuf Value.
-    friend void to_proto(const ProtoT& t, google::protobuf::Value* v);
+    friend void to_proto(const ProtoValue& t, google::protobuf::Value* v);
 
     // Obtain integer constant representing the stored data type.
     int kind() const;
@@ -82,11 +82,11 @@ class ProtoT {
 
     // Checking cast to T, returns non-owning non-null pointer if argument is_a<T>()
     template <typename T>
-    friend T* dyn_cast(ProtoT&);
+    friend T* dyn_cast(ProtoValue&);
 
     // Checking cast to T, returns non-owning non-null pointer if argument is_a<T>()
     template <typename T>
-    friend T const* dyn_cast(const ProtoT&);
+    friend T const* dyn_cast(const ProtoValue&);
 
    private:
     struct vtable {
@@ -153,17 +153,17 @@ class ProtoT {
         BufType buf_;
     };
 
-    ProtoT(const google::protobuf::Value* value);
+    ProtoValue(const google::protobuf::Value* value);
 
     vtable vtable_;
     storage self_;
 };
 
-using AttrMap = std::unordered_map<std::string, ProtoT>;
+using AttrMap = std::unordered_map<std::string, ProtoValue>;
 
-struct ProtoT::is_always_nothrow_move_constructible
+struct ProtoValue::is_always_nothrow_move_constructible
     : std::integral_constant<bool,
-                             std::is_nothrow_move_constructible<std::vector<ProtoT>>{} &&
+                             std::is_nothrow_move_constructible<std::vector<ProtoValue>>{} &&
                                  std::is_nothrow_move_constructible<AttrMap>{}> {};
 
 void to_proto(std::nullptr_t, google::protobuf::Value* v);
@@ -171,9 +171,9 @@ void to_proto(bool b, google::protobuf::Value* v);
 void to_proto(int i, google::protobuf::Value* v);
 void to_proto(double d, google::protobuf::Value* v);
 void to_proto(std::string s, google::protobuf::Value* v);
-void to_proto(const std::vector<ProtoT>& vec, google::protobuf::Value* v);
+void to_proto(const std::vector<ProtoValue>& vec, google::protobuf::Value* v);
 void to_proto(const AttrMap& m, google::protobuf::Value* v);
-void to_proto(const ProtoT& t, google::protobuf::Value* v);
+void to_proto(const ProtoValue& t, google::protobuf::Value* v);
 
 AttrMap struct_to_map(google::protobuf::Struct const* s);
 void map_to_struct(const AttrMap& m, google::protobuf::Struct* s);
@@ -230,18 +230,18 @@ template <>
 struct kind_t<std::string> : std::integral_constant<int, 4> {};
 
 template <>
-struct kind_t<std::vector<ProtoT>> : std::integral_constant<int, 5> {};
+struct kind_t<std::vector<ProtoValue>> : std::integral_constant<int, 5> {};
 
 template <>
 struct kind_t<AttrMap> : std::integral_constant<int, 6> {};
 
 template <typename T>
-bool ProtoT::is_a() const {
+bool ProtoValue::is_a() const {
     return kind_t<T>::value == kind();
 }
 
 template <typename T>
-T* dyn_cast(ProtoT& pt) {
+T* dyn_cast(ProtoValue& pt) {
     static_assert(!std::is_same<T, std::nullptr_t>{}, "Please do not dyn_cast to nullptr");
     if (pt.is_a<T>()) {
         return pt.self_.template get<T>();
@@ -251,7 +251,7 @@ T* dyn_cast(ProtoT& pt) {
 }
 
 template <typename T>
-T const* dyn_cast(const ProtoT& pt) {
+T const* dyn_cast(const ProtoValue& pt) {
     static_assert(!std::is_same<T, std::nullptr_t>{}, "Please do not dyn_cast to nullptr");
     if (pt.is_a<T>()) {
         return pt.self_.template get<T>();
