@@ -26,6 +26,7 @@ namespace sdk {
 // The "simple" value types are empty, bool, int, double, and string.
 // Moreover, a ProtoT can be a vector or string-map of ProtoT.
 class ProtoT {
+    // Delayed instantiation type trait for determining if all move operations are noexcept.
     struct is_always_nothrow_move_constructible;
 
    public:
