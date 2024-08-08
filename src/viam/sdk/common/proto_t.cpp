@@ -27,13 +27,8 @@ template ProtoValue::ProtoValue(AttrMap m) noexcept(std::is_nothrow_move_constru
 
 ProtoValue::ProtoValue(const char* str) : ProtoValue(std::string(str)) {}
 
-template <typename Self>
-ProtoValue::ProtoValue(ProtoValue&& other) noexcept(
-    typename Self::is_always_nothrow_move_constructible{})
+ProtoValue::ProtoValue(ProtoValue&& other) noexcept(impl::all_proto_moves_noexcept{})
     : vtable_(std::move(other.vtable_)), self_(std::move(other.self_), vtable_) {}
-
-template ProtoValue::ProtoValue(ProtoValue&& other) noexcept(
-    ProtoValue::is_always_nothrow_move_constructible{});
 
 ProtoValue::ProtoValue(const ProtoValue& other)
     : vtable_(other.vtable_), self_(other.self_, other.vtable_) {}
@@ -69,7 +64,7 @@ ProtoValue::ProtoValue(const Value* value)  // NOLINT(misc-no-recursion)
           }
       }(*value)) {}
 
-ProtoValue& ProtoValue::operator=(ProtoValue&& other) {
+ProtoValue& ProtoValue::operator=(ProtoValue&& other) noexcept(impl::all_proto_moves_noexcept{}) {
     ProtoValue(std::move(other)).swap(*this);
     return *this;
 }
@@ -87,7 +82,7 @@ bool operator==(const ProtoValue& lhs, const ProtoValue& rhs) {
     return lhs.vtable_.equal_to(lhs.self_.get(), rhs.self_.get(), rhs.vtable_);
 }
 
-void ProtoValue::swap(ProtoValue& other) {
+void ProtoValue::swap(ProtoValue& other) noexcept(impl::all_proto_moves_noexcept{}) {
     self_.swap(vtable_, other.self_, other.vtable_);
     std::swap(vtable_, other.vtable_);
 }
@@ -167,13 +162,15 @@ ProtoValue::storage::storage(const ProtoValue::storage& other, const ProtoValue:
     vtab.copy(other.get(), this->get());
 }
 
-ProtoValue::storage::storage(ProtoValue::storage&& other, const ProtoValue::vtable& vtab) {
+ProtoValue::storage::storage(ProtoValue::storage&& other, const ProtoValue::vtable& vtab) noexcept(
+    impl::all_proto_moves_noexcept{}) {
     vtab.move(other.get(), this->get());
 }
 
-void ProtoValue::storage::swap(const ProtoValue::vtable& this_vtable,
-                               ProtoValue::storage& other,
-                               const ProtoValue::vtable& other_vtable) {
+void ProtoValue::storage::swap(
+    const ProtoValue::vtable& this_vtable,
+    ProtoValue::storage& other,
+    const ProtoValue::vtable& other_vtable) noexcept(impl::all_proto_moves_noexcept{}) {
     if (this == &other) {
         return;
     }
@@ -189,7 +186,7 @@ void ProtoValue::storage::swap(const ProtoValue::vtable& this_vtable,
     other_vtable.dtor(&tmp);
 }
 
-void ProtoValue::storage::destruct(const ProtoValue::vtable& vtab) {
+void ProtoValue::storage::destruct(const ProtoValue::vtable& vtab) noexcept {
     vtab.dtor(this->get());
 }
 

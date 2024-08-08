@@ -22,13 +22,29 @@ class Struct;
 namespace viam {
 namespace sdk {
 
+namespace impl {
+
+struct move_may_throw {
+    move_may_throw() noexcept(false) = default;
+    move_may_throw& operator=(move_may_throw&&) noexcept(false) = default;
+};
+
+// Type trait for determining if move operations on ProtoValue are noexcept.
+// conditional noexcept-ness of move construction on vector and unordered_map is not
+// guaranteed until c++17, and even then not fully. Thus define a traits class to check whether the
+// containers have nothrow move ops, and use that to determine if ProtoValue's move ops are nothrow.
+struct all_proto_moves_noexcept
+    : std::integral_constant<bool,
+                             std::is_nothrow_move_constructible<std::vector<move_may_throw>>{} &&
+                                 std::is_nothrow_move_constructible<
+                                     std::unordered_map<std::string, move_may_throw>>{}> {};
+
+}  // namespace impl
+
 // Type erased value for storing protobuf Value types.
 // The "simple" value types are empty, bool, int, double, and string.
 // Moreover, a ProtoValue can be a vector or string-map of ProtoValue.
 class ProtoValue {
-    // Delayed instantiation type trait for determining if all move operations are noexcept.
-    struct is_always_nothrow_move_constructible;
-
    public:
     // Construct a null object.
     ProtoValue() noexcept;
@@ -42,14 +58,13 @@ class ProtoValue {
 
     // Move construction this from other, leaving other in the "unspecified but valid state" of its
     // moved-from type
-    template <typename Self = ProtoValue>
-    ProtoValue(ProtoValue&& other) noexcept(typename Self::is_always_nothrow_move_constructible{});
+    ProtoValue(ProtoValue&& other) noexcept(impl::all_proto_moves_noexcept{});
 
     ProtoValue(const ProtoValue& other);
 
     // Move assignment from other, leaving other in the "unspecified but valid state" of its
     // moved-from type.
-    ProtoValue& operator=(ProtoValue&& other);
+    ProtoValue& operator=(ProtoValue&& other) noexcept(impl::all_proto_moves_noexcept{});
 
     ProtoValue& operator=(const ProtoValue& other);
 
@@ -60,7 +75,7 @@ class ProtoValue {
     // Thus, bool{false}, int{0}, and double{0.0} do not compare equal.
     friend bool operator==(const ProtoValue& lhs, const ProtoValue& rhs);
 
-    void swap(ProtoValue& other);
+    void swap(ProtoValue& other) noexcept(impl::all_proto_moves_noexcept{});
 
     // Construct from proto value
     // This method is trivially templated to insulate Value from our API/ABI.
@@ -106,6 +121,8 @@ class ProtoValue {
 
         static void copy(void const* self, void* dest);
 
+        // Clang bug prevents us from marking this noexcept but it's being called through a
+        // non-noexcept pointer anyway
         static void move(void* self, void* dest);
 
         static void to_proto(void const* self, google::protobuf::Value* v);
@@ -134,11 +151,13 @@ class ProtoValue {
 
         storage(const storage& other, const vtable& vtable);
 
-        storage(storage&& other, const vtable& vtable);
+        storage(storage&& other, const vtable& vtable) noexcept(impl::all_proto_moves_noexcept{});
 
-        void swap(const vtable& this_vtable, storage& other, const vtable& other_vtable);
+        void swap(const vtable& this_vtable,
+                  storage& other,
+                  const vtable& other_vtable) noexcept(impl::all_proto_moves_noexcept{});
 
-        void destruct(const vtable& vtable);
+        void destruct(const vtable& vtable) noexcept;
 
         template <typename T = void>
         T* get() {
@@ -160,11 +179,6 @@ class ProtoValue {
 };
 
 using AttrMap = std::unordered_map<std::string, ProtoValue>;
-
-struct ProtoValue::is_always_nothrow_move_constructible
-    : std::integral_constant<bool,
-                             std::is_nothrow_move_constructible<std::vector<ProtoValue>>{} &&
-                                 std::is_nothrow_move_constructible<AttrMap>{}> {};
 
 void to_proto(std::nullptr_t, google::protobuf::Value* v);
 void to_proto(bool b, google::protobuf::Value* v);
