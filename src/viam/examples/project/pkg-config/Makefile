@@ -15,13 +15,21 @@ example_dial.o: ../../dial/example_dial.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $^
 
 example_dial: example_dial.o
+<<<<<<< HEAD
 	$(CXX) $(LDFLAGS) -o $@ $^
+=======
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $@ $^
+>>>>>>> 5c72e224a1cec7e22a2e5ec003f7c13718bfef77
 
 example_module.o: ../../modules/simple/main.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $^
 
 example_module: example_module.o
+<<<<<<< HEAD
 	$(CXX) $(LDFLAGS) -o $@ $^
+=======
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $@ $^
+>>>>>>> 5c72e224a1cec7e22a2e5ec003f7c13718bfef77
 
 clean:
 	rm -f *.o example_dial example_module
