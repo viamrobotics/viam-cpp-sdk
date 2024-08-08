@@ -23,7 +23,8 @@ template ProtoValue::ProtoValue(std::string) noexcept(
     std::is_nothrow_move_constructible<std::string>{});
 template ProtoValue::ProtoValue(std::vector<ProtoValue>) noexcept(
     std::is_nothrow_move_constructible<std::vector<ProtoValue>>{});
-template ProtoValue::ProtoValue(AttrMap m) noexcept(std::is_nothrow_move_constructible<AttrMap>{});
+template ProtoValue::ProtoValue(ProtoStruct m) noexcept(
+    std::is_nothrow_move_constructible<ProtoStruct>{});
 
 ProtoValue::ProtoValue(const char* str) : ProtoValue(std::string(str)) {}
 
@@ -152,7 +153,7 @@ ProtoValue::storage::storage(T t) noexcept(std::is_nothrow_move_constructible<T>
                                                     double,
                                                     std::string,
                                                     std::vector<ProtoValue>,
-                                                    AttrMap>>{},
+                                                    ProtoStruct>>{},
                   "storage class storage is misconfigured for possible ProtoT types");
 
     new (&buf_) model<T>(std::move(t));
@@ -218,7 +219,7 @@ void to_proto(const std::vector<ProtoValue>& vec, Value* v) {
     *(v->mutable_list_value()) = std::move(l);
 }
 
-void to_proto(const AttrMap& m, Value* v) {
+void to_proto(const ProtoStruct& m, Value* v) {
     Struct s;
     map_to_struct(m, &s);
 
@@ -229,8 +230,8 @@ void to_proto(const ProtoValue& t, Value* v) {
     return t.vtable_.to_proto(t.self_.get(), v);
 }
 
-AttrMap struct_to_map(Struct const* s) {
-    AttrMap map;
+ProtoStruct struct_to_map(Struct const* s) {
+    ProtoStruct map;
     for (const auto& val : s->fields()) {
         map.emplace(val.first, ProtoValue::from_proto(val.second));
     }
@@ -238,7 +239,7 @@ AttrMap struct_to_map(Struct const* s) {
     return map;
 }
 
-void map_to_struct(const AttrMap& m, Struct* s) {
+void map_to_struct(const ProtoStruct& m, Struct* s) {
     for (const auto& kv : m) {
         s->mutable_fields()->insert(
             google::protobuf::MapPair<std::string, Value>(kv.first, to_proto(kv.second)));

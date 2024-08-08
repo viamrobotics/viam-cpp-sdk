@@ -178,7 +178,7 @@ class ProtoValue {
     storage self_;
 };
 
-using AttrMap = std::unordered_map<std::string, ProtoValue>;
+using ProtoStruct = std::unordered_map<std::string, ProtoValue>;
 
 void to_proto(std::nullptr_t, google::protobuf::Value* v);
 void to_proto(bool b, google::protobuf::Value* v);
@@ -186,11 +186,11 @@ void to_proto(int i, google::protobuf::Value* v);
 void to_proto(double d, google::protobuf::Value* v);
 void to_proto(std::string s, google::protobuf::Value* v);
 void to_proto(const std::vector<ProtoValue>& vec, google::protobuf::Value* v);
-void to_proto(const AttrMap& m, google::protobuf::Value* v);
+void to_proto(const ProtoStruct& m, google::protobuf::Value* v);
 void to_proto(const ProtoValue& t, google::protobuf::Value* v);
 
-AttrMap struct_to_map(google::protobuf::Struct const* s);
-void map_to_struct(const AttrMap& m, google::protobuf::Struct* s);
+ProtoStruct struct_to_map(google::protobuf::Struct const* s);
+void map_to_struct(const ProtoStruct& m, google::protobuf::Struct* s);
 
 // The following methods are trivially templated to insulate Value and Struct from our API/ABI.
 // In a translation unit which includes <google/protobuf/struct.pb.h>, you can call them without
@@ -207,13 +207,13 @@ Value to_proto(T&& t) {
 
 // Convert a proto struct to a map.
 template <typename Struct = google::protobuf::Struct>
-AttrMap struct_to_map(const Struct& s) {
+ProtoStruct struct_to_map(const Struct& s) {
     return struct_to_map(&s);
 }
 
 // Convert map to proto struct.
 template <typename Struct = google::protobuf::Struct>
-Struct map_to_struct(const AttrMap& m) {
+Struct map_to_struct(const ProtoStruct& m) {
     Struct s;
     map_to_struct(m, &s);
 
@@ -247,7 +247,7 @@ template <>
 struct kind_t<std::vector<ProtoValue>> : std::integral_constant<int, 5> {};
 
 template <>
-struct kind_t<AttrMap> : std::integral_constant<int, 6> {};
+struct kind_t<ProtoStruct> : std::integral_constant<int, 6> {};
 
 template <typename T>
 bool ProtoValue::is_a() const {

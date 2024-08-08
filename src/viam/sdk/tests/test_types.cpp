@@ -70,10 +70,10 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
             std::vector<ProtoValue>({ProtoValue{"asdf"}}),
             std::vector<ProtoValue>({ProtoValue{"asdf"}, ProtoValue{true}, ProtoValue{12.3}})),
         std::make_pair(
-            AttrMap({{"ab", "cd"}}),
-            AttrMap({{"elem1", 5.0},
-                     {"elem2", "str"},
-                     {"vec", std::vector<ProtoValue>({ProtoValue{3.0}, ProtoValue{"str"}})}})));
+            ProtoStruct({{"ab", "cd"}}),
+            ProtoStruct({{"elem1", 5.0},
+                         {"elem2", "str"},
+                         {"vec", std::vector<ProtoValue>({ProtoValue{3.0}, ProtoValue{"str"}})}})));
 
     boost::mp11::tuple_for_each(test_cases, [](auto test_pair) {
         using test_type = typename decltype(test_pair)::first_type;
@@ -137,10 +137,10 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
 }
 
 BOOST_AUTO_TEST_CASE(test_move_validity) {
-    auto test_cases =
-        std::make_tuple(std::string("str"),
-                        std::vector<ProtoValue>{{ProtoValue("asdf"), ProtoValue(true)}},
-                        AttrMap{{"asdf", true}, {"vec", std::vector<ProtoValue>{{ProtoValue(5)}}}});
+    auto test_cases = std::make_tuple(
+        std::string("str"),
+        std::vector<ProtoValue>{{ProtoValue("asdf"), ProtoValue(true)}},
+        ProtoStruct{{"asdf", true}, {"vec", std::vector<ProtoValue>{{ProtoValue(5)}}}});
 
     tuple_for_each(test_cases, [](auto test_elem) {
         using TestType = decltype(test_elem);
@@ -277,7 +277,7 @@ BOOST_AUTO_TEST_CASE(test_manual_map_conversion) {
                                      std::make_pair("double", 3.0),
                                      std::make_pair("bool", true));
 
-    AttrMap m;
+    ProtoStruct m;
     google::protobuf::Map<std::string, Value> proto_map;
 
     boost::mp11::tuple_for_each(test_case, [&](auto map_pair) {
@@ -297,7 +297,7 @@ BOOST_AUTO_TEST_CASE(test_manual_map_conversion) {
     ProtoValue from_map(m);
     BOOST_CHECK(from_proto == from_map);
 
-    const AttrMap* ptr = dyn_cast<AttrMap>(from_map);
+    const ProtoStruct* ptr = dyn_cast<ProtoStruct>(from_map);
     BOOST_REQUIRE(ptr);
 
     using TupleType = decltype(test_case);
