@@ -126,7 +126,7 @@ void ProtoValue::model<T>::to_proto(void const* self, google::protobuf::Value* v
 
 template <typename T>
 int ProtoValue::model<T>::kind() noexcept {
-    return impl::kind_t<T>::value;
+    return kind_t<T>::value;
 }
 
 template <typename T>

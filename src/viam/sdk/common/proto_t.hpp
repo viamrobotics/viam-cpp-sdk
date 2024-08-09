@@ -267,13 +267,10 @@ Struct map_to_struct(const ProtoStruct& m) {
     return s;
 }
 
-namespace impl {
-
-// ProtoValue RTTI type trait.
-// This type trait is used to implement the ProtoValue::kind method which provides the type
-// discriminator constant that is used in the casting API.
-// In practice, the concept requirement for constructing a ProtoT is that this type trait be well
-// formed.
+/// @brief ProtoValue RTTI type trait.
+/// This type trait is used to implement the ProtoValue::kind method which provides the type
+/// discriminator constant that is used in the casting API.
+/// A ProtoValue can only be constructed from types for which this trait is well formed.
 template <typename T>
 struct kind_t;
 
@@ -298,11 +295,9 @@ struct kind_t<std::vector<ProtoValue>> : std::integral_constant<int, 5> {};
 template <>
 struct kind_t<ProtoStruct> : std::integral_constant<int, 6> {};
 
-}  // namespace impl
-
 template <typename T>
 bool ProtoValue::is_a() const {
-    return impl::kind_t<T>::value == kind();
+    return kind_t<T>::value == kind();
 }
 
 template <typename T>
