@@ -89,7 +89,7 @@ void ProtoValue::swap(ProtoValue& other) noexcept(impl::all_proto_moves_noexcept
 }
 
 template <typename Val>
-ProtoValue ProtoValue::from_proto(const Val& v) {
+ProtoValue ProtoValue::from_proto(const Val& v) {  // NOLINT(misc-no-recursion)
     return ProtoValue(&v);
 }
 
@@ -218,10 +218,10 @@ void to_proto(const ProtoStruct& m, Value* v) {
 }
 
 void to_proto(const ProtoValue& t, Value* v) {
-    return t.vtable_.to_proto(t.self_.get(), v);
+    t.vtable_.to_proto(t.self_.get(), v);
 }
 
-ProtoStruct struct_to_map(Struct const* s) {
+ProtoStruct struct_to_map(Struct const* s) {  // NOLINT(misc-no-recursion)
     ProtoStruct map;
     for (const auto& val : s->fields()) {
         map.emplace(val.first, ProtoValue::from_proto(val.second));
