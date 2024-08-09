@@ -98,6 +98,6 @@ int main(int argc, char** argv) try {
 
     return EXIT_SUCCESS;
 } catch (const viam::sdk::Exception& ex) {
-    std::cerr << ex.what() << "\n";
-    return ex.condition().value();
+    std::cerr << "main failed with exception: " << ex.what() << "\n";
+    return EXIT_FAILURE;
 }
