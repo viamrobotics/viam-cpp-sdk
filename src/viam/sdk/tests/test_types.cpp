@@ -10,8 +10,8 @@
 #include <boost/mp11/tuple.hpp>
 #include <boost/test/included/unit_test.hpp>
 
-#include <viam/sdk/common/proto_t.hpp>
 #include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 

@@ -1,4 +1,4 @@
-#include <viam/sdk/common/proto_t.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 
 #include <google/protobuf/struct.pb.h>
 

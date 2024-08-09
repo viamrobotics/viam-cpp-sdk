@@ -51,7 +51,7 @@ target_sources(viamsdk
     common/linear_algebra.cpp
     common/pose.cpp
     common/proto_type.cpp
-    common/proto_t.cpp
+    common/proto_value.cpp
     common/service_helper.cpp
     common/utils.cpp
     common/world_state.cpp
@@ -139,7 +139,7 @@ target_sources(viamsdk
       ../../viam/sdk/common/linear_algebra.hpp
       ../../viam/sdk/common/pose.hpp
       ../../viam/sdk/common/proto_type.hpp
-      ../../viam/sdk/common/proto_t.hpp
+      ../../viam/sdk/common/proto_value.hpp
       ../../viam/sdk/common/service_helper.hpp
       ../../viam/sdk/common/utils.hpp
       ../../viam/sdk/common/world_state.hpp
