@@ -85,7 +85,7 @@ class ProtoValue {
     /// API/ABI. It is meant to be called with no template parameters in a translation unit which
     /// includes <google/protobuf/struct.pb.h>
     template <typename Value = google::protobuf::Value>
-    static ProtoValue from_proto(const Value& v);
+    static ProtoValue from_proto(const Value& v);  // NOLINT(misc-no-recursion)
 
     friend void to_proto(const ProtoValue& t, google::protobuf::Value* v);
 
