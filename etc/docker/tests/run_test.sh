@@ -25,9 +25,9 @@ cd ../src/viam/examples/project
 pushd cmake
 cmake . -G Ninja # Just do an in-source build to save path fiddling
 ninja all
-(set +e; ./example_module; [ $? -eq 1 ])
+[ $(./example_module 2>&1 | grep 'main failed with exception:' -c) = 1 ]
 popd
 pushd pkg-config
 PKG_CONFIG_PATH=${INSTALL_DIR}/lib/pkgconfig make all
-(set +e; ./example_module; [ $? -eq 1 ])
+[ $(./example_module 2>&1 | grep 'main failed with exception:' -c) = 1 ]
 popd
