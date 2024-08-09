@@ -12,7 +12,7 @@ ProtoValue::ProtoValue() noexcept : ProtoValue(nullptr) {}
 
 template <typename T>
 ProtoValue::ProtoValue(T t) noexcept(std::is_nothrow_move_constructible<T>{})
-    : vtable_{model<T>::vtable}, self_{std::move(t)} {}
+    : vtable_{model<T>::vtable_}, self_{std::move(t)} {}
 
 // -- explicit instantiations of by-value constructors -- //
 template ProtoValue::ProtoValue(std::nullptr_t) noexcept;

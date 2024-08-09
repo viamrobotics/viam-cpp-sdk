@@ -146,7 +146,7 @@ class ProtoValue {
 
         static bool equal_to(void const* self, void const* other, const vtable& other_vtable);
 
-        static constexpr vtable vtable{dtor, copy, move, to_proto, kind, equal_to};
+        static constexpr vtable vtable_{dtor, copy, move, to_proto, kind, equal_to};
         T data;
     };
 
