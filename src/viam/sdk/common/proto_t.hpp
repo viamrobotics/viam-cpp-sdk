@@ -155,12 +155,20 @@ class ProtoValue {
     // type-erased model<T>. Note that all lifetime operations require a vtable to which the
     // implementation defers.
     struct storage {
-        // Size of the stack buffer, configured to be large enough to store ProtoStruct which is the
-        // largest possible type that can be in a ProtoValue.
-        static constexpr std::size_t local_storage_size =
-            sizeof(std::unordered_map<std::string, std::string>);
+        // Local storage in an aligned_union which can hold all the possible ProtoValue types, using
+        // stand-ins for std::vector<ProtoValue> and ProtoStruct which are not available until end
+        // of class definition.
+        using BufType = std::aligned_union_t<0,
+                                             std::nullptr_t,
+                                             bool,
+                                             int,
+                                             double,
+                                             std::string,
+                                             std::vector<void*>,
+                                             std::unordered_map<std::string, void*>>;
 
-        using BufType = std::aligned_storage_t<local_storage_size>;
+        static constexpr std::size_t local_storage_size = sizeof(BufType);
+        static constexpr std::size_t local_storage_alignment = alignof(BufType);
 
         // Construct this to store a model<T>.
         template <typename T>

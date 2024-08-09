@@ -143,18 +143,9 @@ bool ProtoValue::model<T>::equal_to(void const* self,
 // --- ProtoT::storage definitions --- //
 template <typename T>
 ProtoValue::storage::storage(T t) noexcept(std::is_nothrow_move_constructible<T>{}) {
-    // Since ProtoT is an incomplete type at time of definition of struct storage, static_assert
-    // post facto to make sure we sized and aligned the storage correctly
-    static_assert(std::is_same<BufType,
-                               std::aligned_union_t<0,
-                                                    std::nullptr_t,
-                                                    bool,
-                                                    int,
-                                                    double,
-                                                    std::string,
-                                                    std::vector<ProtoValue>,
-                                                    ProtoStruct>>{},
-                  "storage class storage is misconfigured for possible ProtoT types");
+    static_assert(sizeof(T) <= local_storage_size, "Type too large to fit in local storage");
+    static_assert(alignof(T) <= local_storage_alignment,
+                  "Type alignment too strict for local storage");
 
     new (&buf_) model<T>(std::move(t));
 }
