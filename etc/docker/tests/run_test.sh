@@ -11,15 +11,16 @@ ninja all
 ninja install
 INSTALL_DIR="$(pwd)/install"
 
-# pushd src/viam/sdk/tests
-# UBSAN_OPTIONS="print_stacktrace=1" ctest --output-on-failure
-# popd
-# pushd src/viam/examples/modules/complex
-# UBSAN_OPTIONS="print_stacktrace=1" ctest --output-on-failure
-# popd
+pushd src/viam/sdk/tests
+UBSAN_OPTIONS="print_stacktrace=1" ctest --output-on-failure
+popd
+pushd src/viam/examples/modules/complex
+UBSAN_OPTIONS="print_stacktrace=1" ctest --output-on-failure
+popd
 
-# In the examples below, we check that example_module exits with a status code of 1, 
-# the expected error for not providing a socket address on the command line.
+# Test that example_module builds and runs with the SDK install from above.
+# Check with both CMake and make/pkg-config that we can build the example
+# and have it exit with the expected error message.
 
 cd ../src/viam/examples/project
 pushd cmake
