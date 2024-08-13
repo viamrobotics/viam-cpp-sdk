@@ -84,10 +84,10 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
         ProtoValue v1(test_pair.first);
         BOOST_CHECK(v1.kind() == kind);
         BOOST_CHECK(v1.is_a<test_type>());
-        BOOST_CHECK(!dyn_cast<int>(v1));
+        BOOST_CHECK(!v1.get<int>());
 
         {
-            const test_type* ptr = dyn_cast<test_type>(v1);
+            const test_type* ptr = v1.get<test_type>();
             BOOST_REQUIRE(ptr);
             BOOST_CHECK(*ptr == test_pair.first);
         }
@@ -110,7 +110,7 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
             auto v1_copy_to_change = v1;
             BOOST_CHECK(v1_copy_to_change == v1);
 
-            test_type* ptr = dyn_cast<test_type>(v1_copy_to_change);
+            test_type* ptr = v1_copy_to_change.get<test_type>();
             BOOST_REQUIRE(ptr);
             *ptr = test_pair.second;
             BOOST_CHECK(!(v1_copy_to_change == v1));
@@ -156,14 +156,13 @@ BOOST_AUTO_TEST_CASE(test_move_validity) {
         // want to check that they are in an unspecified but valid state bc that is all that is
         // guaranteed
 
-        for (TestType* ptr :
-             {dyn_cast<TestType>(move_construct), dyn_cast<TestType>(move_assign)}) {
+        for (TestType* ptr : {move_construct.get<TestType>(), move_assign.get<TestType>()}) {
             BOOST_REQUIRE(ptr);
             BOOST_CHECK(*ptr == test_elem);
         }
 
         for (TestType* moved_from_ptr :
-             {dyn_cast<TestType>(move_construct), dyn_cast<TestType>(move_assign)}) {
+             {move_construct.get<TestType>(), move_assign.get<TestType>()}) {
             BOOST_REQUIRE(moved_from_ptr);
             auto sample_value = *test_elem.begin();
             moved_from_ptr->clear();
@@ -248,7 +247,7 @@ BOOST_AUTO_TEST_CASE(test_manual_list_conversion) {
 
     {
         // check that we can cast and type check vector elements
-        const auto* ptr = dyn_cast<std::vector<ProtoValue>>(proto);
+        const auto* ptr = proto.get<std::vector<ProtoValue>>();
         BOOST_REQUIRE(ptr);
 
         using TupleType = decltype(test_cases);
@@ -256,7 +255,7 @@ BOOST_AUTO_TEST_CASE(test_manual_list_conversion) {
         mp_for_each<mp_iota_c<mp_size<TupleType>{}>>([&](auto I) {
             auto tuple_elem = std::get<I()>(test_cases);
             const ProtoValue& elem = (*ptr)[I()];
-            const auto* elem_p = dyn_cast<decltype(tuple_elem)>(elem);
+            const auto* elem_p = elem.get<decltype(tuple_elem)>();
             BOOST_REQUIRE(elem_p);
             BOOST_CHECK(*elem_p == tuple_elem);
         });
@@ -297,7 +296,7 @@ BOOST_AUTO_TEST_CASE(test_manual_map_conversion) {
     ProtoValue from_map(m);
     BOOST_CHECK(from_proto == from_map);
 
-    const ProtoStruct* ptr = dyn_cast<ProtoStruct>(from_map);
+    const ProtoStruct* ptr = from_map.get<ProtoStruct>();
     BOOST_REQUIRE(ptr);
 
     using TupleType = decltype(test_case);
@@ -305,7 +304,7 @@ BOOST_AUTO_TEST_CASE(test_manual_map_conversion) {
         auto map_pair = std::get<I>(test_case);
 
         const ProtoValue& map_elem = ptr->at(map_pair.first);
-        const auto* elem_ptr = dyn_cast<decltype(map_pair.second)>(map_elem);
+        const auto* elem_ptr = map_elem.get<decltype(map_pair.second)>();
         BOOST_REQUIRE(elem_ptr);
         BOOST_CHECK(*elem_ptr == map_pair.second);
     });

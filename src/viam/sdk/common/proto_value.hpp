@@ -89,7 +89,7 @@ class ProtoValue {
 
     friend void to_proto(const ProtoValue& t, google::protobuf::Value* v);
 
-    /// @name Casting API
+    /// @name Value access API
     ///@{
 
     /// @brief Obtain integer constant representing the stored data type.
@@ -99,13 +99,13 @@ class ProtoValue {
     template <typename T>
     bool is_a() const;
 
-    /// @brief Checking cast to T, returns non-owning non-null pointer if argument is_a<T>()
+    /// @brief Return a T pointer if this is_a<T>(), else return nullptr
     template <typename T>
-    friend T* dyn_cast(ProtoValue&);
+    T* get();
 
-    /// @brief Checking cast to T, returns non-owning non-null pointer if argument is_a<T>()
+    /// @brief Return a T pointer if this is_a<T>(), else return nullptr
     template <typename T>
-    friend T const* dyn_cast(const ProtoValue&);
+    T const* get() const;
 
     ///@}
 
@@ -269,7 +269,7 @@ Struct map_to_struct(const ProtoStruct& m) {
 
 /// @brief ProtoValue RTTI type trait.
 /// This type trait is used to implement the ProtoValue::kind method which provides the type
-/// discriminator constant that is used in the casting API.
+/// discriminator constant that is used in the value access API.
 /// A ProtoValue can only be constructed from types for which this trait is well formed.
 template <typename T>
 struct kind_t;
@@ -301,20 +301,18 @@ bool ProtoValue::is_a() const {
 }
 
 template <typename T>
-T* dyn_cast(ProtoValue& pt) {
-    static_assert(!std::is_same<T, std::nullptr_t>{}, "Please do not dyn_cast to nullptr");
-    if (pt.is_a<T>()) {
-        return pt.self_.template get<T>();
+T* ProtoValue::get() {
+    if (this->is_a<T>()) {
+        return this->self_.template get<T>();
     }
 
     return nullptr;
 }
 
 template <typename T>
-T const* dyn_cast(const ProtoValue& pt) {
-    static_assert(!std::is_same<T, std::nullptr_t>{}, "Please do not dyn_cast to nullptr");
-    if (pt.is_a<T>()) {
-        return pt.self_.template get<T>();
+T const* ProtoValue::get() const {
+    if (this->is_a<T>()) {
+        return this->self_.template get<T>();
     }
 
     return nullptr;
