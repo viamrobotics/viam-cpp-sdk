@@ -22,7 +22,7 @@ class Struct;
 namespace viam {
 namespace sdk {
 
-namespace impl {
+namespace detail {
 
 struct move_may_throw {
     move_may_throw(move_may_throw&&) noexcept(false) = default;
@@ -41,7 +41,7 @@ struct all_proto_moves_noexcept
                                  std::is_nothrow_move_constructible<
                                      std::unordered_map<std::string, move_may_throw>>{}> {};
 
-}  // namespace impl
+}  // namespace detail
 
 /// @brief Type-erased value for storing google::protobuf::Value types.
 /// A ProtoValue can be nullptr, bool, int, double, std::string, or, recursively, a vector or
@@ -61,13 +61,13 @@ class ProtoValue {
 
     /// @brief Move construct this from other, leaving other in its unspecified-but-valid moved from
     /// state.
-    ProtoValue(ProtoValue&& other) noexcept(impl::all_proto_moves_noexcept{});
+    ProtoValue(ProtoValue&& other) noexcept(detail::all_proto_moves_noexcept{});
 
     ProtoValue(const ProtoValue& other);
 
     /// @brief Move assignment from other, leaving other in its unspecified-but-valid moved from
     /// state.
-    ProtoValue& operator=(ProtoValue&& other) noexcept(impl::all_proto_moves_noexcept{});
+    ProtoValue& operator=(ProtoValue&& other) noexcept(detail::all_proto_moves_noexcept{});
 
     ProtoValue& operator=(const ProtoValue& other);
 
@@ -78,7 +78,7 @@ class ProtoValue {
     /// Thus, bool{false}, int{0}, and double{0.0} do not compare equal.
     friend bool operator==(const ProtoValue& lhs, const ProtoValue& rhs);
 
-    void swap(ProtoValue& other) noexcept(impl::all_proto_moves_noexcept{});
+    void swap(ProtoValue& other) noexcept(detail::all_proto_moves_noexcept{});
 
     /// @brief Construct from proto value
     /// @note This method is trivially templated to insulate google::protobuf::Value from our
@@ -187,13 +187,13 @@ class ProtoValue {
         storage(const storage& other, const vtable& vtable);
 
         // Move construct this storage from other, using the move operation in vtable.
-        storage(storage&& other, const vtable& vtable) noexcept(impl::all_proto_moves_noexcept{});
+        storage(storage&& other, const vtable& vtable) noexcept(detail::all_proto_moves_noexcept{});
 
         // Swap this storage with other, with operations on this provided by this_vtable, and
         // operations on other provided by other_vtable.
         void swap(const vtable& this_vtable,
                   storage& other,
-                  const vtable& other_vtable) noexcept(impl::all_proto_moves_noexcept{});
+                  const vtable& other_vtable) noexcept(detail::all_proto_moves_noexcept{});
 
         // Destroy this storage, using the destructor from vtable.
         void destruct(const vtable& vtable) noexcept;

@@ -28,7 +28,7 @@ template ProtoValue::ProtoValue(ProtoStruct m) noexcept(
 
 ProtoValue::ProtoValue(const char* str) : ProtoValue(std::string(str)) {}
 
-ProtoValue::ProtoValue(ProtoValue&& other) noexcept(impl::all_proto_moves_noexcept{})
+ProtoValue::ProtoValue(ProtoValue&& other) noexcept(detail::all_proto_moves_noexcept{})
     : vtable_(std::move(other.vtable_)), self_(std::move(other.self_), vtable_) {}
 
 ProtoValue::ProtoValue(const ProtoValue& other)
@@ -65,7 +65,7 @@ ProtoValue::ProtoValue(const Value* value)  // NOLINT(misc-no-recursion)
           }
       }(*value)) {}
 
-ProtoValue& ProtoValue::operator=(ProtoValue&& other) noexcept(impl::all_proto_moves_noexcept{}) {
+ProtoValue& ProtoValue::operator=(ProtoValue&& other) noexcept(detail::all_proto_moves_noexcept{}) {
     ProtoValue(std::move(other)).swap(*this);
     return *this;
 }
@@ -83,7 +83,7 @@ bool operator==(const ProtoValue& lhs, const ProtoValue& rhs) {
     return lhs.vtable_.equal_to(lhs.self_.get(), rhs.self_.get(), rhs.vtable_);
 }
 
-void ProtoValue::swap(ProtoValue& other) noexcept(impl::all_proto_moves_noexcept{}) {
+void ProtoValue::swap(ProtoValue& other) noexcept(detail::all_proto_moves_noexcept{}) {
     self_.swap(vtable_, other.self_, other.vtable_);
     std::swap(vtable_, other.vtable_);
 }
@@ -155,14 +155,14 @@ ProtoValue::storage::storage(const ProtoValue::storage& other, const ProtoValue:
 }
 
 ProtoValue::storage::storage(ProtoValue::storage&& other, const ProtoValue::vtable& vtab) noexcept(
-    impl::all_proto_moves_noexcept{}) {
+    detail::all_proto_moves_noexcept{}) {
     vtab.move(other.get(), this->get());
 }
 
 void ProtoValue::storage::swap(
     const ProtoValue::vtable& this_vtable,
     ProtoValue::storage& other,
-    const ProtoValue::vtable& other_vtable) noexcept(impl::all_proto_moves_noexcept{}) {
+    const ProtoValue::vtable& other_vtable) noexcept(detail::all_proto_moves_noexcept{}) {
     if (this == &other) {
         return;
     }
