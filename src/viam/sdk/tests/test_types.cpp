@@ -173,6 +173,56 @@ BOOST_AUTO_TEST_CASE(test_move_validity) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(test_unchecked_access) {
+    auto scalar_tests = std::make_tuple(
+        std::make_pair(false, true), std::make_pair(5, 6), std::make_pair(8.0, 9.5));
+
+    auto nonscalar_tests = std::make_tuple(
+        std::make_pair(std::string("s1"), std::string("s2")),
+        std::make_pair(std::vector<ProtoValue>{{ProtoValue(1), ProtoValue("asdf")}},
+                       std::vector<ProtoValue>{{ProtoValue(false), ProtoValue(5.0)}}),
+        std::make_pair(
+            ProtoStruct{{"asdf", true}, {"vec", std::vector<ProtoValue>{{ProtoValue(5)}}}},
+            ProtoStruct{{"int", 5}, {"double", 6.0}}));
+
+    tuple_for_each(std::tuple_cat(scalar_tests, nonscalar_tests), [](auto test_pair) {
+        using test_type = typename decltype(test_pair)::first_type;
+        const test_type first = test_pair.first;
+        const test_type second = test_pair.second;
+
+        const ProtoValue const_val(first);
+        BOOST_CHECK(const_val.get_unchecked<test_type>() == first);
+        BOOST_CHECK(ProtoValue(first).get_unchecked<test_type>() == first);
+        ProtoValue mut_val(second);
+        BOOST_CHECK(mut_val.get_unchecked<test_type>() == second);
+        mut_val.get_unchecked<test_type>() = first;
+        BOOST_CHECK(mut_val.get_unchecked<test_type>() == first);
+    });
+
+    tuple_for_each(nonscalar_tests, [](auto test_pair) {
+        using test_type = typename decltype(test_pair)::first_type;
+        const test_type first = test_pair.first;
+
+        ProtoValue to_move(first);
+
+        const test_type from_move(std::move(to_move).get_unchecked<test_type>());
+        BOOST_CHECK(from_move == first);
+    });
+
+    {
+        // std::vector is the only of these containers with a guaranteed post-condition on move, so
+        // we can use it to check that the rvalue overload is in fact being called
+        std::vector<ProtoValue> vec({{ProtoValue("asdf")}});
+
+        ProtoValue vec_proto(vec);
+        BOOST_CHECK(!vec_proto.get_unchecked<std::vector<ProtoValue>>().empty());
+
+        auto vec2 = std::move(vec_proto).get_unchecked<std::vector<ProtoValue>>();
+        BOOST_CHECK(vec2 == vec);
+        BOOST_CHECK(vec_proto.get_unchecked<std::vector<ProtoValue>>().empty());
+    }
+}
+
 BOOST_AUTO_TEST_CASE(test_nested_objects) {
     std::unordered_map<std::string, ProtoValue> map;
     map.insert({"double", 1.0});

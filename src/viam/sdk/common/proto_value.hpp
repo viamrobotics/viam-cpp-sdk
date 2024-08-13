@@ -110,16 +110,40 @@ class ProtoValue {
     template <typename T>
     T const* get() const;
 
+    /// @brief Return a reference to the underlying T, without checking.
+    /// @tparam T a bool, int, or double
+    template <typename T>
+    std::enable_if_t<std::is_scalar<T>{}, T&> get_unchecked();
+
+    /// @brief Return the underlying T by value, without checking.
+    /// @tparam T a bool, int, or double.
+    template <typename T>
+    std::enable_if_t<std::is_scalar<T>{}, T> get_unchecked() const;
+
+    /// @brief Return a mutable reference to the underlying T, without checking
+    /// @tparam T a std::string, std::vector<ProtoValue>, or ProtoStruct.
+    template <typename T>
+    std::enable_if_t<!std::is_scalar<T>{}, T&> get_unchecked() &;
+
+    /// @brief Return an immutable reference to the underlying T, without checking.
+    /// @tparam T a std::string, std::vector<ProtoValue>, or ProtoStruct.
+    template <typename T>
+    std::enable_if_t<!std::is_scalar<T>{}, T const&> get_unchecked() const&;
+
+    /// @brief Return an rvalue reference to the underlying T, without checking.
+    /// @tparam T a std::string, std::vector<ProtoValue>, or ProtoStruct.
+    template <typename T>
+    std::enable_if_t<!std::is_scalar<T>{}, T&&> get_unchecked() &&;
+
     ///@}
 
    private:
     // This struct is our implementation of a virtual table, similar to what is created by the
     // compiler for polymorphic types. We can't use actual polymorphic types because the
     // implementation uses aligned stack storage, so we DIY it insted.
-    // The vtable can be thought of as defining a concept or interface which our ProtoValue types
-    // must satisfy.
-    // The first void [const]* parameter in any of the pointers below is always the `this` or `self`
-    // pointer.
+    // The vtable can be thought of as defining a concept or interface which our ProtoValue
+    // types must satisfy. The first void [const]* parameter in any of the pointers below is
+    // always the `this` or `self` pointer.
     struct vtable {
         void (*dtor)(void*);
         void (*copy)(void const*, void*);

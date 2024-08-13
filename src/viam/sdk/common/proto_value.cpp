@@ -104,6 +104,56 @@ bool ProtoValue::is_null() const {
     return kind() == kind_t<std::nullptr_t>{};
 }
 
+template <typename T>
+std::enable_if_t<std::is_scalar<T>{}, T&> ProtoValue::get_unchecked() {
+    assert(this->is_a<T>());
+    return *(this->self_.template get<T>());
+}
+
+template <typename T>
+std::enable_if_t<std::is_scalar<T>{}, T> ProtoValue::get_unchecked() const {
+    assert(this->is_a<T>());
+    return *(this->self_.template get<T>());
+}
+
+template bool& ProtoValue::get_unchecked<bool>();
+template int& ProtoValue::get_unchecked<int>();
+template double& ProtoValue::get_unchecked<double>();
+
+template bool ProtoValue::get_unchecked<bool>() const;
+template int ProtoValue::get_unchecked<int>() const;
+template double ProtoValue::get_unchecked<double>() const;
+
+template <typename T>
+std::enable_if_t<!std::is_scalar<T>{}, T&> ProtoValue::get_unchecked() & {
+    assert(this->is_a<T>());
+    return *(this->self_.template get<T>());
+}
+
+template <typename T>
+std::enable_if_t<!std::is_scalar<T>{}, T const&> ProtoValue::get_unchecked() const& {
+    assert(this->is_a<T>());
+    return *(this->self_.template get<T>());
+}
+
+template <typename T>
+std::enable_if_t<!std::is_scalar<T>{}, T&&> ProtoValue::get_unchecked() && {
+    assert(this->is_a<T>());
+    return std::move(*(this->self_.template get<T>()));
+}
+
+template std::string& ProtoValue::get_unchecked<std::string>() &;
+template std::vector<ProtoValue>& ProtoValue::get_unchecked<std::vector<ProtoValue>>() &;
+template ProtoStruct& ProtoValue::get_unchecked<ProtoStruct>() &;
+
+template std::string const& ProtoValue::get_unchecked<std::string>() const&;
+template std::vector<ProtoValue> const& ProtoValue::get_unchecked<std::vector<ProtoValue>>() const&;
+template ProtoStruct const& ProtoValue::get_unchecked<ProtoStruct>() const&;
+
+template std::string&& ProtoValue::get_unchecked<std::string>() &&;
+template std::vector<ProtoValue>&& ProtoValue::get_unchecked<std::vector<ProtoValue>>() &&;
+template ProtoStruct&& ProtoValue::get_unchecked<ProtoStruct>() &&;
+
 // --- ProtoT::model<T> definitions --- //
 template <typename T>
 ProtoValue::model<T>::model(T t) noexcept(std::is_nothrow_move_constructible<T>{})
