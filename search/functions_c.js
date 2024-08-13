@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['open_0',['open',['../classviam_1_1sdk_1_1Gripper.html#a337d1e97fa8be14a64e88544739e7f7e',1,'viam::sdk::Gripper::open()'],['../classviam_1_1sdk_1_1Gripper.html#a4426482618e752678591fba84e139418',1,'viam::sdk::Gripper::open(const AttributeMap &amp;extra)=0'],['../classviam_1_1sdk_1_1impl_1_1GripperClient.html#ad6659998373eeb4efbe067e56e9625ce',1,'viam::sdk::impl::GripperClient::open(const AttributeMap &amp;extra) override'],['../classviam_1_1sdk_1_1impl_1_1GripperClient.html#a337d1e97fa8be14a64e88544739e7f7e',1,'viam::sdk::impl::GripperClient::open()'],['../classviam_1_1sdk_1_1impl_1_1GripperClient.html#a4426482618e752678591fba84e139418',1,'viam::sdk::impl::GripperClient::open(const AttributeMap &amp;extra)=0']]]
+  ['name_0',['name',['../classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d',1,'viam::sdk::Resource']]],
+  ['normalize_5fmime_5ftype_1',['normalize_mime_type',['../classviam_1_1sdk_1_1Camera.html#ae1347ee02a13c6027cc7cb166de3b56b',1,'viam::sdk::Camera']]]
 ];
