@@ -133,6 +133,8 @@ class ProtoValue {
     // All construction and equality operations are implemented using defaults of the stored T.
     template <typename T>
     struct model {
+        static_assert(std::is_nothrow_destructible<T>{}, "T has a throwing destructor");
+
         model(T t) noexcept(std::is_nothrow_move_constructible<T>{});
 
         static void dtor(void* self) noexcept;
