@@ -29,6 +29,7 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
     // null is always equal
     BOOST_CHECK(ProtoValue() == ProtoValue());
     BOOST_CHECK(ProtoValue().is_a<std::nullptr_t>());
+    BOOST_CHECK(ProtoValue().is_null());
 
     BOOST_CHECK(!(ProtoValue() == ProtoValue(5)));
     BOOST_CHECK(!(ProtoValue(false) == ProtoValue(nullptr)));

@@ -100,6 +100,10 @@ int ProtoValue::kind() const {
     return vtable_.kind();
 }
 
+bool ProtoValue::is_null() const {
+    return kind() == kind_t<std::nullptr_t>{};
+}
+
 // --- ProtoT::model<T> definitions --- //
 template <typename T>
 ProtoValue::model<T>::model(T t) noexcept(std::is_nothrow_move_constructible<T>{})

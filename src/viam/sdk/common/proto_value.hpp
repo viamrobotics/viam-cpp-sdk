@@ -99,6 +99,9 @@ class ProtoValue {
     template <typename T>
     bool is_a() const;
 
+    /// @brief Convenience version of is_a<T> to check if the value is nullptr.
+    bool is_null() const;
+
     /// @brief Return a T pointer if this is_a<T>(), else return nullptr
     template <typename T>
     T* get();
