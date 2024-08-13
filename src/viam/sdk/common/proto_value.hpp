@@ -25,7 +25,7 @@ namespace sdk {
 namespace impl {
 
 struct move_may_throw {
-    move_may_throw() noexcept(false) = default;
+    move_may_throw(move_may_throw&&) noexcept(false) = default;
     move_may_throw& operator=(move_may_throw&&) noexcept(false) = default;
 };
 
