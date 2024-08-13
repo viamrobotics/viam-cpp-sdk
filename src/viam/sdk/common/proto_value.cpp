@@ -152,6 +152,16 @@ ProtoValue::storage::storage(T t) noexcept(std::is_nothrow_move_constructible<T>
     static_assert(alignof(T) <= local_storage_alignment,
                   "Type alignment too strict for local storage");
 
+    static_assert(sizeof(std::vector<void*>) == sizeof(std::vector<ProtoValue>),
+                  "vector<ProtoValue> stand-in size mismatch");
+    static_assert(alignof(std::vector<void*>) == alignof(std::vector<ProtoValue>),
+                  "vector<ProtoValue> stand-in alignment mismatch");
+
+    static_assert(sizeof(std::unordered_map<std::string, void*>) == sizeof(ProtoStruct),
+                  "ProtoStruct stand-in size mismatch");
+    static_assert(alignof(std::unordered_map<std::string, void*>) == alignof(ProtoStruct),
+                  "ProtoStruct stand-in alignment mismatch");
+
     new (&buf_) model<T>(std::move(t));
 }
 
