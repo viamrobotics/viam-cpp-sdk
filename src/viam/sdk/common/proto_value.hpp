@@ -297,33 +297,56 @@ Struct map_to_struct(const ProtoStruct& m) {
     return s;
 }
 
+namespace proto_value_details {
+
+template <typename T>
+struct kind {};
+
+template <>
+struct kind<std::nullptr_t> {
+    using type = std::integral_constant<int, 0>;
+};
+
+template <>
+struct kind<bool> {
+    using type = std::integral_constant<int, 1>;
+};
+
+template <>
+struct kind<int> {
+    using type = std::integral_constant<int, 2>;
+};
+
+template <>
+struct kind<double> {
+    using type = std::integral_constant<int, 3>;
+};
+
+template <>
+struct kind<std::string> {
+    using type = std::integral_constant<int, 4>;
+};
+
+template <>
+struct kind<std::vector<ProtoValue>> {
+    using type = std::integral_constant<int, 5>;
+};
+
+template <>
+struct kind<ProtoStruct> {
+    using type = std::integral_constant<int, 6>;
+};
+
+}  // namespace proto_value_details
+
 /// @brief ProtoValue RTTI type trait.
 /// This type trait is used to implement the ProtoValue::kind method which provides the type
 /// discriminator constant that is used in the value access API.
-/// A ProtoValue can only be constructed from types for which this trait is well formed.
+/// @remark A ProtoValue can only be constructed from types for which this trait is well formed.
+/// This type trait can be used to induce substitution failure on non-ProtoValue constructible
+/// types.
 template <typename T>
-struct kind_t;
-
-template <>
-struct kind_t<std::nullptr_t> : std::integral_constant<int, 0> {};
-
-template <>
-struct kind_t<bool> : std::integral_constant<int, 1> {};
-
-template <>
-struct kind_t<int> : std::integral_constant<int, 2> {};
-
-template <>
-struct kind_t<double> : std::integral_constant<int, 3> {};
-
-template <>
-struct kind_t<std::string> : std::integral_constant<int, 4> {};
-
-template <>
-struct kind_t<std::vector<ProtoValue>> : std::integral_constant<int, 5> {};
-
-template <>
-struct kind_t<ProtoStruct> : std::integral_constant<int, 6> {};
+using kind_t = typename proto_value_details::kind<T>::type;
 
 template <typename T>
 bool ProtoValue::is_a() const {
