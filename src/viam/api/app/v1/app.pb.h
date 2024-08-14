@@ -11088,268 +11088,6 @@ class GetRobotPartRequest final :
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };// -------------------------------------------------------------------
 
-class GetRobotPartLogsRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetRobotPartLogsRequest) */ {
- public:
-  inline GetRobotPartLogsRequest() : GetRobotPartLogsRequest(nullptr) {}
-  ~GetRobotPartLogsRequest() override;
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR GetRobotPartLogsRequest(::google::protobuf::internal::ConstantInitialized);
-
-  inline GetRobotPartLogsRequest(const GetRobotPartLogsRequest& from)
-      : GetRobotPartLogsRequest(nullptr, from) {}
-  GetRobotPartLogsRequest(GetRobotPartLogsRequest&& from) noexcept
-    : GetRobotPartLogsRequest() {
-    *this = ::std::move(from);
-  }
-
-  inline GetRobotPartLogsRequest& operator=(const GetRobotPartLogsRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline GetRobotPartLogsRequest& operator=(GetRobotPartLogsRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const GetRobotPartLogsRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const GetRobotPartLogsRequest* internal_default_instance() {
-    return reinterpret_cast<const GetRobotPartLogsRequest*>(
-               &_GetRobotPartLogsRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    68;
-
-  friend void swap(GetRobotPartLogsRequest& a, GetRobotPartLogsRequest& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(GetRobotPartLogsRequest* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr &&
-        GetArena() == other->GetArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(GetRobotPartLogsRequest* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  GetRobotPartLogsRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<GetRobotPartLogsRequest>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const GetRobotPartLogsRequest& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const GetRobotPartLogsRequest& from) {
-    GetRobotPartLogsRequest::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(GetRobotPartLogsRequest* other);
-
-  private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "viam.app.v1.GetRobotPartLogsRequest";
-  }
-  protected:
-  explicit GetRobotPartLogsRequest(::google::protobuf::Arena* arena);
-  GetRobotPartLogsRequest(::google::protobuf::Arena* arena, const GetRobotPartLogsRequest& from);
-  public:
-
-  static const ClassData _class_data_;
-  const ::google::protobuf::Message::ClassData*GetClassData() const final;
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kLevelsFieldNumber = 5,
-    kIdFieldNumber = 1,
-    kFilterFieldNumber = 3,
-    kPageTokenFieldNumber = 4,
-    kErrorsOnlyFieldNumber = 2,
-  };
-  // repeated string levels = 5 [json_name = "levels"];
-  int levels_size() const;
-  private:
-  int _internal_levels_size() const;
-
-  public:
-  void clear_levels() ;
-  const std::string& levels(int index) const;
-  std::string* mutable_levels(int index);
-  void set_levels(int index, const std::string& value);
-  void set_levels(int index, std::string&& value);
-  void set_levels(int index, const char* value);
-  void set_levels(int index, const char* value, std::size_t size);
-  void set_levels(int index, absl::string_view value);
-  std::string* add_levels();
-  void add_levels(const std::string& value);
-  void add_levels(std::string&& value);
-  void add_levels(const char* value);
-  void add_levels(const char* value, std::size_t size);
-  void add_levels(absl::string_view value);
-  const ::google::protobuf::RepeatedPtrField<std::string>& levels() const;
-  ::google::protobuf::RepeatedPtrField<std::string>* mutable_levels();
-
-  private:
-  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_levels() const;
-  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_levels();
-
-  public:
-  // string id = 1 [json_name = "id"];
-  void clear_id() ;
-  const std::string& id() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_id(Arg_&& arg, Args_... args);
-  std::string* mutable_id();
-  PROTOBUF_NODISCARD std::string* release_id();
-  void set_allocated_id(std::string* value);
-
-  private:
-  const std::string& _internal_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(
-      const std::string& value);
-  std::string* _internal_mutable_id();
-
-  public:
-  // optional string filter = 3 [json_name = "filter"];
-  bool has_filter() const;
-  void clear_filter() ;
-  const std::string& filter() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_filter(Arg_&& arg, Args_... args);
-  std::string* mutable_filter();
-  PROTOBUF_NODISCARD std::string* release_filter();
-  void set_allocated_filter(std::string* value);
-
-  private:
-  const std::string& _internal_filter() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_filter(
-      const std::string& value);
-  std::string* _internal_mutable_filter();
-
-  public:
-  // optional string page_token = 4 [json_name = "pageToken"];
-  bool has_page_token() const;
-  void clear_page_token() ;
-  const std::string& page_token() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_page_token(Arg_&& arg, Args_... args);
-  std::string* mutable_page_token();
-  PROTOBUF_NODISCARD std::string* release_page_token();
-  void set_allocated_page_token(std::string* value);
-
-  private:
-  const std::string& _internal_page_token() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_page_token(
-      const std::string& value);
-  std::string* _internal_mutable_page_token();
-
-  public:
-  // bool errors_only = 2 [json_name = "errorsOnly", deprecated = true];
-  [[deprecated]]  void clear_errors_only() ;
-  [[deprecated]] bool errors_only() const;
-  [[deprecated]] void set_errors_only(bool value);
-
-  private:
-  bool _internal_errors_only() const;
-  void _internal_set_errors_only(bool value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:viam.app.v1.GetRobotPartLogsRequest)
- private:
-  class _Internal;
-
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      3, 5, 0,
-      68, 2>
-      _table_;
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-
-        inline explicit constexpr Impl_(
-            ::google::protobuf::internal::ConstantInitialized) noexcept;
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena);
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::RepeatedPtrField<std::string> levels_;
-    ::google::protobuf::internal::ArenaStringPtr id_;
-    ::google::protobuf::internal::ArenaStringPtr filter_;
-    ::google::protobuf::internal::ArenaStringPtr page_token_;
-    bool errors_only_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
-};// -------------------------------------------------------------------
-
 class GetRobotPartHistoryRequest final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetRobotPartHistoryRequest) */ {
  public:
@@ -23834,6 +23572,334 @@ class GetRoverRentalRobotsResponse final :
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };// -------------------------------------------------------------------
 
+class GetRobotPartLogsRequest final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetRobotPartLogsRequest) */ {
+ public:
+  inline GetRobotPartLogsRequest() : GetRobotPartLogsRequest(nullptr) {}
+  ~GetRobotPartLogsRequest() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR GetRobotPartLogsRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline GetRobotPartLogsRequest(const GetRobotPartLogsRequest& from)
+      : GetRobotPartLogsRequest(nullptr, from) {}
+  GetRobotPartLogsRequest(GetRobotPartLogsRequest&& from) noexcept
+    : GetRobotPartLogsRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetRobotPartLogsRequest& operator=(const GetRobotPartLogsRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetRobotPartLogsRequest& operator=(GetRobotPartLogsRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetRobotPartLogsRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetRobotPartLogsRequest* internal_default_instance() {
+    return reinterpret_cast<const GetRobotPartLogsRequest*>(
+               &_GetRobotPartLogsRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    68;
+
+  friend void swap(GetRobotPartLogsRequest& a, GetRobotPartLogsRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetRobotPartLogsRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetRobotPartLogsRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetRobotPartLogsRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetRobotPartLogsRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const GetRobotPartLogsRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const GetRobotPartLogsRequest& from) {
+    GetRobotPartLogsRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(GetRobotPartLogsRequest* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.app.v1.GetRobotPartLogsRequest";
+  }
+  protected:
+  explicit GetRobotPartLogsRequest(::google::protobuf::Arena* arena);
+  GetRobotPartLogsRequest(::google::protobuf::Arena* arena, const GetRobotPartLogsRequest& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLevelsFieldNumber = 5,
+    kIdFieldNumber = 1,
+    kFilterFieldNumber = 3,
+    kPageTokenFieldNumber = 4,
+    kSourceFieldNumber = 9,
+    kStartFieldNumber = 6,
+    kEndFieldNumber = 7,
+    kLimitFieldNumber = 8,
+    kErrorsOnlyFieldNumber = 2,
+  };
+  // repeated string levels = 5 [json_name = "levels"];
+  int levels_size() const;
+  private:
+  int _internal_levels_size() const;
+
+  public:
+  void clear_levels() ;
+  const std::string& levels(int index) const;
+  std::string* mutable_levels(int index);
+  void set_levels(int index, const std::string& value);
+  void set_levels(int index, std::string&& value);
+  void set_levels(int index, const char* value);
+  void set_levels(int index, const char* value, std::size_t size);
+  void set_levels(int index, absl::string_view value);
+  std::string* add_levels();
+  void add_levels(const std::string& value);
+  void add_levels(std::string&& value);
+  void add_levels(const char* value);
+  void add_levels(const char* value, std::size_t size);
+  void add_levels(absl::string_view value);
+  const ::google::protobuf::RepeatedPtrField<std::string>& levels() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* mutable_levels();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_levels() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_levels();
+
+  public:
+  // string id = 1 [json_name = "id"];
+  void clear_id() ;
+  const std::string& id() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_id(Arg_&& arg, Args_... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* value);
+
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(
+      const std::string& value);
+  std::string* _internal_mutable_id();
+
+  public:
+  // optional string filter = 3 [json_name = "filter"];
+  bool has_filter() const;
+  void clear_filter() ;
+  const std::string& filter() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_filter(Arg_&& arg, Args_... args);
+  std::string* mutable_filter();
+  PROTOBUF_NODISCARD std::string* release_filter();
+  void set_allocated_filter(std::string* value);
+
+  private:
+  const std::string& _internal_filter() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_filter(
+      const std::string& value);
+  std::string* _internal_mutable_filter();
+
+  public:
+  // optional string page_token = 4 [json_name = "pageToken"];
+  bool has_page_token() const;
+  void clear_page_token() ;
+  const std::string& page_token() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_page_token(Arg_&& arg, Args_... args);
+  std::string* mutable_page_token();
+  PROTOBUF_NODISCARD std::string* release_page_token();
+  void set_allocated_page_token(std::string* value);
+
+  private:
+  const std::string& _internal_page_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_page_token(
+      const std::string& value);
+  std::string* _internal_mutable_page_token();
+
+  public:
+  // optional string source = 9 [json_name = "source"];
+  bool has_source() const;
+  void clear_source() ;
+  const std::string& source() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_source(Arg_&& arg, Args_... args);
+  std::string* mutable_source();
+  PROTOBUF_NODISCARD std::string* release_source();
+  void set_allocated_source(std::string* value);
+
+  private:
+  const std::string& _internal_source() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_source(
+      const std::string& value);
+  std::string* _internal_mutable_source();
+
+  public:
+  // optional .google.protobuf.Timestamp start = 6 [json_name = "start"];
+  bool has_start() const;
+  void clear_start() ;
+  const ::google::protobuf::Timestamp& start() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_start();
+  ::google::protobuf::Timestamp* mutable_start();
+  void set_allocated_start(::google::protobuf::Timestamp* value);
+  void unsafe_arena_set_allocated_start(::google::protobuf::Timestamp* value);
+  ::google::protobuf::Timestamp* unsafe_arena_release_start();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_start() const;
+  ::google::protobuf::Timestamp* _internal_mutable_start();
+
+  public:
+  // optional .google.protobuf.Timestamp end = 7 [json_name = "end"];
+  bool has_end() const;
+  void clear_end() ;
+  const ::google::protobuf::Timestamp& end() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_end();
+  ::google::protobuf::Timestamp* mutable_end();
+  void set_allocated_end(::google::protobuf::Timestamp* value);
+  void unsafe_arena_set_allocated_end(::google::protobuf::Timestamp* value);
+  ::google::protobuf::Timestamp* unsafe_arena_release_end();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_end() const;
+  ::google::protobuf::Timestamp* _internal_mutable_end();
+
+  public:
+  // optional int64 limit = 8 [json_name = "limit"];
+  bool has_limit() const;
+  void clear_limit() ;
+  ::int64_t limit() const;
+  void set_limit(::int64_t value);
+
+  private:
+  ::int64_t _internal_limit() const;
+  void _internal_set_limit(::int64_t value);
+
+  public:
+  // bool errors_only = 2 [json_name = "errorsOnly", deprecated = true];
+  [[deprecated]]  void clear_errors_only() ;
+  [[deprecated]] bool errors_only() const;
+  [[deprecated]] void set_errors_only(bool value);
+
+  private:
+  bool _internal_errors_only() const;
+  void _internal_set_errors_only(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:viam.app.v1.GetRobotPartLogsRequest)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      4, 9, 2,
+      82, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField<std::string> levels_;
+    ::google::protobuf::internal::ArenaStringPtr id_;
+    ::google::protobuf::internal::ArenaStringPtr filter_;
+    ::google::protobuf::internal::ArenaStringPtr page_token_;
+    ::google::protobuf::internal::ArenaStringPtr source_;
+    ::google::protobuf::Timestamp* start_;
+    ::google::protobuf::Timestamp* end_;
+    ::int64_t limit_;
+    bool errors_only_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};// -------------------------------------------------------------------
+
 class GetOrganizationsWithAccessToLocationResponse final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetOrganizationsWithAccessToLocationResponse) */ {
  public:
@@ -24155,6 +24221,7 @@ class Fragment final :
     kOrganizationNameFieldNumber = 7,
     kFragmentFieldNumber = 3,
     kCreatedOnFieldNumber = 6,
+    kLastUpdatedFieldNumber = 13,
     kPublicFieldNumber = 5,
     kOnlyUsedByOwnerFieldNumber = 11,
     kRobotPartCountFieldNumber = 9,
@@ -24255,6 +24322,21 @@ class Fragment final :
   ::google::protobuf::Timestamp* _internal_mutable_created_on();
 
   public:
+  // .google.protobuf.Timestamp last_updated = 13 [json_name = "lastUpdated", (.tagger.v1.tags) = "bson:\"last_updated_at\""];
+  bool has_last_updated() const;
+  void clear_last_updated() ;
+  const ::google::protobuf::Timestamp& last_updated() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_last_updated();
+  ::google::protobuf::Timestamp* mutable_last_updated();
+  void set_allocated_last_updated(::google::protobuf::Timestamp* value);
+  void unsafe_arena_set_allocated_last_updated(::google::protobuf::Timestamp* value);
+  ::google::protobuf::Timestamp* unsafe_arena_release_last_updated();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_last_updated() const;
+  ::google::protobuf::Timestamp* _internal_mutable_last_updated();
+
+  public:
   // bool public = 5 [json_name = "public", (.tagger.v1.tags) = "bson:\"public\" json:\"public\""];
   void clear_public_() ;
   bool public_() const;
@@ -24311,7 +24393,7 @@ class Fragment final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 11, 2,
+      4, 12, 3,
       78, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -24336,6 +24418,7 @@ class Fragment final :
     ::google::protobuf::internal::ArenaStringPtr organization_name_;
     ::google::protobuf::Struct* fragment_;
     ::google::protobuf::Timestamp* created_on_;
+    ::google::protobuf::Timestamp* last_updated_;
     bool public__;
     bool only_used_by_owner_;
     ::int32_t robot_part_count_;
@@ -24916,6 +24999,7 @@ class CreateFragmentRequest final :
     kNameFieldNumber = 1,
     kOrganizationIdFieldNumber = 3,
     kConfigFieldNumber = 2,
+    kVisibilityFieldNumber = 4,
   };
   // string name = 1 [json_name = "name"];
   void clear_name() ;
@@ -24964,13 +25048,24 @@ class CreateFragmentRequest final :
   ::google::protobuf::Struct* _internal_mutable_config();
 
   public:
+  // optional .viam.app.v1.FragmentVisibility visibility = 4 [json_name = "visibility"];
+  bool has_visibility() const;
+  void clear_visibility() ;
+  ::viam::app::v1::FragmentVisibility visibility() const;
+  void set_visibility(::viam::app::v1::FragmentVisibility value);
+
+  private:
+  ::viam::app::v1::FragmentVisibility _internal_visibility() const;
+  void _internal_set_visibility(::viam::app::v1::FragmentVisibility value);
+
+  public:
   // @@protoc_insertion_point(class_scope:viam.app.v1.CreateFragmentRequest)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 1,
+      2, 4, 1,
       61, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -24992,6 +25087,7 @@ class CreateFragmentRequest final :
     ::google::protobuf::internal::ArenaStringPtr name_;
     ::google::protobuf::internal::ArenaStringPtr organization_id_;
     ::google::protobuf::Struct* config_;
+    int visibility_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -27269,6 +27365,7 @@ class RobotPart final :
     kLastAccessFieldNumber = 6,
     kUserSuppliedInfoFieldNumber = 7,
     kCreatedOnFieldNumber = 13,
+    kLastUpdatedFieldNumber = 15,
     kMainPartFieldNumber = 8,
   };
   // repeated .viam.app.v1.SharedSecret secrets = 14 [json_name = "secrets", (.tagger.v1.tags) = "bson:\"secrets\""];
@@ -27477,6 +27574,21 @@ class RobotPart final :
   ::google::protobuf::Timestamp* _internal_mutable_created_on();
 
   public:
+  // .google.protobuf.Timestamp last_updated = 15 [json_name = "lastUpdated", (.tagger.v1.tags) = "bson:\"last_updated_at\""];
+  bool has_last_updated() const;
+  void clear_last_updated() ;
+  const ::google::protobuf::Timestamp& last_updated() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_last_updated();
+  ::google::protobuf::Timestamp* mutable_last_updated();
+  void set_allocated_last_updated(::google::protobuf::Timestamp* value);
+  void unsafe_arena_set_allocated_last_updated(::google::protobuf::Timestamp* value);
+  ::google::protobuf::Timestamp* unsafe_arena_release_last_updated();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_last_updated() const;
+  ::google::protobuf::Timestamp* _internal_mutable_last_updated();
+
+  public:
   // bool main_part = 8 [json_name = "mainPart", (.tagger.v1.tags) = "bson:\"main_part\" json:\"main_part\""];
   void clear_main_part() ;
   bool main_part() const;
@@ -27493,7 +27605,7 @@ class RobotPart final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 14, 5,
+      4, 15, 6,
       88, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -27525,6 +27637,7 @@ class RobotPart final :
     ::google::protobuf::Timestamp* last_access_;
     ::google::protobuf::Struct* user_supplied_info_;
     ::google::protobuf::Timestamp* created_on_;
+    ::google::protobuf::Timestamp* last_updated_;
     bool main_part_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -37195,6 +37308,97 @@ RobotPart::_internal_mutable_secrets() {
   return &_impl_.secrets_;
 }
 
+// .google.protobuf.Timestamp last_updated = 15 [json_name = "lastUpdated", (.tagger.v1.tags) = "bson:\"last_updated_at\""];
+inline bool RobotPart::has_last_updated() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.last_updated_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Timestamp& RobotPart::_internal_last_updated() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::google::protobuf::Timestamp* p = _impl_.last_updated_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
+}
+inline const ::google::protobuf::Timestamp& RobotPart::last_updated() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RobotPart.last_updated)
+  return _internal_last_updated();
+}
+inline void RobotPart::unsafe_arena_set_allocated_last_updated(::google::protobuf::Timestamp* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.last_updated_);
+  }
+  _impl_.last_updated_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000010u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000010u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.RobotPart.last_updated)
+}
+inline ::google::protobuf::Timestamp* RobotPart::release_last_updated() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000010u;
+  ::google::protobuf::Timestamp* released = _impl_.last_updated_;
+  _impl_.last_updated_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::google::protobuf::Timestamp* RobotPart::unsafe_arena_release_last_updated() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.v1.RobotPart.last_updated)
+
+  _impl_._has_bits_[0] &= ~0x00000010u;
+  ::google::protobuf::Timestamp* temp = _impl_.last_updated_;
+  _impl_.last_updated_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Timestamp* RobotPart::_internal_mutable_last_updated() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000010u;
+  if (_impl_.last_updated_ == nullptr) {
+    auto* p = CreateMaybeMessage<::google::protobuf::Timestamp>(GetArena());
+    _impl_.last_updated_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+  }
+  return _impl_.last_updated_;
+}
+inline ::google::protobuf::Timestamp* RobotPart::mutable_last_updated() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_last_updated();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RobotPart.last_updated)
+  return _msg;
+}
+inline void RobotPart::set_allocated_last_updated(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.last_updated_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000010u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000010u;
+  }
+
+  _impl_.last_updated_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RobotPart.last_updated)
+}
+
 // -------------------------------------------------------------------
 
 // RobotPartHistoryEntry
@@ -44880,6 +45084,287 @@ GetRobotPartLogsRequest::_internal_mutable_levels() {
   return &_impl_.levels_;
 }
 
+// optional .google.protobuf.Timestamp start = 6 [json_name = "start"];
+inline bool GetRobotPartLogsRequest::has_start() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.start_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Timestamp& GetRobotPartLogsRequest::_internal_start() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::google::protobuf::Timestamp* p = _impl_.start_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
+}
+inline const ::google::protobuf::Timestamp& GetRobotPartLogsRequest::start() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetRobotPartLogsRequest.start)
+  return _internal_start();
+}
+inline void GetRobotPartLogsRequest::unsafe_arena_set_allocated_start(::google::protobuf::Timestamp* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.start_);
+  }
+  _impl_.start_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000008u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000008u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.GetRobotPartLogsRequest.start)
+}
+inline ::google::protobuf::Timestamp* GetRobotPartLogsRequest::release_start() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000008u;
+  ::google::protobuf::Timestamp* released = _impl_.start_;
+  _impl_.start_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::google::protobuf::Timestamp* GetRobotPartLogsRequest::unsafe_arena_release_start() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetRobotPartLogsRequest.start)
+
+  _impl_._has_bits_[0] &= ~0x00000008u;
+  ::google::protobuf::Timestamp* temp = _impl_.start_;
+  _impl_.start_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Timestamp* GetRobotPartLogsRequest::_internal_mutable_start() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  if (_impl_.start_ == nullptr) {
+    auto* p = CreateMaybeMessage<::google::protobuf::Timestamp>(GetArena());
+    _impl_.start_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+  }
+  return _impl_.start_;
+}
+inline ::google::protobuf::Timestamp* GetRobotPartLogsRequest::mutable_start() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_start();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetRobotPartLogsRequest.start)
+  return _msg;
+}
+inline void GetRobotPartLogsRequest::set_allocated_start(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.start_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000008u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000008u;
+  }
+
+  _impl_.start_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetRobotPartLogsRequest.start)
+}
+
+// optional .google.protobuf.Timestamp end = 7 [json_name = "end"];
+inline bool GetRobotPartLogsRequest::has_end() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.end_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Timestamp& GetRobotPartLogsRequest::_internal_end() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::google::protobuf::Timestamp* p = _impl_.end_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
+}
+inline const ::google::protobuf::Timestamp& GetRobotPartLogsRequest::end() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetRobotPartLogsRequest.end)
+  return _internal_end();
+}
+inline void GetRobotPartLogsRequest::unsafe_arena_set_allocated_end(::google::protobuf::Timestamp* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.end_);
+  }
+  _impl_.end_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000010u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000010u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.GetRobotPartLogsRequest.end)
+}
+inline ::google::protobuf::Timestamp* GetRobotPartLogsRequest::release_end() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000010u;
+  ::google::protobuf::Timestamp* released = _impl_.end_;
+  _impl_.end_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::google::protobuf::Timestamp* GetRobotPartLogsRequest::unsafe_arena_release_end() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetRobotPartLogsRequest.end)
+
+  _impl_._has_bits_[0] &= ~0x00000010u;
+  ::google::protobuf::Timestamp* temp = _impl_.end_;
+  _impl_.end_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Timestamp* GetRobotPartLogsRequest::_internal_mutable_end() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000010u;
+  if (_impl_.end_ == nullptr) {
+    auto* p = CreateMaybeMessage<::google::protobuf::Timestamp>(GetArena());
+    _impl_.end_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+  }
+  return _impl_.end_;
+}
+inline ::google::protobuf::Timestamp* GetRobotPartLogsRequest::mutable_end() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_end();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetRobotPartLogsRequest.end)
+  return _msg;
+}
+inline void GetRobotPartLogsRequest::set_allocated_end(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.end_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000010u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000010u;
+  }
+
+  _impl_.end_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetRobotPartLogsRequest.end)
+}
+
+// optional int64 limit = 8 [json_name = "limit"];
+inline bool GetRobotPartLogsRequest::has_limit() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000020u) != 0;
+  return value;
+}
+inline void GetRobotPartLogsRequest::clear_limit() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.limit_ = ::int64_t{0};
+  _impl_._has_bits_[0] &= ~0x00000020u;
+}
+inline ::int64_t GetRobotPartLogsRequest::limit() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetRobotPartLogsRequest.limit)
+  return _internal_limit();
+}
+inline void GetRobotPartLogsRequest::set_limit(::int64_t value) {
+  _internal_set_limit(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetRobotPartLogsRequest.limit)
+}
+inline ::int64_t GetRobotPartLogsRequest::_internal_limit() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.limit_;
+}
+inline void GetRobotPartLogsRequest::_internal_set_limit(::int64_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000020u;
+  _impl_.limit_ = value;
+}
+
+// optional string source = 9 [json_name = "source"];
+inline bool GetRobotPartLogsRequest::has_source() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline void GetRobotPartLogsRequest::clear_source() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.source_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline const std::string& GetRobotPartLogsRequest::source() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetRobotPartLogsRequest.source)
+  return _internal_source();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void GetRobotPartLogsRequest::set_source(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.source_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetRobotPartLogsRequest.source)
+}
+inline std::string* GetRobotPartLogsRequest::mutable_source() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_source();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetRobotPartLogsRequest.source)
+  return _s;
+}
+inline const std::string& GetRobotPartLogsRequest::_internal_source() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.source_.Get();
+}
+inline void GetRobotPartLogsRequest::_internal_set_source(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.source_.Set(value, GetArena());
+}
+inline std::string* GetRobotPartLogsRequest::_internal_mutable_source() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  return _impl_.source_.Mutable( GetArena());
+}
+inline std::string* GetRobotPartLogsRequest::release_source() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetRobotPartLogsRequest.source)
+  if ((_impl_._has_bits_[0] & 0x00000004u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000004u;
+  auto* released = _impl_.source_.Release();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.source_.Set("", GetArena());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return released;
+}
+inline void GetRobotPartLogsRequest::set_allocated_source(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000004u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004u;
+  }
+  _impl_.source_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.source_.IsDefault()) {
+          _impl_.source_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetRobotPartLogsRequest.source)
+}
+
 // -------------------------------------------------------------------
 
 // GetRobotPartLogsResponse
@@ -46698,6 +47183,97 @@ inline void Fragment::_internal_set_visibility(::viam::app::v1::FragmentVisibili
   _impl_.visibility_ = value;
 }
 
+// .google.protobuf.Timestamp last_updated = 13 [json_name = "lastUpdated", (.tagger.v1.tags) = "bson:\"last_updated_at\""];
+inline bool Fragment::has_last_updated() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.last_updated_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Timestamp& Fragment::_internal_last_updated() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::google::protobuf::Timestamp* p = _impl_.last_updated_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
+}
+inline const ::google::protobuf::Timestamp& Fragment::last_updated() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Fragment.last_updated)
+  return _internal_last_updated();
+}
+inline void Fragment::unsafe_arena_set_allocated_last_updated(::google::protobuf::Timestamp* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.last_updated_);
+  }
+  _impl_.last_updated_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000004u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.Fragment.last_updated)
+}
+inline ::google::protobuf::Timestamp* Fragment::release_last_updated() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000004u;
+  ::google::protobuf::Timestamp* released = _impl_.last_updated_;
+  _impl_.last_updated_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::google::protobuf::Timestamp* Fragment::unsafe_arena_release_last_updated() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.v1.Fragment.last_updated)
+
+  _impl_._has_bits_[0] &= ~0x00000004u;
+  ::google::protobuf::Timestamp* temp = _impl_.last_updated_;
+  _impl_.last_updated_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Timestamp* Fragment::_internal_mutable_last_updated() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  if (_impl_.last_updated_ == nullptr) {
+    auto* p = CreateMaybeMessage<::google::protobuf::Timestamp>(GetArena());
+    _impl_.last_updated_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+  }
+  return _impl_.last_updated_;
+}
+inline ::google::protobuf::Timestamp* Fragment::mutable_last_updated() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_last_updated();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Fragment.last_updated)
+  return _msg;
+}
+inline void Fragment::set_allocated_last_updated(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.last_updated_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000004u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004u;
+  }
+
+  _impl_.last_updated_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Fragment.last_updated)
+}
+
 // -------------------------------------------------------------------
 
 // FragmentHistoryEntry
@@ -47571,6 +48147,34 @@ inline void CreateFragmentRequest::set_allocated_organization_id(std::string* va
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateFragmentRequest.organization_id)
+}
+
+// optional .viam.app.v1.FragmentVisibility visibility = 4 [json_name = "visibility"];
+inline bool CreateFragmentRequest::has_visibility() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline void CreateFragmentRequest::clear_visibility() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.visibility_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline ::viam::app::v1::FragmentVisibility CreateFragmentRequest::visibility() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateFragmentRequest.visibility)
+  return _internal_visibility();
+}
+inline void CreateFragmentRequest::set_visibility(::viam::app::v1::FragmentVisibility value) {
+  _internal_set_visibility(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateFragmentRequest.visibility)
+}
+inline ::viam::app::v1::FragmentVisibility CreateFragmentRequest::_internal_visibility() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return static_cast<::viam::app::v1::FragmentVisibility>(_impl_.visibility_);
+}
+inline void CreateFragmentRequest::_internal_set_visibility(::viam::app::v1::FragmentVisibility value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.visibility_ = value;
 }
 
 // -------------------------------------------------------------------
