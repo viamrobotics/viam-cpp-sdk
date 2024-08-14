@@ -1,6 +1,6 @@
-#include <memory>
 #define BOOST_TEST_MODULE test module test_proto_value
 
+#include <memory>
 #include <unordered_map>
 
 #include <google/protobuf/struct.pb.h>
