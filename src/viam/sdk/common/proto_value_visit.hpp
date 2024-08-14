@@ -11,6 +11,13 @@ namespace sdk {
 // some annoying gymnastics with type traits that only saves around 15 lines. For more info see
 // https://github.com/boostorg/json/issues/952 and the linked PR with the fix.
 
+/// @defgroup ProtoValueVisit ProtoValue visit API
+/// Invoke a function object with the contents of a ProtoValue. The function object must be callable
+/// with all the possible types of ProtoValue. visit will inspect the ProtoValue to determine its
+/// stored type, and then call the visitor on it with value category matching that with which the
+/// ProtoValue was passed.
+/// @{
+
 template <typename Visitor>
 auto visit(Visitor&& visitor, ProtoValue& value)
     -> decltype(std::forward<Visitor>(visitor)(std::declval<std::nullptr_t&>())) {
@@ -81,6 +88,8 @@ auto visit(Visitor&& visitor, ProtoValue&& value)
             return std::forward<Visitor>(visitor)(std::nullptr_t());
     }
 }
+
+/// @}
 
 }  // namespace sdk
 }  // namespace viam
