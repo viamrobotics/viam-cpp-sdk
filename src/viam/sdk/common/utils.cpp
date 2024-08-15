@@ -1,6 +1,5 @@
 #include <viam/sdk/common/utils.hpp>
 
-#include <tuple>
 #include <unordered_map>
 #include <vector>
 
@@ -15,6 +14,7 @@
 
 #include <viam/api/common/v1/common.pb.h>
 
+#include <viam/sdk/common/private/version_metadata.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/registry/registry.hpp>
 
@@ -108,8 +108,13 @@ void ClientContext::set_client_ctx_authority_() {
     wrapped_context_.set_authority("viam-placeholder");
 }
 
+void ClientContext::add_viam_client_version_() {
+    wrapped_context_.AddMetadata("viam_client", impl::k_version);
+}
+
 ClientContext::ClientContext() {
     set_client_ctx_authority_();
+    add_viam_client_version_();
 }
 
 ClientContext::operator const grpc::ClientContext*() const {
