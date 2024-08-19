@@ -223,6 +223,7 @@ class ProtoValue {
     storage self_;
 };
 
+// Pre c++17 this is still required
 template <typename T>
 constexpr ProtoValue::vtable ProtoValue::model<T>::vtable_;
 
