@@ -1,0 +1,15 @@
+[requires]
+boost/[>=1.74.0]
+grpc/1.65.0
+protobuf/5.27.0
+xtensor/[>=0.24.3]
+abseil/[>=20230125.3]
+
+[tool_requires]
+protobuf/5.27.0
+grpc/1.65.0
+
+[generators]
+CMakeDeps
+CMakeToolchain
+
