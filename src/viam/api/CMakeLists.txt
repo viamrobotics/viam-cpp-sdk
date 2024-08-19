@@ -113,6 +113,20 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     )
   endif()
 
+  # buf generate insists that protoc is available in PATH, so we handle the situation
+  # where CMake is aware of a protoc binary that is not in PATH. This seems to be the 
+  # least worst option available for doing this, see eg
+  # https://cmake.cmake.narkive.com/tCUbleSI/adding-custom-directories-to-path-enviroment#post4
+
+  if (Protobuf_PROTOC_EXECUTABLE)
+    cmake_path(GET Protobuf_PROTOC_EXECUTABLE PARENT_PATH PROTOC_BIN_PATH)
+  endif()
+
+  configure_file(
+    config/invoke_buf_generate.cmake.in
+    invoke_buf_generate.cmake
+  )
+
   add_custom_command(
     OUTPUT
     # Unfortunately, there isn't a good way to know in advance what
@@ -230,9 +244,7 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/tagger/v1/tagger.pb.cc
     ${PROTO_GEN_DIR}/tagger/v1/tagger.pb.h
 
-    COMMAND ${BUF_COMMAND} generate ${BUF_GOOGLE_API_SOURCE} --template buf.gen.yaml --path google/rpc --path google/api
-    COMMAND ${BUF_COMMAND} generate ${BUF_VIAM_GOUTILS_SOURCE} --template buf.gen.yaml
-    COMMAND ${BUF_COMMAND} generate ${BUF_VIAM_API_SOURCE} --template buf.gen.yaml --path ${BUF_PROTO_COMPONENTS_JOINED}
+    ${CMAKE_COMMAND} -P invoke_buf_generate.cmake
     MAIN_DEPENDENCY buf.gen.yaml
   )
 

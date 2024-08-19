@@ -1,0 +1,7 @@
+set(ENV{PATH} "$ENV{PATH}:@PROTOC_BIN_PATH@")
+
+execute_process(
+    COMMAND @BUF_COMMAND@ generate @BUF_GOOGLE_API_SOURCE@ --template buf.gen.yaml --path google/rpc --path google/api
+    COMMAND @BUF_COMMAND@ generate @BUF_VIAM_GOUTILS_SOURCE@ --template buf.gen.yaml
+    COMMAND @BUF_COMMAND@ generate @BUF_VIAM_API_SOURCE@ --template buf.gen.yaml --path @BUF_PROTO_COMPONENTS_JOINED@
+)
