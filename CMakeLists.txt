@@ -337,6 +337,10 @@ find_package(Boost ${VIAMCPPSDK_BOOST_VERSION_MINIMUM} REQUIRED COMPONENTS heade
 
 find_package(gRPC ${VIAMCPPSDK_GRPC_VERSION_MINIMUM} CONFIG)
 if (gRPC_FOUND)
+  if (NOT Protobuf_VERSION)
+    # Handle the situation where find_package(gRPC) does not populate Protobuf vars
+    find_package(Protobuf CONFIG)
+  endif()
   get_target_property(VIAMCPPSDK_GRPC_CPP_PLUGIN gRPC::grpc_cpp_plugin LOCATION)
   set(VIAMCPPSDK_PROTOBUF_VERSION ${Protobuf_VERSION})
   set(VIAMCPPSDK_PROTOBUF_VERSION_MAJOR ${Protobuf_VERSION_MAJOR})
