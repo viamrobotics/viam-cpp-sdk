@@ -26,8 +26,9 @@ class ViamSdkRecipe(ConanFile):
         self.requires('abseil/[>=20230125.3]')
 
     def build_requirements(self):
-        self.tool_requires('grpc/[>=1.48.4]')
-        self.tool_requires('protobuf/[>=3.17.1]')
+        if not self.options.offline_proto_generation:
+            self.tool_requires('grpc/[>=1.48.4]')
+            self.tool_requires('protobuf/[>=3.17.1]')
 
     def generate(self):
         tc = CMakeToolchain(self)
