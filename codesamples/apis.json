@@ -1,44 +1,57 @@
 {
-    "base": {
-        "client": "Base",
-        "func": "is_moving",
-        "args": []
-    },
-    "camera": {
-        "client": "Camera",
-        "func": "get_image",
-        "args": [ "std::string(\"image/png\")" ],
-        "comment": "Note that the supplied MIME type is just a placeholder. Please update as necessary."
-    },
-    "encoder": {
-        "client": "Encoder",
-        "func": "get_properties",
-        "args": []
-    },
-    "motion": {
-        "client": "Motion",
-        "func": "get_pose",
-        "args": ["{{\"rdk\", \"component\", \"fake\"}, \"\", \"component\"}", "<destination-frame>", "{}", "nullptr"],
-        "comment": "Update with correct component name, destination frame, supplemental transforms, and extra params"
-    },
-    "motor": {
-        "client": "Motor",
-        "func": "is_moving",
-        "args": []
-    },
-    "movement_sensor": {
-        "client": "MovementSensor",
-        "func": "get_linear_velocity",
-        "args": []
-    },
-    "power_sensor": {
-        "client": "PowerSensor",
-        "func": "get_voltage",
-        "args": []
-    },
-    "sensor": {
-        "client": "Sensor",
-        "func": "get_readings",
-        "args": []
-    }
+  "base": {
+    "importName": "Base",
+    "func": "is_moving",
+    "args": [],
+    "packagePath": "viam/sdk/components"
+  },
+  "camera": {
+    "importName": "Camera",
+    "func": "get_image",
+    "args": ["std::string(\"image/png\")"],
+    "comment": "Note that the supplied MIME type is just a placeholder. Please update as necessary.",
+    "packagePath": "viam/sdk/components"
+  },
+  "encoder": {
+    "importName": "Encoder",
+    "func": "get_properties",
+    "args": [],
+    "packagePath": "viam/sdk/components"
+  },
+  "motion": {
+    "importName": "Motion",
+    "func": "get_pose",
+    "args": [
+      "{{\"rdk\", \"component\", \"fake\"}, \"\", \"component\"}",
+      "<destination-frame>",
+      "{}",
+      "nullptr"
+    ],
+    "comment": "Update with correct component name, destination frame, supplemental transforms, and extra params",
+    "packagePath": "viam/sdk/services"
+  },
+  "motor": {
+    "importName": "Motor",
+    "func": "is_moving",
+    "args": [],
+    "packagePath": "viam/sdk/components"
+  },
+  "movement_sensor": {
+    "importName": "MovementSensor",
+    "func": "get_linear_velocity",
+    "args": [],
+    "packagePath": "viam/sdk/components"
+  },
+  "power_sensor": {
+    "importName": "PowerSensor",
+    "func": "get_voltage",
+    "args": [],
+    "packagePath": "viam/sdk/components"
+  },
+  "sensor": {
+    "importName": "Sensor",
+    "func": "get_readings",
+    "args": [],
+    "packagePath": "viam/sdk/components"
+  }
 }
