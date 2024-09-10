@@ -22,8 +22,6 @@ class ViamCppSdkRecipe(ConanFile):
 
     exports_sources = "CMakeLists.txt", "LICENSE", "src/*"
 
-    test_package_folder = "src/viam/examples/project/conan"
-
     def requirements(self):
         self.requires('boost/[>=1.74.0]')
 
