@@ -3,7 +3,7 @@ from conan.tools.cmake import CMake, CMakeDeps, CMakeToolchain, cmake_layout
 
 class ViamCppSdkRecipe(ConanFile):
     name = "viam-cpp-sdk"
-    version = "0.0.11"
+    version = "0.0.10"
 
     license = "Apache-2.0"
     url = "https://github.com/viamrobotics/viam-cpp-sdk/"
