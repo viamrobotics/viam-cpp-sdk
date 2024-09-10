@@ -212,7 +212,7 @@ have a different version of `protoc` available in your `PATH`, it will
 silently fail and later cause compilation failures due to protobuf
 version mismatches.
 
-## Creating and consuming the SDK `conan` package.
+### Creating and consuming the SDK `conan` package.
 
 Here we use `conan` to package and install the SDK so that we can build
 against it by declaring it as a dependency in a
