@@ -22,6 +22,9 @@ class ViamCppSdkRecipe(ConanFile):
 
     exports_sources = "CMakeLists.txt", "LICENSE", "src/*"
 
+    def configure(self):
+        self.options["grpc"].shared = True
+
     def requirements(self):
         self.requires('boost/[>=1.74.0]')
 
