@@ -22,15 +22,15 @@ class ViamCppSdkRecipe(ConanFile):
 
     exports_sources = "CMakeLists.txt", "LICENSE", "src/*"
 
-    def configure(self):
-        self.options["grpc"].shared = True
-
     def requirements(self):
         self.requires('boost/[>=1.74.0]')
 
         # The SDK supports older grpc and protobuf, but these are the oldest
         # maintained conan packages.
-        self.requires('grpc/[>=1.48.4]')
+        # Note that we set grpc to shared by default here, but you can override
+        # it in a command line invocation or your conan profile, it may just
+        # cause issues with linux builds.
+        self.requires('grpc/[>=1.48.4]', options={"shared": True})
         self.requires('protobuf/[>=3.17.1]')
 
         self.requires('xtensor/[>=0.24.3]')
