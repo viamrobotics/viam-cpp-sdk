@@ -19,7 +19,7 @@ class viamCppSdkTest(ConanFile):
         cmake.build()
 
     def layout(self):
-        cmake_layout(self)
+        cmake_layout(self, src_folder="../src/viam/examples/project/cmake")
 
     def test(self):
         if can_run(self):
