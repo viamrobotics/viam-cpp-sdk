@@ -155,23 +155,75 @@ As of version 0.0.11 there is experimental support for building with
 configuration is that specified in the `default_options` of the
 `conanfile.py`.
 
-Note that there are two possible approaches here, which complement or
-supersede some of the other sections in this document. Namely, it is
+To use `conan`, you'll need to have `python` and `pip` on your system if
+you don't already. For example,
+
+- Debian: `apt-get install python3 python3-pip`
+- MacOS with Homebrew: `brew install python`
+
+and then, optionally in a venv if you prefer, 
+
+```shell
+pip install conan
+conan profile detect
+```
+
+The second line detects a default [`conan`
+profile](https://docs.conan.io/2/reference/config_files/profiles.html)
+encapsulating your build environment, which you can modify as needed.
+
+Next note that there are two possible approaches here, which complement
+or supersede some of the other sections in this document. Namely, it is
 possible to
 
-1. use `conan` to obtain the [software
-   prerequisites](#software-prerequisites) for the SDK; OR
-2. use `conan` to build and package the SDK.
+1. use `conan` to build and package the SDK; OR
+2. use `conan` to obtain the [software
+   prerequisites](#software-prerequisites) for the SDK.
 
-Option 1. makes more sense for doing locally development on the SDK
-while using `conan` to get dependencies instead of your system package
-manager.
-
-Option 2. makes more sense for [building against the
+Option 1. makes more sense for [building against the
 SDK](#building-against-the-sdk) as you would in module development.
-There we use `conan` to build, install, and package the SDK, which also
-implicitly performs the dependency management of Option 1. We now treat
-each in more detail.
+There we use `conan` to get the SDK's dependencies, and to  build,
+install, and package the SDK, which can then be consumed by declaring it
+as a `conan` dependency.
+
+Option 2. makes more sense for doing locally development *on* the SDK
+while using `conan` to get dependencies instead of your system package
+manager. Note that Option 1 implies a superset of Option 2. 
+
+### Creating and consuming the SDK `conan` package.
+
+Here we use `conan` to package and install the SDK so that we can build
+against it by declaring it as a dependency in a
+`conanfile.txt` or a `conanfile.py`.
+
+To do this, call `conan create .` from the project root. This will build
+and test the `viam-cpp-sdk` recipe, adding it into your local cache. See
+the [conan docs](https://docs.conan.io/2/reference/commands/create.html)
+for more info on `conan create`, as we will omit any details about using
+profiles, options, or settings to customize the build.
+
+Once this is done, the `viam-cpp-sdk` package is ready to be consumed.
+The example projects show a [minimal
+`conanfile.txt`](src/viam/examples/project/cmake/conanfile.txt). With
+this `conanfile.txt` in the same directory as your project's
+`CMakeLists.txt`, you can then do, for example,
+
+```shell
+conan install . --output-folder=build-conan --build=missing
+cmake . --preset=conan-release
+cmake --build --preset=conan-release -j 8
+```
+
+Note that this can be done with the same `CMakeLists.txt` from the
+[example project](src/viam/examples/project/cmake/CMakeLists.txt): it is
+agnostic of the use of `conan` to package the SDK as opposed to the SDK
+having been built and installed manually. 
+
+It is also possible to build using a `conanfile.py` rather than a
+`conanfile.txt`, see again the [conan
+docs](https://docs.conan.io/2/tutorial/consuming_packages/the_flexibility_of_conanfile_py.html#consuming-packages-flexibility-of-conanfile-py),
+or look at the [`test_package/conanfile.py`](test_package/conanfile.py)
+which is the test package recipe.
 
 ### Using `conan` to manage the SDK dependencies
 
@@ -211,36 +263,6 @@ you do not do this then `buf generate` will fail outright, or, if you
 have a different version of `protoc` available in your `PATH`, it will
 silently fail and later cause compilation failures due to protobuf
 version mismatches.
-
-### Creating and consuming the SDK `conan` package.
-
-Here we use `conan` to package and install the SDK so that we can build
-against it by declaring it as a dependency in a
-`conanfile.txt` or a `conanfile.py`.
-
-To do this, call `conan create .` from the project root. This will build
-and test the `viam-cpp-sdk` recipe, adding it into your local cache. See
-the [conan docs](https://docs.conan.io/2/reference/commands/create.html)
-for more info on `conan create`, as we will omit any details about using
-profiles, options, or settings to customize the build.
-
-Once this is done, the `viam-cpp-sdk` package is ready to be consumed.
-The example projects show a [minimal
-`conanfile.txt`](src/viam/examples/project/cmake/conanfile.txt). With
-this `conanfile.txt` in the same directory as your project's
-`CMakeLists.txt`, you can then do, for example,
-
-```shell
-conan install . --output-folder=build-conan --build=missing
-cmake . --preset=conan-release
-cmake --build --preset=conan-release -j 8
-```
-
-It is also possible to build using a `conanfile.py` rather than a
-`conanfile.txt`, see again the [conan
-docs](https://docs.conan.io/2/tutorial/consuming_packages/the_flexibility_of_conanfile_py.html#consuming-packages-flexibility-of-conanfile-py),
-or look at the [`test_package/conanfile.py`](test_package/conanfile.py)
-which is the test package recipe.
 
 ## Options to Configure or Customize the Build
 
