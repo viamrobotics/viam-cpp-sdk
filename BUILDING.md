@@ -151,9 +151,9 @@ If the build did not succeed, please see the next section.
 ## Building with `conan`
 
 As of version 0.0.11 there is experimental support for building with
-`conan` using the `conanfile.py`. Currently, the only supported
-configuration is that specified in the `default_options` of the
-`conanfile.py`.
+the `conan` C++ package manager. This section will go into more detail
+without assuming any familiarity with `conan`, but please consult the
+[`conan` docs](https://docs.conan.io/2/introduction.html) for more info.
 
 To use `conan`, you'll need to have `python` and `pip` on your system if
 you don't already. For example,
@@ -182,7 +182,7 @@ possible to
 
 Option 1. makes more sense for [building against the
 SDK](#building-against-the-sdk) as you would in module development.
-There we use `conan` to get the SDK's dependencies, and to  build,
+There we use `conan` to get the SDK's dependencies, and then to  build,
 install, and package the SDK, which can then be consumed by declaring it
 as a `conan` dependency.
 
@@ -190,7 +190,11 @@ Option 2. makes more sense for doing locally development *on* the SDK
 while using `conan` to get dependencies instead of your system package
 manager. Note that Option 1 implies a superset of Option 2.
 
-### Creating and consuming the SDK `conan` package.
+In either case, `conan` will use the [`conanfile.py`](/conanfile.py).
+Note that currently only the configurations in the `default_options` are
+tested and supported.
+
+### Option 1. Creating and consuming the SDK `conan` package.
 
 Here we use `conan` to package and install the SDK so that we can build
 against it by declaring it as a dependency in a
@@ -225,7 +229,7 @@ docs](https://docs.conan.io/2/tutorial/consuming_packages/the_flexibility_of_con
 or look at the [`test_package/conanfile.py`](test_package/conanfile.py)
 which is the test package recipe.
 
-### Using `conan` to manage the SDK dependencies
+### Option 2. Using `conan` to manage the SDK dependencies
 
 Here we use `conan` to grab the SDK dependencies, setting ourselves up
 for local SDK development.
