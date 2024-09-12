@@ -161,7 +161,7 @@ you don't already. For example,
 - Debian: `apt-get install python3 python3-pip`
 - MacOS with Homebrew: `brew install python`
 
-and then, optionally in a venv if you prefer, 
+and then, optionally in a venv if you prefer,
 
 ```shell
 pip install conan
@@ -188,7 +188,7 @@ as a `conan` dependency.
 
 Option 2. makes more sense for doing locally development *on* the SDK
 while using `conan` to get dependencies instead of your system package
-manager. Note that Option 1 implies a superset of Option 2. 
+manager. Note that Option 1 implies a superset of Option 2.
 
 ### Creating and consuming the SDK `conan` package.
 
@@ -217,7 +217,7 @@ cmake --build --preset=conan-release -j 8
 Note that this can be done with the same `CMakeLists.txt` from the
 [example project](src/viam/examples/project/cmake/CMakeLists.txt): it is
 agnostic of the use of `conan` to package the SDK as opposed to the SDK
-having been built and installed manually. 
+having been built and installed manually.
 
 It is also possible to build using a `conanfile.py` rather than a
 `conanfile.txt`, see again the [conan
@@ -365,9 +365,8 @@ The Viam C++ SDK installs support files for CMake's `find_package`
 subsystem.
 
 ``` cmake
-find_package(viam-cpp-sdk CONFIG REQUIRED COMPONENTS Lib)
-target_link_libraries(mytarget viam-cpp-sdk::viamcpp)
-
+find_package(viam-cpp-sdk CONFIG REQUIRED COMPONENTS viamsdk)
+target_link_libraries(mytarget viam-cpp-sdk::viamsdk)
 ```
 
 Note that you will need to ensure that `CMAKE_PREFIX_PATH` is set
