@@ -102,4 +102,4 @@ class ViamCppSdkRecipe(ConanFile):
             "grpc::grpc++_reflection"
         ])
 
-        self.cpp_info.components[component].frameworks = ["Security"]
+        self.cpp_info.components["viamsdk"].frameworks = ["Security"]
