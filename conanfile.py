@@ -8,29 +8,33 @@ class ViamCppSdkRecipe(ConanFile):
     license = "Apache-2.0"
     url = "https://github.com/viamrobotics/viam-cpp-sdk/"
 
+    # package_type = "library"
+
     settings = "os", "compiler", "build_type", "arch"
 
     options = {
         "offline_proto_generation": [True, False],
         "use_dynamic_protos": [True, False]
+        # , "shared": [True, False]
     }
 
     default_options = {
         "offline_proto_generation": False,
         "use_dynamic_protos": True
+        # , "shared": True
     }
 
     exports_sources = "CMakeLists.txt", "LICENSE", "src/*"
+
+    # def configure(self):
+        # self.options["*"].shared = self.options.shared
 
     def requirements(self):
         self.requires('boost/[>=1.74.0]')
 
         # The SDK supports older grpc and protobuf, but these are the oldest
         # maintained conan packages.
-        # Note that we set grpc to shared by default here, but you can override
-        # it in a command line invocation or your conan profile, it may just
-        # cause issues with linux builds.
-        self.requires('grpc/[>=1.48.4]', options={"shared": True})
+        self.requires('grpc/[>=1.48.4]')
         self.requires('protobuf/[>=3.17.1]')
 
         self.requires('xtensor/[>=0.24.3]')
