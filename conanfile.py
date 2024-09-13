@@ -89,6 +89,9 @@ class ViamCppSdkRecipe(ConanFile):
            self.cpp_info.components[component].requires = ["grpc::grpc++", "protobuf::libprotobuf"]
            self.cpp_info.components[component].system_libs = ["pthread"]
 
+        if self.settings.os == "Linux":
+            self.cpp_info.components["viamsdk"].system_libs.extend(["dl", "rt"])
+
         self.cpp_info.components["viamapi"].includedirs.append("include/viam/api")
 
         self.cpp_info.components["viamsdk"].requires.extend([

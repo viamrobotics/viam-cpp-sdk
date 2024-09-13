@@ -237,6 +237,8 @@ target_link_libraries(viamsdk
   PRIVATE absl::strings
   PRIVATE viam_rust_utils
   PRIVATE Threads::Threads
+  PRIVATE $<$<PLATFORM_ID:Linux>:dl>
+  PRIVATE $<$<PLATFORM_ID:Linux>:rt>
 )
 
 
