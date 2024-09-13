@@ -150,7 +150,7 @@ If the build did not succeed, please see the next section.
 
 ## Building with `conan`
 
-As of version 0.0.11 there is experimental support for building with
+As of version 0.0.12 (TBD) there is experimental support for building with
 the `conan` C++ package manager. This section will go into more detail
 without assuming any familiarity with `conan`, but please consult the
 [`conan` docs](https://docs.conan.io/2/introduction.html) for more info.
