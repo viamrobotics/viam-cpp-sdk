@@ -61,6 +61,9 @@ class ViamCppSdkRecipe(ConanFile):
         if not self.options.use_dynamic_protos:
             tc.variable["VIAMCPPSDK_USE_DYNAMIC_PROTOS"] = False
 
+        tc.cache_variables["VIAMCPPSDK_BUILD_TESTS"] = False
+        tc.cache_variables["VIAMCPPSDK_BUILD_EXAMPLES"] = False
+
         tc.generate()
 
         CMakeDeps(self).generate()
