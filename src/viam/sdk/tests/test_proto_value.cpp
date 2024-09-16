@@ -1,4 +1,5 @@
 #define BOOST_TEST_MODULE test module test_proto_value
+#include <viam/sdk/common/proto_value.hpp>
 
 #include <memory>
 #include <unordered_map>
@@ -10,7 +11,6 @@
 #include <boost/mp11/tuple.hpp>
 #include <boost/test/included/unit_test.hpp>
 
-#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
