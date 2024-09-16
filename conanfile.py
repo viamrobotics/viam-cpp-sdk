@@ -14,14 +14,12 @@ class ViamCppSdkRecipe(ConanFile):
 
     options = {
         "offline_proto_generation": [True, False],
-        "use_dynamic_protos": [True, False],
         "shared": [True, False],
         "propagate_shared": [True, False]
     }
 
     default_options = {
         "offline_proto_generation": False,
-        "use_dynamic_protos": True,
         "shared": True,
         "propagate_shared": True
     }
@@ -57,7 +55,7 @@ class ViamCppSdkRecipe(ConanFile):
         tc = CMakeToolchain(self)
 
         tc.cache_variables["VIAMCPPSDK_OFFLINE_PROTO_GENERATION"] = self.options.offline_proto_generation
-        tc.cache_variables["VIAMCPPSDK_USE_DYNAMIC_PROTOS"] = self.options.use_dynamic_protos
+        tc.cache_variables["VIAMCPPSDK_USE_DYNAMIC_PROTOS"] = True
 
         tc.cache_variables["VIAMCPPSDK_BUILD_TESTS"] = False
         tc.cache_variables["VIAMCPPSDK_BUILD_EXAMPLES"] = False
