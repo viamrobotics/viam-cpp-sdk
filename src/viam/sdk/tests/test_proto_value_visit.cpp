@@ -1,5 +1,7 @@
 #define BOOST_TEST_MODULE test module test_proto_value_visit
 
+#include <viam/sdk/common/proto_value_visit.hpp>
+
 #include <tuple>
 #include <type_traits>
 
@@ -9,7 +11,6 @@
 #include <boost/test/included/unit_test.hpp>
 
 #include <viam/sdk/common/proto_value.hpp>
-#include <viam/sdk/common/proto_value_visit.hpp>
 
 namespace viam {
 namespace sdktests {
