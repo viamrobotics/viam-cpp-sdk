@@ -287,5 +287,6 @@ install(FILES
   COMPONENT viam-cpp-sdk_dev
 )
 
-
-add_subdirectory(tests)
+if (VIAMCPPSDK_BUILD_TESTS)
+  add_subdirectory(tests)
+endif()

@@ -55,8 +55,8 @@ project(viam-cpp-sdk
 #
 option(BUILD_SHARED_LIBS "If enabled, build shared libraries" ON)
 
-
 # Configure project-global options:
+
 
 # - `VIAMCPPSDK_ENFORCE_COMPILER_MINIMA`
 #
@@ -127,6 +127,18 @@ option(VIAMCPPSDK_SANITIZED_BUILD "Build with address and UB sanitizers (less pe
 #
 option(VIAMCPPSDK_CLANG_TIDY "Run the clang-tidy linter" OFF)
 
+# The following options are only defined if this project is not being included as a subproject
+if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+  include(CMakeDependentOption)
+  option(VIAMCPPSDK_BUILD_EXAMPLES "Build the example executables (requires building tests too)" ON)
+
+  # Note that the complex module example requires the testing library and adds its tests to the unit
+  # test suite. Thus you can only disable tests if examples are also disabled.
+  # The call below says don't give the user the option to disable tests unless examples are already
+  # disabled, and default to building the tests in either case.
+  cmake_dependent_option(VIAMCPPSDK_BUILD_TESTS "Build the unit test suite" ON "NOT VIAMCPPSDK_BUILD_EXAMPLES" ON)
+endif()
+
 
 # Enforce known toolchains and toolchain minima unless asked not to.
 if (VIAMCPPSDK_ENFORCE_COMPILER_MINIMA)
@@ -186,6 +198,11 @@ set(CMAKE_MODULE_PATH
   ${CMAKE_MODULE_PATH}
   ${PROJECT_SOURCE_DIR}/src/viam/cmake
 )
+if (VIAMCPPSDK_BUILD_TESTS OR VIAMCPPSDK_BUILD_EXAMPLES)
+  # We maybe could include this unconditionally, but technically only tests or examples need it
+  include(viamcppsdk_utils)
+endif()
+
 
 
 # Configure how the SDK will manage runtime paths. This is important
@@ -446,8 +463,10 @@ add_custom_target(
   DEPENDS all
 )
 
-add_custom_target(
-  install-examples
-  COMMAND ${CMAKE_COMMAND} -DCOMPONENT=viam-cpp-sdk_examples -P ${CMAKE_BINARY_DIR}/cmake_install.cmake
-  DEPENDS all
-)
+if (VIAMCPPSDK_BUILD_EXAMPLES)
+  add_custom_target(
+    install-examples
+    COMMAND ${CMAKE_COMMAND} -DCOMPONENT=viam-cpp-sdk_examples -P ${CMAKE_BINARY_DIR}/cmake_install.cmake
+    DEPENDS all
+  )
+endif()
