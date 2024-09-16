@@ -55,11 +55,9 @@ class ViamCppSdkRecipe(ConanFile):
 
     def generate(self):
         tc = CMakeToolchain(self)
-        if self.options.offline_proto_generation:
-            tc.variable["VIAMCPPSDK_OFFLINE_PROTO_GENERATION"] = True
 
-        if not self.options.use_dynamic_protos:
-            tc.variable["VIAMCPPSDK_USE_DYNAMIC_PROTOS"] = False
+        tc.cache_variables["VIAMCPPSDK_OFFLINE_PROTO_GENERATION"] = self.options.offline_proto_generation
+        tc.cache_variables["VIAMCPPSDK_USE_DYNAMIC_PROTOS"] = self.options.use_dynamic_protos
 
         tc.cache_variables["VIAMCPPSDK_BUILD_TESTS"] = False
         tc.cache_variables["VIAMCPPSDK_BUILD_EXAMPLES"] = False
