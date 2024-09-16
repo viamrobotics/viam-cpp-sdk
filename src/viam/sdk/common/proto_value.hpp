@@ -250,6 +250,10 @@ class ProtoValue {
     storage self_;
 };
 
+// Pre c++17 this is still required
+template <typename T>
+constexpr ProtoValue::vtable ProtoValue::model<T>::vtable_;
+
 /// @brief Alias declaration for map of string to type-erased ProtoValue representing
 /// google::protobuf::Struct.
 /// This stores structured data as a map where the keys can be thought of as member names.

@@ -109,6 +109,9 @@ extern PublishingDefaultTypeInternal _Publishing_default_instance_;
 class PythonSettings;
 struct PythonSettingsDefaultTypeInternal;
 extern PythonSettingsDefaultTypeInternal _PythonSettings_default_instance_;
+class PythonSettings_ExperimentalFeatures;
+struct PythonSettings_ExperimentalFeaturesDefaultTypeInternal;
+extern PythonSettings_ExperimentalFeaturesDefaultTypeInternal _PythonSettings_ExperimentalFeatures_default_instance_;
 class RubySettings;
 struct RubySettingsDefaultTypeInternal;
 extern RubySettingsDefaultTypeInternal _RubySettings_default_instance_;
@@ -191,6 +194,181 @@ inline bool ClientLibraryDestination_Parse(absl::string_view name, ClientLibrary
 
 
 // -------------------------------------------------------------------
+
+class PythonSettings_ExperimentalFeatures final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:google.api.PythonSettings.ExperimentalFeatures) */ {
+ public:
+  inline PythonSettings_ExperimentalFeatures() : PythonSettings_ExperimentalFeatures(nullptr) {}
+  ~PythonSettings_ExperimentalFeatures() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR PythonSettings_ExperimentalFeatures(::google::protobuf::internal::ConstantInitialized);
+
+  inline PythonSettings_ExperimentalFeatures(const PythonSettings_ExperimentalFeatures& from)
+      : PythonSettings_ExperimentalFeatures(nullptr, from) {}
+  PythonSettings_ExperimentalFeatures(PythonSettings_ExperimentalFeatures&& from) noexcept
+    : PythonSettings_ExperimentalFeatures() {
+    *this = ::std::move(from);
+  }
+
+  inline PythonSettings_ExperimentalFeatures& operator=(const PythonSettings_ExperimentalFeatures& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PythonSettings_ExperimentalFeatures& operator=(PythonSettings_ExperimentalFeatures&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const PythonSettings_ExperimentalFeatures& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const PythonSettings_ExperimentalFeatures* internal_default_instance() {
+    return reinterpret_cast<const PythonSettings_ExperimentalFeatures*>(
+               &_PythonSettings_ExperimentalFeatures_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  friend void swap(PythonSettings_ExperimentalFeatures& a, PythonSettings_ExperimentalFeatures& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PythonSettings_ExperimentalFeatures* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PythonSettings_ExperimentalFeatures* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  PythonSettings_ExperimentalFeatures* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<PythonSettings_ExperimentalFeatures>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const PythonSettings_ExperimentalFeatures& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const PythonSettings_ExperimentalFeatures& from) {
+    PythonSettings_ExperimentalFeatures::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(PythonSettings_ExperimentalFeatures* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "google.api.PythonSettings.ExperimentalFeatures";
+  }
+  protected:
+  explicit PythonSettings_ExperimentalFeatures(::google::protobuf::Arena* arena);
+  PythonSettings_ExperimentalFeatures(::google::protobuf::Arena* arena, const PythonSettings_ExperimentalFeatures& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRestAsyncIoEnabledFieldNumber = 1,
+  };
+  // bool rest_async_io_enabled = 1 [json_name = "restAsyncIoEnabled"];
+  void clear_rest_async_io_enabled() ;
+  bool rest_async_io_enabled() const;
+  void set_rest_async_io_enabled(bool value);
+
+  private:
+  bool _internal_rest_async_io_enabled() const;
+  void _internal_set_rest_async_io_enabled(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:google.api.PythonSettings.ExperimentalFeatures)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    bool rest_async_io_enabled_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_google_2fapi_2fclient_2eproto;
+};// -------------------------------------------------------------------
 
 class JavaSettings_ServiceClassNamesEntry_DoNotUse final
     : public ::google::protobuf::internal::MapEntry<
@@ -544,7 +722,7 @@ class RubySettings final :
                &_RubySettings_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(RubySettings& a, RubySettings& b) {
     a.Swap(&b);
@@ -725,7 +903,7 @@ class PythonSettings final :
                &_PythonSettings_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(PythonSettings& a, PythonSettings& b) {
     a.Swap(&b);
@@ -795,10 +973,13 @@ class PythonSettings final :
 
   // nested types ----------------------------------------------------
 
+  using ExperimentalFeatures = PythonSettings_ExperimentalFeatures;
+
   // accessors -------------------------------------------------------
 
   enum : int {
     kCommonFieldNumber = 1,
+    kExperimentalFeaturesFieldNumber = 2,
   };
   // .google.api.CommonLanguageSettings common = 1 [json_name = "common"];
   bool has_common() const;
@@ -815,13 +996,28 @@ class PythonSettings final :
   ::google::api::CommonLanguageSettings* _internal_mutable_common();
 
   public:
+  // .google.api.PythonSettings.ExperimentalFeatures experimental_features = 2 [json_name = "experimentalFeatures"];
+  bool has_experimental_features() const;
+  void clear_experimental_features() ;
+  const ::google::api::PythonSettings_ExperimentalFeatures& experimental_features() const;
+  PROTOBUF_NODISCARD ::google::api::PythonSettings_ExperimentalFeatures* release_experimental_features();
+  ::google::api::PythonSettings_ExperimentalFeatures* mutable_experimental_features();
+  void set_allocated_experimental_features(::google::api::PythonSettings_ExperimentalFeatures* value);
+  void unsafe_arena_set_allocated_experimental_features(::google::api::PythonSettings_ExperimentalFeatures* value);
+  ::google::api::PythonSettings_ExperimentalFeatures* unsafe_arena_release_experimental_features();
+
+  private:
+  const ::google::api::PythonSettings_ExperimentalFeatures& _internal_experimental_features() const;
+  ::google::api::PythonSettings_ExperimentalFeatures* _internal_mutable_experimental_features();
+
+  public:
   // @@protoc_insertion_point(class_scope:google.api.PythonSettings)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 1,
+      1, 2, 2,
       0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -841,6 +1037,7 @@ class PythonSettings final :
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::api::CommonLanguageSettings* common_;
+    ::google::api::PythonSettings_ExperimentalFeatures* experimental_features_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -1087,7 +1284,7 @@ class NodeSettings final :
                &_NodeSettings_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(NodeSettings& a, NodeSettings& b) {
     a.Swap(&b);
@@ -1268,7 +1465,7 @@ class MethodSettings_LongRunning final :
                &_MethodSettings_LongRunning_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(MethodSettings_LongRunning& a, MethodSettings_LongRunning& b) {
     a.Swap(&b);
@@ -1715,7 +1912,7 @@ class GoSettings final :
                &_GoSettings_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(GoSettings& a, GoSettings& b) {
     a.Swap(&b);
@@ -1896,7 +2093,7 @@ class DotnetSettings final :
                &_DotnetSettings_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(DotnetSettings& a, DotnetSettings& b) {
     a.Swap(&b);
@@ -2389,7 +2586,7 @@ class MethodSettings final :
                &_MethodSettings_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(MethodSettings& a, MethodSettings& b) {
     a.Swap(&b);
@@ -5256,6 +5453,33 @@ inline void PhpSettings::set_allocated_common(::google::api::CommonLanguageSetti
 
 // -------------------------------------------------------------------
 
+// PythonSettings_ExperimentalFeatures
+
+// bool rest_async_io_enabled = 1 [json_name = "restAsyncIoEnabled"];
+inline void PythonSettings_ExperimentalFeatures::clear_rest_async_io_enabled() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.rest_async_io_enabled_ = false;
+}
+inline bool PythonSettings_ExperimentalFeatures::rest_async_io_enabled() const {
+  // @@protoc_insertion_point(field_get:google.api.PythonSettings.ExperimentalFeatures.rest_async_io_enabled)
+  return _internal_rest_async_io_enabled();
+}
+inline void PythonSettings_ExperimentalFeatures::set_rest_async_io_enabled(bool value) {
+  _internal_set_rest_async_io_enabled(value);
+  // @@protoc_insertion_point(field_set:google.api.PythonSettings.ExperimentalFeatures.rest_async_io_enabled)
+}
+inline bool PythonSettings_ExperimentalFeatures::_internal_rest_async_io_enabled() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.rest_async_io_enabled_;
+}
+inline void PythonSettings_ExperimentalFeatures::_internal_set_rest_async_io_enabled(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.rest_async_io_enabled_ = value;
+}
+
+// -------------------------------------------------------------------
+
 // PythonSettings
 
 // .google.api.CommonLanguageSettings common = 1 [json_name = "common"];
@@ -5352,6 +5576,102 @@ inline void PythonSettings::set_allocated_common(::google::api::CommonLanguageSe
 
   _impl_.common_ = reinterpret_cast<::google::api::CommonLanguageSettings*>(value);
   // @@protoc_insertion_point(field_set_allocated:google.api.PythonSettings.common)
+}
+
+// .google.api.PythonSettings.ExperimentalFeatures experimental_features = 2 [json_name = "experimentalFeatures"];
+inline bool PythonSettings::has_experimental_features() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.experimental_features_ != nullptr);
+  return value;
+}
+inline void PythonSettings::clear_experimental_features() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.experimental_features_ != nullptr) _impl_.experimental_features_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::google::api::PythonSettings_ExperimentalFeatures& PythonSettings::_internal_experimental_features() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::google::api::PythonSettings_ExperimentalFeatures* p = _impl_.experimental_features_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::api::PythonSettings_ExperimentalFeatures&>(::google::api::_PythonSettings_ExperimentalFeatures_default_instance_);
+}
+inline const ::google::api::PythonSettings_ExperimentalFeatures& PythonSettings::experimental_features() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:google.api.PythonSettings.experimental_features)
+  return _internal_experimental_features();
+}
+inline void PythonSettings::unsafe_arena_set_allocated_experimental_features(::google::api::PythonSettings_ExperimentalFeatures* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.experimental_features_);
+  }
+  _impl_.experimental_features_ = reinterpret_cast<::google::api::PythonSettings_ExperimentalFeatures*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:google.api.PythonSettings.experimental_features)
+}
+inline ::google::api::PythonSettings_ExperimentalFeatures* PythonSettings::release_experimental_features() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::google::api::PythonSettings_ExperimentalFeatures* released = _impl_.experimental_features_;
+  _impl_.experimental_features_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::google::api::PythonSettings_ExperimentalFeatures* PythonSettings::unsafe_arena_release_experimental_features() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:google.api.PythonSettings.experimental_features)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::google::api::PythonSettings_ExperimentalFeatures* temp = _impl_.experimental_features_;
+  _impl_.experimental_features_ = nullptr;
+  return temp;
+}
+inline ::google::api::PythonSettings_ExperimentalFeatures* PythonSettings::_internal_mutable_experimental_features() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  if (_impl_.experimental_features_ == nullptr) {
+    auto* p = CreateMaybeMessage<::google::api::PythonSettings_ExperimentalFeatures>(GetArena());
+    _impl_.experimental_features_ = reinterpret_cast<::google::api::PythonSettings_ExperimentalFeatures*>(p);
+  }
+  return _impl_.experimental_features_;
+}
+inline ::google::api::PythonSettings_ExperimentalFeatures* PythonSettings::mutable_experimental_features() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::api::PythonSettings_ExperimentalFeatures* _msg = _internal_mutable_experimental_features();
+  // @@protoc_insertion_point(field_mutable:google.api.PythonSettings.experimental_features)
+  return _msg;
+}
+inline void PythonSettings::set_allocated_experimental_features(::google::api::PythonSettings_ExperimentalFeatures* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::api::PythonSettings_ExperimentalFeatures*>(_impl_.experimental_features_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::api::PythonSettings_ExperimentalFeatures*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.experimental_features_ = reinterpret_cast<::google::api::PythonSettings_ExperimentalFeatures*>(value);
+  // @@protoc_insertion_point(field_set_allocated:google.api.PythonSettings.experimental_features)
 }
 
 // -------------------------------------------------------------------
