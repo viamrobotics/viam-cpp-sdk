@@ -1,8 +1,8 @@
 #pragma once
 
-#include <viam/sdk/common/proto_value.hpp>
-
 #include <type_traits>
+
+#include <viam/sdk/common/proto_value.hpp>
 
 namespace viam {
 namespace sdk {
