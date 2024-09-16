@@ -47,6 +47,9 @@ struct all_moves_noexcept
 /// A ProtoValue can be nullptr, bool, int, double, std::string, or, recursively, a vector or
 /// string-map of ProtoValue.
 /// This type is used at API/ABI boundaries for interfacing with grpc/proto code.
+/// @remark The (special) member function templates below all operate on a closed subset of types,
+/// so we provide explicit instantiations for all valid template types. See below the class
+/// definition.
 class ProtoValue {
    public:
     /// @brief Construct a null object.
@@ -251,6 +254,41 @@ class ProtoValue {
 /// google::protobuf::Struct.
 /// This stores structured data as a map where the keys can be thought of as member names.
 using ProtoStruct = std::unordered_map<std::string, ProtoValue>;
+
+// -- Template specialization declarations of by-value constructors -- //
+extern template ProtoValue::ProtoValue(std::nullptr_t) noexcept;
+extern template ProtoValue::ProtoValue(bool) noexcept;
+extern template ProtoValue::ProtoValue(int) noexcept;
+extern template ProtoValue::ProtoValue(double) noexcept;
+extern template ProtoValue::ProtoValue(std::string) noexcept(
+    std::is_nothrow_move_constructible<std::string>{});
+extern template ProtoValue::ProtoValue(std::vector<ProtoValue>) noexcept(
+    std::is_nothrow_move_constructible<std::vector<ProtoValue>>{});
+extern template ProtoValue::ProtoValue(ProtoStruct m) noexcept(
+    std::is_nothrow_move_constructible<ProtoStruct>{});
+
+// -- Template specialization declarations of get_unchecked: POD types -- //
+extern template bool& ProtoValue::get_unchecked<bool>();
+extern template int& ProtoValue::get_unchecked<int>();
+extern template double& ProtoValue::get_unchecked<double>();
+
+extern template bool ProtoValue::get_unchecked<bool>() const;
+extern template int ProtoValue::get_unchecked<int>() const;
+extern template double ProtoValue::get_unchecked<double>() const;
+
+// -- Template specialization declarations of get_unchecked: string and recursive types -- //
+extern template std::string& ProtoValue::get_unchecked<std::string>() &;
+extern template std::vector<ProtoValue>& ProtoValue::get_unchecked<std::vector<ProtoValue>>() &;
+extern template ProtoStruct& ProtoValue::get_unchecked<ProtoStruct>() &;
+
+extern template std::string const& ProtoValue::get_unchecked<std::string>() const&;
+extern template std::vector<ProtoValue> const& ProtoValue::get_unchecked<std::vector<ProtoValue>>()
+    const&;
+extern template ProtoStruct const& ProtoValue::get_unchecked<ProtoStruct>() const&;
+
+extern template std::string&& ProtoValue::get_unchecked<std::string>() &&;
+extern template std::vector<ProtoValue>&& ProtoValue::get_unchecked<std::vector<ProtoValue>>() &&;
+extern template ProtoStruct&& ProtoValue::get_unchecked<ProtoStruct>() &&;
 
 void to_proto(std::nullptr_t, google::protobuf::Value* v);
 void to_proto(bool b, google::protobuf::Value* v);
