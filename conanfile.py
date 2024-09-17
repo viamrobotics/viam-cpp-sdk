@@ -13,13 +13,11 @@ class ViamCppSdkRecipe(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
 
     options = {
-        "offline_proto_generation": [True, False],
         "shared": [True, False],
         "propagate_shared": [True, False]
     }
 
     default_options = {
-        "offline_proto_generation": False,
         "shared": True,
         "propagate_shared": True
     }
@@ -44,9 +42,8 @@ class ViamCppSdkRecipe(ConanFile):
         self.requires('abseil/[>=20230125.3]')
 
     def build_requirements(self):
-        if not self.options.offline_proto_generation:
-            self.tool_requires('grpc/[>=1.48.4]')
-            self.tool_requires('protobuf/[>=3.17.1]')
+        self.tool_requires('grpc/[>=1.48.4]')
+        self.tool_requires('protobuf/[>=3.17.1]')
 
     def layout(self):
         cmake_layout(self)
@@ -54,7 +51,7 @@ class ViamCppSdkRecipe(ConanFile):
     def generate(self):
         tc = CMakeToolchain(self)
 
-        tc.cache_variables["VIAMCPPSDK_OFFLINE_PROTO_GENERATION"] = self.options.offline_proto_generation
+        tc.cache_variables["VIAMCPPSDK_OFFLINE_PROTO_GENERATION"] = True
         tc.cache_variables["VIAMCPPSDK_USE_DYNAMIC_PROTOS"] = True
 
         tc.cache_variables["VIAMCPPSDK_BUILD_TESTS"] = False
