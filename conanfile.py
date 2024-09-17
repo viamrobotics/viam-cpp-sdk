@@ -19,7 +19,7 @@ class ViamCppSdkRecipe(ConanFile):
     }
 
     default_options = {
-        "offline_proto_generation": False,
+        "offline_proto_generation": True,
         "shared": True,
         "propagate_shared": True
     }
@@ -44,7 +44,7 @@ class ViamCppSdkRecipe(ConanFile):
         self.requires('abseil/[>=20230125.3]')
 
     def build_requirements(self):
-        if not self.options.offline_proto_generation:
+        if self.options.offline_proto_generation:
             self.tool_requires('grpc/[>=1.48.4]')
             self.tool_requires('protobuf/[>=3.17.1]')
 

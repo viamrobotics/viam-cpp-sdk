@@ -353,16 +353,14 @@ find_package(Boost ${VIAMCPPSDK_BOOST_VERSION_MINIMUM} REQUIRED COMPONENTS heade
 # another try via pkgconfig.
 
 find_package(gRPC ${VIAMCPPSDK_GRPC_VERSION_MINIMUM} CONFIG)
+
+# Protobuf has an idiosyncratic system for checking version compatibility, so we specify
+# no version here and check it manually below.
+find_package(Protobuf CONFIG)
+
 if (gRPC_FOUND)
-
-  # If we're getting gRPC from find_package, assume we can get Protobuf from there as well.
-  # gRPC may already have pulled in Protobuf, but specify it here anyway as it's a primary dep.
-  find_package(Protobuf CONFIG REQUIRED)
-
   get_target_property(VIAMCPPSDK_GRPC_CPP_PLUGIN gRPC::grpc_cpp_plugin LOCATION)
   set(VIAMCPPSDK_PROTOBUF_VERSION ${Protobuf_VERSION})
-  set(VIAMCPPSDK_PROTOBUF_VERSION_MAJOR ${Protobuf_VERSION_MAJOR})
-  set(VIAMCPPSDK_PROTOBUF_VERSION_MINOR ${Protobuf_VERSION_MINOR})
 
   # We need a good value for VIAMCPPSDK_PROTOBUF_VERSION in order to
   # interpolate it into our `pkgconfig` requirements. Make sure we
@@ -390,8 +388,6 @@ else()
   pkg_check_modules(GRPCXX REQUIRED grpc++>=${VIAMCPPSDK_GRPC_VERSION_MINIMUM})
 
   set(VIAMCPPSDK_PROTOBUF_VERSION ${PROTOBUF_VERSION})
-  string(REGEX REPLACE "^([0-9]+)\.([0-9]+)\.([0-9]+)$" "\\1" VIAMCPPSDK_PROTOBUF_VERSION_MAJOR ${VIAMCPPSDK_PROTOBUF_VERSION})
-  string(REGEX REPLACE "^([0-9]+)\.([0-9]+)\.([0-9]+)$" "\\2" VIAMCPPSDK_PROTOBUF_VERSION_MINOR ${VIAMCPPSDK_PROTOBUF_VERSION})
   set(VIAMCPPSDK_PROTOBUF_INCLUDE_DIRS ${PROTOBUF_INCLUDE_DIRS})
   set(VIAMCPPSDK_PROTOBUF_LIBRARY_DIRS ${PROTOBUF_LIBRARY_DIRS})
   set(VIAMCPPSDK_PROTOBUF_LIBRARIES ${PROTOBUF_LIBRARIES})
@@ -420,8 +416,21 @@ else()
   list(PREPEND VIAMCPPSDK_GRPCXX_REFLECTION_LIBRARIES ${VIAMCPPSDK_GRPCXX_REFLECTION_LIB})
 endif()
 
+# Do this here unconditionally in case find_package didn't set the MAJOR/MINOR variables
+string(REGEX REPLACE "^([0-9]+)\.([0-9]+)\.([0-9]+)$" "\\1" VIAMCPPSDK_PROTOBUF_VERSION_MAJOR ${VIAMCPPSDK_PROTOBUF_VERSION})
+string(REGEX REPLACE "^([0-9]+)\.([0-9]+)\.([0-9]+)$" "\\2" VIAMCPPSDK_PROTOBUF_VERSION_MINOR ${VIAMCPPSDK_PROTOBUF_VERSION})
+string(REGEX REPLACE "^([0-9]+)\.([0-9]+)\.([0-9]+)$" "\\3" VIAMCPPSDK_PROTOBUF_VERSION_PATCH ${VIAMCPPSDK_PROTOBUF_VERSION})
+
+# The check below expects a version that looks like 20-something.x.y, so if
+# we got a major version that doesn't look like that, synthesize one from the version we did get.
+if (VIAMCPPSDK_PROTOBUF_VERSION_MAJOR GREATER 20)
+  set(_protobuf_remote_check_version ${VIAMCPPSDK_PROTOBUF_VERSION})
+else()
+  set(_protobuf_remote_check_version "${VIAMCPPSDK_PROTOBUF_VERSION_MINOR}.${VIAMCPPSDK_PROTOBUF_VERSION_PATCH}")
+endif()
+
 # These are the minimum versions of gRPC and protobuf for which remote plugins with buf are supported.
-if ((VIAMCPPSDK_GRPCXX_VERSION VERSION_GREATER 1.51.1) AND (VIAMCPPSDK_PROTOBUF_VERSION VERSION_GREATER 21.7.0))
+if ((VIAMCPPSDK_GRPCXX_VERSION VERSION_GREATER 1.51.1) AND (_protobuf_remote_check_version VERSION_GREATER 21.7.0))
   set(VIAMCPPSDK_BUF_REMOTE_PLUGIN_SUPPORTED 1)
 endif()
 
