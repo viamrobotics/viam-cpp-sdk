@@ -191,8 +191,7 @@ while using `conan` to get dependencies instead of your system package
 manager. Note that Option 1 implies a superset of Option 2.
 
 In either case, `conan` will use the [`conanfile.py`](/conanfile.py).
-Note that currently only the configurations in the `default_options` are
-tested and supported.
+Note that we build with `offline_proto_generation=True` by default.
 
 ### Option 1. Creating and consuming the SDK `conan` package.
 
