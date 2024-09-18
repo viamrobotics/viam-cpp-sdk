@@ -15,7 +15,7 @@ namespace sdk {
 namespace impl {
 
 CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)){};
+    : ResourceServer(std::move(manager)) {};
 
 ::grpc::Status CameraServer::DoCommand(::grpc::ServerContext*,
                                        const ::viam::common::v1::DoCommandRequest* request,
@@ -114,6 +114,7 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
         *response->mutable_intrinsic_parameters() =
             Camera::to_proto(properties.intrinsic_parameters);
         response->set_supports_pcd(properties.supports_pcd);
+        response->set_frame_rate(properties.frame_rate);
     });
 }
 
