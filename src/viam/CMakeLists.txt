@@ -14,7 +14,10 @@
 
 add_subdirectory(api)
 add_subdirectory(sdk)
-add_subdirectory(examples)
+
+if (VIAMCPPSDK_BUILD_EXAMPLES)
+  add_subdirectory(examples)
+endif()
 
 # Generate CMake configs to enable importing this project
 # into others via `find_package`.
