@@ -1,9 +1,10 @@
 from conan import ConanFile
 from conan.tools.cmake import CMake, CMakeDeps, CMakeToolchain, cmake_layout
+from conan.tools.files import load
+import re
 
 class ViamCppSdkRecipe(ConanFile):
     name = "viam-cpp-sdk"
-    version = "0.0.10"
 
     license = "Apache-2.0"
     url = "https://github.com/viamrobotics/viam-cpp-sdk/"
@@ -23,6 +24,10 @@ class ViamCppSdkRecipe(ConanFile):
     }
 
     exports_sources = "CMakeLists.txt", "LICENSE", "src/*"
+
+    def set_version(self):
+        content = load(self, "CMakeLists.txt")
+        self.version = re.search("set\(CMAKE_PROJECT_VERSION (.+)\)", content).group(1).strip()
 
     def configure(self):
         # If we're building static then build the world as static, otherwise

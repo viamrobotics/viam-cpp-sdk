@@ -1,5 +1,5 @@
 [requires]
-viam-cpp-sdk/0.0.10
+viam-cpp-sdk/[>=0.0.11]
 
 [generators]
 CMakeDeps
