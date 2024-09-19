@@ -232,7 +232,7 @@ Camera::properties Camera::from_proto(
             from_proto(proto.intrinsic_parameters()),
             from_proto(proto.distortion_parameters()),
             {proto.mime_types().begin(), proto.mime_types().end()},
-            from_proto(proto.frame_rate())};
+            (proto.frame_rate())};
 }
 
 viam::component::camera::v1::IntrinsicParameters Camera::to_proto(
