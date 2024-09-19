@@ -358,7 +358,7 @@ find_package(gRPC ${VIAMCPPSDK_GRPC_VERSION_MINIMUM} CONFIG)
 # no version here and check it manually below.
 find_package(Protobuf CONFIG)
 
-if (gRPC_FOUND)
+if (gRPC_FOUND AND Protobuf_FOUND)
   get_target_property(VIAMCPPSDK_GRPC_CPP_PLUGIN gRPC::grpc_cpp_plugin LOCATION)
   set(VIAMCPPSDK_PROTOBUF_VERSION ${Protobuf_VERSION})
 
@@ -378,7 +378,7 @@ if (gRPC_FOUND)
   set(VIAMCPPSDK_GRPCXX_VERSION ${gRPC_VERSION})
   set(VIAMCPPSDK_GRPCXX_LIBRARIES gRPC::grpc++)
   set(VIAMCPPSDK_GRPCXX_REFLECTION_LIBRARIES gRPC::grpc++_reflection)
-else()
+elseif((NOT gRPC_FOUND) AND (NOT Protobuf_FOUND))
   message(WARNING "Failed to find gRPC with `find_package`; falling back to `pkg_check_modules`")
 
   include(FindPkgConfig)
@@ -414,6 +414,8 @@ else()
   set(VIAMCPPSDK_GRPCXX_REFLECTION_LIBRARIES ${VIAMCPPSDK_GRPCXX_LIBRARIES})
   set(VIAMCPPSDK_GRPCXX_REFLECTION_LIB ${VIAMCPPSDK_GRPCXX_ROOT}_reflection)
   list(PREPEND VIAMCPPSDK_GRPCXX_REFLECTION_LIBRARIES ${VIAMCPPSDK_GRPCXX_REFLECTION_LIB})
+else()
+  message(FATAL_ERROR "Unexpected combination of find_package and pkg-config protobuf and gRPC")
 endif()
 
 # Do this here unconditionally in case find_package didn't set the MAJOR/MINOR variables
