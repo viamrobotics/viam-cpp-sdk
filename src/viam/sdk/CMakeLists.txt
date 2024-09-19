@@ -237,13 +237,14 @@ target_link_libraries(viamsdk
   PRIVATE absl::strings
   PRIVATE viam_rust_utils
   PRIVATE Threads::Threads
-  PRIVATE $<$<PLATFORM_ID:Linux>:dl>
-  PRIVATE $<$<PLATFORM_ID:Linux>:rt>
 )
 
 
 if (APPLE)
   target_link_libraries(viamsdk PUBLIC "-framework Security")
+else()
+  target_link_libraries(viamsdk PRIVATE dl)
+  target_link_libraries(viamsdk PRIVATE rt)
 endif()
 
 

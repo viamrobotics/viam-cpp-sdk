@@ -80,12 +80,6 @@ class ViamCppSdkRecipe(ConanFile):
         CMake(self).install()
 
     def package_info(self):
-        # Todo: consider
-        # https://docs.conan.io/2/examples/tools/cmake/cmake_toolchain/use_package_config_cmake.html
-        # and the best practices at the bottom here:
-        # https://docs.conan.io/2/reference/conanfile/methods/package_info.html
-        # This would work if we are fine with conan only supporting CMake builds
-
         self.cpp_info.components["viam_rust_utils"].libs = ["viam_rust_utils"]
 
         for component in ["viamsdk", "viamapi"]:
@@ -93,10 +87,10 @@ class ViamCppSdkRecipe(ConanFile):
            self.cpp_info.components[component].set_property("cmake_target_name", "viam-cpp-sdk::{}".format(component))
            self.cpp_info.components[component].set_property("pkg_config_name", "viam-cpp-sdk-lib{}".format(component))
            self.cpp_info.components[component].requires = ["grpc::grpc++", "protobuf::libprotobuf"]
-           if self.settings.os == "Linux":
+           if self.settings.os in ["Linux", "FreeBSD"]:
             self.cpp_info.components[component].system_libs = ["pthread"]
 
-        if self.settings.os == "Linux":
+        if self.settings.os in ["Linux", "FreeBSD"]:
             self.cpp_info.components["viamsdk"].system_libs.extend(["dl", "rt"])
 
         self.cpp_info.components["viamapi"].includedirs.append("include/viam/api")
