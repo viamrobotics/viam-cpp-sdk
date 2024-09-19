@@ -50,7 +50,6 @@ int main(int argc, char* argv[]) {
     }
     Options options(1, opts);
 
-    std::cout << vm["uri"].as<std::string>() << ", " << vm.count("uri") << std::endl;
     // connect to robot, ensure we can refresh it
     std::shared_ptr<RobotClient> robot =
         RobotClient::at_address(vm["uri"].as<std::string>(), options);
