@@ -14,23 +14,25 @@ class ViamCppSdkRecipe(ConanFile):
 
     options = {
         "offline_proto_generation": [True, False],
-        "shared": [True, False],
-        "propagate_shared": [True, False]
+        "shared": [True, False]
     }
 
     default_options = {
         "offline_proto_generation": True,
-        "shared": True,
-        "propagate_shared": True
+        "shared": True
     }
 
     exports_sources = "CMakeLists.txt", "LICENSE", "src/*"
 
     def configure(self):
-        # By default we want to propagate the `shared`ness of this package:
-        # if we are shared, build the world as shared, and conversely.
-        if self.options.propagate_shared:
-            self.options["*"].shared = self.options.shared
+        # If we're building static then build the world as static, otherwise
+        # stuff will probably break.
+        # If you want your shared build to also build the world as shared, you
+        # can invoke conan with -o "&:shared=False" -o "*:shared=False",
+        # possibly with --build=missing or --build=cascade as desired,
+        # but this is probably not necessary.
+        if not self.options.shared:
+            self.options["*"].shared = False
 
     def requirements(self):
         self.requires('boost/[>=1.74.0]', transitive_headers=True)
