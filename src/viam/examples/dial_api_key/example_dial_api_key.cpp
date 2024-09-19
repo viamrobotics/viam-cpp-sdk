@@ -33,8 +33,7 @@ int main(int argc, char* argv[]) {
         ("help", "List options and exit")
         ("uri", po::value<std::string>(), "URI of robot")
         ("entity", po::value<std::string>(), "api key ID")
-        ("api-key", po::value<std::string>(), "api key secret")
-    ;
+        ("api-key", po::value<std::string>(), "api key secret");
     po::variables_map vm;
     po::store(po::parse_command_line(argc, argv, desc), vm);
     if (vm.count("help")) {
@@ -53,7 +52,8 @@ int main(int argc, char* argv[]) {
 
     std::cout << vm["uri"].as<std::string>() << ", " << vm.count("uri") << std::endl;
     // connect to robot, ensure we can refresh it
-    std::shared_ptr<RobotClient> robot = RobotClient::at_address(vm["uri"].as<std::string>(), options);
+    std::shared_ptr<RobotClient> robot =
+        RobotClient::at_address(vm["uri"].as<std::string>(), options);
 
     // ensure we can query resources
     std::vector<Name> resource_names = robot->resource_names();
