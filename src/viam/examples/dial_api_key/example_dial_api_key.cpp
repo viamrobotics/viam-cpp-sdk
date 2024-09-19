@@ -8,6 +8,7 @@
 #include <vector>
 
 #include <boost/optional.hpp>
+#include <boost/program_options.hpp>
 #include <grpcpp/channel.h>
 #include <grpcpp/client_context.h>
 #include <grpcpp/grpcpp.h>
@@ -24,21 +25,35 @@
 using viam::robot::v1::Status;
 using namespace viam::sdk;
 
-int main() {
-    const char* uri = "<your robot URI here>";
-    DialOptions dial_options;
-    std::string type = "api-key";
-    std::string entity = "<your api key id>";
-    std::string payload = "<your api key value>";
-    dial_options.set_entity(entity);
-    Credentials credentials(type, payload);
-    dial_options.set_credentials(credentials);
-    boost::optional<DialOptions> opts(dial_options);
-    std::string address(uri);
+namespace po = boost::program_options;
+
+int main(int argc, char* argv[]) {
+    po::options_description desc("Allowed options");
+    desc.add_options()
+        ("help", "List options and exit")
+        ("uri", po::value<std::string>(), "URI of robot")
+        ("entity", po::value<std::string>(), "api key ID")
+        ("api-key", po::value<std::string>(), "api key secret")
+    ;
+    po::variables_map vm;
+    po::store(po::parse_command_line(argc, argv, desc), vm);
+    if (vm.count("help")) {
+        std::cout << desc << std::endl;
+        return 0;
+    }
+    boost::optional<DialOptions> opts;
+    if (vm.count("entity") && vm.count("api-key")) {
+        DialOptions dial_options;
+        dial_options.set_entity(vm["entity"].as<std::string>());
+        Credentials credentials("api-key", vm["api-key"].as<std::string>());
+        dial_options.set_credentials(credentials);
+        opts = dial_options;
+    }
     Options options(1, opts);
 
+    std::cout << vm["uri"].as<std::string>() << ", " << vm.count("uri") << std::endl;
     // connect to robot, ensure we can refresh it
-    std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);
+    std::shared_ptr<RobotClient> robot = RobotClient::at_address(vm["uri"].as<std::string>(), options);
 
     // ensure we can query resources
     std::vector<Name> resource_names = robot->resource_names();
