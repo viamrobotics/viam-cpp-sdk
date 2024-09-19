@@ -55,8 +55,8 @@ project(viam-cpp-sdk
 #
 option(BUILD_SHARED_LIBS "If enabled, build shared libraries" ON)
 
-# Configure project-global options:
 
+# Configure project-global options:
 
 # - `VIAMCPPSDK_ENFORCE_COMPILER_MINIMA`
 #

@@ -233,7 +233,6 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     COMMAND ${BUF_COMMAND} generate ${BUF_GOOGLE_API_SOURCE} --template buf.gen.yaml --path google/rpc --path google/api
     COMMAND ${BUF_COMMAND} generate ${BUF_VIAM_GOUTILS_SOURCE} --template buf.gen.yaml
     COMMAND ${BUF_COMMAND} generate ${BUF_VIAM_API_SOURCE} --template buf.gen.yaml --path ${BUF_PROTO_COMPONENTS_JOINED}
-
     MAIN_DEPENDENCY buf.gen.yaml
   )
 
