@@ -123,7 +123,11 @@ BOOST_AUTO_TEST_CASE(test_version_metadata) {
     int minor = sdk_minor_version();
     int patch = sdk_patch_version();
 
-    BOOST_CHECK(true);
+    std::string version_constructed =
+        "v" + std::to_string(major) + "." + std::to_string(minor) + "." + std::to_string(patch);
+    std::string version = sdk_version();
+
+    BOOST_CHECK_EQUAL(version_constructed, version);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
