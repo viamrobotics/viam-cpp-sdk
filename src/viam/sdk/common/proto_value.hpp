@@ -53,7 +53,15 @@ struct all_moves_noexcept
 class ProtoValue {
    public:
     /// @brief Type discriminator constants for possible values stored in a ProtoValue.
-    enum Kind { null, bool_, int_, double_, string, list, struct_ };
+    enum Kind {
+        k_null = 0,
+        k_bool = 1,
+        k_double = 2,
+        k_string = 3,
+        k_list = 4,
+        k_struct = 5,
+        k_int = 6
+    };
 
     /// @brief Construct a null object.
     ProtoValue() noexcept;
@@ -355,37 +363,37 @@ using KindConstant = std::integral_constant<ProtoValue::Kind, k>;
 
 template <>
 struct kind<std::nullptr_t> {
-    using type = KindConstant<ProtoValue::Kind::null>;
+    using type = KindConstant<ProtoValue::Kind::k_null>;
 };
 
 template <>
 struct kind<bool> {
-    using type = KindConstant<ProtoValue::Kind::bool_>;
+    using type = KindConstant<ProtoValue::Kind::k_bool>;
 };
 
 template <>
 struct kind<int> {
-    using type = KindConstant<ProtoValue::Kind::int_>;
+    using type = KindConstant<ProtoValue::Kind::k_int>;
 };
 
 template <>
 struct kind<double> {
-    using type = KindConstant<ProtoValue::Kind::double_>;
+    using type = KindConstant<ProtoValue::Kind::k_double>;
 };
 
 template <>
 struct kind<std::string> {
-    using type = KindConstant<ProtoValue::Kind::string>;
+    using type = KindConstant<ProtoValue::Kind::k_string>;
 };
 
 template <>
 struct kind<ProtoList> {
-    using type = KindConstant<ProtoValue::Kind::list>;
+    using type = KindConstant<ProtoValue::Kind::k_list>;
 };
 
 template <>
 struct kind<ProtoStruct> {
-    using type = KindConstant<ProtoValue::Kind::struct_>;
+    using type = KindConstant<ProtoValue::Kind::k_struct>;
 };
 
 }  // namespace proto_value_details

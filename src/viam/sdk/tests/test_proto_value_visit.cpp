@@ -89,30 +89,30 @@ struct rvalue_visitor {
     // reference. Thus we spell out the overloads.
 
     bool operator()(std::nullptr_t&&) && {
-        return kind == ProtoValue::Kind::null;
+        return kind == ProtoValue::Kind::k_null;
     }
     bool operator()(bool&&) && {
-        return kind == ProtoValue::Kind::bool_;
+        return kind == ProtoValue::Kind::k_bool;
     }
 
     bool operator()(int&&) && {
-        return kind == ProtoValue::Kind::int_;
+        return kind == ProtoValue::Kind::k_int;
     }
 
     bool operator()(double&&) && {
-        return kind == ProtoValue::Kind::double_;
+        return kind == ProtoValue::Kind::k_double;
     }
 
     bool operator()(std::string&&) && {
-        return kind == ProtoValue::Kind::string;
+        return kind == ProtoValue::Kind::k_string;
     }
 
     bool operator()(ProtoList&&) && {
-        return kind == ProtoValue::Kind::list;
+        return kind == ProtoValue::Kind::k_list;
     }
 
     bool operator()(ProtoStruct&&) && {
-        return kind == ProtoValue::Kind::struct_;
+        return kind == ProtoValue::Kind::k_struct;
     }
 
     bool operator()(...) && {
@@ -131,13 +131,13 @@ struct rvalue_visitor {
 
 BOOST_AUTO_TEST_CASE(test_visitor) {
     auto test_cases = std::make_tuple(
-        std::make_pair(ProtoValue::Kind::null, nullptr),
-        std::make_pair(ProtoValue::Kind::bool_, true),
-        std::make_pair(ProtoValue::Kind::int_, 5),
-        std::make_pair(ProtoValue::Kind::double_, 12.345),
-        std::make_pair(ProtoValue::Kind::string, "meow"),
-        std::make_pair(ProtoValue::Kind::list, ProtoList({{ProtoValue(1), ProtoValue("woof")}})),
-        std::make_pair(ProtoValue::Kind::struct_, ProtoStruct({{"string", "str"}, {"int", 5}})));
+        std::make_pair(ProtoValue::Kind::k_null, nullptr),
+        std::make_pair(ProtoValue::Kind::k_bool, true),
+        std::make_pair(ProtoValue::Kind::k_int, 5),
+        std::make_pair(ProtoValue::Kind::k_double, 12.345),
+        std::make_pair(ProtoValue::Kind::k_string, "meow"),
+        std::make_pair(ProtoValue::Kind::k_list, ProtoList({{ProtoValue(1), ProtoValue("woof")}})),
+        std::make_pair(ProtoValue::Kind::k_struct, ProtoStruct({{"string", "str"}, {"int", 5}})));
 
     using visitors = mp_list<const_visitor, mutable_visitor, by_value_visitor, rvalue_visitor>;
 

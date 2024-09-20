@@ -101,7 +101,7 @@ ProtoValue::Kind ProtoValue::kind() const {
 }
 
 bool ProtoValue::is_null() const {
-    return kind() == Kind::null;
+    return kind() == Kind::k_null;
 }
 
 template <typename T>

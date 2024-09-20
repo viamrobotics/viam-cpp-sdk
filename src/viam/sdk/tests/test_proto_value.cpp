@@ -44,10 +44,10 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
     {
         ProtoValue i5(5);
         auto int_roundtrip = ProtoValue::from_proto(to_proto(i5));
-        BOOST_CHECK(i5.kind() == ProtoValue::Kind::int_);
+        BOOST_CHECK(i5.kind() == ProtoValue::Kind::k_int);
         BOOST_CHECK(i5.is_a<int>());
 
-        BOOST_CHECK(int_roundtrip.kind() == ProtoValue::Kind::double_);
+        BOOST_CHECK(int_roundtrip.kind() == ProtoValue::Kind::k_double);
         BOOST_CHECK(int_roundtrip.is_a<double>());
 
         BOOST_CHECK(!(i5 == int_roundtrip));
