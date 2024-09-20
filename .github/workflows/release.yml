@@ -83,7 +83,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz
+          name: viam-cpp-sdk-${{ matrix.platform }}.tar.gz
           path: builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz
 
   build_linux_ubuntu_jammy:
@@ -165,7 +165,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz
+          name: viam-cpp-sdk-${{ matrix.platform }}.tar.gz
           path: builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz
 
 
@@ -263,7 +263,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz
+          name: viam-cpp-sdk-${{ matrix.platform }}.tar.gz
           path: builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz
 
   release:
@@ -277,7 +277,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: releases/v${{ needs.prepare.outputs.version }}
-          files: builds/*.tar.gz
+          files: builds/viam-cpp-sdk-*.tar.gz
           draft: true
           prerelease: false
           fail_on_unmatched_files: true
