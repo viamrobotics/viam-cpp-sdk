@@ -44,8 +44,8 @@ jobs:
         include:
           - target: aarch64-apple-darwin
             platform: macosx_arm64
-          - target: x86_64-apple-darwin
-            platform: macosx_x86_64
+          # - target: x86_64-apple-darwin
+          #   platform: macosx_x86_64
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
