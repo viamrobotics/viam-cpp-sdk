@@ -53,6 +53,7 @@ target_sources(viamsdk
     common/proto_type.cpp
     common/service_helper.cpp
     common/utils.cpp
+    common/version_metadata.cpp
     common/world_state.cpp
     components/arm.cpp
     components/base.cpp
@@ -140,6 +141,7 @@ target_sources(viamsdk
       ../../viam/sdk/common/proto_type.hpp
       ../../viam/sdk/common/service_helper.hpp
       ../../viam/sdk/common/utils.hpp
+      ../../viam/sdk/common/version_metadata.hpp
       ../../viam/sdk/common/world_state.hpp
       ../../viam/sdk/components/arm.hpp
       ../../viam/sdk/components/base.hpp
