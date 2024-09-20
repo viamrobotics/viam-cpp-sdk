@@ -76,6 +76,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#friends">Friends</a> &#124;
@@ -89,6 +90,22 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="proto__value_8hpp_source.html">proto_value.hpp</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:afd726b56a5dc129a31a17a978db81122" id="r_afd726b56a5dc129a31a17a978db81122"><td class="memItemLeft" align="right" valign="top"><a id="afd726b56a5dc129a31a17a978db81122" name="afd726b56a5dc129a31a17a978db81122"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd726b56a5dc129a31a17a978db81122">Kind</a> { <br />
+&#160;&#160;<b>k_null</b> = 0
+, <b>k_bool</b> = 1
+, <b>k_double</b> = 2
+, <b>k_string</b> = 3
+, <br />
+&#160;&#160;<b>k_list</b> = 4
+, <b>k_struct</b> = 5
+, <b>k_int</b> = 6
+<br />
+ }</td></tr>
+<tr class="memdesc:afd726b56a5dc129a31a17a978db81122"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type discriminator constants for possible values stored in a <a class="el" href="classviam_1_1sdk_1_1ProtoValue.html" title="Type-erased value for storing google::protobuf::Value types. A ProtoValue can be nullptr,...">ProtoValue</a>. <br /></td></tr>
+<tr class="separator:afd726b56a5dc129a31a17a978db81122"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a60f516eadb272c2da3f294b1dcbe7377" id="r_a60f516eadb272c2da3f294b1dcbe7377"><td class="memItemLeft" align="right" valign="top"><a id="a60f516eadb272c2da3f294b1dcbe7377" name="a60f516eadb272c2da3f294b1dcbe7377"></a>
@@ -126,10 +143,10 @@ template&lt;typename T &gt; </td></tr>
 <tr class="memitem:aba48ae1ab71a3be46ec55a5bef277159"><td class="memTemplItemLeft" align="right" valign="top">T const *&#160;</td><td class="memTemplItemRight" valign="bottom"><b>get</b> () const</td></tr>
 <tr class="separator:aba48ae1ab71a3be46ec55a5bef277159"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Value access API</div></td></tr>
-<tr class="memitem:aa786966f1beec0705de0a9f33da5fb25" id="r_aa786966f1beec0705de0a9f33da5fb25"><td class="memItemLeft" align="right" valign="top"><a id="aa786966f1beec0705de0a9f33da5fb25" name="aa786966f1beec0705de0a9f33da5fb25"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>kind</b> () const</td></tr>
-<tr class="memdesc:aa786966f1beec0705de0a9f33da5fb25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtain integer constant representing the stored data type. <br /></td></tr>
-<tr class="separator:aa786966f1beec0705de0a9f33da5fb25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95372ad38cbaeaa804c067d94b244695" id="r_a95372ad38cbaeaa804c067d94b244695"><td class="memItemLeft" align="right" valign="top"><a id="a95372ad38cbaeaa804c067d94b244695" name="a95372ad38cbaeaa804c067d94b244695"></a>
+<a class="el" href="#afd726b56a5dc129a31a17a978db81122">Kind</a>&#160;</td><td class="memItemRight" valign="bottom"><b>kind</b> () const</td></tr>
+<tr class="memdesc:a95372ad38cbaeaa804c067d94b244695"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtain enumerator constant representing the stored data type. <br /></td></tr>
+<tr class="separator:a95372ad38cbaeaa804c067d94b244695"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a645875d7a7d629cd60aba3c203a7bf31" id="r_a645875d7a7d629cd60aba3c203a7bf31"><td class="memTemplParams" colspan="2"><a id="a645875d7a7d629cd60aba3c203a7bf31" name="a645875d7a7d629cd60aba3c203a7bf31"></a>
 template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a645875d7a7d629cd60aba3c203a7bf31"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>is_a</b> () const</td></tr>
@@ -149,6 +166,26 @@ template&lt;typename T &gt; </td></tr>
 <tr class="memitem:aba48ae1ab71a3be46ec55a5bef277159"><td class="memTemplItemLeft" align="right" valign="top">T const *&#160;</td><td class="memTemplItemRight" valign="bottom"><b>get</b> () const</td></tr>
 <tr class="memdesc:aba48ae1ab71a3be46ec55a5bef277159"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a T pointer if this is_a&lt;T&gt;(), else return nullptr. <br /></td></tr>
 <tr class="separator:aba48ae1ab71a3be46ec55a5bef277159"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a508a7ecff2fb8363af16741f679128d9" id="r_a508a7ecff2fb8363af16741f679128d9"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a508a7ecff2fb8363af16741f679128d9"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::is_scalar&lt; T &gt;{}, T &amp; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a508a7ecff2fb8363af16741f679128d9">get_unchecked</a> ()</td></tr>
+<tr class="memdesc:a508a7ecff2fb8363af16741f679128d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a reference to the underlying T, without checking.  <br /></td></tr>
+<tr class="separator:a508a7ecff2fb8363af16741f679128d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a109e0fc6b1fc468c945920b6b4a21b1d" id="r_a109e0fc6b1fc468c945920b6b4a21b1d"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a109e0fc6b1fc468c945920b6b4a21b1d"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::is_scalar&lt; T &gt;{}, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a109e0fc6b1fc468c945920b6b4a21b1d">get_unchecked</a> () const</td></tr>
+<tr class="memdesc:a109e0fc6b1fc468c945920b6b4a21b1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the underlying T by value, without checking.  <br /></td></tr>
+<tr class="separator:a109e0fc6b1fc468c945920b6b4a21b1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab041cc3806bdea9955ff57c2cb55ede3" id="r_ab041cc3806bdea9955ff57c2cb55ede3"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ab041cc3806bdea9955ff57c2cb55ede3"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt;!std::is_scalar&lt; T &gt;{}, T &amp; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ab041cc3806bdea9955ff57c2cb55ede3">get_unchecked</a> () &amp;</td></tr>
+<tr class="memdesc:ab041cc3806bdea9955ff57c2cb55ede3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a mutable reference to the underlying T, without checking.  <br /></td></tr>
+<tr class="separator:ab041cc3806bdea9955ff57c2cb55ede3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fa811925dc9f3cc6e4bf8b4f71064d4" id="r_a2fa811925dc9f3cc6e4bf8b4f71064d4"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a2fa811925dc9f3cc6e4bf8b4f71064d4"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt;!std::is_scalar&lt; T &gt;{}, T const &amp; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a2fa811925dc9f3cc6e4bf8b4f71064d4">get_unchecked</a> () const &amp;</td></tr>
+<tr class="memdesc:a2fa811925dc9f3cc6e4bf8b4f71064d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return an immutable reference to the underlying T, without checking.  <br /></td></tr>
+<tr class="separator:a2fa811925dc9f3cc6e4bf8b4f71064d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae07dabe96af1eb0c94c3a6b0d06337ec" id="r_ae07dabe96af1eb0c94c3a6b0d06337ec"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ae07dabe96af1eb0c94c3a6b0d06337ec"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt;!std::is_scalar&lt; T &gt;{}, T &amp;&amp; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ae07dabe96af1eb0c94c3a6b0d06337ec">get_unchecked</a> () &amp;&amp;</td></tr>
+<tr class="memdesc:ae07dabe96af1eb0c94c3a6b0d06337ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return an rvalue reference to the underlying T, without checking.  <br /></td></tr>
+<tr class="separator:ae07dabe96af1eb0c94c3a6b0d06337ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -168,6 +205,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>to_proto</b> (const <
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Type-erased value for storing google::protobuf::Value types. A <a class="el" href="classviam_1_1sdk_1_1ProtoValue.html" title="Type-erased value for storing google::protobuf::Value types. A ProtoValue can be nullptr,...">ProtoValue</a> can be nullptr, bool, int, double, std::string, or, recursively, a vector or string-map of <a class="el" href="classviam_1_1sdk_1_1ProtoValue.html" title="Type-erased value for storing google::protobuf::Value types. A ProtoValue can be nullptr,...">ProtoValue</a>. This type is used at API/ABI boundaries for interfacing with grpc/proto code. </p>
+<dl class="section remark"><dt>Remarks</dt><dd>The (special) member function templates below all operate on a closed subset of types, so we provide explicit instantiations for all valid template types. See below the class definition. </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a0602c74ba4fba4d37ba5a196eec940d2" name="a0602c74ba4fba4d37ba5a196eec940d2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0602c74ba4fba4d37ba5a196eec940d2">&#9670;&#160;</a></span>from_proto()</h2>
@@ -196,6 +234,141 @@ template&lt;typename Value  = google::protobuf::Value&gt; </div>
 
 <p>Construct from proto value. </p>
 <dl class="section note"><dt>Note</dt><dd>This method is trivially templated to insulate google::protobuf::Value from our API/ABI. It is meant to be called with no template parameters in a translation unit which includes &lt;google/protobuf/struct.pb.h&gt; </dd></dl>
+
+</div>
+</div>
+<a id="a508a7ecff2fb8363af16741f679128d9" name="a508a7ecff2fb8363af16741f679128d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a508a7ecff2fb8363af16741f679128d9">&#9670;&#160;</a></span>get_unchecked() <span class="overload">[1/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">template double &amp; viam::sdk::ProtoValue::get_unchecked&lt; double &gt; </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return a reference to the underlying T, without checking. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>a bool, int, or double </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab041cc3806bdea9955ff57c2cb55ede3" name="ab041cc3806bdea9955ff57c2cb55ede3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab041cc3806bdea9955ff57c2cb55ede3">&#9670;&#160;</a></span>get_unchecked() <span class="overload">[2/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">template ProtoStruct &amp; viam::sdk::ProtoValue::get_unchecked&lt; ProtoStruct &gt; </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> &amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return a mutable reference to the underlying T, without checking. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>a std::string, ProtoList, or ProtoStruct. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae07dabe96af1eb0c94c3a6b0d06337ec" name="ae07dabe96af1eb0c94c3a6b0d06337ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae07dabe96af1eb0c94c3a6b0d06337ec">&#9670;&#160;</a></span>get_unchecked() <span class="overload">[3/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">template ProtoStruct &amp;&amp; viam::sdk::ProtoValue::get_unchecked&lt; ProtoStruct &gt; </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> &amp;&amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return an rvalue reference to the underlying T, without checking. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>a std::string, ProtoList, or ProtoStruct. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a109e0fc6b1fc468c945920b6b4a21b1d" name="a109e0fc6b1fc468c945920b6b4a21b1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a109e0fc6b1fc468c945920b6b4a21b1d">&#9670;&#160;</a></span>get_unchecked() <span class="overload">[4/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">template double viam::sdk::ProtoValue::get_unchecked&lt; double &gt; </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the underlying T by value, without checking. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>a bool, int, or double. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2fa811925dc9f3cc6e4bf8b4f71064d4" name="a2fa811925dc9f3cc6e4bf8b4f71064d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fa811925dc9f3cc6e4bf8b4f71064d4">&#9670;&#160;</a></span>get_unchecked() <span class="overload">[5/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">template ProtoStruct const  &amp; viam::sdk::ProtoValue::get_unchecked&lt; ProtoStruct &gt; </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const &amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return an immutable reference to the underlying T, without checking. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>a std::string, ProtoList, or ProtoStruct. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -7,6 +7,7 @@ var searchData=
   ['viam_20c_20sdk_4',['Viam C++ SDK',['../index.html',1,'']]],
   ['viamchannel_5',['ViamChannel',['../classviam_1_1sdk_1_1ViamChannel.html',1,'viam::sdk']]],
   ['vision_5fservice_6',['vision_service',['../structviam_1_1sdk_1_1obstacle__detector.html#a791ef33fe5e7ac449a9e0d23bd0c054d',1,'viam::sdk::obstacle_detector']]],
-  ['voltage_7',['voltage',['../structviam_1_1sdk_1_1PowerSensor_1_1voltage.html',1,'viam::sdk::PowerSensor']]],
-  ['volts_8',['volts',['../structviam_1_1sdk_1_1PowerSensor_1_1voltage.html#a14f378a6d53d4514a340efe1526da02e',1,'viam::sdk::PowerSensor::voltage']]]
+  ['visit_20api_7',['ProtoValue visit API',['../group__ProtoValueVisit.html',1,'']]],
+  ['voltage_8',['voltage',['../structviam_1_1sdk_1_1PowerSensor_1_1voltage.html',1,'viam::sdk::PowerSensor']]],
+  ['volts_9',['volts',['../structviam_1_1sdk_1_1PowerSensor_1_1voltage.html#a14f378a6d53d4514a340efe1526da02e',1,'viam::sdk::PowerSensor::voltage']]]
 ];
