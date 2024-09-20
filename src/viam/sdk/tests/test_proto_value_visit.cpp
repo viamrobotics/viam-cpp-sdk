@@ -20,12 +20,15 @@ using namespace boost::mp11;
 
 BOOST_AUTO_TEST_SUITE(test_proto_value_visit)
 
+template <typename T>
+using KindType = typename proto_value_details::kind<T>::type;
+
 struct const_visitor {
     int kind;
 
-    template <typename T, typename = kind_t<T>>
+    template <typename T, typename = KindType<T>>
     bool operator()(const T&) const {
-        return kind == kind_t<T>{};
+        return kind == KindType<T>{};
     }
 
     bool operator()(...) const {
@@ -42,9 +45,9 @@ struct const_visitor {
 struct mutable_visitor {
     int kind;
 
-    template <typename T, typename = kind_t<T>>
+    template <typename T, typename = KindType<T>>
     bool operator()(T&) {
-        return kind == kind_t<T>{};
+        return kind == KindType<T>{};
     }
 
     bool operator()(...) {
@@ -61,9 +64,9 @@ struct mutable_visitor {
 struct by_value_visitor {
     int kind;
 
-    template <typename T, typename = kind_t<T>>
+    template <typename T, typename = KindType<T>>
     bool operator()(T) && {
-        return kind == kind_t<T>{};
+        return kind == KindType<T>{};
     }
 
     bool operator()(...) && {
@@ -86,30 +89,30 @@ struct rvalue_visitor {
     // reference. Thus we spell out the overloads.
 
     bool operator()(std::nullptr_t&&) && {
-        return kind == kind_t<std::nullptr_t>{};
+        return kind == ProtoValue::Kind::null;
     }
     bool operator()(bool&&) && {
-        return kind == kind_t<bool>{};
+        return kind == ProtoValue::Kind::bool_;
     }
 
     bool operator()(int&&) && {
-        return kind == kind_t<int>{};
+        return kind == ProtoValue::Kind::int_;
     }
 
     bool operator()(double&&) && {
-        return kind == kind_t<double>{};
+        return kind == ProtoValue::Kind::double_;
     }
 
     bool operator()(std::string&&) && {
-        return kind == kind_t<std::string>{};
+        return kind == ProtoValue::Kind::string;
     }
 
     bool operator()(std::vector<ProtoValue>&&) && {
-        return kind == kind_t<std::vector<ProtoValue>>{};
+        return kind == ProtoValue::Kind::list;
     }
 
     bool operator()(ProtoStruct&&) && {
-        return kind == kind_t<ProtoStruct>{};
+        return kind == ProtoValue::Kind::struct_;
     }
 
     bool operator()(...) && {
@@ -128,14 +131,14 @@ struct rvalue_visitor {
 
 BOOST_AUTO_TEST_CASE(test_visitor) {
     auto test_cases = std::make_tuple(
-        std::make_pair(kind_t<std::nullptr_t>::value, nullptr),
-        std::make_pair(kind_t<bool>::value, true),
-        std::make_pair(kind_t<int>::value, 5),
-        std::make_pair(kind_t<double>::value, 12.345),
-        std::make_pair(kind_t<std::string>::value, "meow"),
-        std::make_pair(kind_t<std::vector<ProtoValue>>::value,
+        std::make_pair(ProtoValue::Kind::null, nullptr),
+        std::make_pair(ProtoValue::Kind::bool_, true),
+        std::make_pair(ProtoValue::Kind::int_, 5),
+        std::make_pair(ProtoValue::Kind::double_, 12.345),
+        std::make_pair(ProtoValue::Kind::string, "meow"),
+        std::make_pair(ProtoValue::Kind::list,
                        std::vector<ProtoValue>({{ProtoValue(1), ProtoValue("woof")}})),
-        std::make_pair(kind_t<ProtoStruct>::value, ProtoStruct({{"string", "str"}, {"int", 5}})));
+        std::make_pair(ProtoValue::Kind::struct_, ProtoStruct({{"string", "str"}, {"int", 5}})));
 
     using visitors = mp_list<const_visitor, mutable_visitor, by_value_visitor, rvalue_visitor>;
 

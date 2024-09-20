@@ -44,10 +44,10 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
     {
         ProtoValue i5(5);
         auto int_roundtrip = ProtoValue::from_proto(to_proto(i5));
-        BOOST_CHECK(i5.kind() == kind_t<int>{});
+        BOOST_CHECK(i5.kind() == ProtoValue::Kind::int_);
         BOOST_CHECK(i5.is_a<int>());
 
-        BOOST_CHECK(int_roundtrip.kind() == kind_t<double>{});
+        BOOST_CHECK(int_roundtrip.kind() == ProtoValue::Kind::double_);
         BOOST_CHECK(int_roundtrip.is_a<double>());
 
         BOOST_CHECK(!(i5 == int_roundtrip));
@@ -78,7 +78,7 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
     boost::mp11::tuple_for_each(test_cases, [](auto test_pair) {
         using test_type = typename decltype(test_pair)::first_type;
 
-        constexpr auto kind = kind_t<test_type>::value;
+        constexpr auto kind = proto_value_details::kind<test_type>::type::value;
         BOOST_TEST_MESSAGE("Testing with kind " << kind);
 
         ProtoValue v1(test_pair.first);

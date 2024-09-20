@@ -96,12 +96,12 @@ ProtoValue ProtoValue::from_proto(const Val& v) {  // NOLINT(misc-no-recursion)
 
 template ProtoValue ProtoValue::from_proto(const Value&);
 
-int ProtoValue::kind() const {
+ProtoValue::Kind ProtoValue::kind() const {
     return vtable_.kind();
 }
 
 bool ProtoValue::is_null() const {
-    return kind() == kind_t<std::nullptr_t>{};
+    return kind() == Kind::null;
 }
 
 template <typename T>
@@ -180,8 +180,8 @@ void ProtoValue::model<T>::to_proto(void const* self, google::protobuf::Value* v
 }
 
 template <typename T>
-int ProtoValue::model<T>::kind() noexcept {
-    return kind_t<T>::value;
+ProtoValue::Kind ProtoValue::model<T>::kind() noexcept {
+    return proto_value_details::kind<T>::type::value;
 }
 
 template <typename T>

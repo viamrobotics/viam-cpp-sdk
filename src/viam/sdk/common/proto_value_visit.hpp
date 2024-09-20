@@ -22,20 +22,20 @@ template <typename Visitor>
 auto visit(Visitor&& visitor, ProtoValue& value)
     -> decltype(std::forward<Visitor>(visitor)(std::declval<std::nullptr_t&>())) {
     switch (value.kind()) {
-        case kind_t<bool>{}:
+        case ProtoValue::Kind::bool_:
             return std::forward<Visitor>(visitor)(value.get_unchecked<bool>());
-        case kind_t<int>{}:
+        case ProtoValue::Kind::int_:
             return std::forward<Visitor>(visitor)(value.get_unchecked<int>());
-        case kind_t<double>{}:
+        case ProtoValue::Kind::double_:
             return std::forward<Visitor>(visitor)(value.get_unchecked<double>());
-        case kind_t<std::string>{}:
+        case ProtoValue::Kind::string:
             return std::forward<Visitor>(visitor)(value.get_unchecked<std::string>());
-        case kind_t<std::vector<ProtoValue>>{}:
+        case ProtoValue::Kind::list:
             return std::forward<Visitor>(visitor)(value.get_unchecked<std::vector<ProtoValue>>());
-        case kind_t<ProtoStruct>{}:
+        case ProtoValue::Kind::struct_:
             return std::forward<Visitor>(visitor)(value.get_unchecked<ProtoStruct>());
         default:
-        case kind_t<std::nullptr_t>{}: {
+        case ProtoValue::Kind::null: {
             auto np = nullptr;
             return std::forward<Visitor>(visitor)(np);
         }
@@ -46,20 +46,20 @@ template <typename Visitor>
 auto visit(Visitor&& visitor, const ProtoValue& value)
     -> decltype(std::forward<Visitor>(visitor)(std::declval<const std::nullptr_t&>())) {
     switch (value.kind()) {
-        case kind_t<bool>{}:
+        case ProtoValue::Kind::bool_:
             return std::forward<Visitor>(visitor)(value.get_unchecked<bool>());
-        case kind_t<int>{}:
+        case ProtoValue::Kind::int_:
             return std::forward<Visitor>(visitor)(value.get_unchecked<int>());
-        case kind_t<double>{}:
+        case ProtoValue::Kind::double_:
             return std::forward<Visitor>(visitor)(value.get_unchecked<double>());
-        case kind_t<std::string>{}:
+        case ProtoValue::Kind::string:
             return std::forward<Visitor>(visitor)(value.get_unchecked<std::string>());
-        case kind_t<std::vector<ProtoValue>>{}:
+        case ProtoValue::Kind::list:
             return std::forward<Visitor>(visitor)(value.get_unchecked<std::vector<ProtoValue>>());
-        case kind_t<ProtoStruct>{}:
+        case ProtoValue::Kind::struct_:
             return std::forward<Visitor>(visitor)(value.get_unchecked<ProtoStruct>());
         default:
-        case kind_t<std::nullptr_t>{}: {
+        case ProtoValue::Kind::null: {
             const auto np = nullptr;
             return std::forward<Visitor>(visitor)(np);
         }
@@ -70,21 +70,21 @@ template <typename Visitor>
 auto visit(Visitor&& visitor, ProtoValue&& value)
     -> decltype(std::forward<Visitor>(visitor)(std::declval<std::nullptr_t&&>())) {
     switch (value.kind()) {
-        case kind_t<bool>{}:
+        case ProtoValue::Kind::bool_:
             return std::forward<Visitor>(visitor)(std::move(value.get_unchecked<bool>()));
-        case kind_t<int>{}:
+        case ProtoValue::Kind::int_:
             return std::forward<Visitor>(visitor)(std::move(value.get_unchecked<int>()));
-        case kind_t<double>{}:
+        case ProtoValue::Kind::double_:
             return std::forward<Visitor>(visitor)(std::move(value.get_unchecked<double>()));
-        case kind_t<std::string>{}:
+        case ProtoValue::Kind::string:
             return std::forward<Visitor>(visitor)(std::move(value.get_unchecked<std::string>()));
-        case kind_t<std::vector<ProtoValue>>{}:
+        case ProtoValue::Kind::list:
             return std::forward<Visitor>(visitor)(
                 std::move(value.get_unchecked<std::vector<ProtoValue>>()));
-        case kind_t<ProtoStruct>{}:
+        case ProtoValue::Kind::struct_:
             return std::forward<Visitor>(visitor)(std::move(value.get_unchecked<ProtoStruct>()));
         default:
-        case kind_t<std::nullptr_t>{}:
+        case ProtoValue::Kind::null:
             return std::forward<Visitor>(visitor)(std::nullptr_t());
     }
 }

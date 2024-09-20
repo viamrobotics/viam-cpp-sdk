@@ -52,6 +52,9 @@ struct all_moves_noexcept
 /// definition.
 class ProtoValue {
    public:
+    /// @brief Type discriminator constants for possible values stored in a ProtoValue.
+    enum Kind { null, bool_, int_, double_, string, list, struct_ };
+
     /// @brief Construct a null object.
     ProtoValue() noexcept;
 
@@ -95,8 +98,8 @@ class ProtoValue {
     /// @name Value access API
     ///@{
 
-    /// @brief Obtain integer constant representing the stored data type.
-    int kind() const;
+    /// @brief Obtain enumerator constant representing the stored data type.
+    Kind kind() const;
 
     /// @brief Checks whether this ProtoT is an instance of type T.
     template <typename T>
@@ -152,7 +155,7 @@ class ProtoValue {
         void (*copy)(void const*, void*);
         void (*move)(void*, void*);
         void (*to_proto)(void const*, google::protobuf::Value*);
-        int (*kind)();
+        Kind (*kind)();
         bool (*equal_to)(void const*, void const*, const vtable&);
     };
 
@@ -174,7 +177,7 @@ class ProtoValue {
 
         static void to_proto(void const* self, google::protobuf::Value* v);
 
-        static int kind() noexcept;
+        static Kind kind() noexcept;
 
         static bool equal_to(void const* self, void const* other, const vtable& other_vtable);
 
@@ -344,55 +347,49 @@ namespace proto_value_details {
 template <typename T>
 struct kind {};
 
+template <ProtoValue::Kind k>
+using KindConstant = std::integral_constant<ProtoValue::Kind, k>;
+
 template <>
 struct kind<std::nullptr_t> {
-    using type = std::integral_constant<int, 0>;
+    using type = KindConstant<ProtoValue::Kind::null>;
 };
 
 template <>
 struct kind<bool> {
-    using type = std::integral_constant<int, 1>;
+    using type = KindConstant<ProtoValue::Kind::bool_>;
 };
 
 template <>
 struct kind<int> {
-    using type = std::integral_constant<int, 2>;
+    using type = KindConstant<ProtoValue::Kind::int_>;
 };
 
 template <>
 struct kind<double> {
-    using type = std::integral_constant<int, 3>;
+    using type = KindConstant<ProtoValue::Kind::double_>;
 };
 
 template <>
 struct kind<std::string> {
-    using type = std::integral_constant<int, 4>;
+    using type = KindConstant<ProtoValue::Kind::string>;
 };
 
 template <>
 struct kind<std::vector<ProtoValue>> {
-    using type = std::integral_constant<int, 5>;
+    using type = KindConstant<ProtoValue::Kind::list>;
 };
 
 template <>
 struct kind<ProtoStruct> {
-    using type = std::integral_constant<int, 6>;
+    using type = KindConstant<ProtoValue::Kind::struct_>;
 };
 
 }  // namespace proto_value_details
 
-/// @brief ProtoValue RTTI type trait.
-/// This type trait is used to implement the ProtoValue::kind method which provides the type
-/// discriminator constant that is used in the value access API.
-/// @remark A ProtoValue can only be constructed from types for which this trait is well formed.
-/// This type trait can be used to induce substitution failure on non-ProtoValue constructible
-/// types.
-template <typename T>
-using kind_t = typename proto_value_details::kind<T>::type;
-
 template <typename T>
 bool ProtoValue::is_a() const {
-    return kind_t<T>::value == kind();
+    return proto_value_details::kind<T>::type::value == kind();
 }
 
 template <typename T>
