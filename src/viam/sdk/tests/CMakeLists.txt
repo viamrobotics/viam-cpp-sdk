@@ -14,7 +14,6 @@
 
 enable_testing()
 
-include(viamcppsdk_utils)
 add_library(viamsdk_test)
 
 target_sources(viamsdk_test

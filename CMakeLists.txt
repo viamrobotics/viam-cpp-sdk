@@ -127,6 +127,18 @@ option(VIAMCPPSDK_SANITIZED_BUILD "Build with address and UB sanitizers (less pe
 #
 option(VIAMCPPSDK_CLANG_TIDY "Run the clang-tidy linter" OFF)
 
+# The following options are only defined if this project is not being included as a subproject
+if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+  include(CMakeDependentOption)
+  option(VIAMCPPSDK_BUILD_EXAMPLES "Build the example executables (requires building tests too)" ON)
+
+  # Note that the complex module example requires the testing library and adds its tests to the unit
+  # test suite. Thus you can only disable tests if examples are also disabled.
+  # The call below says don't give the user the option to disable tests unless examples are already
+  # disabled, and default to building the tests in either case.
+  cmake_dependent_option(VIAMCPPSDK_BUILD_TESTS "Build the unit test suite" ON "NOT VIAMCPPSDK_BUILD_EXAMPLES" ON)
+endif()
+
 
 # Enforce known toolchains and toolchain minima unless asked not to.
 if (VIAMCPPSDK_ENFORCE_COMPILER_MINIMA)
@@ -186,6 +198,11 @@ set(CMAKE_MODULE_PATH
   ${CMAKE_MODULE_PATH}
   ${PROJECT_SOURCE_DIR}/src/viam/cmake
 )
+if (VIAMCPPSDK_BUILD_TESTS OR VIAMCPPSDK_BUILD_EXAMPLES)
+  # We maybe could include this unconditionally, but technically only tests or examples need it
+  include(viamcppsdk_utils)
+endif()
+
 
 
 # Configure how the SDK will manage runtime paths. This is important
@@ -336,11 +353,14 @@ find_package(Boost ${VIAMCPPSDK_BOOST_VERSION_MINIMUM} REQUIRED COMPONENTS heade
 # another try via pkgconfig.
 
 find_package(gRPC ${VIAMCPPSDK_GRPC_VERSION_MINIMUM} CONFIG)
-if (gRPC_FOUND)
+
+# Protobuf has an idiosyncratic system for checking version compatibility, so we specify
+# no version here and check it manually below.
+find_package(Protobuf CONFIG)
+
+if (gRPC_FOUND AND Protobuf_FOUND)
   get_target_property(VIAMCPPSDK_GRPC_CPP_PLUGIN gRPC::grpc_cpp_plugin LOCATION)
   set(VIAMCPPSDK_PROTOBUF_VERSION ${Protobuf_VERSION})
-  set(VIAMCPPSDK_PROTOBUF_VERSION_MAJOR ${Protobuf_VERSION_MAJOR})
-  set(VIAMCPPSDK_PROTOBUF_VERSION_MINOR ${Protobuf_VERSION_MINOR})
 
   # We need a good value for VIAMCPPSDK_PROTOBUF_VERSION in order to
   # interpolate it into our `pkgconfig` requirements. Make sure we
@@ -358,7 +378,7 @@ if (gRPC_FOUND)
   set(VIAMCPPSDK_GRPCXX_VERSION ${gRPC_VERSION})
   set(VIAMCPPSDK_GRPCXX_LIBRARIES gRPC::grpc++)
   set(VIAMCPPSDK_GRPCXX_REFLECTION_LIBRARIES gRPC::grpc++_reflection)
-else()
+elseif((NOT gRPC_FOUND) AND (NOT Protobuf_FOUND))
   message(WARNING "Failed to find gRPC with `find_package`; falling back to `pkg_check_modules`")
 
   include(FindPkgConfig)
@@ -368,8 +388,6 @@ else()
   pkg_check_modules(GRPCXX REQUIRED grpc++>=${VIAMCPPSDK_GRPC_VERSION_MINIMUM})
 
   set(VIAMCPPSDK_PROTOBUF_VERSION ${PROTOBUF_VERSION})
-  string(REGEX REPLACE "^([0-9]+)\.([0-9]+)\.([0-9]+)$" "\\1" VIAMCPPSDK_PROTOBUF_VERSION_MAJOR ${VIAMCPPSDK_PROTOBUF_VERSION})
-  string(REGEX REPLACE "^([0-9]+)\.([0-9]+)\.([0-9]+)$" "\\2" VIAMCPPSDK_PROTOBUF_VERSION_MINOR ${VIAMCPPSDK_PROTOBUF_VERSION})
   set(VIAMCPPSDK_PROTOBUF_INCLUDE_DIRS ${PROTOBUF_INCLUDE_DIRS})
   set(VIAMCPPSDK_PROTOBUF_LIBRARY_DIRS ${PROTOBUF_LIBRARY_DIRS})
   set(VIAMCPPSDK_PROTOBUF_LIBRARIES ${PROTOBUF_LIBRARIES})
@@ -396,10 +414,25 @@ else()
   set(VIAMCPPSDK_GRPCXX_REFLECTION_LIBRARIES ${VIAMCPPSDK_GRPCXX_LIBRARIES})
   set(VIAMCPPSDK_GRPCXX_REFLECTION_LIB ${VIAMCPPSDK_GRPCXX_ROOT}_reflection)
   list(PREPEND VIAMCPPSDK_GRPCXX_REFLECTION_LIBRARIES ${VIAMCPPSDK_GRPCXX_REFLECTION_LIB})
+else()
+  message(FATAL_ERROR "Unexpected combination of find_package and pkg-config protobuf and gRPC")
+endif()
+
+# Do this here unconditionally in case find_package didn't set the MAJOR/MINOR variables
+string(REGEX REPLACE "^([0-9]+)\.([0-9]+)\.([0-9]+)$" "\\1" VIAMCPPSDK_PROTOBUF_VERSION_MAJOR ${VIAMCPPSDK_PROTOBUF_VERSION})
+string(REGEX REPLACE "^([0-9]+)\.([0-9]+)\.([0-9]+)$" "\\2" VIAMCPPSDK_PROTOBUF_VERSION_MINOR ${VIAMCPPSDK_PROTOBUF_VERSION})
+string(REGEX REPLACE "^([0-9]+)\.([0-9]+)\.([0-9]+)$" "\\3" VIAMCPPSDK_PROTOBUF_VERSION_PATCH ${VIAMCPPSDK_PROTOBUF_VERSION})
+
+# The check below expects a version that looks like 20-something.x.y, so if
+# we got a major version that doesn't look like that, synthesize one from the version we did get.
+if (VIAMCPPSDK_PROTOBUF_VERSION_MAJOR GREATER 20)
+  set(VIAMCPPSDK_PROTOC_VERSION "${VIAMCPPSDK_PROTOBUF_VERSION_MAJOR}.${VIAMCPPSDK_PROTOBUF_VERSION_MINOR}")
+else()
+  set(VIAMCPPSDK_PROTOC_VERSION "${VIAMCPPSDK_PROTOBUF_VERSION_MINOR}.${VIAMCPPSDK_PROTOBUF_VERSION_PATCH}")
 endif()
 
 # These are the minimum versions of gRPC and protobuf for which remote plugins with buf are supported.
-if ((VIAMCPPSDK_GRPCXX_VERSION VERSION_GREATER 1.51.1) AND (VIAMCPPSDK_PROTOBUF_VERSION VERSION_GREATER 21.7.0))
+if ((VIAMCPPSDK_GRPCXX_VERSION VERSION_GREATER 1.51.1) AND (VIAMCPPSDK_PROTOC_VERSION VERSION_GREATER 21.7.0))
   set(VIAMCPPSDK_BUF_REMOTE_PLUGIN_SUPPORTED 1)
 endif()
 
@@ -441,8 +474,10 @@ add_custom_target(
   DEPENDS all
 )
 
-add_custom_target(
-  install-examples
-  COMMAND ${CMAKE_COMMAND} -DCOMPONENT=viam-cpp-sdk_examples -P ${CMAKE_BINARY_DIR}/cmake_install.cmake
-  DEPENDS all
-)
+if (VIAMCPPSDK_BUILD_EXAMPLES)
+  add_custom_target(
+    install-examples
+    COMMAND ${CMAKE_COMMAND} -DCOMPONENT=viam-cpp-sdk_examples -P ${CMAKE_BINARY_DIR}/cmake_install.cmake
+    DEPENDS all
+  )
+endif()
