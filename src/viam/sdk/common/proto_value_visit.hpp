@@ -31,7 +31,7 @@ auto visit(Visitor&& visitor, ProtoValue& value)
         case ProtoValue::Kind::string:
             return std::forward<Visitor>(visitor)(value.get_unchecked<std::string>());
         case ProtoValue::Kind::list:
-            return std::forward<Visitor>(visitor)(value.get_unchecked<std::vector<ProtoValue>>());
+            return std::forward<Visitor>(visitor)(value.get_unchecked<ProtoList>());
         case ProtoValue::Kind::struct_:
             return std::forward<Visitor>(visitor)(value.get_unchecked<ProtoStruct>());
         case ProtoValue::Kind::null: {
@@ -54,7 +54,7 @@ auto visit(Visitor&& visitor, const ProtoValue& value)
         case ProtoValue::Kind::string:
             return std::forward<Visitor>(visitor)(value.get_unchecked<std::string>());
         case ProtoValue::Kind::list:
-            return std::forward<Visitor>(visitor)(value.get_unchecked<std::vector<ProtoValue>>());
+            return std::forward<Visitor>(visitor)(value.get_unchecked<ProtoList>());
         case ProtoValue::Kind::struct_:
             return std::forward<Visitor>(visitor)(value.get_unchecked<ProtoStruct>());
         case ProtoValue::Kind::null: {
@@ -77,8 +77,7 @@ auto visit(Visitor&& visitor, ProtoValue&& value)
         case ProtoValue::Kind::string:
             return std::forward<Visitor>(visitor)(std::move(value.get_unchecked<std::string>()));
         case ProtoValue::Kind::list:
-            return std::forward<Visitor>(visitor)(
-                std::move(value.get_unchecked<std::vector<ProtoValue>>()));
+            return std::forward<Visitor>(visitor)(std::move(value.get_unchecked<ProtoList>()));
         case ProtoValue::Kind::struct_:
             return std::forward<Visitor>(visitor)(std::move(value.get_unchecked<ProtoStruct>()));
         case ProtoValue::Kind::null:

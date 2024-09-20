@@ -127,17 +127,17 @@ class ProtoValue {
     std::enable_if_t<std::is_scalar<T>{}, T> get_unchecked() const;
 
     /// @brief Return a mutable reference to the underlying T, without checking
-    /// @tparam T a std::string, std::vector<ProtoValue>, or ProtoStruct.
+    /// @tparam T a std::string, ProtoList, or ProtoStruct.
     template <typename T>
     std::enable_if_t<!std::is_scalar<T>{}, T&> get_unchecked() &;
 
     /// @brief Return an immutable reference to the underlying T, without checking.
-    /// @tparam T a std::string, std::vector<ProtoValue>, or ProtoStruct.
+    /// @tparam T a std::string, ProtoList, or ProtoStruct.
     template <typename T>
     std::enable_if_t<!std::is_scalar<T>{}, T const&> get_unchecked() const&;
 
     /// @brief Return an rvalue reference to the underlying T, without checking.
-    /// @tparam T a std::string, std::vector<ProtoValue>, or ProtoStruct.
+    /// @tparam T a std::string, ProtoList, or ProtoStruct.
     template <typename T>
     std::enable_if_t<!std::is_scalar<T>{}, T&&> get_unchecked() &&;
 
@@ -191,7 +191,7 @@ class ProtoValue {
     // implementation defers.
     struct storage {
         // Local storage in an aligned_union which can hold all the possible ProtoValue types, using
-        // stand-ins for std::vector<ProtoValue> and ProtoStruct which are not available until end
+        // stand-ins for ProtoList and ProtoStruct which are not available until end
         // of class definition.
         using BufType = std::aligned_union_t<0,
                                              std::nullptr_t,
@@ -257,6 +257,10 @@ class ProtoValue {
 template <typename T>
 constexpr ProtoValue::vtable ProtoValue::model<T>::vtable_;
 
+/// @brief Alias declaration for container of repeated ProtoValue, representing a
+/// google::protobuf::ListValue.
+using ProtoList = std::vector<ProtoValue>;
+
 /// @brief Alias declaration for map of string to type-erased ProtoValue representing
 /// google::protobuf::Struct.
 /// This stores structured data as a map where the keys can be thought of as member names.
@@ -269,8 +273,8 @@ extern template ProtoValue::ProtoValue(int) noexcept;
 extern template ProtoValue::ProtoValue(double) noexcept;
 extern template ProtoValue::ProtoValue(std::string) noexcept(
     std::is_nothrow_move_constructible<std::string>{});
-extern template ProtoValue::ProtoValue(std::vector<ProtoValue>) noexcept(
-    std::is_nothrow_move_constructible<std::vector<ProtoValue>>{});
+extern template ProtoValue::ProtoValue(ProtoList) noexcept(
+    std::is_nothrow_move_constructible<ProtoList>{});
 extern template ProtoValue::ProtoValue(ProtoStruct m) noexcept(
     std::is_nothrow_move_constructible<ProtoStruct>{});
 
@@ -285,16 +289,15 @@ extern template double ProtoValue::get_unchecked<double>() const;
 
 // -- Template specialization declarations of get_unchecked: string and recursive types -- //
 extern template std::string& ProtoValue::get_unchecked<std::string>() &;
-extern template std::vector<ProtoValue>& ProtoValue::get_unchecked<std::vector<ProtoValue>>() &;
+extern template ProtoList& ProtoValue::get_unchecked<ProtoList>() &;
 extern template ProtoStruct& ProtoValue::get_unchecked<ProtoStruct>() &;
 
 extern template std::string const& ProtoValue::get_unchecked<std::string>() const&;
-extern template std::vector<ProtoValue> const& ProtoValue::get_unchecked<std::vector<ProtoValue>>()
-    const&;
+extern template ProtoList const& ProtoValue::get_unchecked<ProtoList>() const&;
 extern template ProtoStruct const& ProtoValue::get_unchecked<ProtoStruct>() const&;
 
 extern template std::string&& ProtoValue::get_unchecked<std::string>() &&;
-extern template std::vector<ProtoValue>&& ProtoValue::get_unchecked<std::vector<ProtoValue>>() &&;
+extern template ProtoList&& ProtoValue::get_unchecked<ProtoList>() &&;
 extern template ProtoStruct&& ProtoValue::get_unchecked<ProtoStruct>() &&;
 
 void to_proto(std::nullptr_t, google::protobuf::Value* v);
@@ -302,7 +305,7 @@ void to_proto(bool b, google::protobuf::Value* v);
 void to_proto(int i, google::protobuf::Value* v);
 void to_proto(double d, google::protobuf::Value* v);
 void to_proto(std::string s, google::protobuf::Value* v);
-void to_proto(const std::vector<ProtoValue>& vec, google::protobuf::Value* v);
+void to_proto(const ProtoList& vec, google::protobuf::Value* v);
 void to_proto(const ProtoStruct& m, google::protobuf::Value* v);
 void to_proto(const ProtoValue& t, google::protobuf::Value* v);
 
@@ -376,7 +379,7 @@ struct kind<std::string> {
 };
 
 template <>
-struct kind<std::vector<ProtoValue>> {
+struct kind<ProtoList> {
     using type = KindConstant<ProtoValue::Kind::list>;
 };
 

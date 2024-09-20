@@ -21,8 +21,8 @@ template ProtoValue::ProtoValue(int) noexcept;
 template ProtoValue::ProtoValue(double) noexcept;
 template ProtoValue::ProtoValue(std::string) noexcept(
     std::is_nothrow_move_constructible<std::string>{});
-template ProtoValue::ProtoValue(std::vector<ProtoValue>) noexcept(
-    std::is_nothrow_move_constructible<std::vector<ProtoValue>>{});
+template ProtoValue::ProtoValue(ProtoList) noexcept(
+    std::is_nothrow_move_constructible<ProtoList>{});
 template ProtoValue::ProtoValue(ProtoStruct m) noexcept(
     std::is_nothrow_move_constructible<ProtoStruct>{});
 
@@ -47,7 +47,7 @@ ProtoValue::ProtoValue(const Value* value)  // NOLINT(misc-no-recursion)
                   return ProtoValue(v.number_value());
               }
               case Value::KindCase::kListValue: {
-                  std::vector<ProtoValue> vec;
+                  ProtoList vec;
                   vec.reserve(v.list_value().values_size());
                   for (const Value& list_val : v.list_value().values()) {
                       vec.push_back(ProtoValue::from_proto(list_val));
@@ -143,15 +143,15 @@ std::enable_if_t<!std::is_scalar<T>{}, T&&> ProtoValue::get_unchecked() && {
 }
 
 template std::string& ProtoValue::get_unchecked<std::string>() &;
-template std::vector<ProtoValue>& ProtoValue::get_unchecked<std::vector<ProtoValue>>() &;
+template ProtoList& ProtoValue::get_unchecked<ProtoList>() &;
 template ProtoStruct& ProtoValue::get_unchecked<ProtoStruct>() &;
 
 template std::string const& ProtoValue::get_unchecked<std::string>() const&;
-template std::vector<ProtoValue> const& ProtoValue::get_unchecked<std::vector<ProtoValue>>() const&;
+template ProtoList const& ProtoValue::get_unchecked<ProtoList>() const&;
 template ProtoStruct const& ProtoValue::get_unchecked<ProtoStruct>() const&;
 
 template std::string&& ProtoValue::get_unchecked<std::string>() &&;
-template std::vector<ProtoValue>&& ProtoValue::get_unchecked<std::vector<ProtoValue>>() &&;
+template ProtoList&& ProtoValue::get_unchecked<ProtoList>() &&;
 template ProtoStruct&& ProtoValue::get_unchecked<ProtoStruct>() &&;
 
 // --- ProtoT::model<T> definitions --- //
@@ -202,9 +202,9 @@ ProtoValue::storage::storage(T t) noexcept(std::is_nothrow_move_constructible<T>
     static_assert(alignof(T) <= local_storage_alignment,
                   "Type alignment too strict for local storage");
 
-    static_assert(sizeof(std::vector<void*>) == sizeof(std::vector<ProtoValue>),
+    static_assert(sizeof(std::vector<void*>) == sizeof(ProtoList),
                   "vector<ProtoValue> stand-in size mismatch");
-    static_assert(alignof(std::vector<void*>) == alignof(std::vector<ProtoValue>),
+    static_assert(alignof(std::vector<void*>) == alignof(ProtoList),
                   "vector<ProtoValue> stand-in alignment mismatch");
 
     static_assert(sizeof(std::unordered_map<std::string, void*>) == sizeof(ProtoStruct),
@@ -267,7 +267,7 @@ void to_proto(std::string s, Value* v) {
     v->set_string_value(std::move(s));
 }
 
-void to_proto(const std::vector<ProtoValue>& vec, Value* v) {
+void to_proto(const ProtoList& vec, Value* v) {
     ::google::protobuf::ListValue l;
     for (const auto& val : vec) {
         *l.add_values() = to_proto(val);

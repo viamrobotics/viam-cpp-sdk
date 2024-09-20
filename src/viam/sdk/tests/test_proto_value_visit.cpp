@@ -107,7 +107,7 @@ struct rvalue_visitor {
         return kind == ProtoValue::Kind::string;
     }
 
-    bool operator()(std::vector<ProtoValue>&&) && {
+    bool operator()(ProtoList&&) && {
         return kind == ProtoValue::Kind::list;
     }
 
@@ -136,8 +136,7 @@ BOOST_AUTO_TEST_CASE(test_visitor) {
         std::make_pair(ProtoValue::Kind::int_, 5),
         std::make_pair(ProtoValue::Kind::double_, 12.345),
         std::make_pair(ProtoValue::Kind::string, "meow"),
-        std::make_pair(ProtoValue::Kind::list,
-                       std::vector<ProtoValue>({{ProtoValue(1), ProtoValue("woof")}})),
+        std::make_pair(ProtoValue::Kind::list, ProtoList({{ProtoValue(1), ProtoValue("woof")}})),
         std::make_pair(ProtoValue::Kind::struct_, ProtoStruct({{"string", "str"}, {"int", 5}})));
 
     using visitors = mp_list<const_visitor, mutable_visitor, by_value_visitor, rvalue_visitor>;

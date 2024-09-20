@@ -66,14 +66,12 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
         /* integer not included, see above */
         std::make_pair(6.0, 7.5),
         std::make_pair(std::string("string"), std::string("different")),
-        std::make_pair(
-            std::vector<ProtoValue>({ProtoValue{"asdf"}}),
-            std::vector<ProtoValue>({ProtoValue{"asdf"}, ProtoValue{true}, ProtoValue{12.3}})),
-        std::make_pair(
-            ProtoStruct({{"ab", "cd"}}),
-            ProtoStruct({{"elem1", 5.0},
-                         {"elem2", "str"},
-                         {"vec", std::vector<ProtoValue>({ProtoValue{3.0}, ProtoValue{"str"}})}})));
+        std::make_pair(ProtoList({ProtoValue{"asdf"}}),
+                       ProtoList({ProtoValue{"asdf"}, ProtoValue{true}, ProtoValue{12.3}})),
+        std::make_pair(ProtoStruct({{"ab", "cd"}}),
+                       ProtoStruct({{"elem1", 5.0},
+                                    {"elem2", "str"},
+                                    {"vec", ProtoList({ProtoValue{3.0}, ProtoValue{"str"}})}})));
 
     boost::mp11::tuple_for_each(test_cases, [](auto test_pair) {
         using test_type = typename decltype(test_pair)::first_type;
@@ -137,10 +135,10 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
 }
 
 BOOST_AUTO_TEST_CASE(test_move_validity) {
-    auto test_cases = std::make_tuple(
-        std::string("str"),
-        std::vector<ProtoValue>{{ProtoValue("asdf"), ProtoValue(true)}},
-        ProtoStruct{{"asdf", true}, {"vec", std::vector<ProtoValue>{{ProtoValue(5)}}}});
+    auto test_cases =
+        std::make_tuple(std::string("str"),
+                        ProtoList{{ProtoValue("asdf"), ProtoValue(true)}},
+                        ProtoStruct{{"asdf", true}, {"vec", ProtoList{{ProtoValue(5)}}}});
 
     tuple_for_each(test_cases, [](auto test_elem) {
         using TestType = decltype(test_elem);
@@ -178,11 +176,10 @@ BOOST_AUTO_TEST_CASE(test_unchecked_access) {
 
     auto nonscalar_tests = std::make_tuple(
         std::make_pair(std::string("s1"), std::string("s2")),
-        std::make_pair(std::vector<ProtoValue>{{ProtoValue(1), ProtoValue("asdf")}},
-                       std::vector<ProtoValue>{{ProtoValue(false), ProtoValue(5.0)}}),
-        std::make_pair(
-            ProtoStruct{{"asdf", true}, {"vec", std::vector<ProtoValue>{{ProtoValue(5)}}}},
-            ProtoStruct{{"int", 5}, {"double", 6.0}}));
+        std::make_pair(ProtoList{{ProtoValue(1), ProtoValue("asdf")}},
+                       ProtoList{{ProtoValue(false), ProtoValue(5.0)}}),
+        std::make_pair(ProtoStruct{{"asdf", true}, {"vec", ProtoList{{ProtoValue(5)}}}},
+                       ProtoStruct{{"int", 5}, {"double", 6.0}}));
 
     tuple_for_each(std::tuple_cat(scalar_tests, nonscalar_tests), [](auto test_pair) {
         using test_type = typename decltype(test_pair)::first_type;
@@ -211,14 +208,14 @@ BOOST_AUTO_TEST_CASE(test_unchecked_access) {
     {
         // std::vector is the only of these containers with a guaranteed post-condition on move, so
         // we can use it to check that the rvalue overload is in fact being called
-        std::vector<ProtoValue> vec({{ProtoValue("asdf")}});
+        ProtoList vec({{ProtoValue("asdf")}});
 
         ProtoValue vec_proto(vec);
-        BOOST_CHECK(!vec_proto.get_unchecked<std::vector<ProtoValue>>().empty());
+        BOOST_CHECK(!vec_proto.get_unchecked<ProtoList>().empty());
 
-        auto vec2 = std::move(vec_proto).get_unchecked<std::vector<ProtoValue>>();
+        auto vec2 = std::move(vec_proto).get_unchecked<ProtoList>();
         BOOST_CHECK(vec2 == vec);
-        BOOST_CHECK(vec_proto.get_unchecked<std::vector<ProtoValue>>().empty());
+        BOOST_CHECK(vec_proto.get_unchecked<ProtoList>().empty());
     }
 }
 
@@ -226,7 +223,7 @@ BOOST_AUTO_TEST_CASE(test_nested_objects) {
     std::unordered_map<std::string, ProtoValue> map;
     map.insert({"double", 1.0});
 
-    std::vector<ProtoValue> vec;
+    ProtoList vec;
     vec.push_back(12.0);
     vec.push_back("asdf");
 
@@ -282,7 +279,7 @@ BOOST_AUTO_TEST_CASE(test_manual_list_conversion) {
         BOOST_CHECK(val == roundtrip);
     });
 
-    std::vector<ProtoValue> proto_vec;
+    ProtoList proto_vec;
     google::protobuf::ListValue lv;
 
     boost::mp11::tuple_for_each(test_cases, [&](auto test_val) {
@@ -297,7 +294,7 @@ BOOST_AUTO_TEST_CASE(test_manual_list_conversion) {
 
     {
         // check that we can cast and type check vector elements
-        const auto* ptr = proto.get<std::vector<ProtoValue>>();
+        const auto* ptr = proto.get<ProtoList>();
         BOOST_REQUIRE(ptr);
 
         using TupleType = decltype(test_cases);
