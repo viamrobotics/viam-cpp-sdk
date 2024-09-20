@@ -15,7 +15,7 @@ namespace sdk {
 namespace impl {
 
 CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)) {};
+    : ResourceServer(std::move(manager)){};
 
 ::grpc::Status CameraServer::DoCommand(::grpc::ServerContext*,
                                        const ::viam::common::v1::DoCommandRequest* request,

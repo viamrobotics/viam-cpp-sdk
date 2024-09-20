@@ -255,7 +255,7 @@ viam::component::camera::v1::DistortionParameters Camera::to_proto(
     return proto;
 }
 
-Camera::Camera(std::string name) : Component(std::move(name)) {};
+Camera::Camera(std::string name) : Component(std::move(name)){};
 
 bool operator==(const Camera::point_cloud& lhs, const Camera::point_cloud& rhs) {
     return lhs.mime_type == rhs.mime_type && lhs.pc == rhs.pc;
