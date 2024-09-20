@@ -9,7 +9,7 @@ namespace viam {
 namespace sdk {
 
 std::string sdk_version() {
-    static std::string result = [] {
+    static const std::string result = [] {
         std::string version_metadata(impl::k_version);
         version_metadata.erase(0, version_metadata.find(';') + 1);
         return version_metadata.substr(0, version_metadata.find(';'));
