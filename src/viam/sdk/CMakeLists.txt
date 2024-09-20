@@ -242,6 +242,9 @@ target_link_libraries(viamsdk
 
 if (APPLE)
   target_link_libraries(viamsdk PUBLIC "-framework Security")
+else()
+  target_link_libraries(viamsdk PRIVATE dl)
+  target_link_libraries(viamsdk PRIVATE rt)
 endif()
 
 
@@ -285,5 +288,6 @@ install(FILES
   COMPONENT viam-cpp-sdk_dev
 )
 
-
-add_subdirectory(tests)
+if (VIAMCPPSDK_BUILD_TESTS)
+  add_subdirectory(tests)
+endif()
