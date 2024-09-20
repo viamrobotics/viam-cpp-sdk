@@ -277,7 +277,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: releases/v${{ needs.prepare.outputs.version }}
-          files: builds/viam-cpp-sdk-*.tar.gz
+          files: viam-cpp-sdk-*.tar.gz
           draft: true
           prerelease: false
           fail_on_unmatched_files: true
