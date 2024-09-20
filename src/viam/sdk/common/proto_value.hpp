@@ -47,8 +47,22 @@ struct all_moves_noexcept
 /// A ProtoValue can be nullptr, bool, int, double, std::string, or, recursively, a vector or
 /// string-map of ProtoValue.
 /// This type is used at API/ABI boundaries for interfacing with grpc/proto code.
+/// @remark The (special) member function templates below all operate on a closed subset of types,
+/// so we provide explicit instantiations for all valid template types. See below the class
+/// definition.
 class ProtoValue {
    public:
+    /// @brief Type discriminator constants for possible values stored in a ProtoValue.
+    enum Kind {
+        k_null = 0,
+        k_bool = 1,
+        k_double = 2,
+        k_string = 3,
+        k_list = 4,
+        k_struct = 5,
+        k_int = 6
+    };
+
     /// @brief Construct a null object.
     ProtoValue() noexcept;
 
@@ -92,8 +106,8 @@ class ProtoValue {
     /// @name Value access API
     ///@{
 
-    /// @brief Obtain integer constant representing the stored data type.
-    int kind() const;
+    /// @brief Obtain enumerator constant representing the stored data type.
+    Kind kind() const;
 
     /// @brief Checks whether this ProtoT is an instance of type T.
     template <typename T>
@@ -110,22 +124,46 @@ class ProtoValue {
     template <typename T>
     T const* get() const;
 
+    /// @brief Return a reference to the underlying T, without checking.
+    /// @tparam T a bool, int, or double
+    template <typename T>
+    std::enable_if_t<std::is_scalar<T>{}, T&> get_unchecked();
+
+    /// @brief Return the underlying T by value, without checking.
+    /// @tparam T a bool, int, or double.
+    template <typename T>
+    std::enable_if_t<std::is_scalar<T>{}, T> get_unchecked() const;
+
+    /// @brief Return a mutable reference to the underlying T, without checking
+    /// @tparam T a std::string, ProtoList, or ProtoStruct.
+    template <typename T>
+    std::enable_if_t<!std::is_scalar<T>{}, T&> get_unchecked() &;
+
+    /// @brief Return an immutable reference to the underlying T, without checking.
+    /// @tparam T a std::string, ProtoList, or ProtoStruct.
+    template <typename T>
+    std::enable_if_t<!std::is_scalar<T>{}, T const&> get_unchecked() const&;
+
+    /// @brief Return an rvalue reference to the underlying T, without checking.
+    /// @tparam T a std::string, ProtoList, or ProtoStruct.
+    template <typename T>
+    std::enable_if_t<!std::is_scalar<T>{}, T&&> get_unchecked() &&;
+
     ///@}
 
    private:
     // This struct is our implementation of a virtual table, similar to what is created by the
     // compiler for polymorphic types. We can't use actual polymorphic types because the
     // implementation uses aligned stack storage, so we DIY it insted.
-    // The vtable can be thought of as defining a concept or interface which our ProtoValue types
-    // must satisfy.
-    // The first void [const]* parameter in any of the pointers below is always the `this` or `self`
-    // pointer.
+    // The vtable can be thought of as defining a concept or interface which our ProtoValue
+    // types must satisfy. The first void [const]* parameter in any of the pointers below is
+    // always the `this` or `self` pointer.
     struct vtable {
         void (*dtor)(void*);
         void (*copy)(void const*, void*);
         void (*move)(void*, void*);
         void (*to_proto)(void const*, google::protobuf::Value*);
-        int (*kind)();
+        Kind (*kind)();
         bool (*equal_to)(void const*, void const*, const vtable&);
     };
 
@@ -147,7 +185,7 @@ class ProtoValue {
 
         static void to_proto(void const* self, google::protobuf::Value* v);
 
-        static int kind() noexcept;
+        static Kind kind() noexcept;
 
         static bool equal_to(void const* self, void const* other, const vtable& other_vtable);
 
@@ -161,7 +199,7 @@ class ProtoValue {
     // implementation defers.
     struct storage {
         // Local storage in an aligned_union which can hold all the possible ProtoValue types, using
-        // stand-ins for std::vector<ProtoValue> and ProtoStruct which are not available until end
+        // stand-ins for ProtoList and ProtoStruct which are not available until end
         // of class definition.
         using BufType = std::aligned_union_t<0,
                                              std::nullptr_t,
@@ -227,17 +265,55 @@ class ProtoValue {
 template <typename T>
 constexpr ProtoValue::vtable ProtoValue::model<T>::vtable_;
 
+/// @brief Alias declaration for container of repeated ProtoValue, representing a
+/// google::protobuf::ListValue.
+using ProtoList = std::vector<ProtoValue>;
+
 /// @brief Alias declaration for map of string to type-erased ProtoValue representing
 /// google::protobuf::Struct.
 /// This stores structured data as a map where the keys can be thought of as member names.
 using ProtoStruct = std::unordered_map<std::string, ProtoValue>;
+
+// -- Template specialization declarations of by-value constructors -- //
+extern template ProtoValue::ProtoValue(std::nullptr_t) noexcept;
+extern template ProtoValue::ProtoValue(bool) noexcept;
+extern template ProtoValue::ProtoValue(int) noexcept;
+extern template ProtoValue::ProtoValue(double) noexcept;
+extern template ProtoValue::ProtoValue(std::string) noexcept(
+    std::is_nothrow_move_constructible<std::string>{});
+extern template ProtoValue::ProtoValue(ProtoList) noexcept(
+    std::is_nothrow_move_constructible<ProtoList>{});
+extern template ProtoValue::ProtoValue(ProtoStruct m) noexcept(
+    std::is_nothrow_move_constructible<ProtoStruct>{});
+
+// -- Template specialization declarations of get_unchecked: POD types -- //
+extern template bool& ProtoValue::get_unchecked<bool>();
+extern template int& ProtoValue::get_unchecked<int>();
+extern template double& ProtoValue::get_unchecked<double>();
+
+extern template bool ProtoValue::get_unchecked<bool>() const;
+extern template int ProtoValue::get_unchecked<int>() const;
+extern template double ProtoValue::get_unchecked<double>() const;
+
+// -- Template specialization declarations of get_unchecked: string and recursive types -- //
+extern template std::string& ProtoValue::get_unchecked<std::string>() &;
+extern template ProtoList& ProtoValue::get_unchecked<ProtoList>() &;
+extern template ProtoStruct& ProtoValue::get_unchecked<ProtoStruct>() &;
+
+extern template std::string const& ProtoValue::get_unchecked<std::string>() const&;
+extern template ProtoList const& ProtoValue::get_unchecked<ProtoList>() const&;
+extern template ProtoStruct const& ProtoValue::get_unchecked<ProtoStruct>() const&;
+
+extern template std::string&& ProtoValue::get_unchecked<std::string>() &&;
+extern template ProtoList&& ProtoValue::get_unchecked<ProtoList>() &&;
+extern template ProtoStruct&& ProtoValue::get_unchecked<ProtoStruct>() &&;
 
 void to_proto(std::nullptr_t, google::protobuf::Value* v);
 void to_proto(bool b, google::protobuf::Value* v);
 void to_proto(int i, google::protobuf::Value* v);
 void to_proto(double d, google::protobuf::Value* v);
 void to_proto(std::string s, google::protobuf::Value* v);
-void to_proto(const std::vector<ProtoValue>& vec, google::protobuf::Value* v);
+void to_proto(const ProtoList& vec, google::protobuf::Value* v);
 void to_proto(const ProtoStruct& m, google::protobuf::Value* v);
 void to_proto(const ProtoValue& t, google::protobuf::Value* v);
 
@@ -277,37 +353,54 @@ Struct map_to_struct(const ProtoStruct& m) {
     return s;
 }
 
-/// @brief ProtoValue RTTI type trait.
-/// This type trait is used to implement the ProtoValue::kind method which provides the type
-/// discriminator constant that is used in the value access API.
-/// A ProtoValue can only be constructed from types for which this trait is well formed.
+namespace proto_value_details {
+
 template <typename T>
-struct kind_t;
+struct kind {};
+
+template <ProtoValue::Kind k>
+using KindConstant = std::integral_constant<ProtoValue::Kind, k>;
 
 template <>
-struct kind_t<std::nullptr_t> : std::integral_constant<int, 0> {};
+struct kind<std::nullptr_t> {
+    using type = KindConstant<ProtoValue::Kind::k_null>;
+};
 
 template <>
-struct kind_t<bool> : std::integral_constant<int, 1> {};
+struct kind<bool> {
+    using type = KindConstant<ProtoValue::Kind::k_bool>;
+};
 
 template <>
-struct kind_t<int> : std::integral_constant<int, 2> {};
+struct kind<int> {
+    using type = KindConstant<ProtoValue::Kind::k_int>;
+};
 
 template <>
-struct kind_t<double> : std::integral_constant<int, 3> {};
+struct kind<double> {
+    using type = KindConstant<ProtoValue::Kind::k_double>;
+};
 
 template <>
-struct kind_t<std::string> : std::integral_constant<int, 4> {};
+struct kind<std::string> {
+    using type = KindConstant<ProtoValue::Kind::k_string>;
+};
 
 template <>
-struct kind_t<std::vector<ProtoValue>> : std::integral_constant<int, 5> {};
+struct kind<ProtoList> {
+    using type = KindConstant<ProtoValue::Kind::k_list>;
+};
 
 template <>
-struct kind_t<ProtoStruct> : std::integral_constant<int, 6> {};
+struct kind<ProtoStruct> {
+    using type = KindConstant<ProtoValue::Kind::k_struct>;
+};
+
+}  // namespace proto_value_details
 
 template <typename T>
 bool ProtoValue::is_a() const {
-    return kind_t<T>::value == kind();
+    return proto_value_details::kind<T>::type::value == kind();
 }
 
 template <typename T>
