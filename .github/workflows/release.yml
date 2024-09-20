@@ -83,10 +83,10 @@ jobs:
           tar -czvf builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz builds/viam-cpp-sdk-${{ matrix.platform }}
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: builds
-          path: builds
+          name: builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz
+          path: builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz
 
   build_linux_ubuntu_jammy:
     if: github.repository_owner == 'viamrobotics'
@@ -166,10 +166,10 @@ jobs:
           tar -czvf builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz builds/viam-cpp-sdk-${{ matrix.platform }}
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: builds
-          path: builds
+          name: builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz
+          path: builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz
 
 
   build_linux_debian:
@@ -265,10 +265,10 @@ jobs:
           tar -czvf builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz builds/viam-cpp-sdk-${{ matrix.platform }}
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: builds
-          path: builds
+          name: builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz
+          path: builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz
 
   release:
     needs: [prepare, build_macos, build_linux_debian, build_linux_ubuntu_jammy]
@@ -276,7 +276,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/download-artifact@v4.1.7
+      - uses: actions/download-artifact@v4
 
       - name: Release
         uses: softprops/action-gh-release@v1
