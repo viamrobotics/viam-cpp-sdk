@@ -34,7 +34,6 @@ auto visit(Visitor&& visitor, ProtoValue& value)
             return std::forward<Visitor>(visitor)(value.get_unchecked<std::vector<ProtoValue>>());
         case ProtoValue::Kind::struct_:
             return std::forward<Visitor>(visitor)(value.get_unchecked<ProtoStruct>());
-        default:
         case ProtoValue::Kind::null: {
             auto np = nullptr;
             return std::forward<Visitor>(visitor)(np);
@@ -58,7 +57,6 @@ auto visit(Visitor&& visitor, const ProtoValue& value)
             return std::forward<Visitor>(visitor)(value.get_unchecked<std::vector<ProtoValue>>());
         case ProtoValue::Kind::struct_:
             return std::forward<Visitor>(visitor)(value.get_unchecked<ProtoStruct>());
-        default:
         case ProtoValue::Kind::null: {
             const auto np = nullptr;
             return std::forward<Visitor>(visitor)(np);
@@ -83,7 +81,6 @@ auto visit(Visitor&& visitor, ProtoValue&& value)
                 std::move(value.get_unchecked<std::vector<ProtoValue>>()));
         case ProtoValue::Kind::struct_:
             return std::forward<Visitor>(visitor)(std::move(value.get_unchecked<ProtoStruct>()));
-        default:
         case ProtoValue::Kind::null:
             return std::forward<Visitor>(visitor)(std::nullptr_t());
     }
