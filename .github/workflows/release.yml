@@ -44,8 +44,8 @@ jobs:
         include:
           - target: aarch64-apple-darwin
             platform: macosx_arm64
-          # - target: x86_64-apple-darwin
-          #   platform: macosx_x86_64
+          - target: x86_64-apple-darwin
+            platform: macosx_x86_64
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -86,185 +86,185 @@ jobs:
           name: viam-cpp-sdk-${{ matrix.platform }}.tar.gz
           path: builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz
 
-  # build_linux_ubuntu_jammy:
-  #   needs: [prepare]
-  #   runs-on:  ${{ matrix.runs_on }}
-  #   container:
-  #     image: ${{ matrix.image }}
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       include:
-  #         - target: aarch64-ubuntu-jammy-gnu
-  #           platform: linux_aarch64-ubuntu-jammy
-  #           image: ubuntu:22.04
-  #           runs_on: buildjet-8vcpu-ubuntu-2204-arm
-  #         - target: x86_64-ubuntu-jammy-gnu
-  #           platform: linux_x86_64-ubuntu-jammy
-  #           image: ubuntu:22.04
-  #           runs_on: buildjet-8vcpu-ubuntu-2204
+  build_linux_ubuntu_jammy:
+    needs: [prepare]
+    runs-on:  ${{ matrix.runs_on }}
+    container:
+      image: ${{ matrix.image }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: aarch64-ubuntu-jammy-gnu
+            platform: linux_aarch64-ubuntu-jammy
+            image: ubuntu:22.04
+            runs_on: buildjet-8vcpu-ubuntu-2204-arm
+          - target: x86_64-ubuntu-jammy-gnu
+            platform: linux_x86_64-ubuntu-jammy
+            image: ubuntu:22.04
+            runs_on: buildjet-8vcpu-ubuntu-2204
 
-  #   steps:
-  #     - name: Checkout Code
-  #       uses: actions/checkout@v4
-  #       with:
-  #         ref: ${{ needs.prepare.outputs.sha }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.sha }}
 
-  #     - name: Install dependencies
-  #       run: |
-  #         apt-get update
-  #         apt-get -y dist-upgrade
-  #         DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
-  #             build-essential \
-  #             ca-certificates \
-  #             curl \
-  #             doxygen \
-  #             g++ \
-  #             gdb \
-  #             git \
-  #             gnupg \
-  #             gpg \
-  #             less \
-  #             libabsl-dev \
-  #             libboost-all-dev \
-  #             libgrpc++-dev \
-  #             libprotobuf-dev \
-  #             libssl-dev \
-  #             ninja-build \
-  #             pkg-config \
-  #             protobuf-compiler \
-  #             protobuf-compiler-grpc \
-  #             software-properties-common \
-  #             sudo \
-  #             wget \
+      - name: Install dependencies
+        run: |
+          apt-get update
+          apt-get -y dist-upgrade
+          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
+              build-essential \
+              ca-certificates \
+              curl \
+              doxygen \
+              g++ \
+              gdb \
+              git \
+              gnupg \
+              gpg \
+              less \
+              libabsl-dev \
+              libboost-all-dev \
+              libgrpc++-dev \
+              libprotobuf-dev \
+              libssl-dev \
+              ninja-build \
+              pkg-config \
+              protobuf-compiler \
+              protobuf-compiler-grpc \
+              software-properties-common \
+              sudo \
+              wget \
 
-  #         sudo wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
-  #         sudo echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null
+          sudo wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
+          sudo echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null
 
-  #         apt-get update
-  #         apt-get -y install cmake
+          apt-get update
+          apt-get -y install cmake
 
-  #     - name: Setup build directory
-  #       run: mkdir builds
+      - name: Setup build directory
+        run: mkdir builds
 
-  #     - name: Build
-  #       shell: bash
-  #       run: |
-  #         mkdir build
-  #         /usr/bin/cmake -S . -B build -G Ninja
-  #         /usr/bin/cmake --build build --target all install -- -v -j 3
+      - name: Build
+        shell: bash
+        run: |
+          mkdir build
+          /usr/bin/cmake -S . -B build -G Ninja
+          /usr/bin/cmake --build build --target all install -- -v -j 3
 
-  #     - name: Copy
-  #       run: |
-  #         /usr/bin/cmake --install build --prefix builds/viam-cpp-sdk-${{ matrix.platform }}
+      - name: Copy
+        run: |
+          /usr/bin/cmake --install build --prefix builds/viam-cpp-sdk-${{ matrix.platform }}
 
-  #     - name: Create tar
-  #       run: |
-  #         tar -czvf builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz builds/viam-cpp-sdk-${{ matrix.platform }}
+      - name: Create tar
+        run: |
+          tar -czvf builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz builds/viam-cpp-sdk-${{ matrix.platform }}
 
-  #     - name: Upload artifacts
-  #       uses: actions/upload-artifact@v4
-  #       with:
-  #         name: viam-cpp-sdk-${{ matrix.platform }}.tar.gz
-  #         path: builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: viam-cpp-sdk-${{ matrix.platform }}.tar.gz
+          path: builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz
 
 
-  # build_linux_debian:
-  #   needs: [prepare]
-  #   runs-on:  ${{ matrix.runs_on }}
-  #   container:
-  #     image: ${{ matrix.image }}
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       include:
-  #         - target: aarch64-debian-bullseye
-  #           platform: linux_aarch64-debian-bullseye
-  #           image: debian:bullseye
-  #           runs_on: buildjet-8vcpu-ubuntu-2204-arm
-  #         - target: x86_64-debian-bullseye
-  #           platform: linux_x86_64-debian-bullseye
-  #           image: debian:bullseye
-  #           runs_on: buildjet-8vcpu-ubuntu-2204
-  #         - target: aarch64-debian-bookworm
-  #           platform: linux_aarch64-debian-bookworm
-  #           image: debian:bookworm
-  #           runs_on: buildjet-8vcpu-ubuntu-2204-arm
-  #         - target: x86_64-debian-bookworm
-  #           platform: linux_x86_64-debian-bookworm
-  #           image: debian:bookworm
-  #           runs_on: buildjet-8vcpu-ubuntu-2204
+  build_linux_debian:
+    needs: [prepare]
+    runs-on:  ${{ matrix.runs_on }}
+    container:
+      image: ${{ matrix.image }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: aarch64-debian-bullseye
+            platform: linux_aarch64-debian-bullseye
+            image: debian:bullseye
+            runs_on: buildjet-8vcpu-ubuntu-2204-arm
+          - target: x86_64-debian-bullseye
+            platform: linux_x86_64-debian-bullseye
+            image: debian:bullseye
+            runs_on: buildjet-8vcpu-ubuntu-2204
+          - target: aarch64-debian-bookworm
+            platform: linux_aarch64-debian-bookworm
+            image: debian:bookworm
+            runs_on: buildjet-8vcpu-ubuntu-2204-arm
+          - target: x86_64-debian-bookworm
+            platform: linux_x86_64-debian-bookworm
+            image: debian:bookworm
+            runs_on: buildjet-8vcpu-ubuntu-2204
 
-  #   steps:
-  #     - name: Checkout Code
-  #       uses: actions/checkout@v4
-  #       with:
-  #         ref: ${{ needs.prepare.outputs.sha }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.sha }}
 
-  #     - name: Install dependencies
-  #       run: |
-  #         apt-get update
-  #         apt-get -y dist-upgrade
-  #         DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
-  #             build-essential \
-  #             ca-certificates \
-  #             cmake \
-  #             curl \
-  #             doxygen \
-  #             g++ \
-  #             gdb \
-  #             git \
-  #             gnupg \
-  #             gpg \
-  #             less \
-  #             libabsl-dev \
-  #             libboost-all-dev \
-  #             libc-ares-dev \
-  #             libgrpc++-dev \
-  #             libprotobuf-dev \
-  #             libre2-dev \
-  #             libssl-dev \
-  #             ninja-build \
-  #             pkg-config \
-  #             protobuf-compiler-grpc \
-  #             software-properties-common \
-  #             sudo \
-  #             wget \
-  #             zlib1g-dev
+      - name: Install dependencies
+        run: |
+          apt-get update
+          apt-get -y dist-upgrade
+          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
+              build-essential \
+              ca-certificates \
+              cmake \
+              curl \
+              doxygen \
+              g++ \
+              gdb \
+              git \
+              gnupg \
+              gpg \
+              less \
+              libabsl-dev \
+              libboost-all-dev \
+              libc-ares-dev \
+              libgrpc++-dev \
+              libprotobuf-dev \
+              libre2-dev \
+              libssl-dev \
+              ninja-build \
+              pkg-config \
+              protobuf-compiler-grpc \
+              software-properties-common \
+              sudo \
+              wget \
+              zlib1g-dev
 
-  #     - name: Update CMake for bullseye
-  #       if: ${{ matrix.image  == 'debian:bullseye' }}
-  #       run: |
-  #         apt-add-repository -y 'deb http://deb.debian.org/debian bullseye-backports main'
+      - name: Update CMake for bullseye
+        if: ${{ matrix.image  == 'debian:bullseye' }}
+        run: |
+          apt-add-repository -y 'deb http://deb.debian.org/debian bullseye-backports main'
 
-  #         apt-get update
-  #         apt-get -y install cmake
+          apt-get update
+          apt-get -y install cmake
 
-  #         apt-get -y --no-install-recommends install -t bullseye-backports cmake
+          apt-get -y --no-install-recommends install -t bullseye-backports cmake
 
-  #     - name: Setup build directory
-  #       run: mkdir builds
+      - name: Setup build directory
+        run: mkdir builds
 
-  #     - name: Build
-  #       shell: bash
-  #       run: |
-  #         mkdir build
-  #         /usr/bin/cmake -S . -B build -G Ninja
-  #         /usr/bin/cmake --build build --target all install -- -v -j 3
+      - name: Build
+        shell: bash
+        run: |
+          mkdir build
+          /usr/bin/cmake -S . -B build -G Ninja
+          /usr/bin/cmake --build build --target all install -- -v -j 3
 
-  #     - name: Copy
-  #       run: |
-  #         /usr/bin/cmake --install build --prefix builds/viam-cpp-sdk-${{ matrix.platform }}
+      - name: Copy
+        run: |
+          /usr/bin/cmake --install build --prefix builds/viam-cpp-sdk-${{ matrix.platform }}
 
-  #     - name: Create tar
-  #       run: |
-  #         tar -czvf builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz builds/viam-cpp-sdk-${{ matrix.platform }}
+      - name: Create tar
+        run: |
+          tar -czvf builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz builds/viam-cpp-sdk-${{ matrix.platform }}
 
-  #     - name: Upload artifacts
-  #       uses: actions/upload-artifact@v4
-  #       with:
-  #         name: viam-cpp-sdk-${{ matrix.platform }}.tar.gz
-  #         path: builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: viam-cpp-sdk-${{ matrix.platform }}.tar.gz
+          path: builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz
 
   release:
     needs: [prepare, build_macos]
