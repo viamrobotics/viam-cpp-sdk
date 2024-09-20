@@ -9,6 +9,7 @@ permissions:
 
 jobs:
   prepare:
+    if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.which_version.outputs.version }}
@@ -36,6 +37,7 @@ jobs:
         if: steps.release_exists.outputs.id != ''
 
   build_macos:
+    if: github.repository_owner == 'viamrobotics'
     needs: [prepare]
     runs-on: macos-latest
     strategy:
@@ -87,6 +89,7 @@ jobs:
           path: builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz
 
   build_linux_ubuntu_jammy:
+    if: github.repository_owner == 'viamrobotics'
     needs: [prepare]
     runs-on:  ${{ matrix.runs_on }}
     container:
@@ -170,6 +173,7 @@ jobs:
 
 
   build_linux_debian:
+    if: github.repository_owner == 'viamrobotics'
     needs: [prepare]
     runs-on:  ${{ matrix.runs_on }}
     container:
@@ -267,7 +271,8 @@ jobs:
           path: builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz
 
   release:
-    needs: [prepare, build_macos]
+    needs: [prepare, build_macos, build_linux_debian, build_linux_ubuntu_jammy]
+    if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
 
     steps:
