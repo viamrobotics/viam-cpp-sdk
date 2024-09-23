@@ -69,7 +69,6 @@ jobs:
               doxygen \
               g++ \
               gdb \
-              git \
               gnupg \
               gpg \
               less \
@@ -135,7 +134,6 @@ jobs:
               curl \
               g++ \
               gdb \
-              git \
               gnupg \
               gpg \
               less \
