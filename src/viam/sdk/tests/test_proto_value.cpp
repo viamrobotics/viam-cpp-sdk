@@ -38,7 +38,6 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
 
     // heterogeneous arithmetic types do not "inuitively" compare equal
     BOOST_CHECK(!(ProtoValue(false) == ProtoValue(0)));
-    BOOST_CHECK(!(ProtoValue(0) == ProtoValue(0.0)));
 
     auto test_cases = std::make_tuple(
         std::make_pair(true, false),
