@@ -14,7 +14,6 @@
 
 enable_testing()
 
-include(viamcppsdk_utils)
 add_library(viamsdk_test)
 
 target_sources(viamsdk_test
@@ -59,6 +58,8 @@ viamcppsdk_add_boost_test(test_motion.cpp)
 viamcppsdk_add_boost_test(test_movement_sensor.cpp)
 viamcppsdk_add_boost_test(test_pose_tracker.cpp)
 viamcppsdk_add_boost_test(test_power_sensor.cpp)
+viamcppsdk_add_boost_test(test_proto_value.cpp)
+viamcppsdk_add_boost_test(test_proto_value_visit.cpp)
 viamcppsdk_add_boost_test(test_resource.cpp)
 viamcppsdk_add_boost_test(test_sensor.cpp)
 viamcppsdk_add_boost_test(test_servo.cpp)
