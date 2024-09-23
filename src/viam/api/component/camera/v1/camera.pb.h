@@ -2396,6 +2396,7 @@ class GetPropertiesResponse final :
     kIntrinsicParametersFieldNumber = 2,
     kDistortionParametersFieldNumber = 3,
     kSupportsPcdFieldNumber = 1,
+    kFrameRateFieldNumber = 5,
   };
   // repeated string mime_types = 4 [json_name = "mimeTypes"];
   int mime_types_size() const;
@@ -2465,13 +2466,24 @@ class GetPropertiesResponse final :
   void _internal_set_supports_pcd(bool value);
 
   public:
+  // optional float frame_rate = 5 [json_name = "frameRate"];
+  bool has_frame_rate() const;
+  void clear_frame_rate() ;
+  float frame_rate() const;
+  void set_frame_rate(float value);
+
+  private:
+  float _internal_frame_rate() const;
+  void _internal_set_frame_rate(float value);
+
+  public:
   // @@protoc_insertion_point(class_scope:viam.component.camera.v1.GetPropertiesResponse)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 4, 2,
+      3, 5, 2,
       65, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -2494,6 +2506,7 @@ class GetPropertiesResponse final :
     ::viam::component::camera::v1::IntrinsicParameters* intrinsic_parameters_;
     ::viam::component::camera::v1::DistortionParameters* distortion_parameters_;
     bool supports_pcd_;
+    float frame_rate_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -4862,6 +4875,34 @@ inline ::google::protobuf::RepeatedPtrField<std::string>*
 GetPropertiesResponse::_internal_mutable_mime_types() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.mime_types_;
+}
+
+// optional float frame_rate = 5 [json_name = "frameRate"];
+inline bool GetPropertiesResponse::has_frame_rate() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline void GetPropertiesResponse::clear_frame_rate() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.frame_rate_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline float GetPropertiesResponse::frame_rate() const {
+  // @@protoc_insertion_point(field_get:viam.component.camera.v1.GetPropertiesResponse.frame_rate)
+  return _internal_frame_rate();
+}
+inline void GetPropertiesResponse::set_frame_rate(float value) {
+  _internal_set_frame_rate(value);
+  // @@protoc_insertion_point(field_set:viam.component.camera.v1.GetPropertiesResponse.frame_rate)
+}
+inline float GetPropertiesResponse::_internal_frame_rate() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.frame_rate_;
+}
+inline void GetPropertiesResponse::_internal_set_frame_rate(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.frame_rate_ = value;
 }
 
 // -------------------------------------------------------------------

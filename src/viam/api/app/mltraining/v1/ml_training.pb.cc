@@ -98,42 +98,18 @@ struct SubmitCustomTrainingJobResponseDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SubmitCustomTrainingJobResponseDefaultTypeInternal _SubmitCustomTrainingJobResponse_default_instance_;
-
-inline constexpr SubmitCustomTrainingJobRequest::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : dataset_id_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        registry_item_id_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        organization_id_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        model_name_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        model_version_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        registry_item_version_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR SubmitCustomTrainingJobRequest::SubmitCustomTrainingJobRequest(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct SubmitCustomTrainingJobRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR SubmitCustomTrainingJobRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~SubmitCustomTrainingJobRequestDefaultTypeInternal() {}
+      template <typename>
+PROTOBUF_CONSTEXPR SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse::SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse(::_pbi::ConstantInitialized) {}
+struct SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUseDefaultTypeInternal() {}
   union {
-    SubmitCustomTrainingJobRequest _instance;
+    SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SubmitCustomTrainingJobRequestDefaultTypeInternal _SubmitCustomTrainingJobRequest_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUseDefaultTypeInternal _SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse_default_instance_;
 
 inline constexpr ListTrainingJobsRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -293,6 +269,43 @@ struct TrainingJobLogEntryDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TrainingJobLogEntryDefaultTypeInternal _TrainingJobLogEntry_default_instance_;
 
+inline constexpr SubmitCustomTrainingJobRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : arguments_{},
+        dataset_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        registry_item_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        organization_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        model_name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        model_version_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        registry_item_version_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SubmitCustomTrainingJobRequest::SubmitCustomTrainingJobRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct SubmitCustomTrainingJobRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SubmitCustomTrainingJobRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SubmitCustomTrainingJobRequestDefaultTypeInternal() {}
+  union {
+    SubmitCustomTrainingJobRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SubmitCustomTrainingJobRequestDefaultTypeInternal _SubmitCustomTrainingJobRequest_default_instance_;
+
 inline constexpr TrainingJobMetadata::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -408,7 +421,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 }  // namespace mltraining
 }  // namespace app
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[16];
+static ::_pb::Metadata file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[17];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[3];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_app_2fmltraining_2fv1_2fml_5ftraining_2eproto = nullptr;
@@ -437,6 +450,18 @@ const ::uint32_t TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto::offs
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitTrainingJobResponse, _impl_.id_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse, _has_bits_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse, key_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse, value_),
+    0,
+    1,
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -451,6 +476,7 @@ const ::uint32_t TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto::offs
     PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, _impl_.organization_id_),
     PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, _impl_.model_name_),
     PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, _impl_.model_version_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, _impl_.arguments_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -618,25 +644,27 @@ static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::viam::app::mltraining::v1::SubmitTrainingJobRequest)},
         {14, -1, -1, sizeof(::viam::app::mltraining::v1::SubmitTrainingJobResponse)},
-        {23, -1, -1, sizeof(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest)},
-        {37, -1, -1, sizeof(::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse)},
-        {46, -1, -1, sizeof(::viam::app::mltraining::v1::GetTrainingJobRequest)},
-        {55, 64, -1, sizeof(::viam::app::mltraining::v1::GetTrainingJobResponse)},
-        {65, -1, -1, sizeof(::viam::app::mltraining::v1::ListTrainingJobsRequest)},
-        {75, -1, -1, sizeof(::viam::app::mltraining::v1::ListTrainingJobsResponse)},
-        {84, 110, -1, sizeof(::viam::app::mltraining::v1::TrainingJobMetadata)},
-        {128, -1, -1, sizeof(::viam::app::mltraining::v1::CancelTrainingJobRequest)},
-        {137, -1, -1, sizeof(::viam::app::mltraining::v1::CancelTrainingJobResponse)},
-        {145, -1, -1, sizeof(::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest)},
-        {154, -1, -1, sizeof(::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse)},
-        {162, 173, -1, sizeof(::viam::app::mltraining::v1::TrainingJobLogEntry)},
-        {176, 186, -1, sizeof(::viam::app::mltraining::v1::GetTrainingJobLogsRequest)},
-        {188, -1, -1, sizeof(::viam::app::mltraining::v1::GetTrainingJobLogsResponse)},
+        {23, 33, -1, sizeof(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse)},
+        {35, -1, -1, sizeof(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest)},
+        {50, -1, -1, sizeof(::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse)},
+        {59, -1, -1, sizeof(::viam::app::mltraining::v1::GetTrainingJobRequest)},
+        {68, 77, -1, sizeof(::viam::app::mltraining::v1::GetTrainingJobResponse)},
+        {78, -1, -1, sizeof(::viam::app::mltraining::v1::ListTrainingJobsRequest)},
+        {88, -1, -1, sizeof(::viam::app::mltraining::v1::ListTrainingJobsResponse)},
+        {97, 123, -1, sizeof(::viam::app::mltraining::v1::TrainingJobMetadata)},
+        {141, -1, -1, sizeof(::viam::app::mltraining::v1::CancelTrainingJobRequest)},
+        {150, -1, -1, sizeof(::viam::app::mltraining::v1::CancelTrainingJobResponse)},
+        {158, -1, -1, sizeof(::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest)},
+        {167, -1, -1, sizeof(::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse)},
+        {175, 186, -1, sizeof(::viam::app::mltraining::v1::TrainingJobLogEntry)},
+        {189, 199, -1, sizeof(::viam::app::mltraining::v1::GetTrainingJobLogsRequest)},
+        {201, -1, -1, sizeof(::viam::app::mltraining::v1::GetTrainingJobLogsResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
     &::viam::app::mltraining::v1::_SubmitTrainingJobRequest_default_instance_._instance,
     &::viam::app::mltraining::v1::_SubmitTrainingJobResponse_default_instance_._instance,
+    &::viam::app::mltraining::v1::_SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse_default_instance_._instance,
     &::viam::app::mltraining::v1::_SubmitCustomTrainingJobRequest_default_instance_._instance,
     &::viam::app::mltraining::v1::_SubmitCustomTrainingJobResponse_default_instance_._instance,
     &::viam::app::mltraining::v1::_GetTrainingJobRequest_default_instance_._instance,
@@ -670,7 +698,7 @@ const char descriptor_table_protodef_app_2fmltraining_2fv1_2fml_5ftraining_2epro
     "on:\"model_type\" json:\"model_type\"R\tmodel"
     "Type\0220\n\004tags\030\006 \003(\tB\034\232\204\236\003\027bson:\"tags\" jso"
     "n:\"tags\"R\004tagsJ\004\010\001\020\002R\006filter\"+\n\031SubmitTr"
-    "ainingJobResponse\022\016\n\002id\030\001 \001(\tR\002id\"\270\004\n\036Su"
+    "ainingJobResponse\022\016\n\002id\030\001 \001(\tR\002id\"\333\005\n\036Su"
     "bmitCustomTrainingJobRequest\022G\n\ndataset_"
     "id\030\001 \001(\tB(\232\204\236\003#bson:\"dataset_id\" json:\"d"
     "ataset_id\"R\tdatasetId\022^\n\020registry_item_i"
@@ -685,116 +713,120 @@ const char descriptor_table_protodef_app_2fmltraining_2fv1_2fml_5ftraining_2epro
     "odel_name\" json:\"model_name\"R\tmodelName\022"
     "S\n\rmodel_version\030\005 \001(\tB.\232\204\236\003)bson:\"model"
     "_version\" json:\"model_version\"R\014modelVer"
-    "sion\"1\n\037SubmitCustomTrainingJobResponse\022"
-    "\016\n\002id\030\001 \001(\tR\002id\"\'\n\025GetTrainingJobRequest"
-    "\022\016\n\002id\030\001 \001(\tR\002id\"a\n\026GetTrainingJobRespon"
-    "se\022G\n\010metadata\030\001 \001(\0132+.viam.app.mltraini"
-    "ng.v1.TrainingJobMetadataR\010metadata\"\202\001\n\027"
-    "ListTrainingJobsRequest\022\'\n\017organization_"
-    "id\030\001 \001(\tR\016organizationId\022>\n\006status\030\002 \001(\016"
-    "2&.viam.app.mltraining.v1.TrainingStatus"
-    "R\006status\"[\n\030ListTrainingJobsResponse\022\?\n\004"
-    "jobs\030\001 \003(\0132+.viam.app.mltraining.v1.Trai"
-    "ningJobMetadataR\004jobs\"\346\r\n\023TrainingJobMet"
-    "adata\0223\n\002id\030\007 \001(\tB#\232\204\236\003\036bson:\"_id\" json:"
-    "\"id,omitempty\"R\002id\022G\n\ndataset_id\030\013 \001(\tB("
-    "\232\204\236\003#bson:\"dataset_id\" json:\"dataset_id\""
-    "R\tdatasetId\022[\n\017organization_id\030\014 \001(\tB2\232\204"
-    "\236\003-bson:\"organization_id\" json:\"organiza"
-    "tion_id\"R\016organizationId\022G\n\nmodel_name\030\r"
-    " \001(\tB(\232\204\236\003#bson:\"model_name\" json:\"model"
-    "_name\"R\tmodelName\022S\n\rmodel_version\030\016 \001(\t"
-    "B.\232\204\236\003)bson:\"model_version\" json:\"model_"
-    "version\"R\014modelVersion\022j\n\nmodel_type\030\017 \001"
-    "(\0162!.viam.app.mltraining.v1.ModelTypeB(\232"
-    "\204\236\003#bson:\"model_type\" json:\"model_type\"R"
-    "\tmodelType\022\203\001\n\017model_framework\030\021 \001(\0162&.v"
-    "iam.app.mltraining.v1.ModelFrameworkB2\232\204"
-    "\236\003-bson:\"model_framework\" json:\"model_fr"
-    "amework\"R\016modelFramework\022R\n\ris_custom_jo"
-    "b\030\022 \001(\010B.\232\204\236\003)bson:\"is_custom_job\" json:"
-    "\"is_custom_job\"R\013isCustomJob\022^\n\020registry"
-    "_item_id\030\023 \001(\tB4\232\204\236\003/bson:\"registry_item"
-    "_id\" json:\"registry_item_id\"R\016registryIt"
-    "emId\022r\n\025registry_item_version\030\024 \001(\tB>\232\204\236"
-    "\0039bson:\"registry_item_version\" json:\"reg"
-    "istry_item_version\"R\023registryItemVersion"
-    "\022`\n\006status\030\002 \001(\0162&.viam.app.mltraining.v"
-    "1.TrainingStatusB \232\204\236\003\033bson:\"status\" jso"
-    "n:\"status\"R\006status\022c\n\014error_status\030\010 \001(\013"
-    "2\022.google.rpc.StatusB,\232\204\236\003\'bson:\"error_s"
-    "tatus\" json:\"error_status\"R\013errorStatus\022"
-    "c\n\ncreated_on\030\003 \001(\0132\032.google.protobuf.Ti"
-    "mestampB(\232\204\236\003#bson:\"created_on\" json:\"cr"
-    "eated_on\"R\tcreatedOn\022o\n\rlast_modified\030\004 "
-    "\001(\0132\032.google.protobuf.TimestampB.\232\204\236\003)bs"
-    "on:\"last_modified\" json:\"last_modified\"R"
-    "\014lastModified\022{\n\020training_started\030\t \001(\0132"
-    "\032.google.protobuf.TimestampB4\232\204\236\003/bson:\""
-    "training_started\" json:\"training_started"
-    "\"R\017trainingStarted\022s\n\016training_ended\030\n \001"
-    "(\0132\032.google.protobuf.TimestampB0\232\204\236\003+bso"
-    "n:\"training_ended\" json:\"training_ended\""
-    "R\rtrainingEnded\022Z\n\017synced_model_id\030\005 \001(\t"
-    "B2\232\204\236\003-bson:\"synced_model_id\" json:\"sync"
-    "ed_model_id\"R\rsyncedModelId\0220\n\004tags\030\020 \003("
-    "\tB\034\232\204\236\003\027bson:\"tags\" json:\"tags\"R\004tagsJ\004\010"
-    "\001\020\002J\004\010\006\020\007R\007requestR\nuser_email\"*\n\030Cancel"
-    "TrainingJobRequest\022\016\n\002id\030\001 \001(\tR\002id\"\033\n\031Ca"
-    "ncelTrainingJobResponse\"3\n!DeleteComplet"
-    "edTrainingJobRequest\022\016\n\002id\030\001 \001(\tR\002id\"$\n\""
-    "DeleteCompletedTrainingJobResponse\"u\n\023Tr"
-    "ainingJobLogEntry\022\024\n\005level\030\001 \001(\tR\005level\022"
-    ".\n\004time\030\002 \001(\0132\032.google.protobuf.Timestam"
-    "pR\004time\022\030\n\007message\030\003 \001(\tR\007message\"^\n\031Get"
-    "TrainingJobLogsRequest\022\016\n\002id\030\001 \001(\tR\002id\022\""
-    "\n\npage_token\030\002 \001(\tH\000R\tpageToken\210\001\001B\r\n\013_p"
-    "age_token\"\205\001\n\032GetTrainingJobLogsResponse"
-    "\022\?\n\004logs\030\001 \003(\0132+.viam.app.mltraining.v1."
-    "TrainingJobLogEntryR\004logs\022&\n\017next_page_t"
-    "oken\030\002 \001(\tR\rnextPageToken*\237\001\n\tModelType\022"
-    "\032\n\026MODEL_TYPE_UNSPECIFIED\020\000\022*\n&MODEL_TYP"
-    "E_SINGLE_LABEL_CLASSIFICATION\020\001\022)\n%MODEL"
-    "_TYPE_MULTI_LABEL_CLASSIFICATION\020\002\022\037\n\033MO"
-    "DEL_TYPE_OBJECT_DETECTION\020\003*\244\001\n\016ModelFra"
-    "mework\022\037\n\033MODEL_FRAMEWORK_UNSPECIFIED\020\000\022"
-    "\032\n\026MODEL_FRAMEWORK_TFLITE\020\001\022\036\n\032MODEL_FRA"
-    "MEWORK_TENSORFLOW\020\002\022\033\n\027MODEL_FRAMEWORK_P"
-    "YTORCH\020\003\022\030\n\024MODEL_FRAMEWORK_ONNX\020\004*\347\001\n\016T"
-    "rainingStatus\022\037\n\033TRAINING_STATUS_UNSPECI"
-    "FIED\020\000\022\033\n\027TRAINING_STATUS_PENDING\020\001\022\037\n\033T"
-    "RAINING_STATUS_IN_PROGRESS\020\002\022\035\n\031TRAINING"
-    "_STATUS_COMPLETED\020\003\022\032\n\026TRAINING_STATUS_F"
-    "AILED\020\004\022\034\n\030TRAINING_STATUS_CANCELED\020\005\022\035\n"
-    "\031TRAINING_STATUS_CANCELING\020\0062\217\007\n\021MLTrain"
-    "ingService\022x\n\021SubmitTrainingJob\0220.viam.a"
-    "pp.mltraining.v1.SubmitTrainingJobReques"
-    "t\0321.viam.app.mltraining.v1.SubmitTrainin"
-    "gJobResponse\022\212\001\n\027SubmitCustomTrainingJob"
-    "\0226.viam.app.mltraining.v1.SubmitCustomTr"
-    "ainingJobRequest\0327.viam.app.mltraining.v"
-    "1.SubmitCustomTrainingJobResponse\022o\n\016Get"
-    "TrainingJob\022-.viam.app.mltraining.v1.Get"
-    "TrainingJobRequest\032..viam.app.mltraining"
-    ".v1.GetTrainingJobResponse\022u\n\020ListTraini"
-    "ngJobs\022/.viam.app.mltraining.v1.ListTrai"
-    "ningJobsRequest\0320.viam.app.mltraining.v1"
-    ".ListTrainingJobsResponse\022x\n\021CancelTrain"
-    "ingJob\0220.viam.app.mltraining.v1.CancelTr"
-    "ainingJobRequest\0321.viam.app.mltraining.v"
-    "1.CancelTrainingJobResponse\022\223\001\n\032DeleteCo"
-    "mpletedTrainingJob\0229.viam.app.mltraining"
-    ".v1.DeleteCompletedTrainingJobRequest\032:."
-    "viam.app.mltraining.v1.DeleteCompletedTr"
-    "ainingJobResponse\022{\n\022GetTrainingJobLogs\022"
-    "1.viam.app.mltraining.v1.GetTrainingJobL"
-    "ogsRequest\0322.viam.app.mltraining.v1.GetT"
-    "rainingJobLogsResponseB\313\001\n\032com.viam.app."
-    "mltraining.v1B\017MlTrainingProtoP\001Z!go.via"
-    "m.com/api/app/mltraining/v1\242\002\003VAM\252\002\026Viam"
-    ".App.Mltraining.V1\312\002\026Viam\\App\\Mltraining"
-    "\\V1\342\002\"Viam\\App\\Mltraining\\V1\\GPBMetadata"
-    "\352\002\031Viam::App::Mltraining::V1b\006proto3"
+    "sion\022c\n\targuments\030\007 \003(\0132E.viam.app.mltra"
+    "ining.v1.SubmitCustomTrainingJobRequest."
+    "ArgumentsEntryR\targuments\032<\n\016ArgumentsEn"
+    "try\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005va"
+    "lue:\0028\001\"1\n\037SubmitCustomTrainingJobRespon"
+    "se\022\016\n\002id\030\001 \001(\tR\002id\"\'\n\025GetTrainingJobRequ"
+    "est\022\016\n\002id\030\001 \001(\tR\002id\"a\n\026GetTrainingJobRes"
+    "ponse\022G\n\010metadata\030\001 \001(\0132+.viam.app.mltra"
+    "ining.v1.TrainingJobMetadataR\010metadata\"\202"
+    "\001\n\027ListTrainingJobsRequest\022\'\n\017organizati"
+    "on_id\030\001 \001(\tR\016organizationId\022>\n\006status\030\002 "
+    "\001(\0162&.viam.app.mltraining.v1.TrainingSta"
+    "tusR\006status\"[\n\030ListTrainingJobsResponse\022"
+    "\?\n\004jobs\030\001 \003(\0132+.viam.app.mltraining.v1.T"
+    "rainingJobMetadataR\004jobs\"\346\r\n\023TrainingJob"
+    "Metadata\0223\n\002id\030\007 \001(\tB#\232\204\236\003\036bson:\"_id\" js"
+    "on:\"id,omitempty\"R\002id\022G\n\ndataset_id\030\013 \001("
+    "\tB(\232\204\236\003#bson:\"dataset_id\" json:\"dataset_"
+    "id\"R\tdatasetId\022[\n\017organization_id\030\014 \001(\tB"
+    "2\232\204\236\003-bson:\"organization_id\" json:\"organ"
+    "ization_id\"R\016organizationId\022G\n\nmodel_nam"
+    "e\030\r \001(\tB(\232\204\236\003#bson:\"model_name\" json:\"mo"
+    "del_name\"R\tmodelName\022S\n\rmodel_version\030\016 "
+    "\001(\tB.\232\204\236\003)bson:\"model_version\" json:\"mod"
+    "el_version\"R\014modelVersion\022j\n\nmodel_type\030"
+    "\017 \001(\0162!.viam.app.mltraining.v1.ModelType"
+    "B(\232\204\236\003#bson:\"model_type\" json:\"model_typ"
+    "e\"R\tmodelType\022\203\001\n\017model_framework\030\021 \001(\0162"
+    "&.viam.app.mltraining.v1.ModelFrameworkB"
+    "2\232\204\236\003-bson:\"model_framework\" json:\"model"
+    "_framework\"R\016modelFramework\022R\n\ris_custom"
+    "_job\030\022 \001(\010B.\232\204\236\003)bson:\"is_custom_job\" js"
+    "on:\"is_custom_job\"R\013isCustomJob\022^\n\020regis"
+    "try_item_id\030\023 \001(\tB4\232\204\236\003/bson:\"registry_i"
+    "tem_id\" json:\"registry_item_id\"R\016registr"
+    "yItemId\022r\n\025registry_item_version\030\024 \001(\tB>"
+    "\232\204\236\0039bson:\"registry_item_version\" json:\""
+    "registry_item_version\"R\023registryItemVers"
+    "ion\022`\n\006status\030\002 \001(\0162&.viam.app.mltrainin"
+    "g.v1.TrainingStatusB \232\204\236\003\033bson:\"status\" "
+    "json:\"status\"R\006status\022c\n\014error_status\030\010 "
+    "\001(\0132\022.google.rpc.StatusB,\232\204\236\003\'bson:\"erro"
+    "r_status\" json:\"error_status\"R\013errorStat"
+    "us\022c\n\ncreated_on\030\003 \001(\0132\032.google.protobuf"
+    ".TimestampB(\232\204\236\003#bson:\"created_on\" json:"
+    "\"created_on\"R\tcreatedOn\022o\n\rlast_modified"
+    "\030\004 \001(\0132\032.google.protobuf.TimestampB.\232\204\236\003"
+    ")bson:\"last_modified\" json:\"last_modifie"
+    "d\"R\014lastModified\022{\n\020training_started\030\t \001"
+    "(\0132\032.google.protobuf.TimestampB4\232\204\236\003/bso"
+    "n:\"training_started\" json:\"training_star"
+    "ted\"R\017trainingStarted\022s\n\016training_ended\030"
+    "\n \001(\0132\032.google.protobuf.TimestampB0\232\204\236\003+"
+    "bson:\"training_ended\" json:\"training_end"
+    "ed\"R\rtrainingEnded\022Z\n\017synced_model_id\030\005 "
+    "\001(\tB2\232\204\236\003-bson:\"synced_model_id\" json:\"s"
+    "ynced_model_id\"R\rsyncedModelId\0220\n\004tags\030\020"
+    " \003(\tB\034\232\204\236\003\027bson:\"tags\" json:\"tags\"R\004tags"
+    "J\004\010\001\020\002J\004\010\006\020\007R\007requestR\nuser_email\"*\n\030Can"
+    "celTrainingJobRequest\022\016\n\002id\030\001 \001(\tR\002id\"\033\n"
+    "\031CancelTrainingJobResponse\"3\n!DeleteComp"
+    "letedTrainingJobRequest\022\016\n\002id\030\001 \001(\tR\002id\""
+    "$\n\"DeleteCompletedTrainingJobResponse\"u\n"
+    "\023TrainingJobLogEntry\022\024\n\005level\030\001 \001(\tR\005lev"
+    "el\022.\n\004time\030\002 \001(\0132\032.google.protobuf.Times"
+    "tampR\004time\022\030\n\007message\030\003 \001(\tR\007message\"^\n\031"
+    "GetTrainingJobLogsRequest\022\016\n\002id\030\001 \001(\tR\002i"
+    "d\022\"\n\npage_token\030\002 \001(\tH\000R\tpageToken\210\001\001B\r\n"
+    "\013_page_token\"\205\001\n\032GetTrainingJobLogsRespo"
+    "nse\022\?\n\004logs\030\001 \003(\0132+.viam.app.mltraining."
+    "v1.TrainingJobLogEntryR\004logs\022&\n\017next_pag"
+    "e_token\030\002 \001(\tR\rnextPageToken*\237\001\n\tModelTy"
+    "pe\022\032\n\026MODEL_TYPE_UNSPECIFIED\020\000\022*\n&MODEL_"
+    "TYPE_SINGLE_LABEL_CLASSIFICATION\020\001\022)\n%MO"
+    "DEL_TYPE_MULTI_LABEL_CLASSIFICATION\020\002\022\037\n"
+    "\033MODEL_TYPE_OBJECT_DETECTION\020\003*\244\001\n\016Model"
+    "Framework\022\037\n\033MODEL_FRAMEWORK_UNSPECIFIED"
+    "\020\000\022\032\n\026MODEL_FRAMEWORK_TFLITE\020\001\022\036\n\032MODEL_"
+    "FRAMEWORK_TENSORFLOW\020\002\022\033\n\027MODEL_FRAMEWOR"
+    "K_PYTORCH\020\003\022\030\n\024MODEL_FRAMEWORK_ONNX\020\004*\347\001"
+    "\n\016TrainingStatus\022\037\n\033TRAINING_STATUS_UNSP"
+    "ECIFIED\020\000\022\033\n\027TRAINING_STATUS_PENDING\020\001\022\037"
+    "\n\033TRAINING_STATUS_IN_PROGRESS\020\002\022\035\n\031TRAIN"
+    "ING_STATUS_COMPLETED\020\003\022\032\n\026TRAINING_STATU"
+    "S_FAILED\020\004\022\034\n\030TRAINING_STATUS_CANCELED\020\005"
+    "\022\035\n\031TRAINING_STATUS_CANCELING\020\0062\217\007\n\021MLTr"
+    "ainingService\022x\n\021SubmitTrainingJob\0220.via"
+    "m.app.mltraining.v1.SubmitTrainingJobReq"
+    "uest\0321.viam.app.mltraining.v1.SubmitTrai"
+    "ningJobResponse\022\212\001\n\027SubmitCustomTraining"
+    "Job\0226.viam.app.mltraining.v1.SubmitCusto"
+    "mTrainingJobRequest\0327.viam.app.mltrainin"
+    "g.v1.SubmitCustomTrainingJobResponse\022o\n\016"
+    "GetTrainingJob\022-.viam.app.mltraining.v1."
+    "GetTrainingJobRequest\032..viam.app.mltrain"
+    "ing.v1.GetTrainingJobResponse\022u\n\020ListTra"
+    "iningJobs\022/.viam.app.mltraining.v1.ListT"
+    "rainingJobsRequest\0320.viam.app.mltraining"
+    ".v1.ListTrainingJobsResponse\022x\n\021CancelTr"
+    "ainingJob\0220.viam.app.mltraining.v1.Cance"
+    "lTrainingJobRequest\0321.viam.app.mltrainin"
+    "g.v1.CancelTrainingJobResponse\022\223\001\n\032Delet"
+    "eCompletedTrainingJob\0229.viam.app.mltrain"
+    "ing.v1.DeleteCompletedTrainingJobRequest"
+    "\032:.viam.app.mltraining.v1.DeleteComplete"
+    "dTrainingJobResponse\022{\n\022GetTrainingJobLo"
+    "gs\0221.viam.app.mltraining.v1.GetTrainingJ"
+    "obLogsRequest\0322.viam.app.mltraining.v1.G"
+    "etTrainingJobLogsResponseB\313\001\n\032com.viam.a"
+    "pp.mltraining.v1B\017MlTrainingProtoP\001Z!go."
+    "viam.com/api/app/mltraining/v1\242\002\003VAM\252\002\026V"
+    "iam.App.Mltraining.V1\312\002\026Viam\\App\\Mltrain"
+    "ing\\V1\342\002\"Viam\\App\\Mltraining\\V1\\GPBMetad"
+    "ata\352\002\031Viam::App::Mltraining::V1b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_deps[3] =
     {
@@ -806,13 +838,13 @@ static ::absl::once_flag descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_
 const ::_pbi::DescriptorTable descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto = {
     false,
     false,
-    5676,
+    5839,
     descriptor_table_protodef_app_2fmltraining_2fv1_2fml_5ftraining_2eproto,
     "app/mltraining/v1/ml_training.proto",
     &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once,
     descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_deps,
     3,
-    16,
+    17,
     schemas,
     file_default_instances,
     TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto::offsets,
@@ -1392,6 +1424,16 @@ void SubmitTrainingJobResponse::InternalSwap(SubmitTrainingJobResponse* PROTOBUF
 }
 // ===================================================================
 
+SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse::SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse() {}
+SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse::SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse(::google::protobuf::Arena* arena)
+    : SuperType(arena) {}
+::google::protobuf::Metadata SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_getter, &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once,
+      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[2]);
+}
+// ===================================================================
+
 class SubmitCustomTrainingJobRequest::_Internal {
  public:
 };
@@ -1404,7 +1446,8 @@ SubmitCustomTrainingJobRequest::SubmitCustomTrainingJobRequest(::google::protobu
 inline PROTOBUF_NDEBUG_INLINE SubmitCustomTrainingJobRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : dataset_id_(arena, from.dataset_id_),
+      : arguments_{visibility, arena, from.arguments_},
+        dataset_id_(arena, from.dataset_id_),
         registry_item_id_(arena, from.registry_item_id_),
         organization_id_(arena, from.organization_id_),
         model_name_(arena, from.model_name_),
@@ -1427,7 +1470,8 @@ SubmitCustomTrainingJobRequest::SubmitCustomTrainingJobRequest(
 inline PROTOBUF_NDEBUG_INLINE SubmitCustomTrainingJobRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : dataset_id_(arena),
+      : arguments_{visibility, arena},
+        dataset_id_(arena),
         registry_item_id_(arena),
         organization_id_(arena),
         model_name_(arena),
@@ -1461,6 +1505,7 @@ PROTOBUF_NOINLINE void SubmitCustomTrainingJobRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  _impl_.arguments_.Clear();
   _impl_.dataset_id_.ClearToEmpty();
   _impl_.registry_item_id_.ClearToEmpty();
   _impl_.organization_id_.ClearToEmpty();
@@ -1478,17 +1523,17 @@ const char* SubmitCustomTrainingJobRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 6, 0, 147, 2> SubmitCustomTrainingJobRequest::_table_ = {
+const ::_pbi::TcParseTable<3, 7, 1, 156, 2> SubmitCustomTrainingJobRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    6, 56,  // max_field_number, fast_idx_mask
+    7, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967232,  // skipmap
+    4294967168,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    6,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
+    7,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
     &_SubmitCustomTrainingJobRequest_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
@@ -1533,10 +1578,16 @@ const ::_pbi::TcParseTable<3, 6, 0, 147, 2> SubmitCustomTrainingJobRequest::_tab
     // string registry_item_version = 6 [json_name = "registryItemVersion", (.tagger.v1.tags) = "bson:\"registry_item_version\" json:\"registry_item_version\""];
     {PROTOBUF_FIELD_OFFSET(SubmitCustomTrainingJobRequest, _impl_.registry_item_version_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-  }},
-  // no aux_entries
-  {{
-    "\65\12\20\17\12\15\25\0"
+    // map<string, string> arguments = 7 [json_name = "arguments"];
+    {PROTOBUF_FIELD_OFFSET(SubmitCustomTrainingJobRequest, _impl_.arguments_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
+  }}, {{
+    {::_pbi::TcParser::GetMapAuxInfo<
+        decltype(SubmitCustomTrainingJobRequest()._impl_.arguments_)>(
+        1, 0, 0, 9,
+        9)},
+  }}, {{
+    "\65\12\20\17\12\15\25\11"
     "viam.app.mltraining.v1.SubmitCustomTrainingJobRequest"
     "dataset_id"
     "registry_item_id"
@@ -1544,6 +1595,7 @@ const ::_pbi::TcParseTable<3, 6, 0, 147, 2> SubmitCustomTrainingJobRequest::_tab
     "model_name"
     "model_version"
     "registry_item_version"
+    "arguments"
   }},
 };
 
@@ -1602,6 +1654,39 @@ const ::_pbi::TcParseTable<3, 6, 0, 147, 2> SubmitCustomTrainingJobRequest::_tab
     target = stream->WriteStringMaybeAliased(6, _s, target);
   }
 
+  // map<string, string> arguments = 7 [json_name = "arguments"];
+  if (!_internal_arguments().empty()) {
+    using MapType = ::google::protobuf::Map<std::string, std::string>;
+    using WireHelper = _pbi::MapEntryFuncs<std::string, std::string,
+                                   _pbi::WireFormatLite::TYPE_STRING,
+                                   _pbi::WireFormatLite::TYPE_STRING>;
+    const auto& field = _internal_arguments();
+
+    if (stream->IsSerializationDeterministic() && field.size() > 1) {
+      for (const auto& entry : ::google::protobuf::internal::MapSorterPtr<MapType>(field)) {
+        target = WireHelper::InternalSerialize(
+            7, entry.first, entry.second, target, stream);
+        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            entry.first.data(), static_cast<int>(entry.first.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.arguments");
+        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            entry.second.data(), static_cast<int>(entry.second.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.arguments");
+      }
+    } else {
+      for (const auto& entry : field) {
+        target = WireHelper::InternalSerialize(
+            7, entry.first, entry.second, target, stream);
+        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            entry.first.data(), static_cast<int>(entry.first.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.arguments");
+        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            entry.second.data(), static_cast<int>(entry.second.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.arguments");
+      }
+    }
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -1619,6 +1704,13 @@ const ::_pbi::TcParseTable<3, 6, 0, 147, 2> SubmitCustomTrainingJobRequest::_tab
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  // map<string, string> arguments = 7 [json_name = "arguments"];
+  total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_arguments_size());
+  for (const auto& entry : _internal_arguments()) {
+    total_size += _pbi::MapEntryFuncs<std::string, std::string,
+                                   _pbi::WireFormatLite::TYPE_STRING,
+                                   _pbi::WireFormatLite::TYPE_STRING>::ByteSizeLong(entry.first, entry.second);
+  }
   // string dataset_id = 1 [json_name = "datasetId", (.tagger.v1.tags) = "bson:\"dataset_id\" json:\"dataset_id\""];
   if (!this->_internal_dataset_id().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
@@ -1674,6 +1766,7 @@ void SubmitCustomTrainingJobRequest::MergeImpl(::google::protobuf::Message& to_m
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  _this->_impl_.arguments_.MergeFrom(from._impl_.arguments_);
   if (!from._internal_dataset_id().empty()) {
     _this->_internal_set_dataset_id(from._internal_dataset_id());
   }
@@ -1714,6 +1807,7 @@ void SubmitCustomTrainingJobRequest::InternalSwap(SubmitCustomTrainingJobRequest
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.arguments_.InternalSwap(&other->_impl_.arguments_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.dataset_id_, &other->_impl_.dataset_id_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.registry_item_id_, &other->_impl_.registry_item_id_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.organization_id_, &other->_impl_.organization_id_, arena);
@@ -1725,7 +1819,7 @@ void SubmitCustomTrainingJobRequest::InternalSwap(SubmitCustomTrainingJobRequest
 ::google::protobuf::Metadata SubmitCustomTrainingJobRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_getter, &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once,
-      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[2]);
+      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[3]);
 }
 // ===================================================================
 
@@ -1915,7 +2009,7 @@ void SubmitCustomTrainingJobResponse::InternalSwap(SubmitCustomTrainingJobRespon
 ::google::protobuf::Metadata SubmitCustomTrainingJobResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_getter, &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once,
-      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[3]);
+      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[4]);
 }
 // ===================================================================
 
@@ -2105,7 +2199,7 @@ void GetTrainingJobRequest::InternalSwap(GetTrainingJobRequest* PROTOBUF_RESTRIC
 ::google::protobuf::Metadata GetTrainingJobRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_getter, &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once,
-      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[4]);
+      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[5]);
 }
 // ===================================================================
 
@@ -2312,7 +2406,7 @@ void GetTrainingJobResponse::InternalSwap(GetTrainingJobResponse* PROTOBUF_RESTR
 ::google::protobuf::Metadata GetTrainingJobResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_getter, &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once,
-      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[5]);
+      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[6]);
 }
 // ===================================================================
 
@@ -2528,7 +2622,7 @@ void ListTrainingJobsRequest::InternalSwap(ListTrainingJobsRequest* PROTOBUF_RES
 ::google::protobuf::Metadata ListTrainingJobsRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_getter, &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once,
-      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[6]);
+      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[7]);
 }
 // ===================================================================
 
@@ -2711,7 +2805,7 @@ void ListTrainingJobsResponse::InternalSwap(ListTrainingJobsResponse* PROTOBUF_R
 ::google::protobuf::Metadata ListTrainingJobsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_getter, &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once,
-      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[7]);
+      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[8]);
 }
 // ===================================================================
 
@@ -3489,7 +3583,7 @@ void TrainingJobMetadata::InternalSwap(TrainingJobMetadata* PROTOBUF_RESTRICT ot
 ::google::protobuf::Metadata TrainingJobMetadata::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_getter, &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once,
-      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[8]);
+      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[9]);
 }
 // ===================================================================
 
@@ -3679,7 +3773,7 @@ void CancelTrainingJobRequest::InternalSwap(CancelTrainingJobRequest* PROTOBUF_R
 ::google::protobuf::Metadata CancelTrainingJobRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_getter, &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once,
-      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[9]);
+      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[10]);
 }
 // ===================================================================
 
@@ -3714,7 +3808,7 @@ CancelTrainingJobResponse::CancelTrainingJobResponse(
 ::google::protobuf::Metadata CancelTrainingJobResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_getter, &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once,
-      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[10]);
+      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[11]);
 }
 // ===================================================================
 
@@ -3904,7 +3998,7 @@ void DeleteCompletedTrainingJobRequest::InternalSwap(DeleteCompletedTrainingJobR
 ::google::protobuf::Metadata DeleteCompletedTrainingJobRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_getter, &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once,
-      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[11]);
+      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[12]);
 }
 // ===================================================================
 
@@ -3939,7 +4033,7 @@ DeleteCompletedTrainingJobResponse::DeleteCompletedTrainingJobResponse(
 ::google::protobuf::Metadata DeleteCompletedTrainingJobResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_getter, &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once,
-      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[12]);
+      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[13]);
 }
 // ===================================================================
 
@@ -4214,7 +4308,7 @@ void TrainingJobLogEntry::InternalSwap(TrainingJobLogEntry* PROTOBUF_RESTRICT ot
 ::google::protobuf::Metadata TrainingJobLogEntry::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_getter, &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once,
-      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[13]);
+      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[14]);
 }
 // ===================================================================
 
@@ -4447,7 +4541,7 @@ void GetTrainingJobLogsRequest::InternalSwap(GetTrainingJobLogsRequest* PROTOBUF
 ::google::protobuf::Metadata GetTrainingJobLogsRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_getter, &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once,
-      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[14]);
+      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[15]);
 }
 // ===================================================================
 
@@ -4663,7 +4757,7 @@ void GetTrainingJobLogsResponse::InternalSwap(GetTrainingJobLogsResponse* PROTOB
 ::google::protobuf::Metadata GetTrainingJobLogsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_getter, &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once,
-      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[15]);
+      file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto[16]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
