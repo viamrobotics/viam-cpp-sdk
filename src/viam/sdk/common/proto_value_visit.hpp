@@ -24,8 +24,6 @@ auto visit(Visitor&& visitor, ProtoValue& value)
     switch (value.kind()) {
         case ProtoValue::Kind::k_bool:
             return std::forward<Visitor>(visitor)(value.get_unchecked<bool>());
-        case ProtoValue::Kind::k_int:
-            return std::forward<Visitor>(visitor)(value.get_unchecked<int>());
         case ProtoValue::Kind::k_double:
             return std::forward<Visitor>(visitor)(value.get_unchecked<double>());
         case ProtoValue::Kind::k_string:
@@ -47,8 +45,6 @@ auto visit(Visitor&& visitor, const ProtoValue& value)
     switch (value.kind()) {
         case ProtoValue::Kind::k_bool:
             return std::forward<Visitor>(visitor)(value.get_unchecked<bool>());
-        case ProtoValue::Kind::k_int:
-            return std::forward<Visitor>(visitor)(value.get_unchecked<int>());
         case ProtoValue::Kind::k_double:
             return std::forward<Visitor>(visitor)(value.get_unchecked<double>());
         case ProtoValue::Kind::k_string:
@@ -70,8 +66,6 @@ auto visit(Visitor&& visitor, ProtoValue&& value)
     switch (value.kind()) {
         case ProtoValue::Kind::k_bool:
             return std::forward<Visitor>(visitor)(std::move(value.get_unchecked<bool>()));
-        case ProtoValue::Kind::k_int:
-            return std::forward<Visitor>(visitor)(std::move(value.get_unchecked<int>()));
         case ProtoValue::Kind::k_double:
             return std::forward<Visitor>(visitor)(std::move(value.get_unchecked<double>()));
         case ProtoValue::Kind::k_string:

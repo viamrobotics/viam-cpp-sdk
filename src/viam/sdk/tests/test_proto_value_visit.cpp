@@ -95,10 +95,6 @@ struct rvalue_visitor {
         return kind == ProtoValue::Kind::k_bool;
     }
 
-    bool operator()(int&&) && {
-        return kind == ProtoValue::Kind::k_int;
-    }
-
     bool operator()(double&&) && {
         return kind == ProtoValue::Kind::k_double;
     }
@@ -133,7 +129,6 @@ BOOST_AUTO_TEST_CASE(test_visitor) {
     auto test_cases = std::make_tuple(
         std::make_pair(ProtoValue::Kind::k_null, nullptr),
         std::make_pair(ProtoValue::Kind::k_bool, true),
-        std::make_pair(ProtoValue::Kind::k_int, 5),
         std::make_pair(ProtoValue::Kind::k_double, 12.345),
         std::make_pair(ProtoValue::Kind::k_string, "meow"),
         std::make_pair(ProtoValue::Kind::k_list, ProtoList({{ProtoValue(1), ProtoValue("woof")}})),
