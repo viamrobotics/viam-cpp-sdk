@@ -34,6 +34,9 @@
 #include "google/protobuf/message.h"
 #include "google/protobuf/repeated_field.h"  // IWYU pragma: export
 #include "google/protobuf/extension_set.h"  // IWYU pragma: export
+#include "google/protobuf/map.h"  // IWYU pragma: export
+#include "google/protobuf/map_entry.h"
+#include "google/protobuf/map_field_inl.h"
 #include "google/protobuf/generated_enum_reflection.h"
 #include "google/protobuf/unknown_field_set.h"
 #include "google/protobuf/timestamp.pb.h"
@@ -97,6 +100,9 @@ extern ListTrainingJobsResponseDefaultTypeInternal _ListTrainingJobsResponse_def
 class SubmitCustomTrainingJobRequest;
 struct SubmitCustomTrainingJobRequestDefaultTypeInternal;
 extern SubmitCustomTrainingJobRequestDefaultTypeInternal _SubmitCustomTrainingJobRequest_default_instance_;
+class SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse;
+struct SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUseDefaultTypeInternal;
+extern SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUseDefaultTypeInternal _SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse_default_instance_;
 class SubmitCustomTrainingJobResponse;
 struct SubmitCustomTrainingJobResponseDefaultTypeInternal;
 extern SubmitCustomTrainingJobResponseDefaultTypeInternal _SubmitCustomTrainingJobResponse_default_instance_;
@@ -757,7 +763,7 @@ class SubmitCustomTrainingJobResponse final :
                &_SubmitCustomTrainingJobResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    4;
 
   friend void swap(SubmitCustomTrainingJobResponse& a, SubmitCustomTrainingJobResponse& b) {
     a.Swap(&b);
@@ -879,276 +885,35 @@ class SubmitCustomTrainingJobResponse final :
   friend struct ::TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto;
 };// -------------------------------------------------------------------
 
-class SubmitCustomTrainingJobRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.app.mltraining.v1.SubmitCustomTrainingJobRequest) */ {
+class SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse final
+    : public ::google::protobuf::internal::MapEntry<
+          SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse, std::string, std::string,
+          ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+          ::google::protobuf::internal::WireFormatLite::TYPE_STRING> {
  public:
-  inline SubmitCustomTrainingJobRequest() : SubmitCustomTrainingJobRequest(nullptr) {}
-  ~SubmitCustomTrainingJobRequest() override;
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR SubmitCustomTrainingJobRequest(::google::protobuf::internal::ConstantInitialized);
-
-  inline SubmitCustomTrainingJobRequest(const SubmitCustomTrainingJobRequest& from)
-      : SubmitCustomTrainingJobRequest(nullptr, from) {}
-  SubmitCustomTrainingJobRequest(SubmitCustomTrainingJobRequest&& from) noexcept
-    : SubmitCustomTrainingJobRequest() {
-    *this = ::std::move(from);
+  using SuperType = ::google::protobuf::internal::MapEntry<
+      SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse, std::string, std::string,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>;
+  SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse();
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse(
+      ::google::protobuf::internal::ConstantInitialized);
+  explicit SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse(::google::protobuf::Arena* arena);
+  static const SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse* internal_default_instance() {
+    return reinterpret_cast<const SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse*>(
+        &_SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse_default_instance_);
   }
-
-  inline SubmitCustomTrainingJobRequest& operator=(const SubmitCustomTrainingJobRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline SubmitCustomTrainingJobRequest& operator=(SubmitCustomTrainingJobRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const SubmitCustomTrainingJobRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const SubmitCustomTrainingJobRequest* internal_default_instance() {
-    return reinterpret_cast<const SubmitCustomTrainingJobRequest*>(
-               &_SubmitCustomTrainingJobRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    2;
-
-  friend void swap(SubmitCustomTrainingJobRequest& a, SubmitCustomTrainingJobRequest& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(SubmitCustomTrainingJobRequest* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr &&
-        GetArena() == other->GetArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(SubmitCustomTrainingJobRequest* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  SubmitCustomTrainingJobRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<SubmitCustomTrainingJobRequest>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const SubmitCustomTrainingJobRequest& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const SubmitCustomTrainingJobRequest& from) {
-    SubmitCustomTrainingJobRequest::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(SubmitCustomTrainingJobRequest* other);
-
-  private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "viam.app.mltraining.v1.SubmitCustomTrainingJobRequest";
-  }
-  protected:
-  explicit SubmitCustomTrainingJobRequest(::google::protobuf::Arena* arena);
-  SubmitCustomTrainingJobRequest(::google::protobuf::Arena* arena, const SubmitCustomTrainingJobRequest& from);
-  public:
-
-  static const ClassData _class_data_;
-  const ::google::protobuf::Message::ClassData*GetClassData() const final;
-
+  static bool ValidateKey(std::string* s) {
+    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.ArgumentsEntry.key");
+ }
+  static bool ValidateValue(std::string* s) {
+    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.ArgumentsEntry.value");
+ }
   ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kDatasetIdFieldNumber = 1,
-    kRegistryItemIdFieldNumber = 2,
-    kOrganizationIdFieldNumber = 3,
-    kModelNameFieldNumber = 4,
-    kModelVersionFieldNumber = 5,
-    kRegistryItemVersionFieldNumber = 6,
-  };
-  // string dataset_id = 1 [json_name = "datasetId", (.tagger.v1.tags) = "bson:\"dataset_id\" json:\"dataset_id\""];
-  void clear_dataset_id() ;
-  const std::string& dataset_id() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_dataset_id(Arg_&& arg, Args_... args);
-  std::string* mutable_dataset_id();
-  PROTOBUF_NODISCARD std::string* release_dataset_id();
-  void set_allocated_dataset_id(std::string* value);
-
-  private:
-  const std::string& _internal_dataset_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_dataset_id(
-      const std::string& value);
-  std::string* _internal_mutable_dataset_id();
-
-  public:
-  // string registry_item_id = 2 [json_name = "registryItemId", (.tagger.v1.tags) = "bson:\"registry_item_id\" json:\"registry_item_id\""];
-  void clear_registry_item_id() ;
-  const std::string& registry_item_id() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_registry_item_id(Arg_&& arg, Args_... args);
-  std::string* mutable_registry_item_id();
-  PROTOBUF_NODISCARD std::string* release_registry_item_id();
-  void set_allocated_registry_item_id(std::string* value);
-
-  private:
-  const std::string& _internal_registry_item_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_registry_item_id(
-      const std::string& value);
-  std::string* _internal_mutable_registry_item_id();
-
-  public:
-  // string organization_id = 3 [json_name = "organizationId", (.tagger.v1.tags) = "bson:\"organization_id\" json:\"organization_id\""];
-  void clear_organization_id() ;
-  const std::string& organization_id() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_organization_id(Arg_&& arg, Args_... args);
-  std::string* mutable_organization_id();
-  PROTOBUF_NODISCARD std::string* release_organization_id();
-  void set_allocated_organization_id(std::string* value);
-
-  private:
-  const std::string& _internal_organization_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_organization_id(
-      const std::string& value);
-  std::string* _internal_mutable_organization_id();
-
-  public:
-  // string model_name = 4 [json_name = "modelName", (.tagger.v1.tags) = "bson:\"model_name\" json:\"model_name\""];
-  void clear_model_name() ;
-  const std::string& model_name() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_model_name(Arg_&& arg, Args_... args);
-  std::string* mutable_model_name();
-  PROTOBUF_NODISCARD std::string* release_model_name();
-  void set_allocated_model_name(std::string* value);
-
-  private:
-  const std::string& _internal_model_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_model_name(
-      const std::string& value);
-  std::string* _internal_mutable_model_name();
-
-  public:
-  // string model_version = 5 [json_name = "modelVersion", (.tagger.v1.tags) = "bson:\"model_version\" json:\"model_version\""];
-  void clear_model_version() ;
-  const std::string& model_version() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_model_version(Arg_&& arg, Args_... args);
-  std::string* mutable_model_version();
-  PROTOBUF_NODISCARD std::string* release_model_version();
-  void set_allocated_model_version(std::string* value);
-
-  private:
-  const std::string& _internal_model_version() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_model_version(
-      const std::string& value);
-  std::string* _internal_mutable_model_version();
-
-  public:
-  // string registry_item_version = 6 [json_name = "registryItemVersion", (.tagger.v1.tags) = "bson:\"registry_item_version\" json:\"registry_item_version\""];
-  void clear_registry_item_version() ;
-  const std::string& registry_item_version() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_registry_item_version(Arg_&& arg, Args_... args);
-  std::string* mutable_registry_item_version();
-  PROTOBUF_NODISCARD std::string* release_registry_item_version();
-  void set_allocated_registry_item_version(std::string* value);
-
-  private:
-  const std::string& _internal_registry_item_version() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_registry_item_version(
-      const std::string& value);
-  std::string* _internal_mutable_registry_item_version();
-
-  public:
-  // @@protoc_insertion_point(class_scope:viam.app.mltraining.v1.SubmitCustomTrainingJobRequest)
- private:
-  class _Internal;
-
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      3, 6, 0,
-      147, 2>
-      _table_;
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-
-        inline explicit constexpr Impl_(
-            ::google::protobuf::internal::ConstantInitialized) noexcept;
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena);
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::ArenaStringPtr dataset_id_;
-    ::google::protobuf::internal::ArenaStringPtr registry_item_id_;
-    ::google::protobuf::internal::ArenaStringPtr organization_id_;
-    ::google::protobuf::internal::ArenaStringPtr model_name_;
-    ::google::protobuf::internal::ArenaStringPtr model_version_;
-    ::google::protobuf::internal::ArenaStringPtr registry_item_version_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
   friend struct ::TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto;
-};// -------------------------------------------------------------------
+};
+// -------------------------------------------------------------------
 
 class ListTrainingJobsRequest final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.app.mltraining.v1.ListTrainingJobsRequest) */ {
@@ -1209,7 +974,7 @@ class ListTrainingJobsRequest final :
                &_ListTrainingJobsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   friend void swap(ListTrainingJobsRequest& a, ListTrainingJobsRequest& b) {
     a.Swap(&b);
@@ -1402,7 +1167,7 @@ class GetTrainingJobRequest final :
                &_GetTrainingJobRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(GetTrainingJobRequest& a, GetTrainingJobRequest& b) {
     a.Swap(&b);
@@ -1583,7 +1348,7 @@ class GetTrainingJobLogsRequest final :
                &_GetTrainingJobLogsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(GetTrainingJobLogsRequest& a, GetTrainingJobLogsRequest& b) {
     a.Swap(&b);
@@ -1783,7 +1548,7 @@ class DeleteCompletedTrainingJobResponse final :
                &_DeleteCompletedTrainingJobResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(DeleteCompletedTrainingJobResponse& a, DeleteCompletedTrainingJobResponse& b) {
     a.Swap(&b);
@@ -1920,7 +1685,7 @@ class DeleteCompletedTrainingJobRequest final :
                &_DeleteCompletedTrainingJobRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(DeleteCompletedTrainingJobRequest& a, DeleteCompletedTrainingJobRequest& b) {
     a.Swap(&b);
@@ -2100,7 +1865,7 @@ class CancelTrainingJobResponse final :
                &_CancelTrainingJobResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(CancelTrainingJobResponse& a, CancelTrainingJobResponse& b) {
     a.Swap(&b);
@@ -2237,7 +2002,7 @@ class CancelTrainingJobRequest final :
                &_CancelTrainingJobRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(CancelTrainingJobRequest& a, CancelTrainingJobRequest& b) {
     a.Swap(&b);
@@ -2418,7 +2183,7 @@ class TrainingJobLogEntry final :
                &_TrainingJobLogEntry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(TrainingJobLogEntry& a, TrainingJobLogEntry& b) {
     a.Swap(&b);
@@ -2576,6 +2341,298 @@ class TrainingJobLogEntry final :
   friend struct ::TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto;
 };// -------------------------------------------------------------------
 
+class SubmitCustomTrainingJobRequest final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.app.mltraining.v1.SubmitCustomTrainingJobRequest) */ {
+ public:
+  inline SubmitCustomTrainingJobRequest() : SubmitCustomTrainingJobRequest(nullptr) {}
+  ~SubmitCustomTrainingJobRequest() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR SubmitCustomTrainingJobRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline SubmitCustomTrainingJobRequest(const SubmitCustomTrainingJobRequest& from)
+      : SubmitCustomTrainingJobRequest(nullptr, from) {}
+  SubmitCustomTrainingJobRequest(SubmitCustomTrainingJobRequest&& from) noexcept
+    : SubmitCustomTrainingJobRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline SubmitCustomTrainingJobRequest& operator=(const SubmitCustomTrainingJobRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SubmitCustomTrainingJobRequest& operator=(SubmitCustomTrainingJobRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SubmitCustomTrainingJobRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SubmitCustomTrainingJobRequest* internal_default_instance() {
+    return reinterpret_cast<const SubmitCustomTrainingJobRequest*>(
+               &_SubmitCustomTrainingJobRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(SubmitCustomTrainingJobRequest& a, SubmitCustomTrainingJobRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SubmitCustomTrainingJobRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SubmitCustomTrainingJobRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SubmitCustomTrainingJobRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SubmitCustomTrainingJobRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SubmitCustomTrainingJobRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const SubmitCustomTrainingJobRequest& from) {
+    SubmitCustomTrainingJobRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(SubmitCustomTrainingJobRequest* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.app.mltraining.v1.SubmitCustomTrainingJobRequest";
+  }
+  protected:
+  explicit SubmitCustomTrainingJobRequest(::google::protobuf::Arena* arena);
+  SubmitCustomTrainingJobRequest(::google::protobuf::Arena* arena, const SubmitCustomTrainingJobRequest& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kArgumentsFieldNumber = 7,
+    kDatasetIdFieldNumber = 1,
+    kRegistryItemIdFieldNumber = 2,
+    kOrganizationIdFieldNumber = 3,
+    kModelNameFieldNumber = 4,
+    kModelVersionFieldNumber = 5,
+    kRegistryItemVersionFieldNumber = 6,
+  };
+  // map<string, string> arguments = 7 [json_name = "arguments"];
+  int arguments_size() const;
+  private:
+  int _internal_arguments_size() const;
+
+  public:
+  void clear_arguments() ;
+  const ::google::protobuf::Map<std::string, std::string>& arguments() const;
+  ::google::protobuf::Map<std::string, std::string>* mutable_arguments();
+
+  private:
+  const ::google::protobuf::Map<std::string, std::string>& _internal_arguments() const;
+  ::google::protobuf::Map<std::string, std::string>* _internal_mutable_arguments();
+
+  public:
+  // string dataset_id = 1 [json_name = "datasetId", (.tagger.v1.tags) = "bson:\"dataset_id\" json:\"dataset_id\""];
+  void clear_dataset_id() ;
+  const std::string& dataset_id() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_dataset_id(Arg_&& arg, Args_... args);
+  std::string* mutable_dataset_id();
+  PROTOBUF_NODISCARD std::string* release_dataset_id();
+  void set_allocated_dataset_id(std::string* value);
+
+  private:
+  const std::string& _internal_dataset_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_dataset_id(
+      const std::string& value);
+  std::string* _internal_mutable_dataset_id();
+
+  public:
+  // string registry_item_id = 2 [json_name = "registryItemId", (.tagger.v1.tags) = "bson:\"registry_item_id\" json:\"registry_item_id\""];
+  void clear_registry_item_id() ;
+  const std::string& registry_item_id() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_registry_item_id(Arg_&& arg, Args_... args);
+  std::string* mutable_registry_item_id();
+  PROTOBUF_NODISCARD std::string* release_registry_item_id();
+  void set_allocated_registry_item_id(std::string* value);
+
+  private:
+  const std::string& _internal_registry_item_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_registry_item_id(
+      const std::string& value);
+  std::string* _internal_mutable_registry_item_id();
+
+  public:
+  // string organization_id = 3 [json_name = "organizationId", (.tagger.v1.tags) = "bson:\"organization_id\" json:\"organization_id\""];
+  void clear_organization_id() ;
+  const std::string& organization_id() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_organization_id(Arg_&& arg, Args_... args);
+  std::string* mutable_organization_id();
+  PROTOBUF_NODISCARD std::string* release_organization_id();
+  void set_allocated_organization_id(std::string* value);
+
+  private:
+  const std::string& _internal_organization_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_organization_id(
+      const std::string& value);
+  std::string* _internal_mutable_organization_id();
+
+  public:
+  // string model_name = 4 [json_name = "modelName", (.tagger.v1.tags) = "bson:\"model_name\" json:\"model_name\""];
+  void clear_model_name() ;
+  const std::string& model_name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_model_name(Arg_&& arg, Args_... args);
+  std::string* mutable_model_name();
+  PROTOBUF_NODISCARD std::string* release_model_name();
+  void set_allocated_model_name(std::string* value);
+
+  private:
+  const std::string& _internal_model_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_model_name(
+      const std::string& value);
+  std::string* _internal_mutable_model_name();
+
+  public:
+  // string model_version = 5 [json_name = "modelVersion", (.tagger.v1.tags) = "bson:\"model_version\" json:\"model_version\""];
+  void clear_model_version() ;
+  const std::string& model_version() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_model_version(Arg_&& arg, Args_... args);
+  std::string* mutable_model_version();
+  PROTOBUF_NODISCARD std::string* release_model_version();
+  void set_allocated_model_version(std::string* value);
+
+  private:
+  const std::string& _internal_model_version() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_model_version(
+      const std::string& value);
+  std::string* _internal_mutable_model_version();
+
+  public:
+  // string registry_item_version = 6 [json_name = "registryItemVersion", (.tagger.v1.tags) = "bson:\"registry_item_version\" json:\"registry_item_version\""];
+  void clear_registry_item_version() ;
+  const std::string& registry_item_version() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_registry_item_version(Arg_&& arg, Args_... args);
+  std::string* mutable_registry_item_version();
+  PROTOBUF_NODISCARD std::string* release_registry_item_version();
+  void set_allocated_registry_item_version(std::string* value);
+
+  private:
+  const std::string& _internal_registry_item_version() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_registry_item_version(
+      const std::string& value);
+  std::string* _internal_mutable_registry_item_version();
+
+  public:
+  // @@protoc_insertion_point(class_scope:viam.app.mltraining.v1.SubmitCustomTrainingJobRequest)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      3, 7, 1,
+      156, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::MapField<SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse, std::string, std::string,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>
+        arguments_;
+    ::google::protobuf::internal::ArenaStringPtr dataset_id_;
+    ::google::protobuf::internal::ArenaStringPtr registry_item_id_;
+    ::google::protobuf::internal::ArenaStringPtr organization_id_;
+    ::google::protobuf::internal::ArenaStringPtr model_name_;
+    ::google::protobuf::internal::ArenaStringPtr model_version_;
+    ::google::protobuf::internal::ArenaStringPtr registry_item_version_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto;
+};// -------------------------------------------------------------------
+
 class TrainingJobMetadata final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.app.mltraining.v1.TrainingJobMetadata) */ {
  public:
@@ -2635,7 +2692,7 @@ class TrainingJobMetadata final :
                &_TrainingJobMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(TrainingJobMetadata& a, TrainingJobMetadata& b) {
     a.Swap(&b);
@@ -3106,7 +3163,7 @@ class GetTrainingJobLogsResponse final :
                &_GetTrainingJobLogsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(GetTrainingJobLogsResponse& a, GetTrainingJobLogsResponse& b) {
     a.Swap(&b);
@@ -3307,7 +3364,7 @@ class ListTrainingJobsResponse final :
                &_ListTrainingJobsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(ListTrainingJobsResponse& a, ListTrainingJobsResponse& b) {
     a.Swap(&b);
@@ -3490,7 +3547,7 @@ class GetTrainingJobResponse final :
                &_GetTrainingJobResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   friend void swap(GetTrainingJobResponse& a, GetTrainingJobResponse& b) {
     a.Swap(&b);
@@ -4023,6 +4080,8 @@ inline void SubmitTrainingJobResponse::set_allocated_id(std::string* value) {
 
 // -------------------------------------------------------------------
 
+// -------------------------------------------------------------------
+
 // SubmitCustomTrainingJobRequest
 
 // string dataset_id = 1 [json_name = "datasetId", (.tagger.v1.tags) = "bson:\"dataset_id\" json:\"dataset_id\""];
@@ -4341,6 +4400,34 @@ inline void SubmitCustomTrainingJobRequest::set_allocated_model_version(std::str
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.model_version)
+}
+
+// map<string, string> arguments = 7 [json_name = "arguments"];
+inline int SubmitCustomTrainingJobRequest::_internal_arguments_size() const {
+  return _internal_arguments().size();
+}
+inline int SubmitCustomTrainingJobRequest::arguments_size() const {
+  return _internal_arguments_size();
+}
+inline void SubmitCustomTrainingJobRequest::clear_arguments() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.arguments_.Clear();
+}
+inline const ::google::protobuf::Map<std::string, std::string>& SubmitCustomTrainingJobRequest::_internal_arguments() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arguments_.GetMap();
+}
+inline const ::google::protobuf::Map<std::string, std::string>& SubmitCustomTrainingJobRequest::arguments() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_map:viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.arguments)
+  return _internal_arguments();
+}
+inline ::google::protobuf::Map<std::string, std::string>* SubmitCustomTrainingJobRequest::_internal_mutable_arguments() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.arguments_.MutableMap();
+}
+inline ::google::protobuf::Map<std::string, std::string>* SubmitCustomTrainingJobRequest::mutable_arguments() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_map:viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.arguments)
+  return _internal_mutable_arguments();
 }
 
 // -------------------------------------------------------------------

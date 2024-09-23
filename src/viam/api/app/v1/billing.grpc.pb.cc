@@ -28,6 +28,7 @@ static const char* BillingService_method_names[] = {
   "/viam.app.v1.BillingService/GetOrgBillingInformation",
   "/viam.app.v1.BillingService/GetInvoicesSummary",
   "/viam.app.v1.BillingService/GetInvoicePdf",
+  "/viam.app.v1.BillingService/SendPaymentRequiredEmail",
 };
 
 std::unique_ptr< BillingService::Stub> BillingService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -41,6 +42,7 @@ BillingService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& cha
   , rpcmethod_GetOrgBillingInformation_(BillingService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetInvoicesSummary_(BillingService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetInvoicePdf_(BillingService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_SendPaymentRequiredEmail_(BillingService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status BillingService::Stub::GetCurrentMonthUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest& request, ::viam::app::v1::GetCurrentMonthUsageResponse* response) {
@@ -128,6 +130,29 @@ void BillingService::Stub::async::GetInvoicePdf(::grpc::ClientContext* context, 
   return ::grpc::internal::ClientAsyncReaderFactory< ::viam::app::v1::GetInvoicePdfResponse>::Create(channel_.get(), cq, rpcmethod_GetInvoicePdf_, context, request, false, nullptr);
 }
 
+::grpc::Status BillingService::Stub::SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest& request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::SendPaymentRequiredEmailRequest, ::viam::app::v1::SendPaymentRequiredEmailResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SendPaymentRequiredEmail_, context, request, response);
+}
+
+void BillingService::Stub::async::SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::SendPaymentRequiredEmailRequest, ::viam::app::v1::SendPaymentRequiredEmailResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SendPaymentRequiredEmail_, context, request, response, std::move(f));
+}
+
+void BillingService::Stub::async::SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SendPaymentRequiredEmail_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::SendPaymentRequiredEmailResponse>* BillingService::Stub::PrepareAsyncSendPaymentRequiredEmailRaw(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::SendPaymentRequiredEmailResponse, ::viam::app::v1::SendPaymentRequiredEmailRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SendPaymentRequiredEmail_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::SendPaymentRequiredEmailResponse>* BillingService::Stub::AsyncSendPaymentRequiredEmailRaw(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSendPaymentRequiredEmailRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 BillingService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BillingService_method_names[0],
@@ -169,6 +194,16 @@ BillingService::Service::Service() {
              ::grpc::ServerWriter<::viam::app::v1::GetInvoicePdfResponse>* writer) {
                return service->GetInvoicePdf(ctx, req, writer);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      BillingService_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< BillingService::Service, ::viam::app::v1::SendPaymentRequiredEmailRequest, ::viam::app::v1::SendPaymentRequiredEmailResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](BillingService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::v1::SendPaymentRequiredEmailRequest* req,
+             ::viam::app::v1::SendPaymentRequiredEmailResponse* resp) {
+               return service->SendPaymentRequiredEmail(ctx, req, resp);
+             }, this)));
 }
 
 BillingService::Service::~Service() {
@@ -199,6 +234,13 @@ BillingService::Service::~Service() {
   (void) context;
   (void) request;
   (void) writer;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status BillingService::Service::SendPaymentRequiredEmail(::grpc::ServerContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 

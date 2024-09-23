@@ -71,6 +71,14 @@ class BillingService final {
     std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::viam::app::v1::GetInvoicePdfResponse>> PrepareAsyncGetInvoicePdf(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicePdfRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::viam::app::v1::GetInvoicePdfResponse>>(PrepareAsyncGetInvoicePdfRaw(context, request, cq));
     }
+    // Send an email with a prompt to the user's org's billing page.
+    virtual ::grpc::Status SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest& request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::SendPaymentRequiredEmailResponse>> AsyncSendPaymentRequiredEmail(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::SendPaymentRequiredEmailResponse>>(AsyncSendPaymentRequiredEmailRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::SendPaymentRequiredEmailResponse>> PrepareAsyncSendPaymentRequiredEmail(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::SendPaymentRequiredEmailResponse>>(PrepareAsyncSendPaymentRequiredEmailRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -85,6 +93,9 @@ class BillingService final {
       virtual void GetInvoicesSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicesSummaryRequest* request, ::viam::app::v1::GetInvoicesSummaryResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // Download a PDF invoice
       virtual void GetInvoicePdf(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicePdfRequest* request, ::grpc::ClientReadReactor< ::viam::app::v1::GetInvoicePdfResponse>* reactor) = 0;
+      // Send an email with a prompt to the user's org's billing page.
+      virtual void SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -99,6 +110,8 @@ class BillingService final {
     virtual ::grpc::ClientReaderInterface< ::viam::app::v1::GetInvoicePdfResponse>* GetInvoicePdfRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicePdfRequest& request) = 0;
     virtual ::grpc::ClientAsyncReaderInterface< ::viam::app::v1::GetInvoicePdfResponse>* AsyncGetInvoicePdfRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicePdfRequest& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
     virtual ::grpc::ClientAsyncReaderInterface< ::viam::app::v1::GetInvoicePdfResponse>* PrepareAsyncGetInvoicePdfRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicePdfRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::SendPaymentRequiredEmailResponse>* AsyncSendPaymentRequiredEmailRaw(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::SendPaymentRequiredEmailResponse>* PrepareAsyncSendPaymentRequiredEmailRaw(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -133,6 +146,13 @@ class BillingService final {
     std::unique_ptr< ::grpc::ClientAsyncReader< ::viam::app::v1::GetInvoicePdfResponse>> PrepareAsyncGetInvoicePdf(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicePdfRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncReader< ::viam::app::v1::GetInvoicePdfResponse>>(PrepareAsyncGetInvoicePdfRaw(context, request, cq));
     }
+    ::grpc::Status SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest& request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::SendPaymentRequiredEmailResponse>> AsyncSendPaymentRequiredEmail(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::SendPaymentRequiredEmailResponse>>(AsyncSendPaymentRequiredEmailRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::SendPaymentRequiredEmailResponse>> PrepareAsyncSendPaymentRequiredEmail(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::SendPaymentRequiredEmailResponse>>(PrepareAsyncSendPaymentRequiredEmailRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -143,6 +163,8 @@ class BillingService final {
       void GetInvoicesSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicesSummaryRequest* request, ::viam::app::v1::GetInvoicesSummaryResponse* response, std::function<void(::grpc::Status)>) override;
       void GetInvoicesSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicesSummaryRequest* request, ::viam::app::v1::GetInvoicesSummaryResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetInvoicePdf(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicePdfRequest* request, ::grpc::ClientReadReactor< ::viam::app::v1::GetInvoicePdfResponse>* reactor) override;
+      void SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response, std::function<void(::grpc::Status)>) override;
+      void SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -163,10 +185,13 @@ class BillingService final {
     ::grpc::ClientReader< ::viam::app::v1::GetInvoicePdfResponse>* GetInvoicePdfRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicePdfRequest& request) override;
     ::grpc::ClientAsyncReader< ::viam::app::v1::GetInvoicePdfResponse>* AsyncGetInvoicePdfRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicePdfRequest& request, ::grpc::CompletionQueue* cq, void* tag) override;
     ::grpc::ClientAsyncReader< ::viam::app::v1::GetInvoicePdfResponse>* PrepareAsyncGetInvoicePdfRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicePdfRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::SendPaymentRequiredEmailResponse>* AsyncSendPaymentRequiredEmailRaw(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::SendPaymentRequiredEmailResponse>* PrepareAsyncSendPaymentRequiredEmailRaw(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetCurrentMonthUsage_;
     const ::grpc::internal::RpcMethod rpcmethod_GetOrgBillingInformation_;
     const ::grpc::internal::RpcMethod rpcmethod_GetInvoicesSummary_;
     const ::grpc::internal::RpcMethod rpcmethod_GetInvoicePdf_;
+    const ::grpc::internal::RpcMethod rpcmethod_SendPaymentRequiredEmail_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -182,6 +207,8 @@ class BillingService final {
     virtual ::grpc::Status GetInvoicesSummary(::grpc::ServerContext* context, const ::viam::app::v1::GetInvoicesSummaryRequest* request, ::viam::app::v1::GetInvoicesSummaryResponse* response);
     // Download a PDF invoice
     virtual ::grpc::Status GetInvoicePdf(::grpc::ServerContext* context, const ::viam::app::v1::GetInvoicePdfRequest* request, ::grpc::ServerWriter< ::viam::app::v1::GetInvoicePdfResponse>* writer);
+    // Send an email with a prompt to the user's org's billing page.
+    virtual ::grpc::Status SendPaymentRequiredEmail(::grpc::ServerContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetCurrentMonthUsage : public BaseClass {
@@ -263,7 +290,27 @@ class BillingService final {
       ::grpc::Service::RequestAsyncServerStreaming(3, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetCurrentMonthUsage<WithAsyncMethod_GetOrgBillingInformation<WithAsyncMethod_GetInvoicesSummary<WithAsyncMethod_GetInvoicePdf<Service > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_SendPaymentRequiredEmail : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SendPaymentRequiredEmail() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_SendPaymentRequiredEmail() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SendPaymentRequiredEmail(::grpc::ServerContext* /*context*/, const ::viam::app::v1::SendPaymentRequiredEmailRequest* /*request*/, ::viam::app::v1::SendPaymentRequiredEmailResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSendPaymentRequiredEmail(::grpc::ServerContext* context, ::viam::app::v1::SendPaymentRequiredEmailRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::SendPaymentRequiredEmailResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetCurrentMonthUsage<WithAsyncMethod_GetOrgBillingInformation<WithAsyncMethod_GetInvoicesSummary<WithAsyncMethod_GetInvoicePdf<WithAsyncMethod_SendPaymentRequiredEmail<Service > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetCurrentMonthUsage : public BaseClass {
    private:
@@ -367,7 +414,34 @@ class BillingService final {
     virtual ::grpc::ServerWriteReactor< ::viam::app::v1::GetInvoicePdfResponse>* GetInvoicePdf(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::GetInvoicePdfRequest* /*request*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetCurrentMonthUsage<WithCallbackMethod_GetOrgBillingInformation<WithCallbackMethod_GetInvoicesSummary<WithCallbackMethod_GetInvoicePdf<Service > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_SendPaymentRequiredEmail : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SendPaymentRequiredEmail() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::SendPaymentRequiredEmailRequest, ::viam::app::v1::SendPaymentRequiredEmailResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response) { return this->SendPaymentRequiredEmail(context, request, response); }));}
+    void SetMessageAllocatorFor_SendPaymentRequiredEmail(
+        ::grpc::MessageAllocator< ::viam::app::v1::SendPaymentRequiredEmailRequest, ::viam::app::v1::SendPaymentRequiredEmailResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::SendPaymentRequiredEmailRequest, ::viam::app::v1::SendPaymentRequiredEmailResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SendPaymentRequiredEmail() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SendPaymentRequiredEmail(::grpc::ServerContext* /*context*/, const ::viam::app::v1::SendPaymentRequiredEmailRequest* /*request*/, ::viam::app::v1::SendPaymentRequiredEmailResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SendPaymentRequiredEmail(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::SendPaymentRequiredEmailRequest* /*request*/, ::viam::app::v1::SendPaymentRequiredEmailResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_GetCurrentMonthUsage<WithCallbackMethod_GetOrgBillingInformation<WithCallbackMethod_GetInvoicesSummary<WithCallbackMethod_GetInvoicePdf<WithCallbackMethod_SendPaymentRequiredEmail<Service > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetCurrentMonthUsage : public BaseClass {
@@ -433,6 +507,23 @@ class BillingService final {
     }
     // disable synchronous version of this method
     ::grpc::Status GetInvoicePdf(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetInvoicePdfRequest* /*request*/, ::grpc::ServerWriter< ::viam::app::v1::GetInvoicePdfResponse>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SendPaymentRequiredEmail : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SendPaymentRequiredEmail() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_SendPaymentRequiredEmail() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SendPaymentRequiredEmail(::grpc::ServerContext* /*context*/, const ::viam::app::v1::SendPaymentRequiredEmailRequest* /*request*/, ::viam::app::v1::SendPaymentRequiredEmailResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -515,6 +606,26 @@ class BillingService final {
     }
     void RequestGetInvoicePdf(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncWriter< ::grpc::ByteBuffer>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncServerStreaming(3, context, request, writer, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SendPaymentRequiredEmail : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SendPaymentRequiredEmail() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_SendPaymentRequiredEmail() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SendPaymentRequiredEmail(::grpc::ServerContext* /*context*/, const ::viam::app::v1::SendPaymentRequiredEmailRequest* /*request*/, ::viam::app::v1::SendPaymentRequiredEmailResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSendPaymentRequiredEmail(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -606,6 +717,28 @@ class BillingService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_SendPaymentRequiredEmail : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SendPaymentRequiredEmail() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SendPaymentRequiredEmail(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SendPaymentRequiredEmail() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SendPaymentRequiredEmail(::grpc::ServerContext* /*context*/, const ::viam::app::v1::SendPaymentRequiredEmailRequest* /*request*/, ::viam::app::v1::SendPaymentRequiredEmailResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SendPaymentRequiredEmail(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_GetCurrentMonthUsage : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -686,7 +819,34 @@ class BillingService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetInvoicesSummary(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::GetInvoicesSummaryRequest,::viam::app::v1::GetInvoicesSummaryResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetCurrentMonthUsage<WithStreamedUnaryMethod_GetOrgBillingInformation<WithStreamedUnaryMethod_GetInvoicesSummary<Service > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SendPaymentRequiredEmail : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SendPaymentRequiredEmail() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::v1::SendPaymentRequiredEmailRequest, ::viam::app::v1::SendPaymentRequiredEmailResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::v1::SendPaymentRequiredEmailRequest, ::viam::app::v1::SendPaymentRequiredEmailResponse>* streamer) {
+                       return this->StreamedSendPaymentRequiredEmail(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SendPaymentRequiredEmail() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SendPaymentRequiredEmail(::grpc::ServerContext* /*context*/, const ::viam::app::v1::SendPaymentRequiredEmailRequest* /*request*/, ::viam::app::v1::SendPaymentRequiredEmailResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSendPaymentRequiredEmail(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::SendPaymentRequiredEmailRequest,::viam::app::v1::SendPaymentRequiredEmailResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_GetCurrentMonthUsage<WithStreamedUnaryMethod_GetOrgBillingInformation<WithStreamedUnaryMethod_GetInvoicesSummary<WithStreamedUnaryMethod_SendPaymentRequiredEmail<Service > > > > StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_GetInvoicePdf : public BaseClass {
    private:
@@ -715,7 +875,7 @@ class BillingService final {
     virtual ::grpc::Status StreamedGetInvoicePdf(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::viam::app::v1::GetInvoicePdfRequest,::viam::app::v1::GetInvoicePdfResponse>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_GetInvoicePdf<Service > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetCurrentMonthUsage<WithStreamedUnaryMethod_GetOrgBillingInformation<WithStreamedUnaryMethod_GetInvoicesSummary<WithSplitStreamingMethod_GetInvoicePdf<Service > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetCurrentMonthUsage<WithStreamedUnaryMethod_GetOrgBillingInformation<WithStreamedUnaryMethod_GetInvoicesSummary<WithSplitStreamingMethod_GetInvoicePdf<WithStreamedUnaryMethod_SendPaymentRequiredEmail<Service > > > > > StreamedService;
 };
 
 }  // namespace v1
