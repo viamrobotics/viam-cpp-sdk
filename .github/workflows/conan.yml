@@ -117,7 +117,7 @@ jobs:
           conan create . --build=missing
 
   build_linux_debian:
-    # if: github.repository_owner == 'viamrobotics'
+    if: github.repository_owner == 'viamrobotics'
     needs: [prepare]
     runs-on:  ${{ matrix.runs_on }}
     container:
