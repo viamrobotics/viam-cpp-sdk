@@ -8,12 +8,12 @@ namespace sdk {
 using google::protobuf::Struct;
 using google::protobuf::Value;
 
-ProtoValue::ProtoValue() noexcept : ProtoValue(nullptr, 0) {}
+ProtoValue::ProtoValue() noexcept : ProtoValue(nullptr, nullptr) {}
 ProtoValue::ProtoValue(std::nullptr_t) noexcept : ProtoValue() {}
-ProtoValue::ProtoValue(bool b) noexcept : ProtoValue(b, 0) {}
+ProtoValue::ProtoValue(bool b) noexcept : ProtoValue(b, nullptr) {}
 ProtoValue::ProtoValue(int i) noexcept : ProtoValue(static_cast<double>(i)) {}
-ProtoValue::ProtoValue(double d) noexcept : ProtoValue(d, 0) {}
-ProtoValue::ProtoValue(std::string s) noexcept : ProtoValue(std::move(s), 0) {}
+ProtoValue::ProtoValue(double d) noexcept : ProtoValue(d, nullptr) {}
+ProtoValue::ProtoValue(std::string s) noexcept : ProtoValue(std::move(s), nullptr) {}
 
 template <typename Val, typename>
 ProtoValue::ProtoValue(std::vector<Val> v) noexcept(
