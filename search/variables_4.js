@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['high_0',['high',['../structviam_1_1sdk_1_1Board_1_1Tick.html#ac50f2e1597a07d9a5d8abdd06451b597',1,'viam::sdk::Board::Tick']]]
+  ['frame_5frate_0',['frame_rate',['../structviam_1_1sdk_1_1Camera_1_1properties.html#aa2707df5f858c380edc0a555d17aa92e',1,'viam::sdk::Camera::properties']]]
 ];
