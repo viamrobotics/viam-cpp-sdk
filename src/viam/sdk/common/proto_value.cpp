@@ -8,19 +8,28 @@ namespace sdk {
 using google::protobuf::Struct;
 using google::protobuf::Value;
 
-ProtoValue::ProtoValue() noexcept : ProtoValue(nullptr) {}
+ProtoValue::ProtoValue() noexcept : ProtoValue(nullptr, nullptr) {}
+ProtoValue::ProtoValue(std::nullptr_t) noexcept : ProtoValue() {}
+ProtoValue::ProtoValue(bool b) noexcept : ProtoValue(b, nullptr) {}
+ProtoValue::ProtoValue(int i) noexcept : ProtoValue(static_cast<double>(i)) {}
+ProtoValue::ProtoValue(double d) noexcept : ProtoValue(d, nullptr) {}
+ProtoValue::ProtoValue(std::string s) noexcept : ProtoValue(std::move(s), nullptr) {}
+
+template <typename Val, typename>
+ProtoValue::ProtoValue(std::vector<Val> v) noexcept(
+    std::is_nothrow_move_constructible<std::vector<Val>>{})
+    : ProtoValue(std::move(v), 0) {}
+
+template <typename Val, typename>
+ProtoValue::ProtoValue(std::unordered_map<std::string, Val> s) noexcept(
+    std::is_nothrow_move_constructible<std::unordered_map<std::string, Val>>{})
+    : ProtoValue(std::move(s), 0) {}
 
 template <typename T>
-ProtoValue::ProtoValue(T t) noexcept(std::is_nothrow_move_constructible<T>{})
+ProtoValue::ProtoValue(T t, std::nullptr_t) noexcept(std::is_nothrow_move_constructible<T>{})
     : vtable_{model<T>::vtable_}, self_{std::move(t)} {}
 
 // -- explicit instantiations of by-value constructors -- //
-template ProtoValue::ProtoValue(std::nullptr_t) noexcept;
-template ProtoValue::ProtoValue(bool) noexcept;
-template ProtoValue::ProtoValue(int) noexcept;
-template ProtoValue::ProtoValue(double) noexcept;
-template ProtoValue::ProtoValue(std::string) noexcept(
-    std::is_nothrow_move_constructible<std::string>{});
 template ProtoValue::ProtoValue(ProtoList) noexcept(
     std::is_nothrow_move_constructible<ProtoList>{});
 template ProtoValue::ProtoValue(ProtoStruct m) noexcept(
@@ -117,11 +126,9 @@ std::enable_if_t<std::is_scalar<T>{}, T> ProtoValue::get_unchecked() const {
 }
 
 template bool& ProtoValue::get_unchecked<bool>();
-template int& ProtoValue::get_unchecked<int>();
 template double& ProtoValue::get_unchecked<double>();
 
 template bool ProtoValue::get_unchecked<bool>() const;
-template int ProtoValue::get_unchecked<int>() const;
 template double ProtoValue::get_unchecked<double>() const;
 
 template <typename T>
@@ -253,10 +260,6 @@ void to_proto(std::nullptr_t, Value* v) {
 
 void to_proto(bool b, Value* v) {
     v->set_bool_value(b);
-}
-
-void to_proto(int i, Value* v) {
-    v->set_number_value(i);
 }
 
 void to_proto(double d, Value* v) {

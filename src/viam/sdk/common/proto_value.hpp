@@ -53,25 +53,41 @@ struct all_moves_noexcept
 class ProtoValue {
    public:
     /// @brief Type discriminator constants for possible values stored in a ProtoValue.
-    enum Kind {
-        k_null = 0,
-        k_bool = 1,
-        k_double = 2,
-        k_string = 3,
-        k_list = 4,
-        k_struct = 5,
-        k_int = 6
-    };
+    enum Kind { k_null = 0, k_bool = 1, k_double = 2, k_string = 3, k_list = 4, k_struct = 5 };
 
     /// @brief Construct a null object.
     ProtoValue() noexcept;
 
-    /// @brief Construct a nonempty object.
-    template <typename T>
-    ProtoValue(T t) noexcept(std::is_nothrow_move_constructible<T>{});
+    /// @name Value constructors.
+    /// @brief Constructors which initialize a ProtoValue holding its argument.
+    /// @{
+
+    ProtoValue(std::nullptr_t) noexcept;
+
+    ProtoValue(bool b) noexcept;
+
+    /// @brief Construct a double object upcast from constructor argument.
+    ProtoValue(int i) noexcept;
+
+    ProtoValue(double d) noexcept;
+
+    ProtoValue(std::string s) noexcept;
 
     /// @brief Deduction helper constructor for string from string literal
     ProtoValue(const char* str);
+
+    /// @brief Construct from a ProtoList.
+    template <typename Val = ProtoValue,
+              typename = std::enable_if_t<std::is_same<Val, ProtoValue>{}>>
+    ProtoValue(std::vector<Val>) noexcept(std::is_nothrow_move_constructible<std::vector<Val>>{});
+
+    /// @brief Construct from a ProtoStruct.
+    template <typename Val = ProtoValue,
+              typename = std::enable_if_t<std::is_same<Val, ProtoValue>{}>>
+    ProtoValue(std::unordered_map<std::string, Val>) noexcept(
+        std::is_nothrow_move_constructible<std::unordered_map<std::string, Val>>{});
+
+    /// @}
 
     /// @brief Move construct this from other, leaving other in its unspecified-but-valid moved from
     /// state.
@@ -125,12 +141,12 @@ class ProtoValue {
     T const* get() const;
 
     /// @brief Return a reference to the underlying T, without checking.
-    /// @tparam T a bool, int, or double
+    /// @tparam T a bool or double
     template <typename T>
     std::enable_if_t<std::is_scalar<T>{}, T&> get_unchecked();
 
     /// @brief Return the underlying T by value, without checking.
-    /// @tparam T a bool, int, or double.
+    /// @tparam T a bool or double.
     template <typename T>
     std::enable_if_t<std::is_scalar<T>{}, T> get_unchecked() const;
 
@@ -204,7 +220,6 @@ class ProtoValue {
         using BufType = std::aligned_union_t<0,
                                              std::nullptr_t,
                                              bool,
-                                             int,
                                              double,
                                              std::string,
                                              std::vector<void*>,
@@ -257,6 +272,11 @@ class ProtoValue {
 
     ProtoValue(const google::protobuf::Value* value);
 
+    // Helper template for the explicit versions above.
+    // Includes nullptr_t as a tag type so we can let the other constructors delegate.
+    template <typename T>
+    ProtoValue(T t, std::nullptr_t) noexcept(std::is_nothrow_move_constructible<T>{});
+
     vtable vtable_;
     storage self_;
 };
@@ -275,12 +295,6 @@ using ProtoList = std::vector<ProtoValue>;
 using ProtoStruct = std::unordered_map<std::string, ProtoValue>;
 
 // -- Template specialization declarations of by-value constructors -- //
-extern template ProtoValue::ProtoValue(std::nullptr_t) noexcept;
-extern template ProtoValue::ProtoValue(bool) noexcept;
-extern template ProtoValue::ProtoValue(int) noexcept;
-extern template ProtoValue::ProtoValue(double) noexcept;
-extern template ProtoValue::ProtoValue(std::string) noexcept(
-    std::is_nothrow_move_constructible<std::string>{});
 extern template ProtoValue::ProtoValue(ProtoList) noexcept(
     std::is_nothrow_move_constructible<ProtoList>{});
 extern template ProtoValue::ProtoValue(ProtoStruct m) noexcept(
@@ -288,11 +302,9 @@ extern template ProtoValue::ProtoValue(ProtoStruct m) noexcept(
 
 // -- Template specialization declarations of get_unchecked: POD types -- //
 extern template bool& ProtoValue::get_unchecked<bool>();
-extern template int& ProtoValue::get_unchecked<int>();
 extern template double& ProtoValue::get_unchecked<double>();
 
 extern template bool ProtoValue::get_unchecked<bool>() const;
-extern template int ProtoValue::get_unchecked<int>() const;
 extern template double ProtoValue::get_unchecked<double>() const;
 
 // -- Template specialization declarations of get_unchecked: string and recursive types -- //
@@ -310,7 +322,6 @@ extern template ProtoStruct&& ProtoValue::get_unchecked<ProtoStruct>() &&;
 
 void to_proto(std::nullptr_t, google::protobuf::Value* v);
 void to_proto(bool b, google::protobuf::Value* v);
-void to_proto(int i, google::protobuf::Value* v);
 void to_proto(double d, google::protobuf::Value* v);
 void to_proto(std::string s, google::protobuf::Value* v);
 void to_proto(const ProtoList& vec, google::protobuf::Value* v);
@@ -369,11 +380,6 @@ struct kind<std::nullptr_t> {
 template <>
 struct kind<bool> {
     using type = KindConstant<ProtoValue::Kind::k_bool>;
-};
-
-template <>
-struct kind<int> {
-    using type = KindConstant<ProtoValue::Kind::k_int>;
 };
 
 template <>
