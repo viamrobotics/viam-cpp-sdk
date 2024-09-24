@@ -34,7 +34,7 @@ jobs:
           # more details.
           export BUF_CONFIG_DIR=$(mktemp -d)
           conan profile detect
-          conan create .
+          conan create . --build=missing
 
   build_linux_ubuntu_jammy:
     # if: github.repository_owner == 'viamrobotics'
@@ -91,7 +91,7 @@ jobs:
         shell: bash
         run: |
           conan profile detect
-          conan create .
+          conan create . --build=missing
 
   build_linux_debian:
     # if: github.repository_owner == 'viamrobotics'
@@ -160,4 +160,4 @@ jobs:
         shell: bash
         run: |
           conan profile detect
-          conan create .
+          conan create . --build=missing
