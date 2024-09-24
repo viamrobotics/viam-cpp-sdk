@@ -100,7 +100,6 @@ Public Types</h2></td></tr>
 , <br />
 &#160;&#160;<b>k_list</b> = 4
 , <b>k_struct</b> = 5
-, <b>k_int</b> = 6
 <br />
  }</td></tr>
 <tr class="memdesc:afd726b56a5dc129a31a17a978db81122"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type discriminator constants for possible values stored in a <a class="el" href="classviam_1_1sdk_1_1ProtoValue.html" title="Type-erased value for storing google::protobuf::Value types. A ProtoValue can be nullptr,...">ProtoValue</a>. <br /></td></tr>
@@ -112,15 +111,6 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>ProtoValue</b> () noexcept</td></tr>
 <tr class="memdesc:a60f516eadb272c2da3f294b1dcbe7377"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a null object. <br /></td></tr>
 <tr class="separator:a60f516eadb272c2da3f294b1dcbe7377"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27d6d728852d27c2c13601060d1f1e1c" id="r_a27d6d728852d27c2c13601060d1f1e1c"><td class="memTemplParams" colspan="2"><a id="a27d6d728852d27c2c13601060d1f1e1c" name="a27d6d728852d27c2c13601060d1f1e1c"></a>
-template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a27d6d728852d27c2c13601060d1f1e1c"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><b>ProtoValue</b> (T t) noexcept(std::is_nothrow_move_constructible&lt; T &gt;{})</td></tr>
-<tr class="memdesc:a27d6d728852d27c2c13601060d1f1e1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a nonempty object. <br /></td></tr>
-<tr class="separator:a27d6d728852d27c2c13601060d1f1e1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3dfb8c44dd1120cacb872c3360bdd559" id="r_a3dfb8c44dd1120cacb872c3360bdd559"><td class="memItemLeft" align="right" valign="top"><a id="a3dfb8c44dd1120cacb872c3360bdd559" name="a3dfb8c44dd1120cacb872c3360bdd559"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ProtoValue</b> (const char *str)</td></tr>
-<tr class="memdesc:a3dfb8c44dd1120cacb872c3360bdd559"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deduction helper constructor for string from string literal. <br /></td></tr>
-<tr class="separator:a3dfb8c44dd1120cacb872c3360bdd559"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e7b12b025c766a2d58c60d6672e1a09" id="r_a2e7b12b025c766a2d58c60d6672e1a09"><td class="memItemLeft" align="right" valign="top"><a id="a2e7b12b025c766a2d58c60d6672e1a09" name="a2e7b12b025c766a2d58c60d6672e1a09"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>ProtoValue</b> (<a class="el" href="classviam_1_1sdk_1_1ProtoValue.html">ProtoValue</a> &amp;&amp;other) noexcept(<a class="el" href="structviam_1_1sdk_1_1proto__value__details_1_1all__moves__noexcept.html">proto_value_details::all_moves_noexcept</a>{})</td></tr>
 <tr class="memdesc:a2e7b12b025c766a2d58c60d6672e1a09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move construct this from other, leaving other in its unspecified-but-valid moved from state. <br /></td></tr>
@@ -142,6 +132,39 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>swap</b> (<a class="e
 template&lt;typename T &gt; </td></tr>
 <tr class="memitem:aba48ae1ab71a3be46ec55a5bef277159"><td class="memTemplItemLeft" align="right" valign="top">T const *&#160;</td><td class="memTemplItemRight" valign="bottom"><b>get</b> () const</td></tr>
 <tr class="separator:aba48ae1ab71a3be46ec55a5bef277159"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Value constructors.</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Constructors which initialize a <a class="el" href="classviam_1_1sdk_1_1ProtoValue.html" title="Type-erased value for storing google::protobuf::Value types. A ProtoValue can be nullptr,...">ProtoValue</a> holding its argument. </p>
+</div></td></tr>
+<tr class="memitem:ac19efe2bb8191518908ec52682de5016" id="r_ac19efe2bb8191518908ec52682de5016"><td class="memItemLeft" align="right" valign="top"><a id="ac19efe2bb8191518908ec52682de5016" name="ac19efe2bb8191518908ec52682de5016"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ProtoValue</b> (std::nullptr_t) noexcept</td></tr>
+<tr class="separator:ac19efe2bb8191518908ec52682de5016"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ce07d268abd6aa62105a4dca894f2ba" id="r_a6ce07d268abd6aa62105a4dca894f2ba"><td class="memItemLeft" align="right" valign="top"><a id="a6ce07d268abd6aa62105a4dca894f2ba" name="a6ce07d268abd6aa62105a4dca894f2ba"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ProtoValue</b> (bool b) noexcept</td></tr>
+<tr class="separator:a6ce07d268abd6aa62105a4dca894f2ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a388b713d2b1c0325885e7e59482079f9" id="r_a388b713d2b1c0325885e7e59482079f9"><td class="memItemLeft" align="right" valign="top"><a id="a388b713d2b1c0325885e7e59482079f9" name="a388b713d2b1c0325885e7e59482079f9"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ProtoValue</b> (int i) noexcept</td></tr>
+<tr class="memdesc:a388b713d2b1c0325885e7e59482079f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a double object upcast from constructor argument. <br /></td></tr>
+<tr class="separator:a388b713d2b1c0325885e7e59482079f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaceed23d10717b7e49007356272eb10e" id="r_aaceed23d10717b7e49007356272eb10e"><td class="memItemLeft" align="right" valign="top"><a id="aaceed23d10717b7e49007356272eb10e" name="aaceed23d10717b7e49007356272eb10e"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ProtoValue</b> (double d) noexcept</td></tr>
+<tr class="separator:aaceed23d10717b7e49007356272eb10e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65e7324d0f8cc2bfcc0cb4df8cfae2d2" id="r_a65e7324d0f8cc2bfcc0cb4df8cfae2d2"><td class="memItemLeft" align="right" valign="top"><a id="a65e7324d0f8cc2bfcc0cb4df8cfae2d2" name="a65e7324d0f8cc2bfcc0cb4df8cfae2d2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ProtoValue</b> (std::string s) noexcept</td></tr>
+<tr class="separator:a65e7324d0f8cc2bfcc0cb4df8cfae2d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dfb8c44dd1120cacb872c3360bdd559" id="r_a3dfb8c44dd1120cacb872c3360bdd559"><td class="memItemLeft" align="right" valign="top"><a id="a3dfb8c44dd1120cacb872c3360bdd559" name="a3dfb8c44dd1120cacb872c3360bdd559"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ProtoValue</b> (const char *str)</td></tr>
+<tr class="memdesc:a3dfb8c44dd1120cacb872c3360bdd559"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deduction helper constructor for string from string literal. <br /></td></tr>
+<tr class="separator:a3dfb8c44dd1120cacb872c3360bdd559"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab838fbc5650e7c11e1bfcc6716913686" id="r_ab838fbc5650e7c11e1bfcc6716913686"><td class="memTemplParams" colspan="2"><a id="ab838fbc5650e7c11e1bfcc6716913686" name="ab838fbc5650e7c11e1bfcc6716913686"></a>
+template&lt;typename Val  = ProtoValue, typename  = std::enable_if_t&lt;std::is_same&lt;Val, ProtoValue&gt;{}&gt;&gt; </td></tr>
+<tr class="memitem:ab838fbc5650e7c11e1bfcc6716913686"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><b>ProtoValue</b> (std::vector&lt; Val &gt;) noexcept(std::is_nothrow_move_constructible&lt; std::vector&lt; Val &gt; &gt;{})</td></tr>
+<tr class="memdesc:ab838fbc5650e7c11e1bfcc6716913686"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct from a ProtoList. <br /></td></tr>
+<tr class="separator:ab838fbc5650e7c11e1bfcc6716913686"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa452407d39e6bcc4fbafdb9d7cac4cc7" id="r_aa452407d39e6bcc4fbafdb9d7cac4cc7"><td class="memTemplParams" colspan="2"><a id="aa452407d39e6bcc4fbafdb9d7cac4cc7" name="aa452407d39e6bcc4fbafdb9d7cac4cc7"></a>
+template&lt;typename Val  = ProtoValue, typename  = std::enable_if_t&lt;std::is_same&lt;Val, ProtoValue&gt;{}&gt;&gt; </td></tr>
+<tr class="memitem:aa452407d39e6bcc4fbafdb9d7cac4cc7"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><b>ProtoValue</b> (std::unordered_map&lt; std::string, Val &gt;) noexcept(std::is_nothrow_move_constructible&lt; std::unordered_map&lt; std::string, Val &gt; &gt;{})</td></tr>
+<tr class="memdesc:aa452407d39e6bcc4fbafdb9d7cac4cc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct from a ProtoStruct. <br /></td></tr>
+<tr class="separator:aa452407d39e6bcc4fbafdb9d7cac4cc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Value access API</div></td></tr>
 <tr class="memitem:a95372ad38cbaeaa804c067d94b244695" id="r_a95372ad38cbaeaa804c067d94b244695"><td class="memItemLeft" align="right" valign="top"><a id="a95372ad38cbaeaa804c067d94b244695" name="a95372ad38cbaeaa804c067d94b244695"></a>
 <a class="el" href="#afd726b56a5dc129a31a17a978db81122">Kind</a>&#160;</td><td class="memItemRight" valign="bottom"><b>kind</b> () const</td></tr>
@@ -257,7 +280,7 @@ template&lt;typename T &gt; </div>
 <p>Return a reference to the underlying T, without checking. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T</td><td>a bool, int, or double </td></tr>
+    <tr><td class="paramname">T</td><td>a bool or double </td></tr>
   </table>
   </dd>
 </dl>
@@ -338,7 +361,7 @@ template&lt;typename T &gt; </div>
 <p>Return the underlying T by value, without checking. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T</td><td>a bool, int, or double. </td></tr>
+    <tr><td class="paramname">T</td><td>a bool or double. </td></tr>
   </table>
   </dd>
 </dl>
