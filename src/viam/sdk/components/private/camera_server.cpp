@@ -114,6 +114,7 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
         *response->mutable_intrinsic_parameters() =
             Camera::to_proto(properties.intrinsic_parameters);
         response->set_supports_pcd(properties.supports_pcd);
+        response->set_frame_rate(properties.frame_rate);
     });
 }
 

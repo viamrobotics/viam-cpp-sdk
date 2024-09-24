@@ -23,6 +23,42 @@ namespace _fl = ::google::protobuf::internal::field_layout;
 namespace viam {
 namespace app {
 namespace v1 {
+      template <typename>
+PROTOBUF_CONSTEXPR SendPaymentRequiredEmailResponse::SendPaymentRequiredEmailResponse(::_pbi::ConstantInitialized) {}
+struct SendPaymentRequiredEmailResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SendPaymentRequiredEmailResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SendPaymentRequiredEmailResponseDefaultTypeInternal() {}
+  union {
+    SendPaymentRequiredEmailResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SendPaymentRequiredEmailResponseDefaultTypeInternal _SendPaymentRequiredEmailResponse_default_instance_;
+
+inline constexpr SendPaymentRequiredEmailRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : customer_org_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        billing_owner_org_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SendPaymentRequiredEmailRequest::SendPaymentRequiredEmailRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct SendPaymentRequiredEmailRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SendPaymentRequiredEmailRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SendPaymentRequiredEmailRequestDefaultTypeInternal() {}
+  union {
+    SendPaymentRequiredEmailRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SendPaymentRequiredEmailRequestDefaultTypeInternal _SendPaymentRequiredEmailRequest_default_instance_;
 
 inline constexpr PaymentMethodCard::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -329,7 +365,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 }  // namespace v1
 }  // namespace app
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_app_2fv1_2fbilling_2eproto[12];
+static ::_pb::Metadata file_level_metadata_app_2fv1_2fbilling_2eproto[14];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_app_2fv1_2fbilling_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_app_2fv1_2fbilling_2eproto = nullptr;
@@ -515,6 +551,24 @@ const ::uint32_t TableStruct_app_2fv1_2fbilling_2eproto::offsets[] PROTOBUF_SECT
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetInvoicePdfResponse, _impl_.chunk_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::SendPaymentRequiredEmailRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::SendPaymentRequiredEmailRequest, _impl_.customer_org_id_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::SendPaymentRequiredEmailRequest, _impl_.billing_owner_org_id_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::SendPaymentRequiredEmailResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
 };
 
 static const ::_pbi::MigrationSchema
@@ -531,6 +585,8 @@ static const ::_pbi::MigrationSchema
         {151, -1, -1, sizeof(::viam::app::v1::GetInvoicesSummaryResponse)},
         {161, -1, -1, sizeof(::viam::app::v1::GetInvoicePdfRequest)},
         {171, -1, -1, sizeof(::viam::app::v1::GetInvoicePdfResponse)},
+        {180, -1, -1, sizeof(::viam::app::v1::SendPaymentRequiredEmailRequest)},
+        {190, -1, -1, sizeof(::viam::app::v1::SendPaymentRequiredEmailResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -546,6 +602,8 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::viam::app::v1::_GetInvoicesSummaryResponse_default_instance_._instance,
     &::viam::app::v1::_GetInvoicePdfRequest_default_instance_._instance,
     &::viam::app::v1::_GetInvoicePdfResponse_default_instance_._instance,
+    &::viam::app::v1::_SendPaymentRequiredEmailRequest_default_instance_._instance,
+    &::viam::app::v1::_SendPaymentRequiredEmailResponse_default_instance_._instance,
 };
 const char descriptor_table_protodef_app_2fv1_2fbilling_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\024app/v1/billing.proto\022\013viam.app.v1\032\037goo"
@@ -609,9 +667,13 @@ const char descriptor_table_protodef_app_2fv1_2fbilling_2eproto[] PROTOBUF_SECTI
     ".InvoiceSummaryR\010invoices\"=\n\024GetInvoiceP"
     "dfRequest\022\016\n\002id\030\001 \001(\tR\002id\022\025\n\006org_id\030\002 \001("
     "\tR\005orgId\"-\n\025GetInvoicePdfResponse\022\024\n\005chu"
-    "nk\030\001 \001(\014R\005chunk*V\n\021PaymentMethodType\022#\n\037"
+    "nk\030\001 \001(\014R\005chunk\"z\n\037SendPaymentRequiredEm"
+    "ailRequest\022&\n\017customer_org_id\030\001 \001(\tR\rcus"
+    "tomerOrgId\022/\n\024billing_owner_org_id\030\002 \001(\t"
+    "R\021billingOwnerOrgId\"\"\n SendPaymentRequir"
+    "edEmailResponse*V\n\021PaymentMethodType\022#\n\037"
     "PAYMENT_METHOD_TYPE_UNSPECIFIED\020\000\022\034\n\030PAY"
-    "MENT_METHOD_TYPE_CARD\020\0012\267\003\n\016BillingServi"
+    "MENT_METHOD_TYPE_CARD\020\0012\260\004\n\016BillingServi"
     "ce\022k\n\024GetCurrentMonthUsage\022(.viam.app.v1"
     ".GetCurrentMonthUsageRequest\032).viam.app."
     "v1.GetCurrentMonthUsageResponse\022w\n\030GetOr"
@@ -622,11 +684,14 @@ const char descriptor_table_protodef_app_2fv1_2fbilling_2eproto[] PROTOBUF_SECTI
     "SummaryRequest\032\'.viam.app.v1.GetInvoices"
     "SummaryResponse\022X\n\rGetInvoicePdf\022!.viam."
     "app.v1.GetInvoicePdfRequest\032\".viam.app.v"
-    "1.GetInvoicePdfResponse0\001B\205\001\n\017com.viam.a"
-    "pp.v1B\014BillingProtoP\001Z\026go.viam.com/api/a"
-    "pp/v1\242\002\003VAX\252\002\013Viam.App.V1\312\002\013Viam\\App\\V1\342"
-    "\002\027Viam\\App\\V1\\GPBMetadata\352\002\rViam::App::V"
-    "1b\006proto3"
+    "1.GetInvoicePdfResponse0\001\022w\n\030SendPayment"
+    "RequiredEmail\022,.viam.app.v1.SendPaymentR"
+    "equiredEmailRequest\032-.viam.app.v1.SendPa"
+    "ymentRequiredEmailResponseB\205\001\n\017com.viam."
+    "app.v1B\014BillingProtoP\001Z\026go.viam.com/api/"
+    "app/v1\242\002\003VAX\252\002\013Viam.App.V1\312\002\013Viam\\App\\V1"
+    "\342\002\027Viam\\App\\V1\\GPBMetadata\352\002\rViam::App::"
+    "V1b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fbilling_2eproto_deps[1] =
     {
@@ -636,13 +701,13 @@ static ::absl::once_flag descriptor_table_app_2fv1_2fbilling_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2fbilling_2eproto = {
     false,
     false,
-    3129,
+    3410,
     descriptor_table_protodef_app_2fv1_2fbilling_2eproto,
     "app/v1/billing.proto",
     &descriptor_table_app_2fv1_2fbilling_2eproto_once,
     descriptor_table_app_2fv1_2fbilling_2eproto_deps,
     1,
-    12,
+    14,
     schemas,
     file_default_instances,
     TableStruct_app_2fv1_2fbilling_2eproto::offsets,
@@ -4351,6 +4416,260 @@ void GetInvoicePdfResponse::InternalSwap(GetInvoicePdfResponse* PROTOBUF_RESTRIC
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
       file_level_metadata_app_2fv1_2fbilling_2eproto[11]);
+}
+// ===================================================================
+
+class SendPaymentRequiredEmailRequest::_Internal {
+ public:
+};
+
+SendPaymentRequiredEmailRequest::SendPaymentRequiredEmailRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.SendPaymentRequiredEmailRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE SendPaymentRequiredEmailRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : customer_org_id_(arena, from.customer_org_id_),
+        billing_owner_org_id_(arena, from.billing_owner_org_id_),
+        _cached_size_{0} {}
+
+SendPaymentRequiredEmailRequest::SendPaymentRequiredEmailRequest(
+    ::google::protobuf::Arena* arena,
+    const SendPaymentRequiredEmailRequest& from)
+    : ::google::protobuf::Message(arena) {
+  SendPaymentRequiredEmailRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.SendPaymentRequiredEmailRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE SendPaymentRequiredEmailRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : customer_org_id_(arena),
+        billing_owner_org_id_(arena),
+        _cached_size_{0} {}
+
+inline void SendPaymentRequiredEmailRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+SendPaymentRequiredEmailRequest::~SendPaymentRequiredEmailRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.SendPaymentRequiredEmailRequest)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void SendPaymentRequiredEmailRequest::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.customer_org_id_.Destroy();
+  _impl_.billing_owner_org_id_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void SendPaymentRequiredEmailRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.SendPaymentRequiredEmailRequest)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.customer_org_id_.ClearToEmpty();
+  _impl_.billing_owner_org_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* SendPaymentRequiredEmailRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 87, 2> SendPaymentRequiredEmailRequest::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_SendPaymentRequiredEmailRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string billing_owner_org_id = 2 [json_name = "billingOwnerOrgId"];
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(SendPaymentRequiredEmailRequest, _impl_.billing_owner_org_id_)}},
+    // string customer_org_id = 1 [json_name = "customerOrgId"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(SendPaymentRequiredEmailRequest, _impl_.customer_org_id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string customer_org_id = 1 [json_name = "customerOrgId"];
+    {PROTOBUF_FIELD_OFFSET(SendPaymentRequiredEmailRequest, _impl_.customer_org_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string billing_owner_org_id = 2 [json_name = "billingOwnerOrgId"];
+    {PROTOBUF_FIELD_OFFSET(SendPaymentRequiredEmailRequest, _impl_.billing_owner_org_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\53\17\24\0\0\0\0\0"
+    "viam.app.v1.SendPaymentRequiredEmailRequest"
+    "customer_org_id"
+    "billing_owner_org_id"
+  }},
+};
+
+::uint8_t* SendPaymentRequiredEmailRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.SendPaymentRequiredEmailRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string customer_org_id = 1 [json_name = "customerOrgId"];
+  if (!this->_internal_customer_org_id().empty()) {
+    const std::string& _s = this->_internal_customer_org_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.v1.SendPaymentRequiredEmailRequest.customer_org_id");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // string billing_owner_org_id = 2 [json_name = "billingOwnerOrgId"];
+  if (!this->_internal_billing_owner_org_id().empty()) {
+    const std::string& _s = this->_internal_billing_owner_org_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.v1.SendPaymentRequiredEmailRequest.billing_owner_org_id");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.SendPaymentRequiredEmailRequest)
+  return target;
+}
+
+::size_t SendPaymentRequiredEmailRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.SendPaymentRequiredEmailRequest)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string customer_org_id = 1 [json_name = "customerOrgId"];
+  if (!this->_internal_customer_org_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_customer_org_id());
+  }
+
+  // string billing_owner_org_id = 2 [json_name = "billingOwnerOrgId"];
+  if (!this->_internal_billing_owner_org_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_billing_owner_org_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData SendPaymentRequiredEmailRequest::_class_data_ = {
+    SendPaymentRequiredEmailRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* SendPaymentRequiredEmailRequest::GetClassData() const {
+  return &_class_data_;
+}
+
+void SendPaymentRequiredEmailRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<SendPaymentRequiredEmailRequest*>(&to_msg);
+  auto& from = static_cast<const SendPaymentRequiredEmailRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.SendPaymentRequiredEmailRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_customer_org_id().empty()) {
+    _this->_internal_set_customer_org_id(from._internal_customer_org_id());
+  }
+  if (!from._internal_billing_owner_org_id().empty()) {
+    _this->_internal_set_billing_owner_org_id(from._internal_billing_owner_org_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SendPaymentRequiredEmailRequest::CopyFrom(const SendPaymentRequiredEmailRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.SendPaymentRequiredEmailRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool SendPaymentRequiredEmailRequest::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* SendPaymentRequiredEmailRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void SendPaymentRequiredEmailRequest::InternalSwap(SendPaymentRequiredEmailRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.customer_org_id_, &other->_impl_.customer_org_id_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.billing_owner_org_id_, &other->_impl_.billing_owner_org_id_, arena);
+}
+
+::google::protobuf::Metadata SendPaymentRequiredEmailRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
+      file_level_metadata_app_2fv1_2fbilling_2eproto[12]);
+}
+// ===================================================================
+
+class SendPaymentRequiredEmailResponse::_Internal {
+ public:
+};
+
+SendPaymentRequiredEmailResponse::SendPaymentRequiredEmailResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.SendPaymentRequiredEmailResponse)
+}
+SendPaymentRequiredEmailResponse::SendPaymentRequiredEmailResponse(
+    ::google::protobuf::Arena* arena,
+    const SendPaymentRequiredEmailResponse& from)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  SendPaymentRequiredEmailResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.SendPaymentRequiredEmailResponse)
+}
+
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata SendPaymentRequiredEmailResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
+      file_level_metadata_app_2fv1_2fbilling_2eproto[13]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
