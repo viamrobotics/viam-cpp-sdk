@@ -65,6 +65,9 @@ class Camera : public Component {
 
         /// @brief Contains the mime types the camera supports.
         Camera::mime_types mime_types;
+
+        /// @brief Contains the camera's frame rate.
+        float frame_rate;
     };
 
     /// @struct point_cloud

@@ -231,7 +231,8 @@ Camera::properties Camera::from_proto(
     return {proto.supports_pcd(),
             from_proto(proto.intrinsic_parameters()),
             from_proto(proto.distortion_parameters()),
-            {proto.mime_types().begin(), proto.mime_types().end()}};
+            {proto.mime_types().begin(), proto.mime_types().end()},
+            (proto.frame_rate())};
 }
 
 viam::component::camera::v1::IntrinsicParameters Camera::to_proto(
@@ -282,7 +283,8 @@ bool operator==(const Camera::distortion_parameters& lhs,
 bool operator==(const Camera::properties& lhs, const Camera::properties& rhs) {
     return lhs.supports_pcd == rhs.supports_pcd &&
            lhs.intrinsic_parameters == rhs.intrinsic_parameters &&
-           lhs.distortion_parameters == rhs.distortion_parameters;
+           lhs.distortion_parameters == rhs.distortion_parameters &&
+           lhs.frame_rate == rhs.frame_rate;
 }
 
 }  // namespace sdk

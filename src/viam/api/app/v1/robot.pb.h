@@ -121,6 +121,9 @@ extern LogRequestDefaultTypeInternal _LogRequest_default_instance_;
 class LogResponse;
 struct LogResponseDefaultTypeInternal;
 extern LogResponseDefaultTypeInternal _LogResponse_default_instance_;
+class MaintenanceConfig;
+struct MaintenanceConfigDefaultTypeInternal;
+extern MaintenanceConfigDefaultTypeInternal _MaintenanceConfig_default_instance_;
 class ModuleConfig;
 struct ModuleConfigDefaultTypeInternal;
 extern ModuleConfigDefaultTypeInternal _ModuleConfig_default_instance_;
@@ -5616,6 +5619,205 @@ class ModuleConfig final :
   friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
 };// -------------------------------------------------------------------
 
+class MaintenanceConfig final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.MaintenanceConfig) */ {
+ public:
+  inline MaintenanceConfig() : MaintenanceConfig(nullptr) {}
+  ~MaintenanceConfig() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR MaintenanceConfig(::google::protobuf::internal::ConstantInitialized);
+
+  inline MaintenanceConfig(const MaintenanceConfig& from)
+      : MaintenanceConfig(nullptr, from) {}
+  MaintenanceConfig(MaintenanceConfig&& from) noexcept
+    : MaintenanceConfig() {
+    *this = ::std::move(from);
+  }
+
+  inline MaintenanceConfig& operator=(const MaintenanceConfig& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MaintenanceConfig& operator=(MaintenanceConfig&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MaintenanceConfig& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MaintenanceConfig* internal_default_instance() {
+    return reinterpret_cast<const MaintenanceConfig*>(
+               &_MaintenanceConfig_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    41;
+
+  friend void swap(MaintenanceConfig& a, MaintenanceConfig& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MaintenanceConfig* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MaintenanceConfig* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MaintenanceConfig* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MaintenanceConfig>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const MaintenanceConfig& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const MaintenanceConfig& from) {
+    MaintenanceConfig::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(MaintenanceConfig* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.app.v1.MaintenanceConfig";
+  }
+  protected:
+  explicit MaintenanceConfig(::google::protobuf::Arena* arena);
+  MaintenanceConfig(::google::protobuf::Arena* arena, const MaintenanceConfig& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMaintenanceAllowedKeyFieldNumber = 2,
+    kSensorNameFieldNumber = 1,
+  };
+  // string maintenance_allowed_key = 2 [json_name = "maintenanceAllowedKey"];
+  void clear_maintenance_allowed_key() ;
+  const std::string& maintenance_allowed_key() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_maintenance_allowed_key(Arg_&& arg, Args_... args);
+  std::string* mutable_maintenance_allowed_key();
+  PROTOBUF_NODISCARD std::string* release_maintenance_allowed_key();
+  void set_allocated_maintenance_allowed_key(std::string* value);
+
+  private:
+  const std::string& _internal_maintenance_allowed_key() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_maintenance_allowed_key(
+      const std::string& value);
+  std::string* _internal_mutable_maintenance_allowed_key();
+
+  public:
+  // .viam.common.v1.ResourceName sensor_name = 1 [json_name = "sensorName"];
+  bool has_sensor_name() const;
+  void clear_sensor_name() ;
+  const ::viam::common::v1::ResourceName& sensor_name() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_sensor_name();
+  ::viam::common::v1::ResourceName* mutable_sensor_name();
+  void set_allocated_sensor_name(::viam::common::v1::ResourceName* value);
+  void unsafe_arena_set_allocated_sensor_name(::viam::common::v1::ResourceName* value);
+  ::viam::common::v1::ResourceName* unsafe_arena_release_sensor_name();
+
+  private:
+  const ::viam::common::v1::ResourceName& _internal_sensor_name() const;
+  ::viam::common::v1::ResourceName* _internal_mutable_sensor_name();
+
+  public:
+  // @@protoc_insertion_point(class_scope:viam.app.v1.MaintenanceConfig)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 1,
+      61, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr maintenance_allowed_key_;
+    ::viam::common::v1::ResourceName* sensor_name_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
+};// -------------------------------------------------------------------
+
 class JWKSFile final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.JWKSFile) */ {
  public:
@@ -8836,6 +9038,7 @@ class RobotConfig final :
     kCloudFieldNumber = 1,
     kNetworkFieldNumber = 6,
     kAuthFieldNumber = 7,
+    kMaintenanceFieldNumber = 16,
     kDebugFieldNumber = 8,
     kDisablePartialStartFieldNumber = 10,
     kEnableWebProfileFieldNumber = 13,
@@ -9045,6 +9248,21 @@ class RobotConfig final :
   ::viam::app::v1::AuthConfig* _internal_mutable_auth();
 
   public:
+  // optional .viam.app.v1.MaintenanceConfig maintenance = 16 [json_name = "maintenance"];
+  bool has_maintenance() const;
+  void clear_maintenance() ;
+  const ::viam::app::v1::MaintenanceConfig& maintenance() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::MaintenanceConfig* release_maintenance();
+  ::viam::app::v1::MaintenanceConfig* mutable_maintenance();
+  void set_allocated_maintenance(::viam::app::v1::MaintenanceConfig* value);
+  void unsafe_arena_set_allocated_maintenance(::viam::app::v1::MaintenanceConfig* value);
+  ::viam::app::v1::MaintenanceConfig* unsafe_arena_release_maintenance();
+
+  private:
+  const ::viam::app::v1::MaintenanceConfig& _internal_maintenance() const;
+  ::viam::app::v1::MaintenanceConfig* _internal_mutable_maintenance();
+
+  public:
   // optional bool debug = 8 [json_name = "debug"];
   bool has_debug() const;
   void clear_debug() ;
@@ -9083,8 +9301,8 @@ class RobotConfig final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 15, 11,
-      48, 2>
+      4, 16, 12,
+      56, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -9114,6 +9332,7 @@ class RobotConfig final :
     ::viam::app::v1::CloudConfig* cloud_;
     ::viam::app::v1::NetworkConfig* network_;
     ::viam::app::v1::AuthConfig* auth_;
+    ::viam::app::v1::MaintenanceConfig* maintenance_;
     bool debug_;
     bool disable_partial_start_;
     bool enable_web_profile_;
@@ -9806,13 +10025,13 @@ inline void RobotConfig::set_allocated_auth(::viam::app::v1::AuthConfig* value) 
 
 // optional bool debug = 8 [json_name = "debug"];
 inline bool RobotConfig::has_debug() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
   return value;
 }
 inline void RobotConfig::clear_debug() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.debug_ = false;
-  _impl_._has_bits_[0] &= ~0x00000008u;
+  _impl_._has_bits_[0] &= ~0x00000010u;
 }
 inline bool RobotConfig::debug() const {
   // @@protoc_insertion_point(field_get:viam.app.v1.RobotConfig.debug)
@@ -9828,7 +10047,7 @@ inline bool RobotConfig::_internal_debug() const {
 }
 inline void RobotConfig::_internal_set_debug(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000008u;
+  _impl_._has_bits_[0] |= 0x00000010u;
   _impl_.debug_ = value;
 }
 
@@ -9883,13 +10102,13 @@ RobotConfig::_internal_mutable_modules() {
 
 // optional bool disable_partial_start = 10 [json_name = "disablePartialStart"];
 inline bool RobotConfig::has_disable_partial_start() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000020u) != 0;
   return value;
 }
 inline void RobotConfig::clear_disable_partial_start() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.disable_partial_start_ = false;
-  _impl_._has_bits_[0] &= ~0x00000010u;
+  _impl_._has_bits_[0] &= ~0x00000020u;
 }
 inline bool RobotConfig::disable_partial_start() const {
   // @@protoc_insertion_point(field_get:viam.app.v1.RobotConfig.disable_partial_start)
@@ -9905,7 +10124,7 @@ inline bool RobotConfig::_internal_disable_partial_start() const {
 }
 inline void RobotConfig::_internal_set_disable_partial_start(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000010u;
+  _impl_._has_bits_[0] |= 0x00000020u;
   _impl_.disable_partial_start_ = value;
 }
 
@@ -10130,6 +10349,102 @@ inline void RobotConfig::set_allocated_revision(std::string* value) {
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RobotConfig.revision)
+}
+
+// optional .viam.app.v1.MaintenanceConfig maintenance = 16 [json_name = "maintenance"];
+inline bool RobotConfig::has_maintenance() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.maintenance_ != nullptr);
+  return value;
+}
+inline void RobotConfig::clear_maintenance() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.maintenance_ != nullptr) _impl_.maintenance_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000008u;
+}
+inline const ::viam::app::v1::MaintenanceConfig& RobotConfig::_internal_maintenance() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::viam::app::v1::MaintenanceConfig* p = _impl_.maintenance_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::MaintenanceConfig&>(::viam::app::v1::_MaintenanceConfig_default_instance_);
+}
+inline const ::viam::app::v1::MaintenanceConfig& RobotConfig::maintenance() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RobotConfig.maintenance)
+  return _internal_maintenance();
+}
+inline void RobotConfig::unsafe_arena_set_allocated_maintenance(::viam::app::v1::MaintenanceConfig* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.maintenance_);
+  }
+  _impl_.maintenance_ = reinterpret_cast<::viam::app::v1::MaintenanceConfig*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000008u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000008u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.RobotConfig.maintenance)
+}
+inline ::viam::app::v1::MaintenanceConfig* RobotConfig::release_maintenance() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000008u;
+  ::viam::app::v1::MaintenanceConfig* released = _impl_.maintenance_;
+  _impl_.maintenance_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::viam::app::v1::MaintenanceConfig* RobotConfig::unsafe_arena_release_maintenance() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.v1.RobotConfig.maintenance)
+
+  _impl_._has_bits_[0] &= ~0x00000008u;
+  ::viam::app::v1::MaintenanceConfig* temp = _impl_.maintenance_;
+  _impl_.maintenance_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::MaintenanceConfig* RobotConfig::_internal_mutable_maintenance() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  if (_impl_.maintenance_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::MaintenanceConfig>(GetArena());
+    _impl_.maintenance_ = reinterpret_cast<::viam::app::v1::MaintenanceConfig*>(p);
+  }
+  return _impl_.maintenance_;
+}
+inline ::viam::app::v1::MaintenanceConfig* RobotConfig::mutable_maintenance() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::viam::app::v1::MaintenanceConfig* _msg = _internal_mutable_maintenance();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RobotConfig.maintenance)
+  return _msg;
+}
+inline void RobotConfig::set_allocated_maintenance(::viam::app::v1::MaintenanceConfig* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::viam::app::v1::MaintenanceConfig*>(_impl_.maintenance_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::viam::app::v1::MaintenanceConfig*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000008u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000008u;
+  }
+
+  _impl_.maintenance_ = reinterpret_cast<::viam::app::v1::MaintenanceConfig*>(value);
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RobotConfig.maintenance)
 }
 
 // -------------------------------------------------------------------
@@ -18090,6 +18405,154 @@ inline void PackageConfig::set_allocated_status(::viam::app::v1::AppValidationSt
 
   _impl_.status_ = reinterpret_cast<::viam::app::v1::AppValidationStatus*>(value);
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.PackageConfig.status)
+}
+
+// -------------------------------------------------------------------
+
+// MaintenanceConfig
+
+// .viam.common.v1.ResourceName sensor_name = 1 [json_name = "sensorName"];
+inline bool MaintenanceConfig::has_sensor_name() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.sensor_name_ != nullptr);
+  return value;
+}
+inline const ::viam::common::v1::ResourceName& MaintenanceConfig::_internal_sensor_name() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::viam::common::v1::ResourceName* p = _impl_.sensor_name_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(::viam::common::v1::_ResourceName_default_instance_);
+}
+inline const ::viam::common::v1::ResourceName& MaintenanceConfig::sensor_name() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.MaintenanceConfig.sensor_name)
+  return _internal_sensor_name();
+}
+inline void MaintenanceConfig::unsafe_arena_set_allocated_sensor_name(::viam::common::v1::ResourceName* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.sensor_name_);
+  }
+  _impl_.sensor_name_ = reinterpret_cast<::viam::common::v1::ResourceName*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.MaintenanceConfig.sensor_name)
+}
+inline ::viam::common::v1::ResourceName* MaintenanceConfig::release_sensor_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::viam::common::v1::ResourceName* released = _impl_.sensor_name_;
+  _impl_.sensor_name_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::viam::common::v1::ResourceName* MaintenanceConfig::unsafe_arena_release_sensor_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.v1.MaintenanceConfig.sensor_name)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::viam::common::v1::ResourceName* temp = _impl_.sensor_name_;
+  _impl_.sensor_name_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::ResourceName* MaintenanceConfig::_internal_mutable_sensor_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.sensor_name_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArena());
+    _impl_.sensor_name_ = reinterpret_cast<::viam::common::v1::ResourceName*>(p);
+  }
+  return _impl_.sensor_name_;
+}
+inline ::viam::common::v1::ResourceName* MaintenanceConfig::mutable_sensor_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::viam::common::v1::ResourceName* _msg = _internal_mutable_sensor_name();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.MaintenanceConfig.sensor_name)
+  return _msg;
+}
+inline void MaintenanceConfig::set_allocated_sensor_name(::viam::common::v1::ResourceName* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.sensor_name_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.sensor_name_ = reinterpret_cast<::viam::common::v1::ResourceName*>(value);
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.MaintenanceConfig.sensor_name)
+}
+
+// string maintenance_allowed_key = 2 [json_name = "maintenanceAllowedKey"];
+inline void MaintenanceConfig::clear_maintenance_allowed_key() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.maintenance_allowed_key_.ClearToEmpty();
+}
+inline const std::string& MaintenanceConfig::maintenance_allowed_key() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.MaintenanceConfig.maintenance_allowed_key)
+  return _internal_maintenance_allowed_key();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void MaintenanceConfig::set_maintenance_allowed_key(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.maintenance_allowed_key_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.app.v1.MaintenanceConfig.maintenance_allowed_key)
+}
+inline std::string* MaintenanceConfig::mutable_maintenance_allowed_key() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_maintenance_allowed_key();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.MaintenanceConfig.maintenance_allowed_key)
+  return _s;
+}
+inline const std::string& MaintenanceConfig::_internal_maintenance_allowed_key() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.maintenance_allowed_key_.Get();
+}
+inline void MaintenanceConfig::_internal_set_maintenance_allowed_key(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.maintenance_allowed_key_.Set(value, GetArena());
+}
+inline std::string* MaintenanceConfig::_internal_mutable_maintenance_allowed_key() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.maintenance_allowed_key_.Mutable( GetArena());
+}
+inline std::string* MaintenanceConfig::release_maintenance_allowed_key() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.v1.MaintenanceConfig.maintenance_allowed_key)
+  return _impl_.maintenance_allowed_key_.Release();
+}
+inline void MaintenanceConfig::set_allocated_maintenance_allowed_key(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.maintenance_allowed_key_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.maintenance_allowed_key_.IsDefault()) {
+          _impl_.maintenance_allowed_key_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.MaintenanceConfig.maintenance_allowed_key)
 }
 
 #ifdef __GNUC__

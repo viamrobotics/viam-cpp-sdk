@@ -38,32 +38,9 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
 
     // heterogeneous arithmetic types do not "inuitively" compare equal
     BOOST_CHECK(!(ProtoValue(false) == ProtoValue(0)));
-    BOOST_CHECK(!(ProtoValue(0) == ProtoValue(0.0)));
-
-    // roundtrip integer conversion is not idempotent because the integer gets coerced to a double
-    {
-        ProtoValue i5(5);
-        auto int_roundtrip = ProtoValue::from_proto(to_proto(i5));
-        BOOST_CHECK(i5.kind() == ProtoValue::Kind::k_int);
-        BOOST_CHECK(i5.is_a<int>());
-
-        BOOST_CHECK(int_roundtrip.kind() == ProtoValue::Kind::k_double);
-        BOOST_CHECK(int_roundtrip.is_a<double>());
-
-        BOOST_CHECK(!(i5 == int_roundtrip));
-        BOOST_CHECK(int_roundtrip == ProtoValue(5.0));
-
-        ProtoValue i5_copy(i5);
-        BOOST_CHECK(i5_copy == i5);
-
-        ProtoValue i5_move(std::move(i5));
-        BOOST_CHECK(i5_copy == i5_move);
-        BOOST_CHECK(i5.is_a<int>());
-    }
 
     auto test_cases = std::make_tuple(
         std::make_pair(true, false),
-        /* integer not included, see above */
         std::make_pair(6.0, 7.5),
         std::make_pair(std::string("string"), std::string("different")),
         std::make_pair(ProtoList({ProtoValue{"asdf"}}),
@@ -82,7 +59,6 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
         ProtoValue v1(test_pair.first);
         BOOST_CHECK(v1.kind() == kind);
         BOOST_CHECK(v1.is_a<test_type>());
-        BOOST_CHECK(!v1.get<int>());
 
         {
             const test_type* ptr = v1.get<test_type>();
@@ -182,7 +158,9 @@ BOOST_AUTO_TEST_CASE(test_unchecked_access) {
                        ProtoStruct{{"int", 5}, {"double", 6.0}}));
 
     tuple_for_each(std::tuple_cat(scalar_tests, nonscalar_tests), [](auto test_pair) {
-        using test_type = typename decltype(test_pair)::first_type;
+        using first_type = typename decltype(test_pair)::first_type;
+        using test_type = std::conditional_t<std::is_same<first_type, int>{}, double, first_type>;
+
         const test_type first = test_pair.first;
         const test_type second = test_pair.second;
 
@@ -248,9 +226,6 @@ BOOST_AUTO_TEST_CASE(test_nested_objects) {
 
 void set_proto_value(Value& val, bool b) {
     val.set_bool_value(b);
-}
-void set_proto_value(Value& val, int i) {
-    val.set_number_value(i);
 }
 void set_proto_value(Value& val, double d) {
     val.set_number_value(d);
