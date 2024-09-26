@@ -195,12 +195,12 @@ jobs:
       - name: Install conan with pipx and create package (Bookworm)
         if: ${{ matrix.image  == 'debian:bookworm' }}
         run: |
-        DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
-            pipx \
-            python3-jinja2
+	        DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
+	            pipx \
+	            python3-jinja2
 
-        pipx install conan
-        pipx ensurepath
-        source ~/.bashrc
-        conan profile detect
-        conan create . --build=missing -s compiler.cppstd=14
+	        pipx install conan
+	        pipx ensurepath
+	        source ~/.bashrc
+	        conan profile detect
+	        conan create . --build=missing -s compiler.cppstd=14
