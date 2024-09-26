@@ -47,7 +47,7 @@ jobs:
           brew install python ninja buf
           python -m pip install conan
 
-      - name: Build
+      - name: Create package
         run: |
           # `buf` tries to read a CLI config file that we don't actually use located at
           # ~/.config/buf/config.yaml. We don't always have permission to access this
