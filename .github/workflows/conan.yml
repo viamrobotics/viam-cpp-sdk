@@ -197,6 +197,7 @@ jobs:
         run: |
         DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
             pipx \
+            python3-jinja2
 
         pipx install conan
         pipx ensurepath
