@@ -56,7 +56,7 @@ jobs:
           # more details.
           export BUF_CONFIG_DIR=$(mktemp -d)
           conan profile detect
-          conan create . --build=missing
+          conan create . --build=missing -s compiler.cppstd=17
 
   build_linux_ubuntu_jammy:
     if: github.repository_owner == 'viamrobotics'
@@ -114,7 +114,7 @@ jobs:
         shell: bash
         run: |
           conan profile detect
-          conan create . --build=missing
+          conan create . --build=missing -s compiler.cppstd=14
 
   build_linux_debian:
     if: github.repository_owner == 'viamrobotics'
@@ -188,4 +188,4 @@ jobs:
           pipx ensurepath
           source ~/.bashrc
           conan profile detect
-          conan create . --build=missing
+          conan create . --build=missing -s compiler.cppstd=14
