@@ -148,8 +148,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install dependencies
-        # Note we use pipx below instead of python3-pip, see
-        # https://docs.conan.io/2/installation.html#install-with-pipx
         run: |
           apt-get update
           apt-get -y dist-upgrade
@@ -170,8 +168,6 @@ jobs:
               sudo \
               wget
 
-          pipx install conan
-
       - name: Update CMake for bullseye
         if: ${{ matrix.image  == 'debian:bullseye' }}
         run: |
@@ -182,10 +178,28 @@ jobs:
 
           apt-get -y --no-install-recommends install -t bullseye-backports cmake
 
-      - name: Create package
-        shell: bash
+      # Note bullseye can use regular pip + conan no problem, but
+      # bookworm is a managed environment so we use pipx. See
+      # https://docs.conan.io/2/installation.html#install-with-pipx
+
+      - name: Install conan with pip and create package (Bullseye)
+        if: ${{ matrix.image  == 'debian:bullseye' }}
         run: |
-          pipx ensurepath
-          source ~/.bashrc
-          conan profile detect
-          conan create . --build=missing -s compiler.cppstd=14
+        DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
+            python3-pip \
+
+        pip install conan
+        conan profile detect
+        conan create . --build=missing -s compiler.cppstd=14
+
+      - name: Install conan with pipx and create package (Bookworm)
+        if: ${{ matrix.image  == 'debian:bookworm' }}
+        run: |
+        DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
+            pipx \
+
+        pipx install conan
+        pipx ensurepath
+        source ~/.bashrc
+        conan profile detect
+        conan create . --build=missing -s compiler.cppstd=14
