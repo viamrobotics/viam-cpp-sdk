@@ -26,7 +26,7 @@ jobs:
           github.event_name == 'schedule'
 
   build_macos:
-    if: false #github.repository_owner == 'viamrobotics'
+    if: github.repository_owner == 'viamrobotics'
     needs: [prepare]
     runs-on: macos-latest
     strategy:
@@ -59,7 +59,7 @@ jobs:
           conan create . --build=missing -s compiler.cppstd=17
 
   build_linux_ubuntu_jammy:
-    if: false #github.repository_owner == 'viamrobotics'
+    if: github.repository_owner == 'viamrobotics'
     needs: [prepare]
     runs-on:  ${{ matrix.runs_on }}
     container:
@@ -118,7 +118,7 @@ jobs:
 
   build_linux_debian:
     if: github.repository_owner == 'viamrobotics'
-    # needs: [prepare]
+    needs: [prepare]
     runs-on:  ${{ matrix.runs_on }}
     container:
       image: ${{ matrix.image }}
@@ -180,7 +180,8 @@ jobs:
           apt-get -y --no-install-recommends install -t bullseye-backports cmake
 
       # Note bullseye can use regular pip + conan no problem, but
-      # bookworm is a managed environment, so we use a venv in both
+      # bookworm is a managed environment, so we use a venv in both because it is more
+      # trouble to bifurcate them.
       - name: Install conan in venv and create package
         shell: bash
         run: |
@@ -189,4 +190,4 @@ jobs:
 
           pip install conan
           conan profile detect
-          conan create . --build=missing -s compiler.cppstd=gnu14
+          conan create . --build=missing -s compiler.cppstd=14
