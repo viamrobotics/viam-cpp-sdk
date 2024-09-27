@@ -1,11 +1,33 @@
 name: Test conan packages
 
 on:
+  # Run weekdays at 11:15pm UTC, and specify below to only run if there's been new commits
+  schedule:
+    - cron: "15 11 * * 1-5"
   workflow_dispatch:
 
 jobs:
+  prepare:
+    if: github.repository_owner == 'viamrobotics'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Get new commit count
+        id: new_commit_count
+        shell: bash
+        run: echo "commit_count=$(git log --oneline --since '24 hours ago' | wc -l)" >> $GITHUB_OUTPUT
+
+      - name: Cancelling scheduled build with no new commits
+        uses: andymckay/cancel-action@0.2
+        if: |
+          steps.new_commit_count.outputs.commit_count == '0' &&
+          github.event_name == 'schedule'
+
   build_macos:
-    # if: github.repository_owner == 'viamrobotics'
+    if: github.repository_owner == 'viamrobotics'
+    needs: [prepare]
     runs-on: macos-latest
     strategy:
       fail-fast: false
@@ -25,7 +47,7 @@ jobs:
           brew install python ninja buf
           python -m pip install conan
 
-      - name: Build
+      - name: Create package
         run: |
           # `buf` tries to read a CLI config file that we don't actually use located at
           # ~/.config/buf/config.yaml. We don't always have permission to access this
@@ -34,10 +56,11 @@ jobs:
           # more details.
           export BUF_CONFIG_DIR=$(mktemp -d)
           conan profile detect
-          conan create . --build=missing
+          conan create . --build=missing -s compiler.cppstd=17
 
   build_linux_ubuntu_jammy:
-    # if: github.repository_owner == 'viamrobotics'
+    if: github.repository_owner == 'viamrobotics'
+    needs: [prepare]
     runs-on:  ${{ matrix.runs_on }}
     container:
       image: ${{ matrix.image }}
@@ -91,10 +114,11 @@ jobs:
         shell: bash
         run: |
           conan profile detect
-          conan create . --build=missing
+          conan create . --build=missing -s compiler.cppstd=14
 
   build_linux_debian:
-    # if: github.repository_owner == 'viamrobotics'
+    if: github.repository_owner == 'viamrobotics'
+    needs: [prepare]
     runs-on:  ${{ matrix.runs_on }}
     container:
       image: ${{ matrix.image }}
@@ -140,11 +164,10 @@ jobs:
               ninja-build \
               python3 \
               python3-pip \
+              python3-venv \
               software-properties-common \
               sudo \
               wget
-          
-          pip install conan
 
       - name: Update CMake for bullseye
         if: ${{ matrix.image  == 'debian:bullseye' }}
@@ -156,8 +179,15 @@ jobs:
 
           apt-get -y --no-install-recommends install -t bullseye-backports cmake
 
-      - name: Create package
+      # Note bullseye can use regular pip + conan no problem, but
+      # bookworm is a managed environment, so we use a venv in both because it is more
+      # trouble to bifurcate them.
+      - name: Install conan in venv and create package
         shell: bash
         run: |
+          python3 -m venv ./conan_venv
+          source ./conan_venv/bin/activate
+
+          pip install conan
           conan profile detect
-          conan create . --build=missing
+          conan create . --build=missing -s compiler.cppstd=14
