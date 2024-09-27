@@ -189,4 +189,4 @@ jobs:
 
           pip install conan
           conan profile detect
-          conan create . --build=missing -s compiler.cppstd=14
+          conan create . --build=missing -s compiler.cppstd=gnu14
