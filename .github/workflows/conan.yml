@@ -26,7 +26,7 @@ jobs:
           github.event_name == 'schedule'
 
   build_macos:
-    if: github.repository_owner == 'viamrobotics'
+    if: false #github.repository_owner == 'viamrobotics'
     needs: [prepare]
     runs-on: macos-latest
     strategy:
@@ -59,7 +59,7 @@ jobs:
           conan create . --build=missing -s compiler.cppstd=17
 
   build_linux_ubuntu_jammy:
-    if: github.repository_owner == 'viamrobotics'
+    if: false #github.repository_owner == 'viamrobotics'
     needs: [prepare]
     runs-on:  ${{ matrix.runs_on }}
     container:
@@ -118,7 +118,7 @@ jobs:
 
   build_linux_debian:
     if: github.repository_owner == 'viamrobotics'
-    needs: [prepare]
+    # needs: [prepare]
     runs-on:  ${{ matrix.runs_on }}
     container:
       image: ${{ matrix.image }}
@@ -163,7 +163,8 @@ jobs:
               less \
               ninja-build \
               python3 \
-              pipx \
+              python3-pip \
+              python3-virtualenvwrapper \
               software-properties-common \
               sudo \
               wget
@@ -179,28 +180,16 @@ jobs:
           apt-get -y --no-install-recommends install -t bullseye-backports cmake
 
       # Note bullseye can use regular pip + conan no problem, but
-      # bookworm is a managed environment so we use pipx. See
-      # https://docs.conan.io/2/installation.html#install-with-pipx
-
-      - name: Install conan with pip and create package (Bullseye)
-        if: ${{ matrix.image  == 'debian:bullseye' }}
+      # bookworm is a managed environment, so we use a virtualenvwrapper in both
+      - name: Install conan in venv and create package
         run: |
-          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
-            python3-pip \
+          export WORKON_HOME=~/venvs
+          mkdir -p $WORKON_HOME
+
+          source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+
+          mkvirtualenv conan_env
 
           pip install conan
-          conan profile detect
-          conan create . --build=missing -s compiler.cppstd=14
-
-      - name: Install conan with pipx and create package (Bookworm)
-        if: ${{ matrix.image  == 'debian:bookworm' }}
-        run: |
-          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
-            pipx \
-            python3-jinja2
-
-          pipx install conan
-          pipx ensurepath
-          source ~/.bashrc
           conan profile detect
           conan create . --build=missing -s compiler.cppstd=14
