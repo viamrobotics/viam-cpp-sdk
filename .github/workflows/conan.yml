@@ -164,7 +164,7 @@ jobs:
               ninja-build \
               python3 \
               python3-pip \
-              python3-virtualenvwrapper \
+              python3-venv \
               software-properties-common \
               sudo \
               wget
@@ -180,16 +180,12 @@ jobs:
           apt-get -y --no-install-recommends install -t bullseye-backports cmake
 
       # Note bullseye can use regular pip + conan no problem, but
-      # bookworm is a managed environment, so we use a virtualenvwrapper in both
+      # bookworm is a managed environment, so we use a venv in both
       - name: Install conan in venv and create package
         shell: bash
         run: |
-          export WORKON_HOME=~/venvs
-          mkdir -p $WORKON_HOME
-
-          source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
-
-          mkvirtualenv conan_env
+          python3 -m venv ./conan_venv
+          source ./conan_venv/bin/activate
 
           pip install conan
           conan profile detect
