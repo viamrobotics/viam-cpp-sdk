@@ -182,6 +182,7 @@ jobs:
       # Note bullseye can use regular pip + conan no problem, but
       # bookworm is a managed environment, so we use a virtualenvwrapper in both
       - name: Install conan in venv and create package
+        shell: bash
         run: |
           export WORKON_HOME=~/venvs
           mkdir -p $WORKON_HOME
