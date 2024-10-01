@@ -757,6 +757,7 @@ enum Visibility : int {
   VISIBILITY_UNSPECIFIED = 0,
   VISIBILITY_PRIVATE = 1,
   VISIBILITY_PUBLIC = 2,
+  VISIBILITY_PUBLIC_UNLISTED = 3,
   Visibility_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   Visibility_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -766,8 +767,8 @@ enum Visibility : int {
 bool Visibility_IsValid(int value);
 extern const uint32_t Visibility_internal_data_[];
 constexpr Visibility Visibility_MIN = static_cast<Visibility>(0);
-constexpr Visibility Visibility_MAX = static_cast<Visibility>(2);
-constexpr int Visibility_ARRAYSIZE = 2 + 1;
+constexpr Visibility Visibility_MAX = static_cast<Visibility>(3);
+constexpr int Visibility_ARRAYSIZE = 3 + 1;
 const ::google::protobuf::EnumDescriptor*
 Visibility_descriptor();
 template <typename T>
@@ -780,7 +781,7 @@ const std::string& Visibility_Name(T value) {
 template <>
 inline const std::string& Visibility_Name(Visibility value) {
   return ::google::protobuf::internal::NameOfDenseEnum<Visibility_descriptor,
-                                                 0, 2>(
+                                                 0, 3>(
       static_cast<int>(value));
 }
 inline bool Visibility_Parse(absl::string_view name, Visibility* value) {
