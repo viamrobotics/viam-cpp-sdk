@@ -1,8 +1,6 @@
 #include <viam/sdk/components/private/motor_client.hpp>
 
-#include <algorithm>
 #include <memory>
-#include <stdexcept>
 #include <string>
 #include <utility>
 
@@ -21,7 +19,7 @@ namespace impl {
 MotorClient::MotorClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Motor(std::move(name)),
       stub_(viam::component::motor::v1::MotorService::NewStub(channel)),
-      channel_(std::move(channel)){};
+      channel_(std::move(channel)) {};
 
 void MotorClient::set_power(double power_pct, const AttributeMap& extra) {
     return make_client_helper(this, *stub_, &StubType::SetPower)

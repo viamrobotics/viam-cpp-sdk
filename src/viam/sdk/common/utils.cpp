@@ -14,6 +14,7 @@
 
 #include <viam/api/common/v1/common.pb.h>
 
+#include <viam/sdk/common/private/utils.hpp>
 #include <viam/sdk/common/private/version_metadata.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/registry/registry.hpp>
@@ -106,6 +107,53 @@ bool operator==(const response_metadata& lhs, const response_metadata& rhs) {
 
 void ClientContext::set_client_ctx_authority_() {
     wrapped_context_.set_authority("viam-placeholder");
+}
+
+std::string random_debug_key() {
+    static const char alphanum[] = "abcdefghijklmnopqrstuvwxyz";
+    static std::default_random_engine generator(
+        std::chrono::system_clock::now().time_since_epoch().count());
+    std::uniform_int_distribution<int> distribution(0, sizeof(alphanum) - 1);
+
+    std::string key;
+    key.reserve(6);
+
+    for (int i = 0; i < 6; ++i) {
+        key += alphanum[distribution(generator)];
+    };
+
+    return key;
+}
+
+AttributeMap debug_map() {
+    auto debug_key = random_debug_key();
+    return debug_map(debug_key);
+}
+
+AttributeMap debug_map(std::string debug_key) {
+    AttributeMap map =
+        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
+    map->emplace(impl::debug_map_key, std::make_shared<ProtoType>(std::move(debug_key)));
+
+    return map;
+}
+
+AttributeMap add_debug_entry(AttributeMap map, std::string debug_key) {
+    map->emplace(impl::debug_map_key, std::make_shared<ProtoType>(std::move(debug_key)));
+    return map;
+}
+
+AttributeMap add_debug_entry(AttributeMap&& map, std::string debug_key) {
+    return add_debug_entry(map, std::move(debug_key));
+}
+
+AttributeMap add_debug_entry(AttributeMap&& map) {
+    auto debug_key = random_debug_key();
+    return add_debug_entry(map, std::move(debug_key));
+}
+
+void ClientContext::set_debug_key(const std::string& debug_key) {
+    wrapped_context_.AddMetadata("dtname", debug_key);
 }
 
 void ClientContext::add_viam_client_version_() {

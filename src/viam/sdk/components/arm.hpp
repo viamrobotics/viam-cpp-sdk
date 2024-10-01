@@ -94,6 +94,11 @@ class Arm : public Component, public Stoppable {
     virtual std::vector<double> get_joint_positions(const AttributeMap& extra) = 0;
 
     /// @brief Move each joint on the arm to the corresponding angle specified in @param positions
+    inline void move_to_joint_positions(const std::vector<double>& positions) {
+        return move_to_joint_positions(positions, {});
+    }
+
+    /// @brief Move each joint on the arm to the corresponding angle specified in @param positions
     /// @param extra Any additional arguments to the method.
     virtual void move_to_joint_positions(const std::vector<double>& positions,
                                          const AttributeMap& extra) = 0;
