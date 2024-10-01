@@ -1,5 +1,6 @@
 #include <viam/sdk/common/utils.hpp>
 
+#include <random>
 #include <unordered_map>
 #include <vector>
 
