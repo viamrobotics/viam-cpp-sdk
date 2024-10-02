@@ -18,6 +18,8 @@
 #include <tuple>
 #include <unordered_map>
 
+#include <boost/variant/get.hpp>
+
 #include <viam/sdk/tests/mocks/mlmodel_mocks.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
