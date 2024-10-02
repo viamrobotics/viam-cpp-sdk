@@ -118,24 +118,24 @@ const char descriptor_table_protodef_proto_2frpc_2fexamples_2ffileupload_2fv1_2f
     "ad.v1\"R\n\021UploadFileRequest\022\024\n\004name\030\001 \001(\t"
     "H\000R\004name\022\037\n\nchunk_data\030\002 \001(\014H\000R\tchunkDat"
     "aB\006\n\004data\"<\n\022UploadFileResponse\022\022\n\004name\030"
-    "\001 \001(\tR\004name\022\022\n\004size\030\002 \001(\003R\004size2\222\001\n\021File"
-    "UploadService\022}\n\nUploadFile\0223.proto.rpc."
+    "\001 \001(\tR\004name\022\022\n\004size\030\002 \001(\003R\004size2\220\001\n\021File"
+    "UploadService\022{\n\nUploadFile\0223.proto.rpc."
     "examples.fileupload.v1.UploadFileRequest"
     "\0324.proto.rpc.examples.fileupload.v1.Uplo"
-    "adFileResponse\"\000(\0010\001B\220\002\n$com.proto.rpc.e"
-    "xamples.fileupload.v1B\017FileuploadProtoP\001"
-    "Z2go.viam.com/utils/proto/rpc/examples/f"
-    "ileupload/v1\242\002\004PREF\252\002 Proto.Rpc.Examples"
-    ".Fileupload.V1\312\002 Proto\\Rpc\\Examples\\File"
-    "upload\\V1\342\002,Proto\\Rpc\\Examples\\Fileuploa"
-    "d\\V1\\GPBMetadata\352\002$Proto::Rpc::Examples:"
-    ":Fileupload::V1b\006proto3"
+    "adFileResponse\"\000(\001B\220\002\n$com.proto.rpc.exa"
+    "mples.fileupload.v1B\017FileuploadProtoP\001Z2"
+    "go.viam.com/utils/proto/rpc/examples/fil"
+    "eupload/v1\242\002\004PREF\252\002 Proto.Rpc.Examples.F"
+    "ileupload.V1\312\002 Proto\\Rpc\\Examples\\Fileup"
+    "load\\V1\342\002,Proto\\Rpc\\Examples\\Fileupload\\"
+    "V1\\GPBMetadata\352\002$Proto::Rpc::Examples::F"
+    "ileupload::V1b\006proto3"
 };
 static ::absl::once_flag descriptor_table_proto_2frpc_2fexamples_2ffileupload_2fv1_2ffileupload_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_proto_2frpc_2fexamples_2ffileupload_2fv1_2ffileupload_2eproto = {
     false,
     false,
-    663,
+    661,
     descriptor_table_protodef_proto_2frpc_2fexamples_2ffileupload_2fv1_2ffileupload_2eproto,
     "proto/rpc/examples/fileupload/v1/fileupload.proto",
     &descriptor_table_proto_2frpc_2fexamples_2ffileupload_2fv1_2ffileupload_2eproto_once,
