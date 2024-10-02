@@ -15,7 +15,7 @@ namespace sdk {
 namespace impl {
 
 MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)) {};
+    : ResourceServer(std::move(manager)){};
 
 ::grpc::Status MotionServer::Move(::grpc::ServerContext*,
                                   const ::viam::service::motion::v1::MoveRequest* request,

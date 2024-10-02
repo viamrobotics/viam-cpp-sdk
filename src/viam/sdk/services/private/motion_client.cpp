@@ -19,7 +19,7 @@ namespace impl {
 MotionClient::MotionClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Motion(std::move(name)),
       stub_(service::motion::v1::MotionService::NewStub(channel)),
-      channel_(std::move(channel)) {};
+      channel_(std::move(channel)){};
 
 bool MotionClient::move(const pose_in_frame& destination,
                         const Name& component_name,
