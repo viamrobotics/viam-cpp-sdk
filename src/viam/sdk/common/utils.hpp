@@ -4,8 +4,6 @@
 #include <unordered_map>
 
 #include <boost/optional/optional.hpp>
-#include <boost/variant/get.hpp>
-#include <boost/variant/variant.hpp>
 #include <grpcpp/client_context.h>
 
 #include <viam/api/common/v1/common.pb.h>
