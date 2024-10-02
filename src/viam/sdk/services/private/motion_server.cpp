@@ -3,7 +3,7 @@
 #include <grpcpp/support/status.h>
 
 #include <viam/sdk/common/pose.hpp>
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/services/motion.hpp>
@@ -15,7 +15,7 @@ namespace sdk {
 namespace impl {
 
 MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)){};
+    : ResourceServer(std::move(manager)) {};
 
 ::grpc::Status MotionServer::Move(::grpc::ServerContext*,
                                   const ::viam::service::motion::v1::MoveRequest* request,
@@ -202,7 +202,7 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
                                        ::viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Motion>(
         "MotionServer::DoCommand", this, request)([&](auto&, auto& motion) {
-        const AttributeMap result = motion->do_command(struct_to_map(request->command()));
+        const ProtoStruct result = motion->do_command(struct_to_map(request->command()));
         *response->mutable_result() = map_to_struct(result);
     });
 };

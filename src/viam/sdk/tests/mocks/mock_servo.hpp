@@ -1,6 +1,6 @@
 #pragma once
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/servo.hpp>
 
 namespace viam {
@@ -11,16 +11,15 @@ using viam::sdk::Servo;
 
 class MockServo : public Servo {
    public:
-    void move(uint32_t angle_deg, const viam::sdk::AttributeMap& extra) override;
-    Servo::position get_position(const sdk::AttributeMap& extra) override;
-    void stop(const viam::sdk::AttributeMap& extra) override;
+    void move(uint32_t angle_deg, const viam::sdk::ProtoStruct& extra) override;
+    Servo::position get_position(const sdk::ProtoStruct& extra) override;
+    void stop(const viam::sdk::ProtoStruct& extra) override;
     bool is_moving() override;
-    viam::sdk::AttributeMap do_command(const viam::sdk::AttributeMap& command) override;
+    viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct& command) override;
     static std::shared_ptr<MockServo> get_mock_servo();
-    virtual std::vector<sdk::GeometryConfig> get_geometries(
-        const sdk::AttributeMap& extra) override;
+    virtual std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;
 
-    MockServo(std::string name) : Servo(std::move(name)){};
+    MockServo(std::string name) : Servo(std::move(name)) {};
 
     using Servo::get_geometries;
     using Servo::get_position;
@@ -29,7 +28,7 @@ class MockServo : public Servo {
 
    private:
     Servo::position position_;
-    viam::sdk::AttributeMap map_;
+    viam::sdk::ProtoStruct map_;
     bool is_moving_;
 };
 

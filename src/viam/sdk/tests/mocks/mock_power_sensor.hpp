@@ -1,6 +1,6 @@
 #pragma once
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/power_sensor.hpp>
 
 namespace viam {
@@ -9,11 +9,11 @@ namespace powersensor {
 
 class MockPowerSensor : public sdk::PowerSensor {
    public:
-    sdk::PowerSensor::voltage get_voltage(const sdk::AttributeMap& extra) override;
-    sdk::PowerSensor::current get_current(const sdk::AttributeMap& extra) override;
-    double get_power(const sdk::AttributeMap& extra) override;
-    sdk::AttributeMap get_readings(const sdk::AttributeMap& extra) override;
-    sdk::AttributeMap do_command(const sdk::AttributeMap& command) override;
+    sdk::PowerSensor::voltage get_voltage(const sdk::ProtoStruct& extra) override;
+    sdk::PowerSensor::current get_current(const sdk::ProtoStruct& extra) override;
+    double get_power(const sdk::ProtoStruct& extra) override;
+    sdk::ProtoStruct get_readings(const sdk::ProtoStruct& extra) override;
+    sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
     static std::shared_ptr<MockPowerSensor> get_mock_powersensor();
 
     // These variables allow the testing infra to `peek` into the mock
@@ -22,7 +22,7 @@ class MockPowerSensor : public sdk::PowerSensor {
     sdk::PowerSensor::current peek_current;
     double peek_power;
 
-    MockPowerSensor(std::string name) : PowerSensor(std::move(name)){};
+    MockPowerSensor(std::string name) : PowerSensor(std::move(name)) {};
 };
 
 }  // namespace powersensor

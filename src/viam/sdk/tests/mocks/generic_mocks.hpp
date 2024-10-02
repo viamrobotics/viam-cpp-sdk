@@ -1,6 +1,6 @@
 #pragma once
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 
 #include <viam/sdk/components/generic.hpp>
 #include <viam/sdk/services/generic.hpp>
@@ -13,26 +13,26 @@ using namespace viam::sdk;
 
 class MockGenericComponent : public GenericComponent {
    public:
-    MockGenericComponent(std::string name) : GenericComponent(std::move(name)){};
-    AttributeMap do_command(const AttributeMap& command) override;
+    MockGenericComponent(std::string name) : GenericComponent(std::move(name)) {};
+    ProtoStruct do_command(const ProtoStruct& command) override;
 
     static std::shared_ptr<MockGenericComponent> get_mock_generic();
-    std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
+    std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 
    private:
-    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> map_;
+    ProtoStruct map_;
     std::vector<GeometryConfig> geometries_;
 };
 
 class MockGenericService : public GenericService {
    public:
-    MockGenericService(std::string name) : GenericService(std::move(name)){};
-    AttributeMap do_command(const AttributeMap& command) override;
+    MockGenericService(std::string name) : GenericService(std::move(name)) {};
+    ProtoStruct do_command(const ProtoStruct& command) override;
 
     static std::shared_ptr<MockGenericService> get_mock_generic();
 
    private:
-    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> map_;
+    ProtoStruct map_;
 };
 
 }  // namespace generic

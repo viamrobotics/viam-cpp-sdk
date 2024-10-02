@@ -50,7 +50,7 @@ target_sources(viamsdk
     common/exception.cpp
     common/linear_algebra.cpp
     common/pose.cpp
-    common/proto_type.cpp
+    common/proto_value.cpp
     common/service_helper.cpp
     common/utils.cpp
     common/version_metadata.cpp
@@ -138,7 +138,7 @@ target_sources(viamsdk
       ../../viam/sdk/common/exception.hpp
       ../../viam/sdk/common/linear_algebra.hpp
       ../../viam/sdk/common/pose.hpp
-      ../../viam/sdk/common/proto_type.hpp
+      ../../viam/sdk/common/proto_value.hpp
       ../../viam/sdk/common/service_helper.hpp
       ../../viam/sdk/common/utils.hpp
       ../../viam/sdk/common/version_metadata.hpp

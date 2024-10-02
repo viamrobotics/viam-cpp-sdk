@@ -12,7 +12,7 @@ namespace sdk {
 namespace impl {
 
 BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)){};
+    : ResourceServer(std::move(manager)) {};
 
 ::grpc::Status BoardServer::SetGPIO(::grpc::ServerContext*,
                                     const ::viam::component::board::v1::SetGPIORequest* request,
@@ -77,7 +77,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
                                       viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Board>(
         "BoardServer::DoCommand", this, request)([&](auto&, auto& board) {
-        const AttributeMap result = board->do_command(struct_to_map(request->command()));
+        const ProtoStruct result = board->do_command(struct_to_map(request->command()));
         *response->mutable_result() = map_to_struct(result);
     });
 }
@@ -98,7 +98,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
 
     const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    AttributeMap extra;
+    ProtoStruct extra;
     if (request->has_extra()) {
         extra = struct_to_map(request->extra());
     }
@@ -128,7 +128,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
 
     const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    AttributeMap extra;
+    ProtoStruct extra;
     if (request->has_extra()) {
         extra = struct_to_map(request->extra());
     }
@@ -153,7 +153,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
 
     const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    AttributeMap extra;
+    ProtoStruct extra;
     if (request->has_extra()) {
         extra = struct_to_map(request->extra());
     }

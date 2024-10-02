@@ -8,7 +8,7 @@
 #include <viam/api/component/movementsensor/v1/movementsensor.pb.h>
 
 #include <viam/sdk/common/linear_algebra.hpp>
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/spatialmath/orientation.hpp>
@@ -89,54 +89,54 @@ class MovementSensor : public Component {
         return get_linear_velocity({});
     }
 
-    virtual Vector3 get_linear_velocity(const AttributeMap& extra) = 0;
+    virtual Vector3 get_linear_velocity(const ProtoStruct& extra) = 0;
 
     inline Vector3 get_angular_velocity() {
         return get_angular_velocity({});
     }
 
-    virtual Vector3 get_angular_velocity(const AttributeMap& extra) = 0;
+    virtual Vector3 get_angular_velocity(const ProtoStruct& extra) = 0;
 
     inline compassheading get_compass_heading() {
         return get_compass_heading({});
     }
 
-    virtual compassheading get_compass_heading(const AttributeMap& extra) = 0;
+    virtual compassheading get_compass_heading(const ProtoStruct& extra) = 0;
 
     inline orientation get_orientation() {
         return get_orientation({});
     }
 
-    virtual orientation get_orientation(const AttributeMap& extra) = 0;
+    virtual orientation get_orientation(const ProtoStruct& extra) = 0;
 
     inline position get_position() {
         return get_position({});
     }
 
-    virtual position get_position(const AttributeMap& extra) = 0;
+    virtual position get_position(const ProtoStruct& extra) = 0;
 
     inline properties get_properties() {
         return get_properties({});
     }
 
-    virtual properties get_properties(const AttributeMap& extra) = 0;
+    virtual properties get_properties(const ProtoStruct& extra) = 0;
 
     inline std::unordered_map<std::string, float> get_accuracy() {
         return get_accuracy({});
     }
 
-    virtual std::unordered_map<std::string, float> get_accuracy(const AttributeMap& extra) = 0;
+    virtual std::unordered_map<std::string, float> get_accuracy(const ProtoStruct& extra) = 0;
 
     inline Vector3 get_linear_acceleration() {
         return get_linear_acceleration({});
     }
 
-    virtual Vector3 get_linear_acceleration(const AttributeMap& extra) = 0;
+    virtual Vector3 get_linear_acceleration(const ProtoStruct& extra) = 0;
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.
     /// @return The result of the executed command.
-    virtual AttributeMap do_command(const AttributeMap& command) = 0;
+    virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
     /// @brief Returns `GeometryConfig`s associated with the calling movementsensor.
     /// @return The requested `GeometryConfig`s associated with the component.
@@ -147,10 +147,10 @@ class MovementSensor : public Component {
     /// @brief Returns `GeometryConfig`s associated with the calling movementsensor.
     /// @param extra Any additional arguments to the method.
     /// @return The requested `GeometryConfig`s associated with the component.
-    virtual std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) = 0;
+    virtual std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) = 0;
 
    protected:
-    explicit MovementSensor(std::string name) : Component(std::move(name)){};
+    explicit MovementSensor(std::string name) : Component(std::move(name)) {};
 };
 
 template <>

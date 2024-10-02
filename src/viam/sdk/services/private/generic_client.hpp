@@ -21,7 +21,7 @@ class GenericServiceClient : public GenericService {
    public:
     using interface_type = GenericService;
     GenericServiceClient(std::string name, std::shared_ptr<grpc::Channel> channel);
-    AttributeMap do_command(const AttributeMap& command) override;
+    ProtoStruct do_command(const ProtoStruct& command) override;
 
    protected:
     // This constructor leaves the `channel_` as a nullptr. This is useful for testing
@@ -30,7 +30,7 @@ class GenericServiceClient : public GenericService {
     GenericServiceClient(
         std::string name,
         std::unique_ptr<viam::service::generic::v1::GenericService::StubInterface> stub)
-        : GenericService(std::move(name)), stub_(std::move(stub)){};
+        : GenericService(std::move(name)), stub_(std::move(stub)) {};
 
    private:
     using StubType = viam::service::generic::v1::GenericService::StubInterface;

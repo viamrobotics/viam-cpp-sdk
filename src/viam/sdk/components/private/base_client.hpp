@@ -8,7 +8,7 @@
 #include <viam/api/component/base/v1/base.grpc.pb.h>
 
 #include <viam/sdk/common/linear_algebra.hpp>
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/base.hpp>
 #include <viam/sdk/components/private/base_server.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -25,19 +25,19 @@ class BaseClient : public Base {
    public:
     using interface_type = Base;
     BaseClient(std::string name, std::shared_ptr<grpc::Channel> channel);
-    void move_straight(int64_t distance_mm, double mm_per_sec, const AttributeMap& extra) override;
-    void spin(double angle_deg, double degs_per_sec, const AttributeMap& extra) override;
+    void move_straight(int64_t distance_mm, double mm_per_sec, const ProtoStruct& extra) override;
+    void spin(double angle_deg, double degs_per_sec, const ProtoStruct& extra) override;
     void set_power(const Vector3& linear,
                    const Vector3& angular,
-                   const AttributeMap& extra) override;
+                   const ProtoStruct& extra) override;
     void set_velocity(const Vector3& linear,
                       const Vector3& angular,
-                      const AttributeMap& extra) override;
-    void stop(const AttributeMap& extra) override;
-    std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
-    properties get_properties(const AttributeMap& extra) override;
+                      const ProtoStruct& extra) override;
+    void stop(const ProtoStruct& extra) override;
+    std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
+    properties get_properties(const ProtoStruct& extra) override;
     bool is_moving() override;
-    AttributeMap do_command(const AttributeMap& command) override;
+    ProtoStruct do_command(const ProtoStruct& command) override;
 
     // the `extra` param is frequently unnecessary but needs to be supported. Ideally, we'd
     // like to live in a world where implementers of derived classes don't need to go out of

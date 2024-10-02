@@ -1,6 +1,6 @@
 #pragma once
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/encoder.hpp>
 
 namespace viam {
@@ -9,15 +9,15 @@ namespace encoder {
 
 class MockEncoder : public viam::sdk::Encoder {
    public:
-    Encoder::position get_position(const sdk::AttributeMap& extra,
+    Encoder::position get_position(const sdk::ProtoStruct& extra,
                                    Encoder::position_type position_type) override;
-    void reset_position(const sdk::AttributeMap& extra) override;
-    Encoder::properties get_properties(const sdk::AttributeMap& extra) override;
-    std::vector<sdk::GeometryConfig> get_geometries(const sdk::AttributeMap& extra) override;
-    viam::sdk::AttributeMap do_command(const viam::sdk::AttributeMap& command) override;
+    void reset_position(const sdk::ProtoStruct& extra) override;
+    Encoder::properties get_properties(const sdk::ProtoStruct& extra) override;
+    std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;
+    viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct& command) override;
     static std::shared_ptr<MockEncoder> get_mock_encoder();
 
-    MockEncoder(std::string name) : Encoder(std::move(name)){};
+    MockEncoder(std::string name) : Encoder(std::move(name)) {};
 
     // For testing purposes only.
     bool peek_reset_position_called;

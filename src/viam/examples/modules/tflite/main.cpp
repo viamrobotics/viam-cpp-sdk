@@ -76,7 +76,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService,
         // drain.
     }
 
-    void stop(const vsdk::AttributeMap& extra) noexcept final {
+    void stop(const vsdk::ProtoStruct& extra) noexcept final {
         return stop();
     }
 
@@ -141,7 +141,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService,
     }
 
     std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs,
-                                              const vsdk::AttributeMap& extra) final {
+                                              const vsdk::ProtoStruct& extra) final {
         auto state = lease_state_();
 
         // We serialize access to the interpreter. We use a
@@ -250,7 +250,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService,
         return {std::move(inference_result), views};
     }
 
-    struct metadata metadata(const vsdk::AttributeMap& extra) final {
+    struct metadata metadata(const vsdk::ProtoStruct& extra) final {
         // Just return a copy of our metadata from leased state.
         return lease_state_()->metadata;
     }
@@ -309,7 +309,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService,
         // Process any tensor name remappings provided in the config.
         auto remappings = attributes->find("tensor_name_remappings");
         if (remappings != attributes->end()) {
-            const auto remappings_attributes = remappings->second->get<vsdk::AttributeMap>();
+            const auto remappings_attributes = remappings->second->get<vsdk::ProtoStruct>();
             if (!remappings_attributes) {
                 std::ostringstream buffer;
                 buffer << service_name
@@ -318,7 +318,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService,
             }
 
             const auto populate_remappings = [](const vsdk::ProtoType& source, auto& target) {
-                const auto source_attributes = source.get<vsdk::AttributeMap>();
+                const auto source_attributes = source.get<vsdk::ProtoStruct>();
                 if (!source_attributes) {
                     std::ostringstream buffer;
                     buffer << service_name

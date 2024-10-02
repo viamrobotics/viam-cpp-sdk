@@ -7,7 +7,7 @@
 #include <common/v1/common.pb.h>
 #include <robot/v1/robot.pb.h>
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
 namespace viam {
@@ -72,20 +72,13 @@ std::vector<RobotClient::discovery> mock_discovery_response() {
     RobotClient::discovery_query query;
     query.subtype = "camera";
     query.model = "webcam";
-    auto s = std::make_shared<ProtoType>("bar");
-    auto map_pt = std::make_shared<ProtoType>(fake_map());
-    std::vector<std::shared_ptr<ProtoType>> inner{map_pt};
-    std::vector<std::shared_ptr<ProtoType>> l_{s,
-                                               std::make_shared<ProtoType>(false),
-                                               std::make_shared<ProtoType>(3),
-                                               std::make_shared<ProtoType>(4.2),
-                                               map_pt,
-                                               std::make_shared<ProtoType>(inner)};
-    auto l = std::make_shared<ProtoType>(l_);
+    ProtoValue s("bar");
+    ProtoValue map(fake_map());
 
-    AttributeMap results =
-        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
-    results->emplace("foo", l);
+    ProtoList inner{{map}};
+    ProtoList l{{s, ProtoValue{false}, ProtoValue{3.0}, ProtoValue{4.2}, map, std::move(inner)}};
+
+    ProtoStruct results{{"foo", l}};
 
     RobotClient::discovery discovery;
     discovery.query = std::move(query);
@@ -115,18 +108,12 @@ std::vector<RobotClient::status> mock_status_response() {
 
     RobotClient::status camera_status;
     camera_status.name = rns[0];
-    camera_status.status_map =
-        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
 
     RobotClient::status motor_status;
     motor_status.name = rns[1];
-    motor_status.status_map =
-        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
 
     RobotClient::status generic_status;
     generic_status.name = rns[2];
-    generic_status.status_map =
-        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
 
     return {std::move(camera_status), std::move(motor_status), std::move(generic_status)};
 }
@@ -206,10 +193,7 @@ std::vector<RobotClient::frame_system_config> mock_config_response() {
     pose_in_frame pif("reference0", default_pose());
     t.pose_in_observer_frame = pif;
     config.frame = t;
-    AttributeMap kinematics =
-        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
-    kinematics->emplace(std::move("fake-key"), std::make_shared<ProtoType>(1));
-    config.kinematics = kinematics;
+    config.kinematics = {{"fake-key", 1.0}};
 
     RobotClient::frame_system_config config1;
     WorldState::transform t1;
@@ -217,10 +201,7 @@ std::vector<RobotClient::frame_system_config> mock_config_response() {
     pose_in_frame pif1("reference1", default_pose(1));
     t1.pose_in_observer_frame = pif1;
     config1.frame = t1;
-    AttributeMap kinematics1 =
-        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
-    kinematics1->emplace(std::move("new-fake-key"), std::make_shared<ProtoType>(2));
-    config1.kinematics = kinematics1;
+    config1.kinematics = {{"new-fake-key", 2.0}};
 
     std::vector<RobotClient::frame_system_config> response;
     response.push_back(config);

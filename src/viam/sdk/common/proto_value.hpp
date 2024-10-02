@@ -328,17 +328,17 @@ void to_proto(const ProtoList& vec, google::protobuf::Value* v);
 void to_proto(const ProtoStruct& m, google::protobuf::Value* v);
 void to_proto(const ProtoValue& t, google::protobuf::Value* v);
 
-ProtoStruct struct_to_map(google::protobuf::Struct const* s);
+void struct_to_map(google::protobuf::Struct const* s, ProtoStruct& m);
 void map_to_struct(const ProtoStruct& m, google::protobuf::Struct* s);
 
 /// @brief Convert a type to a google::protobuf::Value.
 /// @note This method is trivially templated to insulate google::protobuf::Value from our
 /// API/ABI. It is meant to be called with no template parameters in a translation unit which
 /// includes <google/protobuf/struct.pb.h>
-template <typename T, typename Value = google::protobuf::Value>
-Value to_proto(T&& t) {
+template <typename Value = google::protobuf::Value>
+Value to_proto(const ProtoValue& pv) {
     Value v;
-    to_proto(std::forward<T>(t), &v);
+    to_proto(pv, &v);
 
     return v;
 }
@@ -349,7 +349,10 @@ Value to_proto(T&& t) {
 /// includes <google/protobuf/struct.pb.h>
 template <typename Struct = google::protobuf::Struct>
 ProtoStruct struct_to_map(const Struct& s) {
-    return struct_to_map(&s);
+    ProtoStruct result;
+    struct_to_map(&s, result);
+
+    return result;
 }
 
 /// @brief Convert a ProtoStruct to a google::protobuf::Struct.

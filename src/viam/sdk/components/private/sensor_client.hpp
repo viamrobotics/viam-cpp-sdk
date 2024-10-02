@@ -22,9 +22,9 @@ class SensorClient : public Sensor {
    public:
     using interface_type = Sensor;
     SensorClient(std::string name, std::shared_ptr<grpc::Channel> channel);
-    AttributeMap get_readings(const AttributeMap& extra) override;
-    AttributeMap do_command(const AttributeMap& command) override;
-    std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
+    ProtoStruct get_readings(const ProtoStruct& extra) override;
+    ProtoStruct do_command(const ProtoStruct& command) override;
+    std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 
     using Sensor::get_geometries;
     using Sensor::get_readings;

@@ -82,14 +82,12 @@ BOOST_AUTO_TEST_CASE(test_is_moving) {
 BOOST_AUTO_TEST_CASE(test_do_command) {
     std::shared_ptr<MockArm> mock = MockArm::get_mock_arm();
     client_to_mock_pipeline<Arm>(mock, [](Arm& client) {
-        AttributeMap expected = fake_map();
+        ProtoStruct expected = fake_map();
 
-        AttributeMap command = fake_map();
-        AttributeMap result_map = client.do_command(command);
+        ProtoStruct command = fake_map();
+        ProtoStruct result_map = client.do_command(command);
 
-        ProtoType expected_pt = *(expected->at(std::string("test")));
-        ProtoType result_pt = *(result_map->at(std::string("test")));
-        BOOST_CHECK(result_pt == expected_pt);
+        BOOST_CHECK(result_map.at("test") == expected.at("test"));
     });
 }
 

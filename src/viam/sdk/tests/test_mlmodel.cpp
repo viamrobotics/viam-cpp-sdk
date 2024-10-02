@@ -18,8 +18,6 @@
 #include <tuple>
 #include <unordered_map>
 
-#include <boost/variant/get.hpp>
-
 #include <viam/sdk/tests/mocks/mlmodel_mocks.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
@@ -37,20 +35,8 @@ bool operator==(const MLModelService::tensor_info::file& l,
 
 bool operator==(const struct MLModelService::tensor_info& l,
                 const struct MLModelService::tensor_info& r) {
-    if (std::tie(l.name, l.description, l.data_type, l.shape, l.associated_files) !=
-        std::tie(r.name, r.description, r.data_type, r.shape, r.associated_files)) {
-        return false;
-    }
-
-    if (!l.extra != !r.extra) {
-        return false;
-    }
-
-    if (l.extra && r.extra) {
-        return ProtoType(l.extra) == ProtoType(r.extra);
-    }
-
-    return true;
+    return std::tie(l.name, l.description, l.data_type, l.extra, l.shape, l.associated_files) ==
+           std::tie(r.name, r.description, r.data_type, r.extra, r.shape, r.associated_files);
 }
 
 bool operator==(const struct MLModelService::metadata& l,
@@ -108,9 +94,7 @@ const struct MLModelService::metadata test_metadata {
                MLModelService::tensor_info::file::k_label_type_tensor_axis}},
 
              // `extra`
-             std::make_shared<AttributeMap::element_type>(
-                 std::initializer_list<AttributeMap::element_type::value_type>{
-                     {"foo", std::make_shared<ProtoType>("bar")}})},
+             ProtoStruct{{"foo", ProtoValue{"bar"}}}},
 
          {"input2",
           "the second input",
@@ -120,9 +104,7 @@ const struct MLModelService::metadata test_metadata {
            {"path/to/file2.2",
             "i2f2",
             MLModelService::tensor_info::file::k_label_type_tensor_value}},
-          std::make_shared<AttributeMap::element_type>(
-              std::initializer_list<AttributeMap::element_type::value_type>{
-                  {"bar", std::make_shared<ProtoType>(false)}})}},
+          ProtoStruct{{"bar", ProtoValue{false}}}}},
 
         // `outputs`
         {{
@@ -153,9 +135,7 @@ const struct MLModelService::metadata test_metadata {
                MLModelService::tensor_info::file::k_label_type_tensor_value}},
 
              // `extra`
-             std::make_shared<AttributeMap::element_type>(
-                 std::initializer_list<AttributeMap::element_type::value_type>{
-                     {"baz", std::make_shared<ProtoType>()}})},
+             ProtoStruct{{"baz", ProtoValue{}}}},
 
          {"output2",
           "the second output",
@@ -167,9 +147,7 @@ const struct MLModelService::metadata test_metadata {
            {"path/to/output_file2.2",
             "o2f2",
             MLModelService::tensor_info::file::k_label_type_tensor_value}},
-          std::make_shared<AttributeMap::element_type>(
-              std::initializer_list<AttributeMap::element_type::value_type>{
-                  {"quux", std::make_shared<ProtoType>(3.14)}})}},
+          ProtoStruct{{"quux", ProtoValue{3.14}}}}},
 };
 
 BOOST_AUTO_TEST_SUITE(test_mock_mlmodel)

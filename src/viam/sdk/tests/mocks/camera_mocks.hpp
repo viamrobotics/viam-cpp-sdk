@@ -10,14 +10,14 @@ using namespace viam::sdk;
 
 class MockCamera : public Camera {
    public:
-    AttributeMap do_command(const AttributeMap& command) override;
-    raw_image get_image(std::string mime_type, const sdk::AttributeMap& extra) override;
+    ProtoStruct do_command(const ProtoStruct& command) override;
+    raw_image get_image(std::string mime_type, const sdk::ProtoStruct& extra) override;
     image_collection get_images() override;
-    point_cloud get_point_cloud(std::string mime_type, const sdk::AttributeMap& extra) override;
-    std::vector<GeometryConfig> get_geometries(const sdk::AttributeMap& extra) override;
+    point_cloud get_point_cloud(std::string mime_type, const sdk::ProtoStruct& extra) override;
+    std::vector<GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;
     properties get_properties() override;
     static std::shared_ptr<MockCamera> get_mock_camera();
-    MockCamera(std::string name) : Camera(std::move(name)){};
+    MockCamera(std::string name) : Camera(std::move(name)) {};
 
    private:
     Camera::intrinsic_parameters intrinsic_parameters_;
@@ -26,7 +26,7 @@ class MockCamera : public Camera {
     Camera::raw_image image_;
     Camera::image_collection images_;
     Camera::point_cloud pc_;
-    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> map_;
+    ProtoStruct map_;
     std::vector<GeometryConfig> geometries_;
 };
 

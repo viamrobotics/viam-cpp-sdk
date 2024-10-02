@@ -5,7 +5,7 @@
 
 #include <viam/api/component/servo/v1/servo.pb.h>
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/stoppable.hpp>
@@ -40,7 +40,7 @@ class Servo : public Component, public Stoppable {
     /// @brief Move the servo to the provided angle
     /// @param angle_deg The desired angle of the servo in degrees.
     /// @param extra Any additional arguments to the method.
-    virtual void move(uint32_t angle_deg, const AttributeMap& extra) = 0;
+    virtual void move(uint32_t angle_deg, const ProtoStruct& extra) = 0;
 
     /// @brief Get the current angle (degrees) of the servo.
     /// @throws `Exception` if position reporting is not supported
@@ -51,7 +51,7 @@ class Servo : public Component, public Stoppable {
     /// @brief Reports the position of the robot's servo relative to its zero position.
     /// @param extra Any additional arguments to the method
     /// @throws `Exception` if position reporting is not supported
-    virtual position get_position(const AttributeMap& extra) = 0;
+    virtual position get_position(const ProtoStruct& extra) = 0;
 
     /// @brief Reports if a component is in motion
     virtual bool is_moving() = 0;
@@ -59,7 +59,7 @@ class Servo : public Component, public Stoppable {
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.
     /// @return The result of the executed command.
-    virtual AttributeMap do_command(const AttributeMap& command) = 0;
+    virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
     /// @brief Returns `GeometryConfig`s associated with the calling servo.
     /// @return The requested `GeometryConfig`s associated with the component.
@@ -70,10 +70,10 @@ class Servo : public Component, public Stoppable {
     /// @brief Returns `GeometryConfig`s associated with the calling servo.
     /// @param extra Any additional arguments to the method.
     /// @return The requested `GeometryConfig`s associated with the component.
-    virtual std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) = 0;
+    virtual std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) = 0;
 
    protected:
-    explicit Servo(std::string name) : Component(std::move(name)){};
+    explicit Servo(std::string name) : Component(std::move(name)) {};
 };
 
 template <>

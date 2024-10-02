@@ -22,32 +22,32 @@ namespace impl {
 EncoderClient::EncoderClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Encoder(std::move(name)),
       stub_(viam::component::encoder::v1::EncoderService::NewStub(channel)),
-      channel_(std::move(channel)){};
+      channel_(std::move(channel)) {};
 
-Encoder::position EncoderClient::get_position(const AttributeMap& extra,
+Encoder::position EncoderClient::get_position(const ProtoStruct& extra,
                                               position_type position_type) {
     return make_client_helper(this, *stub_, &StubType::GetPosition)
         .with(extra, [&](auto& request) { request.set_position_type(to_proto(position_type)); })
         .invoke([](auto& response) { return from_proto(response); });
 }
 
-void EncoderClient::reset_position(const AttributeMap& extra) {
+void EncoderClient::reset_position(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::ResetPosition).with(extra).invoke();
 }
 
-Encoder::properties EncoderClient::get_properties(const AttributeMap& extra) {
+Encoder::properties EncoderClient::get_properties(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetProperties)
         .with(extra)
         .invoke([](auto& response) { return from_proto(response); });
 }
 
-std::vector<GeometryConfig> EncoderClient::get_geometries(const AttributeMap& extra) {
+std::vector<GeometryConfig> EncoderClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
         .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
 };
 
-AttributeMap EncoderClient::do_command(const AttributeMap& command) {
+ProtoStruct EncoderClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
         .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
         .invoke([](auto& response) { return struct_to_map(response.result()); });

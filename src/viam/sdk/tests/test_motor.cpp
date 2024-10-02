@@ -8,7 +8,7 @@
 #include <boost/test/included/unit_test.hpp>
 
 #include <viam/sdk/common/exception.hpp>
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/motor.hpp>
 #include <viam/sdk/tests/mocks/mock_motor.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
@@ -76,7 +76,7 @@ BOOST_AUTO_TEST_CASE(mock_get_properties) {
 
 BOOST_AUTO_TEST_CASE(mock_stop) {
     std::shared_ptr<MockMotor> motor = MockMotor::get_mock_motor();
-    AttributeMap extra_map = fake_map();
+    ProtoStruct extra_map = fake_map();
     motor->stop(std::move(extra_map));
     BOOST_CHECK(motor->get_power_status().power_pct == 0.0);
     BOOST_CHECK(!motor->is_moving());
@@ -92,15 +92,12 @@ BOOST_AUTO_TEST_CASE(mock_get_geometries) {
 
 BOOST_AUTO_TEST_CASE(mock_do_command) {
     std::shared_ptr<MockMotor> motor = MockMotor::get_mock_motor();
-    AttributeMap expected = fake_map();
+    ProtoStruct expected = fake_map();
 
-    AttributeMap command = fake_map();
-    AttributeMap result_map = motor->do_command(command);
+    ProtoStruct command = fake_map();
+    ProtoStruct result_map = motor->do_command(command);
 
-    ProtoType expected_pt = *(expected->at(std::string("test")));
-    ProtoType result_pt = *(result_map->at(std::string("test")));
-
-    BOOST_CHECK(result_pt == expected_pt);
+    BOOST_CHECK(result_map.at("test") == expected.at("test"));
 }
 
 BOOST_AUTO_TEST_CASE(mock_exception_creation) {
@@ -178,7 +175,7 @@ BOOST_AUTO_TEST_CASE(test_stop) {
         client.set_power(1.0);
         BOOST_CHECK(client.get_power_status().power_pct == 1.0);
         BOOST_CHECK(client.get_power_status().is_on);
-        client.stop(AttributeMap());
+        client.stop(ProtoStruct());
         BOOST_CHECK(client.get_power_status().power_pct == 0.0);
         BOOST_CHECK(!client.get_power_status().is_on);
         // This test is a no-op for now because is_moving will always
@@ -198,15 +195,12 @@ BOOST_AUTO_TEST_CASE(test_get_geometries) {
 BOOST_AUTO_TEST_CASE(test_do_command) {
     std::shared_ptr<MockMotor> mock = MockMotor::get_mock_motor();
     client_to_mock_pipeline<Motor>(mock, [](Motor& client) {
-        AttributeMap expected = fake_map();
+        ProtoStruct expected = fake_map();
 
-        AttributeMap command = fake_map();
-        AttributeMap result_map = client.do_command(command);
+        ProtoStruct command = fake_map();
+        ProtoStruct result_map = client.do_command(command);
 
-        ProtoType expected_pt = *(expected->at(std::string("test")));
-        ProtoType result_pt = *(result_map->at(std::string("test")));
-
-        BOOST_CHECK(result_pt == expected_pt);
+        BOOST_CHECK(result_map.at("test") == expected.at("test"));
     });
 }
 

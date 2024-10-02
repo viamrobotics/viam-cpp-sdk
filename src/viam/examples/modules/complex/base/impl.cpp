@@ -16,22 +16,23 @@ using namespace viam::sdk;
 
 std::string find_motor(ResourceConfig cfg, std::string motor_name) {
     auto base_name = cfg.name();
-    auto motor = cfg.attributes()->find(motor_name);
-    if (motor == cfg.attributes()->end()) {
+    auto motor = cfg.attributes().find(motor_name);
+    if (motor == cfg.attributes().end()) {
         std::ostringstream buffer;
         buffer << base_name << ": Required parameter `" << motor_name
                << "` not found in configuration";
         throw std::invalid_argument(buffer.str());
     }
-    const auto* const motor_string = motor->second->get<std::string>();
-    if (!motor_string || motor_string->empty()) {
-        std::ostringstream buffer;
-        buffer << base_name << ": Required non-empty string parameter `" << motor_name
-               << "` is either not a string "
-                  "or is an empty string";
-        throw std::invalid_argument(buffer.str());
+    const ProtoValue& motor_val = motor->second;
+    if (motor_val.is_a<std::string>() && !motor_val.get_unchecked<std::string>().empty()) {
+        return motor_val.get_unchecked<std::string>();
     }
-    return *motor_string;
+
+    std::ostringstream buffer;
+    buffer << base_name << ": Required non-empty string parameter `" << motor_name
+           << "` is either not a string "
+              "or is an empty string";
+    throw std::invalid_argument(buffer.str());
 }
 
 void MyBase::reconfigure(const Dependencies& deps, const ResourceConfig& cfg) {
@@ -64,7 +65,7 @@ bool MyBase::is_moving() {
     return left_->is_moving() || right_->is_moving();
 }
 
-void MyBase::stop(const AttributeMap& extra) {
+void MyBase::stop(const ProtoStruct& extra) {
     std::string err_message;
     bool throw_err = false;
 
@@ -89,7 +90,7 @@ void MyBase::stop(const AttributeMap& extra) {
     }
 }
 
-void MyBase::set_power(const Vector3& linear, const Vector3& angular, const AttributeMap& extra) {
+void MyBase::set_power(const Vector3& linear, const Vector3& angular, const ProtoStruct& extra) {
     // Stop the base if absolute value of linear and angular velocity is less
     // than 0.01.
     if (abs(linear.y()) < 0.01 && abs(angular.z()) < 0.01) {
@@ -104,12 +105,12 @@ void MyBase::set_power(const Vector3& linear, const Vector3& angular, const Attr
     right_->set_power(((linear.y() + angular.z()) / sum), extra);
 }
 
-AttributeMap MyBase::do_command(const AttributeMap& command) {
+ProtoStruct MyBase::do_command(const ProtoStruct& command) {
     std::cout << "Received DoCommand request for MyBase " << Resource::name() << std::endl;
     return command;
 }
 
-std::vector<GeometryConfig> MyBase::get_geometries(const AttributeMap& extra) {
+std::vector<GeometryConfig> MyBase::get_geometries(const ProtoStruct& extra) {
     auto left_geometries = left_->get_geometries(extra);
     auto right_geometries = right_->get_geometries(extra);
     std::vector<GeometryConfig> geometries(left_geometries);
@@ -117,7 +118,7 @@ std::vector<GeometryConfig> MyBase::get_geometries(const AttributeMap& extra) {
     return geometries;
 }
 
-Base::properties MyBase::get_properties(const AttributeMap& extra) {
+Base::properties MyBase::get_properties(const ProtoStruct& extra) {
     // Return fake properties.
     return {2, 4, 8};
 }

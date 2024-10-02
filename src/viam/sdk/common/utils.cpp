@@ -125,17 +125,12 @@ ClientContext::operator grpc::ClientContext*() {
     return &wrapped_context_;
 }
 
-bool from_dm_from_extra(const AttributeMap& extra) {
-    if (!extra) {
-        return false;
-    }
-    auto pos = extra->find("fromDataManagement");
-    if (pos != extra->end()) {
-        ProtoType value = *(pos->second);
-        const bool* boolValue = value.get<bool>();
-        if (boolValue) {
-            return *boolValue;
-        }
+bool from_dm_from_extra(const ProtoStruct& extra) {
+    auto pos = extra.find("fromDataManagement");
+    if (pos != extra.end()) {
+        const ProtoValue& value = pos->second;
+
+        return (value.is_a<bool>() && value.get_unchecked<bool>());
     }
     return false;
 }

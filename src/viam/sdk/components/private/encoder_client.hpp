@@ -23,11 +23,11 @@ class EncoderClient : public Encoder {
    public:
     using interface_type = Encoder;
     EncoderClient(std::string name, std::shared_ptr<grpc::Channel> channel);
-    position get_position(const AttributeMap& extra, position_type position_type) override;
-    void reset_position(const AttributeMap& extra) override;
-    properties get_properties(const AttributeMap& extra) override;
-    std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
-    AttributeMap do_command(const AttributeMap& command) override;
+    position get_position(const ProtoStruct& extra, position_type position_type) override;
+    void reset_position(const ProtoStruct& extra) override;
+    properties get_properties(const ProtoStruct& extra) override;
+    std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
+    ProtoStruct do_command(const ProtoStruct& command) override;
 
     // the `extra` param is frequently unnecessary but needs to be supported. Ideally, we'd
     // like to live in a world where implementers of derived classes don't need to go out of

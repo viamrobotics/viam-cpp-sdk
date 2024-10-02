@@ -289,13 +289,10 @@ void to_proto(const ProtoValue& t, Value* v) {
     t.vtable_.to_proto(t.self_.get(), v);
 }
 
-ProtoStruct struct_to_map(Struct const* s) {  // NOLINT(misc-no-recursion)
-    ProtoStruct map;
+void struct_to_map(Struct const* s, ProtoStruct& map) {  // NOLINT(misc-no-recursion)
     for (const auto& val : s->fields()) {
         map.emplace(val.first, ProtoValue::from_proto(val.second));
     }
-
-    return map;
 }
 
 void map_to_struct(const ProtoStruct& m, Struct* s) {

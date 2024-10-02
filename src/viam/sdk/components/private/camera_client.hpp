@@ -24,12 +24,12 @@ class CameraClient : public Camera {
    public:
     using interface_type = Camera;
     CameraClient(std::string name, std::shared_ptr<grpc::Channel> channel);
-    AttributeMap do_command(const AttributeMap& command) override;
-    raw_image get_image(std::string mime_type, const AttributeMap& extra) override;
+    ProtoStruct do_command(const ProtoStruct& command) override;
+    raw_image get_image(std::string mime_type, const ProtoStruct& extra) override;
     image_collection get_images() override;
-    point_cloud get_point_cloud(std::string mime_type, const AttributeMap& extra) override;
+    point_cloud get_point_cloud(std::string mime_type, const ProtoStruct& extra) override;
     properties get_properties() override;
-    std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
+    std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 
     // the `extra` param is frequently unnecessary but needs to be supported. Ideally, we'd
     // like to live in a world where implementers of derived classes don't need to go out of
@@ -50,7 +50,7 @@ class CameraClient : public Camera {
     // avoid use of this constructor outside of tests.
     CameraClient(std::string name,
                  std::unique_ptr<viam::component::camera::v1::CameraService::StubInterface> stub)
-        : Camera(std::move(name)), stub_(std::move(stub)){};
+        : Camera(std::move(name)), stub_(std::move(stub)) {};
 
    private:
     using StubType = viam::component::camera::v1::CameraService::StubInterface;

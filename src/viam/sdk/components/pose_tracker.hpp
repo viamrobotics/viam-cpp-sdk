@@ -46,12 +46,12 @@ class PoseTracker : public Component {
     /// @param extra Any additional arguments to the method.
     /// @return A mapping of each body to its pose.
     virtual pose_map get_poses(const std::vector<std::string>& body_names,
-                               const AttributeMap& extra) = 0;
+                               const ProtoStruct& extra) = 0;
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.
     /// @return The result of the executed command.
-    virtual AttributeMap do_command(const AttributeMap& command) = 0;
+    virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
     /// @brief Returns `GeometryConfig`s associated with the calling pose tracker
     inline std::vector<GeometryConfig> get_geometries() {
@@ -60,7 +60,7 @@ class PoseTracker : public Component {
 
     /// @brief Returns `GeometryConfig`s associated with the calling pose tracker
     /// @param extra Any additional arguments to the method
-    virtual std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) = 0;
+    virtual std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) = 0;
 
    protected:
     using Component::Component;

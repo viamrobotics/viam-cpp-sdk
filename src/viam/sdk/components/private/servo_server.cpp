@@ -11,7 +11,7 @@ namespace sdk {
 namespace impl {
 
 ServoServer::ServoServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)){};
+    : ResourceServer(std::move(manager)) {};
 
 ::grpc::Status ServoServer::Move(::grpc::ServerContext*,
                                  const ::viam::component::servo::v1::MoveRequest* request,
@@ -67,7 +67,7 @@ ServoServer::ServoServer(std::shared_ptr<ResourceManager> manager)
                                       viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Servo>(
         "ServoServer::GetGeometries", this, request)([&](auto&, auto& servo) {
-        const AttributeMap result = servo->do_command(struct_to_map(request->command()));
+        const ProtoStruct result = servo->do_command(struct_to_map(request->command()));
         *response->mutable_result() = map_to_struct(result);
     });
 }

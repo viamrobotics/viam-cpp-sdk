@@ -24,40 +24,39 @@ namespace impl {
 PowerSensorClient::PowerSensorClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : PowerSensor(std::move(name)),
       stub_(PowerSensorService::NewStub(channel)),
-      channel_(std::move(channel)){};
+      channel_(std::move(channel)) {};
 
-PowerSensor::voltage PowerSensorClient::get_voltage(const AttributeMap& extra) {
+PowerSensor::voltage PowerSensorClient::get_voltage(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetVoltage)
         .with(extra)
         .invoke([](auto& response) { return from_proto(response); });
 }
 
-PowerSensor::current PowerSensorClient::get_current(const AttributeMap& extra) {
+PowerSensor::current PowerSensorClient::get_current(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetCurrent)
         .with(extra)
         .invoke([](auto& response) { return from_proto(response); });
 }
 
-double PowerSensorClient::get_power(const AttributeMap& extra) {
+double PowerSensorClient::get_power(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetPower)
         .with(extra)
         .invoke([](auto& response) { return response.watts(); });
 }
 
-AttributeMap PowerSensorClient::get_readings(const AttributeMap& extra) {
+ProtoStruct PowerSensorClient::get_readings(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetReadings)
         .with(extra)
         .invoke([](auto& response) {
-            AttributeMap result =
-                std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
+            ProtoStruct result;
             for (const auto& r : response.readings()) {
-                result->emplace(r.first, std::make_shared<ProtoType>(r.second));
+                result.emplace(r.first, ProtoValue::from_proto(r.second));
             }
             return result;
         });
 }
 
-AttributeMap PowerSensorClient::do_command(const AttributeMap& command) {
+ProtoStruct PowerSensorClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
         .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
         .invoke([](auto& response) { return struct_to_map(response.result()); });

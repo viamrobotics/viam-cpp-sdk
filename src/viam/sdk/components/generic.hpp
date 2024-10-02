@@ -6,7 +6,7 @@
 
 #include <google/protobuf/descriptor.h>
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
 
@@ -24,7 +24,7 @@ class GenericComponent : public Component {
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param command the command to execute.
     /// @return The result of the executed command.
-    virtual AttributeMap do_command(const AttributeMap& command) = 0;
+    virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
     /// @brief Returns `GeometryConfig`s associated with the calling camera.
     /// @return The requested `GeometryConfig`s associated with the component.
@@ -32,7 +32,7 @@ class GenericComponent : public Component {
         return get_geometries({});
     }
 
-    virtual std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) = 0;
+    virtual std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) = 0;
 
     /// @brief Creates a `GenericComponent` `API`.
     API api() const override;
