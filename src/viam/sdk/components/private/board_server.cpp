@@ -12,7 +12,7 @@ namespace sdk {
 namespace impl {
 
 BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)) {};
+    : ResourceServer(std::move(manager)){};
 
 ::grpc::Status BoardServer::SetGPIO(::grpc::ServerContext*,
                                     const ::viam::component::board::v1::SetGPIORequest* request,

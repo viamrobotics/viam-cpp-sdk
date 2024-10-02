@@ -22,7 +22,7 @@ class MockPowerSensor : public sdk::PowerSensor {
     sdk::PowerSensor::current peek_current;
     double peek_power;
 
-    MockPowerSensor(std::string name) : PowerSensor(std::move(name)) {};
+    MockPowerSensor(std::string name) : PowerSensor(std::move(name)){};
 };
 
 }  // namespace powersensor

@@ -20,7 +20,7 @@ std::vector<double> MockGantry::get_position(const sdk::ProtoStruct&) {
 
 void MockGantry::move_to_position(const std::vector<sdk::Gantry::movement_coordinate>& coordinates,
                                   const sdk::ProtoStruct&) {
-    peek_positions = {};
+    peek_positions ={};
     for (const auto& coord : coordinates)
         peek_positions.push_back(coord.position_mm);
 }

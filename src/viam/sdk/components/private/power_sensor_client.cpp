@@ -24,7 +24,7 @@ namespace impl {
 PowerSensorClient::PowerSensorClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : PowerSensor(std::move(name)),
       stub_(PowerSensorService::NewStub(channel)),
-      channel_(std::move(channel)) {};
+      channel_(std::move(channel)){};
 
 PowerSensor::voltage PowerSensorClient::get_voltage(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetVoltage)

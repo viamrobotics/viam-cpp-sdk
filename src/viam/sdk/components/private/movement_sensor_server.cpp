@@ -14,7 +14,7 @@ namespace sdk {
 namespace impl {
 
 MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)) {};
+    : ResourceServer(std::move(manager)){};
 
 ::grpc::Status MovementSensorServer::GetLinearVelocity(
     ::grpc::ServerContext*,

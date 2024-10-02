@@ -9,7 +9,7 @@ namespace sdk {
 namespace impl {
 
 GenericComponentServer::GenericComponentServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)) {};
+    : ResourceServer(std::move(manager)){};
 
 ::grpc::Status GenericComponentServer::DoCommand(
     ::grpc::ServerContext*,

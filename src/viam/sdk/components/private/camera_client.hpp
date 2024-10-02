@@ -50,7 +50,7 @@ class CameraClient : public Camera {
     // avoid use of this constructor outside of tests.
     CameraClient(std::string name,
                  std::unique_ptr<viam::component::camera::v1::CameraService::StubInterface> stub)
-        : Camera(std::move(name)), stub_(std::move(stub)) {};
+        : Camera(std::move(name)), stub_(std::move(stub)){};
 
    private:
     using StubType = viam::component::camera::v1::CameraService::StubInterface;

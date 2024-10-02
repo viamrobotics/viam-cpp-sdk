@@ -99,7 +99,7 @@ class MockMotion : public sdk::Motion {
     std::shared_ptr<sdk::WorldState> peek_world_state;
 
     MockMotion(std::string name)
-        : sdk::Motion(std::move(name)), current_location(init_fake_pose()) {};
+        : sdk::Motion(std::move(name)), current_location(init_fake_pose()){};
 };
 
 }  // namespace motion

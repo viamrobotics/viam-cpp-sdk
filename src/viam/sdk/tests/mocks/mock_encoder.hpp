@@ -17,7 +17,7 @@ class MockEncoder : public viam::sdk::Encoder {
     viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct& command) override;
     static std::shared_ptr<MockEncoder> get_mock_encoder();
 
-    MockEncoder(std::string name) : Encoder(std::move(name)) {};
+    MockEncoder(std::string name) : Encoder(std::move(name)){};
 
     // For testing purposes only.
     bool peek_reset_position_called;

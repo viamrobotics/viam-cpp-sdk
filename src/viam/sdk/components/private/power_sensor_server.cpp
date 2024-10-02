@@ -13,7 +13,7 @@ namespace sdk {
 namespace impl {
 
 PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)) {};
+    : ResourceServer(std::move(manager)){};
 
 ::grpc::Status PowerSensorServer::GetVoltage(::grpc::ServerContext*,
                                              const GetVoltageRequest* request,

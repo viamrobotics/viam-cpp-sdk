@@ -23,7 +23,7 @@ namespace impl {
 MovementSensorClient::MovementSensorClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : MovementSensor(std::move(name)),
       stub_(viam::component::movementsensor::v1::MovementSensorService::NewStub(channel)),
-      channel_(std::move(channel)) {};
+      channel_(std::move(channel)){};
 
 using namespace viam::component::movementsensor::v1;
 

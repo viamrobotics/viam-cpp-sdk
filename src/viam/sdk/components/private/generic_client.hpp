@@ -31,7 +31,7 @@ class GenericComponentClient : public GenericComponent {
     GenericComponentClient(
         std::string name,
         std::unique_ptr<viam::component::generic::v1::GenericService::StubInterface> stub)
-        : GenericComponent(std::move(name)), stub_(std::move(stub)) {};
+        : GenericComponent(std::move(name)), stub_(std::move(stub)){};
 
    private:
     using StubType = viam::component::generic::v1::GenericService::StubInterface;
