@@ -606,7 +606,8 @@ inline constexpr ModuleConfig::Impl_::Impl_(
         module_id_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        status_{nullptr} {}
+        status_{nullptr},
+        first_run_timeout_{nullptr} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR ModuleConfig::ModuleConfig(::_pbi::ConstantInitialized)
@@ -1611,6 +1612,7 @@ const ::uint32_t TableStruct_app_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTIO
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleConfig, _impl_.module_id_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleConfig, _impl_.env_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleConfig, _impl_.status_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleConfig, _impl_.first_run_timeout_),
     ~0u,
     ~0u,
     ~0u,
@@ -1618,6 +1620,7 @@ const ::uint32_t TableStruct_app_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTIO
     ~0u,
     ~0u,
     0,
+    1,
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::PackageConfig, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::PackageConfig, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -1691,9 +1694,9 @@ static const ::_pbi::MigrationSchema
         {515, -1, -1, sizeof(::viam::app::v1::NeedsRestartRequest)},
         {524, 535, -1, sizeof(::viam::app::v1::NeedsRestartResponse)},
         {538, 548, -1, sizeof(::viam::app::v1::ModuleConfig_EnvEntry_DoNotUse)},
-        {550, 565, -1, sizeof(::viam::app::v1::ModuleConfig)},
-        {572, 585, -1, sizeof(::viam::app::v1::PackageConfig)},
-        {590, 600, -1, sizeof(::viam::app::v1::MaintenanceConfig)},
+        {550, 566, -1, sizeof(::viam::app::v1::ModuleConfig)},
+        {574, 587, -1, sizeof(::viam::app::v1::PackageConfig)},
+        {592, 602, -1, sizeof(::viam::app::v1::MaintenanceConfig)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1905,38 +1908,40 @@ const char descriptor_table_protodef_app_2fv1_2frobot_2eproto[] PROTOBUF_SECTION
     "\030\001 \001(\tR\002id\022!\n\014must_restart\030\002 \001(\010R\013mustRe"
     "start\022O\n\026restart_check_interval\030\003 \001(\0132\031."
     "google.protobuf.DurationR\024restartCheckIn"
-    "terval\"\254\002\n\014ModuleConfig\022\022\n\004name\030\001 \001(\tR\004n"
+    "terval\"\363\002\n\014ModuleConfig\022\022\n\004name\030\001 \001(\tR\004n"
     "ame\022\022\n\004path\030\002 \001(\tR\004path\022\033\n\tlog_level\030\003 \001"
     "(\tR\010logLevel\022\022\n\004type\030\004 \001(\tR\004type\022\033\n\tmodu"
     "le_id\030\005 \001(\tR\010moduleId\0224\n\003env\030\006 \003(\0132\".via"
     "m.app.v1.ModuleConfig.EnvEntryR\003env\0228\n\006s"
     "tatus\030\007 \001(\0132 .viam.app.v1.AppValidationS"
-    "tatusR\006status\0326\n\010EnvEntry\022\020\n\003key\030\001 \001(\tR\003"
-    "key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\"\245\001\n\rPackag"
-    "eConfig\022\022\n\004name\030\001 \001(\tR\004name\022\030\n\007package\030\002"
-    " \001(\tR\007package\022\030\n\007version\030\003 \001(\tR\007version\022"
-    "\022\n\004type\030\004 \001(\tR\004type\0228\n\006status\030\005 \001(\0132 .vi"
-    "am.app.v1.AppValidationStatusR\006status\"\212\001"
-    "\n\021MaintenanceConfig\022=\n\013sensor_name\030\001 \001(\013"
-    "2\034.viam.common.v1.ResourceNameR\nsensorNa"
-    "me\0226\n\027maintenance_allowed_key\030\002 \001(\tR\025mai"
-    "ntenanceAllowedKey*\277\001\n\017CredentialsType\022 "
-    "\n\034CREDENTIALS_TYPE_UNSPECIFIED\020\000\022\035\n\031CRED"
-    "ENTIALS_TYPE_INTERNAL\020\001\022\034\n\030CREDENTIALS_T"
-    "YPE_API_KEY\020\002\022!\n\035CREDENTIALS_TYPE_ROBOT_"
-    "SECRET\020\003\022*\n&CREDENTIALS_TYPE_ROBOT_LOCAT"
-    "ION_SECRET\020\0042\262\002\n\014RobotService\022A\n\006Config\022"
-    "\032.viam.app.v1.ConfigRequest\032\033.viam.app.v"
-    "1.ConfigResponse\022P\n\013Certificate\022\037.viam.a"
-    "pp.v1.CertificateRequest\032 .viam.app.v1.C"
-    "ertificateResponse\0228\n\003Log\022\027.viam.app.v1."
-    "LogRequest\032\030.viam.app.v1.LogResponse\022S\n\014"
-    "NeedsRestart\022 .viam.app.v1.NeedsRestartR"
-    "equest\032!.viam.app.v1.NeedsRestartRespons"
-    "eB\203\001\n\017com.viam.app.v1B\nRobotProtoP\001Z\026go."
-    "viam.com/api/app/v1\242\002\003VAX\252\002\013Viam.App.V1\312"
-    "\002\013Viam\\App\\V1\342\002\027Viam\\App\\V1\\GPBMetadata\352"
-    "\002\rViam::App::V1b\006proto3"
+    "tatusR\006status\022E\n\021first_run_timeout\030\010 \001(\013"
+    "2\031.google.protobuf.DurationR\017firstRunTim"
+    "eout\0326\n\010EnvEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005va"
+    "lue\030\002 \001(\tR\005value:\0028\001\"\245\001\n\rPackageConfig\022\022"
+    "\n\004name\030\001 \001(\tR\004name\022\030\n\007package\030\002 \001(\tR\007pac"
+    "kage\022\030\n\007version\030\003 \001(\tR\007version\022\022\n\004type\030\004"
+    " \001(\tR\004type\0228\n\006status\030\005 \001(\0132 .viam.app.v1"
+    ".AppValidationStatusR\006status\"\212\001\n\021Mainten"
+    "anceConfig\022=\n\013sensor_name\030\001 \001(\0132\034.viam.c"
+    "ommon.v1.ResourceNameR\nsensorName\0226\n\027mai"
+    "ntenance_allowed_key\030\002 \001(\tR\025maintenanceA"
+    "llowedKey*\277\001\n\017CredentialsType\022 \n\034CREDENT"
+    "IALS_TYPE_UNSPECIFIED\020\000\022\035\n\031CREDENTIALS_T"
+    "YPE_INTERNAL\020\001\022\034\n\030CREDENTIALS_TYPE_API_K"
+    "EY\020\002\022!\n\035CREDENTIALS_TYPE_ROBOT_SECRET\020\003\022"
+    "*\n&CREDENTIALS_TYPE_ROBOT_LOCATION_SECRE"
+    "T\020\0042\262\002\n\014RobotService\022A\n\006Config\022\032.viam.ap"
+    "p.v1.ConfigRequest\032\033.viam.app.v1.ConfigR"
+    "esponse\022P\n\013Certificate\022\037.viam.app.v1.Cer"
+    "tificateRequest\032 .viam.app.v1.Certificat"
+    "eResponse\0228\n\003Log\022\027.viam.app.v1.LogReques"
+    "t\032\030.viam.app.v1.LogResponse\022S\n\014NeedsRest"
+    "art\022 .viam.app.v1.NeedsRestartRequest\032!."
+    "viam.app.v1.NeedsRestartResponseB\203\001\n\017com"
+    ".viam.app.v1B\nRobotProtoP\001Z\026go.viam.com/"
+    "api/app/v1\242\002\003VAX\252\002\013Viam.App.V1\312\002\013Viam\\Ap"
+    "p\\V1\342\002\027Viam\\App\\V1\\GPBMetadata\352\002\rViam::A"
+    "pp::V1b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2frobot_2eproto_deps[4] =
     {
@@ -1949,7 +1954,7 @@ static ::absl::once_flag descriptor_table_app_2fv1_2frobot_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2frobot_2eproto = {
     false,
     false,
-    7823,
+    7894,
     descriptor_table_protodef_app_2fv1_2frobot_2eproto,
     "app/v1/robot.proto",
     &descriptor_table_app_2fv1_2frobot_2eproto_once,
@@ -12740,10 +12745,22 @@ class ModuleConfig::_Internal {
   static void set_has_status(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
+  static const ::google::protobuf::Duration& first_run_timeout(const ModuleConfig* msg);
+  static void set_has_first_run_timeout(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
 };
 
 const ::viam::app::v1::AppValidationStatus& ModuleConfig::_Internal::status(const ModuleConfig* msg) {
   return *msg->_impl_.status_;
+}
+const ::google::protobuf::Duration& ModuleConfig::_Internal::first_run_timeout(const ModuleConfig* msg) {
+  return *msg->_impl_.first_run_timeout_;
+}
+void ModuleConfig::clear_first_run_timeout() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.first_run_timeout_ != nullptr) _impl_.first_run_timeout_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
 }
 ModuleConfig::ModuleConfig(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
@@ -12775,6 +12792,9 @@ ModuleConfig::ModuleConfig(
   _impl_.status_ = (cached_has_bits & 0x00000001u)
                 ? CreateMaybeMessage<::viam::app::v1::AppValidationStatus>(arena, *from._impl_.status_)
                 : nullptr;
+  _impl_.first_run_timeout_ = (cached_has_bits & 0x00000002u)
+                ? CreateMaybeMessage<::google::protobuf::Duration>(arena, *from._impl_.first_run_timeout_)
+                : nullptr;
 
   // @@protoc_insertion_point(copy_constructor:viam.app.v1.ModuleConfig)
 }
@@ -12791,7 +12811,12 @@ inline PROTOBUF_NDEBUG_INLINE ModuleConfig::Impl_::Impl_(
 
 inline void ModuleConfig::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.status_ = {};
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, status_),
+           0,
+           offsetof(Impl_, first_run_timeout_) -
+               offsetof(Impl_, status_) +
+               sizeof(Impl_::first_run_timeout_));
 }
 ModuleConfig::~ModuleConfig() {
   // @@protoc_insertion_point(destructor:viam.app.v1.ModuleConfig)
@@ -12806,6 +12831,7 @@ inline void ModuleConfig::SharedDtor() {
   _impl_.type_.Destroy();
   _impl_.module_id_.Destroy();
   delete _impl_.status_;
+  delete _impl_.first_run_timeout_;
   _impl_.~Impl_();
 }
 
@@ -12823,9 +12849,15 @@ PROTOBUF_NOINLINE void ModuleConfig::Clear() {
   _impl_.type_.ClearToEmpty();
   _impl_.module_id_.ClearToEmpty();
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.status_ != nullptr);
-    _impl_.status_->Clear();
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(_impl_.status_ != nullptr);
+      _impl_.status_->Clear();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(_impl_.first_run_timeout_ != nullptr);
+      _impl_.first_run_timeout_->Clear();
+    }
   }
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
@@ -12839,21 +12871,23 @@ const char* ModuleConfig::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 7, 2, 66, 2> ModuleConfig::_table_ = {
+const ::_pbi::TcParseTable<3, 8, 3, 74, 2> ModuleConfig::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(ModuleConfig, _impl_._has_bits_),
     0, // no _extensions_
-    7, 56,  // max_field_number, fast_idx_mask
+    8, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967168,  // skipmap
+    4294967040,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    7,  // num_field_entries
-    2,  // num_aux_entries
+    8,  // num_field_entries
+    3,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_ModuleConfig_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
+    // .google.protobuf.Duration first_run_timeout = 8 [json_name = "firstRunTimeout"];
+    {::_pbi::TcParser::FastMtS1,
+     {66, 1, 2, PROTOBUF_FIELD_OFFSET(ModuleConfig, _impl_.first_run_timeout_)}},
     // string name = 1 [json_name = "name"];
     {::_pbi::TcParser::FastUS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(ModuleConfig, _impl_.name_)}},
@@ -12897,14 +12931,18 @@ const ::_pbi::TcParseTable<3, 7, 2, 66, 2> ModuleConfig::_table_ = {
     // .viam.app.v1.AppValidationStatus status = 7 [json_name = "status"];
     {PROTOBUF_FIELD_OFFSET(ModuleConfig, _impl_.status_), _Internal::kHasBitsOffset + 0, 1,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .google.protobuf.Duration first_run_timeout = 8 [json_name = "firstRunTimeout"];
+    {PROTOBUF_FIELD_OFFSET(ModuleConfig, _impl_.first_run_timeout_), _Internal::kHasBitsOffset + 1, 2,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
     {::_pbi::TcParser::GetMapAuxInfo<
         decltype(ModuleConfig()._impl_.env_)>(
         1, 0, 0, 9,
         9)},
     {::_pbi::TcParser::GetTable<::viam::app::v1::AppValidationStatus>()},
+    {::_pbi::TcParser::GetTable<::google::protobuf::Duration>()},
   }}, {{
-    "\30\4\4\11\4\11\3\0"
+    "\30\4\4\11\4\11\3\0\0\0\0\0\0\0\0\0"
     "viam.app.v1.ModuleConfig"
     "name"
     "path"
@@ -13003,6 +13041,13 @@ const ::_pbi::TcParseTable<3, 7, 2, 66, 2> ModuleConfig::_table_ = {
         _Internal::status(this).GetCachedSize(), target, stream);
   }
 
+  // .google.protobuf.Duration first_run_timeout = 8 [json_name = "firstRunTimeout"];
+  if (cached_has_bits & 0x00000002u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        8, _Internal::first_run_timeout(this),
+        _Internal::first_run_timeout(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -13057,13 +13102,21 @@ const ::_pbi::TcParseTable<3, 7, 2, 66, 2> ModuleConfig::_table_ = {
                                     this->_internal_module_id());
   }
 
-  // .viam.app.v1.AppValidationStatus status = 7 [json_name = "status"];
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size +=
-        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.status_);
-  }
+  if (cached_has_bits & 0x00000003u) {
+    // .viam.app.v1.AppValidationStatus status = 7 [json_name = "status"];
+    if (cached_has_bits & 0x00000001u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.status_);
+    }
 
+    // .google.protobuf.Duration first_run_timeout = 8 [json_name = "firstRunTimeout"];
+    if (cached_has_bits & 0x00000002u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.first_run_timeout_);
+    }
+
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -13099,9 +13152,16 @@ void ModuleConfig::MergeImpl(::google::protobuf::Message& to_msg, const ::google
   if (!from._internal_module_id().empty()) {
     _this->_internal_set_module_id(from._internal_module_id());
   }
-  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    _this->_internal_mutable_status()->::viam::app::v1::AppValidationStatus::MergeFrom(
-        from._internal_status());
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_mutable_status()->::viam::app::v1::AppValidationStatus::MergeFrom(
+          from._internal_status());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_internal_mutable_first_run_timeout()->::google::protobuf::Duration::MergeFrom(
+          from._internal_first_run_timeout());
+    }
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -13132,7 +13192,12 @@ void ModuleConfig::InternalSwap(ModuleConfig* PROTOBUF_RESTRICT other) {
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.log_level_, &other->_impl_.log_level_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.type_, &other->_impl_.type_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.module_id_, &other->_impl_.module_id_, arena);
-  swap(_impl_.status_, other->_impl_.status_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ModuleConfig, _impl_.first_run_timeout_)
+      + sizeof(ModuleConfig::_impl_.first_run_timeout_)
+      - PROTOBUF_FIELD_OFFSET(ModuleConfig, _impl_.status_)>(
+          reinterpret_cast<char*>(&_impl_.status_),
+          reinterpret_cast<char*>(&other->_impl_.status_));
 }
 
 ::google::protobuf::Metadata ModuleConfig::GetMetadata() const {

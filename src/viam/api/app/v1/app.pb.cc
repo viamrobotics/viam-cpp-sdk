@@ -2287,7 +2287,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr UpdateModuleRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : models_{},
+      : _cached_size_{0},
+        models_{},
         module_id_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
@@ -2300,8 +2301,10 @@ inline constexpr UpdateModuleRequest::Impl_::Impl_(
         entrypoint_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        visibility_{static_cast< ::viam::app::v1::Visibility >(0)},
-        _cached_size_{0} {}
+        first_run_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        visibility_{static_cast< ::viam::app::v1::Visibility >(0)} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR UpdateModuleRequest::UpdateModuleRequest(::_pbi::ConstantInitialized)
@@ -2854,7 +2857,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr VersionHistory::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : files_{},
+      : _cached_size_{0},
+        files_{},
         models_{},
         version_(
             &::google::protobuf::internal::fixed_address_empty_string,
@@ -2862,7 +2866,9 @@ inline constexpr VersionHistory::Impl_::Impl_(
         entrypoint_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        _cached_size_{0} {}
+        first_run_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()) {}
 
 template <typename>
 PROTOBUF_CONSTEXPR VersionHistory::VersionHistory(::_pbi::ConstantInitialized)
@@ -3043,7 +3049,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr ModuleVersion::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : files_{},
+      : _cached_size_{0},
+        files_{},
         models_{},
         version_(
             &::google::protobuf::internal::fixed_address_empty_string,
@@ -3051,7 +3058,9 @@ inline constexpr ModuleVersion::Impl_::Impl_(
         entrypoint_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        _cached_size_{0} {}
+        first_run_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()) {}
 
 template <typename>
 PROTOBUF_CONSTEXPR ModuleVersion::ModuleVersion(::_pbi::ConstantInitialized)
@@ -3441,12 +3450,15 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr ModuleMetadata::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : models_{},
+      : _cached_size_{0},
+        models_{},
         versions_{},
         entrypoint_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        _cached_size_{0} {}
+        first_run_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()) {}
 
 template <typename>
 PROTOBUF_CONSTEXPR ModuleMetadata::ModuleMetadata(::_pbi::ConstantInitialized)
@@ -3464,7 +3476,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr Module::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : versions_{},
+      : _cached_size_{0},
+        versions_{},
         models_{},
         module_id_(
             &::google::protobuf::internal::fixed_address_empty_string,
@@ -3487,10 +3500,12 @@ inline constexpr Module::Impl_::Impl_(
         public_namespace_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
+        first_run_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
         total_robot_usage_{::int64_t{0}},
         total_organization_usage_{::int64_t{0}},
-        visibility_{static_cast< ::viam::app::v1::Visibility >(0)},
-        _cached_size_{0} {}
+        visibility_{static_cast< ::viam::app::v1::Visibility >(0)} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR Module::Module(::_pbi::ConstantInitialized)
@@ -5319,7 +5334,7 @@ const ::uint32_t TableStruct_app_2fv1_2fapp_2eproto::offsets[] PROTOBUF_SECTION_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::CheckPermissionsResponse, _impl_.authorized_permissions_),
-    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleVersion, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleVersion, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
@@ -5331,7 +5346,13 @@ const ::uint32_t TableStruct_app_2fv1_2fapp_2eproto::offsets[] PROTOBUF_SECTION_
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleVersion, _impl_.files_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleVersion, _impl_.models_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleVersion, _impl_.entrypoint_),
-    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleVersion, _impl_.first_run_),
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
+    0,
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleMetadata, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleMetadata, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
@@ -5342,6 +5363,11 @@ const ::uint32_t TableStruct_app_2fv1_2fapp_2eproto::offsets[] PROTOBUF_SECTION_
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleMetadata, _impl_.models_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleMetadata, _impl_.versions_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleMetadata, _impl_.entrypoint_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleMetadata, _impl_.first_run_),
+    ~0u,
+    ~0u,
+    ~0u,
+    0,
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::MLModelMetadata, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -5572,7 +5598,7 @@ const ::uint32_t TableStruct_app_2fv1_2fapp_2eproto::offsets[] PROTOBUF_SECTION_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::CreateModuleResponse, _impl_.module_id_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::CreateModuleResponse, _impl_.url_),
-    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::UpdateModuleRequest, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::UpdateModuleRequest, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
@@ -5586,6 +5612,14 @@ const ::uint32_t TableStruct_app_2fv1_2fapp_2eproto::offsets[] PROTOBUF_SECTION_
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::UpdateModuleRequest, _impl_.description_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::UpdateModuleRequest, _impl_.models_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::UpdateModuleRequest, _impl_.entrypoint_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::UpdateModuleRequest, _impl_.first_run_),
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
+    0,
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::UpdateModuleResponse, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -5655,7 +5689,7 @@ const ::uint32_t TableStruct_app_2fv1_2fapp_2eproto::offsets[] PROTOBUF_SECTION_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetModuleResponse, _impl_.module_),
     0,
-    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::Module, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::Module, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
@@ -5675,7 +5709,21 @@ const ::uint32_t TableStruct_app_2fv1_2fapp_2eproto::offsets[] PROTOBUF_SECTION_
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::Module, _impl_.organization_id_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::Module, _impl_.entrypoint_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::Module, _impl_.public_namespace_),
-    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::Module, _impl_.first_run_),
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
+    0,
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::VersionHistory, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::VersionHistory, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
@@ -5687,6 +5735,12 @@ const ::uint32_t TableStruct_app_2fv1_2fapp_2eproto::offsets[] PROTOBUF_SECTION_
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::VersionHistory, _impl_.files_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::VersionHistory, _impl_.models_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::VersionHistory, _impl_.entrypoint_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::VersionHistory, _impl_.first_run_),
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
+    0,
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::Uploads, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::Uploads, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -6033,58 +6087,58 @@ static const ::_pbi::MigrationSchema
         {1369, -1, -1, sizeof(::viam::app::v1::CheckPermissionsRequest)},
         {1378, -1, -1, sizeof(::viam::app::v1::AuthorizedPermissions)},
         {1389, -1, -1, sizeof(::viam::app::v1::CheckPermissionsResponse)},
-        {1398, -1, -1, sizeof(::viam::app::v1::ModuleVersion)},
-        {1410, -1, -1, sizeof(::viam::app::v1::ModuleMetadata)},
-        {1421, -1, -1, sizeof(::viam::app::v1::MLModelMetadata)},
-        {1432, 1442, -1, sizeof(::viam::app::v1::MLTrainingVersion)},
-        {1444, -1, -1, sizeof(::viam::app::v1::MLTrainingMetadata)},
-        {1456, 1482, -1, sizeof(::viam::app::v1::RegistryItem)},
-        {1499, -1, -1, sizeof(::viam::app::v1::GetRegistryItemRequest)},
-        {1508, 1517, -1, sizeof(::viam::app::v1::GetRegistryItemResponse)},
-        {1518, -1, -1, sizeof(::viam::app::v1::CreateRegistryItemRequest)},
-        {1529, -1, -1, sizeof(::viam::app::v1::CreateRegistryItemResponse)},
-        {1537, 1550, -1, sizeof(::viam::app::v1::UpdateRegistryItemRequest)},
-        {1555, -1, -1, sizeof(::viam::app::v1::UpdateRegistryItemResponse)},
-        {1563, 1579, -1, sizeof(::viam::app::v1::ListRegistryItemsRequest)},
-        {1587, -1, -1, sizeof(::viam::app::v1::ListRegistryItemsResponse)},
-        {1596, -1, -1, sizeof(::viam::app::v1::DeleteRegistryItemRequest)},
-        {1605, -1, -1, sizeof(::viam::app::v1::DeleteRegistryItemResponse)},
-        {1613, -1, -1, sizeof(::viam::app::v1::TransferRegistryItemRequest)},
-        {1623, -1, -1, sizeof(::viam::app::v1::TransferRegistryItemResponse)},
-        {1631, -1, -1, sizeof(::viam::app::v1::CreateModuleRequest)},
-        {1641, -1, -1, sizeof(::viam::app::v1::CreateModuleResponse)},
-        {1651, -1, -1, sizeof(::viam::app::v1::UpdateModuleRequest)},
-        {1665, -1, -1, sizeof(::viam::app::v1::UpdateModuleResponse)},
-        {1674, -1, -1, sizeof(::viam::app::v1::Model)},
-        {1684, -1, -1, sizeof(::viam::app::v1::ModuleFileInfo)},
-        {1695, -1, -1, sizeof(::viam::app::v1::UploadModuleFileRequest)},
-        {1706, -1, -1, sizeof(::viam::app::v1::UploadModuleFileResponse)},
-        {1715, -1, -1, sizeof(::viam::app::v1::GetModuleRequest)},
-        {1724, 1733, -1, sizeof(::viam::app::v1::GetModuleResponse)},
-        {1734, -1, -1, sizeof(::viam::app::v1::Module)},
-        {1754, -1, -1, sizeof(::viam::app::v1::VersionHistory)},
-        {1766, 1776, -1, sizeof(::viam::app::v1::Uploads)},
-        {1778, 1787, -1, sizeof(::viam::app::v1::ListModulesRequest)},
-        {1788, -1, -1, sizeof(::viam::app::v1::ListModulesResponse)},
-        {1797, -1, -1, sizeof(::viam::app::v1::GetUserIDByEmailRequest)},
-        {1806, -1, -1, sizeof(::viam::app::v1::GetUserIDByEmailResponse)},
-        {1815, -1, -1, sizeof(::viam::app::v1::ListOrganizationsByUserRequest)},
-        {1824, -1, -1, sizeof(::viam::app::v1::OrgDetails)},
-        {1834, -1, -1, sizeof(::viam::app::v1::ListOrganizationsByUserResponse)},
-        {1843, -1, -1, sizeof(::viam::app::v1::CreateKeyRequest)},
-        {1853, -1, -1, sizeof(::viam::app::v1::CreateKeyResponse)},
-        {1863, -1, -1, sizeof(::viam::app::v1::DeleteKeyRequest)},
-        {1872, -1, -1, sizeof(::viam::app::v1::DeleteKeyResponse)},
-        {1880, -1, -1, sizeof(::viam::app::v1::RenameKeyRequest)},
-        {1890, -1, -1, sizeof(::viam::app::v1::RenameKeyResponse)},
-        {1900, -1, -1, sizeof(::viam::app::v1::AuthorizationDetails)},
-        {1913, 1923, -1, sizeof(::viam::app::v1::APIKeyWithAuthorizations)},
-        {1925, -1, -1, sizeof(::viam::app::v1::ListKeysRequest)},
-        {1934, -1, -1, sizeof(::viam::app::v1::ListKeysResponse)},
-        {1943, -1, -1, sizeof(::viam::app::v1::RotateKeyRequest)},
-        {1952, -1, -1, sizeof(::viam::app::v1::RotateKeyResponse)},
-        {1962, -1, -1, sizeof(::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest)},
-        {1971, -1, -1, sizeof(::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse)},
+        {1398, 1411, -1, sizeof(::viam::app::v1::ModuleVersion)},
+        {1416, 1428, -1, sizeof(::viam::app::v1::ModuleMetadata)},
+        {1432, -1, -1, sizeof(::viam::app::v1::MLModelMetadata)},
+        {1443, 1453, -1, sizeof(::viam::app::v1::MLTrainingVersion)},
+        {1455, -1, -1, sizeof(::viam::app::v1::MLTrainingMetadata)},
+        {1467, 1493, -1, sizeof(::viam::app::v1::RegistryItem)},
+        {1510, -1, -1, sizeof(::viam::app::v1::GetRegistryItemRequest)},
+        {1519, 1528, -1, sizeof(::viam::app::v1::GetRegistryItemResponse)},
+        {1529, -1, -1, sizeof(::viam::app::v1::CreateRegistryItemRequest)},
+        {1540, -1, -1, sizeof(::viam::app::v1::CreateRegistryItemResponse)},
+        {1548, 1561, -1, sizeof(::viam::app::v1::UpdateRegistryItemRequest)},
+        {1566, -1, -1, sizeof(::viam::app::v1::UpdateRegistryItemResponse)},
+        {1574, 1590, -1, sizeof(::viam::app::v1::ListRegistryItemsRequest)},
+        {1598, -1, -1, sizeof(::viam::app::v1::ListRegistryItemsResponse)},
+        {1607, -1, -1, sizeof(::viam::app::v1::DeleteRegistryItemRequest)},
+        {1616, -1, -1, sizeof(::viam::app::v1::DeleteRegistryItemResponse)},
+        {1624, -1, -1, sizeof(::viam::app::v1::TransferRegistryItemRequest)},
+        {1634, -1, -1, sizeof(::viam::app::v1::TransferRegistryItemResponse)},
+        {1642, -1, -1, sizeof(::viam::app::v1::CreateModuleRequest)},
+        {1652, -1, -1, sizeof(::viam::app::v1::CreateModuleResponse)},
+        {1662, 1677, -1, sizeof(::viam::app::v1::UpdateModuleRequest)},
+        {1684, -1, -1, sizeof(::viam::app::v1::UpdateModuleResponse)},
+        {1693, -1, -1, sizeof(::viam::app::v1::Model)},
+        {1703, -1, -1, sizeof(::viam::app::v1::ModuleFileInfo)},
+        {1714, -1, -1, sizeof(::viam::app::v1::UploadModuleFileRequest)},
+        {1725, -1, -1, sizeof(::viam::app::v1::UploadModuleFileResponse)},
+        {1734, -1, -1, sizeof(::viam::app::v1::GetModuleRequest)},
+        {1743, 1752, -1, sizeof(::viam::app::v1::GetModuleResponse)},
+        {1753, 1774, -1, sizeof(::viam::app::v1::Module)},
+        {1787, 1800, -1, sizeof(::viam::app::v1::VersionHistory)},
+        {1805, 1815, -1, sizeof(::viam::app::v1::Uploads)},
+        {1817, 1826, -1, sizeof(::viam::app::v1::ListModulesRequest)},
+        {1827, -1, -1, sizeof(::viam::app::v1::ListModulesResponse)},
+        {1836, -1, -1, sizeof(::viam::app::v1::GetUserIDByEmailRequest)},
+        {1845, -1, -1, sizeof(::viam::app::v1::GetUserIDByEmailResponse)},
+        {1854, -1, -1, sizeof(::viam::app::v1::ListOrganizationsByUserRequest)},
+        {1863, -1, -1, sizeof(::viam::app::v1::OrgDetails)},
+        {1873, -1, -1, sizeof(::viam::app::v1::ListOrganizationsByUserResponse)},
+        {1882, -1, -1, sizeof(::viam::app::v1::CreateKeyRequest)},
+        {1892, -1, -1, sizeof(::viam::app::v1::CreateKeyResponse)},
+        {1902, -1, -1, sizeof(::viam::app::v1::DeleteKeyRequest)},
+        {1911, -1, -1, sizeof(::viam::app::v1::DeleteKeyResponse)},
+        {1919, -1, -1, sizeof(::viam::app::v1::RenameKeyRequest)},
+        {1929, -1, -1, sizeof(::viam::app::v1::RenameKeyResponse)},
+        {1939, -1, -1, sizeof(::viam::app::v1::AuthorizationDetails)},
+        {1952, 1962, -1, sizeof(::viam::app::v1::APIKeyWithAuthorizations)},
+        {1964, -1, -1, sizeof(::viam::app::v1::ListKeysRequest)},
+        {1973, -1, -1, sizeof(::viam::app::v1::ListKeysResponse)},
+        {1982, -1, -1, sizeof(::viam::app::v1::RotateKeyRequest)},
+        {1991, -1, -1, sizeof(::viam::app::v1::RotateKeyResponse)},
+        {2001, -1, -1, sizeof(::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest)},
+        {2010, -1, -1, sizeof(::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -6643,123 +6697,129 @@ const char descriptor_table_protodef_app_2fv1_2fapp_2eproto[] PROTOBUF_SECTION_V
     "issions\"u\n\030CheckPermissionsResponse\022Y\n\026a"
     "uthorized_permissions\030\001 \003(\0132\".viam.app.v"
     "1.AuthorizedPermissionsR\025authorizedPermi"
-    "ssions\"\241\001\n\rModuleVersion\022\030\n\007version\030\001 \001("
+    "ssions\"\321\001\n\rModuleVersion\022\030\n\007version\030\001 \001("
     "\tR\007version\022*\n\005files\030\002 \003(\0132\024.viam.app.v1."
     "UploadsR\005files\022*\n\006models\030\003 \003(\0132\022.viam.ap"
     "p.v1.ModelR\006models\022\036\n\nentrypoint\030\004 \001(\tR\n"
-    "entrypoint\"\224\001\n\016ModuleMetadata\022*\n\006models\030"
-    "\001 \003(\0132\022.viam.app.v1.ModelR\006models\0226\n\010ver"
-    "sions\030\002 \003(\0132\032.viam.app.v1.ModuleVersionR"
-    "\010versions\022\036\n\nentrypoint\030\003 \001(\tR\nentrypoin"
-    "t\"\300\001\n\017MLModelMetadata\022\032\n\010versions\030\001 \003(\tR"
-    "\010versions\022@\n\nmodel_type\030\002 \001(\0162!.viam.app"
-    ".mltraining.v1.ModelTypeR\tmodelType\022O\n\017m"
-    "odel_framework\030\003 \001(\0162&.viam.app.mltraini"
-    "ng.v1.ModelFrameworkR\016modelFramework\"h\n\021"
-    "MLTrainingVersion\022\030\n\007version\030\001 \001(\tR\007vers"
-    "ion\0229\n\ncreated_on\030\002 \001(\0132\032.google.protobu"
-    "f.TimestampR\tcreatedOn\"\377\001\n\022MLTrainingMet"
-    "adata\022:\n\010versions\030\005 \003(\0132\036.viam.app.v1.ML"
-    "TrainingVersionR\010versions\022@\n\nmodel_type\030"
+    "entrypoint\022 \n\tfirst_run\030\005 \001(\tH\000R\010firstRu"
+    "n\210\001\001B\014\n\n_first_run\"\304\001\n\016ModuleMetadata\022*\n"
+    "\006models\030\001 \003(\0132\022.viam.app.v1.ModelR\006model"
+    "s\0226\n\010versions\030\002 \003(\0132\032.viam.app.v1.Module"
+    "VersionR\010versions\022\036\n\nentrypoint\030\003 \001(\tR\ne"
+    "ntrypoint\022 \n\tfirst_run\030\004 \001(\tH\000R\010firstRun"
+    "\210\001\001B\014\n\n_first_run\"\300\001\n\017MLModelMetadata\022\032\n"
+    "\010versions\030\001 \003(\tR\010versions\022@\n\nmodel_type\030"
     "\002 \001(\0162!.viam.app.mltraining.v1.ModelType"
     "R\tmodelType\022O\n\017model_framework\030\003 \001(\0162&.v"
     "iam.app.mltraining.v1.ModelFrameworkR\016mo"
-    "delFramework\022\024\n\005draft\030\004 \001(\010R\005draftJ\004\010\001\020\002"
-    "\"\214\007\n\014RegistryItem\022\027\n\007item_id\030\001 \001(\tR\006item"
-    "Id\022\'\n\017organization_id\030\002 \001(\tR\016organizatio"
-    "nId\022)\n\020public_namespace\030\003 \001(\tR\017publicNam"
-    "espace\022\022\n\004name\030\004 \001(\tR\004name\0225\n\004type\030\005 \001(\016"
-    "2!.viam.app.packages.v1.PackageTypeR\004typ"
-    "e\0227\n\nvisibility\030\006 \001(\0162\027.viam.app.v1.Visi"
-    "bilityR\nvisibility\022\020\n\003url\030\007 \001(\tR\003url\022 \n\013"
-    "description\030\010 \001(\tR\013description\022*\n\021total_"
-    "robot_usage\030\t \001(\003R\017totalRobotUsage\022;\n\032to"
-    "tal_external_robot_usage\030\r \001(\003R\027totalExt"
-    "ernalRobotUsage\0228\n\030total_organization_us"
-    "age\030\n \001(\003R\026totalOrganizationUsage\022I\n!tot"
-    "al_external_organization_usage\030\016 \001(\003R\036to"
-    "talExternalOrganizationUsage\022F\n\017module_m"
-    "etadata\030\013 \001(\0132\033.viam.app.v1.ModuleMetada"
-    "taH\000R\016moduleMetadata\022J\n\021ml_model_metadat"
-    "a\030\014 \001(\0132\034.viam.app.v1.MLModelMetadataH\000R"
-    "\017mlModelMetadata\022S\n\024ml_training_metadata"
-    "\030\022 \001(\0132\037.viam.app.v1.MLTrainingMetadataH"
-    "\000R\022mlTrainingMetadata\0229\n\ncreated_at\030\017 \001("
-    "\0132\032.google.protobuf.TimestampR\tcreatedAt"
-    "\0229\n\nupdated_at\030\020 \001(\0132\032.google.protobuf.T"
-    "imestampR\tupdatedAtB\n\n\010metadata\"1\n\026GetRe"
+    "delFramework\"h\n\021MLTrainingVersion\022\030\n\007ver"
+    "sion\030\001 \001(\tR\007version\0229\n\ncreated_on\030\002 \001(\0132"
+    "\032.google.protobuf.TimestampR\tcreatedOn\"\377"
+    "\001\n\022MLTrainingMetadata\022:\n\010versions\030\005 \003(\0132"
+    "\036.viam.app.v1.MLTrainingVersionR\010version"
+    "s\022@\n\nmodel_type\030\002 \001(\0162!.viam.app.mltrain"
+    "ing.v1.ModelTypeR\tmodelType\022O\n\017model_fra"
+    "mework\030\003 \001(\0162&.viam.app.mltraining.v1.Mo"
+    "delFrameworkR\016modelFramework\022\024\n\005draft\030\004 "
+    "\001(\010R\005draftJ\004\010\001\020\002\"\214\007\n\014RegistryItem\022\027\n\007ite"
+    "m_id\030\001 \001(\tR\006itemId\022\'\n\017organization_id\030\002 "
+    "\001(\tR\016organizationId\022)\n\020public_namespace\030"
+    "\003 \001(\tR\017publicNamespace\022\022\n\004name\030\004 \001(\tR\004na"
+    "me\0225\n\004type\030\005 \001(\0162!.viam.app.packages.v1."
+    "PackageTypeR\004type\0227\n\nvisibility\030\006 \001(\0162\027."
+    "viam.app.v1.VisibilityR\nvisibility\022\020\n\003ur"
+    "l\030\007 \001(\tR\003url\022 \n\013description\030\010 \001(\tR\013descr"
+    "iption\022*\n\021total_robot_usage\030\t \001(\003R\017total"
+    "RobotUsage\022;\n\032total_external_robot_usage"
+    "\030\r \001(\003R\027totalExternalRobotUsage\0228\n\030total"
+    "_organization_usage\030\n \001(\003R\026totalOrganiza"
+    "tionUsage\022I\n!total_external_organization"
+    "_usage\030\016 \001(\003R\036totalExternalOrganizationU"
+    "sage\022F\n\017module_metadata\030\013 \001(\0132\033.viam.app"
+    ".v1.ModuleMetadataH\000R\016moduleMetadata\022J\n\021"
+    "ml_model_metadata\030\014 \001(\0132\034.viam.app.v1.ML"
+    "ModelMetadataH\000R\017mlModelMetadata\022S\n\024ml_t"
+    "raining_metadata\030\022 \001(\0132\037.viam.app.v1.MLT"
+    "rainingMetadataH\000R\022mlTrainingMetadata\0229\n"
+    "\ncreated_at\030\017 \001(\0132\032.google.protobuf.Time"
+    "stampR\tcreatedAt\0229\n\nupdated_at\030\020 \001(\0132\032.g"
+    "oogle.protobuf.TimestampR\tupdatedAtB\n\n\010m"
+    "etadata\"1\n\026GetRegistryItemRequest\022\027\n\007ite"
+    "m_id\030\001 \001(\tR\006itemId\"H\n\027GetRegistryItemRes"
+    "ponse\022-\n\004item\030\001 \001(\0132\031.viam.app.v1.Regist"
+    "ryItemR\004item\"\217\001\n\031CreateRegistryItemReque"
+    "st\022\'\n\017organization_id\030\001 \001(\tR\016organizatio"
+    "nId\022\022\n\004name\030\002 \001(\tR\004name\0225\n\004type\030\003 \001(\0162!."
+    "viam.app.packages.v1.PackageTypeR\004type\"\034"
+    "\n\032CreateRegistryItemResponse\"\345\001\n\031UpdateR"
+    "egistryItemRequest\022\027\n\007item_id\030\001 \001(\tR\006ite"
+    "mId\0225\n\004type\030\002 \001(\0162!.viam.app.packages.v1"
+    ".PackageTypeR\004type\022 \n\013description\030\003 \001(\tR"
+    "\013description\0227\n\nvisibility\030\004 \001(\0162\027.viam."
+    "app.v1.VisibilityR\nvisibility\022\025\n\003url\030\005 \001"
+    "(\tH\000R\003url\210\001\001B\006\n\004_url\"\034\n\032UpdateRegistryIt"
+    "emResponse\"\303\003\n\030ListRegistryItemsRequest\022"
+    ",\n\017organization_id\030\001 \001(\tH\000R\016organization"
+    "Id\210\001\001\0227\n\005types\030\002 \003(\0162!.viam.app.packages"
+    ".v1.PackageTypeR\005types\022;\n\014visibilities\030\003"
+    " \003(\0162\027.viam.app.v1.VisibilityR\014visibilit"
+    "ies\022\034\n\tplatforms\030\004 \003(\tR\tplatforms\022;\n\010sta"
+    "tuses\030\005 \003(\0162\037.viam.app.v1.RegistryItemSt"
+    "atusR\010statuses\022$\n\013search_term\030\006 \001(\tH\001R\ns"
+    "earchTerm\210\001\001\022\"\n\npage_token\030\007 \001(\tH\002R\tpage"
+    "Token\210\001\001\022+\n\021public_namespaces\030\010 \003(\tR\020pub"
+    "licNamespacesB\022\n\020_organization_idB\016\n\014_se"
+    "arch_termB\r\n\013_page_token\"L\n\031ListRegistry"
+    "ItemsResponse\022/\n\005items\030\001 \003(\0132\031.viam.app."
+    "v1.RegistryItemR\005items\"4\n\031DeleteRegistry"
+    "ItemRequest\022\027\n\007item_id\030\001 \001(\tR\006itemId\"\034\n\032"
+    "DeleteRegistryItemResponse\"h\n\033TransferRe"
     "gistryItemRequest\022\027\n\007item_id\030\001 \001(\tR\006item"
-    "Id\"H\n\027GetRegistryItemResponse\022-\n\004item\030\001 "
-    "\001(\0132\031.viam.app.v1.RegistryItemR\004item\"\217\001\n"
-    "\031CreateRegistryItemRequest\022\'\n\017organizati"
-    "on_id\030\001 \001(\tR\016organizationId\022\022\n\004name\030\002 \001("
-    "\tR\004name\0225\n\004type\030\003 \001(\0162!.viam.app.package"
-    "s.v1.PackageTypeR\004type\"\034\n\032CreateRegistry"
-    "ItemResponse\"\345\001\n\031UpdateRegistryItemReque"
-    "st\022\027\n\007item_id\030\001 \001(\tR\006itemId\0225\n\004type\030\002 \001("
-    "\0162!.viam.app.packages.v1.PackageTypeR\004ty"
-    "pe\022 \n\013description\030\003 \001(\tR\013description\0227\n\n"
-    "visibility\030\004 \001(\0162\027.viam.app.v1.Visibilit"
-    "yR\nvisibility\022\025\n\003url\030\005 \001(\tH\000R\003url\210\001\001B\006\n\004"
-    "_url\"\034\n\032UpdateRegistryItemResponse\"\303\003\n\030L"
-    "istRegistryItemsRequest\022,\n\017organization_"
-    "id\030\001 \001(\tH\000R\016organizationId\210\001\001\0227\n\005types\030\002"
-    " \003(\0162!.viam.app.packages.v1.PackageTypeR"
-    "\005types\022;\n\014visibilities\030\003 \003(\0162\027.viam.app."
-    "v1.VisibilityR\014visibilities\022\034\n\tplatforms"
-    "\030\004 \003(\tR\tplatforms\022;\n\010statuses\030\005 \003(\0162\037.vi"
-    "am.app.v1.RegistryItemStatusR\010statuses\022$"
-    "\n\013search_term\030\006 \001(\tH\001R\nsearchTerm\210\001\001\022\"\n\n"
-    "page_token\030\007 \001(\tH\002R\tpageToken\210\001\001\022+\n\021publ"
-    "ic_namespaces\030\010 \003(\tR\020publicNamespacesB\022\n"
-    "\020_organization_idB\016\n\014_search_termB\r\n\013_pa"
-    "ge_token\"L\n\031ListRegistryItemsResponse\022/\n"
-    "\005items\030\001 \003(\0132\031.viam.app.v1.RegistryItemR"
-    "\005items\"4\n\031DeleteRegistryItemRequest\022\027\n\007i"
-    "tem_id\030\001 \001(\tR\006itemId\"\034\n\032DeleteRegistryIt"
-    "emResponse\"h\n\033TransferRegistryItemReques"
-    "t\022\027\n\007item_id\030\001 \001(\tR\006itemId\0220\n\024new_public"
-    "_namespace\030\002 \001(\tR\022newPublicNamespace\"\036\n\034"
-    "TransferRegistryItemResponse\"R\n\023CreateMo"
-    "duleRequest\022\'\n\017organization_id\030\001 \001(\tR\016or"
-    "ganizationId\022\022\n\004name\030\002 \001(\tR\004name\"E\n\024Crea"
-    "teModuleResponse\022\033\n\tmodule_id\030\001 \001(\tR\010mod"
-    "uleId\022\020\n\003url\030\002 \001(\tR\003url\"\353\001\n\023UpdateModule"
-    "Request\022\033\n\tmodule_id\030\001 \001(\tR\010moduleId\0227\n\n"
-    "visibility\030\002 \001(\0162\027.viam.app.v1.Visibilit"
-    "yR\nvisibility\022\020\n\003url\030\003 \001(\tR\003url\022 \n\013descr"
-    "iption\030\004 \001(\tR\013description\022*\n\006models\030\005 \003("
-    "\0132\022.viam.app.v1.ModelR\006models\022\036\n\nentrypo"
-    "int\030\006 \001(\tR\nentrypoint\"(\n\024UpdateModuleRes"
-    "ponse\022\020\n\003url\030\001 \001(\tR\003url\"/\n\005Model\022\020\n\003api\030"
-    "\001 \001(\tR\003api\022\024\n\005model\030\002 \001(\tR\005model\"c\n\016Modu"
-    "leFileInfo\022\033\n\tmodule_id\030\001 \001(\tR\010moduleId\022"
-    "\030\n\007version\030\002 \001(\tR\007version\022\032\n\010platform\030\003 "
-    "\001(\tR\010platform\"\207\001\n\027UploadModuleFileReques"
-    "t\022G\n\020module_file_info\030\001 \001(\0132\033.viam.app.v"
-    "1.ModuleFileInfoH\000R\016moduleFileInfo\022\024\n\004fi"
-    "le\030\002 \001(\014H\000R\004fileB\r\n\013module_file\",\n\030Uploa"
-    "dModuleFileResponse\022\020\n\003url\030\001 \001(\tR\003url\"/\n"
-    "\020GetModuleRequest\022\033\n\tmodule_id\030\001 \001(\tR\010mo"
-    "duleId\"@\n\021GetModuleResponse\022+\n\006module\030\001 "
-    "\001(\0132\023.viam.app.v1.ModuleR\006module\"\345\003\n\006Mod"
-    "ule\022\033\n\tmodule_id\030\001 \001(\tR\010moduleId\022\022\n\004name"
-    "\030\002 \001(\tR\004name\0227\n\nvisibility\030\003 \001(\0162\027.viam."
-    "app.v1.VisibilityR\nvisibility\0227\n\010version"
-    "s\030\004 \003(\0132\033.viam.app.v1.VersionHistoryR\010ve"
-    "rsions\022\020\n\003url\030\005 \001(\tR\003url\022 \n\013description\030"
-    "\006 \001(\tR\013description\022*\n\006models\030\007 \003(\0132\022.via"
-    "m.app.v1.ModelR\006models\022*\n\021total_robot_us"
-    "age\030\010 \001(\003R\017totalRobotUsage\0228\n\030total_orga"
-    "nization_usage\030\t \001(\003R\026totalOrganizationU"
-    "sage\022\'\n\017organization_id\030\n \001(\tR\016organizat"
-    "ionId\022\036\n\nentrypoint\030\013 \001(\tR\nentrypoint\022)\n"
-    "\020public_namespace\030\014 \001(\tR\017publicNamespace"
-    "\"\242\001\n\016VersionHistory\022\030\n\007version\030\001 \001(\tR\007ve"
-    "rsion\022*\n\005files\030\002 \003(\0132\024.viam.app.v1.Uploa"
-    "dsR\005files\022*\n\006models\030\003 \003(\0132\022.viam.app.v1."
-    "ModelR\006models\022\036\n\nentrypoint\030\004 \001(\tR\nentry"
-    "point\"b\n\007Uploads\022\032\n\010platform\030\001 \001(\tR\010plat"
+    "Id\0220\n\024new_public_namespace\030\002 \001(\tR\022newPub"
+    "licNamespace\"\036\n\034TransferRegistryItemResp"
+    "onse\"R\n\023CreateModuleRequest\022\'\n\017organizat"
+    "ion_id\030\001 \001(\tR\016organizationId\022\022\n\004name\030\002 \001"
+    "(\tR\004name\"E\n\024CreateModuleResponse\022\033\n\tmodu"
+    "le_id\030\001 \001(\tR\010moduleId\022\020\n\003url\030\002 \001(\tR\003url\""
+    "\233\002\n\023UpdateModuleRequest\022\033\n\tmodule_id\030\001 \001"
+    "(\tR\010moduleId\0227\n\nvisibility\030\002 \001(\0162\027.viam."
+    "app.v1.VisibilityR\nvisibility\022\020\n\003url\030\003 \001"
+    "(\tR\003url\022 \n\013description\030\004 \001(\tR\013descriptio"
+    "n\022*\n\006models\030\005 \003(\0132\022.viam.app.v1.ModelR\006m"
+    "odels\022\036\n\nentrypoint\030\006 \001(\tR\nentrypoint\022 \n"
+    "\tfirst_run\030\007 \001(\tH\000R\010firstRun\210\001\001B\014\n\n_firs"
+    "t_run\"(\n\024UpdateModuleResponse\022\020\n\003url\030\001 \001"
+    "(\tR\003url\"/\n\005Model\022\020\n\003api\030\001 \001(\tR\003api\022\024\n\005mo"
+    "del\030\002 \001(\tR\005model\"c\n\016ModuleFileInfo\022\033\n\tmo"
+    "dule_id\030\001 \001(\tR\010moduleId\022\030\n\007version\030\002 \001(\t"
+    "R\007version\022\032\n\010platform\030\003 \001(\tR\010platform\"\207\001"
+    "\n\027UploadModuleFileRequest\022G\n\020module_file"
+    "_info\030\001 \001(\0132\033.viam.app.v1.ModuleFileInfo"
+    "H\000R\016moduleFileInfo\022\024\n\004file\030\002 \001(\014H\000R\004file"
+    "B\r\n\013module_file\",\n\030UploadModuleFileRespo"
+    "nse\022\020\n\003url\030\001 \001(\tR\003url\"/\n\020GetModuleReques"
+    "t\022\033\n\tmodule_id\030\001 \001(\tR\010moduleId\"@\n\021GetMod"
+    "uleResponse\022+\n\006module\030\001 \001(\0132\023.viam.app.v"
+    "1.ModuleR\006module\"\225\004\n\006Module\022\033\n\tmodule_id"
+    "\030\001 \001(\tR\010moduleId\022\022\n\004name\030\002 \001(\tR\004name\0227\n\n"
+    "visibility\030\003 \001(\0162\027.viam.app.v1.Visibilit"
+    "yR\nvisibility\0227\n\010versions\030\004 \003(\0132\033.viam.a"
+    "pp.v1.VersionHistoryR\010versions\022\020\n\003url\030\005 "
+    "\001(\tR\003url\022 \n\013description\030\006 \001(\tR\013descripti"
+    "on\022*\n\006models\030\007 \003(\0132\022.viam.app.v1.ModelR\006"
+    "models\022*\n\021total_robot_usage\030\010 \001(\003R\017total"
+    "RobotUsage\0228\n\030total_organization_usage\030\t"
+    " \001(\003R\026totalOrganizationUsage\022\'\n\017organiza"
+    "tion_id\030\n \001(\tR\016organizationId\022\036\n\nentrypo"
+    "int\030\013 \001(\tR\nentrypoint\022)\n\020public_namespac"
+    "e\030\014 \001(\tR\017publicNamespace\022 \n\tfirst_run\030\r "
+    "\001(\tH\000R\010firstRun\210\001\001B\014\n\n_first_run\"\322\001\n\016Ver"
+    "sionHistory\022\030\n\007version\030\001 \001(\tR\007version\022*\n"
+    "\005files\030\002 \003(\0132\024.viam.app.v1.UploadsR\005file"
+    "s\022*\n\006models\030\003 \003(\0132\022.viam.app.v1.ModelR\006m"
+    "odels\022\036\n\nentrypoint\030\004 \001(\tR\nentrypoint\022 \n"
+    "\tfirst_run\030\005 \001(\tH\000R\010firstRun\210\001\001B\014\n\n_firs"
+    "t_run\"b\n\007Uploads\022\032\n\010platform\030\001 \001(\tR\010plat"
     "form\022;\n\013uploaded_at\030\002 \001(\0132\032.google.proto"
     "buf.TimestampR\nuploadedAt\"V\n\022ListModules"
     "Request\022,\n\017organization_id\030\001 \001(\tH\000R\016orga"
@@ -7013,7 +7073,7 @@ static ::absl::once_flag descriptor_table_app_2fv1_2fapp_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2fapp_2eproto = {
     false,
     false,
-    29171,
+    29411,
     descriptor_table_protodef_app_2fv1_2fapp_2eproto,
     "app/v1/app.proto",
     &descriptor_table_app_2fv1_2fapp_2eproto_once,
@@ -33651,6 +33711,12 @@ void CheckPermissionsResponse::InternalSwap(CheckPermissionsResponse* PROTOBUF_R
 
 class ModuleVersion::_Internal {
  public:
+  using HasBits = decltype(std::declval<ModuleVersion>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(ModuleVersion, _impl_._has_bits_);
+  static void set_has_first_run(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
 ModuleVersion::ModuleVersion(::google::protobuf::Arena* arena)
@@ -33661,11 +33727,13 @@ ModuleVersion::ModuleVersion(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE ModuleVersion::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : files_{visibility, arena, from.files_},
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        files_{visibility, arena, from.files_},
         models_{visibility, arena, from.models_},
         version_(arena, from.version_),
         entrypoint_(arena, from.entrypoint_),
-        _cached_size_{0} {}
+        first_run_(arena, from.first_run_) {}
 
 ModuleVersion::ModuleVersion(
     ::google::protobuf::Arena* arena,
@@ -33682,11 +33750,12 @@ ModuleVersion::ModuleVersion(
 inline PROTOBUF_NDEBUG_INLINE ModuleVersion::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : files_{visibility, arena},
+      : _cached_size_{0},
+        files_{visibility, arena},
         models_{visibility, arena},
         version_(arena),
         entrypoint_(arena),
-        _cached_size_{0} {}
+        first_run_(arena) {}
 
 inline void ModuleVersion::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -33700,6 +33769,7 @@ inline void ModuleVersion::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.version_.Destroy();
   _impl_.entrypoint_.Destroy();
+  _impl_.first_run_.Destroy();
   _impl_.~Impl_();
 }
 
@@ -33714,6 +33784,11 @@ PROTOBUF_NOINLINE void ModuleVersion::Clear() {
   _impl_.models_.Clear();
   _impl_.version_.ClearToEmpty();
   _impl_.entrypoint_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    _impl_.first_run_.ClearNonDefaultToEmpty();
+  }
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -33725,23 +33800,21 @@ const char* ModuleVersion::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 4, 2, 51, 2> ModuleVersion::_table_ = {
+const ::_pbi::TcParseTable<3, 5, 2, 60, 2> ModuleVersion::_table_ = {
   {
-    0,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(ModuleVersion, _impl_._has_bits_),
     0, // no _extensions_
-    4, 24,  // max_field_number, fast_idx_mask
+    5, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967280,  // skipmap
+    4294967264,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    4,  // num_field_entries
+    5,  // num_field_entries
     2,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_ModuleVersion_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string entrypoint = 4 [json_name = "entrypoint"];
-    {::_pbi::TcParser::FastUS1,
-     {34, 63, 0, PROTOBUF_FIELD_OFFSET(ModuleVersion, _impl_.entrypoint_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // string version = 1 [json_name = "version"];
     {::_pbi::TcParser::FastUS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(ModuleVersion, _impl_.version_)}},
@@ -33751,29 +33824,41 @@ const ::_pbi::TcParseTable<2, 4, 2, 51, 2> ModuleVersion::_table_ = {
     // repeated .viam.app.v1.Model models = 3 [json_name = "models"];
     {::_pbi::TcParser::FastMtR1,
      {26, 63, 1, PROTOBUF_FIELD_OFFSET(ModuleVersion, _impl_.models_)}},
+    // string entrypoint = 4 [json_name = "entrypoint"];
+    {::_pbi::TcParser::FastUS1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(ModuleVersion, _impl_.entrypoint_)}},
+    // optional string first_run = 5 [json_name = "firstRun"];
+    {::_pbi::TcParser::FastUS1,
+     {42, 0, 0, PROTOBUF_FIELD_OFFSET(ModuleVersion, _impl_.first_run_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
     // string version = 1 [json_name = "version"];
-    {PROTOBUF_FIELD_OFFSET(ModuleVersion, _impl_.version_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ModuleVersion, _impl_.version_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // repeated .viam.app.v1.Uploads files = 2 [json_name = "files"];
-    {PROTOBUF_FIELD_OFFSET(ModuleVersion, _impl_.files_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ModuleVersion, _impl_.files_), -1, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
     // repeated .viam.app.v1.Model models = 3 [json_name = "models"];
-    {PROTOBUF_FIELD_OFFSET(ModuleVersion, _impl_.models_), 0, 1,
+    {PROTOBUF_FIELD_OFFSET(ModuleVersion, _impl_.models_), -1, 1,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
     // string entrypoint = 4 [json_name = "entrypoint"];
-    {PROTOBUF_FIELD_OFFSET(ModuleVersion, _impl_.entrypoint_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ModuleVersion, _impl_.entrypoint_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // optional string first_run = 5 [json_name = "firstRun"];
+    {PROTOBUF_FIELD_OFFSET(ModuleVersion, _impl_.first_run_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }}, {{
     {::_pbi::TcParser::GetTable<::viam::app::v1::Uploads>()},
     {::_pbi::TcParser::GetTable<::viam::app::v1::Model>()},
   }}, {{
-    "\31\7\0\0\12\0\0\0"
+    "\31\7\0\0\12\11\0\0"
     "viam.app.v1.ModuleVersion"
     "version"
     "entrypoint"
+    "first_run"
   }},
 };
 
@@ -33814,6 +33899,15 @@ const ::_pbi::TcParseTable<2, 4, 2, 51, 2> ModuleVersion::_table_ = {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
         _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.v1.ModuleVersion.entrypoint");
     target = stream->WriteStringMaybeAliased(4, _s, target);
+  }
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // optional string first_run = 5 [json_name = "firstRun"];
+  if (cached_has_bits & 0x00000001u) {
+    const std::string& _s = this->_internal_first_run();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.v1.ModuleVersion.first_run");
+    target = stream->WriteStringMaybeAliased(5, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -33857,6 +33951,13 @@ const ::_pbi::TcParseTable<2, 4, 2, 51, 2> ModuleVersion::_table_ = {
                                     this->_internal_entrypoint());
   }
 
+  // optional string first_run = 5 [json_name = "firstRun"];
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_first_run());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -33886,6 +33987,9 @@ void ModuleVersion::MergeImpl(::google::protobuf::Message& to_msg, const ::googl
   if (!from._internal_entrypoint().empty()) {
     _this->_internal_set_entrypoint(from._internal_entrypoint());
   }
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_set_first_run(from._internal_first_run());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -33908,10 +34012,12 @@ void ModuleVersion::InternalSwap(ModuleVersion* PROTOBUF_RESTRICT other) {
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.files_.InternalSwap(&other->_impl_.files_);
   _impl_.models_.InternalSwap(&other->_impl_.models_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.version_, &other->_impl_.version_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.entrypoint_, &other->_impl_.entrypoint_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.first_run_, &other->_impl_.first_run_, arena);
 }
 
 ::google::protobuf::Metadata ModuleVersion::GetMetadata() const {
@@ -33923,6 +34029,12 @@ void ModuleVersion::InternalSwap(ModuleVersion* PROTOBUF_RESTRICT other) {
 
 class ModuleMetadata::_Internal {
  public:
+  using HasBits = decltype(std::declval<ModuleMetadata>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(ModuleMetadata, _impl_._has_bits_);
+  static void set_has_first_run(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
 ModuleMetadata::ModuleMetadata(::google::protobuf::Arena* arena)
@@ -33933,10 +34045,12 @@ ModuleMetadata::ModuleMetadata(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE ModuleMetadata::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : models_{visibility, arena, from.models_},
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        models_{visibility, arena, from.models_},
         versions_{visibility, arena, from.versions_},
         entrypoint_(arena, from.entrypoint_),
-        _cached_size_{0} {}
+        first_run_(arena, from.first_run_) {}
 
 ModuleMetadata::ModuleMetadata(
     ::google::protobuf::Arena* arena,
@@ -33953,10 +34067,11 @@ ModuleMetadata::ModuleMetadata(
 inline PROTOBUF_NDEBUG_INLINE ModuleMetadata::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : models_{visibility, arena},
+      : _cached_size_{0},
+        models_{visibility, arena},
         versions_{visibility, arena},
         entrypoint_(arena),
-        _cached_size_{0} {}
+        first_run_(arena) {}
 
 inline void ModuleMetadata::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -33969,6 +34084,7 @@ ModuleMetadata::~ModuleMetadata() {
 inline void ModuleMetadata::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.entrypoint_.Destroy();
+  _impl_.first_run_.Destroy();
   _impl_.~Impl_();
 }
 
@@ -33982,6 +34098,11 @@ PROTOBUF_NOINLINE void ModuleMetadata::Clear() {
   _impl_.models_.Clear();
   _impl_.versions_.Clear();
   _impl_.entrypoint_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    _impl_.first_run_.ClearNonDefaultToEmpty();
+  }
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -33993,21 +34114,23 @@ const char* ModuleMetadata::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 2, 45, 2> ModuleMetadata::_table_ = {
+const ::_pbi::TcParseTable<2, 4, 2, 54, 2> ModuleMetadata::_table_ = {
   {
-    0,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(ModuleMetadata, _impl_._has_bits_),
     0, // no _extensions_
-    3, 24,  // max_field_number, fast_idx_mask
+    4, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
+    4294967280,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
+    4,  // num_field_entries
     2,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_ModuleMetadata_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
+    // optional string first_run = 4 [json_name = "firstRun"];
+    {::_pbi::TcParser::FastUS1,
+     {34, 0, 0, PROTOBUF_FIELD_OFFSET(ModuleMetadata, _impl_.first_run_)}},
     // repeated .viam.app.v1.Model models = 1 [json_name = "models"];
     {::_pbi::TcParser::FastMtR1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(ModuleMetadata, _impl_.models_)}},
@@ -34021,21 +34144,25 @@ const ::_pbi::TcParseTable<2, 3, 2, 45, 2> ModuleMetadata::_table_ = {
     65535, 65535
   }}, {{
     // repeated .viam.app.v1.Model models = 1 [json_name = "models"];
-    {PROTOBUF_FIELD_OFFSET(ModuleMetadata, _impl_.models_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ModuleMetadata, _impl_.models_), -1, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
     // repeated .viam.app.v1.ModuleVersion versions = 2 [json_name = "versions"];
-    {PROTOBUF_FIELD_OFFSET(ModuleMetadata, _impl_.versions_), 0, 1,
+    {PROTOBUF_FIELD_OFFSET(ModuleMetadata, _impl_.versions_), -1, 1,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
     // string entrypoint = 3 [json_name = "entrypoint"];
-    {PROTOBUF_FIELD_OFFSET(ModuleMetadata, _impl_.entrypoint_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ModuleMetadata, _impl_.entrypoint_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // optional string first_run = 4 [json_name = "firstRun"];
+    {PROTOBUF_FIELD_OFFSET(ModuleMetadata, _impl_.first_run_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }}, {{
     {::_pbi::TcParser::GetTable<::viam::app::v1::Model>()},
     {::_pbi::TcParser::GetTable<::viam::app::v1::ModuleVersion>()},
   }}, {{
-    "\32\0\0\12\0\0\0\0"
+    "\32\0\0\12\11\0\0\0"
     "viam.app.v1.ModuleMetadata"
     "entrypoint"
+    "first_run"
   }},
 };
 
@@ -34068,6 +34195,15 @@ const ::_pbi::TcParseTable<2, 3, 2, 45, 2> ModuleMetadata::_table_ = {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
         _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.v1.ModuleMetadata.entrypoint");
     target = stream->WriteStringMaybeAliased(3, _s, target);
+  }
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // optional string first_run = 4 [json_name = "firstRun"];
+  if (cached_has_bits & 0x00000001u) {
+    const std::string& _s = this->_internal_first_run();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.v1.ModuleMetadata.first_run");
+    target = stream->WriteStringMaybeAliased(4, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -34105,6 +34241,13 @@ const ::_pbi::TcParseTable<2, 3, 2, 45, 2> ModuleMetadata::_table_ = {
                                     this->_internal_entrypoint());
   }
 
+  // optional string first_run = 4 [json_name = "firstRun"];
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_first_run());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -34131,6 +34274,9 @@ void ModuleMetadata::MergeImpl(::google::protobuf::Message& to_msg, const ::goog
   if (!from._internal_entrypoint().empty()) {
     _this->_internal_set_entrypoint(from._internal_entrypoint());
   }
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_set_first_run(from._internal_first_run());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -34153,9 +34299,11 @@ void ModuleMetadata::InternalSwap(ModuleMetadata* PROTOBUF_RESTRICT other) {
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.models_.InternalSwap(&other->_impl_.models_);
   _impl_.versions_.InternalSwap(&other->_impl_.versions_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.entrypoint_, &other->_impl_.entrypoint_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.first_run_, &other->_impl_.first_run_, arena);
 }
 
 ::google::protobuf::Metadata ModuleMetadata::GetMetadata() const {
@@ -38305,6 +38453,12 @@ void CreateModuleResponse::InternalSwap(CreateModuleResponse* PROTOBUF_RESTRICT 
 
 class UpdateModuleRequest::_Internal {
  public:
+  using HasBits = decltype(std::declval<UpdateModuleRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(UpdateModuleRequest, _impl_._has_bits_);
+  static void set_has_first_run(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
 UpdateModuleRequest::UpdateModuleRequest(::google::protobuf::Arena* arena)
@@ -38315,12 +38469,14 @@ UpdateModuleRequest::UpdateModuleRequest(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE UpdateModuleRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : models_{visibility, arena, from.models_},
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        models_{visibility, arena, from.models_},
         module_id_(arena, from.module_id_),
         url_(arena, from.url_),
         description_(arena, from.description_),
         entrypoint_(arena, from.entrypoint_),
-        _cached_size_{0} {}
+        first_run_(arena, from.first_run_) {}
 
 UpdateModuleRequest::UpdateModuleRequest(
     ::google::protobuf::Arena* arena,
@@ -38338,12 +38494,13 @@ UpdateModuleRequest::UpdateModuleRequest(
 inline PROTOBUF_NDEBUG_INLINE UpdateModuleRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : models_{visibility, arena},
+      : _cached_size_{0},
+        models_{visibility, arena},
         module_id_(arena),
         url_(arena),
         description_(arena),
         entrypoint_(arena),
-        _cached_size_{0} {}
+        first_run_(arena) {}
 
 inline void UpdateModuleRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -38360,6 +38517,7 @@ inline void UpdateModuleRequest::SharedDtor() {
   _impl_.url_.Destroy();
   _impl_.description_.Destroy();
   _impl_.entrypoint_.Destroy();
+  _impl_.first_run_.Destroy();
   _impl_.~Impl_();
 }
 
@@ -38375,7 +38533,12 @@ PROTOBUF_NOINLINE void UpdateModuleRequest::Clear() {
   _impl_.url_.ClearToEmpty();
   _impl_.description_.ClearToEmpty();
   _impl_.entrypoint_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    _impl_.first_run_.ClearNonDefaultToEmpty();
+  }
   _impl_.visibility_ = 0;
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -38387,15 +38550,15 @@ const char* UpdateModuleRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 6, 1, 73, 2> UpdateModuleRequest::_table_ = {
+const ::_pbi::TcParseTable<3, 7, 1, 82, 2> UpdateModuleRequest::_table_ = {
   {
-    0,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(UpdateModuleRequest, _impl_._has_bits_),
     0, // no _extensions_
-    6, 56,  // max_field_number, fast_idx_mask
+    7, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967232,  // skipmap
+    4294967168,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    6,  // num_field_entries
+    7,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_UpdateModuleRequest_default_instance_._instance,
@@ -38420,37 +38583,43 @@ const ::_pbi::TcParseTable<3, 6, 1, 73, 2> UpdateModuleRequest::_table_ = {
     // string entrypoint = 6 [json_name = "entrypoint"];
     {::_pbi::TcParser::FastUS1,
      {50, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateModuleRequest, _impl_.entrypoint_)}},
-    {::_pbi::TcParser::MiniParse, {}},
+    // optional string first_run = 7 [json_name = "firstRun"];
+    {::_pbi::TcParser::FastUS1,
+     {58, 0, 0, PROTOBUF_FIELD_OFFSET(UpdateModuleRequest, _impl_.first_run_)}},
   }}, {{
     65535, 65535
   }}, {{
     // string module_id = 1 [json_name = "moduleId"];
-    {PROTOBUF_FIELD_OFFSET(UpdateModuleRequest, _impl_.module_id_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(UpdateModuleRequest, _impl_.module_id_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // .viam.app.v1.Visibility visibility = 2 [json_name = "visibility"];
-    {PROTOBUF_FIELD_OFFSET(UpdateModuleRequest, _impl_.visibility_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(UpdateModuleRequest, _impl_.visibility_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
     // string url = 3 [json_name = "url"];
-    {PROTOBUF_FIELD_OFFSET(UpdateModuleRequest, _impl_.url_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(UpdateModuleRequest, _impl_.url_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string description = 4 [json_name = "description"];
-    {PROTOBUF_FIELD_OFFSET(UpdateModuleRequest, _impl_.description_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(UpdateModuleRequest, _impl_.description_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // repeated .viam.app.v1.Model models = 5 [json_name = "models"];
-    {PROTOBUF_FIELD_OFFSET(UpdateModuleRequest, _impl_.models_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(UpdateModuleRequest, _impl_.models_), -1, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
     // string entrypoint = 6 [json_name = "entrypoint"];
-    {PROTOBUF_FIELD_OFFSET(UpdateModuleRequest, _impl_.entrypoint_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(UpdateModuleRequest, _impl_.entrypoint_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // optional string first_run = 7 [json_name = "firstRun"];
+    {PROTOBUF_FIELD_OFFSET(UpdateModuleRequest, _impl_.first_run_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }}, {{
     {::_pbi::TcParser::GetTable<::viam::app::v1::Model>()},
   }}, {{
-    "\37\11\0\3\13\0\12\0"
+    "\37\11\0\3\13\0\12\11"
     "viam.app.v1.UpdateModuleRequest"
     "module_id"
     "url"
     "description"
     "entrypoint"
+    "first_run"
   }},
 };
 
@@ -38508,6 +38677,15 @@ const ::_pbi::TcParseTable<3, 6, 1, 73, 2> UpdateModuleRequest::_table_ = {
     target = stream->WriteStringMaybeAliased(6, _s, target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
+  // optional string first_run = 7 [json_name = "firstRun"];
+  if (cached_has_bits & 0x00000001u) {
+    const std::string& _s = this->_internal_first_run();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.v1.UpdateModuleRequest.first_run");
+    target = stream->WriteStringMaybeAliased(7, _s, target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -38555,6 +38733,13 @@ const ::_pbi::TcParseTable<3, 6, 1, 73, 2> UpdateModuleRequest::_table_ = {
                                     this->_internal_entrypoint());
   }
 
+  // optional string first_run = 7 [json_name = "firstRun"];
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_first_run());
+  }
+
   // .viam.app.v1.Visibility visibility = 2 [json_name = "visibility"];
   if (this->_internal_visibility() != 0) {
     total_size += 1 +
@@ -38594,6 +38779,9 @@ void UpdateModuleRequest::MergeImpl(::google::protobuf::Message& to_msg, const :
   if (!from._internal_entrypoint().empty()) {
     _this->_internal_set_entrypoint(from._internal_entrypoint());
   }
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_set_first_run(from._internal_first_run());
+  }
   if (from._internal_visibility() != 0) {
     _this->_internal_set_visibility(from._internal_visibility());
   }
@@ -38619,11 +38807,13 @@ void UpdateModuleRequest::InternalSwap(UpdateModuleRequest* PROTOBUF_RESTRICT ot
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.models_.InternalSwap(&other->_impl_.models_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.module_id_, &other->_impl_.module_id_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.url_, &other->_impl_.url_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.description_, &other->_impl_.description_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.entrypoint_, &other->_impl_.entrypoint_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.first_run_, &other->_impl_.first_run_, arena);
   swap(_impl_.visibility_, other->_impl_.visibility_);
 }
 
@@ -40152,6 +40342,12 @@ void GetModuleResponse::InternalSwap(GetModuleResponse* PROTOBUF_RESTRICT other)
 
 class Module::_Internal {
  public:
+  using HasBits = decltype(std::declval<Module>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(Module, _impl_._has_bits_);
+  static void set_has_first_run(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
 Module::Module(::google::protobuf::Arena* arena)
@@ -40162,7 +40358,9 @@ Module::Module(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE Module::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : versions_{visibility, arena, from.versions_},
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        versions_{visibility, arena, from.versions_},
         models_{visibility, arena, from.models_},
         module_id_(arena, from.module_id_),
         name_(arena, from.name_),
@@ -40171,7 +40369,7 @@ inline PROTOBUF_NDEBUG_INLINE Module::Impl_::Impl_(
         organization_id_(arena, from.organization_id_),
         entrypoint_(arena, from.entrypoint_),
         public_namespace_(arena, from.public_namespace_),
-        _cached_size_{0} {}
+        first_run_(arena, from.first_run_) {}
 
 Module::Module(
     ::google::protobuf::Arena* arena,
@@ -40195,7 +40393,8 @@ Module::Module(
 inline PROTOBUF_NDEBUG_INLINE Module::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : versions_{visibility, arena},
+      : _cached_size_{0},
+        versions_{visibility, arena},
         models_{visibility, arena},
         module_id_(arena),
         name_(arena),
@@ -40204,7 +40403,7 @@ inline PROTOBUF_NDEBUG_INLINE Module::Impl_::Impl_(
         organization_id_(arena),
         entrypoint_(arena),
         public_namespace_(arena),
-        _cached_size_{0} {}
+        first_run_(arena) {}
 
 inline void Module::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -40229,6 +40428,7 @@ inline void Module::SharedDtor() {
   _impl_.organization_id_.Destroy();
   _impl_.entrypoint_.Destroy();
   _impl_.public_namespace_.Destroy();
+  _impl_.first_run_.Destroy();
   _impl_.~Impl_();
 }
 
@@ -40248,9 +40448,14 @@ PROTOBUF_NOINLINE void Module::Clear() {
   _impl_.organization_id_.ClearToEmpty();
   _impl_.entrypoint_.ClearToEmpty();
   _impl_.public_namespace_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    _impl_.first_run_.ClearNonDefaultToEmpty();
+  }
   ::memset(&_impl_.total_robot_usage_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.visibility_) -
       reinterpret_cast<char*>(&_impl_.total_robot_usage_)) + sizeof(_impl_.visibility_));
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -40262,15 +40467,15 @@ const char* Module::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<4, 12, 2, 103, 2> Module::_table_ = {
+const ::_pbi::TcParseTable<4, 13, 2, 112, 2> Module::_table_ = {
   {
-    0,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(Module, _impl_._has_bits_),
     0, // no _extensions_
-    12, 120,  // max_field_number, fast_idx_mask
+    13, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294963200,  // skipmap
+    4294959104,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    12,  // num_field_entries
+    13,  // num_field_entries
     2,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_Module_default_instance_._instance,
@@ -40313,53 +40518,58 @@ const ::_pbi::TcParseTable<4, 12, 2, 103, 2> Module::_table_ = {
     // string public_namespace = 12 [json_name = "publicNamespace"];
     {::_pbi::TcParser::FastUS1,
      {98, 63, 0, PROTOBUF_FIELD_OFFSET(Module, _impl_.public_namespace_)}},
-    {::_pbi::TcParser::MiniParse, {}},
+    // optional string first_run = 13 [json_name = "firstRun"];
+    {::_pbi::TcParser::FastUS1,
+     {106, 0, 0, PROTOBUF_FIELD_OFFSET(Module, _impl_.first_run_)}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
     // string module_id = 1 [json_name = "moduleId"];
-    {PROTOBUF_FIELD_OFFSET(Module, _impl_.module_id_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(Module, _impl_.module_id_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string name = 2 [json_name = "name"];
-    {PROTOBUF_FIELD_OFFSET(Module, _impl_.name_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(Module, _impl_.name_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // .viam.app.v1.Visibility visibility = 3 [json_name = "visibility"];
-    {PROTOBUF_FIELD_OFFSET(Module, _impl_.visibility_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(Module, _impl_.visibility_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
     // repeated .viam.app.v1.VersionHistory versions = 4 [json_name = "versions"];
-    {PROTOBUF_FIELD_OFFSET(Module, _impl_.versions_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(Module, _impl_.versions_), -1, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
     // string url = 5 [json_name = "url"];
-    {PROTOBUF_FIELD_OFFSET(Module, _impl_.url_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(Module, _impl_.url_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string description = 6 [json_name = "description"];
-    {PROTOBUF_FIELD_OFFSET(Module, _impl_.description_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(Module, _impl_.description_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // repeated .viam.app.v1.Model models = 7 [json_name = "models"];
-    {PROTOBUF_FIELD_OFFSET(Module, _impl_.models_), 0, 1,
+    {PROTOBUF_FIELD_OFFSET(Module, _impl_.models_), -1, 1,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
     // int64 total_robot_usage = 8 [json_name = "totalRobotUsage"];
-    {PROTOBUF_FIELD_OFFSET(Module, _impl_.total_robot_usage_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(Module, _impl_.total_robot_usage_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kInt64)},
     // int64 total_organization_usage = 9 [json_name = "totalOrganizationUsage"];
-    {PROTOBUF_FIELD_OFFSET(Module, _impl_.total_organization_usage_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(Module, _impl_.total_organization_usage_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kInt64)},
     // string organization_id = 10 [json_name = "organizationId"];
-    {PROTOBUF_FIELD_OFFSET(Module, _impl_.organization_id_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(Module, _impl_.organization_id_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string entrypoint = 11 [json_name = "entrypoint"];
-    {PROTOBUF_FIELD_OFFSET(Module, _impl_.entrypoint_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(Module, _impl_.entrypoint_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string public_namespace = 12 [json_name = "publicNamespace"];
-    {PROTOBUF_FIELD_OFFSET(Module, _impl_.public_namespace_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(Module, _impl_.public_namespace_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // optional string first_run = 13 [json_name = "firstRun"];
+    {PROTOBUF_FIELD_OFFSET(Module, _impl_.first_run_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }}, {{
     {::_pbi::TcParser::GetTable<::viam::app::v1::VersionHistory>()},
     {::_pbi::TcParser::GetTable<::viam::app::v1::Model>()},
   }}, {{
-    "\22\11\4\0\0\3\13\0\0\0\17\12\20\0\0\0"
+    "\22\11\4\0\0\3\13\0\0\0\17\12\20\11\0\0"
     "viam.app.v1.Module"
     "module_id"
     "name"
@@ -40368,6 +40578,7 @@ const ::_pbi::TcParseTable<4, 12, 2, 103, 2> Module::_table_ = {
     "organization_id"
     "entrypoint"
     "public_namespace"
+    "first_run"
   }},
 };
 
@@ -40471,6 +40682,15 @@ const ::_pbi::TcParseTable<4, 12, 2, 103, 2> Module::_table_ = {
     target = stream->WriteStringMaybeAliased(12, _s, target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
+  // optional string first_run = 13 [json_name = "firstRun"];
+  if (cached_has_bits & 0x00000001u) {
+    const std::string& _s = this->_internal_first_run();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.v1.Module.first_run");
+    target = stream->WriteStringMaybeAliased(13, _s, target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -40542,6 +40762,13 @@ const ::_pbi::TcParseTable<4, 12, 2, 103, 2> Module::_table_ = {
                                     this->_internal_public_namespace());
   }
 
+  // optional string first_run = 13 [json_name = "firstRun"];
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_first_run());
+  }
+
   // int64 total_robot_usage = 8 [json_name = "totalRobotUsage"];
   if (this->_internal_total_robot_usage() != 0) {
     total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
@@ -40604,6 +40831,9 @@ void Module::MergeImpl(::google::protobuf::Message& to_msg, const ::google::prot
   if (!from._internal_public_namespace().empty()) {
     _this->_internal_set_public_namespace(from._internal_public_namespace());
   }
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_set_first_run(from._internal_first_run());
+  }
   if (from._internal_total_robot_usage() != 0) {
     _this->_internal_set_total_robot_usage(from._internal_total_robot_usage());
   }
@@ -40635,6 +40865,7 @@ void Module::InternalSwap(Module* PROTOBUF_RESTRICT other) {
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.versions_.InternalSwap(&other->_impl_.versions_);
   _impl_.models_.InternalSwap(&other->_impl_.models_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.module_id_, &other->_impl_.module_id_, arena);
@@ -40644,6 +40875,7 @@ void Module::InternalSwap(Module* PROTOBUF_RESTRICT other) {
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.organization_id_, &other->_impl_.organization_id_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.entrypoint_, &other->_impl_.entrypoint_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.public_namespace_, &other->_impl_.public_namespace_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.first_run_, &other->_impl_.first_run_, arena);
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Module, _impl_.visibility_)
       + sizeof(Module::_impl_.visibility_)
@@ -40661,6 +40893,12 @@ void Module::InternalSwap(Module* PROTOBUF_RESTRICT other) {
 
 class VersionHistory::_Internal {
  public:
+  using HasBits = decltype(std::declval<VersionHistory>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(VersionHistory, _impl_._has_bits_);
+  static void set_has_first_run(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
 VersionHistory::VersionHistory(::google::protobuf::Arena* arena)
@@ -40671,11 +40909,13 @@ VersionHistory::VersionHistory(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE VersionHistory::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : files_{visibility, arena, from.files_},
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        files_{visibility, arena, from.files_},
         models_{visibility, arena, from.models_},
         version_(arena, from.version_),
         entrypoint_(arena, from.entrypoint_),
-        _cached_size_{0} {}
+        first_run_(arena, from.first_run_) {}
 
 VersionHistory::VersionHistory(
     ::google::protobuf::Arena* arena,
@@ -40692,11 +40932,12 @@ VersionHistory::VersionHistory(
 inline PROTOBUF_NDEBUG_INLINE VersionHistory::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : files_{visibility, arena},
+      : _cached_size_{0},
+        files_{visibility, arena},
         models_{visibility, arena},
         version_(arena),
         entrypoint_(arena),
-        _cached_size_{0} {}
+        first_run_(arena) {}
 
 inline void VersionHistory::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -40710,6 +40951,7 @@ inline void VersionHistory::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.version_.Destroy();
   _impl_.entrypoint_.Destroy();
+  _impl_.first_run_.Destroy();
   _impl_.~Impl_();
 }
 
@@ -40724,6 +40966,11 @@ PROTOBUF_NOINLINE void VersionHistory::Clear() {
   _impl_.models_.Clear();
   _impl_.version_.ClearToEmpty();
   _impl_.entrypoint_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    _impl_.first_run_.ClearNonDefaultToEmpty();
+  }
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -40735,23 +40982,21 @@ const char* VersionHistory::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 4, 2, 52, 2> VersionHistory::_table_ = {
+const ::_pbi::TcParseTable<3, 5, 2, 61, 2> VersionHistory::_table_ = {
   {
-    0,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(VersionHistory, _impl_._has_bits_),
     0, // no _extensions_
-    4, 24,  // max_field_number, fast_idx_mask
+    5, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967280,  // skipmap
+    4294967264,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    4,  // num_field_entries
+    5,  // num_field_entries
     2,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_VersionHistory_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string entrypoint = 4 [json_name = "entrypoint"];
-    {::_pbi::TcParser::FastUS1,
-     {34, 63, 0, PROTOBUF_FIELD_OFFSET(VersionHistory, _impl_.entrypoint_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // string version = 1 [json_name = "version"];
     {::_pbi::TcParser::FastUS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(VersionHistory, _impl_.version_)}},
@@ -40761,29 +41006,41 @@ const ::_pbi::TcParseTable<2, 4, 2, 52, 2> VersionHistory::_table_ = {
     // repeated .viam.app.v1.Model models = 3 [json_name = "models"];
     {::_pbi::TcParser::FastMtR1,
      {26, 63, 1, PROTOBUF_FIELD_OFFSET(VersionHistory, _impl_.models_)}},
+    // string entrypoint = 4 [json_name = "entrypoint"];
+    {::_pbi::TcParser::FastUS1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(VersionHistory, _impl_.entrypoint_)}},
+    // optional string first_run = 5 [json_name = "firstRun"];
+    {::_pbi::TcParser::FastUS1,
+     {42, 0, 0, PROTOBUF_FIELD_OFFSET(VersionHistory, _impl_.first_run_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
     // string version = 1 [json_name = "version"];
-    {PROTOBUF_FIELD_OFFSET(VersionHistory, _impl_.version_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(VersionHistory, _impl_.version_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // repeated .viam.app.v1.Uploads files = 2 [json_name = "files"];
-    {PROTOBUF_FIELD_OFFSET(VersionHistory, _impl_.files_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(VersionHistory, _impl_.files_), -1, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
     // repeated .viam.app.v1.Model models = 3 [json_name = "models"];
-    {PROTOBUF_FIELD_OFFSET(VersionHistory, _impl_.models_), 0, 1,
+    {PROTOBUF_FIELD_OFFSET(VersionHistory, _impl_.models_), -1, 1,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
     // string entrypoint = 4 [json_name = "entrypoint"];
-    {PROTOBUF_FIELD_OFFSET(VersionHistory, _impl_.entrypoint_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(VersionHistory, _impl_.entrypoint_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // optional string first_run = 5 [json_name = "firstRun"];
+    {PROTOBUF_FIELD_OFFSET(VersionHistory, _impl_.first_run_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }}, {{
     {::_pbi::TcParser::GetTable<::viam::app::v1::Uploads>()},
     {::_pbi::TcParser::GetTable<::viam::app::v1::Model>()},
   }}, {{
-    "\32\7\0\0\12\0\0\0"
+    "\32\7\0\0\12\11\0\0"
     "viam.app.v1.VersionHistory"
     "version"
     "entrypoint"
+    "first_run"
   }},
 };
 
@@ -40824,6 +41081,15 @@ const ::_pbi::TcParseTable<2, 4, 2, 52, 2> VersionHistory::_table_ = {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
         _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.v1.VersionHistory.entrypoint");
     target = stream->WriteStringMaybeAliased(4, _s, target);
+  }
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // optional string first_run = 5 [json_name = "firstRun"];
+  if (cached_has_bits & 0x00000001u) {
+    const std::string& _s = this->_internal_first_run();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.v1.VersionHistory.first_run");
+    target = stream->WriteStringMaybeAliased(5, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -40867,6 +41133,13 @@ const ::_pbi::TcParseTable<2, 4, 2, 52, 2> VersionHistory::_table_ = {
                                     this->_internal_entrypoint());
   }
 
+  // optional string first_run = 5 [json_name = "firstRun"];
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_first_run());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -40896,6 +41169,9 @@ void VersionHistory::MergeImpl(::google::protobuf::Message& to_msg, const ::goog
   if (!from._internal_entrypoint().empty()) {
     _this->_internal_set_entrypoint(from._internal_entrypoint());
   }
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_set_first_run(from._internal_first_run());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -40918,10 +41194,12 @@ void VersionHistory::InternalSwap(VersionHistory* PROTOBUF_RESTRICT other) {
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.files_.InternalSwap(&other->_impl_.files_);
   _impl_.models_.InternalSwap(&other->_impl_.models_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.version_, &other->_impl_.version_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.entrypoint_, &other->_impl_.entrypoint_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.first_run_, &other->_impl_.first_run_, arena);
 }
 
 ::google::protobuf::Metadata VersionHistory::GetMetadata() const {
