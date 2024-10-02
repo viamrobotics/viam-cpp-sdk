@@ -36,7 +36,6 @@ target_sources(viamsdk_test
     mocks/mock_servo.cpp
     mocks/mock_robot.cpp
     test_utils.cpp
-    ../common/proto_value.cpp # Only compile this into the tests for now since SDK doesn't yet use it
 )
 
 target_link_libraries(viamsdk_test
