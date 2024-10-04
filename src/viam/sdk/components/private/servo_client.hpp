@@ -23,12 +23,12 @@ class ServoClient : public Servo {
    public:
     using interface_type = Servo;
     ServoClient(std::string name, std::shared_ptr<grpc::Channel> channel);
-    void move(uint32_t angle_deg, const AttributeMap& extra) override;
-    position get_position(const AttributeMap& extra) override;
-    void stop(const AttributeMap& extra) override;
+    void move(uint32_t angle_deg, const ProtoStruct& extra) override;
+    position get_position(const ProtoStruct& extra) override;
+    void stop(const ProtoStruct& extra) override;
     bool is_moving() override;
-    std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
-    AttributeMap do_command(const AttributeMap& command) override;
+    std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
+    ProtoStruct do_command(const ProtoStruct& command) override;
 
     using Servo::get_geometries;
     using Servo::get_position;

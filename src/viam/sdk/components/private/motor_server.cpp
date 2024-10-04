@@ -1,6 +1,6 @@
 #include <viam/sdk/components/private/motor_server.hpp>
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/motor.hpp>
@@ -128,7 +128,7 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager)
                                       viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Motor>(
         "MotorServer::GetGeometries", this, request)([&](auto&, auto& motor) {
-        const AttributeMap result = motor->do_command(struct_to_map(request->command()));
+        const ProtoStruct result = motor->do_command(struct_to_map(request->command()));
         *response->mutable_result() = map_to_struct(result);
     });
 }

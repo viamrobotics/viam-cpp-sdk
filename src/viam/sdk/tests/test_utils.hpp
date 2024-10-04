@@ -12,7 +12,7 @@ namespace sdktests {
 
 using namespace viam::sdk;
 
-AttributeMap fake_map();
+ProtoStruct fake_map();
 std::vector<GeometryConfig> fake_geometries();
 
 // TestServer is a wrapper around viam::sdk::Server that is a friend of the

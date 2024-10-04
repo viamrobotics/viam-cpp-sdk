@@ -8,7 +8,7 @@
 #include <viam/api/service/motion/v1/motion.pb.h>
 
 #include <viam/sdk/common/pose.hpp>
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/common/world_state.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
@@ -253,7 +253,7 @@ class Motion : public Service {
                       const Name& name,
                       const std::shared_ptr<WorldState>& world_state,
                       const std::shared_ptr<constraints>& constraints,
-                      const AttributeMap& extra) = 0;
+                      const ProtoStruct& extra) = 0;
 
     /// @brief Moves any component on the robot to a specific destination on a SLAM map.
     /// @param destination The destination to move to.
@@ -284,7 +284,7 @@ class Motion : public Service {
         const Name& slam_name,
         const std::shared_ptr<motion_configuration>& motion_configuration,
         const std::vector<GeometryConfig>& obstacles,
-        const AttributeMap& extra) = 0;
+        const ProtoStruct& extra) = 0;
 
     /// @brief Moves any component on the robot to a specific destination on a globe.
     /// @param destination The destination to move to.
@@ -333,7 +333,7 @@ class Motion : public Service {
         const std::vector<geo_geometry>& obstacles,
         const std::shared_ptr<motion_configuration>& motion_configuration,
         const std::vector<geo_geometry>& bounding_regions,
-        const AttributeMap& extra) = 0;
+        const ProtoStruct& extra) = 0;
 
     /// @brief Get the pose of any component on the robot.
     /// @param component_name The component whose pose is being requested.
@@ -361,7 +361,7 @@ class Motion : public Service {
         const Name& component_name,
         const std::string& destination_frame,
         const std::vector<WorldState::transform>& supplemental_transforms,
-        const AttributeMap& extra) = 0;
+        const ProtoStruct& extra) = 0;
 
     /// @brief Stop a currently executing motion plan.
     /// @param component_name the component of the currently executing plan to stop.
@@ -372,7 +372,7 @@ class Motion : public Service {
     /// @brief Stop a currently executing motion plan.
     /// @param component_name the component of the currently executing plan to stop.
     /// @param extra Any additional arguments to the method.
-    virtual void stop_plan(const Name& component_name, const AttributeMap& extra) = 0;
+    virtual void stop_plan(const Name& component_name, const ProtoStruct& extra) = 0;
 
     /// @brief Returns the plan and state history of the most recent execution to move a component.
     /// Returns a result if the last execution is still executing, or changed state within the last
@@ -390,7 +390,7 @@ class Motion : public Service {
     /// @param extra Any additional arguments to the method.
     /// @return the plan and status of the most recent execution to move the requested component
     virtual plan_with_status get_latest_plan(const Name& component_name,
-                                             const AttributeMap& extra) = 0;
+                                             const ProtoStruct& extra) = 0;
 
     /// @brief Returns the plan, state history, and replan history of the most recent execution to
     /// move a component. Returns a result if the last execution is still executing, or changed
@@ -411,7 +411,7 @@ class Motion : public Service {
     /// @return a pair of (1) the plan and status and (2) the replan history of the most recent
     /// execution to move the requested component
     virtual std::pair<plan_with_status, std::vector<plan_with_status>>
-    get_latest_plan_with_replan_history(const Name& component_name, const AttributeMap& extra) = 0;
+    get_latest_plan_with_replan_history(const Name& component_name, const ProtoStruct& extra) = 0;
 
     /// @brief Returns the plan and state history of the requested plan. Returns a result
     /// if the last execution is still executing, or changed state within the last 24 hours
@@ -432,7 +432,7 @@ class Motion : public Service {
     /// @return the plan and status of the requested execution's move the requested component
     virtual plan_with_status get_plan(const Name& component_name,
                                       const std::string& execution_id,
-                                      const AttributeMap& extra) = 0;
+                                      const ProtoStruct& extra) = 0;
 
     /// @brief Returns the plan, state history, and replan history of the requested plan. Returns a
     /// result if the last execution is still executing, or changed state within the last 24 hours
@@ -455,7 +455,7 @@ class Motion : public Service {
     /// @return a pair of (1) the plan and status and (2) the replan history of the most recent
     /// execution to move the requested component
     virtual std::pair<plan_with_status, std::vector<plan_with_status>> get_plan_with_replan_history(
-        const Name& component_name, const std::string& execution_id, const AttributeMap& extra) = 0;
+        const Name& component_name, const std::string& execution_id, const ProtoStruct& extra) = 0;
 
     /// @brief Returns the status of plans created by MoveOnGlobe requests.
     /// Includes statuses of plans that are executing, or are part of an executing that changed
@@ -470,7 +470,7 @@ class Motion : public Service {
     /// its state within the last 24 hours.
     /// @param extra Any additional arguments to the method.
     /// @return a vector of plan statuses.
-    virtual std::vector<plan_status_with_id> list_plan_statuses(const AttributeMap& extra) = 0;
+    virtual std::vector<plan_status_with_id> list_plan_statuses(const ProtoStruct& extra) = 0;
 
     /// @brief Returns the status of currently active plans created by MoveOnGlobe requests.
     /// Includes statuses of plans that are executing, or are part of an execution that changed
@@ -486,12 +486,12 @@ class Motion : public Service {
     /// @param extra Any additional arguments to the method.
     /// @return a vector of plan statuses.
     virtual std::vector<plan_status_with_id> list_active_plan_statuses(
-        const AttributeMap& extra) = 0;
+        const ProtoStruct& extra) = 0;
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.
     /// @return The result of the executed command.
-    virtual AttributeMap do_command(const AttributeMap& command) = 0;
+    virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
    protected:
     explicit Motion(std::string name);

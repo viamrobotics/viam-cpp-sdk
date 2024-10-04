@@ -4,13 +4,11 @@
 #include <unordered_map>
 
 #include <boost/optional/optional.hpp>
-#include <boost/variant/get.hpp>
-#include <boost/variant/variant.hpp>
 #include <grpcpp/client_context.h>
 
 #include <viam/api/common/v1/common.pb.h>
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 
@@ -76,9 +74,9 @@ class ClientContext {
 void set_logger_severity_from_args(int argc, char** argv);
 
 /// @brief Used in modular filter components to get the 'fromDataManagement' value from an extra
-/// AttributeMap.
-/// @param extra The extra AttributeMap.
-bool from_dm_from_extra(const AttributeMap& extra);
+/// ProtoStruct.
+/// @param extra The extra ProtoStruct.
+bool from_dm_from_extra(const ProtoStruct& extra);
 
 }  // namespace sdk
 }  // namespace viam

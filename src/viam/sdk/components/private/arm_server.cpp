@@ -72,7 +72,7 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
                                     const ::viam::common::v1::DoCommandRequest* request,
                                     ::viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Arm>("ArmServer::DoCommand", this, request)([&](auto&, auto& arm) {
-        const AttributeMap result = arm->do_command(struct_to_map(request->command()));
+        const ProtoStruct result = arm->do_command(struct_to_map(request->command()));
         *response->mutable_result() = map_to_struct(result);
     });
 }

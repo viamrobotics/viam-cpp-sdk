@@ -11,7 +11,7 @@
 
 #include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/linear_algebra.hpp>
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/base.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -27,7 +27,7 @@ BaseClient::BaseClient(std::string name, std::shared_ptr<grpc::Channel> channel)
       stub_(viam::component::base::v1::BaseService::NewStub(channel)),
       channel_(std::move(channel)){};
 
-void BaseClient::move_straight(int64_t distance_mm, double mm_per_sec, const AttributeMap& extra) {
+void BaseClient::move_straight(int64_t distance_mm, double mm_per_sec, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::MoveStraight)
         .with(extra,
               [&](auto& request) {
@@ -37,7 +37,7 @@ void BaseClient::move_straight(int64_t distance_mm, double mm_per_sec, const Att
         .invoke();
 }
 
-void BaseClient::spin(double angle_deg, double degs_per_sec, const AttributeMap& extra) {
+void BaseClient::spin(double angle_deg, double degs_per_sec, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::Spin)
         .with(extra,
               [&](auto& request) {
@@ -49,7 +49,7 @@ void BaseClient::spin(double angle_deg, double degs_per_sec, const AttributeMap&
 
 void BaseClient::set_power(const Vector3& linear,
                            const Vector3& angular,
-                           const AttributeMap& extra) {
+                           const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::SetPower)
         .with(extra,
               [&](auto& request) {
@@ -61,7 +61,7 @@ void BaseClient::set_power(const Vector3& linear,
 
 void BaseClient::set_velocity(const Vector3& linear,
                               const Vector3& angular,
-                              const AttributeMap& extra) {
+                              const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::SetVelocity)
         .with(extra,
               [&](auto& request) {
@@ -71,7 +71,7 @@ void BaseClient::set_velocity(const Vector3& linear,
         .invoke();
 }
 
-void BaseClient::stop(const AttributeMap& extra) {
+void BaseClient::stop(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::Stop).with(extra).invoke();
 }
 
@@ -81,19 +81,19 @@ bool BaseClient::is_moving() {
     });
 }
 
-std::vector<GeometryConfig> BaseClient::get_geometries(const AttributeMap& extra) {
+std::vector<GeometryConfig> BaseClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
         .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
 }
 
-Base::properties BaseClient::get_properties(const AttributeMap& extra) {
+Base::properties BaseClient::get_properties(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetProperties)
         .with(extra)
         .invoke([](auto& response) { return properties::from_proto(response); });
 }
 
-AttributeMap BaseClient::do_command(const AttributeMap& command) {
+ProtoStruct BaseClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
         .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
         .invoke([](auto& response) { return struct_to_map(response.result()); });

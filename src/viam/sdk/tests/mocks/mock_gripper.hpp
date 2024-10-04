@@ -15,16 +15,16 @@ class MockGripper : public sdk::Gripper {
 
     static std::shared_ptr<MockGripper> get_mock_gripper();
 
-    void open(const sdk::AttributeMap& extra) override;
-    bool grab(const sdk::AttributeMap& extra) override;
-    void stop(const sdk::AttributeMap& extra) override;
+    void open(const sdk::ProtoStruct& extra) override;
+    bool grab(const sdk::ProtoStruct& extra) override;
+    void stop(const sdk::ProtoStruct& extra) override;
     bool is_moving() override;
-    sdk::AttributeMap do_command(const sdk::AttributeMap& command) override;
-    std::vector<sdk::GeometryConfig> get_geometries(const sdk::AttributeMap& extra) override;
+    sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
+    std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;
 
     bool peek_open_called{false};
     bool peek_stop_called{false};
-    sdk::AttributeMap peek_command;
+    sdk::ProtoStruct peek_command;
 };
 
 }  // namespace gripper

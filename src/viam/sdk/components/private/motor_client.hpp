@@ -22,18 +22,18 @@ class MotorClient : public Motor {
    public:
     using interface_type = Motor;
     MotorClient(std::string name, std::shared_ptr<grpc::Channel> channel);
-    void set_power(double power_pct, const AttributeMap& extra) override;
-    void go_for(double rpm, double revolutions, const AttributeMap& extra) override;
-    void go_to(double rpm, double position_revolutions, const AttributeMap& extra) override;
-    void set_rpm(double rpm, const AttributeMap& extra) override;
-    void reset_zero_position(double offset, const AttributeMap& extra) override;
-    position get_position(const AttributeMap& extra) override;
-    properties get_properties(const AttributeMap& extra) override;
-    void stop(const AttributeMap& extra) override;
-    power_status get_power_status(const AttributeMap& extra) override;
-    std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
+    void set_power(double power_pct, const ProtoStruct& extra) override;
+    void go_for(double rpm, double revolutions, const ProtoStruct& extra) override;
+    void go_to(double rpm, double position_revolutions, const ProtoStruct& extra) override;
+    void set_rpm(double rpm, const ProtoStruct& extra) override;
+    void reset_zero_position(double offset, const ProtoStruct& extra) override;
+    position get_position(const ProtoStruct& extra) override;
+    properties get_properties(const ProtoStruct& extra) override;
+    void stop(const ProtoStruct& extra) override;
+    power_status get_power_status(const ProtoStruct& extra) override;
+    std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
     bool is_moving() override;
-    AttributeMap do_command(const AttributeMap& command) override;
+    ProtoStruct do_command(const ProtoStruct& command) override;
 
     // the `extra` param is frequently unnecessary but needs to be supported. Ideally, we'd
     // like to live in a world where implementers of derived classes don't need to go out of

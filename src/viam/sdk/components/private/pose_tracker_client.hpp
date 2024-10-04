@@ -23,11 +23,11 @@ class PoseTrackerClient : public PoseTracker {
     PoseTrackerClient(std::string name, std::shared_ptr<grpc::Channel> channel);
 
     PoseTracker::pose_map get_poses(const std::vector<std::string>& body_names,
-                                    const AttributeMap& extra) override;
+                                    const ProtoStruct& extra) override;
 
-    AttributeMap do_command(const AttributeMap& command) override;
+    ProtoStruct do_command(const ProtoStruct& command) override;
 
-    std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
+    std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 
     using PoseTracker::get_geometries;
     using PoseTracker::get_poses;
