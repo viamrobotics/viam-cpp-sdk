@@ -59,17 +59,15 @@ class Printer : public GenericService, public Reconfigurable {
             buffer << printer_name << ": Required parameter `to_print` not found in configuration";
             throw std::invalid_argument(buffer.str());
         }
-        const ProtoValue& to_print_val = to_print->second;
-        if (to_print_val.is_a<std::string>() &&
-            !to_print_val.get_unchecked<std::string>().empty()) {
-            return to_print_val.get_unchecked<std::string>();
+        const auto* const to_print_string = to_print->second.get<std::string>();
+        if (!to_print_string || to_print_string->empty()) {
+            std::ostringstream buffer;
+            buffer << printer_name
+                   << ": Required non-empty string parameter `to_print` is either not a string "
+                      "or is an empty string";
+            throw std::invalid_argument(buffer.str());
         }
-
-        std::ostringstream buffer;
-        buffer << printer_name
-               << ": Required non-empty string parameter `to_print` is either not a string "
-                  "or is an empty string";
-        throw std::invalid_argument(buffer.str());
+        return *to_print_string;
     }
 
    private:

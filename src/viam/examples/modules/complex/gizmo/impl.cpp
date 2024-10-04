@@ -21,15 +21,14 @@ std::string find_arg1(ResourceConfig cfg) {
         buffer << gizmo_name << ": Required parameter `arg1` not found in configuration";
         throw std::invalid_argument(buffer.str());
     }
-
-    const ProtoValue& arg1_val = arg1->second;
-    if (arg1_val.is_a<std::string>() && !arg1_val.get_unchecked<std::string>().empty()) {
-        return arg1_val.get_unchecked<std::string>();
+    const auto* const arg1_string = arg1->second.get<std::string>();
+    if (!arg1_string || arg1_string->empty()) {
+        std::ostringstream buffer;
+        buffer << gizmo_name << ": Required non-empty string parameter `arg1`"
+               << "` is either not a string or is an empty string";
+        throw std::invalid_argument(buffer.str());
     }
-    std::ostringstream buffer;
-    buffer << gizmo_name << ": Required non-empty string parameter `arg1`"
-           << "` is either not a string or is an empty string";
-    throw std::invalid_argument(buffer.str());
+    return *arg1_string;
 }
 
 void MyGizmo::reconfigure(const Dependencies& deps, const ResourceConfig& cfg) {
