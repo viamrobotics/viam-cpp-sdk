@@ -146,16 +146,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1c03167453c6064da5a8ff4fce2c0d19" id="r_a1c03167453c6064da5a8ff4fce2c0d19"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; named_tensor_views &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c03167453c6064da5a8ff4fce2c0d19">infer</a> (const named_tensor_views &amp;inputs)</td></tr>
 <tr class="memdesc:a1c03167453c6064da5a8ff4fce2c0d19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the model against the input tensors and returns inference results as tensors.  <br /></td></tr>
 <tr class="separator:a1c03167453c6064da5a8ff4fce2c0d19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace034e1de08a6702b016f9d3390d6c50" id="r_ace034e1de08a6702b016f9d3390d6c50"><td class="memItemLeft" align="right" valign="top">virtual std::shared_ptr&lt; named_tensor_views &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace034e1de08a6702b016f9d3390d6c50">infer</a> (const named_tensor_views &amp;inputs, const AttributeMap &amp;extra)=0</td></tr>
-<tr class="memdesc:ace034e1de08a6702b016f9d3390d6c50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the model against the input tensors and returns inference results as tensors.  <br /></td></tr>
-<tr class="separator:ace034e1de08a6702b016f9d3390d6c50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac13dafcfa3012234f858260eaf1ec47c" id="r_ac13dafcfa3012234f858260eaf1ec47c"><td class="memItemLeft" align="right" valign="top">virtual std::shared_ptr&lt; named_tensor_views &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac13dafcfa3012234f858260eaf1ec47c">infer</a> (const named_tensor_views &amp;inputs, const ProtoStruct &amp;extra)=0</td></tr>
+<tr class="memdesc:ac13dafcfa3012234f858260eaf1ec47c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the model against the input tensors and returns inference results as tensors.  <br /></td></tr>
+<tr class="separator:ac13dafcfa3012234f858260eaf1ec47c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f47543009c93dd84e5765fdfb06dcef" id="r_a7f47543009c93dd84e5765fdfb06dcef"><td class="memItemLeft" align="right" valign="top"><a id="a7f47543009c93dd84e5765fdfb06dcef" name="a7f47543009c93dd84e5765fdfb06dcef"></a>
 struct metadata&#160;</td><td class="memItemRight" valign="bottom"><b>metadata</b> ()</td></tr>
 <tr class="memdesc:a7f47543009c93dd84e5765fdfb06dcef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns metadata describing the inputs and outputs of the model. <br /></td></tr>
 <tr class="separator:a7f47543009c93dd84e5765fdfb06dcef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3c5a50d1f757cecc64bd9f8778e7810" id="r_ad3c5a50d1f757cecc64bd9f8778e7810"><td class="memItemLeft" align="right" valign="top">virtual struct metadata&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3c5a50d1f757cecc64bd9f8778e7810">metadata</a> (const AttributeMap &amp;extra)=0</td></tr>
-<tr class="memdesc:ad3c5a50d1f757cecc64bd9f8778e7810"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns metadata describing the inputs and outputs of the model.  <br /></td></tr>
-<tr class="separator:ad3c5a50d1f757cecc64bd9f8778e7810"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa67791136157f0e90c82081b36c55e26" id="r_aa67791136157f0e90c82081b36c55e26"><td class="memItemLeft" align="right" valign="top">virtual struct metadata&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa67791136157f0e90c82081b36c55e26">metadata</a> (const ProtoStruct &amp;extra)=0</td></tr>
+<tr class="memdesc:aa67791136157f0e90c82081b36c55e26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns metadata describing the inputs and outputs of the model.  <br /></td></tr>
+<tr class="separator:aa67791136157f0e90c82081b36c55e26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classviam_1_1sdk_1_1Service"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classviam_1_1sdk_1_1Service')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Service.html">viam::sdk::Service</a></td></tr>
 <tr class="memitem:a0567becf814d134f25649c2f5d7ffab0 inherit pub_methods_classviam_1_1sdk_1_1Service" id="r_a0567becf814d134f25649c2f5d7ffab0"><td class="memItemLeft" align="right" valign="top">viam::common::v1::ResourceName&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Service.html#a0567becf814d134f25649c2f5d7ffab0">get_resource_name</a> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>) const override</td></tr>
 <tr class="memdesc:a0567becf814d134f25649c2f5d7ffab0 inherit pub_methods_classviam_1_1sdk_1_1Service"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code>ResourceName</code> for a particular resource name.  <br /></td></tr>
@@ -319,8 +319,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ace034e1de08a6702b016f9d3390d6c50" name="ace034e1de08a6702b016f9d3390d6c50"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace034e1de08a6702b016f9d3390d6c50">&#9670;&#160;</a></span>infer() <span class="overload">[2/2]</span></h2>
+<a id="ac13dafcfa3012234f858260eaf1ec47c" name="ac13dafcfa3012234f858260eaf1ec47c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac13dafcfa3012234f858260eaf1ec47c">&#9670;&#160;</a></span>infer() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -336,7 +336,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -356,12 +356,12 @@ Protected Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The results of the inference as a shared pointer to <code>named_tensor_views</code>. The data viewed by the views is only valid for the lifetime of the returned shared_ptr. </dd></dl>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1MLModelServiceClient.html#a8ef6ffe1820b471d8617e346a506ead2">viam::sdk::impl::MLModelServiceClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1MLModelServiceClient.html#ace034e1de08a6702b016f9d3390d6c50">viam::sdk::impl::MLModelServiceClient</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1MLModelServiceClient.html#a02b628dbebcd41ff53ef29937f9698f9">viam::sdk::impl::MLModelServiceClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1MLModelServiceClient.html#ac13dafcfa3012234f858260eaf1ec47c">viam::sdk::impl::MLModelServiceClient</a>.</p>
 
 </div>
 </div>
-<a id="ad3c5a50d1f757cecc64bd9f8778e7810" name="ad3c5a50d1f757cecc64bd9f8778e7810"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad3c5a50d1f757cecc64bd9f8778e7810">&#9670;&#160;</a></span>metadata()</h2>
+<a id="aa67791136157f0e90c82081b36c55e26" name="aa67791136157f0e90c82081b36c55e26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa67791136157f0e90c82081b36c55e26">&#9670;&#160;</a></span>metadata()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -372,7 +372,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual struct metadata viam::sdk::MLModelService::metadata </td>
           <td>(</td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -391,7 +391,7 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1MLModelServiceClient.html#ad69b05add26cbbb14c629bbc68e67f1c">viam::sdk::impl::MLModelServiceClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1MLModelServiceClient.html#ad3c5a50d1f757cecc64bd9f8778e7810">viam::sdk::impl::MLModelServiceClient</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1MLModelServiceClient.html#afc874fe6f3a5c91c6032044259cc6b9e">viam::sdk::impl::MLModelServiceClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1MLModelServiceClient.html#aa67791136157f0e90c82081b36c55e26">viam::sdk::impl::MLModelServiceClient</a>.</p>
 
 </div>
 </div>

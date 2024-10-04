@@ -368,120 +368,123 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span><span class="keywordtype">void</span> to_proto(const ProtoStruct&amp; m, google::protobuf::Value* v);</div>
 <div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span><span class="keywordtype">void</span> to_proto(const ProtoValue&amp; t, google::protobuf::Value* v);</div>
 <div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span> </div>
-<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>ProtoStruct struct_to_map(google::protobuf::Struct const* s);</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span><span class="keywordtype">void</span> struct_to_map(google::protobuf::Struct const* s, ProtoStruct&amp; m);</div>
 <div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span><span class="keywordtype">void</span> map_to_struct(const ProtoStruct&amp; m, google::protobuf::Struct* s);</div>
 <div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span> </div>
-<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>template &lt;typename T, typename Value = google::protobuf::Value&gt;</div>
-<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>Value to_proto(T&amp;&amp; t) {</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>template &lt;typename Value = google::protobuf::Value&gt;</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>Value to_proto(const ProtoValue&amp; proto_value) {</div>
 <div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>    Value v;</div>
-<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    to_proto(std::forward&lt;T&gt;(t), &amp;v);</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    to_proto(proto_value, &amp;v);</div>
 <div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span> </div>
 <div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>    <span class="keywordflow">return</span> v;</div>
 <div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>}</div>
 <div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span> </div>
 <div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Struct = google::protobuf::Struct&gt;</div>
 <div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>ProtoStruct struct_to_map(<span class="keyword">const</span> Struct&amp; s) {</div>
-<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>    <span class="keywordflow">return</span> struct_to_map(&amp;s);</div>
-<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>}</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>    ProtoStruct result;</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>    struct_to_map(&amp;s, result);</div>
 <div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span> </div>
-<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Struct = google::protobuf::Struct&gt;</div>
-<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>Struct map_to_struct(<span class="keyword">const</span> ProtoStruct&amp; m) {</div>
-<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>    Struct s;</div>
-<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>    map_to_struct(m, &amp;s);</div>
-<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span> </div>
-<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    <span class="keywordflow">return</span> s;</div>
-<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>}</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>}</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span> </div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Struct = google::protobuf::Struct&gt;</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>Struct map_to_struct(<span class="keyword">const</span> ProtoStruct&amp; m) {</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    Struct s;</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>    map_to_struct(m, &amp;s);</div>
 <div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span> </div>
-<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span><span class="keyword">namespace </span>proto_value_details {</div>
-<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span> </div>
-<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00370" name="l00370"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__value__details_1_1kind.html">  370</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__value__details_1_1kind.html">kind</a> {};</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>    <span class="keywordflow">return</span> s;</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>}</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span> </div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span><span class="keyword">namespace </span>proto_value_details {</div>
 <div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span> </div>
-<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span><span class="keyword">template</span> &lt;ProtoValue::Kind k&gt;</div>
-<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span><span class="keyword">using </span>KindConstant = std::integral_constant&lt;ProtoValue::Kind, k&gt;;</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__value__details_1_1kind.html">  373</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1proto__value__details_1_1kind.html">kind</a> {};</div>
 <div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span> </div>
-<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00376" data-start="{" data-end="};">
-<div class="line"><a id="l00376" name="l00376"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__value__details_1_1kind_3_01std_1_1nullptr__t_01_4.html">  376</a></span><span class="keyword">struct </span>kind&lt;std::nullptr_t&gt; {</div>
-<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>    <span class="keyword">using </span>type = KindConstant&lt;ProtoValue::Kind::k_null&gt;;</div>
-<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>};</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span><span class="keyword">template</span> &lt;ProtoValue::Kind k&gt;</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span><span class="keyword">using </span>KindConstant = std::integral_constant&lt;ProtoValue::Kind, k&gt;;</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span> </div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00379" data-start="{" data-end="};">
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__value__details_1_1kind_3_01std_1_1nullptr__t_01_4.html">  379</a></span><span class="keyword">struct </span>kind&lt;std::nullptr_t&gt; {</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>    <span class="keyword">using </span>type = KindConstant&lt;ProtoValue::Kind::k_null&gt;;</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>};</div>
 </div>
-<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span> </div>
-<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00381" data-start="{" data-end="};">
-<div class="line"><a id="l00381" name="l00381"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__value__details_1_1kind_3_01bool_01_4.html">  381</a></span><span class="keyword">struct </span>kind&lt;bool&gt; {</div>
-<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>    <span class="keyword">using </span>type = KindConstant&lt;ProtoValue::Kind::k_bool&gt;;</div>
-<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>};</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span> </div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00384" data-start="{" data-end="};">
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__value__details_1_1kind_3_01bool_01_4.html">  384</a></span><span class="keyword">struct </span>kind&lt;bool&gt; {</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>    <span class="keyword">using </span>type = KindConstant&lt;ProtoValue::Kind::k_bool&gt;;</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>};</div>
 </div>
-<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span> </div>
-<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00386" data-start="{" data-end="};">
-<div class="line"><a id="l00386" name="l00386"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__value__details_1_1kind_3_01double_01_4.html">  386</a></span><span class="keyword">struct </span>kind&lt;double&gt; {</div>
-<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>    <span class="keyword">using </span>type = KindConstant&lt;ProtoValue::Kind::k_double&gt;;</div>
-<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>};</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span> </div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00389" data-start="{" data-end="};">
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__value__details_1_1kind_3_01double_01_4.html">  389</a></span><span class="keyword">struct </span>kind&lt;double&gt; {</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>    <span class="keyword">using </span>type = KindConstant&lt;ProtoValue::Kind::k_double&gt;;</div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>};</div>
 </div>
-<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span> </div>
-<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00391" data-start="{" data-end="};">
-<div class="line"><a id="l00391" name="l00391"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__value__details_1_1kind_3_01std_1_1string_01_4.html">  391</a></span><span class="keyword">struct </span>kind&lt;std::string&gt; {</div>
-<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>    <span class="keyword">using </span>type = KindConstant&lt;ProtoValue::Kind::k_string&gt;;</div>
-<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>};</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span> </div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00394" data-start="{" data-end="};">
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__value__details_1_1kind_3_01std_1_1string_01_4.html">  394</a></span><span class="keyword">struct </span>kind&lt;std::string&gt; {</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>    <span class="keyword">using </span>type = KindConstant&lt;ProtoValue::Kind::k_string&gt;;</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>};</div>
 </div>
-<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span> </div>
-<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00396" data-start="{" data-end="};">
-<div class="line"><a id="l00396" name="l00396"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__value__details_1_1kind_3_01ProtoList_01_4.html">  396</a></span><span class="keyword">struct </span>kind&lt;ProtoList&gt; {</div>
-<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>    <span class="keyword">using </span>type = KindConstant&lt;ProtoValue::Kind::k_list&gt;;</div>
-<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>};</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span> </div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00399" data-start="{" data-end="};">
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__value__details_1_1kind_3_01ProtoList_01_4.html">  399</a></span><span class="keyword">struct </span>kind&lt;ProtoList&gt; {</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>    <span class="keyword">using </span>type = KindConstant&lt;ProtoValue::Kind::k_list&gt;;</div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>};</div>
 </div>
-<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span> </div>
-<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00401" data-start="{" data-end="};">
-<div class="line"><a id="l00401" name="l00401"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__value__details_1_1kind_3_01ProtoStruct_01_4.html">  401</a></span><span class="keyword">struct </span>kind&lt;ProtoStruct&gt; {</div>
-<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>    <span class="keyword">using </span>type = KindConstant&lt;ProtoValue::Kind::k_struct&gt;;</div>
-<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>};</div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span> </div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00404" data-start="{" data-end="};">
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1proto__value__details_1_1kind_3_01ProtoStruct_01_4.html">  404</a></span><span class="keyword">struct </span>kind&lt;ProtoStruct&gt; {</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>    <span class="keyword">using </span>type = KindConstant&lt;ProtoValue::Kind::k_struct&gt;;</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>};</div>
 </div>
-<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span> </div>
-<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>}  <span class="comment">// namespace proto_value_details</span></div>
-<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span> </div>
-<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00408" data-start="{" data-end="}">
-<div class="line"><a id="l00408" name="l00408"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1ProtoValue.html#a645875d7a7d629cd60aba3c203a7bf31">  408</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classviam_1_1sdk_1_1ProtoValue.html#a645875d7a7d629cd60aba3c203a7bf31">ProtoValue::is_a</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>    <span class="keywordflow">return</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1proto__value__details_1_1kind.html">proto_value_details::kind&lt;T&gt;::type::value</a> == <a class="code hl_function" href="classviam_1_1sdk_1_1ProtoValue.html#a95372ad38cbaeaa804c067d94b244695">kind</a>();</div>
-<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>}</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span> </div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>}  <span class="comment">// namespace proto_value_details</span></div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span> </div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00411" data-start="{" data-end="}">
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1ProtoValue.html#a645875d7a7d629cd60aba3c203a7bf31">  411</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classviam_1_1sdk_1_1ProtoValue.html#a645875d7a7d629cd60aba3c203a7bf31">ProtoValue::is_a</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>    <span class="keywordflow">return</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1proto__value__details_1_1kind.html">proto_value_details::kind&lt;T&gt;::type::value</a> == <a class="code hl_function" href="classviam_1_1sdk_1_1ProtoValue.html#a95372ad38cbaeaa804c067d94b244695">kind</a>();</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>}</div>
 </div>
-<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span> </div>
-<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00413" data-start="{" data-end="}">
-<div class="line"><a id="l00413" name="l00413"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1ProtoValue.html#a4689670f33c18048ac60bc4f6efc8458">  413</a></span>T* <a class="code hl_function" href="classviam_1_1sdk_1_1ProtoValue.html#a4689670f33c18048ac60bc4f6efc8458">ProtoValue::get</a>() {</div>
-<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>    <span class="keywordflow">if</span> (this-&gt;is_a&lt;T&gt;()) {</div>
-<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>        <span class="keywordflow">return</span> this-&gt;self_.template get&lt;T&gt;();</div>
-<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>    }</div>
-<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span> </div>
-<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>    <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>}</div>
-</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span> </div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00416" data-start="{" data-end="}">
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1ProtoValue.html#a4689670f33c18048ac60bc4f6efc8458">  416</a></span>T* <a class="code hl_function" href="classviam_1_1sdk_1_1ProtoValue.html#a4689670f33c18048ac60bc4f6efc8458">ProtoValue::get</a>() {</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>    <span class="keywordflow">if</span> (this-&gt;is_a&lt;T&gt;()) {</div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>        <span class="keywordflow">return</span> this-&gt;self_.template get&lt;T&gt;();</div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>    }</div>
 <div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span> </div>
-<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>T <span class="keyword">const</span>* <a class="code hl_function" href="classviam_1_1sdk_1_1ProtoValue.html#a4689670f33c18048ac60bc4f6efc8458">ProtoValue::get</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span>    <span class="keywordflow">if</span> (this-&gt;is_a&lt;T&gt;()) {</div>
-<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>        <span class="keywordflow">return</span> this-&gt;self_.template get&lt;T&gt;();</div>
-<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>    }</div>
-<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span> </div>
-<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>    <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>}</div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>    <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>}</div>
+</div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span> </div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>T <span class="keyword">const</span>* <a class="code hl_function" href="classviam_1_1sdk_1_1ProtoValue.html#a4689670f33c18048ac60bc4f6efc8458">ProtoValue::get</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>    <span class="keywordflow">if</span> (this-&gt;is_a&lt;T&gt;()) {</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>        <span class="keywordflow">return</span> this-&gt;self_.template get&lt;T&gt;();</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>    }</div>
 <div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span> </div>
-<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>}  <span class="comment">// namespace sdk</span></div>
-<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>}  <span class="comment">// namespace viam</span></div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>    <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>}</div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span> </div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>}  <span class="comment">// namespace sdk</span></div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>}  <span class="comment">// namespace viam</span></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ProtoValue_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ProtoValue.html">viam::sdk::ProtoValue</a></div><div class="ttdoc">Type-erased value for storing google::protobuf::Value types. A ProtoValue can be nullptr,...</div><div class="ttdef"><b>Definition</b> proto_value.hpp:53</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ProtoValue_html_a0602c74ba4fba4d37ba5a196eec940d2"><div class="ttname"><a href="classviam_1_1sdk_1_1ProtoValue.html#a0602c74ba4fba4d37ba5a196eec940d2">viam::sdk::ProtoValue::from_proto</a></div><div class="ttdeci">static ProtoValue from_proto(const Value &amp;v)</div><div class="ttdoc">Construct from proto value.</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ProtoValue_html_a2576776dae502baf684609e82b91af8a"><div class="ttname"><a href="classviam_1_1sdk_1_1ProtoValue.html#a2576776dae502baf684609e82b91af8a">viam::sdk::ProtoValue::is_null</a></div><div class="ttdeci">bool is_null() const</div><div class="ttdoc">Convenience version of is_a&lt;T&gt; to check if the value is nullptr.</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ProtoValue_html_a2e7b12b025c766a2d58c60d6672e1a09"><div class="ttname"><a href="classviam_1_1sdk_1_1ProtoValue.html#a2e7b12b025c766a2d58c60d6672e1a09">viam::sdk::ProtoValue::ProtoValue</a></div><div class="ttdeci">ProtoValue(ProtoValue &amp;&amp;other) noexcept(proto_value_details::all_moves_noexcept{})</div><div class="ttdoc">Move construct this from other, leaving other in its unspecified-but-valid moved from state.</div></div>
-<div class="ttc" id="aclassviam_1_1sdk_1_1ProtoValue_html_a4689670f33c18048ac60bc4f6efc8458"><div class="ttname"><a href="classviam_1_1sdk_1_1ProtoValue.html#a4689670f33c18048ac60bc4f6efc8458">viam::sdk::ProtoValue::get</a></div><div class="ttdeci">T * get()</div><div class="ttdoc">Return a T pointer if this is_a&lt;T&gt;(), else return nullptr.</div><div class="ttdef"><b>Definition</b> proto_value.hpp:413</div></div>
+<div class="ttc" id="aclassviam_1_1sdk_1_1ProtoValue_html_a4689670f33c18048ac60bc4f6efc8458"><div class="ttname"><a href="classviam_1_1sdk_1_1ProtoValue.html#a4689670f33c18048ac60bc4f6efc8458">viam::sdk::ProtoValue::get</a></div><div class="ttdeci">T * get()</div><div class="ttdoc">Return a T pointer if this is_a&lt;T&gt;(), else return nullptr.</div><div class="ttdef"><b>Definition</b> proto_value.hpp:416</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ProtoValue_html_a508a7ecff2fb8363af16741f679128d9"><div class="ttname"><a href="classviam_1_1sdk_1_1ProtoValue.html#a508a7ecff2fb8363af16741f679128d9">viam::sdk::ProtoValue::get_unchecked</a></div><div class="ttdeci">std::enable_if_t&lt; std::is_scalar&lt; T &gt;{}, T &amp; &gt; get_unchecked()</div><div class="ttdoc">Return a reference to the underlying T, without checking.</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ProtoValue_html_a5b6428bbf343bd04c1ad7c55697b4666"><div class="ttname"><a href="classviam_1_1sdk_1_1ProtoValue.html#a5b6428bbf343bd04c1ad7c55697b4666">viam::sdk::ProtoValue::operator=</a></div><div class="ttdeci">ProtoValue &amp; operator=(ProtoValue &amp;&amp;other) noexcept(proto_value_details::all_moves_noexcept{})</div><div class="ttdoc">Move assignment from other, leaving other in its unspecified-but-valid moved from state.</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ProtoValue_html_a60f516eadb272c2da3f294b1dcbe7377"><div class="ttname"><a href="classviam_1_1sdk_1_1ProtoValue.html#a60f516eadb272c2da3f294b1dcbe7377">viam::sdk::ProtoValue::ProtoValue</a></div><div class="ttdeci">ProtoValue() noexcept</div><div class="ttdoc">Construct a null object.</div></div>
-<div class="ttc" id="aclassviam_1_1sdk_1_1ProtoValue_html_a645875d7a7d629cd60aba3c203a7bf31"><div class="ttname"><a href="classviam_1_1sdk_1_1ProtoValue.html#a645875d7a7d629cd60aba3c203a7bf31">viam::sdk::ProtoValue::is_a</a></div><div class="ttdeci">bool is_a() const</div><div class="ttdoc">Checks whether this ProtoT is an instance of type T.</div><div class="ttdef"><b>Definition</b> proto_value.hpp:408</div></div>
+<div class="ttc" id="aclassviam_1_1sdk_1_1ProtoValue_html_a645875d7a7d629cd60aba3c203a7bf31"><div class="ttname"><a href="classviam_1_1sdk_1_1ProtoValue.html#a645875d7a7d629cd60aba3c203a7bf31">viam::sdk::ProtoValue::is_a</a></div><div class="ttdeci">bool is_a() const</div><div class="ttdoc">Checks whether this ProtoT is an instance of type T.</div><div class="ttdef"><b>Definition</b> proto_value.hpp:411</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ProtoValue_html_a743e5f6dc6e0f06f218f019c7fef7142"><div class="ttname"><a href="classviam_1_1sdk_1_1ProtoValue.html#a743e5f6dc6e0f06f218f019c7fef7142">viam::sdk::ProtoValue::operator==</a></div><div class="ttdeci">friend bool operator==(const ProtoValue &amp;lhs, const ProtoValue &amp;rhs)</div><div class="ttdoc">Test equality of two types.</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ProtoValue_html_a95372ad38cbaeaa804c067d94b244695"><div class="ttname"><a href="classviam_1_1sdk_1_1ProtoValue.html#a95372ad38cbaeaa804c067d94b244695">viam::sdk::ProtoValue::kind</a></div><div class="ttdeci">Kind kind() const</div><div class="ttdoc">Obtain enumerator constant representing the stored data type.</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ProtoValue_html_aa452407d39e6bcc4fbafdb9d7cac4cc7"><div class="ttname"><a href="classviam_1_1sdk_1_1ProtoValue.html#aa452407d39e6bcc4fbafdb9d7cac4cc7">viam::sdk::ProtoValue::ProtoValue</a></div><div class="ttdeci">ProtoValue(std::unordered_map&lt; std::string, Val &gt;) noexcept(std::is_nothrow_move_constructible&lt; std::unordered_map&lt; std::string, Val &gt; &gt;{})</div><div class="ttdoc">Construct from a ProtoStruct.</div></div>
@@ -489,7 +492,7 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassviam_1_1sdk_1_1ProtoValue_html_aba48ae1ab71a3be46ec55a5bef277159"><div class="ttname"><a href="classviam_1_1sdk_1_1ProtoValue.html#aba48ae1ab71a3be46ec55a5bef277159">viam::sdk::ProtoValue::get</a></div><div class="ttdeci">T const * get() const</div><div class="ttdoc">Return a T pointer if this is_a&lt;T&gt;(), else return nullptr.</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ProtoValue_html_afd726b56a5dc129a31a17a978db81122"><div class="ttname"><a href="classviam_1_1sdk_1_1ProtoValue.html#afd726b56a5dc129a31a17a978db81122">viam::sdk::ProtoValue::Kind</a></div><div class="ttdeci">Kind</div><div class="ttdoc">Type discriminator constants for possible values stored in a ProtoValue.</div><div class="ttdef"><b>Definition</b> proto_value.hpp:56</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1proto__value__details_1_1all__moves__noexcept_html"><div class="ttname"><a href="structviam_1_1sdk_1_1proto__value__details_1_1all__moves__noexcept.html">viam::sdk::proto_value_details::all_moves_noexcept</a></div><div class="ttdef"><b>Definition</b> proto_value.hpp:42</div></div>
-<div class="ttc" id="astructviam_1_1sdk_1_1proto__value__details_1_1kind_html"><div class="ttname"><a href="structviam_1_1sdk_1_1proto__value__details_1_1kind.html">viam::sdk::proto_value_details::kind</a></div><div class="ttdef"><b>Definition</b> proto_value.hpp:370</div></div>
+<div class="ttc" id="astructviam_1_1sdk_1_1proto__value__details_1_1kind_html"><div class="ttname"><a href="structviam_1_1sdk_1_1proto__value__details_1_1kind.html">viam::sdk::proto_value_details::kind</a></div><div class="ttdef"><b>Definition</b> proto_value.hpp:373</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1proto__value__details_1_1move__may__throw_html"><div class="ttname"><a href="structviam_1_1sdk_1_1proto__value__details_1_1move__may__throw.html">viam::sdk::proto_value_details::move_may_throw</a></div><div class="ttdef"><b>Definition</b> proto_value.hpp:27</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

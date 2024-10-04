@@ -13,13 +13,11 @@ var searchData=
   ['geo_5fpoint_10',['geo_point',['../structviam_1_1sdk_1_1geo__point.html',1,'viam::sdk']]],
   ['geometries_5fin_5fframe_11',['geometries_in_frame',['../structviam_1_1sdk_1_1WorldState_1_1geometries__in__frame.html',1,'viam::sdk::WorldState']]],
   ['geometryconfig_12',['GeometryConfig',['../classviam_1_1sdk_1_1GeometryConfig.html',1,'viam::sdk']]],
-  ['get_5fhelper_13',['get_helper',['../structviam_1_1sdk_1_1prototype__details_1_1get__helper.html',1,'viam::sdk::prototype_details']]],
-  ['get_5fhelper_3c_20attributemap_20_3e_14',['get_helper&lt; AttributeMap &gt;',['../structviam_1_1sdk_1_1prototype__details_1_1get__helper_3_01AttributeMap_01_4.html',1,'viam::sdk::prototype_details']]],
-  ['gizmo_15',['Gizmo',['../classGizmo.html',1,'']]],
-  ['gizmoclient_16',['GizmoClient',['../classGizmoClient.html',1,'']]],
-  ['gizmoserver_17',['GizmoServer',['../classGizmoServer.html',1,'']]],
-  ['gripper_18',['Gripper',['../classviam_1_1sdk_1_1Gripper.html',1,'viam::sdk']]],
-  ['gripperclient_19',['GripperClient',['../classviam_1_1sdk_1_1impl_1_1GripperClient.html',1,'viam::sdk::impl']]],
-  ['gripperserver_20',['GripperServer',['../classviam_1_1sdk_1_1impl_1_1GripperServer.html',1,'viam::sdk::impl']]],
-  ['grpcexception_21',['GRPCException',['../classviam_1_1sdk_1_1GRPCException.html',1,'viam::sdk']]]
+  ['gizmo_13',['Gizmo',['../classGizmo.html',1,'']]],
+  ['gizmoclient_14',['GizmoClient',['../classGizmoClient.html',1,'']]],
+  ['gizmoserver_15',['GizmoServer',['../classGizmoServer.html',1,'']]],
+  ['gripper_16',['Gripper',['../classviam_1_1sdk_1_1Gripper.html',1,'viam::sdk']]],
+  ['gripperclient_17',['GripperClient',['../classviam_1_1sdk_1_1impl_1_1GripperClient.html',1,'viam::sdk::impl']]],
+  ['gripperserver_18',['GripperServer',['../classviam_1_1sdk_1_1impl_1_1GripperServer.html',1,'viam::sdk::impl']]],
+  ['grpcexception_19',['GRPCException',['../classviam_1_1sdk_1_1GRPCException.html',1,'viam::sdk']]]
 ];

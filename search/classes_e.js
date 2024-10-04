@@ -17,6 +17,5 @@ var searchData=
   ['powersensorclient_14',['PowerSensorClient',['../classviam_1_1sdk_1_1impl_1_1PowerSensorClient.html',1,'viam::sdk::impl']]],
   ['powersensorserver_15',['PowerSensorServer',['../classviam_1_1sdk_1_1impl_1_1PowerSensorServer.html',1,'viam::sdk::impl']]],
   ['properties_16',['properties',['../structviam_1_1sdk_1_1Base_1_1properties.html',1,'viam::sdk::Base::properties'],['../structviam_1_1sdk_1_1Camera_1_1properties.html',1,'viam::sdk::Camera::properties'],['../structviam_1_1sdk_1_1Encoder_1_1properties.html',1,'viam::sdk::Encoder::properties'],['../structviam_1_1sdk_1_1Motor_1_1properties.html',1,'viam::sdk::Motor::properties'],['../structviam_1_1sdk_1_1MovementSensor_1_1properties.html',1,'viam::sdk::MovementSensor::properties']]],
-  ['prototype_17',['ProtoType',['../classviam_1_1sdk_1_1ProtoType.html',1,'viam::sdk']]],
-  ['protovalue_18',['ProtoValue',['../classviam_1_1sdk_1_1ProtoValue.html',1,'viam::sdk']]]
+  ['protovalue_17',['ProtoValue',['../classviam_1_1sdk_1_1ProtoValue.html',1,'viam::sdk']]]
 ];

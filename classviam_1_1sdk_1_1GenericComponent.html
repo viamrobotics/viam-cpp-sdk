@@ -103,15 +103,15 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af8070b9190b438faa859369ebb0f6c84" id="r_af8070b9190b438faa859369ebb0f6c84"><td class="memItemLeft" align="right" valign="top">virtual AttributeMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8070b9190b438faa859369ebb0f6c84">do_command</a> (const AttributeMap &amp;command)=0</td></tr>
-<tr class="memdesc:af8070b9190b438faa859369ebb0f6c84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
-<tr class="separator:af8070b9190b438faa859369ebb0f6c84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae07607b5e6cfaeab99de862b570edc2b" id="r_ae07607b5e6cfaeab99de862b570edc2b"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae07607b5e6cfaeab99de862b570edc2b">do_command</a> (const ProtoStruct &amp;command)=0</td></tr>
+<tr class="memdesc:ae07607b5e6cfaeab99de862b570edc2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
+<tr class="separator:ae07607b5e6cfaeab99de862b570edc2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc575b7b43ae5a19d5b6f0188a5730a8" id="r_abc575b7b43ae5a19d5b6f0188a5730a8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc575b7b43ae5a19d5b6f0188a5730a8">get_geometries</a> ()</td></tr>
 <tr class="memdesc:abc575b7b43ae5a19d5b6f0188a5730a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling camera.  <br /></td></tr>
 <tr class="separator:abc575b7b43ae5a19d5b6f0188a5730a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab4caaed5f96716a556248bb291f2b38" id="r_aab4caaed5f96716a556248bb291f2b38"><td class="memItemLeft" align="right" valign="top"><a id="aab4caaed5f96716a556248bb291f2b38" name="aab4caaed5f96716a556248bb291f2b38"></a>
-virtual std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>get_geometries</b> (const AttributeMap &amp;extra)=0</td></tr>
-<tr class="separator:aab4caaed5f96716a556248bb291f2b38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9da6849560b7f3db503f5c7e138e70ab" id="r_a9da6849560b7f3db503f5c7e138e70ab"><td class="memItemLeft" align="right" valign="top"><a id="a9da6849560b7f3db503f5c7e138e70ab" name="a9da6849560b7f3db503f5c7e138e70ab"></a>
+virtual std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>get_geometries</b> (const ProtoStruct &amp;extra)=0</td></tr>
+<tr class="separator:a9da6849560b7f3db503f5c7e138e70ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a30d4c97cb3ff8aa1850f5ea0d803d7" id="r_a5a30d4c97cb3ff8aa1850f5ea0d803d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a30d4c97cb3ff8aa1850f5ea0d803d7">api</a> () const override</td></tr>
 <tr class="memdesc:a5a30d4c97cb3ff8aa1850f5ea0d803d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <code><a class="el" href="classviam_1_1sdk_1_1GenericComponent.html" title="A GenericComponent represents any component that can execute arbitrary commands.">GenericComponent</a></code> <code><a class="el" href="classviam_1_1sdk_1_1API.html" title="Extends APIType to additionally define a resource&#39;s subtype (e.g., camera).">API</a></code>.  <br /></td></tr>
 <tr class="separator:a5a30d4c97cb3ff8aa1850f5ea0d803d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -171,8 +171,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af8070b9190b438faa859369ebb0f6c84" name="af8070b9190b438faa859369ebb0f6c84"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af8070b9190b438faa859369ebb0f6c84">&#9670;&#160;</a></span>do_command()</h2>
+<a id="ae07607b5e6cfaeab99de862b570edc2b" name="ae07607b5e6cfaeab99de862b570edc2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae07607b5e6cfaeab99de862b570edc2b">&#9670;&#160;</a></span>do_command()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -181,9 +181,9 @@ Protected Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual AttributeMap viam::sdk::GenericComponent::do_command </td>
+          <td class="memname">virtual ProtoStruct viam::sdk::GenericComponent::do_command </td>
           <td>(</td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>command</em></span></td><td>)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>command</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -203,7 +203,7 @@ Protected Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The result of the executed command. </dd></dl>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1GenericComponentClient.html#a639a7774502cb89a9c820f4b7f264995">viam::sdk::impl::GenericComponentClient</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1GenericComponentClient.html#ac631cbfa1af75678ba804a14e97a8bd6">viam::sdk::impl::GenericComponentClient</a>.</p>
 
 </div>
 </div>

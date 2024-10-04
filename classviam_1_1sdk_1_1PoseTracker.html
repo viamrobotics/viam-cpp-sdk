@@ -116,19 +116,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9b773d76c2ca24239bb71c785f7ffdd1" id="r_a9b773d76c2ca24239bb71c785f7ffdd1"><td class="memItemLeft" align="right" valign="top">pose_map&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b773d76c2ca24239bb71c785f7ffdd1">get_poses</a> (const std::vector&lt; std::string &gt; &amp;body_names)</td></tr>
 <tr class="memdesc:a9b773d76c2ca24239bb71c785f7ffdd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the poses of each body tracked by the pose tracker.  <br /></td></tr>
 <tr class="separator:a9b773d76c2ca24239bb71c785f7ffdd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a222a3810e88354eaad37656ebf9e1f7f" id="r_a222a3810e88354eaad37656ebf9e1f7f"><td class="memItemLeft" align="right" valign="top">virtual pose_map&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a222a3810e88354eaad37656ebf9e1f7f">get_poses</a> (const std::vector&lt; std::string &gt; &amp;body_names, const AttributeMap &amp;extra)=0</td></tr>
-<tr class="memdesc:a222a3810e88354eaad37656ebf9e1f7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the poses of each body tracked by the pose tracker.  <br /></td></tr>
-<tr class="separator:a222a3810e88354eaad37656ebf9e1f7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46b2fb599465f730b7843ea547a2f983" id="r_a46b2fb599465f730b7843ea547a2f983"><td class="memItemLeft" align="right" valign="top">virtual AttributeMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46b2fb599465f730b7843ea547a2f983">do_command</a> (const AttributeMap &amp;command)=0</td></tr>
-<tr class="memdesc:a46b2fb599465f730b7843ea547a2f983"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
-<tr class="separator:a46b2fb599465f730b7843ea547a2f983"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0553807b12c181552b2a93ceb5c88306" id="r_a0553807b12c181552b2a93ceb5c88306"><td class="memItemLeft" align="right" valign="top">virtual pose_map&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0553807b12c181552b2a93ceb5c88306">get_poses</a> (const std::vector&lt; std::string &gt; &amp;body_names, const ProtoStruct &amp;extra)=0</td></tr>
+<tr class="memdesc:a0553807b12c181552b2a93ceb5c88306"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the poses of each body tracked by the pose tracker.  <br /></td></tr>
+<tr class="separator:a0553807b12c181552b2a93ceb5c88306"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0754ccfd5b1a18002568c2f70748fc99" id="r_a0754ccfd5b1a18002568c2f70748fc99"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0754ccfd5b1a18002568c2f70748fc99">do_command</a> (const ProtoStruct &amp;command)=0</td></tr>
+<tr class="memdesc:a0754ccfd5b1a18002568c2f70748fc99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
+<tr class="separator:a0754ccfd5b1a18002568c2f70748fc99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a517234884ab7c3ac74030e5fbabdea01" id="r_a517234884ab7c3ac74030e5fbabdea01"><td class="memItemLeft" align="right" valign="top"><a id="a517234884ab7c3ac74030e5fbabdea01" name="a517234884ab7c3ac74030e5fbabdea01"></a>
 std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>get_geometries</b> ()</td></tr>
 <tr class="memdesc:a517234884ab7c3ac74030e5fbabdea01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling pose tracker. <br /></td></tr>
 <tr class="separator:a517234884ab7c3ac74030e5fbabdea01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a026a52f99e40b729ca99c9be502330c2" id="r_a026a52f99e40b729ca99c9be502330c2"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a026a52f99e40b729ca99c9be502330c2">get_geometries</a> (const AttributeMap &amp;extra)=0</td></tr>
-<tr class="memdesc:a026a52f99e40b729ca99c9be502330c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling pose tracker.  <br /></td></tr>
-<tr class="separator:a026a52f99e40b729ca99c9be502330c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f8467d33b6926a737f8398b8070db86" id="r_a1f8467d33b6926a737f8398b8070db86"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f8467d33b6926a737f8398b8070db86">get_geometries</a> (const ProtoStruct &amp;extra)=0</td></tr>
+<tr class="memdesc:a1f8467d33b6926a737f8398b8070db86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling pose tracker.  <br /></td></tr>
+<tr class="separator:a1f8467d33b6926a737f8398b8070db86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classviam_1_1sdk_1_1Component"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classviam_1_1sdk_1_1Component')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Component.html">viam::sdk::Component</a></td></tr>
 <tr class="memitem:ae969386d6faa08e81f16fb55ce62aa5d inherit pub_methods_classviam_1_1sdk_1_1Component" id="r_ae969386d6faa08e81f16fb55ce62aa5d"><td class="memItemLeft" align="right" valign="top">viam::common::v1::ResourceName&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Component.html#ae969386d6faa08e81f16fb55ce62aa5d">get_resource_name</a> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>) const override</td></tr>
 <tr class="memdesc:ae969386d6faa08e81f16fb55ce62aa5d inherit pub_methods_classviam_1_1sdk_1_1Component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code>ResourceName</code> for a particular resource name.  <br /></td></tr>
@@ -188,8 +188,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a46b2fb599465f730b7843ea547a2f983" name="a46b2fb599465f730b7843ea547a2f983"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a46b2fb599465f730b7843ea547a2f983">&#9670;&#160;</a></span>do_command()</h2>
+<a id="a0754ccfd5b1a18002568c2f70748fc99" name="a0754ccfd5b1a18002568c2f70748fc99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0754ccfd5b1a18002568c2f70748fc99">&#9670;&#160;</a></span>do_command()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -198,9 +198,9 @@ Protected Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual AttributeMap viam::sdk::PoseTracker::do_command </td>
+          <td class="memname">virtual ProtoStruct viam::sdk::PoseTracker::do_command </td>
           <td>(</td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>command</em></span></td><td>)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>command</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -220,12 +220,12 @@ Protected Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The result of the executed command. </dd></dl>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1PoseTrackerClient.html#aba38aaeb722e11aaa5e417af7e33fbc1">viam::sdk::impl::PoseTrackerClient</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1PoseTrackerClient.html#aad2e5e7a4ab386c73e8c1eaa6ef00b3d">viam::sdk::impl::PoseTrackerClient</a>.</p>
 
 </div>
 </div>
-<a id="a026a52f99e40b729ca99c9be502330c2" name="a026a52f99e40b729ca99c9be502330c2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a026a52f99e40b729ca99c9be502330c2">&#9670;&#160;</a></span>get_geometries()</h2>
+<a id="a1f8467d33b6926a737f8398b8070db86" name="a1f8467d33b6926a737f8398b8070db86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f8467d33b6926a737f8398b8070db86">&#9670;&#160;</a></span>get_geometries()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -236,7 +236,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt; viam::sdk::PoseTracker::get_geometries </td>
           <td>(</td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -255,7 +255,7 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1PoseTrackerClient.html#aee6ddca8d3639f64a6f70ca98e4582fe">viam::sdk::impl::PoseTrackerClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1PoseTrackerClient.html#a026a52f99e40b729ca99c9be502330c2">viam::sdk::impl::PoseTrackerClient</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1PoseTrackerClient.html#a129461b165702bb6ae8f1cb26680a26f">viam::sdk::impl::PoseTrackerClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1PoseTrackerClient.html#a1f8467d33b6926a737f8398b8070db86">viam::sdk::impl::PoseTrackerClient</a>.</p>
 
 </div>
 </div>
@@ -294,8 +294,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a222a3810e88354eaad37656ebf9e1f7f" name="a222a3810e88354eaad37656ebf9e1f7f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a222a3810e88354eaad37656ebf9e1f7f">&#9670;&#160;</a></span>get_poses() <span class="overload">[2/2]</span></h2>
+<a id="a0553807b12c181552b2a93ceb5c88306" name="a0553807b12c181552b2a93ceb5c88306"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0553807b12c181552b2a93ceb5c88306">&#9670;&#160;</a></span>get_poses() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -311,7 +311,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -332,7 +332,7 @@ Protected Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A mapping of each body to its pose. </dd></dl>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1PoseTrackerClient.html#a0ea65e48550ef869574485b9e510bae7">viam::sdk::impl::PoseTrackerClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1PoseTrackerClient.html#a222a3810e88354eaad37656ebf9e1f7f">viam::sdk::impl::PoseTrackerClient</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1PoseTrackerClient.html#af046e9be01ae10d3ab8a9d2285401c81">viam::sdk::impl::PoseTrackerClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1PoseTrackerClient.html#a0553807b12c181552b2a93ceb5c88306">viam::sdk::impl::PoseTrackerClient</a>.</p>
 
 </div>
 </div>

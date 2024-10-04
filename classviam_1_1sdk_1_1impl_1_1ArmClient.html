@@ -117,68 +117,68 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a02f1a553d4bc7831f07ea1440c9a2956" id="r_a02f1a553d4bc7831f07ea1440c9a2956"><td class="memItemLeft" align="right" valign="top"><a id="a02f1a553d4bc7831f07ea1440c9a2956" name="a02f1a553d4bc7831f07ea1440c9a2956"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>ArmClient</b> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>, std::shared_ptr&lt; grpc::Channel &gt; channel)</td></tr>
 <tr class="separator:a02f1a553d4bc7831f07ea1440c9a2956"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae81b13feefa735c4927466b33c29eba6" id="r_ae81b13feefa735c4927466b33c29eba6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae81b13feefa735c4927466b33c29eba6">get_end_position</a> (const AttributeMap &amp;extra) override</td></tr>
-<tr class="memdesc:ae81b13feefa735c4927466b33c29eba6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current position of the end of the arm.  <br /></td></tr>
-<tr class="separator:ae81b13feefa735c4927466b33c29eba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41118e67e39067825724bf3292a41083" id="r_a41118e67e39067825724bf3292a41083"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41118e67e39067825724bf3292a41083">move_to_position</a> (const <a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a> &amp;<a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a>, const AttributeMap &amp;extra) override</td></tr>
-<tr class="memdesc:a41118e67e39067825724bf3292a41083"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the end of the arm to.  <br /></td></tr>
-<tr class="separator:a41118e67e39067825724bf3292a41083"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe412ea4e2a935f248e4b1e53ffe19ae" id="r_abe412ea4e2a935f248e4b1e53ffe19ae"><td class="memItemLeft" align="right" valign="top">std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe412ea4e2a935f248e4b1e53ffe19ae">get_joint_positions</a> (const AttributeMap &amp;extra) override</td></tr>
-<tr class="memdesc:abe412ea4e2a935f248e4b1e53ffe19ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the joint positions in degrees of every joint on a robot arm.  <br /></td></tr>
-<tr class="separator:abe412ea4e2a935f248e4b1e53ffe19ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc87ba49e2186abcf749f9991ed3df7e" id="r_abc87ba49e2186abcf749f9991ed3df7e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc87ba49e2186abcf749f9991ed3df7e">move_to_joint_positions</a> (const std::vector&lt; double &gt; &amp;positions, const AttributeMap &amp;extra) override</td></tr>
-<tr class="memdesc:abc87ba49e2186abcf749f9991ed3df7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move each joint on the arm to the corresponding angle specified in.  <br /></td></tr>
-<tr class="separator:abc87ba49e2186abcf749f9991ed3df7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a193a86bee549c450a528c850a811192f" id="r_a193a86bee549c450a528c850a811192f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a193a86bee549c450a528c850a811192f">get_end_position</a> (const ProtoStruct &amp;extra) override</td></tr>
+<tr class="memdesc:a193a86bee549c450a528c850a811192f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current position of the end of the arm.  <br /></td></tr>
+<tr class="separator:a193a86bee549c450a528c850a811192f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a734742d9cb644567f865dea933175383" id="r_a734742d9cb644567f865dea933175383"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a734742d9cb644567f865dea933175383">move_to_position</a> (const <a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a> &amp;<a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a>, const ProtoStruct &amp;extra) override</td></tr>
+<tr class="memdesc:a734742d9cb644567f865dea933175383"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the end of the arm to.  <br /></td></tr>
+<tr class="separator:a734742d9cb644567f865dea933175383"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4be9a56a0d5cbba74eee406528f3d849" id="r_a4be9a56a0d5cbba74eee406528f3d849"><td class="memItemLeft" align="right" valign="top">std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4be9a56a0d5cbba74eee406528f3d849">get_joint_positions</a> (const ProtoStruct &amp;extra) override</td></tr>
+<tr class="memdesc:a4be9a56a0d5cbba74eee406528f3d849"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the joint positions in degrees of every joint on a robot arm.  <br /></td></tr>
+<tr class="separator:a4be9a56a0d5cbba74eee406528f3d849"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64da030caef0d10833e9effa289a0a16" id="r_a64da030caef0d10833e9effa289a0a16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a64da030caef0d10833e9effa289a0a16">move_to_joint_positions</a> (const std::vector&lt; double &gt; &amp;positions, const ProtoStruct &amp;extra) override</td></tr>
+<tr class="memdesc:a64da030caef0d10833e9effa289a0a16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move each joint on the arm to the corresponding angle specified in.  <br /></td></tr>
+<tr class="separator:a64da030caef0d10833e9effa289a0a16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2dc96ecff067478dea7104f9d20c90aa" id="r_a2dc96ecff067478dea7104f9d20c90aa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2dc96ecff067478dea7104f9d20c90aa">is_moving</a> () override</td></tr>
 <tr class="memdesc:a2dc96ecff067478dea7104f9d20c90aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports if the arm is in motion.  <br /></td></tr>
 <tr class="separator:a2dc96ecff067478dea7104f9d20c90aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77903c6d46291268318a15c920924eb1" id="r_a77903c6d46291268318a15c920924eb1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a77903c6d46291268318a15c920924eb1">stop</a> (const AttributeMap &amp;extra) override</td></tr>
-<tr class="memdesc:a77903c6d46291268318a15c920924eb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a resource from running.  <br /></td></tr>
-<tr class="separator:a77903c6d46291268318a15c920924eb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0d64129b72777249c41b3f0a94eec70" id="r_ab0d64129b72777249c41b3f0a94eec70"><td class="memItemLeft" align="right" valign="top">AttributeMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab0d64129b72777249c41b3f0a94eec70">do_command</a> (const AttributeMap &amp;command) override</td></tr>
-<tr class="memdesc:ab0d64129b72777249c41b3f0a94eec70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
-<tr class="separator:ab0d64129b72777249c41b3f0a94eec70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada8545449c43c28dbe1becbca3a1086a" id="r_ada8545449c43c28dbe1becbca3a1086a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9ccf3ad0775">Arm::KinematicsData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada8545449c43c28dbe1becbca3a1086a">get_kinematics</a> (const AttributeMap &amp;extra) override</td></tr>
-<tr class="memdesc:ada8545449c43c28dbe1becbca3a1086a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the kinematics data associated with the arm.  <br /></td></tr>
-<tr class="separator:ada8545449c43c28dbe1becbca3a1086a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a832b982c2123eed21646c41cd7c3bc11" id="r_a832b982c2123eed21646c41cd7c3bc11"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a832b982c2123eed21646c41cd7c3bc11">get_geometries</a> (const AttributeMap &amp;extra) override</td></tr>
-<tr class="memdesc:a832b982c2123eed21646c41cd7c3bc11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling arm.  <br /></td></tr>
-<tr class="separator:a832b982c2123eed21646c41cd7c3bc11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac23272ad6746b302e0dfcf487d4f5f16" id="r_ac23272ad6746b302e0dfcf487d4f5f16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac23272ad6746b302e0dfcf487d4f5f16">stop</a> (const ProtoStruct &amp;extra) override</td></tr>
+<tr class="memdesc:ac23272ad6746b302e0dfcf487d4f5f16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a resource from running.  <br /></td></tr>
+<tr class="separator:ac23272ad6746b302e0dfcf487d4f5f16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cafc2d7a89783c9c83cfb3cfa351a2c" id="r_a6cafc2d7a89783c9c83cfb3cfa351a2c"><td class="memItemLeft" align="right" valign="top">ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6cafc2d7a89783c9c83cfb3cfa351a2c">do_command</a> (const ProtoStruct &amp;command) override</td></tr>
+<tr class="memdesc:a6cafc2d7a89783c9c83cfb3cfa351a2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
+<tr class="separator:a6cafc2d7a89783c9c83cfb3cfa351a2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade7188c3473c99d2952dfddf5b9dd617" id="r_ade7188c3473c99d2952dfddf5b9dd617"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9ccf3ad0775">Arm::KinematicsData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade7188c3473c99d2952dfddf5b9dd617">get_kinematics</a> (const ProtoStruct &amp;extra) override</td></tr>
+<tr class="memdesc:ade7188c3473c99d2952dfddf5b9dd617"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the kinematics data associated with the arm.  <br /></td></tr>
+<tr class="separator:ade7188c3473c99d2952dfddf5b9dd617"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accc7b76c68782dfbe46b8a917495ecbd" id="r_accc7b76c68782dfbe46b8a917495ecbd"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#accc7b76c68782dfbe46b8a917495ecbd">get_geometries</a> (const ProtoStruct &amp;extra) override</td></tr>
+<tr class="memdesc:accc7b76c68782dfbe46b8a917495ecbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling arm.  <br /></td></tr>
+<tr class="separator:accc7b76c68782dfbe46b8a917495ecbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5acbc1a20c1ad5814e10dde57b34c16" id="r_ae5acbc1a20c1ad5814e10dde57b34c16"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5acbc1a20c1ad5814e10dde57b34c16">get_end_position</a> ()</td></tr>
 <tr class="memdesc:ae5acbc1a20c1ad5814e10dde57b34c16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current position of the end of the arm.  <br /></td></tr>
 <tr class="separator:ae5acbc1a20c1ad5814e10dde57b34c16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f99e0e542ab7dfd06549a9c259de570" id="r_a5f99e0e542ab7dfd06549a9c259de570"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f99e0e542ab7dfd06549a9c259de570">get_end_position</a> (const AttributeMap &amp;extra)=0</td></tr>
-<tr class="memdesc:a5f99e0e542ab7dfd06549a9c259de570"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current position of the end of the arm.  <br /></td></tr>
-<tr class="separator:a5f99e0e542ab7dfd06549a9c259de570"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af09c79cc80ccc6d407065cf69bcaca2a" id="r_af09c79cc80ccc6d407065cf69bcaca2a"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af09c79cc80ccc6d407065cf69bcaca2a">get_end_position</a> (const ProtoStruct &amp;extra)=0</td></tr>
+<tr class="memdesc:af09c79cc80ccc6d407065cf69bcaca2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current position of the end of the arm.  <br /></td></tr>
+<tr class="separator:af09c79cc80ccc6d407065cf69bcaca2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5604ac4418042783a0227e43c573a9ac" id="r_a5604ac4418042783a0227e43c573a9ac"><td class="memItemLeft" align="right" valign="top"><a id="a5604ac4418042783a0227e43c573a9ac" name="a5604ac4418042783a0227e43c573a9ac"></a>
 std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>get_geometries</b> ()</td></tr>
 <tr class="memdesc:a5604ac4418042783a0227e43c573a9ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling arm. <br /></td></tr>
 <tr class="separator:a5604ac4418042783a0227e43c573a9ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3f6d625a359a544090573fdc94fcab6" id="r_af3f6d625a359a544090573fdc94fcab6"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3f6d625a359a544090573fdc94fcab6">get_geometries</a> (const AttributeMap &amp;extra)=0</td></tr>
-<tr class="memdesc:af3f6d625a359a544090573fdc94fcab6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling arm.  <br /></td></tr>
-<tr class="separator:af3f6d625a359a544090573fdc94fcab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeed2dcf6c5f23a31730aec1fdf73db52" id="r_aeed2dcf6c5f23a31730aec1fdf73db52"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeed2dcf6c5f23a31730aec1fdf73db52">get_geometries</a> (const ProtoStruct &amp;extra)=0</td></tr>
+<tr class="memdesc:aeed2dcf6c5f23a31730aec1fdf73db52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling arm.  <br /></td></tr>
+<tr class="separator:aeed2dcf6c5f23a31730aec1fdf73db52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a5198860ccffa77d21b6d0ea047b018" id="r_a1a5198860ccffa77d21b6d0ea047b018"><td class="memItemLeft" align="right" valign="top"><a id="a1a5198860ccffa77d21b6d0ea047b018" name="a1a5198860ccffa77d21b6d0ea047b018"></a>
 std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>get_joint_positions</b> ()</td></tr>
 <tr class="memdesc:a1a5198860ccffa77d21b6d0ea047b018"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the joint positions in degrees of every joint on a robot arm. <br /></td></tr>
 <tr class="separator:a1a5198860ccffa77d21b6d0ea047b018"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5011b5461e37e95bc1efbdd3eda7b397" id="r_a5011b5461e37e95bc1efbdd3eda7b397"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5011b5461e37e95bc1efbdd3eda7b397">get_joint_positions</a> (const AttributeMap &amp;extra)=0</td></tr>
-<tr class="memdesc:a5011b5461e37e95bc1efbdd3eda7b397"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the joint positions in degrees of every joint on a robot arm.  <br /></td></tr>
-<tr class="separator:a5011b5461e37e95bc1efbdd3eda7b397"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3374a58cc6505ed5ad8816af89d84627" id="r_a3374a58cc6505ed5ad8816af89d84627"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9ccf3ad0775">KinematicsData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3374a58cc6505ed5ad8816af89d84627">get_kinematics</a> (const AttributeMap &amp;extra)=0</td></tr>
-<tr class="memdesc:a3374a58cc6505ed5ad8816af89d84627"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the kinematics data associated with the arm.  <br /></td></tr>
-<tr class="separator:a3374a58cc6505ed5ad8816af89d84627"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1156ed6fe9a4fb1f187c48659cf5b8a6" id="r_a1156ed6fe9a4fb1f187c48659cf5b8a6"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1156ed6fe9a4fb1f187c48659cf5b8a6">get_joint_positions</a> (const ProtoStruct &amp;extra)=0</td></tr>
+<tr class="memdesc:a1156ed6fe9a4fb1f187c48659cf5b8a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the joint positions in degrees of every joint on a robot arm.  <br /></td></tr>
+<tr class="separator:a1156ed6fe9a4fb1f187c48659cf5b8a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5210d16301b990695a75b2c5e2c1dfbd" id="r_a5210d16301b990695a75b2c5e2c1dfbd"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9ccf3ad0775">KinematicsData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5210d16301b990695a75b2c5e2c1dfbd">get_kinematics</a> (const ProtoStruct &amp;extra)=0</td></tr>
+<tr class="memdesc:a5210d16301b990695a75b2c5e2c1dfbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the kinematics data associated with the arm.  <br /></td></tr>
+<tr class="separator:a5210d16301b990695a75b2c5e2c1dfbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1684010009781539671c88c57bae7d68" id="r_a1684010009781539671c88c57bae7d68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9ccf3ad0775">KinematicsData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1684010009781539671c88c57bae7d68">get_kinematics</a> ()</td></tr>
 <tr class="memdesc:a1684010009781539671c88c57bae7d68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the kinematics data associated with the arm.  <br /></td></tr>
 <tr class="separator:a1684010009781539671c88c57bae7d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89f07ed7fae27182522647f86cd48a05" id="r_a89f07ed7fae27182522647f86cd48a05"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a89f07ed7fae27182522647f86cd48a05">move_to_joint_positions</a> (const std::vector&lt; double &gt; &amp;positions, const AttributeMap &amp;extra)=0</td></tr>
-<tr class="memdesc:a89f07ed7fae27182522647f86cd48a05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move each joint on the arm to the corresponding angle specified in.  <br /></td></tr>
-<tr class="separator:a89f07ed7fae27182522647f86cd48a05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99e232accde4b5c98d73911654b13c29" id="r_a99e232accde4b5c98d73911654b13c29"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99e232accde4b5c98d73911654b13c29">move_to_joint_positions</a> (const std::vector&lt; double &gt; &amp;positions, const ProtoStruct &amp;extra)=0</td></tr>
+<tr class="memdesc:a99e232accde4b5c98d73911654b13c29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move each joint on the arm to the corresponding angle specified in.  <br /></td></tr>
+<tr class="separator:a99e232accde4b5c98d73911654b13c29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee61208d32415894fca591554e394cdb" id="r_aee61208d32415894fca591554e394cdb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee61208d32415894fca591554e394cdb">move_to_position</a> (const <a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a> &amp;<a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a>)</td></tr>
 <tr class="memdesc:aee61208d32415894fca591554e394cdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the end of the arm to.  <br /></td></tr>
 <tr class="separator:aee61208d32415894fca591554e394cdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5689a4821db40f21650320e9866210e4" id="r_a5689a4821db40f21650320e9866210e4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5689a4821db40f21650320e9866210e4">move_to_position</a> (const <a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a> &amp;<a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a>, const AttributeMap &amp;extra)=0</td></tr>
-<tr class="memdesc:a5689a4821db40f21650320e9866210e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the end of the arm to.  <br /></td></tr>
-<tr class="separator:a5689a4821db40f21650320e9866210e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09cbee10b6b87fb9151d390d0f4000f9" id="r_a09cbee10b6b87fb9151d390d0f4000f9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a09cbee10b6b87fb9151d390d0f4000f9">move_to_position</a> (const <a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a> &amp;<a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a>, const ProtoStruct &amp;extra)=0</td></tr>
+<tr class="memdesc:a09cbee10b6b87fb9151d390d0f4000f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the end of the arm to.  <br /></td></tr>
+<tr class="separator:a09cbee10b6b87fb9151d390d0f4000f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classviam_1_1sdk_1_1Arm"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classviam_1_1sdk_1_1Arm')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Arm.html">viam::sdk::Arm</a></td></tr>
 <tr class="memitem:ae5acbc1a20c1ad5814e10dde57b34c16 inherit pub_methods_classviam_1_1sdk_1_1Arm" id="r_ae5acbc1a20c1ad5814e10dde57b34c16"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Arm.html#ae5acbc1a20c1ad5814e10dde57b34c16">get_end_position</a> ()</td></tr>
 <tr class="memdesc:ae5acbc1a20c1ad5814e10dde57b34c16 inherit pub_methods_classviam_1_1sdk_1_1Arm"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current position of the end of the arm.  <br /></td></tr>
@@ -225,9 +225,9 @@ Additional Inherited Members</h2></td></tr>
 static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9ccf3ad0775">KinematicsData</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (const viam::common::v1::GetKinematicsResponse &amp;proto)</td></tr>
 <tr class="separator:ab0601708a92fa48c1ab7113667c40d3f inherit pub_static_methods_classviam_1_1sdk_1_1Arm"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_methods_classviam_1_1sdk_1_1Stoppable')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Stoppable.html">viam::sdk::Stoppable</a></td></tr>
-<tr class="memitem:aedbf79884c7ddb737880b7d72e2c2468 inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable" id="r_aedbf79884c7ddb737880b7d72e2c2468"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Stoppable.html#aedbf79884c7ddb737880b7d72e2c2468">stop_if_stoppable</a> (const std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; &amp;resource, const AttributeMap &amp;extra)</td></tr>
-<tr class="memdesc:aedbf79884c7ddb737880b7d72e2c2468 inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> if it is <a class="el" href="classviam_1_1sdk_1_1Stoppable.html">Stoppable</a>.  <br /></td></tr>
-<tr class="separator:aedbf79884c7ddb737880b7d72e2c2468 inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b209a040efc8f4ea35abb92dafb5fea inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable" id="r_a9b209a040efc8f4ea35abb92dafb5fea"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Stoppable.html#a9b209a040efc8f4ea35abb92dafb5fea">stop_if_stoppable</a> (const std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; &amp;resource, const ProtoStruct &amp;extra)</td></tr>
+<tr class="memdesc:a9b209a040efc8f4ea35abb92dafb5fea inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> if it is <a class="el" href="classviam_1_1sdk_1_1Stoppable.html">Stoppable</a>.  <br /></td></tr>
+<tr class="separator:a9b209a040efc8f4ea35abb92dafb5fea inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7a35a13e39132052b910f5b8718f29d inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable" id="r_ab7a35a13e39132052b910f5b8718f29d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Stoppable.html#ab7a35a13e39132052b910f5b8718f29d">stop_if_stoppable</a> (const std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; &amp;resource)</td></tr>
 <tr class="memdesc:ab7a35a13e39132052b910f5b8718f29d inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> if it is <a class="el" href="classviam_1_1sdk_1_1Stoppable.html">Stoppable</a>.  <br /></td></tr>
 <tr class="separator:ab7a35a13e39132052b910f5b8718f29d inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -243,8 +243,8 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>gRPC client implementation of an <code><a class="el" href="classviam_1_1sdk_1_1Arm.html" title="An Arm represents a physical robot arm that exists in three-dimensional space.">Arm</a></code> component. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="ab0d64129b72777249c41b3f0a94eec70" name="ab0d64129b72777249c41b3f0a94eec70"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab0d64129b72777249c41b3f0a94eec70">&#9670;&#160;</a></span>do_command()</h2>
+<a id="a6cafc2d7a89783c9c83cfb3cfa351a2c" name="a6cafc2d7a89783c9c83cfb3cfa351a2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cafc2d7a89783c9c83cfb3cfa351a2c">&#9670;&#160;</a></span>do_command()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -253,9 +253,9 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">AttributeMap viam::sdk::impl::ArmClient::do_command </td>
+          <td class="memname">ProtoStruct viam::sdk::impl::ArmClient::do_command </td>
           <td>(</td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>command</em></span></td><td>)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>command</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -275,7 +275,7 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The result of the executed command. </dd></dl>
 
-<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#a0df064015feff261183710af7a7b1353">viam::sdk::Arm</a>.</p>
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#a3df792e51781954f58f6a27e2a98b502">viam::sdk::Arm</a>.</p>
 
 </div>
 </div>
@@ -307,8 +307,8 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
 
 </div>
 </div>
-<a id="ae81b13feefa735c4927466b33c29eba6" name="ae81b13feefa735c4927466b33c29eba6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae81b13feefa735c4927466b33c29eba6">&#9670;&#160;</a></span>get_end_position() <span class="overload">[2/3]</span></h2>
+<a id="a193a86bee549c450a528c850a811192f" name="a193a86bee549c450a528c850a811192f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a193a86bee549c450a528c850a811192f">&#9670;&#160;</a></span>get_end_position() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -319,7 +319,7 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
         <tr>
           <td class="memname"><a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a> viam::sdk::impl::ArmClient::get_end_position </td>
           <td>(</td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -339,12 +339,12 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The <code>pose</code> representing the end position of the arm. </dd></dl>
 
-<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#a5f99e0e542ab7dfd06549a9c259de570">viam::sdk::Arm</a>.</p>
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#af09c79cc80ccc6d407065cf69bcaca2a">viam::sdk::Arm</a>.</p>
 
 </div>
 </div>
-<a id="a5f99e0e542ab7dfd06549a9c259de570" name="a5f99e0e542ab7dfd06549a9c259de570"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f99e0e542ab7dfd06549a9c259de570">&#9670;&#160;</a></span>get_end_position() <span class="overload">[3/3]</span></h2>
+<a id="af09c79cc80ccc6d407065cf69bcaca2a" name="af09c79cc80ccc6d407065cf69bcaca2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af09c79cc80ccc6d407065cf69bcaca2a">&#9670;&#160;</a></span>get_end_position() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -355,7 +355,7 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
         <tr>
           <td class="memname">virtual <a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a> viam::sdk::Arm::get_end_position </td>
           <td>(</td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -375,12 +375,12 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The <code>pose</code> representing the end position of the arm. </dd></dl>
 
-<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#a5f99e0e542ab7dfd06549a9c259de570">viam::sdk::Arm</a>.</p>
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#af09c79cc80ccc6d407065cf69bcaca2a">viam::sdk::Arm</a>.</p>
 
 </div>
 </div>
-<a id="a832b982c2123eed21646c41cd7c3bc11" name="a832b982c2123eed21646c41cd7c3bc11"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a832b982c2123eed21646c41cd7c3bc11">&#9670;&#160;</a></span>get_geometries() <span class="overload">[1/2]</span></h2>
+<a id="accc7b76c68782dfbe46b8a917495ecbd" name="accc7b76c68782dfbe46b8a917495ecbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accc7b76c68782dfbe46b8a917495ecbd">&#9670;&#160;</a></span>get_geometries() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -391,7 +391,7 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
         <tr>
           <td class="memname">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt; viam::sdk::impl::ArmClient::get_geometries </td>
           <td>(</td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -410,12 +410,12 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#af3f6d625a359a544090573fdc94fcab6">viam::sdk::Arm</a>.</p>
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#aeed2dcf6c5f23a31730aec1fdf73db52">viam::sdk::Arm</a>.</p>
 
 </div>
 </div>
-<a id="af3f6d625a359a544090573fdc94fcab6" name="af3f6d625a359a544090573fdc94fcab6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af3f6d625a359a544090573fdc94fcab6">&#9670;&#160;</a></span>get_geometries() <span class="overload">[2/2]</span></h2>
+<a id="aeed2dcf6c5f23a31730aec1fdf73db52" name="aeed2dcf6c5f23a31730aec1fdf73db52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeed2dcf6c5f23a31730aec1fdf73db52">&#9670;&#160;</a></span>get_geometries() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -426,7 +426,7 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
         <tr>
           <td class="memname">virtual std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt; viam::sdk::Arm::get_geometries </td>
           <td>(</td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -445,12 +445,12 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#af3f6d625a359a544090573fdc94fcab6">viam::sdk::Arm</a>.</p>
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#aeed2dcf6c5f23a31730aec1fdf73db52">viam::sdk::Arm</a>.</p>
 
 </div>
 </div>
-<a id="abe412ea4e2a935f248e4b1e53ffe19ae" name="abe412ea4e2a935f248e4b1e53ffe19ae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abe412ea4e2a935f248e4b1e53ffe19ae">&#9670;&#160;</a></span>get_joint_positions() <span class="overload">[1/2]</span></h2>
+<a id="a4be9a56a0d5cbba74eee406528f3d849" name="a4be9a56a0d5cbba74eee406528f3d849"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4be9a56a0d5cbba74eee406528f3d849">&#9670;&#160;</a></span>get_joint_positions() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -461,7 +461,7 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
         <tr>
           <td class="memname">std::vector&lt; double &gt; viam::sdk::impl::ArmClient::get_joint_positions </td>
           <td>(</td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -480,12 +480,12 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#a5011b5461e37e95bc1efbdd3eda7b397">viam::sdk::Arm</a>.</p>
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#a1156ed6fe9a4fb1f187c48659cf5b8a6">viam::sdk::Arm</a>.</p>
 
 </div>
 </div>
-<a id="a5011b5461e37e95bc1efbdd3eda7b397" name="a5011b5461e37e95bc1efbdd3eda7b397"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5011b5461e37e95bc1efbdd3eda7b397">&#9670;&#160;</a></span>get_joint_positions() <span class="overload">[2/2]</span></h2>
+<a id="a1156ed6fe9a4fb1f187c48659cf5b8a6" name="a1156ed6fe9a4fb1f187c48659cf5b8a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1156ed6fe9a4fb1f187c48659cf5b8a6">&#9670;&#160;</a></span>get_joint_positions() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -496,7 +496,7 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
         <tr>
           <td class="memname">virtual std::vector&lt; double &gt; viam::sdk::Arm::get_joint_positions </td>
           <td>(</td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -515,7 +515,7 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#a5011b5461e37e95bc1efbdd3eda7b397">viam::sdk::Arm</a>.</p>
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#a1156ed6fe9a4fb1f187c48659cf5b8a6">viam::sdk::Arm</a>.</p>
 
 </div>
 </div>
@@ -547,8 +547,8 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
 
 </div>
 </div>
-<a id="ada8545449c43c28dbe1becbca3a1086a" name="ada8545449c43c28dbe1becbca3a1086a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada8545449c43c28dbe1becbca3a1086a">&#9670;&#160;</a></span>get_kinematics() <span class="overload">[2/3]</span></h2>
+<a id="ade7188c3473c99d2952dfddf5b9dd617" name="ade7188c3473c99d2952dfddf5b9dd617"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade7188c3473c99d2952dfddf5b9dd617">&#9670;&#160;</a></span>get_kinematics() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -559,7 +559,7 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
         <tr>
           <td class="memname"><a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9ccf3ad0775">Arm::KinematicsData</a> viam::sdk::impl::ArmClient::get_kinematics </td>
           <td>(</td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -579,12 +579,12 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A variant of kinematics data, with bytes field containing the raw bytes of the file and the object's type indicating the file format. </dd></dl>
 
-<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#a3374a58cc6505ed5ad8816af89d84627">viam::sdk::Arm</a>.</p>
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#a5210d16301b990695a75b2c5e2c1dfbd">viam::sdk::Arm</a>.</p>
 
 </div>
 </div>
-<a id="a3374a58cc6505ed5ad8816af89d84627" name="a3374a58cc6505ed5ad8816af89d84627"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3374a58cc6505ed5ad8816af89d84627">&#9670;&#160;</a></span>get_kinematics() <span class="overload">[3/3]</span></h2>
+<a id="a5210d16301b990695a75b2c5e2c1dfbd" name="a5210d16301b990695a75b2c5e2c1dfbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5210d16301b990695a75b2c5e2c1dfbd">&#9670;&#160;</a></span>get_kinematics() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -595,7 +595,7 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
         <tr>
           <td class="memname">virtual <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9ccf3ad0775">KinematicsData</a> viam::sdk::Arm::get_kinematics </td>
           <td>(</td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -615,7 +615,7 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A variant of kinematics data, with bytes field containing the raw bytes of the file and the object's type indicating the file format. </dd></dl>
 
-<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#a3374a58cc6505ed5ad8816af89d84627">viam::sdk::Arm</a>.</p>
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#a5210d16301b990695a75b2c5e2c1dfbd">viam::sdk::Arm</a>.</p>
 
 </div>
 </div>
@@ -648,8 +648,8 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
 
 </div>
 </div>
-<a id="abc87ba49e2186abcf749f9991ed3df7e" name="abc87ba49e2186abcf749f9991ed3df7e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abc87ba49e2186abcf749f9991ed3df7e">&#9670;&#160;</a></span>move_to_joint_positions() <span class="overload">[1/2]</span></h2>
+<a id="a64da030caef0d10833e9effa289a0a16" name="a64da030caef0d10833e9effa289a0a16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64da030caef0d10833e9effa289a0a16">&#9670;&#160;</a></span>move_to_joint_positions() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -665,7 +665,7 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -684,12 +684,12 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#a89f07ed7fae27182522647f86cd48a05">viam::sdk::Arm</a>.</p>
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#a99e232accde4b5c98d73911654b13c29">viam::sdk::Arm</a>.</p>
 
 </div>
 </div>
-<a id="a89f07ed7fae27182522647f86cd48a05" name="a89f07ed7fae27182522647f86cd48a05"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a89f07ed7fae27182522647f86cd48a05">&#9670;&#160;</a></span>move_to_joint_positions() <span class="overload">[2/2]</span></h2>
+<a id="a99e232accde4b5c98d73911654b13c29" name="a99e232accde4b5c98d73911654b13c29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99e232accde4b5c98d73911654b13c29">&#9670;&#160;</a></span>move_to_joint_positions() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -705,7 +705,7 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -724,7 +724,7 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#a89f07ed7fae27182522647f86cd48a05">viam::sdk::Arm</a>.</p>
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#a99e232accde4b5c98d73911654b13c29">viam::sdk::Arm</a>.</p>
 
 </div>
 </div>
@@ -761,8 +761,8 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
 
 </div>
 </div>
-<a id="a41118e67e39067825724bf3292a41083" name="a41118e67e39067825724bf3292a41083"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a41118e67e39067825724bf3292a41083">&#9670;&#160;</a></span>move_to_position() <span class="overload">[2/3]</span></h2>
+<a id="a734742d9cb644567f865dea933175383" name="a734742d9cb644567f865dea933175383"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a734742d9cb644567f865dea933175383">&#9670;&#160;</a></span>move_to_position() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -778,7 +778,7 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -798,12 +798,12 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#a5689a4821db40f21650320e9866210e4">viam::sdk::Arm</a>.</p>
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#a09cbee10b6b87fb9151d390d0f4000f9">viam::sdk::Arm</a>.</p>
 
 </div>
 </div>
-<a id="a5689a4821db40f21650320e9866210e4" name="a5689a4821db40f21650320e9866210e4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5689a4821db40f21650320e9866210e4">&#9670;&#160;</a></span>move_to_position() <span class="overload">[3/3]</span></h2>
+<a id="a09cbee10b6b87fb9151d390d0f4000f9" name="a09cbee10b6b87fb9151d390d0f4000f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09cbee10b6b87fb9151d390d0f4000f9">&#9670;&#160;</a></span>move_to_position() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -819,7 +819,7 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -839,12 +839,12 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#a5689a4821db40f21650320e9866210e4">viam::sdk::Arm</a>.</p>
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#a09cbee10b6b87fb9151d390d0f4000f9">viam::sdk::Arm</a>.</p>
 
 </div>
 </div>
-<a id="a77903c6d46291268318a15c920924eb1" name="a77903c6d46291268318a15c920924eb1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a77903c6d46291268318a15c920924eb1">&#9670;&#160;</a></span>stop()</h2>
+<a id="ac23272ad6746b302e0dfcf487d4f5f16" name="ac23272ad6746b302e0dfcf487d4f5f16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac23272ad6746b302e0dfcf487d4f5f16">&#9670;&#160;</a></span>stop()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -855,7 +855,7 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
         <tr>
           <td class="memname">void viam::sdk::impl::ArmClient::stop </td>
           <td>(</td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -874,7 +874,7 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classviam_1_1sdk_1_1Stoppable.html#a8765ae324331a1149f917b0845fce606">viam::sdk::Stoppable</a>.</p>
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Stoppable.html#a1c8e7ba66f0bd9694a68c71043ab1d36">viam::sdk::Stoppable</a>.</p>
 
 </div>
 </div>

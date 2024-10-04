@@ -115,27 +115,27 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5c20840db34859c61231f9cb3cda7ad5" id="r_a5c20840db34859c61231f9cb3cda7ad5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c20840db34859c61231f9cb3cda7ad5">move</a> (uint32_t angle_deg)</td></tr>
 <tr class="memdesc:a5c20840db34859c61231f9cb3cda7ad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the servo to the provided angle.  <br /></td></tr>
 <tr class="separator:a5c20840db34859c61231f9cb3cda7ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13d25bde6c37fee2a27462d920c32de5" id="r_a13d25bde6c37fee2a27462d920c32de5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a13d25bde6c37fee2a27462d920c32de5">move</a> (uint32_t angle_deg, const AttributeMap &amp;extra)=0</td></tr>
-<tr class="memdesc:a13d25bde6c37fee2a27462d920c32de5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the servo to the provided angle.  <br /></td></tr>
-<tr class="separator:a13d25bde6c37fee2a27462d920c32de5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6c7d1b7b24616214dda12871985f761" id="r_ac6c7d1b7b24616214dda12871985f761"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6c7d1b7b24616214dda12871985f761">move</a> (uint32_t angle_deg, const ProtoStruct &amp;extra)=0</td></tr>
+<tr class="memdesc:ac6c7d1b7b24616214dda12871985f761"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the servo to the provided angle.  <br /></td></tr>
+<tr class="separator:ac6c7d1b7b24616214dda12871985f761"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab875f0a700be9453e7683e475c47227" id="r_aab875f0a700be9453e7683e475c47227"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structposition.html">position</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab875f0a700be9453e7683e475c47227">get_position</a> ()</td></tr>
 <tr class="memdesc:aab875f0a700be9453e7683e475c47227"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current angle (degrees) of the servo.  <br /></td></tr>
 <tr class="separator:aab875f0a700be9453e7683e475c47227"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a130acab1022a3b93a2ba200c6f1ba670" id="r_a130acab1022a3b93a2ba200c6f1ba670"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structposition.html">position</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a130acab1022a3b93a2ba200c6f1ba670">get_position</a> (const AttributeMap &amp;extra)=0</td></tr>
-<tr class="memdesc:a130acab1022a3b93a2ba200c6f1ba670"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports the position of the robot's servo relative to its zero position.  <br /></td></tr>
-<tr class="separator:a130acab1022a3b93a2ba200c6f1ba670"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d949abd6b4b77e0564dca4bb7ea1e83" id="r_a7d949abd6b4b77e0564dca4bb7ea1e83"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structposition.html">position</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d949abd6b4b77e0564dca4bb7ea1e83">get_position</a> (const ProtoStruct &amp;extra)=0</td></tr>
+<tr class="memdesc:a7d949abd6b4b77e0564dca4bb7ea1e83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports the position of the robot's servo relative to its zero position.  <br /></td></tr>
+<tr class="separator:a7d949abd6b4b77e0564dca4bb7ea1e83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa45aa15b59c8997b062a07ef3c0ab3f6" id="r_aa45aa15b59c8997b062a07ef3c0ab3f6"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa45aa15b59c8997b062a07ef3c0ab3f6">is_moving</a> ()=0</td></tr>
 <tr class="memdesc:aa45aa15b59c8997b062a07ef3c0ab3f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports if a component is in motion.  <br /></td></tr>
 <tr class="separator:aa45aa15b59c8997b062a07ef3c0ab3f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a945cc81ecd70baa64efe4a897e8dec69" id="r_a945cc81ecd70baa64efe4a897e8dec69"><td class="memItemLeft" align="right" valign="top">virtual AttributeMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a945cc81ecd70baa64efe4a897e8dec69">do_command</a> (const AttributeMap &amp;command)=0</td></tr>
-<tr class="memdesc:a945cc81ecd70baa64efe4a897e8dec69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
-<tr class="separator:a945cc81ecd70baa64efe4a897e8dec69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e87028213ad6cbf50e5f24d67c11700" id="r_a0e87028213ad6cbf50e5f24d67c11700"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e87028213ad6cbf50e5f24d67c11700">do_command</a> (const ProtoStruct &amp;command)=0</td></tr>
+<tr class="memdesc:a0e87028213ad6cbf50e5f24d67c11700"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
+<tr class="separator:a0e87028213ad6cbf50e5f24d67c11700"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fbe9948e41cafeafbfad8e434ba0dd7" id="r_a3fbe9948e41cafeafbfad8e434ba0dd7"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3fbe9948e41cafeafbfad8e434ba0dd7">get_geometries</a> ()</td></tr>
 <tr class="memdesc:a3fbe9948e41cafeafbfad8e434ba0dd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling servo.  <br /></td></tr>
 <tr class="separator:a3fbe9948e41cafeafbfad8e434ba0dd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b6085b9f857413ba1dfac432cfa95c0" id="r_a9b6085b9f857413ba1dfac432cfa95c0"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b6085b9f857413ba1dfac432cfa95c0">get_geometries</a> (const AttributeMap &amp;extra)=0</td></tr>
-<tr class="memdesc:a9b6085b9f857413ba1dfac432cfa95c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling servo.  <br /></td></tr>
-<tr class="separator:a9b6085b9f857413ba1dfac432cfa95c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae318195cf65b78069e60b23371dfe5e5" id="r_ae318195cf65b78069e60b23371dfe5e5"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae318195cf65b78069e60b23371dfe5e5">get_geometries</a> (const ProtoStruct &amp;extra)=0</td></tr>
+<tr class="memdesc:ae318195cf65b78069e60b23371dfe5e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling servo.  <br /></td></tr>
+<tr class="separator:ae318195cf65b78069e60b23371dfe5e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classviam_1_1sdk_1_1Component"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classviam_1_1sdk_1_1Component')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Component.html">viam::sdk::Component</a></td></tr>
 <tr class="memitem:ae969386d6faa08e81f16fb55ce62aa5d inherit pub_methods_classviam_1_1sdk_1_1Component" id="r_ae969386d6faa08e81f16fb55ce62aa5d"><td class="memItemLeft" align="right" valign="top">viam::common::v1::ResourceName&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Component.html#ae969386d6faa08e81f16fb55ce62aa5d">get_resource_name</a> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>) const override</td></tr>
 <tr class="memdesc:ae969386d6faa08e81f16fb55ce62aa5d inherit pub_methods_classviam_1_1sdk_1_1Component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code>ResourceName</code> for a particular resource name.  <br /></td></tr>
@@ -149,9 +149,9 @@ virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</
 <tr class="memdesc:a52ea612e31f5c09785b500bd2610d97d inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the resource's name. <br /></td></tr>
 <tr class="separator:a52ea612e31f5c09785b500bd2610d97d inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classviam_1_1sdk_1_1Stoppable"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classviam_1_1sdk_1_1Stoppable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Stoppable.html">viam::sdk::Stoppable</a></td></tr>
-<tr class="memitem:a8765ae324331a1149f917b0845fce606 inherit pub_methods_classviam_1_1sdk_1_1Stoppable" id="r_a8765ae324331a1149f917b0845fce606"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Stoppable.html#a8765ae324331a1149f917b0845fce606">stop</a> (const AttributeMap &amp;extra)=0</td></tr>
-<tr class="memdesc:a8765ae324331a1149f917b0845fce606 inherit pub_methods_classviam_1_1sdk_1_1Stoppable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a resource from running.  <br /></td></tr>
-<tr class="separator:a8765ae324331a1149f917b0845fce606 inherit pub_methods_classviam_1_1sdk_1_1Stoppable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c8e7ba66f0bd9694a68c71043ab1d36 inherit pub_methods_classviam_1_1sdk_1_1Stoppable" id="r_a1c8e7ba66f0bd9694a68c71043ab1d36"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Stoppable.html#a1c8e7ba66f0bd9694a68c71043ab1d36">stop</a> (const ProtoStruct &amp;extra)=0</td></tr>
+<tr class="memdesc:a1c8e7ba66f0bd9694a68c71043ab1d36 inherit pub_methods_classviam_1_1sdk_1_1Stoppable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a resource from running.  <br /></td></tr>
+<tr class="separator:a1c8e7ba66f0bd9694a68c71043ab1d36 inherit pub_methods_classviam_1_1sdk_1_1Stoppable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5248adce66d2ff61cf1c69daaf4cf754 inherit pub_methods_classviam_1_1sdk_1_1Stoppable" id="r_a5248adce66d2ff61cf1c69daaf4cf754"><td class="memItemLeft" align="right" valign="top">
 void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
 <tr class="memdesc:a5248adce66d2ff61cf1c69daaf4cf754 inherit pub_methods_classviam_1_1sdk_1_1Stoppable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a resource from running. <br /></td></tr>
@@ -164,9 +164,9 @@ static <a class="el" href="structposition.html">position</a>&#160;</td><td class
 <tr class="memdesc:a4d9a875c4e4688019b3cc2abe584374a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <code>position</code> struct from its proto representation. <br /></td></tr>
 <tr class="separator:a4d9a875c4e4688019b3cc2abe584374a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_methods_classviam_1_1sdk_1_1Stoppable')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Stoppable.html">viam::sdk::Stoppable</a></td></tr>
-<tr class="memitem:aedbf79884c7ddb737880b7d72e2c2468 inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable" id="r_aedbf79884c7ddb737880b7d72e2c2468"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Stoppable.html#aedbf79884c7ddb737880b7d72e2c2468">stop_if_stoppable</a> (const std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; &amp;resource, const AttributeMap &amp;extra)</td></tr>
-<tr class="memdesc:aedbf79884c7ddb737880b7d72e2c2468 inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> if it is <a class="el" href="classviam_1_1sdk_1_1Stoppable.html">Stoppable</a>.  <br /></td></tr>
-<tr class="separator:aedbf79884c7ddb737880b7d72e2c2468 inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b209a040efc8f4ea35abb92dafb5fea inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable" id="r_a9b209a040efc8f4ea35abb92dafb5fea"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Stoppable.html#a9b209a040efc8f4ea35abb92dafb5fea">stop_if_stoppable</a> (const std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; &amp;resource, const ProtoStruct &amp;extra)</td></tr>
+<tr class="memdesc:a9b209a040efc8f4ea35abb92dafb5fea inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> if it is <a class="el" href="classviam_1_1sdk_1_1Stoppable.html">Stoppable</a>.  <br /></td></tr>
+<tr class="separator:a9b209a040efc8f4ea35abb92dafb5fea inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7a35a13e39132052b910f5b8718f29d inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable" id="r_ab7a35a13e39132052b910f5b8718f29d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Stoppable.html#ab7a35a13e39132052b910f5b8718f29d">stop_if_stoppable</a> (const std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; &amp;resource)</td></tr>
 <tr class="memdesc:ab7a35a13e39132052b910f5b8718f29d inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> if it is <a class="el" href="classviam_1_1sdk_1_1Stoppable.html">Stoppable</a>.  <br /></td></tr>
 <tr class="separator:ab7a35a13e39132052b910f5b8718f29d inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -213,8 +213,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a945cc81ecd70baa64efe4a897e8dec69" name="a945cc81ecd70baa64efe4a897e8dec69"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a945cc81ecd70baa64efe4a897e8dec69">&#9670;&#160;</a></span>do_command()</h2>
+<a id="a0e87028213ad6cbf50e5f24d67c11700" name="a0e87028213ad6cbf50e5f24d67c11700"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e87028213ad6cbf50e5f24d67c11700">&#9670;&#160;</a></span>do_command()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -223,9 +223,9 @@ Protected Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual AttributeMap viam::sdk::Servo::do_command </td>
+          <td class="memname">virtual ProtoStruct viam::sdk::Servo::do_command </td>
           <td>(</td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>command</em></span></td><td>)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>command</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -245,7 +245,7 @@ Protected Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The result of the executed command. </dd></dl>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1ServoClient.html#a4ecda4dedd416ac9415664af0e0543ff">viam::sdk::impl::ServoClient</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1ServoClient.html#aaa84c330847ea6e624f07514b6b980b6">viam::sdk::impl::ServoClient</a>.</p>
 
 </div>
 </div>
@@ -277,8 +277,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a9b6085b9f857413ba1dfac432cfa95c0" name="a9b6085b9f857413ba1dfac432cfa95c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b6085b9f857413ba1dfac432cfa95c0">&#9670;&#160;</a></span>get_geometries() <span class="overload">[2/2]</span></h2>
+<a id="ae318195cf65b78069e60b23371dfe5e5" name="ae318195cf65b78069e60b23371dfe5e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae318195cf65b78069e60b23371dfe5e5">&#9670;&#160;</a></span>get_geometries() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -289,7 +289,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt; viam::sdk::Servo::get_geometries </td>
           <td>(</td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -309,7 +309,7 @@ Protected Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The requested <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the component. </dd></dl>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1ServoClient.html#ad23dc24b9d1102ea0107c63a705eab1d">viam::sdk::impl::ServoClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1ServoClient.html#a9b6085b9f857413ba1dfac432cfa95c0">viam::sdk::impl::ServoClient</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1ServoClient.html#a70993a0dd330b1b5b408479fbcebadd7">viam::sdk::impl::ServoClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1ServoClient.html#ae318195cf65b78069e60b23371dfe5e5">viam::sdk::impl::ServoClient</a>.</p>
 
 </div>
 </div>
@@ -346,8 +346,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a130acab1022a3b93a2ba200c6f1ba670" name="a130acab1022a3b93a2ba200c6f1ba670"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a130acab1022a3b93a2ba200c6f1ba670">&#9670;&#160;</a></span>get_position() <span class="overload">[2/2]</span></h2>
+<a id="a7d949abd6b4b77e0564dca4bb7ea1e83" name="a7d949abd6b4b77e0564dca4bb7ea1e83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d949abd6b4b77e0564dca4bb7ea1e83">&#9670;&#160;</a></span>get_position() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -358,7 +358,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual <a class="el" href="structposition.html">position</a> viam::sdk::Servo::get_position </td>
           <td>(</td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -383,7 +383,7 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1ServoClient.html#a7069348701f515dc70bbf8fc38f9ffe3">viam::sdk::impl::ServoClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1ServoClient.html#a130acab1022a3b93a2ba200c6f1ba670">viam::sdk::impl::ServoClient</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1ServoClient.html#a48552bda7786f980fa53a8572a66432e">viam::sdk::impl::ServoClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1ServoClient.html#a7d949abd6b4b77e0564dca4bb7ea1e83">viam::sdk::impl::ServoClient</a>.</p>
 
 </div>
 </div>
@@ -449,8 +449,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a13d25bde6c37fee2a27462d920c32de5" name="a13d25bde6c37fee2a27462d920c32de5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a13d25bde6c37fee2a27462d920c32de5">&#9670;&#160;</a></span>move() <span class="overload">[2/2]</span></h2>
+<a id="ac6c7d1b7b24616214dda12871985f761" name="ac6c7d1b7b24616214dda12871985f761"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6c7d1b7b24616214dda12871985f761">&#9670;&#160;</a></span>move() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -466,7 +466,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -485,7 +485,7 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1ServoClient.html#a4212061d6c8a37a698627f6601bb53db">viam::sdk::impl::ServoClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1ServoClient.html#a13d25bde6c37fee2a27462d920c32de5">viam::sdk::impl::ServoClient</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1ServoClient.html#a6f492535dc9156ed8260708d1dae9376">viam::sdk::impl::ServoClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1ServoClient.html#ac6c7d1b7b24616214dda12871985f761">viam::sdk::impl::ServoClient</a>.</p>
 
 </div>
 </div>

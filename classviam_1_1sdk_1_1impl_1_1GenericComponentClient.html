@@ -113,11 +113,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac2bfaee1c0b753abe95983f800338997" id="r_ac2bfaee1c0b753abe95983f800338997"><td class="memItemLeft" align="right" valign="top"><a id="ac2bfaee1c0b753abe95983f800338997" name="ac2bfaee1c0b753abe95983f800338997"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>GenericComponentClient</b> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>, std::shared_ptr&lt; grpc::Channel &gt; channel)</td></tr>
 <tr class="separator:ac2bfaee1c0b753abe95983f800338997"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a639a7774502cb89a9c820f4b7f264995" id="r_a639a7774502cb89a9c820f4b7f264995"><td class="memItemLeft" align="right" valign="top">AttributeMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a639a7774502cb89a9c820f4b7f264995">do_command</a> (const AttributeMap &amp;command) override</td></tr>
-<tr class="memdesc:a639a7774502cb89a9c820f4b7f264995"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
-<tr class="separator:a639a7774502cb89a9c820f4b7f264995"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf068ed69ac09b76e398a98e803ba6f4" id="r_abf068ed69ac09b76e398a98e803ba6f4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abf068ed69ac09b76e398a98e803ba6f4">get_geometries</a> (const AttributeMap &amp;extra) override</td></tr>
-<tr class="separator:abf068ed69ac09b76e398a98e803ba6f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac631cbfa1af75678ba804a14e97a8bd6" id="r_ac631cbfa1af75678ba804a14e97a8bd6"><td class="memItemLeft" align="right" valign="top">ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac631cbfa1af75678ba804a14e97a8bd6">do_command</a> (const ProtoStruct &amp;command) override</td></tr>
+<tr class="memdesc:ac631cbfa1af75678ba804a14e97a8bd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
+<tr class="separator:ac631cbfa1af75678ba804a14e97a8bd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae553cf6abdb1b576447c6a8e15cc98d9" id="r_ae553cf6abdb1b576447c6a8e15cc98d9"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae553cf6abdb1b576447c6a8e15cc98d9">get_geometries</a> (const ProtoStruct &amp;extra) override</td></tr>
+<tr class="separator:ae553cf6abdb1b576447c6a8e15cc98d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classviam_1_1sdk_1_1GenericComponent"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classviam_1_1sdk_1_1GenericComponent')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1GenericComponent.html">viam::sdk::GenericComponent</a></td></tr>
 <tr class="memitem:abc575b7b43ae5a19d5b6f0188a5730a8 inherit pub_methods_classviam_1_1sdk_1_1GenericComponent" id="r_abc575b7b43ae5a19d5b6f0188a5730a8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1GenericComponent.html#abc575b7b43ae5a19d5b6f0188a5730a8">get_geometries</a> ()</td></tr>
 <tr class="memdesc:abc575b7b43ae5a19d5b6f0188a5730a8 inherit pub_methods_classviam_1_1sdk_1_1GenericComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling camera.  <br /></td></tr>
@@ -155,8 +155,8 @@ Protected Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>gRPC client implementation of a <code><a class="el" href="classviam_1_1sdk_1_1GenericComponent.html" title="A GenericComponent represents any component that can execute arbitrary commands.">GenericComponent</a></code>. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a639a7774502cb89a9c820f4b7f264995" name="a639a7774502cb89a9c820f4b7f264995"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a639a7774502cb89a9c820f4b7f264995">&#9670;&#160;</a></span>do_command()</h2>
+<a id="ac631cbfa1af75678ba804a14e97a8bd6" name="ac631cbfa1af75678ba804a14e97a8bd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac631cbfa1af75678ba804a14e97a8bd6">&#9670;&#160;</a></span>do_command()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -165,9 +165,9 @@ Protected Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">AttributeMap viam::sdk::impl::GenericComponentClient::do_command </td>
+          <td class="memname">ProtoStruct viam::sdk::impl::GenericComponentClient::do_command </td>
           <td>(</td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>command</em></span></td><td>)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>command</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -187,12 +187,12 @@ Protected Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The result of the executed command. </dd></dl>
 
-<p>Implements <a class="el" href="classviam_1_1sdk_1_1GenericComponent.html#af8070b9190b438faa859369ebb0f6c84">viam::sdk::GenericComponent</a>.</p>
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1GenericComponent.html#ae07607b5e6cfaeab99de862b570edc2b">viam::sdk::GenericComponent</a>.</p>
 
 </div>
 </div>
-<a id="abf068ed69ac09b76e398a98e803ba6f4" name="abf068ed69ac09b76e398a98e803ba6f4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf068ed69ac09b76e398a98e803ba6f4">&#9670;&#160;</a></span>get_geometries()</h2>
+<a id="ae553cf6abdb1b576447c6a8e15cc98d9" name="ae553cf6abdb1b576447c6a8e15cc98d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae553cf6abdb1b576447c6a8e15cc98d9">&#9670;&#160;</a></span>get_geometries()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -203,7 +203,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td class="memname">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt; viam::sdk::impl::GenericComponentClient::get_geometries </td>
           <td>(</td>
-          <td class="paramtype">const AttributeMap &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
