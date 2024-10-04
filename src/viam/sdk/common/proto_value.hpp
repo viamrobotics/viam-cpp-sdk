@@ -336,9 +336,9 @@ void map_to_struct(const ProtoStruct& m, google::protobuf::Struct* s);
 /// API/ABI. It is meant to be called with no template parameters in a translation unit which
 /// includes <google/protobuf/struct.pb.h>
 template <typename Value = google::protobuf::Value>
-Value to_proto(const ProtoValue& pv) {
+Value to_proto(const ProtoValue& proto_value) {
     Value v;
-    to_proto(pv, &v);
+    to_proto(proto_value, &v);
 
     return v;
 }
