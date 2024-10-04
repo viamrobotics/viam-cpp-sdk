@@ -36,44 +36,45 @@ std::unique_ptr< FileUploadService::Stub> FileUploadService::NewStub(const std::
 }
 
 FileUploadService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_UploadFile_(FileUploadService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
+  : channel_(channel), rpcmethod_UploadFile_(FileUploadService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::CLIENT_STREAMING, channel)
   {}
 
-::grpc::ClientReaderWriter< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>* FileUploadService::Stub::UploadFileRaw(::grpc::ClientContext* context) {
-  return ::grpc::internal::ClientReaderWriterFactory< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>::Create(channel_.get(), rpcmethod_UploadFile_, context);
+::grpc::ClientWriter< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* FileUploadService::Stub::UploadFileRaw(::grpc::ClientContext* context, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* response) {
+  return ::grpc::internal::ClientWriterFactory< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>::Create(channel_.get(), rpcmethod_UploadFile_, context, response);
 }
 
-void FileUploadService::Stub::async::UploadFile(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::proto::rpc::examples::fileupload::v1::UploadFileRequest,::proto::rpc::examples::fileupload::v1::UploadFileResponse>* reactor) {
-  ::grpc::internal::ClientCallbackReaderWriterFactory< ::proto::rpc::examples::fileupload::v1::UploadFileRequest,::proto::rpc::examples::fileupload::v1::UploadFileResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_UploadFile_, context, reactor);
+void FileUploadService::Stub::async::UploadFile(::grpc::ClientContext* context, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* response, ::grpc::ClientWriteReactor< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* reactor) {
+  ::grpc::internal::ClientCallbackWriterFactory< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>::Create(stub_->channel_.get(), stub_->rpcmethod_UploadFile_, context, response, reactor);
 }
 
-::grpc::ClientAsyncReaderWriter< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>* FileUploadService::Stub::AsyncUploadFileRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
-  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>::Create(channel_.get(), cq, rpcmethod_UploadFile_, context, true, tag);
+::grpc::ClientAsyncWriter< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* FileUploadService::Stub::AsyncUploadFileRaw(::grpc::ClientContext* context, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* response, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc::internal::ClientAsyncWriterFactory< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>::Create(channel_.get(), cq, rpcmethod_UploadFile_, context, response, true, tag);
 }
 
-::grpc::ClientAsyncReaderWriter< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>* FileUploadService::Stub::PrepareAsyncUploadFileRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>::Create(channel_.get(), cq, rpcmethod_UploadFile_, context, false, nullptr);
+::grpc::ClientAsyncWriter< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* FileUploadService::Stub::PrepareAsyncUploadFileRaw(::grpc::ClientContext* context, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* response, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncWriterFactory< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>::Create(channel_.get(), cq, rpcmethod_UploadFile_, context, response, false, nullptr);
 }
 
 FileUploadService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       FileUploadService_method_names[0],
-      ::grpc::internal::RpcMethod::BIDI_STREAMING,
-      new ::grpc::internal::BidiStreamingHandler< FileUploadService::Service, ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>(
+      ::grpc::internal::RpcMethod::CLIENT_STREAMING,
+      new ::grpc::internal::ClientStreamingHandler< FileUploadService::Service, ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>(
           [](FileUploadService::Service* service,
              ::grpc::ServerContext* ctx,
-             ::grpc::ServerReaderWriter<::proto::rpc::examples::fileupload::v1::UploadFileResponse,
-             ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* stream) {
-               return service->UploadFile(ctx, stream);
+             ::grpc::ServerReader<::proto::rpc::examples::fileupload::v1::UploadFileRequest>* reader,
+             ::proto::rpc::examples::fileupload::v1::UploadFileResponse* resp) {
+               return service->UploadFile(ctx, reader, resp);
              }, this)));
 }
 
 FileUploadService::Service::~Service() {
 }
 
-::grpc::Status FileUploadService::Service::UploadFile(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::proto::rpc::examples::fileupload::v1::UploadFileResponse, ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* stream) {
+::grpc::Status FileUploadService::Service::UploadFile(::grpc::ServerContext* context, ::grpc::ServerReader< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* reader, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* response) {
   (void) context;
-  (void) stream;
+  (void) reader;
+  (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
