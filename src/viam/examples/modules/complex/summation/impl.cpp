@@ -17,11 +17,8 @@ bool find_subtract(ResourceConfig cfg) {
     if (subtract == cfg.attributes().end()) {
         return false;
     }
-    const bool* const subtract_bool = subtract->second.get<bool>();
-    if (!subtract_bool) {
-        return false;
-    }
-    return *subtract_bool;
+
+    return subtract->second.is_a<bool>() && subtract->second.get_unchecked<bool>();
 }
 
 void MySummation::reconfigure(const Dependencies& deps, const ResourceConfig& cfg) {
