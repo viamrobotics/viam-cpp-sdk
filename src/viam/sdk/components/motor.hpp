@@ -7,7 +7,7 @@
 
 #include <viam/api/component/motor/v1/motor.pb.h>
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/stoppable.hpp>
@@ -74,7 +74,7 @@ class Motor : public Component, public Stoppable {
     /// @param power_pct Percentage of motor's power, between -1 and 1, where negative values
     /// indicate a backwards direction and positive values, a forward direction.
     /// @param extra Any additional arguments to the method.
-    virtual void set_power(double power_pct, const AttributeMap& extra) = 0;
+    virtual void set_power(double power_pct, const ProtoStruct& extra) = 0;
 
     /// @brief Instructs the motor to turn at a specified speed, which is expressed in RPM, for a
     /// specified number of rotations relative to its starting position.
@@ -97,7 +97,7 @@ class Motor : public Component, public Stoppable {
     /// comes in.
     /// @param extra Any additional arguments to the method.
     /// @throws `Exception` if position reporting is not supported
-    virtual void go_for(double rpm, double revolutions, const AttributeMap& extra) = 0;
+    virtual void go_for(double rpm, double revolutions, const ProtoStruct& extra) = 0;
 
     /// @brief Move the motor to a specific position that is relative to its
     /// home position at a specified speed which is expressed in RPM.
@@ -114,7 +114,7 @@ class Motor : public Component, public Stoppable {
     /// @param position_revolutions Number of revolutions relative to motor's home home/zero
     /// @param extra Any additional arguments to the method.
     /// @throws `Exception` if position reporting is not supported
-    virtual void go_to(double rpm, double position_revolutions, const AttributeMap& extra) = 0;
+    virtual void go_to(double rpm, double position_revolutions, const ProtoStruct& extra) = 0;
 
     /// @brief Move the motor indefinitely at a specified speed which is expressed in RPM.
     /// @param rpm Speed of motor travel in rotations per minute
@@ -127,7 +127,7 @@ class Motor : public Component, public Stoppable {
     /// @param rpm Speed of motor travel in rotations per minute
     /// @param extra Any additional arguments to the method.
     /// @throws `Exception` if position reporting is not supported
-    virtual void set_rpm(double rpm, const AttributeMap& extra) = 0;
+    virtual void set_rpm(double rpm, const ProtoStruct& extra) = 0;
 
     /// @brief Sets the current position of the motor as the new zero position.
     /// @param offset Motor position
@@ -140,7 +140,7 @@ class Motor : public Component, public Stoppable {
     /// @param offset Motor position
     /// @param extra Any additional arguments to the method
     /// @throws `Exception` if position reporting is not supported
-    virtual void reset_zero_position(double offset, const AttributeMap& extra) = 0;
+    virtual void reset_zero_position(double offset, const ProtoStruct& extra) = 0;
 
     /// @brief Reports the position of the robot's motor relative to its zero position.
     /// @throws `Exception` if position reporting is not supported
@@ -151,7 +151,7 @@ class Motor : public Component, public Stoppable {
     /// @brief Reports the position of the robot's motor relative to its zero position.
     /// @param extra Any additional arguments to the method
     /// @throws `Exception` if position reporting is not supported
-    virtual position get_position(const AttributeMap& extra) = 0;
+    virtual position get_position(const ProtoStruct& extra) = 0;
 
     /// @brief Returns the properties of the motor which comprises the booleans indicating
     /// which optional features the robot's motor supports
@@ -162,7 +162,7 @@ class Motor : public Component, public Stoppable {
     /// @brief Returns the properties of the motor which comprises the booleans indicating
     /// @param extra Any additional arguments to the method
     /// which optional features the robot's motor supports
-    virtual properties get_properties(const AttributeMap& extra) = 0;
+    virtual properties get_properties(const ProtoStruct& extra) = 0;
 
     /// @return The motor's current power_status
     inline power_status get_power_status() {
@@ -171,7 +171,7 @@ class Motor : public Component, public Stoppable {
 
     /// @return The motor's current power_status
     /// @param extra Any additional arguments to the method
-    virtual power_status get_power_status(const AttributeMap& extra) = 0;
+    virtual power_status get_power_status(const ProtoStruct& extra) = 0;
 
     /// @brief Reports if a component is in motion
     virtual bool is_moving() = 0;
@@ -179,7 +179,7 @@ class Motor : public Component, public Stoppable {
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.
     /// @return The result of the executed command.
-    virtual AttributeMap do_command(const AttributeMap& command) = 0;
+    virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
     /// @brief Returns `GeometryConfig`s associated with the calling motor.
     /// @return The requested `GeometryConfig`s associated with the component.
@@ -190,7 +190,7 @@ class Motor : public Component, public Stoppable {
     /// @brief Returns `GeometryConfig`s associated with the calling motor.
     /// @param extra Any additional arguments to the method.
     /// @return The requested `GeometryConfig`s associated with the component.
-    virtual std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) = 0;
+    virtual std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) = 0;
 
     API api() const override;
 

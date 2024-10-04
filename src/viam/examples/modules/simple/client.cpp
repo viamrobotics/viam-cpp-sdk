@@ -1,7 +1,7 @@
 #include <memory>
 #include <string>
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/services/generic.hpp>
@@ -39,22 +39,10 @@ int main() {
         return EXIT_FAILURE;
     }
 
-    auto proto_ptr = std::make_shared<ProtoType>(std::string("world"));
-    AttributeMap command =
-        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
-    command->insert({{std::string("hello"), proto_ptr}});
+    ProtoStruct command{{"hello", "world"}};
+    ProtoStruct resp = printer->do_command(command);
 
-    auto resp = printer->do_command(command);
-
-    if (!resp) {
-        std::cerr << "Failed to get a response from 'printer1'\n";
-        return EXIT_FAILURE;
-    }
-
-    std::shared_ptr<ProtoType> expected = command->at(std::string("hello"));
-    std::shared_ptr<ProtoType> result = resp->at(std::string("hello"));
-
-    if (!(*expected == *result)) {
+    if (command != resp) {
         std::cerr << "Got unexpected result from 'printer1'\n";
         return EXIT_FAILURE;
     }

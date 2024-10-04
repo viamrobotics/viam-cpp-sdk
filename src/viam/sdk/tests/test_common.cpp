@@ -93,26 +93,19 @@ BOOST_AUTO_TEST_CASE(test_large_positive) {
 }
 
 BOOST_AUTO_TEST_CASE(test_from_dm_from_extra) {
-    BOOST_CHECK_EQUAL(from_dm_from_extra(nullptr), false);
-
-    AttributeMap map = fake_map();
+    ProtoStruct map = fake_map();
     BOOST_CHECK_EQUAL(from_dm_from_extra(map), false);
 
-    map = std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
-    map->insert({{std::string("fromDataManagement"), std::make_shared<ProtoType>(true)}});
+    map = ProtoStruct{{"fromDataManagement", true}};
     BOOST_CHECK_EQUAL(from_dm_from_extra(map), true);
 
-    map = std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
-    map->insert({{std::string("fromDataManagement"), std::make_shared<ProtoType>(false)}});
+    map = ProtoStruct{{"fromDataManagement", false}};
     BOOST_CHECK_EQUAL(from_dm_from_extra(map), false);
 
-    map = std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
-    map->insert(
-        {{std::string("fromDataManagement"), std::make_shared<ProtoType>(std::string("hello"))}});
+    map = ProtoStruct{{"fromDataManagement", "hello"}};
     BOOST_CHECK_EQUAL(from_dm_from_extra(map), false);
 
-    map = std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
-    map->insert({{std::string("fromDataManagement"), std::make_shared<ProtoType>(3.5)}});
+    map = ProtoStruct{{"fromDataManagement", 3.5}};
     BOOST_CHECK_EQUAL(from_dm_from_extra(map), false);
 }
 

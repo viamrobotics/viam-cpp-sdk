@@ -49,7 +49,7 @@ class ServiceHelper : public ServiceHelperBase {
     }
 
     auto getExtra() const {
-        return request_->has_extra() ? struct_to_map(request_->extra()) : AttributeMap{};
+        return request_->has_extra() ? struct_to_map(request_->extra()) : ProtoStruct{};
     }
 
    private:

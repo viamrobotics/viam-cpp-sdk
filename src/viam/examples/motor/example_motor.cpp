@@ -109,9 +109,7 @@ int main() {
 
         // Explicitly stop the motor
         cout << "Stopping motor" << endl;
-        vs::AttributeMap stop_map =
-            std::make_shared<std::unordered_map<std::string, std::shared_ptr<vs::ProtoType>>>();
-        motor->stop(stop_map);
+        motor->stop({});
 
     } catch (const std::exception& ex) {
         cerr << "Program failed. Exception: " << std::string(ex.what()) << endl;

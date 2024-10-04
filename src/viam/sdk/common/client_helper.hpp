@@ -4,7 +4,7 @@
 #include <grpcpp/support/sync_stream.h>
 
 #include <viam/sdk/common/exception.hpp>
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 
 namespace viam {
@@ -41,7 +41,7 @@ class ClientHelper {
     explicit ClientHelper(ClientType* client, StubType* stub, MethodType pfn)
         : client_(client), stub_(stub), pfn_(pfn) {}
 
-    ClientHelper& with(const AttributeMap& extra) {
+    ClientHelper& with(const ProtoStruct& extra) {
         return with(extra, default_rsc_);
     }
 
@@ -52,7 +52,7 @@ class ClientHelper {
     }
 
     template <typename RequestSetupCallable>
-    ClientHelper& with(const AttributeMap& extra, RequestSetupCallable&& rsc) {
+    ClientHelper& with(const ProtoStruct& extra, RequestSetupCallable&& rsc) {
         *request_.mutable_extra() = map_to_struct(extra);
         return with(std::forward<RequestSetupCallable>(rsc));
     }

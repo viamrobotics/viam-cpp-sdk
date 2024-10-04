@@ -122,7 +122,7 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
     viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<MovementSensor>(
         "MovementSensorServer::DoCommand", this, request)([&](auto&, auto& movementsensor) {
-        const AttributeMap result = movementsensor->do_command(struct_to_map(request->command()));
+        const ProtoStruct result = movementsensor->do_command(struct_to_map(request->command()));
         *response->mutable_result() = map_to_struct(result);
     });
 }

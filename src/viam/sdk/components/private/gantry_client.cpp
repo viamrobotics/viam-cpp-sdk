@@ -14,7 +14,7 @@ GantryClient::GantryClient(std::string name, std::shared_ptr<grpc::Channel> chan
       stub_(viam::component::gantry::v1::GantryService::NewStub(channel)),
       channel_(std::move(channel)) {}
 
-std::vector<double> GantryClient::get_position(const AttributeMap& extra) {
+std::vector<double> GantryClient::get_position(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetPosition)
         .with(extra)
         .invoke([&](auto& response) {
@@ -24,7 +24,7 @@ std::vector<double> GantryClient::get_position(const AttributeMap& extra) {
 }
 
 void GantryClient::move_to_position(const std::vector<Gantry::movement_coordinate>& coordinates,
-                                    const AttributeMap& extra) {
+                                    const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::MoveToPosition)
         .with(extra,
               [&](auto& request) {
@@ -39,13 +39,13 @@ void GantryClient::move_to_position(const std::vector<Gantry::movement_coordinat
         .invoke();
 }
 
-bool GantryClient::home(const AttributeMap& extra) {
+bool GantryClient::home(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::Home).with(extra).invoke([](auto& response) {
         return response.homed();
     });
 }
 
-std::vector<double> GantryClient::get_lengths(const AttributeMap& extra) {
+std::vector<double> GantryClient::get_lengths(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetLengths)
         .with(extra)
         .invoke([](auto& response) {
@@ -59,17 +59,17 @@ bool GantryClient::is_moving() {
     });
 }
 
-void GantryClient::stop(const AttributeMap& extra) {
+void GantryClient::stop(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::Stop).with(extra).invoke();
 }
 
-AttributeMap GantryClient::do_command(const AttributeMap& command) {
+ProtoStruct GantryClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
         .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
         .invoke([](auto& response) { return struct_to_map(response.result()); });
 }
 
-std::vector<GeometryConfig> GantryClient::get_geometries(const AttributeMap& extra) {
+std::vector<GeometryConfig> GantryClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
         .invoke([](auto& response) { return GeometryConfig::from_proto(response); });

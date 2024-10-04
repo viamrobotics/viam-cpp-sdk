@@ -150,15 +150,12 @@ BOOST_AUTO_TEST_CASE(mock_list_plan_statuses) {
 
 BOOST_AUTO_TEST_CASE(mock_do_command) {
     std::shared_ptr<MockMotion> motion = MockMotion::get_mock_motion();
-    AttributeMap expected = fake_map();
+    ProtoStruct expected = fake_map();
 
-    AttributeMap command = fake_map();
-    AttributeMap result_map = motion->do_command(command);
+    ProtoStruct command = fake_map();
+    ProtoStruct result_map = motion->do_command(command);
 
-    ProtoType expected_pt = *(expected->at(std::string("test")));
-    ProtoType result_pt = *(result_map->at(std::string("test")));
-
-    BOOST_CHECK(result_pt == expected_pt);
+    BOOST_CHECK(result_map.at("test") == expected.at("test"));
 }
 
 BOOST_AUTO_TEST_SUITE_END()
@@ -170,7 +167,7 @@ BOOST_AUTO_TEST_CASE(test_move_and_get_pose) {
     client_to_mock_pipeline<Motion>(mock, [](Motion& client) {
         std::string destination_frame("destination");
         std::vector<WorldState::transform> transforms;
-        AttributeMap extra = fake_map();
+        ProtoStruct extra = fake_map();
         pose_in_frame pose = client.get_pose(fake_component_name(), destination_frame, {}, extra);
         BOOST_CHECK_EQUAL(pose, init_fake_pose());
 
@@ -268,15 +265,12 @@ BOOST_AUTO_TEST_CASE(test_stop_plan) {
 BOOST_AUTO_TEST_CASE(test_do_command) {
     auto mock = std::make_shared<MockMotion>("mock_motion");
     client_to_mock_pipeline<Motion>(mock, [](Motion& client) {
-        AttributeMap expected = fake_map();
+        ProtoStruct expected = fake_map();
 
-        AttributeMap command = fake_map();
-        AttributeMap result_map = client.do_command(command);
+        ProtoStruct command = fake_map();
+        ProtoStruct result_map = client.do_command(command);
 
-        ProtoType expected_pt = *(expected->at(std::string("test")));
-        ProtoType result_pt = *(result_map->at(std::string("test")));
-
-        BOOST_CHECK(result_pt == expected_pt);
+        BOOST_CHECK(result_map.at("test") == expected.at("test"));
     });
 }
 

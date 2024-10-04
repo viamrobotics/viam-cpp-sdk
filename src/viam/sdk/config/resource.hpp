@@ -6,7 +6,7 @@
 #include <viam/api/app/v1/robot.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/referenceframe/frame.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 
@@ -16,8 +16,8 @@ namespace sdk {
 class ResourceLevelServiceConfig {
    public:
     std::string type;
-    AttributeMap attributes;
-    ProtoType converted_attributes;
+    ProtoStruct attributes;
+    ProtoValue converted_attributes;
 };
 
 class ResourceConfig {
@@ -32,7 +32,7 @@ class ResourceConfig {
     const std::string& name() const;
     const std::string& namespace_() const;
     const std::string& type() const;
-    const AttributeMap& attributes() const;
+    const ProtoStruct& attributes() const;
 
    private:
     API api_;
@@ -43,8 +43,8 @@ class ResourceConfig {
     std::string type_;
     std::vector<std::string> depends_on_;
     std::vector<ResourceLevelServiceConfig> service_config_;
-    AttributeMap attributes_;
-    ProtoType converted_attributes_;
+    ProtoStruct attributes_;
+    ProtoValue converted_attributes_;
     std::vector<std::string> implicit_depends_on_;
     void fix_api();
 };

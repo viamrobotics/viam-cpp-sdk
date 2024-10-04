@@ -44,19 +44,19 @@ class RobotClient {
 
     struct discovery {
         discovery_query query;
-        AttributeMap results;
+        ProtoStruct results;
         friend bool operator==(const discovery& lhs, const discovery& rhs);
     };
 
     struct frame_system_config {
         WorldState::transform frame;
-        AttributeMap kinematics;
+        ProtoStruct kinematics;
         friend bool operator==(const frame_system_config& lhs, const frame_system_config& rhs);
     };
 
     struct status {
         boost::optional<Name> name;
-        AttributeMap status_map;
+        ProtoStruct status_map;
         // TODO: RSDK-6574: revisit time_point
         boost::optional<std::chrono::time_point<long long, std::chrono::nanoseconds>>
             last_reconfigured;
@@ -67,7 +67,7 @@ class RobotClient {
         std::string id;
         std::string method;
         boost::optional<std::string> session_id;
-        AttributeMap arguments;
+        ProtoStruct arguments;
         // TODO: RSDK-6574: revisit time_point
         boost::optional<std::chrono::time_point<long long, std::chrono::nanoseconds>> started;
         friend bool operator==(const operation& lhs, const operation& rhs);
@@ -161,7 +161,7 @@ class RobotClient {
 
     /// @brief Cancel all operations for the robot and stop all actuators and movement.
     /// @param extra Any extra params to pass to resources' `stop` methods, keyed by `Name`.
-    void stop_all(const std::unordered_map<Name, AttributeMap>& extra);
+    void stop_all(const std::unordered_map<Name, ProtoStruct>& extra);
 
     /// @brief Cancel a specified operation on the robot.
     /// @param id The ID of the operation to cancel.

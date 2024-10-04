@@ -21,15 +21,15 @@ class GantryClient : public Gantry {
     using interface_type = Gantry;
     GantryClient(std::string names, std::shared_ptr<grpc::Channel> channel);
 
-    std::vector<double> get_position(const AttributeMap& extra) override;
+    std::vector<double> get_position(const ProtoStruct& extra) override;
     void move_to_position(const std::vector<movement_coordinate>& coordinates,
-                          const AttributeMap& extra) override;
-    bool home(const AttributeMap& extra) override;
-    std::vector<double> get_lengths(const AttributeMap& extra) override;
+                          const ProtoStruct& extra) override;
+    bool home(const ProtoStruct& extra) override;
+    std::vector<double> get_lengths(const ProtoStruct& extra) override;
     bool is_moving() override;
-    void stop(const AttributeMap& extra) override;
-    AttributeMap do_command(const AttributeMap& command) override;
-    std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
+    void stop(const ProtoStruct& extra) override;
+    ProtoStruct do_command(const ProtoStruct& command) override;
+    std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 
     using Gantry::get_geometries;
     using Gantry::get_lengths;

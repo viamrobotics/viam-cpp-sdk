@@ -16,7 +16,7 @@ PoseTrackerClient::PoseTrackerClient(std::string name, std::shared_ptr<grpc::Cha
       channel_(std::move(channel)) {}
 
 PoseTracker::pose_map PoseTrackerClient::get_poses(const std::vector<std::string>& body_names,
-                                                   const AttributeMap&) {
+                                                   const ProtoStruct&) {
     return make_client_helper(this, *stub_, &StubType::GetPoses)
         .with([&](viam::component::posetracker::v1::GetPosesRequest& request) {
             *request.mutable_body_names() = {body_names.begin(), body_names.end()};
@@ -32,13 +32,13 @@ PoseTracker::pose_map PoseTrackerClient::get_poses(const std::vector<std::string
         });
 }
 
-std::vector<GeometryConfig> PoseTrackerClient::get_geometries(const AttributeMap& extra) {
+std::vector<GeometryConfig> PoseTrackerClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
         .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
 }
 
-AttributeMap PoseTrackerClient::do_command(const AttributeMap& command) {
+ProtoStruct PoseTrackerClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
         .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
         .invoke([](auto& response) { return struct_to_map(response.result()); });
