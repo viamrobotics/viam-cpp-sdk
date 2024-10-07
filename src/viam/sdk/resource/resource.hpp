@@ -5,7 +5,7 @@
 #include <grpcpp/impl/service_type.h>
 #include <grpcpp/support/status.h>
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 

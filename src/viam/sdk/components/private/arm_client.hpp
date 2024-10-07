@@ -21,19 +21,19 @@ class ArmClient : public Arm {
     using interface_type = Arm;
     ArmClient(std::string name, std::shared_ptr<grpc::Channel> channel);
 
-    pose get_end_position(const AttributeMap& extra) override;
-    void move_to_position(const pose& pose, const AttributeMap& extra) override;
-    std::vector<double> get_joint_positions(const AttributeMap& extra) override;
+    pose get_end_position(const ProtoStruct& extra) override;
+    void move_to_position(const pose& pose, const ProtoStruct& extra) override;
+    std::vector<double> get_joint_positions(const ProtoStruct& extra) override;
     void move_to_joint_positions(const std::vector<double>& positions,
-                                 const AttributeMap& extra) override;
+                                 const ProtoStruct& extra) override;
     bool is_moving() override;
-    void stop(const AttributeMap& extra) override;
-    AttributeMap do_command(const AttributeMap& command) override;
-    Arm::KinematicsData get_kinematics(const AttributeMap& extra) override;
-    std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
+    void stop(const ProtoStruct& extra) override;
+    ProtoStruct do_command(const ProtoStruct& command) override;
+    Arm::KinematicsData get_kinematics(const ProtoStruct& extra) override;
+    std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 
     // Using declarations to introduce convenience overloads of interface which do not need to be
-    // passed the AttributeMap parameter.
+    // passed the ProtoStruct parameter.
     using Arm::get_end_position;
     using Arm::get_geometries;
     using Arm::get_joint_positions;

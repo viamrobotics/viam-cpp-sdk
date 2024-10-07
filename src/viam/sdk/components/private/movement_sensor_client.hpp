@@ -24,16 +24,16 @@ class MovementSensorClient : public MovementSensor {
    public:
     using interface_type = MovementSensor;
     MovementSensorClient(std::string name, std::shared_ptr<grpc::Channel> channel);
-    Vector3 get_linear_velocity(const AttributeMap& extra) override;
-    Vector3 get_angular_velocity(const AttributeMap& extra) override;
-    compassheading get_compass_heading(const AttributeMap& extra) override;
-    orientation get_orientation(const AttributeMap& extra) override;
-    position get_position(const AttributeMap& extra) override;
-    properties get_properties(const AttributeMap& extra) override;
-    std::unordered_map<std::string, float> get_accuracy(const AttributeMap& extra) override;
-    Vector3 get_linear_acceleration(const AttributeMap& extra) override;
-    AttributeMap do_command(const AttributeMap& command) override;
-    std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
+    Vector3 get_linear_velocity(const ProtoStruct& extra) override;
+    Vector3 get_angular_velocity(const ProtoStruct& extra) override;
+    compassheading get_compass_heading(const ProtoStruct& extra) override;
+    orientation get_orientation(const ProtoStruct& extra) override;
+    position get_position(const ProtoStruct& extra) override;
+    properties get_properties(const ProtoStruct& extra) override;
+    std::unordered_map<std::string, float> get_accuracy(const ProtoStruct& extra) override;
+    Vector3 get_linear_acceleration(const ProtoStruct& extra) override;
+    ProtoStruct do_command(const ProtoStruct& command) override;
+    std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 
     using MovementSensor::get_accuracy;
     using MovementSensor::get_angular_velocity;

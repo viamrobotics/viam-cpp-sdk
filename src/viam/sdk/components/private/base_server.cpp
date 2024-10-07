@@ -106,7 +106,7 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager)
                                      viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Base>(
         "BaseServer::DoCommand", this, request)([&](auto&, auto& base) {
-        const AttributeMap result = base->do_command(struct_to_map(request->command()));
+        const ProtoStruct result = base->do_command(struct_to_map(request->command()));
         *response->mutable_result() = map_to_struct(result);
     });
 }

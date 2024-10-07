@@ -8,7 +8,7 @@
 
 #include <boost/test/included/unit_test.hpp>
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/board.hpp>
 #include <viam/sdk/tests/mocks/mock_board.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
@@ -93,14 +93,12 @@ BOOST_AUTO_TEST_CASE(test_set_pwm_frequency) {
 BOOST_AUTO_TEST_CASE(test_do_command) {
     const auto mock = std::make_shared<MockBoard>("mock_board");
     client_to_mock_pipeline<Board>(mock, [](Board& client) {
-        AttributeMap expected = fake_map();
+        ProtoStruct expected = fake_map();
 
-        AttributeMap command = fake_map();
-        AttributeMap result_map = client.do_command(command);
+        ProtoStruct command = fake_map();
+        ProtoStruct result_map = client.do_command(command);
 
-        ProtoType expected_pt = *(expected->at(std::string("test")));
-        ProtoType result_pt = *(result_map->at(std::string("test")));
-        BOOST_CHECK(result_pt == expected_pt);
+        BOOST_CHECK(result_map.at("test") == expected.at("test"));
     });
 }
 

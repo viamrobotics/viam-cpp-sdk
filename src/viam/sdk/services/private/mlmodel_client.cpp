@@ -41,7 +41,7 @@ MLModelServiceClient::MLModelServiceClient(std::string name, std::shared_ptr<grp
       stub_(service_type::NewStub(channel_)) {}
 
 std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
-    const named_tensor_views& inputs, const AttributeMap& extra) {
+    const named_tensor_views& inputs, const ProtoStruct& extra) {
     namespace pb = ::google::protobuf;
     namespace mlpb = ::viam::service::mlmodel::v1;
 
@@ -89,7 +89,7 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
     return {std::move(aav), tsav_views};
 }
 
-struct MLModelService::metadata MLModelServiceClient::metadata(const AttributeMap& extra) {
+struct MLModelService::metadata MLModelServiceClient::metadata(const ProtoStruct& extra) {
     // Encode metadata args into a `MetadataRequest`
     viam::service::mlmodel::v1::MetadataRequest req;
     *req.mutable_name() = name();

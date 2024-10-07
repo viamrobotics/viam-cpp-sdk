@@ -19,13 +19,13 @@ class MockPoseTracker : public sdk::PoseTracker {
     MockPoseTracker(std::string name) : sdk::PoseTracker(std::move(name)) {}
 
     sdk::PoseTracker::pose_map get_poses(const std::vector<std::string>& body_names,
-                                         const sdk::AttributeMap& extra) override;
+                                         const sdk::ProtoStruct& extra) override;
 
-    sdk::AttributeMap do_command(const sdk::AttributeMap& command) override;
+    sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
 
-    std::vector<sdk::GeometryConfig> get_geometries(const sdk::AttributeMap& extra) override;
+    std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;
 
-    sdk::AttributeMap peek_do_command_command;
+    sdk::ProtoStruct peek_do_command_command;
 };
 
 }  // namespace pose_tracker

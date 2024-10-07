@@ -2,7 +2,7 @@
 
 #include <stdexcept>
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/servo.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
@@ -13,20 +13,20 @@ namespace servo {
 
 using namespace viam::sdk;
 
-void MockServo::move(uint32_t angle_deg, const AttributeMap&) {
+void MockServo::move(uint32_t angle_deg, const ProtoStruct&) {
     is_moving_ = true;
     position_ = angle_deg;
 }
 
-Servo::position MockServo::get_position(const AttributeMap&) {
+Servo::position MockServo::get_position(const ProtoStruct&) {
     return position_;
 }
 
-void MockServo::stop(const AttributeMap&) {
+void MockServo::stop(const ProtoStruct&) {
     is_moving_ = false;
 }
 
-std::vector<GeometryConfig> MockServo::get_geometries(const sdk::AttributeMap&) {
+std::vector<GeometryConfig> MockServo::get_geometries(const sdk::ProtoStruct&) {
     return fake_geometries();
 }
 
@@ -34,7 +34,7 @@ bool MockServo::is_moving() {
     return is_moving_;
 }
 
-AttributeMap MockServo::do_command(const AttributeMap&) {
+ProtoStruct MockServo::do_command(const ProtoStruct&) {
     return map_;
 }
 

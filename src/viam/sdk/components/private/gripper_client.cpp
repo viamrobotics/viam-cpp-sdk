@@ -4,7 +4,7 @@
 #include <viam/api/component/gripper/v1/gripper.pb.h>
 
 #include <viam/sdk/common/client_helper.hpp>
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
 
 namespace viam {
@@ -16,11 +16,11 @@ GripperClient::GripperClient(std::string name, std::shared_ptr<grpc::Channel> ch
       stub_(viam::component::gripper::v1::GripperService::NewStub(channel)),
       channel_(std::move(channel)) {}
 
-void GripperClient::open(const AttributeMap& extra) {
+void GripperClient::open(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::Open).with(extra).invoke();
 }
 
-bool GripperClient::grab(const AttributeMap& extra) {
+bool GripperClient::grab(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::Grab).with(extra).invoke([](auto& response) {
         return response.success();
     });
@@ -32,17 +32,17 @@ bool GripperClient::is_moving() {
     });
 }
 
-void GripperClient::stop(const AttributeMap& extra) {
+void GripperClient::stop(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::Stop).with(extra).invoke();
 }
 
-AttributeMap GripperClient::do_command(const AttributeMap& command) {
+ProtoStruct GripperClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
         .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
         .invoke([](auto& response) { return struct_to_map(response.result()); });
 }
 
-std::vector<GeometryConfig> GripperClient::get_geometries(const AttributeMap& extra) {
+std::vector<GeometryConfig> GripperClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
         .invoke([](auto& response) { return GeometryConfig::from_proto(response); });

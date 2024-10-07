@@ -14,22 +14,22 @@ std::shared_ptr<MockGantry> MockGantry::get_mock_gantry() {
     return std::make_shared<MockGantry>("mock_gantry");
 }
 
-std::vector<double> MockGantry::get_position(const sdk::AttributeMap&) {
+std::vector<double> MockGantry::get_position(const sdk::ProtoStruct&) {
     return peek_positions;
 }
 
 void MockGantry::move_to_position(const std::vector<sdk::Gantry::movement_coordinate>& coordinates,
-                                  const sdk::AttributeMap&) {
+                                  const sdk::ProtoStruct&) {
     peek_positions = {};
     for (const auto& coord : coordinates)
         peek_positions.push_back(coord.position_mm);
 }
 
-bool MockGantry::home(const sdk::AttributeMap&) {
+bool MockGantry::home(const sdk::ProtoStruct&) {
     return (peek_home_called = true);
 }
 
-std::vector<double> MockGantry::get_lengths(const sdk::AttributeMap&) {
+std::vector<double> MockGantry::get_lengths(const sdk::ProtoStruct&) {
     return fake_lengths();
 }
 
@@ -37,15 +37,15 @@ bool MockGantry::is_moving() {
     return false;
 }
 
-void MockGantry::stop(const sdk::AttributeMap&) {
+void MockGantry::stop(const sdk::ProtoStruct&) {
     peek_stop_called = true;
 }
 
-sdk::AttributeMap MockGantry::do_command(const sdk::AttributeMap& command) {
+sdk::ProtoStruct MockGantry::do_command(const sdk::ProtoStruct& command) {
     return (peek_command = command);
 }
 
-std::vector<sdk::GeometryConfig> MockGantry::get_geometries(const sdk::AttributeMap&) {
+std::vector<sdk::GeometryConfig> MockGantry::get_geometries(const sdk::ProtoStruct&) {
     return fake_geometries();
 }
 

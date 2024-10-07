@@ -72,7 +72,7 @@ class Arm : public Component, public Stoppable {
     /// @brief Get the current position of the end of the arm.
     /// @param extra Any additional arguments to the method.
     /// @return The `pose` representing the end position of the arm.
-    virtual pose get_end_position(const AttributeMap& extra) = 0;
+    virtual pose get_end_position(const ProtoStruct& extra) = 0;
 
     /// @brief Move the end of the arm to @param pose.
     inline void move_to_position(const pose& pose) {
@@ -82,7 +82,7 @@ class Arm : public Component, public Stoppable {
     /// @brief Move the end of the arm to @param pose.
     /// @param pose The destination pose for the arm.
     /// @param extra Any additional arguments to the method.
-    virtual void move_to_position(const pose& pose, const AttributeMap& extra) = 0;
+    virtual void move_to_position(const pose& pose, const ProtoStruct& extra) = 0;
 
     /// @brief Lists the joint positions in degrees of every joint on a robot arm
     inline std::vector<double> get_joint_positions() {
@@ -91,12 +91,12 @@ class Arm : public Component, public Stoppable {
 
     /// @brief Lists the joint positions in degrees of every joint on a robot arm
     /// @param extra Any additional arguments to the method.
-    virtual std::vector<double> get_joint_positions(const AttributeMap& extra) = 0;
+    virtual std::vector<double> get_joint_positions(const ProtoStruct& extra) = 0;
 
     /// @brief Move each joint on the arm to the corresponding angle specified in @param positions
     /// @param extra Any additional arguments to the method.
     virtual void move_to_joint_positions(const std::vector<double>& positions,
-                                         const AttributeMap& extra) = 0;
+                                         const ProtoStruct& extra) = 0;
 
     /// @brief Reports if the arm is in motion.
     virtual bool is_moving() = 0;
@@ -104,13 +104,13 @@ class Arm : public Component, public Stoppable {
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.
     /// @return The result of the executed command.
-    virtual AttributeMap do_command(const AttributeMap& command) = 0;
+    virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
     /// @brief Get the kinematics data associated with the arm.
     /// @param extra Any additional arguments to the method.
     /// @return A variant of kinematics data, with bytes field containing the raw bytes of the file
     /// and the object's type indicating the file format.
-    virtual KinematicsData get_kinematics(const AttributeMap& extra) = 0;
+    virtual KinematicsData get_kinematics(const ProtoStruct& extra) = 0;
 
     /// @brief Get the kinematics data associated with the arm.
     /// @return A variant of kinematics data, with bytes field containing the raw bytes of the file
@@ -126,7 +126,7 @@ class Arm : public Component, public Stoppable {
 
     /// @brief Returns `GeometryConfig`s associated with the calling arm
     /// @param extra Any additional arguments to the method
-    virtual std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) = 0;
+    virtual std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) = 0;
 
     API api() const override;
 

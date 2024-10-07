@@ -142,9 +142,7 @@ MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> mana
                             break;
                     }
                 }
-                if (s.extra) {
-                    *new_entry.mutable_extra() = map_to_struct(s.extra);
-                }
+                *new_entry.mutable_extra() = map_to_struct(s.extra);
             }
             return ::grpc::Status();
         };

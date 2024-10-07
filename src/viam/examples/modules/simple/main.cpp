@@ -11,6 +11,7 @@
 #include <viam/api/service/generic/v1/generic.grpc.pb.h>
 
 #include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/module/module.hpp>
 #include <viam/sdk/module/service.hpp>
@@ -44,7 +45,7 @@ class Printer : public GenericService, public Reconfigurable {
         std::cout << "Printer " << Resource::name() << " will print " << to_print_ << std::endl;
     }
 
-    AttributeMap do_command(const AttributeMap& command) {
+    ProtoStruct do_command(const ProtoStruct& command) {
         std::cout << "Received DoCommand request for Printer " << Resource::name() << std::endl;
         std::cout << "Printer " << Resource::name() << " has printed " << to_print_ << std::endl;
         return command;
@@ -52,13 +53,13 @@ class Printer : public GenericService, public Reconfigurable {
 
     static std::string find_to_print(ResourceConfig cfg) {
         auto& printer_name = cfg.name();
-        auto to_print = cfg.attributes()->find("to_print");
-        if (to_print == cfg.attributes()->end()) {
+        auto to_print = cfg.attributes().find("to_print");
+        if (to_print == cfg.attributes().end()) {
             std::ostringstream buffer;
             buffer << printer_name << ": Required parameter `to_print` not found in configuration";
             throw std::invalid_argument(buffer.str());
         }
-        const auto* const to_print_string = to_print->second->get<std::string>();
+        const auto* const to_print_string = to_print->second.get<std::string>();
         if (!to_print_string || to_print_string->empty()) {
             std::ostringstream buffer;
             buffer << printer_name

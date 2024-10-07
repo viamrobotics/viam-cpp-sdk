@@ -25,7 +25,7 @@ BoardClient::BoardClient(std::string name, std::shared_ptr<grpc::Channel> channe
       stub_(viam::component::board::v1::BoardService::NewStub(channel)),
       channel_(std::move(channel)) {}
 
-void BoardClient::set_gpio(const std::string& pin, bool high, const AttributeMap& extra) {
+void BoardClient::set_gpio(const std::string& pin, bool high, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::SetGPIO)
         .with(extra,
               [&](auto& request) {
@@ -35,13 +35,13 @@ void BoardClient::set_gpio(const std::string& pin, bool high, const AttributeMap
         .invoke();
 }
 
-bool BoardClient::get_gpio(const std::string& pin, const AttributeMap& extra) {
+bool BoardClient::get_gpio(const std::string& pin, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGPIO)
         .with(extra, [&](auto& request) { request.set_pin(pin); })
         .invoke([](auto& response) { return response.high(); });
 }
 
-double BoardClient::get_pwm_duty_cycle(const std::string& pin, const AttributeMap& extra) {
+double BoardClient::get_pwm_duty_cycle(const std::string& pin, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::PWM)
         .with(extra, [&](auto& request) { request.set_pin(pin); })
         .invoke([](auto& response) { return response.duty_cycle_pct(); });
@@ -49,7 +49,7 @@ double BoardClient::get_pwm_duty_cycle(const std::string& pin, const AttributeMa
 
 void BoardClient::set_pwm_duty_cycle(const std::string& pin,
                                      double duty_cycle_pct,
-                                     const AttributeMap& extra) {
+                                     const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::SetPWM)
         .with(extra,
               [&](auto& request) {
@@ -59,7 +59,7 @@ void BoardClient::set_pwm_duty_cycle(const std::string& pin,
         .invoke();
 }
 
-uint64_t BoardClient::get_pwm_frequency(const std::string& pin, const AttributeMap& extra) {
+uint64_t BoardClient::get_pwm_frequency(const std::string& pin, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::PWMFrequency)
         .with(extra, [&](auto& request) { request.set_pin(pin); })
         .invoke([](auto& response) { return response.frequency_hz(); });
@@ -67,7 +67,7 @@ uint64_t BoardClient::get_pwm_frequency(const std::string& pin, const AttributeM
 
 void BoardClient::set_pwm_frequency(const std::string& pin,
                                     uint64_t frequency_hz,
-                                    const AttributeMap& extra) {
+                                    const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::SetPWMFrequency)
         .with(extra,
               [&](auto& request) {
@@ -77,7 +77,7 @@ void BoardClient::set_pwm_frequency(const std::string& pin,
         .invoke();
 }
 
-AttributeMap BoardClient::do_command(const AttributeMap& command) {
+ProtoStruct BoardClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
         .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
         .invoke([](auto& response) { return struct_to_map(response.result()); });
@@ -86,7 +86,7 @@ AttributeMap BoardClient::do_command(const AttributeMap& command) {
 // TODO(RSDK-6048) update `client_wrapper` to allow for requests without a `mutable_name()` method,
 // then wrap here.
 Board::analog_response BoardClient::read_analog(const std::string& analog_reader_name,
-                                                const AttributeMap& extra) {
+                                                const ProtoStruct& extra) {
     viam::component::board::v1::ReadAnalogReaderRequest request;
     viam::component::board::v1::ReadAnalogReaderResponse response;
     ClientContext ctx;
@@ -103,7 +103,7 @@ Board::analog_response BoardClient::read_analog(const std::string& analog_reader
         response.value(), response.min_range(), response.max_range(), response.step_size()};
 }
 
-void BoardClient::write_analog(const std::string& pin, int value, const AttributeMap& extra) {
+void BoardClient::write_analog(const std::string& pin, int value, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::WriteAnalog)
         .with(extra,
               [&](auto& request) {
@@ -116,7 +116,7 @@ void BoardClient::write_analog(const std::string& pin, int value, const Attribut
 // TODO(RSDK-6048) update `client_wrapper` to allow for requests without a `mutable_name()` method,
 // then wrap here.
 Board::digital_value BoardClient::read_digital_interrupt(const std::string& digital_interrupt_name,
-                                                         const AttributeMap& extra) {
+                                                         const ProtoStruct& extra) {
     viam::component::board::v1::GetDigitalInterruptValueRequest request;
     viam::component::board::v1::GetDigitalInterruptValueResponse response;
     ClientContext ctx;
@@ -134,7 +134,7 @@ Board::digital_value BoardClient::read_digital_interrupt(const std::string& digi
 
 void BoardClient::stream_ticks(std::vector<std::string> const& digital_interrupt_names,
                                std::function<bool(Tick&& tick)> const& tick_handler,
-                               const AttributeMap& extra) {
+                               const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::StreamTicks)
         .with(extra,
               [&](auto& request) {
@@ -149,7 +149,7 @@ void BoardClient::stream_ticks(std::vector<std::string> const& digital_interrupt
 }
 
 void BoardClient::set_power_mode(power_mode power_mode,
-                                 const AttributeMap& extra,
+                                 const ProtoStruct& extra,
                                  const boost::optional<std::chrono::microseconds>& duration) {
     return make_client_helper(this, *stub_, &StubType::SetPowerMode)
         .with(extra,
@@ -162,7 +162,7 @@ void BoardClient::set_power_mode(power_mode power_mode,
         .invoke();
 }
 
-std::vector<GeometryConfig> BoardClient::get_geometries(const AttributeMap& extra) {
+std::vector<GeometryConfig> BoardClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
         .invoke([](auto& response) { return GeometryConfig::from_proto(response); });

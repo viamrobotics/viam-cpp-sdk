@@ -182,10 +182,10 @@ void RobotService_::stream_status(
                                       const ::viam::robot::v1::StopAllRequest* request,
                                       ::viam::robot::v1::StopAllResponse*) {
     const ResourceName r;
-    std::unordered_map<std::string, AttributeMap> extra;
+    std::unordered_map<std::string, ProtoStruct> extra;
     for (const auto& ex : request->extra()) {
         const google::protobuf::Struct& struct_ = ex.params();
-        const AttributeMap value_map = struct_to_map(struct_);
+        const ProtoStruct value_map = struct_to_map(struct_);
         const std::string name = ex.name().SerializeAsString();
         extra.emplace(name, value_map);
     }

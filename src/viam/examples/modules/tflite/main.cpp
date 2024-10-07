@@ -26,6 +26,7 @@
 #include <grpcpp/security/credentials.h>
 #include <tensorflow/lite/c/c_api.h>
 
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/module/service.hpp>
@@ -76,7 +77,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService,
         // drain.
     }
 
-    void stop(const vsdk::AttributeMap& extra) noexcept final {
+    void stop(const vsdk::ProtoStruct& extra) noexcept final {
         return stop();
     }
 
@@ -141,7 +142,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService,
     }
 
     std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs,
-                                              const vsdk::AttributeMap& extra) final {
+                                              const vsdk::ProtoStruct& extra) final {
         auto state = lease_state_();
 
         // We serialize access to the interpreter. We use a
@@ -250,7 +251,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService,
         return {std::move(inference_result), views};
     }
 
-    struct metadata metadata(const vsdk::AttributeMap& extra) final {
+    struct metadata metadata(const vsdk::ProtoStruct& extra) final {
         // Just return a copy of our metadata from leased state.
         return lease_state_()->metadata;
     }
@@ -290,14 +291,14 @@ class MLModelServiceTFLite : public vsdk::MLModelService,
         // Now we can begin parsing and validating the provided `configuration`.
         // Pull the model path out of the configuration.
         const auto& attributes = state->configuration.attributes();
-        auto model_path = attributes->find("model_path");
-        if (model_path == attributes->end()) {
+        auto model_path = attributes.find("model_path");
+        if (model_path == attributes.end()) {
             std::ostringstream buffer;
             buffer << service_name
                    << ": Required parameter `model_path` not found in configuration";
             throw std::invalid_argument(buffer.str());
         }
-        const auto* const model_path_string = model_path->second->get<std::string>();
+        const auto* const model_path_string = model_path->second.get<std::string>();
         if (!model_path_string || model_path_string->empty()) {
             std::ostringstream buffer;
             buffer << service_name
@@ -307,18 +308,17 @@ class MLModelServiceTFLite : public vsdk::MLModelService,
         }
 
         // Process any tensor name remappings provided in the config.
-        auto remappings = attributes->find("tensor_name_remappings");
-        if (remappings != attributes->end()) {
-            const auto remappings_attributes = remappings->second->get<vsdk::AttributeMap>();
+        auto remappings = attributes.find("tensor_name_remappings");
+        if (remappings != attributes.end()) {
+            const auto remappings_attributes = remappings->second.get<vsdk::ProtoStruct>();
             if (!remappings_attributes) {
                 std::ostringstream buffer;
                 buffer << service_name
                        << ": Optional parameter `tensor_name_remappings` must be a dictionary";
                 throw std::invalid_argument(buffer.str());
             }
-
-            const auto populate_remappings = [](const vsdk::ProtoType& source, auto& target) {
-                const auto source_attributes = source.get<vsdk::AttributeMap>();
+            const auto populate_remappings = [](const vsdk::ProtoValue& source, auto& target) {
+                const auto source_attributes = source.get<vsdk::ProtoStruct>();
                 if (!source_attributes) {
                     std::ostringstream buffer;
                     buffer << service_name
@@ -328,7 +328,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService,
                 }
                 for (const auto& kv : *source_attributes) {
                     const auto& k = kv.first;
-                    const auto* const kv_string = kv.second->get<std::string>();
+                    const auto* const kv_string = kv.second.get<std::string>();
                     if (!kv_string) {
                         std::ostringstream buffer;
                         buffer
@@ -343,11 +343,11 @@ class MLModelServiceTFLite : public vsdk::MLModelService,
 
             const auto inputs_where = remappings_attributes->find("inputs");
             if (inputs_where != remappings_attributes->end()) {
-                populate_remappings(*inputs_where->second, state->input_name_remappings);
+                populate_remappings(inputs_where->second, state->input_name_remappings);
             }
             const auto outputs_where = remappings_attributes->find("outputs");
             if (outputs_where != remappings_attributes->end()) {
-                populate_remappings(*outputs_where->second, state->output_name_remappings);
+                populate_remappings(outputs_where->second, state->output_name_remappings);
             }
         }
 
@@ -399,9 +399,9 @@ class MLModelServiceTFLite : public vsdk::MLModelService,
         // If present, extract and validate the number of threads to
         // use in the interpreter and create an interpreter options
         // object to carry that information.
-        auto num_threads = attributes->find("num_threads");
-        if (num_threads != attributes->end()) {
-            const auto* num_threads_double = num_threads->second->get<double>();
+        auto num_threads = attributes.find("num_threads");
+        if (num_threads != attributes.end()) {
+            const auto* num_threads_double = num_threads->second.get<double>();
             if (!num_threads_double || !std::isnormal(*num_threads_double) ||
                 (*num_threads_double < 0) ||
                 (*num_threads_double >= std::numeric_limits<std::int32_t>::max()) ||

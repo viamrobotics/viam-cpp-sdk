@@ -2,7 +2,7 @@
 
 #include <unordered_map>
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/rpc/message_sizes.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
@@ -14,12 +14,8 @@ namespace sdktests {
 
 using namespace viam::sdk;
 
-AttributeMap fake_map() {
-    auto proto_ptr = std::make_shared<ProtoType>(std::string("hello"));
-    AttributeMap map =
-        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
-    map->insert({{std::string("test"), proto_ptr}});
-    return map;
+ProtoStruct fake_map() {
+    return {{"test", "hello"}};
 }
 
 std::vector<GeometryConfig> fake_geometries() {
