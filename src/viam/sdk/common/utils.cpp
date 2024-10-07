@@ -135,13 +135,22 @@ ProtoStruct debug_map(std::string debug_key) {
     return map;
 }
 
-ProtoStruct add_debug_entry(ProtoStruct&& map, std::string debug_key) {
+void add_debug_entry(ProtoStruct& map, std::string debug_key) {
     map.emplace(impl::debug_map_key, ProtoValue(std::move(debug_key)));
+}
+
+void add_debug_entry(ProtoStruct& map) {
+    add_debug_entry(map, random_debug_key());
+}
+
+ProtoStruct with_debug_entry(ProtoStruct&& map, std::string debug_key) {
+    add_debug_entry(map, std::move(debug_key));
     return map;
 }
 
 ProtoStruct add_debug_entry(ProtoStruct&& map) {
-    return add_debug_entry(std::move(map), random_debug_key());
+    add_debug_entry(map);
+    return map;
 }
 
 void ClientContext::set_debug_key(const std::string& debug_key) {

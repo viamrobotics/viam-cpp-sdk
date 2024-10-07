@@ -70,10 +70,19 @@ ProtoStruct debug_map(std::string debug_key);
 
 /// @brief Adds @param debug_key for server-side debug logging to @param map
 /// @throws Exception if the debug_key contains invalid (e.g., uppercase) gRPC characters
-ProtoStruct add_debug_entry(ProtoStruct&& map, std::string debug_key);
+void add_debug_entry(ProtoStruct& map, std::string debug_key);
 
 /// @brief Adds a random key to @param map for server-side debug logging
-ProtoStruct add_debug_entry(ProtoStruct&& map);
+void add_debug_entry(ProtoStruct& map);
+
+/// @brief Adds @param debug_key for server-side debug logging to @param map
+/// @throws Exception if the debug_key contains invalid (e.g., uppercase) gRPC characters
+/// @returns the new ProtoStruct
+ProtoStruct with_debug_entry(ProtoStruct&& map, std::string debug_key);
+
+/// @brief Adds a random key to @param map for server-side debug logging
+/// @returns the new ProtoStruct
+ProtoStruct with_debug_entry(ProtoStruct&& map);
 
 /// @brief Set the boost trivial logger's severity depending on args.
 /// @param argc The number of args.
