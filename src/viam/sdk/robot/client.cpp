@@ -19,7 +19,7 @@
 #include <viam/api/robot/v1/robot.grpc.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/registry/registry.hpp>
@@ -445,17 +445,14 @@ std::shared_ptr<Resource> RobotClient::resource_by_name(const Name& name) {
 }
 
 void RobotClient::stop_all() {
-    std::unordered_map<Name, AttributeMap> map;
+    std::unordered_map<Name, ProtoStruct> map;
     for (const Name& name : resource_names()) {
-        const std::unordered_map<std::string, std::shared_ptr<ProtoType>> val;
-        const AttributeMap v =
-            std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>(val);
-        map.emplace(name, v);
+        map.emplace(name, ProtoStruct{});
     }
     stop_all(map);
 }
 
-void RobotClient::stop_all(const std::unordered_map<Name, AttributeMap>& extra) {
+void RobotClient::stop_all(const std::unordered_map<Name, ProtoStruct>& extra) {
     viam::robot::v1::StopAllRequest req;
     viam::robot::v1::StopAllResponse resp;
     ClientContext ctx;
@@ -463,7 +460,7 @@ void RobotClient::stop_all(const std::unordered_map<Name, AttributeMap>& extra) 
     RepeatedPtrField<viam::robot::v1::StopExtraParameters>* ep = req.mutable_extra();
     for (const auto& xtra : extra) {
         const Name& name = xtra.first;
-        const AttributeMap& params = xtra.second;
+        const ProtoStruct& params = xtra.second;
         const google::protobuf::Struct s = map_to_struct(params);
         viam::robot::v1::StopExtraParameters stop;
         *stop.mutable_name() = name.to_proto();

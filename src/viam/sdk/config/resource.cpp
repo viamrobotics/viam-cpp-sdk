@@ -10,7 +10,7 @@
 #include <viam/api/robot/v1/robot.pb.h>
 
 #include <viam/sdk/common/exception.hpp>
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/referenceframe/frame.hpp>
 #include <viam/sdk/resource/resource.hpp>
@@ -57,7 +57,7 @@ const std::string& ResourceConfig::type() const {
     return type_;
 }
 
-const AttributeMap& ResourceConfig::attributes() const {
+const ProtoStruct& ResourceConfig::attributes() const {
     return attributes_;
 }
 

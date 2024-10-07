@@ -757,6 +757,7 @@ enum Visibility : int {
   VISIBILITY_UNSPECIFIED = 0,
   VISIBILITY_PRIVATE = 1,
   VISIBILITY_PUBLIC = 2,
+  VISIBILITY_PUBLIC_UNLISTED = 3,
   Visibility_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   Visibility_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -766,8 +767,8 @@ enum Visibility : int {
 bool Visibility_IsValid(int value);
 extern const uint32_t Visibility_internal_data_[];
 constexpr Visibility Visibility_MIN = static_cast<Visibility>(0);
-constexpr Visibility Visibility_MAX = static_cast<Visibility>(2);
-constexpr int Visibility_ARRAYSIZE = 2 + 1;
+constexpr Visibility Visibility_MAX = static_cast<Visibility>(3);
+constexpr int Visibility_ARRAYSIZE = 3 + 1;
 const ::google::protobuf::EnumDescriptor*
 Visibility_descriptor();
 template <typename T>
@@ -780,7 +781,7 @@ const std::string& Visibility_Name(T value) {
 template <>
 inline const std::string& Visibility_Name(Visibility value) {
   return ::google::protobuf::internal::NameOfDenseEnum<Visibility_descriptor,
-                                                 0, 2>(
+                                                 0, 3>(
       static_cast<int>(value));
 }
 inline bool Visibility_Parse(absl::string_view name, Visibility* value) {
@@ -21013,6 +21014,7 @@ class UpdateModuleRequest final :
     kUrlFieldNumber = 3,
     kDescriptionFieldNumber = 4,
     kEntrypointFieldNumber = 6,
+    kFirstRunFieldNumber = 7,
     kVisibilityFieldNumber = 2,
   };
   // repeated .viam.app.v1.Model models = 5 [json_name = "models"];
@@ -21097,6 +21099,23 @@ class UpdateModuleRequest final :
   std::string* _internal_mutable_entrypoint();
 
   public:
+  // optional string first_run = 7 [json_name = "firstRun"];
+  bool has_first_run() const;
+  void clear_first_run() ;
+  const std::string& first_run() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_first_run(Arg_&& arg, Args_... args);
+  std::string* mutable_first_run();
+  PROTOBUF_NODISCARD std::string* release_first_run();
+  void set_allocated_first_run(std::string* value);
+
+  private:
+  const std::string& _internal_first_run() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_first_run(
+      const std::string& value);
+  std::string* _internal_mutable_first_run();
+
+  public:
   // .viam.app.v1.Visibility visibility = 2 [json_name = "visibility"];
   void clear_visibility() ;
   ::viam::app::v1::Visibility visibility() const;
@@ -21113,8 +21132,8 @@ class UpdateModuleRequest final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 6, 1,
-      73, 2>
+      3, 7, 1,
+      82, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -21130,13 +21149,15 @@ class UpdateModuleRequest final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField< ::viam::app::v1::Model > models_;
     ::google::protobuf::internal::ArenaStringPtr module_id_;
     ::google::protobuf::internal::ArenaStringPtr url_;
     ::google::protobuf::internal::ArenaStringPtr description_;
     ::google::protobuf::internal::ArenaStringPtr entrypoint_;
+    ::google::protobuf::internal::ArenaStringPtr first_run_;
     int visibility_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -26210,6 +26231,7 @@ class VersionHistory final :
     kModelsFieldNumber = 3,
     kVersionFieldNumber = 1,
     kEntrypointFieldNumber = 4,
+    kFirstRunFieldNumber = 5,
   };
   // repeated .viam.app.v1.Uploads files = 2 [json_name = "files"];
   int files_size() const;
@@ -26279,14 +26301,31 @@ class VersionHistory final :
   std::string* _internal_mutable_entrypoint();
 
   public:
+  // optional string first_run = 5 [json_name = "firstRun"];
+  bool has_first_run() const;
+  void clear_first_run() ;
+  const std::string& first_run() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_first_run(Arg_&& arg, Args_... args);
+  std::string* mutable_first_run();
+  PROTOBUF_NODISCARD std::string* release_first_run();
+  void set_allocated_first_run(std::string* value);
+
+  private:
+  const std::string& _internal_first_run() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_first_run(
+      const std::string& value);
+  std::string* _internal_mutable_first_run();
+
+  public:
   // @@protoc_insertion_point(class_scope:viam.app.v1.VersionHistory)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 4, 2,
-      52, 2>
+      3, 5, 2,
+      61, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -26302,11 +26341,13 @@ class VersionHistory final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField< ::viam::app::v1::Uploads > files_;
     ::google::protobuf::RepeatedPtrField< ::viam::app::v1::Model > models_;
     ::google::protobuf::internal::ArenaStringPtr version_;
     ::google::protobuf::internal::ArenaStringPtr entrypoint_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr first_run_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -27962,6 +28003,7 @@ class ModuleVersion final :
     kModelsFieldNumber = 3,
     kVersionFieldNumber = 1,
     kEntrypointFieldNumber = 4,
+    kFirstRunFieldNumber = 5,
   };
   // repeated .viam.app.v1.Uploads files = 2 [json_name = "files"];
   int files_size() const;
@@ -28031,14 +28073,31 @@ class ModuleVersion final :
   std::string* _internal_mutable_entrypoint();
 
   public:
+  // optional string first_run = 5 [json_name = "firstRun"];
+  bool has_first_run() const;
+  void clear_first_run() ;
+  const std::string& first_run() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_first_run(Arg_&& arg, Args_... args);
+  std::string* mutable_first_run();
+  PROTOBUF_NODISCARD std::string* release_first_run();
+  void set_allocated_first_run(std::string* value);
+
+  private:
+  const std::string& _internal_first_run() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_first_run(
+      const std::string& value);
+  std::string* _internal_mutable_first_run();
+
+  public:
   // @@protoc_insertion_point(class_scope:viam.app.v1.ModuleVersion)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 4, 2,
-      51, 2>
+      3, 5, 2,
+      60, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -28054,11 +28113,13 @@ class ModuleVersion final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField< ::viam::app::v1::Uploads > files_;
     ::google::protobuf::RepeatedPtrField< ::viam::app::v1::Model > models_;
     ::google::protobuf::internal::ArenaStringPtr version_;
     ::google::protobuf::internal::ArenaStringPtr entrypoint_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr first_run_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -31744,6 +31805,7 @@ class ModuleMetadata final :
     kModelsFieldNumber = 1,
     kVersionsFieldNumber = 2,
     kEntrypointFieldNumber = 3,
+    kFirstRunFieldNumber = 4,
   };
   // repeated .viam.app.v1.Model models = 1 [json_name = "models"];
   int models_size() const;
@@ -31797,14 +31859,31 @@ class ModuleMetadata final :
   std::string* _internal_mutable_entrypoint();
 
   public:
+  // optional string first_run = 4 [json_name = "firstRun"];
+  bool has_first_run() const;
+  void clear_first_run() ;
+  const std::string& first_run() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_first_run(Arg_&& arg, Args_... args);
+  std::string* mutable_first_run();
+  PROTOBUF_NODISCARD std::string* release_first_run();
+  void set_allocated_first_run(std::string* value);
+
+  private:
+  const std::string& _internal_first_run() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_first_run(
+      const std::string& value);
+  std::string* _internal_mutable_first_run();
+
+  public:
   // @@protoc_insertion_point(class_scope:viam.app.v1.ModuleMetadata)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 2,
-      45, 2>
+      2, 4, 2,
+      54, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -31820,10 +31899,12 @@ class ModuleMetadata final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField< ::viam::app::v1::Model > models_;
     ::google::protobuf::RepeatedPtrField< ::viam::app::v1::ModuleVersion > versions_;
     ::google::protobuf::internal::ArenaStringPtr entrypoint_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr first_run_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -31971,6 +32052,7 @@ class Module final :
     kOrganizationIdFieldNumber = 10,
     kEntrypointFieldNumber = 11,
     kPublicNamespaceFieldNumber = 12,
+    kFirstRunFieldNumber = 13,
     kTotalRobotUsageFieldNumber = 8,
     kTotalOrganizationUsageFieldNumber = 9,
     kVisibilityFieldNumber = 3,
@@ -32123,6 +32205,23 @@ class Module final :
   std::string* _internal_mutable_public_namespace();
 
   public:
+  // optional string first_run = 13 [json_name = "firstRun"];
+  bool has_first_run() const;
+  void clear_first_run() ;
+  const std::string& first_run() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_first_run(Arg_&& arg, Args_... args);
+  std::string* mutable_first_run();
+  PROTOBUF_NODISCARD std::string* release_first_run();
+  void set_allocated_first_run(std::string* value);
+
+  private:
+  const std::string& _internal_first_run() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_first_run(
+      const std::string& value);
+  std::string* _internal_mutable_first_run();
+
+  public:
   // int64 total_robot_usage = 8 [json_name = "totalRobotUsage"];
   void clear_total_robot_usage() ;
   ::int64_t total_robot_usage() const;
@@ -32159,8 +32258,8 @@ class Module final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 12, 2,
-      103, 2>
+      4, 13, 2,
+      112, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -32176,6 +32275,8 @@ class Module final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField< ::viam::app::v1::VersionHistory > versions_;
     ::google::protobuf::RepeatedPtrField< ::viam::app::v1::Model > models_;
     ::google::protobuf::internal::ArenaStringPtr module_id_;
@@ -32185,10 +32286,10 @@ class Module final :
     ::google::protobuf::internal::ArenaStringPtr organization_id_;
     ::google::protobuf::internal::ArenaStringPtr entrypoint_;
     ::google::protobuf::internal::ArenaStringPtr public_namespace_;
+    ::google::protobuf::internal::ArenaStringPtr first_run_;
     ::int64_t total_robot_usage_;
     ::int64_t total_organization_usage_;
     int visibility_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -51681,6 +51782,77 @@ inline void ModuleVersion::set_allocated_entrypoint(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleVersion.entrypoint)
 }
 
+// optional string first_run = 5 [json_name = "firstRun"];
+inline bool ModuleVersion::has_first_run() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline void ModuleVersion::clear_first_run() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.first_run_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& ModuleVersion::first_run() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleVersion.first_run)
+  return _internal_first_run();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ModuleVersion::set_first_run(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.first_run_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.app.v1.ModuleVersion.first_run)
+}
+inline std::string* ModuleVersion::mutable_first_run() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_first_run();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ModuleVersion.first_run)
+  return _s;
+}
+inline const std::string& ModuleVersion::_internal_first_run() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.first_run_.Get();
+}
+inline void ModuleVersion::_internal_set_first_run(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.first_run_.Set(value, GetArena());
+}
+inline std::string* ModuleVersion::_internal_mutable_first_run() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.first_run_.Mutable( GetArena());
+}
+inline std::string* ModuleVersion::release_first_run() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.v1.ModuleVersion.first_run)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.first_run_.Release();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.first_run_.Set("", GetArena());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return released;
+}
+inline void ModuleVersion::set_allocated_first_run(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.first_run_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.first_run_.IsDefault()) {
+          _impl_.first_run_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleVersion.first_run)
+}
+
 // -------------------------------------------------------------------
 
 // ModuleMetadata
@@ -51834,6 +52006,77 @@ inline void ModuleMetadata::set_allocated_entrypoint(std::string* value) {
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleMetadata.entrypoint)
+}
+
+// optional string first_run = 4 [json_name = "firstRun"];
+inline bool ModuleMetadata::has_first_run() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline void ModuleMetadata::clear_first_run() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.first_run_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& ModuleMetadata::first_run() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleMetadata.first_run)
+  return _internal_first_run();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ModuleMetadata::set_first_run(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.first_run_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.app.v1.ModuleMetadata.first_run)
+}
+inline std::string* ModuleMetadata::mutable_first_run() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_first_run();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ModuleMetadata.first_run)
+  return _s;
+}
+inline const std::string& ModuleMetadata::_internal_first_run() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.first_run_.Get();
+}
+inline void ModuleMetadata::_internal_set_first_run(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.first_run_.Set(value, GetArena());
+}
+inline std::string* ModuleMetadata::_internal_mutable_first_run() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.first_run_.Mutable( GetArena());
+}
+inline std::string* ModuleMetadata::release_first_run() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.v1.ModuleMetadata.first_run)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.first_run_.Release();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.first_run_.Set("", GetArena());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return released;
+}
+inline void ModuleMetadata::set_allocated_first_run(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.first_run_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.first_run_.IsDefault()) {
+          _impl_.first_run_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleMetadata.first_run)
 }
 
 // -------------------------------------------------------------------
@@ -54948,6 +55191,77 @@ inline void UpdateModuleRequest::set_allocated_entrypoint(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateModuleRequest.entrypoint)
 }
 
+// optional string first_run = 7 [json_name = "firstRun"];
+inline bool UpdateModuleRequest::has_first_run() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline void UpdateModuleRequest::clear_first_run() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.first_run_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& UpdateModuleRequest::first_run() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateModuleRequest.first_run)
+  return _internal_first_run();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void UpdateModuleRequest::set_first_run(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.first_run_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateModuleRequest.first_run)
+}
+inline std::string* UpdateModuleRequest::mutable_first_run() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_first_run();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateModuleRequest.first_run)
+  return _s;
+}
+inline const std::string& UpdateModuleRequest::_internal_first_run() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.first_run_.Get();
+}
+inline void UpdateModuleRequest::_internal_set_first_run(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.first_run_.Set(value, GetArena());
+}
+inline std::string* UpdateModuleRequest::_internal_mutable_first_run() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.first_run_.Mutable( GetArena());
+}
+inline std::string* UpdateModuleRequest::release_first_run() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateModuleRequest.first_run)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.first_run_.Release();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.first_run_.Set("", GetArena());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return released;
+}
+inline void UpdateModuleRequest::set_allocated_first_run(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.first_run_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.first_run_.IsDefault()) {
+          _impl_.first_run_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateModuleRequest.first_run)
+}
+
 // -------------------------------------------------------------------
 
 // UpdateModuleResponse
@@ -56208,6 +56522,77 @@ inline void Module::set_allocated_public_namespace(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Module.public_namespace)
 }
 
+// optional string first_run = 13 [json_name = "firstRun"];
+inline bool Module::has_first_run() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline void Module::clear_first_run() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.first_run_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& Module::first_run() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Module.first_run)
+  return _internal_first_run();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Module::set_first_run(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.first_run_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.app.v1.Module.first_run)
+}
+inline std::string* Module::mutable_first_run() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_first_run();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Module.first_run)
+  return _s;
+}
+inline const std::string& Module::_internal_first_run() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.first_run_.Get();
+}
+inline void Module::_internal_set_first_run(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.first_run_.Set(value, GetArena());
+}
+inline std::string* Module::_internal_mutable_first_run() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.first_run_.Mutable( GetArena());
+}
+inline std::string* Module::release_first_run() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.v1.Module.first_run)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.first_run_.Release();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.first_run_.Set("", GetArena());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return released;
+}
+inline void Module::set_allocated_first_run(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.first_run_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.first_run_.IsDefault()) {
+          _impl_.first_run_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Module.first_run)
+}
+
 // -------------------------------------------------------------------
 
 // VersionHistory
@@ -56414,6 +56799,77 @@ inline void VersionHistory::set_allocated_entrypoint(std::string* value) {
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.VersionHistory.entrypoint)
+}
+
+// optional string first_run = 5 [json_name = "firstRun"];
+inline bool VersionHistory::has_first_run() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline void VersionHistory::clear_first_run() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.first_run_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& VersionHistory::first_run() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.VersionHistory.first_run)
+  return _internal_first_run();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void VersionHistory::set_first_run(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.first_run_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.app.v1.VersionHistory.first_run)
+}
+inline std::string* VersionHistory::mutable_first_run() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_first_run();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.VersionHistory.first_run)
+  return _s;
+}
+inline const std::string& VersionHistory::_internal_first_run() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.first_run_.Get();
+}
+inline void VersionHistory::_internal_set_first_run(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.first_run_.Set(value, GetArena());
+}
+inline std::string* VersionHistory::_internal_mutable_first_run() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.first_run_.Mutable( GetArena());
+}
+inline std::string* VersionHistory::release_first_run() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.v1.VersionHistory.first_run)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.first_run_.Release();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.first_run_.Set("", GetArena());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return released;
+}
+inline void VersionHistory::set_allocated_first_run(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.first_run_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.first_run_.IsDefault()) {
+          _impl_.first_run_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.VersionHistory.first_run)
 }
 
 // -------------------------------------------------------------------

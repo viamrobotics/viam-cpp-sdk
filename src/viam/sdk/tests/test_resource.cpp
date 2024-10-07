@@ -4,7 +4,7 @@
 #include <google/protobuf/struct.pb.h>
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/pose.hpp>
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/referenceframe/frame.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
@@ -239,9 +239,9 @@ BOOST_AUTO_TEST_CASE(test_resource) {
     BOOST_CHECK_EQUAL(resource2.frame().get_parent(), "parent");
     std::string key;
     Value value;
-    for (const auto& key_and_value : *resource2.attributes()) {
+    for (const auto& key_and_value : resource2.attributes()) {
         key = key_and_value.first;
-        value = key_and_value.second->proto_value();
+        value = to_proto(key_and_value.second);
     }
     BOOST_CHECK_EQUAL(key, "a");
     BOOST_CHECK_EQUAL(value.number_value(), 1);

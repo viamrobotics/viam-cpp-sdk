@@ -9,8 +9,6 @@
 #include <boost/log/expressions.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/optional/optional.hpp>
-#include <boost/variant/get.hpp>
-#include <boost/variant/variant.hpp>
 #include <grpcpp/client_context.h>
 
 #include <viam/api/common/v1/common.pb.h>
@@ -126,30 +124,24 @@ std::string random_debug_key() {
     return key;
 }
 
-AttributeMap debug_map() {
+ProtoStruct debug_map() {
     return debug_map(random_debug_key());
 }
 
-AttributeMap debug_map(std::string debug_key) {
-    AttributeMap map =
-        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
-    map->emplace(impl::debug_map_key, std::make_shared<ProtoType>(std::move(debug_key)));
+ProtoStruct debug_map(std::string debug_key) {
+    ProtoStruct map;
+    map.emplace(impl::debug_map_key, ProtoValue(std::move(debug_key)));
 
     return map;
 }
 
-AttributeMap add_debug_entry(AttributeMap map, std::string debug_key) {
-    map->emplace(impl::debug_map_key, std::make_shared<ProtoType>(std::move(debug_key)));
+ProtoStruct add_debug_entry(ProtoStruct&& map, std::string debug_key) {
+    map.emplace(impl::debug_map_key, ProtoValue(std::move(debug_key)));
     return map;
 }
 
-AttributeMap add_debug_entry(AttributeMap&& map, std::string debug_key) {
-    return add_debug_entry(map, std::move(debug_key));
-}
-
-AttributeMap add_debug_entry(AttributeMap&& map) {
-    auto debug_key = random_debug_key();
-    return add_debug_entry(map, std::move(debug_key));
+ProtoStruct add_debug_entry(ProtoStruct&& map) {
+    return add_debug_entry(std::move(map), random_debug_key());
 }
 
 void ClientContext::set_debug_key(const std::string& debug_key) {
@@ -173,17 +165,12 @@ ClientContext::operator grpc::ClientContext*() {
     return &wrapped_context_;
 }
 
-bool from_dm_from_extra(const AttributeMap& extra) {
-    if (!extra) {
-        return false;
-    }
-    auto pos = extra->find("fromDataManagement");
-    if (pos != extra->end()) {
-        ProtoType value = *(pos->second);
-        const bool* boolValue = value.get<bool>();
-        if (boolValue) {
-            return *boolValue;
-        }
+bool from_dm_from_extra(const ProtoStruct& extra) {
+    auto pos = extra.find("fromDataManagement");
+    if (pos != extra.end()) {
+        const ProtoValue& value = pos->second;
+
+        return (value.is_a<bool>() && value.get_unchecked<bool>());
     }
     return false;
 }

@@ -37,8 +37,8 @@ class MLModelServiceClient : public MLModelService {
     MLModelServiceClient(std::string name, std::shared_ptr<grpc::Channel> channel);
 
     std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs,
-                                              const AttributeMap& extra) override;
-    struct metadata metadata(const AttributeMap& extra) override;
+                                              const ProtoStruct& extra) override;
+    struct metadata metadata(const ProtoStruct& extra) override;
 
     // the `extra` param is frequently unnecessary but needs to be supported. Ideally, we'd
     // like to live in a world where implementers of derived classes don't need to go out of

@@ -17,7 +17,7 @@ GenericComponentServer::GenericComponentServer(std::shared_ptr<ResourceManager> 
     ::viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<GenericComponent>(
         "GenericComponentServer::DoCommand", this, request)([&](auto&, auto& generic) {
-        const AttributeMap result = generic->do_command(struct_to_map(request->command()));
+        const ProtoStruct result = generic->do_command(struct_to_map(request->command()));
         *response->mutable_result() = map_to_struct(result);
     });
 }

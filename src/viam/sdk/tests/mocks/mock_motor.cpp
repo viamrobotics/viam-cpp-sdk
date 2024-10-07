@@ -3,7 +3,7 @@
 #include <stdexcept>
 
 #include <viam/sdk/common/exception.hpp>
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/motor.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
@@ -14,12 +14,12 @@ namespace motor {
 
 using namespace viam::sdk;
 
-void MockMotor::set_power(double power_pct, const AttributeMap&) {
+void MockMotor::set_power(double power_pct, const ProtoStruct&) {
     power_status_.is_on = power_pct != 0.0;
     power_status_.power_pct = power_pct;
 }
 
-void MockMotor::go_for(double rpm, double revolutions, const AttributeMap&) {
+void MockMotor::go_for(double rpm, double revolutions, const ProtoStruct&) {
     // This is the actual behavior from rdk:builtin:fake_motor
     if (rpm == 0.0) {
         throw Exception("Cannot move motor at 0 RPM");
@@ -27,39 +27,39 @@ void MockMotor::go_for(double rpm, double revolutions, const AttributeMap&) {
     position_ += revolutions;
 }
 
-void MockMotor::go_to(double rpm, double position_revolutions, const AttributeMap&) {
+void MockMotor::go_to(double rpm, double position_revolutions, const ProtoStruct&) {
     position_ = position_revolutions;
 }
 
-void MockMotor::set_rpm(double rpm, const AttributeMap&) {
+void MockMotor::set_rpm(double rpm, const ProtoStruct&) {
     power_status_.is_on = rpm != 0.0;
     position_ += 1;
 }
 
-void MockMotor::reset_zero_position(double offset, const AttributeMap&) {
+void MockMotor::reset_zero_position(double offset, const ProtoStruct&) {
     position_ -= offset;
 }
 
-Motor::position MockMotor::get_position(const AttributeMap&) {
+Motor::position MockMotor::get_position(const ProtoStruct&) {
     return position_;
 }
 
-Motor::properties MockMotor::get_properties(const AttributeMap&) {
+Motor::properties MockMotor::get_properties(const ProtoStruct&) {
     return properties_;
 }
 
-void MockMotor::stop(const AttributeMap&) {
+void MockMotor::stop(const ProtoStruct&) {
     // None of these functions are async and this mock is not
     // thread-safe (Send, not Sync). The mock motor should never be
     // moving when this is called
     set_power(0.0);
 }
 
-Motor::power_status MockMotor::get_power_status(const AttributeMap&) {
+Motor::power_status MockMotor::get_power_status(const ProtoStruct&) {
     return power_status_;
 }
 
-std::vector<GeometryConfig> MockMotor::get_geometries(const sdk::AttributeMap&) {
+std::vector<GeometryConfig> MockMotor::get_geometries(const sdk::ProtoStruct&) {
     return fake_geometries();
 }
 
@@ -69,7 +69,7 @@ bool MockMotor::is_moving() {
     return false;
 }
 
-AttributeMap MockMotor::do_command(const AttributeMap&) {
+ProtoStruct MockMotor::do_command(const ProtoStruct&) {
     return map_;
 }
 

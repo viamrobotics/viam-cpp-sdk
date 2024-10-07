@@ -1,16 +1,11 @@
 #pragma once
 
-#include <cmath>
-#include <unordered_map>
-
 #include <boost/optional/optional.hpp>
-#include <boost/variant/get.hpp>
-#include <boost/variant/variant.hpp>
 #include <grpcpp/client_context.h>
 
 #include <viam/api/common/v1/common.pb.h>
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 
@@ -66,23 +61,19 @@ class ClientContext {
     grpc::ClientContext wrapped_context_;
 };
 
-/// @brief Returns a new `AttributeMap` with a random key for server-side debug logging
-AttributeMap debug_map();
+/// @brief Returns a new `ProtoStruct` with a random key for server-side debug logging
+ProtoStruct debug_map();
 
-/// @brief Returns a new `AttributeMap` with @param debug_key for server-side debug logging
+/// @brief Returns a new `ProtoStruct` with @param debug_key for server-side debug logging
 /// @throws Exception if the debug_key contains invalid (e.g., uppercase) gRPC characters
-AttributeMap debug_map(std::string debug_key);
-
-/// @brief Adds @param debug_key for server-side debug logging to @param map
-/// @throws Exception if the debug_key contains invalid (e.g., uppercase) gRPC characters
-AttributeMap add_debug_entry(AttributeMap&& map, std::string debug_key);
+ProtoStruct debug_map(std::string debug_key);
 
 /// @brief Adds @param debug_key for server-side debug logging to @param map
 /// @throws Exception if the debug_key contains invalid (e.g., uppercase) gRPC characters
-AttributeMap add_debug_entry(AttributeMap map, std::string debug_key);
+ProtoStruct add_debug_entry(ProtoStruct&& map, std::string debug_key);
 
 /// @brief Adds a random key to @param map for server-side debug logging
-AttributeMap add_debug_entry(AttributeMap&& map);
+ProtoStruct add_debug_entry(ProtoStruct&& map);
 
 /// @brief Set the boost trivial logger's severity depending on args.
 /// @param argc The number of args.
@@ -95,9 +86,9 @@ AttributeMap add_debug_entry(AttributeMap&& map);
 void set_logger_severity_from_args(int argc, char** argv);
 
 /// @brief Used in modular filter components to get the 'fromDataManagement' value from an extra
-/// AttributeMap.
-/// @param extra The extra AttributeMap.
-bool from_dm_from_extra(const AttributeMap& extra);
+/// ProtoStruct.
+/// @param extra The extra ProtoStruct.
+bool from_dm_from_extra(const ProtoStruct& extra);
 
 }  // namespace sdk
 }  // namespace viam

@@ -7,7 +7,7 @@
 
 #include <boost/test/included/unit_test.hpp>
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/camera.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
 #include <viam/sdk/tests/mocks/camera_mocks.hpp>
@@ -84,14 +84,11 @@ BOOST_AUTO_TEST_CASE(test_get_geometries) {
 BOOST_AUTO_TEST_CASE(test_do_command) {
     std::shared_ptr<MockCamera> mock = MockCamera::get_mock_camera();
     client_to_mock_pipeline<Camera>(mock, [](Camera& client) {
-        AttributeMap command = fake_map();
-        AttributeMap expected_map = fake_map();
-        AttributeMap result_map = client.do_command(command);
+        ProtoStruct command = fake_map();
+        ProtoStruct expected_map = fake_map();
+        ProtoStruct result_map = client.do_command(command);
 
-        ProtoType expected_pt = *(expected_map->at(std::string("test")));
-        ProtoType result_pt = *(result_map->at(std::string("test")));
-
-        BOOST_CHECK(expected_pt == result_pt);
+        BOOST_CHECK(expected_map.at("test") == result_map.at("test"));
     });
 }
 

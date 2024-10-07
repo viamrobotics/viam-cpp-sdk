@@ -20,9 +20,9 @@ SensorServer::SensorServer(std::shared_ptr<ResourceManager> manager)
                                          GetReadingsResponse* response) noexcept {
     return make_service_helper<Sensor>(
         "SensorServer::GetReadings", this, request)([&](auto& helper, auto& sensor) {
-        const AttributeMap result = sensor->get_readings(helper.getExtra());
-        for (const auto& r : *result) {
-            response->mutable_readings()->insert({r.first, r.second->proto_value()});
+        const ProtoStruct result = sensor->get_readings(helper.getExtra());
+        for (const auto& r : result) {
+            response->mutable_readings()->insert({r.first, to_proto(r.second)});
         }
     });
 }
@@ -32,7 +32,7 @@ SensorServer::SensorServer(std::shared_ptr<ResourceManager> manager)
                                        DoCommandResponse* response) noexcept {
     return make_service_helper<Sensor>(
         "SensorServer::DoCommand", this, request)([&](auto&, auto& sensor) {
-        const AttributeMap result = sensor->do_command(struct_to_map(request->command()));
+        const ProtoStruct result = sensor->do_command(struct_to_map(request->command()));
         *response->mutable_result() = map_to_struct(result);
     });
 }

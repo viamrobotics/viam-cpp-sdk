@@ -27,6 +27,7 @@
 #include <boost/format.hpp>
 #include <boost/optional.hpp>
 #include <boost/program_options.hpp>
+#include <boost/variant/get.hpp>
 
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/services/mlmodel.hpp>

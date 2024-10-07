@@ -12,15 +12,15 @@ std::shared_ptr<MockGripper> MockGripper::get_mock_gripper() {
     return std::make_shared<MockGripper>("mock_gripper");
 }
 
-void MockGripper::open(const AttributeMap&) {
+void MockGripper::open(const ProtoStruct&) {
     peek_open_called = true;
 }
 
-bool MockGripper::grab(const AttributeMap&) {
+bool MockGripper::grab(const ProtoStruct&) {
     return true;
 }
 
-void MockGripper::stop(const AttributeMap&) {
+void MockGripper::stop(const ProtoStruct&) {
     peek_stop_called = true;
 }
 
@@ -28,11 +28,11 @@ bool MockGripper::is_moving() {
     return false;
 }
 
-AttributeMap MockGripper::do_command(const AttributeMap& command) {
+ProtoStruct MockGripper::do_command(const ProtoStruct& command) {
     return (peek_command = command);
 }
 
-std::vector<GeometryConfig> MockGripper::get_geometries(const AttributeMap&) {
+std::vector<GeometryConfig> MockGripper::get_geometries(const ProtoStruct&) {
     return fake_geometries();
 }
 

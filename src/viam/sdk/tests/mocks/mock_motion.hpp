@@ -1,7 +1,7 @@
 #pragma once
 
 #include <viam/sdk/common/pose.hpp>
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 #include <viam/sdk/services/motion.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
@@ -27,14 +27,14 @@ class MockMotion : public sdk::Motion {
               const sdk::Name& component_name,
               const std::shared_ptr<sdk::WorldState>& world_state,
               const std::shared_ptr<constraints>& constraints,
-              const sdk::AttributeMap& extra) override;
+              const sdk::ProtoStruct& extra) override;
 
     std::string move_on_map(const sdk::pose& destination,
                             const sdk::Name& component_name,
                             const sdk::Name& slam_name,
                             const std::shared_ptr<sdk::motion_configuration>& motion_configuration,
                             const std::vector<sdk::GeometryConfig>& obstacles,
-                            const sdk::AttributeMap& extra) override;
+                            const sdk::ProtoStruct& extra) override;
 
     std::string move_on_globe(
         const sdk::geo_point& destination,
@@ -44,37 +44,37 @@ class MockMotion : public sdk::Motion {
         const std::vector<sdk::geo_geometry>& obstacles,
         const std::shared_ptr<sdk::motion_configuration>& motion_configuration,
         const std::vector<sdk::geo_geometry>& bounding_regions,
-        const sdk::AttributeMap& extra) override;
+        const sdk::ProtoStruct& extra) override;
 
     sdk::pose_in_frame get_pose(
         const sdk::Name& component_name,
         const std::string& destination_frame,
         const std::vector<sdk::WorldState::transform>& supplemental_transforms,
-        const sdk::AttributeMap& extra) override;
+        const sdk::ProtoStruct& extra) override;
 
     plan_with_status get_plan(const sdk::Name& component_name,
                               const std::string& execution_id,
-                              const sdk::AttributeMap& extra) override;
+                              const sdk::ProtoStruct& extra) override;
 
     std::pair<plan_with_status, std::vector<plan_with_status>> get_plan_with_replan_history(
         const sdk::Name& component_name,
         const std::string& execution_id,
-        const sdk::AttributeMap& extra) override;
+        const sdk::ProtoStruct& extra) override;
 
     plan_with_status get_latest_plan(const sdk::Name& component_name,
-                                     const sdk::AttributeMap& extra) override;
+                                     const sdk::ProtoStruct& extra) override;
 
     std::pair<plan_with_status, std::vector<plan_with_status>> get_latest_plan_with_replan_history(
-        const sdk::Name& component_name, const sdk::AttributeMap& extra) override;
+        const sdk::Name& component_name, const sdk::ProtoStruct& extra) override;
 
-    std::vector<plan_status_with_id> list_plan_statuses(const sdk::AttributeMap& extra) override;
+    std::vector<plan_status_with_id> list_plan_statuses(const sdk::ProtoStruct& extra) override;
 
     std::vector<plan_status_with_id> list_active_plan_statuses(
-        const sdk::AttributeMap& extra) override;
+        const sdk::ProtoStruct& extra) override;
 
-    void stop_plan(const sdk::Name& name, const sdk::AttributeMap& extra) override;
+    void stop_plan(const sdk::Name& name, const sdk::ProtoStruct& extra) override;
 
-    sdk::AttributeMap do_command(const sdk::AttributeMap& command) override;
+    sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
     static std::shared_ptr<MockMotion> get_mock_motion();
     static plan_status fake_plan_status();
     static plan_with_status fake_plan_with_status();

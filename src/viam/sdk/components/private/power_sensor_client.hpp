@@ -23,11 +23,11 @@ class PowerSensorClient : public PowerSensor {
    public:
     using interface_type = PowerSensor;
     PowerSensorClient(std::string name, std::shared_ptr<grpc::Channel> channel);
-    voltage get_voltage(const AttributeMap& extra) override;
-    current get_current(const AttributeMap& extra) override;
-    double get_power(const AttributeMap& extra) override;
-    AttributeMap get_readings(const AttributeMap& extra) override;
-    AttributeMap do_command(const AttributeMap& command) override;
+    voltage get_voltage(const ProtoStruct& extra) override;
+    current get_current(const ProtoStruct& extra) override;
+    double get_power(const ProtoStruct& extra) override;
+    ProtoStruct get_readings(const ProtoStruct& extra) override;
+    ProtoStruct do_command(const ProtoStruct& command) override;
 
     using PowerSensor::get_current;
     using PowerSensor::get_power;

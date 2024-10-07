@@ -5467,6 +5467,7 @@ class ModuleConfig final :
     kTypeFieldNumber = 4,
     kModuleIdFieldNumber = 5,
     kStatusFieldNumber = 7,
+    kFirstRunTimeoutFieldNumber = 8,
   };
   // map<string, string> env = 6 [json_name = "env"];
   int env_size() const;
@@ -5578,14 +5579,29 @@ class ModuleConfig final :
   ::viam::app::v1::AppValidationStatus* _internal_mutable_status();
 
   public:
+  // .google.protobuf.Duration first_run_timeout = 8 [json_name = "firstRunTimeout"];
+  bool has_first_run_timeout() const;
+  void clear_first_run_timeout() ;
+  const ::google::protobuf::Duration& first_run_timeout() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Duration* release_first_run_timeout();
+  ::google::protobuf::Duration* mutable_first_run_timeout();
+  void set_allocated_first_run_timeout(::google::protobuf::Duration* value);
+  void unsafe_arena_set_allocated_first_run_timeout(::google::protobuf::Duration* value);
+  ::google::protobuf::Duration* unsafe_arena_release_first_run_timeout();
+
+  private:
+  const ::google::protobuf::Duration& _internal_first_run_timeout() const;
+  ::google::protobuf::Duration* _internal_mutable_first_run_timeout();
+
+  public:
   // @@protoc_insertion_point(class_scope:viam.app.v1.ModuleConfig)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 7, 2,
-      66, 2>
+      3, 8, 3,
+      74, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -5613,6 +5629,7 @@ class ModuleConfig final :
     ::google::protobuf::internal::ArenaStringPtr type_;
     ::google::protobuf::internal::ArenaStringPtr module_id_;
     ::viam::app::v1::AppValidationStatus* status_;
+    ::google::protobuf::Duration* first_run_timeout_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -18093,6 +18110,97 @@ inline void ModuleConfig::set_allocated_status(::viam::app::v1::AppValidationSta
 
   _impl_.status_ = reinterpret_cast<::viam::app::v1::AppValidationStatus*>(value);
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleConfig.status)
+}
+
+// .google.protobuf.Duration first_run_timeout = 8 [json_name = "firstRunTimeout"];
+inline bool ModuleConfig::has_first_run_timeout() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.first_run_timeout_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Duration& ModuleConfig::_internal_first_run_timeout() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::google::protobuf::Duration* p = _impl_.first_run_timeout_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Duration&>(::google::protobuf::_Duration_default_instance_);
+}
+inline const ::google::protobuf::Duration& ModuleConfig::first_run_timeout() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleConfig.first_run_timeout)
+  return _internal_first_run_timeout();
+}
+inline void ModuleConfig::unsafe_arena_set_allocated_first_run_timeout(::google::protobuf::Duration* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.first_run_timeout_);
+  }
+  _impl_.first_run_timeout_ = reinterpret_cast<::google::protobuf::Duration*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.ModuleConfig.first_run_timeout)
+}
+inline ::google::protobuf::Duration* ModuleConfig::release_first_run_timeout() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::google::protobuf::Duration* released = _impl_.first_run_timeout_;
+  _impl_.first_run_timeout_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::google::protobuf::Duration* ModuleConfig::unsafe_arena_release_first_run_timeout() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.v1.ModuleConfig.first_run_timeout)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::google::protobuf::Duration* temp = _impl_.first_run_timeout_;
+  _impl_.first_run_timeout_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Duration* ModuleConfig::_internal_mutable_first_run_timeout() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  if (_impl_.first_run_timeout_ == nullptr) {
+    auto* p = CreateMaybeMessage<::google::protobuf::Duration>(GetArena());
+    _impl_.first_run_timeout_ = reinterpret_cast<::google::protobuf::Duration*>(p);
+  }
+  return _impl_.first_run_timeout_;
+}
+inline ::google::protobuf::Duration* ModuleConfig::mutable_first_run_timeout() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::Duration* _msg = _internal_mutable_first_run_timeout();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ModuleConfig.first_run_timeout)
+  return _msg;
+}
+inline void ModuleConfig::set_allocated_first_run_timeout(::google::protobuf::Duration* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.first_run_timeout_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.first_run_timeout_ = reinterpret_cast<::google::protobuf::Duration*>(value);
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleConfig.first_run_timeout)
 }
 
 // -------------------------------------------------------------------

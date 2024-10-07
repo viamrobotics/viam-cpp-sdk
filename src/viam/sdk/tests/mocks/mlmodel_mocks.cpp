@@ -14,7 +14,7 @@
 
 #include <viam/sdk/tests/mocks/mlmodel_mocks.hpp>
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 
 namespace viam {
 namespace sdktests {
@@ -25,7 +25,7 @@ MockMLModelService& MockMLModelService::set_infer_handler(infer_handler handler)
 }
 
 std::shared_ptr<sdk::MLModelService::named_tensor_views> MockMLModelService::infer(
-    const named_tensor_views& inputs, const sdk::AttributeMap&) {
+    const named_tensor_views& inputs, const sdk::ProtoStruct&) {
     return infer_handler_(inputs);
 }
 
@@ -34,7 +34,7 @@ MockMLModelService& MockMLModelService::set_metadata(struct metadata metadata) {
     return *this;
 }
 
-struct sdk::MLModelService::metadata MockMLModelService::metadata(const sdk::AttributeMap&) {
+struct sdk::MLModelService::metadata MockMLModelService::metadata(const sdk::ProtoStruct&) {
     return metadata_;
 }
 

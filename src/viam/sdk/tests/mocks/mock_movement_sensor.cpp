@@ -9,35 +9,35 @@ namespace movementsensor {
 
 using namespace viam::sdk;
 
-Vector3 MockMovementSensor::get_linear_velocity(const AttributeMap&) {
+Vector3 MockMovementSensor::get_linear_velocity(const ProtoStruct&) {
     return this->peek_return_vec;
 };
-Vector3 MockMovementSensor::get_angular_velocity(const AttributeMap&) {
+Vector3 MockMovementSensor::get_angular_velocity(const ProtoStruct&) {
     return this->peek_return_vec;
 };
-MovementSensor::compassheading MockMovementSensor::get_compass_heading(const AttributeMap&) {
+MovementSensor::compassheading MockMovementSensor::get_compass_heading(const ProtoStruct&) {
     return this->peek_compass_heading;
 };
-MovementSensor::orientation MockMovementSensor::get_orientation(const AttributeMap&) {
+MovementSensor::orientation MockMovementSensor::get_orientation(const ProtoStruct&) {
     return this->peek_orientation;
 };
-MovementSensor::position MockMovementSensor::get_position(const AttributeMap&) {
+MovementSensor::position MockMovementSensor::get_position(const ProtoStruct&) {
     return this->peek_position;
 };
-MovementSensor::properties MockMovementSensor::get_properties(const AttributeMap&) {
+MovementSensor::properties MockMovementSensor::get_properties(const ProtoStruct&) {
     return this->peek_properties;
 };
-std::unordered_map<std::string, float> MockMovementSensor::get_accuracy(const AttributeMap&) {
+std::unordered_map<std::string, float> MockMovementSensor::get_accuracy(const ProtoStruct&) {
     return this->peek_accuracy;
 };
-Vector3 MockMovementSensor::get_linear_acceleration(const AttributeMap&) {
+Vector3 MockMovementSensor::get_linear_acceleration(const ProtoStruct&) {
     return this->peek_return_vec;
 };
-AttributeMap MockMovementSensor::do_command(const AttributeMap& command) {
+ProtoStruct MockMovementSensor::do_command(const ProtoStruct& command) {
     this->peek_do_command_command = command;
     return command;
 };
-std::vector<sdk::GeometryConfig> MockMovementSensor::get_geometries(const AttributeMap&) {
+std::vector<sdk::GeometryConfig> MockMovementSensor::get_geometries(const ProtoStruct&) {
     return fake_geometries();
 };
 

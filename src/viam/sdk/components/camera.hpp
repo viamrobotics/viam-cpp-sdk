@@ -14,7 +14,7 @@
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/camera/v1/camera.pb.h>
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
@@ -173,7 +173,7 @@ class Camera : public Component {
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.
     /// @return The result of the executed command.
-    virtual AttributeMap do_command(const AttributeMap& command) = 0;
+    virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
     /// @brief Get the next image from the camera as a raw image.
     /// @param mime_type the desired mime_type of the image (does not guarantee output type).
@@ -186,7 +186,7 @@ class Camera : public Component {
     /// @param mime_type the desired mime_type of the image (does not guarantee output type).
     /// @param extra any additional arguments to the method.
     /// @return The frame as a `raw_image`.
-    virtual raw_image get_image(std::string mime_type, const AttributeMap& extra) = 0;
+    virtual raw_image get_image(std::string mime_type, const ProtoStruct& extra) = 0;
 
     /// @brief Get the next images from the camera as a vector of raw images with names and
     /// metadata.
@@ -204,7 +204,7 @@ class Camera : public Component {
     /// @param mime_type the desired mime_type of the point_cloud (does not guarantee output type).
     /// @param extra any additional arguments to the method.
     /// @return The requested `point_cloud`.
-    virtual point_cloud get_point_cloud(std::string mime_type, const AttributeMap& extra) = 0;
+    virtual point_cloud get_point_cloud(std::string mime_type, const ProtoStruct& extra) = 0;
 
     /// @brief Returns `GeometryConfig`s associated with the calling camera.
     /// @return The requested `GeometryConfig`s associated with the component.
@@ -215,7 +215,7 @@ class Camera : public Component {
     /// @brief Returns `GeometryConfig`s associated with the calling camera.
     /// @param extra Any additional arguments to the method.
     /// @return The requested `GeometryConfig`s associated with the component.
-    virtual std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) = 0;
+    virtual std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) = 0;
 
     /// @brief Get the camera's properties.
     /// @return The camera properties.

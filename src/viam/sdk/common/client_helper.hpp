@@ -5,7 +5,7 @@
 
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/private/utils.hpp>
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 
 namespace viam {
@@ -42,7 +42,7 @@ class ClientHelper {
     explicit ClientHelper(ClientType* client, StubType* stub, MethodType pfn)
         : client_(client), stub_(stub), pfn_(pfn) {}
 
-    ClientHelper& with(const AttributeMap& extra) {
+    ClientHelper& with(const ProtoStruct& extra) {
         return with(extra, default_rsc_);
     }
 
@@ -53,13 +53,11 @@ class ClientHelper {
     }
 
     template <typename RequestSetupCallable>
-    ClientHelper& with(const AttributeMap& extra, RequestSetupCallable&& rsc) {
-        if (extra) {
-            auto key = extra->find(impl::debug_map_key);
-            if (key != extra->end()) {
-                ProtoType value = *(key->second);
-                debug_key_ = *value.get<std::string>();
-            }
+    ClientHelper& with(const ProtoStruct& extra, RequestSetupCallable&& rsc) {
+        auto key = extra.find(impl::debug_map_key);
+        if (key != extra.end()) {
+            ProtoValue value = key->second;
+            debug_key_ = *value.get<std::string>();
         }
         *request_.mutable_extra() = map_to_struct(extra);
         return with(std::forward<RequestSetupCallable>(rsc));
