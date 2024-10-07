@@ -3,6 +3,7 @@
 #include <boost/test/included/unit_test.hpp>
 
 #include <viam/sdk/common/pose.hpp>
+#include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/common/world_state.hpp>
 #include <viam/sdk/services/motion.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
@@ -171,6 +172,9 @@ BOOST_AUTO_TEST_CASE(test_move_and_get_pose) {
         std::string destination_frame("destination");
         std::vector<WorldState::transform> transforms;
         AttributeMap extra = fake_map();
+        std::string debug_key = "debug-key";
+        extra = add_debug_entry(extra, debug_key);
+
         pose_in_frame pose = client.get_pose(fake_component_name(), destination_frame, {}, extra);
         BOOST_CHECK_EQUAL(pose, init_fake_pose());
 

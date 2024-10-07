@@ -65,7 +65,7 @@ std::string MockMotion::move_on_globe(
 pose_in_frame MockMotion::get_pose(const Name&,
                                    const std::string&,
                                    const std::vector<WorldState::transform>&,
-                                   const AttributeMap&) {
+                                   const AttributeMap& extra) {
     return current_location;
 }
 

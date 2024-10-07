@@ -127,8 +127,7 @@ std::string random_debug_key() {
 }
 
 AttributeMap debug_map() {
-    auto debug_key = random_debug_key();
-    return debug_map(debug_key);
+    return debug_map(random_debug_key());
 }
 
 AttributeMap debug_map(std::string debug_key) {

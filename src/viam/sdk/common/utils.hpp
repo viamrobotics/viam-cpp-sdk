@@ -74,11 +74,11 @@ AttributeMap debug_map();
 AttributeMap debug_map(std::string debug_key);
 
 /// @brief Adds @param debug_key for server-side debug logging to @param map
-/// @throws Exception if the debug_key contains invalid (e.g., uppercase )gRPC characters
+/// @throws Exception if the debug_key contains invalid (e.g., uppercase) gRPC characters
 AttributeMap add_debug_entry(AttributeMap&& map, std::string debug_key);
 
 /// @brief Adds @param debug_key for server-side debug logging to @param map
-/// @throws Exception if the debug_key contains invalid (e.g., uppercase )gRPC characters
+/// @throws Exception if the debug_key contains invalid (e.g., uppercase) gRPC characters
 AttributeMap add_debug_entry(AttributeMap map, std::string debug_key);
 
 /// @brief Adds a random key to @param map for server-side debug logging
