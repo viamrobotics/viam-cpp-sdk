@@ -170,6 +170,9 @@ std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><
 <tr class="memitem:a1684010009781539671c88c57bae7d68" id="r_a1684010009781539671c88c57bae7d68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9ccf3ad0775">KinematicsData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1684010009781539671c88c57bae7d68">get_kinematics</a> ()</td></tr>
 <tr class="memdesc:a1684010009781539671c88c57bae7d68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the kinematics data associated with the arm.  <br /></td></tr>
 <tr class="separator:a1684010009781539671c88c57bae7d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48cc947a63a1c32bbe122017aab51849" id="r_a48cc947a63a1c32bbe122017aab51849"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48cc947a63a1c32bbe122017aab51849">move_to_joint_positions</a> (const std::vector&lt; double &gt; &amp;positions)</td></tr>
+<tr class="memdesc:a48cc947a63a1c32bbe122017aab51849"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move each joint on the arm to the corresponding angle specified in.  <br /></td></tr>
+<tr class="separator:a48cc947a63a1c32bbe122017aab51849"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99e232accde4b5c98d73911654b13c29" id="r_a99e232accde4b5c98d73911654b13c29"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99e232accde4b5c98d73911654b13c29">move_to_joint_positions</a> (const std::vector&lt; double &gt; &amp;positions, const ProtoStruct &amp;extra)=0</td></tr>
 <tr class="memdesc:a99e232accde4b5c98d73911654b13c29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move each joint on the arm to the corresponding angle specified in.  <br /></td></tr>
 <tr class="separator:a99e232accde4b5c98d73911654b13c29"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -190,6 +193,9 @@ std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><
 std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>get_joint_positions</b> ()</td></tr>
 <tr class="memdesc:a1a5198860ccffa77d21b6d0ea047b018 inherit pub_methods_classviam_1_1sdk_1_1Arm"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the joint positions in degrees of every joint on a robot arm. <br /></td></tr>
 <tr class="separator:a1a5198860ccffa77d21b6d0ea047b018 inherit pub_methods_classviam_1_1sdk_1_1Arm"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48cc947a63a1c32bbe122017aab51849 inherit pub_methods_classviam_1_1sdk_1_1Arm" id="r_a48cc947a63a1c32bbe122017aab51849"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Arm.html#a48cc947a63a1c32bbe122017aab51849">move_to_joint_positions</a> (const std::vector&lt; double &gt; &amp;positions)</td></tr>
+<tr class="memdesc:a48cc947a63a1c32bbe122017aab51849 inherit pub_methods_classviam_1_1sdk_1_1Arm"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move each joint on the arm to the corresponding angle specified in.  <br /></td></tr>
+<tr class="separator:a48cc947a63a1c32bbe122017aab51849 inherit pub_methods_classviam_1_1sdk_1_1Arm"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1684010009781539671c88c57bae7d68 inherit pub_methods_classviam_1_1sdk_1_1Arm" id="r_a1684010009781539671c88c57bae7d68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9ccf3ad0775">KinematicsData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Arm.html#a1684010009781539671c88c57bae7d68">get_kinematics</a> ()</td></tr>
 <tr class="memdesc:a1684010009781539671c88c57bae7d68 inherit pub_methods_classviam_1_1sdk_1_1Arm"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the kinematics data associated with the arm.  <br /></td></tr>
 <tr class="separator:a1684010009781539671c88c57bae7d68 inherit pub_methods_classviam_1_1sdk_1_1Arm"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -648,8 +654,41 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
 
 </div>
 </div>
+<a id="a48cc947a63a1c32bbe122017aab51849" name="a48cc947a63a1c32bbe122017aab51849"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48cc947a63a1c32bbe122017aab51849">&#9670;&#160;</a></span>move_to_joint_positions() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void viam::sdk::Arm::move_to_joint_positions </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>positions</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Move each joint on the arm to the corresponding angle specified in. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">positions</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a64da030caef0d10833e9effa289a0a16" name="a64da030caef0d10833e9effa289a0a16"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a64da030caef0d10833e9effa289a0a16">&#9670;&#160;</a></span>move_to_joint_positions() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a64da030caef0d10833e9effa289a0a16">&#9670;&#160;</a></span>move_to_joint_positions() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -689,7 +728,7 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
 </div>
 </div>
 <a id="a99e232accde4b5c98d73911654b13c29" name="a99e232accde4b5c98d73911654b13c29"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99e232accde4b5c98d73911654b13c29">&#9670;&#160;</a></span>move_to_joint_positions() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a99e232accde4b5c98d73911654b13c29">&#9670;&#160;</a></span>move_to_joint_positions() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">

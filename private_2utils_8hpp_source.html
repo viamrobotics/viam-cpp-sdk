@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Viam C++ SDK: viam::sdk::ClientContext Class Reference</title>
+<title>Viam C++ SDK: src/viam/sdk/common/private/utils.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -48,6 +48,11 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -71,33 +76,25 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>viam</b></li><li class="navelem"><b>sdk</b></li><li class="navelem"><a class="el" href="classviam_1_1sdk_1_1ClientContext.html">ClientContext</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_2f841a913ca9dc33e6376c2a26eb0ce5.html">viam</a></li><li class="navelem"><a class="el" href="dir_2dd7419e3f1605b187eaf7d665ac5e3d.html">sdk</a></li><li class="navelem"><a class="el" href="dir_956d74ec07821189a65eed5fb7814528.html">common</a></li><li class="navelem"><a class="el" href="dir_162f7bad97373024548f5cd1bbd76748.html">private</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="classviam_1_1sdk_1_1ClientContext-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">viam::sdk::ClientContext Class Reference</div></div>
+  <div class="headertitle"><div class="title">utils.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:a78046a12c914f15b7142615ee022dcd0" id="r_a78046a12c914f15b7142615ee022dcd0"><td class="memItemLeft" align="right" valign="top"><a id="a78046a12c914f15b7142615ee022dcd0" name="a78046a12c914f15b7142615ee022dcd0"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>operator grpc::ClientContext *</b> ()</td></tr>
-<tr class="separator:a78046a12c914f15b7142615ee022dcd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc1bf651d75e90a041944038fd74c12b" id="r_afc1bf651d75e90a041944038fd74c12b"><td class="memItemLeft" align="right" valign="top"><a id="afc1bf651d75e90a041944038fd74c12b" name="afc1bf651d75e90a041944038fd74c12b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>operator const grpc::ClientContext *</b> () const</td></tr>
-<tr class="separator:afc1bf651d75e90a041944038fd74c12b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff985ff26c0ca835f6d75b3d906ab460" id="r_aff985ff26c0ca835f6d75b3d906ab460"><td class="memItemLeft" align="right" valign="top"><a id="aff985ff26c0ca835f6d75b3d906ab460" name="aff985ff26c0ca835f6d75b3d906ab460"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set_debug_key</b> (const std::string &amp;debug_key)</td></tr>
-<tr class="separator:aff985ff26c0ca835f6d75b3d906ab460"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/viam/sdk/common/<a class="el" href="utils_8hpp_source.html">utils.hpp</a></li>
-</ul>
-</div><!-- contents -->
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">namespace </span>viam {</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">namespace </span>sdk {</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span>impl {</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">const</span> <span class="keywordtype">char</span> debug_map_key[] = <span class="stringliteral">&quot;com.viam.debug_key_internal&quot;</span>;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>}  <span class="comment">// namespace impl</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>}  <span class="comment">// namespace sdk</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>}  <span class="comment">// namespace viam</span></div>
+</div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
