@@ -148,7 +148,7 @@ ProtoStruct with_debug_entry(ProtoStruct&& map, std::string debug_key) {
     return map;
 }
 
-ProtoStruct add_debug_entry(ProtoStruct&& map) {
+ProtoStruct with_debug_entry(ProtoStruct&& map) {
     add_debug_entry(map);
     return map;
 }
