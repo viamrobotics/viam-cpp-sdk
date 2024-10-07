@@ -170,7 +170,7 @@ BOOST_AUTO_TEST_CASE(test_move_and_get_pose) {
         std::vector<WorldState::transform> transforms;
         ProtoStruct extra = fake_map();
         std::string debug_key = "debug-key";
-        extra = add_debug_entry(std::move(extra), debug_key);
+        add_debug_entry(extra, debug_key);
         pose_in_frame pose = client.get_pose(fake_component_name(), destination_frame, {}, extra);
         BOOST_CHECK_EQUAL(mock->peek_debug_key, debug_key);
         BOOST_CHECK_EQUAL(pose, init_fake_pose());
