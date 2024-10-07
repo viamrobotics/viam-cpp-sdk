@@ -4,6 +4,7 @@
 #include <grpcpp/support/sync_stream.h>
 
 #include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/common/private/utils.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 
@@ -53,6 +54,11 @@ class ClientHelper {
 
     template <typename RequestSetupCallable>
     ClientHelper& with(const ProtoStruct& extra, RequestSetupCallable&& rsc) {
+        auto key = extra.find(impl::debug_map_key);
+        if (key != extra.end()) {
+            ProtoValue value = key->second;
+            debug_key_ = *value.get<std::string>();
+        }
         *request_.mutable_extra() = map_to_struct(extra);
         return with(std::forward<RequestSetupCallable>(rsc));
     }
@@ -67,6 +73,9 @@ class ClientHelper {
         *request_.mutable_name() = client_->name();
         ClientContext ctx;
 
+        if (debug_key_ != "") {
+            ctx.set_debug_key(debug_key_);
+        }
         const auto result = (stub_->*pfn_)(ctx, request_, &response_);
         if (result.ok()) {
             return std::forward<ResponseHandlerCallable>(rhc)(
@@ -112,6 +121,7 @@ class ClientHelper {
    private:
     ClientType* client_;
     StubType* stub_;
+    std::string debug_key_;
     MethodType pfn_;
     RequestType request_;
     ResponseType response_;

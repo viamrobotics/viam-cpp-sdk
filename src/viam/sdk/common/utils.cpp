@@ -1,5 +1,6 @@
 #include <viam/sdk/common/utils.hpp>
 
+#include <random>
 #include <unordered_map>
 #include <vector>
 
@@ -12,6 +13,7 @@
 
 #include <viam/api/common/v1/common.pb.h>
 
+#include <viam/sdk/common/private/utils.hpp>
 #include <viam/sdk/common/private/version_metadata.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/registry/registry.hpp>
@@ -104,6 +106,55 @@ bool operator==(const response_metadata& lhs, const response_metadata& rhs) {
 
 void ClientContext::set_client_ctx_authority_() {
     wrapped_context_.set_authority("viam-placeholder");
+}
+
+std::string random_debug_key() {
+    static const char alphanum[] = "abcdefghijklmnopqrstuvwxyz";
+    static std::default_random_engine generator(
+        std::chrono::system_clock::now().time_since_epoch().count());
+    std::uniform_int_distribution<int> distribution(0, sizeof(alphanum) - 1);
+
+    std::string key;
+    key.reserve(6);
+
+    for (int i = 0; i < 6; ++i) {
+        key += alphanum[distribution(generator)];
+    };
+
+    return key;
+}
+
+ProtoStruct debug_map() {
+    return debug_map(random_debug_key());
+}
+
+ProtoStruct debug_map(std::string debug_key) {
+    ProtoStruct map;
+    map.emplace(impl::debug_map_key, ProtoValue(std::move(debug_key)));
+
+    return map;
+}
+
+void add_debug_entry(ProtoStruct& map, std::string debug_key) {
+    map.emplace(impl::debug_map_key, ProtoValue(std::move(debug_key)));
+}
+
+void add_debug_entry(ProtoStruct& map) {
+    add_debug_entry(map, random_debug_key());
+}
+
+ProtoStruct with_debug_entry(ProtoStruct&& map, std::string debug_key) {
+    add_debug_entry(map, std::move(debug_key));
+    return map;
+}
+
+ProtoStruct with_debug_entry(ProtoStruct&& map) {
+    add_debug_entry(map);
+    return map;
+}
+
+void ClientContext::set_debug_key(const std::string& debug_key) {
+    wrapped_context_.AddMetadata("dtname", debug_key);
 }
 
 void ClientContext::add_viam_client_version_() {
