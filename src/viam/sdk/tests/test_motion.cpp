@@ -168,10 +168,9 @@ BOOST_AUTO_TEST_CASE(test_move_and_get_pose) {
     client_to_mock_pipeline<Motion>(mock, [&](Motion& client) {
         std::string destination_frame("destination");
         std::vector<WorldState::transform> transforms;
-        ProtoStruct extra = fake_map();
         std::string debug_key = "debug-key";
-        add_debug_entry(extra, debug_key);
-        pose_in_frame pose = client.get_pose(fake_component_name(), destination_frame, {}, extra);
+        pose_in_frame pose = client.get_pose(
+            fake_component_name(), destination_frame, {}, with_debug_entry(fake_map(), debug_key));
         BOOST_CHECK_EQUAL(mock->peek_debug_key, debug_key);
         BOOST_CHECK_EQUAL(pose, init_fake_pose());
 
@@ -179,7 +178,7 @@ BOOST_AUTO_TEST_CASE(test_move_and_get_pose) {
         bool success = client.move(fake_pose(), fake_component_name(), ws, nullptr, fake_map());
         BOOST_TEST(success);
 
-        pose = client.get_pose(fake_component_name(), destination_frame, transforms, extra);
+        pose = client.get_pose(fake_component_name(), destination_frame, transforms, fake_map());
         BOOST_CHECK_EQUAL(pose, fake_pose());
     });
 }
