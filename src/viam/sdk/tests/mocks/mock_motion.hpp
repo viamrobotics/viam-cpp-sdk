@@ -91,6 +91,7 @@ class MockMotion : public sdk::Motion {
     std::string peek_destination_frame;
     double peek_heading;
     bool peek_stop_plan_called = false;
+    std::string peek_debug_key;
     std::vector<sdk::geo_geometry> peek_obstacles;
     std::vector<sdk::GeometryConfig> peek_map_obstacles;
     std::shared_ptr<constraints> peek_constraints;
