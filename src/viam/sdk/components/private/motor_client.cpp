@@ -1,8 +1,6 @@
 #include <viam/sdk/components/private/motor_client.hpp>
 
-#include <algorithm>
 #include <memory>
-#include <stdexcept>
 #include <string>
 #include <utility>
 
