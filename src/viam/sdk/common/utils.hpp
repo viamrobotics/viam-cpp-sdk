@@ -1,8 +1,5 @@
 #pragma once
 
-#include <cmath>
-#include <unordered_map>
-
 #include <boost/optional/optional.hpp>
 #include <grpcpp/client_context.h>
 
@@ -56,12 +53,36 @@ class ClientContext {
     ClientContext();
     operator grpc::ClientContext*();
     operator const grpc::ClientContext*() const;
+    void set_debug_key(const std::string& debug_key);
 
    private:
     void set_client_ctx_authority_();
     void add_viam_client_version_();
     grpc::ClientContext wrapped_context_;
 };
+
+/// @brief Returns a new `ProtoStruct` with a random key for server-side debug logging
+ProtoStruct debug_map();
+
+/// @brief Returns a new `ProtoStruct` with @param debug_key for server-side debug logging
+/// @throws Exception if the debug_key contains invalid (e.g., uppercase) gRPC characters
+ProtoStruct debug_map(std::string debug_key);
+
+/// @brief Adds @param debug_key for server-side debug logging to @param map
+/// @throws Exception if the debug_key contains invalid (e.g., uppercase) gRPC characters
+void add_debug_entry(ProtoStruct& map, std::string debug_key);
+
+/// @brief Adds a random key to @param map for server-side debug logging
+void add_debug_entry(ProtoStruct& map);
+
+/// @brief Adds @param debug_key for server-side debug logging to @param map
+/// @throws Exception if the debug_key contains invalid (e.g., uppercase) gRPC characters
+/// @returns the new ProtoStruct
+ProtoStruct with_debug_entry(ProtoStruct&& map, std::string debug_key);
+
+/// @brief Adds a random key to @param map for server-side debug logging
+/// @returns the new ProtoStruct
+ProtoStruct with_debug_entry(ProtoStruct&& map);
 
 /// @brief Set the boost trivial logger's severity depending on args.
 /// @param argc The number of args.

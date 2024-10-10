@@ -1,9 +1,10 @@
-#include "viam/sdk/services/motion.hpp"
 #include <viam/sdk/tests/mocks/mock_motion.hpp>
 
 #include <chrono>
 
+#include <viam/sdk/common/private/utils.hpp>
 #include <viam/sdk/common/utils.hpp>
+#include <viam/sdk/services/motion.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
 #include <viam/sdk/spatialmath/orientation_types.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
@@ -65,7 +66,12 @@ std::string MockMotion::move_on_globe(
 pose_in_frame MockMotion::get_pose(const Name&,
                                    const std::string&,
                                    const std::vector<WorldState::transform>&,
-                                   const ProtoStruct&) {
+                                   const ProtoStruct& extra) {
+    auto key = extra.find(impl::debug_map_key);
+    if (key != extra.end()) {
+        ProtoValue value = key->second;
+        peek_debug_key = *value.get<std::string>();
+    }
     return current_location;
 }
 
