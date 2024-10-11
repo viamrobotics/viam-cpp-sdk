@@ -374,30 +374,6 @@ struct GetCloudMetadataRequestDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetCloudMetadataRequestDefaultTypeInternal _GetCloudMetadataRequest_default_instance_;
-
-inline constexpr DiscoveryQuery::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : subtype_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        model_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR DiscoveryQuery::DiscoveryQuery(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct DiscoveryQueryDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR DiscoveryQueryDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~DiscoveryQueryDefaultTypeInternal() {}
-  union {
-    DiscoveryQuery _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DiscoveryQueryDefaultTypeInternal _DiscoveryQuery_default_instance_;
       template <typename>
 PROTOBUF_CONSTEXPR CancelOperationResponse::CancelOperationResponse(::_pbi::ConstantInitialized) {}
 struct CancelOperationResponseDefaultTypeInternal {
@@ -686,44 +662,30 @@ struct GetStatusRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetStatusRequestDefaultTypeInternal _GetStatusRequest_default_instance_;
 
-inline constexpr Discovery::Impl_::Impl_(
+inline constexpr DiscoveryQuery::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        query_{nullptr},
-        results_{nullptr} {}
+        subtype_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        model_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        extra_{nullptr} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR Discovery::Discovery(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR DiscoveryQuery::DiscoveryQuery(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct DiscoveryDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR DiscoveryDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~DiscoveryDefaultTypeInternal() {}
+struct DiscoveryQueryDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DiscoveryQueryDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DiscoveryQueryDefaultTypeInternal() {}
   union {
-    Discovery _instance;
+    DiscoveryQuery _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DiscoveryDefaultTypeInternal _Discovery_default_instance_;
-
-inline constexpr DiscoverComponentsRequest::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : queries_{},
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR DiscoverComponentsRequest::DiscoverComponentsRequest(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct DiscoverComponentsRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR DiscoverComponentsRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~DiscoverComponentsRequestDefaultTypeInternal() {}
-  union {
-    DiscoverComponentsRequest _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DiscoverComponentsRequestDefaultTypeInternal _DiscoverComponentsRequest_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DiscoveryQueryDefaultTypeInternal _DiscoveryQuery_default_instance_;
 
 inline constexpr ConfigStatus::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -918,6 +880,45 @@ struct GetMachineStatusResponseDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetMachineStatusResponseDefaultTypeInternal _GetMachineStatusResponse_default_instance_;
+
+inline constexpr Discovery::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        query_{nullptr},
+        results_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Discovery::Discovery(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct DiscoveryDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DiscoveryDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DiscoveryDefaultTypeInternal() {}
+  union {
+    Discovery _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DiscoveryDefaultTypeInternal _Discovery_default_instance_;
+
+inline constexpr DiscoverComponentsRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : queries_{},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR DiscoverComponentsRequest::DiscoverComponentsRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct DiscoverComponentsRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DiscoverComponentsRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DiscoverComponentsRequestDefaultTypeInternal() {}
+  union {
+    DiscoverComponentsRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DiscoverComponentsRequestDefaultTypeInternal _DiscoverComponentsRequest_default_instance_;
 
 inline constexpr DiscoverComponentsResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -1259,7 +1260,7 @@ const ::uint32_t TableStruct_robot_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECT
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::viam::robot::v1::GetSessionsResponse, _impl_.sessions_),
-    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::viam::robot::v1::DiscoveryQuery, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::viam::robot::v1::DiscoveryQuery, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
@@ -1269,6 +1270,10 @@ const ::uint32_t TableStruct_robot_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECT
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::viam::robot::v1::DiscoveryQuery, _impl_.subtype_),
     PROTOBUF_FIELD_OFFSET(::viam::robot::v1::DiscoveryQuery, _impl_.model_),
+    PROTOBUF_FIELD_OFFSET(::viam::robot::v1::DiscoveryQuery, _impl_.extra_),
+    ~0u,
+    ~0u,
+    0,
     PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Discovery, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Discovery, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -1588,36 +1593,36 @@ static const ::_pbi::MigrationSchema
         {203, 213, -1, sizeof(::viam::robot::v1::Session)},
         {215, -1, -1, sizeof(::viam::robot::v1::GetSessionsRequest)},
         {223, -1, -1, sizeof(::viam::robot::v1::GetSessionsResponse)},
-        {232, -1, -1, sizeof(::viam::robot::v1::DiscoveryQuery)},
-        {242, 252, -1, sizeof(::viam::robot::v1::Discovery)},
-        {254, -1, -1, sizeof(::viam::robot::v1::DiscoverComponentsRequest)},
-        {263, -1, -1, sizeof(::viam::robot::v1::DiscoverComponentsResponse)},
-        {272, 283, -1, sizeof(::viam::robot::v1::Status)},
-        {286, -1, -1, sizeof(::viam::robot::v1::GetStatusRequest)},
-        {295, -1, -1, sizeof(::viam::robot::v1::GetStatusResponse)},
-        {304, 314, -1, sizeof(::viam::robot::v1::StreamStatusRequest)},
-        {316, -1, -1, sizeof(::viam::robot::v1::StreamStatusResponse)},
-        {325, 335, -1, sizeof(::viam::robot::v1::StopExtraParameters)},
-        {337, -1, -1, sizeof(::viam::robot::v1::StopAllRequest)},
-        {346, -1, -1, sizeof(::viam::robot::v1::StopAllResponse)},
-        {354, -1, -1, sizeof(::viam::robot::v1::StartSessionRequest)},
-        {363, 373, -1, sizeof(::viam::robot::v1::StartSessionResponse)},
-        {375, -1, -1, sizeof(::viam::robot::v1::SendSessionHeartbeatRequest)},
-        {384, -1, -1, sizeof(::viam::robot::v1::SendSessionHeartbeatResponse)},
-        {392, -1, -1, sizeof(::viam::robot::v1::LogRequest)},
-        {401, -1, -1, sizeof(::viam::robot::v1::LogResponse)},
-        {409, -1, -1, sizeof(::viam::robot::v1::GetCloudMetadataRequest)},
-        {417, -1, -1, sizeof(::viam::robot::v1::GetCloudMetadataResponse)},
-        {430, -1, -1, sizeof(::viam::robot::v1::RestartModuleRequest)},
-        {441, -1, -1, sizeof(::viam::robot::v1::RestartModuleResponse)},
-        {449, -1, -1, sizeof(::viam::robot::v1::ShutdownRequest)},
-        {457, -1, -1, sizeof(::viam::robot::v1::ShutdownResponse)},
-        {465, -1, -1, sizeof(::viam::robot::v1::GetMachineStatusRequest)},
-        {473, 483, -1, sizeof(::viam::robot::v1::GetMachineStatusResponse)},
-        {485, 498, -1, sizeof(::viam::robot::v1::ResourceStatus)},
-        {503, 513, -1, sizeof(::viam::robot::v1::ConfigStatus)},
-        {515, -1, -1, sizeof(::viam::robot::v1::GetVersionRequest)},
-        {523, -1, -1, sizeof(::viam::robot::v1::GetVersionResponse)},
+        {232, 243, -1, sizeof(::viam::robot::v1::DiscoveryQuery)},
+        {246, 256, -1, sizeof(::viam::robot::v1::Discovery)},
+        {258, -1, -1, sizeof(::viam::robot::v1::DiscoverComponentsRequest)},
+        {267, -1, -1, sizeof(::viam::robot::v1::DiscoverComponentsResponse)},
+        {276, 287, -1, sizeof(::viam::robot::v1::Status)},
+        {290, -1, -1, sizeof(::viam::robot::v1::GetStatusRequest)},
+        {299, -1, -1, sizeof(::viam::robot::v1::GetStatusResponse)},
+        {308, 318, -1, sizeof(::viam::robot::v1::StreamStatusRequest)},
+        {320, -1, -1, sizeof(::viam::robot::v1::StreamStatusResponse)},
+        {329, 339, -1, sizeof(::viam::robot::v1::StopExtraParameters)},
+        {341, -1, -1, sizeof(::viam::robot::v1::StopAllRequest)},
+        {350, -1, -1, sizeof(::viam::robot::v1::StopAllResponse)},
+        {358, -1, -1, sizeof(::viam::robot::v1::StartSessionRequest)},
+        {367, 377, -1, sizeof(::viam::robot::v1::StartSessionResponse)},
+        {379, -1, -1, sizeof(::viam::robot::v1::SendSessionHeartbeatRequest)},
+        {388, -1, -1, sizeof(::viam::robot::v1::SendSessionHeartbeatResponse)},
+        {396, -1, -1, sizeof(::viam::robot::v1::LogRequest)},
+        {405, -1, -1, sizeof(::viam::robot::v1::LogResponse)},
+        {413, -1, -1, sizeof(::viam::robot::v1::GetCloudMetadataRequest)},
+        {421, -1, -1, sizeof(::viam::robot::v1::GetCloudMetadataResponse)},
+        {434, -1, -1, sizeof(::viam::robot::v1::RestartModuleRequest)},
+        {445, -1, -1, sizeof(::viam::robot::v1::RestartModuleResponse)},
+        {453, -1, -1, sizeof(::viam::robot::v1::ShutdownRequest)},
+        {461, -1, -1, sizeof(::viam::robot::v1::ShutdownResponse)},
+        {469, -1, -1, sizeof(::viam::robot::v1::GetMachineStatusRequest)},
+        {477, 487, -1, sizeof(::viam::robot::v1::GetMachineStatusResponse)},
+        {489, 502, -1, sizeof(::viam::robot::v1::ResourceStatus)},
+        {507, 517, -1, sizeof(::viam::robot::v1::ConfigStatus)},
+        {519, -1, -1, sizeof(::viam::robot::v1::GetVersionRequest)},
+        {527, -1, -1, sizeof(::viam::robot::v1::GetVersionResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1732,149 +1737,150 @@ const char descriptor_table_protodef_robot_2fv1_2frobot_2eproto[] PROTOBUF_SECTI
     "foH\000R\022peerConnectionInfo\210\001\001B\027\n\025_peer_con"
     "nection_info\"\024\n\022GetSessionsRequest\"I\n\023Ge"
     "tSessionsResponse\0222\n\010sessions\030\001 \003(\0132\026.vi"
-    "am.robot.v1.SessionR\010sessions\"@\n\016Discove"
+    "am.robot.v1.SessionR\010sessions\"o\n\016Discove"
     "ryQuery\022\030\n\007subtype\030\001 \001(\tR\007subtype\022\024\n\005mod"
-    "el\030\002 \001(\tR\005model\"s\n\tDiscovery\0223\n\005query\030\001 "
-    "\001(\0132\035.viam.robot.v1.DiscoveryQueryR\005quer"
-    "y\0221\n\007results\030\002 \001(\0132\027.google.protobuf.Str"
-    "uctR\007results\"T\n\031DiscoverComponentsReques"
-    "t\0227\n\007queries\030\001 \003(\0132\035.viam.robot.v1.Disco"
-    "veryQueryR\007queries\"T\n\032DiscoverComponents"
-    "Response\0226\n\tdiscovery\030\001 \003(\0132\030.viam.robot"
-    ".v1.DiscoveryR\tdiscovery\"\264\001\n\006Status\0220\n\004n"
-    "ame\030\001 \001(\0132\034.viam.common.v1.ResourceNameR"
-    "\004name\022/\n\006status\030\002 \001(\0132\027.google.protobuf."
-    "StructR\006status\022G\n\021last_reconfigured\030\003 \001("
-    "\0132\032.google.protobuf.TimestampR\020lastRecon"
-    "figured\"W\n\020GetStatusRequest\022C\n\016resource_"
-    "names\030\001 \003(\0132\034.viam.common.v1.ResourceNam"
-    "eR\rresourceNames\"B\n\021GetStatusResponse\022-\n"
-    "\006status\030\001 \003(\0132\025.viam.robot.v1.StatusR\006st"
-    "atus\"\213\001\n\023StreamStatusRequest\022C\n\016resource"
-    "_names\030\001 \003(\0132\034.viam.common.v1.ResourceNa"
-    "meR\rresourceNames\022/\n\005every\030\002 \001(\0132\031.googl"
-    "e.protobuf.DurationR\005every\"E\n\024StreamStat"
-    "usResponse\022-\n\006status\030\001 \003(\0132\025.viam.robot."
-    "v1.StatusR\006status\"x\n\023StopExtraParameters"
-    "\0220\n\004name\030\001 \001(\0132\034.viam.common.v1.Resource"
-    "NameR\004name\022/\n\006params\030\002 \001(\0132\027.google.prot"
-    "obuf.StructR\006params\"J\n\016StopAllRequest\0228\n"
-    "\005extra\030c \003(\0132\".viam.robot.v1.StopExtraPa"
-    "rametersR\005extra\"\021\n\017StopAllResponse\"-\n\023St"
-    "artSessionRequest\022\026\n\006resume\030\001 \001(\tR\006resum"
-    "e\"l\n\024StartSessionResponse\022\016\n\002id\030\001 \001(\tR\002i"
-    "d\022D\n\020heartbeat_window\030\002 \001(\0132\031.google.pro"
-    "tobuf.DurationR\017heartbeatWindow\"-\n\033SendS"
-    "essionHeartbeatRequest\022\016\n\002id\030\001 \001(\tR\002id\"\036"
-    "\n\034SendSessionHeartbeatResponse\":\n\nLogReq"
-    "uest\022,\n\004logs\030\001 \003(\0132\030.viam.common.v1.LogE"
-    "ntryR\004logs\"\r\n\013LogResponse\"\031\n\027GetCloudMet"
-    "adataRequest\"\320\001\n\030GetCloudMetadataRespons"
-    "e\022&\n\rrobot_part_id\030\001 \001(\tB\002\030\001R\013robotPartI"
-    "d\022$\n\016primary_org_id\030\002 \001(\tR\014primaryOrgId\022"
-    "\037\n\013location_id\030\003 \001(\tR\nlocationId\022\035\n\nmach"
-    "ine_id\030\004 \001(\tR\tmachineId\022&\n\017machine_part_"
-    "id\030\005 \001(\tR\rmachinePartId\"f\n\024RestartModule"
-    "Request\022\035\n\tmodule_id\030\001 \001(\tH\000R\010moduleId\022!"
-    "\n\013module_name\030\002 \001(\tH\000R\nmoduleNameB\014\n\nid_"
-    "or_name\"\027\n\025RestartModuleResponse\"\021\n\017Shut"
-    "downRequest\"\022\n\020ShutdownResponse\"\031\n\027GetMa"
-    "chineStatusRequest\"\214\001\n\030GetMachineStatusR"
-    "esponse\022;\n\tresources\030\001 \003(\0132\035.viam.robot."
-    "v1.ResourceStatusR\tresources\0223\n\006config\030\002"
-    " \001(\0132\033.viam.robot.v1.ConfigStatusR\006confi"
-    "g\"\370\002\n\016ResourceStatus\0220\n\004name\030\001 \001(\0132\034.via"
-    "m.common.v1.ResourceNameR\004name\0229\n\005state\030"
-    "\002 \001(\0162#.viam.robot.v1.ResourceStatus.Sta"
-    "teR\005state\022=\n\014last_updated\030\003 \001(\0132\032.google"
-    ".protobuf.TimestampR\013lastUpdated\022\032\n\010revi"
-    "sion\030\004 \001(\tR\010revision\022\024\n\005error\030\005 \001(\tR\005err"
-    "or\"\207\001\n\005State\022\025\n\021STATE_UNSPECIFIED\020\000\022\026\n\022S"
-    "TATE_UNCONFIGURED\020\001\022\025\n\021STATE_CONFIGURING"
-    "\020\002\022\017\n\013STATE_READY\020\003\022\022\n\016STATE_REMOVING\020\004\022"
-    "\023\n\017STATE_UNHEALTHY\020\005\"i\n\014ConfigStatus\022\032\n\010"
-    "revision\030\001 \001(\tR\010revision\022=\n\014last_updated"
-    "\030\002 \001(\0132\032.google.protobuf.TimestampR\013last"
-    "Updated\"\023\n\021GetVersionRequest\"k\n\022GetVersi"
-    "onResponse\022\032\n\010platform\030\001 \001(\tR\010platform\022\030"
-    "\n\007version\030\002 \001(\tR\007version\022\037\n\013api_version\030"
-    "\003 \001(\tR\napiVersion*z\n\022PeerConnectionType\022"
-    "$\n PEER_CONNECTION_TYPE_UNSPECIFIED\020\000\022\035\n"
-    "\031PEER_CONNECTION_TYPE_GRPC\020\001\022\037\n\033PEER_CON"
-    "NECTION_TYPE_WEBRTC\020\0022\313\025\n\014RobotService\022\200"
-    "\001\n\rGetOperations\022#.viam.robot.v1.GetOper"
-    "ationsRequest\032$.viam.robot.v1.GetOperati"
-    "onsResponse\"$\202\323\344\223\002\036\022\034/viam/api/v1/operat"
-    "ions/list\022x\n\013GetSessions\022!.viam.robot.v1"
-    ".GetSessionsRequest\032\".viam.robot.v1.GetS"
-    "essionsResponse\"\"\202\323\344\223\002\034\022\032/viam/api/v1/se"
-    "ssions/list\022\177\n\rResourceNames\022#.viam.robo"
-    "t.v1.ResourceNamesRequest\032$.viam.robot.v"
-    "1.ResourceNamesResponse\"#\202\323\344\223\002\035\022\033/viam/a"
-    "pi/v1/resources/list\022\235\001\n\023ResourceRPCSubt"
-    "ypes\022).viam.robot.v1.ResourceRPCSubtypes"
-    "Request\032*.viam.robot.v1.ResourceRPCSubty"
-    "pesResponse\"/\202\323\344\223\002)\022\'/viam/api/v1/resour"
-    "ce_rpc_subtypes/list\022\210\001\n\017CancelOperation"
-    "\022%.viam.robot.v1.CancelOperationRequest\032"
-    "&.viam.robot.v1.CancelOperationResponse\""
-    "&\202\323\344\223\002 \"\036/viam/api/v1/operations/cancel\022"
-    "\215\001\n\021BlockForOperation\022\'.viam.robot.v1.Bl"
-    "ockForOperationRequest\032(.viam.robot.v1.B"
-    "lockForOperationResponse\"%\202\323\344\223\002\037\"\035/viam/"
-    "api/v1/operations/block\022\224\001\n\022DiscoverComp"
-    "onents\022(.viam.robot.v1.DiscoverComponent"
-    "sRequest\032).viam.robot.v1.DiscoverCompone"
-    "ntsResponse\")\202\323\344\223\002#\022!/viam/api/v1/discov"
-    "ery/components\022\220\001\n\021FrameSystemConfig\022\'.v"
-    "iam.robot.v1.FrameSystemConfigRequest\032(."
-    "viam.robot.v1.FrameSystemConfigResponse\""
-    "(\202\323\344\223\002\"\022 /viam/api/v1/frame_system/confi"
-    "g\022\214\001\n\rTransformPose\022#.viam.robot.v1.Tran"
-    "sformPoseRequest\032$.viam.robot.v1.Transfo"
-    "rmPoseResponse\"0\202\323\344\223\002*\022(/viam/api/v1/fra"
-    "me_system/transform_pose\022\210\001\n\014TransformPC"
-    "D\022\".viam.robot.v1.TransformPCDRequest\032#."
-    "viam.robot.v1.TransformPCDResponse\"/\202\323\344\223"
-    "\002)\022\'/viam/api/v1/frame_system/transform_"
-    "pcd\022n\n\tGetStatus\022\037.viam.robot.v1.GetStat"
-    "usRequest\032 .viam.robot.v1.GetStatusRespo"
-    "nse\"\036\210\002\001\202\323\344\223\002\025\022\023/viam/api/v1/status\022\200\001\n\014"
-    "StreamStatus\022\".viam.robot.v1.StreamStatu"
-    "sRequest\032#.viam.robot.v1.StreamStatusRes"
-    "ponse\"%\210\002\001\202\323\344\223\002\034\022\032/viam/api/v1/status/st"
-    "ream0\001\022g\n\007StopAll\022\035.viam.robot.v1.StopAl"
-    "lRequest\032\036.viam.robot.v1.StopAllResponse"
-    "\"\035\202\323\344\223\002\027\022\025/viam/api/v1/stop_all\022v\n\014Start"
-    "Session\022\".viam.robot.v1.StartSessionRequ"
-    "est\032#.viam.robot.v1.StartSessionResponse"
-    "\"\035\202\323\344\223\002\027\"\025/viam/api/v1/sessions\022\235\001\n\024Send"
-    "SessionHeartbeat\022*.viam.robot.v1.SendSes"
-    "sionHeartbeatRequest\032+.viam.robot.v1.Sen"
-    "dSessionHeartbeatResponse\",\202\323\344\223\002&\"$/viam"
-    "/api/v1/sessions/{id}/heartbeat\022V\n\003Log\022\031"
-    ".viam.robot.v1.LogRequest\032\032.viam.robot.v"
-    "1.LogResponse\"\030\202\323\344\223\002\022\"\020/viam/api/v1/log\022"
-    "\210\001\n\020GetCloudMetadata\022&.viam.robot.v1.Get"
-    "CloudMetadataRequest\032\'.viam.robot.v1.Get"
-    "CloudMetadataResponse\"#\202\323\344\223\002\035\022\033/viam/api"
-    "/v1/cloud_metadata\022\177\n\rRestartModule\022#.vi"
-    "am.robot.v1.RestartModuleRequest\032$.viam."
-    "robot.v1.RestartModuleResponse\"#\202\323\344\223\002\035\"\033"
-    "/viam/api/v1/restart_module\022j\n\010Shutdown\022"
-    "\036.viam.robot.v1.ShutdownRequest\032\037.viam.r"
-    "obot.v1.ShutdownResponse\"\035\202\323\344\223\002\027\"\025/viam/"
-    "api/v1/shutdown\022\210\001\n\020GetMachineStatus\022&.v"
-    "iam.robot.v1.GetMachineStatusRequest\032\'.v"
-    "iam.robot.v1.GetMachineStatusResponse\"#\202"
-    "\323\344\223\002\035\022\033/viam/api/v1/machine_status\022o\n\nGe"
-    "tVersion\022 .viam.robot.v1.GetVersionReque"
-    "st\032!.viam.robot.v1.GetVersionResponse\"\034\202"
-    "\323\344\223\002\026\022\024/viam/api/v1/versionB\217\001\n\021com.viam"
-    ".robot.v1B\nRobotProtoP\001Z\030go.viam.com/api"
-    "/robot/v1\242\002\003VRX\252\002\rViam.Robot.V1\312\002\rViam\\R"
-    "obot\\V1\342\002\031Viam\\Robot\\V1\\GPBMetadata\352\002\017Vi"
-    "am::Robot::V1b\006proto3"
+    "el\030\002 \001(\tR\005model\022-\n\005extra\030c \001(\0132\027.google."
+    "protobuf.StructR\005extra\"s\n\tDiscovery\0223\n\005q"
+    "uery\030\001 \001(\0132\035.viam.robot.v1.DiscoveryQuer"
+    "yR\005query\0221\n\007results\030\002 \001(\0132\027.google.proto"
+    "buf.StructR\007results\"T\n\031DiscoverComponent"
+    "sRequest\0227\n\007queries\030\001 \003(\0132\035.viam.robot.v"
+    "1.DiscoveryQueryR\007queries\"T\n\032DiscoverCom"
+    "ponentsResponse\0226\n\tdiscovery\030\001 \003(\0132\030.via"
+    "m.robot.v1.DiscoveryR\tdiscovery\"\264\001\n\006Stat"
+    "us\0220\n\004name\030\001 \001(\0132\034.viam.common.v1.Resour"
+    "ceNameR\004name\022/\n\006status\030\002 \001(\0132\027.google.pr"
+    "otobuf.StructR\006status\022G\n\021last_reconfigur"
+    "ed\030\003 \001(\0132\032.google.protobuf.TimestampR\020la"
+    "stReconfigured\"W\n\020GetStatusRequest\022C\n\016re"
+    "source_names\030\001 \003(\0132\034.viam.common.v1.Reso"
+    "urceNameR\rresourceNames\"B\n\021GetStatusResp"
+    "onse\022-\n\006status\030\001 \003(\0132\025.viam.robot.v1.Sta"
+    "tusR\006status\"\213\001\n\023StreamStatusRequest\022C\n\016r"
+    "esource_names\030\001 \003(\0132\034.viam.common.v1.Res"
+    "ourceNameR\rresourceNames\022/\n\005every\030\002 \001(\0132"
+    "\031.google.protobuf.DurationR\005every\"E\n\024Str"
+    "eamStatusResponse\022-\n\006status\030\001 \003(\0132\025.viam"
+    ".robot.v1.StatusR\006status\"x\n\023StopExtraPar"
+    "ameters\0220\n\004name\030\001 \001(\0132\034.viam.common.v1.R"
+    "esourceNameR\004name\022/\n\006params\030\002 \001(\0132\027.goog"
+    "le.protobuf.StructR\006params\"J\n\016StopAllReq"
+    "uest\0228\n\005extra\030c \003(\0132\".viam.robot.v1.Stop"
+    "ExtraParametersR\005extra\"\021\n\017StopAllRespons"
+    "e\"-\n\023StartSessionRequest\022\026\n\006resume\030\001 \001(\t"
+    "R\006resume\"l\n\024StartSessionResponse\022\016\n\002id\030\001"
+    " \001(\tR\002id\022D\n\020heartbeat_window\030\002 \001(\0132\031.goo"
+    "gle.protobuf.DurationR\017heartbeatWindow\"-"
+    "\n\033SendSessionHeartbeatRequest\022\016\n\002id\030\001 \001("
+    "\tR\002id\"\036\n\034SendSessionHeartbeatResponse\":\n"
+    "\nLogRequest\022,\n\004logs\030\001 \003(\0132\030.viam.common."
+    "v1.LogEntryR\004logs\"\r\n\013LogResponse\"\031\n\027GetC"
+    "loudMetadataRequest\"\320\001\n\030GetCloudMetadata"
+    "Response\022&\n\rrobot_part_id\030\001 \001(\tB\002\030\001R\013rob"
+    "otPartId\022$\n\016primary_org_id\030\002 \001(\tR\014primar"
+    "yOrgId\022\037\n\013location_id\030\003 \001(\tR\nlocationId\022"
+    "\035\n\nmachine_id\030\004 \001(\tR\tmachineId\022&\n\017machin"
+    "e_part_id\030\005 \001(\tR\rmachinePartId\"f\n\024Restar"
+    "tModuleRequest\022\035\n\tmodule_id\030\001 \001(\tH\000R\010mod"
+    "uleId\022!\n\013module_name\030\002 \001(\tH\000R\nmoduleName"
+    "B\014\n\nid_or_name\"\027\n\025RestartModuleResponse\""
+    "\021\n\017ShutdownRequest\"\022\n\020ShutdownResponse\"\031"
+    "\n\027GetMachineStatusRequest\"\214\001\n\030GetMachine"
+    "StatusResponse\022;\n\tresources\030\001 \003(\0132\035.viam"
+    ".robot.v1.ResourceStatusR\tresources\0223\n\006c"
+    "onfig\030\002 \001(\0132\033.viam.robot.v1.ConfigStatus"
+    "R\006config\"\370\002\n\016ResourceStatus\0220\n\004name\030\001 \001("
+    "\0132\034.viam.common.v1.ResourceNameR\004name\0229\n"
+    "\005state\030\002 \001(\0162#.viam.robot.v1.ResourceSta"
+    "tus.StateR\005state\022=\n\014last_updated\030\003 \001(\0132\032"
+    ".google.protobuf.TimestampR\013lastUpdated\022"
+    "\032\n\010revision\030\004 \001(\tR\010revision\022\024\n\005error\030\005 \001"
+    "(\tR\005error\"\207\001\n\005State\022\025\n\021STATE_UNSPECIFIED"
+    "\020\000\022\026\n\022STATE_UNCONFIGURED\020\001\022\025\n\021STATE_CONF"
+    "IGURING\020\002\022\017\n\013STATE_READY\020\003\022\022\n\016STATE_REMO"
+    "VING\020\004\022\023\n\017STATE_UNHEALTHY\020\005\"i\n\014ConfigSta"
+    "tus\022\032\n\010revision\030\001 \001(\tR\010revision\022=\n\014last_"
+    "updated\030\002 \001(\0132\032.google.protobuf.Timestam"
+    "pR\013lastUpdated\"\023\n\021GetVersionRequest\"k\n\022G"
+    "etVersionResponse\022\032\n\010platform\030\001 \001(\tR\010pla"
+    "tform\022\030\n\007version\030\002 \001(\tR\007version\022\037\n\013api_v"
+    "ersion\030\003 \001(\tR\napiVersion*z\n\022PeerConnecti"
+    "onType\022$\n PEER_CONNECTION_TYPE_UNSPECIFI"
+    "ED\020\000\022\035\n\031PEER_CONNECTION_TYPE_GRPC\020\001\022\037\n\033P"
+    "EER_CONNECTION_TYPE_WEBRTC\020\0022\313\025\n\014RobotSe"
+    "rvice\022\200\001\n\rGetOperations\022#.viam.robot.v1."
+    "GetOperationsRequest\032$.viam.robot.v1.Get"
+    "OperationsResponse\"$\202\323\344\223\002\036\022\034/viam/api/v1"
+    "/operations/list\022x\n\013GetSessions\022!.viam.r"
+    "obot.v1.GetSessionsRequest\032\".viam.robot."
+    "v1.GetSessionsResponse\"\"\202\323\344\223\002\034\022\032/viam/ap"
+    "i/v1/sessions/list\022\177\n\rResourceNames\022#.vi"
+    "am.robot.v1.ResourceNamesRequest\032$.viam."
+    "robot.v1.ResourceNamesResponse\"#\202\323\344\223\002\035\022\033"
+    "/viam/api/v1/resources/list\022\235\001\n\023Resource"
+    "RPCSubtypes\022).viam.robot.v1.ResourceRPCS"
+    "ubtypesRequest\032*.viam.robot.v1.ResourceR"
+    "PCSubtypesResponse\"/\202\323\344\223\002)\022\'/viam/api/v1"
+    "/resource_rpc_subtypes/list\022\210\001\n\017CancelOp"
+    "eration\022%.viam.robot.v1.CancelOperationR"
+    "equest\032&.viam.robot.v1.CancelOperationRe"
+    "sponse\"&\202\323\344\223\002 \"\036/viam/api/v1/operations/"
+    "cancel\022\215\001\n\021BlockForOperation\022\'.viam.robo"
+    "t.v1.BlockForOperationRequest\032(.viam.rob"
+    "ot.v1.BlockForOperationResponse\"%\202\323\344\223\002\037\""
+    "\035/viam/api/v1/operations/block\022\224\001\n\022Disco"
+    "verComponents\022(.viam.robot.v1.DiscoverCo"
+    "mponentsRequest\032).viam.robot.v1.Discover"
+    "ComponentsResponse\")\202\323\344\223\002#\022!/viam/api/v1"
+    "/discovery/components\022\220\001\n\021FrameSystemCon"
+    "fig\022\'.viam.robot.v1.FrameSystemConfigReq"
+    "uest\032(.viam.robot.v1.FrameSystemConfigRe"
+    "sponse\"(\202\323\344\223\002\"\022 /viam/api/v1/frame_syste"
+    "m/config\022\214\001\n\rTransformPose\022#.viam.robot."
+    "v1.TransformPoseRequest\032$.viam.robot.v1."
+    "TransformPoseResponse\"0\202\323\344\223\002*\022(/viam/api"
+    "/v1/frame_system/transform_pose\022\210\001\n\014Tran"
+    "sformPCD\022\".viam.robot.v1.TransformPCDReq"
+    "uest\032#.viam.robot.v1.TransformPCDRespons"
+    "e\"/\202\323\344\223\002)\022\'/viam/api/v1/frame_system/tra"
+    "nsform_pcd\022n\n\tGetStatus\022\037.viam.robot.v1."
+    "GetStatusRequest\032 .viam.robot.v1.GetStat"
+    "usResponse\"\036\210\002\001\202\323\344\223\002\025\022\023/viam/api/v1/stat"
+    "us\022\200\001\n\014StreamStatus\022\".viam.robot.v1.Stre"
+    "amStatusRequest\032#.viam.robot.v1.StreamSt"
+    "atusResponse\"%\210\002\001\202\323\344\223\002\034\022\032/viam/api/v1/st"
+    "atus/stream0\001\022g\n\007StopAll\022\035.viam.robot.v1"
+    ".StopAllRequest\032\036.viam.robot.v1.StopAllR"
+    "esponse\"\035\202\323\344\223\002\027\022\025/viam/api/v1/stop_all\022v"
+    "\n\014StartSession\022\".viam.robot.v1.StartSess"
+    "ionRequest\032#.viam.robot.v1.StartSessionR"
+    "esponse\"\035\202\323\344\223\002\027\"\025/viam/api/v1/sessions\022\235"
+    "\001\n\024SendSessionHeartbeat\022*.viam.robot.v1."
+    "SendSessionHeartbeatRequest\032+.viam.robot"
+    ".v1.SendSessionHeartbeatResponse\",\202\323\344\223\002&"
+    "\"$/viam/api/v1/sessions/{id}/heartbeat\022V"
+    "\n\003Log\022\031.viam.robot.v1.LogRequest\032\032.viam."
+    "robot.v1.LogResponse\"\030\202\323\344\223\002\022\"\020/viam/api/"
+    "v1/log\022\210\001\n\020GetCloudMetadata\022&.viam.robot"
+    ".v1.GetCloudMetadataRequest\032\'.viam.robot"
+    ".v1.GetCloudMetadataResponse\"#\202\323\344\223\002\035\022\033/v"
+    "iam/api/v1/cloud_metadata\022\177\n\rRestartModu"
+    "le\022#.viam.robot.v1.RestartModuleRequest\032"
+    "$.viam.robot.v1.RestartModuleResponse\"#\202"
+    "\323\344\223\002\035\"\033/viam/api/v1/restart_module\022j\n\010Sh"
+    "utdown\022\036.viam.robot.v1.ShutdownRequest\032\037"
+    ".viam.robot.v1.ShutdownResponse\"\035\202\323\344\223\002\027\""
+    "\025/viam/api/v1/shutdown\022\210\001\n\020GetMachineSta"
+    "tus\022&.viam.robot.v1.GetMachineStatusRequ"
+    "est\032\'.viam.robot.v1.GetMachineStatusResp"
+    "onse\"#\202\323\344\223\002\035\022\033/viam/api/v1/machine_statu"
+    "s\022o\n\nGetVersion\022 .viam.robot.v1.GetVersi"
+    "onRequest\032!.viam.robot.v1.GetVersionResp"
+    "onse\"\034\202\323\344\223\002\026\022\024/viam/api/v1/versionB\217\001\n\021c"
+    "om.viam.robot.v1B\nRobotProtoP\001Z\030go.viam."
+    "com/api/robot/v1\242\002\003VRX\252\002\rViam.Robot.V1\312\002"
+    "\rViam\\Robot\\V1\342\002\031Viam\\Robot\\V1\\GPBMetada"
+    "ta\352\002\017Viam::Robot::V1b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_robot_2fv1_2frobot_2eproto_deps[5] =
     {
@@ -1888,7 +1894,7 @@ static ::absl::once_flag descriptor_table_robot_2fv1_2frobot_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_robot_2fv1_2frobot_2eproto = {
     false,
     false,
-    7941,
+    7988,
     descriptor_table_protodef_robot_2fv1_2frobot_2eproto,
     "robot/v1/robot.proto",
     &descriptor_table_robot_2fv1_2frobot_2eproto_once,
@@ -5978,8 +5984,23 @@ void GetSessionsResponse::InternalSwap(GetSessionsResponse* PROTOBUF_RESTRICT ot
 
 class DiscoveryQuery::_Internal {
  public:
+  using HasBits = decltype(std::declval<DiscoveryQuery>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(DiscoveryQuery, _impl_._has_bits_);
+  static const ::google::protobuf::Struct& extra(const DiscoveryQuery* msg);
+  static void set_has_extra(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
+const ::google::protobuf::Struct& DiscoveryQuery::_Internal::extra(const DiscoveryQuery* msg) {
+  return *msg->_impl_.extra_;
+}
+void DiscoveryQuery::clear_extra() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.extra_ != nullptr) _impl_.extra_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
 DiscoveryQuery::DiscoveryQuery(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
@@ -5988,9 +6009,10 @@ DiscoveryQuery::DiscoveryQuery(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE DiscoveryQuery::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : subtype_(arena, from.subtype_),
-        model_(arena, from.model_),
-        _cached_size_{0} {}
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        subtype_(arena, from.subtype_),
+        model_(arena, from.model_) {}
 
 DiscoveryQuery::DiscoveryQuery(
     ::google::protobuf::Arena* arena,
@@ -6001,18 +6023,23 @@ DiscoveryQuery::DiscoveryQuery(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.extra_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::google::protobuf::Struct>(arena, *from._impl_.extra_)
+                : nullptr;
 
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.DiscoveryQuery)
 }
 inline PROTOBUF_NDEBUG_INLINE DiscoveryQuery::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : subtype_(arena),
-        model_(arena),
-        _cached_size_{0} {}
+      : _cached_size_{0},
+        subtype_(arena),
+        model_(arena) {}
 
 inline void DiscoveryQuery::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.extra_ = {};
 }
 DiscoveryQuery::~DiscoveryQuery() {
   // @@protoc_insertion_point(destructor:viam.robot.v1.DiscoveryQuery)
@@ -6023,6 +6050,7 @@ inline void DiscoveryQuery::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.subtype_.Destroy();
   _impl_.model_.Destroy();
+  delete _impl_.extra_;
   _impl_.~Impl_();
 }
 
@@ -6035,6 +6063,12 @@ PROTOBUF_NOINLINE void DiscoveryQuery::Clear() {
 
   _impl_.subtype_.ClearToEmpty();
   _impl_.model_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.extra_ != nullptr);
+    _impl_.extra_->Clear();
+  }
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -6046,38 +6080,47 @@ const char* DiscoveryQuery::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 49, 2> DiscoveryQuery::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 1, 49, 7> DiscoveryQuery::_table_ = {
   {
-    0,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(DiscoveryQuery, _impl_._has_bits_),
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    99, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
     4294967292,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
+    3,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
     &_DiscoveryQuery_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string model = 2 [json_name = "model"];
-    {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(DiscoveryQuery, _impl_.model_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // string subtype = 1 [json_name = "subtype"];
     {::_pbi::TcParser::FastUS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(DiscoveryQuery, _impl_.subtype_)}},
+    // string model = 2 [json_name = "model"];
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(DiscoveryQuery, _impl_.model_)}},
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {::_pbi::TcParser::FastMtS2,
+     {1690, 0, 0, PROTOBUF_FIELD_OFFSET(DiscoveryQuery, _impl_.extra_)}},
   }}, {{
+    99, 0, 1,
+    65534, 2,
     65535, 65535
   }}, {{
     // string subtype = 1 [json_name = "subtype"];
-    {PROTOBUF_FIELD_OFFSET(DiscoveryQuery, _impl_.subtype_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(DiscoveryQuery, _impl_.subtype_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string model = 2 [json_name = "model"];
-    {PROTOBUF_FIELD_OFFSET(DiscoveryQuery, _impl_.model_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(DiscoveryQuery, _impl_.model_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-  }},
-  // no aux_entries
-  {{
+    // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+    {PROTOBUF_FIELD_OFFSET(DiscoveryQuery, _impl_.extra_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::google::protobuf::Struct>()},
+  }}, {{
     "\34\7\5\0\0\0\0\0"
     "viam.robot.v1.DiscoveryQuery"
     "subtype"
@@ -6106,6 +6149,14 @@ const ::_pbi::TcParseTable<1, 2, 0, 49, 2> DiscoveryQuery::_table_ = {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
         _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.robot.v1.DiscoveryQuery.model");
     target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        99, _Internal::extra(this),
+        _Internal::extra(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -6137,6 +6188,13 @@ const ::_pbi::TcParseTable<1, 2, 0, 49, 2> DiscoveryQuery::_table_ = {
                                     this->_internal_model());
   }
 
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        2 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.extra_);
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -6162,6 +6220,10 @@ void DiscoveryQuery::MergeImpl(::google::protobuf::Message& to_msg, const ::goog
   if (!from._internal_model().empty()) {
     _this->_internal_set_model(from._internal_model());
   }
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_extra()->::google::protobuf::Struct::MergeFrom(
+        from._internal_extra());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -6184,8 +6246,10 @@ void DiscoveryQuery::InternalSwap(DiscoveryQuery* PROTOBUF_RESTRICT other) {
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.subtype_, &other->_impl_.subtype_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.model_, &other->_impl_.model_, arena);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
 ::google::protobuf::Metadata DiscoveryQuery::GetMetadata() const {
