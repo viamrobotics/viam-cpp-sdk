@@ -61,9 +61,6 @@ extern const ::google::protobuf::internal::DescriptorTable
 namespace viam {
 namespace app {
 namespace v1 {
-class BillableResourceEvent;
-struct BillableResourceEventDefaultTypeInternal;
-extern BillableResourceEventDefaultTypeInternal _BillableResourceEvent_default_instance_;
 class GetCurrentMonthUsageRequest;
 struct GetCurrentMonthUsageRequestDefaultTypeInternal;
 extern GetCurrentMonthUsageRequestDefaultTypeInternal _GetCurrentMonthUsageRequest_default_instance_;
@@ -88,21 +85,27 @@ extern GetOrgBillingInformationRequestDefaultTypeInternal _GetOrgBillingInformat
 class GetOrgBillingInformationResponse;
 struct GetOrgBillingInformationResponseDefaultTypeInternal;
 extern GetOrgBillingInformationResponseDefaultTypeInternal _GetOrgBillingInformationResponse_default_instance_;
-class Invoice;
-struct InvoiceDefaultTypeInternal;
-extern InvoiceDefaultTypeInternal _Invoice_default_instance_;
 class InvoiceSummary;
 struct InvoiceSummaryDefaultTypeInternal;
 extern InvoiceSummaryDefaultTypeInternal _InvoiceSummary_default_instance_;
 class PaymentMethodCard;
 struct PaymentMethodCardDefaultTypeInternal;
 extern PaymentMethodCardDefaultTypeInternal _PaymentMethodCard_default_instance_;
+class ResourceUsageCosts;
+struct ResourceUsageCostsDefaultTypeInternal;
+extern ResourceUsageCostsDefaultTypeInternal _ResourceUsageCosts_default_instance_;
+class ResourceUsageCostsBySource;
+struct ResourceUsageCostsBySourceDefaultTypeInternal;
+extern ResourceUsageCostsBySourceDefaultTypeInternal _ResourceUsageCostsBySource_default_instance_;
 class SendPaymentRequiredEmailRequest;
 struct SendPaymentRequiredEmailRequestDefaultTypeInternal;
 extern SendPaymentRequiredEmailRequestDefaultTypeInternal _SendPaymentRequiredEmailRequest_default_instance_;
 class SendPaymentRequiredEmailResponse;
 struct SendPaymentRequiredEmailResponseDefaultTypeInternal;
 extern SendPaymentRequiredEmailResponseDefaultTypeInternal _SendPaymentRequiredEmailResponse_default_instance_;
+class UsageCost;
+struct UsageCostDefaultTypeInternal;
+extern UsageCostDefaultTypeInternal _UsageCost_default_instance_;
 }  // namespace v1
 }  // namespace app
 }  // namespace viam
@@ -147,11 +150,272 @@ inline bool PaymentMethodType_Parse(absl::string_view name, PaymentMethodType* v
   return ::google::protobuf::internal::ParseNamedEnum<PaymentMethodType>(
       PaymentMethodType_descriptor(), name, value);
 }
+enum UsageCostType : int {
+  USAGE_COST_TYPE_UNSPECIFIED = 0,
+  USAGE_COST_TYPE_DATA_UPLOAD = 1,
+  USAGE_COST_TYPE_DATA_EGRESS = 2,
+  USAGE_COST_TYPE_REMOTE_CONTROL = 3,
+  USAGE_COST_TYPE_STANDARD_COMPUTE = 4,
+  USAGE_COST_TYPE_CLOUD_STORAGE = 5,
+  USAGE_COST_TYPE_BINARY_DATA_CLOUD_STORAGE = 6,
+  USAGE_COST_TYPE_OTHER_CLOUD_STORAGE = 7,
+  USAGE_COST_TYPE_PER_MACHINE = 8,
+  UsageCostType_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  UsageCostType_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool UsageCostType_IsValid(int value);
+extern const uint32_t UsageCostType_internal_data_[];
+constexpr UsageCostType UsageCostType_MIN = static_cast<UsageCostType>(0);
+constexpr UsageCostType UsageCostType_MAX = static_cast<UsageCostType>(8);
+constexpr int UsageCostType_ARRAYSIZE = 8 + 1;
+const ::google::protobuf::EnumDescriptor*
+UsageCostType_descriptor();
+template <typename T>
+const std::string& UsageCostType_Name(T value) {
+  static_assert(std::is_same<T, UsageCostType>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to UsageCostType_Name().");
+  return UsageCostType_Name(static_cast<UsageCostType>(value));
+}
+template <>
+inline const std::string& UsageCostType_Name(UsageCostType value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<UsageCostType_descriptor,
+                                                 0, 8>(
+      static_cast<int>(value));
+}
+inline bool UsageCostType_Parse(absl::string_view name, UsageCostType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<UsageCostType>(
+      UsageCostType_descriptor(), name, value);
+}
+enum SourceType : int {
+  SOURCE_TYPE_UNSPECIFIED = 0,
+  SOURCE_TYPE_ORG = 1,
+  SOURCE_TYPE_FRAGMENT = 2,
+  SourceType_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  SourceType_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool SourceType_IsValid(int value);
+extern const uint32_t SourceType_internal_data_[];
+constexpr SourceType SourceType_MIN = static_cast<SourceType>(0);
+constexpr SourceType SourceType_MAX = static_cast<SourceType>(2);
+constexpr int SourceType_ARRAYSIZE = 2 + 1;
+const ::google::protobuf::EnumDescriptor*
+SourceType_descriptor();
+template <typename T>
+const std::string& SourceType_Name(T value) {
+  static_assert(std::is_same<T, SourceType>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to SourceType_Name().");
+  return SourceType_Name(static_cast<SourceType>(value));
+}
+template <>
+inline const std::string& SourceType_Name(SourceType value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<SourceType_descriptor,
+                                                 0, 2>(
+      static_cast<int>(value));
+}
+inline bool SourceType_Parse(absl::string_view name, SourceType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<SourceType>(
+      SourceType_descriptor(), name, value);
+}
 
 // ===================================================================
 
 
 // -------------------------------------------------------------------
+
+class UsageCost final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.UsageCost) */ {
+ public:
+  inline UsageCost() : UsageCost(nullptr) {}
+  ~UsageCost() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR UsageCost(::google::protobuf::internal::ConstantInitialized);
+
+  inline UsageCost(const UsageCost& from)
+      : UsageCost(nullptr, from) {}
+  UsageCost(UsageCost&& from) noexcept
+    : UsageCost() {
+    *this = ::std::move(from);
+  }
+
+  inline UsageCost& operator=(const UsageCost& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UsageCost& operator=(UsageCost&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UsageCost& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UsageCost* internal_default_instance() {
+    return reinterpret_cast<const UsageCost*>(
+               &_UsageCost_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(UsageCost& a, UsageCost& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UsageCost* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UsageCost* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UsageCost* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UsageCost>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const UsageCost& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const UsageCost& from) {
+    UsageCost::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(UsageCost* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.app.v1.UsageCost";
+  }
+  protected:
+  explicit UsageCost(::google::protobuf::Arena* arena);
+  UsageCost(::google::protobuf::Arena* arena, const UsageCost& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCostFieldNumber = 2,
+    kResourceTypeFieldNumber = 1,
+  };
+  // double cost = 2 [json_name = "cost"];
+  void clear_cost() ;
+  double cost() const;
+  void set_cost(double value);
+
+  private:
+  double _internal_cost() const;
+  void _internal_set_cost(double value);
+
+  public:
+  // .viam.app.v1.UsageCostType resource_type = 1 [json_name = "resourceType"];
+  void clear_resource_type() ;
+  ::viam::app::v1::UsageCostType resource_type() const;
+  void set_resource_type(::viam::app::v1::UsageCostType value);
+
+  private:
+  ::viam::app::v1::UsageCostType _internal_resource_type() const;
+  void _internal_set_resource_type(::viam::app::v1::UsageCostType value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:viam.app.v1.UsageCost)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    double cost_;
+    int resource_type_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
+};// -------------------------------------------------------------------
 
 class SendPaymentRequiredEmailResponse final :
     public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.v1.SendPaymentRequiredEmailResponse) */ {
@@ -211,7 +475,7 @@ class SendPaymentRequiredEmailResponse final :
                &_SendPaymentRequiredEmailResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(SendPaymentRequiredEmailResponse& a, SendPaymentRequiredEmailResponse& b) {
     a.Swap(&b);
@@ -348,7 +612,7 @@ class SendPaymentRequiredEmailRequest final :
                &_SendPaymentRequiredEmailRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(SendPaymentRequiredEmailRequest& a, SendPaymentRequiredEmailRequest& b) {
     a.Swap(&b);
@@ -547,7 +811,7 @@ class PaymentMethodCard final :
                &_PaymentMethodCard_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    1;
 
   friend void swap(PaymentMethodCard& a, PaymentMethodCard& b) {
     a.Swap(&b);
@@ -746,7 +1010,7 @@ class GetOrgBillingInformationRequest final :
                &_GetOrgBillingInformationRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   friend void swap(GetOrgBillingInformationRequest& a, GetOrgBillingInformationRequest& b) {
     a.Swap(&b);
@@ -927,7 +1191,7 @@ class GetInvoicesSummaryRequest final :
                &_GetInvoicesSummaryRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(GetInvoicesSummaryRequest& a, GetInvoicesSummaryRequest& b) {
     a.Swap(&b);
@@ -1108,7 +1372,7 @@ class GetInvoicePdfResponse final :
                &_GetInvoicePdfResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(GetInvoicePdfResponse& a, GetInvoicePdfResponse& b) {
     a.Swap(&b);
@@ -1289,7 +1553,7 @@ class GetInvoicePdfRequest final :
                &_GetInvoicePdfRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(GetInvoicePdfRequest& a, GetInvoicePdfRequest& b) {
     a.Swap(&b);
@@ -1488,7 +1752,7 @@ class GetCurrentMonthUsageRequest final :
                &_GetCurrentMonthUsageRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    2;
 
   friend void swap(GetCurrentMonthUsageRequest& a, GetCurrentMonthUsageRequest& b) {
     a.Swap(&b);
@@ -1603,6 +1867,225 @@ class GetCurrentMonthUsageRequest final :
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::ArenaStringPtr org_id_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
+};// -------------------------------------------------------------------
+
+class ResourceUsageCosts final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.ResourceUsageCosts) */ {
+ public:
+  inline ResourceUsageCosts() : ResourceUsageCosts(nullptr) {}
+  ~ResourceUsageCosts() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ResourceUsageCosts(::google::protobuf::internal::ConstantInitialized);
+
+  inline ResourceUsageCosts(const ResourceUsageCosts& from)
+      : ResourceUsageCosts(nullptr, from) {}
+  ResourceUsageCosts(ResourceUsageCosts&& from) noexcept
+    : ResourceUsageCosts() {
+    *this = ::std::move(from);
+  }
+
+  inline ResourceUsageCosts& operator=(const ResourceUsageCosts& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ResourceUsageCosts& operator=(ResourceUsageCosts&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ResourceUsageCosts& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ResourceUsageCosts* internal_default_instance() {
+    return reinterpret_cast<const ResourceUsageCosts*>(
+               &_ResourceUsageCosts_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(ResourceUsageCosts& a, ResourceUsageCosts& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ResourceUsageCosts* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ResourceUsageCosts* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ResourceUsageCosts* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ResourceUsageCosts>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ResourceUsageCosts& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ResourceUsageCosts& from) {
+    ResourceUsageCosts::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(ResourceUsageCosts* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.app.v1.ResourceUsageCosts";
+  }
+  protected:
+  explicit ResourceUsageCosts(::google::protobuf::Arena* arena);
+  ResourceUsageCosts(::google::protobuf::Arena* arena, const ResourceUsageCosts& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUsageCostsFieldNumber = 1,
+    kDiscountFieldNumber = 2,
+    kTotalWithDiscountFieldNumber = 3,
+    kTotalWithoutDiscountFieldNumber = 4,
+  };
+  // repeated .viam.app.v1.UsageCost usage_costs = 1 [json_name = "usageCosts"];
+  int usage_costs_size() const;
+  private:
+  int _internal_usage_costs_size() const;
+
+  public:
+  void clear_usage_costs() ;
+  ::viam::app::v1::UsageCost* mutable_usage_costs(int index);
+  ::google::protobuf::RepeatedPtrField< ::viam::app::v1::UsageCost >*
+      mutable_usage_costs();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::viam::app::v1::UsageCost>& _internal_usage_costs() const;
+  ::google::protobuf::RepeatedPtrField<::viam::app::v1::UsageCost>* _internal_mutable_usage_costs();
+  public:
+  const ::viam::app::v1::UsageCost& usage_costs(int index) const;
+  ::viam::app::v1::UsageCost* add_usage_costs();
+  const ::google::protobuf::RepeatedPtrField< ::viam::app::v1::UsageCost >&
+      usage_costs() const;
+  // double discount = 2 [json_name = "discount"];
+  void clear_discount() ;
+  double discount() const;
+  void set_discount(double value);
+
+  private:
+  double _internal_discount() const;
+  void _internal_set_discount(double value);
+
+  public:
+  // double total_with_discount = 3 [json_name = "totalWithDiscount"];
+  void clear_total_with_discount() ;
+  double total_with_discount() const;
+  void set_total_with_discount(double value);
+
+  private:
+  double _internal_total_with_discount() const;
+  void _internal_set_total_with_discount(double value);
+
+  public:
+  // double total_without_discount = 4 [json_name = "totalWithoutDiscount"];
+  void clear_total_without_discount() ;
+  double total_without_discount() const;
+  void set_total_without_discount(double value);
+
+  private:
+  double _internal_total_without_discount() const;
+  void _internal_set_total_without_discount(double value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:viam.app.v1.ResourceUsageCosts)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 4, 1,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::RepeatedPtrField< ::viam::app::v1::UsageCost > usage_costs_;
+    double discount_;
+    double total_with_discount_;
+    double total_without_discount_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1932,7 +2415,7 @@ class GetOrgBillingInformationResponse final :
                &_GetOrgBillingInformationResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(GetOrgBillingInformationResponse& a, GetOrgBillingInformationResponse& b) {
     a.Swap(&b);
@@ -2103,26 +2586,26 @@ class GetOrgBillingInformationResponse final :
   friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
 };// -------------------------------------------------------------------
 
-class GetCurrentMonthUsageResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetCurrentMonthUsageResponse) */ {
+class ResourceUsageCostsBySource final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.ResourceUsageCostsBySource) */ {
  public:
-  inline GetCurrentMonthUsageResponse() : GetCurrentMonthUsageResponse(nullptr) {}
-  ~GetCurrentMonthUsageResponse() override;
+  inline ResourceUsageCostsBySource() : ResourceUsageCostsBySource(nullptr) {}
+  ~ResourceUsageCostsBySource() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR GetCurrentMonthUsageResponse(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR ResourceUsageCostsBySource(::google::protobuf::internal::ConstantInitialized);
 
-  inline GetCurrentMonthUsageResponse(const GetCurrentMonthUsageResponse& from)
-      : GetCurrentMonthUsageResponse(nullptr, from) {}
-  GetCurrentMonthUsageResponse(GetCurrentMonthUsageResponse&& from) noexcept
-    : GetCurrentMonthUsageResponse() {
+  inline ResourceUsageCostsBySource(const ResourceUsageCostsBySource& from)
+      : ResourceUsageCostsBySource(nullptr, from) {}
+  ResourceUsageCostsBySource(ResourceUsageCostsBySource&& from) noexcept
+    : ResourceUsageCostsBySource() {
     *this = ::std::move(from);
   }
 
-  inline GetCurrentMonthUsageResponse& operator=(const GetCurrentMonthUsageResponse& from) {
+  inline ResourceUsageCostsBySource& operator=(const ResourceUsageCostsBySource& from) {
     CopyFrom(from);
     return *this;
   }
-  inline GetCurrentMonthUsageResponse& operator=(GetCurrentMonthUsageResponse&& from) noexcept {
+  inline ResourceUsageCostsBySource& operator=(ResourceUsageCostsBySource&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -2154,20 +2637,20 @@ class GetCurrentMonthUsageResponse final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const GetCurrentMonthUsageResponse& default_instance() {
+  static const ResourceUsageCostsBySource& default_instance() {
     return *internal_default_instance();
   }
-  static inline const GetCurrentMonthUsageResponse* internal_default_instance() {
-    return reinterpret_cast<const GetCurrentMonthUsageResponse*>(
-               &_GetCurrentMonthUsageResponse_default_instance_);
+  static inline const ResourceUsageCostsBySource* internal_default_instance() {
+    return reinterpret_cast<const ResourceUsageCostsBySource*>(
+               &_ResourceUsageCostsBySource_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    4;
 
-  friend void swap(GetCurrentMonthUsageResponse& a, GetCurrentMonthUsageResponse& b) {
+  friend void swap(ResourceUsageCostsBySource& a, ResourceUsageCostsBySource& b) {
     a.Swap(&b);
   }
-  inline void Swap(GetCurrentMonthUsageResponse* other) {
+  inline void Swap(ResourceUsageCostsBySource* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -2180,7 +2663,7 @@ class GetCurrentMonthUsageResponse final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(GetCurrentMonthUsageResponse* other) {
+  void UnsafeArenaSwap(ResourceUsageCostsBySource* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -2188,14 +2671,14 @@ class GetCurrentMonthUsageResponse final :
 
   // implements Message ----------------------------------------------
 
-  GetCurrentMonthUsageResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<GetCurrentMonthUsageResponse>(arena);
+  ResourceUsageCostsBySource* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ResourceUsageCostsBySource>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const GetCurrentMonthUsageResponse& from);
+  void CopyFrom(const ResourceUsageCostsBySource& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const GetCurrentMonthUsageResponse& from) {
-    GetCurrentMonthUsageResponse::MergeImpl(*this, from);
+  void MergeFrom( const ResourceUsageCostsBySource& from) {
+    ResourceUsageCostsBySource::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -2213,16 +2696,16 @@ class GetCurrentMonthUsageResponse final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(GetCurrentMonthUsageResponse* other);
+  void InternalSwap(ResourceUsageCostsBySource* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "viam.app.v1.GetCurrentMonthUsageResponse";
+    return "viam.app.v1.ResourceUsageCostsBySource";
   }
   protected:
-  explicit GetCurrentMonthUsageResponse(::google::protobuf::Arena* arena);
-  GetCurrentMonthUsageResponse(::google::protobuf::Arena* arena, const GetCurrentMonthUsageResponse& from);
+  explicit ResourceUsageCostsBySource(::google::protobuf::Arena* arena);
+  ResourceUsageCostsBySource(::google::protobuf::Arena* arena, const ResourceUsageCostsBySource& from);
   public:
 
   static const ClassData _class_data_;
@@ -2235,168 +2718,59 @@ class GetCurrentMonthUsageResponse final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kStartDateFieldNumber = 1,
-    kEndDateFieldNumber = 2,
-    kCloudStorageUsageCostFieldNumber = 3,
-    kDataUploadUsageCostFieldNumber = 4,
-    kDataEgresUsageCostFieldNumber = 5,
-    kRemoteControlUsageCostFieldNumber = 6,
-    kStandardComputeUsageCostFieldNumber = 7,
-    kDiscountAmountFieldNumber = 8,
-    kTotalUsageWithDiscountFieldNumber = 9,
-    kTotalUsageWithoutDiscountFieldNumber = 10,
-    kPerMachineUsageCostFieldNumber = 11,
-    kBinaryDataCloudStorageUsageCostFieldNumber = 12,
-    kOtherCloudStorageUsageCostFieldNumber = 13,
+    kTierNameFieldNumber = 3,
+    kResourceUsageCostsFieldNumber = 2,
+    kSourceTypeFieldNumber = 1,
   };
-  // .google.protobuf.Timestamp start_date = 1 [json_name = "startDate"];
-  bool has_start_date() const;
-  void clear_start_date() ;
-  const ::google::protobuf::Timestamp& start_date() const;
-  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_start_date();
-  ::google::protobuf::Timestamp* mutable_start_date();
-  void set_allocated_start_date(::google::protobuf::Timestamp* value);
-  void unsafe_arena_set_allocated_start_date(::google::protobuf::Timestamp* value);
-  ::google::protobuf::Timestamp* unsafe_arena_release_start_date();
+  // string tier_name = 3 [json_name = "tierName"];
+  void clear_tier_name() ;
+  const std::string& tier_name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_tier_name(Arg_&& arg, Args_... args);
+  std::string* mutable_tier_name();
+  PROTOBUF_NODISCARD std::string* release_tier_name();
+  void set_allocated_tier_name(std::string* value);
 
   private:
-  const ::google::protobuf::Timestamp& _internal_start_date() const;
-  ::google::protobuf::Timestamp* _internal_mutable_start_date();
+  const std::string& _internal_tier_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_tier_name(
+      const std::string& value);
+  std::string* _internal_mutable_tier_name();
 
   public:
-  // .google.protobuf.Timestamp end_date = 2 [json_name = "endDate"];
-  bool has_end_date() const;
-  void clear_end_date() ;
-  const ::google::protobuf::Timestamp& end_date() const;
-  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_end_date();
-  ::google::protobuf::Timestamp* mutable_end_date();
-  void set_allocated_end_date(::google::protobuf::Timestamp* value);
-  void unsafe_arena_set_allocated_end_date(::google::protobuf::Timestamp* value);
-  ::google::protobuf::Timestamp* unsafe_arena_release_end_date();
+  // .viam.app.v1.ResourceUsageCosts resource_usage_costs = 2 [json_name = "resourceUsageCosts"];
+  bool has_resource_usage_costs() const;
+  void clear_resource_usage_costs() ;
+  const ::viam::app::v1::ResourceUsageCosts& resource_usage_costs() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::ResourceUsageCosts* release_resource_usage_costs();
+  ::viam::app::v1::ResourceUsageCosts* mutable_resource_usage_costs();
+  void set_allocated_resource_usage_costs(::viam::app::v1::ResourceUsageCosts* value);
+  void unsafe_arena_set_allocated_resource_usage_costs(::viam::app::v1::ResourceUsageCosts* value);
+  ::viam::app::v1::ResourceUsageCosts* unsafe_arena_release_resource_usage_costs();
 
   private:
-  const ::google::protobuf::Timestamp& _internal_end_date() const;
-  ::google::protobuf::Timestamp* _internal_mutable_end_date();
+  const ::viam::app::v1::ResourceUsageCosts& _internal_resource_usage_costs() const;
+  ::viam::app::v1::ResourceUsageCosts* _internal_mutable_resource_usage_costs();
 
   public:
-  // double cloud_storage_usage_cost = 3 [json_name = "cloudStorageUsageCost"];
-  void clear_cloud_storage_usage_cost() ;
-  double cloud_storage_usage_cost() const;
-  void set_cloud_storage_usage_cost(double value);
+  // .viam.app.v1.SourceType source_type = 1 [json_name = "sourceType"];
+  void clear_source_type() ;
+  ::viam::app::v1::SourceType source_type() const;
+  void set_source_type(::viam::app::v1::SourceType value);
 
   private:
-  double _internal_cloud_storage_usage_cost() const;
-  void _internal_set_cloud_storage_usage_cost(double value);
+  ::viam::app::v1::SourceType _internal_source_type() const;
+  void _internal_set_source_type(::viam::app::v1::SourceType value);
 
   public:
-  // double data_upload_usage_cost = 4 [json_name = "dataUploadUsageCost"];
-  void clear_data_upload_usage_cost() ;
-  double data_upload_usage_cost() const;
-  void set_data_upload_usage_cost(double value);
-
-  private:
-  double _internal_data_upload_usage_cost() const;
-  void _internal_set_data_upload_usage_cost(double value);
-
-  public:
-  // double data_egres_usage_cost = 5 [json_name = "dataEgresUsageCost"];
-  void clear_data_egres_usage_cost() ;
-  double data_egres_usage_cost() const;
-  void set_data_egres_usage_cost(double value);
-
-  private:
-  double _internal_data_egres_usage_cost() const;
-  void _internal_set_data_egres_usage_cost(double value);
-
-  public:
-  // double remote_control_usage_cost = 6 [json_name = "remoteControlUsageCost"];
-  void clear_remote_control_usage_cost() ;
-  double remote_control_usage_cost() const;
-  void set_remote_control_usage_cost(double value);
-
-  private:
-  double _internal_remote_control_usage_cost() const;
-  void _internal_set_remote_control_usage_cost(double value);
-
-  public:
-  // double standard_compute_usage_cost = 7 [json_name = "standardComputeUsageCost"];
-  void clear_standard_compute_usage_cost() ;
-  double standard_compute_usage_cost() const;
-  void set_standard_compute_usage_cost(double value);
-
-  private:
-  double _internal_standard_compute_usage_cost() const;
-  void _internal_set_standard_compute_usage_cost(double value);
-
-  public:
-  // double discount_amount = 8 [json_name = "discountAmount"];
-  void clear_discount_amount() ;
-  double discount_amount() const;
-  void set_discount_amount(double value);
-
-  private:
-  double _internal_discount_amount() const;
-  void _internal_set_discount_amount(double value);
-
-  public:
-  // double total_usage_with_discount = 9 [json_name = "totalUsageWithDiscount"];
-  void clear_total_usage_with_discount() ;
-  double total_usage_with_discount() const;
-  void set_total_usage_with_discount(double value);
-
-  private:
-  double _internal_total_usage_with_discount() const;
-  void _internal_set_total_usage_with_discount(double value);
-
-  public:
-  // double total_usage_without_discount = 10 [json_name = "totalUsageWithoutDiscount"];
-  void clear_total_usage_without_discount() ;
-  double total_usage_without_discount() const;
-  void set_total_usage_without_discount(double value);
-
-  private:
-  double _internal_total_usage_without_discount() const;
-  void _internal_set_total_usage_without_discount(double value);
-
-  public:
-  // double per_machine_usage_cost = 11 [json_name = "perMachineUsageCost"];
-  void clear_per_machine_usage_cost() ;
-  double per_machine_usage_cost() const;
-  void set_per_machine_usage_cost(double value);
-
-  private:
-  double _internal_per_machine_usage_cost() const;
-  void _internal_set_per_machine_usage_cost(double value);
-
-  public:
-  // double binary_data_cloud_storage_usage_cost = 12 [json_name = "binaryDataCloudStorageUsageCost"];
-  void clear_binary_data_cloud_storage_usage_cost() ;
-  double binary_data_cloud_storage_usage_cost() const;
-  void set_binary_data_cloud_storage_usage_cost(double value);
-
-  private:
-  double _internal_binary_data_cloud_storage_usage_cost() const;
-  void _internal_set_binary_data_cloud_storage_usage_cost(double value);
-
-  public:
-  // double other_cloud_storage_usage_cost = 13 [json_name = "otherCloudStorageUsageCost"];
-  void clear_other_cloud_storage_usage_cost() ;
-  double other_cloud_storage_usage_cost() const;
-  void set_other_cloud_storage_usage_cost(double value);
-
-  private:
-  double _internal_other_cloud_storage_usage_cost() const;
-  void _internal_set_other_cloud_storage_usage_cost(double value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:viam.app.v1.GetCurrentMonthUsageResponse)
+  // @@protoc_insertion_point(class_scope:viam.app.v1.ResourceUsageCostsBySource)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 13, 2,
-      0, 2>
+      2, 3, 1,
+      56, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -2414,586 +2788,9 @@ class GetCurrentMonthUsageResponse final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::Timestamp* start_date_;
-    ::google::protobuf::Timestamp* end_date_;
-    double cloud_storage_usage_cost_;
-    double data_upload_usage_cost_;
-    double data_egres_usage_cost_;
-    double remote_control_usage_cost_;
-    double standard_compute_usage_cost_;
-    double discount_amount_;
-    double total_usage_with_discount_;
-    double total_usage_without_discount_;
-    double per_machine_usage_cost_;
-    double binary_data_cloud_storage_usage_cost_;
-    double other_cloud_storage_usage_cost_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
-};// -------------------------------------------------------------------
-
-class BillableResourceEvent final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.BillableResourceEvent) */ {
- public:
-  inline BillableResourceEvent() : BillableResourceEvent(nullptr) {}
-  ~BillableResourceEvent() override;
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR BillableResourceEvent(::google::protobuf::internal::ConstantInitialized);
-
-  inline BillableResourceEvent(const BillableResourceEvent& from)
-      : BillableResourceEvent(nullptr, from) {}
-  BillableResourceEvent(BillableResourceEvent&& from) noexcept
-    : BillableResourceEvent() {
-    *this = ::std::move(from);
-  }
-
-  inline BillableResourceEvent& operator=(const BillableResourceEvent& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline BillableResourceEvent& operator=(BillableResourceEvent&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const BillableResourceEvent& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const BillableResourceEvent* internal_default_instance() {
-    return reinterpret_cast<const BillableResourceEvent*>(
-               &_BillableResourceEvent_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    1;
-
-  friend void swap(BillableResourceEvent& a, BillableResourceEvent& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(BillableResourceEvent* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr &&
-        GetArena() == other->GetArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(BillableResourceEvent* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  BillableResourceEvent* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<BillableResourceEvent>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const BillableResourceEvent& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const BillableResourceEvent& from) {
-    BillableResourceEvent::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(BillableResourceEvent* other);
-
-  private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "viam.app.v1.BillableResourceEvent";
-  }
-  protected:
-  explicit BillableResourceEvent(::google::protobuf::Arena* arena);
-  BillableResourceEvent(::google::protobuf::Arena* arena, const BillableResourceEvent& from);
-  public:
-
-  static const ClassData _class_data_;
-  const ::google::protobuf::Message::ClassData*GetClassData() const final;
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kIdFieldNumber = 1,
-    kTypeFieldNumber = 2,
-    kUsageQuantityUnitFieldNumber = 4,
-    kUsageCostFieldNumber = 5,
-    kUserNameFieldNumber = 7,
-    kOccurredAtFieldNumber = 6,
-    kUsageQuantityFieldNumber = 3,
-  };
-  // string id = 1 [json_name = "id"];
-  void clear_id() ;
-  const std::string& id() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_id(Arg_&& arg, Args_... args);
-  std::string* mutable_id();
-  PROTOBUF_NODISCARD std::string* release_id();
-  void set_allocated_id(std::string* value);
-
-  private:
-  const std::string& _internal_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(
-      const std::string& value);
-  std::string* _internal_mutable_id();
-
-  public:
-  // string type = 2 [json_name = "type"];
-  void clear_type() ;
-  const std::string& type() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_type(Arg_&& arg, Args_... args);
-  std::string* mutable_type();
-  PROTOBUF_NODISCARD std::string* release_type();
-  void set_allocated_type(std::string* value);
-
-  private:
-  const std::string& _internal_type() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_type(
-      const std::string& value);
-  std::string* _internal_mutable_type();
-
-  public:
-  // string usage_quantity_unit = 4 [json_name = "usageQuantityUnit"];
-  void clear_usage_quantity_unit() ;
-  const std::string& usage_quantity_unit() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_usage_quantity_unit(Arg_&& arg, Args_... args);
-  std::string* mutable_usage_quantity_unit();
-  PROTOBUF_NODISCARD std::string* release_usage_quantity_unit();
-  void set_allocated_usage_quantity_unit(std::string* value);
-
-  private:
-  const std::string& _internal_usage_quantity_unit() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_usage_quantity_unit(
-      const std::string& value);
-  std::string* _internal_mutable_usage_quantity_unit();
-
-  public:
-  // string usage_cost = 5 [json_name = "usageCost"];
-  void clear_usage_cost() ;
-  const std::string& usage_cost() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_usage_cost(Arg_&& arg, Args_... args);
-  std::string* mutable_usage_cost();
-  PROTOBUF_NODISCARD std::string* release_usage_cost();
-  void set_allocated_usage_cost(std::string* value);
-
-  private:
-  const std::string& _internal_usage_cost() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_usage_cost(
-      const std::string& value);
-  std::string* _internal_mutable_usage_cost();
-
-  public:
-  // string user_name = 7 [json_name = "userName"];
-  void clear_user_name() ;
-  const std::string& user_name() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_user_name(Arg_&& arg, Args_... args);
-  std::string* mutable_user_name();
-  PROTOBUF_NODISCARD std::string* release_user_name();
-  void set_allocated_user_name(std::string* value);
-
-  private:
-  const std::string& _internal_user_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_user_name(
-      const std::string& value);
-  std::string* _internal_mutable_user_name();
-
-  public:
-  // .google.protobuf.Timestamp occurred_at = 6 [json_name = "occurredAt"];
-  bool has_occurred_at() const;
-  void clear_occurred_at() ;
-  const ::google::protobuf::Timestamp& occurred_at() const;
-  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_occurred_at();
-  ::google::protobuf::Timestamp* mutable_occurred_at();
-  void set_allocated_occurred_at(::google::protobuf::Timestamp* value);
-  void unsafe_arena_set_allocated_occurred_at(::google::protobuf::Timestamp* value);
-  ::google::protobuf::Timestamp* unsafe_arena_release_occurred_at();
-
-  private:
-  const ::google::protobuf::Timestamp& _internal_occurred_at() const;
-  ::google::protobuf::Timestamp* _internal_mutable_occurred_at();
-
-  public:
-  // double usage_quantity = 3 [json_name = "usageQuantity"];
-  void clear_usage_quantity() ;
-  double usage_quantity() const;
-  void set_usage_quantity(double value);
-
-  private:
-  double _internal_usage_quantity() const;
-  void _internal_set_usage_quantity(double value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:viam.app.v1.BillableResourceEvent)
- private:
-  class _Internal;
-
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      3, 7, 1,
-      86, 2>
-      _table_;
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-
-        inline explicit constexpr Impl_(
-            ::google::protobuf::internal::ConstantInitialized) noexcept;
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena);
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr id_;
-    ::google::protobuf::internal::ArenaStringPtr type_;
-    ::google::protobuf::internal::ArenaStringPtr usage_quantity_unit_;
-    ::google::protobuf::internal::ArenaStringPtr usage_cost_;
-    ::google::protobuf::internal::ArenaStringPtr user_name_;
-    ::google::protobuf::Timestamp* occurred_at_;
-    double usage_quantity_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
-};// -------------------------------------------------------------------
-
-class Invoice final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.Invoice) */ {
- public:
-  inline Invoice() : Invoice(nullptr) {}
-  ~Invoice() override;
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR Invoice(::google::protobuf::internal::ConstantInitialized);
-
-  inline Invoice(const Invoice& from)
-      : Invoice(nullptr, from) {}
-  Invoice(Invoice&& from) noexcept
-    : Invoice() {
-    *this = ::std::move(from);
-  }
-
-  inline Invoice& operator=(const Invoice& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Invoice& operator=(Invoice&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const Invoice& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const Invoice* internal_default_instance() {
-    return reinterpret_cast<const Invoice*>(
-               &_Invoice_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    2;
-
-  friend void swap(Invoice& a, Invoice& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(Invoice* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr &&
-        GetArena() == other->GetArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(Invoice* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  Invoice* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<Invoice>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const Invoice& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const Invoice& from) {
-    Invoice::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(Invoice* other);
-
-  private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "viam.app.v1.Invoice";
-  }
-  protected:
-  explicit Invoice(::google::protobuf::Arena* arena);
-  Invoice(::google::protobuf::Arena* arena, const Invoice& from);
-  public:
-
-  static const ClassData _class_data_;
-  const ::google::protobuf::Message::ClassData*GetClassData() const final;
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kItemsFieldNumber = 6,
-    kIdFieldNumber = 1,
-    kStatusFieldNumber = 4,
-    kEmailedToFieldNumber = 7,
-    kInvoiceDateFieldNumber = 2,
-    kDueDateFieldNumber = 5,
-    kInvoiceAmountFieldNumber = 3,
-  };
-  // repeated .viam.app.v1.BillableResourceEvent items = 6 [json_name = "items"];
-  int items_size() const;
-  private:
-  int _internal_items_size() const;
-
-  public:
-  void clear_items() ;
-  ::viam::app::v1::BillableResourceEvent* mutable_items(int index);
-  ::google::protobuf::RepeatedPtrField< ::viam::app::v1::BillableResourceEvent >*
-      mutable_items();
-  private:
-  const ::google::protobuf::RepeatedPtrField<::viam::app::v1::BillableResourceEvent>& _internal_items() const;
-  ::google::protobuf::RepeatedPtrField<::viam::app::v1::BillableResourceEvent>* _internal_mutable_items();
-  public:
-  const ::viam::app::v1::BillableResourceEvent& items(int index) const;
-  ::viam::app::v1::BillableResourceEvent* add_items();
-  const ::google::protobuf::RepeatedPtrField< ::viam::app::v1::BillableResourceEvent >&
-      items() const;
-  // string id = 1 [json_name = "id"];
-  void clear_id() ;
-  const std::string& id() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_id(Arg_&& arg, Args_... args);
-  std::string* mutable_id();
-  PROTOBUF_NODISCARD std::string* release_id();
-  void set_allocated_id(std::string* value);
-
-  private:
-  const std::string& _internal_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(
-      const std::string& value);
-  std::string* _internal_mutable_id();
-
-  public:
-  // string status = 4 [json_name = "status"];
-  void clear_status() ;
-  const std::string& status() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_status(Arg_&& arg, Args_... args);
-  std::string* mutable_status();
-  PROTOBUF_NODISCARD std::string* release_status();
-  void set_allocated_status(std::string* value);
-
-  private:
-  const std::string& _internal_status() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_status(
-      const std::string& value);
-  std::string* _internal_mutable_status();
-
-  public:
-  // string emailed_to = 7 [json_name = "emailedTo"];
-  void clear_emailed_to() ;
-  const std::string& emailed_to() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_emailed_to(Arg_&& arg, Args_... args);
-  std::string* mutable_emailed_to();
-  PROTOBUF_NODISCARD std::string* release_emailed_to();
-  void set_allocated_emailed_to(std::string* value);
-
-  private:
-  const std::string& _internal_emailed_to() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_emailed_to(
-      const std::string& value);
-  std::string* _internal_mutable_emailed_to();
-
-  public:
-  // .google.protobuf.Timestamp invoice_date = 2 [json_name = "invoiceDate"];
-  bool has_invoice_date() const;
-  void clear_invoice_date() ;
-  const ::google::protobuf::Timestamp& invoice_date() const;
-  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_invoice_date();
-  ::google::protobuf::Timestamp* mutable_invoice_date();
-  void set_allocated_invoice_date(::google::protobuf::Timestamp* value);
-  void unsafe_arena_set_allocated_invoice_date(::google::protobuf::Timestamp* value);
-  ::google::protobuf::Timestamp* unsafe_arena_release_invoice_date();
-
-  private:
-  const ::google::protobuf::Timestamp& _internal_invoice_date() const;
-  ::google::protobuf::Timestamp* _internal_mutable_invoice_date();
-
-  public:
-  // .google.protobuf.Timestamp due_date = 5 [json_name = "dueDate"];
-  bool has_due_date() const;
-  void clear_due_date() ;
-  const ::google::protobuf::Timestamp& due_date() const;
-  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_due_date();
-  ::google::protobuf::Timestamp* mutable_due_date();
-  void set_allocated_due_date(::google::protobuf::Timestamp* value);
-  void unsafe_arena_set_allocated_due_date(::google::protobuf::Timestamp* value);
-  ::google::protobuf::Timestamp* unsafe_arena_release_due_date();
-
-  private:
-  const ::google::protobuf::Timestamp& _internal_due_date() const;
-  ::google::protobuf::Timestamp* _internal_mutable_due_date();
-
-  public:
-  // double invoice_amount = 3 [json_name = "invoiceAmount"];
-  void clear_invoice_amount() ;
-  double invoice_amount() const;
-  void set_invoice_amount(double value);
-
-  private:
-  double _internal_invoice_amount() const;
-  void _internal_set_invoice_amount(double value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:viam.app.v1.Invoice)
- private:
-  class _Internal;
-
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      3, 7, 3,
-      46, 2>
-      _table_;
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-
-        inline explicit constexpr Impl_(
-            ::google::protobuf::internal::ConstantInitialized) noexcept;
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena);
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::RepeatedPtrField< ::viam::app::v1::BillableResourceEvent > items_;
-    ::google::protobuf::internal::ArenaStringPtr id_;
-    ::google::protobuf::internal::ArenaStringPtr status_;
-    ::google::protobuf::internal::ArenaStringPtr emailed_to_;
-    ::google::protobuf::Timestamp* invoice_date_;
-    ::google::protobuf::Timestamp* due_date_;
-    double invoice_amount_;
+    ::google::protobuf::internal::ArenaStringPtr tier_name_;
+    ::viam::app::v1::ResourceUsageCosts* resource_usage_costs_;
+    int source_type_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -3059,7 +2856,7 @@ class GetInvoicesSummaryResponse final :
                &_GetInvoicesSummaryResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(GetInvoicesSummaryResponse& a, GetInvoicesSummaryResponse& b) {
     a.Swap(&b);
@@ -3189,6 +2986,368 @@ class GetInvoicesSummaryResponse final :
     ::google::protobuf::RepeatedPtrField< ::viam::app::v1::InvoiceSummary > invoices_;
     double outstanding_balance_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
+};// -------------------------------------------------------------------
+
+class GetCurrentMonthUsageResponse final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetCurrentMonthUsageResponse) */ {
+ public:
+  inline GetCurrentMonthUsageResponse() : GetCurrentMonthUsageResponse(nullptr) {}
+  ~GetCurrentMonthUsageResponse() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR GetCurrentMonthUsageResponse(::google::protobuf::internal::ConstantInitialized);
+
+  inline GetCurrentMonthUsageResponse(const GetCurrentMonthUsageResponse& from)
+      : GetCurrentMonthUsageResponse(nullptr, from) {}
+  GetCurrentMonthUsageResponse(GetCurrentMonthUsageResponse&& from) noexcept
+    : GetCurrentMonthUsageResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetCurrentMonthUsageResponse& operator=(const GetCurrentMonthUsageResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetCurrentMonthUsageResponse& operator=(GetCurrentMonthUsageResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetCurrentMonthUsageResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetCurrentMonthUsageResponse* internal_default_instance() {
+    return reinterpret_cast<const GetCurrentMonthUsageResponse*>(
+               &_GetCurrentMonthUsageResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(GetCurrentMonthUsageResponse& a, GetCurrentMonthUsageResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetCurrentMonthUsageResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetCurrentMonthUsageResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetCurrentMonthUsageResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetCurrentMonthUsageResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const GetCurrentMonthUsageResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const GetCurrentMonthUsageResponse& from) {
+    GetCurrentMonthUsageResponse::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(GetCurrentMonthUsageResponse* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.app.v1.GetCurrentMonthUsageResponse";
+  }
+  protected:
+  explicit GetCurrentMonthUsageResponse(::google::protobuf::Arena* arena);
+  GetCurrentMonthUsageResponse(::google::protobuf::Arena* arena, const GetCurrentMonthUsageResponse& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kResourceUsageCostsBySourceFieldNumber = 14,
+    kStartDateFieldNumber = 1,
+    kEndDateFieldNumber = 2,
+    kCloudStorageUsageCostFieldNumber = 3,
+    kDataUploadUsageCostFieldNumber = 4,
+    kDataEgresUsageCostFieldNumber = 5,
+    kRemoteControlUsageCostFieldNumber = 6,
+    kStandardComputeUsageCostFieldNumber = 7,
+    kDiscountAmountFieldNumber = 8,
+    kTotalUsageWithDiscountFieldNumber = 9,
+    kTotalUsageWithoutDiscountFieldNumber = 10,
+    kPerMachineUsageCostFieldNumber = 11,
+    kBinaryDataCloudStorageUsageCostFieldNumber = 12,
+    kOtherCloudStorageUsageCostFieldNumber = 13,
+    kSubtotalFieldNumber = 15,
+  };
+  // repeated .viam.app.v1.ResourceUsageCostsBySource resource_usage_costs_by_source = 14 [json_name = "resourceUsageCostsBySource"];
+  int resource_usage_costs_by_source_size() const;
+  private:
+  int _internal_resource_usage_costs_by_source_size() const;
+
+  public:
+  void clear_resource_usage_costs_by_source() ;
+  ::viam::app::v1::ResourceUsageCostsBySource* mutable_resource_usage_costs_by_source(int index);
+  ::google::protobuf::RepeatedPtrField< ::viam::app::v1::ResourceUsageCostsBySource >*
+      mutable_resource_usage_costs_by_source();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::viam::app::v1::ResourceUsageCostsBySource>& _internal_resource_usage_costs_by_source() const;
+  ::google::protobuf::RepeatedPtrField<::viam::app::v1::ResourceUsageCostsBySource>* _internal_mutable_resource_usage_costs_by_source();
+  public:
+  const ::viam::app::v1::ResourceUsageCostsBySource& resource_usage_costs_by_source(int index) const;
+  ::viam::app::v1::ResourceUsageCostsBySource* add_resource_usage_costs_by_source();
+  const ::google::protobuf::RepeatedPtrField< ::viam::app::v1::ResourceUsageCostsBySource >&
+      resource_usage_costs_by_source() const;
+  // .google.protobuf.Timestamp start_date = 1 [json_name = "startDate"];
+  bool has_start_date() const;
+  void clear_start_date() ;
+  const ::google::protobuf::Timestamp& start_date() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_start_date();
+  ::google::protobuf::Timestamp* mutable_start_date();
+  void set_allocated_start_date(::google::protobuf::Timestamp* value);
+  void unsafe_arena_set_allocated_start_date(::google::protobuf::Timestamp* value);
+  ::google::protobuf::Timestamp* unsafe_arena_release_start_date();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_start_date() const;
+  ::google::protobuf::Timestamp* _internal_mutable_start_date();
+
+  public:
+  // .google.protobuf.Timestamp end_date = 2 [json_name = "endDate"];
+  bool has_end_date() const;
+  void clear_end_date() ;
+  const ::google::protobuf::Timestamp& end_date() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_end_date();
+  ::google::protobuf::Timestamp* mutable_end_date();
+  void set_allocated_end_date(::google::protobuf::Timestamp* value);
+  void unsafe_arena_set_allocated_end_date(::google::protobuf::Timestamp* value);
+  ::google::protobuf::Timestamp* unsafe_arena_release_end_date();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_end_date() const;
+  ::google::protobuf::Timestamp* _internal_mutable_end_date();
+
+  public:
+  // double cloud_storage_usage_cost = 3 [json_name = "cloudStorageUsageCost", deprecated = true];
+  [[deprecated]]  void clear_cloud_storage_usage_cost() ;
+  [[deprecated]] double cloud_storage_usage_cost() const;
+  [[deprecated]] void set_cloud_storage_usage_cost(double value);
+
+  private:
+  double _internal_cloud_storage_usage_cost() const;
+  void _internal_set_cloud_storage_usage_cost(double value);
+
+  public:
+  // double data_upload_usage_cost = 4 [json_name = "dataUploadUsageCost", deprecated = true];
+  [[deprecated]]  void clear_data_upload_usage_cost() ;
+  [[deprecated]] double data_upload_usage_cost() const;
+  [[deprecated]] void set_data_upload_usage_cost(double value);
+
+  private:
+  double _internal_data_upload_usage_cost() const;
+  void _internal_set_data_upload_usage_cost(double value);
+
+  public:
+  // double data_egres_usage_cost = 5 [json_name = "dataEgresUsageCost", deprecated = true];
+  [[deprecated]]  void clear_data_egres_usage_cost() ;
+  [[deprecated]] double data_egres_usage_cost() const;
+  [[deprecated]] void set_data_egres_usage_cost(double value);
+
+  private:
+  double _internal_data_egres_usage_cost() const;
+  void _internal_set_data_egres_usage_cost(double value);
+
+  public:
+  // double remote_control_usage_cost = 6 [json_name = "remoteControlUsageCost", deprecated = true];
+  [[deprecated]]  void clear_remote_control_usage_cost() ;
+  [[deprecated]] double remote_control_usage_cost() const;
+  [[deprecated]] void set_remote_control_usage_cost(double value);
+
+  private:
+  double _internal_remote_control_usage_cost() const;
+  void _internal_set_remote_control_usage_cost(double value);
+
+  public:
+  // double standard_compute_usage_cost = 7 [json_name = "standardComputeUsageCost", deprecated = true];
+  [[deprecated]]  void clear_standard_compute_usage_cost() ;
+  [[deprecated]] double standard_compute_usage_cost() const;
+  [[deprecated]] void set_standard_compute_usage_cost(double value);
+
+  private:
+  double _internal_standard_compute_usage_cost() const;
+  void _internal_set_standard_compute_usage_cost(double value);
+
+  public:
+  // double discount_amount = 8 [json_name = "discountAmount", deprecated = true];
+  [[deprecated]]  void clear_discount_amount() ;
+  [[deprecated]] double discount_amount() const;
+  [[deprecated]] void set_discount_amount(double value);
+
+  private:
+  double _internal_discount_amount() const;
+  void _internal_set_discount_amount(double value);
+
+  public:
+  // double total_usage_with_discount = 9 [json_name = "totalUsageWithDiscount", deprecated = true];
+  [[deprecated]]  void clear_total_usage_with_discount() ;
+  [[deprecated]] double total_usage_with_discount() const;
+  [[deprecated]] void set_total_usage_with_discount(double value);
+
+  private:
+  double _internal_total_usage_with_discount() const;
+  void _internal_set_total_usage_with_discount(double value);
+
+  public:
+  // double total_usage_without_discount = 10 [json_name = "totalUsageWithoutDiscount", deprecated = true];
+  [[deprecated]]  void clear_total_usage_without_discount() ;
+  [[deprecated]] double total_usage_without_discount() const;
+  [[deprecated]] void set_total_usage_without_discount(double value);
+
+  private:
+  double _internal_total_usage_without_discount() const;
+  void _internal_set_total_usage_without_discount(double value);
+
+  public:
+  // double per_machine_usage_cost = 11 [json_name = "perMachineUsageCost", deprecated = true];
+  [[deprecated]]  void clear_per_machine_usage_cost() ;
+  [[deprecated]] double per_machine_usage_cost() const;
+  [[deprecated]] void set_per_machine_usage_cost(double value);
+
+  private:
+  double _internal_per_machine_usage_cost() const;
+  void _internal_set_per_machine_usage_cost(double value);
+
+  public:
+  // double binary_data_cloud_storage_usage_cost = 12 [json_name = "binaryDataCloudStorageUsageCost", deprecated = true];
+  [[deprecated]]  void clear_binary_data_cloud_storage_usage_cost() ;
+  [[deprecated]] double binary_data_cloud_storage_usage_cost() const;
+  [[deprecated]] void set_binary_data_cloud_storage_usage_cost(double value);
+
+  private:
+  double _internal_binary_data_cloud_storage_usage_cost() const;
+  void _internal_set_binary_data_cloud_storage_usage_cost(double value);
+
+  public:
+  // double other_cloud_storage_usage_cost = 13 [json_name = "otherCloudStorageUsageCost", deprecated = true];
+  [[deprecated]]  void clear_other_cloud_storage_usage_cost() ;
+  [[deprecated]] double other_cloud_storage_usage_cost() const;
+  [[deprecated]] void set_other_cloud_storage_usage_cost(double value);
+
+  private:
+  double _internal_other_cloud_storage_usage_cost() const;
+  void _internal_set_other_cloud_storage_usage_cost(double value);
+
+  public:
+  // double subtotal = 15 [json_name = "subtotal"];
+  void clear_subtotal() ;
+  double subtotal() const;
+  void set_subtotal(double value);
+
+  private:
+  double _internal_subtotal() const;
+  void _internal_set_subtotal(double value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:viam.app.v1.GetCurrentMonthUsageResponse)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      4, 15, 3,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField< ::viam::app::v1::ResourceUsageCostsBySource > resource_usage_costs_by_source_;
+    ::google::protobuf::Timestamp* start_date_;
+    ::google::protobuf::Timestamp* end_date_;
+    double cloud_storage_usage_cost_;
+    double data_upload_usage_cost_;
+    double data_egres_usage_cost_;
+    double remote_control_usage_cost_;
+    double standard_compute_usage_cost_;
+    double discount_amount_;
+    double total_usage_with_discount_;
+    double total_usage_without_discount_;
+    double per_machine_usage_cost_;
+    double binary_data_cloud_storage_usage_cost_;
+    double other_cloud_storage_usage_cost_;
+    double subtotal_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -3615,806 +3774,6 @@ inline void InvoiceSummary::set_allocated_paid_date(::google::protobuf::Timestam
 
 // -------------------------------------------------------------------
 
-// BillableResourceEvent
-
-// string id = 1 [json_name = "id"];
-inline void BillableResourceEvent::clear_id() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.id_.ClearToEmpty();
-}
-inline const std::string& BillableResourceEvent::id() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:viam.app.v1.BillableResourceEvent.id)
-  return _internal_id();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void BillableResourceEvent::set_id(Arg_&& arg,
-                                                     Args_... args) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:viam.app.v1.BillableResourceEvent.id)
-}
-inline std::string* BillableResourceEvent::mutable_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_id();
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.BillableResourceEvent.id)
-  return _s;
-}
-inline const std::string& BillableResourceEvent::_internal_id() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.id_.Get();
-}
-inline void BillableResourceEvent::_internal_set_id(const std::string& value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.id_.Set(value, GetArena());
-}
-inline std::string* BillableResourceEvent::_internal_mutable_id() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  return _impl_.id_.Mutable( GetArena());
-}
-inline std::string* BillableResourceEvent::release_id() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:viam.app.v1.BillableResourceEvent.id)
-  return _impl_.id_.Release();
-}
-inline void BillableResourceEvent::set_allocated_id(std::string* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.id_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.id_.IsDefault()) {
-          _impl_.id_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.BillableResourceEvent.id)
-}
-
-// string type = 2 [json_name = "type"];
-inline void BillableResourceEvent::clear_type() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.type_.ClearToEmpty();
-}
-inline const std::string& BillableResourceEvent::type() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:viam.app.v1.BillableResourceEvent.type)
-  return _internal_type();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void BillableResourceEvent::set_type(Arg_&& arg,
-                                                     Args_... args) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.type_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:viam.app.v1.BillableResourceEvent.type)
-}
-inline std::string* BillableResourceEvent::mutable_type() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_type();
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.BillableResourceEvent.type)
-  return _s;
-}
-inline const std::string& BillableResourceEvent::_internal_type() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.type_.Get();
-}
-inline void BillableResourceEvent::_internal_set_type(const std::string& value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.type_.Set(value, GetArena());
-}
-inline std::string* BillableResourceEvent::_internal_mutable_type() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  return _impl_.type_.Mutable( GetArena());
-}
-inline std::string* BillableResourceEvent::release_type() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:viam.app.v1.BillableResourceEvent.type)
-  return _impl_.type_.Release();
-}
-inline void BillableResourceEvent::set_allocated_type(std::string* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.type_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.type_.IsDefault()) {
-          _impl_.type_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.BillableResourceEvent.type)
-}
-
-// double usage_quantity = 3 [json_name = "usageQuantity"];
-inline void BillableResourceEvent::clear_usage_quantity() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.usage_quantity_ = 0;
-}
-inline double BillableResourceEvent::usage_quantity() const {
-  // @@protoc_insertion_point(field_get:viam.app.v1.BillableResourceEvent.usage_quantity)
-  return _internal_usage_quantity();
-}
-inline void BillableResourceEvent::set_usage_quantity(double value) {
-  _internal_set_usage_quantity(value);
-  // @@protoc_insertion_point(field_set:viam.app.v1.BillableResourceEvent.usage_quantity)
-}
-inline double BillableResourceEvent::_internal_usage_quantity() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.usage_quantity_;
-}
-inline void BillableResourceEvent::_internal_set_usage_quantity(double value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.usage_quantity_ = value;
-}
-
-// string usage_quantity_unit = 4 [json_name = "usageQuantityUnit"];
-inline void BillableResourceEvent::clear_usage_quantity_unit() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.usage_quantity_unit_.ClearToEmpty();
-}
-inline const std::string& BillableResourceEvent::usage_quantity_unit() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:viam.app.v1.BillableResourceEvent.usage_quantity_unit)
-  return _internal_usage_quantity_unit();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void BillableResourceEvent::set_usage_quantity_unit(Arg_&& arg,
-                                                     Args_... args) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.usage_quantity_unit_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:viam.app.v1.BillableResourceEvent.usage_quantity_unit)
-}
-inline std::string* BillableResourceEvent::mutable_usage_quantity_unit() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_usage_quantity_unit();
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.BillableResourceEvent.usage_quantity_unit)
-  return _s;
-}
-inline const std::string& BillableResourceEvent::_internal_usage_quantity_unit() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.usage_quantity_unit_.Get();
-}
-inline void BillableResourceEvent::_internal_set_usage_quantity_unit(const std::string& value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.usage_quantity_unit_.Set(value, GetArena());
-}
-inline std::string* BillableResourceEvent::_internal_mutable_usage_quantity_unit() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  return _impl_.usage_quantity_unit_.Mutable( GetArena());
-}
-inline std::string* BillableResourceEvent::release_usage_quantity_unit() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:viam.app.v1.BillableResourceEvent.usage_quantity_unit)
-  return _impl_.usage_quantity_unit_.Release();
-}
-inline void BillableResourceEvent::set_allocated_usage_quantity_unit(std::string* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.usage_quantity_unit_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.usage_quantity_unit_.IsDefault()) {
-          _impl_.usage_quantity_unit_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.BillableResourceEvent.usage_quantity_unit)
-}
-
-// string usage_cost = 5 [json_name = "usageCost"];
-inline void BillableResourceEvent::clear_usage_cost() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.usage_cost_.ClearToEmpty();
-}
-inline const std::string& BillableResourceEvent::usage_cost() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:viam.app.v1.BillableResourceEvent.usage_cost)
-  return _internal_usage_cost();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void BillableResourceEvent::set_usage_cost(Arg_&& arg,
-                                                     Args_... args) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.usage_cost_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:viam.app.v1.BillableResourceEvent.usage_cost)
-}
-inline std::string* BillableResourceEvent::mutable_usage_cost() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_usage_cost();
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.BillableResourceEvent.usage_cost)
-  return _s;
-}
-inline const std::string& BillableResourceEvent::_internal_usage_cost() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.usage_cost_.Get();
-}
-inline void BillableResourceEvent::_internal_set_usage_cost(const std::string& value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.usage_cost_.Set(value, GetArena());
-}
-inline std::string* BillableResourceEvent::_internal_mutable_usage_cost() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  return _impl_.usage_cost_.Mutable( GetArena());
-}
-inline std::string* BillableResourceEvent::release_usage_cost() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:viam.app.v1.BillableResourceEvent.usage_cost)
-  return _impl_.usage_cost_.Release();
-}
-inline void BillableResourceEvent::set_allocated_usage_cost(std::string* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.usage_cost_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.usage_cost_.IsDefault()) {
-          _impl_.usage_cost_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.BillableResourceEvent.usage_cost)
-}
-
-// .google.protobuf.Timestamp occurred_at = 6 [json_name = "occurredAt"];
-inline bool BillableResourceEvent::has_occurred_at() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.occurred_at_ != nullptr);
-  return value;
-}
-inline const ::google::protobuf::Timestamp& BillableResourceEvent::_internal_occurred_at() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::google::protobuf::Timestamp* p = _impl_.occurred_at_;
-  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
-}
-inline const ::google::protobuf::Timestamp& BillableResourceEvent::occurred_at() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:viam.app.v1.BillableResourceEvent.occurred_at)
-  return _internal_occurred_at();
-}
-inline void BillableResourceEvent::unsafe_arena_set_allocated_occurred_at(::google::protobuf::Timestamp* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.occurred_at_);
-  }
-  _impl_.occurred_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.BillableResourceEvent.occurred_at)
-}
-inline ::google::protobuf::Timestamp* BillableResourceEvent::release_occurred_at() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::google::protobuf::Timestamp* released = _impl_.occurred_at_;
-  _impl_.occurred_at_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  if (GetArena() == nullptr) {
-    delete old;
-  }
-#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArena() != nullptr) {
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return released;
-}
-inline ::google::protobuf::Timestamp* BillableResourceEvent::unsafe_arena_release_occurred_at() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:viam.app.v1.BillableResourceEvent.occurred_at)
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::google::protobuf::Timestamp* temp = _impl_.occurred_at_;
-  _impl_.occurred_at_ = nullptr;
-  return temp;
-}
-inline ::google::protobuf::Timestamp* BillableResourceEvent::_internal_mutable_occurred_at() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  if (_impl_.occurred_at_ == nullptr) {
-    auto* p = CreateMaybeMessage<::google::protobuf::Timestamp>(GetArena());
-    _impl_.occurred_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
-  }
-  return _impl_.occurred_at_;
-}
-inline ::google::protobuf::Timestamp* BillableResourceEvent::mutable_occurred_at() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::google::protobuf::Timestamp* _msg = _internal_mutable_occurred_at();
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.BillableResourceEvent.occurred_at)
-  return _msg;
-}
-inline void BillableResourceEvent::set_allocated_occurred_at(::google::protobuf::Timestamp* value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.occurred_at_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-
-  _impl_.occurred_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.BillableResourceEvent.occurred_at)
-}
-
-// string user_name = 7 [json_name = "userName"];
-inline void BillableResourceEvent::clear_user_name() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.user_name_.ClearToEmpty();
-}
-inline const std::string& BillableResourceEvent::user_name() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:viam.app.v1.BillableResourceEvent.user_name)
-  return _internal_user_name();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void BillableResourceEvent::set_user_name(Arg_&& arg,
-                                                     Args_... args) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.user_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:viam.app.v1.BillableResourceEvent.user_name)
-}
-inline std::string* BillableResourceEvent::mutable_user_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_user_name();
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.BillableResourceEvent.user_name)
-  return _s;
-}
-inline const std::string& BillableResourceEvent::_internal_user_name() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.user_name_.Get();
-}
-inline void BillableResourceEvent::_internal_set_user_name(const std::string& value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.user_name_.Set(value, GetArena());
-}
-inline std::string* BillableResourceEvent::_internal_mutable_user_name() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  return _impl_.user_name_.Mutable( GetArena());
-}
-inline std::string* BillableResourceEvent::release_user_name() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:viam.app.v1.BillableResourceEvent.user_name)
-  return _impl_.user_name_.Release();
-}
-inline void BillableResourceEvent::set_allocated_user_name(std::string* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.user_name_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.user_name_.IsDefault()) {
-          _impl_.user_name_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.BillableResourceEvent.user_name)
-}
-
-// -------------------------------------------------------------------
-
-// Invoice
-
-// string id = 1 [json_name = "id"];
-inline void Invoice::clear_id() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.id_.ClearToEmpty();
-}
-inline const std::string& Invoice::id() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:viam.app.v1.Invoice.id)
-  return _internal_id();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void Invoice::set_id(Arg_&& arg,
-                                                     Args_... args) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:viam.app.v1.Invoice.id)
-}
-inline std::string* Invoice::mutable_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_id();
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.Invoice.id)
-  return _s;
-}
-inline const std::string& Invoice::_internal_id() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.id_.Get();
-}
-inline void Invoice::_internal_set_id(const std::string& value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.id_.Set(value, GetArena());
-}
-inline std::string* Invoice::_internal_mutable_id() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  return _impl_.id_.Mutable( GetArena());
-}
-inline std::string* Invoice::release_id() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:viam.app.v1.Invoice.id)
-  return _impl_.id_.Release();
-}
-inline void Invoice::set_allocated_id(std::string* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.id_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.id_.IsDefault()) {
-          _impl_.id_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Invoice.id)
-}
-
-// .google.protobuf.Timestamp invoice_date = 2 [json_name = "invoiceDate"];
-inline bool Invoice::has_invoice_date() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.invoice_date_ != nullptr);
-  return value;
-}
-inline const ::google::protobuf::Timestamp& Invoice::_internal_invoice_date() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::google::protobuf::Timestamp* p = _impl_.invoice_date_;
-  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
-}
-inline const ::google::protobuf::Timestamp& Invoice::invoice_date() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:viam.app.v1.Invoice.invoice_date)
-  return _internal_invoice_date();
-}
-inline void Invoice::unsafe_arena_set_allocated_invoice_date(::google::protobuf::Timestamp* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.invoice_date_);
-  }
-  _impl_.invoice_date_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.Invoice.invoice_date)
-}
-inline ::google::protobuf::Timestamp* Invoice::release_invoice_date() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::google::protobuf::Timestamp* released = _impl_.invoice_date_;
-  _impl_.invoice_date_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  if (GetArena() == nullptr) {
-    delete old;
-  }
-#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArena() != nullptr) {
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return released;
-}
-inline ::google::protobuf::Timestamp* Invoice::unsafe_arena_release_invoice_date() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:viam.app.v1.Invoice.invoice_date)
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::google::protobuf::Timestamp* temp = _impl_.invoice_date_;
-  _impl_.invoice_date_ = nullptr;
-  return temp;
-}
-inline ::google::protobuf::Timestamp* Invoice::_internal_mutable_invoice_date() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  if (_impl_.invoice_date_ == nullptr) {
-    auto* p = CreateMaybeMessage<::google::protobuf::Timestamp>(GetArena());
-    _impl_.invoice_date_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
-  }
-  return _impl_.invoice_date_;
-}
-inline ::google::protobuf::Timestamp* Invoice::mutable_invoice_date() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::google::protobuf::Timestamp* _msg = _internal_mutable_invoice_date();
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.Invoice.invoice_date)
-  return _msg;
-}
-inline void Invoice::set_allocated_invoice_date(::google::protobuf::Timestamp* value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.invoice_date_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-
-  _impl_.invoice_date_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Invoice.invoice_date)
-}
-
-// double invoice_amount = 3 [json_name = "invoiceAmount"];
-inline void Invoice::clear_invoice_amount() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.invoice_amount_ = 0;
-}
-inline double Invoice::invoice_amount() const {
-  // @@protoc_insertion_point(field_get:viam.app.v1.Invoice.invoice_amount)
-  return _internal_invoice_amount();
-}
-inline void Invoice::set_invoice_amount(double value) {
-  _internal_set_invoice_amount(value);
-  // @@protoc_insertion_point(field_set:viam.app.v1.Invoice.invoice_amount)
-}
-inline double Invoice::_internal_invoice_amount() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.invoice_amount_;
-}
-inline void Invoice::_internal_set_invoice_amount(double value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.invoice_amount_ = value;
-}
-
-// string status = 4 [json_name = "status"];
-inline void Invoice::clear_status() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.status_.ClearToEmpty();
-}
-inline const std::string& Invoice::status() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:viam.app.v1.Invoice.status)
-  return _internal_status();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void Invoice::set_status(Arg_&& arg,
-                                                     Args_... args) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.status_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:viam.app.v1.Invoice.status)
-}
-inline std::string* Invoice::mutable_status() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_status();
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.Invoice.status)
-  return _s;
-}
-inline const std::string& Invoice::_internal_status() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.status_.Get();
-}
-inline void Invoice::_internal_set_status(const std::string& value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.status_.Set(value, GetArena());
-}
-inline std::string* Invoice::_internal_mutable_status() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  return _impl_.status_.Mutable( GetArena());
-}
-inline std::string* Invoice::release_status() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:viam.app.v1.Invoice.status)
-  return _impl_.status_.Release();
-}
-inline void Invoice::set_allocated_status(std::string* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.status_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.status_.IsDefault()) {
-          _impl_.status_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Invoice.status)
-}
-
-// .google.protobuf.Timestamp due_date = 5 [json_name = "dueDate"];
-inline bool Invoice::has_due_date() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.due_date_ != nullptr);
-  return value;
-}
-inline const ::google::protobuf::Timestamp& Invoice::_internal_due_date() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::google::protobuf::Timestamp* p = _impl_.due_date_;
-  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
-}
-inline const ::google::protobuf::Timestamp& Invoice::due_date() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:viam.app.v1.Invoice.due_date)
-  return _internal_due_date();
-}
-inline void Invoice::unsafe_arena_set_allocated_due_date(::google::protobuf::Timestamp* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.due_date_);
-  }
-  _impl_.due_date_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000002u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.Invoice.due_date)
-}
-inline ::google::protobuf::Timestamp* Invoice::release_due_date() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-
-  _impl_._has_bits_[0] &= ~0x00000002u;
-  ::google::protobuf::Timestamp* released = _impl_.due_date_;
-  _impl_.due_date_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  if (GetArena() == nullptr) {
-    delete old;
-  }
-#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArena() != nullptr) {
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return released;
-}
-inline ::google::protobuf::Timestamp* Invoice::unsafe_arena_release_due_date() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:viam.app.v1.Invoice.due_date)
-
-  _impl_._has_bits_[0] &= ~0x00000002u;
-  ::google::protobuf::Timestamp* temp = _impl_.due_date_;
-  _impl_.due_date_ = nullptr;
-  return temp;
-}
-inline ::google::protobuf::Timestamp* Invoice::_internal_mutable_due_date() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000002u;
-  if (_impl_.due_date_ == nullptr) {
-    auto* p = CreateMaybeMessage<::google::protobuf::Timestamp>(GetArena());
-    _impl_.due_date_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
-  }
-  return _impl_.due_date_;
-}
-inline ::google::protobuf::Timestamp* Invoice::mutable_due_date() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::google::protobuf::Timestamp* _msg = _internal_mutable_due_date();
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.Invoice.due_date)
-  return _msg;
-}
-inline void Invoice::set_allocated_due_date(::google::protobuf::Timestamp* value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.due_date_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000002u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
-  }
-
-  _impl_.due_date_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Invoice.due_date)
-}
-
-// repeated .viam.app.v1.BillableResourceEvent items = 6 [json_name = "items"];
-inline int Invoice::_internal_items_size() const {
-  return _internal_items().size();
-}
-inline int Invoice::items_size() const {
-  return _internal_items_size();
-}
-inline void Invoice::clear_items() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.items_.Clear();
-}
-inline ::viam::app::v1::BillableResourceEvent* Invoice::mutable_items(int index)
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.Invoice.items)
-  return _internal_mutable_items()->Mutable(index);
-}
-inline ::google::protobuf::RepeatedPtrField<::viam::app::v1::BillableResourceEvent>* Invoice::mutable_items()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.Invoice.items)
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  return _internal_mutable_items();
-}
-inline const ::viam::app::v1::BillableResourceEvent& Invoice::items(int index) const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:viam.app.v1.Invoice.items)
-  return _internal_items().Get(index);
-}
-inline ::viam::app::v1::BillableResourceEvent* Invoice::add_items() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::viam::app::v1::BillableResourceEvent* _add = _internal_mutable_items()->Add();
-  // @@protoc_insertion_point(field_add:viam.app.v1.Invoice.items)
-  return _add;
-}
-inline const ::google::protobuf::RepeatedPtrField<::viam::app::v1::BillableResourceEvent>& Invoice::items() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:viam.app.v1.Invoice.items)
-  return _internal_items();
-}
-inline const ::google::protobuf::RepeatedPtrField<::viam::app::v1::BillableResourceEvent>&
-Invoice::_internal_items() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.items_;
-}
-inline ::google::protobuf::RepeatedPtrField<::viam::app::v1::BillableResourceEvent>*
-Invoice::_internal_mutable_items() {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return &_impl_.items_;
-}
-
-// string emailed_to = 7 [json_name = "emailedTo"];
-inline void Invoice::clear_emailed_to() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.emailed_to_.ClearToEmpty();
-}
-inline const std::string& Invoice::emailed_to() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:viam.app.v1.Invoice.emailed_to)
-  return _internal_emailed_to();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void Invoice::set_emailed_to(Arg_&& arg,
-                                                     Args_... args) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.emailed_to_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:viam.app.v1.Invoice.emailed_to)
-}
-inline std::string* Invoice::mutable_emailed_to() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_emailed_to();
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.Invoice.emailed_to)
-  return _s;
-}
-inline const std::string& Invoice::_internal_emailed_to() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.emailed_to_.Get();
-}
-inline void Invoice::_internal_set_emailed_to(const std::string& value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.emailed_to_.Set(value, GetArena());
-}
-inline std::string* Invoice::_internal_mutable_emailed_to() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  return _impl_.emailed_to_.Mutable( GetArena());
-}
-inline std::string* Invoice::release_emailed_to() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:viam.app.v1.Invoice.emailed_to)
-  return _impl_.emailed_to_.Release();
-}
-inline void Invoice::set_allocated_emailed_to(std::string* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.emailed_to_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.emailed_to_.IsDefault()) {
-          _impl_.emailed_to_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Invoice.emailed_to)
-}
-
-// -------------------------------------------------------------------
-
 // PaymentMethodCard
 
 // string brand = 1 [json_name = "brand"];
@@ -4578,6 +3937,354 @@ inline void GetCurrentMonthUsageRequest::set_allocated_org_id(std::string* value
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetCurrentMonthUsageRequest.org_id)
+}
+
+// -------------------------------------------------------------------
+
+// UsageCost
+
+// .viam.app.v1.UsageCostType resource_type = 1 [json_name = "resourceType"];
+inline void UsageCost::clear_resource_type() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.resource_type_ = 0;
+}
+inline ::viam::app::v1::UsageCostType UsageCost::resource_type() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UsageCost.resource_type)
+  return _internal_resource_type();
+}
+inline void UsageCost::set_resource_type(::viam::app::v1::UsageCostType value) {
+  _internal_set_resource_type(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.UsageCost.resource_type)
+}
+inline ::viam::app::v1::UsageCostType UsageCost::_internal_resource_type() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return static_cast<::viam::app::v1::UsageCostType>(_impl_.resource_type_);
+}
+inline void UsageCost::_internal_set_resource_type(::viam::app::v1::UsageCostType value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.resource_type_ = value;
+}
+
+// double cost = 2 [json_name = "cost"];
+inline void UsageCost::clear_cost() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.cost_ = 0;
+}
+inline double UsageCost::cost() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UsageCost.cost)
+  return _internal_cost();
+}
+inline void UsageCost::set_cost(double value) {
+  _internal_set_cost(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.UsageCost.cost)
+}
+inline double UsageCost::_internal_cost() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.cost_;
+}
+inline void UsageCost::_internal_set_cost(double value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.cost_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// ResourceUsageCostsBySource
+
+// .viam.app.v1.SourceType source_type = 1 [json_name = "sourceType"];
+inline void ResourceUsageCostsBySource::clear_source_type() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.source_type_ = 0;
+}
+inline ::viam::app::v1::SourceType ResourceUsageCostsBySource::source_type() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ResourceUsageCostsBySource.source_type)
+  return _internal_source_type();
+}
+inline void ResourceUsageCostsBySource::set_source_type(::viam::app::v1::SourceType value) {
+  _internal_set_source_type(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.ResourceUsageCostsBySource.source_type)
+}
+inline ::viam::app::v1::SourceType ResourceUsageCostsBySource::_internal_source_type() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return static_cast<::viam::app::v1::SourceType>(_impl_.source_type_);
+}
+inline void ResourceUsageCostsBySource::_internal_set_source_type(::viam::app::v1::SourceType value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.source_type_ = value;
+}
+
+// .viam.app.v1.ResourceUsageCosts resource_usage_costs = 2 [json_name = "resourceUsageCosts"];
+inline bool ResourceUsageCostsBySource::has_resource_usage_costs() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.resource_usage_costs_ != nullptr);
+  return value;
+}
+inline void ResourceUsageCostsBySource::clear_resource_usage_costs() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.resource_usage_costs_ != nullptr) _impl_.resource_usage_costs_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::viam::app::v1::ResourceUsageCosts& ResourceUsageCostsBySource::_internal_resource_usage_costs() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::viam::app::v1::ResourceUsageCosts* p = _impl_.resource_usage_costs_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::ResourceUsageCosts&>(::viam::app::v1::_ResourceUsageCosts_default_instance_);
+}
+inline const ::viam::app::v1::ResourceUsageCosts& ResourceUsageCostsBySource::resource_usage_costs() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ResourceUsageCostsBySource.resource_usage_costs)
+  return _internal_resource_usage_costs();
+}
+inline void ResourceUsageCostsBySource::unsafe_arena_set_allocated_resource_usage_costs(::viam::app::v1::ResourceUsageCosts* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.resource_usage_costs_);
+  }
+  _impl_.resource_usage_costs_ = reinterpret_cast<::viam::app::v1::ResourceUsageCosts*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.ResourceUsageCostsBySource.resource_usage_costs)
+}
+inline ::viam::app::v1::ResourceUsageCosts* ResourceUsageCostsBySource::release_resource_usage_costs() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::viam::app::v1::ResourceUsageCosts* released = _impl_.resource_usage_costs_;
+  _impl_.resource_usage_costs_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::viam::app::v1::ResourceUsageCosts* ResourceUsageCostsBySource::unsafe_arena_release_resource_usage_costs() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.v1.ResourceUsageCostsBySource.resource_usage_costs)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::viam::app::v1::ResourceUsageCosts* temp = _impl_.resource_usage_costs_;
+  _impl_.resource_usage_costs_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::ResourceUsageCosts* ResourceUsageCostsBySource::_internal_mutable_resource_usage_costs() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.resource_usage_costs_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::ResourceUsageCosts>(GetArena());
+    _impl_.resource_usage_costs_ = reinterpret_cast<::viam::app::v1::ResourceUsageCosts*>(p);
+  }
+  return _impl_.resource_usage_costs_;
+}
+inline ::viam::app::v1::ResourceUsageCosts* ResourceUsageCostsBySource::mutable_resource_usage_costs() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::viam::app::v1::ResourceUsageCosts* _msg = _internal_mutable_resource_usage_costs();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ResourceUsageCostsBySource.resource_usage_costs)
+  return _msg;
+}
+inline void ResourceUsageCostsBySource::set_allocated_resource_usage_costs(::viam::app::v1::ResourceUsageCosts* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::viam::app::v1::ResourceUsageCosts*>(_impl_.resource_usage_costs_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::viam::app::v1::ResourceUsageCosts*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.resource_usage_costs_ = reinterpret_cast<::viam::app::v1::ResourceUsageCosts*>(value);
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ResourceUsageCostsBySource.resource_usage_costs)
+}
+
+// string tier_name = 3 [json_name = "tierName"];
+inline void ResourceUsageCostsBySource::clear_tier_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.tier_name_.ClearToEmpty();
+}
+inline const std::string& ResourceUsageCostsBySource::tier_name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ResourceUsageCostsBySource.tier_name)
+  return _internal_tier_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ResourceUsageCostsBySource::set_tier_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tier_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.app.v1.ResourceUsageCostsBySource.tier_name)
+}
+inline std::string* ResourceUsageCostsBySource::mutable_tier_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_tier_name();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ResourceUsageCostsBySource.tier_name)
+  return _s;
+}
+inline const std::string& ResourceUsageCostsBySource::_internal_tier_name() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tier_name_.Get();
+}
+inline void ResourceUsageCostsBySource::_internal_set_tier_name(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tier_name_.Set(value, GetArena());
+}
+inline std::string* ResourceUsageCostsBySource::_internal_mutable_tier_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.tier_name_.Mutable( GetArena());
+}
+inline std::string* ResourceUsageCostsBySource::release_tier_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.v1.ResourceUsageCostsBySource.tier_name)
+  return _impl_.tier_name_.Release();
+}
+inline void ResourceUsageCostsBySource::set_allocated_tier_name(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.tier_name_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.tier_name_.IsDefault()) {
+          _impl_.tier_name_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ResourceUsageCostsBySource.tier_name)
+}
+
+// -------------------------------------------------------------------
+
+// ResourceUsageCosts
+
+// repeated .viam.app.v1.UsageCost usage_costs = 1 [json_name = "usageCosts"];
+inline int ResourceUsageCosts::_internal_usage_costs_size() const {
+  return _internal_usage_costs().size();
+}
+inline int ResourceUsageCosts::usage_costs_size() const {
+  return _internal_usage_costs_size();
+}
+inline void ResourceUsageCosts::clear_usage_costs() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.usage_costs_.Clear();
+}
+inline ::viam::app::v1::UsageCost* ResourceUsageCosts::mutable_usage_costs(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ResourceUsageCosts.usage_costs)
+  return _internal_mutable_usage_costs()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::viam::app::v1::UsageCost>* ResourceUsageCosts::mutable_usage_costs()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.ResourceUsageCosts.usage_costs)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_usage_costs();
+}
+inline const ::viam::app::v1::UsageCost& ResourceUsageCosts::usage_costs(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ResourceUsageCosts.usage_costs)
+  return _internal_usage_costs().Get(index);
+}
+inline ::viam::app::v1::UsageCost* ResourceUsageCosts::add_usage_costs() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::viam::app::v1::UsageCost* _add = _internal_mutable_usage_costs()->Add();
+  // @@protoc_insertion_point(field_add:viam.app.v1.ResourceUsageCosts.usage_costs)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::viam::app::v1::UsageCost>& ResourceUsageCosts::usage_costs() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:viam.app.v1.ResourceUsageCosts.usage_costs)
+  return _internal_usage_costs();
+}
+inline const ::google::protobuf::RepeatedPtrField<::viam::app::v1::UsageCost>&
+ResourceUsageCosts::_internal_usage_costs() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.usage_costs_;
+}
+inline ::google::protobuf::RepeatedPtrField<::viam::app::v1::UsageCost>*
+ResourceUsageCosts::_internal_mutable_usage_costs() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.usage_costs_;
+}
+
+// double discount = 2 [json_name = "discount"];
+inline void ResourceUsageCosts::clear_discount() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.discount_ = 0;
+}
+inline double ResourceUsageCosts::discount() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ResourceUsageCosts.discount)
+  return _internal_discount();
+}
+inline void ResourceUsageCosts::set_discount(double value) {
+  _internal_set_discount(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.ResourceUsageCosts.discount)
+}
+inline double ResourceUsageCosts::_internal_discount() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.discount_;
+}
+inline void ResourceUsageCosts::_internal_set_discount(double value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.discount_ = value;
+}
+
+// double total_with_discount = 3 [json_name = "totalWithDiscount"];
+inline void ResourceUsageCosts::clear_total_with_discount() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.total_with_discount_ = 0;
+}
+inline double ResourceUsageCosts::total_with_discount() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ResourceUsageCosts.total_with_discount)
+  return _internal_total_with_discount();
+}
+inline void ResourceUsageCosts::set_total_with_discount(double value) {
+  _internal_set_total_with_discount(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.ResourceUsageCosts.total_with_discount)
+}
+inline double ResourceUsageCosts::_internal_total_with_discount() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.total_with_discount_;
+}
+inline void ResourceUsageCosts::_internal_set_total_with_discount(double value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.total_with_discount_ = value;
+}
+
+// double total_without_discount = 4 [json_name = "totalWithoutDiscount"];
+inline void ResourceUsageCosts::clear_total_without_discount() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.total_without_discount_ = 0;
+}
+inline double ResourceUsageCosts::total_without_discount() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ResourceUsageCosts.total_without_discount)
+  return _internal_total_without_discount();
+}
+inline void ResourceUsageCosts::set_total_without_discount(double value) {
+  _internal_set_total_without_discount(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.ResourceUsageCosts.total_without_discount)
+}
+inline double ResourceUsageCosts::_internal_total_without_discount() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.total_without_discount_;
+}
+inline void ResourceUsageCosts::_internal_set_total_without_discount(double value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.total_without_discount_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -4766,7 +4473,79 @@ inline void GetCurrentMonthUsageResponse::set_allocated_end_date(::google::proto
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetCurrentMonthUsageResponse.end_date)
 }
 
-// double cloud_storage_usage_cost = 3 [json_name = "cloudStorageUsageCost"];
+// repeated .viam.app.v1.ResourceUsageCostsBySource resource_usage_costs_by_source = 14 [json_name = "resourceUsageCostsBySource"];
+inline int GetCurrentMonthUsageResponse::_internal_resource_usage_costs_by_source_size() const {
+  return _internal_resource_usage_costs_by_source().size();
+}
+inline int GetCurrentMonthUsageResponse::resource_usage_costs_by_source_size() const {
+  return _internal_resource_usage_costs_by_source_size();
+}
+inline void GetCurrentMonthUsageResponse::clear_resource_usage_costs_by_source() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.resource_usage_costs_by_source_.Clear();
+}
+inline ::viam::app::v1::ResourceUsageCostsBySource* GetCurrentMonthUsageResponse::mutable_resource_usage_costs_by_source(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetCurrentMonthUsageResponse.resource_usage_costs_by_source)
+  return _internal_mutable_resource_usage_costs_by_source()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::viam::app::v1::ResourceUsageCostsBySource>* GetCurrentMonthUsageResponse::mutable_resource_usage_costs_by_source()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.GetCurrentMonthUsageResponse.resource_usage_costs_by_source)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_resource_usage_costs_by_source();
+}
+inline const ::viam::app::v1::ResourceUsageCostsBySource& GetCurrentMonthUsageResponse::resource_usage_costs_by_source(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetCurrentMonthUsageResponse.resource_usage_costs_by_source)
+  return _internal_resource_usage_costs_by_source().Get(index);
+}
+inline ::viam::app::v1::ResourceUsageCostsBySource* GetCurrentMonthUsageResponse::add_resource_usage_costs_by_source() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::viam::app::v1::ResourceUsageCostsBySource* _add = _internal_mutable_resource_usage_costs_by_source()->Add();
+  // @@protoc_insertion_point(field_add:viam.app.v1.GetCurrentMonthUsageResponse.resource_usage_costs_by_source)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::viam::app::v1::ResourceUsageCostsBySource>& GetCurrentMonthUsageResponse::resource_usage_costs_by_source() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:viam.app.v1.GetCurrentMonthUsageResponse.resource_usage_costs_by_source)
+  return _internal_resource_usage_costs_by_source();
+}
+inline const ::google::protobuf::RepeatedPtrField<::viam::app::v1::ResourceUsageCostsBySource>&
+GetCurrentMonthUsageResponse::_internal_resource_usage_costs_by_source() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.resource_usage_costs_by_source_;
+}
+inline ::google::protobuf::RepeatedPtrField<::viam::app::v1::ResourceUsageCostsBySource>*
+GetCurrentMonthUsageResponse::_internal_mutable_resource_usage_costs_by_source() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.resource_usage_costs_by_source_;
+}
+
+// double subtotal = 15 [json_name = "subtotal"];
+inline void GetCurrentMonthUsageResponse::clear_subtotal() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.subtotal_ = 0;
+}
+inline double GetCurrentMonthUsageResponse::subtotal() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetCurrentMonthUsageResponse.subtotal)
+  return _internal_subtotal();
+}
+inline void GetCurrentMonthUsageResponse::set_subtotal(double value) {
+  _internal_set_subtotal(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetCurrentMonthUsageResponse.subtotal)
+}
+inline double GetCurrentMonthUsageResponse::_internal_subtotal() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.subtotal_;
+}
+inline void GetCurrentMonthUsageResponse::_internal_set_subtotal(double value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.subtotal_ = value;
+}
+
+// double cloud_storage_usage_cost = 3 [json_name = "cloudStorageUsageCost", deprecated = true];
 inline void GetCurrentMonthUsageResponse::clear_cloud_storage_usage_cost() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.cloud_storage_usage_cost_ = 0;
@@ -4789,7 +4568,7 @@ inline void GetCurrentMonthUsageResponse::_internal_set_cloud_storage_usage_cost
   _impl_.cloud_storage_usage_cost_ = value;
 }
 
-// double data_upload_usage_cost = 4 [json_name = "dataUploadUsageCost"];
+// double data_upload_usage_cost = 4 [json_name = "dataUploadUsageCost", deprecated = true];
 inline void GetCurrentMonthUsageResponse::clear_data_upload_usage_cost() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.data_upload_usage_cost_ = 0;
@@ -4812,7 +4591,7 @@ inline void GetCurrentMonthUsageResponse::_internal_set_data_upload_usage_cost(d
   _impl_.data_upload_usage_cost_ = value;
 }
 
-// double data_egres_usage_cost = 5 [json_name = "dataEgresUsageCost"];
+// double data_egres_usage_cost = 5 [json_name = "dataEgresUsageCost", deprecated = true];
 inline void GetCurrentMonthUsageResponse::clear_data_egres_usage_cost() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.data_egres_usage_cost_ = 0;
@@ -4835,7 +4614,7 @@ inline void GetCurrentMonthUsageResponse::_internal_set_data_egres_usage_cost(do
   _impl_.data_egres_usage_cost_ = value;
 }
 
-// double remote_control_usage_cost = 6 [json_name = "remoteControlUsageCost"];
+// double remote_control_usage_cost = 6 [json_name = "remoteControlUsageCost", deprecated = true];
 inline void GetCurrentMonthUsageResponse::clear_remote_control_usage_cost() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.remote_control_usage_cost_ = 0;
@@ -4858,7 +4637,7 @@ inline void GetCurrentMonthUsageResponse::_internal_set_remote_control_usage_cos
   _impl_.remote_control_usage_cost_ = value;
 }
 
-// double standard_compute_usage_cost = 7 [json_name = "standardComputeUsageCost"];
+// double standard_compute_usage_cost = 7 [json_name = "standardComputeUsageCost", deprecated = true];
 inline void GetCurrentMonthUsageResponse::clear_standard_compute_usage_cost() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.standard_compute_usage_cost_ = 0;
@@ -4881,7 +4660,7 @@ inline void GetCurrentMonthUsageResponse::_internal_set_standard_compute_usage_c
   _impl_.standard_compute_usage_cost_ = value;
 }
 
-// double discount_amount = 8 [json_name = "discountAmount"];
+// double discount_amount = 8 [json_name = "discountAmount", deprecated = true];
 inline void GetCurrentMonthUsageResponse::clear_discount_amount() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.discount_amount_ = 0;
@@ -4904,7 +4683,7 @@ inline void GetCurrentMonthUsageResponse::_internal_set_discount_amount(double v
   _impl_.discount_amount_ = value;
 }
 
-// double total_usage_with_discount = 9 [json_name = "totalUsageWithDiscount"];
+// double total_usage_with_discount = 9 [json_name = "totalUsageWithDiscount", deprecated = true];
 inline void GetCurrentMonthUsageResponse::clear_total_usage_with_discount() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.total_usage_with_discount_ = 0;
@@ -4927,7 +4706,7 @@ inline void GetCurrentMonthUsageResponse::_internal_set_total_usage_with_discoun
   _impl_.total_usage_with_discount_ = value;
 }
 
-// double total_usage_without_discount = 10 [json_name = "totalUsageWithoutDiscount"];
+// double total_usage_without_discount = 10 [json_name = "totalUsageWithoutDiscount", deprecated = true];
 inline void GetCurrentMonthUsageResponse::clear_total_usage_without_discount() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.total_usage_without_discount_ = 0;
@@ -4950,7 +4729,7 @@ inline void GetCurrentMonthUsageResponse::_internal_set_total_usage_without_disc
   _impl_.total_usage_without_discount_ = value;
 }
 
-// double per_machine_usage_cost = 11 [json_name = "perMachineUsageCost"];
+// double per_machine_usage_cost = 11 [json_name = "perMachineUsageCost", deprecated = true];
 inline void GetCurrentMonthUsageResponse::clear_per_machine_usage_cost() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.per_machine_usage_cost_ = 0;
@@ -4973,7 +4752,7 @@ inline void GetCurrentMonthUsageResponse::_internal_set_per_machine_usage_cost(d
   _impl_.per_machine_usage_cost_ = value;
 }
 
-// double binary_data_cloud_storage_usage_cost = 12 [json_name = "binaryDataCloudStorageUsageCost"];
+// double binary_data_cloud_storage_usage_cost = 12 [json_name = "binaryDataCloudStorageUsageCost", deprecated = true];
 inline void GetCurrentMonthUsageResponse::clear_binary_data_cloud_storage_usage_cost() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.binary_data_cloud_storage_usage_cost_ = 0;
@@ -4996,7 +4775,7 @@ inline void GetCurrentMonthUsageResponse::_internal_set_binary_data_cloud_storag
   _impl_.binary_data_cloud_storage_usage_cost_ = value;
 }
 
-// double other_cloud_storage_usage_cost = 13 [json_name = "otherCloudStorageUsageCost"];
+// double other_cloud_storage_usage_cost = 13 [json_name = "otherCloudStorageUsageCost", deprecated = true];
 inline void GetCurrentMonthUsageResponse::clear_other_cloud_storage_usage_cost() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.other_cloud_storage_usage_cost_ = 0;
@@ -5755,6 +5534,18 @@ struct is_proto_enum<::viam::app::v1::PaymentMethodType> : std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor<::viam::app::v1::PaymentMethodType>() {
   return ::viam::app::v1::PaymentMethodType_descriptor();
+}
+template <>
+struct is_proto_enum<::viam::app::v1::UsageCostType> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::viam::app::v1::UsageCostType>() {
+  return ::viam::app::v1::UsageCostType_descriptor();
+}
+template <>
+struct is_proto_enum<::viam::app::v1::SourceType> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::viam::app::v1::SourceType>() {
+  return ::viam::app::v1::SourceType_descriptor();
 }
 
 }  // namespace protobuf

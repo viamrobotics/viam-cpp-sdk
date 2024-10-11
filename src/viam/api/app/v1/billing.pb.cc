@@ -23,6 +23,26 @@ namespace _fl = ::google::protobuf::internal::field_layout;
 namespace viam {
 namespace app {
 namespace v1 {
+
+inline constexpr UsageCost::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : cost_{0},
+        resource_type_{static_cast< ::viam::app::v1::UsageCostType >(0)},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR UsageCost::UsageCost(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct UsageCostDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UsageCostDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UsageCostDefaultTypeInternal() {}
+  union {
+    UsageCost _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UsageCostDefaultTypeInternal _UsageCost_default_instance_;
       template <typename>
 PROTOBUF_CONSTEXPR SendPaymentRequiredEmailResponse::SendPaymentRequiredEmailResponse(::_pbi::ConstantInitialized) {}
 struct SendPaymentRequiredEmailResponseDefaultTypeInternal {
@@ -192,6 +212,28 @@ struct GetCurrentMonthUsageRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetCurrentMonthUsageRequestDefaultTypeInternal _GetCurrentMonthUsageRequest_default_instance_;
 
+inline constexpr ResourceUsageCosts::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : usage_costs_{},
+        discount_{0},
+        total_with_discount_{0},
+        total_without_discount_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR ResourceUsageCosts::ResourceUsageCosts(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct ResourceUsageCostsDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ResourceUsageCostsDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ResourceUsageCostsDefaultTypeInternal() {}
+  union {
+    ResourceUsageCosts _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResourceUsageCostsDefaultTypeInternal _ResourceUsageCosts_default_instance_;
+
 inline constexpr InvoiceSummary::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -246,102 +288,28 @@ struct GetOrgBillingInformationResponseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetOrgBillingInformationResponseDefaultTypeInternal _GetOrgBillingInformationResponse_default_instance_;
 
-inline constexpr GetCurrentMonthUsageResponse::Impl_::Impl_(
+inline constexpr ResourceUsageCostsBySource::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        start_date_{nullptr},
-        end_date_{nullptr},
-        cloud_storage_usage_cost_{0},
-        data_upload_usage_cost_{0},
-        data_egres_usage_cost_{0},
-        remote_control_usage_cost_{0},
-        standard_compute_usage_cost_{0},
-        discount_amount_{0},
-        total_usage_with_discount_{0},
-        total_usage_without_discount_{0},
-        per_machine_usage_cost_{0},
-        binary_data_cloud_storage_usage_cost_{0},
-        other_cloud_storage_usage_cost_{0} {}
+        tier_name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        resource_usage_costs_{nullptr},
+        source_type_{static_cast< ::viam::app::v1::SourceType >(0)} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR GetCurrentMonthUsageResponse::GetCurrentMonthUsageResponse(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR ResourceUsageCostsBySource::ResourceUsageCostsBySource(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct GetCurrentMonthUsageResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetCurrentMonthUsageResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetCurrentMonthUsageResponseDefaultTypeInternal() {}
+struct ResourceUsageCostsBySourceDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ResourceUsageCostsBySourceDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ResourceUsageCostsBySourceDefaultTypeInternal() {}
   union {
-    GetCurrentMonthUsageResponse _instance;
+    ResourceUsageCostsBySource _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetCurrentMonthUsageResponseDefaultTypeInternal _GetCurrentMonthUsageResponse_default_instance_;
-
-inline constexpr BillableResourceEvent::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        id_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        type_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        usage_quantity_unit_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        usage_cost_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        user_name_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        occurred_at_{nullptr},
-        usage_quantity_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR BillableResourceEvent::BillableResourceEvent(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct BillableResourceEventDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR BillableResourceEventDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~BillableResourceEventDefaultTypeInternal() {}
-  union {
-    BillableResourceEvent _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 BillableResourceEventDefaultTypeInternal _BillableResourceEvent_default_instance_;
-
-inline constexpr Invoice::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        items_{},
-        id_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        status_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        emailed_to_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        invoice_date_{nullptr},
-        due_date_{nullptr},
-        invoice_amount_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR Invoice::Invoice(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct InvoiceDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR InvoiceDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~InvoiceDefaultTypeInternal() {}
-  union {
-    Invoice _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 InvoiceDefaultTypeInternal _Invoice_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResourceUsageCostsBySourceDefaultTypeInternal _ResourceUsageCostsBySource_default_instance_;
 
 inline constexpr GetInvoicesSummaryResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -362,11 +330,44 @@ struct GetInvoicesSummaryResponseDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetInvoicesSummaryResponseDefaultTypeInternal _GetInvoicesSummaryResponse_default_instance_;
+
+inline constexpr GetCurrentMonthUsageResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        resource_usage_costs_by_source_{},
+        start_date_{nullptr},
+        end_date_{nullptr},
+        cloud_storage_usage_cost_{0},
+        data_upload_usage_cost_{0},
+        data_egres_usage_cost_{0},
+        remote_control_usage_cost_{0},
+        standard_compute_usage_cost_{0},
+        discount_amount_{0},
+        total_usage_with_discount_{0},
+        total_usage_without_discount_{0},
+        per_machine_usage_cost_{0},
+        binary_data_cloud_storage_usage_cost_{0},
+        other_cloud_storage_usage_cost_{0},
+        subtotal_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetCurrentMonthUsageResponse::GetCurrentMonthUsageResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetCurrentMonthUsageResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetCurrentMonthUsageResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetCurrentMonthUsageResponseDefaultTypeInternal() {}
+  union {
+    GetCurrentMonthUsageResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetCurrentMonthUsageResponseDefaultTypeInternal _GetCurrentMonthUsageResponse_default_instance_;
 }  // namespace v1
 }  // namespace app
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_app_2fv1_2fbilling_2eproto[14];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_app_2fv1_2fbilling_2eproto[1];
+static ::_pb::Metadata file_level_metadata_app_2fv1_2fbilling_2eproto[15];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_app_2fv1_2fbilling_2eproto[3];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_app_2fv1_2fbilling_2eproto = nullptr;
 const ::uint32_t TableStruct_app_2fv1_2fbilling_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
@@ -391,50 +392,6 @@ const ::uint32_t TableStruct_app_2fv1_2fbilling_2eproto::offsets[] PROTOBUF_SECT
     ~0u,
     1,
     2,
-    PROTOBUF_FIELD_OFFSET(::viam::app::v1::BillableResourceEvent, _impl_._has_bits_),
-    PROTOBUF_FIELD_OFFSET(::viam::app::v1::BillableResourceEvent, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::viam::app::v1::BillableResourceEvent, _impl_.id_),
-    PROTOBUF_FIELD_OFFSET(::viam::app::v1::BillableResourceEvent, _impl_.type_),
-    PROTOBUF_FIELD_OFFSET(::viam::app::v1::BillableResourceEvent, _impl_.usage_quantity_),
-    PROTOBUF_FIELD_OFFSET(::viam::app::v1::BillableResourceEvent, _impl_.usage_quantity_unit_),
-    PROTOBUF_FIELD_OFFSET(::viam::app::v1::BillableResourceEvent, _impl_.usage_cost_),
-    PROTOBUF_FIELD_OFFSET(::viam::app::v1::BillableResourceEvent, _impl_.occurred_at_),
-    PROTOBUF_FIELD_OFFSET(::viam::app::v1::BillableResourceEvent, _impl_.user_name_),
-    ~0u,
-    ~0u,
-    ~0u,
-    ~0u,
-    ~0u,
-    0,
-    ~0u,
-    PROTOBUF_FIELD_OFFSET(::viam::app::v1::Invoice, _impl_._has_bits_),
-    PROTOBUF_FIELD_OFFSET(::viam::app::v1::Invoice, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::viam::app::v1::Invoice, _impl_.id_),
-    PROTOBUF_FIELD_OFFSET(::viam::app::v1::Invoice, _impl_.invoice_date_),
-    PROTOBUF_FIELD_OFFSET(::viam::app::v1::Invoice, _impl_.invoice_amount_),
-    PROTOBUF_FIELD_OFFSET(::viam::app::v1::Invoice, _impl_.status_),
-    PROTOBUF_FIELD_OFFSET(::viam::app::v1::Invoice, _impl_.due_date_),
-    PROTOBUF_FIELD_OFFSET(::viam::app::v1::Invoice, _impl_.items_),
-    PROTOBUF_FIELD_OFFSET(::viam::app::v1::Invoice, _impl_.emailed_to_),
-    ~0u,
-    0,
-    ~0u,
-    ~0u,
-    1,
-    ~0u,
-    ~0u,
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::PaymentMethodCard, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -454,6 +411,42 @@ const ::uint32_t TableStruct_app_2fv1_2fbilling_2eproto::offsets[] PROTOBUF_SECT
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetCurrentMonthUsageRequest, _impl_.org_id_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::UsageCost, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::UsageCost, _impl_.resource_type_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::UsageCost, _impl_.cost_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::ResourceUsageCostsBySource, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::ResourceUsageCostsBySource, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::ResourceUsageCostsBySource, _impl_.source_type_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::ResourceUsageCostsBySource, _impl_.resource_usage_costs_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::ResourceUsageCostsBySource, _impl_.tier_name_),
+    ~0u,
+    0,
+    ~0u,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::ResourceUsageCosts, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::ResourceUsageCosts, _impl_.usage_costs_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::ResourceUsageCosts, _impl_.discount_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::ResourceUsageCosts, _impl_.total_with_discount_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::ResourceUsageCosts, _impl_.total_without_discount_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetCurrentMonthUsageResponse, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetCurrentMonthUsageResponse, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -464,6 +457,8 @@ const ::uint32_t TableStruct_app_2fv1_2fbilling_2eproto::offsets[] PROTOBUF_SECT
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetCurrentMonthUsageResponse, _impl_.start_date_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetCurrentMonthUsageResponse, _impl_.end_date_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetCurrentMonthUsageResponse, _impl_.resource_usage_costs_by_source_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetCurrentMonthUsageResponse, _impl_.subtotal_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetCurrentMonthUsageResponse, _impl_.cloud_storage_usage_cost_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetCurrentMonthUsageResponse, _impl_.data_upload_usage_cost_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetCurrentMonthUsageResponse, _impl_.data_egres_usage_cost_),
@@ -477,6 +472,8 @@ const ::uint32_t TableStruct_app_2fv1_2fbilling_2eproto::offsets[] PROTOBUF_SECT
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetCurrentMonthUsageResponse, _impl_.other_cloud_storage_usage_cost_),
     0,
     1,
+    ~0u,
+    ~0u,
     ~0u,
     ~0u,
     ~0u,
@@ -574,27 +571,29 @@ const ::uint32_t TableStruct_app_2fv1_2fbilling_2eproto::offsets[] PROTOBUF_SECT
 static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
         {0, 14, -1, sizeof(::viam::app::v1::InvoiceSummary)},
-        {20, 35, -1, sizeof(::viam::app::v1::BillableResourceEvent)},
-        {42, 57, -1, sizeof(::viam::app::v1::Invoice)},
-        {64, -1, -1, sizeof(::viam::app::v1::PaymentMethodCard)},
-        {74, -1, -1, sizeof(::viam::app::v1::GetCurrentMonthUsageRequest)},
-        {83, 104, -1, sizeof(::viam::app::v1::GetCurrentMonthUsageResponse)},
-        {117, -1, -1, sizeof(::viam::app::v1::GetOrgBillingInformationRequest)},
-        {126, 138, -1, sizeof(::viam::app::v1::GetOrgBillingInformationResponse)},
-        {142, -1, -1, sizeof(::viam::app::v1::GetInvoicesSummaryRequest)},
-        {151, -1, -1, sizeof(::viam::app::v1::GetInvoicesSummaryResponse)},
-        {161, -1, -1, sizeof(::viam::app::v1::GetInvoicePdfRequest)},
-        {171, -1, -1, sizeof(::viam::app::v1::GetInvoicePdfResponse)},
-        {180, -1, -1, sizeof(::viam::app::v1::SendPaymentRequiredEmailRequest)},
-        {190, -1, -1, sizeof(::viam::app::v1::SendPaymentRequiredEmailResponse)},
+        {20, -1, -1, sizeof(::viam::app::v1::PaymentMethodCard)},
+        {30, -1, -1, sizeof(::viam::app::v1::GetCurrentMonthUsageRequest)},
+        {39, -1, -1, sizeof(::viam::app::v1::UsageCost)},
+        {49, 60, -1, sizeof(::viam::app::v1::ResourceUsageCostsBySource)},
+        {63, -1, -1, sizeof(::viam::app::v1::ResourceUsageCosts)},
+        {75, 98, -1, sizeof(::viam::app::v1::GetCurrentMonthUsageResponse)},
+        {113, -1, -1, sizeof(::viam::app::v1::GetOrgBillingInformationRequest)},
+        {122, 134, -1, sizeof(::viam::app::v1::GetOrgBillingInformationResponse)},
+        {138, -1, -1, sizeof(::viam::app::v1::GetInvoicesSummaryRequest)},
+        {147, -1, -1, sizeof(::viam::app::v1::GetInvoicesSummaryResponse)},
+        {157, -1, -1, sizeof(::viam::app::v1::GetInvoicePdfRequest)},
+        {167, -1, -1, sizeof(::viam::app::v1::GetInvoicePdfResponse)},
+        {176, -1, -1, sizeof(::viam::app::v1::SendPaymentRequiredEmailRequest)},
+        {186, -1, -1, sizeof(::viam::app::v1::SendPaymentRequiredEmailResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
     &::viam::app::v1::_InvoiceSummary_default_instance_._instance,
-    &::viam::app::v1::_BillableResourceEvent_default_instance_._instance,
-    &::viam::app::v1::_Invoice_default_instance_._instance,
     &::viam::app::v1::_PaymentMethodCard_default_instance_._instance,
     &::viam::app::v1::_GetCurrentMonthUsageRequest_default_instance_._instance,
+    &::viam::app::v1::_UsageCost_default_instance_._instance,
+    &::viam::app::v1::_ResourceUsageCostsBySource_default_instance_._instance,
+    &::viam::app::v1::_ResourceUsageCosts_default_instance_._instance,
     &::viam::app::v1::_GetCurrentMonthUsageResponse_default_instance_._instance,
     &::viam::app::v1::_GetOrgBillingInformationRequest_default_instance_._instance,
     &::viam::app::v1::_GetOrgBillingInformationResponse_default_instance_._instance,
@@ -614,84 +613,98 @@ const char descriptor_table_protodef_app_2fv1_2fbilling_2eproto[] PROTOBUF_SECTI
     "mount\022\026\n\006status\030\004 \001(\tR\006status\0225\n\010due_dat"
     "e\030\005 \001(\0132\032.google.protobuf.TimestampR\007due"
     "Date\0227\n\tpaid_date\030\006 \001(\0132\032.google.protobu"
-    "f.TimestampR\010paidDate\"\213\002\n\025BillableResour"
-    "ceEvent\022\016\n\002id\030\001 \001(\tR\002id\022\022\n\004type\030\002 \001(\tR\004t"
-    "ype\022%\n\016usage_quantity\030\003 \001(\001R\rusageQuanti"
-    "ty\022.\n\023usage_quantity_unit\030\004 \001(\tR\021usageQu"
-    "antityUnit\022\035\n\nusage_cost\030\005 \001(\tR\tusageCos"
-    "t\022;\n\013occurred_at\030\006 \001(\0132\032.google.protobuf"
-    ".TimestampR\noccurredAt\022\033\n\tuser_name\030\007 \001("
-    "\tR\010userName\"\247\002\n\007Invoice\022\016\n\002id\030\001 \001(\tR\002id\022"
-    "=\n\014invoice_date\030\002 \001(\0132\032.google.protobuf."
-    "TimestampR\013invoiceDate\022%\n\016invoice_amount"
-    "\030\003 \001(\001R\rinvoiceAmount\022\026\n\006status\030\004 \001(\tR\006s"
-    "tatus\0225\n\010due_date\030\005 \001(\0132\032.google.protobu"
-    "f.TimestampR\007dueDate\0228\n\005items\030\006 \003(\0132\".vi"
-    "am.app.v1.BillableResourceEventR\005items\022\035"
-    "\n\nemailed_to\030\007 \001(\tR\temailedTo\"S\n\021Payment"
-    "MethodCard\022\024\n\005brand\030\001 \001(\tR\005brand\022(\n\020last"
-    "_four_digits\030\002 \001(\tR\016lastFourDigits\"4\n\033Ge"
-    "tCurrentMonthUsageRequest\022\025\n\006org_id\030\001 \001("
-    "\tR\005orgId\"\230\006\n\034GetCurrentMonthUsageRespons"
-    "e\0229\n\nstart_date\030\001 \001(\0132\032.google.protobuf."
-    "TimestampR\tstartDate\0225\n\010end_date\030\002 \001(\0132\032"
-    ".google.protobuf.TimestampR\007endDate\0227\n\030c"
-    "loud_storage_usage_cost\030\003 \001(\001R\025cloudStor"
-    "ageUsageCost\0223\n\026data_upload_usage_cost\030\004"
-    " \001(\001R\023dataUploadUsageCost\0221\n\025data_egres_"
-    "usage_cost\030\005 \001(\001R\022dataEgresUsageCost\0229\n\031"
-    "remote_control_usage_cost\030\006 \001(\001R\026remoteC"
-    "ontrolUsageCost\022=\n\033standard_compute_usag"
-    "e_cost\030\007 \001(\001R\030standardComputeUsageCost\022\'"
-    "\n\017discount_amount\030\010 \001(\001R\016discountAmount\022"
-    "9\n\031total_usage_with_discount\030\t \001(\001R\026tota"
-    "lUsageWithDiscount\022\?\n\034total_usage_withou"
-    "t_discount\030\n \001(\001R\031totalUsageWithoutDisco"
-    "unt\0223\n\026per_machine_usage_cost\030\013 \001(\001R\023per"
-    "MachineUsageCost\022M\n$binary_data_cloud_st"
-    "orage_usage_cost\030\014 \001(\001R\037binaryDataCloudS"
-    "torageUsageCost\022B\n\036other_cloud_storage_u"
-    "sage_cost\030\r \001(\001R\032otherCloudStorageUsageC"
-    "ost\"8\n\037GetOrgBillingInformationRequest\022\025"
-    "\n\006org_id\030\001 \001(\tR\005orgId\"\374\001\n GetOrgBillingI"
-    "nformationResponse\0222\n\004type\030\001 \001(\0162\036.viam."
-    "app.v1.PaymentMethodTypeR\004type\022#\n\rbillin"
-    "g_email\030\002 \001(\tR\014billingEmail\022;\n\006method\030\003 "
-    "\001(\0132\036.viam.app.v1.PaymentMethodCardH\000R\006m"
-    "ethod\210\001\001\022&\n\014billing_tier\030\004 \001(\tH\001R\013billin"
-    "gTier\210\001\001B\t\n\007_methodB\017\n\r_billing_tier\"2\n\031"
-    "GetInvoicesSummaryRequest\022\025\n\006org_id\030\001 \001("
-    "\tR\005orgId\"\206\001\n\032GetInvoicesSummaryResponse\022"
-    "/\n\023outstanding_balance\030\001 \001(\001R\022outstandin"
-    "gBalance\0227\n\010invoices\030\002 \003(\0132\033.viam.app.v1"
-    ".InvoiceSummaryR\010invoices\"=\n\024GetInvoiceP"
-    "dfRequest\022\016\n\002id\030\001 \001(\tR\002id\022\025\n\006org_id\030\002 \001("
-    "\tR\005orgId\"-\n\025GetInvoicePdfResponse\022\024\n\005chu"
-    "nk\030\001 \001(\014R\005chunk\"z\n\037SendPaymentRequiredEm"
-    "ailRequest\022&\n\017customer_org_id\030\001 \001(\tR\rcus"
-    "tomerOrgId\022/\n\024billing_owner_org_id\030\002 \001(\t"
-    "R\021billingOwnerOrgId\"\"\n SendPaymentRequir"
-    "edEmailResponse*V\n\021PaymentMethodType\022#\n\037"
-    "PAYMENT_METHOD_TYPE_UNSPECIFIED\020\000\022\034\n\030PAY"
-    "MENT_METHOD_TYPE_CARD\020\0012\260\004\n\016BillingServi"
-    "ce\022k\n\024GetCurrentMonthUsage\022(.viam.app.v1"
-    ".GetCurrentMonthUsageRequest\032).viam.app."
-    "v1.GetCurrentMonthUsageResponse\022w\n\030GetOr"
-    "gBillingInformation\022,.viam.app.v1.GetOrg"
-    "BillingInformationRequest\032-.viam.app.v1."
-    "GetOrgBillingInformationResponse\022e\n\022GetI"
-    "nvoicesSummary\022&.viam.app.v1.GetInvoices"
-    "SummaryRequest\032\'.viam.app.v1.GetInvoices"
-    "SummaryResponse\022X\n\rGetInvoicePdf\022!.viam."
-    "app.v1.GetInvoicePdfRequest\032\".viam.app.v"
-    "1.GetInvoicePdfResponse0\001\022w\n\030SendPayment"
-    "RequiredEmail\022,.viam.app.v1.SendPaymentR"
-    "equiredEmailRequest\032-.viam.app.v1.SendPa"
-    "ymentRequiredEmailResponseB\205\001\n\017com.viam."
-    "app.v1B\014BillingProtoP\001Z\026go.viam.com/api/"
-    "app/v1\242\002\003VAX\252\002\013Viam.App.V1\312\002\013Viam\\App\\V1"
-    "\342\002\027Viam\\App\\V1\\GPBMetadata\352\002\rViam::App::"
-    "V1b\006proto3"
+    "f.TimestampR\010paidDate\"S\n\021PaymentMethodCa"
+    "rd\022\024\n\005brand\030\001 \001(\tR\005brand\022(\n\020last_four_di"
+    "gits\030\002 \001(\tR\016lastFourDigits\"4\n\033GetCurrent"
+    "MonthUsageRequest\022\025\n\006org_id\030\001 \001(\tR\005orgId"
+    "\"`\n\tUsageCost\022\?\n\rresource_type\030\001 \001(\0162\032.v"
+    "iam.app.v1.UsageCostTypeR\014resourceType\022\022"
+    "\n\004cost\030\002 \001(\001R\004cost\"\306\001\n\032ResourceUsageCost"
+    "sBySource\0228\n\013source_type\030\001 \001(\0162\027.viam.ap"
+    "p.v1.SourceTypeR\nsourceType\022Q\n\024resource_"
+    "usage_costs\030\002 \001(\0132\037.viam.app.v1.Resource"
+    "UsageCostsR\022resourceUsageCosts\022\033\n\ttier_n"
+    "ame\030\003 \001(\tR\010tierName\"\317\001\n\022ResourceUsageCos"
+    "ts\0227\n\013usage_costs\030\001 \003(\0132\026.viam.app.v1.Us"
+    "ageCostR\nusageCosts\022\032\n\010discount\030\002 \001(\001R\010d"
+    "iscount\022.\n\023total_with_discount\030\003 \001(\001R\021to"
+    "talWithDiscount\0224\n\026total_without_discoun"
+    "t\030\004 \001(\001R\024totalWithoutDiscount\"\315\007\n\034GetCur"
+    "rentMonthUsageResponse\0229\n\nstart_date\030\001 \001"
+    "(\0132\032.google.protobuf.TimestampR\tstartDat"
+    "e\0225\n\010end_date\030\002 \001(\0132\032.google.protobuf.Ti"
+    "mestampR\007endDate\022k\n\036resource_usage_costs"
+    "_by_source\030\016 \003(\0132\'.viam.app.v1.ResourceU"
+    "sageCostsBySourceR\032resourceUsageCostsByS"
+    "ource\022\032\n\010subtotal\030\017 \001(\001R\010subtotal\022;\n\030clo"
+    "ud_storage_usage_cost\030\003 \001(\001B\002\030\001R\025cloudSt"
+    "orageUsageCost\0227\n\026data_upload_usage_cost"
+    "\030\004 \001(\001B\002\030\001R\023dataUploadUsageCost\0225\n\025data_"
+    "egres_usage_cost\030\005 \001(\001B\002\030\001R\022dataEgresUsa"
+    "geCost\022=\n\031remote_control_usage_cost\030\006 \001("
+    "\001B\002\030\001R\026remoteControlUsageCost\022A\n\033standar"
+    "d_compute_usage_cost\030\007 \001(\001B\002\030\001R\030standard"
+    "ComputeUsageCost\022+\n\017discount_amount\030\010 \001("
+    "\001B\002\030\001R\016discountAmount\022=\n\031total_usage_wit"
+    "h_discount\030\t \001(\001B\002\030\001R\026totalUsageWithDisc"
+    "ount\022C\n\034total_usage_without_discount\030\n \001"
+    "(\001B\002\030\001R\031totalUsageWithoutDiscount\0227\n\026per"
+    "_machine_usage_cost\030\013 \001(\001B\002\030\001R\023perMachin"
+    "eUsageCost\022Q\n$binary_data_cloud_storage_"
+    "usage_cost\030\014 \001(\001B\002\030\001R\037binaryDataCloudSto"
+    "rageUsageCost\022F\n\036other_cloud_storage_usa"
+    "ge_cost\030\r \001(\001B\002\030\001R\032otherCloudStorageUsag"
+    "eCost\"8\n\037GetOrgBillingInformationRequest"
+    "\022\025\n\006org_id\030\001 \001(\tR\005orgId\"\374\001\n GetOrgBillin"
+    "gInformationResponse\0222\n\004type\030\001 \001(\0162\036.via"
+    "m.app.v1.PaymentMethodTypeR\004type\022#\n\rbill"
+    "ing_email\030\002 \001(\tR\014billingEmail\022;\n\006method\030"
+    "\003 \001(\0132\036.viam.app.v1.PaymentMethodCardH\000R"
+    "\006method\210\001\001\022&\n\014billing_tier\030\004 \001(\tH\001R\013bill"
+    "ingTier\210\001\001B\t\n\007_methodB\017\n\r_billing_tier\"2"
+    "\n\031GetInvoicesSummaryRequest\022\025\n\006org_id\030\001 "
+    "\001(\tR\005orgId\"\206\001\n\032GetInvoicesSummaryRespons"
+    "e\022/\n\023outstanding_balance\030\001 \001(\001R\022outstand"
+    "ingBalance\0227\n\010invoices\030\002 \003(\0132\033.viam.app."
+    "v1.InvoiceSummaryR\010invoices\"=\n\024GetInvoic"
+    "ePdfRequest\022\016\n\002id\030\001 \001(\tR\002id\022\025\n\006org_id\030\002 "
+    "\001(\tR\005orgId\"-\n\025GetInvoicePdfResponse\022\024\n\005c"
+    "hunk\030\001 \001(\014R\005chunk\"z\n\037SendPaymentRequired"
+    "EmailRequest\022&\n\017customer_org_id\030\001 \001(\tR\rc"
+    "ustomerOrgId\022/\n\024billing_owner_org_id\030\002 \001"
+    "(\tR\021billingOwnerOrgId\"\"\n SendPaymentRequ"
+    "iredEmailResponse*V\n\021PaymentMethodType\022#"
+    "\n\037PAYMENT_METHOD_TYPE_UNSPECIFIED\020\000\022\034\n\030P"
+    "AYMENT_METHOD_TYPE_CARD\020\001*\330\002\n\rUsageCostT"
+    "ype\022\037\n\033USAGE_COST_TYPE_UNSPECIFIED\020\000\022\037\n\033"
+    "USAGE_COST_TYPE_DATA_UPLOAD\020\001\022\037\n\033USAGE_C"
+    "OST_TYPE_DATA_EGRESS\020\002\022\"\n\036USAGE_COST_TYP"
+    "E_REMOTE_CONTROL\020\003\022$\n USAGE_COST_TYPE_ST"
+    "ANDARD_COMPUTE\020\004\022!\n\035USAGE_COST_TYPE_CLOU"
+    "D_STORAGE\020\005\022-\n)USAGE_COST_TYPE_BINARY_DA"
+    "TA_CLOUD_STORAGE\020\006\022\'\n#USAGE_COST_TYPE_OT"
+    "HER_CLOUD_STORAGE\020\007\022\037\n\033USAGE_COST_TYPE_P"
+    "ER_MACHINE\020\010*X\n\nSourceType\022\033\n\027SOURCE_TYP"
+    "E_UNSPECIFIED\020\000\022\023\n\017SOURCE_TYPE_ORG\020\001\022\030\n\024"
+    "SOURCE_TYPE_FRAGMENT\020\0022\260\004\n\016BillingServic"
+    "e\022k\n\024GetCurrentMonthUsage\022(.viam.app.v1."
+    "GetCurrentMonthUsageRequest\032).viam.app.v"
+    "1.GetCurrentMonthUsageResponse\022w\n\030GetOrg"
+    "BillingInformation\022,.viam.app.v1.GetOrgB"
+    "illingInformationRequest\032-.viam.app.v1.G"
+    "etOrgBillingInformationResponse\022e\n\022GetIn"
+    "voicesSummary\022&.viam.app.v1.GetInvoicesS"
+    "ummaryRequest\032\'.viam.app.v1.GetInvoicesS"
+    "ummaryResponse\022X\n\rGetInvoicePdf\022!.viam.a"
+    "pp.v1.GetInvoicePdfRequest\032\".viam.app.v1"
+    ".GetInvoicePdfResponse0\001\022w\n\030SendPaymentR"
+    "equiredEmail\022,.viam.app.v1.SendPaymentRe"
+    "quiredEmailRequest\032-.viam.app.v1.SendPay"
+    "mentRequiredEmailResponseB\205\001\n\017com.viam.a"
+    "pp.v1B\014BillingProtoP\001Z\026go.viam.com/api/a"
+    "pp/v1\242\002\003VAX\252\002\013Viam.App.V1\312\002\013Viam\\App\\V1\342"
+    "\002\027Viam\\App\\V1\\GPBMetadata\352\002\rViam::App::V"
+    "1b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fbilling_2eproto_deps[1] =
     {
@@ -701,13 +714,13 @@ static ::absl::once_flag descriptor_table_app_2fv1_2fbilling_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2fbilling_2eproto = {
     false,
     false,
-    3410,
+    3969,
     descriptor_table_protodef_app_2fv1_2fbilling_2eproto,
     "app/v1/billing.proto",
     &descriptor_table_app_2fv1_2fbilling_2eproto_once,
     descriptor_table_app_2fv1_2fbilling_2eproto_deps,
     1,
-    14,
+    15,
     schemas,
     file_default_instances,
     TableStruct_app_2fv1_2fbilling_2eproto::offsets,
@@ -744,6 +757,24 @@ PROTOBUF_CONSTINIT const uint32_t PaymentMethodType_internal_data_[] = {
     131072u, 0u, };
 bool PaymentMethodType_IsValid(int value) {
   return 0 <= value && value <= 1;
+}
+const ::google::protobuf::EnumDescriptor* UsageCostType_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_app_2fv1_2fbilling_2eproto);
+  return file_level_enum_descriptors_app_2fv1_2fbilling_2eproto[1];
+}
+PROTOBUF_CONSTINIT const uint32_t UsageCostType_internal_data_[] = {
+    589824u, 0u, };
+bool UsageCostType_IsValid(int value) {
+  return 0 <= value && value <= 8;
+}
+const ::google::protobuf::EnumDescriptor* SourceType_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_app_2fv1_2fbilling_2eproto);
+  return file_level_enum_descriptors_app_2fv1_2fbilling_2eproto[2];
+}
+PROTOBUF_CONSTINIT const uint32_t SourceType_internal_data_[] = {
+    196608u, 0u, };
+bool SourceType_IsValid(int value) {
+  return 0 <= value && value <= 2;
 }
 // ===================================================================
 
@@ -1166,846 +1197,6 @@ void InvoiceSummary::InternalSwap(InvoiceSummary* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
-class BillableResourceEvent::_Internal {
- public:
-  using HasBits = decltype(std::declval<BillableResourceEvent>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-    8 * PROTOBUF_FIELD_OFFSET(BillableResourceEvent, _impl_._has_bits_);
-  static const ::google::protobuf::Timestamp& occurred_at(const BillableResourceEvent* msg);
-  static void set_has_occurred_at(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
-  }
-};
-
-const ::google::protobuf::Timestamp& BillableResourceEvent::_Internal::occurred_at(const BillableResourceEvent* msg) {
-  return *msg->_impl_.occurred_at_;
-}
-void BillableResourceEvent::clear_occurred_at() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (_impl_.occurred_at_ != nullptr) _impl_.occurred_at_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-BillableResourceEvent::BillableResourceEvent(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:viam.app.v1.BillableResourceEvent)
-}
-inline PROTOBUF_NDEBUG_INLINE BillableResourceEvent::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from)
-      : _has_bits_{from._has_bits_},
-        _cached_size_{0},
-        id_(arena, from.id_),
-        type_(arena, from.type_),
-        usage_quantity_unit_(arena, from.usage_quantity_unit_),
-        usage_cost_(arena, from.usage_cost_),
-        user_name_(arena, from.user_name_) {}
-
-BillableResourceEvent::BillableResourceEvent(
-    ::google::protobuf::Arena* arena,
-    const BillableResourceEvent& from)
-    : ::google::protobuf::Message(arena) {
-  BillableResourceEvent* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.occurred_at_ = (cached_has_bits & 0x00000001u)
-                ? CreateMaybeMessage<::google::protobuf::Timestamp>(arena, *from._impl_.occurred_at_)
-                : nullptr;
-  _impl_.usage_quantity_ = from._impl_.usage_quantity_;
-
-  // @@protoc_insertion_point(copy_constructor:viam.app.v1.BillableResourceEvent)
-}
-inline PROTOBUF_NDEBUG_INLINE BillableResourceEvent::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : _cached_size_{0},
-        id_(arena),
-        type_(arena),
-        usage_quantity_unit_(arena),
-        usage_cost_(arena),
-        user_name_(arena) {}
-
-inline void BillableResourceEvent::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-  ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, occurred_at_),
-           0,
-           offsetof(Impl_, usage_quantity_) -
-               offsetof(Impl_, occurred_at_) +
-               sizeof(Impl_::usage_quantity_));
-}
-BillableResourceEvent::~BillableResourceEvent() {
-  // @@protoc_insertion_point(destructor:viam.app.v1.BillableResourceEvent)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void BillableResourceEvent::SharedDtor() {
-  ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.id_.Destroy();
-  _impl_.type_.Destroy();
-  _impl_.usage_quantity_unit_.Destroy();
-  _impl_.usage_cost_.Destroy();
-  _impl_.user_name_.Destroy();
-  delete _impl_.occurred_at_;
-  _impl_.~Impl_();
-}
-
-PROTOBUF_NOINLINE void BillableResourceEvent::Clear() {
-// @@protoc_insertion_point(message_clear_start:viam.app.v1.BillableResourceEvent)
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.id_.ClearToEmpty();
-  _impl_.type_.ClearToEmpty();
-  _impl_.usage_quantity_unit_.ClearToEmpty();
-  _impl_.usage_cost_.ClearToEmpty();
-  _impl_.user_name_.ClearToEmpty();
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.occurred_at_ != nullptr);
-    _impl_.occurred_at_->Clear();
-  }
-  _impl_.usage_quantity_ = 0;
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-const char* BillableResourceEvent::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
-  return ptr;
-}
-
-
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 7, 1, 86, 2> BillableResourceEvent::_table_ = {
-  {
-    PROTOBUF_FIELD_OFFSET(BillableResourceEvent, _impl_._has_bits_),
-    0, // no _extensions_
-    7, 56,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967168,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    7,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_BillableResourceEvent_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-    // string id = 1 [json_name = "id"];
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(BillableResourceEvent, _impl_.id_)}},
-    // string type = 2 [json_name = "type"];
-    {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(BillableResourceEvent, _impl_.type_)}},
-    // double usage_quantity = 3 [json_name = "usageQuantity"];
-    {::_pbi::TcParser::FastF64S1,
-     {25, 63, 0, PROTOBUF_FIELD_OFFSET(BillableResourceEvent, _impl_.usage_quantity_)}},
-    // string usage_quantity_unit = 4 [json_name = "usageQuantityUnit"];
-    {::_pbi::TcParser::FastUS1,
-     {34, 63, 0, PROTOBUF_FIELD_OFFSET(BillableResourceEvent, _impl_.usage_quantity_unit_)}},
-    // string usage_cost = 5 [json_name = "usageCost"];
-    {::_pbi::TcParser::FastUS1,
-     {42, 63, 0, PROTOBUF_FIELD_OFFSET(BillableResourceEvent, _impl_.usage_cost_)}},
-    // .google.protobuf.Timestamp occurred_at = 6 [json_name = "occurredAt"];
-    {::_pbi::TcParser::FastMtS1,
-     {50, 0, 0, PROTOBUF_FIELD_OFFSET(BillableResourceEvent, _impl_.occurred_at_)}},
-    // string user_name = 7 [json_name = "userName"];
-    {::_pbi::TcParser::FastUS1,
-     {58, 63, 0, PROTOBUF_FIELD_OFFSET(BillableResourceEvent, _impl_.user_name_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // string id = 1 [json_name = "id"];
-    {PROTOBUF_FIELD_OFFSET(BillableResourceEvent, _impl_.id_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string type = 2 [json_name = "type"];
-    {PROTOBUF_FIELD_OFFSET(BillableResourceEvent, _impl_.type_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // double usage_quantity = 3 [json_name = "usageQuantity"];
-    {PROTOBUF_FIELD_OFFSET(BillableResourceEvent, _impl_.usage_quantity_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
-    // string usage_quantity_unit = 4 [json_name = "usageQuantityUnit"];
-    {PROTOBUF_FIELD_OFFSET(BillableResourceEvent, _impl_.usage_quantity_unit_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string usage_cost = 5 [json_name = "usageCost"];
-    {PROTOBUF_FIELD_OFFSET(BillableResourceEvent, _impl_.usage_cost_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .google.protobuf.Timestamp occurred_at = 6 [json_name = "occurredAt"];
-    {PROTOBUF_FIELD_OFFSET(BillableResourceEvent, _impl_.occurred_at_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // string user_name = 7 [json_name = "userName"];
-    {PROTOBUF_FIELD_OFFSET(BillableResourceEvent, _impl_.user_name_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
-  }}, {{
-    "\41\2\4\0\23\12\0\11"
-    "viam.app.v1.BillableResourceEvent"
-    "id"
-    "type"
-    "usage_quantity_unit"
-    "usage_cost"
-    "user_name"
-  }},
-};
-
-::uint8_t* BillableResourceEvent::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.BillableResourceEvent)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
-
-  // string id = 1 [json_name = "id"];
-  if (!this->_internal_id().empty()) {
-    const std::string& _s = this->_internal_id();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.v1.BillableResourceEvent.id");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
-  }
-
-  // string type = 2 [json_name = "type"];
-  if (!this->_internal_type().empty()) {
-    const std::string& _s = this->_internal_type();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.v1.BillableResourceEvent.type");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
-  }
-
-  // double usage_quantity = 3 [json_name = "usageQuantity"];
-  static_assert(sizeof(::uint64_t) == sizeof(double),
-                "Code assumes ::uint64_t and double are the same size.");
-  double tmp_usage_quantity = this->_internal_usage_quantity();
-  ::uint64_t raw_usage_quantity;
-  memcpy(&raw_usage_quantity, &tmp_usage_quantity, sizeof(tmp_usage_quantity));
-  if (raw_usage_quantity != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteDoubleToArray(
-        3, this->_internal_usage_quantity(), target);
-  }
-
-  // string usage_quantity_unit = 4 [json_name = "usageQuantityUnit"];
-  if (!this->_internal_usage_quantity_unit().empty()) {
-    const std::string& _s = this->_internal_usage_quantity_unit();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.v1.BillableResourceEvent.usage_quantity_unit");
-    target = stream->WriteStringMaybeAliased(4, _s, target);
-  }
-
-  // string usage_cost = 5 [json_name = "usageCost"];
-  if (!this->_internal_usage_cost().empty()) {
-    const std::string& _s = this->_internal_usage_cost();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.v1.BillableResourceEvent.usage_cost");
-    target = stream->WriteStringMaybeAliased(5, _s, target);
-  }
-
-  cached_has_bits = _impl_._has_bits_[0];
-  // .google.protobuf.Timestamp occurred_at = 6 [json_name = "occurredAt"];
-  if (cached_has_bits & 0x00000001u) {
-    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        6, _Internal::occurred_at(this),
-        _Internal::occurred_at(this).GetCachedSize(), target, stream);
-  }
-
-  // string user_name = 7 [json_name = "userName"];
-  if (!this->_internal_user_name().empty()) {
-    const std::string& _s = this->_internal_user_name();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.v1.BillableResourceEvent.user_name");
-    target = stream->WriteStringMaybeAliased(7, _s, target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.BillableResourceEvent)
-  return target;
-}
-
-::size_t BillableResourceEvent::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.BillableResourceEvent)
-  ::size_t total_size = 0;
-
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // string id = 1 [json_name = "id"];
-  if (!this->_internal_id().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_id());
-  }
-
-  // string type = 2 [json_name = "type"];
-  if (!this->_internal_type().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_type());
-  }
-
-  // string usage_quantity_unit = 4 [json_name = "usageQuantityUnit"];
-  if (!this->_internal_usage_quantity_unit().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_usage_quantity_unit());
-  }
-
-  // string usage_cost = 5 [json_name = "usageCost"];
-  if (!this->_internal_usage_cost().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_usage_cost());
-  }
-
-  // string user_name = 7 [json_name = "userName"];
-  if (!this->_internal_user_name().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_user_name());
-  }
-
-  // .google.protobuf.Timestamp occurred_at = 6 [json_name = "occurredAt"];
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size +=
-        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.occurred_at_);
-  }
-
-  // double usage_quantity = 3 [json_name = "usageQuantity"];
-  static_assert(sizeof(::uint64_t) == sizeof(double),
-                "Code assumes ::uint64_t and double are the same size.");
-  double tmp_usage_quantity = this->_internal_usage_quantity();
-  ::uint64_t raw_usage_quantity;
-  memcpy(&raw_usage_quantity, &tmp_usage_quantity, sizeof(tmp_usage_quantity));
-  if (raw_usage_quantity != 0) {
-    total_size += 9;
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::google::protobuf::Message::ClassData BillableResourceEvent::_class_data_ = {
-    BillableResourceEvent::MergeImpl,
-    nullptr,  // OnDemandRegisterArenaDtor
-};
-const ::google::protobuf::Message::ClassData* BillableResourceEvent::GetClassData() const {
-  return &_class_data_;
-}
-
-void BillableResourceEvent::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<BillableResourceEvent*>(&to_msg);
-  auto& from = static_cast<const BillableResourceEvent&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.BillableResourceEvent)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (!from._internal_id().empty()) {
-    _this->_internal_set_id(from._internal_id());
-  }
-  if (!from._internal_type().empty()) {
-    _this->_internal_set_type(from._internal_type());
-  }
-  if (!from._internal_usage_quantity_unit().empty()) {
-    _this->_internal_set_usage_quantity_unit(from._internal_usage_quantity_unit());
-  }
-  if (!from._internal_usage_cost().empty()) {
-    _this->_internal_set_usage_cost(from._internal_usage_cost());
-  }
-  if (!from._internal_user_name().empty()) {
-    _this->_internal_set_user_name(from._internal_user_name());
-  }
-  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    _this->_internal_mutable_occurred_at()->::google::protobuf::Timestamp::MergeFrom(
-        from._internal_occurred_at());
-  }
-  static_assert(sizeof(::uint64_t) == sizeof(double),
-                "Code assumes ::uint64_t and double are the same size.");
-  double tmp_usage_quantity = from._internal_usage_quantity();
-  ::uint64_t raw_usage_quantity;
-  memcpy(&raw_usage_quantity, &tmp_usage_quantity, sizeof(tmp_usage_quantity));
-  if (raw_usage_quantity != 0) {
-    _this->_internal_set_usage_quantity(from._internal_usage_quantity());
-  }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void BillableResourceEvent::CopyFrom(const BillableResourceEvent& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.BillableResourceEvent)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-PROTOBUF_NOINLINE bool BillableResourceEvent::IsInitialized() const {
-  return true;
-}
-
-::_pbi::CachedSize* BillableResourceEvent::AccessCachedSize() const {
-  return &_impl_._cached_size_;
-}
-void BillableResourceEvent::InternalSwap(BillableResourceEvent* PROTOBUF_RESTRICT other) {
-  using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.id_, &other->_impl_.id_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.type_, &other->_impl_.type_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.usage_quantity_unit_, &other->_impl_.usage_quantity_unit_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.usage_cost_, &other->_impl_.usage_cost_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.user_name_, &other->_impl_.user_name_, arena);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(BillableResourceEvent, _impl_.usage_quantity_)
-      + sizeof(BillableResourceEvent::_impl_.usage_quantity_)
-      - PROTOBUF_FIELD_OFFSET(BillableResourceEvent, _impl_.occurred_at_)>(
-          reinterpret_cast<char*>(&_impl_.occurred_at_),
-          reinterpret_cast<char*>(&other->_impl_.occurred_at_));
-}
-
-::google::protobuf::Metadata BillableResourceEvent::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[1]);
-}
-// ===================================================================
-
-class Invoice::_Internal {
- public:
-  using HasBits = decltype(std::declval<Invoice>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-    8 * PROTOBUF_FIELD_OFFSET(Invoice, _impl_._has_bits_);
-  static const ::google::protobuf::Timestamp& invoice_date(const Invoice* msg);
-  static void set_has_invoice_date(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
-  }
-  static const ::google::protobuf::Timestamp& due_date(const Invoice* msg);
-  static void set_has_due_date(HasBits* has_bits) {
-    (*has_bits)[0] |= 2u;
-  }
-};
-
-const ::google::protobuf::Timestamp& Invoice::_Internal::invoice_date(const Invoice* msg) {
-  return *msg->_impl_.invoice_date_;
-}
-const ::google::protobuf::Timestamp& Invoice::_Internal::due_date(const Invoice* msg) {
-  return *msg->_impl_.due_date_;
-}
-void Invoice::clear_invoice_date() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (_impl_.invoice_date_ != nullptr) _impl_.invoice_date_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-void Invoice::clear_due_date() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (_impl_.due_date_ != nullptr) _impl_.due_date_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000002u;
-}
-Invoice::Invoice(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:viam.app.v1.Invoice)
-}
-inline PROTOBUF_NDEBUG_INLINE Invoice::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from)
-      : _has_bits_{from._has_bits_},
-        _cached_size_{0},
-        items_{visibility, arena, from.items_},
-        id_(arena, from.id_),
-        status_(arena, from.status_),
-        emailed_to_(arena, from.emailed_to_) {}
-
-Invoice::Invoice(
-    ::google::protobuf::Arena* arena,
-    const Invoice& from)
-    : ::google::protobuf::Message(arena) {
-  Invoice* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.invoice_date_ = (cached_has_bits & 0x00000001u)
-                ? CreateMaybeMessage<::google::protobuf::Timestamp>(arena, *from._impl_.invoice_date_)
-                : nullptr;
-  _impl_.due_date_ = (cached_has_bits & 0x00000002u)
-                ? CreateMaybeMessage<::google::protobuf::Timestamp>(arena, *from._impl_.due_date_)
-                : nullptr;
-  _impl_.invoice_amount_ = from._impl_.invoice_amount_;
-
-  // @@protoc_insertion_point(copy_constructor:viam.app.v1.Invoice)
-}
-inline PROTOBUF_NDEBUG_INLINE Invoice::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : _cached_size_{0},
-        items_{visibility, arena},
-        id_(arena),
-        status_(arena),
-        emailed_to_(arena) {}
-
-inline void Invoice::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-  ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, invoice_date_),
-           0,
-           offsetof(Impl_, invoice_amount_) -
-               offsetof(Impl_, invoice_date_) +
-               sizeof(Impl_::invoice_amount_));
-}
-Invoice::~Invoice() {
-  // @@protoc_insertion_point(destructor:viam.app.v1.Invoice)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void Invoice::SharedDtor() {
-  ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.id_.Destroy();
-  _impl_.status_.Destroy();
-  _impl_.emailed_to_.Destroy();
-  delete _impl_.invoice_date_;
-  delete _impl_.due_date_;
-  _impl_.~Impl_();
-}
-
-PROTOBUF_NOINLINE void Invoice::Clear() {
-// @@protoc_insertion_point(message_clear_start:viam.app.v1.Invoice)
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.items_.Clear();
-  _impl_.id_.ClearToEmpty();
-  _impl_.status_.ClearToEmpty();
-  _impl_.emailed_to_.ClearToEmpty();
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
-    if (cached_has_bits & 0x00000001u) {
-      ABSL_DCHECK(_impl_.invoice_date_ != nullptr);
-      _impl_.invoice_date_->Clear();
-    }
-    if (cached_has_bits & 0x00000002u) {
-      ABSL_DCHECK(_impl_.due_date_ != nullptr);
-      _impl_.due_date_->Clear();
-    }
-  }
-  _impl_.invoice_amount_ = 0;
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-const char* Invoice::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
-  return ptr;
-}
-
-
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 7, 3, 46, 2> Invoice::_table_ = {
-  {
-    PROTOBUF_FIELD_OFFSET(Invoice, _impl_._has_bits_),
-    0, // no _extensions_
-    7, 56,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967168,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    7,  // num_field_entries
-    3,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_Invoice_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-    // string id = 1 [json_name = "id"];
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Invoice, _impl_.id_)}},
-    // .google.protobuf.Timestamp invoice_date = 2 [json_name = "invoiceDate"];
-    {::_pbi::TcParser::FastMtS1,
-     {18, 0, 0, PROTOBUF_FIELD_OFFSET(Invoice, _impl_.invoice_date_)}},
-    // double invoice_amount = 3 [json_name = "invoiceAmount"];
-    {::_pbi::TcParser::FastF64S1,
-     {25, 63, 0, PROTOBUF_FIELD_OFFSET(Invoice, _impl_.invoice_amount_)}},
-    // string status = 4 [json_name = "status"];
-    {::_pbi::TcParser::FastUS1,
-     {34, 63, 0, PROTOBUF_FIELD_OFFSET(Invoice, _impl_.status_)}},
-    // .google.protobuf.Timestamp due_date = 5 [json_name = "dueDate"];
-    {::_pbi::TcParser::FastMtS1,
-     {42, 1, 1, PROTOBUF_FIELD_OFFSET(Invoice, _impl_.due_date_)}},
-    // repeated .viam.app.v1.BillableResourceEvent items = 6 [json_name = "items"];
-    {::_pbi::TcParser::FastMtR1,
-     {50, 63, 2, PROTOBUF_FIELD_OFFSET(Invoice, _impl_.items_)}},
-    // string emailed_to = 7 [json_name = "emailedTo"];
-    {::_pbi::TcParser::FastUS1,
-     {58, 63, 0, PROTOBUF_FIELD_OFFSET(Invoice, _impl_.emailed_to_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // string id = 1 [json_name = "id"];
-    {PROTOBUF_FIELD_OFFSET(Invoice, _impl_.id_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .google.protobuf.Timestamp invoice_date = 2 [json_name = "invoiceDate"];
-    {PROTOBUF_FIELD_OFFSET(Invoice, _impl_.invoice_date_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // double invoice_amount = 3 [json_name = "invoiceAmount"];
-    {PROTOBUF_FIELD_OFFSET(Invoice, _impl_.invoice_amount_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
-    // string status = 4 [json_name = "status"];
-    {PROTOBUF_FIELD_OFFSET(Invoice, _impl_.status_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .google.protobuf.Timestamp due_date = 5 [json_name = "dueDate"];
-    {PROTOBUF_FIELD_OFFSET(Invoice, _impl_.due_date_), _Internal::kHasBitsOffset + 1, 1,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // repeated .viam.app.v1.BillableResourceEvent items = 6 [json_name = "items"];
-    {PROTOBUF_FIELD_OFFSET(Invoice, _impl_.items_), -1, 2,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-    // string emailed_to = 7 [json_name = "emailedTo"];
-    {PROTOBUF_FIELD_OFFSET(Invoice, _impl_.emailed_to_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
-    {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
-    {::_pbi::TcParser::GetTable<::viam::app::v1::BillableResourceEvent>()},
-  }}, {{
-    "\23\2\0\0\6\0\0\12"
-    "viam.app.v1.Invoice"
-    "id"
-    "status"
-    "emailed_to"
-  }},
-};
-
-::uint8_t* Invoice::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.Invoice)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
-
-  // string id = 1 [json_name = "id"];
-  if (!this->_internal_id().empty()) {
-    const std::string& _s = this->_internal_id();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.v1.Invoice.id");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
-  }
-
-  cached_has_bits = _impl_._has_bits_[0];
-  // .google.protobuf.Timestamp invoice_date = 2 [json_name = "invoiceDate"];
-  if (cached_has_bits & 0x00000001u) {
-    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        2, _Internal::invoice_date(this),
-        _Internal::invoice_date(this).GetCachedSize(), target, stream);
-  }
-
-  // double invoice_amount = 3 [json_name = "invoiceAmount"];
-  static_assert(sizeof(::uint64_t) == sizeof(double),
-                "Code assumes ::uint64_t and double are the same size.");
-  double tmp_invoice_amount = this->_internal_invoice_amount();
-  ::uint64_t raw_invoice_amount;
-  memcpy(&raw_invoice_amount, &tmp_invoice_amount, sizeof(tmp_invoice_amount));
-  if (raw_invoice_amount != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteDoubleToArray(
-        3, this->_internal_invoice_amount(), target);
-  }
-
-  // string status = 4 [json_name = "status"];
-  if (!this->_internal_status().empty()) {
-    const std::string& _s = this->_internal_status();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.v1.Invoice.status");
-    target = stream->WriteStringMaybeAliased(4, _s, target);
-  }
-
-  // .google.protobuf.Timestamp due_date = 5 [json_name = "dueDate"];
-  if (cached_has_bits & 0x00000002u) {
-    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        5, _Internal::due_date(this),
-        _Internal::due_date(this).GetCachedSize(), target, stream);
-  }
-
-  // repeated .viam.app.v1.BillableResourceEvent items = 6 [json_name = "items"];
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_items_size()); i < n; i++) {
-    const auto& repfield = this->_internal_items().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
-        InternalWriteMessage(6, repfield, repfield.GetCachedSize(), target, stream);
-  }
-
-  // string emailed_to = 7 [json_name = "emailedTo"];
-  if (!this->_internal_emailed_to().empty()) {
-    const std::string& _s = this->_internal_emailed_to();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.v1.Invoice.emailed_to");
-    target = stream->WriteStringMaybeAliased(7, _s, target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.Invoice)
-  return target;
-}
-
-::size_t Invoice::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.Invoice)
-  ::size_t total_size = 0;
-
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // repeated .viam.app.v1.BillableResourceEvent items = 6 [json_name = "items"];
-  total_size += 1UL * this->_internal_items_size();
-  for (const auto& msg : this->_internal_items()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-  }
-  // string id = 1 [json_name = "id"];
-  if (!this->_internal_id().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_id());
-  }
-
-  // string status = 4 [json_name = "status"];
-  if (!this->_internal_status().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_status());
-  }
-
-  // string emailed_to = 7 [json_name = "emailedTo"];
-  if (!this->_internal_emailed_to().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_emailed_to());
-  }
-
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
-    // .google.protobuf.Timestamp invoice_date = 2 [json_name = "invoiceDate"];
-    if (cached_has_bits & 0x00000001u) {
-      total_size +=
-          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.invoice_date_);
-    }
-
-    // .google.protobuf.Timestamp due_date = 5 [json_name = "dueDate"];
-    if (cached_has_bits & 0x00000002u) {
-      total_size +=
-          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.due_date_);
-    }
-
-  }
-  // double invoice_amount = 3 [json_name = "invoiceAmount"];
-  static_assert(sizeof(::uint64_t) == sizeof(double),
-                "Code assumes ::uint64_t and double are the same size.");
-  double tmp_invoice_amount = this->_internal_invoice_amount();
-  ::uint64_t raw_invoice_amount;
-  memcpy(&raw_invoice_amount, &tmp_invoice_amount, sizeof(tmp_invoice_amount));
-  if (raw_invoice_amount != 0) {
-    total_size += 9;
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::google::protobuf::Message::ClassData Invoice::_class_data_ = {
-    Invoice::MergeImpl,
-    nullptr,  // OnDemandRegisterArenaDtor
-};
-const ::google::protobuf::Message::ClassData* Invoice::GetClassData() const {
-  return &_class_data_;
-}
-
-void Invoice::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<Invoice*>(&to_msg);
-  auto& from = static_cast<const Invoice&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.Invoice)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  _this->_internal_mutable_items()->MergeFrom(
-      from._internal_items());
-  if (!from._internal_id().empty()) {
-    _this->_internal_set_id(from._internal_id());
-  }
-  if (!from._internal_status().empty()) {
-    _this->_internal_set_status(from._internal_status());
-  }
-  if (!from._internal_emailed_to().empty()) {
-    _this->_internal_set_emailed_to(from._internal_emailed_to());
-  }
-  cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
-    if (cached_has_bits & 0x00000001u) {
-      _this->_internal_mutable_invoice_date()->::google::protobuf::Timestamp::MergeFrom(
-          from._internal_invoice_date());
-    }
-    if (cached_has_bits & 0x00000002u) {
-      _this->_internal_mutable_due_date()->::google::protobuf::Timestamp::MergeFrom(
-          from._internal_due_date());
-    }
-  }
-  static_assert(sizeof(::uint64_t) == sizeof(double),
-                "Code assumes ::uint64_t and double are the same size.");
-  double tmp_invoice_amount = from._internal_invoice_amount();
-  ::uint64_t raw_invoice_amount;
-  memcpy(&raw_invoice_amount, &tmp_invoice_amount, sizeof(tmp_invoice_amount));
-  if (raw_invoice_amount != 0) {
-    _this->_internal_set_invoice_amount(from._internal_invoice_amount());
-  }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void Invoice::CopyFrom(const Invoice& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.Invoice)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-PROTOBUF_NOINLINE bool Invoice::IsInitialized() const {
-  return true;
-}
-
-::_pbi::CachedSize* Invoice::AccessCachedSize() const {
-  return &_impl_._cached_size_;
-}
-void Invoice::InternalSwap(Invoice* PROTOBUF_RESTRICT other) {
-  using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  _impl_.items_.InternalSwap(&other->_impl_.items_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.id_, &other->_impl_.id_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.status_, &other->_impl_.status_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.emailed_to_, &other->_impl_.emailed_to_, arena);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Invoice, _impl_.invoice_amount_)
-      + sizeof(Invoice::_impl_.invoice_amount_)
-      - PROTOBUF_FIELD_OFFSET(Invoice, _impl_.invoice_date_)>(
-          reinterpret_cast<char*>(&_impl_.invoice_date_),
-          reinterpret_cast<char*>(&other->_impl_.invoice_date_));
-}
-
-::google::protobuf::Metadata Invoice::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[2]);
-}
-// ===================================================================
-
 class PaymentMethodCard::_Internal {
  public:
 };
@@ -2221,7 +1412,7 @@ void PaymentMethodCard::InternalSwap(PaymentMethodCard* PROTOBUF_RESTRICT other)
 ::google::protobuf::Metadata PaymentMethodCard::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[3]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[1]);
 }
 // ===================================================================
 
@@ -2411,7 +1602,813 @@ void GetCurrentMonthUsageRequest::InternalSwap(GetCurrentMonthUsageRequest* PROT
 ::google::protobuf::Metadata GetCurrentMonthUsageRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
+      file_level_metadata_app_2fv1_2fbilling_2eproto[2]);
+}
+// ===================================================================
+
+class UsageCost::_Internal {
+ public:
+};
+
+UsageCost::UsageCost(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.UsageCost)
+}
+UsageCost::UsageCost(
+    ::google::protobuf::Arena* arena, const UsageCost& from)
+    : UsageCost(arena) {
+  MergeFrom(from);
+}
+inline PROTOBUF_NDEBUG_INLINE UsageCost::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void UsageCost::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, cost_),
+           0,
+           offsetof(Impl_, resource_type_) -
+               offsetof(Impl_, cost_) +
+               sizeof(Impl_::resource_type_));
+}
+UsageCost::~UsageCost() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.UsageCost)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void UsageCost::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void UsageCost::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.UsageCost)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&_impl_.cost_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.resource_type_) -
+      reinterpret_cast<char*>(&_impl_.cost_)) + sizeof(_impl_.resource_type_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* UsageCost::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> UsageCost::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_UsageCost_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // double cost = 2 [json_name = "cost"];
+    {::_pbi::TcParser::FastF64S1,
+     {17, 63, 0, PROTOBUF_FIELD_OFFSET(UsageCost, _impl_.cost_)}},
+    // .viam.app.v1.UsageCostType resource_type = 1 [json_name = "resourceType"];
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(UsageCost, _impl_.resource_type_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(UsageCost, _impl_.resource_type_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .viam.app.v1.UsageCostType resource_type = 1 [json_name = "resourceType"];
+    {PROTOBUF_FIELD_OFFSET(UsageCost, _impl_.resource_type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // double cost = 2 [json_name = "cost"];
+    {PROTOBUF_FIELD_OFFSET(UsageCost, _impl_.cost_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* UsageCost::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.UsageCost)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // .viam.app.v1.UsageCostType resource_type = 1 [json_name = "resourceType"];
+  if (this->_internal_resource_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        1, this->_internal_resource_type(), target);
+  }
+
+  // double cost = 2 [json_name = "cost"];
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_cost = this->_internal_cost();
+  ::uint64_t raw_cost;
+  memcpy(&raw_cost, &tmp_cost, sizeof(tmp_cost));
+  if (raw_cost != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(
+        2, this->_internal_cost(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.UsageCost)
+  return target;
+}
+
+::size_t UsageCost::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.UsageCost)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // double cost = 2 [json_name = "cost"];
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_cost = this->_internal_cost();
+  ::uint64_t raw_cost;
+  memcpy(&raw_cost, &tmp_cost, sizeof(tmp_cost));
+  if (raw_cost != 0) {
+    total_size += 9;
+  }
+
+  // .viam.app.v1.UsageCostType resource_type = 1 [json_name = "resourceType"];
+  if (this->_internal_resource_type() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_resource_type());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData UsageCost::_class_data_ = {
+    UsageCost::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* UsageCost::GetClassData() const {
+  return &_class_data_;
+}
+
+void UsageCost::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<UsageCost*>(&to_msg);
+  auto& from = static_cast<const UsageCost&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.UsageCost)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_cost = from._internal_cost();
+  ::uint64_t raw_cost;
+  memcpy(&raw_cost, &tmp_cost, sizeof(tmp_cost));
+  if (raw_cost != 0) {
+    _this->_internal_set_cost(from._internal_cost());
+  }
+  if (from._internal_resource_type() != 0) {
+    _this->_internal_set_resource_type(from._internal_resource_type());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UsageCost::CopyFrom(const UsageCost& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.UsageCost)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool UsageCost::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* UsageCost::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void UsageCost::InternalSwap(UsageCost* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(UsageCost, _impl_.resource_type_)
+      + sizeof(UsageCost::_impl_.resource_type_)
+      - PROTOBUF_FIELD_OFFSET(UsageCost, _impl_.cost_)>(
+          reinterpret_cast<char*>(&_impl_.cost_),
+          reinterpret_cast<char*>(&other->_impl_.cost_));
+}
+
+::google::protobuf::Metadata UsageCost::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
+      file_level_metadata_app_2fv1_2fbilling_2eproto[3]);
+}
+// ===================================================================
+
+class ResourceUsageCostsBySource::_Internal {
+ public:
+  using HasBits = decltype(std::declval<ResourceUsageCostsBySource>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(ResourceUsageCostsBySource, _impl_._has_bits_);
+  static const ::viam::app::v1::ResourceUsageCosts& resource_usage_costs(const ResourceUsageCostsBySource* msg);
+  static void set_has_resource_usage_costs(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::viam::app::v1::ResourceUsageCosts& ResourceUsageCostsBySource::_Internal::resource_usage_costs(const ResourceUsageCostsBySource* msg) {
+  return *msg->_impl_.resource_usage_costs_;
+}
+ResourceUsageCostsBySource::ResourceUsageCostsBySource(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.ResourceUsageCostsBySource)
+}
+inline PROTOBUF_NDEBUG_INLINE ResourceUsageCostsBySource::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        tier_name_(arena, from.tier_name_) {}
+
+ResourceUsageCostsBySource::ResourceUsageCostsBySource(
+    ::google::protobuf::Arena* arena,
+    const ResourceUsageCostsBySource& from)
+    : ::google::protobuf::Message(arena) {
+  ResourceUsageCostsBySource* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.resource_usage_costs_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::viam::app::v1::ResourceUsageCosts>(arena, *from._impl_.resource_usage_costs_)
+                : nullptr;
+  _impl_.source_type_ = from._impl_.source_type_;
+
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.ResourceUsageCostsBySource)
+}
+inline PROTOBUF_NDEBUG_INLINE ResourceUsageCostsBySource::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        tier_name_(arena) {}
+
+inline void ResourceUsageCostsBySource::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, resource_usage_costs_),
+           0,
+           offsetof(Impl_, source_type_) -
+               offsetof(Impl_, resource_usage_costs_) +
+               sizeof(Impl_::source_type_));
+}
+ResourceUsageCostsBySource::~ResourceUsageCostsBySource() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.ResourceUsageCostsBySource)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ResourceUsageCostsBySource::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.tier_name_.Destroy();
+  delete _impl_.resource_usage_costs_;
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void ResourceUsageCostsBySource::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.ResourceUsageCostsBySource)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.tier_name_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.resource_usage_costs_ != nullptr);
+    _impl_.resource_usage_costs_->Clear();
+  }
+  _impl_.source_type_ = 0;
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ResourceUsageCostsBySource::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 1, 56, 2> ResourceUsageCostsBySource::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(ResourceUsageCostsBySource, _impl_._has_bits_),
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_ResourceUsageCostsBySource_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // .viam.app.v1.SourceType source_type = 1 [json_name = "sourceType"];
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ResourceUsageCostsBySource, _impl_.source_type_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ResourceUsageCostsBySource, _impl_.source_type_)}},
+    // .viam.app.v1.ResourceUsageCosts resource_usage_costs = 2 [json_name = "resourceUsageCosts"];
+    {::_pbi::TcParser::FastMtS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(ResourceUsageCostsBySource, _impl_.resource_usage_costs_)}},
+    // string tier_name = 3 [json_name = "tierName"];
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(ResourceUsageCostsBySource, _impl_.tier_name_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .viam.app.v1.SourceType source_type = 1 [json_name = "sourceType"];
+    {PROTOBUF_FIELD_OFFSET(ResourceUsageCostsBySource, _impl_.source_type_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // .viam.app.v1.ResourceUsageCosts resource_usage_costs = 2 [json_name = "resourceUsageCosts"];
+    {PROTOBUF_FIELD_OFFSET(ResourceUsageCostsBySource, _impl_.resource_usage_costs_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // string tier_name = 3 [json_name = "tierName"];
+    {PROTOBUF_FIELD_OFFSET(ResourceUsageCostsBySource, _impl_.tier_name_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::viam::app::v1::ResourceUsageCosts>()},
+  }}, {{
+    "\46\0\0\11\0\0\0\0"
+    "viam.app.v1.ResourceUsageCostsBySource"
+    "tier_name"
+  }},
+};
+
+::uint8_t* ResourceUsageCostsBySource::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.ResourceUsageCostsBySource)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // .viam.app.v1.SourceType source_type = 1 [json_name = "sourceType"];
+  if (this->_internal_source_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        1, this->_internal_source_type(), target);
+  }
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .viam.app.v1.ResourceUsageCosts resource_usage_costs = 2 [json_name = "resourceUsageCosts"];
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        2, _Internal::resource_usage_costs(this),
+        _Internal::resource_usage_costs(this).GetCachedSize(), target, stream);
+  }
+
+  // string tier_name = 3 [json_name = "tierName"];
+  if (!this->_internal_tier_name().empty()) {
+    const std::string& _s = this->_internal_tier_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.v1.ResourceUsageCostsBySource.tier_name");
+    target = stream->WriteStringMaybeAliased(3, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.ResourceUsageCostsBySource)
+  return target;
+}
+
+::size_t ResourceUsageCostsBySource::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.ResourceUsageCostsBySource)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string tier_name = 3 [json_name = "tierName"];
+  if (!this->_internal_tier_name().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_tier_name());
+  }
+
+  // .viam.app.v1.ResourceUsageCosts resource_usage_costs = 2 [json_name = "resourceUsageCosts"];
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.resource_usage_costs_);
+  }
+
+  // .viam.app.v1.SourceType source_type = 1 [json_name = "sourceType"];
+  if (this->_internal_source_type() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_source_type());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ResourceUsageCostsBySource::_class_data_ = {
+    ResourceUsageCostsBySource::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* ResourceUsageCostsBySource::GetClassData() const {
+  return &_class_data_;
+}
+
+void ResourceUsageCostsBySource::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ResourceUsageCostsBySource*>(&to_msg);
+  auto& from = static_cast<const ResourceUsageCostsBySource&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.ResourceUsageCostsBySource)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_tier_name().empty()) {
+    _this->_internal_set_tier_name(from._internal_tier_name());
+  }
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_resource_usage_costs()->::viam::app::v1::ResourceUsageCosts::MergeFrom(
+        from._internal_resource_usage_costs());
+  }
+  if (from._internal_source_type() != 0) {
+    _this->_internal_set_source_type(from._internal_source_type());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ResourceUsageCostsBySource::CopyFrom(const ResourceUsageCostsBySource& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.ResourceUsageCostsBySource)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ResourceUsageCostsBySource::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* ResourceUsageCostsBySource::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void ResourceUsageCostsBySource::InternalSwap(ResourceUsageCostsBySource* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.tier_name_, &other->_impl_.tier_name_, arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ResourceUsageCostsBySource, _impl_.source_type_)
+      + sizeof(ResourceUsageCostsBySource::_impl_.source_type_)
+      - PROTOBUF_FIELD_OFFSET(ResourceUsageCostsBySource, _impl_.resource_usage_costs_)>(
+          reinterpret_cast<char*>(&_impl_.resource_usage_costs_),
+          reinterpret_cast<char*>(&other->_impl_.resource_usage_costs_));
+}
+
+::google::protobuf::Metadata ResourceUsageCostsBySource::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
       file_level_metadata_app_2fv1_2fbilling_2eproto[4]);
+}
+// ===================================================================
+
+class ResourceUsageCosts::_Internal {
+ public:
+};
+
+ResourceUsageCosts::ResourceUsageCosts(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.ResourceUsageCosts)
+}
+inline PROTOBUF_NDEBUG_INLINE ResourceUsageCosts::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : usage_costs_{visibility, arena, from.usage_costs_},
+        _cached_size_{0} {}
+
+ResourceUsageCosts::ResourceUsageCosts(
+    ::google::protobuf::Arena* arena,
+    const ResourceUsageCosts& from)
+    : ::google::protobuf::Message(arena) {
+  ResourceUsageCosts* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, discount_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, discount_),
+           offsetof(Impl_, total_without_discount_) -
+               offsetof(Impl_, discount_) +
+               sizeof(Impl_::total_without_discount_));
+
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.ResourceUsageCosts)
+}
+inline PROTOBUF_NDEBUG_INLINE ResourceUsageCosts::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : usage_costs_{visibility, arena},
+        _cached_size_{0} {}
+
+inline void ResourceUsageCosts::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, discount_),
+           0,
+           offsetof(Impl_, total_without_discount_) -
+               offsetof(Impl_, discount_) +
+               sizeof(Impl_::total_without_discount_));
+}
+ResourceUsageCosts::~ResourceUsageCosts() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.ResourceUsageCosts)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ResourceUsageCosts::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void ResourceUsageCosts::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.ResourceUsageCosts)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.usage_costs_.Clear();
+  ::memset(&_impl_.discount_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.total_without_discount_) -
+      reinterpret_cast<char*>(&_impl_.discount_)) + sizeof(_impl_.total_without_discount_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ResourceUsageCosts::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 4, 1, 0, 2> ResourceUsageCosts::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    4, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967280,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    4,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_ResourceUsageCosts_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // double total_without_discount = 4 [json_name = "totalWithoutDiscount"];
+    {::_pbi::TcParser::FastF64S1,
+     {33, 63, 0, PROTOBUF_FIELD_OFFSET(ResourceUsageCosts, _impl_.total_without_discount_)}},
+    // repeated .viam.app.v1.UsageCost usage_costs = 1 [json_name = "usageCosts"];
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(ResourceUsageCosts, _impl_.usage_costs_)}},
+    // double discount = 2 [json_name = "discount"];
+    {::_pbi::TcParser::FastF64S1,
+     {17, 63, 0, PROTOBUF_FIELD_OFFSET(ResourceUsageCosts, _impl_.discount_)}},
+    // double total_with_discount = 3 [json_name = "totalWithDiscount"];
+    {::_pbi::TcParser::FastF64S1,
+     {25, 63, 0, PROTOBUF_FIELD_OFFSET(ResourceUsageCosts, _impl_.total_with_discount_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .viam.app.v1.UsageCost usage_costs = 1 [json_name = "usageCosts"];
+    {PROTOBUF_FIELD_OFFSET(ResourceUsageCosts, _impl_.usage_costs_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // double discount = 2 [json_name = "discount"];
+    {PROTOBUF_FIELD_OFFSET(ResourceUsageCosts, _impl_.discount_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
+    // double total_with_discount = 3 [json_name = "totalWithDiscount"];
+    {PROTOBUF_FIELD_OFFSET(ResourceUsageCosts, _impl_.total_with_discount_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
+    // double total_without_discount = 4 [json_name = "totalWithoutDiscount"];
+    {PROTOBUF_FIELD_OFFSET(ResourceUsageCosts, _impl_.total_without_discount_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::viam::app::v1::UsageCost>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* ResourceUsageCosts::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.ResourceUsageCosts)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // repeated .viam.app.v1.UsageCost usage_costs = 1 [json_name = "usageCosts"];
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_usage_costs_size()); i < n; i++) {
+    const auto& repfield = this->_internal_usage_costs().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // double discount = 2 [json_name = "discount"];
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_discount = this->_internal_discount();
+  ::uint64_t raw_discount;
+  memcpy(&raw_discount, &tmp_discount, sizeof(tmp_discount));
+  if (raw_discount != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(
+        2, this->_internal_discount(), target);
+  }
+
+  // double total_with_discount = 3 [json_name = "totalWithDiscount"];
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_total_with_discount = this->_internal_total_with_discount();
+  ::uint64_t raw_total_with_discount;
+  memcpy(&raw_total_with_discount, &tmp_total_with_discount, sizeof(tmp_total_with_discount));
+  if (raw_total_with_discount != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(
+        3, this->_internal_total_with_discount(), target);
+  }
+
+  // double total_without_discount = 4 [json_name = "totalWithoutDiscount"];
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_total_without_discount = this->_internal_total_without_discount();
+  ::uint64_t raw_total_without_discount;
+  memcpy(&raw_total_without_discount, &tmp_total_without_discount, sizeof(tmp_total_without_discount));
+  if (raw_total_without_discount != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(
+        4, this->_internal_total_without_discount(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.ResourceUsageCosts)
+  return target;
+}
+
+::size_t ResourceUsageCosts::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.ResourceUsageCosts)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .viam.app.v1.UsageCost usage_costs = 1 [json_name = "usageCosts"];
+  total_size += 1UL * this->_internal_usage_costs_size();
+  for (const auto& msg : this->_internal_usage_costs()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  }
+  // double discount = 2 [json_name = "discount"];
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_discount = this->_internal_discount();
+  ::uint64_t raw_discount;
+  memcpy(&raw_discount, &tmp_discount, sizeof(tmp_discount));
+  if (raw_discount != 0) {
+    total_size += 9;
+  }
+
+  // double total_with_discount = 3 [json_name = "totalWithDiscount"];
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_total_with_discount = this->_internal_total_with_discount();
+  ::uint64_t raw_total_with_discount;
+  memcpy(&raw_total_with_discount, &tmp_total_with_discount, sizeof(tmp_total_with_discount));
+  if (raw_total_with_discount != 0) {
+    total_size += 9;
+  }
+
+  // double total_without_discount = 4 [json_name = "totalWithoutDiscount"];
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_total_without_discount = this->_internal_total_without_discount();
+  ::uint64_t raw_total_without_discount;
+  memcpy(&raw_total_without_discount, &tmp_total_without_discount, sizeof(tmp_total_without_discount));
+  if (raw_total_without_discount != 0) {
+    total_size += 9;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ResourceUsageCosts::_class_data_ = {
+    ResourceUsageCosts::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* ResourceUsageCosts::GetClassData() const {
+  return &_class_data_;
+}
+
+void ResourceUsageCosts::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ResourceUsageCosts*>(&to_msg);
+  auto& from = static_cast<const ResourceUsageCosts&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.ResourceUsageCosts)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_usage_costs()->MergeFrom(
+      from._internal_usage_costs());
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_discount = from._internal_discount();
+  ::uint64_t raw_discount;
+  memcpy(&raw_discount, &tmp_discount, sizeof(tmp_discount));
+  if (raw_discount != 0) {
+    _this->_internal_set_discount(from._internal_discount());
+  }
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_total_with_discount = from._internal_total_with_discount();
+  ::uint64_t raw_total_with_discount;
+  memcpy(&raw_total_with_discount, &tmp_total_with_discount, sizeof(tmp_total_with_discount));
+  if (raw_total_with_discount != 0) {
+    _this->_internal_set_total_with_discount(from._internal_total_with_discount());
+  }
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_total_without_discount = from._internal_total_without_discount();
+  ::uint64_t raw_total_without_discount;
+  memcpy(&raw_total_without_discount, &tmp_total_without_discount, sizeof(tmp_total_without_discount));
+  if (raw_total_without_discount != 0) {
+    _this->_internal_set_total_without_discount(from._internal_total_without_discount());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ResourceUsageCosts::CopyFrom(const ResourceUsageCosts& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.ResourceUsageCosts)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ResourceUsageCosts::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* ResourceUsageCosts::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void ResourceUsageCosts::InternalSwap(ResourceUsageCosts* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.usage_costs_.InternalSwap(&other->_impl_.usage_costs_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ResourceUsageCosts, _impl_.total_without_discount_)
+      + sizeof(ResourceUsageCosts::_impl_.total_without_discount_)
+      - PROTOBUF_FIELD_OFFSET(ResourceUsageCosts, _impl_.discount_)>(
+          reinterpret_cast<char*>(&_impl_.discount_),
+          reinterpret_cast<char*>(&other->_impl_.discount_));
+}
+
+::google::protobuf::Metadata ResourceUsageCosts::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
+      file_level_metadata_app_2fv1_2fbilling_2eproto[5]);
 }
 // ===================================================================
 
@@ -2455,7 +2452,8 @@ inline PROTOBUF_NDEBUG_INLINE GetCurrentMonthUsageResponse::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
       : _has_bits_{from._has_bits_},
-        _cached_size_{0} {}
+        _cached_size_{0},
+        resource_usage_costs_by_source_{visibility, arena, from.resource_usage_costs_by_source_} {}
 
 GetCurrentMonthUsageResponse::GetCurrentMonthUsageResponse(
     ::google::protobuf::Arena* arena,
@@ -2477,25 +2475,26 @@ GetCurrentMonthUsageResponse::GetCurrentMonthUsageResponse(
                offsetof(Impl_, cloud_storage_usage_cost_),
            reinterpret_cast<const char *>(&from._impl_) +
                offsetof(Impl_, cloud_storage_usage_cost_),
-           offsetof(Impl_, other_cloud_storage_usage_cost_) -
+           offsetof(Impl_, subtotal_) -
                offsetof(Impl_, cloud_storage_usage_cost_) +
-               sizeof(Impl_::other_cloud_storage_usage_cost_));
+               sizeof(Impl_::subtotal_));
 
   // @@protoc_insertion_point(copy_constructor:viam.app.v1.GetCurrentMonthUsageResponse)
 }
 inline PROTOBUF_NDEBUG_INLINE GetCurrentMonthUsageResponse::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : _cached_size_{0} {}
+      : _cached_size_{0},
+        resource_usage_costs_by_source_{visibility, arena} {}
 
 inline void GetCurrentMonthUsageResponse::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char *>(&_impl_) +
                offsetof(Impl_, start_date_),
            0,
-           offsetof(Impl_, other_cloud_storage_usage_cost_) -
+           offsetof(Impl_, subtotal_) -
                offsetof(Impl_, start_date_) +
-               sizeof(Impl_::other_cloud_storage_usage_cost_));
+               sizeof(Impl_::subtotal_));
 }
 GetCurrentMonthUsageResponse::~GetCurrentMonthUsageResponse() {
   // @@protoc_insertion_point(destructor:viam.app.v1.GetCurrentMonthUsageResponse)
@@ -2516,6 +2515,7 @@ PROTOBUF_NOINLINE void GetCurrentMonthUsageResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  _impl_.resource_usage_costs_by_source_.Clear();
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000003u) {
     if (cached_has_bits & 0x00000001u) {
@@ -2528,8 +2528,8 @@ PROTOBUF_NOINLINE void GetCurrentMonthUsageResponse::Clear() {
     }
   }
   ::memset(&_impl_.cloud_storage_usage_cost_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.other_cloud_storage_usage_cost_) -
-      reinterpret_cast<char*>(&_impl_.cloud_storage_usage_cost_)) + sizeof(_impl_.other_cloud_storage_usage_cost_));
+      reinterpret_cast<char*>(&_impl_.subtotal_) -
+      reinterpret_cast<char*>(&_impl_.cloud_storage_usage_cost_)) + sizeof(_impl_.subtotal_));
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -2542,16 +2542,16 @@ const char* GetCurrentMonthUsageResponse::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_ = {
+const ::_pbi::TcParseTable<4, 15, 3, 0, 2> GetCurrentMonthUsageResponse::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_._has_bits_),
     0, // no _extensions_
-    13, 120,  // max_field_number, fast_idx_mask
+    15, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294959104,  // skipmap
+    4294934528,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    13,  // num_field_entries
-    2,  // num_aux_entries
+    15,  // num_field_entries
+    3,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_GetCurrentMonthUsageResponse_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
@@ -2563,41 +2563,45 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
     // .google.protobuf.Timestamp end_date = 2 [json_name = "endDate"];
     {::_pbi::TcParser::FastMtS1,
      {18, 1, 1, PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.end_date_)}},
-    // double cloud_storage_usage_cost = 3 [json_name = "cloudStorageUsageCost"];
+    // double cloud_storage_usage_cost = 3 [json_name = "cloudStorageUsageCost", deprecated = true];
     {::_pbi::TcParser::FastF64S1,
      {25, 63, 0, PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.cloud_storage_usage_cost_)}},
-    // double data_upload_usage_cost = 4 [json_name = "dataUploadUsageCost"];
+    // double data_upload_usage_cost = 4 [json_name = "dataUploadUsageCost", deprecated = true];
     {::_pbi::TcParser::FastF64S1,
      {33, 63, 0, PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.data_upload_usage_cost_)}},
-    // double data_egres_usage_cost = 5 [json_name = "dataEgresUsageCost"];
+    // double data_egres_usage_cost = 5 [json_name = "dataEgresUsageCost", deprecated = true];
     {::_pbi::TcParser::FastF64S1,
      {41, 63, 0, PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.data_egres_usage_cost_)}},
-    // double remote_control_usage_cost = 6 [json_name = "remoteControlUsageCost"];
+    // double remote_control_usage_cost = 6 [json_name = "remoteControlUsageCost", deprecated = true];
     {::_pbi::TcParser::FastF64S1,
      {49, 63, 0, PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.remote_control_usage_cost_)}},
-    // double standard_compute_usage_cost = 7 [json_name = "standardComputeUsageCost"];
+    // double standard_compute_usage_cost = 7 [json_name = "standardComputeUsageCost", deprecated = true];
     {::_pbi::TcParser::FastF64S1,
      {57, 63, 0, PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.standard_compute_usage_cost_)}},
-    // double discount_amount = 8 [json_name = "discountAmount"];
+    // double discount_amount = 8 [json_name = "discountAmount", deprecated = true];
     {::_pbi::TcParser::FastF64S1,
      {65, 63, 0, PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.discount_amount_)}},
-    // double total_usage_with_discount = 9 [json_name = "totalUsageWithDiscount"];
+    // double total_usage_with_discount = 9 [json_name = "totalUsageWithDiscount", deprecated = true];
     {::_pbi::TcParser::FastF64S1,
      {73, 63, 0, PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.total_usage_with_discount_)}},
-    // double total_usage_without_discount = 10 [json_name = "totalUsageWithoutDiscount"];
+    // double total_usage_without_discount = 10 [json_name = "totalUsageWithoutDiscount", deprecated = true];
     {::_pbi::TcParser::FastF64S1,
      {81, 63, 0, PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.total_usage_without_discount_)}},
-    // double per_machine_usage_cost = 11 [json_name = "perMachineUsageCost"];
+    // double per_machine_usage_cost = 11 [json_name = "perMachineUsageCost", deprecated = true];
     {::_pbi::TcParser::FastF64S1,
      {89, 63, 0, PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.per_machine_usage_cost_)}},
-    // double binary_data_cloud_storage_usage_cost = 12 [json_name = "binaryDataCloudStorageUsageCost"];
+    // double binary_data_cloud_storage_usage_cost = 12 [json_name = "binaryDataCloudStorageUsageCost", deprecated = true];
     {::_pbi::TcParser::FastF64S1,
      {97, 63, 0, PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.binary_data_cloud_storage_usage_cost_)}},
-    // double other_cloud_storage_usage_cost = 13 [json_name = "otherCloudStorageUsageCost"];
+    // double other_cloud_storage_usage_cost = 13 [json_name = "otherCloudStorageUsageCost", deprecated = true];
     {::_pbi::TcParser::FastF64S1,
      {105, 63, 0, PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.other_cloud_storage_usage_cost_)}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
+    // repeated .viam.app.v1.ResourceUsageCostsBySource resource_usage_costs_by_source = 14 [json_name = "resourceUsageCostsBySource"];
+    {::_pbi::TcParser::FastMtR1,
+     {114, 63, 2, PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.resource_usage_costs_by_source_)}},
+    // double subtotal = 15 [json_name = "subtotal"];
+    {::_pbi::TcParser::FastF64S1,
+     {121, 63, 0, PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.subtotal_)}},
   }}, {{
     65535, 65535
   }}, {{
@@ -2607,42 +2611,49 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
     // .google.protobuf.Timestamp end_date = 2 [json_name = "endDate"];
     {PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.end_date_), _Internal::kHasBitsOffset + 1, 1,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // double cloud_storage_usage_cost = 3 [json_name = "cloudStorageUsageCost"];
+    // double cloud_storage_usage_cost = 3 [json_name = "cloudStorageUsageCost", deprecated = true];
     {PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.cloud_storage_usage_cost_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
-    // double data_upload_usage_cost = 4 [json_name = "dataUploadUsageCost"];
+    // double data_upload_usage_cost = 4 [json_name = "dataUploadUsageCost", deprecated = true];
     {PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.data_upload_usage_cost_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
-    // double data_egres_usage_cost = 5 [json_name = "dataEgresUsageCost"];
+    // double data_egres_usage_cost = 5 [json_name = "dataEgresUsageCost", deprecated = true];
     {PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.data_egres_usage_cost_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
-    // double remote_control_usage_cost = 6 [json_name = "remoteControlUsageCost"];
+    // double remote_control_usage_cost = 6 [json_name = "remoteControlUsageCost", deprecated = true];
     {PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.remote_control_usage_cost_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
-    // double standard_compute_usage_cost = 7 [json_name = "standardComputeUsageCost"];
+    // double standard_compute_usage_cost = 7 [json_name = "standardComputeUsageCost", deprecated = true];
     {PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.standard_compute_usage_cost_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
-    // double discount_amount = 8 [json_name = "discountAmount"];
+    // double discount_amount = 8 [json_name = "discountAmount", deprecated = true];
     {PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.discount_amount_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
-    // double total_usage_with_discount = 9 [json_name = "totalUsageWithDiscount"];
+    // double total_usage_with_discount = 9 [json_name = "totalUsageWithDiscount", deprecated = true];
     {PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.total_usage_with_discount_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
-    // double total_usage_without_discount = 10 [json_name = "totalUsageWithoutDiscount"];
+    // double total_usage_without_discount = 10 [json_name = "totalUsageWithoutDiscount", deprecated = true];
     {PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.total_usage_without_discount_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
-    // double per_machine_usage_cost = 11 [json_name = "perMachineUsageCost"];
+    // double per_machine_usage_cost = 11 [json_name = "perMachineUsageCost", deprecated = true];
     {PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.per_machine_usage_cost_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
-    // double binary_data_cloud_storage_usage_cost = 12 [json_name = "binaryDataCloudStorageUsageCost"];
+    // double binary_data_cloud_storage_usage_cost = 12 [json_name = "binaryDataCloudStorageUsageCost", deprecated = true];
     {PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.binary_data_cloud_storage_usage_cost_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
-    // double other_cloud_storage_usage_cost = 13 [json_name = "otherCloudStorageUsageCost"];
+    // double other_cloud_storage_usage_cost = 13 [json_name = "otherCloudStorageUsageCost", deprecated = true];
     {PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.other_cloud_storage_usage_cost_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
+    // repeated .viam.app.v1.ResourceUsageCostsBySource resource_usage_costs_by_source = 14 [json_name = "resourceUsageCostsBySource"];
+    {PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.resource_usage_costs_by_source_), -1, 2,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // double subtotal = 15 [json_name = "subtotal"];
+    {PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.subtotal_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
   }}, {{
     {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
     {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
+    {::_pbi::TcParser::GetTable<::viam::app::v1::ResourceUsageCostsBySource>()},
   }}, {{
   }},
 };
@@ -2669,7 +2680,7 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
         _Internal::end_date(this).GetCachedSize(), target, stream);
   }
 
-  // double cloud_storage_usage_cost = 3 [json_name = "cloudStorageUsageCost"];
+  // double cloud_storage_usage_cost = 3 [json_name = "cloudStorageUsageCost", deprecated = true];
   static_assert(sizeof(::uint64_t) == sizeof(double),
                 "Code assumes ::uint64_t and double are the same size.");
   double tmp_cloud_storage_usage_cost = this->_internal_cloud_storage_usage_cost();
@@ -2681,7 +2692,7 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
         3, this->_internal_cloud_storage_usage_cost(), target);
   }
 
-  // double data_upload_usage_cost = 4 [json_name = "dataUploadUsageCost"];
+  // double data_upload_usage_cost = 4 [json_name = "dataUploadUsageCost", deprecated = true];
   static_assert(sizeof(::uint64_t) == sizeof(double),
                 "Code assumes ::uint64_t and double are the same size.");
   double tmp_data_upload_usage_cost = this->_internal_data_upload_usage_cost();
@@ -2693,7 +2704,7 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
         4, this->_internal_data_upload_usage_cost(), target);
   }
 
-  // double data_egres_usage_cost = 5 [json_name = "dataEgresUsageCost"];
+  // double data_egres_usage_cost = 5 [json_name = "dataEgresUsageCost", deprecated = true];
   static_assert(sizeof(::uint64_t) == sizeof(double),
                 "Code assumes ::uint64_t and double are the same size.");
   double tmp_data_egres_usage_cost = this->_internal_data_egres_usage_cost();
@@ -2705,7 +2716,7 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
         5, this->_internal_data_egres_usage_cost(), target);
   }
 
-  // double remote_control_usage_cost = 6 [json_name = "remoteControlUsageCost"];
+  // double remote_control_usage_cost = 6 [json_name = "remoteControlUsageCost", deprecated = true];
   static_assert(sizeof(::uint64_t) == sizeof(double),
                 "Code assumes ::uint64_t and double are the same size.");
   double tmp_remote_control_usage_cost = this->_internal_remote_control_usage_cost();
@@ -2717,7 +2728,7 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
         6, this->_internal_remote_control_usage_cost(), target);
   }
 
-  // double standard_compute_usage_cost = 7 [json_name = "standardComputeUsageCost"];
+  // double standard_compute_usage_cost = 7 [json_name = "standardComputeUsageCost", deprecated = true];
   static_assert(sizeof(::uint64_t) == sizeof(double),
                 "Code assumes ::uint64_t and double are the same size.");
   double tmp_standard_compute_usage_cost = this->_internal_standard_compute_usage_cost();
@@ -2729,7 +2740,7 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
         7, this->_internal_standard_compute_usage_cost(), target);
   }
 
-  // double discount_amount = 8 [json_name = "discountAmount"];
+  // double discount_amount = 8 [json_name = "discountAmount", deprecated = true];
   static_assert(sizeof(::uint64_t) == sizeof(double),
                 "Code assumes ::uint64_t and double are the same size.");
   double tmp_discount_amount = this->_internal_discount_amount();
@@ -2741,7 +2752,7 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
         8, this->_internal_discount_amount(), target);
   }
 
-  // double total_usage_with_discount = 9 [json_name = "totalUsageWithDiscount"];
+  // double total_usage_with_discount = 9 [json_name = "totalUsageWithDiscount", deprecated = true];
   static_assert(sizeof(::uint64_t) == sizeof(double),
                 "Code assumes ::uint64_t and double are the same size.");
   double tmp_total_usage_with_discount = this->_internal_total_usage_with_discount();
@@ -2753,7 +2764,7 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
         9, this->_internal_total_usage_with_discount(), target);
   }
 
-  // double total_usage_without_discount = 10 [json_name = "totalUsageWithoutDiscount"];
+  // double total_usage_without_discount = 10 [json_name = "totalUsageWithoutDiscount", deprecated = true];
   static_assert(sizeof(::uint64_t) == sizeof(double),
                 "Code assumes ::uint64_t and double are the same size.");
   double tmp_total_usage_without_discount = this->_internal_total_usage_without_discount();
@@ -2765,7 +2776,7 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
         10, this->_internal_total_usage_without_discount(), target);
   }
 
-  // double per_machine_usage_cost = 11 [json_name = "perMachineUsageCost"];
+  // double per_machine_usage_cost = 11 [json_name = "perMachineUsageCost", deprecated = true];
   static_assert(sizeof(::uint64_t) == sizeof(double),
                 "Code assumes ::uint64_t and double are the same size.");
   double tmp_per_machine_usage_cost = this->_internal_per_machine_usage_cost();
@@ -2777,7 +2788,7 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
         11, this->_internal_per_machine_usage_cost(), target);
   }
 
-  // double binary_data_cloud_storage_usage_cost = 12 [json_name = "binaryDataCloudStorageUsageCost"];
+  // double binary_data_cloud_storage_usage_cost = 12 [json_name = "binaryDataCloudStorageUsageCost", deprecated = true];
   static_assert(sizeof(::uint64_t) == sizeof(double),
                 "Code assumes ::uint64_t and double are the same size.");
   double tmp_binary_data_cloud_storage_usage_cost = this->_internal_binary_data_cloud_storage_usage_cost();
@@ -2789,7 +2800,7 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
         12, this->_internal_binary_data_cloud_storage_usage_cost(), target);
   }
 
-  // double other_cloud_storage_usage_cost = 13 [json_name = "otherCloudStorageUsageCost"];
+  // double other_cloud_storage_usage_cost = 13 [json_name = "otherCloudStorageUsageCost", deprecated = true];
   static_assert(sizeof(::uint64_t) == sizeof(double),
                 "Code assumes ::uint64_t and double are the same size.");
   double tmp_other_cloud_storage_usage_cost = this->_internal_other_cloud_storage_usage_cost();
@@ -2799,6 +2810,26 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteDoubleToArray(
         13, this->_internal_other_cloud_storage_usage_cost(), target);
+  }
+
+  // repeated .viam.app.v1.ResourceUsageCostsBySource resource_usage_costs_by_source = 14 [json_name = "resourceUsageCostsBySource"];
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_resource_usage_costs_by_source_size()); i < n; i++) {
+    const auto& repfield = this->_internal_resource_usage_costs_by_source().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
+        InternalWriteMessage(14, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // double subtotal = 15 [json_name = "subtotal"];
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_subtotal = this->_internal_subtotal();
+  ::uint64_t raw_subtotal;
+  memcpy(&raw_subtotal, &tmp_subtotal, sizeof(tmp_subtotal));
+  if (raw_subtotal != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(
+        15, this->_internal_subtotal(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2818,6 +2849,12 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  // repeated .viam.app.v1.ResourceUsageCostsBySource resource_usage_costs_by_source = 14 [json_name = "resourceUsageCostsBySource"];
+  total_size += 1UL * this->_internal_resource_usage_costs_by_source_size();
+  for (const auto& msg : this->_internal_resource_usage_costs_by_source()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  }
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000003u) {
     // .google.protobuf.Timestamp start_date = 1 [json_name = "startDate"];
@@ -2833,7 +2870,7 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
     }
 
   }
-  // double cloud_storage_usage_cost = 3 [json_name = "cloudStorageUsageCost"];
+  // double cloud_storage_usage_cost = 3 [json_name = "cloudStorageUsageCost", deprecated = true];
   static_assert(sizeof(::uint64_t) == sizeof(double),
                 "Code assumes ::uint64_t and double are the same size.");
   double tmp_cloud_storage_usage_cost = this->_internal_cloud_storage_usage_cost();
@@ -2843,7 +2880,7 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
     total_size += 9;
   }
 
-  // double data_upload_usage_cost = 4 [json_name = "dataUploadUsageCost"];
+  // double data_upload_usage_cost = 4 [json_name = "dataUploadUsageCost", deprecated = true];
   static_assert(sizeof(::uint64_t) == sizeof(double),
                 "Code assumes ::uint64_t and double are the same size.");
   double tmp_data_upload_usage_cost = this->_internal_data_upload_usage_cost();
@@ -2853,7 +2890,7 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
     total_size += 9;
   }
 
-  // double data_egres_usage_cost = 5 [json_name = "dataEgresUsageCost"];
+  // double data_egres_usage_cost = 5 [json_name = "dataEgresUsageCost", deprecated = true];
   static_assert(sizeof(::uint64_t) == sizeof(double),
                 "Code assumes ::uint64_t and double are the same size.");
   double tmp_data_egres_usage_cost = this->_internal_data_egres_usage_cost();
@@ -2863,7 +2900,7 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
     total_size += 9;
   }
 
-  // double remote_control_usage_cost = 6 [json_name = "remoteControlUsageCost"];
+  // double remote_control_usage_cost = 6 [json_name = "remoteControlUsageCost", deprecated = true];
   static_assert(sizeof(::uint64_t) == sizeof(double),
                 "Code assumes ::uint64_t and double are the same size.");
   double tmp_remote_control_usage_cost = this->_internal_remote_control_usage_cost();
@@ -2873,7 +2910,7 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
     total_size += 9;
   }
 
-  // double standard_compute_usage_cost = 7 [json_name = "standardComputeUsageCost"];
+  // double standard_compute_usage_cost = 7 [json_name = "standardComputeUsageCost", deprecated = true];
   static_assert(sizeof(::uint64_t) == sizeof(double),
                 "Code assumes ::uint64_t and double are the same size.");
   double tmp_standard_compute_usage_cost = this->_internal_standard_compute_usage_cost();
@@ -2883,7 +2920,7 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
     total_size += 9;
   }
 
-  // double discount_amount = 8 [json_name = "discountAmount"];
+  // double discount_amount = 8 [json_name = "discountAmount", deprecated = true];
   static_assert(sizeof(::uint64_t) == sizeof(double),
                 "Code assumes ::uint64_t and double are the same size.");
   double tmp_discount_amount = this->_internal_discount_amount();
@@ -2893,7 +2930,7 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
     total_size += 9;
   }
 
-  // double total_usage_with_discount = 9 [json_name = "totalUsageWithDiscount"];
+  // double total_usage_with_discount = 9 [json_name = "totalUsageWithDiscount", deprecated = true];
   static_assert(sizeof(::uint64_t) == sizeof(double),
                 "Code assumes ::uint64_t and double are the same size.");
   double tmp_total_usage_with_discount = this->_internal_total_usage_with_discount();
@@ -2903,7 +2940,7 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
     total_size += 9;
   }
 
-  // double total_usage_without_discount = 10 [json_name = "totalUsageWithoutDiscount"];
+  // double total_usage_without_discount = 10 [json_name = "totalUsageWithoutDiscount", deprecated = true];
   static_assert(sizeof(::uint64_t) == sizeof(double),
                 "Code assumes ::uint64_t and double are the same size.");
   double tmp_total_usage_without_discount = this->_internal_total_usage_without_discount();
@@ -2913,7 +2950,7 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
     total_size += 9;
   }
 
-  // double per_machine_usage_cost = 11 [json_name = "perMachineUsageCost"];
+  // double per_machine_usage_cost = 11 [json_name = "perMachineUsageCost", deprecated = true];
   static_assert(sizeof(::uint64_t) == sizeof(double),
                 "Code assumes ::uint64_t and double are the same size.");
   double tmp_per_machine_usage_cost = this->_internal_per_machine_usage_cost();
@@ -2923,7 +2960,7 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
     total_size += 9;
   }
 
-  // double binary_data_cloud_storage_usage_cost = 12 [json_name = "binaryDataCloudStorageUsageCost"];
+  // double binary_data_cloud_storage_usage_cost = 12 [json_name = "binaryDataCloudStorageUsageCost", deprecated = true];
   static_assert(sizeof(::uint64_t) == sizeof(double),
                 "Code assumes ::uint64_t and double are the same size.");
   double tmp_binary_data_cloud_storage_usage_cost = this->_internal_binary_data_cloud_storage_usage_cost();
@@ -2933,13 +2970,23 @@ const ::_pbi::TcParseTable<4, 13, 2, 0, 2> GetCurrentMonthUsageResponse::_table_
     total_size += 9;
   }
 
-  // double other_cloud_storage_usage_cost = 13 [json_name = "otherCloudStorageUsageCost"];
+  // double other_cloud_storage_usage_cost = 13 [json_name = "otherCloudStorageUsageCost", deprecated = true];
   static_assert(sizeof(::uint64_t) == sizeof(double),
                 "Code assumes ::uint64_t and double are the same size.");
   double tmp_other_cloud_storage_usage_cost = this->_internal_other_cloud_storage_usage_cost();
   ::uint64_t raw_other_cloud_storage_usage_cost;
   memcpy(&raw_other_cloud_storage_usage_cost, &tmp_other_cloud_storage_usage_cost, sizeof(tmp_other_cloud_storage_usage_cost));
   if (raw_other_cloud_storage_usage_cost != 0) {
+    total_size += 9;
+  }
+
+  // double subtotal = 15 [json_name = "subtotal"];
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_subtotal = this->_internal_subtotal();
+  ::uint64_t raw_subtotal;
+  memcpy(&raw_subtotal, &tmp_subtotal, sizeof(tmp_subtotal));
+  if (raw_subtotal != 0) {
     total_size += 9;
   }
 
@@ -2962,6 +3009,8 @@ void GetCurrentMonthUsageResponse::MergeImpl(::google::protobuf::Message& to_msg
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  _this->_internal_mutable_resource_usage_costs_by_source()->MergeFrom(
+      from._internal_resource_usage_costs_by_source());
   cached_has_bits = from._impl_._has_bits_[0];
   if (cached_has_bits & 0x00000003u) {
     if (cached_has_bits & 0x00000001u) {
@@ -3061,6 +3110,14 @@ void GetCurrentMonthUsageResponse::MergeImpl(::google::protobuf::Message& to_msg
   if (raw_other_cloud_storage_usage_cost != 0) {
     _this->_internal_set_other_cloud_storage_usage_cost(from._internal_other_cloud_storage_usage_cost());
   }
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_subtotal = from._internal_subtotal();
+  ::uint64_t raw_subtotal;
+  memcpy(&raw_subtotal, &tmp_subtotal, sizeof(tmp_subtotal));
+  if (raw_subtotal != 0) {
+    _this->_internal_set_subtotal(from._internal_subtotal());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -3082,9 +3139,10 @@ void GetCurrentMonthUsageResponse::InternalSwap(GetCurrentMonthUsageResponse* PR
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.resource_usage_costs_by_source_.InternalSwap(&other->_impl_.resource_usage_costs_by_source_);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.other_cloud_storage_usage_cost_)
-      + sizeof(GetCurrentMonthUsageResponse::_impl_.other_cloud_storage_usage_cost_)
+      PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.subtotal_)
+      + sizeof(GetCurrentMonthUsageResponse::_impl_.subtotal_)
       - PROTOBUF_FIELD_OFFSET(GetCurrentMonthUsageResponse, _impl_.start_date_)>(
           reinterpret_cast<char*>(&_impl_.start_date_),
           reinterpret_cast<char*>(&other->_impl_.start_date_));
@@ -3093,7 +3151,7 @@ void GetCurrentMonthUsageResponse::InternalSwap(GetCurrentMonthUsageResponse* PR
 ::google::protobuf::Metadata GetCurrentMonthUsageResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[5]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[6]);
 }
 // ===================================================================
 
@@ -3283,7 +3341,7 @@ void GetOrgBillingInformationRequest::InternalSwap(GetOrgBillingInformationReque
 ::google::protobuf::Metadata GetOrgBillingInformationRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[6]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[7]);
 }
 // ===================================================================
 
@@ -3598,7 +3656,7 @@ void GetOrgBillingInformationResponse::InternalSwap(GetOrgBillingInformationResp
 ::google::protobuf::Metadata GetOrgBillingInformationResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[7]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[8]);
 }
 // ===================================================================
 
@@ -3788,7 +3846,7 @@ void GetInvoicesSummaryRequest::InternalSwap(GetInvoicesSummaryRequest* PROTOBUF
 ::google::protobuf::Metadata GetInvoicesSummaryRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[8]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[9]);
 }
 // ===================================================================
 
@@ -4011,7 +4069,7 @@ void GetInvoicesSummaryResponse::InternalSwap(GetInvoicesSummaryResponse* PROTOB
 ::google::protobuf::Metadata GetInvoicesSummaryResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[9]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[10]);
 }
 // ===================================================================
 
@@ -4230,7 +4288,7 @@ void GetInvoicePdfRequest::InternalSwap(GetInvoicePdfRequest* PROTOBUF_RESTRICT 
 ::google::protobuf::Metadata GetInvoicePdfRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[10]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[11]);
 }
 // ===================================================================
 
@@ -4415,7 +4473,7 @@ void GetInvoicePdfResponse::InternalSwap(GetInvoicePdfResponse* PROTOBUF_RESTRIC
 ::google::protobuf::Metadata GetInvoicePdfResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[11]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[12]);
 }
 // ===================================================================
 
@@ -4634,7 +4692,7 @@ void SendPaymentRequiredEmailRequest::InternalSwap(SendPaymentRequiredEmailReque
 ::google::protobuf::Metadata SendPaymentRequiredEmailRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[12]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[13]);
 }
 // ===================================================================
 
@@ -4669,7 +4727,7 @@ SendPaymentRequiredEmailResponse::SendPaymentRequiredEmailResponse(
 ::google::protobuf::Metadata SendPaymentRequiredEmailResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[13]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[14]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
