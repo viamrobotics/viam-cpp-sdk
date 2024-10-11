@@ -129,14 +129,8 @@ option(VIAMCPPSDK_CLANG_TIDY "Run the clang-tidy linter" OFF)
 
 # The following options are only defined if this project is not being included as a subproject
 if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
-  include(CMakeDependentOption)
-  option(VIAMCPPSDK_BUILD_EXAMPLES "Build the example executables (requires building tests too)" ON)
-
-  # Note that the complex module example requires the testing library and adds its tests to the unit
-  # test suite. Thus you can only disable tests if examples are also disabled.
-  # The call below says don't give the user the option to disable tests unless examples are already
-  # disabled, and default to building the tests in either case.
-  cmake_dependent_option(VIAMCPPSDK_BUILD_TESTS "Build the unit test suite" ON "NOT VIAMCPPSDK_BUILD_EXAMPLES" ON)
+  option(VIAMCPPSDK_BUILD_EXAMPLES "Build the example executables" ON)
+  option(VIAMCPPSDK_BUILD_TESTS "Build the example executables" ON)
 endif()
 
 
