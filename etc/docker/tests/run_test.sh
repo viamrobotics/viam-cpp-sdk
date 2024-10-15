@@ -20,7 +20,7 @@ popd
 
 # Test that example_module builds and runs with the SDK install from above.
 # Check with both CMake and make/pkg-config that we can build the example
-# and have it exit with the expected error message.
+# and have it start listening.
 
 run_module() {
 	./example_module fake-socket-path > module-out-temp.txt &
