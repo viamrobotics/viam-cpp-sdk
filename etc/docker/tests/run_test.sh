@@ -22,13 +22,22 @@ popd
 # Check with both CMake and make/pkg-config that we can build the example
 # and have it exit with the expected error message.
 
+run_module() {
+	./example_module fake-socket-path > module-out-temp.txt &
+	MODULE_PID=$!
+	sleep 2
+	kill ${MODULE_PID}
+	grep 'Module listening' module-out-temp.txt
+	return $?
+}
+
 cd ../src/viam/examples/project
 pushd cmake
 cmake . -G Ninja # Just do an in-source build to save path fiddling
 ninja all
-[ $(./example_module 2>&1 | grep 'main failed with exception:' -c) = 1 ]
+run_module
 popd
 pushd pkg-config
 PKG_CONFIG_PATH=${INSTALL_DIR}/lib/pkgconfig make all
-[ $(./example_module 2>&1 | grep 'main failed with exception:' -c) = 1 ]
+run_module
 popd
