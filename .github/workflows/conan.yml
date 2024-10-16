@@ -72,12 +72,10 @@ jobs:
             platform: linux_aarch64-ubuntu-jammy
             image: ubuntu:22.04
             runs_on: buildjet-8vcpu-ubuntu-2204-arm
-            shared: 0
           - target: x86_64-ubuntu-jammy-gnu
             platform: linux_x86_64-ubuntu-jammy
             image: ubuntu:22.04
             runs_on: buildjet-8vcpu-ubuntu-2204
-            shared: [0, 1]
 
     steps:
       - name: Checkout Code
@@ -113,18 +111,10 @@ jobs:
           pip install conan
 
       - name: Create package
-        if: ${{ matrix.shared }} == 1
         shell: bash
         run: |
           conan profile detect
           conan create . --build=missing -s compiler.cppstd=14
-
-      - name: Create package
-        if: ${{ matrix.shared }} == 0
-        shell: bash
-        run: |
-          conan profile detect
-          conan create . --build=missing -s compiler.cppstd=14 -o "*:shared=False" -o "&:shared=False"
 
   build_linux_debian:
     if: github.repository_owner == 'viamrobotics'
