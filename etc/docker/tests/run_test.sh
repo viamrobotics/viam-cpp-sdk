@@ -39,7 +39,11 @@ cmake . -G Ninja # Just do an in-source build to save path fiddling
 ninja all
 run_module
 popd
-pushd pkg-config
-PKG_CONFIG_PATH=${INSTALL_DIR}/lib/pkgconfig make all
-run_module
-popd
+
+if [ ${BUILD_SHARED} = "ON" ]
+then
+	pushd pkg-config
+	PKG_CONFIG_PATH=${INSTALL_DIR}/lib/pkgconfig make all
+	run_module
+	popd
+fi
