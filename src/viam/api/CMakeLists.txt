@@ -459,13 +459,6 @@ install(
 # incantation to get CMake to expand the various generator expressions
 # in the "INSTALL" context.
 
-if (NOT BUILD_SHARED_LIBS)
-  # Careful readers will note that pkg-config gets a more correct version of this than CMake does,
-  # because whole-archive is a link property of viamapi itself
-  set(VIAMCPPSDK_VIAM_API_LINK_PREFIX "-Wl,--push-state,--whole-archive")
-  set(VIAMCPPSDK_VIAM_API_LINK_SUFFIX "-Wl,--pop-state")
-endif()
-
 configure_file(
   config/viam-cpp-sdk-libviamapi.pc.in
   config/viam-cpp-sdk-libviamapi.pc
