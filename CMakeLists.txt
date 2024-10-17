@@ -51,7 +51,9 @@ project(viam-cpp-sdk
 #
 # Enabled by default so that we produce a
 # modern SDK, this option can be set to `OFF` to build a static
-# library. Note that this may result in non-functional examples.
+# library.
+# Note that the pkg-config files installed by the project do not work
+# for a static build; please use Conan for more robust pkg-config support.
 #
 option(BUILD_SHARED_LIBS "If enabled, build shared libraries" ON)
 
