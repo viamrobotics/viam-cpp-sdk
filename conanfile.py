@@ -1,6 +1,8 @@
 from conan import ConanFile
 from conan.tools.cmake import CMake, CMakeDeps, CMakeToolchain, cmake_layout
 from conan.tools.files import load
+from conan.tools.apple import is_apple_os
+import os
 import re
 
 class ViamCppSdkRecipe(ConanFile):
@@ -81,9 +83,10 @@ class ViamCppSdkRecipe(ConanFile):
 
     def package_info(self):
         self.cpp_info.components["viam_rust_utils"].libs = ["viam_rust_utils"]
+        
+        self.cpp_info.components["viamsdk"].libs = ["viamsdk"]
 
         for component in ["viamsdk", "viamapi"]:
-           self.cpp_info.components[component].libs = [component]
            self.cpp_info.components[component].set_property("cmake_target_name", "viam-cpp-sdk::{}".format(component))
            self.cpp_info.components[component].set_property("pkg_config_name", "viam-cpp-sdk-lib{}".format(component))
            self.cpp_info.components[component].requires = ["grpc::grpc++", "protobuf::libprotobuf"]
@@ -94,6 +97,18 @@ class ViamCppSdkRecipe(ConanFile):
             self.cpp_info.components["viamsdk"].system_libs.extend(["dl", "rt"])
 
         self.cpp_info.components["viamapi"].includedirs.append("include/viam/api")
+
+        if self.options.shared:
+            self.cpp_info.components["viamapi"].libs = ["viamapi"]
+        else:
+            lib_folder = os.path.join(self.package_folder, "lib")
+            lib_fullpath = os.path.join(lib_folder, "libviamapi.a")
+            if is_apple_os(self):
+                whole_archive = f"-Wl,-force_load,{lib_fullpath}"
+            else:
+                whole_archive = f"-Wl,--push-state,--whole-archive,{lib_fullpath},--pop-state"
+            self.cpp_info.components["viamapi"].exelinkflags.append(whole_archive)
+            self.cpp_info.components["viamapi"].sharedlinkflags.append(whole_archive)
 
         self.cpp_info.components["viamsdk"].requires.extend([
             "viamapi",
