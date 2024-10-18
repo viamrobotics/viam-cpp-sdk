@@ -10,6 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/viamrobotics/canon:amd64
+    strategy:
+      matrix:
+        include:
+          - BUILD_SHARED: ON
+          - BUILD_SHARED: OFF
     steps:
       - uses: actions/checkout@v4
       ###########################################
@@ -18,4 +23,4 @@ jobs:
       - name: build-docker-test
         run: |
           docker build -t cpp . -f etc/docker/tests/Dockerfile.debian.bullseye
-          docker run --rm -i -w /tmp cpp /bin/bash
+          docker run -e BUILD_SHARED=${{ matrix.BUILD_SHARED }} --rm -i -w /tmp cpp /bin/bash
