@@ -34,7 +34,7 @@
 # constrained by the version of CMake available on target systems.
 cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 
-set(CMAKE_PROJECT_VERSION 0.0.12)
+set(CMAKE_PROJECT_VERSION 0.0.13)
 
 # Identify the project.
 project(viam-cpp-sdk
@@ -51,7 +51,9 @@ project(viam-cpp-sdk
 #
 # Enabled by default so that we produce a
 # modern SDK, this option can be set to `OFF` to build a static
-# library. Note that this may result in non-functional examples.
+# library.
+# Note that the pkg-config files installed by the project do not work
+# for a static build; please use Conan for more robust pkg-config support.
 #
 option(BUILD_SHARED_LIBS "If enabled, build shared libraries" ON)
 
@@ -129,14 +131,8 @@ option(VIAMCPPSDK_CLANG_TIDY "Run the clang-tidy linter" OFF)
 
 # The following options are only defined if this project is not being included as a subproject
 if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
-  include(CMakeDependentOption)
-  option(VIAMCPPSDK_BUILD_EXAMPLES "Build the example executables (requires building tests too)" ON)
-
-  # Note that the complex module example requires the testing library and adds its tests to the unit
-  # test suite. Thus you can only disable tests if examples are also disabled.
-  # The call below says don't give the user the option to disable tests unless examples are already
-  # disabled, and default to building the tests in either case.
-  cmake_dependent_option(VIAMCPPSDK_BUILD_TESTS "Build the unit test suite" ON "NOT VIAMCPPSDK_BUILD_EXAMPLES" ON)
+  option(VIAMCPPSDK_BUILD_EXAMPLES "Build the example executables" ON)
+  option(VIAMCPPSDK_BUILD_TESTS "Build the example executables" ON)
 endif()
 
 
