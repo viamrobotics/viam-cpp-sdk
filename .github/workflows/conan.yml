@@ -5,6 +5,10 @@ on:
   schedule:
     - cron: "15 11 * * 1-5"
   workflow_dispatch:
+  pull_request:
+    paths:
+      - conanfile.py
+      - test_package/conanfile.py
 
 jobs:
   prepare:
