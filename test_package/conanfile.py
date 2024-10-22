@@ -2,6 +2,7 @@ import subprocess
 import os
 
 from conan import ConanFile
+from conan.api.output import ConanOutput
 from conan.errors import ConanException
 from conan.tools.cmake import CMake, cmake_layout
 from conan.tools.build import can_run
@@ -39,6 +40,8 @@ class viamCppSdkTest(ConanFile):
                 proc.terminate()
                 out = proc.communicate()[0]
                 pass
+
+            ConanOutput("test package").writeln(out)
 
             if f"Module listening on {sock}" not in out:
                 raise ConanException(f"Simple example failed to start module listening")
