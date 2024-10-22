@@ -1,7 +1,7 @@
 name: Test conan packages
 
 on:
-  # Run weekdays at 11:15pm UTC, and specify below to only run if there's been new commits
+  # Run weekdays at 11:15pm UTC
   schedule:
     - cron: "15 11 * * 1-5"
   workflow_dispatch:
@@ -17,17 +17,6 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-
-      - name: Get new commit count
-        id: new_commit_count
-        shell: bash
-        run: echo "commit_count=$(git log --oneline --since '24 hours ago' | wc -l)" >> $GITHUB_OUTPUT
-
-      - name: Cancelling scheduled build with no new commits
-        uses: andymckay/cancel-action@0.2
-        if: |
-          steps.new_commit_count.outputs.commit_count == '0' &&
-          github.event_name == 'schedule'
 
   build_macos:
     if: github.repository_owner == 'viamrobotics'
