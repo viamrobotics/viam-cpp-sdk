@@ -44,8 +44,8 @@ class ViamCppSdkRecipe(ConanFile):
         self.requires('grpc/[>=1.48.4]', transitive_headers=True, transitive_libs=True)
         self.requires('protobuf/[>=3.17.1]', transitive_headers=True, transitive_libs=True)
 
-        self.requires('xtensor/[>=0.24.3]', transitive_headers=True)
-        self.requires('abseil/[>=20230125.3]', transitive_libs=True)
+        self.requires('xtensor/[>=0.24.3]')
+        self.requires('abseil/[>=20230125.3]')
 
     def build_requirements(self):
         if self.options.offline_proto_generation:
