@@ -1,0 +1,32 @@
+# This Dockerfile is meant to be built on top of an existing image from the base-images directory.
+# Suggested usage, from the SDK root:
+#   docker build -t base/bullseye -f etc/docker/base-images/Dockerfile.debian.bullseye .
+#   docker build --build-arg BASE_TAG=base/bullseye --build-arg GIT_TAG=[...] etc/docker/Dockerfile.sdk-build .
+# You can substitute the bullseye image for whichever you want to use as a base.
+# Note that it is necessary to tag the base image with `-t` and then refer to it using the `BASE_TAG` arg.
+ARG BASE_TAG
+FROM ${BASE_TAG} AS build-sdk
+ENV DEBIAN_FRONTEND=noninteractive
+
+ARG GIT_TAG
+ARG BUILD_TYPE=RelWithDebInfo
+ARG BUILD_SHARED=ON
+ARG BUILD_TESTS=OFF
+ARG BUILD_EXAMPLES=OFF
+
+RUN git clone https://github.com/viamrobotics/viam-cpp-sdk/ -b ${GIT_TAG}
+
+WORKDIR /viam-cpp-sdk
+
+RUN mkdir build && \
+    cd build && \
+    cmake .. -G Ninja \
+    -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
+    -DBUILD_SHARED_LIBS=${BUILD_SHARED} \
+    -DVIAMCPPSDK_OFFLINE_PROTO_GENERATION=ON \
+    -DVIAMCPPSDK_BUILD_TESTS=${BUILD_TESTS} \
+    -DVIAMCPPSDK_BUILD_EXAMPLES=${BUILD_EXAMPLES} 
+
+RUN cmake --build build --target install && \
+    cmake --install build
+
