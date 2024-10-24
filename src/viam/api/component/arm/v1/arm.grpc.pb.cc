@@ -29,6 +29,7 @@ static const char* ArmService_method_names[] = {
   "/viam.component.arm.v1.ArmService/MoveToPosition",
   "/viam.component.arm.v1.ArmService/GetJointPositions",
   "/viam.component.arm.v1.ArmService/MoveToJointPositions",
+  "/viam.component.arm.v1.ArmService/MoveThroughJointPositions",
   "/viam.component.arm.v1.ArmService/Stop",
   "/viam.component.arm.v1.ArmService/IsMoving",
   "/viam.component.arm.v1.ArmService/DoCommand",
@@ -47,11 +48,12 @@ ArmService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel
   , rpcmethod_MoveToPosition_(ArmService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetJointPositions_(ArmService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_MoveToJointPositions_(ArmService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Stop_(ArmService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_IsMoving_(ArmService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DoCommand_(ArmService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetKinematics_(ArmService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetGeometries_(ArmService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MoveThroughJointPositions_(ArmService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Stop_(ArmService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_IsMoving_(ArmService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DoCommand_(ArmService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetKinematics_(ArmService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGeometries_(ArmService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status ArmService::Stub::GetEndPosition(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetEndPositionRequest& request, ::viam::component::arm::v1::GetEndPositionResponse* response) {
@@ -142,6 +144,29 @@ void ArmService::Stub::async::MoveToJointPositions(::grpc::ClientContext* contex
 ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::MoveToJointPositionsResponse>* ArmService::Stub::AsyncMoveToJointPositionsRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToJointPositionsRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncMoveToJointPositionsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status ArmService::Stub::MoveThroughJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest& request, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::arm::v1::MoveThroughJointPositionsRequest, ::viam::component::arm::v1::MoveThroughJointPositionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_MoveThroughJointPositions_, context, request, response);
+}
+
+void ArmService::Stub::async::MoveThroughJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* request, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::arm::v1::MoveThroughJointPositionsRequest, ::viam::component::arm::v1::MoveThroughJointPositionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MoveThroughJointPositions_, context, request, response, std::move(f));
+}
+
+void ArmService::Stub::async::MoveThroughJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* request, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MoveThroughJointPositions_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::MoveThroughJointPositionsResponse>* ArmService::Stub::PrepareAsyncMoveThroughJointPositionsRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::arm::v1::MoveThroughJointPositionsResponse, ::viam::component::arm::v1::MoveThroughJointPositionsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_MoveThroughJointPositions_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::MoveThroughJointPositionsResponse>* ArmService::Stub::AsyncMoveThroughJointPositionsRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncMoveThroughJointPositionsRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -305,6 +330,16 @@ ArmService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       ArmService_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< ArmService::Service, ::viam::component::arm::v1::MoveThroughJointPositionsRequest, ::viam::component::arm::v1::MoveThroughJointPositionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](ArmService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* req,
+             ::viam::component::arm::v1::MoveThroughJointPositionsResponse* resp) {
+               return service->MoveThroughJointPositions(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      ArmService_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< ArmService::Service, ::viam::component::arm::v1::StopRequest, ::viam::component::arm::v1::StopResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](ArmService::Service* service,
              ::grpc::ServerContext* ctx,
@@ -313,7 +348,7 @@ ArmService::Service::Service() {
                return service->Stop(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      ArmService_method_names[5],
+      ArmService_method_names[6],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< ArmService::Service, ::viam::component::arm::v1::IsMovingRequest, ::viam::component::arm::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](ArmService::Service* service,
@@ -323,7 +358,7 @@ ArmService::Service::Service() {
                return service->IsMoving(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      ArmService_method_names[6],
+      ArmService_method_names[7],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< ArmService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](ArmService::Service* service,
@@ -333,7 +368,7 @@ ArmService::Service::Service() {
                return service->DoCommand(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      ArmService_method_names[7],
+      ArmService_method_names[8],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< ArmService::Service, ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](ArmService::Service* service,
@@ -343,7 +378,7 @@ ArmService::Service::Service() {
                return service->GetKinematics(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      ArmService_method_names[8],
+      ArmService_method_names[9],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< ArmService::Service, ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](ArmService::Service* service,
@@ -379,6 +414,13 @@ ArmService::Service::~Service() {
 }
 
 ::grpc::Status ArmService::Service::MoveToJointPositions(::grpc::ServerContext* context, const ::viam::component::arm::v1::MoveToJointPositionsRequest* request, ::viam::component::arm::v1::MoveToJointPositionsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status ArmService::Service::MoveThroughJointPositions(::grpc::ServerContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* request, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response) {
   (void) context;
   (void) request;
   (void) response;

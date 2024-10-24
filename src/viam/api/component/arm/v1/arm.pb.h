@@ -84,6 +84,15 @@ extern IsMovingResponseDefaultTypeInternal _IsMovingResponse_default_instance_;
 class JointPositions;
 struct JointPositionsDefaultTypeInternal;
 extern JointPositionsDefaultTypeInternal _JointPositions_default_instance_;
+class MoveOptions;
+struct MoveOptionsDefaultTypeInternal;
+extern MoveOptionsDefaultTypeInternal _MoveOptions_default_instance_;
+class MoveThroughJointPositionsRequest;
+struct MoveThroughJointPositionsRequestDefaultTypeInternal;
+extern MoveThroughJointPositionsRequestDefaultTypeInternal _MoveThroughJointPositionsRequest_default_instance_;
+class MoveThroughJointPositionsResponse;
+struct MoveThroughJointPositionsResponseDefaultTypeInternal;
+extern MoveThroughJointPositionsResponseDefaultTypeInternal _MoveThroughJointPositionsResponse_default_instance_;
 class MoveToJointPositionsRequest;
 struct MoveToJointPositionsRequestDefaultTypeInternal;
 extern MoveToJointPositionsRequestDefaultTypeInternal _MoveToJointPositionsRequest_default_instance_;
@@ -182,7 +191,7 @@ class StopResponse final :
                &_StopResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    12;
 
   friend void swap(StopResponse& a, StopResponse& b) {
     a.Swap(&b);
@@ -532,6 +541,332 @@ class MoveToJointPositionsResponse final :
   friend struct ::TableStruct_component_2farm_2fv1_2farm_2eproto;
 };// -------------------------------------------------------------------
 
+class MoveThroughJointPositionsResponse final :
+    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.component.arm.v1.MoveThroughJointPositionsResponse) */ {
+ public:
+  inline MoveThroughJointPositionsResponse() : MoveThroughJointPositionsResponse(nullptr) {}
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR MoveThroughJointPositionsResponse(::google::protobuf::internal::ConstantInitialized);
+
+  inline MoveThroughJointPositionsResponse(const MoveThroughJointPositionsResponse& from)
+      : MoveThroughJointPositionsResponse(nullptr, from) {}
+  MoveThroughJointPositionsResponse(MoveThroughJointPositionsResponse&& from) noexcept
+    : MoveThroughJointPositionsResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline MoveThroughJointPositionsResponse& operator=(const MoveThroughJointPositionsResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MoveThroughJointPositionsResponse& operator=(MoveThroughJointPositionsResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MoveThroughJointPositionsResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MoveThroughJointPositionsResponse* internal_default_instance() {
+    return reinterpret_cast<const MoveThroughJointPositionsResponse*>(
+               &_MoveThroughJointPositionsResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  friend void swap(MoveThroughJointPositionsResponse& a, MoveThroughJointPositionsResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MoveThroughJointPositionsResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MoveThroughJointPositionsResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MoveThroughJointPositionsResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MoveThroughJointPositionsResponse>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const MoveThroughJointPositionsResponse& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const MoveThroughJointPositionsResponse& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+  public:
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.component.arm.v1.MoveThroughJointPositionsResponse";
+  }
+  protected:
+  explicit MoveThroughJointPositionsResponse(::google::protobuf::Arena* arena);
+  MoveThroughJointPositionsResponse(::google::protobuf::Arena* arena, const MoveThroughJointPositionsResponse& from);
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.component.arm.v1.MoveThroughJointPositionsResponse)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_component_2farm_2fv1_2farm_2eproto;
+};// -------------------------------------------------------------------
+
+class MoveOptions final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.component.arm.v1.MoveOptions) */ {
+ public:
+  inline MoveOptions() : MoveOptions(nullptr) {}
+  ~MoveOptions() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR MoveOptions(::google::protobuf::internal::ConstantInitialized);
+
+  inline MoveOptions(const MoveOptions& from)
+      : MoveOptions(nullptr, from) {}
+  MoveOptions(MoveOptions&& from) noexcept
+    : MoveOptions() {
+    *this = ::std::move(from);
+  }
+
+  inline MoveOptions& operator=(const MoveOptions& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MoveOptions& operator=(MoveOptions&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MoveOptions& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MoveOptions* internal_default_instance() {
+    return reinterpret_cast<const MoveOptions*>(
+               &_MoveOptions_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    16;
+
+  friend void swap(MoveOptions& a, MoveOptions& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MoveOptions* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MoveOptions* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MoveOptions* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MoveOptions>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const MoveOptions& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const MoveOptions& from) {
+    MoveOptions::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(MoveOptions* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.component.arm.v1.MoveOptions";
+  }
+  protected:
+  explicit MoveOptions(::google::protobuf::Arena* arena);
+  MoveOptions(::google::protobuf::Arena* arena, const MoveOptions& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMaxVelDegsPerSecFieldNumber = 1,
+    kMaxAccDegsPerSec2FieldNumber = 2,
+  };
+  // optional double max_vel_degs_per_sec = 1 [json_name = "maxVelDegsPerSec"];
+  bool has_max_vel_degs_per_sec() const;
+  void clear_max_vel_degs_per_sec() ;
+  double max_vel_degs_per_sec() const;
+  void set_max_vel_degs_per_sec(double value);
+
+  private:
+  double _internal_max_vel_degs_per_sec() const;
+  void _internal_set_max_vel_degs_per_sec(double value);
+
+  public:
+  // optional double max_acc_degs_per_sec2 = 2 [json_name = "maxAccDegsPerSec2"];
+  bool has_max_acc_degs_per_sec2() const;
+  void clear_max_acc_degs_per_sec2() ;
+  double max_acc_degs_per_sec2() const;
+  void set_max_acc_degs_per_sec2(double value);
+
+  private:
+  double _internal_max_acc_degs_per_sec2() const;
+  void _internal_set_max_acc_degs_per_sec2(double value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:viam.component.arm.v1.MoveOptions)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    double max_vel_degs_per_sec_;
+    double max_acc_degs_per_sec2_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_component_2farm_2fv1_2farm_2eproto;
+};// -------------------------------------------------------------------
+
 class JointPositions final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.component.arm.v1.JointPositions) */ {
  public:
@@ -774,7 +1109,7 @@ class IsMovingResponse final :
                &_IsMovingResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    15;
 
   friend void swap(IsMovingResponse& a, IsMovingResponse& b) {
     a.Swap(&b);
@@ -949,7 +1284,7 @@ class IsMovingRequest final :
                &_IsMovingRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    14;
 
   friend void swap(IsMovingRequest& a, IsMovingRequest& b) {
     a.Swap(&b);
@@ -1130,7 +1465,7 @@ class StopRequest final :
                &_StopRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    11;
 
   friend void swap(StopRequest& a, StopRequest& b) {
     a.Swap(&b);
@@ -1329,7 +1664,7 @@ class Status final :
                &_Status_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    13;
 
   friend void swap(Status& a, Status& b) {
     a.Swap(&b);
@@ -1905,6 +2240,242 @@ class MoveToJointPositionsRequest final :
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr name_;
     ::viam::component::arm::v1::JointPositions* positions_;
+    ::google::protobuf::Struct* extra_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_component_2farm_2fv1_2farm_2eproto;
+};// -------------------------------------------------------------------
+
+class MoveThroughJointPositionsRequest final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.component.arm.v1.MoveThroughJointPositionsRequest) */ {
+ public:
+  inline MoveThroughJointPositionsRequest() : MoveThroughJointPositionsRequest(nullptr) {}
+  ~MoveThroughJointPositionsRequest() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR MoveThroughJointPositionsRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline MoveThroughJointPositionsRequest(const MoveThroughJointPositionsRequest& from)
+      : MoveThroughJointPositionsRequest(nullptr, from) {}
+  MoveThroughJointPositionsRequest(MoveThroughJointPositionsRequest&& from) noexcept
+    : MoveThroughJointPositionsRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline MoveThroughJointPositionsRequest& operator=(const MoveThroughJointPositionsRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MoveThroughJointPositionsRequest& operator=(MoveThroughJointPositionsRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MoveThroughJointPositionsRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MoveThroughJointPositionsRequest* internal_default_instance() {
+    return reinterpret_cast<const MoveThroughJointPositionsRequest*>(
+               &_MoveThroughJointPositionsRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(MoveThroughJointPositionsRequest& a, MoveThroughJointPositionsRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MoveThroughJointPositionsRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MoveThroughJointPositionsRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MoveThroughJointPositionsRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MoveThroughJointPositionsRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const MoveThroughJointPositionsRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const MoveThroughJointPositionsRequest& from) {
+    MoveThroughJointPositionsRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(MoveThroughJointPositionsRequest* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.component.arm.v1.MoveThroughJointPositionsRequest";
+  }
+  protected:
+  explicit MoveThroughJointPositionsRequest(::google::protobuf::Arena* arena);
+  MoveThroughJointPositionsRequest(::google::protobuf::Arena* arena, const MoveThroughJointPositionsRequest& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPositionsFieldNumber = 2,
+    kNameFieldNumber = 1,
+    kOptionsFieldNumber = 3,
+    kExtraFieldNumber = 99,
+  };
+  // repeated .viam.component.arm.v1.JointPositions positions = 2 [json_name = "positions"];
+  int positions_size() const;
+  private:
+  int _internal_positions_size() const;
+
+  public:
+  void clear_positions() ;
+  ::viam::component::arm::v1::JointPositions* mutable_positions(int index);
+  ::google::protobuf::RepeatedPtrField< ::viam::component::arm::v1::JointPositions >*
+      mutable_positions();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::viam::component::arm::v1::JointPositions>& _internal_positions() const;
+  ::google::protobuf::RepeatedPtrField<::viam::component::arm::v1::JointPositions>* _internal_mutable_positions();
+  public:
+  const ::viam::component::arm::v1::JointPositions& positions(int index) const;
+  ::viam::component::arm::v1::JointPositions* add_positions();
+  const ::google::protobuf::RepeatedPtrField< ::viam::component::arm::v1::JointPositions >&
+      positions() const;
+  // string name = 1 [json_name = "name"];
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* value);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // optional .viam.component.arm.v1.MoveOptions options = 3 [json_name = "options"];
+  bool has_options() const;
+  void clear_options() ;
+  const ::viam::component::arm::v1::MoveOptions& options() const;
+  PROTOBUF_NODISCARD ::viam::component::arm::v1::MoveOptions* release_options();
+  ::viam::component::arm::v1::MoveOptions* mutable_options();
+  void set_allocated_options(::viam::component::arm::v1::MoveOptions* value);
+  void unsafe_arena_set_allocated_options(::viam::component::arm::v1::MoveOptions* value);
+  ::viam::component::arm::v1::MoveOptions* unsafe_arena_release_options();
+
+  private:
+  const ::viam::component::arm::v1::MoveOptions& _internal_options() const;
+  ::viam::component::arm::v1::MoveOptions* _internal_mutable_options();
+
+  public:
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  void clear_extra() ;
+  const ::google::protobuf::Struct& extra() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Struct* release_extra();
+  ::google::protobuf::Struct* mutable_extra();
+  void set_allocated_extra(::google::protobuf::Struct* value);
+  void unsafe_arena_set_allocated_extra(::google::protobuf::Struct* value);
+  ::google::protobuf::Struct* unsafe_arena_release_extra();
+
+  private:
+  const ::google::protobuf::Struct& _internal_extra() const;
+  ::google::protobuf::Struct* _internal_mutable_extra();
+
+  public:
+  // @@protoc_insertion_point(class_scope:viam.component.arm.v1.MoveThroughJointPositionsRequest)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 4, 3,
+      67, 7>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField< ::viam::component::arm::v1::JointPositions > positions_;
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::viam::component::arm::v1::MoveOptions* options_;
     ::google::protobuf::Struct* extra_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -3717,6 +4288,303 @@ inline void MoveToJointPositionsRequest::set_allocated_extra(::google::protobuf:
 
 // -------------------------------------------------------------------
 
+// MoveThroughJointPositionsRequest
+
+// string name = 1 [json_name = "name"];
+inline void MoveThroughJointPositionsRequest::clear_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& MoveThroughJointPositionsRequest::name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.component.arm.v1.MoveThroughJointPositionsRequest.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void MoveThroughJointPositionsRequest::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.component.arm.v1.MoveThroughJointPositionsRequest.name)
+}
+inline std::string* MoveThroughJointPositionsRequest::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.component.arm.v1.MoveThroughJointPositionsRequest.name)
+  return _s;
+}
+inline const std::string& MoveThroughJointPositionsRequest::_internal_name() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.name_.Get();
+}
+inline void MoveThroughJointPositionsRequest::_internal_set_name(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(value, GetArena());
+}
+inline std::string* MoveThroughJointPositionsRequest::_internal_mutable_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.name_.Mutable( GetArena());
+}
+inline std::string* MoveThroughJointPositionsRequest::release_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.component.arm.v1.MoveThroughJointPositionsRequest.name)
+  return _impl_.name_.Release();
+}
+inline void MoveThroughJointPositionsRequest::set_allocated_name(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.name_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.name_.IsDefault()) {
+          _impl_.name_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.arm.v1.MoveThroughJointPositionsRequest.name)
+}
+
+// repeated .viam.component.arm.v1.JointPositions positions = 2 [json_name = "positions"];
+inline int MoveThroughJointPositionsRequest::_internal_positions_size() const {
+  return _internal_positions().size();
+}
+inline int MoveThroughJointPositionsRequest::positions_size() const {
+  return _internal_positions_size();
+}
+inline void MoveThroughJointPositionsRequest::clear_positions() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.positions_.Clear();
+}
+inline ::viam::component::arm::v1::JointPositions* MoveThroughJointPositionsRequest::mutable_positions(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:viam.component.arm.v1.MoveThroughJointPositionsRequest.positions)
+  return _internal_mutable_positions()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::viam::component::arm::v1::JointPositions>* MoveThroughJointPositionsRequest::mutable_positions()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:viam.component.arm.v1.MoveThroughJointPositionsRequest.positions)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_positions();
+}
+inline const ::viam::component::arm::v1::JointPositions& MoveThroughJointPositionsRequest::positions(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.component.arm.v1.MoveThroughJointPositionsRequest.positions)
+  return _internal_positions().Get(index);
+}
+inline ::viam::component::arm::v1::JointPositions* MoveThroughJointPositionsRequest::add_positions() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::viam::component::arm::v1::JointPositions* _add = _internal_mutable_positions()->Add();
+  // @@protoc_insertion_point(field_add:viam.component.arm.v1.MoveThroughJointPositionsRequest.positions)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::viam::component::arm::v1::JointPositions>& MoveThroughJointPositionsRequest::positions() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:viam.component.arm.v1.MoveThroughJointPositionsRequest.positions)
+  return _internal_positions();
+}
+inline const ::google::protobuf::RepeatedPtrField<::viam::component::arm::v1::JointPositions>&
+MoveThroughJointPositionsRequest::_internal_positions() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.positions_;
+}
+inline ::google::protobuf::RepeatedPtrField<::viam::component::arm::v1::JointPositions>*
+MoveThroughJointPositionsRequest::_internal_mutable_positions() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.positions_;
+}
+
+// optional .viam.component.arm.v1.MoveOptions options = 3 [json_name = "options"];
+inline bool MoveThroughJointPositionsRequest::has_options() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.options_ != nullptr);
+  return value;
+}
+inline void MoveThroughJointPositionsRequest::clear_options() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.options_ != nullptr) _impl_.options_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::viam::component::arm::v1::MoveOptions& MoveThroughJointPositionsRequest::_internal_options() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::viam::component::arm::v1::MoveOptions* p = _impl_.options_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::component::arm::v1::MoveOptions&>(::viam::component::arm::v1::_MoveOptions_default_instance_);
+}
+inline const ::viam::component::arm::v1::MoveOptions& MoveThroughJointPositionsRequest::options() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.component.arm.v1.MoveThroughJointPositionsRequest.options)
+  return _internal_options();
+}
+inline void MoveThroughJointPositionsRequest::unsafe_arena_set_allocated_options(::viam::component::arm::v1::MoveOptions* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.options_);
+  }
+  _impl_.options_ = reinterpret_cast<::viam::component::arm::v1::MoveOptions*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.component.arm.v1.MoveThroughJointPositionsRequest.options)
+}
+inline ::viam::component::arm::v1::MoveOptions* MoveThroughJointPositionsRequest::release_options() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::viam::component::arm::v1::MoveOptions* released = _impl_.options_;
+  _impl_.options_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::viam::component::arm::v1::MoveOptions* MoveThroughJointPositionsRequest::unsafe_arena_release_options() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.component.arm.v1.MoveThroughJointPositionsRequest.options)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::viam::component::arm::v1::MoveOptions* temp = _impl_.options_;
+  _impl_.options_ = nullptr;
+  return temp;
+}
+inline ::viam::component::arm::v1::MoveOptions* MoveThroughJointPositionsRequest::_internal_mutable_options() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.options_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::component::arm::v1::MoveOptions>(GetArena());
+    _impl_.options_ = reinterpret_cast<::viam::component::arm::v1::MoveOptions*>(p);
+  }
+  return _impl_.options_;
+}
+inline ::viam::component::arm::v1::MoveOptions* MoveThroughJointPositionsRequest::mutable_options() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::viam::component::arm::v1::MoveOptions* _msg = _internal_mutable_options();
+  // @@protoc_insertion_point(field_mutable:viam.component.arm.v1.MoveThroughJointPositionsRequest.options)
+  return _msg;
+}
+inline void MoveThroughJointPositionsRequest::set_allocated_options(::viam::component::arm::v1::MoveOptions* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::viam::component::arm::v1::MoveOptions*>(_impl_.options_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::viam::component::arm::v1::MoveOptions*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.options_ = reinterpret_cast<::viam::component::arm::v1::MoveOptions*>(value);
+  // @@protoc_insertion_point(field_set_allocated:viam.component.arm.v1.MoveThroughJointPositionsRequest.options)
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool MoveThroughJointPositionsRequest::has_extra() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.extra_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Struct& MoveThroughJointPositionsRequest::_internal_extra() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::google::protobuf::Struct* p = _impl_.extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Struct&>(::google::protobuf::_Struct_default_instance_);
+}
+inline const ::google::protobuf::Struct& MoveThroughJointPositionsRequest::extra() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.component.arm.v1.MoveThroughJointPositionsRequest.extra)
+  return _internal_extra();
+}
+inline void MoveThroughJointPositionsRequest::unsafe_arena_set_allocated_extra(::google::protobuf::Struct* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.extra_);
+  }
+  _impl_.extra_ = reinterpret_cast<::google::protobuf::Struct*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.component.arm.v1.MoveThroughJointPositionsRequest.extra)
+}
+inline ::google::protobuf::Struct* MoveThroughJointPositionsRequest::release_extra() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::google::protobuf::Struct* released = _impl_.extra_;
+  _impl_.extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::google::protobuf::Struct* MoveThroughJointPositionsRequest::unsafe_arena_release_extra() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.component.arm.v1.MoveThroughJointPositionsRequest.extra)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::google::protobuf::Struct* temp = _impl_.extra_;
+  _impl_.extra_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Struct* MoveThroughJointPositionsRequest::_internal_mutable_extra() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  if (_impl_.extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::google::protobuf::Struct>(GetArena());
+    _impl_.extra_ = reinterpret_cast<::google::protobuf::Struct*>(p);
+  }
+  return _impl_.extra_;
+}
+inline ::google::protobuf::Struct* MoveThroughJointPositionsRequest::mutable_extra() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.component.arm.v1.MoveThroughJointPositionsRequest.extra)
+  return _msg;
+}
+inline void MoveThroughJointPositionsRequest::set_allocated_extra(::google::protobuf::Struct* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.extra_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.extra_ = reinterpret_cast<::google::protobuf::Struct*>(value);
+  // @@protoc_insertion_point(field_set_allocated:viam.component.arm.v1.MoveThroughJointPositionsRequest.extra)
+}
+
+// -------------------------------------------------------------------
+
+// MoveThroughJointPositionsResponse
+
+// -------------------------------------------------------------------
+
 // StopRequest
 
 // string name = 1 [json_name = "name"];
@@ -4163,6 +5031,66 @@ inline void IsMovingResponse::_internal_set_is_moving(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.is_moving_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// MoveOptions
+
+// optional double max_vel_degs_per_sec = 1 [json_name = "maxVelDegsPerSec"];
+inline bool MoveOptions::has_max_vel_degs_per_sec() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline void MoveOptions::clear_max_vel_degs_per_sec() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.max_vel_degs_per_sec_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline double MoveOptions::max_vel_degs_per_sec() const {
+  // @@protoc_insertion_point(field_get:viam.component.arm.v1.MoveOptions.max_vel_degs_per_sec)
+  return _internal_max_vel_degs_per_sec();
+}
+inline void MoveOptions::set_max_vel_degs_per_sec(double value) {
+  _internal_set_max_vel_degs_per_sec(value);
+  // @@protoc_insertion_point(field_set:viam.component.arm.v1.MoveOptions.max_vel_degs_per_sec)
+}
+inline double MoveOptions::_internal_max_vel_degs_per_sec() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.max_vel_degs_per_sec_;
+}
+inline void MoveOptions::_internal_set_max_vel_degs_per_sec(double value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.max_vel_degs_per_sec_ = value;
+}
+
+// optional double max_acc_degs_per_sec2 = 2 [json_name = "maxAccDegsPerSec2"];
+inline bool MoveOptions::has_max_acc_degs_per_sec2() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline void MoveOptions::clear_max_acc_degs_per_sec2() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.max_acc_degs_per_sec2_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline double MoveOptions::max_acc_degs_per_sec2() const {
+  // @@protoc_insertion_point(field_get:viam.component.arm.v1.MoveOptions.max_acc_degs_per_sec2)
+  return _internal_max_acc_degs_per_sec2();
+}
+inline void MoveOptions::set_max_acc_degs_per_sec2(double value) {
+  _internal_set_max_acc_degs_per_sec2(value);
+  // @@protoc_insertion_point(field_set:viam.component.arm.v1.MoveOptions.max_acc_degs_per_sec2)
+}
+inline double MoveOptions::_internal_max_acc_degs_per_sec2() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.max_acc_degs_per_sec2_;
+}
+inline void MoveOptions::_internal_set_max_acc_degs_per_sec2(double value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.max_acc_degs_per_sec2_ = value;
 }
 
 #ifdef __GNUC__

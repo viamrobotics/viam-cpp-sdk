@@ -23,6 +23,25 @@ namespace _fl = ::google::protobuf::internal::field_layout;
 namespace google {
 namespace api {
 
+inline constexpr SelectiveGapicGeneration::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : methods_{},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SelectiveGapicGeneration::SelectiveGapicGeneration(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct SelectiveGapicGenerationDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SelectiveGapicGenerationDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SelectiveGapicGenerationDefaultTypeInternal() {}
+  union {
+    SelectiveGapicGeneration _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SelectiveGapicGenerationDefaultTypeInternal _SelectiveGapicGeneration_default_instance_;
+
 inline constexpr PythonSettings_ExperimentalFeatures::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : rest_async_io_enabled_{false},
@@ -78,14 +97,37 @@ struct DotnetSettings_RenamedResourcesEntry_DoNotUseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DotnetSettings_RenamedResourcesEntry_DoNotUseDefaultTypeInternal _DotnetSettings_RenamedResourcesEntry_DoNotUse_default_instance_;
 
+inline constexpr MethodSettings_LongRunning::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        initial_poll_delay_{nullptr},
+        max_poll_delay_{nullptr},
+        total_poll_timeout_{nullptr},
+        poll_delay_multiplier_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR MethodSettings_LongRunning::MethodSettings_LongRunning(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct MethodSettings_LongRunningDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MethodSettings_LongRunningDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MethodSettings_LongRunningDefaultTypeInternal() {}
+  union {
+    MethodSettings_LongRunning _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MethodSettings_LongRunningDefaultTypeInternal _MethodSettings_LongRunning_default_instance_;
+
 inline constexpr CommonLanguageSettings::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : destinations_{},
+      : _cached_size_{0},
+        destinations_{},
         _destinations_cached_byte_size_{0},
         reference_docs_uri_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        _cached_size_{0} {}
+        selective_gapic_generation_{nullptr} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR CommonLanguageSettings::CommonLanguageSettings(::_pbi::ConstantInitialized)
@@ -178,27 +220,28 @@ struct NodeSettingsDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NodeSettingsDefaultTypeInternal _NodeSettings_default_instance_;
 
-inline constexpr MethodSettings_LongRunning::Impl_::Impl_(
+inline constexpr MethodSettings::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        initial_poll_delay_{nullptr},
-        max_poll_delay_{nullptr},
-        total_poll_timeout_{nullptr},
-        poll_delay_multiplier_{0} {}
+        auto_populated_fields_{},
+        selector_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        long_running_{nullptr} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR MethodSettings_LongRunning::MethodSettings_LongRunning(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR MethodSettings::MethodSettings(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct MethodSettings_LongRunningDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR MethodSettings_LongRunningDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~MethodSettings_LongRunningDefaultTypeInternal() {}
+struct MethodSettingsDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MethodSettingsDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MethodSettingsDefaultTypeInternal() {}
   union {
-    MethodSettings_LongRunning _instance;
+    MethodSettings _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MethodSettings_LongRunningDefaultTypeInternal _MethodSettings_LongRunning_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MethodSettingsDefaultTypeInternal _MethodSettings_default_instance_;
 
 inline constexpr JavaSettings::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -285,29 +328,6 @@ struct CppSettingsDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CppSettingsDefaultTypeInternal _CppSettings_default_instance_;
 
-inline constexpr MethodSettings::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        auto_populated_fields_{},
-        selector_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        long_running_{nullptr} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR MethodSettings::MethodSettings(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct MethodSettingsDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR MethodSettingsDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~MethodSettingsDefaultTypeInternal() {}
-  union {
-    MethodSettings _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MethodSettingsDefaultTypeInternal _MethodSettings_default_instance_;
-
 inline constexpr ClientLibrarySettings::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -383,13 +403,13 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PublishingDefaultTypeInternal _Publishing_default_instance_;
 }  // namespace api
 }  // namespace google
-static ::_pb::Metadata file_level_metadata_google_2fapi_2fclient_2eproto[17];
+static ::_pb::Metadata file_level_metadata_google_2fapi_2fclient_2eproto[18];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_google_2fapi_2fclient_2eproto[2];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_google_2fapi_2fclient_2eproto = nullptr;
 const ::uint32_t TableStruct_google_2fapi_2fclient_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
     protodesc_cold) = {
-    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::google::api::CommonLanguageSettings, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::google::api::CommonLanguageSettings, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
@@ -399,6 +419,10 @@ const ::uint32_t TableStruct_google_2fapi_2fclient_2eproto::offsets[] PROTOBUF_S
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::google::api::CommonLanguageSettings, _impl_.reference_docs_uri_),
     PROTOBUF_FIELD_OFFSET(::google::api::CommonLanguageSettings, _impl_.destinations_),
+    PROTOBUF_FIELD_OFFSET(::google::api::CommonLanguageSettings, _impl_.selective_gapic_generation_),
+    ~0u,
+    ~0u,
+    0,
     PROTOBUF_FIELD_OFFSET(::google::api::ClientLibrarySettings, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::google::api::ClientLibrarySettings, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -619,27 +643,37 @@ const ::uint32_t TableStruct_google_2fapi_2fclient_2eproto::offsets[] PROTOBUF_S
     ~0u,
     0,
     ~0u,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::google::api::SelectiveGapicGeneration, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::google::api::SelectiveGapicGeneration, _impl_.methods_),
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-        {0, -1, -1, sizeof(::google::api::CommonLanguageSettings)},
-        {10, 29, -1, sizeof(::google::api::ClientLibrarySettings)},
-        {40, -1, -1, sizeof(::google::api::Publishing)},
-        {59, 69, -1, sizeof(::google::api::JavaSettings_ServiceClassNamesEntry_DoNotUse)},
-        {71, 82, -1, sizeof(::google::api::JavaSettings)},
-        {85, 94, -1, sizeof(::google::api::CppSettings)},
-        {95, 104, -1, sizeof(::google::api::PhpSettings)},
-        {105, -1, -1, sizeof(::google::api::PythonSettings_ExperimentalFeatures)},
-        {114, 124, -1, sizeof(::google::api::PythonSettings)},
-        {126, 135, -1, sizeof(::google::api::NodeSettings)},
-        {136, 146, -1, sizeof(::google::api::DotnetSettings_RenamedServicesEntry_DoNotUse)},
-        {148, 158, -1, sizeof(::google::api::DotnetSettings_RenamedResourcesEntry_DoNotUse)},
-        {160, 174, -1, sizeof(::google::api::DotnetSettings)},
-        {180, 189, -1, sizeof(::google::api::RubySettings)},
-        {190, 199, -1, sizeof(::google::api::GoSettings)},
-        {200, 212, -1, sizeof(::google::api::MethodSettings_LongRunning)},
-        {216, 227, -1, sizeof(::google::api::MethodSettings)},
+        {0, 11, -1, sizeof(::google::api::CommonLanguageSettings)},
+        {14, 33, -1, sizeof(::google::api::ClientLibrarySettings)},
+        {44, -1, -1, sizeof(::google::api::Publishing)},
+        {63, 73, -1, sizeof(::google::api::JavaSettings_ServiceClassNamesEntry_DoNotUse)},
+        {75, 86, -1, sizeof(::google::api::JavaSettings)},
+        {89, 98, -1, sizeof(::google::api::CppSettings)},
+        {99, 108, -1, sizeof(::google::api::PhpSettings)},
+        {109, -1, -1, sizeof(::google::api::PythonSettings_ExperimentalFeatures)},
+        {118, 128, -1, sizeof(::google::api::PythonSettings)},
+        {130, 139, -1, sizeof(::google::api::NodeSettings)},
+        {140, 150, -1, sizeof(::google::api::DotnetSettings_RenamedServicesEntry_DoNotUse)},
+        {152, 162, -1, sizeof(::google::api::DotnetSettings_RenamedResourcesEntry_DoNotUse)},
+        {164, 178, -1, sizeof(::google::api::DotnetSettings)},
+        {184, 193, -1, sizeof(::google::api::RubySettings)},
+        {194, 203, -1, sizeof(::google::api::GoSettings)},
+        {204, 216, -1, sizeof(::google::api::MethodSettings_LongRunning)},
+        {220, 231, -1, sizeof(::google::api::MethodSettings)},
+        {234, -1, -1, sizeof(::google::api::SelectiveGapicGeneration)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -660,115 +694,119 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::google::api::_GoSettings_default_instance_._instance,
     &::google::api::_MethodSettings_LongRunning_default_instance_._instance,
     &::google::api::_MethodSettings_default_instance_._instance,
+    &::google::api::_SelectiveGapicGeneration_default_instance_._instance,
 };
 const char descriptor_table_protodef_google_2fapi_2fclient_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\027google/api/client.proto\022\ngoogle.api\032\035g"
     "oogle/api/launch_stage.proto\032 google/pro"
     "tobuf/descriptor.proto\032\036google/protobuf/"
-    "duration.proto\"\224\001\n\026CommonLanguageSetting"
+    "duration.proto\"\370\001\n\026CommonLanguageSetting"
     "s\0220\n\022reference_docs_uri\030\001 \001(\tB\002\030\001R\020refer"
     "enceDocsUri\022H\n\014destinations\030\002 \003(\0162$.goog"
     "le.api.ClientLibraryDestinationR\014destina"
-    "tions\"\223\005\n\025ClientLibrarySettings\022\030\n\007versi"
-    "on\030\001 \001(\tR\007version\022:\n\014launch_stage\030\002 \001(\0162"
-    "\027.google.api.LaunchStageR\013launchStage\022,\n"
-    "\022rest_numeric_enums\030\003 \001(\010R\020restNumericEn"
-    "ums\022=\n\rjava_settings\030\025 \001(\0132\030.google.api."
-    "JavaSettingsR\014javaSettings\022:\n\014cpp_settin"
-    "gs\030\026 \001(\0132\027.google.api.CppSettingsR\013cppSe"
-    "ttings\022:\n\014php_settings\030\027 \001(\0132\027.google.ap"
-    "i.PhpSettingsR\013phpSettings\022C\n\017python_set"
-    "tings\030\030 \001(\0132\032.google.api.PythonSettingsR"
-    "\016pythonSettings\022=\n\rnode_settings\030\031 \001(\0132\030"
-    ".google.api.NodeSettingsR\014nodeSettings\022C"
-    "\n\017dotnet_settings\030\032 \001(\0132\032.google.api.Dot"
-    "netSettingsR\016dotnetSettings\022=\n\rruby_sett"
-    "ings\030\033 \001(\0132\030.google.api.RubySettingsR\014ru"
-    "bySettings\0227\n\013go_settings\030\034 \001(\0132\026.google"
-    ".api.GoSettingsR\ngoSettings\"\364\004\n\nPublishi"
-    "ng\022C\n\017method_settings\030\002 \003(\0132\032.google.api"
-    ".MethodSettingsR\016methodSettings\022\"\n\rnew_i"
-    "ssue_uri\030e \001(\tR\013newIssueUri\022+\n\021documenta"
-    "tion_uri\030f \001(\tR\020documentationUri\022$\n\016api_"
-    "short_name\030g \001(\tR\014apiShortName\022!\n\014github"
-    "_label\030h \001(\tR\013githubLabel\0224\n\026codeowner_g"
-    "ithub_teams\030i \003(\tR\024codeownerGithubTeams\022"
-    "$\n\016doc_tag_prefix\030j \001(\tR\014docTagPrefix\022I\n"
-    "\014organization\030k \001(\0162%.google.api.ClientL"
-    "ibraryOrganizationR\014organization\022L\n\020libr"
-    "ary_settings\030m \003(\0132!.google.api.ClientLi"
-    "brarySettingsR\017librarySettings\022I\n!proto_"
-    "reference_documentation_uri\030n \001(\tR\036proto"
-    "ReferenceDocumentationUri\022G\n rest_refere"
-    "nce_documentation_uri\030o \001(\tR\035restReferen"
-    "ceDocumentationUri\"\232\002\n\014JavaSettings\022\'\n\017l"
-    "ibrary_package\030\001 \001(\tR\016libraryPackage\022_\n\023"
-    "service_class_names\030\002 \003(\0132/.google.api.J"
-    "avaSettings.ServiceClassNamesEntryR\021serv"
-    "iceClassNames\022:\n\006common\030\003 \001(\0132\".google.a"
-    "pi.CommonLanguageSettingsR\006common\032D\n\026Ser"
-    "viceClassNamesEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n"
-    "\005value\030\002 \001(\tR\005value:\0028\001\"I\n\013CppSettings\022:"
-    "\n\006common\030\001 \001(\0132\".google.api.CommonLangua"
-    "geSettingsR\006common\"I\n\013PhpSettings\022:\n\006com"
-    "mon\030\001 \001(\0132\".google.api.CommonLanguageSet"
-    "tingsR\006common\"\375\001\n\016PythonSettings\022:\n\006comm"
-    "on\030\001 \001(\0132\".google.api.CommonLanguageSett"
-    "ingsR\006common\022d\n\025experimental_features\030\002 "
-    "\001(\0132/.google.api.PythonSettings.Experime"
-    "ntalFeaturesR\024experimentalFeatures\032I\n\024Ex"
-    "perimentalFeatures\0221\n\025rest_async_io_enab"
-    "led\030\001 \001(\010R\022restAsyncIoEnabled\"J\n\014NodeSet"
-    "tings\022:\n\006common\030\001 \001(\0132\".google.api.Commo"
-    "nLanguageSettingsR\006common\"\256\004\n\016DotnetSett"
-    "ings\022:\n\006common\030\001 \001(\0132\".google.api.Common"
-    "LanguageSettingsR\006common\022Z\n\020renamed_serv"
-    "ices\030\002 \003(\0132/.google.api.DotnetSettings.R"
-    "enamedServicesEntryR\017renamedServices\022]\n\021"
-    "renamed_resources\030\003 \003(\01320.google.api.Dot"
-    "netSettings.RenamedResourcesEntryR\020renam"
-    "edResources\022+\n\021ignored_resources\030\004 \003(\tR\020"
-    "ignoredResources\0228\n\030forced_namespace_ali"
-    "ases\030\005 \003(\tR\026forcedNamespaceAliases\0225\n\026ha"
-    "ndwritten_signatures\030\006 \003(\tR\025handwrittenS"
-    "ignatures\032B\n\024RenamedServicesEntry\022\020\n\003key"
-    "\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\032C\n"
-    "\025RenamedResourcesEntry\022\020\n\003key\030\001 \001(\tR\003key"
-    "\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\"J\n\014RubySettin"
-    "gs\022:\n\006common\030\001 \001(\0132\".google.api.CommonLa"
-    "nguageSettingsR\006common\"H\n\nGoSettings\022:\n\006"
-    "common\030\001 \001(\0132\".google.api.CommonLanguage"
-    "SettingsR\006common\"\302\003\n\016MethodSettings\022\032\n\010s"
-    "elector\030\001 \001(\tR\010selector\022I\n\014long_running\030"
-    "\002 \001(\0132&.google.api.MethodSettings.LongRu"
-    "nningR\013longRunning\0222\n\025auto_populated_fie"
-    "lds\030\003 \003(\tR\023autoPopulatedFields\032\224\002\n\013LongR"
-    "unning\022G\n\022initial_poll_delay\030\001 \001(\0132\031.goo"
-    "gle.protobuf.DurationR\020initialPollDelay\022"
-    "2\n\025poll_delay_multiplier\030\002 \001(\002R\023pollDela"
-    "yMultiplier\022\?\n\016max_poll_delay\030\003 \001(\0132\031.go"
-    "ogle.protobuf.DurationR\014maxPollDelay\022G\n\022"
-    "total_poll_timeout\030\004 \001(\0132\031.google.protob"
-    "uf.DurationR\020totalPollTimeout*\243\001\n\031Client"
-    "LibraryOrganization\022+\n\'CLIENT_LIBRARY_OR"
-    "GANIZATION_UNSPECIFIED\020\000\022\t\n\005CLOUD\020\001\022\007\n\003A"
-    "DS\020\002\022\n\n\006PHOTOS\020\003\022\017\n\013STREET_VIEW\020\004\022\014\n\010SHO"
-    "PPING\020\005\022\007\n\003GEO\020\006\022\021\n\rGENERATIVE_AI\020\007*g\n\030C"
-    "lientLibraryDestination\022*\n&CLIENT_LIBRAR"
-    "Y_DESTINATION_UNSPECIFIED\020\000\022\n\n\006GITHUB\020\n\022"
-    "\023\n\017PACKAGE_MANAGER\020\024:J\n\020method_signature"
-    "\022\036.google.protobuf.MethodOptions\030\233\010 \003(\tR"
-    "\017methodSignature:C\n\014default_host\022\037.googl"
-    "e.protobuf.ServiceOptions\030\231\010 \001(\tR\013defaul"
-    "tHost:C\n\014oauth_scopes\022\037.google.protobuf."
-    "ServiceOptions\030\232\010 \001(\tR\013oauthScopes:D\n\013ap"
-    "i_version\022\037.google.protobuf.ServiceOptio"
-    "ns\030\301\272\253\372\001 \001(\tR\napiVersionB\251\001\n\016com.google."
-    "apiB\013ClientProtoP\001ZAgoogle.golang.org/ge"
-    "nproto/googleapis/api/annotations;annota"
-    "tions\242\002\003GAX\252\002\nGoogle.Api\312\002\nGoogle\\Api\342\002\026"
-    "Google\\Api\\GPBMetadata\352\002\013Google::Apib\006pr"
-    "oto3"
+    "tions\022b\n\032selective_gapic_generation\030\003 \001("
+    "\0132$.google.api.SelectiveGapicGenerationR"
+    "\030selectiveGapicGeneration\"\223\005\n\025ClientLibr"
+    "arySettings\022\030\n\007version\030\001 \001(\tR\007version\022:\n"
+    "\014launch_stage\030\002 \001(\0162\027.google.api.LaunchS"
+    "tageR\013launchStage\022,\n\022rest_numeric_enums\030"
+    "\003 \001(\010R\020restNumericEnums\022=\n\rjava_settings"
+    "\030\025 \001(\0132\030.google.api.JavaSettingsR\014javaSe"
+    "ttings\022:\n\014cpp_settings\030\026 \001(\0132\027.google.ap"
+    "i.CppSettingsR\013cppSettings\022:\n\014php_settin"
+    "gs\030\027 \001(\0132\027.google.api.PhpSettingsR\013phpSe"
+    "ttings\022C\n\017python_settings\030\030 \001(\0132\032.google"
+    ".api.PythonSettingsR\016pythonSettings\022=\n\rn"
+    "ode_settings\030\031 \001(\0132\030.google.api.NodeSett"
+    "ingsR\014nodeSettings\022C\n\017dotnet_settings\030\032 "
+    "\001(\0132\032.google.api.DotnetSettingsR\016dotnetS"
+    "ettings\022=\n\rruby_settings\030\033 \001(\0132\030.google."
+    "api.RubySettingsR\014rubySettings\0227\n\013go_set"
+    "tings\030\034 \001(\0132\026.google.api.GoSettingsR\ngoS"
+    "ettings\"\364\004\n\nPublishing\022C\n\017method_setting"
+    "s\030\002 \003(\0132\032.google.api.MethodSettingsR\016met"
+    "hodSettings\022\"\n\rnew_issue_uri\030e \001(\tR\013newI"
+    "ssueUri\022+\n\021documentation_uri\030f \001(\tR\020docu"
+    "mentationUri\022$\n\016api_short_name\030g \001(\tR\014ap"
+    "iShortName\022!\n\014github_label\030h \001(\tR\013github"
+    "Label\0224\n\026codeowner_github_teams\030i \003(\tR\024c"
+    "odeownerGithubTeams\022$\n\016doc_tag_prefix\030j "
+    "\001(\tR\014docTagPrefix\022I\n\014organization\030k \001(\0162"
+    "%.google.api.ClientLibraryOrganizationR\014"
+    "organization\022L\n\020library_settings\030m \003(\0132!"
+    ".google.api.ClientLibrarySettingsR\017libra"
+    "rySettings\022I\n!proto_reference_documentat"
+    "ion_uri\030n \001(\tR\036protoReferenceDocumentati"
+    "onUri\022G\n rest_reference_documentation_ur"
+    "i\030o \001(\tR\035restReferenceDocumentationUri\"\232"
+    "\002\n\014JavaSettings\022\'\n\017library_package\030\001 \001(\t"
+    "R\016libraryPackage\022_\n\023service_class_names\030"
+    "\002 \003(\0132/.google.api.JavaSettings.ServiceC"
+    "lassNamesEntryR\021serviceClassNames\022:\n\006com"
+    "mon\030\003 \001(\0132\".google.api.CommonLanguageSet"
+    "tingsR\006common\032D\n\026ServiceClassNamesEntry\022"
+    "\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005value:"
+    "\0028\001\"I\n\013CppSettings\022:\n\006common\030\001 \001(\0132\".goo"
+    "gle.api.CommonLanguageSettingsR\006common\"I"
+    "\n\013PhpSettings\022:\n\006common\030\001 \001(\0132\".google.a"
+    "pi.CommonLanguageSettingsR\006common\"\375\001\n\016Py"
+    "thonSettings\022:\n\006common\030\001 \001(\0132\".google.ap"
+    "i.CommonLanguageSettingsR\006common\022d\n\025expe"
+    "rimental_features\030\002 \001(\0132/.google.api.Pyt"
+    "honSettings.ExperimentalFeaturesR\024experi"
+    "mentalFeatures\032I\n\024ExperimentalFeatures\0221"
+    "\n\025rest_async_io_enabled\030\001 \001(\010R\022restAsync"
+    "IoEnabled\"J\n\014NodeSettings\022:\n\006common\030\001 \001("
+    "\0132\".google.api.CommonLanguageSettingsR\006c"
+    "ommon\"\256\004\n\016DotnetSettings\022:\n\006common\030\001 \001(\013"
+    "2\".google.api.CommonLanguageSettingsR\006co"
+    "mmon\022Z\n\020renamed_services\030\002 \003(\0132/.google."
+    "api.DotnetSettings.RenamedServicesEntryR"
+    "\017renamedServices\022]\n\021renamed_resources\030\003 "
+    "\003(\01320.google.api.DotnetSettings.RenamedR"
+    "esourcesEntryR\020renamedResources\022+\n\021ignor"
+    "ed_resources\030\004 \003(\tR\020ignoredResources\0228\n\030"
+    "forced_namespace_aliases\030\005 \003(\tR\026forcedNa"
+    "mespaceAliases\0225\n\026handwritten_signatures"
+    "\030\006 \003(\tR\025handwrittenSignatures\032B\n\024Renamed"
+    "ServicesEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value"
+    "\030\002 \001(\tR\005value:\0028\001\032C\n\025RenamedResourcesEnt"
+    "ry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005val"
+    "ue:\0028\001\"J\n\014RubySettings\022:\n\006common\030\001 \001(\0132\""
+    ".google.api.CommonLanguageSettingsR\006comm"
+    "on\"H\n\nGoSettings\022:\n\006common\030\001 \001(\0132\".googl"
+    "e.api.CommonLanguageSettingsR\006common\"\302\003\n"
+    "\016MethodSettings\022\032\n\010selector\030\001 \001(\tR\010selec"
+    "tor\022I\n\014long_running\030\002 \001(\0132&.google.api.M"
+    "ethodSettings.LongRunningR\013longRunning\0222"
+    "\n\025auto_populated_fields\030\003 \003(\tR\023autoPopul"
+    "atedFields\032\224\002\n\013LongRunning\022G\n\022initial_po"
+    "ll_delay\030\001 \001(\0132\031.google.protobuf.Duratio"
+    "nR\020initialPollDelay\0222\n\025poll_delay_multip"
+    "lier\030\002 \001(\002R\023pollDelayMultiplier\022\?\n\016max_p"
+    "oll_delay\030\003 \001(\0132\031.google.protobuf.Durati"
+    "onR\014maxPollDelay\022G\n\022total_poll_timeout\030\004"
+    " \001(\0132\031.google.protobuf.DurationR\020totalPo"
+    "llTimeout\"4\n\030SelectiveGapicGeneration\022\030\n"
+    "\007methods\030\001 \003(\tR\007methods*\243\001\n\031ClientLibrar"
+    "yOrganization\022+\n\'CLIENT_LIBRARY_ORGANIZA"
+    "TION_UNSPECIFIED\020\000\022\t\n\005CLOUD\020\001\022\007\n\003ADS\020\002\022\n"
+    "\n\006PHOTOS\020\003\022\017\n\013STREET_VIEW\020\004\022\014\n\010SHOPPING\020"
+    "\005\022\007\n\003GEO\020\006\022\021\n\rGENERATIVE_AI\020\007*g\n\030ClientL"
+    "ibraryDestination\022*\n&CLIENT_LIBRARY_DEST"
+    "INATION_UNSPECIFIED\020\000\022\n\n\006GITHUB\020\n\022\023\n\017PAC"
+    "KAGE_MANAGER\020\024:J\n\020method_signature\022\036.goo"
+    "gle.protobuf.MethodOptions\030\233\010 \003(\tR\017metho"
+    "dSignature:C\n\014default_host\022\037.google.prot"
+    "obuf.ServiceOptions\030\231\010 \001(\tR\013defaultHost:"
+    "C\n\014oauth_scopes\022\037.google.protobuf.Servic"
+    "eOptions\030\232\010 \001(\tR\013oauthScopes:D\n\013api_vers"
+    "ion\022\037.google.protobuf.ServiceOptions\030\301\272\253"
+    "\372\001 \001(\tR\napiVersionB\251\001\n\016com.google.apiB\013C"
+    "lientProtoP\001ZAgoogle.golang.org/genproto"
+    "/googleapis/api/annotations;annotations\242"
+    "\002\003GAX\252\002\nGoogle.Api\312\002\nGoogle\\Api\342\002\026Google"
+    "\\Api\\GPBMetadata\352\002\013Google::Apib\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fclient_2eproto_deps[3] =
     {
@@ -780,13 +818,13 @@ static ::absl::once_flag descriptor_table_google_2fapi_2fclient_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2fclient_2eproto = {
     false,
     false,
-    4244,
+    4398,
     descriptor_table_protodef_google_2fapi_2fclient_2eproto,
     "google/api/client.proto",
     &descriptor_table_google_2fapi_2fclient_2eproto_once,
     descriptor_table_google_2fapi_2fclient_2eproto_deps,
     3,
-    17,
+    18,
     schemas,
     file_default_instances,
     TableStruct_google_2fapi_2fclient_2eproto::offsets,
@@ -836,8 +874,18 @@ bool ClientLibraryDestination_IsValid(int value) {
 
 class CommonLanguageSettings::_Internal {
  public:
+  using HasBits = decltype(std::declval<CommonLanguageSettings>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(CommonLanguageSettings, _impl_._has_bits_);
+  static const ::google::api::SelectiveGapicGeneration& selective_gapic_generation(const CommonLanguageSettings* msg);
+  static void set_has_selective_gapic_generation(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
+const ::google::api::SelectiveGapicGeneration& CommonLanguageSettings::_Internal::selective_gapic_generation(const CommonLanguageSettings* msg) {
+  return *msg->_impl_.selective_gapic_generation_;
+}
 CommonLanguageSettings::CommonLanguageSettings(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
@@ -846,10 +894,11 @@ CommonLanguageSettings::CommonLanguageSettings(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE CommonLanguageSettings::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : destinations_{visibility, arena, from.destinations_},
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        destinations_{visibility, arena, from.destinations_},
         _destinations_cached_byte_size_{0},
-        reference_docs_uri_(arena, from.reference_docs_uri_),
-        _cached_size_{0} {}
+        reference_docs_uri_(arena, from.reference_docs_uri_) {}
 
 CommonLanguageSettings::CommonLanguageSettings(
     ::google::protobuf::Arena* arena,
@@ -860,19 +909,24 @@ CommonLanguageSettings::CommonLanguageSettings(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.selective_gapic_generation_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::google::api::SelectiveGapicGeneration>(arena, *from._impl_.selective_gapic_generation_)
+                : nullptr;
 
   // @@protoc_insertion_point(copy_constructor:google.api.CommonLanguageSettings)
 }
 inline PROTOBUF_NDEBUG_INLINE CommonLanguageSettings::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : destinations_{visibility, arena},
+      : _cached_size_{0},
+        destinations_{visibility, arena},
         _destinations_cached_byte_size_{0},
-        reference_docs_uri_(arena),
-        _cached_size_{0} {}
+        reference_docs_uri_(arena) {}
 
 inline void CommonLanguageSettings::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.selective_gapic_generation_ = {};
 }
 CommonLanguageSettings::~CommonLanguageSettings() {
   // @@protoc_insertion_point(destructor:google.api.CommonLanguageSettings)
@@ -882,6 +936,7 @@ CommonLanguageSettings::~CommonLanguageSettings() {
 inline void CommonLanguageSettings::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.reference_docs_uri_.Destroy();
+  delete _impl_.selective_gapic_generation_;
   _impl_.~Impl_();
 }
 
@@ -894,6 +949,12 @@ PROTOBUF_NOINLINE void CommonLanguageSettings::Clear() {
 
   _impl_.destinations_.Clear();
   _impl_.reference_docs_uri_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.selective_gapic_generation_ != nullptr);
+    _impl_.selective_gapic_generation_->Clear();
+  }
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -905,38 +966,45 @@ const char* CommonLanguageSettings::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 60, 2> CommonLanguageSettings::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 1, 60, 2> CommonLanguageSettings::_table_ = {
   {
-    0,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(CommonLanguageSettings, _impl_._has_bits_),
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
+    3,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
     &_CommonLanguageSettings_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // repeated .google.api.ClientLibraryDestination destinations = 2 [json_name = "destinations"];
-    {::_pbi::TcParser::FastV32P1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(CommonLanguageSettings, _impl_.destinations_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // string reference_docs_uri = 1 [json_name = "referenceDocsUri", deprecated = true];
     {::_pbi::TcParser::FastUS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(CommonLanguageSettings, _impl_.reference_docs_uri_)}},
+    // repeated .google.api.ClientLibraryDestination destinations = 2 [json_name = "destinations"];
+    {::_pbi::TcParser::FastV32P1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(CommonLanguageSettings, _impl_.destinations_)}},
+    // .google.api.SelectiveGapicGeneration selective_gapic_generation = 3 [json_name = "selectiveGapicGeneration"];
+    {::_pbi::TcParser::FastMtS1,
+     {26, 0, 0, PROTOBUF_FIELD_OFFSET(CommonLanguageSettings, _impl_.selective_gapic_generation_)}},
   }}, {{
     65535, 65535
   }}, {{
     // string reference_docs_uri = 1 [json_name = "referenceDocsUri", deprecated = true];
-    {PROTOBUF_FIELD_OFFSET(CommonLanguageSettings, _impl_.reference_docs_uri_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(CommonLanguageSettings, _impl_.reference_docs_uri_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // repeated .google.api.ClientLibraryDestination destinations = 2 [json_name = "destinations"];
-    {PROTOBUF_FIELD_OFFSET(CommonLanguageSettings, _impl_.destinations_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(CommonLanguageSettings, _impl_.destinations_), -1, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kPackedOpenEnum)},
-  }},
-  // no aux_entries
-  {{
+    // .google.api.SelectiveGapicGeneration selective_gapic_generation = 3 [json_name = "selectiveGapicGeneration"];
+    {PROTOBUF_FIELD_OFFSET(CommonLanguageSettings, _impl_.selective_gapic_generation_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::google::api::SelectiveGapicGeneration>()},
+  }}, {{
     "\41\22\0\0\0\0\0\0"
     "google.api.CommonLanguageSettings"
     "reference_docs_uri"
@@ -965,6 +1033,14 @@ const ::_pbi::TcParseTable<1, 2, 0, 60, 2> CommonLanguageSettings::_table_ = {
       target = stream->WriteEnumPacked(2, _internal_destinations(),
                                        byte_size, target);
     }
+  }
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .google.api.SelectiveGapicGeneration selective_gapic_generation = 3 [json_name = "selectiveGapicGeneration"];
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        3, _Internal::selective_gapic_generation(this),
+        _Internal::selective_gapic_generation(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1007,6 +1083,13 @@ const ::_pbi::TcParseTable<1, 2, 0, 60, 2> CommonLanguageSettings::_table_ = {
                                     this->_internal_reference_docs_uri());
   }
 
+  // .google.api.SelectiveGapicGeneration selective_gapic_generation = 3 [json_name = "selectiveGapicGeneration"];
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.selective_gapic_generation_);
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -1030,6 +1113,10 @@ void CommonLanguageSettings::MergeImpl(::google::protobuf::Message& to_msg, cons
   if (!from._internal_reference_docs_uri().empty()) {
     _this->_internal_set_reference_docs_uri(from._internal_reference_docs_uri());
   }
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_selective_gapic_generation()->::google::api::SelectiveGapicGeneration::MergeFrom(
+        from._internal_selective_gapic_generation());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1052,8 +1139,10 @@ void CommonLanguageSettings::InternalSwap(CommonLanguageSettings* PROTOBUF_RESTR
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.destinations_.InternalSwap(&other->_impl_.destinations_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.reference_docs_uri_, &other->_impl_.reference_docs_uri_, arena);
+  swap(_impl_.selective_gapic_generation_, other->_impl_.selective_gapic_generation_);
 }
 
 ::google::protobuf::Metadata CommonLanguageSettings::GetMetadata() const {
@@ -4935,6 +5024,191 @@ void MethodSettings::InternalSwap(MethodSettings* PROTOBUF_RESTRICT other) {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2fapi_2fclient_2eproto_getter, &descriptor_table_google_2fapi_2fclient_2eproto_once,
       file_level_metadata_google_2fapi_2fclient_2eproto[16]);
+}
+// ===================================================================
+
+class SelectiveGapicGeneration::_Internal {
+ public:
+};
+
+SelectiveGapicGeneration::SelectiveGapicGeneration(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:google.api.SelectiveGapicGeneration)
+}
+inline PROTOBUF_NDEBUG_INLINE SelectiveGapicGeneration::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : methods_{visibility, arena, from.methods_},
+        _cached_size_{0} {}
+
+SelectiveGapicGeneration::SelectiveGapicGeneration(
+    ::google::protobuf::Arena* arena,
+    const SelectiveGapicGeneration& from)
+    : ::google::protobuf::Message(arena) {
+  SelectiveGapicGeneration* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:google.api.SelectiveGapicGeneration)
+}
+inline PROTOBUF_NDEBUG_INLINE SelectiveGapicGeneration::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : methods_{visibility, arena},
+        _cached_size_{0} {}
+
+inline void SelectiveGapicGeneration::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+SelectiveGapicGeneration::~SelectiveGapicGeneration() {
+  // @@protoc_insertion_point(destructor:google.api.SelectiveGapicGeneration)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void SelectiveGapicGeneration::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void SelectiveGapicGeneration::Clear() {
+// @@protoc_insertion_point(message_clear_start:google.api.SelectiveGapicGeneration)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.methods_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* SelectiveGapicGeneration::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 51, 2> SelectiveGapicGeneration::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_SelectiveGapicGeneration_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated string methods = 1 [json_name = "methods"];
+    {::_pbi::TcParser::FastUR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(SelectiveGapicGeneration, _impl_.methods_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated string methods = 1 [json_name = "methods"];
+    {PROTOBUF_FIELD_OFFSET(SelectiveGapicGeneration, _impl_.methods_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+  }},
+  // no aux_entries
+  {{
+    "\43\7\0\0\0\0\0\0"
+    "google.api.SelectiveGapicGeneration"
+    "methods"
+  }},
+};
+
+::uint8_t* SelectiveGapicGeneration::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:google.api.SelectiveGapicGeneration)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // repeated string methods = 1 [json_name = "methods"];
+  for (int i = 0, n = this->_internal_methods_size(); i < n; ++i) {
+    const auto& s = this->_internal_methods().Get(i);
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "google.api.SelectiveGapicGeneration.methods");
+    target = stream->WriteString(1, s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:google.api.SelectiveGapicGeneration)
+  return target;
+}
+
+::size_t SelectiveGapicGeneration::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:google.api.SelectiveGapicGeneration)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string methods = 1 [json_name = "methods"];
+  total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_methods().size());
+  for (int i = 0, n = _internal_methods().size(); i < n; ++i) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+        _internal_methods().Get(i));
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData SelectiveGapicGeneration::_class_data_ = {
+    SelectiveGapicGeneration::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* SelectiveGapicGeneration::GetClassData() const {
+  return &_class_data_;
+}
+
+void SelectiveGapicGeneration::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<SelectiveGapicGeneration*>(&to_msg);
+  auto& from = static_cast<const SelectiveGapicGeneration&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.SelectiveGapicGeneration)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_methods()->MergeFrom(from._internal_methods());
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SelectiveGapicGeneration::CopyFrom(const SelectiveGapicGeneration& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:google.api.SelectiveGapicGeneration)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool SelectiveGapicGeneration::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* SelectiveGapicGeneration::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void SelectiveGapicGeneration::InternalSwap(SelectiveGapicGeneration* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.methods_.InternalSwap(&other->_impl_.methods_);
+}
+
+::google::protobuf::Metadata SelectiveGapicGeneration::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_google_2fapi_2fclient_2eproto_getter, &descriptor_table_google_2fapi_2fclient_2eproto_once,
+      file_level_metadata_google_2fapi_2fclient_2eproto[17]);
 }
 const std::string method_signature_default("");
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::MethodOptions,
