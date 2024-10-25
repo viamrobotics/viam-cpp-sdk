@@ -13,8 +13,8 @@
 
 using namespace viam::sdk;
 
-std::string find_arg1(ResourceConfig cfg) {
-    auto gizmo_name = cfg.name();
+std::string find_arg1(const ResourceConfig& cfg) {
+    const auto& gizmo_name = cfg.name();
     auto arg1 = cfg.attributes().find("arg1");
     if (arg1 == cfg.attributes().end()) {
         std::ostringstream buffer;
@@ -31,11 +31,11 @@ std::string find_arg1(ResourceConfig cfg) {
     return *arg1_string;
 }
 
-void MyGizmo::reconfigure(const Dependencies& deps, const ResourceConfig& cfg) {
+void MyGizmo::reconfigure(const Dependencies&, const ResourceConfig& cfg) {
     arg1_ = find_arg1(cfg);
 }
 
-std::vector<std::string> MyGizmo::validate(ResourceConfig cfg) {
+std::vector<std::string> MyGizmo::validate(const ResourceConfig& cfg) {
     // Custom validation can be done by specifying a validate function at the
     // time of resource registration (see complex/main.cpp) like this one.
     // Validate functions can `throw` exceptions that will be returned to the
@@ -50,6 +50,14 @@ std::vector<std::string> MyGizmo::validate(ResourceConfig cfg) {
 }
 
 bool MyGizmo::do_one(std::string arg1) {
+    std::cout << "it's a myGizmo!";
+    // CR erodkin: these logs break things when init_logging_() is called. figure out why!
+    // also we're now getting an error when stopping the viam-server that the mod manager didn't
+    // close properly so probably we should figure that out too
+    // logger_.error("new error log in do_one");
+    logger_.debug("new debug log in do_one");
+    std::cout << "did a debug log now let's try an info one \n" << std::flush;
+    logger_.info("new info log in do_one");
     return arg1_ == arg1;
 }
 

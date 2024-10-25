@@ -30,6 +30,8 @@ using namespace viam::sdk;
 int main(int argc, char** argv) {
     Model mybase_model("viam", "base", "mybase");
 
+    std::cout << "registering resource servers\n" << std::flush;
+
     // Make sure to explicity register resources with custom APIs.
     Registry::register_resource_server<GizmoServer>();
     Registry::register_resource_server<SummationServer>();
@@ -56,6 +58,7 @@ int main(int argc, char** argv) {
 
     std::vector<std::shared_ptr<ModelRegistration>> mrs = {mybase_mr, mygizmo_mr, mysummation_mr};
     auto my_mod = std::make_shared<ModuleService>(argc, argv, mrs);
+    std::cout << "we have created the module and gotten ready to serve\n" << std::flush;
     my_mod->serve();
 
     return EXIT_SUCCESS;

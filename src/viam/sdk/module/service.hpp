@@ -5,6 +5,9 @@
 #include <viam/api/component/generic/v1/generic.grpc.pb.h>
 #include <viam/api/module/v1/module.grpc.pb.h>
 
+#include <boost/log/sinks.hpp>
+#include <boost/shared_ptr.hpp>
+
 #include <viam/sdk/module/module.hpp>
 #include <viam/sdk/module/signal_manager.hpp>
 #include <viam/sdk/registry/registry.hpp>
@@ -50,6 +53,7 @@ class ModuleService : viam::module::v1::ModuleService::Service {
     void add_model_from_registry(API api, Model model);
 
    private:
+    void init_logging_();
     ::grpc::Status AddResource(::grpc::ServerContext* context,
                                const ::viam::module::v1::AddResourceRequest* request,
                                ::viam::module::v1::AddResourceResponse* response) override;
@@ -79,6 +83,8 @@ class ModuleService : viam::module::v1::ModuleService::Service {
     std::mutex lock_;
     std::unique_ptr<Module> module_;
     std::shared_ptr<RobotClient> parent_;
+    struct impl;
+    std::unique_ptr<impl> impl_;
     std::string parent_addr_;
     std::unique_ptr<Server> server_;
     SignalManager signal_manager_;

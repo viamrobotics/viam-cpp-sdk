@@ -1,3 +1,4 @@
+#include <cctype>
 #include <viam/sdk/robot/client.hpp>
 
 #include <chrono>
@@ -170,6 +171,32 @@ std::vector<RobotClient::status> RobotClient::get_status() {
     auto resources = resource_names();
     return get_status(resources);
 }
+
+void RobotClient::log(
+    std::string name,
+    std::string level,
+    std::string message,
+    const std::chrono::time_point<std::chrono::system_clock, std::chrono::nanoseconds>& time,
+    std::string stack) {
+    robot::v1::LogRequest req;
+    common::v1::LogEntry log;
+    std::cout << "calling log\n" << std::endl;
+    *log.mutable_logger_name() = std::move(name);
+    std::transform(level.begin(), level.end(), level.begin(), ::toupper);
+    log.set_level(level);
+    *log.mutable_message() = std::move(message);
+    *log.mutable_time() = time_pt_to_timestamp(time);
+    *log.mutable_stack() = std::move(stack);
+    *req.mutable_logs()->Add() = std::move(log);
+    robot::v1::LogResponse resp;
+    ClientContext ctx;
+    const auto response = impl_->stub_->Log(ctx, req, &resp);
+    if (is_error_response(response)) {
+        BOOST_LOG_TRIVIAL(error) << "Error sending log: " << response.error_message()
+                                 << response.error_details();
+    }
+}
+
 // gets statuses of components associated with robot. If a specific component
 // vector is provided, only statuses for the given Names will be
 // returned
@@ -249,7 +276,9 @@ void RobotClient::refresh() {
 
     const grpc::Status response = impl_->stub_->ResourceNames(ctx, req, &resp);
     if (is_error_response(response)) {
-        BOOST_LOG_TRIVIAL(error) << "Error getting resource names: " << response.error_message();
+        BOOST_LOG_TRIVIAL(error) << "Error getting resource names: " << response.error_message()
+                                 << response.error_details();
+        return;
     }
 
     std::unordered_map<Name, std::shared_ptr<Resource>> new_resources;

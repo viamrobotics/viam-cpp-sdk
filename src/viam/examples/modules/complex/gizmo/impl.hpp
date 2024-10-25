@@ -14,12 +14,12 @@ using namespace viam::sdk;
 // `validate` method that checks config validity.
 class MyGizmo : public Gizmo, public Reconfigurable {
    public:
-    MyGizmo(std::string name, std::string arg1) : Gizmo(std::move(name)), arg1_(std::move(arg1)){};
+    MyGizmo(std::string name, std::string arg1) : Gizmo(std::move(name)), arg1_(std::move(arg1)) {};
     MyGizmo(const Dependencies& deps, const ResourceConfig& cfg) : Gizmo(cfg.name()) {
         this->reconfigure(deps, cfg);
     };
     void reconfigure(const Dependencies& deps, const ResourceConfig& cfg) override;
-    static std::vector<std::string> validate(ResourceConfig cfg);
+    static std::vector<std::string> validate(const ResourceConfig& cfg);
 
     bool do_one(std::string arg1) override;
     bool do_one_client_stream(std::vector<std::string> arg1) override;

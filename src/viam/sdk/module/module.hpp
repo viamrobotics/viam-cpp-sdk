@@ -9,6 +9,8 @@
 namespace viam {
 namespace sdk {
 
+// class ModuleService;
+
 class Module {
    public:
     void set_ready();
@@ -21,11 +23,15 @@ class Module {
     const std::shared_ptr<grpc::Channel>& channel() const;
 
    private:
+    // friend class ModuleService;
     std::string name_;
     std::string addr_;
     bool ready_;
     HandlerMap_ handles_;
     std::shared_ptr<grpc::Channel> channel_;
+
+    // protected:
+    // void init_logging(const std::shared_ptr<RobotClient>& parent);
 };
 
 }  // namespace sdk

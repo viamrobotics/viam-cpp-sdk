@@ -1,3 +1,4 @@
+#include <chrono>
 #include <viam/sdk/common/utils.hpp>
 
 #include <random>
@@ -38,6 +39,17 @@ time_point timestamp_to_time_pt(const google::protobuf::Timestamp& timestamp) {
     const std::chrono::nanoseconds nanos(timestamp.nanos());
     return time_point(std::chrono::duration_cast<std::chrono::system_clock::duration>(seconds) +
                       nanos);
+}
+
+google::protobuf::Timestamp time_pt_to_timestamp(
+    const std::chrono::time_point<std::chrono::system_clock, std::chrono::nanoseconds>& time_pt) {
+    const std::chrono::seconds duration_s =
+        std::chrono::duration_cast<std::chrono::seconds>(time_pt.time_since_epoch());
+    const std::chrono::nanoseconds duration_ns = time_pt.time_since_epoch() - duration_s;
+    google::protobuf::Timestamp timestamp;
+    timestamp.set_seconds(duration_s.count());
+    timestamp.set_nanos(static_cast<int32_t>(duration_ns.count()));
+    return timestamp;
 }
 
 google::protobuf::Timestamp time_pt_to_timestamp(const time_point& time_pt) {

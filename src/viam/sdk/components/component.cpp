@@ -14,9 +14,9 @@ namespace sdk {
 
 using viam::common::v1::ResourceName;
 
-Component::Component() : Resource("component"){};
+Component::Component() : Resource("component") {};
 
-Component::Component(std::string name) : Resource(std::move(name)){};
+Component::Component(std::string name) : Resource(std::move(name)) {};
 
 ResourceName Component::get_resource_name(std::string name) const {
     auto r = this->Resource::get_resource_name(name);

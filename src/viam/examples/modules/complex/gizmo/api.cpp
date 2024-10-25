@@ -4,6 +4,9 @@
 
 #include <google/protobuf/descriptor.h>
 
+#include <boost/log/common.hpp>
+#include <boost/log/sources/logger.hpp>
+#include <boost/log/trivial.hpp>
 #include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/registry/registry.hpp>
@@ -24,12 +27,22 @@ API API::traits<Gizmo>::api() {
     return {"viam", "component", "gizmo"};
 }
 
-Gizmo::Gizmo(std::string name) : Component(std::move(name)){};
+Gizmo::Gizmo(std::string name)
+    : Component(std::move(name)) {
+          // boost::log::sources::severity_logger<boost::log::trivial::severity_level> lg;
+          // BOOST_LOG_SEV(lg, boost::log::trivial::severity_level::debug) << "debug test";
+          // BOOST_LOG_SEV(lg, boost::log::trivial::severity_level::info) << "info test";
+          // BOOST_LOG_SEV(lg, boost::log::trivial::severity_level::warning) << "warning test";
+          // BOOST_LOG_SEV(lg, boost::log::trivial::severity_level::error) << "error test";
+          // BOOST_LOG_TRIVIAL(error) << "gizmo created error\n";
+          // BOOST_LOG_TRIVIAL(info) << "gizmo created info\n";
+          // BOOST_LOG_TRIVIAL(debug) << "gizmo created debug\n";
+      };
 
 /* Gizmo server methods */
 
 GizmoServer::GizmoServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)){};
+    : ResourceServer(std::move(manager)) {};
 
 grpc::Status GizmoServer::DoOne(grpc::ServerContext* context,
                                 const DoOneRequest* request,
@@ -170,12 +183,25 @@ grpc::Status GizmoServer::DoTwo(::grpc::ServerContext* context,
 /* Gizmo client methods */
 
 GizmoClient::GizmoClient(std::string name, std::shared_ptr<grpc::Channel> channel)
-    : Gizmo(std::move(name)), stub_(GizmoService::NewStub(channel)), channel_(std::move(channel)){};
+    : Gizmo(std::move(name)),
+      stub_(GizmoService::NewStub(channel)),
+      channel_(std::move(channel)) {};
 
 bool GizmoClient::do_one(std::string arg1) {
+    BOOST_LOG_SEV(*(logger_.underlying()), boost::log::trivial::severity_level::error)
+        << "some other new error log";
+    logger_.info("new info log");
+    logger_.debug("new debug log");
+    logger_.error("new error log");
     return make_client_helper(this, *stub_, &StubType::DoOne)
-        .with([&](auto& request) { request.set_arg1(arg1); })
-        .invoke([](auto& response) { return response.ret1(); });
+        .with([&](auto& request) {
+            std::cout << "in with\n" << std::flush;
+            request.set_arg1(arg1);
+        })
+        .invoke([](auto& response) {
+            std::cout << "in invoke\n" << std::flush;
+            return response.ret1();
+        });
 }
 
 bool GizmoClient::do_one_client_stream(std::vector<std::string> arg1) {

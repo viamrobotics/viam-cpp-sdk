@@ -1,6 +1,7 @@
 #pragma once
 
 #include <boost/optional/optional.hpp>
+#include <chrono>
 #include <grpcpp/client_context.h>
 
 #include <viam/api/common/v1/common.pb.h>
@@ -31,6 +32,11 @@ bool operator==(const response_metadata& lhs, const response_metadata& rhs);
 /// std::chrono::time_point<long long, std::chrono::nanoseconds>
 std::chrono::time_point<long long, std::chrono::nanoseconds> timestamp_to_time_pt(
     const google::protobuf::Timestamp& timestamp);
+
+/// @brief convert a std::chrono::time_point<system_clock, std::chrono::nanoseconds> to
+/// a google::protobuf::Timestamp.
+google::protobuf::Timestamp time_pt_to_timestamp(
+    const std::chrono::time_point<std::chrono::system_clock, std::chrono::nanoseconds>& time_pt);
 
 /// @brief convert a std::chrono::time_point<long long, std::chrono::nanoseconds> to
 /// a google::protobuf::Timestamp.

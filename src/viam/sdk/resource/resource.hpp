@@ -5,6 +5,7 @@
 #include <grpcpp/impl/service_type.h>
 #include <grpcpp/support/status.h>
 
+#include <viam/sdk/common/logger.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
@@ -30,6 +31,10 @@ class Resource {
 
    private:
     std::string name_;
+
+   protected:
+    // NOLINTNEXTLINE
+    Logger logger_;
 };
 
 template <>

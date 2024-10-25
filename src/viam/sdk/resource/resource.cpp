@@ -13,7 +13,7 @@ namespace sdk {
 using common::v1::ResourceName;
 
 Resource::~Resource() = default;
-Resource::Resource(std::string name) : name_(std::move(name)) {}
+Resource::Resource(std::string name) : name_(name), logger_(Logger(std::move(name))) {}
 
 std::string Resource::name() const {
     return name_;
