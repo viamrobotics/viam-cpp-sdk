@@ -9,6 +9,10 @@ ARG REPO_SETUP=git
 
 ARG BASE_TAG
 
+# See https://stackoverflow.com/a/54245466 for the trick used below
+# The two possible branches are repo_setup_git and repo_setup_copy, which are conditionally executed
+# using ARG REPO_SETUP
+
 FROM ${BASE_TAG} AS repo_setup_git
 ARG GIT_TAG
 ONBUILD RUN echo "Checking if GIT_TAG is set" && test -n "${GIT_TAG}"
