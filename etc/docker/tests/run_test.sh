@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+INSTALL_DIR="$(pwd)/install"
 BUILD_SHARED=$(grep 'BUILD_SHARED_LIBS' CMakeCache.txt | cut -d '=' -f 2)
 
 pushd src/viam/sdk/tests
