@@ -29,8 +29,8 @@ jobs:
             --build-arg BUILD_SHARED=${{ matrix.BUILD_SHARED }} \
             --build-arg BUILD_TESTS=ON \
             --build-arg BUILD_EXAMPLES=ON \
-            --build-arg EXTRA_CMAKE_ARGS=\
-              "-DVIAMCPPSDK_CLANG_TIDY=ON \
+            --build-arg "EXTRA_CMAKE_ARGS=\
+              -DVIAMCPPSDK_CLANG_TIDY=ON \
               -DVIAMCPPSDK_SANITIZED_BUILD=${{ matrix.BUILD_SHARED }}"
 
           docker run -w /viam-cpp-sdk/build -t --entrypoint /viam-cpp-sdk/etc/docker/tests/run_test.sh cpp-test /bin/bash
