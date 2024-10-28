@@ -25,11 +25,11 @@ class viamCppSdkTest(ConanFile):
         if can_run(self):
             sock = "fake-socket-path"
 
-            cmd = os.path.join(self.cpp.build.bindir, f"example_module {sock}")
+            cmd = os.path.join(self.cpp.build.bindir, "example_module")
 
             # the ConanFile run method is a wrapper around Popen, but it only returns the retcode.
             # A properly intialized module waits indefinitely on a signal, so we have to use Popen manually.
-            proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, text=True)
+            proc = subprocess.Popen([cmd, sock], stdout=subprocess.PIPE, text=True)
 
             out = None
 
