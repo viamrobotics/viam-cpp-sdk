@@ -180,7 +180,6 @@ void RobotClient::log(
     std::string stack) {
     robot::v1::LogRequest req;
     common::v1::LogEntry log;
-    std::cout << "calling log\n" << std::endl;
     *log.mutable_logger_name() = std::move(name);
     std::transform(level.begin(), level.end(), level.begin(), ::toupper);
     log.set_level(level);

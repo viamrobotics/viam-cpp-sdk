@@ -5,8 +5,11 @@
 #include <sstream>
 #include <vector>
 
+#include <boost/log/core.hpp>
+#include <boost/log/trivial.hpp>
 #include <grpcpp/support/status.h>
 
+#include <viam/sdk/common/logger.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource.hpp>
@@ -50,14 +53,9 @@ std::vector<std::string> MyGizmo::validate(const ResourceConfig& cfg) {
 }
 
 bool MyGizmo::do_one(std::string arg1) {
-    std::cout << "it's a myGizmo!";
-    // CR erodkin: these logs break things when init_logging_() is called. figure out why!
-    // also we're now getting an error when stopping the viam-server that the mod manager didn't
-    // close properly so probably we should figure that out too
-    // logger_.error("new error log in do_one");
-    logger_.debug("new debug log in do_one");
-    std::cout << "did a debug log now let's try an info one \n" << std::flush;
-    logger_.info("new info log in do_one");
+    // CR erodkin: delete this, and places where we've added boost dependencies in headers
+    VIAM_SDK_CUSTOM_FORMATTED_LOG(
+        logger_, log_level::error, "error log from impl the new way with " << 2 << " stream calls");
     return arg1_ == arg1;
 }
 

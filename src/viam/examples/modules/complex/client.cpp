@@ -53,7 +53,6 @@ int main() {
     // of that type from the server.
     Registry::register_resource_client<GizmoClient>();
     Registry::register_resource_client<SummationClient>();
-    std::cout << "We are here!!!!\n\n\n" << std::flush;
 
     // Connect to robot.
     std::shared_ptr<RobotClient> robot = RobotClient::at_address(host, options);

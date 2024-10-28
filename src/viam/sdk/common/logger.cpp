@@ -1,15 +1,28 @@
 #include <viam/sdk/common/logger.hpp>
 
+#include <atomic>
 #include <iostream>
 
+#include <boost/date_time/posix_time/posix_time_types.hpp>
+#include <boost/log/attributes/mutable_constant.hpp>
 #include <boost/log/core.hpp>
+#include <boost/log/expressions.hpp>
+#include <boost/log/sources/severity_logger.hpp>
+#include <boost/log/support/date_time.hpp>
 #include <boost/log/trivial.hpp>
+#include <boost/log/utility/setup/common_attributes.hpp>
+#include <boost/log/utility/setup/console.hpp>
+#include <boost/log/utility/setup/file.hpp>
 
 namespace viam {
 namespace sdk {
 
 namespace logging = boost::log;
-using ll = Logger::log_level;
+namespace attrs = boost::log::attributes;
+namespace expr = boost::log::expressions;
+namespace keywords = boost::log::keywords;
+
+using ll = log_level;
 using bll = logging::trivial::severity_level;
 
 struct Logger::impl {
@@ -22,8 +35,59 @@ struct Logger::impl {
     ll level_;
 };
 
-std::shared_ptr<logging::sources::severity_logger<bll>> Logger::underlying() {
-    return impl_->logger_;
+// Convert file path to only the filename
+std::string path_to_filename(const std::string& path) {
+    return path.substr(path.find_last_of("/\\") + 1);
+}
+
+namespace {
+std::atomic<bool> inited = false;
+}
+
+void init_attributes() {
+    logging::core::get()->add_thread_attribute("File", attrs::mutable_constant<std::string>(""));
+    logging::core::get()->add_thread_attribute("LogLevel",
+                                               attrs::mutable_constant<std::string>(""));
+    logging::core::get()->add_thread_attribute("LoggerName",
+                                               attrs::mutable_constant<std::string>(""));
+    logging::core::get()->add_thread_attribute("Line", attrs::mutable_constant<int>(0));
+}
+
+void init_logging(std::ostream& strm) {
+    if (inited) {
+        return;
+    }
+    inited = true;
+
+    init_attributes();
+
+    // remove existing stdout/stderr logging since we're sending logs to RDK
+    boost::log::core::get()->remove_all_sinks();
+
+    logging::add_console_log(strm,
+                             boost::parameter::keyword<keywords::tag::format>::get() =
+                                 (expr::stream << '[' << expr::attr<std::string>("File") << ':'
+                                               << expr::attr<int>("Line") << "]    "));
+    logging::add_common_attributes();
+}
+
+void init_logging() {
+    if (inited) {
+        return;
+    }
+    inited = true;
+
+    init_attributes();
+
+    logging::add_console_log(
+        std::clog,
+        boost::parameter::keyword<keywords::tag::format>::get() =
+            (expr::stream << expr::format_date_time<boost::posix_time::ptime>(
+                                 "TimeStamp", "%Y-%m-%d_%H:%M:%S.%f")
+                          << ": <" << boost::log::trivial::severity << "> " << '['
+                          << expr::attr<std::string>("File") << ':' << expr::attr<int>("Line")
+                          << "] " << expr::smessage));
+    logging::add_common_attributes();
 }
 
 Logger::Logger(std::string name)
@@ -31,7 +95,7 @@ Logger::Logger(std::string name)
 Logger::Logger(std::string name, log_level level)
     : name_(std::move(name)), level_(level), impl_(std::make_unique<impl>(level)) {};
 
-logging::trivial::severity_level _log_level_to_severity_level(Logger::log_level level) {
+logging::trivial::severity_level _log_level_to_severity_level(log_level level) {
     switch (level) {
         case ll::error: {
             return bll::error;
@@ -55,29 +119,63 @@ logging::trivial::severity_level _log_level_to_severity_level(Logger::log_level 
     }
 }
 
-void Logger::log(const std::string& log, log_level level) const {
-    if (impl_->level_ > level) {
-        return;
+std::string level_to_string(log_level level) {
+    switch (level) {
+        case ll::error: {
+            return "error";
+        }
+        case ll::warning: {
+            return "warning";
+        }
+        case ll::debug: {
+            return "debug";
+        }
+        case ll::fatal: {
+            return "fatal";
+        }
+        case ll::trace: {
+            return "trace";
+        }
+        case ll::info: {
+            return "info";
+        }
     }
-    BOOST_LOG_SEV(*(impl_->logger_), _log_level_to_severity_level(level)) << log;
 }
-void Logger::debug(const std::string& log) const {
-    this->log(log, ll::debug);
+
+template <typename ValueType>
+ValueType set_get_attrib(const char* name, ValueType value) {
+    auto attr = boost::log::attribute_cast<boost::log::attributes::mutable_constant<ValueType>>(
+        boost::log::core::get()->get_thread_attributes()[name]);
+    attr.set(value);
+    return attr.get();
 }
-void Logger::error(const std::string& log) const {
-    this->log(log, ll::error);
-}
-void Logger::fatal(const std::string& log) const {
-    this->log(log, ll::fatal);
-}
-void Logger::info(const std::string& log) const {
-    this->log(log, ll::info);
-}
-void Logger::trace(const std::string& log) const {
-    this->log(log, ll::trace);
-}
-void Logger::warning(const std::string& log) const {
-    this->log(log, ll::warning);
+
+std::string Logger::log_delineator() {
+    // a bit hacky, the problem is we need some way of including log level and logger name
+    // information that can be passed to a `robot_client.log(...)` call. Storing this information
+    // as a boost keyword attribute (the way we do for `File` and `Line`) isn't sufficient because,
+    // while there's always a file and line no that's being called from, there isn't always a named
+    // logger or an established log level being used (e.g., a client could be calling a `BOOST_LOG`
+    // macro that doesn't support severity level directly, without using one of our named loggers).
+    // In such a case, we'd be passing along whatever logger name and level were previously set,
+    // which isn't great. So, we use the delineator as a sentinel string to split up our actual log
+    // message, our level, and our logger name that is qualified enough to (hopefully) never see
+    // collisions.
+    static std::string delineator("  __VIAM_IMPL_LOG_DELINEATOR__  ");
+    return delineator;
+}  // namespace sdk
+
+void Logger::log(const std::string& msg, log_level level, const char* filename, int line_no) const {
+    std::cout << "in the implementation log call!\n" << std::flush;
+    // in case logging hasn't been initialized, let's set it up.
+    init_logging();
+    set_get_attrib("LogLevel", level_to_string(level));
+    set_get_attrib("LoggerName", name_);
+    BOOST_LOG_STREAM_WITH_PARAMS(
+        *(impl_->logger_),
+        (set_get_attrib("File", viam::sdk::path_to_filename(filename)))(set_get_attrib(
+            "Line", line_no))(boost::log::keywords::severity = _log_level_to_severity_level(level)))
+        << msg;
 }
 
 Logger::~Logger() = default;

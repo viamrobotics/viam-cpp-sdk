@@ -79,11 +79,8 @@ class ClientHelper {
         if (debug_key_ != "") {
             ctx.set_debug_key(debug_key_);
         }
-        std::cout << "getting result\n" << std::flush;
         const auto result = (stub_->*pfn_)(ctx, request_, &response_);
-        std::cout << "got result\n" << std::flush;
         if (result.ok()) {
-            std::cout << "got bad result\n" << std::flush;
             return std::forward<ResponseHandlerCallable>(rhc)(
                 const_cast<const ResponseType&>(response_));
         }

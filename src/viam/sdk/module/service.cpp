@@ -10,9 +10,14 @@
 
 #include <boost/core/null_deleter.hpp>
 #include <boost/iostreams/stream_buffer.hpp>
+#include <boost/log/attributes/mutable_constant.hpp>
+#include <boost/log/expressions.hpp>
 #include <boost/log/sinks.hpp>
 #include <boost/log/sinks/text_ostream_backend.hpp>
+#include <boost/log/support/date_time.hpp>
 #include <boost/log/trivial.hpp>
+#include <boost/log/utility/setup/common_attributes.hpp>
+#include <boost/log/utility/setup/console.hpp>
 #include <boost/none.hpp>
 #include <google/protobuf/descriptor.h>
 #include <grpcpp/channel.h>
@@ -30,6 +35,7 @@
 #include <viam/api/module/v1/module.pb.h>
 
 #include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/common/logger.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -208,21 +214,16 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
 ::grpc::Status ModuleService::Ready(::grpc::ServerContext*,
                                     const ::viam::module::v1::ReadyRequest* request,
                                     ::viam::module::v1::ReadyResponse* response) {
-    std::cout << "Got ready request!!!!\n\n\n" << std::flush;
     const std::lock_guard<std::mutex> lock(lock_);
     const viam::module::v1::HandlerMap hm = this->module_->handles().to_proto();
     *response->mutable_handlermap() = hm;
     auto new_parent_addr = request->parent_address();
     if (parent_addr_ != new_parent_addr) {
         parent_addr_ = std::move(new_parent_addr);
-        std::cout << "setting parent at " << parent_addr_ << "\n" << std::flush;
         if (!parent_) {
             parent_ = RobotClient::at_local_socket(parent_addr_, {0, boost::none});
         }
-        parent_->log("foo", "info", "baz", std::chrono::system_clock::now(), "None");
-        // parent_->log("foo", "error", "baz error", std::chrono::system_clock::now(), "None");
         init_logging_();
-        parent_->log("foo2", "error", "baz2", std::chrono::system_clock::now(), "None2");
     }
     response->set_ready(module_->ready());
     return grpc::Status();
@@ -233,14 +234,54 @@ class custom_logging_buf : public std::stringbuf {
    public:
     custom_logging_buf(std::shared_ptr<RobotClient> parent) : parent_(std::move(parent)) {};
     int sync() override {
-        std::cout << "in sync";
         if (!parent_) {
             std::cerr << "Attempted to send custom gRPC log without parent address\n";
             return -1;
         }
+
+        std::cout << "here!";
+        auto name_attr =
+            boost::log::attribute_cast<boost::log::attributes::mutable_constant<std::string>>(
+                boost::log::core::get()->get_thread_attributes()["LoggerName"]);
+
+        std::string name = name_attr.get();
+        auto level_attr =
+            boost::log::attribute_cast<boost::log::attributes::mutable_constant<std::string>>(
+                boost::log::core::get()->get_thread_attributes()["LogLevel"]);
+
+        std::string level = level_attr.get();
+        if (name == "" || level == "") {
+            // logging is not being done from `Viam` logger but is still going through `Boost`.
+            // Because we use `Boost` as our backend and are overwriting defaults, this log will
+            // still go to `viam-server`. But, since the call is not made through our logger,
+            // we don't want to rely on a previously set level or logger name. So, we fall back
+            // on default values.
+            name = "module_service";
+            level = "info";
+        }
+
+        // reset name and level attribute to "" in case a subsequent logging call is made through
+        // a boost macro directly, without using our loggers.
+        name_attr.set("");
+        level_attr.set("");
+
         auto log = this->str();
-        std::cout << " and the log is " << log << "\n" << std::flush;
-        parent_->log("s", "error", std::move(log), std::chrono::system_clock::now(), "None");
+        // Boost loves to add newline chars at the end of log messages, but this causes RDK
+        // logs to break out over multiple lines, which isn't great. Since we break up the structure
+        // of our log messages into two parts for module logging purposes, we need to remove the
+        // final character (always a newline) and then the first occurrence of a newline after that
+        // if it exists.
+        log.pop_back();
+        auto first_newline_char = log.find('\n', 0);
+        if (first_newline_char != std::string::npos) {
+            log.erase(first_newline_char, 1);
+        }
+
+        parent_->log(std::move(name),
+                     std::move(level),
+                     std::move(log),
+                     std::chrono::system_clock::now(),
+                     "None");
         return 0;
     }
 
@@ -255,6 +296,7 @@ struct ModuleService::impl {
         : buf(::viam::sdk::impl::custom_logging_buf(std::move(parent))) {
         auto backend = boost::make_shared<boost::log::sinks::text_ostream_backend>();
         auto strm = boost::make_shared<std::ostream>(&buf);
+        stream = strm;
         backend->add_stream(strm);
         backend->auto_flush(true);
         sink = boost::make_shared<text_sink>(backend);
@@ -262,10 +304,13 @@ struct ModuleService::impl {
 
     ::viam::sdk::impl::custom_logging_buf buf;
     boost::shared_ptr<text_sink> sink;
+    boost::shared_ptr<std::ostream> stream;
 };
 
 void ModuleService::init_logging_() {
+    BOOST_LOG_TRIVIAL(error) << "error log the old way";
     impl_ = std::make_unique<impl>(parent_);
+    init_logging(*impl_->stream);
     logging::core::get()->add_sink(impl_->sink);
 }
 
@@ -298,27 +343,19 @@ void ModuleService::serve() {
     server_->register_service(this);
     const std::string address = "unix://" + module_->addr();
     server_->add_listening_port(address);
-    // std::cout << "setting parent at " << parent_addr_ << "\n" << std::flush;
-    //  parent_ = RobotClient::at_local_socket(parent_addr_, {0, boost::none});
-    std::cout << "initialize logging\n" << std::flush;
 
-    std::cout << "initialized logging\n" << std::flush;
     module_->set_ready();
-    std::cout << "starting\n" << std::flush;
     server_->start();
-    std::cout << "started\n" << std::flush;
     BOOST_LOG_TRIVIAL(info) << "Module listening on " << module_->addr();
     BOOST_LOG_TRIVIAL(info) << "Module handles the following API/model pairs:\n"
                             << module_->handles();
-    // init_logging_();
-
-    std::cout << "added some logs surely that's fine\n" << std::flush;
 
     signal_manager_.wait();
 }
 
 ModuleService::~ModuleService() {
     // TODO(RSDK-5509): Run registered cleanup functions here.
+    // CR erodkin: this is breaking because of level parsing, fix that
     // BOOST_LOG_TRIVIAL(info) << "Shutting down gracefully.";
     server_->shutdown();
 
@@ -326,7 +363,7 @@ ModuleService::~ModuleService() {
         try {
             parent_->close();
         } catch (const std::exception& exc) {
-            // BOOST_LOG_TRIVIAL(error) << exc.what();
+            BOOST_LOG_TRIVIAL(error) << exc.what();
         }
     }
 }

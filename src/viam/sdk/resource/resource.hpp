@@ -34,7 +34,7 @@ class Resource {
 
    protected:
     // NOLINTNEXTLINE
-    Logger logger_;
+    std::unique_ptr<Logger> logger_;
 };
 
 template <>

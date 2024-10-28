@@ -1,12 +1,7 @@
 #pragma once
 
-#include <signal.h>
-
 #include <viam/api/component/generic/v1/generic.grpc.pb.h>
 #include <viam/api/module/v1/module.grpc.pb.h>
-
-#include <boost/log/sinks.hpp>
-#include <boost/shared_ptr.hpp>
 
 #include <viam/sdk/module/module.hpp>
 #include <viam/sdk/module/signal_manager.hpp>
