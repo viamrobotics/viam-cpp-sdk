@@ -1,17 +1,8 @@
 #!/bin/bash
 set -e
 
-mkdir build
-cd build
-cmake .. -G Ninja -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON \
-		-DVIAMCPPSDK_OFFLINE_PROTO_GENERATION=ON \
-		-DVIAMCPPSDK_SANITIZED_BUILD=$BUILD_SHARED \
-		-DVIAMCPPSDK_CLANG_TIDY=ON \
-		-DBUILD_SHARED_LIBS=$BUILD_SHARED
-
-ninja all
-ninja install
 INSTALL_DIR="$(pwd)/install"
+BUILD_SHARED=$(grep 'BUILD_SHARED_LIBS' CMakeCache.txt | cut -d '=' -f 2)
 
 pushd src/viam/sdk/tests
 UBSAN_OPTIONS="print_stacktrace=1" ctest --output-on-failure
