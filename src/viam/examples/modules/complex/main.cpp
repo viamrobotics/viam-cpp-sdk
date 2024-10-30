@@ -1,7 +1,6 @@
 #include <memory>
 #include <signal.h>
 
-#include <boost/log/trivial.hpp>
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/server_context.h>
 

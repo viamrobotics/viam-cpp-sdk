@@ -53,6 +53,8 @@
 namespace viam {
 namespace sdk {
 
+using ll = log_level;
+
 namespace logging = boost::log;
 
 Dependencies ModuleService::get_dependencies_(
@@ -96,6 +98,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
     if (reg) {
         try {
             res = reg->construct_resource(deps, cfg);
+            res->set_log_level(cfg.log_level());
         } catch (const std::exception& exc) {
             return grpc::Status(::grpc::INTERNAL, exc.what());
         }
@@ -133,6 +136,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
     }
     try {
         Reconfigurable::reconfigure_if_reconfigurable(res, deps, cfg);
+        res->set_log_level(cfg.log_level());
         return grpc::Status();
     } catch (const std::exception& exc) {
         return grpc::Status(::grpc::INTERNAL, exc.what());
@@ -142,7 +146,8 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
     try {
         Stoppable::stop_if_stoppable(res);
     } catch (const std::exception& err) {
-        BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err.what();
+        VIAM_SDK_CUSTOM_FORMATTED_LOG(
+            logger_, ll::error, "unable to stop resource: " << err.what());
     }
 
     const std::shared_ptr<const ModelRegistration> reg = Registry::lookup_model(cfg.name());
@@ -204,7 +209,8 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
     try {
         Stoppable::stop_if_stoppable(res);
     } catch (const std::exception& err) {
-        BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err.what();
+        VIAM_SDK_CUSTOM_FORMATTED_LOG(
+            logger_, ll::error, "unable to stop resource: " << err.what());
     }
 
     manager->remove(name);
@@ -229,7 +235,13 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
     return grpc::Status();
 };
 
-namespace impl {
+namespace {
+// (ethan) I don't love having this logic here. Ideally we could have all the logging logic live in
+// a single place (logger.xpp). However, the logging for modular resources relies on not actually
+// logging to the console, but rather sending log messages over the wire to a robot client. If we
+// wanted this logic to live in logger.cpp, then we'd have to expose a dependency on `RobotClient`
+// in logger.hpp. this would likely create a circular dependency and imo is worse than having the
+// moduleservice be aware of logging logic in a way that is confined to the implementation file.
 class custom_logging_buf : public std::stringbuf {
    public:
     custom_logging_buf(std::shared_ptr<RobotClient> parent) : parent_(std::move(parent)) {};
@@ -239,15 +251,14 @@ class custom_logging_buf : public std::stringbuf {
             return -1;
         }
 
-        std::cout << "here!";
         auto name_attr =
-            boost::log::attribute_cast<boost::log::attributes::mutable_constant<std::string>>(
-                boost::log::core::get()->get_thread_attributes()["LoggerName"]);
+            logging::attribute_cast<logging::attributes::mutable_constant<std::string>>(
+                logging::core::get()->get_thread_attributes()["LoggerName"]);
 
         std::string name = name_attr.get();
         auto level_attr =
-            boost::log::attribute_cast<boost::log::attributes::mutable_constant<std::string>>(
-                boost::log::core::get()->get_thread_attributes()["LogLevel"]);
+            logging::attribute_cast<logging::attributes::mutable_constant<std::string>>(
+                logging::core::get()->get_thread_attributes()["LogLevel"]);
 
         std::string level = level_attr.get();
         if (name == "" || level == "") {
@@ -256,16 +267,17 @@ class custom_logging_buf : public std::stringbuf {
             // still go to `viam-server`. But, since the call is not made through our logger,
             // we don't want to rely on a previously set level or logger name. So, we fall back
             // on default values.
-            name = "module_service";
+            name = "viam-cpp-sdk";
             level = "info";
         }
 
         // reset name and level attribute to "" in case a subsequent logging call is made through
         // a boost macro directly, without using our loggers.
         name_attr.set("");
-        level_attr.set("");
+        // level_attr.set("");
 
         auto log = this->str();
+        this->str("");
         // Boost loves to add newline chars at the end of log messages, but this causes RDK
         // logs to break out over multiple lines, which isn't great. Since we break up the structure
         // of our log messages into two parts for module logging purposes, we need to remove the
@@ -277,24 +289,20 @@ class custom_logging_buf : public std::stringbuf {
             log.erase(first_newline_char, 1);
         }
 
-        parent_->log(std::move(name),
-                     std::move(level),
-                     std::move(log),
-                     std::chrono::system_clock::now(),
-                     "None");
+        parent_->log(
+            std::move(name), std::move(level), std::move(log), std::chrono::system_clock::now());
         return 0;
     }
 
    private:
     std::shared_ptr<RobotClient> parent_;
 };
-}  // namespace impl
+}  // namespace
 
 struct ModuleService::impl {
     typedef logging::sinks::synchronous_sink<logging::sinks::text_ostream_backend> text_sink;
-    impl(std::shared_ptr<RobotClient> parent)
-        : buf(::viam::sdk::impl::custom_logging_buf(std::move(parent))) {
-        auto backend = boost::make_shared<boost::log::sinks::text_ostream_backend>();
+    impl(const std::shared_ptr<RobotClient>& parent) : buf(custom_logging_buf(parent)) {
+        auto backend = boost::make_shared<logging::sinks::text_ostream_backend>();
         auto strm = boost::make_shared<std::ostream>(&buf);
         stream = strm;
         backend->add_stream(strm);
@@ -302,24 +310,26 @@ struct ModuleService::impl {
         sink = boost::make_shared<text_sink>(backend);
     }
 
-    ::viam::sdk::impl::custom_logging_buf buf;
+    custom_logging_buf buf;
     boost::shared_ptr<text_sink> sink;
     boost::shared_ptr<std::ostream> stream;
 };
 
 void ModuleService::init_logging_() {
-    BOOST_LOG_TRIVIAL(error) << "error log the old way";
     impl_ = std::make_unique<impl>(parent_);
     init_logging(*impl_->stream);
     logging::core::get()->add_sink(impl_->sink);
 }
 
 ModuleService::ModuleService(std::string addr)
-    : module_(std::make_unique<Module>(std::move(addr))), server_(std::make_unique<Server>()) {}
+    : module_(std::make_unique<Module>(std::move(addr))),
+      server_(std::make_unique<Server>()),
+      logger_(std::make_unique<Logger>("viam-cpp-module-service")) {}
 
 ModuleService::ModuleService(int argc,
                              char** argv,
-                             const std::vector<std::shared_ptr<ModelRegistration>>& registrations) {
+                             const std::vector<std::shared_ptr<ModelRegistration>>& registrations)
+    : logger_(std::make_unique<Logger>("viam-cpp-module-service")) {
     if (argc < 2) {
         throw Exception(ErrorCondition::k_connection, "Need socket path as command line argument");
     }
@@ -346,24 +356,26 @@ void ModuleService::serve() {
 
     module_->set_ready();
     server_->start();
-    BOOST_LOG_TRIVIAL(info) << "Module listening on " << module_->addr();
-    BOOST_LOG_TRIVIAL(info) << "Module handles the following API/model pairs:\n"
-                            << module_->handles();
+
+    VIAM_SDK_CUSTOM_FORMATTED_LOG(logger_, ll::info, "Module listening on " << module_->addr());
+    VIAM_SDK_CUSTOM_FORMATTED_LOG(logger_,
+                                  ll::info,
+                                  "Module handles the following API/model pairs:\n"
+                                      << module_->handles());
 
     signal_manager_.wait();
 }
 
 ModuleService::~ModuleService() {
     // TODO(RSDK-5509): Run registered cleanup functions here.
-    // CR erodkin: this is breaking because of level parsing, fix that
-    // BOOST_LOG_TRIVIAL(info) << "Shutting down gracefully.";
+    VIAM_SDK_CUSTOM_FORMATTED_LOG(logger_, ll::info, "Shutting down gracefully");
     server_->shutdown();
 
     if (parent_) {
         try {
             parent_->close();
         } catch (const std::exception& exc) {
-            BOOST_LOG_TRIVIAL(error) << exc.what();
+            VIAM_SDK_CUSTOM_FORMATTED_LOG(logger_, ll::error, exc.what());
         }
     }
 }

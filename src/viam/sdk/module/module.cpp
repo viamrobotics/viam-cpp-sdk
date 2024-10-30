@@ -1,7 +1,5 @@
 #include <viam/sdk/module/module.hpp>
 
-#include <boost/log/sinks.hpp>
-#include <boost/log/trivial.hpp>
 #include <grpcpp/channel.h>
 #include <grpcpp/create_channel.h>
 #include <grpcpp/security/credentials.h>

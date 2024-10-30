@@ -27,27 +27,19 @@
 using namespace viam::sdk;
 
 int main() {
-    // const char* uri = "http://localhost:8080/";  // replace with your URI if connecting securely
-    // DialOptions dial_options;
-    // dial_options.set_allow_insecure_downgrade(true);  // set to false if connecting securely
+    const char* uri = "http://localhost:8080/";  // replace with your URI if connecting securely
+    DialOptions dial_options;
+    dial_options.set_allow_insecure_downgrade(true);  // set to false if connecting securely
 
     // Uncomment and fill out your credentials details if connecting securely
-    // std::string type = "<your authentication type>";
-    // std::string payload = "<your authentication payload>";
-    // Credentials credentials(type, payload);
-    // dial_options.set_credentials(credentials);
+    std::string type = "<your authentication type>";
+    std::string payload = "<your authentication payload>";
+    Credentials credentials(type, payload);
+    dial_options.set_credentials(credentials);
 
-    std::string host("webrtc-test-main.jkek76kqnh.viam.cloud");
-    DialOptions dial_opts;
-    dial_opts.set_entity(std::string("a9dcf212-3397-4318-bb1e-f5c36b3cafc1"));
-    Credentials credentials("api-key", "2ml60ys1j4i9v0pecpxahe654yxpc1dz");
-    dial_opts.set_credentials(credentials);
-    boost::optional<DialOptions> opts(dial_opts);
-    Options options(0, opts);
-
-    // boost::optional<DialOptions> opts(dial_options);
-    // std::string address(uri);
-    // Options options(1, opts);
+    boost::optional<DialOptions> opts(dial_options);
+    std::string address(uri);
+    Options options(1, opts);
 
     // Register custom gizmo and summation clients so robot client can access resources
     // of that type from the server.
@@ -55,7 +47,7 @@ int main() {
     Registry::register_resource_client<SummationClient>();
 
     // Connect to robot.
-    std::shared_ptr<RobotClient> robot = RobotClient::at_address(host, options);
+    std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);
     // Print resources.
     std::cout << "Resources" << std::endl;
     std::vector<Name> resource_names = robot->resource_names();

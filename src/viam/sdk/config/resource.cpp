@@ -95,6 +95,8 @@ ResourceConfig ResourceConfig::from_proto(const viam::app::v1::ComponentConfig& 
     resource.namespace__ = proto_cfg.namespace_();
     resource.type_ = proto_cfg.type();
     resource.attributes_ = struct_to_map(proto_cfg.attributes());
+    resource.log_level_ = Logger::from_string(proto_cfg.log_configuration().level());
+    auto level = proto_cfg.log_configuration().level();
     const std::string& api = proto_cfg.api();
     if (api.find(':') != std::string::npos) {
         resource.api_ = API::from_string(api);
@@ -109,6 +111,10 @@ ResourceConfig ResourceConfig::from_proto(const viam::app::v1::ComponentConfig& 
 
     return resource;
 };
+
+log_level ResourceConfig::log_level() const {
+    return log_level_;
+}
 
 viam::app::v1::ComponentConfig ResourceConfig::to_proto() const {
     viam::app::v1::ComponentConfig proto_cfg;
@@ -138,7 +144,8 @@ viam::app::v1::ComponentConfig ResourceConfig::to_proto() const {
     return proto_cfg;
 }
 
-ResourceConfig::ResourceConfig(std::string type) : api_({kRDK, type, ""}), type_(std::move(type)){};
+ResourceConfig::ResourceConfig(std::string type)
+    : api_({kRDK, type, ""}), type_(std::move(type)) {};
 
 }  // namespace sdk
 }  // namespace viam

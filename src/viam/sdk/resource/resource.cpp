@@ -30,5 +30,9 @@ ResourceName Resource::get_resource_name(std::string name) const {
     return r;
 }
 
+void Resource::set_log_level(log_level level) {
+    logger_->set_log_level(level);
+}
+
 }  // namespace sdk
 }  // namespace viam

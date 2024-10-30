@@ -5,9 +5,8 @@
 #include <sstream>
 #include <string>
 
-#include <boost/log/attributes/mutable_constant.hpp>
-#include <boost/log/core.hpp>
-#include <boost/log/trivial.hpp>
+// Some of the logic here has been cribbed from
+// https://stackoverflow.com/questions/19415845/a-better-log-macro-using-template-metaprogramming
 
 // Workaround GCC 4.7.2 not recognizing noinline attribute
 #ifndef NOINLINE_ATTRIBUTE
@@ -23,7 +22,7 @@
 namespace viam {
 namespace sdk {
 
-class Resource;
+class ModuleService;
 
 enum class log_level : std::int8_t {
     trace = -2,
@@ -35,11 +34,28 @@ enum class log_level : std::int8_t {
 };
 class Logger {
    public:
+    static log_level from_string(std::string str);
+    explicit Logger(std::string name);
+    explicit Logger(std::string name, log_level level);
+
+    void set_log_level(log_level level);
+    void log(const std::string& msg, log_level level, const char* file, int line_no) const;
+
     struct None {};
 
     template <typename List>
     struct LogData {
         List list;
+    };
+
+    template <typename List>
+    void static static_log(const LogData<List>& data,
+                           log_level level,
+                           const char* file,
+                           int line_no) {
+        std::ostringstream buffer;
+        output(buffer, std::move(data.list));
+        static_log_(buffer.str(), level, file, line_no);
     };
 
     template <typename Begin, typename Value>
@@ -78,28 +94,24 @@ class Logger {
     }
     NOINLINE_ATTRIBUTE;
 
-    void log(const std::string& msg, log_level level, const char* file, int line_no) const;
-
     ~Logger();
 
-    explicit Logger(std::string name);
-    explicit Logger(std::string name, log_level level);
-
-    void set_log_level(log_level level);
-
-    static std::string log_delineator();
-
-    struct impl;
+    friend class ModuleService;
 
    private:
+    void static static_log_(const std::string& msg, log_level level, const char* file, int line_no);
+    struct impl;
+    struct module_logging_impl;
+
     std::string name_;
     log_level level_;
     std::unique_ptr<impl> impl_;
 };
 
-// CR erodkin: these can probably be hidden entirely? or maybe not
+// (RSDK-9172) These (or at least the default version) should be called from within an initializer
+// object that handles all SDK initialization for us.
 void init_logging();
-void init_logging(std::ostream& strm);
+void init_logging(std::ostream& custom_strm);
 
 }  // namespace sdk
 }  // namespace viam
@@ -108,5 +120,10 @@ void init_logging(std::ostream& strm);
 //  New macro that includes severity, filename and line number
 #define VIAM_SDK_CUSTOM_FORMATTED_LOG(logger, sev, msg) \
     logger->log(                                        \
+        ::viam::sdk::Logger::LogData<::viam::sdk::Logger::None>() << msg, sev, __FILE__, __LINE__)
+
+//  New macro that includes severity, filename and line number, using a default built-in logger
+#define VIAM_SDK_TRIVIAL_CUSTOM_FORMATTED_LOG(sev, msg) \
+    ::viam::sdk::Logger::static_log(                    \
         ::viam::sdk::Logger::LogData<::viam::sdk::Logger::None>() << msg, sev, __FILE__, __LINE__)
 

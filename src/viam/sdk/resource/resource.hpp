@@ -29,6 +29,8 @@ class Resource {
     /// @brief Return the resource's name.
     virtual std::string name() const;
 
+    void set_log_level(log_level level);
+
    private:
     std::string name_;
 

@@ -15,6 +15,7 @@
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
+#include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/services/service.hpp>
 
@@ -119,8 +120,7 @@ class RobotClient {
         std::string name,
         std::string level,
         std::string message,
-        const std::chrono::time_point<std::chrono::system_clock, std::chrono::nanoseconds>& time,
-        std::string stack);
+        const std::chrono::time_point<std::chrono::system_clock, std::chrono::nanoseconds>& time);
 
     template <typename T>
     /// @brief Lookup and return a `shared_ptr` to a resource of the requested type.

@@ -5,11 +5,8 @@
 #include <sstream>
 #include <vector>
 
-#include <boost/log/core.hpp>
-#include <boost/log/trivial.hpp>
 #include <grpcpp/support/status.h>
 
-#include <viam/sdk/common/logger.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource.hpp>
@@ -53,9 +50,6 @@ std::vector<std::string> MyGizmo::validate(const ResourceConfig& cfg) {
 }
 
 bool MyGizmo::do_one(std::string arg1) {
-    // CR erodkin: delete this, and places where we've added boost dependencies in headers
-    VIAM_SDK_CUSTOM_FORMATTED_LOG(
-        logger_, log_level::error, "error log from impl the new way with " << 2 << " stream calls");
     return arg1_ == arg1;
 }
 

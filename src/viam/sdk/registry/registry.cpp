@@ -5,13 +5,13 @@
 #include <string>
 #include <unordered_map>
 
-#include <boost/log/trivial.hpp>
 #include <google/protobuf/descriptor.h>
 #include <google/protobuf/struct.pb.h>
 #include <grpcpp/channel.h>
 #include <grpcpp/ext/proto_server_reflection_plugin.h>
 
 #include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/common/logger.hpp>
 #include <viam/sdk/components/private/arm_client.hpp>
 #include <viam/sdk/components/private/arm_server.hpp>
 #include <viam/sdk/components/private/base_client.hpp>
@@ -195,8 +195,9 @@ void register_resources() {
 void Registry::initialize() {
     const std::lock_guard<std::mutex> lock(lock_);
     if (initialized_) {
-        BOOST_LOG_TRIVIAL(warning)
-            << "Attempted to initialize the Registry but it was already initialized.";
+        VIAM_SDK_TRIVIAL_CUSTOM_FORMATTED_LOG(
+            log_level::warning,
+            "Attempted to initialize the Registry but it was already initialized.");
         return;
     }
     initialized_ = true;

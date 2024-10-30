@@ -4,11 +4,7 @@
 
 #include <google/protobuf/descriptor.h>
 
-#include <boost/log/common.hpp>
-#include <boost/log/sources/logger.hpp>
-#include <boost/log/trivial.hpp>
 #include <viam/sdk/common/client_helper.hpp>
-#include <viam/sdk/common/logger.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
@@ -179,8 +175,6 @@ GizmoClient::GizmoClient(std::string name, std::shared_ptr<grpc::Channel> channe
       channel_(std::move(channel)) {};
 
 bool GizmoClient::do_one(std::string arg1) {
-    BOOST_LOG_TRIVIAL(error) << "log in client the old way";
-    VIAM_SDK_CUSTOM_FORMATTED_LOG(logger_, log_level::error, "log in client the new way");
     return make_client_helper(this, *stub_, &StubType::DoOne)
         .with([&](auto& request) { request.set_arg1(arg1); })
         .invoke([](auto& response) { return response.ret1(); });

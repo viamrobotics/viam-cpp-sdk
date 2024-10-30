@@ -1,14 +1,12 @@
 #include <viam/sdk/module/handler_map.hpp>
 
-#include <memory>
-
-#include <boost/log/trivial.hpp>
 #include <google/protobuf/descriptor.h>
 
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/module/v1/module.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
 
+#include <viam/sdk/common/logger.hpp>
 #include <viam/sdk/resource/resource.hpp>
 
 namespace viam {
@@ -34,7 +32,7 @@ viam::module::v1::HandlerMap HandlerMap_::to_proto() const {
     return proto;
 };
 
-HandlerMap_::HandlerMap_(){};
+HandlerMap_::HandlerMap_() {};
 
 // NOLINTNEXTLINE(readability-const-return-type)
 const HandlerMap_ HandlerMap_::from_proto(const viam::module::v1::HandlerMap& proto) {
@@ -56,7 +54,8 @@ const HandlerMap_ HandlerMap_::from_proto(const viam::module::v1::HandlerMap& pr
                 const Model model = Model::from_str(mod);
                 models.push_back(model);
             } catch (std::string error) {  // NOLINT
-                BOOST_LOG_TRIVIAL(error) << "Error processing model " + mod;
+                VIAM_SDK_TRIVIAL_CUSTOM_FORMATTED_LOG(log_level::error,
+                                                      "Error processing model " + mod);
             }
         }
         hm.handles_.emplace(handle, models);

@@ -83,6 +83,7 @@ class ModuleService : viam::module::v1::ModuleService::Service {
     std::string parent_addr_;
     std::unique_ptr<Server> server_;
     SignalManager signal_manager_;
+    std::unique_ptr<Logger> logger_;
 };
 
 }  // namespace sdk

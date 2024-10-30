@@ -2,7 +2,6 @@
 #include <memory>
 #include <sstream>
 
-#include <boost/log/trivial.hpp>
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/server_context.h>
 
