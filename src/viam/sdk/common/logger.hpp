@@ -115,7 +115,6 @@ void init_logging(std::ostream& custom_strm);
 
 }  // namespace sdk
 }  // namespace viam
-   //
 
 //  New macro that includes severity, filename and line number
 #define VIAM_SDK_CUSTOM_FORMATTED_LOG(logger, sev, msg) \

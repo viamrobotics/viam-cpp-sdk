@@ -32,10 +32,10 @@ int main() {
     dial_options.set_allow_insecure_downgrade(true);  // set to false if connecting securely
 
     // Uncomment and fill out your credentials details if connecting securely
-    std::string type = "<your authentication type>";
-    std::string payload = "<your authentication payload>";
-    Credentials credentials(type, payload);
-    dial_options.set_credentials(credentials);
+    // std::string type = "<your authentication type>";
+    // std::string payload = "<your authentication payload>";
+    // Credentials credentials(type, payload);
+    // dial_options.set_credentials(credentials);
 
     boost::optional<DialOptions> opts(dial_options);
     std::string address(uri);

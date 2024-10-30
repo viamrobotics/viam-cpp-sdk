@@ -185,6 +185,8 @@ ValueType set_get_attrib(const char* name, ValueType value) {
 
 void Logger::log(const std::string& msg, log_level level, const char* filename, int line_no) const {
     // in case logging hasn't been initialized, let's set it up.
+    // (RSDK-9172) This should be called from within an initializer object that handles all SDK
+    // initialization for us.
     init_logging();
 
     BOOST_LOG_STREAM_WITH_PARAMS(

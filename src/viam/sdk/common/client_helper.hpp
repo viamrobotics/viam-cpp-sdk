@@ -35,9 +35,6 @@ class ClientHelper {
     static void default_rsc_(RequestType&) {}
     static void default_rhc_(const ResponseType&) {}
     static void default_ehc_(const ::grpc::Status& status) {
-        std::cout << "error is " << status.error_details() << " " << status.error_code() << " "
-                  << status.error_message() << "\n"
-                  << std::flush;
         throw GRPCException(status);
     }
 

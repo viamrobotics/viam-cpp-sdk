@@ -1,7 +1,7 @@
-#include <chrono>
 #include <viam/sdk/module/service.hpp>
 
 #include <exception>
+#include <chrono>
 #include <memory>
 #include <sstream>
 #include <string>
@@ -274,7 +274,7 @@ class custom_logging_buf : public std::stringbuf {
         // reset name and level attribute to "" in case a subsequent logging call is made through
         // a boost macro directly, without using our loggers.
         name_attr.set("");
-        // level_attr.set("");
+		level_attr.set("");
 
         auto log = this->str();
         this->str("");

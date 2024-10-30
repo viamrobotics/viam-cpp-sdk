@@ -24,12 +24,12 @@ API API::traits<Gizmo>::api() {
     return {"viam", "component", "gizmo"};
 }
 
-Gizmo::Gizmo(std::string name) : Component(std::move(name)) {};
+Gizmo::Gizmo(std::string name) : Component(std::move(name)){};
 
 /* Gizmo server methods */
 
 GizmoServer::GizmoServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)) {};
+    : ResourceServer(std::move(manager)){};
 
 grpc::Status GizmoServer::DoOne(grpc::ServerContext* context,
                                 const DoOneRequest* request,
@@ -170,9 +170,7 @@ grpc::Status GizmoServer::DoTwo(::grpc::ServerContext* context,
 /* Gizmo client methods */
 
 GizmoClient::GizmoClient(std::string name, std::shared_ptr<grpc::Channel> channel)
-    : Gizmo(std::move(name)),
-      stub_(GizmoService::NewStub(channel)),
-      channel_(std::move(channel)) {};
+    : Gizmo(std::move(name)), stub_(GizmoService::NewStub(channel)), channel_(std::move(channel)){};
 
 bool GizmoClient::do_one(std::string arg1) {
     return make_client_helper(this, *stub_, &StubType::DoOne)

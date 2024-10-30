@@ -32,7 +32,7 @@ viam::module::v1::HandlerMap HandlerMap_::to_proto() const {
     return proto;
 };
 
-HandlerMap_::HandlerMap_() {};
+HandlerMap_::HandlerMap_(){};
 
 // NOLINTNEXTLINE(readability-const-return-type)
 const HandlerMap_ HandlerMap_::from_proto(const viam::module::v1::HandlerMap& proto) {
