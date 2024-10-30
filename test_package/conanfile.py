@@ -3,15 +3,18 @@ import os
 
 from conan import ConanFile
 from conan.errors import ConanException
-from conan.tools.cmake import CMake, cmake_layout
+from conan.tools.cmake import CMake, CMakeDeps, CMakeToolchain,  cmake_layout
 from conan.tools.build import can_run
 
 class viamCppSdkTest(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
-    generators = "CMakeDeps", "CMakeToolchain"
 
     def requirements(self):
         self.requires(self.tested_reference_str)
+
+    def generate(self):
+        CMakeToolchain(self, "Ninja").generate()
+        CMakeDeps(self).generate()
 
     def build(self):
         cmake = CMake(self)
