@@ -32,20 +32,20 @@ class ViamCppSdkRecipe(ConanFile):
         self.version = re.search("set\(CMAKE_PROJECT_VERSION (.+)\)", content).group(1).strip()
 
     def configure(self):
-        self.options["grpc"].shared = self.options.shared
         if self.options.shared:
-            self.options["protobuf"].shared = True
+            for lib in ["grpc", "protobuf", "abseil"]:
+                self.options[lib].shared = True
 
     def requirements(self):
         self.requires('boost/[>=1.74.0]', transitive_headers=True)
 
         # The SDK supports older grpc and protobuf, but these are the oldest
         # maintained conan packages.
-        self.requires('grpc/[>=1.48.4]', transitive_headers=True)
-        self.requires('protobuf/[>=3.17.1]', transitive_headers=True)
+        self.requires('grpc/[>=1.48.4]', transitive_headers=True, transitive_libs=True)
+        self.requires('protobuf/[>=3.17.1]', transitive_headers=True, transitive_libs=True)
 
-        self.requires('xtensor/[>=0.24.3]', transitive_headers=True)
-        self.requires('abseil/[>=20230125.3]')
+        self.requires('xtensor/[>=0.24.3]')
+        self.requires('abseil/[>=20230125.3]', transitive_libs=True)
 
     def build_requirements(self):
         if self.options.offline_proto_generation:
@@ -84,7 +84,7 @@ class ViamCppSdkRecipe(ConanFile):
         for component in ["viamsdk", "viamapi"]:
            self.cpp_info.components[component].set_property("cmake_target_name", "viam-cpp-sdk::{}".format(component))
            self.cpp_info.components[component].set_property("pkg_config_name", "viam-cpp-sdk-lib{}".format(component))
-           self.cpp_info.components[component].requires = ["grpc::grpc++", "protobuf::libprotobuf"]
+           self.cpp_info.components[component].requires = ["grpc::grpc", "grpc::grpc++", "grpc::grpc++_reflection", "protobuf::libprotobuf"]
            if self.settings.os in ["Linux", "FreeBSD"]:
             self.cpp_info.components[component].system_libs = ["pthread"]
 
@@ -113,7 +113,6 @@ class ViamCppSdkRecipe(ConanFile):
 
             "viam_rust_utils",
             "abseil::absl_strings",
-            "grpc::grpc++_reflection"
         ])
 
         self.cpp_info.components["viamsdk"].frameworks = ["Security"]
