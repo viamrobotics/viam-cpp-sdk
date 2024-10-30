@@ -3,18 +3,16 @@ import os
 
 from conan import ConanFile
 from conan.errors import ConanException
-from conan.tools.cmake import CMake, CMakeDeps, CMakeToolchain,  cmake_layout
+from conan.tools.cmake import CMake, cmake_layout
 from conan.tools.build import can_run
+from conan.tools.env import VirtualRunEnv
 
 class viamCppSdkTest(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
+    generators = "CMakeDeps", "CMakeToolchain"
 
     def requirements(self):
         self.requires(self.tested_reference_str)
-
-    def generate(self):
-        CMakeToolchain(self, "Ninja").generate()
-        CMakeDeps(self).generate()
 
     def build(self):
         cmake = CMake(self)
@@ -32,7 +30,9 @@ class viamCppSdkTest(ConanFile):
 
             # the ConanFile run method is a wrapper around Popen, but it only returns the retcode.
             # A properly intialized module waits indefinitely on a signal, so we have to use Popen manually.
-            proc = subprocess.Popen([cmd, sock], stdout=subprocess.PIPE, text=True)
+
+            env = VirtualRunEnv(self).vars()
+            proc = subprocess.Popen([cmd, sock], stdout=subprocess.PIPE, text=True, env=env)
 
             out = None
 
