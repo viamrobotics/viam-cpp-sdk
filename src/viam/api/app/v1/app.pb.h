@@ -6286,10 +6286,39 @@ class ModuleFileInfo final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kPlatformTagsFieldNumber = 5,
     kModuleIdFieldNumber = 1,
     kVersionFieldNumber = 2,
     kPlatformFieldNumber = 3,
   };
+  // repeated string platform_tags = 5 [json_name = "platformTags"];
+  int platform_tags_size() const;
+  private:
+  int _internal_platform_tags_size() const;
+
+  public:
+  void clear_platform_tags() ;
+  const std::string& platform_tags(int index) const;
+  std::string* mutable_platform_tags(int index);
+  void set_platform_tags(int index, const std::string& value);
+  void set_platform_tags(int index, std::string&& value);
+  void set_platform_tags(int index, const char* value);
+  void set_platform_tags(int index, const char* value, std::size_t size);
+  void set_platform_tags(int index, absl::string_view value);
+  std::string* add_platform_tags();
+  void add_platform_tags(const std::string& value);
+  void add_platform_tags(std::string&& value);
+  void add_platform_tags(const char* value);
+  void add_platform_tags(const char* value, std::size_t size);
+  void add_platform_tags(absl::string_view value);
+  const ::google::protobuf::RepeatedPtrField<std::string>& platform_tags() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* mutable_platform_tags();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_platform_tags() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_platform_tags();
+
+  public:
   // string module_id = 1 [json_name = "moduleId"];
   void clear_module_id() ;
   const std::string& module_id() const;
@@ -6344,8 +6373,8 @@ class ModuleFileInfo final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 0,
-      59, 2>
+      3, 4, 0,
+      72, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -6361,6 +6390,7 @@ class ModuleFileInfo final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::RepeatedPtrField<std::string> platform_tags_;
     ::google::protobuf::internal::ArenaStringPtr module_id_;
     ::google::protobuf::internal::ArenaStringPtr version_;
     ::google::protobuf::internal::ArenaStringPtr platform_;
@@ -55590,6 +55620,107 @@ inline void ModuleFileInfo::set_allocated_platform(std::string* value) {
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleFileInfo.platform)
+}
+
+// repeated string platform_tags = 5 [json_name = "platformTags"];
+inline int ModuleFileInfo::_internal_platform_tags_size() const {
+  return _internal_platform_tags().size();
+}
+inline int ModuleFileInfo::platform_tags_size() const {
+  return _internal_platform_tags_size();
+}
+inline void ModuleFileInfo::clear_platform_tags() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.platform_tags_.Clear();
+}
+inline std::string* ModuleFileInfo::add_platform_tags()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  std::string* _s = _internal_mutable_platform_tags()->Add();
+  // @@protoc_insertion_point(field_add_mutable:viam.app.v1.ModuleFileInfo.platform_tags)
+  return _s;
+}
+inline const std::string& ModuleFileInfo::platform_tags(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleFileInfo.platform_tags)
+  return _internal_platform_tags().Get(index);
+}
+inline std::string* ModuleFileInfo::mutable_platform_tags(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ModuleFileInfo.platform_tags)
+  return _internal_mutable_platform_tags()->Mutable(index);
+}
+inline void ModuleFileInfo::set_platform_tags(int index, const std::string& value) {
+  _internal_mutable_platform_tags()->Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.ModuleFileInfo.platform_tags)
+}
+inline void ModuleFileInfo::set_platform_tags(int index, std::string&& value) {
+  _internal_mutable_platform_tags()->Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.app.v1.ModuleFileInfo.platform_tags)
+}
+inline void ModuleFileInfo::set_platform_tags(int index, const char* value) {
+  ABSL_DCHECK(value != nullptr);
+  _internal_mutable_platform_tags()->Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.app.v1.ModuleFileInfo.platform_tags)
+}
+inline void ModuleFileInfo::set_platform_tags(int index, const char* value,
+                              std::size_t size) {
+  _internal_mutable_platform_tags()->Mutable(index)->assign(
+      reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.app.v1.ModuleFileInfo.platform_tags)
+}
+inline void ModuleFileInfo::set_platform_tags(int index, absl::string_view value) {
+  _internal_mutable_platform_tags()->Mutable(index)->assign(value.data(),
+                                                     value.size());
+  // @@protoc_insertion_point(field_set_string_piece:viam.app.v1.ModuleFileInfo.platform_tags)
+}
+inline void ModuleFileInfo::add_platform_tags(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_platform_tags()->Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.app.v1.ModuleFileInfo.platform_tags)
+}
+inline void ModuleFileInfo::add_platform_tags(std::string&& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_platform_tags()->Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.app.v1.ModuleFileInfo.platform_tags)
+}
+inline void ModuleFileInfo::add_platform_tags(const char* value) {
+  ABSL_DCHECK(value != nullptr);
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_platform_tags()->Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.app.v1.ModuleFileInfo.platform_tags)
+}
+inline void ModuleFileInfo::add_platform_tags(const char* value, std::size_t size) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_platform_tags()->Add()->assign(
+      reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.app.v1.ModuleFileInfo.platform_tags)
+}
+inline void ModuleFileInfo::add_platform_tags(absl::string_view value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_platform_tags()->Add()->assign(value.data(), value.size());
+  // @@protoc_insertion_point(field_add_string_piece:viam.app.v1.ModuleFileInfo.platform_tags)
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+ModuleFileInfo::platform_tags() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:viam.app.v1.ModuleFileInfo.platform_tags)
+  return _internal_platform_tags();
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+ModuleFileInfo::mutable_platform_tags() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.ModuleFileInfo.platform_tags)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_platform_tags();
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+ModuleFileInfo::_internal_platform_tags() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.platform_tags_;
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+ModuleFileInfo::_internal_mutable_platform_tags() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.platform_tags_;
 }
 
 // -------------------------------------------------------------------

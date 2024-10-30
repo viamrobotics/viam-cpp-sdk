@@ -387,6 +387,7 @@ inline constexpr AgentInfo::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
         ips_{},
+        platform_tags_{},
         host_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
@@ -1496,12 +1497,14 @@ const ::uint32_t TableStruct_app_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTIO
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::AgentInfo, _impl_.version_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::AgentInfo, _impl_.git_revision_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::AgentInfo, _impl_.platform_),
+    PROTOBUF_FIELD_OFFSET(::viam::app::v1::AgentInfo, _impl_.platform_tags_),
     ~0u,
     ~0u,
     ~0u,
     ~0u,
     ~0u,
     0,
+    ~0u,
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::ConfigRequest, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::viam::app::v1::ConfigRequest, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -1684,19 +1687,19 @@ static const ::_pbi::MigrationSchema
         {385, 403, -1, sizeof(::viam::app::v1::RemoteConfig)},
         {413, -1, -1, sizeof(::viam::app::v1::RemoteAuth_Credentials)},
         {423, 433, -1, sizeof(::viam::app::v1::RemoteAuth)},
-        {435, 449, -1, sizeof(::viam::app::v1::AgentInfo)},
-        {455, 465, -1, sizeof(::viam::app::v1::ConfigRequest)},
-        {467, 476, -1, sizeof(::viam::app::v1::ConfigResponse)},
-        {477, -1, -1, sizeof(::viam::app::v1::CertificateRequest)},
-        {486, -1, -1, sizeof(::viam::app::v1::CertificateResponse)},
-        {497, -1, -1, sizeof(::viam::app::v1::LogRequest)},
-        {507, -1, -1, sizeof(::viam::app::v1::LogResponse)},
-        {515, -1, -1, sizeof(::viam::app::v1::NeedsRestartRequest)},
-        {524, 535, -1, sizeof(::viam::app::v1::NeedsRestartResponse)},
-        {538, 548, -1, sizeof(::viam::app::v1::ModuleConfig_EnvEntry_DoNotUse)},
-        {550, 566, -1, sizeof(::viam::app::v1::ModuleConfig)},
-        {574, 587, -1, sizeof(::viam::app::v1::PackageConfig)},
-        {592, 602, -1, sizeof(::viam::app::v1::MaintenanceConfig)},
+        {435, 450, -1, sizeof(::viam::app::v1::AgentInfo)},
+        {457, 467, -1, sizeof(::viam::app::v1::ConfigRequest)},
+        {469, 478, -1, sizeof(::viam::app::v1::ConfigResponse)},
+        {479, -1, -1, sizeof(::viam::app::v1::CertificateRequest)},
+        {488, -1, -1, sizeof(::viam::app::v1::CertificateResponse)},
+        {499, -1, -1, sizeof(::viam::app::v1::LogRequest)},
+        {509, -1, -1, sizeof(::viam::app::v1::LogResponse)},
+        {517, -1, -1, sizeof(::viam::app::v1::NeedsRestartRequest)},
+        {526, 537, -1, sizeof(::viam::app::v1::NeedsRestartResponse)},
+        {540, 550, -1, sizeof(::viam::app::v1::ModuleConfig_EnvEntry_DoNotUse)},
+        {552, 568, -1, sizeof(::viam::app::v1::ModuleConfig)},
+        {576, 589, -1, sizeof(::viam::app::v1::PackageConfig)},
+        {594, 604, -1, sizeof(::viam::app::v1::MaintenanceConfig)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1888,60 +1891,61 @@ const char descriptor_table_protodef_app_2fv1_2frobot_2eproto[] PROTOBUF_SECTION
     "lsR\013credentials\022\026\n\006entity\030\002 \001(\tR\006entity\032"
     "Y\n\013Credentials\0220\n\004type\030\001 \001(\0162\034.viam.app."
     "v1.CredentialsTypeR\004type\022\030\n\007payload\030\002 \001("
-    "\tR\007payload\"\254\001\n\tAgentInfo\022\022\n\004host\030\001 \001(\tR\004"
+    "\tR\007payload\"\321\001\n\tAgentInfo\022\022\n\004host\030\001 \001(\tR\004"
     "host\022\016\n\002os\030\002 \001(\tR\002os\022\020\n\003ips\030\003 \003(\tR\003ips\022\030"
     "\n\007version\030\004 \001(\tR\007version\022!\n\014git_revision"
     "\030\005 \001(\tR\013gitRevision\022\037\n\010platform\030\006 \001(\tH\000R"
-    "\010platform\210\001\001B\013\n\t_platform\"j\n\rConfigReque"
-    "st\022\016\n\002id\030\001 \001(\tR\002id\022:\n\nagent_info\030\002 \001(\0132\026"
-    ".viam.app.v1.AgentInfoH\000R\tagentInfo\210\001\001B\r"
-    "\n\013_agent_info\"B\n\016ConfigResponse\0220\n\006confi"
-    "g\030\001 \001(\0132\030.viam.app.v1.RobotConfigR\006confi"
-    "g\"$\n\022CertificateRequest\022\016\n\002id\030\001 \001(\tR\002id\""
-    "v\n\023CertificateResponse\022\016\n\002id\030\001 \001(\tR\002id\022\'"
-    "\n\017tls_certificate\030\002 \001(\tR\016tlsCertificate\022"
-    "&\n\017tls_private_key\030\003 \001(\tR\rtlsPrivateKey\""
-    "J\n\nLogRequest\022\016\n\002id\030\001 \001(\tR\002id\022,\n\004logs\030\002 "
-    "\003(\0132\030.viam.common.v1.LogEntryR\004logs\"\r\n\013L"
-    "ogResponse\"%\n\023NeedsRestartRequest\022\016\n\002id\030"
-    "\001 \001(\tR\002id\"\232\001\n\024NeedsRestartResponse\022\016\n\002id"
-    "\030\001 \001(\tR\002id\022!\n\014must_restart\030\002 \001(\010R\013mustRe"
-    "start\022O\n\026restart_check_interval\030\003 \001(\0132\031."
-    "google.protobuf.DurationR\024restartCheckIn"
-    "terval\"\363\002\n\014ModuleConfig\022\022\n\004name\030\001 \001(\tR\004n"
-    "ame\022\022\n\004path\030\002 \001(\tR\004path\022\033\n\tlog_level\030\003 \001"
-    "(\tR\010logLevel\022\022\n\004type\030\004 \001(\tR\004type\022\033\n\tmodu"
-    "le_id\030\005 \001(\tR\010moduleId\0224\n\003env\030\006 \003(\0132\".via"
-    "m.app.v1.ModuleConfig.EnvEntryR\003env\0228\n\006s"
-    "tatus\030\007 \001(\0132 .viam.app.v1.AppValidationS"
-    "tatusR\006status\022E\n\021first_run_timeout\030\010 \001(\013"
-    "2\031.google.protobuf.DurationR\017firstRunTim"
-    "eout\0326\n\010EnvEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005va"
-    "lue\030\002 \001(\tR\005value:\0028\001\"\245\001\n\rPackageConfig\022\022"
-    "\n\004name\030\001 \001(\tR\004name\022\030\n\007package\030\002 \001(\tR\007pac"
-    "kage\022\030\n\007version\030\003 \001(\tR\007version\022\022\n\004type\030\004"
-    " \001(\tR\004type\0228\n\006status\030\005 \001(\0132 .viam.app.v1"
-    ".AppValidationStatusR\006status\"\212\001\n\021Mainten"
-    "anceConfig\022=\n\013sensor_name\030\001 \001(\0132\034.viam.c"
-    "ommon.v1.ResourceNameR\nsensorName\0226\n\027mai"
-    "ntenance_allowed_key\030\002 \001(\tR\025maintenanceA"
-    "llowedKey*\277\001\n\017CredentialsType\022 \n\034CREDENT"
-    "IALS_TYPE_UNSPECIFIED\020\000\022\035\n\031CREDENTIALS_T"
-    "YPE_INTERNAL\020\001\022\034\n\030CREDENTIALS_TYPE_API_K"
-    "EY\020\002\022!\n\035CREDENTIALS_TYPE_ROBOT_SECRET\020\003\022"
-    "*\n&CREDENTIALS_TYPE_ROBOT_LOCATION_SECRE"
-    "T\020\0042\262\002\n\014RobotService\022A\n\006Config\022\032.viam.ap"
-    "p.v1.ConfigRequest\032\033.viam.app.v1.ConfigR"
-    "esponse\022P\n\013Certificate\022\037.viam.app.v1.Cer"
-    "tificateRequest\032 .viam.app.v1.Certificat"
-    "eResponse\0228\n\003Log\022\027.viam.app.v1.LogReques"
-    "t\032\030.viam.app.v1.LogResponse\022S\n\014NeedsRest"
-    "art\022 .viam.app.v1.NeedsRestartRequest\032!."
-    "viam.app.v1.NeedsRestartResponseB\203\001\n\017com"
-    ".viam.app.v1B\nRobotProtoP\001Z\026go.viam.com/"
-    "api/app/v1\242\002\003VAX\252\002\013Viam.App.V1\312\002\013Viam\\Ap"
-    "p\\V1\342\002\027Viam\\App\\V1\\GPBMetadata\352\002\rViam::A"
-    "pp::V1b\006proto3"
+    "\010platform\210\001\001\022#\n\rplatform_tags\030\007 \003(\tR\014pla"
+    "tformTagsB\013\n\t_platform\"j\n\rConfigRequest\022"
+    "\016\n\002id\030\001 \001(\tR\002id\022:\n\nagent_info\030\002 \001(\0132\026.vi"
+    "am.app.v1.AgentInfoH\000R\tagentInfo\210\001\001B\r\n\013_"
+    "agent_info\"B\n\016ConfigResponse\0220\n\006config\030\001"
+    " \001(\0132\030.viam.app.v1.RobotConfigR\006config\"$"
+    "\n\022CertificateRequest\022\016\n\002id\030\001 \001(\tR\002id\"v\n\023"
+    "CertificateResponse\022\016\n\002id\030\001 \001(\tR\002id\022\'\n\017t"
+    "ls_certificate\030\002 \001(\tR\016tlsCertificate\022&\n\017"
+    "tls_private_key\030\003 \001(\tR\rtlsPrivateKey\"J\n\n"
+    "LogRequest\022\016\n\002id\030\001 \001(\tR\002id\022,\n\004logs\030\002 \003(\013"
+    "2\030.viam.common.v1.LogEntryR\004logs\"\r\n\013LogR"
+    "esponse\"%\n\023NeedsRestartRequest\022\016\n\002id\030\001 \001"
+    "(\tR\002id\"\232\001\n\024NeedsRestartResponse\022\016\n\002id\030\001 "
+    "\001(\tR\002id\022!\n\014must_restart\030\002 \001(\010R\013mustResta"
+    "rt\022O\n\026restart_check_interval\030\003 \001(\0132\031.goo"
+    "gle.protobuf.DurationR\024restartCheckInter"
+    "val\"\363\002\n\014ModuleConfig\022\022\n\004name\030\001 \001(\tR\004name"
+    "\022\022\n\004path\030\002 \001(\tR\004path\022\033\n\tlog_level\030\003 \001(\tR"
+    "\010logLevel\022\022\n\004type\030\004 \001(\tR\004type\022\033\n\tmodule_"
+    "id\030\005 \001(\tR\010moduleId\0224\n\003env\030\006 \003(\0132\".viam.a"
+    "pp.v1.ModuleConfig.EnvEntryR\003env\0228\n\006stat"
+    "us\030\007 \001(\0132 .viam.app.v1.AppValidationStat"
+    "usR\006status\022E\n\021first_run_timeout\030\010 \001(\0132\031."
+    "google.protobuf.DurationR\017firstRunTimeou"
+    "t\0326\n\010EnvEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value"
+    "\030\002 \001(\tR\005value:\0028\001\"\245\001\n\rPackageConfig\022\022\n\004n"
+    "ame\030\001 \001(\tR\004name\022\030\n\007package\030\002 \001(\tR\007packag"
+    "e\022\030\n\007version\030\003 \001(\tR\007version\022\022\n\004type\030\004 \001("
+    "\tR\004type\0228\n\006status\030\005 \001(\0132 .viam.app.v1.Ap"
+    "pValidationStatusR\006status\"\212\001\n\021Maintenanc"
+    "eConfig\022=\n\013sensor_name\030\001 \001(\0132\034.viam.comm"
+    "on.v1.ResourceNameR\nsensorName\0226\n\027mainte"
+    "nance_allowed_key\030\002 \001(\tR\025maintenanceAllo"
+    "wedKey*\277\001\n\017CredentialsType\022 \n\034CREDENTIAL"
+    "S_TYPE_UNSPECIFIED\020\000\022\035\n\031CREDENTIALS_TYPE"
+    "_INTERNAL\020\001\022\034\n\030CREDENTIALS_TYPE_API_KEY\020"
+    "\002\022!\n\035CREDENTIALS_TYPE_ROBOT_SECRET\020\003\022*\n&"
+    "CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET\020\004"
+    "2\262\002\n\014RobotService\022A\n\006Config\022\032.viam.app.v"
+    "1.ConfigRequest\032\033.viam.app.v1.ConfigResp"
+    "onse\022P\n\013Certificate\022\037.viam.app.v1.Certif"
+    "icateRequest\032 .viam.app.v1.CertificateRe"
+    "sponse\0228\n\003Log\022\027.viam.app.v1.LogRequest\032\030"
+    ".viam.app.v1.LogResponse\022S\n\014NeedsRestart"
+    "\022 .viam.app.v1.NeedsRestartRequest\032!.via"
+    "m.app.v1.NeedsRestartResponseB\203\001\n\017com.vi"
+    "am.app.v1B\nRobotProtoP\001Z\026go.viam.com/api"
+    "/app/v1\242\002\003VAX\252\002\013Viam.App.V1\312\002\013Viam\\App\\V"
+    "1\342\002\027Viam\\App\\V1\\GPBMetadata\352\002\rViam::App:"
+    ":V1b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2frobot_2eproto_deps[4] =
     {
@@ -1954,7 +1958,7 @@ static ::absl::once_flag descriptor_table_app_2fv1_2frobot_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2frobot_2eproto = {
     false,
     false,
-    7894,
+    7931,
     descriptor_table_protodef_app_2fv1_2frobot_2eproto,
     "app/v1/robot.proto",
     &descriptor_table_app_2fv1_2frobot_2eproto_once,
@@ -10789,6 +10793,7 @@ inline PROTOBUF_NDEBUG_INLINE AgentInfo::Impl_::Impl_(
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
         ips_{visibility, arena, from.ips_},
+        platform_tags_{visibility, arena, from.platform_tags_},
         host_(arena, from.host_),
         os_(arena, from.os_),
         version_(arena, from.version_),
@@ -10812,6 +10817,7 @@ inline PROTOBUF_NDEBUG_INLINE AgentInfo::Impl_::Impl_(
     ::google::protobuf::Arena* arena)
       : _cached_size_{0},
         ips_{visibility, arena},
+        platform_tags_{visibility, arena},
         host_(arena),
         os_(arena),
         version_(arena),
@@ -10844,6 +10850,7 @@ PROTOBUF_NOINLINE void AgentInfo::Clear() {
   (void) cached_has_bits;
 
   _impl_.ips_.Clear();
+  _impl_.platform_tags_.Clear();
   _impl_.host_.ClearToEmpty();
   _impl_.os_.ClearToEmpty();
   _impl_.version_.ClearToEmpty();
@@ -10864,15 +10871,15 @@ const char* AgentInfo::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 6, 0, 66, 2> AgentInfo::_table_ = {
+const ::_pbi::TcParseTable<3, 7, 0, 79, 2> AgentInfo::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(AgentInfo, _impl_._has_bits_),
     0, // no _extensions_
-    6, 56,  // max_field_number, fast_idx_mask
+    7, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967232,  // skipmap
+    4294967168,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    6,  // num_field_entries
+    7,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_AgentInfo_default_instance_._instance,
@@ -10897,7 +10904,9 @@ const ::_pbi::TcParseTable<3, 6, 0, 66, 2> AgentInfo::_table_ = {
     // optional string platform = 6 [json_name = "platform"];
     {::_pbi::TcParser::FastUS1,
      {50, 0, 0, PROTOBUF_FIELD_OFFSET(AgentInfo, _impl_.platform_)}},
-    {::_pbi::TcParser::MiniParse, {}},
+    // repeated string platform_tags = 7 [json_name = "platformTags"];
+    {::_pbi::TcParser::FastUR1,
+     {58, 63, 0, PROTOBUF_FIELD_OFFSET(AgentInfo, _impl_.platform_tags_)}},
   }}, {{
     65535, 65535
   }}, {{
@@ -10919,10 +10928,13 @@ const ::_pbi::TcParseTable<3, 6, 0, 66, 2> AgentInfo::_table_ = {
     // optional string platform = 6 [json_name = "platform"];
     {PROTOBUF_FIELD_OFFSET(AgentInfo, _impl_.platform_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // repeated string platform_tags = 7 [json_name = "platformTags"];
+    {PROTOBUF_FIELD_OFFSET(AgentInfo, _impl_.platform_tags_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
   }},
   // no aux_entries
   {{
-    "\25\4\2\3\7\14\10\0"
+    "\25\4\2\3\7\14\10\15"
     "viam.app.v1.AgentInfo"
     "host"
     "os"
@@ -10930,6 +10942,7 @@ const ::_pbi::TcParseTable<3, 6, 0, 66, 2> AgentInfo::_table_ = {
     "version"
     "git_revision"
     "platform"
+    "platform_tags"
   }},
 };
 
@@ -10989,6 +11002,14 @@ const ::_pbi::TcParseTable<3, 6, 0, 66, 2> AgentInfo::_table_ = {
     target = stream->WriteStringMaybeAliased(6, _s, target);
   }
 
+  // repeated string platform_tags = 7 [json_name = "platformTags"];
+  for (int i = 0, n = this->_internal_platform_tags_size(); i < n; ++i) {
+    const auto& s = this->_internal_platform_tags().Get(i);
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.app.v1.AgentInfo.platform_tags");
+    target = stream->WriteString(7, s, target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -11011,6 +11032,12 @@ const ::_pbi::TcParseTable<3, 6, 0, 66, 2> AgentInfo::_table_ = {
   for (int i = 0, n = _internal_ips().size(); i < n; ++i) {
     total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
         _internal_ips().Get(i));
+  }
+  // repeated string platform_tags = 7 [json_name = "platformTags"];
+  total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_platform_tags().size());
+  for (int i = 0, n = _internal_platform_tags().size(); i < n; ++i) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+        _internal_platform_tags().Get(i));
   }
   // string host = 1 [json_name = "host"];
   if (!this->_internal_host().empty()) {
@@ -11063,6 +11090,7 @@ void AgentInfo::MergeImpl(::google::protobuf::Message& to_msg, const ::google::p
   (void) cached_has_bits;
 
   _this->_internal_mutable_ips()->MergeFrom(from._internal_ips());
+  _this->_internal_mutable_platform_tags()->MergeFrom(from._internal_platform_tags());
   if (!from._internal_host().empty()) {
     _this->_internal_set_host(from._internal_host());
   }
@@ -11102,6 +11130,7 @@ void AgentInfo::InternalSwap(AgentInfo* PROTOBUF_RESTRICT other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.ips_.InternalSwap(&other->_impl_.ips_);
+  _impl_.platform_tags_.InternalSwap(&other->_impl_.platform_tags_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.host_, &other->_impl_.host_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.os_, &other->_impl_.os_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.version_, &other->_impl_.version_, arena);

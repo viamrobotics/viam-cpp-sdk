@@ -115,6 +115,9 @@ extern PythonSettings_ExperimentalFeaturesDefaultTypeInternal _PythonSettings_Ex
 class RubySettings;
 struct RubySettingsDefaultTypeInternal;
 extern RubySettingsDefaultTypeInternal _RubySettings_default_instance_;
+class SelectiveGapicGeneration;
+struct SelectiveGapicGenerationDefaultTypeInternal;
+extern SelectiveGapicGenerationDefaultTypeInternal _SelectiveGapicGeneration_default_instance_;
 }  // namespace api
 namespace protobuf {
 }  // namespace protobuf
@@ -194,6 +197,199 @@ inline bool ClientLibraryDestination_Parse(absl::string_view name, ClientLibrary
 
 
 // -------------------------------------------------------------------
+
+class SelectiveGapicGeneration final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:google.api.SelectiveGapicGeneration) */ {
+ public:
+  inline SelectiveGapicGeneration() : SelectiveGapicGeneration(nullptr) {}
+  ~SelectiveGapicGeneration() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR SelectiveGapicGeneration(::google::protobuf::internal::ConstantInitialized);
+
+  inline SelectiveGapicGeneration(const SelectiveGapicGeneration& from)
+      : SelectiveGapicGeneration(nullptr, from) {}
+  SelectiveGapicGeneration(SelectiveGapicGeneration&& from) noexcept
+    : SelectiveGapicGeneration() {
+    *this = ::std::move(from);
+  }
+
+  inline SelectiveGapicGeneration& operator=(const SelectiveGapicGeneration& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SelectiveGapicGeneration& operator=(SelectiveGapicGeneration&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SelectiveGapicGeneration& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SelectiveGapicGeneration* internal_default_instance() {
+    return reinterpret_cast<const SelectiveGapicGeneration*>(
+               &_SelectiveGapicGeneration_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    17;
+
+  friend void swap(SelectiveGapicGeneration& a, SelectiveGapicGeneration& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SelectiveGapicGeneration* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SelectiveGapicGeneration* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SelectiveGapicGeneration* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SelectiveGapicGeneration>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SelectiveGapicGeneration& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const SelectiveGapicGeneration& from) {
+    SelectiveGapicGeneration::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(SelectiveGapicGeneration* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "google.api.SelectiveGapicGeneration";
+  }
+  protected:
+  explicit SelectiveGapicGeneration(::google::protobuf::Arena* arena);
+  SelectiveGapicGeneration(::google::protobuf::Arena* arena, const SelectiveGapicGeneration& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMethodsFieldNumber = 1,
+  };
+  // repeated string methods = 1 [json_name = "methods"];
+  int methods_size() const;
+  private:
+  int _internal_methods_size() const;
+
+  public:
+  void clear_methods() ;
+  const std::string& methods(int index) const;
+  std::string* mutable_methods(int index);
+  void set_methods(int index, const std::string& value);
+  void set_methods(int index, std::string&& value);
+  void set_methods(int index, const char* value);
+  void set_methods(int index, const char* value, std::size_t size);
+  void set_methods(int index, absl::string_view value);
+  std::string* add_methods();
+  void add_methods(const std::string& value);
+  void add_methods(std::string&& value);
+  void add_methods(const char* value);
+  void add_methods(const char* value, std::size_t size);
+  void add_methods(absl::string_view value);
+  const ::google::protobuf::RepeatedPtrField<std::string>& methods() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* mutable_methods();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_methods() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_methods();
+
+  public:
+  // @@protoc_insertion_point(class_scope:google.api.SelectiveGapicGeneration)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      51, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::RepeatedPtrField<std::string> methods_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_google_2fapi_2fclient_2eproto;
+};// -------------------------------------------------------------------
 
 class PythonSettings_ExperimentalFeatures final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:google.api.PythonSettings.ExperimentalFeatures) */ {
@@ -460,6 +656,233 @@ class DotnetSettings_RenamedResourcesEntry_DoNotUse final
 };
 // -------------------------------------------------------------------
 
+class MethodSettings_LongRunning final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:google.api.MethodSettings.LongRunning) */ {
+ public:
+  inline MethodSettings_LongRunning() : MethodSettings_LongRunning(nullptr) {}
+  ~MethodSettings_LongRunning() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR MethodSettings_LongRunning(::google::protobuf::internal::ConstantInitialized);
+
+  inline MethodSettings_LongRunning(const MethodSettings_LongRunning& from)
+      : MethodSettings_LongRunning(nullptr, from) {}
+  MethodSettings_LongRunning(MethodSettings_LongRunning&& from) noexcept
+    : MethodSettings_LongRunning() {
+    *this = ::std::move(from);
+  }
+
+  inline MethodSettings_LongRunning& operator=(const MethodSettings_LongRunning& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MethodSettings_LongRunning& operator=(MethodSettings_LongRunning&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MethodSettings_LongRunning& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MethodSettings_LongRunning* internal_default_instance() {
+    return reinterpret_cast<const MethodSettings_LongRunning*>(
+               &_MethodSettings_LongRunning_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    15;
+
+  friend void swap(MethodSettings_LongRunning& a, MethodSettings_LongRunning& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MethodSettings_LongRunning* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MethodSettings_LongRunning* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MethodSettings_LongRunning* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MethodSettings_LongRunning>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const MethodSettings_LongRunning& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const MethodSettings_LongRunning& from) {
+    MethodSettings_LongRunning::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(MethodSettings_LongRunning* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "google.api.MethodSettings.LongRunning";
+  }
+  protected:
+  explicit MethodSettings_LongRunning(::google::protobuf::Arena* arena);
+  MethodSettings_LongRunning(::google::protobuf::Arena* arena, const MethodSettings_LongRunning& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kInitialPollDelayFieldNumber = 1,
+    kMaxPollDelayFieldNumber = 3,
+    kTotalPollTimeoutFieldNumber = 4,
+    kPollDelayMultiplierFieldNumber = 2,
+  };
+  // .google.protobuf.Duration initial_poll_delay = 1 [json_name = "initialPollDelay"];
+  bool has_initial_poll_delay() const;
+  void clear_initial_poll_delay() ;
+  const ::google::protobuf::Duration& initial_poll_delay() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Duration* release_initial_poll_delay();
+  ::google::protobuf::Duration* mutable_initial_poll_delay();
+  void set_allocated_initial_poll_delay(::google::protobuf::Duration* value);
+  void unsafe_arena_set_allocated_initial_poll_delay(::google::protobuf::Duration* value);
+  ::google::protobuf::Duration* unsafe_arena_release_initial_poll_delay();
+
+  private:
+  const ::google::protobuf::Duration& _internal_initial_poll_delay() const;
+  ::google::protobuf::Duration* _internal_mutable_initial_poll_delay();
+
+  public:
+  // .google.protobuf.Duration max_poll_delay = 3 [json_name = "maxPollDelay"];
+  bool has_max_poll_delay() const;
+  void clear_max_poll_delay() ;
+  const ::google::protobuf::Duration& max_poll_delay() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Duration* release_max_poll_delay();
+  ::google::protobuf::Duration* mutable_max_poll_delay();
+  void set_allocated_max_poll_delay(::google::protobuf::Duration* value);
+  void unsafe_arena_set_allocated_max_poll_delay(::google::protobuf::Duration* value);
+  ::google::protobuf::Duration* unsafe_arena_release_max_poll_delay();
+
+  private:
+  const ::google::protobuf::Duration& _internal_max_poll_delay() const;
+  ::google::protobuf::Duration* _internal_mutable_max_poll_delay();
+
+  public:
+  // .google.protobuf.Duration total_poll_timeout = 4 [json_name = "totalPollTimeout"];
+  bool has_total_poll_timeout() const;
+  void clear_total_poll_timeout() ;
+  const ::google::protobuf::Duration& total_poll_timeout() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Duration* release_total_poll_timeout();
+  ::google::protobuf::Duration* mutable_total_poll_timeout();
+  void set_allocated_total_poll_timeout(::google::protobuf::Duration* value);
+  void unsafe_arena_set_allocated_total_poll_timeout(::google::protobuf::Duration* value);
+  ::google::protobuf::Duration* unsafe_arena_release_total_poll_timeout();
+
+  private:
+  const ::google::protobuf::Duration& _internal_total_poll_timeout() const;
+  ::google::protobuf::Duration* _internal_mutable_total_poll_timeout();
+
+  public:
+  // float poll_delay_multiplier = 2 [json_name = "pollDelayMultiplier"];
+  void clear_poll_delay_multiplier() ;
+  float poll_delay_multiplier() const;
+  void set_poll_delay_multiplier(float value);
+
+  private:
+  float _internal_poll_delay_multiplier() const;
+  void _internal_set_poll_delay_multiplier(float value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:google.api.MethodSettings.LongRunning)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 4, 3,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::Duration* initial_poll_delay_;
+    ::google::protobuf::Duration* max_poll_delay_;
+    ::google::protobuf::Duration* total_poll_timeout_;
+    float poll_delay_multiplier_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_google_2fapi_2fclient_2eproto;
+};// -------------------------------------------------------------------
+
 class CommonLanguageSettings final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:google.api.CommonLanguageSettings) */ {
  public:
@@ -594,6 +1017,7 @@ class CommonLanguageSettings final :
   enum : int {
     kDestinationsFieldNumber = 2,
     kReferenceDocsUriFieldNumber = 1,
+    kSelectiveGapicGenerationFieldNumber = 3,
   };
   // repeated .google.api.ClientLibraryDestination destinations = 2 [json_name = "destinations"];
   int destinations_size() const;
@@ -630,13 +1054,28 @@ class CommonLanguageSettings final :
   std::string* _internal_mutable_reference_docs_uri();
 
   public:
+  // .google.api.SelectiveGapicGeneration selective_gapic_generation = 3 [json_name = "selectiveGapicGeneration"];
+  bool has_selective_gapic_generation() const;
+  void clear_selective_gapic_generation() ;
+  const ::google::api::SelectiveGapicGeneration& selective_gapic_generation() const;
+  PROTOBUF_NODISCARD ::google::api::SelectiveGapicGeneration* release_selective_gapic_generation();
+  ::google::api::SelectiveGapicGeneration* mutable_selective_gapic_generation();
+  void set_allocated_selective_gapic_generation(::google::api::SelectiveGapicGeneration* value);
+  void unsafe_arena_set_allocated_selective_gapic_generation(::google::api::SelectiveGapicGeneration* value);
+  ::google::api::SelectiveGapicGeneration* unsafe_arena_release_selective_gapic_generation();
+
+  private:
+  const ::google::api::SelectiveGapicGeneration& _internal_selective_gapic_generation() const;
+  ::google::api::SelectiveGapicGeneration* _internal_mutable_selective_gapic_generation();
+
+  public:
   // @@protoc_insertion_point(class_scope:google.api.CommonLanguageSettings)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
+      2, 3, 1,
       60, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -653,10 +1092,12 @@ class CommonLanguageSettings final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedField<int> destinations_;
     mutable ::google::protobuf::internal::CachedSize _destinations_cached_byte_size_;
     ::google::protobuf::internal::ArenaStringPtr reference_docs_uri_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::api::SelectiveGapicGeneration* selective_gapic_generation_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -1406,26 +1847,26 @@ class NodeSettings final :
   friend struct ::TableStruct_google_2fapi_2fclient_2eproto;
 };// -------------------------------------------------------------------
 
-class MethodSettings_LongRunning final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:google.api.MethodSettings.LongRunning) */ {
+class MethodSettings final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:google.api.MethodSettings) */ {
  public:
-  inline MethodSettings_LongRunning() : MethodSettings_LongRunning(nullptr) {}
-  ~MethodSettings_LongRunning() override;
+  inline MethodSettings() : MethodSettings(nullptr) {}
+  ~MethodSettings() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR MethodSettings_LongRunning(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR MethodSettings(::google::protobuf::internal::ConstantInitialized);
 
-  inline MethodSettings_LongRunning(const MethodSettings_LongRunning& from)
-      : MethodSettings_LongRunning(nullptr, from) {}
-  MethodSettings_LongRunning(MethodSettings_LongRunning&& from) noexcept
-    : MethodSettings_LongRunning() {
+  inline MethodSettings(const MethodSettings& from)
+      : MethodSettings(nullptr, from) {}
+  MethodSettings(MethodSettings&& from) noexcept
+    : MethodSettings() {
     *this = ::std::move(from);
   }
 
-  inline MethodSettings_LongRunning& operator=(const MethodSettings_LongRunning& from) {
+  inline MethodSettings& operator=(const MethodSettings& from) {
     CopyFrom(from);
     return *this;
   }
-  inline MethodSettings_LongRunning& operator=(MethodSettings_LongRunning&& from) noexcept {
+  inline MethodSettings& operator=(MethodSettings&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1457,20 +1898,20 @@ class MethodSettings_LongRunning final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const MethodSettings_LongRunning& default_instance() {
+  static const MethodSettings& default_instance() {
     return *internal_default_instance();
   }
-  static inline const MethodSettings_LongRunning* internal_default_instance() {
-    return reinterpret_cast<const MethodSettings_LongRunning*>(
-               &_MethodSettings_LongRunning_default_instance_);
+  static inline const MethodSettings* internal_default_instance() {
+    return reinterpret_cast<const MethodSettings*>(
+               &_MethodSettings_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
-  friend void swap(MethodSettings_LongRunning& a, MethodSettings_LongRunning& b) {
+  friend void swap(MethodSettings& a, MethodSettings& b) {
     a.Swap(&b);
   }
-  inline void Swap(MethodSettings_LongRunning* other) {
+  inline void Swap(MethodSettings* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -1483,7 +1924,7 @@ class MethodSettings_LongRunning final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(MethodSettings_LongRunning* other) {
+  void UnsafeArenaSwap(MethodSettings* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -1491,14 +1932,14 @@ class MethodSettings_LongRunning final :
 
   // implements Message ----------------------------------------------
 
-  MethodSettings_LongRunning* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<MethodSettings_LongRunning>(arena);
+  MethodSettings* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MethodSettings>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const MethodSettings_LongRunning& from);
+  void CopyFrom(const MethodSettings& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const MethodSettings_LongRunning& from) {
-    MethodSettings_LongRunning::MergeImpl(*this, from);
+  void MergeFrom( const MethodSettings& from) {
+    MethodSettings::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -1516,16 +1957,16 @@ class MethodSettings_LongRunning final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(MethodSettings_LongRunning* other);
+  void InternalSwap(MethodSettings* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "google.api.MethodSettings.LongRunning";
+    return "google.api.MethodSettings";
   }
   protected:
-  explicit MethodSettings_LongRunning(::google::protobuf::Arena* arena);
-  MethodSettings_LongRunning(::google::protobuf::Arena* arena, const MethodSettings_LongRunning& from);
+  explicit MethodSettings(::google::protobuf::Arena* arena);
+  MethodSettings(::google::protobuf::Arena* arena, const MethodSettings& from);
   public:
 
   static const ClassData _class_data_;
@@ -1535,77 +1976,82 @@ class MethodSettings_LongRunning final :
 
   // nested types ----------------------------------------------------
 
+  using LongRunning = MethodSettings_LongRunning;
+
   // accessors -------------------------------------------------------
 
   enum : int {
-    kInitialPollDelayFieldNumber = 1,
-    kMaxPollDelayFieldNumber = 3,
-    kTotalPollTimeoutFieldNumber = 4,
-    kPollDelayMultiplierFieldNumber = 2,
+    kAutoPopulatedFieldsFieldNumber = 3,
+    kSelectorFieldNumber = 1,
+    kLongRunningFieldNumber = 2,
   };
-  // .google.protobuf.Duration initial_poll_delay = 1 [json_name = "initialPollDelay"];
-  bool has_initial_poll_delay() const;
-  void clear_initial_poll_delay() ;
-  const ::google::protobuf::Duration& initial_poll_delay() const;
-  PROTOBUF_NODISCARD ::google::protobuf::Duration* release_initial_poll_delay();
-  ::google::protobuf::Duration* mutable_initial_poll_delay();
-  void set_allocated_initial_poll_delay(::google::protobuf::Duration* value);
-  void unsafe_arena_set_allocated_initial_poll_delay(::google::protobuf::Duration* value);
-  ::google::protobuf::Duration* unsafe_arena_release_initial_poll_delay();
-
+  // repeated string auto_populated_fields = 3 [json_name = "autoPopulatedFields"];
+  int auto_populated_fields_size() const;
   private:
-  const ::google::protobuf::Duration& _internal_initial_poll_delay() const;
-  ::google::protobuf::Duration* _internal_mutable_initial_poll_delay();
+  int _internal_auto_populated_fields_size() const;
 
   public:
-  // .google.protobuf.Duration max_poll_delay = 3 [json_name = "maxPollDelay"];
-  bool has_max_poll_delay() const;
-  void clear_max_poll_delay() ;
-  const ::google::protobuf::Duration& max_poll_delay() const;
-  PROTOBUF_NODISCARD ::google::protobuf::Duration* release_max_poll_delay();
-  ::google::protobuf::Duration* mutable_max_poll_delay();
-  void set_allocated_max_poll_delay(::google::protobuf::Duration* value);
-  void unsafe_arena_set_allocated_max_poll_delay(::google::protobuf::Duration* value);
-  ::google::protobuf::Duration* unsafe_arena_release_max_poll_delay();
+  void clear_auto_populated_fields() ;
+  const std::string& auto_populated_fields(int index) const;
+  std::string* mutable_auto_populated_fields(int index);
+  void set_auto_populated_fields(int index, const std::string& value);
+  void set_auto_populated_fields(int index, std::string&& value);
+  void set_auto_populated_fields(int index, const char* value);
+  void set_auto_populated_fields(int index, const char* value, std::size_t size);
+  void set_auto_populated_fields(int index, absl::string_view value);
+  std::string* add_auto_populated_fields();
+  void add_auto_populated_fields(const std::string& value);
+  void add_auto_populated_fields(std::string&& value);
+  void add_auto_populated_fields(const char* value);
+  void add_auto_populated_fields(const char* value, std::size_t size);
+  void add_auto_populated_fields(absl::string_view value);
+  const ::google::protobuf::RepeatedPtrField<std::string>& auto_populated_fields() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* mutable_auto_populated_fields();
 
   private:
-  const ::google::protobuf::Duration& _internal_max_poll_delay() const;
-  ::google::protobuf::Duration* _internal_mutable_max_poll_delay();
+  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_auto_populated_fields() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_auto_populated_fields();
 
   public:
-  // .google.protobuf.Duration total_poll_timeout = 4 [json_name = "totalPollTimeout"];
-  bool has_total_poll_timeout() const;
-  void clear_total_poll_timeout() ;
-  const ::google::protobuf::Duration& total_poll_timeout() const;
-  PROTOBUF_NODISCARD ::google::protobuf::Duration* release_total_poll_timeout();
-  ::google::protobuf::Duration* mutable_total_poll_timeout();
-  void set_allocated_total_poll_timeout(::google::protobuf::Duration* value);
-  void unsafe_arena_set_allocated_total_poll_timeout(::google::protobuf::Duration* value);
-  ::google::protobuf::Duration* unsafe_arena_release_total_poll_timeout();
+  // string selector = 1 [json_name = "selector"];
+  void clear_selector() ;
+  const std::string& selector() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_selector(Arg_&& arg, Args_... args);
+  std::string* mutable_selector();
+  PROTOBUF_NODISCARD std::string* release_selector();
+  void set_allocated_selector(std::string* value);
 
   private:
-  const ::google::protobuf::Duration& _internal_total_poll_timeout() const;
-  ::google::protobuf::Duration* _internal_mutable_total_poll_timeout();
+  const std::string& _internal_selector() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_selector(
+      const std::string& value);
+  std::string* _internal_mutable_selector();
 
   public:
-  // float poll_delay_multiplier = 2 [json_name = "pollDelayMultiplier"];
-  void clear_poll_delay_multiplier() ;
-  float poll_delay_multiplier() const;
-  void set_poll_delay_multiplier(float value);
+  // .google.api.MethodSettings.LongRunning long_running = 2 [json_name = "longRunning"];
+  bool has_long_running() const;
+  void clear_long_running() ;
+  const ::google::api::MethodSettings_LongRunning& long_running() const;
+  PROTOBUF_NODISCARD ::google::api::MethodSettings_LongRunning* release_long_running();
+  ::google::api::MethodSettings_LongRunning* mutable_long_running();
+  void set_allocated_long_running(::google::api::MethodSettings_LongRunning* value);
+  void unsafe_arena_set_allocated_long_running(::google::api::MethodSettings_LongRunning* value);
+  ::google::api::MethodSettings_LongRunning* unsafe_arena_release_long_running();
 
   private:
-  float _internal_poll_delay_multiplier() const;
-  void _internal_set_poll_delay_multiplier(float value);
+  const ::google::api::MethodSettings_LongRunning& _internal_long_running() const;
+  ::google::api::MethodSettings_LongRunning* _internal_mutable_long_running();
 
   public:
-  // @@protoc_insertion_point(class_scope:google.api.MethodSettings.LongRunning)
+  // @@protoc_insertion_point(class_scope:google.api.MethodSettings)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 4, 3,
-      0, 2>
+      2, 3, 1,
+      63, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1623,10 +2069,9 @@ class MethodSettings_LongRunning final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::Duration* initial_poll_delay_;
-    ::google::protobuf::Duration* max_poll_delay_;
-    ::google::protobuf::Duration* total_poll_timeout_;
-    float poll_delay_multiplier_;
+    ::google::protobuf::RepeatedPtrField<std::string> auto_populated_fields_;
+    ::google::protobuf::internal::ArenaStringPtr selector_;
+    ::google::api::MethodSettings_LongRunning* long_running_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -2527,237 +2972,6 @@ class CppSettings final :
   friend struct ::TableStruct_google_2fapi_2fclient_2eproto;
 };// -------------------------------------------------------------------
 
-class MethodSettings final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:google.api.MethodSettings) */ {
- public:
-  inline MethodSettings() : MethodSettings(nullptr) {}
-  ~MethodSettings() override;
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR MethodSettings(::google::protobuf::internal::ConstantInitialized);
-
-  inline MethodSettings(const MethodSettings& from)
-      : MethodSettings(nullptr, from) {}
-  MethodSettings(MethodSettings&& from) noexcept
-    : MethodSettings() {
-    *this = ::std::move(from);
-  }
-
-  inline MethodSettings& operator=(const MethodSettings& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline MethodSettings& operator=(MethodSettings&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const MethodSettings& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const MethodSettings* internal_default_instance() {
-    return reinterpret_cast<const MethodSettings*>(
-               &_MethodSettings_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    16;
-
-  friend void swap(MethodSettings& a, MethodSettings& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(MethodSettings* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr &&
-        GetArena() == other->GetArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(MethodSettings* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  MethodSettings* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<MethodSettings>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const MethodSettings& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const MethodSettings& from) {
-    MethodSettings::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(MethodSettings* other);
-
-  private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "google.api.MethodSettings";
-  }
-  protected:
-  explicit MethodSettings(::google::protobuf::Arena* arena);
-  MethodSettings(::google::protobuf::Arena* arena, const MethodSettings& from);
-  public:
-
-  static const ClassData _class_data_;
-  const ::google::protobuf::Message::ClassData*GetClassData() const final;
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  using LongRunning = MethodSettings_LongRunning;
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kAutoPopulatedFieldsFieldNumber = 3,
-    kSelectorFieldNumber = 1,
-    kLongRunningFieldNumber = 2,
-  };
-  // repeated string auto_populated_fields = 3 [json_name = "autoPopulatedFields"];
-  int auto_populated_fields_size() const;
-  private:
-  int _internal_auto_populated_fields_size() const;
-
-  public:
-  void clear_auto_populated_fields() ;
-  const std::string& auto_populated_fields(int index) const;
-  std::string* mutable_auto_populated_fields(int index);
-  void set_auto_populated_fields(int index, const std::string& value);
-  void set_auto_populated_fields(int index, std::string&& value);
-  void set_auto_populated_fields(int index, const char* value);
-  void set_auto_populated_fields(int index, const char* value, std::size_t size);
-  void set_auto_populated_fields(int index, absl::string_view value);
-  std::string* add_auto_populated_fields();
-  void add_auto_populated_fields(const std::string& value);
-  void add_auto_populated_fields(std::string&& value);
-  void add_auto_populated_fields(const char* value);
-  void add_auto_populated_fields(const char* value, std::size_t size);
-  void add_auto_populated_fields(absl::string_view value);
-  const ::google::protobuf::RepeatedPtrField<std::string>& auto_populated_fields() const;
-  ::google::protobuf::RepeatedPtrField<std::string>* mutable_auto_populated_fields();
-
-  private:
-  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_auto_populated_fields() const;
-  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_auto_populated_fields();
-
-  public:
-  // string selector = 1 [json_name = "selector"];
-  void clear_selector() ;
-  const std::string& selector() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_selector(Arg_&& arg, Args_... args);
-  std::string* mutable_selector();
-  PROTOBUF_NODISCARD std::string* release_selector();
-  void set_allocated_selector(std::string* value);
-
-  private:
-  const std::string& _internal_selector() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_selector(
-      const std::string& value);
-  std::string* _internal_mutable_selector();
-
-  public:
-  // .google.api.MethodSettings.LongRunning long_running = 2 [json_name = "longRunning"];
-  bool has_long_running() const;
-  void clear_long_running() ;
-  const ::google::api::MethodSettings_LongRunning& long_running() const;
-  PROTOBUF_NODISCARD ::google::api::MethodSettings_LongRunning* release_long_running();
-  ::google::api::MethodSettings_LongRunning* mutable_long_running();
-  void set_allocated_long_running(::google::api::MethodSettings_LongRunning* value);
-  void unsafe_arena_set_allocated_long_running(::google::api::MethodSettings_LongRunning* value);
-  ::google::api::MethodSettings_LongRunning* unsafe_arena_release_long_running();
-
-  private:
-  const ::google::api::MethodSettings_LongRunning& _internal_long_running() const;
-  ::google::api::MethodSettings_LongRunning* _internal_mutable_long_running();
-
-  public:
-  // @@protoc_insertion_point(class_scope:google.api.MethodSettings)
- private:
-  class _Internal;
-
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 1,
-      63, 2>
-      _table_;
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-
-        inline explicit constexpr Impl_(
-            ::google::protobuf::internal::ConstantInitialized) noexcept;
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena);
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::RepeatedPtrField<std::string> auto_populated_fields_;
-    ::google::protobuf::internal::ArenaStringPtr selector_;
-    ::google::api::MethodSettings_LongRunning* long_running_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_google_2fapi_2fclient_2eproto;
-};// -------------------------------------------------------------------
-
 class ClientLibrarySettings final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:google.api.ClientLibrarySettings) */ {
  public:
@@ -3598,6 +3812,102 @@ inline const ::google::protobuf::RepeatedField<int>& CommonLanguageSettings::_in
 inline ::google::protobuf::RepeatedField<int>* CommonLanguageSettings::_internal_mutable_destinations() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.destinations_;
+}
+
+// .google.api.SelectiveGapicGeneration selective_gapic_generation = 3 [json_name = "selectiveGapicGeneration"];
+inline bool CommonLanguageSettings::has_selective_gapic_generation() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.selective_gapic_generation_ != nullptr);
+  return value;
+}
+inline void CommonLanguageSettings::clear_selective_gapic_generation() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.selective_gapic_generation_ != nullptr) _impl_.selective_gapic_generation_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::google::api::SelectiveGapicGeneration& CommonLanguageSettings::_internal_selective_gapic_generation() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::google::api::SelectiveGapicGeneration* p = _impl_.selective_gapic_generation_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::api::SelectiveGapicGeneration&>(::google::api::_SelectiveGapicGeneration_default_instance_);
+}
+inline const ::google::api::SelectiveGapicGeneration& CommonLanguageSettings::selective_gapic_generation() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:google.api.CommonLanguageSettings.selective_gapic_generation)
+  return _internal_selective_gapic_generation();
+}
+inline void CommonLanguageSettings::unsafe_arena_set_allocated_selective_gapic_generation(::google::api::SelectiveGapicGeneration* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.selective_gapic_generation_);
+  }
+  _impl_.selective_gapic_generation_ = reinterpret_cast<::google::api::SelectiveGapicGeneration*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:google.api.CommonLanguageSettings.selective_gapic_generation)
+}
+inline ::google::api::SelectiveGapicGeneration* CommonLanguageSettings::release_selective_gapic_generation() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::api::SelectiveGapicGeneration* released = _impl_.selective_gapic_generation_;
+  _impl_.selective_gapic_generation_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::google::api::SelectiveGapicGeneration* CommonLanguageSettings::unsafe_arena_release_selective_gapic_generation() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:google.api.CommonLanguageSettings.selective_gapic_generation)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::api::SelectiveGapicGeneration* temp = _impl_.selective_gapic_generation_;
+  _impl_.selective_gapic_generation_ = nullptr;
+  return temp;
+}
+inline ::google::api::SelectiveGapicGeneration* CommonLanguageSettings::_internal_mutable_selective_gapic_generation() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.selective_gapic_generation_ == nullptr) {
+    auto* p = CreateMaybeMessage<::google::api::SelectiveGapicGeneration>(GetArena());
+    _impl_.selective_gapic_generation_ = reinterpret_cast<::google::api::SelectiveGapicGeneration*>(p);
+  }
+  return _impl_.selective_gapic_generation_;
+}
+inline ::google::api::SelectiveGapicGeneration* CommonLanguageSettings::mutable_selective_gapic_generation() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::api::SelectiveGapicGeneration* _msg = _internal_mutable_selective_gapic_generation();
+  // @@protoc_insertion_point(field_mutable:google.api.CommonLanguageSettings.selective_gapic_generation)
+  return _msg;
+}
+inline void CommonLanguageSettings::set_allocated_selective_gapic_generation(::google::api::SelectiveGapicGeneration* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::api::SelectiveGapicGeneration*>(_impl_.selective_gapic_generation_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::api::SelectiveGapicGeneration*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.selective_gapic_generation_ = reinterpret_cast<::google::api::SelectiveGapicGeneration*>(value);
+  // @@protoc_insertion_point(field_set_allocated:google.api.CommonLanguageSettings.selective_gapic_generation)
 }
 
 // -------------------------------------------------------------------
@@ -6989,6 +7299,111 @@ inline ::google::protobuf::RepeatedPtrField<std::string>*
 MethodSettings::_internal_mutable_auto_populated_fields() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.auto_populated_fields_;
+}
+
+// -------------------------------------------------------------------
+
+// SelectiveGapicGeneration
+
+// repeated string methods = 1 [json_name = "methods"];
+inline int SelectiveGapicGeneration::_internal_methods_size() const {
+  return _internal_methods().size();
+}
+inline int SelectiveGapicGeneration::methods_size() const {
+  return _internal_methods_size();
+}
+inline void SelectiveGapicGeneration::clear_methods() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.methods_.Clear();
+}
+inline std::string* SelectiveGapicGeneration::add_methods()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  std::string* _s = _internal_mutable_methods()->Add();
+  // @@protoc_insertion_point(field_add_mutable:google.api.SelectiveGapicGeneration.methods)
+  return _s;
+}
+inline const std::string& SelectiveGapicGeneration::methods(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:google.api.SelectiveGapicGeneration.methods)
+  return _internal_methods().Get(index);
+}
+inline std::string* SelectiveGapicGeneration::mutable_methods(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:google.api.SelectiveGapicGeneration.methods)
+  return _internal_mutable_methods()->Mutable(index);
+}
+inline void SelectiveGapicGeneration::set_methods(int index, const std::string& value) {
+  _internal_mutable_methods()->Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:google.api.SelectiveGapicGeneration.methods)
+}
+inline void SelectiveGapicGeneration::set_methods(int index, std::string&& value) {
+  _internal_mutable_methods()->Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:google.api.SelectiveGapicGeneration.methods)
+}
+inline void SelectiveGapicGeneration::set_methods(int index, const char* value) {
+  ABSL_DCHECK(value != nullptr);
+  _internal_mutable_methods()->Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:google.api.SelectiveGapicGeneration.methods)
+}
+inline void SelectiveGapicGeneration::set_methods(int index, const char* value,
+                              std::size_t size) {
+  _internal_mutable_methods()->Mutable(index)->assign(
+      reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:google.api.SelectiveGapicGeneration.methods)
+}
+inline void SelectiveGapicGeneration::set_methods(int index, absl::string_view value) {
+  _internal_mutable_methods()->Mutable(index)->assign(value.data(),
+                                                     value.size());
+  // @@protoc_insertion_point(field_set_string_piece:google.api.SelectiveGapicGeneration.methods)
+}
+inline void SelectiveGapicGeneration::add_methods(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_methods()->Add()->assign(value);
+  // @@protoc_insertion_point(field_add:google.api.SelectiveGapicGeneration.methods)
+}
+inline void SelectiveGapicGeneration::add_methods(std::string&& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_methods()->Add(std::move(value));
+  // @@protoc_insertion_point(field_add:google.api.SelectiveGapicGeneration.methods)
+}
+inline void SelectiveGapicGeneration::add_methods(const char* value) {
+  ABSL_DCHECK(value != nullptr);
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_methods()->Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:google.api.SelectiveGapicGeneration.methods)
+}
+inline void SelectiveGapicGeneration::add_methods(const char* value, std::size_t size) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_methods()->Add()->assign(
+      reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:google.api.SelectiveGapicGeneration.methods)
+}
+inline void SelectiveGapicGeneration::add_methods(absl::string_view value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_methods()->Add()->assign(value.data(), value.size());
+  // @@protoc_insertion_point(field_add_string_piece:google.api.SelectiveGapicGeneration.methods)
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+SelectiveGapicGeneration::methods() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:google.api.SelectiveGapicGeneration.methods)
+  return _internal_methods();
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+SelectiveGapicGeneration::mutable_methods() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:google.api.SelectiveGapicGeneration.methods)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_methods();
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+SelectiveGapicGeneration::_internal_methods() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.methods_;
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+SelectiveGapicGeneration::_internal_mutable_methods() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.methods_;
 }
 
 #ifdef __GNUC__
