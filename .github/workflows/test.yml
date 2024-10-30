@@ -10,6 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/viamrobotics/canon:amd64
+    strategy:
+      matrix:
+        include:
+          - BUILD_SHARED: ON
+          - BUILD_SHARED: OFF
     steps:
       - uses: actions/checkout@v4
       ###########################################
@@ -17,5 +22,15 @@ jobs:
       ###########################################
       - name: build-docker-test
         run: |
-          docker build -t cpp . -f etc/docker/tests/Dockerfile.debian.bullseye
-          docker run --rm -i -w /tmp cpp /bin/bash
+          docker build -t cpp . -f etc/docker/base-images/Dockerfile.debian.bullseye
+          docker build -t cpp-test . -f etc/docker/Dockerfile.sdk-build \
+            --build-arg BASE_TAG=cpp \
+            --build-arg REPO_SETUP=copy \
+            --build-arg BUILD_SHARED=${{ matrix.BUILD_SHARED }} \
+            --build-arg BUILD_TESTS=ON \
+            --build-arg BUILD_EXAMPLES=ON \
+            --build-arg "EXTRA_CMAKE_ARGS=\
+              -DVIAMCPPSDK_CLANG_TIDY=ON \
+              -DVIAMCPPSDK_SANITIZED_BUILD=${{ matrix.BUILD_SHARED }}"
+
+          docker run -w /viam-cpp-sdk/build -t --entrypoint /viam-cpp-sdk/etc/docker/tests/run_test.sh cpp-test /bin/bash

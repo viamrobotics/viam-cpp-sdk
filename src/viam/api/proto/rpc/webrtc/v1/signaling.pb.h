@@ -72,6 +72,9 @@ extern AnswerRequestDoneStageDefaultTypeInternal _AnswerRequestDoneStage_default
 class AnswerRequestErrorStage;
 struct AnswerRequestErrorStageDefaultTypeInternal;
 extern AnswerRequestErrorStageDefaultTypeInternal _AnswerRequestErrorStage_default_instance_;
+class AnswerRequestHeartbeatStage;
+struct AnswerRequestHeartbeatStageDefaultTypeInternal;
+extern AnswerRequestHeartbeatStageDefaultTypeInternal _AnswerRequestHeartbeatStage_default_instance_;
 class AnswerRequestInitStage;
 struct AnswerRequestInitStageDefaultTypeInternal;
 extern AnswerRequestInitStageDefaultTypeInternal _AnswerRequestInitStage_default_instance_;
@@ -203,7 +206,7 @@ class OptionalWebRTCConfigRequest final :
                &_OptionalWebRTCConfigRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   friend void swap(OptionalWebRTCConfigRequest& a, OptionalWebRTCConfigRequest& b) {
     a.Swap(&b);
@@ -1312,7 +1315,7 @@ class AnswerResponseInitStage final :
                &_AnswerResponseInitStage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(AnswerResponseInitStage& a, AnswerResponseInitStage& b) {
     a.Swap(&b);
@@ -1492,7 +1495,7 @@ class AnswerResponseDoneStage final :
                &_AnswerResponseDoneStage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   friend void swap(AnswerResponseDoneStage& a, AnswerResponseDoneStage& b) {
     a.Swap(&b);
@@ -1548,6 +1551,142 @@ class AnswerResponseDoneStage final :
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:proto.rpc.webrtc.v1.AnswerResponseDoneStage)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto;
+};// -------------------------------------------------------------------
+
+class AnswerRequestHeartbeatStage final :
+    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:proto.rpc.webrtc.v1.AnswerRequestHeartbeatStage) */ {
+ public:
+  inline AnswerRequestHeartbeatStage() : AnswerRequestHeartbeatStage(nullptr) {}
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR AnswerRequestHeartbeatStage(::google::protobuf::internal::ConstantInitialized);
+
+  inline AnswerRequestHeartbeatStage(const AnswerRequestHeartbeatStage& from)
+      : AnswerRequestHeartbeatStage(nullptr, from) {}
+  AnswerRequestHeartbeatStage(AnswerRequestHeartbeatStage&& from) noexcept
+    : AnswerRequestHeartbeatStage() {
+    *this = ::std::move(from);
+  }
+
+  inline AnswerRequestHeartbeatStage& operator=(const AnswerRequestHeartbeatStage& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AnswerRequestHeartbeatStage& operator=(AnswerRequestHeartbeatStage&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AnswerRequestHeartbeatStage& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AnswerRequestHeartbeatStage* internal_default_instance() {
+    return reinterpret_cast<const AnswerRequestHeartbeatStage*>(
+               &_AnswerRequestHeartbeatStage_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    13;
+
+  friend void swap(AnswerRequestHeartbeatStage& a, AnswerRequestHeartbeatStage& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AnswerRequestHeartbeatStage* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AnswerRequestHeartbeatStage* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AnswerRequestHeartbeatStage* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AnswerRequestHeartbeatStage>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const AnswerRequestHeartbeatStage& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const AnswerRequestHeartbeatStage& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+  public:
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "proto.rpc.webrtc.v1.AnswerRequestHeartbeatStage";
+  }
+  protected:
+  explicit AnswerRequestHeartbeatStage(::google::protobuf::Arena* arena);
+  AnswerRequestHeartbeatStage(::google::protobuf::Arena* arena, const AnswerRequestHeartbeatStage& from);
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:proto.rpc.webrtc.v1.AnswerRequestHeartbeatStage)
  private:
   class _Internal;
 
@@ -2141,7 +2280,7 @@ class AnswerResponseUpdateStage final :
                &_AnswerResponseUpdateStage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(AnswerResponseUpdateStage& a, AnswerResponseUpdateStage& b) {
     a.Swap(&b);
@@ -2503,7 +2642,7 @@ class OptionalWebRTCConfigResponse final :
                &_OptionalWebRTCConfigResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    21;
 
   friend void swap(OptionalWebRTCConfigResponse& a, OptionalWebRTCConfigResponse& b) {
     a.Swap(&b);
@@ -3183,7 +3322,7 @@ class AnswerResponseErrorStage final :
                &_AnswerResponseErrorStage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   friend void swap(AnswerResponseErrorStage& a, AnswerResponseErrorStage& b) {
     a.Swap(&b);
@@ -3769,7 +3908,7 @@ class AnswerResponse final :
                &_AnswerResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   friend void swap(AnswerResponse& a, AnswerResponse& b) {
     a.Swap(&b);
@@ -4049,6 +4188,7 @@ class AnswerRequest final :
     kUpdate = 3,
     kDone = 4,
     kError = 5,
+    kHeartbeat = 6,
     STAGE_NOT_SET = 0,
   };
 
@@ -4057,7 +4197,7 @@ class AnswerRequest final :
                &_AnswerRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(AnswerRequest& a, AnswerRequest& b) {
     a.Swap(&b);
@@ -4135,6 +4275,7 @@ class AnswerRequest final :
     kUpdateFieldNumber = 3,
     kDoneFieldNumber = 4,
     kErrorFieldNumber = 5,
+    kHeartbeatFieldNumber = 6,
   };
   // string uuid = 1 [json_name = "uuid"];
   void clear_uuid() ;
@@ -4228,6 +4369,25 @@ class AnswerRequest final :
   ::proto::rpc::webrtc::v1::AnswerRequestErrorStage* _internal_mutable_error();
 
   public:
+  // .proto.rpc.webrtc.v1.AnswerRequestHeartbeatStage heartbeat = 6 [json_name = "heartbeat"];
+  bool has_heartbeat() const;
+  private:
+  bool _internal_has_heartbeat() const;
+
+  public:
+  void clear_heartbeat() ;
+  const ::proto::rpc::webrtc::v1::AnswerRequestHeartbeatStage& heartbeat() const;
+  PROTOBUF_NODISCARD ::proto::rpc::webrtc::v1::AnswerRequestHeartbeatStage* release_heartbeat();
+  ::proto::rpc::webrtc::v1::AnswerRequestHeartbeatStage* mutable_heartbeat();
+  void set_allocated_heartbeat(::proto::rpc::webrtc::v1::AnswerRequestHeartbeatStage* value);
+  void unsafe_arena_set_allocated_heartbeat(::proto::rpc::webrtc::v1::AnswerRequestHeartbeatStage* value);
+  ::proto::rpc::webrtc::v1::AnswerRequestHeartbeatStage* unsafe_arena_release_heartbeat();
+
+  private:
+  const ::proto::rpc::webrtc::v1::AnswerRequestHeartbeatStage& _internal_heartbeat() const;
+  ::proto::rpc::webrtc::v1::AnswerRequestHeartbeatStage* _internal_mutable_heartbeat();
+
+  public:
   void clear_stage();
   StageCase stage_case() const;
   // @@protoc_insertion_point(class_scope:proto.rpc.webrtc.v1.AnswerRequest)
@@ -4237,13 +4397,14 @@ class AnswerRequest final :
   void set_has_update();
   void set_has_done();
   void set_has_error();
+  void set_has_heartbeat();
 
   inline bool has_stage() const;
   inline void clear_has_stage();
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 5, 4,
+      0, 6, 5,
       46, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -4268,6 +4429,7 @@ class AnswerRequest final :
       ::proto::rpc::webrtc::v1::AnswerRequestUpdateStage* update_;
       ::proto::rpc::webrtc::v1::AnswerRequestDoneStage* done_;
       ::proto::rpc::webrtc::v1::AnswerRequestErrorStage* error_;
+      ::proto::rpc::webrtc::v1::AnswerRequestHeartbeatStage* heartbeat_;
     } stage_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::uint32_t _oneof_case_[1];
@@ -5953,6 +6115,10 @@ inline void AnswerRequestErrorStage::set_allocated_status(::google::rpc::Status*
 
 // -------------------------------------------------------------------
 
+// AnswerRequestHeartbeatStage
+
+// -------------------------------------------------------------------
+
 // AnswerRequest
 
 // string uuid = 1 [json_name = "uuid"];
@@ -6309,6 +6475,82 @@ inline ::proto::rpc::webrtc::v1::AnswerRequestErrorStage* AnswerRequest::_intern
 inline ::proto::rpc::webrtc::v1::AnswerRequestErrorStage* AnswerRequest::mutable_error() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   ::proto::rpc::webrtc::v1::AnswerRequestErrorStage* _msg = _internal_mutable_error();
   // @@protoc_insertion_point(field_mutable:proto.rpc.webrtc.v1.AnswerRequest.error)
+  return _msg;
+}
+
+// .proto.rpc.webrtc.v1.AnswerRequestHeartbeatStage heartbeat = 6 [json_name = "heartbeat"];
+inline bool AnswerRequest::has_heartbeat() const {
+  return stage_case() == kHeartbeat;
+}
+inline bool AnswerRequest::_internal_has_heartbeat() const {
+  return stage_case() == kHeartbeat;
+}
+inline void AnswerRequest::set_has_heartbeat() {
+  _impl_._oneof_case_[0] = kHeartbeat;
+}
+inline void AnswerRequest::clear_heartbeat() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (stage_case() == kHeartbeat) {
+    if (GetArena() == nullptr) {
+      delete _impl_.stage_.heartbeat_;
+    }
+    clear_has_stage();
+  }
+}
+inline ::proto::rpc::webrtc::v1::AnswerRequestHeartbeatStage* AnswerRequest::release_heartbeat() {
+  // @@protoc_insertion_point(field_release:proto.rpc.webrtc.v1.AnswerRequest.heartbeat)
+  if (stage_case() == kHeartbeat) {
+    clear_has_stage();
+    auto* temp = _impl_.stage_.heartbeat_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.stage_.heartbeat_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::proto::rpc::webrtc::v1::AnswerRequestHeartbeatStage& AnswerRequest::_internal_heartbeat() const {
+  return stage_case() == kHeartbeat ? *_impl_.stage_.heartbeat_ : reinterpret_cast<::proto::rpc::webrtc::v1::AnswerRequestHeartbeatStage&>(::proto::rpc::webrtc::v1::_AnswerRequestHeartbeatStage_default_instance_);
+}
+inline const ::proto::rpc::webrtc::v1::AnswerRequestHeartbeatStage& AnswerRequest::heartbeat() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:proto.rpc.webrtc.v1.AnswerRequest.heartbeat)
+  return _internal_heartbeat();
+}
+inline ::proto::rpc::webrtc::v1::AnswerRequestHeartbeatStage* AnswerRequest::unsafe_arena_release_heartbeat() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:proto.rpc.webrtc.v1.AnswerRequest.heartbeat)
+  if (stage_case() == kHeartbeat) {
+    clear_has_stage();
+    auto* temp = _impl_.stage_.heartbeat_;
+    _impl_.stage_.heartbeat_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void AnswerRequest::unsafe_arena_set_allocated_heartbeat(::proto::rpc::webrtc::v1::AnswerRequestHeartbeatStage* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_stage();
+  if (value) {
+    set_has_heartbeat();
+    _impl_.stage_.heartbeat_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:proto.rpc.webrtc.v1.AnswerRequest.heartbeat)
+}
+inline ::proto::rpc::webrtc::v1::AnswerRequestHeartbeatStage* AnswerRequest::_internal_mutable_heartbeat() {
+  if (stage_case() != kHeartbeat) {
+    clear_stage();
+    set_has_heartbeat();
+    _impl_.stage_.heartbeat_ = CreateMaybeMessage<::proto::rpc::webrtc::v1::AnswerRequestHeartbeatStage>(GetArena());
+  }
+  return _impl_.stage_.heartbeat_;
+}
+inline ::proto::rpc::webrtc::v1::AnswerRequestHeartbeatStage* AnswerRequest::mutable_heartbeat() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::proto::rpc::webrtc::v1::AnswerRequestHeartbeatStage* _msg = _internal_mutable_heartbeat();
+  // @@protoc_insertion_point(field_mutable:proto.rpc.webrtc.v1.AnswerRequest.heartbeat)
   return _msg;
 }
 

@@ -1,5 +1,5 @@
+import subprocess
 import os
-from io import StringIO
 
 from conan import ConanFile
 from conan.errors import ConanException
@@ -23,8 +23,22 @@ class viamCppSdkTest(ConanFile):
 
     def test(self):
         if can_run(self):
-            cmd = os.path.join(self.cpp.build.bindir, "example_module")
-            stderr = StringIO()
-            self.run(cmd, env='conanrun', stderr=stderr, ignore_errors=True)
-            if "main failed with exception:" not in stderr.getvalue():
-                raise ConanException("Unexpected error output from test")
+            sock = "fake-socket-path"
+
+            cmd = os.path.join(self.cpp.build.bindir, f"example_module {sock}")
+
+            # the ConanFile run method is a wrapper around Popen, but it only returns the retcode.
+            # A properly intialized module waits indefinitely on a signal, so we have to use Popen manually.
+            proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, text=True)
+
+            out = None
+
+            try:
+                out = proc.communicate(timeout=2)[0]
+            except subprocess.TimeoutExpired:
+                proc.terminate()
+                out = proc.communicate()[0]
+                pass
+
+            if f"Module listening on {sock}" not in out:
+                raise ConanException(f"Simple example failed to start module listening")
