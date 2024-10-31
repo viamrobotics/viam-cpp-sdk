@@ -36,6 +36,9 @@ class ViamCppSdkRecipe(ConanFile):
             # See https://github.com/conan-io/conan-center-index/issues/25107
             self.options["grpc"].secure = True
 
+            # From some experiments it seems that the shared-ness of these packages
+            # should match that of the SDK recipe. Failure to do so can cause linker
+            # errors while compiling, or static initialization errors at runtime for modules.
             for lib in ["grpc", "protobuf", "abseil"]:
                 self.options[lib].shared = True
 
