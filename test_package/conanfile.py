@@ -30,7 +30,7 @@ class viamCppSdkTest(ConanFile):
 
             # the ConanFile run method is a wrapper around Popen, but it only returns the retcode.
             # A properly intialized module waits indefinitely on a signal, so we have to use Popen manually.
-
+            # Use VirtualRunEnv to perform the equivalent of passing env="conanrun" to self.run.
             env = VirtualRunEnv(self).vars()
             proc = subprocess.Popen([cmd, sock], stdout=subprocess.PIPE, text=True, env=env)
 
