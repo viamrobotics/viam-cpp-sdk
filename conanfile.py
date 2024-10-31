@@ -33,6 +33,9 @@ class ViamCppSdkRecipe(ConanFile):
 
     def configure(self):
         if self.options.shared:
+            # See https://github.com/conan-io/conan-center-index/issues/25107
+            self.options["grpc"].secure = True
+
             for lib in ["grpc", "protobuf", "abseil"]:
                 self.options[lib].shared = True
 
@@ -41,8 +44,8 @@ class ViamCppSdkRecipe(ConanFile):
 
         # The SDK supports older grpc and protobuf, but these are the oldest
         # maintained conan packages.
-        self.requires('grpc/[>=1.48.4]', transitive_headers=True, transitive_libs=True)
-        self.requires('protobuf/[>=3.17.1]', transitive_headers=True, transitive_libs=True)
+        self.requires('grpc/[>=1.48.4]', transitive_headers=True)
+        self.requires('protobuf/[>=3.17.1]', transitive_headers=True)
 
         self.requires('xtensor/[>=0.24.3]')
         self.requires('abseil/[>=20230125.3]', transitive_libs=True)
@@ -78,13 +81,13 @@ class ViamCppSdkRecipe(ConanFile):
 
     def package_info(self):
         self.cpp_info.components["viam_rust_utils"].libs = ["viam_rust_utils"]
-        
+
         self.cpp_info.components["viamsdk"].libs = ["viamsdk"]
 
         for component in ["viamsdk", "viamapi"]:
            self.cpp_info.components[component].set_property("cmake_target_name", "viam-cpp-sdk::{}".format(component))
            self.cpp_info.components[component].set_property("pkg_config_name", "viam-cpp-sdk-lib{}".format(component))
-           self.cpp_info.components[component].requires = ["grpc::grpc", "grpc::grpc++", "grpc::grpc++_reflection", "protobuf::libprotobuf"]
+           self.cpp_info.components[component].requires = ["grpc::grpc++"]
            if self.settings.os in ["Linux", "FreeBSD"]:
             self.cpp_info.components[component].system_libs = ["pthread"]
 
@@ -109,6 +112,8 @@ class ViamCppSdkRecipe(ConanFile):
             "viamapi",
             "boost::headers",
             "boost::log",
+            "grpc::grpc++_reflection",
+            "protobuf::libprotobuf",
             "xtensor::xtensor",
 
             "viam_rust_utils",
