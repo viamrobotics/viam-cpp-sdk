@@ -75,15 +75,15 @@ class ModuleService : viam::module::v1::ModuleService::Service {
                                    std::string const& resource_name);
     std::shared_ptr<Resource> get_parent_resource_(const Name& name);
 
+    std::unique_ptr<Logger> logger_;
     std::mutex lock_;
-    std::unique_ptr<Module> module_;
-    std::shared_ptr<RobotClient> parent_;
     struct impl;
+    std::shared_ptr<RobotClient> parent_;
     std::unique_ptr<impl> impl_;
+    std::unique_ptr<Module> module_;
     std::string parent_addr_;
     std::unique_ptr<Server> server_;
     SignalManager signal_manager_;
-    std::unique_ptr<Logger> logger_;
 };
 
 }  // namespace sdk

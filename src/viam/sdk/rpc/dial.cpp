@@ -35,9 +35,15 @@ void ViamChannel::close() {
         return;
     }
     closed_ = true;
+    // CR erodkin: every now and again this call causes a failure. From adding log statements
+    // in rust-utils, I have confirmed that the failure happens within the rust code.
     free_string(path_);
     free_rust_runtime(rust_runtime_);
 };
+
+ViamChannel::~ViamChannel() {
+    close();
+}
 
 const std::string& Credentials::type() const {
     return type_;

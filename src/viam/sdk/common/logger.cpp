@@ -91,6 +91,7 @@ void init_logging(std::ostream& strm) {
     // remove existing stdout/stderr logging since we're sending logs to RDK
     logging::core::get()->remove_all_sinks();
 
+    logging::add_common_attributes();
     init_attributes();
 
     // The current use case for init logging
@@ -98,7 +99,6 @@ void init_logging(std::ostream& strm) {
                              boost::parameter::keyword<keywords::tag::format>::get() =
                                  (expr::stream << '[' << expr::attr<std::string>("File") << ':'
                                                << expr::attr<int>("Line") << "]    "));
-    logging::add_common_attributes();
 }
 
 void init_logging() {
@@ -107,16 +107,17 @@ void init_logging() {
         return;
     }
     inited = true;
+    logging::add_common_attributes();
 
     logging::add_console_log(
         std::clog,
         boost::parameter::keyword<keywords::tag::format>::get() =
             (expr::stream << expr::format_date_time<boost::posix_time::ptime>(
                                  "TimeStamp", "%Y-%m-%d_%H:%M:%S.%f")
-                          << ": <" << boost::log::trivial::severity << "> " << '['
+                          << ": [" << boost::log::trivial::severity << "] "
+                          << expr::attr<std::string>("LoggerName") << " ["
                           << expr::attr<std::string>("File") << ':' << expr::attr<int>("Line")
-                          << "] " << expr::smessage));
-    logging::add_common_attributes();
+                          << "]    " << expr::smessage));
 }
 
 void Logger::set_log_level(ll level) {
@@ -154,6 +155,8 @@ logging::trivial::severity_level _log_level_to_severity_level(log_level level) {
 
 std::string level_to_string(log_level level) {
     switch (level) {
+            // "fatal" is not supported by RDK, so we send "error" instead.
+        case ll::fatal:  // fallthrough
         case ll::error: {
             return "error";
         }
@@ -162,9 +165,6 @@ std::string level_to_string(log_level level) {
         }
         case ll::debug: {
             return "debug";
-        }
-        case ll::fatal: {
-            return "fatal";
         }
         case ll::trace: {
             return "trace";
@@ -184,6 +184,9 @@ ValueType set_get_attrib(const char* name, ValueType value) {
 }
 
 void Logger::log(const std::string& msg, log_level level, const char* filename, int line_no) const {
+    if (level < level_) {
+        return;
+    }
     // in case logging hasn't been initialized, let's set it up.
     // (RSDK-9172) This should be called from within an initializer object that handles all SDK
     // initialization for us.
@@ -191,9 +194,10 @@ void Logger::log(const std::string& msg, log_level level, const char* filename, 
 
     BOOST_LOG_STREAM_WITH_PARAMS(
         *(impl_->logger_),
-        (set_get_attrib("LogLevel", level_to_string(level)))(set_get_attrib("LoggerName", name_))(
-            set_get_attrib("File", viam::sdk::path_to_filename(filename)))(set_get_attrib(
-            "Line", line_no))(boost::log::keywords::severity = _log_level_to_severity_level(level)))
+        (set_get_attrib("LogLevel", level_to_string(level)))(
+            set_get_attrib("File", path_to_filename(filename)))(set_get_attrib("Line", line_no))(
+            set_get_attrib("LoggerName", name_))(boost::log::keywords::severity =
+                                                     _log_level_to_severity_level(level)))
         << msg;
 }
 

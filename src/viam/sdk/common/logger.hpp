@@ -34,12 +34,12 @@ enum class log_level : std::int8_t {
 };
 class Logger {
    public:
-    static log_level from_string(std::string str);
     explicit Logger(std::string name);
     explicit Logger(std::string name, log_level level);
 
     void set_log_level(log_level level);
     void log(const std::string& msg, log_level level, const char* file, int line_no) const;
+    static log_level from_string(std::string str);
 
     struct None {};
 
@@ -101,7 +101,6 @@ class Logger {
    private:
     void static static_log_(const std::string& msg, log_level level, const char* file, int line_no);
     struct impl;
-    struct module_logging_impl;
 
     std::string name_;
     log_level level_;

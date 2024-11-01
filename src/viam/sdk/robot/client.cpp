@@ -160,11 +160,10 @@ RobotClient::~RobotClient() {
 
 void RobotClient::close() {
     should_refresh_.store(false);
-    for (const std::shared_ptr<std::thread>& t : threads_) {
+    for (const auto& t : threads_) {
         t->~thread();
     }
     stop_all();
-    viam_channel_->close();
 }
 
 bool is_error_response(const grpc::Status& response) {
