@@ -34,7 +34,7 @@ class ResourceConfig {
     const std::string& namespace_() const;
     const std::string& type() const;
     const ProtoStruct& attributes() const;
-    log_level log_level() const;
+    enum log_level log_level() const;
 
    private:
     API api_;
