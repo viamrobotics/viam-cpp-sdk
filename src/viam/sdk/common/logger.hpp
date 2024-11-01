@@ -98,6 +98,12 @@ class Logger {
 
     friend class ModuleService;
 
+    // (RSDK-9172) These (or at least the default version) should be called from within an
+    // initializer
+    // object that handles all SDK initialization for us.
+    void static init_logging();
+    void static init_logging(std::ostream& custom_strm);
+
    private:
     void static static_log_(const std::string& msg, log_level level, const char* file, int line_no);
     struct impl;
@@ -106,11 +112,6 @@ class Logger {
     log_level level_;
     std::unique_ptr<impl> impl_;
 };
-
-// (RSDK-9172) These (or at least the default version) should be called from within an initializer
-// object that handles all SDK initialization for us.
-void init_logging();
-void init_logging(std::ostream& custom_strm);
 
 }  // namespace sdk
 }  // namespace viam

@@ -41,8 +41,8 @@ std::string path_to_filename(const std::string& path) {
 }
 
 namespace {
-std::atomic<bool> inited = false;
-std::atomic<bool> inited_with_ostrm = false;
+std::atomic<bool> inited(false);
+std::atomic<bool> inited_with_ostrm(false);
 }  // namespace
 
 std::shared_ptr<Logger> default_logger() {
@@ -82,7 +82,7 @@ ll Logger::from_string(std::string str) {
     return ll::info;
 }
 
-void init_logging(std::ostream& strm) {
+void Logger::init_logging(std::ostream& strm) {
     if (inited_with_ostrm) {
         return;
     }
@@ -101,7 +101,7 @@ void init_logging(std::ostream& strm) {
                                                << expr::attr<int>("Line") << "]    "));
 }
 
-void init_logging() {
+void Logger::init_logging() {
     init_attributes();
     if (inited || inited_with_ostrm) {
         return;

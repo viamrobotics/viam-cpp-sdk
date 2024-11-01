@@ -320,7 +320,7 @@ struct ModuleService::impl {
 
 void ModuleService::init_logging_() {
     impl_ = std::make_unique<impl>(parent_);
-    init_logging(*impl_->stream);
+    Logger::init_logging(*impl_->stream);
     logging::core::get()->add_sink(impl_->sink);
 }
 
