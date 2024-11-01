@@ -244,7 +244,7 @@ namespace {
 // moduleservice be aware of logging logic in a way that is confined to the implementation file.
 class custom_logging_buf : public std::stringbuf {
    public:
-    custom_logging_buf(std::shared_ptr<RobotClient> parent) : parent_(std::move(parent)) {};
+    custom_logging_buf(std::shared_ptr<RobotClient> parent) : parent_(std::move(parent)){};
     int sync() override {
         if (!parent_) {
             std::cerr << "Attempted to send custom gRPC log without parent address\n";

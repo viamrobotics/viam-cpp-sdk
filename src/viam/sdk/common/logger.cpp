@@ -125,9 +125,9 @@ void Logger::set_log_level(ll level) {
 }
 
 Logger::Logger(std::string name)
-    : name_(std::move(name)), level_(log_level::info), impl_(std::make_unique<impl>()) {};
+    : name_(std::move(name)), level_(log_level::info), impl_(std::make_unique<impl>()){};
 Logger::Logger(std::string name, log_level level)
-    : name_(std::move(name)), level_(level), impl_(std::make_unique<impl>(level)) {};
+    : name_(std::move(name)), level_(level), impl_(std::make_unique<impl>(level)){};
 
 logging::trivial::severity_level _log_level_to_severity_level(log_level level) {
     switch (level) {

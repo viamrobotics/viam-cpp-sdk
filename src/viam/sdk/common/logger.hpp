@@ -124,4 +124,3 @@ void init_logging(std::ostream& custom_strm);
 #define VIAM_SDK_TRIVIAL_CUSTOM_FORMATTED_LOG(sev, msg) \
     ::viam::sdk::Logger::static_log(                    \
         ::viam::sdk::Logger::LogData<::viam::sdk::Logger::None>() << msg, sev, __FILE__, __LINE__)
-
