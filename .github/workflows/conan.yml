@@ -28,15 +28,15 @@ jobs:
       - name: Get last successful commit
         if: github.event_name == 'schedule'
         id: last_successful_commit
-        uses: nrwl/last-successful-commit-action@v1
+        uses: tylermilner/last-successful-commit-hash-action@v1
         with:
-          branch: ${{ steps.git_info.outputs.current_branch }}
-          workflow_id: conan.yml
+          branch: main
+          workflow-id: conan.yml
       - name: Cancel scheduled build with no new commits
-        uses: nrwl/last-successful-commit-action@v1
+        uses: andymckay/cancel-action@0.2
         if: |
           github.event_name == 'schedule' &&
-          steps.git_info.outputs.current_commit == steps.last_successful_commit.outputs.commit_hash
+          steps.git_info.outputs.current_commit == steps.last_successful_commit.outputs.commit-hash
 
   build_macos:
     if: github.repository_owner == 'viamrobotics'
