@@ -524,6 +524,7 @@ class PythonSettings_ExperimentalFeatures final :
 
   enum : int {
     kRestAsyncIoEnabledFieldNumber = 1,
+    kProtobufPythonicTypesEnabledFieldNumber = 2,
   };
   // bool rest_async_io_enabled = 1 [json_name = "restAsyncIoEnabled"];
   void clear_rest_async_io_enabled() ;
@@ -535,13 +536,23 @@ class PythonSettings_ExperimentalFeatures final :
   void _internal_set_rest_async_io_enabled(bool value);
 
   public:
+  // bool protobuf_pythonic_types_enabled = 2 [json_name = "protobufPythonicTypesEnabled"];
+  void clear_protobuf_pythonic_types_enabled() ;
+  bool protobuf_pythonic_types_enabled() const;
+  void set_protobuf_pythonic_types_enabled(bool value);
+
+  private:
+  bool _internal_protobuf_pythonic_types_enabled() const;
+  void _internal_set_protobuf_pythonic_types_enabled(bool value);
+
+  public:
   // @@protoc_insertion_point(class_scope:google.api.PythonSettings.ExperimentalFeatures)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 0,
+      1, 2, 0,
       0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -559,6 +570,7 @@ class PythonSettings_ExperimentalFeatures final :
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
     bool rest_async_io_enabled_;
+    bool protobuf_pythonic_types_enabled_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -5786,6 +5798,29 @@ inline void PythonSettings_ExperimentalFeatures::_internal_set_rest_async_io_ena
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.rest_async_io_enabled_ = value;
+}
+
+// bool protobuf_pythonic_types_enabled = 2 [json_name = "protobufPythonicTypesEnabled"];
+inline void PythonSettings_ExperimentalFeatures::clear_protobuf_pythonic_types_enabled() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.protobuf_pythonic_types_enabled_ = false;
+}
+inline bool PythonSettings_ExperimentalFeatures::protobuf_pythonic_types_enabled() const {
+  // @@protoc_insertion_point(field_get:google.api.PythonSettings.ExperimentalFeatures.protobuf_pythonic_types_enabled)
+  return _internal_protobuf_pythonic_types_enabled();
+}
+inline void PythonSettings_ExperimentalFeatures::set_protobuf_pythonic_types_enabled(bool value) {
+  _internal_set_protobuf_pythonic_types_enabled(value);
+  // @@protoc_insertion_point(field_set:google.api.PythonSettings.ExperimentalFeatures.protobuf_pythonic_types_enabled)
+}
+inline bool PythonSettings_ExperimentalFeatures::_internal_protobuf_pythonic_types_enabled() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.protobuf_pythonic_types_enabled_;
+}
+inline void PythonSettings_ExperimentalFeatures::_internal_set_protobuf_pythonic_types_enabled(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.protobuf_pythonic_types_enabled_ = value;
 }
 
 // -------------------------------------------------------------------

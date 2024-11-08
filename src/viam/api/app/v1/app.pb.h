@@ -252,9 +252,6 @@ extern FragmentErrorDefaultTypeInternal _FragmentError_default_instance_;
 class FragmentHistoryEntry;
 struct FragmentHistoryEntryDefaultTypeInternal;
 extern FragmentHistoryEntryDefaultTypeInternal _FragmentHistoryEntry_default_instance_;
-class FragmentTree;
-struct FragmentTreeDefaultTypeInternal;
-extern FragmentTreeDefaultTypeInternal _FragmentTree_default_instance_;
 class GetFragmentHistoryRequest;
 struct GetFragmentHistoryRequestDefaultTypeInternal;
 extern GetFragmentHistoryRequestDefaultTypeInternal _GetFragmentHistoryRequest_default_instance_;
@@ -528,6 +525,9 @@ extern ResendOrganizationInviteRequestDefaultTypeInternal _ResendOrganizationInv
 class ResendOrganizationInviteResponse;
 struct ResendOrganizationInviteResponseDefaultTypeInternal;
 extern ResendOrganizationInviteResponseDefaultTypeInternal _ResendOrganizationInviteResponse_default_instance_;
+class ResolvedFragment;
+struct ResolvedFragmentDefaultTypeInternal;
+extern ResolvedFragmentDefaultTypeInternal _ResolvedFragment_default_instance_;
 class Robot;
 struct RobotDefaultTypeInternal;
 extern RobotDefaultTypeInternal _Robot_default_instance_;
@@ -23397,7 +23397,6 @@ class UpdateBillingServiceRequest final :
 
   enum : int {
     kOrgIdFieldNumber = 1,
-    kBillingSupportEmailFieldNumber = 3,
     kBillingAddressFieldNumber = 2,
   };
   // string org_id = 1 [json_name = "orgId"];
@@ -23414,22 +23413,6 @@ class UpdateBillingServiceRequest final :
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_org_id(
       const std::string& value);
   std::string* _internal_mutable_org_id();
-
-  public:
-  // string billing_support_email = 3 [json_name = "billingSupportEmail"];
-  void clear_billing_support_email() ;
-  const std::string& billing_support_email() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_billing_support_email(Arg_&& arg, Args_... args);
-  std::string* mutable_billing_support_email();
-  PROTOBUF_NODISCARD std::string* release_billing_support_email();
-  void set_allocated_billing_support_email(std::string* value);
-
-  private:
-  const std::string& _internal_billing_support_email() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_billing_support_email(
-      const std::string& value);
-  std::string* _internal_mutable_billing_support_email();
 
   public:
   // .viam.app.v1.BillingAddress billing_address = 2 [json_name = "billingAddress"];
@@ -23453,8 +23436,8 @@ class UpdateBillingServiceRequest final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 1,
-      75, 2>
+      1, 2, 1,
+      54, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -23473,7 +23456,6 @@ class UpdateBillingServiceRequest final :
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr org_id_;
-    ::google::protobuf::internal::ArenaStringPtr billing_support_email_;
     ::viam::app::v1::BillingAddress* billing_address_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -23977,6 +23959,222 @@ class Robot final :
     ::google::protobuf::internal::ArenaStringPtr location_;
     ::google::protobuf::Timestamp* last_access_;
     ::google::protobuf::Timestamp* created_on_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};// -------------------------------------------------------------------
+
+class ResolvedFragment final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.ResolvedFragment) */ {
+ public:
+  inline ResolvedFragment() : ResolvedFragment(nullptr) {}
+  ~ResolvedFragment() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ResolvedFragment(::google::protobuf::internal::ConstantInitialized);
+
+  inline ResolvedFragment(const ResolvedFragment& from)
+      : ResolvedFragment(nullptr, from) {}
+  ResolvedFragment(ResolvedFragment&& from) noexcept
+    : ResolvedFragment() {
+    *this = ::std::move(from);
+  }
+
+  inline ResolvedFragment& operator=(const ResolvedFragment& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ResolvedFragment& operator=(ResolvedFragment&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ResolvedFragment& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ResolvedFragment* internal_default_instance() {
+    return reinterpret_cast<const ResolvedFragment*>(
+               &_ResolvedFragment_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    97;
+
+  friend void swap(ResolvedFragment& a, ResolvedFragment& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ResolvedFragment* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ResolvedFragment* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ResolvedFragment* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ResolvedFragment>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ResolvedFragment& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ResolvedFragment& from) {
+    ResolvedFragment::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(ResolvedFragment* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.app.v1.ResolvedFragment";
+  }
+  protected:
+  explicit ResolvedFragment(::google::protobuf::Arena* arena);
+  ResolvedFragment(::google::protobuf::Arena* arena, const ResolvedFragment& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kFragmentIdFieldNumber = 1,
+    kResolvedConfigFieldNumber = 2,
+    kErrorFieldNumber = 3,
+  };
+  // string fragment_id = 1 [json_name = "fragmentId"];
+  void clear_fragment_id() ;
+  const std::string& fragment_id() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_fragment_id(Arg_&& arg, Args_... args);
+  std::string* mutable_fragment_id();
+  PROTOBUF_NODISCARD std::string* release_fragment_id();
+  void set_allocated_fragment_id(std::string* value);
+
+  private:
+  const std::string& _internal_fragment_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_fragment_id(
+      const std::string& value);
+  std::string* _internal_mutable_fragment_id();
+
+  public:
+  // .google.protobuf.Struct resolved_config = 2 [json_name = "resolvedConfig"];
+  bool has_resolved_config() const;
+  void clear_resolved_config() ;
+  const ::google::protobuf::Struct& resolved_config() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Struct* release_resolved_config();
+  ::google::protobuf::Struct* mutable_resolved_config();
+  void set_allocated_resolved_config(::google::protobuf::Struct* value);
+  void unsafe_arena_set_allocated_resolved_config(::google::protobuf::Struct* value);
+  ::google::protobuf::Struct* unsafe_arena_release_resolved_config();
+
+  private:
+  const ::google::protobuf::Struct& _internal_resolved_config() const;
+  ::google::protobuf::Struct* _internal_mutable_resolved_config();
+
+  public:
+  // .viam.app.v1.FragmentError error = 3 [json_name = "error"];
+  bool has_error() const;
+  void clear_error() ;
+  const ::viam::app::v1::FragmentError& error() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::FragmentError* release_error();
+  ::viam::app::v1::FragmentError* mutable_error();
+  void set_allocated_error(::viam::app::v1::FragmentError* value);
+  void unsafe_arena_set_allocated_error(::viam::app::v1::FragmentError* value);
+  ::viam::app::v1::FragmentError* unsafe_arena_release_error();
+
+  private:
+  const ::viam::app::v1::FragmentError& _internal_error() const;
+  ::viam::app::v1::FragmentError* _internal_mutable_error();
+
+  public:
+  // @@protoc_insertion_point(class_scope:viam.app.v1.ResolvedFragment)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 2,
+      48, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr fragment_id_;
+    ::google::protobuf::Struct* resolved_config_;
+    ::viam::app::v1::FragmentError* error_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -26172,235 +26370,6 @@ class GetOrganizationsWithAccessToLocationResponse final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::RepeatedPtrField< ::viam::app::v1::OrganizationIdentity > organization_identities_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
-};// -------------------------------------------------------------------
-
-class FragmentTree final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.FragmentTree) */ {
- public:
-  inline FragmentTree() : FragmentTree(nullptr) {}
-  ~FragmentTree() override;
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR FragmentTree(::google::protobuf::internal::ConstantInitialized);
-
-  inline FragmentTree(const FragmentTree& from)
-      : FragmentTree(nullptr, from) {}
-  FragmentTree(FragmentTree&& from) noexcept
-    : FragmentTree() {
-    *this = ::std::move(from);
-  }
-
-  inline FragmentTree& operator=(const FragmentTree& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline FragmentTree& operator=(FragmentTree&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const FragmentTree& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const FragmentTree* internal_default_instance() {
-    return reinterpret_cast<const FragmentTree*>(
-               &_FragmentTree_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    97;
-
-  friend void swap(FragmentTree& a, FragmentTree& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(FragmentTree* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr &&
-        GetArena() == other->GetArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(FragmentTree* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  FragmentTree* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<FragmentTree>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const FragmentTree& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const FragmentTree& from) {
-    FragmentTree::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(FragmentTree* other);
-
-  private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "viam.app.v1.FragmentTree";
-  }
-  protected:
-  explicit FragmentTree(::google::protobuf::Arena* arena);
-  FragmentTree(::google::protobuf::Arena* arena, const FragmentTree& from);
-  public:
-
-  static const ClassData _class_data_;
-  const ::google::protobuf::Message::ClassData*GetClassData() const final;
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kFragmentMergeOrderFieldNumber = 2,
-    kRootFragmentIdFieldNumber = 1,
-    kErrorFieldNumber = 3,
-  };
-  // repeated string fragment_merge_order = 2 [json_name = "fragmentMergeOrder"];
-  int fragment_merge_order_size() const;
-  private:
-  int _internal_fragment_merge_order_size() const;
-
-  public:
-  void clear_fragment_merge_order() ;
-  const std::string& fragment_merge_order(int index) const;
-  std::string* mutable_fragment_merge_order(int index);
-  void set_fragment_merge_order(int index, const std::string& value);
-  void set_fragment_merge_order(int index, std::string&& value);
-  void set_fragment_merge_order(int index, const char* value);
-  void set_fragment_merge_order(int index, const char* value, std::size_t size);
-  void set_fragment_merge_order(int index, absl::string_view value);
-  std::string* add_fragment_merge_order();
-  void add_fragment_merge_order(const std::string& value);
-  void add_fragment_merge_order(std::string&& value);
-  void add_fragment_merge_order(const char* value);
-  void add_fragment_merge_order(const char* value, std::size_t size);
-  void add_fragment_merge_order(absl::string_view value);
-  const ::google::protobuf::RepeatedPtrField<std::string>& fragment_merge_order() const;
-  ::google::protobuf::RepeatedPtrField<std::string>* mutable_fragment_merge_order();
-
-  private:
-  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_fragment_merge_order() const;
-  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_fragment_merge_order();
-
-  public:
-  // string root_fragment_id = 1 [json_name = "rootFragmentId"];
-  void clear_root_fragment_id() ;
-  const std::string& root_fragment_id() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_root_fragment_id(Arg_&& arg, Args_... args);
-  std::string* mutable_root_fragment_id();
-  PROTOBUF_NODISCARD std::string* release_root_fragment_id();
-  void set_allocated_root_fragment_id(std::string* value);
-
-  private:
-  const std::string& _internal_root_fragment_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_root_fragment_id(
-      const std::string& value);
-  std::string* _internal_mutable_root_fragment_id();
-
-  public:
-  // .viam.app.v1.FragmentError error = 3 [json_name = "error"];
-  bool has_error() const;
-  void clear_error() ;
-  const ::viam::app::v1::FragmentError& error() const;
-  PROTOBUF_NODISCARD ::viam::app::v1::FragmentError* release_error();
-  ::viam::app::v1::FragmentError* mutable_error();
-  void set_allocated_error(::viam::app::v1::FragmentError* value);
-  void unsafe_arena_set_allocated_error(::viam::app::v1::FragmentError* value);
-  ::viam::app::v1::FragmentError* unsafe_arena_release_error();
-
-  private:
-  const ::viam::app::v1::FragmentError& _internal_error() const;
-  ::viam::app::v1::FragmentError* _internal_mutable_error();
-
-  public:
-  // @@protoc_insertion_point(class_scope:viam.app.v1.FragmentTree)
- private:
-  class _Internal;
-
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 1,
-      69, 2>
-      _table_;
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-
-        inline explicit constexpr Impl_(
-            ::google::protobuf::internal::ConstantInitialized) noexcept;
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena);
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::RepeatedPtrField<std::string> fragment_merge_order_;
-    ::google::protobuf::internal::ArenaStringPtr root_fragment_id_;
-    ::viam::app::v1::FragmentError* error_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -31786,7 +31755,7 @@ class ListMachineFragmentsResponse final :
 
   enum : int {
     kFragmentsFieldNumber = 1,
-    kFragmentTreesFieldNumber = 2,
+    kResolvedFragmentsFieldNumber = 2,
   };
   // repeated .viam.app.v1.Fragment fragments = 1 [json_name = "fragments"];
   int fragments_size() const;
@@ -31806,24 +31775,24 @@ class ListMachineFragmentsResponse final :
   ::viam::app::v1::Fragment* add_fragments();
   const ::google::protobuf::RepeatedPtrField< ::viam::app::v1::Fragment >&
       fragments() const;
-  // repeated .viam.app.v1.FragmentTree fragment_trees = 2 [json_name = "fragmentTrees"];
-  int fragment_trees_size() const;
+  // repeated .viam.app.v1.ResolvedFragment resolved_fragments = 2 [json_name = "resolvedFragments"];
+  int resolved_fragments_size() const;
   private:
-  int _internal_fragment_trees_size() const;
+  int _internal_resolved_fragments_size() const;
 
   public:
-  void clear_fragment_trees() ;
-  ::viam::app::v1::FragmentTree* mutable_fragment_trees(int index);
-  ::google::protobuf::RepeatedPtrField< ::viam::app::v1::FragmentTree >*
-      mutable_fragment_trees();
+  void clear_resolved_fragments() ;
+  ::viam::app::v1::ResolvedFragment* mutable_resolved_fragments(int index);
+  ::google::protobuf::RepeatedPtrField< ::viam::app::v1::ResolvedFragment >*
+      mutable_resolved_fragments();
   private:
-  const ::google::protobuf::RepeatedPtrField<::viam::app::v1::FragmentTree>& _internal_fragment_trees() const;
-  ::google::protobuf::RepeatedPtrField<::viam::app::v1::FragmentTree>* _internal_mutable_fragment_trees();
+  const ::google::protobuf::RepeatedPtrField<::viam::app::v1::ResolvedFragment>& _internal_resolved_fragments() const;
+  ::google::protobuf::RepeatedPtrField<::viam::app::v1::ResolvedFragment>* _internal_mutable_resolved_fragments();
   public:
-  const ::viam::app::v1::FragmentTree& fragment_trees(int index) const;
-  ::viam::app::v1::FragmentTree* add_fragment_trees();
-  const ::google::protobuf::RepeatedPtrField< ::viam::app::v1::FragmentTree >&
-      fragment_trees() const;
+  const ::viam::app::v1::ResolvedFragment& resolved_fragments(int index) const;
+  ::viam::app::v1::ResolvedFragment* add_resolved_fragments();
+  const ::google::protobuf::RepeatedPtrField< ::viam::app::v1::ResolvedFragment >&
+      resolved_fragments() const;
   // @@protoc_insertion_point(class_scope:viam.app.v1.ListMachineFragmentsResponse)
  private:
   class _Internal;
@@ -31848,7 +31817,7 @@ class ListMachineFragmentsResponse final :
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::RepeatedPtrField< ::viam::app::v1::Fragment > fragments_;
-    ::google::protobuf::RepeatedPtrField< ::viam::app::v1::FragmentTree > fragment_trees_;
+    ::google::protobuf::RepeatedPtrField< ::viam::app::v1::ResolvedFragment > resolved_fragments_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -44285,59 +44254,6 @@ inline void UpdateBillingServiceRequest::set_allocated_billing_address(::viam::a
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateBillingServiceRequest.billing_address)
 }
 
-// string billing_support_email = 3 [json_name = "billingSupportEmail"];
-inline void UpdateBillingServiceRequest::clear_billing_support_email() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.billing_support_email_.ClearToEmpty();
-}
-inline const std::string& UpdateBillingServiceRequest::billing_support_email() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateBillingServiceRequest.billing_support_email)
-  return _internal_billing_support_email();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void UpdateBillingServiceRequest::set_billing_support_email(Arg_&& arg,
-                                                     Args_... args) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.billing_support_email_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateBillingServiceRequest.billing_support_email)
-}
-inline std::string* UpdateBillingServiceRequest::mutable_billing_support_email() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_billing_support_email();
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateBillingServiceRequest.billing_support_email)
-  return _s;
-}
-inline const std::string& UpdateBillingServiceRequest::_internal_billing_support_email() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.billing_support_email_.Get();
-}
-inline void UpdateBillingServiceRequest::_internal_set_billing_support_email(const std::string& value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.billing_support_email_.Set(value, GetArena());
-}
-inline std::string* UpdateBillingServiceRequest::_internal_mutable_billing_support_email() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  return _impl_.billing_support_email_.Mutable( GetArena());
-}
-inline std::string* UpdateBillingServiceRequest::release_billing_support_email() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateBillingServiceRequest.billing_support_email)
-  return _impl_.billing_support_email_.Release();
-}
-inline void UpdateBillingServiceRequest::set_allocated_billing_support_email(std::string* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.billing_support_email_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.billing_support_email_.IsDefault()) {
-          _impl_.billing_support_email_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateBillingServiceRequest.billing_support_email)
-}
-
 // -------------------------------------------------------------------
 
 // UpdateBillingServiceResponse
@@ -51315,199 +51231,189 @@ inline void FragmentError::set_allocated_detail(std::string* value) {
 
 // -------------------------------------------------------------------
 
-// FragmentTree
+// ResolvedFragment
 
-// string root_fragment_id = 1 [json_name = "rootFragmentId"];
-inline void FragmentTree::clear_root_fragment_id() {
+// string fragment_id = 1 [json_name = "fragmentId"];
+inline void ResolvedFragment::clear_fragment_id() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.root_fragment_id_.ClearToEmpty();
+  _impl_.fragment_id_.ClearToEmpty();
 }
-inline const std::string& FragmentTree::root_fragment_id() const
+inline const std::string& ResolvedFragment::fragment_id() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:viam.app.v1.FragmentTree.root_fragment_id)
-  return _internal_root_fragment_id();
+  // @@protoc_insertion_point(field_get:viam.app.v1.ResolvedFragment.fragment_id)
+  return _internal_fragment_id();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void FragmentTree::set_root_fragment_id(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void ResolvedFragment::set_fragment_id(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.root_fragment_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:viam.app.v1.FragmentTree.root_fragment_id)
+  _impl_.fragment_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.app.v1.ResolvedFragment.fragment_id)
 }
-inline std::string* FragmentTree::mutable_root_fragment_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_root_fragment_id();
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.FragmentTree.root_fragment_id)
+inline std::string* ResolvedFragment::mutable_fragment_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_fragment_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ResolvedFragment.fragment_id)
   return _s;
 }
-inline const std::string& FragmentTree::_internal_root_fragment_id() const {
+inline const std::string& ResolvedFragment::_internal_fragment_id() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.root_fragment_id_.Get();
+  return _impl_.fragment_id_.Get();
 }
-inline void FragmentTree::_internal_set_root_fragment_id(const std::string& value) {
+inline void ResolvedFragment::_internal_set_fragment_id(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.root_fragment_id_.Set(value, GetArena());
+  _impl_.fragment_id_.Set(value, GetArena());
 }
-inline std::string* FragmentTree::_internal_mutable_root_fragment_id() {
+inline std::string* ResolvedFragment::_internal_mutable_fragment_id() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  return _impl_.root_fragment_id_.Mutable( GetArena());
+  return _impl_.fragment_id_.Mutable( GetArena());
 }
-inline std::string* FragmentTree::release_root_fragment_id() {
+inline std::string* ResolvedFragment::release_fragment_id() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:viam.app.v1.FragmentTree.root_fragment_id)
-  return _impl_.root_fragment_id_.Release();
+  // @@protoc_insertion_point(field_release:viam.app.v1.ResolvedFragment.fragment_id)
+  return _impl_.fragment_id_.Release();
 }
-inline void FragmentTree::set_allocated_root_fragment_id(std::string* value) {
+inline void ResolvedFragment::set_allocated_fragment_id(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.root_fragment_id_.SetAllocated(value, GetArena());
+  _impl_.fragment_id_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.root_fragment_id_.IsDefault()) {
-          _impl_.root_fragment_id_.Set("", GetArena());
+        if (_impl_.fragment_id_.IsDefault()) {
+          _impl_.fragment_id_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.FragmentTree.root_fragment_id)
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ResolvedFragment.fragment_id)
 }
 
-// repeated string fragment_merge_order = 2 [json_name = "fragmentMergeOrder"];
-inline int FragmentTree::_internal_fragment_merge_order_size() const {
-  return _internal_fragment_merge_order().size();
+// .google.protobuf.Struct resolved_config = 2 [json_name = "resolvedConfig"];
+inline bool ResolvedFragment::has_resolved_config() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.resolved_config_ != nullptr);
+  return value;
 }
-inline int FragmentTree::fragment_merge_order_size() const {
-  return _internal_fragment_merge_order_size();
-}
-inline void FragmentTree::clear_fragment_merge_order() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.fragment_merge_order_.Clear();
-}
-inline std::string* FragmentTree::add_fragment_merge_order()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  std::string* _s = _internal_mutable_fragment_merge_order()->Add();
-  // @@protoc_insertion_point(field_add_mutable:viam.app.v1.FragmentTree.fragment_merge_order)
-  return _s;
-}
-inline const std::string& FragmentTree::fragment_merge_order(int index) const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:viam.app.v1.FragmentTree.fragment_merge_order)
-  return _internal_fragment_merge_order().Get(index);
-}
-inline std::string* FragmentTree::mutable_fragment_merge_order(int index)
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.FragmentTree.fragment_merge_order)
-  return _internal_mutable_fragment_merge_order()->Mutable(index);
-}
-inline void FragmentTree::set_fragment_merge_order(int index, const std::string& value) {
-  _internal_mutable_fragment_merge_order()->Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set:viam.app.v1.FragmentTree.fragment_merge_order)
-}
-inline void FragmentTree::set_fragment_merge_order(int index, std::string&& value) {
-  _internal_mutable_fragment_merge_order()->Mutable(index)->assign(std::move(value));
-  // @@protoc_insertion_point(field_set:viam.app.v1.FragmentTree.fragment_merge_order)
-}
-inline void FragmentTree::set_fragment_merge_order(int index, const char* value) {
-  ABSL_DCHECK(value != nullptr);
-  _internal_mutable_fragment_merge_order()->Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:viam.app.v1.FragmentTree.fragment_merge_order)
-}
-inline void FragmentTree::set_fragment_merge_order(int index, const char* value,
-                              std::size_t size) {
-  _internal_mutable_fragment_merge_order()->Mutable(index)->assign(
-      reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:viam.app.v1.FragmentTree.fragment_merge_order)
-}
-inline void FragmentTree::set_fragment_merge_order(int index, absl::string_view value) {
-  _internal_mutable_fragment_merge_order()->Mutable(index)->assign(value.data(),
-                                                     value.size());
-  // @@protoc_insertion_point(field_set_string_piece:viam.app.v1.FragmentTree.fragment_merge_order)
-}
-inline void FragmentTree::add_fragment_merge_order(const std::string& value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _internal_mutable_fragment_merge_order()->Add()->assign(value);
-  // @@protoc_insertion_point(field_add:viam.app.v1.FragmentTree.fragment_merge_order)
-}
-inline void FragmentTree::add_fragment_merge_order(std::string&& value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _internal_mutable_fragment_merge_order()->Add(std::move(value));
-  // @@protoc_insertion_point(field_add:viam.app.v1.FragmentTree.fragment_merge_order)
-}
-inline void FragmentTree::add_fragment_merge_order(const char* value) {
-  ABSL_DCHECK(value != nullptr);
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _internal_mutable_fragment_merge_order()->Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:viam.app.v1.FragmentTree.fragment_merge_order)
-}
-inline void FragmentTree::add_fragment_merge_order(const char* value, std::size_t size) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _internal_mutable_fragment_merge_order()->Add()->assign(
-      reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:viam.app.v1.FragmentTree.fragment_merge_order)
-}
-inline void FragmentTree::add_fragment_merge_order(absl::string_view value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _internal_mutable_fragment_merge_order()->Add()->assign(value.data(), value.size());
-  // @@protoc_insertion_point(field_add_string_piece:viam.app.v1.FragmentTree.fragment_merge_order)
-}
-inline const ::google::protobuf::RepeatedPtrField<std::string>&
-FragmentTree::fragment_merge_order() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:viam.app.v1.FragmentTree.fragment_merge_order)
-  return _internal_fragment_merge_order();
-}
-inline ::google::protobuf::RepeatedPtrField<std::string>*
-FragmentTree::mutable_fragment_merge_order() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.FragmentTree.fragment_merge_order)
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  return _internal_mutable_fragment_merge_order();
-}
-inline const ::google::protobuf::RepeatedPtrField<std::string>&
-FragmentTree::_internal_fragment_merge_order() const {
+inline const ::google::protobuf::Struct& ResolvedFragment::_internal_resolved_config() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.fragment_merge_order_;
+  const ::google::protobuf::Struct* p = _impl_.resolved_config_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Struct&>(::google::protobuf::_Struct_default_instance_);
 }
-inline ::google::protobuf::RepeatedPtrField<std::string>*
-FragmentTree::_internal_mutable_fragment_merge_order() {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return &_impl_.fragment_merge_order_;
+inline const ::google::protobuf::Struct& ResolvedFragment::resolved_config() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ResolvedFragment.resolved_config)
+  return _internal_resolved_config();
+}
+inline void ResolvedFragment::unsafe_arena_set_allocated_resolved_config(::google::protobuf::Struct* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.resolved_config_);
+  }
+  _impl_.resolved_config_ = reinterpret_cast<::google::protobuf::Struct*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.ResolvedFragment.resolved_config)
+}
+inline ::google::protobuf::Struct* ResolvedFragment::release_resolved_config() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::protobuf::Struct* released = _impl_.resolved_config_;
+  _impl_.resolved_config_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::google::protobuf::Struct* ResolvedFragment::unsafe_arena_release_resolved_config() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.v1.ResolvedFragment.resolved_config)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::protobuf::Struct* temp = _impl_.resolved_config_;
+  _impl_.resolved_config_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Struct* ResolvedFragment::_internal_mutable_resolved_config() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.resolved_config_ == nullptr) {
+    auto* p = CreateMaybeMessage<::google::protobuf::Struct>(GetArena());
+    _impl_.resolved_config_ = reinterpret_cast<::google::protobuf::Struct*>(p);
+  }
+  return _impl_.resolved_config_;
+}
+inline ::google::protobuf::Struct* ResolvedFragment::mutable_resolved_config() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::Struct* _msg = _internal_mutable_resolved_config();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ResolvedFragment.resolved_config)
+  return _msg;
+}
+inline void ResolvedFragment::set_allocated_resolved_config(::google::protobuf::Struct* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.resolved_config_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.resolved_config_ = reinterpret_cast<::google::protobuf::Struct*>(value);
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ResolvedFragment.resolved_config)
 }
 
 // .viam.app.v1.FragmentError error = 3 [json_name = "error"];
-inline bool FragmentTree::has_error() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+inline bool ResolvedFragment::has_error() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.error_ != nullptr);
   return value;
 }
-inline void FragmentTree::clear_error() {
+inline void ResolvedFragment::clear_error() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (_impl_.error_ != nullptr) _impl_.error_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline const ::viam::app::v1::FragmentError& FragmentTree::_internal_error() const {
+inline const ::viam::app::v1::FragmentError& ResolvedFragment::_internal_error() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   const ::viam::app::v1::FragmentError* p = _impl_.error_;
   return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::FragmentError&>(::viam::app::v1::_FragmentError_default_instance_);
 }
-inline const ::viam::app::v1::FragmentError& FragmentTree::error() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:viam.app.v1.FragmentTree.error)
+inline const ::viam::app::v1::FragmentError& ResolvedFragment::error() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ResolvedFragment.error)
   return _internal_error();
 }
-inline void FragmentTree::unsafe_arena_set_allocated_error(::viam::app::v1::FragmentError* value) {
+inline void ResolvedFragment::unsafe_arena_set_allocated_error(::viam::app::v1::FragmentError* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.error_);
   }
   _impl_.error_ = reinterpret_cast<::viam::app::v1::FragmentError*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
+    _impl_._has_bits_[0] |= 0x00000002u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
+    _impl_._has_bits_[0] &= ~0x00000002u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.FragmentTree.error)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.ResolvedFragment.error)
 }
-inline ::viam::app::v1::FragmentError* FragmentTree::release_error() {
+inline ::viam::app::v1::FragmentError* ResolvedFragment::release_error() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
   ::viam::app::v1::FragmentError* released = _impl_.error_;
   _impl_.error_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -51523,30 +51429,30 @@ inline ::viam::app::v1::FragmentError* FragmentTree::release_error() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::viam::app::v1::FragmentError* FragmentTree::unsafe_arena_release_error() {
+inline ::viam::app::v1::FragmentError* ResolvedFragment::unsafe_arena_release_error() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:viam.app.v1.FragmentTree.error)
+  // @@protoc_insertion_point(field_release:viam.app.v1.ResolvedFragment.error)
 
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
   ::viam::app::v1::FragmentError* temp = _impl_.error_;
   _impl_.error_ = nullptr;
   return temp;
 }
-inline ::viam::app::v1::FragmentError* FragmentTree::_internal_mutable_error() {
+inline ::viam::app::v1::FragmentError* ResolvedFragment::_internal_mutable_error() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_._has_bits_[0] |= 0x00000002u;
   if (_impl_.error_ == nullptr) {
     auto* p = CreateMaybeMessage<::viam::app::v1::FragmentError>(GetArena());
     _impl_.error_ = reinterpret_cast<::viam::app::v1::FragmentError*>(p);
   }
   return _impl_.error_;
 }
-inline ::viam::app::v1::FragmentError* FragmentTree::mutable_error() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::viam::app::v1::FragmentError* ResolvedFragment::mutable_error() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   ::viam::app::v1::FragmentError* _msg = _internal_mutable_error();
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.FragmentTree.error)
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ResolvedFragment.error)
   return _msg;
 }
-inline void FragmentTree::set_allocated_error(::viam::app::v1::FragmentError* value) {
+inline void ResolvedFragment::set_allocated_error(::viam::app::v1::FragmentError* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
@@ -51558,13 +51464,13 @@ inline void FragmentTree::set_allocated_error(::viam::app::v1::FragmentError* va
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000001u;
+    _impl_._has_bits_[0] |= 0x00000002u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
+    _impl_._has_bits_[0] &= ~0x00000002u;
   }
 
   _impl_.error_ = reinterpret_cast<::viam::app::v1::FragmentError*>(value);
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.FragmentTree.error)
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ResolvedFragment.error)
 }
 
 // -------------------------------------------------------------------
@@ -53178,53 +53084,53 @@ ListMachineFragmentsResponse::_internal_mutable_fragments() {
   return &_impl_.fragments_;
 }
 
-// repeated .viam.app.v1.FragmentTree fragment_trees = 2 [json_name = "fragmentTrees"];
-inline int ListMachineFragmentsResponse::_internal_fragment_trees_size() const {
-  return _internal_fragment_trees().size();
+// repeated .viam.app.v1.ResolvedFragment resolved_fragments = 2 [json_name = "resolvedFragments"];
+inline int ListMachineFragmentsResponse::_internal_resolved_fragments_size() const {
+  return _internal_resolved_fragments().size();
 }
-inline int ListMachineFragmentsResponse::fragment_trees_size() const {
-  return _internal_fragment_trees_size();
+inline int ListMachineFragmentsResponse::resolved_fragments_size() const {
+  return _internal_resolved_fragments_size();
 }
-inline void ListMachineFragmentsResponse::clear_fragment_trees() {
+inline void ListMachineFragmentsResponse::clear_resolved_fragments() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.fragment_trees_.Clear();
+  _impl_.resolved_fragments_.Clear();
 }
-inline ::viam::app::v1::FragmentTree* ListMachineFragmentsResponse::mutable_fragment_trees(int index)
+inline ::viam::app::v1::ResolvedFragment* ListMachineFragmentsResponse::mutable_resolved_fragments(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.ListMachineFragmentsResponse.fragment_trees)
-  return _internal_mutable_fragment_trees()->Mutable(index);
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ListMachineFragmentsResponse.resolved_fragments)
+  return _internal_mutable_resolved_fragments()->Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField<::viam::app::v1::FragmentTree>* ListMachineFragmentsResponse::mutable_fragment_trees()
+inline ::google::protobuf::RepeatedPtrField<::viam::app::v1::ResolvedFragment>* ListMachineFragmentsResponse::mutable_resolved_fragments()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.ListMachineFragmentsResponse.fragment_trees)
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.ListMachineFragmentsResponse.resolved_fragments)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  return _internal_mutable_fragment_trees();
+  return _internal_mutable_resolved_fragments();
 }
-inline const ::viam::app::v1::FragmentTree& ListMachineFragmentsResponse::fragment_trees(int index) const
+inline const ::viam::app::v1::ResolvedFragment& ListMachineFragmentsResponse::resolved_fragments(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:viam.app.v1.ListMachineFragmentsResponse.fragment_trees)
-  return _internal_fragment_trees().Get(index);
+  // @@protoc_insertion_point(field_get:viam.app.v1.ListMachineFragmentsResponse.resolved_fragments)
+  return _internal_resolved_fragments().Get(index);
 }
-inline ::viam::app::v1::FragmentTree* ListMachineFragmentsResponse::add_fragment_trees() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::viam::app::v1::ResolvedFragment* ListMachineFragmentsResponse::add_resolved_fragments() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::viam::app::v1::FragmentTree* _add = _internal_mutable_fragment_trees()->Add();
-  // @@protoc_insertion_point(field_add:viam.app.v1.ListMachineFragmentsResponse.fragment_trees)
+  ::viam::app::v1::ResolvedFragment* _add = _internal_mutable_resolved_fragments()->Add();
+  // @@protoc_insertion_point(field_add:viam.app.v1.ListMachineFragmentsResponse.resolved_fragments)
   return _add;
 }
-inline const ::google::protobuf::RepeatedPtrField<::viam::app::v1::FragmentTree>& ListMachineFragmentsResponse::fragment_trees() const
+inline const ::google::protobuf::RepeatedPtrField<::viam::app::v1::ResolvedFragment>& ListMachineFragmentsResponse::resolved_fragments() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:viam.app.v1.ListMachineFragmentsResponse.fragment_trees)
-  return _internal_fragment_trees();
+  // @@protoc_insertion_point(field_list:viam.app.v1.ListMachineFragmentsResponse.resolved_fragments)
+  return _internal_resolved_fragments();
 }
-inline const ::google::protobuf::RepeatedPtrField<::viam::app::v1::FragmentTree>&
-ListMachineFragmentsResponse::_internal_fragment_trees() const {
+inline const ::google::protobuf::RepeatedPtrField<::viam::app::v1::ResolvedFragment>&
+ListMachineFragmentsResponse::_internal_resolved_fragments() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.fragment_trees_;
+  return _impl_.resolved_fragments_;
 }
-inline ::google::protobuf::RepeatedPtrField<::viam::app::v1::FragmentTree>*
-ListMachineFragmentsResponse::_internal_mutable_fragment_trees() {
+inline ::google::protobuf::RepeatedPtrField<::viam::app::v1::ResolvedFragment>*
+ListMachineFragmentsResponse::_internal_mutable_resolved_fragments() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return &_impl_.fragment_trees_;
+  return &_impl_.resolved_fragments_;
 }
 
 // -------------------------------------------------------------------

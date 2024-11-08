@@ -703,11 +703,41 @@ class ResourceName final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kRemotePathFieldNumber = 5,
     kNamespaceFieldNumber = 1,
     kTypeFieldNumber = 2,
     kSubtypeFieldNumber = 3,
     kNameFieldNumber = 4,
+    kLocalNameFieldNumber = 6,
   };
+  // repeated string remote_path = 5 [json_name = "remotePath"];
+  int remote_path_size() const;
+  private:
+  int _internal_remote_path_size() const;
+
+  public:
+  void clear_remote_path() ;
+  const std::string& remote_path(int index) const;
+  std::string* mutable_remote_path(int index);
+  void set_remote_path(int index, const std::string& value);
+  void set_remote_path(int index, std::string&& value);
+  void set_remote_path(int index, const char* value);
+  void set_remote_path(int index, const char* value, std::size_t size);
+  void set_remote_path(int index, absl::string_view value);
+  std::string* add_remote_path();
+  void add_remote_path(const std::string& value);
+  void add_remote_path(std::string&& value);
+  void add_remote_path(const char* value);
+  void add_remote_path(const char* value, std::size_t size);
+  void add_remote_path(absl::string_view value);
+  const ::google::protobuf::RepeatedPtrField<std::string>& remote_path() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* mutable_remote_path();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_remote_path() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_remote_path();
+
+  public:
   // string namespace = 1 [json_name = "namespace"];
   void clear_namespace_() ;
   const std::string& namespace_() const;
@@ -772,14 +802,30 @@ class ResourceName final :
   std::string* _internal_mutable_name();
 
   public:
+  // string local_name = 6 [json_name = "localName"];
+  void clear_local_name() ;
+  const std::string& local_name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_local_name(Arg_&& arg, Args_... args);
+  std::string* mutable_local_name();
+  PROTOBUF_NODISCARD std::string* release_local_name();
+  void set_allocated_local_name(std::string* value);
+
+  private:
+  const std::string& _internal_local_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_local_name(
+      const std::string& value);
+  std::string* _internal_mutable_local_name();
+
+  public:
   // @@protoc_insertion_point(class_scope:viam.common.v1.ResourceName)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 4, 0,
-      60, 2>
+      3, 6, 0,
+      81, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -795,10 +841,12 @@ class ResourceName final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::RepeatedPtrField<std::string> remote_path_;
     ::google::protobuf::internal::ArenaStringPtr namespace__;
     ::google::protobuf::internal::ArenaStringPtr type_;
     ::google::protobuf::internal::ArenaStringPtr subtype_;
     ::google::protobuf::internal::ArenaStringPtr name_;
+    ::google::protobuf::internal::ArenaStringPtr local_name_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -5780,6 +5828,160 @@ inline void ResourceName::set_allocated_name(std::string* value) {
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.common.v1.ResourceName.name)
+}
+
+// repeated string remote_path = 5 [json_name = "remotePath"];
+inline int ResourceName::_internal_remote_path_size() const {
+  return _internal_remote_path().size();
+}
+inline int ResourceName::remote_path_size() const {
+  return _internal_remote_path_size();
+}
+inline void ResourceName::clear_remote_path() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.remote_path_.Clear();
+}
+inline std::string* ResourceName::add_remote_path()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  std::string* _s = _internal_mutable_remote_path()->Add();
+  // @@protoc_insertion_point(field_add_mutable:viam.common.v1.ResourceName.remote_path)
+  return _s;
+}
+inline const std::string& ResourceName::remote_path(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.common.v1.ResourceName.remote_path)
+  return _internal_remote_path().Get(index);
+}
+inline std::string* ResourceName::mutable_remote_path(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.ResourceName.remote_path)
+  return _internal_mutable_remote_path()->Mutable(index);
+}
+inline void ResourceName::set_remote_path(int index, const std::string& value) {
+  _internal_mutable_remote_path()->Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.ResourceName.remote_path)
+}
+inline void ResourceName::set_remote_path(int index, std::string&& value) {
+  _internal_mutable_remote_path()->Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.common.v1.ResourceName.remote_path)
+}
+inline void ResourceName::set_remote_path(int index, const char* value) {
+  ABSL_DCHECK(value != nullptr);
+  _internal_mutable_remote_path()->Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.common.v1.ResourceName.remote_path)
+}
+inline void ResourceName::set_remote_path(int index, const char* value,
+                              std::size_t size) {
+  _internal_mutable_remote_path()->Mutable(index)->assign(
+      reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.common.v1.ResourceName.remote_path)
+}
+inline void ResourceName::set_remote_path(int index, absl::string_view value) {
+  _internal_mutable_remote_path()->Mutable(index)->assign(value.data(),
+                                                     value.size());
+  // @@protoc_insertion_point(field_set_string_piece:viam.common.v1.ResourceName.remote_path)
+}
+inline void ResourceName::add_remote_path(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_remote_path()->Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.common.v1.ResourceName.remote_path)
+}
+inline void ResourceName::add_remote_path(std::string&& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_remote_path()->Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.common.v1.ResourceName.remote_path)
+}
+inline void ResourceName::add_remote_path(const char* value) {
+  ABSL_DCHECK(value != nullptr);
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_remote_path()->Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.common.v1.ResourceName.remote_path)
+}
+inline void ResourceName::add_remote_path(const char* value, std::size_t size) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_remote_path()->Add()->assign(
+      reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.common.v1.ResourceName.remote_path)
+}
+inline void ResourceName::add_remote_path(absl::string_view value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_remote_path()->Add()->assign(value.data(), value.size());
+  // @@protoc_insertion_point(field_add_string_piece:viam.common.v1.ResourceName.remote_path)
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+ResourceName::remote_path() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:viam.common.v1.ResourceName.remote_path)
+  return _internal_remote_path();
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+ResourceName::mutable_remote_path() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:viam.common.v1.ResourceName.remote_path)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_remote_path();
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+ResourceName::_internal_remote_path() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.remote_path_;
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+ResourceName::_internal_mutable_remote_path() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.remote_path_;
+}
+
+// string local_name = 6 [json_name = "localName"];
+inline void ResourceName::clear_local_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.local_name_.ClearToEmpty();
+}
+inline const std::string& ResourceName::local_name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.common.v1.ResourceName.local_name)
+  return _internal_local_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ResourceName::set_local_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.local_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.common.v1.ResourceName.local_name)
+}
+inline std::string* ResourceName::mutable_local_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_local_name();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.ResourceName.local_name)
+  return _s;
+}
+inline const std::string& ResourceName::_internal_local_name() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.local_name_.Get();
+}
+inline void ResourceName::_internal_set_local_name(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.local_name_.Set(value, GetArena());
+}
+inline std::string* ResourceName::_internal_mutable_local_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.local_name_.Mutable( GetArena());
+}
+inline std::string* ResourceName::release_local_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.common.v1.ResourceName.local_name)
+  return _impl_.local_name_.Release();
+}
+inline void ResourceName::set_allocated_local_name(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.local_name_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.local_name_.IsDefault()) {
+          _impl_.local_name_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.ResourceName.local_name)
 }
 
 // -------------------------------------------------------------------

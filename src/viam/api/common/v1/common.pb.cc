@@ -66,7 +66,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr ResourceName::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : namespace__(
+      : remote_path_{},
+        namespace__(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         type_(
@@ -76,6 +77,9 @@ inline constexpr ResourceName::Impl_::Impl_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        local_name_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         _cached_size_{0} {}
@@ -626,6 +630,8 @@ const ::uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SE
     PROTOBUF_FIELD_OFFSET(::viam::common::v1::ResourceName, _impl_.type_),
     PROTOBUF_FIELD_OFFSET(::viam::common::v1::ResourceName, _impl_.subtype_),
     PROTOBUF_FIELD_OFFSET(::viam::common::v1::ResourceName, _impl_.name_),
+    PROTOBUF_FIELD_OFFSET(::viam::common::v1::ResourceName, _impl_.remote_path_),
+    PROTOBUF_FIELD_OFFSET(::viam::common::v1::ResourceName, _impl_.local_name_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::viam::common::v1::Pose, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -938,32 +944,32 @@ const ::uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SE
 static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::viam::common::v1::ResourceName)},
-        {12, -1, -1, sizeof(::viam::common::v1::Pose)},
-        {27, -1, -1, sizeof(::viam::common::v1::Orientation)},
-        {39, 49, -1, sizeof(::viam::common::v1::PoseInFrame)},
-        {51, -1, -1, sizeof(::viam::common::v1::Vector3)},
-        {62, -1, -1, sizeof(::viam::common::v1::Sphere)},
-        {71, -1, -1, sizeof(::viam::common::v1::Capsule)},
-        {81, 90, -1, sizeof(::viam::common::v1::RectangularPrism)},
-        {91, 105, -1, sizeof(::viam::common::v1::Geometry)},
-        {110, -1, -1, sizeof(::viam::common::v1::GeometriesInFrame)},
-        {120, 130, -1, sizeof(::viam::common::v1::PointCloudObject)},
-        {132, -1, -1, sizeof(::viam::common::v1::GeoPoint)},
-        {142, 152, -1, sizeof(::viam::common::v1::GeoGeometry)},
-        {154, 165, -1, sizeof(::viam::common::v1::Transform)},
-        {168, -1, -1, sizeof(::viam::common::v1::WorldState)},
-        {178, -1, -1, sizeof(::viam::common::v1::ActuatorStatus)},
-        {187, 196, -1, sizeof(::viam::common::v1::ResponseMetadata)},
-        {197, 207, -1, sizeof(::viam::common::v1::DoCommandRequest)},
-        {209, 218, -1, sizeof(::viam::common::v1::DoCommandResponse)},
-        {219, 229, -1, sizeof(::viam::common::v1::GetKinematicsRequest)},
-        {231, -1, -1, sizeof(::viam::common::v1::GetKinematicsResponse)},
-        {241, 251, -1, sizeof(::viam::common::v1::GetGeometriesRequest)},
-        {253, -1, -1, sizeof(::viam::common::v1::GetGeometriesResponse)},
-        {262, 272, -1, sizeof(::viam::common::v1::GetReadingsRequest)},
-        {274, 284, -1, sizeof(::viam::common::v1::GetReadingsResponse_ReadingsEntry_DoNotUse)},
-        {286, -1, -1, sizeof(::viam::common::v1::GetReadingsResponse)},
-        {295, 311, -1, sizeof(::viam::common::v1::LogEntry)},
+        {14, -1, -1, sizeof(::viam::common::v1::Pose)},
+        {29, -1, -1, sizeof(::viam::common::v1::Orientation)},
+        {41, 51, -1, sizeof(::viam::common::v1::PoseInFrame)},
+        {53, -1, -1, sizeof(::viam::common::v1::Vector3)},
+        {64, -1, -1, sizeof(::viam::common::v1::Sphere)},
+        {73, -1, -1, sizeof(::viam::common::v1::Capsule)},
+        {83, 92, -1, sizeof(::viam::common::v1::RectangularPrism)},
+        {93, 107, -1, sizeof(::viam::common::v1::Geometry)},
+        {112, -1, -1, sizeof(::viam::common::v1::GeometriesInFrame)},
+        {122, 132, -1, sizeof(::viam::common::v1::PointCloudObject)},
+        {134, -1, -1, sizeof(::viam::common::v1::GeoPoint)},
+        {144, 154, -1, sizeof(::viam::common::v1::GeoGeometry)},
+        {156, 167, -1, sizeof(::viam::common::v1::Transform)},
+        {170, -1, -1, sizeof(::viam::common::v1::WorldState)},
+        {180, -1, -1, sizeof(::viam::common::v1::ActuatorStatus)},
+        {189, 198, -1, sizeof(::viam::common::v1::ResponseMetadata)},
+        {199, 209, -1, sizeof(::viam::common::v1::DoCommandRequest)},
+        {211, 220, -1, sizeof(::viam::common::v1::DoCommandResponse)},
+        {221, 231, -1, sizeof(::viam::common::v1::GetKinematicsRequest)},
+        {233, -1, -1, sizeof(::viam::common::v1::GetKinematicsResponse)},
+        {243, 253, -1, sizeof(::viam::common::v1::GetGeometriesRequest)},
+        {255, -1, -1, sizeof(::viam::common::v1::GetGeometriesResponse)},
+        {264, 274, -1, sizeof(::viam::common::v1::GetReadingsRequest)},
+        {276, 286, -1, sizeof(::viam::common::v1::GetReadingsResponse_ReadingsEntry_DoNotUse)},
+        {288, -1, -1, sizeof(::viam::common::v1::GetReadingsResponse)},
+        {297, 313, -1, sizeof(::viam::common::v1::LogEntry)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -999,91 +1005,93 @@ const char descriptor_table_protodef_common_2fv1_2fcommon_2eproto[] PROTOBUF_SEC
     "\n\026common/v1/common.proto\022\016viam.common.v1"
     "\032 google/protobuf/descriptor.proto\032\034goog"
     "le/protobuf/struct.proto\032\037google/protobu"
-    "f/timestamp.proto\"n\n\014ResourceName\022\034\n\tnam"
-    "espace\030\001 \001(\tR\tnamespace\022\022\n\004type\030\002 \001(\tR\004t"
-    "ype\022\030\n\007subtype\030\003 \001(\tR\007subtype\022\022\n\004name\030\004 "
-    "\001(\tR\004name\"y\n\004Pose\022\014\n\001x\030\001 \001(\001R\001x\022\014\n\001y\030\002 \001"
-    "(\001R\001y\022\014\n\001z\030\003 \001(\001R\001z\022\017\n\003o_x\030\004 \001(\001R\002oX\022\017\n\003"
-    "o_y\030\005 \001(\001R\002oY\022\017\n\003o_z\030\006 \001(\001R\002oZ\022\024\n\005theta\030"
-    "\007 \001(\001R\005theta\"V\n\013Orientation\022\017\n\003o_x\030\001 \001(\001"
-    "R\002oX\022\017\n\003o_y\030\002 \001(\001R\002oY\022\017\n\003o_z\030\003 \001(\001R\002oZ\022\024"
-    "\n\005theta\030\004 \001(\001R\005theta\"`\n\013PoseInFrame\022\'\n\017r"
-    "eference_frame\030\001 \001(\tR\016referenceFrame\022(\n\004"
-    "pose\030\002 \001(\0132\024.viam.common.v1.PoseR\004pose\"3"
-    "\n\007Vector3\022\014\n\001x\030\001 \001(\001R\001x\022\014\n\001y\030\002 \001(\001R\001y\022\014\n"
-    "\001z\030\003 \001(\001R\001z\"%\n\006Sphere\022\033\n\tradius_mm\030\001 \001(\001"
-    "R\010radiusMm\"C\n\007Capsule\022\033\n\tradius_mm\030\001 \001(\001"
-    "R\010radiusMm\022\033\n\tlength_mm\030\002 \001(\001R\010lengthMm\""
-    "D\n\020RectangularPrism\0220\n\007dims_mm\030\001 \001(\0132\027.v"
-    "iam.common.v1.Vector3R\006dimsMm\"\374\001\n\010Geomet"
-    "ry\022,\n\006center\030\001 \001(\0132\024.viam.common.v1.Pose"
-    "R\006center\0220\n\006sphere\030\002 \001(\0132\026.viam.common.v"
-    "1.SphereH\000R\006sphere\0224\n\003box\030\003 \001(\0132 .viam.c"
-    "ommon.v1.RectangularPrismH\000R\003box\0223\n\007caps"
-    "ule\030\005 \001(\0132\027.viam.common.v1.CapsuleH\000R\007ca"
-    "psule\022\024\n\005label\030\004 \001(\tR\005labelB\017\n\rgeometry_"
-    "type\"v\n\021GeometriesInFrame\022\'\n\017reference_f"
-    "rame\030\001 \001(\tR\016referenceFrame\0228\n\ngeometries"
-    "\030\002 \003(\0132\030.viam.common.v1.GeometryR\ngeomet"
-    "ries\"v\n\020PointCloudObject\022\037\n\013point_cloud\030"
-    "\001 \001(\014R\npointCloud\022A\n\ngeometries\030\002 \001(\0132!."
-    "viam.common.v1.GeometriesInFrameR\ngeomet"
-    "ries\"D\n\010GeoPoint\022\032\n\010latitude\030\001 \001(\001R\010lati"
-    "tude\022\034\n\tlongitude\030\002 \001(\001R\tlongitude\"}\n\013Ge"
-    "oGeometry\0224\n\010location\030\001 \001(\0132\030.viam.commo"
-    "n.v1.GeoPointR\010location\0228\n\ngeometries\030\002 "
-    "\003(\0132\030.viam.common.v1.GeometryR\ngeometrie"
-    "s\"\342\001\n\tTransform\022\'\n\017reference_frame\030\001 \001(\t"
-    "R\016referenceFrame\022P\n\026pose_in_observer_fra"
-    "me\030\002 \001(\0132\033.viam.common.v1.PoseInFrameR\023p"
-    "oseInObserverFrame\022F\n\017physical_object\030\003 "
-    "\001(\0132\030.viam.common.v1.GeometryH\000R\016physica"
-    "lObject\210\001\001B\022\n\020_physical_object\"\210\001\n\nWorld"
-    "State\022\?\n\tobstacles\030\001 \003(\0132!.viam.common.v"
-    "1.GeometriesInFrameR\tobstacles\0229\n\ntransf"
-    "orms\030\003 \003(\0132\031.viam.common.v1.TransformR\nt"
-    "ransforms\"-\n\016ActuatorStatus\022\033\n\tis_moving"
-    "\030\001 \001(\010R\010isMoving\"d\n\020ResponseMetadata\022@\n\013"
-    "captured_at\030\001 \001(\0132\032.google.protobuf.Time"
-    "stampH\000R\ncapturedAt\210\001\001B\016\n\014_captured_at\"Y"
-    "\n\020DoCommandRequest\022\022\n\004name\030\001 \001(\tR\004name\0221"
-    "\n\007command\030\002 \001(\0132\027.google.protobuf.Struct"
-    "R\007command\"D\n\021DoCommandResponse\022/\n\006result"
-    "\030\001 \001(\0132\027.google.protobuf.StructR\006result\""
-    "Y\n\024GetKinematicsRequest\022\022\n\004name\030\001 \001(\tR\004n"
-    "ame\022-\n\005extra\030c \001(\0132\027.google.protobuf.Str"
-    "uctR\005extra\"~\n\025GetKinematicsResponse\022<\n\006f"
-    "ormat\030\001 \001(\0162$.viam.common.v1.KinematicsF"
-    "ileFormatR\006format\022\'\n\017kinematics_data\030\002 \001"
-    "(\014R\016kinematicsData\"Y\n\024GetGeometriesReque"
-    "st\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027."
-    "google.protobuf.StructR\005extra\"Q\n\025GetGeom"
-    "etriesResponse\0228\n\ngeometries\030\001 \003(\0132\030.via"
-    "m.common.v1.GeometryR\ngeometries\"W\n\022GetR"
-    "eadingsRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005ex"
-    "tra\030c \001(\0132\027.google.protobuf.StructR\005extr"
-    "a\"\271\001\n\023GetReadingsResponse\022M\n\010readings\030\001 "
-    "\003(\01321.viam.common.v1.GetReadingsResponse"
-    ".ReadingsEntryR\010readings\032S\n\rReadingsEntr"
-    "y\022\020\n\003key\030\001 \001(\tR\003key\022,\n\005value\030\002 \001(\0132\026.goo"
-    "gle.protobuf.ValueR\005value:\0028\001\"\227\002\n\010LogEnt"
-    "ry\022\022\n\004host\030\001 \001(\tR\004host\022\024\n\005level\030\002 \001(\tR\005l"
-    "evel\022.\n\004time\030\003 \001(\0132\032.google.protobuf.Tim"
-    "estampR\004time\022\037\n\013logger_name\030\004 \001(\tR\nlogge"
-    "rName\022\030\n\007message\030\005 \001(\tR\007message\022/\n\006calle"
-    "r\030\006 \001(\0132\027.google.protobuf.StructR\006caller"
-    "\022\024\n\005stack\030\007 \001(\tR\005stack\022/\n\006fields\030\010 \003(\0132\027"
-    ".google.protobuf.StructR\006fields*\177\n\024Kinem"
-    "aticsFileFormat\022&\n\"KINEMATICS_FILE_FORMA"
-    "T_UNSPECIFIED\020\000\022\036\n\032KINEMATICS_FILE_FORMA"
-    "T_SVA\020\001\022\037\n\033KINEMATICS_FILE_FORMAT_URDF\020\002"
-    ":a\n\032safety_heartbeat_monitored\022\036.google."
-    "protobuf.MethodOptions\030\244\222\005 \001(\010R\030safetyHe"
-    "artbeatMonitored\210\001\001B\226\001\n\022com.viam.common."
-    "v1B\013CommonProtoP\001Z\031go.viam.com/api/commo"
-    "n/v1\242\002\003VCX\252\002\016Viam.Common.V1\312\002\016Viam\\Commo"
-    "n\\V1\342\002\032Viam\\Common\\V1\\GPBMetadata\352\002\020Viam"
-    "::Common::V1b\006proto3"
+    "f/timestamp.proto\"\256\001\n\014ResourceName\022\034\n\tna"
+    "mespace\030\001 \001(\tR\tnamespace\022\022\n\004type\030\002 \001(\tR\004"
+    "type\022\030\n\007subtype\030\003 \001(\tR\007subtype\022\022\n\004name\030\004"
+    " \001(\tR\004name\022\037\n\013remote_path\030\005 \003(\tR\nremoteP"
+    "ath\022\035\n\nlocal_name\030\006 \001(\tR\tlocalName\"y\n\004Po"
+    "se\022\014\n\001x\030\001 \001(\001R\001x\022\014\n\001y\030\002 \001(\001R\001y\022\014\n\001z\030\003 \001("
+    "\001R\001z\022\017\n\003o_x\030\004 \001(\001R\002oX\022\017\n\003o_y\030\005 \001(\001R\002oY\022\017"
+    "\n\003o_z\030\006 \001(\001R\002oZ\022\024\n\005theta\030\007 \001(\001R\005theta\"V\n"
+    "\013Orientation\022\017\n\003o_x\030\001 \001(\001R\002oX\022\017\n\003o_y\030\002 \001"
+    "(\001R\002oY\022\017\n\003o_z\030\003 \001(\001R\002oZ\022\024\n\005theta\030\004 \001(\001R\005"
+    "theta\"`\n\013PoseInFrame\022\'\n\017reference_frame\030"
+    "\001 \001(\tR\016referenceFrame\022(\n\004pose\030\002 \001(\0132\024.vi"
+    "am.common.v1.PoseR\004pose\"3\n\007Vector3\022\014\n\001x\030"
+    "\001 \001(\001R\001x\022\014\n\001y\030\002 \001(\001R\001y\022\014\n\001z\030\003 \001(\001R\001z\"%\n\006"
+    "Sphere\022\033\n\tradius_mm\030\001 \001(\001R\010radiusMm\"C\n\007C"
+    "apsule\022\033\n\tradius_mm\030\001 \001(\001R\010radiusMm\022\033\n\tl"
+    "ength_mm\030\002 \001(\001R\010lengthMm\"D\n\020RectangularP"
+    "rism\0220\n\007dims_mm\030\001 \001(\0132\027.viam.common.v1.V"
+    "ector3R\006dimsMm\"\374\001\n\010Geometry\022,\n\006center\030\001 "
+    "\001(\0132\024.viam.common.v1.PoseR\006center\0220\n\006sph"
+    "ere\030\002 \001(\0132\026.viam.common.v1.SphereH\000R\006sph"
+    "ere\0224\n\003box\030\003 \001(\0132 .viam.common.v1.Rectan"
+    "gularPrismH\000R\003box\0223\n\007capsule\030\005 \001(\0132\027.via"
+    "m.common.v1.CapsuleH\000R\007capsule\022\024\n\005label\030"
+    "\004 \001(\tR\005labelB\017\n\rgeometry_type\"v\n\021Geometr"
+    "iesInFrame\022\'\n\017reference_frame\030\001 \001(\tR\016ref"
+    "erenceFrame\0228\n\ngeometries\030\002 \003(\0132\030.viam.c"
+    "ommon.v1.GeometryR\ngeometries\"v\n\020PointCl"
+    "oudObject\022\037\n\013point_cloud\030\001 \001(\014R\npointClo"
+    "ud\022A\n\ngeometries\030\002 \001(\0132!.viam.common.v1."
+    "GeometriesInFrameR\ngeometries\"D\n\010GeoPoin"
+    "t\022\032\n\010latitude\030\001 \001(\001R\010latitude\022\034\n\tlongitu"
+    "de\030\002 \001(\001R\tlongitude\"}\n\013GeoGeometry\0224\n\010lo"
+    "cation\030\001 \001(\0132\030.viam.common.v1.GeoPointR\010"
+    "location\0228\n\ngeometries\030\002 \003(\0132\030.viam.comm"
+    "on.v1.GeometryR\ngeometries\"\342\001\n\tTransform"
+    "\022\'\n\017reference_frame\030\001 \001(\tR\016referenceFram"
+    "e\022P\n\026pose_in_observer_frame\030\002 \001(\0132\033.viam"
+    ".common.v1.PoseInFrameR\023poseInObserverFr"
+    "ame\022F\n\017physical_object\030\003 \001(\0132\030.viam.comm"
+    "on.v1.GeometryH\000R\016physicalObject\210\001\001B\022\n\020_"
+    "physical_object\"\210\001\n\nWorldState\022\?\n\tobstac"
+    "les\030\001 \003(\0132!.viam.common.v1.GeometriesInF"
+    "rameR\tobstacles\0229\n\ntransforms\030\003 \003(\0132\031.vi"
+    "am.common.v1.TransformR\ntransforms\"-\n\016Ac"
+    "tuatorStatus\022\033\n\tis_moving\030\001 \001(\010R\010isMovin"
+    "g\"d\n\020ResponseMetadata\022@\n\013captured_at\030\001 \001"
+    "(\0132\032.google.protobuf.TimestampH\000R\ncaptur"
+    "edAt\210\001\001B\016\n\014_captured_at\"Y\n\020DoCommandRequ"
+    "est\022\022\n\004name\030\001 \001(\tR\004name\0221\n\007command\030\002 \001(\013"
+    "2\027.google.protobuf.StructR\007command\"D\n\021Do"
+    "CommandResponse\022/\n\006result\030\001 \001(\0132\027.google"
+    ".protobuf.StructR\006result\"Y\n\024GetKinematic"
+    "sRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c "
+    "\001(\0132\027.google.protobuf.StructR\005extra\"~\n\025G"
+    "etKinematicsResponse\022<\n\006format\030\001 \001(\0162$.v"
+    "iam.common.v1.KinematicsFileFormatR\006form"
+    "at\022\'\n\017kinematics_data\030\002 \001(\014R\016kinematicsD"
+    "ata\"Y\n\024GetGeometriesRequest\022\022\n\004name\030\001 \001("
+    "\tR\004name\022-\n\005extra\030c \001(\0132\027.google.protobuf"
+    ".StructR\005extra\"Q\n\025GetGeometriesResponse\022"
+    "8\n\ngeometries\030\001 \003(\0132\030.viam.common.v1.Geo"
+    "metryR\ngeometries\"W\n\022GetReadingsRequest\022"
+    "\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027.goo"
+    "gle.protobuf.StructR\005extra\"\271\001\n\023GetReadin"
+    "gsResponse\022M\n\010readings\030\001 \003(\01321.viam.comm"
+    "on.v1.GetReadingsResponse.ReadingsEntryR"
+    "\010readings\032S\n\rReadingsEntry\022\020\n\003key\030\001 \001(\tR"
+    "\003key\022,\n\005value\030\002 \001(\0132\026.google.protobuf.Va"
+    "lueR\005value:\0028\001\"\227\002\n\010LogEntry\022\022\n\004host\030\001 \001("
+    "\tR\004host\022\024\n\005level\030\002 \001(\tR\005level\022.\n\004time\030\003 "
+    "\001(\0132\032.google.protobuf.TimestampR\004time\022\037\n"
+    "\013logger_name\030\004 \001(\tR\nloggerName\022\030\n\007messag"
+    "e\030\005 \001(\tR\007message\022/\n\006caller\030\006 \001(\0132\027.googl"
+    "e.protobuf.StructR\006caller\022\024\n\005stack\030\007 \001(\t"
+    "R\005stack\022/\n\006fields\030\010 \003(\0132\027.google.protobu"
+    "f.StructR\006fields*\177\n\024KinematicsFileFormat"
+    "\022&\n\"KINEMATICS_FILE_FORMAT_UNSPECIFIED\020\000"
+    "\022\036\n\032KINEMATICS_FILE_FORMAT_SVA\020\001\022\037\n\033KINE"
+    "MATICS_FILE_FORMAT_URDF\020\002:a\n\032safety_hear"
+    "tbeat_monitored\022\036.google.protobuf.Method"
+    "Options\030\244\222\005 \001(\010R\030safetyHeartbeatMonitore"
+    "d\210\001\001B\226\001\n\022com.viam.common.v1B\013CommonProto"
+    "P\001Z\031go.viam.com/api/common/v1\242\002\003VCX\252\002\016Vi"
+    "am.Common.V1\312\002\016Viam\\Common\\V1\342\002\032Viam\\Com"
+    "mon\\V1\\GPBMetadata\352\002\020Viam::Common::V1b\006p"
+    "roto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_common_2fv1_2fcommon_2eproto_deps[3] =
     {
@@ -1095,7 +1103,7 @@ static ::absl::once_flag descriptor_table_common_2fv1_2fcommon_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_common_2fv1_2fcommon_2eproto = {
     false,
     false,
-    3500,
+    3565,
     descriptor_table_protodef_common_2fv1_2fcommon_2eproto,
     "common/v1/common.proto",
     &descriptor_table_common_2fv1_2fcommon_2eproto_once,
@@ -1153,10 +1161,12 @@ ResourceName::ResourceName(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE ResourceName::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : namespace__(arena, from.namespace__),
+      : remote_path_{visibility, arena, from.remote_path_},
+        namespace__(arena, from.namespace__),
         type_(arena, from.type_),
         subtype_(arena, from.subtype_),
         name_(arena, from.name_),
+        local_name_(arena, from.local_name_),
         _cached_size_{0} {}
 
 ResourceName::ResourceName(
@@ -1174,10 +1184,12 @@ ResourceName::ResourceName(
 inline PROTOBUF_NDEBUG_INLINE ResourceName::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : namespace__(arena),
+      : remote_path_{visibility, arena},
+        namespace__(arena),
         type_(arena),
         subtype_(arena),
         name_(arena),
+        local_name_(arena),
         _cached_size_{0} {}
 
 inline void ResourceName::SharedCtor(::_pb::Arena* arena) {
@@ -1194,6 +1206,7 @@ inline void ResourceName::SharedDtor() {
   _impl_.type_.Destroy();
   _impl_.subtype_.Destroy();
   _impl_.name_.Destroy();
+  _impl_.local_name_.Destroy();
   _impl_.~Impl_();
 }
 
@@ -1204,10 +1217,12 @@ PROTOBUF_NOINLINE void ResourceName::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  _impl_.remote_path_.Clear();
   _impl_.namespace__.ClearToEmpty();
   _impl_.type_.ClearToEmpty();
   _impl_.subtype_.ClearToEmpty();
   _impl_.name_.ClearToEmpty();
+  _impl_.local_name_.ClearToEmpty();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -1219,23 +1234,21 @@ const char* ResourceName::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 4, 0, 60, 2> ResourceName::_table_ = {
+const ::_pbi::TcParseTable<3, 6, 0, 81, 2> ResourceName::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    4, 24,  // max_field_number, fast_idx_mask
+    6, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967280,  // skipmap
+    4294967232,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    4,  // num_field_entries
+    6,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_ResourceName_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string name = 4 [json_name = "name"];
-    {::_pbi::TcParser::FastUS1,
-     {34, 63, 0, PROTOBUF_FIELD_OFFSET(ResourceName, _impl_.name_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // string namespace = 1 [json_name = "namespace"];
     {::_pbi::TcParser::FastUS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(ResourceName, _impl_.namespace__)}},
@@ -1245,6 +1258,16 @@ const ::_pbi::TcParseTable<2, 4, 0, 60, 2> ResourceName::_table_ = {
     // string subtype = 3 [json_name = "subtype"];
     {::_pbi::TcParser::FastUS1,
      {26, 63, 0, PROTOBUF_FIELD_OFFSET(ResourceName, _impl_.subtype_)}},
+    // string name = 4 [json_name = "name"];
+    {::_pbi::TcParser::FastUS1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(ResourceName, _impl_.name_)}},
+    // repeated string remote_path = 5 [json_name = "remotePath"];
+    {::_pbi::TcParser::FastUR1,
+     {42, 63, 0, PROTOBUF_FIELD_OFFSET(ResourceName, _impl_.remote_path_)}},
+    // string local_name = 6 [json_name = "localName"];
+    {::_pbi::TcParser::FastUS1,
+     {50, 63, 0, PROTOBUF_FIELD_OFFSET(ResourceName, _impl_.local_name_)}},
+    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
@@ -1260,15 +1283,23 @@ const ::_pbi::TcParseTable<2, 4, 0, 60, 2> ResourceName::_table_ = {
     // string name = 4 [json_name = "name"];
     {PROTOBUF_FIELD_OFFSET(ResourceName, _impl_.name_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // repeated string remote_path = 5 [json_name = "remotePath"];
+    {PROTOBUF_FIELD_OFFSET(ResourceName, _impl_.remote_path_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+    // string local_name = 6 [json_name = "localName"];
+    {PROTOBUF_FIELD_OFFSET(ResourceName, _impl_.local_name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\33\11\4\7\4\0\0\0"
+    "\33\11\4\7\4\13\12\0"
     "viam.common.v1.ResourceName"
     "namespace"
     "type"
     "subtype"
     "name"
+    "remote_path"
+    "local_name"
   }},
 };
 
@@ -1311,6 +1342,22 @@ const ::_pbi::TcParseTable<2, 4, 0, 60, 2> ResourceName::_table_ = {
     target = stream->WriteStringMaybeAliased(4, _s, target);
   }
 
+  // repeated string remote_path = 5 [json_name = "remotePath"];
+  for (int i = 0, n = this->_internal_remote_path_size(); i < n; ++i) {
+    const auto& s = this->_internal_remote_path().Get(i);
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.common.v1.ResourceName.remote_path");
+    target = stream->WriteString(5, s, target);
+  }
+
+  // string local_name = 6 [json_name = "localName"];
+  if (!this->_internal_local_name().empty()) {
+    const std::string& _s = this->_internal_local_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.common.v1.ResourceName.local_name");
+    target = stream->WriteStringMaybeAliased(6, _s, target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -1328,6 +1375,12 @@ const ::_pbi::TcParseTable<2, 4, 0, 60, 2> ResourceName::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  // repeated string remote_path = 5 [json_name = "remotePath"];
+  total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_remote_path().size());
+  for (int i = 0, n = _internal_remote_path().size(); i < n; ++i) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+        _internal_remote_path().Get(i));
+  }
   // string namespace = 1 [json_name = "namespace"];
   if (!this->_internal_namespace_().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
@@ -1352,6 +1405,12 @@ const ::_pbi::TcParseTable<2, 4, 0, 60, 2> ResourceName::_table_ = {
                                     this->_internal_name());
   }
 
+  // string local_name = 6 [json_name = "localName"];
+  if (!this->_internal_local_name().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_local_name());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -1371,6 +1430,7 @@ void ResourceName::MergeImpl(::google::protobuf::Message& to_msg, const ::google
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  _this->_internal_mutable_remote_path()->MergeFrom(from._internal_remote_path());
   if (!from._internal_namespace_().empty()) {
     _this->_internal_set_namespace_(from._internal_namespace_());
   }
@@ -1382,6 +1442,9 @@ void ResourceName::MergeImpl(::google::protobuf::Message& to_msg, const ::google
   }
   if (!from._internal_name().empty()) {
     _this->_internal_set_name(from._internal_name());
+  }
+  if (!from._internal_local_name().empty()) {
+    _this->_internal_set_local_name(from._internal_local_name());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -1405,10 +1468,12 @@ void ResourceName::InternalSwap(ResourceName* PROTOBUF_RESTRICT other) {
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.remote_path_.InternalSwap(&other->_impl_.remote_path_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.namespace__, &other->_impl_.namespace__, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.type_, &other->_impl_.type_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.subtype_, &other->_impl_.subtype_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.local_name_, &other->_impl_.local_name_, arena);
 }
 
 ::google::protobuf::Metadata ResourceName::GetMetadata() const {
