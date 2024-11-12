@@ -32,6 +32,7 @@ jobs:
         with:
           branch: main
           workflow-id: conan.yml
+          github-token: ${{ github.token }}
       - name: Cancel scheduled build with no new commits
         uses: andymckay/cancel-action@0.2
         if: |
