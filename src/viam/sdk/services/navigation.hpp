@@ -5,18 +5,15 @@
 
 #include <string>
 
+#include <viam/api/common/v1/common.pb.h>
 #include <viam/api/service/navigation/v1/navigation.pb.h>
 
-// #include <viam/sdk/common/pose.hpp>
-// #include <viam/sdk/common/proto_value.hpp>
-// #include <viam/sdk/common/utils.hpp>
-// #include <viam/sdk/common/world_state.hpp>
-// #include <viam/sdk/resource/resource_api.hpp>
 #include <viam/sdk/services/service.hpp>
-// #include <viam/sdk/spatialmath/geometry.hpp>
 
 namespace viam {
 namespace sdk {
+
+using namespace viam::common::v1;
 
 class Navigation : public Service {
    public:
