@@ -24,5 +24,6 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ inputs.image }}:${{ inputs.tag }}
+        tags: "${{ inputs.image }}:${{ inputs.tag }}"
+        file: etc/docker/base-images/${{ inputs.dockerfile }}
         labels: ${{ steps.meta.output.labels }}
