@@ -1,0 +1,28 @@
+on:
+  workflow_dispatch:
+    inputs:
+      image:
+        default: ghcr.io/viamrobotics/cpp-base
+      dockerfile:
+        default: Dockerfile.debian.bullseye
+      tag:
+        default: bullseye-amd64
+
+jobs:
+  build-container:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+    - uses: actions/checkout@v4
+    - uses: docker/metadata-action@v5
+      id: meta
+      with:
+        images: ${{ inputs.image }}
+    - uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        tags: ${{ inputs.image }}:${{ inputs.tag }}
+        labels: ${{ steps.meta.output.labels }}
