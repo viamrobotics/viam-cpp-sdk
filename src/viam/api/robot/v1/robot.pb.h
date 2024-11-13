@@ -5550,6 +5550,7 @@ class ResourceStatus final :
     kErrorFieldNumber = 5,
     kNameFieldNumber = 1,
     kLastUpdatedFieldNumber = 3,
+    kCloudMetadataFieldNumber = 6,
     kStateFieldNumber = 2,
   };
   // string revision = 4 [json_name = "revision"];
@@ -5614,6 +5615,21 @@ class ResourceStatus final :
   ::google::protobuf::Timestamp* _internal_mutable_last_updated();
 
   public:
+  // optional .viam.robot.v1.GetCloudMetadataResponse cloud_metadata = 6 [json_name = "cloudMetadata"];
+  bool has_cloud_metadata() const;
+  void clear_cloud_metadata() ;
+  const ::viam::robot::v1::GetCloudMetadataResponse& cloud_metadata() const;
+  PROTOBUF_NODISCARD ::viam::robot::v1::GetCloudMetadataResponse* release_cloud_metadata();
+  ::viam::robot::v1::GetCloudMetadataResponse* mutable_cloud_metadata();
+  void set_allocated_cloud_metadata(::viam::robot::v1::GetCloudMetadataResponse* value);
+  void unsafe_arena_set_allocated_cloud_metadata(::viam::robot::v1::GetCloudMetadataResponse* value);
+  ::viam::robot::v1::GetCloudMetadataResponse* unsafe_arena_release_cloud_metadata();
+
+  private:
+  const ::viam::robot::v1::GetCloudMetadataResponse& _internal_cloud_metadata() const;
+  ::viam::robot::v1::GetCloudMetadataResponse* _internal_mutable_cloud_metadata();
+
+  public:
   // .viam.robot.v1.ResourceStatus.State state = 2 [json_name = "state"];
   void clear_state() ;
   ::viam::robot::v1::ResourceStatus_State state() const;
@@ -5630,7 +5646,7 @@ class ResourceStatus final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 5, 2,
+      3, 6, 3,
       50, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -5653,6 +5669,7 @@ class ResourceStatus final :
     ::google::protobuf::internal::ArenaStringPtr error_;
     ::viam::common::v1::ResourceName* name_;
     ::google::protobuf::Timestamp* last_updated_;
+    ::viam::robot::v1::GetCloudMetadataResponse* cloud_metadata_;
     int state_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -14457,6 +14474,102 @@ inline void ResourceStatus::set_allocated_error(std::string* value) {
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.ResourceStatus.error)
+}
+
+// optional .viam.robot.v1.GetCloudMetadataResponse cloud_metadata = 6 [json_name = "cloudMetadata"];
+inline bool ResourceStatus::has_cloud_metadata() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.cloud_metadata_ != nullptr);
+  return value;
+}
+inline void ResourceStatus::clear_cloud_metadata() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.cloud_metadata_ != nullptr) _impl_.cloud_metadata_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline const ::viam::robot::v1::GetCloudMetadataResponse& ResourceStatus::_internal_cloud_metadata() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::viam::robot::v1::GetCloudMetadataResponse* p = _impl_.cloud_metadata_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::robot::v1::GetCloudMetadataResponse&>(::viam::robot::v1::_GetCloudMetadataResponse_default_instance_);
+}
+inline const ::viam::robot::v1::GetCloudMetadataResponse& ResourceStatus::cloud_metadata() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.ResourceStatus.cloud_metadata)
+  return _internal_cloud_metadata();
+}
+inline void ResourceStatus::unsafe_arena_set_allocated_cloud_metadata(::viam::robot::v1::GetCloudMetadataResponse* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.cloud_metadata_);
+  }
+  _impl_.cloud_metadata_ = reinterpret_cast<::viam::robot::v1::GetCloudMetadataResponse*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000004u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.robot.v1.ResourceStatus.cloud_metadata)
+}
+inline ::viam::robot::v1::GetCloudMetadataResponse* ResourceStatus::release_cloud_metadata() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000004u;
+  ::viam::robot::v1::GetCloudMetadataResponse* released = _impl_.cloud_metadata_;
+  _impl_.cloud_metadata_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::viam::robot::v1::GetCloudMetadataResponse* ResourceStatus::unsafe_arena_release_cloud_metadata() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.robot.v1.ResourceStatus.cloud_metadata)
+
+  _impl_._has_bits_[0] &= ~0x00000004u;
+  ::viam::robot::v1::GetCloudMetadataResponse* temp = _impl_.cloud_metadata_;
+  _impl_.cloud_metadata_ = nullptr;
+  return temp;
+}
+inline ::viam::robot::v1::GetCloudMetadataResponse* ResourceStatus::_internal_mutable_cloud_metadata() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  if (_impl_.cloud_metadata_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::robot::v1::GetCloudMetadataResponse>(GetArena());
+    _impl_.cloud_metadata_ = reinterpret_cast<::viam::robot::v1::GetCloudMetadataResponse*>(p);
+  }
+  return _impl_.cloud_metadata_;
+}
+inline ::viam::robot::v1::GetCloudMetadataResponse* ResourceStatus::mutable_cloud_metadata() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::viam::robot::v1::GetCloudMetadataResponse* _msg = _internal_mutable_cloud_metadata();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.ResourceStatus.cloud_metadata)
+  return _msg;
+}
+inline void ResourceStatus::set_allocated_cloud_metadata(::viam::robot::v1::GetCloudMetadataResponse* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::viam::robot::v1::GetCloudMetadataResponse*>(_impl_.cloud_metadata_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::viam::robot::v1::GetCloudMetadataResponse*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000004u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004u;
+  }
+
+  _impl_.cloud_metadata_ = reinterpret_cast<::viam::robot::v1::GetCloudMetadataResponse*>(value);
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.ResourceStatus.cloud_metadata)
 }
 
 // -------------------------------------------------------------------
