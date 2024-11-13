@@ -34,31 +34,30 @@ class Navigation : public Service {
        public:
         GeoPoint location;
         double compass_heading;
-    }
+    };
 
     struct Waypoint {
        public:
         std::string id;
         GeoPoint location;
-    }
+    };
 
     struct Path {
         std::string destination_waypoint_id;
         std::vector<GeoPoint> geopoints;
-    }
+    };
 
-    API
-    api() const override;
+    API api() const override;
 
-    Mode get_mode(const std::string name, const ProtoStruct& extra);
-    void set_mode(const std::string name, const Mode mode, const ProtoStruct& extra);
-    LocationResponse get_location(const std::string name, const ProtoStruct& extra);
-    std::vector<Waypoint> get_waypoints(const std::string name, const ProtoStruct& extra);
-    void add_waypoint(const std::string name, const GeoPoint& location, const ProtoStruct& extra);
-    void remove_waypoint(const std::string name, const std::string id, const ProtoStruct& extra);
-    std::vector<GeoGeometry> get_obstacles(const std::string name, const ProtoStruct& extra);
-    std::vector<Path> void get_paths(const std::string name, const ProtoStruct& extra);
-    MapType void get_properties(const std::string);
+    virtual Mode get_mode(const std::string name, const ProtoStruct& extra) = 0;
+    virtual void set_mode(const std::string name, const Mode mode, const ProtoStruct& extra) = 0;
+    virtual LocationResponse get_location(const std::string name, const ProtoStruct& extra) = 0;
+    virtual std::vector<Waypoint> get_waypoints(const std::string name, const ProtoStruct& extra) = 0;
+    virtual void add_waypoint(const std::string name, const GeoPoint& location, const ProtoStruct& extra) = 0;
+    virtual void remove_waypoint(const std::string name, const std::string id, const ProtoStruct& extra) = 0;
+    virtual std::vector<GeoGeometry> get_obstacles(const std::string name, const ProtoStruct& extra) = 0;
+    virtual std::vector<Path> get_paths(const std::string name, const ProtoStruct& extra) = 0;
+    virtual MapType get_properties(const std::string) = 0;
     virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
    protected:
