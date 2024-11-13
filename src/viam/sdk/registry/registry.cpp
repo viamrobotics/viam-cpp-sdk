@@ -48,6 +48,7 @@
 #include <viam/sdk/services/private/mlmodel_server.hpp>
 #include <viam/sdk/services/private/motion_client.hpp>
 #include <viam/sdk/services/private/motion_server.hpp>
+// todo nav service
 #include <viam/sdk/services/service.hpp>
 
 namespace viam {
