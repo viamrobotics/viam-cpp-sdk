@@ -13,6 +13,7 @@ namespace sdk {
 /// must be implicitly convertible to Dst (probably via operator on Src).
 template <typename Src, typename Dst>
 void vecToRepeatedPtr(const std::vector<Src>& vec, google::protobuf::RepeatedPtrField<Dst>& dest) {
+    dest.Clear();
     dest.Reserve(vec.size());
     for (auto& x : vec) {
         *dest.Add() = x.to_proto();
@@ -25,6 +26,7 @@ template <typename Src, typename Dst>
 void vecToRepeatedPtr(const std::vector<Src>& vec,
                       google::protobuf::RepeatedPtrField<Dst>& dest,
                       Dst& from_proto(const Src&)) {
+    dest.Clear();
     dest.Reserve(vec.size());
     for (auto& x : vec) {
         *dest.Add() = from_proto(x);
@@ -35,6 +37,7 @@ void vecToRepeatedPtr(const std::vector<Src>& vec,
 /// must be implicitly convertible to Dst (probably via constructor on Dst).
 template <typename Src, typename Dst>
 void repeatedPtrToVec(const google::protobuf::RepeatedPtrField<Src>& src, std::vector<Dst>& vec) {
+    vec.clear();
     vec.reserve(src.size());
     for (auto& x : src) {
         vec.push_back(Dst::from_proto(x));
@@ -47,6 +50,7 @@ template <typename Src, typename Dst>
 void repeatedPtrToVec(const google::protobuf::RepeatedPtrField<Src>& src,
                       std::vector<Dst>& vec,
                       Dst& to_proto(const Src&)) {
+    vec.clear();
     vec.reserve(src.size());
     for (auto& x : src) {
         vec.push_back(to_proto(x));
