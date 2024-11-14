@@ -37,10 +37,18 @@ class Navigation : public Service {
     };
 
     struct Waypoint {
-       Waypoint(const viam::service::navigation::v1::Waypoint& proto) {
-        this->id = proto.id();
-        this->location = proto.location();
-       }
+        Waypoint(const viam::service::navigation::v1::Waypoint& proto) {
+            this->id = proto.id();
+            this->location = proto.location();
+        }
+
+        operator viam::service::navigation::v1::Waypoint() {
+            viam::service::navigation::v1::Waypoint ret;
+            *ret.mutable_id() = id;
+            *ret.mutable_location() = location;
+            return ret;
+        }
+
         std::string id;
         GeoPoint location;
     };
@@ -48,8 +56,20 @@ class Navigation : public Service {
     struct Path {
         Path(const viam::service::navigation::v1::Path& proto) {
             this->destination_waypoint_id = proto.destination_waypoint_id();
-            this->geopoints = std::vector<GeoPoint>(proto.geopoints().begin(), proto.geopoints().end());
+            this->geopoints =
+                std::vector<GeoPoint>(proto.geopoints().begin(), proto.geopoints().end());
         }
+
+        operator viam::service::navigation::v1::Path() {
+            viam::service::navigation::v1::Path ret;
+            *ret.mutable_destination_waypoint_id() = destination_waypoint_id;
+            auto dest_points = ret.mutable_geopoints();
+            for (const auto& x : geopoints) {
+                *dest_points->Add() = x;
+            }
+            return ret;
+        }
+
         std::string destination_waypoint_id;
         std::vector<GeoPoint> geopoints;
     };
@@ -59,11 +79,18 @@ class Navigation : public Service {
     virtual Mode get_mode(const std::string name, const ProtoStruct& extra) = 0;
     virtual void set_mode(const std::string name, const Mode mode, const ProtoStruct& extra) = 0;
     virtual LocationResponse get_location(const std::string name, const ProtoStruct& extra) = 0;
-    virtual std::unique_ptr<std::vector<Waypoint>> get_waypoints(const std::string name, const ProtoStruct& extra) = 0;
-    virtual void add_waypoint(const std::string name, const GeoPoint& location, const ProtoStruct& extra) = 0;
-    virtual void remove_waypoint(const std::string name, const std::string id, const ProtoStruct& extra) = 0;
-    virtual std::unique_ptr<std::vector<GeoGeometry>> get_obstacles(const std::string name, const ProtoStruct& extra) = 0;
-    virtual std::unique_ptr<std::vector<Path>> get_paths(const std::string name, const ProtoStruct& extra) = 0;
+    virtual std::unique_ptr<std::vector<Waypoint>> get_waypoints(const std::string name,
+                                                                 const ProtoStruct& extra) = 0;
+    virtual void add_waypoint(const std::string name,
+                              const GeoPoint& location,
+                              const ProtoStruct& extra) = 0;
+    virtual void remove_waypoint(const std::string name,
+                                 const std::string id,
+                                 const ProtoStruct& extra) = 0;
+    virtual std::unique_ptr<std::vector<GeoGeometry>> get_obstacles(const std::string name,
+                                                                    const ProtoStruct& extra) = 0;
+    virtual std::unique_ptr<std::vector<Path>> get_paths(const std::string name,
+                                                         const ProtoStruct& extra) = 0;
     virtual MapType get_properties(const std::string) = 0;
     virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
