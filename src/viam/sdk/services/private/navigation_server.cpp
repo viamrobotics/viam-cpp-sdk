@@ -3,10 +3,10 @@
 #include <grpcpp/support/status.h>
 
 #include <viam/sdk/common/pose.hpp>
+#include <viam/sdk/common/proto_utils.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/common/proto_utils.hpp>
 #include <viam/sdk/services/motion.hpp>
 #include <viam/sdk/services/private/navigation_server.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>

@@ -99,9 +99,11 @@ void set_logger_severity_from_args(int argc, char** argv);
 /// @param extra The extra ProtoStruct.
 bool from_dm_from_extra(const ProtoStruct& extra);
 
-template <typename Src, typename Dst> Dst auto_from_proto(const Src& proto);
+template <typename Src, typename Dst>
+Dst auto_from_proto(const Src& proto);
 
-template <typename Src, typename Dst> Dst auto_to_proto(const Src& wrapped);
+template <typename Src, typename Dst>
+Dst auto_to_proto(const Src& wrapped);
 
 }  // namespace sdk
 }  // namespace viam

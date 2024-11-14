@@ -19,10 +19,12 @@ void vecToRepeatedPtr(const std::vector<Src>& vec, google::protobuf::RepeatedPtr
     }
 }
 
-/// @brief Non-member to_proto() version. (necessary for moving generated types out of wrapper headers).
-/// Template param F is a function that converts from Src to Dst.
+/// @brief Non-member to_proto() version. (necessary for moving generated types out of wrapper
+/// headers). Template param F is a function that converts from Src to Dst.
 template <typename Src, typename Dst>
-void vecToRepeatedPtr(const std::vector<Src>& vec, google::protobuf::RepeatedPtrField<Dst>& dest, Dst& from_proto(const Src&)) {
+void vecToRepeatedPtr(const std::vector<Src>& vec,
+                      google::protobuf::RepeatedPtrField<Dst>& dest,
+                      Dst& from_proto(const Src&)) {
     dest.Reserve(vec.size());
     for (auto& x : vec) {
         *dest.Add() = from_proto(x);
@@ -39,10 +41,12 @@ void repeatedPtrToVec(const google::protobuf::RepeatedPtrField<Src>& src, std::v
     }
 }
 
-/// @brief Non-member to_proto() version. (necessary for moving generated types out of wrapper headers).
-/// Template param F is a function that converts from Src to Dst.
+/// @brief Non-member to_proto() version. (necessary for moving generated types out of wrapper
+/// headers). Template param F is a function that converts from Src to Dst.
 template <typename Src, typename Dst>
-void repeatedPtrToVec(const google::protobuf::RepeatedPtrField<Src>& src, std::vector<Dst>& vec, Dst& to_proto(const Src&)) {
+void repeatedPtrToVec(const google::protobuf::RepeatedPtrField<Src>& src,
+                      std::vector<Dst>& vec,
+                      Dst& to_proto(const Src&)) {
     vec.reserve(src.size());
     for (auto& x : src) {
         vec.push_back(to_proto(x));
