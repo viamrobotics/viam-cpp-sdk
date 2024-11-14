@@ -27,12 +27,12 @@ class NavigationClient : public Navigation {
     std::unique_ptr<std::vector<Waypoint>> get_waypoints(const std::string name,
                                                          const ProtoStruct& extra) override;
     void add_waypoint(const std::string name,
-                      const GeoPoint& location,
+                      const geo_point& location,
                       const ProtoStruct& extra) override;
     void remove_waypoint(const std::string name,
                          const std::string id,
                          const ProtoStruct& extra) override;
-    std::unique_ptr<std::vector<GeoGeometry>> get_obstacles(const std::string name,
+    std::unique_ptr<std::vector<geo_geometry>> get_obstacles(const std::string name,
                                                             const ProtoStruct& extra) override;
     std::unique_ptr<std::vector<Path>> get_paths(const std::string name,
                                                  const ProtoStruct& extra) override;

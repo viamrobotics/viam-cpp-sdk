@@ -9,11 +9,12 @@
 #include <viam/api/service/navigation/v1/navigation.pb.h>
 
 #include <viam/sdk/services/service.hpp>
+#include <viam/sdk/spatialmath/geometry.hpp>
+#include <viam/sdk/common/pose.hpp>
+#include <viam/sdk/common/utils.hpp>
 
 namespace viam {
 namespace sdk {
-
-using namespace viam::common::v1;
 
 class Navigation : public Service {
    public:
@@ -31,47 +32,40 @@ class Navigation : public Service {
     };
 
     struct LocationResponse {
-       public:
-        GeoPoint location;
+        geo_point location;
         double compass_heading;
     };
 
     struct Waypoint {
-        Waypoint(const viam::service::navigation::v1::Waypoint& proto) {
-            this->id = proto.id();
-            this->location = proto.location();
-        }
+        Waypoint(const viam::service::navigation::v1::Waypoint& proto)
+            : id(proto.id()), location(geo_point::from_proto(proto.location())) {}
 
         operator viam::service::navigation::v1::Waypoint() {
             viam::service::navigation::v1::Waypoint ret;
             *ret.mutable_id() = id;
-            *ret.mutable_location() = location;
+            *ret.mutable_location() = location.to_proto();
             return ret;
         }
 
         std::string id;
-        GeoPoint location;
+        geo_point location;
     };
 
     struct Path {
-        Path(const viam::service::navigation::v1::Path& proto) {
-            this->destination_waypoint_id = proto.destination_waypoint_id();
-            this->geopoints =
-                std::vector<GeoPoint>(proto.geopoints().begin(), proto.geopoints().end());
-        }
+        Path(const viam::service::navigation::v1::Path& proto)
+            : destination_waypoint_id(proto.destination_waypoint_id()) {
+                repeatedPtrToVec(proto.geopoints(), geopoints);
+            }
 
         operator viam::service::navigation::v1::Path() {
             viam::service::navigation::v1::Path ret;
             *ret.mutable_destination_waypoint_id() = destination_waypoint_id;
-            auto dest_points = ret.mutable_geopoints();
-            for (const auto& x : geopoints) {
-                *dest_points->Add() = x;
-            }
+            vecToRepeatedPtr(geopoints, *ret.mutable_geopoints());
             return ret;
         }
 
         std::string destination_waypoint_id;
-        std::vector<GeoPoint> geopoints;
+        std::vector<geo_point> geopoints;
     };
 
     API api() const override;
@@ -82,12 +76,12 @@ class Navigation : public Service {
     virtual std::unique_ptr<std::vector<Waypoint>> get_waypoints(const std::string name,
                                                                  const ProtoStruct& extra) = 0;
     virtual void add_waypoint(const std::string name,
-                              const GeoPoint& location,
+                              const geo_point& location,
                               const ProtoStruct& extra) = 0;
     virtual void remove_waypoint(const std::string name,
                                  const std::string id,
                                  const ProtoStruct& extra) = 0;
-    virtual std::unique_ptr<std::vector<GeoGeometry>> get_obstacles(const std::string name,
+    virtual std::unique_ptr<std::vector<geo_geometry>> get_obstacles(const std::string name,
                                                                     const ProtoStruct& extra) = 0;
     virtual std::unique_ptr<std::vector<Path>> get_paths(const std::string name,
                                                          const ProtoStruct& extra) = 0;

@@ -53,23 +53,10 @@ Navigation::LocationResponse NavigationClient::get_location(const std::string na
         })
         .invoke([](auto& response) {
             return Navigation::LocationResponse{
-                response.location(),
+                geo_point::from_proto(response.location()),
                 response.compass_heading(),
             };
         });
-}
-
-// helper; unpacks a repeated pointer to a vector of destination type.
-// Dst must have a constructor that takes Src*.
-template <typename Src, typename Dst>
-std::unique_ptr<std::vector<Dst>> repeatedPtrToVector(
-    const ::google::protobuf::RepeatedPtrField<Src>& items) {
-    auto vec = std::make_unique<std::vector<Dst>>();
-    vec->reserve(items.size());
-    for (auto& x : items) {
-        vec->push_back(x);
-    }
-    return vec;
 }
 
 std::unique_ptr<std::vector<Navigation::Waypoint>> NavigationClient::get_waypoints(
@@ -80,18 +67,19 @@ std::unique_ptr<std::vector<Navigation::Waypoint>> NavigationClient::get_waypoin
             *request.mutable_extra() = map_to_struct(extra);
         })
         .invoke([](auto& response) {
-            return repeatedPtrToVector<viam::service::navigation::v1::Waypoint,
-                                       Navigation::Waypoint>(response.waypoints());
+            auto ret = std::make_unique<std::vector<Navigation::Waypoint>>();
+            repeatedPtrToVec(response.waypoints(), *ret);
+            return ret;
         });
 }
 
 void NavigationClient::add_waypoint(const std::string name,
-                                    const GeoPoint& location,
+                                    const geo_point& location,
                                     const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::AddWaypoint)
         .with([&](auto& request) {
             *request.mutable_name() = name;
-            *request.mutable_location() = location;
+            *request.mutable_location() = location.to_proto();
             *request.mutable_extra() = map_to_struct(extra);
         })
         .invoke([](auto& response) {});
@@ -109,7 +97,7 @@ void NavigationClient::remove_waypoint(const std::string name,
         .invoke([](auto& response) {});
 }
 
-std::unique_ptr<std::vector<GeoGeometry>> NavigationClient::get_obstacles(
+std::unique_ptr<std::vector<geo_geometry>> NavigationClient::get_obstacles(
     const std::string name, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetObstacles)
         .with([&](auto& request) {
@@ -117,8 +105,9 @@ std::unique_ptr<std::vector<GeoGeometry>> NavigationClient::get_obstacles(
             *request.mutable_extra() = map_to_struct(extra);
         })
         .invoke([](auto& response) {
-            return std::make_unique<std::vector<GeoGeometry>>(response.obstacles().begin(),
-                                                              response.obstacles().end());
+            auto ret = std::make_unique<std::vector<geo_geometry>>();
+            repeatedPtrToVec(response.obstacles(), *ret);
+            return ret;
         });
 }
 

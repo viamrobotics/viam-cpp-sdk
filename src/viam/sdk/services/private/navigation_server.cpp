@@ -40,18 +40,9 @@ using namespace service::navigation::v1;
     return make_service_helper<Navigation>(
         "NavigationServer::GetLocation", this, request)([&](auto& helper, auto& nav) {
         const auto& loc = nav->get_location(request->name(), helper.getExtra());
-        *response->mutable_location() = loc.location;
+        *response->mutable_location() = loc.location.to_proto();
         response->set_compass_heading(loc.compass_heading);
     });
-}
-
-// helper; copies vec<Src> into RepeatedPtrField<Dst>.
-template <typename Src, typename Dst>
-void vecToRepeatedPtr(std::vector<Src>& vec, google::protobuf::RepeatedPtrField<Dst>* dest) {
-    dest->Reserve(vec.size());
-    for (auto& x : vec) {
-        *dest->Add() = x;
-    }
 }
 
 ::grpc::Status NavigationServer::GetWaypoints(::grpc::ServerContext*,
@@ -60,7 +51,7 @@ void vecToRepeatedPtr(std::vector<Src>& vec, google::protobuf::RepeatedPtrField<
     return make_service_helper<Navigation>(
         "NavigationServer::GetWaypoints", this, request)([&](auto& helper, auto& nav) {
         const auto& waypoints = nav->get_waypoints(request->name(), helper.getExtra());
-        vecToRepeatedPtr(*waypoints, response->mutable_waypoints());
+        vecToRepeatedPtr(*waypoints, *response->mutable_waypoints());
     });
 }
 
@@ -69,7 +60,7 @@ void vecToRepeatedPtr(std::vector<Src>& vec, google::protobuf::RepeatedPtrField<
                                              AddWaypointResponse*) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::AddWaypoint", this, request)([&](auto& helper, auto& nav) {
-        nav->add_waypoint(request->name(), request->location(), helper.getExtra());
+        nav->add_waypoint(request->name(), geo_point::from_proto(request->location()), helper.getExtra());
     });
 }
 
@@ -88,7 +79,7 @@ void vecToRepeatedPtr(std::vector<Src>& vec, google::protobuf::RepeatedPtrField<
     return make_service_helper<Navigation>(
         "NavigationServer::GetObstacles", this, request)([&](auto& helper, auto& nav) {
         const auto& obstacles = nav->get_obstacles(request->name(), helper.getExtra());
-        vecToRepeatedPtr(*obstacles, response->mutable_obstacles());
+        vecToRepeatedPtr(*obstacles, *response->mutable_obstacles());
     });
 }
 
@@ -98,7 +89,7 @@ void vecToRepeatedPtr(std::vector<Src>& vec, google::protobuf::RepeatedPtrField<
     return make_service_helper<Navigation>(
         "NavigationServer::GetPaths", this, request)([&](auto& helper, auto& nav) {
         const auto& paths = nav->get_paths(request->name(), helper.getExtra());
-        vecToRepeatedPtr(*paths, response->mutable_paths());
+        vecToRepeatedPtr(*paths, *response->mutable_paths());
     });
 }
 
