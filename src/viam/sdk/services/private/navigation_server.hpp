@@ -26,7 +26,8 @@ class NavigationServer : public ResourceServer,
    public:
     using interface_type = Navigation;
     using service_type = service::navigation::v1::NavigationService;
-    explicit NavigationServer(std::shared_ptr<ResourceManager> manager) : ResourceServer(std::move(manager)){}
+    explicit NavigationServer(std::shared_ptr<ResourceManager> manager)
+        : ResourceServer(std::move(manager)) {}
 
     ::grpc::Status GetMode(::grpc::ServerContext* context,
                            const GetModeRequest* request,

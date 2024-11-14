@@ -21,7 +21,7 @@ using namespace viam::service::navigation::v1;
 NavigationClient::NavigationClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Navigation(std::move(name)),
       stub_(service::navigation::v1::NavigationService::NewStub(channel)),
-      channel_(std::move(channel)) {};
+      channel_(std::move(channel)){};
 
 Navigation::Mode NavigationClient::get_mode(const std::string name, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetMode)
