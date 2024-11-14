@@ -103,6 +103,20 @@ class Arm : public Component, public Stoppable {
     virtual void move_to_joint_positions(const std::vector<double>& positions,
                                          const ProtoStruct& extra) = 0;
 
+    /// @brief Move each joint on the arm through the positions specified in @param positions
+    /// @param options optional specifications to be obeyed during the motion.
+    inline void move_through_joint_positions(const std::vector<std::vector<double>>& positions, 
+                                             const component::arm::v1::MoveOptions& options) {
+        return move_through_joint_positions(positions, options, {});
+    }
+
+    /// @brief Move each joint on the arm through the positions specified in @param positions
+    /// @param options optional specifications to be obeyed during the motion.
+    /// @param extra Any additional arguments to the method.
+    virtual void move_through_joint_positions(const std::vector<std::vector<double>>& positions,
+                                              const component::arm::v1::MoveOptions& options, 
+                                              const ProtoStruct& extra) = 0;
+
     /// @brief Reports if the arm is in motion.
     virtual bool is_moving() = 0;
 

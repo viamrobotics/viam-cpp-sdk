@@ -53,6 +53,20 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
+::grpc::Status ArmServer::MoveThroughJointPositions(
+    ::grpc::ServerContext*,
+    const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* request,
+    ::viam::component::arm::v1::MoveThroughJointPositionsResponse*) noexcept {
+    std::vector<std::vector<double>> positions;
+    for (int i = 0; i < request->positions_size(); i++) {
+        positions.push_back({request->positions(i).values().begin(), request->positions(i).values().end()});
+    }
+    return make_service_helper<Arm>(
+        "ArmServer::MoveThroughJointPositions", this, request) ([&](auto& helper, auto& arm) { 
+        arm->move_through_joint_positions(positions, request->options(), helper.getExtra()); 
+    });
+}
+
 ::grpc::Status ArmServer::Stop(::grpc::ServerContext*,
                                const ::viam::component::arm::v1::StopRequest* request,
                                ::viam::component::arm::v1::StopResponse*) noexcept {

@@ -46,6 +46,18 @@ void ArmClient::move_to_joint_positions(const std::vector<double>& positions,
         .invoke();
 }
 
+void ArmClient::move_through_joint_positions(const std::vector<std::vector<double>>& positions,
+                                             const component::arm::v1::MoveOptions& options, 
+                                             const ProtoStruct& extra) {
+    return make_client_helper(this, *stub_, &StubType::MoveThroughJointPositions)
+        .with(extra,
+                // TODO: dont understand how to write this part
+              [&](auto& request) {
+                  *(request.mutable_positions()->mutable_values()) = {};
+              })
+        .invoke();
+}
+
 bool ArmClient::is_moving() {
     return make_client_helper(this, *stub_, &StubType::IsMoving).invoke([](auto& response) {
         return response.is_moving();
