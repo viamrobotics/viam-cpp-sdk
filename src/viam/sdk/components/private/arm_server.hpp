@@ -47,7 +47,7 @@ class ArmServer : public ResourceServer, public viam::component::arm::v1::ArmSer
     ::grpc::Status MoveThroughJointPositions(
         ::grpc::ServerContext* context,
         const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* request,
-        ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response) noexcept override;  
+        ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response) noexcept override;
 
     ::grpc::Status Stop(::grpc::ServerContext* context,
                         const ::viam::component::arm::v1::StopRequest* request,
