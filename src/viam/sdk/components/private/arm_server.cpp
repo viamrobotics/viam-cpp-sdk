@@ -59,11 +59,28 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
     ::viam::component::arm::v1::MoveThroughJointPositionsResponse*) noexcept {
     std::vector<std::vector<double>> positions;
     for (int i = 0; i < request->positions_size(); i++) {
-        positions.push_back({request->positions(i).values().begin(), request->positions(i).values().end()});
+        positions.push_back(
+            {request->positions(i).values().begin(), request->positions(i).values().end()});
     }
     return make_service_helper<Arm>(
-        "ArmServer::MoveThroughJointPositions", this, request) ([&](auto& helper, auto& arm) { 
-        arm->move_through_joint_positions(positions, request->options(), helper.getExtra()); 
+        "ArmServer::MoveThroughJointPositions", this, request)([&](auto& helper, auto& arm) {
+        std::vector<std::vector<double>> positions;
+
+        positions.reserve(request->positions_size());
+        for (const auto& values : request->positions()) {
+            positions.push_back({values.values().begin(), values.values().end()});
+        }
+
+        Arm::MoveOptions opts;
+        if (request->options().has_max_vel_degs_per_sec()) {
+            opts.max_vel_degs_per_sec = request->options().max_vel_degs_per_sec();
+        }
+
+        if (request->options().has_max_acc_degs_per_sec2()) {
+            opts.max_acc_degs_per_sec2 = request->options().max_acc_degs_per_sec2();
+        }
+
+        arm->move_through_joint_positions(positions, opts, helper.getExtra());
     });
 }
 

@@ -27,7 +27,7 @@ class ArmClient : public Arm {
     void move_to_joint_positions(const std::vector<double>& positions,
                                  const ProtoStruct& extra) override;
     void move_through_joint_positions(const std::vector<std::vector<double>>& positions,
-                                      const component::arm::v1::MoveOptions& options, 
+                                      const Arm::MoveOptions& options,
                                       const ProtoStruct& extra) override;
     bool is_moving() override;
     void stop(const ProtoStruct& extra) override;
@@ -41,8 +41,8 @@ class ArmClient : public Arm {
     using Arm::get_geometries;
     using Arm::get_joint_positions;
     using Arm::get_kinematics;
-    using Arm::move_to_joint_positions;
     using Arm::move_through_joint_positions;
+    using Arm::move_to_joint_positions;
     using Arm::move_to_position;
     using Arm::stop;
 
