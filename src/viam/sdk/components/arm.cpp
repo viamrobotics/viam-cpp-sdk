@@ -27,6 +27,5 @@ Arm::KinematicsData Arm::from_proto(const viam::common::v1::GetKinematicsRespons
 
 Arm::Arm(std::string name) : Component(std::move(name)) {}
 
-
 }  // namespace sdk
 }  // namespace viam
