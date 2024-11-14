@@ -119,6 +119,7 @@ target_sources(viamsdk
     services/generic.cpp
     services/mlmodel.cpp
     services/motion.cpp
+    services/navigation.cpp
     services/private/generic_client.cpp
     services/private/generic_server.cpp
     services/private/mlmodel.cpp
@@ -181,6 +182,7 @@ target_sources(viamsdk
       ../../viam/sdk/services/generic.hpp
       ../../viam/sdk/services/mlmodel.hpp
       ../../viam/sdk/services/motion.hpp
+      ../../viam/sdk/services/navigation.hpp
       ../../viam/sdk/services/service.hpp
       ../../viam/sdk/spatialmath/geometry.hpp
       ../../viam/sdk/spatialmath/orientation.hpp
