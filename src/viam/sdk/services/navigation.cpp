@@ -23,7 +23,7 @@ Navigation::Waypoint auto_from_proto(const viam::service::navigation::v1::Waypoi
 }
 
 template <>
-viam::service::navigation::v1::Waypoint auto_to_proto(const Navigation::Waypoint& wp) {
+viam::service::navigation::v1::Waypoint auto_to_proto(const Navigation::Waypoint& wp) { // NOLINT
     viam::service::navigation::v1::Waypoint ret;
     *ret.mutable_id() = wp.id;
     *ret.mutable_location() = wp.location.to_proto();
@@ -38,7 +38,7 @@ Navigation::Path auto_from_proto(const viam::service::navigation::v1::Path& prot
 }
 
 template <>
-viam::service::navigation::v1::Path auto_to_proto(const Navigation::Path& p) {
+viam::service::navigation::v1::Path auto_to_proto(const Navigation::Path& p) { // NOLINT
     viam::service::navigation::v1::Path ret;
     *ret.mutable_destination_waypoint_id() = p.destination_waypoint_id;
     vecToRepeatedPtr(p.geopoints, *ret.mutable_geopoints());
