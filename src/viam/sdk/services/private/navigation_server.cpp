@@ -60,7 +60,8 @@ using namespace service::navigation::v1;
                                              AddWaypointResponse*) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::AddWaypoint", this, request)([&](auto& helper, auto& nav) {
-        nav->add_waypoint(request->name(), geo_point::from_proto(request->location()), helper.getExtra());
+        nav->add_waypoint(
+            request->name(), geo_point::from_proto(request->location()), helper.getExtra());
     });
 }
 

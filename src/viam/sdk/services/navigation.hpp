@@ -8,10 +8,10 @@
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/service/navigation/v1/navigation.pb.h>
 
-#include <viam/sdk/services/service.hpp>
-#include <viam/sdk/spatialmath/geometry.hpp>
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/utils.hpp>
+#include <viam/sdk/services/service.hpp>
+#include <viam/sdk/spatialmath/geometry.hpp>
 
 namespace viam {
 namespace sdk {
@@ -54,8 +54,8 @@ class Navigation : public Service {
     struct Path {
         Path(const viam::service::navigation::v1::Path& proto)
             : destination_waypoint_id(proto.destination_waypoint_id()) {
-                repeatedPtrToVec(proto.geopoints(), geopoints);
-            }
+            repeatedPtrToVec(proto.geopoints(), geopoints);
+        }
 
         operator viam::service::navigation::v1::Path() {
             viam::service::navigation::v1::Path ret;
@@ -82,7 +82,7 @@ class Navigation : public Service {
                                  const std::string id,
                                  const ProtoStruct& extra) = 0;
     virtual std::unique_ptr<std::vector<geo_geometry>> get_obstacles(const std::string name,
-                                                                    const ProtoStruct& extra) = 0;
+                                                                     const ProtoStruct& extra) = 0;
     virtual std::unique_ptr<std::vector<Path>> get_paths(const std::string name,
                                                          const ProtoStruct& extra) = 0;
     virtual MapType get_properties(const std::string) = 0;

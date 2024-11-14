@@ -33,7 +33,7 @@ class NavigationClient : public Navigation {
                          const std::string id,
                          const ProtoStruct& extra) override;
     std::unique_ptr<std::vector<geo_geometry>> get_obstacles(const std::string name,
-                                                            const ProtoStruct& extra) override;
+                                                             const ProtoStruct& extra) override;
     std::unique_ptr<std::vector<Path>> get_paths(const std::string name,
                                                  const ProtoStruct& extra) override;
     MapType get_properties(const std::string name) override;
