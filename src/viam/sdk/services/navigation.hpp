@@ -37,33 +37,11 @@ class Navigation : public Service {
     };
 
     struct Waypoint {
-        Waypoint(const viam::service::navigation::v1::Waypoint& proto)
-            : id(proto.id()), location(geo_point::from_proto(proto.location())) {}
-
-        operator viam::service::navigation::v1::Waypoint() {
-            viam::service::navigation::v1::Waypoint ret;
-            *ret.mutable_id() = id;
-            *ret.mutable_location() = location.to_proto();
-            return ret;
-        }
-
         std::string id;
         geo_point location;
     };
 
     struct Path {
-        Path(const viam::service::navigation::v1::Path& proto)
-            : destination_waypoint_id(proto.destination_waypoint_id()) {
-            repeatedPtrToVec(proto.geopoints(), geopoints);
-        }
-
-        operator viam::service::navigation::v1::Path() {
-            viam::service::navigation::v1::Path ret;
-            *ret.mutable_destination_waypoint_id() = destination_waypoint_id;
-            vecToRepeatedPtr(geopoints, *ret.mutable_geopoints());
-            return ret;
-        }
-
         std::string destination_waypoint_id;
         std::vector<geo_point> geopoints;
     };

@@ -10,6 +10,7 @@
 #include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
+#include <viam/sdk/common/proto_utils.hpp>
 #include <viam/sdk/services/navigation.hpp>
 
 namespace viam {
@@ -68,7 +69,7 @@ std::unique_ptr<std::vector<Navigation::Waypoint>> NavigationClient::get_waypoin
         })
         .invoke([](auto& response) {
             auto ret = std::make_unique<std::vector<Navigation::Waypoint>>();
-            repeatedPtrToVec(response.waypoints(), *ret);
+            repeatedPtrToVec(response.waypoints(), *ret, auto_to_proto);
             return ret;
         });
 }
@@ -119,8 +120,9 @@ std::unique_ptr<std::vector<NavigationClient::Path>> NavigationClient::get_paths
             *request.mutable_extra() = map_to_struct(extra);
         })
         .invoke([](auto& response) {
-            return std::make_unique<std::vector<Path>>(response.paths().begin(),
-                                                       response.paths().end());
+            auto ret = std::make_unique<std::vector<Path>>();
+            repeatedPtrToVec(response.paths(), *ret, auto_to_proto);
+            return ret;
         });
 }
 

@@ -184,21 +184,5 @@ bool from_dm_from_extra(const ProtoStruct& extra) {
     return false;
 }
 
-template <typename Src, typename Dst>
-void vecToRepeatedPtr(const std::vector<Src>& vec, google::protobuf::RepeatedPtrField<Dst>& dest) {
-    dest->Reserve(vec.size());
-    for (auto& x : vec) {
-        *dest.Add() = x;
-    }
-}
-
-template <typename Src, typename Dst>
-void repeatedPtrToVec(const google::protobuf::RepeatedPtrField<Src>& src, std::vector<Dst>& vec) {
-    vec.reserve(src.size());
-    for (auto& x : src) {
-        vec.push_back(x);
-    }
-}
-
 }  // namespace sdk
 }  // namespace viam

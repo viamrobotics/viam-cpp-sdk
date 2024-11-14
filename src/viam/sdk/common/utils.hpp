@@ -99,15 +99,9 @@ void set_logger_severity_from_args(int argc, char** argv);
 /// @param extra The extra ProtoStruct.
 bool from_dm_from_extra(const ProtoStruct& extra);
 
-/// @brief Copies elements from a protobuf repeated pointer array into a std::vector. Src type
-/// must be implicitly convertible to Dst (probably via operator on Src).
-template <typename Src, typename Dst>
-void vecToRepeatedPtr(const std::vector<Src>& vec, google::protobuf::RepeatedPtrField<Dst>& dest);
+template <typename Src, typename Dst> Dst auto_from_proto(const Src& proto);
 
-/// @brief Copies elements from a std::vector into a protobuf repeated pointer array. Src type
-/// must be implicitly convertible to Dst (probably via constructor on Dst).
-template <typename Src, typename Dst>
-void repeatedPtrToVec(const google::protobuf::RepeatedPtrField<Src>& src, std::vector<Dst>& vec);
+template <typename Src, typename Dst> Dst auto_to_proto(const Src& wrapped);
 
 }  // namespace sdk
 }  // namespace viam

@@ -6,6 +6,7 @@
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
+#include <viam/sdk/common/proto_utils.hpp>
 #include <viam/sdk/services/motion.hpp>
 #include <viam/sdk/services/private/navigation_server.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
@@ -51,7 +52,7 @@ using namespace service::navigation::v1;
     return make_service_helper<Navigation>(
         "NavigationServer::GetWaypoints", this, request)([&](auto& helper, auto& nav) {
         const auto& waypoints = nav->get_waypoints(request->name(), helper.getExtra());
-        vecToRepeatedPtr(*waypoints, *response->mutable_waypoints());
+        vecToRepeatedPtr(*waypoints, *response->mutable_waypoints(), auto_from_proto);
     });
 }
 
@@ -90,7 +91,7 @@ using namespace service::navigation::v1;
     return make_service_helper<Navigation>(
         "NavigationServer::GetPaths", this, request)([&](auto& helper, auto& nav) {
         const auto& paths = nav->get_paths(request->name(), helper.getExtra());
-        vecToRepeatedPtr(*paths, *response->mutable_paths());
+        vecToRepeatedPtr(*paths, *response->mutable_paths(), auto_from_proto);
     });
 }
 
