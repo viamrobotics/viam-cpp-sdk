@@ -64,7 +64,7 @@ void ArmClient::move_through_joint_positions(const std::vector<std::vector<doubl
 
                   for (const std::vector<double>& pos : positions) {
                       viam::component::arm::v1::JointPositions jpos;
-                      jpos.mutable_values()->Assign(pos.begin(), pos.end());
+                      *jpos.mutable_values() = {pos.begin(), pos.end()};
                       request.mutable_positions()->Add(std::move(jpos));
                   }
               })
