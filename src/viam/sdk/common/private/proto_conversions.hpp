@@ -74,6 +74,12 @@ viam::app::v1::Translation to_proto(const translation& ts);
 viam::common::v1::ResourceName to_proto(const Name& name);
 Name from_proto(const viam::common::v1::ResourceName& proto);
 
+std::chrono::time_point<long long, std::chrono::nanoseconds> timestamp_to_time_pt(
+    const google::protobuf::Timestamp& timestamp);
+
+google::protobuf::Timestamp time_pt_to_timestamp(
+    const std::chrono::time_point<long long, std::chrono::nanoseconds>& time_pt);
+
 }  // namespace impl
 }  // namespace sdk
 }  // namespace viam

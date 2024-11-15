@@ -3,8 +3,6 @@
 #include <boost/optional/optional.hpp>
 #include <grpcpp/client_context.h>
 
-#include <google/protobuf/timestamp.pb.h>
-
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
@@ -23,16 +21,6 @@ struct response_metadata {
 };
 
 bool operator==(const response_metadata& lhs, const response_metadata& rhs);
-
-/// @brief convert a google::protobuf::Timestamp to
-/// std::chrono::time_point<long long, std::chrono::nanoseconds>
-std::chrono::time_point<long long, std::chrono::nanoseconds> timestamp_to_time_pt(
-    const google::protobuf::Timestamp& timestamp);
-
-/// @brief convert a std::chrono::time_point<long long, std::chrono::nanoseconds> to
-/// a google::protobuf::Timestamp.
-google::protobuf::Timestamp time_pt_to_timestamp(
-    const std::chrono::time_point<long long, std::chrono::nanoseconds>& time_pt);
 
 std::vector<unsigned char> string_to_bytes(std::string const& s);
 std::string bytes_to_string(std::vector<unsigned char> const& b);

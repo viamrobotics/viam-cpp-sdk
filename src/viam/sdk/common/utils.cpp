@@ -20,8 +20,6 @@
 namespace viam {
 namespace sdk {
 
-using time_point = std::chrono::time_point<long long, std::chrono::nanoseconds>;
-
 std::vector<unsigned char> string_to_bytes(const std::string& s) {
     std::vector<unsigned char> bytes(s.begin(), s.end());
     return bytes;
@@ -31,23 +29,6 @@ std::string bytes_to_string(const std::vector<unsigned char>& b) {
     std::string img_string(b.begin(), b.end());
     return img_string;
 };
-
-time_point timestamp_to_time_pt(const google::protobuf::Timestamp& timestamp) {
-    const std::chrono::seconds seconds(timestamp.seconds());
-    const std::chrono::nanoseconds nanos(timestamp.nanos());
-    return time_point(std::chrono::duration_cast<std::chrono::system_clock::duration>(seconds) +
-                      nanos);
-}
-
-google::protobuf::Timestamp time_pt_to_timestamp(const time_point& time_pt) {
-    const std::chrono::seconds duration_s =
-        std::chrono::duration_cast<std::chrono::seconds>(time_pt.time_since_epoch());
-    const std::chrono::nanoseconds duration_ns = time_pt.time_since_epoch() - duration_s;
-    google::protobuf::Timestamp timestamp;
-    timestamp.set_seconds(duration_s.count());
-    timestamp.set_nanos(static_cast<int32_t>(duration_ns.count()));
-    return timestamp;
-}
 
 void set_logger_severity_from_args(int argc, char** argv) {
     if (argc >= 3 && strcmp(argv[2], "--log-level=debug") == 0) {
