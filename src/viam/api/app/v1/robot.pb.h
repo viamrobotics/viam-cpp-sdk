@@ -4386,6 +4386,7 @@ class ProcessConfig final :
     kIdFieldNumber = 1,
     kNameFieldNumber = 2,
     kCwdFieldNumber = 4,
+    kUsernameFieldNumber = 10,
     kStopTimeoutFieldNumber = 8,
     kOneShotFieldNumber = 5,
     kLogFieldNumber = 6,
@@ -4482,6 +4483,22 @@ class ProcessConfig final :
   std::string* _internal_mutable_cwd();
 
   public:
+  // string username = 10 [json_name = "username"];
+  void clear_username() ;
+  const std::string& username() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_username(Arg_&& arg, Args_... args);
+  std::string* mutable_username();
+  PROTOBUF_NODISCARD std::string* release_username();
+  void set_allocated_username(std::string* value);
+
+  private:
+  const std::string& _internal_username() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_username(
+      const std::string& value);
+  std::string* _internal_mutable_username();
+
+  public:
   // .google.protobuf.Duration stop_timeout = 8 [json_name = "stopTimeout"];
   bool has_stop_timeout() const;
   void clear_stop_timeout() ;
@@ -4533,8 +4550,8 @@ class ProcessConfig final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 9, 2,
-      58, 2>
+      4, 10, 2,
+      66, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -4560,6 +4577,7 @@ class ProcessConfig final :
     ::google::protobuf::internal::ArenaStringPtr id_;
     ::google::protobuf::internal::ArenaStringPtr name_;
     ::google::protobuf::internal::ArenaStringPtr cwd_;
+    ::google::protobuf::internal::ArenaStringPtr username_;
     ::google::protobuf::Duration* stop_timeout_;
     bool one_shot_;
     bool log_;
@@ -12679,6 +12697,59 @@ inline ::google::protobuf::Map<std::string, std::string>* ProcessConfig::_intern
 inline ::google::protobuf::Map<std::string, std::string>* ProcessConfig::mutable_env() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_mutable_map:viam.app.v1.ProcessConfig.env)
   return _internal_mutable_env();
+}
+
+// string username = 10 [json_name = "username"];
+inline void ProcessConfig::clear_username() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.username_.ClearToEmpty();
+}
+inline const std::string& ProcessConfig::username() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ProcessConfig.username)
+  return _internal_username();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ProcessConfig::set_username(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.username_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:viam.app.v1.ProcessConfig.username)
+}
+inline std::string* ProcessConfig::mutable_username() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_username();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ProcessConfig.username)
+  return _s;
+}
+inline const std::string& ProcessConfig::_internal_username() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.username_.Get();
+}
+inline void ProcessConfig::_internal_set_username(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.username_.Set(value, GetArena());
+}
+inline std::string* ProcessConfig::_internal_mutable_username() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.username_.Mutable( GetArena());
+}
+inline std::string* ProcessConfig::release_username() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.app.v1.ProcessConfig.username)
+  return _impl_.username_.Release();
+}
+inline void ProcessConfig::set_allocated_username(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.username_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.username_.IsDefault()) {
+          _impl_.username_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ProcessConfig.username)
 }
 
 // -------------------------------------------------------------------

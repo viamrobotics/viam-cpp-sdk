@@ -5,6 +5,7 @@ from conan import ConanFile
 from conan.errors import ConanException
 from conan.tools.cmake import CMake, cmake_layout
 from conan.tools.build import can_run
+from conan.tools.env import VirtualRunEnv
 
 class viamCppSdkTest(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
@@ -25,11 +26,14 @@ class viamCppSdkTest(ConanFile):
         if can_run(self):
             sock = "fake-socket-path"
 
-            cmd = os.path.join(self.cpp.build.bindir, f"example_module {sock}")
+            cmd = os.path.join(self.cpp.build.bindir, "example_module")
 
             # the ConanFile run method is a wrapper around Popen, but it only returns the retcode.
             # A properly intialized module waits indefinitely on a signal, so we have to use Popen manually.
-            proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, text=True)
+            # Use VirtualRunEnv to perform the equivalent of passing env="conanrun" to self.run, so that
+            # shared builds have a properly set LD_LIBRARY_PATH among other things.
+            env = VirtualRunEnv(self).vars()
+            proc = subprocess.Popen([cmd, sock], stdout=subprocess.PIPE, text=True, env=env)
 
             out = None
 
