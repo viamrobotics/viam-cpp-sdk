@@ -5,13 +5,9 @@
 
 #include <string>
 
-#include <viam/api/component/powersensor/v1/powersensor.pb.h>
-
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
-
-using namespace viam::component::powersensor::v1;
 
 namespace viam {
 namespace sdk {
@@ -42,18 +38,6 @@ class PowerSensor : public Component {
     };
 
     API api() const override;
-
-    /// @brief Creates a `voltage` struct from its proto representation.
-    static voltage from_proto(const GetVoltageResponse& proto);
-
-    /// @brief Creates a `current` struct from its proto representation.
-    static current from_proto(const GetCurrentResponse& proto);
-
-    /// @brief Converts a `voltage` struct to its proto representation.
-    static GetVoltageResponse to_proto(const voltage& v);
-
-    /// @brief Converts a `current` struct to its proto representation.
-    static GetCurrentResponse to_proto(const current& c);
 
     /// @brief Returns the voltage reading of this sensor.
     /// @return The voltage reading of this sensor.
@@ -105,7 +89,7 @@ class PowerSensor : public Component {
     virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
    protected:
-    explicit PowerSensor(std::string name) : Component(std::move(name)){};
+    explicit PowerSensor(std::string name) : Component(std::move(name)) {};
 };
 
 template <>

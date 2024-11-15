@@ -11,8 +11,6 @@
 #include <boost/optional/optional.hpp>
 #include <grpcpp/impl/service_type.h>
 
-#include <viam/api/component/generic/v1/generic.grpc.pb.h>
-
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 
@@ -63,7 +61,7 @@ class ResourceManager {
     /// @brief Returns a reference to the existing resources within the manager.
     const std::unordered_map<std::string, std::shared_ptr<Resource>>& resources() const;
 
-    ResourceManager(){};
+    ResourceManager() {};
 
    private:
     std::mutex lock_;

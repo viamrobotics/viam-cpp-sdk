@@ -4,14 +4,13 @@
 #include <unordered_map>
 #include <vector>
 
+#include <boost/algorithm/string.hpp>
 #include <boost/blank.hpp>
 #include <boost/log/core.hpp>
 #include <boost/log/expressions.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/optional/optional.hpp>
 #include <grpcpp/client_context.h>
-
-#include <viam/api/common/v1/common.pb.h>
 
 #include <viam/sdk/common/private/utils.hpp>
 #include <viam/sdk/common/private/version_metadata.hpp>
@@ -48,47 +47,6 @@ google::protobuf::Timestamp time_pt_to_timestamp(const time_point& time_pt) {
     timestamp.set_seconds(duration_s.count());
     timestamp.set_nanos(static_cast<int32_t>(duration_ns.count()));
     return timestamp;
-}
-
-response_metadata response_metadata::from_proto(const viam::common::v1::ResponseMetadata& proto) {
-    response_metadata metadata;
-    metadata.captured_at = timestamp_to_time_pt(proto.captured_at());
-    return metadata;
-}
-
-viam::common::v1::ResponseMetadata response_metadata::to_proto(const response_metadata& metadata) {
-    viam::common::v1::ResponseMetadata proto;
-    google::protobuf::Timestamp ts = time_pt_to_timestamp(metadata.captured_at);
-    *proto.mutable_captured_at() = std::move(ts);
-    return proto;
-}
-
-std::chrono::microseconds from_proto(const google::protobuf::Duration& proto) {
-    namespace sc = std::chrono;
-    const sc::seconds seconds_part{proto.seconds()};
-    const sc::nanoseconds nanos_part{proto.nanos()};
-
-    const sc::microseconds from_seconds = sc::duration_cast<sc::microseconds>(seconds_part);
-    sc::microseconds from_nanos = sc::duration_cast<sc::microseconds>(nanos_part);
-
-    if ((nanos_part.count() < 0) && (from_nanos > nanos_part)) {
-        from_nanos -= sc::microseconds(1);
-    } else if ((nanos_part.count() > 0) && (from_nanos < nanos_part)) {
-        from_nanos += sc::microseconds(1);
-    }
-    return from_seconds + from_nanos;
-}
-
-google::protobuf::Duration to_proto(const std::chrono::microseconds& duration) {
-    namespace sc = std::chrono;
-
-    const sc::seconds seconds = sc::duration_cast<sc::seconds>(duration);
-    const sc::nanoseconds nanos = duration - seconds;
-
-    google::protobuf::Duration proto;
-    proto.set_nanos(static_cast<int32_t>(nanos.count()));
-    proto.set_seconds(seconds.count());
-    return proto;
 }
 
 void set_logger_severity_from_args(int argc, char** argv) {
@@ -182,6 +140,23 @@ bool from_dm_from_extra(const ProtoStruct& extra) {
         return (value.is_a<bool>() && value.get_unchecked<bool>());
     }
     return false;
+}
+
+std::pair<std::string, std::string> long_name_to_remote_and_short(const std::string& long_name) {
+    std::vector<std::string> name_parts;
+    boost::split(name_parts, long_name, boost::is_any_of(":"));
+    auto name = name_parts.back();
+    name_parts.pop_back();
+    auto remote_name = name_parts.empty()
+                           ? ""
+                           : std::accumulate(std::next(name_parts.begin()),
+                                             name_parts.end(),
+                                             *name_parts.begin(),
+                                             [](const std::string& a, const std::string& b) {
+                                                 return a + ":" + b;
+                                             });
+
+    return {remote_name, name};
 }
 
 }  // namespace sdk

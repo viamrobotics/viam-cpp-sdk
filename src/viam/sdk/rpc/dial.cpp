@@ -1,6 +1,5 @@
 #include <viam/sdk/rpc/dial.hpp>
 
-#include <istream>
 #include <string>
 
 #include <boost/none.hpp>
@@ -8,8 +7,6 @@
 #include <grpcpp/channel.h>
 #include <grpcpp/security/credentials.h>
 
-#include <viam/api/robot/v1/robot.grpc.pb.h>
-#include <viam/api/robot/v1/robot.pb.h>
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/rpc/private/viam_grpc_channel.hpp>
 
@@ -111,8 +108,6 @@ std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
     address += socket_path;
     const std::shared_ptr<grpc::Channel> channel =
         impl::create_viam_channel(address, grpc::InsecureChannelCredentials());
-    const std::unique_ptr<viam::robot::v1::RobotService::Stub> st =
-        viam::robot::v1::RobotService::NewStub(channel);
     return std::make_shared<ViamChannel>(channel, socket_path, ptr);
 };
 

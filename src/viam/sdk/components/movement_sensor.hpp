@@ -5,8 +5,6 @@
 
 #include <string>
 
-#include <viam/api/component/movementsensor/v1/movementsensor.pb.h>
-
 #include <viam/sdk/common/linear_algebra.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
@@ -54,36 +52,6 @@ class MovementSensor : public Component {
     };
 
     API api() const override;
-
-    /// @brief Creates a `compassheading` struct from its proto representation.
-    static compassheading from_proto(
-        const viam::component::movementsensor::v1::GetCompassHeadingResponse& proto);
-
-    /// @brief Creates a `position` struct from its proto representation.
-    static position from_proto(
-        const viam::component::movementsensor::v1::GetPositionResponse& proto);
-
-    /// @brief Creates an `orientation` struct from its proto representation.
-    static orientation from_proto(const viam::common::v1::Orientation& proto);
-
-    /// @brief Creates a `properties` struct from its proto representation.
-    static properties from_proto(
-        const viam::component::movementsensor::v1::GetPropertiesResponse& proto);
-
-    /// @brief Converts a `compassheading` struct to its proto representation.
-    static viam::component::movementsensor::v1::GetCompassHeadingResponse to_proto(
-        const compassheading& compassheading);
-
-    /// @brief Converts a `position` struct to its proto representation.
-    static viam::component::movementsensor::v1::GetPositionResponse to_proto(
-        const position& position);
-
-    /// @brief Converts an `orientation` struct to its proto representation.
-    static viam::common::v1::Orientation to_proto(const orientation& orientation);
-
-    /// @brief Converts a `properties` struct to its proto representation.
-    static viam::component::movementsensor::v1::GetPropertiesResponse to_proto(
-        const properties& properties);
 
     inline Vector3 get_linear_velocity() {
         return get_linear_velocity({});
@@ -150,7 +118,7 @@ class MovementSensor : public Component {
     virtual std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) = 0;
 
    protected:
-    explicit MovementSensor(std::string name) : Component(std::move(name)){};
+    explicit MovementSensor(std::string name) : Component(std::move(name)) {};
 };
 
 template <>

@@ -1,7 +1,5 @@
 #pragma once
 
-#include <common/v1/common.pb.h>
-
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
 
@@ -14,8 +12,6 @@ class WorldState {
     struct geometries_in_frame {
         std::vector<GeometryConfig> geometries;
         std::string reference_frame;
-        common::v1::GeometriesInFrame to_proto() const;
-        static geometries_in_frame from_proto(const common::v1::GeometriesInFrame& proto);
     };
 
     struct transform {
@@ -23,13 +19,11 @@ class WorldState {
         pose_in_frame pose_in_observer_frame;
         std::shared_ptr<GeometryConfig> physical_object;
 
-        common::v1::Transform to_proto() const;
-        static transform from_proto(const common::v1::Transform& proto);
         transform() {}
     };
 
-    common::v1::WorldState to_proto() const;
-    static WorldState from_proto(const common::v1::WorldState& ws);
+    const std::vector<geometries_in_frame>& obstacles() const;
+    const std::vector<transform>& transforms() const;
 
     WorldState() {}
     WorldState(std::vector<geometries_in_frame> obstacles, std::vector<transform> transforms)

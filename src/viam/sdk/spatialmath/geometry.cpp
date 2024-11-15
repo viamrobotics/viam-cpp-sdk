@@ -1,11 +1,8 @@
 #include <viam/sdk/spatialmath/geometry.hpp>
 
 #include <string>
-#include <tuple>
 
 #include <boost/variant/get.hpp>
-
-#include <viam/api/common/v1/common.pb.h>
 
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/spatialmath/orientation.hpp>
@@ -13,162 +10,8 @@
 namespace viam {
 namespace sdk {
 
-viam::common::v1::Sphere GeometryConfig::sphere_proto() const {
-    try {
-        viam::common::v1::Sphere sphere;
-        const auto sphere_specifics = boost::get<struct sphere>(geometry_specifics_);
-        sphere.set_radius_mm(sphere_specifics.radius);
-        return sphere;
-    } catch (...) {
-        throw Exception(
-            "Couldn't convert geometry config to sphere proto; sphere specifics not found");
-    }
-}
-
-viam::common::v1::RectangularPrism GeometryConfig::box_proto() const {
-    try {
-        const auto box_specifics = boost::get<struct box>(geometry_specifics_);
-        viam::common::v1::RectangularPrism box;
-        viam::common::v1::Vector3 vec3;
-        vec3.set_x(box_specifics.x);
-        vec3.set_y(box_specifics.y);
-        vec3.set_z(box_specifics.z);
-        *box.mutable_dims_mm() = vec3;
-        return box;
-    } catch (...) {
-        throw Exception("Couldn't convert geometry config to box proto; box specifics not found");
-    }
-}
-
-viam::common::v1::Capsule GeometryConfig::capsule_proto() const {
-    try {
-        const auto capsule_specifics = boost::get<struct capsule>(geometry_specifics_);
-        viam::common::v1::Capsule capsule;
-        capsule.set_radius_mm(capsule_specifics.radius);
-        capsule.set_length_mm(capsule_specifics.length);
-        return capsule;
-    } catch (...) {
-        throw Exception(
-            "Couldn't convert geometry config to capsule proto; capsule specifics not found");
-    }
-}
-
-viam::common::v1::Pose GeometryConfig::pose_proto() const {
-    return pose_.to_proto();
-}
-
-pose pose::from_proto(const viam::common::v1::Pose& proto) {
-    struct pose pose;
-    pose.coordinates.x = proto.x();
-    pose.coordinates.y = proto.y();
-    pose.coordinates.z = proto.z();
-    pose.orientation.o_x = proto.o_x();
-    pose.orientation.o_y = proto.o_y();
-    pose.orientation.o_z = proto.o_z();
-    pose.theta = proto.theta();
-
-    return pose;
-}
-
-viam::common::v1::Pose pose::to_proto() const {
-    viam::common::v1::Pose proto;
-    proto.set_x(coordinates.x);
-    proto.set_y(coordinates.y);
-    proto.set_z(coordinates.z);
-    proto.set_o_x(orientation.o_x);
-    proto.set_o_y(orientation.o_y);
-    proto.set_o_z(orientation.o_z);
-    proto.set_theta(theta);
-
-    return proto;
-}
-
 GeometryConfig::GeometryConfig() : geometry_type_(GeometryType::box) {}
 
-GeometryConfig GeometryConfig::from_proto(const viam::common::v1::Geometry& proto) {
-    GeometryConfig cfg;
-    const auto& pose = proto.center();
-    cfg.pose_ = pose::from_proto(pose);
-    cfg.label_ = proto.label();
-
-    switch (proto.geometry_type_case()) {
-        case viam::common::v1::Geometry::GeometryTypeCase::kBox: {
-            cfg.geometry_type_ = GeometryType::box;
-            struct box box;
-            box.x = proto.box().dims_mm().x();
-            box.y = proto.box().dims_mm().y();
-            box.z = proto.box().dims_mm().z();
-            cfg.set_geometry_specifics(box);
-            return cfg;
-        }
-        case viam::common::v1::Geometry::GeometryTypeCase::kSphere: {
-            auto r = proto.sphere().radius_mm();
-            if (r == 0) {
-                cfg.geometry_type_ = GeometryType::point;
-            } else {
-                cfg.geometry_type_ = GeometryType::sphere;
-            }
-            struct sphere sphere({r});
-            cfg.set_geometry_specifics(sphere);
-            return cfg;
-        }
-        case viam::common::v1::Geometry::GeometryTypeCase::kCapsule: {
-            cfg.geometry_type_ = GeometryType::capsule;
-            struct capsule capsule;
-            capsule.radius = proto.capsule().radius_mm();
-            capsule.length = proto.capsule().length_mm();
-            cfg.set_geometry_specifics(capsule);
-            return cfg;
-        }
-        case viam::common::v1::Geometry::GeometryTypeCase::GEOMETRY_TYPE_NOT_SET:
-        default: {
-            throw Exception(ErrorCondition::k_not_supported, "Geometry type is not supported");
-        }
-    }
-}
-std::vector<GeometryConfig> GeometryConfig::from_proto(
-    const viam::common::v1::GetGeometriesResponse& proto) {
-    std::vector<GeometryConfig> response;
-    for (const auto& geometry : proto.geometries()) {
-        response.push_back(from_proto(geometry));
-    }
-    return response;
-}
-
-viam::common::v1::Geometry GeometryConfig::to_proto() const {
-    viam::common::v1::Geometry geometry_;
-    *geometry_.mutable_label() = label_;
-    *geometry_.mutable_center() = pose_proto();
-    switch (geometry_type_) {
-        case GeometryType::box: {
-            *geometry_.mutable_box() = box_proto();
-            return geometry_;
-        }
-        case GeometryType::sphere: {
-            *geometry_.mutable_sphere() = sphere_proto();
-            return geometry_;
-        }
-        case point: {
-            viam::common::v1::Sphere sphere;
-            sphere.set_radius_mm(0);
-            *geometry_.mutable_sphere() = sphere;
-            return geometry_;
-        }
-        case capsule: {
-            *geometry_.mutable_capsule() = capsule_proto();
-            return geometry_;
-        }
-        case unknown:
-        default: {
-            if (pose_.coordinates.x == 0 && pose_.coordinates.y == 0 && pose_.coordinates.z == 0) {
-                *geometry_.mutable_box() = box_proto();
-            } else {
-                *geometry_.mutable_sphere() = sphere_proto();
-            }
-            return geometry_;
-        }
-    }
-}
 void GeometryConfig::set_coordinates(coordinates coordinates) {
     pose_.coordinates = std::move(coordinates);
 }
@@ -274,45 +117,6 @@ bool operator==(const geo_point& lhs, const geo_point& rhs) {
 
 bool operator==(const geo_geometry& lhs, const geo_geometry& rhs) {
     return lhs.location == rhs.location && lhs.geometries == rhs.geometries;
-}
-
-common::v1::GeoPoint geo_point::to_proto() const {
-    common::v1::GeoPoint proto;
-    proto.set_latitude(latitude);
-    proto.set_longitude(longitude);
-
-    return proto;
-}
-
-geo_point geo_point::from_proto(const common::v1::GeoPoint& proto) {
-    struct geo_point geo_point;
-    geo_point.latitude = proto.latitude();
-    geo_point.longitude = proto.longitude();
-
-    return geo_point;
-}
-
-common::v1::GeoGeometry geo_geometry::to_proto() const {
-    common::v1::GeoGeometry proto;
-    *proto.mutable_location() = location.to_proto();
-
-    for (const auto& geometry : geometries) {
-        *proto.mutable_geometries()->Add() = geometry.to_proto();
-    }
-
-    return proto;
-}
-
-geo_geometry geo_geometry::from_proto(const common::v1::GeoGeometry& proto) {
-    struct geo_geometry geo_geometry;
-
-    geo_geometry.location = geo_point::from_proto(proto.location());
-    for (const auto& proto_geometry : proto.geometries()) {
-        auto geometry = GeometryConfig::from_proto(proto_geometry);
-        geo_geometry.geometries.push_back(std::move(geometry));
-    }
-
-    return geo_geometry;
 }
 
 }  // namespace sdk

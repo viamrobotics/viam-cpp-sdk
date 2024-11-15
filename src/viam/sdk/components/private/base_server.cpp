@@ -3,6 +3,7 @@
 #include <viam/api/component/base/v1/base.pb.h>
 
 #include <viam/sdk/common/linear_algebra.hpp>
+#include <viam/sdk/common/private/proto_conversions.hpp>
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/base.hpp>
@@ -14,7 +15,7 @@ namespace sdk {
 namespace impl {
 
 BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)){};
+    : ResourceServer(std::move(manager)) {};
 
 ::grpc::Status BaseServer::MoveStraight(
     ::grpc::ServerContext*,
@@ -40,8 +41,8 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager)
                                     ::viam::component::base::v1::SetPowerResponse*) noexcept {
     return make_service_helper<Base>(
         "BaseServer::SetPower", this, request)([&](auto& helper, auto& base) {
-        auto linear = Vector3::from_proto(request->linear());
-        auto angular = Vector3::from_proto(request->angular());
+        auto linear = from_proto(request->linear());
+        auto angular = from_proto(request->angular());
         base->set_power(linear, angular, helper.getExtra());
     });
 }
@@ -52,8 +53,8 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager)
     ::viam::component::base::v1::SetVelocityResponse*) noexcept {
     return make_service_helper<Base>(
         "BaseServer::SetVelocity", this, request)([&](auto& helper, auto& base) {
-        auto linear = Vector3::from_proto(request->linear());
-        auto angular = Vector3::from_proto(request->angular());
+        auto linear = from_proto(request->linear());
+        auto angular = from_proto(request->angular());
         base->set_velocity(linear, angular, helper.getExtra());
     });
 }
@@ -83,7 +84,7 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager)
         "BaseServer::GetGeometries", this, request)([&](auto& helper, auto& base) {
         const std::vector<GeometryConfig> geometries = base->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = geometry.to_proto();
+            *response->mutable_geometries()->Add() = to_proto(geometry);
         }
     });
 }

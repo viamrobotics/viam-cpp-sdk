@@ -1,5 +1,6 @@
 #include <viam/sdk/components/private/sensor_server.hpp>
 
+#include <viam/sdk/common/private/proto_conversions.hpp>
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/sensor.hpp>
@@ -13,7 +14,7 @@ namespace sdk {
 namespace impl {
 
 SensorServer::SensorServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)){};
+    : ResourceServer(std::move(manager)) {};
 
 ::grpc::Status SensorServer::GetReadings(::grpc::ServerContext*,
                                          const GetReadingsRequest* request,
@@ -44,7 +45,7 @@ SensorServer::SensorServer(std::shared_ptr<ResourceManager> manager)
         "SensorServer::GetGeometries", this, request)([&](auto& helper, auto& sensor) {
         const auto geometries = sensor->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = geometry.to_proto();
+            *response->mutable_geometries()->Add() = to_proto(geometry);
         }
     });
 }

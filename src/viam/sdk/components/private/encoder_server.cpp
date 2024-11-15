@@ -1,8 +1,11 @@
 #include <viam/sdk/components/private/encoder_server.hpp>
 
+#include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/common/private/proto_conversions.hpp>
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/encoder.hpp>
+#include <viam/sdk/components/private/encoder.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/rpc/server.hpp>
 
@@ -11,7 +14,7 @@ namespace sdk {
 namespace impl {
 
 EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)){};
+    : ResourceServer(std::move(manager)) {};
 
 ::grpc::Status EncoderServer::GetPosition(
     ::grpc::ServerContext*,
@@ -20,9 +23,9 @@ EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager)
     return make_service_helper<Encoder>(
         "EncoderServer::GetPosition", this, request)([&](auto& helper, auto& encoder) {
         const Encoder::position result =
-            encoder->get_position(helper.getExtra(), Encoder::from_proto(request->position_type()));
+            encoder->get_position(helper.getExtra(), from_proto(request->position_type()));
         response->set_value(result.value);
-        response->set_position_type(Encoder::to_proto(result.type));
+        response->set_position_type(to_proto(result.type));
     });
 }
 
@@ -54,7 +57,7 @@ EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager)
         "EncoderServer::GetGeometries", this, request)([&](auto& helper, auto& encoder) {
         const std::vector<GeometryConfig> geometries = encoder->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = geometry.to_proto();
+            *response->mutable_geometries()->Add() = to_proto(geometry);
         }
     });
 }

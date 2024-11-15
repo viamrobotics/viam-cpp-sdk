@@ -37,7 +37,7 @@ class ResourceServerRegistration {
     const google::protobuf::ServiceDescriptor* service_descriptor() const;
 
     ResourceServerRegistration(const google::protobuf::ServiceDescriptor* service_descriptor)
-        : service_descriptor_(service_descriptor){};
+        : service_descriptor_(service_descriptor) {};
 
    private:
     const google::protobuf::ServiceDescriptor* service_descriptor_;
@@ -72,7 +72,7 @@ class ModelRegistration {
         : construct_resource(std::move(constructor)),
           validate(default_validator),
           model_(std::move(model)),
-          api_(std::move(api)){};
+          api_(std::move(api)) {};
 
     ModelRegistration(
         API api,
@@ -82,7 +82,7 @@ class ModelRegistration {
         : construct_resource(std::move(constructor)),
           validate(std::move(validator)),
           model_(std::move(model)),
-          api_(std::move(api)){};
+          api_(std::move(api)) {};
 
     const API& api() const;
     const Model& model() const;
@@ -94,9 +94,6 @@ class ModelRegistration {
     /// @return a list of the resource's implicit dependencies.
     /// @throws Can throw exceptions, which will be returned to the parent via gRPC.
     std::function<std::vector<std::string>(ResourceConfig)> validate;
-
-    /// @brief Creates a `Status` object for a given resource.
-    viam::robot::v1::Status create_status(const std::shared_ptr<Resource>& resource) const;
 
    private:
     // default_validator is the default validator for all models if no validator

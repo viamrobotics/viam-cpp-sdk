@@ -1,7 +1,5 @@
 #pragma once
 
-#include <viam/api/app/v1/robot.pb.h>
-
 namespace viam {
 namespace sdk {
 
@@ -35,7 +33,7 @@ struct quaternion {
 
 struct translation {
     double x, y, z;
-    viam::app::v1::Translation to_proto() const;
 };
+
 }  // namespace sdk
 }  // namespace viam

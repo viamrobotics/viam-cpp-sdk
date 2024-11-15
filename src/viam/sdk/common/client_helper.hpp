@@ -4,6 +4,7 @@
 #include <grpcpp/support/sync_stream.h>
 
 #include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/common/private/client_helper.hpp>
 #include <viam/sdk/common/private/utils.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>

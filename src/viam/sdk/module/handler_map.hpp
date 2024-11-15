@@ -1,8 +1,6 @@
 #pragma once
 
-#include <viam/api/module/v1/module.pb.h>
-
-#include <viam/sdk/resource/resource.hpp>
+#include <viam/sdk/resource/resource_api.hpp>
 
 namespace viam {
 namespace sdk {
@@ -12,9 +10,8 @@ class HandlerMap_ {
     HandlerMap_();
     void add_model(Model model, const RPCSubtype& subtype);
 
-    viam::module::v1::HandlerMap to_proto() const;
-    static const HandlerMap_ from_proto(const viam::module::v1::HandlerMap& proto);
     friend std::ostream& operator<<(std::ostream& os, const HandlerMap_& hm);
+    const std::unordered_map<RPCSubtype, std::vector<Model>>& handles() const;
 
    private:
     std::unordered_map<RPCSubtype, std::vector<Model>> handles_;

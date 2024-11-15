@@ -3,7 +3,7 @@
 #include <boost/optional/optional.hpp>
 #include <grpcpp/client_context.h>
 
-#include <viam/api/common/v1/common.pb.h>
+#include <google/protobuf/timestamp.pb.h>
 
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/component.hpp>
@@ -20,9 +20,6 @@ const std::string kBuiltin = "builtin";
 
 struct response_metadata {
     std::chrono::time_point<long long, std::chrono::nanoseconds> captured_at;
-
-    static response_metadata from_proto(const viam::common::v1::ResponseMetadata& proto);
-    static viam::common::v1::ResponseMetadata to_proto(const response_metadata& metadata);
 };
 
 bool operator==(const response_metadata& lhs, const response_metadata& rhs);
@@ -39,9 +36,6 @@ google::protobuf::Timestamp time_pt_to_timestamp(
 
 std::vector<unsigned char> string_to_bytes(std::string const& s);
 std::string bytes_to_string(std::vector<unsigned char> const& b);
-
-std::chrono::microseconds from_proto(const google::protobuf::Duration& proto);
-google::protobuf::Duration to_proto(const std::chrono::microseconds& duration);
 
 // the authority on a grpc::ClientContext is sometimes set to an invalid uri on mac, causing
 // `rust-utils` to fail to process gRPC requests. This class provides a convenience wrapper around a
@@ -60,6 +54,10 @@ class ClientContext {
     void add_viam_client_version_();
     grpc::ClientContext wrapped_context_;
 };
+
+/// @brief Given a fully qualified resource name, returns remote name (or "" if
+/// no remote name exists) and short name
+std::pair<std::string, std::string> long_name_to_remote_and_short(const std::string& long_name);
 
 /// @brief Returns a new `ProtoStruct` with a random key for server-side debug logging
 ProtoStruct debug_map();

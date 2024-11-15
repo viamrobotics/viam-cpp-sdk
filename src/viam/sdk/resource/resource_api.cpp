@@ -1,15 +1,10 @@
 #include <viam/sdk/resource/resource_api.hpp>
 
-#include <numeric>
 #include <regex>
-#include <sstream>
-#include <stdexcept>
 #include <string>
 
 #include <boost/algorithm/string.hpp>
 #include <google/protobuf/descriptor.h>
-
-#include <viam/api/common/v1/common.pb.h>
 
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/utils.hpp>
@@ -32,7 +27,7 @@ std::string APIType::to_string() const {
 }
 
 APIType::APIType(std::string namespace_, std::string resource_type)
-    : namespace_(std::move(namespace_)), resource_type_(std::move(resource_type)){};
+    : namespace_(std::move(namespace_)), resource_type_(std::move(resource_type)) {};
 
 std::string API::to_string() const {
     return APIType::to_string() + ":" + resource_subtype_;
@@ -111,37 +106,6 @@ std::string Name::short_name() const {
     }
     return name_;
 }
-
-viam::common::v1::ResourceName Name::to_proto() const {
-    viam::common::v1::ResourceName rn;
-    *rn.mutable_namespace_() = this->api().type_namespace();
-    if (this->remote_name().empty()) {
-        *rn.mutable_name() = this->name();
-    } else {
-        *rn.mutable_name() = this->remote_name() + ":" + this->name();
-    }
-    *rn.mutable_type() = this->api().resource_type();
-    *rn.mutable_subtype() = this->api().resource_subtype();
-    return rn;
-}
-
-Name Name::from_proto(const viam::common::v1::ResourceName& proto) {
-    const API api(proto.namespace_(), proto.type(), proto.subtype());
-    std::vector<std::string> name_parts;
-    boost::split(name_parts, proto.name(), boost::is_any_of(":"));
-    auto name = name_parts.back();
-    name_parts.pop_back();
-    auto remote_name = name_parts.empty()
-                           ? ""
-                           : std::accumulate(std::next(name_parts.begin()),
-                                             name_parts.end(),
-                                             *name_parts.begin(),
-                                             [](const std::string& a, const std::string& b) {
-                                                 return a + ":" + b;
-                                             });
-
-    return Name({proto.namespace_(), proto.type(), proto.subtype()}, remote_name, name);
-};
 
 Name Name::from_string(std::string name) {
     if (!std::regex_match(name, NAME_REGEX)) {

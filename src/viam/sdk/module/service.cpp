@@ -25,6 +25,7 @@
 #include <viam/api/module/v1/module.pb.h>
 
 #include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/common/private/proto_conversions.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -73,7 +74,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
                                           const ::viam::module::v1::AddResourceRequest* request,
                                           ::viam::module::v1::AddResourceResponse*) {
     const viam::app::v1::ComponentConfig& proto = request->config();
-    const ResourceConfig cfg = ResourceConfig::from_proto(proto);
+    const ResourceConfig cfg = impl::from_proto(proto);
     const std::lock_guard<std::mutex> lock(lock_);
 
     std::shared_ptr<Resource> res;
@@ -101,7 +102,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
     const ::viam::module::v1::ReconfigureResourceRequest* request,
     ::viam::module::v1::ReconfigureResourceResponse*) {
     const viam::app::v1::ComponentConfig& proto = request->config();
-    ResourceConfig cfg = ResourceConfig::from_proto(proto);
+    ResourceConfig cfg = impl::from_proto(proto);
 
     const Dependencies deps = get_dependencies_(request->dependencies(), cfg.name());
 
@@ -150,7 +151,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
     const ::viam::module::v1::ValidateConfigRequest* request,
     ::viam::module::v1::ValidateConfigResponse* response) {
     const viam::app::v1::ComponentConfig& proto = request->config();
-    ResourceConfig cfg = ResourceConfig::from_proto(proto);
+    ResourceConfig cfg = impl::from_proto(proto);
 
     const std::shared_ptr<const ModelRegistration> reg =
         Registry::lookup_model(cfg.api(), cfg.model());
@@ -202,7 +203,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
                                     const ::viam::module::v1::ReadyRequest* request,
                                     ::viam::module::v1::ReadyResponse* response) {
     const std::lock_guard<std::mutex> lock(lock_);
-    const viam::module::v1::HandlerMap hm = this->module_->handles().to_proto();
+    const viam::module::v1::HandlerMap hm = impl::to_proto(this->module_->handles());
     *response->mutable_handlermap() = hm;
     parent_addr_ = request->parent_address();
     response->set_ready(module_->ready());

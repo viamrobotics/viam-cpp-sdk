@@ -7,9 +7,6 @@
 
 #include <boost/variant/variant.hpp>
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/component/arm/v1/arm.pb.h>
-
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/resource/stoppable.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
@@ -60,8 +57,6 @@ class Arm : public Component, public Stoppable {
     /// @returns The data in Viam's Spatial Vector Algebra (SVA) format, or URDF.
     using KinematicsData =
         boost::variant<KinematicsDataUnspecified, KinematicsDataSVA, KinematicsDataURDF>;
-
-    static KinematicsData from_proto(const viam::common::v1::GetKinematicsResponse& proto);
 
     /// @brief Get the current position of the end of the arm.
     /// @return The `pose` representing the end position of the arm.

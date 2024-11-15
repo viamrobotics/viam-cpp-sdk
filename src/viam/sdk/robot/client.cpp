@@ -19,6 +19,7 @@
 #include <viam/api/robot/v1/robot.grpc.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
 
+#include <viam/sdk/common/private/proto_conversions.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/component.hpp>
@@ -72,7 +73,7 @@ RobotClient::discovery from_proto(const Discovery& proto) {
 
 RobotClient::frame_system_config from_proto(const FrameSystemConfig& proto) {
     RobotClient::frame_system_config fsconfig;
-    fsconfig.frame = WorldState::transform::from_proto(proto.frame());
+    fsconfig.frame = impl::from_proto(proto.frame());
     if (proto.has_kinematics()) {
         fsconfig.kinematics = struct_to_map(proto.kinematics());
     }
@@ -82,7 +83,7 @@ RobotClient::frame_system_config from_proto(const FrameSystemConfig& proto) {
 RobotClient::status from_proto(const Status& proto) {
     RobotClient::status status;
     if (proto.has_name()) {
-        status.name = Name::from_proto(proto.name());
+        status.name = ::viam::sdk::impl::from_proto(proto.name());
     }
     if (proto.has_status()) {
         status.status_map = struct_to_map(proto.status());
@@ -178,7 +179,7 @@ std::vector<RobotClient::status> RobotClient::get_status(std::vector<Name>& comp
     viam::robot::v1::GetStatusResponse resp;
     ClientContext ctx;
     for (const Name& name : components) {
-        *req.mutable_resource_names()->Add() = name.to_proto();
+        *req.mutable_resource_names()->Add() = ::viam::sdk::impl::to_proto(name);
     }
 
     const grpc::Status response = impl_->stub_->GetStatus(ctx, req, &resp);
@@ -255,7 +256,7 @@ void RobotClient::refresh() {
     std::unordered_map<Name, std::shared_ptr<Resource>> new_resources;
     std::vector<Name> current_resources;
     for (const auto& name : resp.resources()) {
-        current_resources.push_back(Name::from_proto(name));
+        current_resources.push_back(::viam::sdk::impl::from_proto(name));
         if (name.subtype() == "remote") {
             continue;
         }
@@ -370,7 +371,7 @@ std::vector<RobotClient::frame_system_config> RobotClient::get_frame_system_conf
 
     RepeatedPtrField<Transform>* req_transforms = req.mutable_supplemental_transforms();
     for (const WorldState::transform& transform : additional_transforms) {
-        *req_transforms->Add() = transform.to_proto();
+        *req_transforms->Add() = ::viam::sdk::impl::to_proto(transform);
     }
 
     const grpc::Status response = impl_->stub_->FrameSystemConfig(ctx, req, &resp);
@@ -398,12 +399,12 @@ pose_in_frame RobotClient::transform_pose(
     viam::robot::v1::TransformPoseResponse resp;
     ClientContext ctx;
 
-    *req.mutable_source() = query.to_proto();
+    *req.mutable_source() = ::viam::sdk::impl::to_proto(query);
     *req.mutable_destination() = std::move(destination);
     RepeatedPtrField<Transform>* req_transforms = req.mutable_supplemental_transforms();
 
     for (const WorldState::transform& transform : additional_transforms) {
-        *req_transforms->Add() = transform.to_proto();
+        *req_transforms->Add() = ::viam::sdk::impl::to_proto(transform);
     }
 
     const grpc::Status response = impl_->stub_->TransformPose(ctx, req, &resp);
@@ -411,7 +412,7 @@ pose_in_frame RobotClient::transform_pose(
         BOOST_LOG_TRIVIAL(error) << "Error getting PoseInFrame: " << response.error_message();
     }
 
-    return pose_in_frame::from_proto(resp.pose());
+    return ::viam::sdk::impl::from_proto(resp.pose());
 }
 
 std::vector<RobotClient::discovery> RobotClient::discover_components(
@@ -463,7 +464,7 @@ void RobotClient::stop_all(const std::unordered_map<Name, ProtoStruct>& extra) {
         const ProtoStruct& params = xtra.second;
         const google::protobuf::Struct s = map_to_struct(params);
         viam::robot::v1::StopExtraParameters stop;
-        *stop.mutable_name() = name.to_proto();
+        *stop.mutable_name() = ::viam::sdk::impl::to_proto(name);
         *stop.mutable_params() = s;
         *ep->Add() = stop;
     }
