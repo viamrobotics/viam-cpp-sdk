@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
 
