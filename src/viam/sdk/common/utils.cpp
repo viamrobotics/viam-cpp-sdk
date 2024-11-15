@@ -125,6 +125,10 @@ bool from_dm_from_extra(const ProtoStruct& extra) {
 
 std::pair<std::string, std::string> long_name_to_remote_and_short(const std::string& long_name) {
     std::vector<std::string> name_parts;
+    // boost::split causes a clang-tidy false positive, see
+    // https://bugs.llvm.org/show_bug.cgi?id=41141
+    //
+    // NOLINTNEXTLINE
     boost::split(name_parts, long_name, boost::is_any_of(":"));
     auto name = name_parts.back();
     name_parts.pop_back();
