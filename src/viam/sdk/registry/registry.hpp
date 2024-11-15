@@ -5,8 +5,6 @@
 
 #include <string>
 
-#include <google/protobuf/descriptor.h>
-#include <google/protobuf/message.h>
 #include <grpcpp/channel.h>
 #include <grpcpp/impl/service_type.h>
 #include <grpcpp/server.h>

@@ -21,7 +21,6 @@ class LinkConfig {
     std::string get_parent() const;
 
    private:
-    std::string id_;
     translation translation_;
     OrientationConfig orientation_;
     GeometryConfig geometry_;
