@@ -137,7 +137,7 @@ std::pair<std::string, std::string> long_name_to_remote_and_short(const std::str
                                                  return a + ":" + b;
                                              });
 
-    return {remote_name, name};
+    return {std::move(remote_name), std::move(name)};
 }
 
 }  // namespace sdk
