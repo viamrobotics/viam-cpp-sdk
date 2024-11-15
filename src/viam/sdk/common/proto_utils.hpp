@@ -10,7 +10,7 @@ namespace viam {
 namespace sdk {
 
 /// @brief Copies elements from a protobuf repeated pointer array into a std::vector. Src type
-/// must be implicitly convertible to Dst (probably via operator on Src).
+/// must have a `to_proto` method.
 template <typename Src, typename Dst>
 void vecToRepeatedPtr(const std::vector<Src>& vec, google::protobuf::RepeatedPtrField<Dst>& dest) {
     dest.Clear();
@@ -21,7 +21,7 @@ void vecToRepeatedPtr(const std::vector<Src>& vec, google::protobuf::RepeatedPtr
 }
 
 /// @brief Non-member to_proto() version. (necessary for moving generated types out of wrapper
-/// headers). Template param F is a function that converts from Src to Dst.
+/// headers). Takes explicit `to_proto`.
 template <typename Src, typename Dst>
 void vecToRepeatedPtr(const std::vector<Src>& vec,
                       google::protobuf::RepeatedPtrField<Dst>& dest,
@@ -33,8 +33,8 @@ void vecToRepeatedPtr(const std::vector<Src>& vec,
     }
 }
 
-/// @brief Copies elements from a std::vector into a protobuf repeated pointer array. Src type
-/// must be implicitly convertible to Dst (probably via constructor on Dst).
+/// @brief Copies elements from a std::vector into a protobuf repeated pointer array. Dst type
+/// must have a `from_proto` static method.
 template <typename Src, typename Dst>
 void repeatedPtrToVec(const google::protobuf::RepeatedPtrField<Src>& src, std::vector<Dst>& vec) {
     vec.clear();
@@ -44,8 +44,8 @@ void repeatedPtrToVec(const google::protobuf::RepeatedPtrField<Src>& src, std::v
     }
 }
 
-/// @brief Non-member to_proto() version. (necessary for moving generated types out of wrapper
-/// headers). Template param F is a function that converts from Src to Dst.
+/// @brief Non-member from_proto() version. (necessary for moving generated types out of wrapper
+/// headers). Takes explicit `from_proto`.
 template <typename Src, typename Dst>
 void repeatedPtrToVec(const google::protobuf::RepeatedPtrField<Src>& src,
                       std::vector<Dst>& vec,
