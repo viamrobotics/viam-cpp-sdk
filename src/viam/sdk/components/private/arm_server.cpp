@@ -57,7 +57,6 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
     ::grpc::ServerContext*,
     const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* request,
     ::viam::component::arm::v1::MoveThroughJointPositionsResponse*) noexcept {
-    std::vector<std::vector<double>> positions;
     return make_service_helper<Arm>(
         "ArmServer::MoveThroughJointPositions", this, request)([&](auto& helper, auto& arm) {
         std::vector<std::vector<double>> positions;
