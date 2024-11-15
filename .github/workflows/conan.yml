@@ -1,10 +1,16 @@
 name: Test conan packages
 
 on:
-  # Run weekdays at 11:15pm UTC, and specify below to only run if there's been new commits
+  # Runs for PRs that directly change conan code, and weekdays at 11:15pm UTC.
+  # Additional logic in the prepare job below makes it so scheduled builds only run
+  # on new commits.
   schedule:
     - cron: "15 11 * * 1-5"
   workflow_dispatch:
+  pull_request:
+    paths:
+      - conanfile.py
+      - test_package/conanfile.py
 
 jobs:
   prepare:
@@ -13,17 +19,25 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-
-      - name: Get new commit count
-        id: new_commit_count
-        shell: bash
-        run: echo "commit_count=$(git log --oneline --since '24 hours ago' | wc -l)" >> $GITHUB_OUTPUT
-
-      - name: Cancelling scheduled build with no new commits
+      - name: Get current git info
+        if: github.event_name == 'schedule'
+        id: git_info
+        run: |
+          echo "current_commit=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+          echo "current_branch=$(git branch --show-current)" >> $GITHUB_OUTPUT
+      - name: Get last successful commit
+        if: github.event_name == 'schedule'
+        id: last_successful_commit
+        uses: tylermilner/last-successful-commit-hash-action@v1
+        with:
+          branch: main
+          workflow-id: conan.yml
+          github-token: ${{ github.token }}
+      - name: Cancel scheduled build with no new commits
         uses: andymckay/cancel-action@0.2
         if: |
-          steps.new_commit_count.outputs.commit_count == '0' &&
-          github.event_name == 'schedule'
+          github.event_name == 'schedule' &&
+          steps.git_info.outputs.current_commit == steps.last_successful_commit.outputs.commit-hash
 
   build_macos:
     if: github.repository_owner == 'viamrobotics'

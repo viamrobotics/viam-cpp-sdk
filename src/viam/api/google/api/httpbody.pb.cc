@@ -82,12 +82,12 @@ const char descriptor_table_protodef_google_2fapi_2fhttpbody_2eproto[] PROTOBUF_
     "\031google/protobuf/any.proto\"w\n\010HttpBody\022!"
     "\n\014content_type\030\001 \001(\tR\013contentType\022\022\n\004dat"
     "a\030\002 \001(\014R\004data\0224\n\nextensions\030\003 \003(\0132\024.goog"
-    "le.protobuf.AnyR\nextensionsB\250\001\n\016com.goog"
+    "le.protobuf.AnyR\nextensionsB\245\001\n\016com.goog"
     "le.apiB\rHttpbodyProtoP\001Z;google.golang.o"
     "rg/genproto/googleapis/api/httpbody;http"
-    "body\370\001\001\242\002\003GAX\252\002\nGoogle.Api\312\002\nGoogle\\Api\342"
-    "\002\026Google\\Api\\GPBMetadata\352\002\013Google::Apib\006"
-    "proto3"
+    "body\242\002\003GAX\252\002\nGoogle.Api\312\002\nGoogle\\Api\342\002\026G"
+    "oogle\\Api\\GPBMetadata\352\002\013Google::Apib\006pro"
+    "to3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fhttpbody_2eproto_deps[1] =
     {
@@ -97,7 +97,7 @@ static ::absl::once_flag descriptor_table_google_2fapi_2fhttpbody_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2fhttpbody_2eproto = {
     false,
     false,
-    366,
+    363,
     descriptor_table_protodef_google_2fapi_2fhttpbody_2eproto,
     "google/api/httpbody.proto",
     &descriptor_table_google_2fapi_2fhttpbody_2eproto_once,
