@@ -6,8 +6,7 @@
 
 #include <viam/api/common/v1/common.pb.h>
 
-namespace viam {
-namespace sdk {
+namespace viam::sdk::impl {
 
 /// @brief Copies elements from a protobuf repeated pointer array into a std::vector. Src type
 /// must have a `to_proto` method.
@@ -57,5 +56,4 @@ void repeatedPtrToVec(const google::protobuf::RepeatedPtrField<Src>& src,
     }
 }
 
-}  // namespace sdk
-}  // namespace viam
+}  // namespace viam::sdk::impl

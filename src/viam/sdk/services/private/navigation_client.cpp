@@ -8,7 +8,7 @@
 #include <viam/api/service/navigation/v1/navigation.pb.h>
 
 #include <viam/sdk/common/client_helper.hpp>
-#include <viam/sdk/common/proto_utils.hpp>
+#include <viam/sdk/common/private/proto_utils.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/services/navigation.hpp>
