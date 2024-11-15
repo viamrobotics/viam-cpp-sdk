@@ -25,11 +25,11 @@ void vecToRepeatedPtr(const std::vector<Src>& vec, google::protobuf::RepeatedPtr
 template <typename Src, typename Dst>
 void vecToRepeatedPtr(const std::vector<Src>& vec,
                       google::protobuf::RepeatedPtrField<Dst>& dest,
-                      Dst& from_proto(const Src&)) {
+                      Dst to_proto(const Src&)) {
     dest.Clear();
     dest.Reserve(vec.size());
     for (auto& x : vec) {
-        *dest.Add() = from_proto(x);
+        *dest.Add() = to_proto(x);
     }
 }
 
@@ -49,11 +49,11 @@ void repeatedPtrToVec(const google::protobuf::RepeatedPtrField<Src>& src, std::v
 template <typename Src, typename Dst>
 void repeatedPtrToVec(const google::protobuf::RepeatedPtrField<Src>& src,
                       std::vector<Dst>& vec,
-                      Dst& to_proto(const Src&)) {
+                      Dst from_proto(const Src&)) {
     vec.clear();
     vec.reserve(src.size());
     for (auto& x : src) {
-        vec.push_back(to_proto(x));
+        vec.push_back(from_proto(x));
     }
 }
 

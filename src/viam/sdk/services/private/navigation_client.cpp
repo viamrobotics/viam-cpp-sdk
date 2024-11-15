@@ -19,6 +19,16 @@ namespace impl {
 
 using namespace viam::service::navigation::v1;
 
+Navigation::Waypoint waypoint_from_proto(const viam::service::navigation::v1::Waypoint& proto) {
+    return Navigation::Waypoint{proto.id(), geo_point::from_proto(proto.location())};
+}
+
+Navigation::Path path_from_proto(const viam::service::navigation::v1::Path& proto) {
+    Navigation::Path ret{proto.destination_waypoint_id()};
+    repeatedPtrToVec(proto.geopoints(), ret.geopoints);
+    return ret;
+}
+
 NavigationClient::NavigationClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Navigation(std::move(name)),
       stub_(service::navigation::v1::NavigationService::NewStub(channel)),
@@ -69,7 +79,7 @@ std::unique_ptr<std::vector<Navigation::Waypoint>> NavigationClient::get_waypoin
         })
         .invoke([](auto& response) {
             auto ret = std::make_unique<std::vector<Navigation::Waypoint>>();
-            repeatedPtrToVec(response.waypoints(), *ret, auto_to_proto);
+            repeatedPtrToVec(response.waypoints(), *ret, waypoint_from_proto);
             return ret;
         });
 }
@@ -121,7 +131,7 @@ std::unique_ptr<std::vector<NavigationClient::Path>> NavigationClient::get_paths
         })
         .invoke([](auto& response) {
             auto ret = std::make_unique<std::vector<Path>>();
-            repeatedPtrToVec(response.paths(), *ret, auto_to_proto);
+            repeatedPtrToVec(response.paths(), *ret, path_from_proto);
             return ret;
         });
 }

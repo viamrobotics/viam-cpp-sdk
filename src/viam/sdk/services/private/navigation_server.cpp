@@ -17,6 +17,20 @@ namespace impl {
 
 using namespace service::navigation::v1;
 
+viam::service::navigation::v1::Waypoint waypoint_to_proto(const Navigation::Waypoint& wp) {
+    viam::service::navigation::v1::Waypoint ret;
+    *ret.mutable_id() = wp.id;
+    *ret.mutable_location() = wp.location.to_proto();
+    return ret;
+}
+
+viam::service::navigation::v1::Path path_to_proto(const Navigation::Path& p) {
+    viam::service::navigation::v1::Path ret;
+    *ret.mutable_destination_waypoint_id() = p.destination_waypoint_id;
+    vecToRepeatedPtr(p.geopoints, *ret.mutable_geopoints());
+    return ret;
+}
+
 ::grpc::Status NavigationServer::GetMode(::grpc::ServerContext*,
                                          const GetModeRequest* request,
                                          GetModeResponse* response) noexcept {
@@ -52,7 +66,7 @@ using namespace service::navigation::v1;
     return make_service_helper<Navigation>(
         "NavigationServer::GetWaypoints", this, request)([&](auto& helper, auto& nav) {
         const auto& waypoints = nav->get_waypoints(request->name(), helper.getExtra());
-        vecToRepeatedPtr(*waypoints, *response->mutable_waypoints(), auto_from_proto);
+        vecToRepeatedPtr(*waypoints, *response->mutable_waypoints(), waypoint_to_proto);
     });
 }
 
@@ -91,7 +105,7 @@ using namespace service::navigation::v1;
     return make_service_helper<Navigation>(
         "NavigationServer::GetPaths", this, request)([&](auto& helper, auto& nav) {
         const auto& paths = nav->get_paths(request->name(), helper.getExtra());
-        vecToRepeatedPtr(*paths, *response->mutable_paths(), auto_from_proto);
+        vecToRepeatedPtr(*paths, *response->mutable_paths(), path_to_proto);
     });
 }
 
@@ -100,8 +114,7 @@ using namespace service::navigation::v1;
                                                GetPropertiesResponse* response) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::GetProperties", this, request)([&](auto&, auto& nav) {
-        response->set_map_type(
-            viam::service::navigation::v1::MapType(nav->get_properties(request->name())));
+        response->set_map_type(MapType(nav->get_properties(request->name())));
     });
 }
 
