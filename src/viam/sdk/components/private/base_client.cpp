@@ -26,7 +26,7 @@ namespace impl {
 BaseClient::BaseClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Base(std::move(name)),
       stub_(viam::component::base::v1::BaseService::NewStub(channel)),
-      channel_(std::move(channel)) {};
+      channel_(std::move(channel)){};
 
 void BaseClient::move_straight(int64_t distance_mm, double mm_per_sec, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::MoveStraight)

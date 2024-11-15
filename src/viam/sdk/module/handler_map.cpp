@@ -7,7 +7,7 @@ const std::unordered_map<RPCSubtype, std::vector<Model>>& HandlerMap_::handles()
     return handles_;
 }
 
-HandlerMap_::HandlerMap_() {};
+HandlerMap_::HandlerMap_(){};
 
 void HandlerMap_::add_model(Model model, const RPCSubtype& subtype) {
     handles_[subtype].push_back(std::move(model));

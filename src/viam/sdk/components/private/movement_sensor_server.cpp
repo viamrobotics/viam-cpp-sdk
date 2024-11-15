@@ -24,7 +24,7 @@ viam::common::v1::Orientation to_proto(const MovementSensor::orientation& orient
 }
 
 MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)) {};
+    : ResourceServer(std::move(manager)){};
 
 ::grpc::Status MovementSensorServer::GetLinearVelocity(
     ::grpc::ServerContext*,

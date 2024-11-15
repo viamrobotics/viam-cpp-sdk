@@ -24,7 +24,7 @@ bool operator==(const Base::properties& lhs, const Base::properties& rhs) {
            lhs.turning_radius_meters == rhs.turning_radius_meters;
 }
 
-Base::Base(std::string name) : Component(std::move(name)) {};
+Base::Base(std::string name) : Component(std::move(name)){};
 
 }  // namespace sdk
 }  // namespace viam

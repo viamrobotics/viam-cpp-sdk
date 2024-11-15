@@ -16,7 +16,7 @@ API API::traits<Board>::api() {
     return {kRDK, kComponent, "board"};
 }
 
-Board::Board(std::string name) : Component(std::move(name)) {};
+Board::Board(std::string name) : Component(std::move(name)){};
 
 bool operator==(const Board::status& lhs, const Board::status& rhs) {
     return (lhs.analog_reader_values == rhs.analog_reader_values &&

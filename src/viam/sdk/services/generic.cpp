@@ -16,7 +16,7 @@ API API::traits<GenericService>::api() {
     return {kRDK, kService, "generic"};
 }
 
-GenericService::GenericService(std::string name) : Service(std::move(name)) {};
+GenericService::GenericService(std::string name) : Service(std::move(name)){};
 
 }  // namespace sdk
 }  // namespace viam

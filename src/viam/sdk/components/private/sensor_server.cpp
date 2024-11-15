@@ -14,7 +14,7 @@ namespace sdk {
 namespace impl {
 
 SensorServer::SensorServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)) {};
+    : ResourceServer(std::move(manager)){};
 
 ::grpc::Status SensorServer::GetReadings(::grpc::ServerContext*,
                                          const GetReadingsRequest* request,

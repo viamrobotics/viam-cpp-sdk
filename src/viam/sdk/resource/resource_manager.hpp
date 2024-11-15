@@ -61,7 +61,7 @@ class ResourceManager {
     /// @brief Returns a reference to the existing resources within the manager.
     const std::unordered_map<std::string, std::shared_ptr<Resource>>& resources() const;
 
-    ResourceManager() {};
+    ResourceManager(){};
 
    private:
     std::mutex lock_;

@@ -15,4 +15,3 @@ viam::component::encoder::v1::PositionType to_proto(Encoder::position_type posit
 }  // namespace impl
 }  // namespace sdk
 }  // namespace viam
-

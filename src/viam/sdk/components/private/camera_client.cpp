@@ -103,7 +103,7 @@ Camera::properties from_proto(const viam::component::camera::v1::GetPropertiesRe
 CameraClient::CameraClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Camera(std::move(name)),
       stub_(viam::component::camera::v1::CameraService::NewStub(channel)),
-      channel_(std::move(channel)) {};
+      channel_(std::move(channel)){};
 
 ProtoStruct CameraClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)

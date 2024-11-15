@@ -89,7 +89,7 @@ class PowerSensor : public Component {
     virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
    protected:
-    explicit PowerSensor(std::string name) : Component(std::move(name)) {};
+    explicit PowerSensor(std::string name) : Component(std::move(name)){};
 };
 
 template <>

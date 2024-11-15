@@ -35,7 +35,7 @@ class ResourceServerRegistration {
     const google::protobuf::ServiceDescriptor* service_descriptor() const;
 
     ResourceServerRegistration(const google::protobuf::ServiceDescriptor* service_descriptor)
-        : service_descriptor_(service_descriptor) {};
+        : service_descriptor_(service_descriptor){};
 
    private:
     const google::protobuf::ServiceDescriptor* service_descriptor_;
@@ -70,7 +70,7 @@ class ModelRegistration {
         : construct_resource(std::move(constructor)),
           validate(default_validator),
           model_(std::move(model)),
-          api_(std::move(api)) {};
+          api_(std::move(api)){};
 
     ModelRegistration(
         API api,
@@ -80,7 +80,7 @@ class ModelRegistration {
         : construct_resource(std::move(constructor)),
           validate(std::move(validator)),
           model_(std::move(model)),
-          api_(std::move(api)) {};
+          api_(std::move(api)){};
 
     const API& api() const;
     const Model& model() const;

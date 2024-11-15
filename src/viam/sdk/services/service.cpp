@@ -12,7 +12,7 @@ Name Service::get_resource_name() const {
     return Resource::get_resource_name(kService);
 }
 
-Service::Service() : Resource("service") {};
+Service::Service() : Resource("service"){};
 
 }  // namespace sdk
 }  // namespace viam

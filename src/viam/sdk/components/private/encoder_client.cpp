@@ -46,7 +46,7 @@ Encoder::properties from_proto(const viam::component::encoder::v1::GetProperties
 EncoderClient::EncoderClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Encoder(std::move(name)),
       stub_(viam::component::encoder::v1::EncoderService::NewStub(channel)),
-      channel_(std::move(channel)) {};
+      channel_(std::move(channel)){};
 
 Encoder::position EncoderClient::get_position(const ProtoStruct& extra,
                                               position_type position_type) {

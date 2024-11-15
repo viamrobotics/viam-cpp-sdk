@@ -6,7 +6,7 @@ namespace viam {
 namespace sdk {
 
 Vector3::Vector3(scalar_type x, scalar_type y, scalar_type z) : data_{x, y, z} {};
-Vector3::Vector3() : Vector3(0.0, 0.0, 0.0) {};
+Vector3::Vector3() : Vector3(0.0, 0.0, 0.0){};
 
 double Vector3::x() const {
     return this->data_[0];

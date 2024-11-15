@@ -113,8 +113,7 @@ ResourceConfig::ResourceConfig(std::string type,
     fix_api();
 }
 
-ResourceConfig::ResourceConfig(std::string type)
-    : api_({kRDK, type, ""}), type_(std::move(type)) {};
+ResourceConfig::ResourceConfig(std::string type) : api_({kRDK, type, ""}), type_(std::move(type)){};
 
 }  // namespace sdk
 }  // namespace viam

@@ -12,7 +12,7 @@ namespace sdk {
 class APIType {
    public:
     APIType(std::string namespace_, std::string resource_type);
-    APIType() {};
+    APIType(){};
     virtual std::string to_string() const;
 
     const std::string& type_namespace() const;
@@ -31,7 +31,7 @@ class APIType {
 class API : public APIType {
    public:
     virtual std::string to_string() const override;
-    API() {};
+    API(){};
     API(std::string namespace_, std::string resource_type, std::string resource_subtype);
     API(APIType type, std::string resource_subtype);
     static API from_string(std::string api);
@@ -64,7 +64,7 @@ class Name {
     std::string to_string() const;
     static Name from_string(std::string name);
     Name(API api, std::string remote_name, std::string name);
-    Name() {};
+    Name(){};
     const API& api() const;
     const std::string& name() const;
     const std::string& remote_name() const;

@@ -27,7 +27,7 @@ std::string APIType::to_string() const {
 }
 
 APIType::APIType(std::string namespace_, std::string resource_type)
-    : namespace_(std::move(namespace_)), resource_type_(std::move(resource_type)) {};
+    : namespace_(std::move(namespace_)), resource_type_(std::move(resource_type)){};
 
 std::string API::to_string() const {
     return APIType::to_string() + ":" + resource_subtype_;

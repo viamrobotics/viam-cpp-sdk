@@ -20,7 +20,7 @@ GenericComponentClient::GenericComponentClient(std::string name,
                                                std::shared_ptr<grpc::Channel> channel)
     : GenericComponent(std::move(name)),
       stub_(viam::component::generic::v1::GenericService::NewStub(channel)),
-      channel_(std::move(channel)) {};
+      channel_(std::move(channel)){};
 
 ProtoStruct GenericComponentClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)

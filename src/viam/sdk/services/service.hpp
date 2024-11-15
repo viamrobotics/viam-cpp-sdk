@@ -13,7 +13,7 @@ class Service : public Resource {
     Service();
 
    protected:
-    explicit Service(std::string name) : Resource(std::move(name)) {};
+    explicit Service(std::string name) : Resource(std::move(name)){};
 };
 
 }  // namespace sdk
