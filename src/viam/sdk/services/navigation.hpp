@@ -31,6 +31,10 @@ class Navigation : public Service {
     struct LocationResponse {
         geo_point location;
         double compass_heading;
+
+        bool operator==(const LocationResponse& rhs) const {
+            return compass_heading == rhs.compass_heading && location == rhs.location;
+        }
     };
 
     struct Properties {
@@ -45,6 +49,11 @@ class Navigation : public Service {
     struct Path {
         std::string destination_waypoint_id;
         std::vector<geo_point> geopoints;
+
+        bool operator==(const Path& rhs) const {
+            return destination_waypoint_id == rhs.destination_waypoint_id &&
+                   geopoints == rhs.geopoints;
+        }
     };
 
     API api() const override;
@@ -53,10 +62,8 @@ class Navigation : public Service {
     virtual void set_mode(const Mode mode, const ProtoStruct& extra) = 0;
     virtual LocationResponse get_location(const ProtoStruct& extra) = 0;
     virtual std::unique_ptr<std::vector<Waypoint>> get_waypoints(const ProtoStruct& extra) = 0;
-    virtual void add_waypoint(const geo_point& location,
-                              const ProtoStruct& extra) = 0;
-    virtual void remove_waypoint(const std::string id,
-                                 const ProtoStruct& extra) = 0;
+    virtual void add_waypoint(const geo_point& location, const ProtoStruct& extra) = 0;
+    virtual void remove_waypoint(const std::string id, const ProtoStruct& extra) = 0;
     virtual std::unique_ptr<std::vector<geo_geometry>> get_obstacles(const ProtoStruct& extra) = 0;
     virtual std::unique_ptr<std::vector<Path>> get_paths(const ProtoStruct& extra) = 0;
     virtual Properties get_properties() = 0;

@@ -120,7 +120,7 @@ viam::service::navigation::v1::Path path_to_proto(const Navigation::Path& p) {
     ::grpc::ServerContext*,
     const ::viam::common::v1::DoCommandRequest* request,
     ::viam::common::v1::DoCommandResponse* response) noexcept {
-    return make_service_helper<Motion>(
+    return make_service_helper<Navigation>(
         "NavigationServer::DoCommand", this, request)([&](auto&, auto& motion) {
         const ProtoStruct result = motion->do_command(struct_to_map(request->command()));
         *response->mutable_result() = map_to_struct(result);
