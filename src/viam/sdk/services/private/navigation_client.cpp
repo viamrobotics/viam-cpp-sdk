@@ -32,36 +32,26 @@ Navigation::Path path_from_proto(const viam::service::navigation::v1::Path& prot
 NavigationClient::NavigationClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Navigation(std::move(name)),
       stub_(service::navigation::v1::NavigationService::NewStub(channel)),
-      channel_(std::move(channel)){};
+      channel_(std::move(channel)) {};
 
-Navigation::Mode NavigationClient::get_mode(const std::string name, const ProtoStruct& extra) {
+Navigation::Mode NavigationClient::get_mode(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetMode)
-        .with([&](auto& request) {
-            *request.mutable_name() = name;
-            *request.mutable_extra() = map_to_struct(extra);
-        })
+        .with([&](auto& request) { *request.mutable_extra() = map_to_struct(extra); })
         .invoke([](auto& response) { return Navigation::Mode(response.mode()); });
 }
 
-void NavigationClient::set_mode(const std::string name,
-                                const Navigation::Mode mode,
-                                const ProtoStruct& extra) {
+void NavigationClient::set_mode(const Navigation::Mode mode, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::SetMode)
         .with([&](auto& request) {
-            *request.mutable_name() = name;
             request.set_mode(viam::service::navigation::v1::Mode(mode));
             *request.mutable_extra() = map_to_struct(extra);
         })
         .invoke([](auto& response) {});
 }
 
-Navigation::LocationResponse NavigationClient::get_location(const std::string name,
-                                                            const ProtoStruct& extra) {
+Navigation::LocationResponse NavigationClient::get_location(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetLocation)
-        .with([&](auto& request) {
-            *request.mutable_name() = name;
-            *request.mutable_extra() = map_to_struct(extra);
-        })
+        .with([&](auto& request) { *request.mutable_extra() = map_to_struct(extra); })
         .invoke([](auto& response) {
             return Navigation::LocationResponse{
                 geo_point::from_proto(response.location()),
@@ -71,12 +61,9 @@ Navigation::LocationResponse NavigationClient::get_location(const std::string na
 }
 
 std::unique_ptr<std::vector<Navigation::Waypoint>> NavigationClient::get_waypoints(
-    const std::string name, const ProtoStruct& extra) {
+    const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetWaypoints)
-        .with([&](auto& request) {
-            *request.mutable_name() = name;
-            *request.mutable_extra() = map_to_struct(extra);
-        })
+        .with([&](auto& request) { *request.mutable_extra() = map_to_struct(extra); })
         .invoke([](auto& response) {
             auto ret = std::make_unique<std::vector<Navigation::Waypoint>>();
             repeatedPtrToVec(response.waypoints(), *ret, waypoint_from_proto);
@@ -84,24 +71,18 @@ std::unique_ptr<std::vector<Navigation::Waypoint>> NavigationClient::get_waypoin
         });
 }
 
-void NavigationClient::add_waypoint(const std::string name,
-                                    const geo_point& location,
-                                    const ProtoStruct& extra) {
+void NavigationClient::add_waypoint(const geo_point& location, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::AddWaypoint)
         .with([&](auto& request) {
-            *request.mutable_name() = name;
             *request.mutable_location() = location.to_proto();
             *request.mutable_extra() = map_to_struct(extra);
         })
         .invoke([](auto& response) {});
 }
 
-void NavigationClient::remove_waypoint(const std::string name,
-                                       const std::string id,
-                                       const ProtoStruct& extra) {
+void NavigationClient::remove_waypoint(const std::string id, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::RemoveWaypoint)
         .with([&](auto& request) {
-            *request.mutable_name() = name;
             *request.mutable_id() = id;
             *request.mutable_extra() = map_to_struct(extra);
         })
@@ -109,12 +90,9 @@ void NavigationClient::remove_waypoint(const std::string name,
 }
 
 std::unique_ptr<std::vector<geo_geometry>> NavigationClient::get_obstacles(
-    const std::string name, const ProtoStruct& extra) {
+    const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetObstacles)
-        .with([&](auto& request) {
-            *request.mutable_name() = name;
-            *request.mutable_extra() = map_to_struct(extra);
-        })
+        .with([&](auto& request) { *request.mutable_extra() = map_to_struct(extra); })
         .invoke([](auto& response) {
             auto ret = std::make_unique<std::vector<geo_geometry>>();
             repeatedPtrToVec(response.obstacles(), *ret);
@@ -123,12 +101,9 @@ std::unique_ptr<std::vector<geo_geometry>> NavigationClient::get_obstacles(
 }
 
 std::unique_ptr<std::vector<NavigationClient::Path>> NavigationClient::get_paths(
-    const std::string name, const ProtoStruct& extra) {
+    const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetPaths)
-        .with([&](auto& request) {
-            *request.mutable_name() = name;
-            *request.mutable_extra() = map_to_struct(extra);
-        })
+        .with([&](auto& request) { *request.mutable_extra() = map_to_struct(extra); })
         .invoke([](auto& response) {
             auto ret = std::make_unique<std::vector<Path>>();
             repeatedPtrToVec(response.paths(), *ret, path_from_proto);
@@ -136,9 +111,9 @@ std::unique_ptr<std::vector<NavigationClient::Path>> NavigationClient::get_paths
         });
 }
 
-NavigationClient::MapType NavigationClient::get_properties(const std::string name) {
+NavigationClient::MapType NavigationClient::get_properties() {
     return make_client_helper(this, *stub_, &StubType::GetProperties)
-        .with([&](auto& request) { *request.mutable_name() = name; })
+        .with([&](auto& request) {})
         .invoke([](auto& response) { return MapType(response.map_type()); });
 }
 

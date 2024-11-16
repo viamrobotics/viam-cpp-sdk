@@ -21,22 +21,15 @@ class NavigationClient : public Navigation {
     using interface_type = Navigation;
     NavigationClient(std::string name, std::shared_ptr<grpc::Channel> channel);
 
-    Mode get_mode(const std::string name, const ProtoStruct& extra) override;
-    void set_mode(const std::string name, const Mode mode, const ProtoStruct& extra) override;
-    LocationResponse get_location(const std::string name, const ProtoStruct& extra) override;
-    std::unique_ptr<std::vector<Waypoint>> get_waypoints(const std::string name,
-                                                         const ProtoStruct& extra) override;
-    void add_waypoint(const std::string name,
-                      const geo_point& location,
-                      const ProtoStruct& extra) override;
-    void remove_waypoint(const std::string name,
-                         const std::string id,
-                         const ProtoStruct& extra) override;
-    std::unique_ptr<std::vector<geo_geometry>> get_obstacles(const std::string name,
-                                                             const ProtoStruct& extra) override;
-    std::unique_ptr<std::vector<Path>> get_paths(const std::string name,
-                                                 const ProtoStruct& extra) override;
-    MapType get_properties(const std::string name) override;
+    Mode get_mode(const ProtoStruct& extra) override;
+    void set_mode(const Mode mode, const ProtoStruct& extra) override;
+    LocationResponse get_location(const ProtoStruct& extra) override;
+    std::unique_ptr<std::vector<Waypoint>> get_waypoints(const ProtoStruct& extra) override;
+    void add_waypoint(const geo_point& location, const ProtoStruct& extra) override;
+    void remove_waypoint(const std::string id, const ProtoStruct& extra) override;
+    std::unique_ptr<std::vector<geo_geometry>> get_obstacles(const ProtoStruct& extra) override;
+    std::unique_ptr<std::vector<Path>> get_paths(const ProtoStruct& extra) override;
+    MapType get_properties() override;
     ProtoStruct do_command(const ProtoStruct& command) override;
 
    private:

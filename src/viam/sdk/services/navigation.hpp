@@ -45,48 +45,43 @@ class Navigation : public Service {
 
     API api() const override;
 
-    virtual Mode get_mode(const std::string name, const ProtoStruct& extra) = 0;
-    virtual void set_mode(const std::string name, const Mode mode, const ProtoStruct& extra) = 0;
-    virtual LocationResponse get_location(const std::string name, const ProtoStruct& extra) = 0;
-    virtual std::unique_ptr<std::vector<Waypoint>> get_waypoints(const std::string name,
-                                                                 const ProtoStruct& extra) = 0;
-    virtual void add_waypoint(const std::string name,
-                              const geo_point& location,
+    virtual Mode get_mode(const ProtoStruct& extra) = 0;
+    virtual void set_mode(const Mode mode, const ProtoStruct& extra) = 0;
+    virtual LocationResponse get_location(const ProtoStruct& extra) = 0;
+    virtual std::unique_ptr<std::vector<Waypoint>> get_waypoints(const ProtoStruct& extra) = 0;
+    virtual void add_waypoint(const geo_point& location,
                               const ProtoStruct& extra) = 0;
-    virtual void remove_waypoint(const std::string name,
-                                 const std::string id,
+    virtual void remove_waypoint(const std::string id,
                                  const ProtoStruct& extra) = 0;
-    virtual std::unique_ptr<std::vector<geo_geometry>> get_obstacles(const std::string name,
-                                                                     const ProtoStruct& extra) = 0;
-    virtual std::unique_ptr<std::vector<Path>> get_paths(const std::string name,
-                                                         const ProtoStruct& extra) = 0;
-    virtual MapType get_properties(const std::string) = 0;
+    virtual std::unique_ptr<std::vector<geo_geometry>> get_obstacles(const ProtoStruct& extra) = 0;
+    virtual std::unique_ptr<std::vector<Path>> get_paths(const ProtoStruct& extra) = 0;
+    virtual MapType get_properties() = 0;
     virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
     // overloads without `extra` param.
-    inline Mode get_mode(const std::string name) {
-        return get_mode(name, {});
+    inline Mode get_mode() {
+        return get_mode({});
     }
-    inline void set_mode(const std::string name, const Mode mode) {
-        set_mode(name, mode, {});
+    inline void set_mode(const Mode mode) {
+        set_mode(mode, {});
     }
-    inline LocationResponse get_location(const std::string name) {
-        return get_location(name, {});
+    inline LocationResponse get_location() {
+        return get_location({});
     }
-    inline std::unique_ptr<std::vector<Waypoint>> get_waypoints(const std::string name) {
-        return get_waypoints(name, {});
+    inline std::unique_ptr<std::vector<Waypoint>> get_waypoints() {
+        return get_waypoints({});
     }
-    inline void add_waypoint(const std::string name, const geo_point& location) {
-        add_waypoint(name, location, {});
+    inline void add_waypoint(const geo_point& location) {
+        add_waypoint(location, {});
     }
-    inline void remove_waypoint(const std::string name, const std::string id) {
-        remove_waypoint(name, id, {});
+    inline void remove_waypoint(const std::string id) {
+        remove_waypoint(id, {});
     }
-    inline std::unique_ptr<std::vector<geo_geometry>> get_obstacles(const std::string name) {
-        return get_obstacles(name, {});
+    inline std::unique_ptr<std::vector<geo_geometry>> get_obstacles() {
+        return get_obstacles({});
     }
-    inline std::unique_ptr<std::vector<Path>> get_paths(const std::string name) {
-        return get_paths(name, {});
+    inline std::unique_ptr<std::vector<Path>> get_paths() {
+        return get_paths({});
     }
 
    protected:

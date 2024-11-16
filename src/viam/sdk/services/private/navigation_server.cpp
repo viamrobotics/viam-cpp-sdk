@@ -36,7 +36,7 @@ viam::service::navigation::v1::Path path_to_proto(const Navigation::Path& p) {
                                          GetModeResponse* response) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::GetMode", this, request)([&](auto& helper, auto& nav) {
-        response->set_mode(Mode(nav->get_mode(request->name(), helper.getExtra())));
+        response->set_mode(Mode(nav->get_mode(helper.getExtra())));
     });
 }
 
@@ -45,7 +45,7 @@ viam::service::navigation::v1::Path path_to_proto(const Navigation::Path& p) {
                                          SetModeResponse*) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::SetMode", this, request)([&](auto& helper, auto& nav) {
-        nav->set_mode(request->name(), Navigation::Mode(request->mode()), helper.getExtra());
+        nav->set_mode(Navigation::Mode(request->mode()), helper.getExtra());
     });
 }
 
@@ -54,7 +54,7 @@ viam::service::navigation::v1::Path path_to_proto(const Navigation::Path& p) {
                                              GetLocationResponse* response) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::GetLocation", this, request)([&](auto& helper, auto& nav) {
-        const auto& loc = nav->get_location(request->name(), helper.getExtra());
+        const auto& loc = nav->get_location(helper.getExtra());
         *response->mutable_location() = loc.location.to_proto();
         response->set_compass_heading(loc.compass_heading);
     });
@@ -65,7 +65,7 @@ viam::service::navigation::v1::Path path_to_proto(const Navigation::Path& p) {
                                               GetWaypointsResponse* response) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::GetWaypoints", this, request)([&](auto& helper, auto& nav) {
-        const auto& waypoints = nav->get_waypoints(request->name(), helper.getExtra());
+        const auto& waypoints = nav->get_waypoints(helper.getExtra());
         vecToRepeatedPtr(*waypoints, *response->mutable_waypoints(), waypoint_to_proto);
     });
 }
@@ -75,18 +75,15 @@ viam::service::navigation::v1::Path path_to_proto(const Navigation::Path& p) {
                                              AddWaypointResponse*) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::AddWaypoint", this, request)([&](auto& helper, auto& nav) {
-        nav->add_waypoint(
-            request->name(), geo_point::from_proto(request->location()), helper.getExtra());
+        nav->add_waypoint(geo_point::from_proto(request->location()), helper.getExtra());
     });
 }
 
 ::grpc::Status NavigationServer::RemoveWaypoint(::grpc::ServerContext*,
                                                 const RemoveWaypointRequest* request,
                                                 RemoveWaypointResponse*) noexcept {
-    return make_service_helper<Navigation>(
-        "NavigationServer::RemoveWaypoint", this, request)([&](auto& helper, auto& nav) {
-        nav->remove_waypoint(request->name(), request->id(), helper.getExtra());
-    });
+    return make_service_helper<Navigation>("NavigationServer::RemoveWaypoint", this, request)(
+        [&](auto& helper, auto& nav) { nav->remove_waypoint(request->id(), helper.getExtra()); });
 }
 
 ::grpc::Status NavigationServer::GetObstacles(::grpc::ServerContext*,
@@ -94,7 +91,7 @@ viam::service::navigation::v1::Path path_to_proto(const Navigation::Path& p) {
                                               GetObstaclesResponse* response) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::GetObstacles", this, request)([&](auto& helper, auto& nav) {
-        const auto& obstacles = nav->get_obstacles(request->name(), helper.getExtra());
+        const auto& obstacles = nav->get_obstacles(helper.getExtra());
         vecToRepeatedPtr(*obstacles, *response->mutable_obstacles());
     });
 }
@@ -104,7 +101,7 @@ viam::service::navigation::v1::Path path_to_proto(const Navigation::Path& p) {
                                           GetPathsResponse* response) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::GetPaths", this, request)([&](auto& helper, auto& nav) {
-        const auto& paths = nav->get_paths(request->name(), helper.getExtra());
+        const auto& paths = nav->get_paths(helper.getExtra());
         vecToRepeatedPtr(*paths, *response->mutable_paths(), path_to_proto);
     });
 }
@@ -112,10 +109,8 @@ viam::service::navigation::v1::Path path_to_proto(const Navigation::Path& p) {
 ::grpc::Status NavigationServer::GetProperties(::grpc::ServerContext*,
                                                const GetPropertiesRequest* request,
                                                GetPropertiesResponse* response) noexcept {
-    return make_service_helper<Navigation>(
-        "NavigationServer::GetProperties", this, request)([&](auto&, auto& nav) {
-        response->set_map_type(MapType(nav->get_properties(request->name())));
-    });
+    return make_service_helper<Navigation>("NavigationServer::GetProperties", this, request)(
+        [&](auto&, auto& nav) { response->set_map_type(MapType(nav->get_properties())); });
 }
 
 ::grpc::Status NavigationServer::DoCommand(
