@@ -15,6 +15,8 @@ namespace navigation {
 
 using namespace viam::sdk;
 
+MockNav::MockNav(std::string name) : Navigation(name) {}
+
 Navigation::Mode MockNav::get_mode(const ProtoStruct& extra) {
     return mode;
 }

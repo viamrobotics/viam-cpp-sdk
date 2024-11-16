@@ -15,6 +15,7 @@ using namespace sdk;
 
 class MockNav : public sdk::Navigation {
    public:
+    MockNav(std::string);
     Mode get_mode(const ProtoStruct& extra) override;
     void set_mode(const Mode mode, const ProtoStruct& extra) override;
     LocationResponse get_location(const ProtoStruct& extra) override;
