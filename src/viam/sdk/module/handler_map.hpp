@@ -1,5 +1,7 @@
 #pragma once
 
+#include <unordered_map>
+
 #include <viam/sdk/resource/resource_api.hpp>
 
 namespace viam {
