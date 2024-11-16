@@ -111,7 +111,7 @@ viam::service::navigation::v1::Path path_to_proto(const Navigation::Path& p) {
                                                GetPropertiesResponse* response) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::GetProperties", this, request)([&](auto&, auto& nav) {
-        Navigation::Properties props = nav->get_properties();
+        const Navigation::Properties props = nav->get_properties();
         response->set_map_type(MapType(props.map_type));
     });
 }
