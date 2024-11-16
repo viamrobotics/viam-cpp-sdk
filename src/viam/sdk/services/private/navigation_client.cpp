@@ -111,10 +111,10 @@ std::unique_ptr<std::vector<NavigationClient::Path>> NavigationClient::get_paths
         });
 }
 
-NavigationClient::MapType NavigationClient::get_properties() {
+NavigationClient::Properties NavigationClient::get_properties() {
     return make_client_helper(this, *stub_, &StubType::GetProperties)
         .with([&](auto& request) {})
-        .invoke([](auto& response) { return MapType(response.map_type()); });
+        .invoke([](auto& response) { return Properties{MapType(response.map_type())}; });
 }
 
 ProtoStruct NavigationClient::do_command(const ProtoStruct& command) {

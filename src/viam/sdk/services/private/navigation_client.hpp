@@ -29,7 +29,7 @@ class NavigationClient : public Navigation {
     void remove_waypoint(const std::string id, const ProtoStruct& extra) override;
     std::unique_ptr<std::vector<geo_geometry>> get_obstacles(const ProtoStruct& extra) override;
     std::unique_ptr<std::vector<Path>> get_paths(const ProtoStruct& extra) override;
-    MapType get_properties() override;
+    Properties get_properties() override;
     ProtoStruct do_command(const ProtoStruct& command) override;
 
    private:

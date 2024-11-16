@@ -33,6 +33,10 @@ class Navigation : public Service {
         double compass_heading;
     };
 
+    struct Properties {
+        MapType map_type;
+    };
+
     struct Waypoint {
         std::string id;
         geo_point location;
@@ -55,7 +59,7 @@ class Navigation : public Service {
                                  const ProtoStruct& extra) = 0;
     virtual std::unique_ptr<std::vector<geo_geometry>> get_obstacles(const ProtoStruct& extra) = 0;
     virtual std::unique_ptr<std::vector<Path>> get_paths(const ProtoStruct& extra) = 0;
-    virtual MapType get_properties() = 0;
+    virtual Properties get_properties() = 0;
     virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
     // overloads without `extra` param.

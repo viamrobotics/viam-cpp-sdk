@@ -109,8 +109,11 @@ viam::service::navigation::v1::Path path_to_proto(const Navigation::Path& p) {
 ::grpc::Status NavigationServer::GetProperties(::grpc::ServerContext*,
                                                const GetPropertiesRequest* request,
                                                GetPropertiesResponse* response) noexcept {
-    return make_service_helper<Navigation>("NavigationServer::GetProperties", this, request)(
-        [&](auto&, auto& nav) { response->set_map_type(MapType(nav->get_properties())); });
+    return make_service_helper<Navigation>(
+        "NavigationServer::GetProperties", this, request)([&](auto&, auto& nav) {
+        Navigation::Properties props = nav->get_properties();
+        response->set_map_type(MapType(props.map_type));
+    });
 }
 
 ::grpc::Status NavigationServer::DoCommand(
