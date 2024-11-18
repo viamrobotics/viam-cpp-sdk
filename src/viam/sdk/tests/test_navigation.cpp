@@ -42,9 +42,10 @@ BOOST_AUTO_TEST_CASE(nav_get_location) {
 }
 
 // weak backport of std::transform.
-template <typename T, typename U>
-std::vector<T> mapOver(const std::vector<U>& source, T (*f)(const U&)) {
-    std::vector<T> ret;
+template <typename T, typename Func>
+auto mapOver(const std::vector<T>& source, Func f) {
+    using Result = decltype(f(source.front()));
+    std::vector<Result> ret;
     for (const auto& x : source) {
         ret.push_back(f(x));
     }
@@ -71,11 +72,8 @@ BOOST_AUTO_TEST_CASE(nav_waypoints) {
         const std::vector<std::string> expected_ids = {(*waypoints)[0].id, (*waypoints)[2].id};
         waypoints = client.get_waypoints();
         BOOST_CHECK_EQUAL(waypoints->size(), 2);
-        const auto actual_ids = mapOver(
-            *waypoints,
-            (std::string(*)(const Navigation::Waypoint&))[](const Navigation::Waypoint& wp) {
-                return wp.id;
-            });
+        const auto actual_ids =
+            mapOver(*waypoints, [](const Navigation::Waypoint& wp) { return wp.id; });
         BOOST_CHECK_EQUAL(expected_ids, actual_ids);
     });
 }
