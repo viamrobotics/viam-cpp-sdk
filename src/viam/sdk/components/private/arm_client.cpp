@@ -62,7 +62,7 @@ void ArmClient::move_through_joint_positions(const std::vector<std::vector<doubl
                           *options.max_acc_degs_per_sec2);
                   }
 
-                  for (const std::vector<double>& pos : positions) {
+                  for (const auto& pos : positions) {
                       viam::component::arm::v1::JointPositions jpos;
                       jpos.mutable_values()->Add(pos.begin(), pos.end());
                       request.mutable_positions()->Add(std::move(jpos));
