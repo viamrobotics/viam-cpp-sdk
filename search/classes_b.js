@@ -21,7 +21,8 @@ var searchData=
   ['movementsensor_18',['MovementSensor',['../classviam_1_1sdk_1_1MovementSensor.html',1,'viam::sdk']]],
   ['movementsensorclient_19',['MovementSensorClient',['../classviam_1_1sdk_1_1impl_1_1MovementSensorClient.html',1,'viam::sdk::impl']]],
   ['movementsensorserver_20',['MovementSensorServer',['../classviam_1_1sdk_1_1impl_1_1MovementSensorServer.html',1,'viam::sdk::impl']]],
-  ['mybase_21',['MyBase',['../classMyBase.html',1,'']]],
-  ['mygizmo_22',['MyGizmo',['../classMyGizmo.html',1,'']]],
-  ['mysummation_23',['MySummation',['../classMySummation.html',1,'']]]
+  ['moveoptions_21',['MoveOptions',['../structviam_1_1sdk_1_1Arm_1_1MoveOptions.html',1,'viam::sdk::Arm']]],
+  ['mybase_22',['MyBase',['../classMyBase.html',1,'']]],
+  ['mygizmo_23',['MyGizmo',['../classMyGizmo.html',1,'']]],
+  ['mysummation_24',['MySummation',['../classMySummation.html',1,'']]]
 ];

@@ -129,6 +129,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a64da030caef0d10833e9effa289a0a16" id="r_a64da030caef0d10833e9effa289a0a16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a64da030caef0d10833e9effa289a0a16">move_to_joint_positions</a> (const std::vector&lt; double &gt; &amp;positions, const ProtoStruct &amp;extra) override</td></tr>
 <tr class="memdesc:a64da030caef0d10833e9effa289a0a16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move each joint on the arm to the corresponding angle specified in.  <br /></td></tr>
 <tr class="separator:a64da030caef0d10833e9effa289a0a16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af04abb33323a81ee5f5ebe712923347b" id="r_af04abb33323a81ee5f5ebe712923347b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af04abb33323a81ee5f5ebe712923347b">move_through_joint_positions</a> (const std::vector&lt; std::vector&lt; double &gt; &gt; &amp;positions, const <a class="el" href="structviam_1_1sdk_1_1Arm_1_1MoveOptions.html">Arm::MoveOptions</a> &amp;options, const ProtoStruct &amp;extra) override</td></tr>
+<tr class="memdesc:af04abb33323a81ee5f5ebe712923347b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move each joint on the arm through the positions specified in.  <br /></td></tr>
+<tr class="separator:af04abb33323a81ee5f5ebe712923347b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2dc96ecff067478dea7104f9d20c90aa" id="r_a2dc96ecff067478dea7104f9d20c90aa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2dc96ecff067478dea7104f9d20c90aa">is_moving</a> () override</td></tr>
 <tr class="memdesc:a2dc96ecff067478dea7104f9d20c90aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports if the arm is in motion.  <br /></td></tr>
 <tr class="separator:a2dc96ecff067478dea7104f9d20c90aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -170,6 +173,12 @@ std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><
 <tr class="memitem:a1684010009781539671c88c57bae7d68" id="r_a1684010009781539671c88c57bae7d68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9ccf3ad0775">KinematicsData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1684010009781539671c88c57bae7d68">get_kinematics</a> ()</td></tr>
 <tr class="memdesc:a1684010009781539671c88c57bae7d68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the kinematics data associated with the arm.  <br /></td></tr>
 <tr class="separator:a1684010009781539671c88c57bae7d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d9497dfc7b23872f5909eaf8c670cbd" id="r_a9d9497dfc7b23872f5909eaf8c670cbd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9d9497dfc7b23872f5909eaf8c670cbd">move_through_joint_positions</a> (const std::vector&lt; std::vector&lt; double &gt; &gt; &amp;positions, const <a class="el" href="structviam_1_1sdk_1_1Arm_1_1MoveOptions.html">MoveOptions</a> &amp;options)</td></tr>
+<tr class="memdesc:a9d9497dfc7b23872f5909eaf8c670cbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move each joint on the arm through the positions specified in.  <br /></td></tr>
+<tr class="separator:a9d9497dfc7b23872f5909eaf8c670cbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09c9addd617929098027755f757f3340" id="r_a09c9addd617929098027755f757f3340"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a09c9addd617929098027755f757f3340">move_through_joint_positions</a> (const std::vector&lt; std::vector&lt; double &gt; &gt; &amp;positions, const <a class="el" href="structviam_1_1sdk_1_1Arm_1_1MoveOptions.html">MoveOptions</a> &amp;options, const ProtoStruct &amp;extra)=0</td></tr>
+<tr class="memdesc:a09c9addd617929098027755f757f3340"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move each joint on the arm through the positions specified in.  <br /></td></tr>
+<tr class="separator:a09c9addd617929098027755f757f3340"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48cc947a63a1c32bbe122017aab51849" id="r_a48cc947a63a1c32bbe122017aab51849"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48cc947a63a1c32bbe122017aab51849">move_to_joint_positions</a> (const std::vector&lt; double &gt; &amp;positions)</td></tr>
 <tr class="memdesc:a48cc947a63a1c32bbe122017aab51849"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move each joint on the arm to the corresponding angle specified in.  <br /></td></tr>
 <tr class="separator:a48cc947a63a1c32bbe122017aab51849"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -196,6 +205,9 @@ std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><
 <tr class="memitem:a48cc947a63a1c32bbe122017aab51849 inherit pub_methods_classviam_1_1sdk_1_1Arm" id="r_a48cc947a63a1c32bbe122017aab51849"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Arm.html#a48cc947a63a1c32bbe122017aab51849">move_to_joint_positions</a> (const std::vector&lt; double &gt; &amp;positions)</td></tr>
 <tr class="memdesc:a48cc947a63a1c32bbe122017aab51849 inherit pub_methods_classviam_1_1sdk_1_1Arm"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move each joint on the arm to the corresponding angle specified in.  <br /></td></tr>
 <tr class="separator:a48cc947a63a1c32bbe122017aab51849 inherit pub_methods_classviam_1_1sdk_1_1Arm"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d9497dfc7b23872f5909eaf8c670cbd inherit pub_methods_classviam_1_1sdk_1_1Arm" id="r_a9d9497dfc7b23872f5909eaf8c670cbd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Arm.html#a9d9497dfc7b23872f5909eaf8c670cbd">move_through_joint_positions</a> (const std::vector&lt; std::vector&lt; double &gt; &gt; &amp;positions, const <a class="el" href="structviam_1_1sdk_1_1Arm_1_1MoveOptions.html">MoveOptions</a> &amp;options)</td></tr>
+<tr class="memdesc:a9d9497dfc7b23872f5909eaf8c670cbd inherit pub_methods_classviam_1_1sdk_1_1Arm"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move each joint on the arm through the positions specified in.  <br /></td></tr>
+<tr class="separator:a9d9497dfc7b23872f5909eaf8c670cbd inherit pub_methods_classviam_1_1sdk_1_1Arm"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1684010009781539671c88c57bae7d68 inherit pub_methods_classviam_1_1sdk_1_1Arm" id="r_a1684010009781539671c88c57bae7d68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9ccf3ad0775">KinematicsData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Arm.html#a1684010009781539671c88c57bae7d68">get_kinematics</a> ()</td></tr>
 <tr class="memdesc:a1684010009781539671c88c57bae7d68 inherit pub_methods_classviam_1_1sdk_1_1Arm"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the kinematics data associated with the arm.  <br /></td></tr>
 <tr class="separator:a1684010009781539671c88c57bae7d68 inherit pub_methods_classviam_1_1sdk_1_1Arm"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -651,6 +663,136 @@ static <a class="el" href="classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9c
 <p>Reports if the arm is in motion. </p>
 
 <p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#a03e67125cfd7e762a3ead084aa488b07">viam::sdk::Arm</a>.</p>
+
+</div>
+</div>
+<a id="af04abb33323a81ee5f5ebe712923347b" name="af04abb33323a81ee5f5ebe712923347b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af04abb33323a81ee5f5ebe712923347b">&#9670;&#160;</a></span>move_through_joint_positions() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void viam::sdk::impl::ArmClient::move_through_joint_positions </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::vector&lt; double &gt; &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>positions</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structviam_1_1sdk_1_1Arm_1_1MoveOptions.html">Arm::MoveOptions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Move each joint on the arm through the positions specified in. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">positions</td><td></td></tr>
+    <tr><td class="paramname">options</td><td>optional specifications to be obeyed during the motion. </td></tr>
+    <tr><td class="paramname">extra</td><td>Any additional arguments to the method. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#a09c9addd617929098027755f757f3340">viam::sdk::Arm</a>.</p>
+
+</div>
+</div>
+<a id="a9d9497dfc7b23872f5909eaf8c670cbd" name="a9d9497dfc7b23872f5909eaf8c670cbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d9497dfc7b23872f5909eaf8c670cbd">&#9670;&#160;</a></span>move_through_joint_positions() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void viam::sdk::Arm::move_through_joint_positions </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::vector&lt; double &gt; &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>positions</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structviam_1_1sdk_1_1Arm_1_1MoveOptions.html">MoveOptions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Move each joint on the arm through the positions specified in. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">positions</td><td></td></tr>
+    <tr><td class="paramname">options</td><td>optional specifications to be obeyed during the motion. TODO consider replacing vector vector with xtensor array, and also if it may be possible to specify or constrain dimensionality of the array in advance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a09c9addd617929098027755f757f3340" name="a09c9addd617929098027755f757f3340"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09c9addd617929098027755f757f3340">&#9670;&#160;</a></span>move_through_joint_positions() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void viam::sdk::Arm::move_through_joint_positions </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::vector&lt; double &gt; &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>positions</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structviam_1_1sdk_1_1Arm_1_1MoveOptions.html">MoveOptions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Move each joint on the arm through the positions specified in. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">positions</td><td></td></tr>
+    <tr><td class="paramname">options</td><td>optional specifications to be obeyed during the motion. </td></tr>
+    <tr><td class="paramname">extra</td><td>Any additional arguments to the method. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Arm.html#a09c9addd617929098027755f757f3340">viam::sdk::Arm</a>.</p>
 
 </div>
 </div>
