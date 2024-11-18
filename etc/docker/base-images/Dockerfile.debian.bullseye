@@ -1,6 +1,6 @@
 FROM debian:bullseye
 
-ENV HOME /root
+ENV HOME=/root
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update

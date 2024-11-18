@@ -36,4 +36,5 @@ jobs:
           cmake --build build --target install
           cmake --install build
       - name: test
+        working-directory: build
         run: etc/docker/tests/run_test.sh
