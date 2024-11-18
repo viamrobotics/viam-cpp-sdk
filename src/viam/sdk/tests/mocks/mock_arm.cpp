@@ -1,5 +1,6 @@
 #include <viam/sdk/tests/mocks/mock_arm.hpp>
 
+#include "mock_arm.hpp"
 #include <viam/sdk/tests/test_utils.hpp>
 
 namespace viam {
@@ -29,6 +30,13 @@ std::vector<double> MockArm::get_joint_positions(const sdk::ProtoStruct&) {
 void MockArm::move_to_joint_positions(const std::vector<double>& positions,
                                       const sdk::ProtoStruct&) {
     joint_positions = positions;
+}
+
+void MockArm::move_through_joint_positions(const std::vector<std::vector<double>>& positions,
+                                           const Arm::MoveOptions& opts,
+                                           const sdk::ProtoStruct&) {
+    move_thru_positions = positions;
+    move_opts = opts;
 }
 
 void MockArm::stop(const sdk::ProtoStruct&) {

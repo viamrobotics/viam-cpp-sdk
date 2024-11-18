@@ -19,6 +19,11 @@ class MockArm : public sdk::Arm {
     std::vector<double> get_joint_positions(const sdk::ProtoStruct&) override;
     void move_to_joint_positions(const std::vector<double>& positions,
                                  const sdk::ProtoStruct&) override;
+
+    void move_through_joint_positions(const std::vector<std::vector<double>>& positions,
+                                      const Arm::MoveOptions& opts,
+                                      const sdk::ProtoStruct&) override;
+
     void stop(const sdk::ProtoStruct&) override;
     bool is_moving() override;
     sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
@@ -27,6 +32,8 @@ class MockArm : public sdk::Arm {
 
     sdk::pose current_location;
     std::vector<double> joint_positions;
+    std::vector<std::vector<double>> move_thru_positions;
+    sdk::Arm::MoveOptions move_opts;
     bool peek_stop_called;
     sdk::ProtoStruct peek_command;
 };
