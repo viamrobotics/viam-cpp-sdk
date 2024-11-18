@@ -94,7 +94,7 @@ class Navigation : public Service {
     /// @brief Get the waypoints this nav service knows about.
     /// @param extra Any additional arguments to the method.
     /// @return List of waypoints.
-    virtual std::unique_ptr<std::vector<Waypoint>> get_waypoints(const ProtoStruct& extra) = 0;
+    virtual std::vector<Waypoint> get_waypoints(const ProtoStruct& extra) = 0;
 
     /// @brief Add a waypoint.
     /// @param location Coordinate of the new waypoint.
@@ -108,12 +108,12 @@ class Navigation : public Service {
     /// @brief Get the obstacles this nav service knows about.
     /// @param extra Any additional arguments to the method.
     /// @return List of shapes.
-    virtual std::unique_ptr<std::vector<geo_geometry>> get_obstacles(const ProtoStruct& extra) = 0;
+    virtual std::vector<geo_geometry> get_obstacles(const ProtoStruct& extra) = 0;
 
     /// @brief Get the paths this nav service knows about.
     /// @param extra Any additional arguments to the method.
     /// @return List of paths.
-    virtual std::unique_ptr<std::vector<Path>> get_paths(const ProtoStruct& extra) = 0;
+    virtual std::vector<Path> get_paths(const ProtoStruct& extra) = 0;
 
     /// @brief Get this nav service's properties.
     /// @return Properties.
@@ -138,7 +138,7 @@ class Navigation : public Service {
         return get_location({});
     }
 
-    inline std::unique_ptr<std::vector<Waypoint>> get_waypoints() {
+    inline std::vector<Waypoint> get_waypoints() {
         return get_waypoints({});
     }
 
@@ -150,11 +150,11 @@ class Navigation : public Service {
         remove_waypoint(id, {});
     }
 
-    inline std::unique_ptr<std::vector<geo_geometry>> get_obstacles() {
+    inline std::vector<geo_geometry> get_obstacles() {
         return get_obstacles({});
     }
 
-    inline std::unique_ptr<std::vector<Path>> get_paths() {
+    inline std::vector<Path> get_paths() {
         return get_paths({});
     }
 

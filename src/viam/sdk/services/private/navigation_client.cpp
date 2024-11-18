@@ -60,13 +60,12 @@ Navigation::LocationResponse NavigationClient::get_location(const ProtoStruct& e
         });
 }
 
-std::unique_ptr<std::vector<Navigation::Waypoint>> NavigationClient::get_waypoints(
-    const ProtoStruct& extra) {
+std::vector<Navigation::Waypoint> NavigationClient::get_waypoints(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetWaypoints)
         .with([&](auto& request) { *request.mutable_extra() = map_to_struct(extra); })
         .invoke([](auto& response) {
-            auto ret = std::make_unique<std::vector<Navigation::Waypoint>>();
-            repeatedPtrToVec(response.waypoints(), *ret, from_proto);
+            std::vector<Navigation::Waypoint> ret;
+            repeatedPtrToVec(response.waypoints(), ret, from_proto);
             return ret;
         });
 }
@@ -89,24 +88,22 @@ void NavigationClient::remove_waypoint(const std::string id, const ProtoStruct& 
         .invoke([](auto& response) {});
 }
 
-std::unique_ptr<std::vector<geo_geometry>> NavigationClient::get_obstacles(
-    const ProtoStruct& extra) {
+std::vector<geo_geometry> NavigationClient::get_obstacles(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetObstacles)
         .with([&](auto& request) { *request.mutable_extra() = map_to_struct(extra); })
         .invoke([](auto& response) {
-            auto ret = std::make_unique<std::vector<geo_geometry>>();
-            repeatedPtrToVec(response.obstacles(), *ret);
+            std::vector<geo_geometry> ret;
+            repeatedPtrToVec(response.obstacles(), ret);
             return ret;
         });
 }
 
-std::unique_ptr<std::vector<NavigationClient::Path>> NavigationClient::get_paths(
-    const ProtoStruct& extra) {
+std::vector<NavigationClient::Path> NavigationClient::get_paths(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetPaths)
         .with([&](auto& request) { *request.mutable_extra() = map_to_struct(extra); })
         .invoke([](auto& response) {
-            auto ret = std::make_unique<std::vector<Path>>();
-            repeatedPtrToVec(response.paths(), *ret, from_proto);
+            std::vector<Path> ret;
+            repeatedPtrToVec(response.paths(), ret, from_proto);
             return ret;
         });
 }

@@ -65,8 +65,8 @@ viam::service::navigation::v1::Path to_proto(const Navigation::Path& p) {
                                               GetWaypointsResponse* response) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::GetWaypoints", this, request)([&](auto& helper, auto& nav) {
-        const auto& waypoints = nav->get_waypoints(helper.getExtra());
-        vecToRepeatedPtr(*waypoints, *response->mutable_waypoints(), to_proto);
+        const auto waypoints = nav->get_waypoints(helper.getExtra());
+        vecToRepeatedPtr(waypoints, *response->mutable_waypoints(), to_proto);
     });
 }
 
@@ -91,8 +91,8 @@ viam::service::navigation::v1::Path to_proto(const Navigation::Path& p) {
                                               GetObstaclesResponse* response) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::GetObstacles", this, request)([&](auto& helper, auto& nav) {
-        const auto& obstacles = nav->get_obstacles(helper.getExtra());
-        vecToRepeatedPtr(*obstacles, *response->mutable_obstacles());
+        const auto obstacles = nav->get_obstacles(helper.getExtra());
+        vecToRepeatedPtr(obstacles, *response->mutable_obstacles());
     });
 }
 
@@ -101,8 +101,8 @@ viam::service::navigation::v1::Path to_proto(const Navigation::Path& p) {
                                           GetPathsResponse* response) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::GetPaths", this, request)([&](auto& helper, auto& nav) {
-        const auto& paths = nav->get_paths(helper.getExtra());
-        vecToRepeatedPtr(*paths, *response->mutable_paths(), to_proto);
+        const auto paths = nav->get_paths(helper.getExtra());
+        vecToRepeatedPtr(paths, *response->mutable_paths(), to_proto);
     });
 }
 

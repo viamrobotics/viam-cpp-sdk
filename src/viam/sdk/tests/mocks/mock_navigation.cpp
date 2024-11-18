@@ -29,9 +29,8 @@ Navigation::LocationResponse MockNav::get_location(const ProtoStruct& extra) {
     return loc;
 }
 
-std::unique_ptr<std::vector<Navigation::Waypoint>> MockNav::get_waypoints(
-    const ProtoStruct& extra) {
-    return std::make_unique<std::vector<Waypoint>>(waypoints);
+std::vector<Navigation::Waypoint> MockNav::get_waypoints(const ProtoStruct& extra) {
+    return waypoints;
 }
 
 void MockNav::add_waypoint(const geo_point& location, const ProtoStruct& extra) {
@@ -47,12 +46,12 @@ void MockNav::remove_waypoint(const std::string id, const ProtoStruct& extra) {
     }
 }
 
-std::unique_ptr<std::vector<geo_geometry>> MockNav::get_obstacles(const ProtoStruct& extra) {
-    return std::make_unique<std::vector<geo_geometry>>(obstacles);
+std::vector<geo_geometry> MockNav::get_obstacles(const ProtoStruct& extra) {
+    return obstacles;
 }
 
-std::unique_ptr<std::vector<Navigation::Path>> MockNav::get_paths(const ProtoStruct& extra) {
-    return std::make_unique<std::vector<Path>>(paths);
+std::vector<Navigation::Path> MockNav::get_paths(const ProtoStruct& extra) {
+    return paths;
 }
 
 Navigation::Properties MockNav::get_properties() {

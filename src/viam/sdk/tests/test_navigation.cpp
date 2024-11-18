@@ -58,22 +58,22 @@ BOOST_AUTO_TEST_CASE(nav_waypoints) {
     client_to_mock_pipeline<Navigation>(mock, [&](Navigation& client) {
         // confirm empty
         auto waypoints = client.get_waypoints();
-        BOOST_CHECK_EQUAL(waypoints->size(), 0);
+        BOOST_CHECK_EQUAL(waypoints.size(), 0);
 
         // add 3 and confirm size
         for (int i = 0; i < 3; i++) {
             client.add_waypoint(geo_point{0, double(i)});
         }
         waypoints = client.get_waypoints();
-        BOOST_CHECK_EQUAL(waypoints->size(), 3);
+        BOOST_CHECK_EQUAL(waypoints.size(), 3);
 
         // remove 1, check size and IDs
-        client.remove_waypoint((*waypoints)[1].id);
-        const std::vector<std::string> expected_ids = {(*waypoints)[0].id, (*waypoints)[2].id};
+        client.remove_waypoint(waypoints[1].id);
+        const std::vector<std::string> expected_ids = {waypoints[0].id, waypoints[2].id};
         waypoints = client.get_waypoints();
-        BOOST_CHECK_EQUAL(waypoints->size(), 2);
+        BOOST_CHECK_EQUAL(waypoints.size(), 2);
         const auto actual_ids =
-            mapOver(*waypoints, [](const Navigation::Waypoint& wp) { return wp.id; });
+            mapOver(waypoints, [](const Navigation::Waypoint& wp) { return wp.id; });
         BOOST_CHECK_EQUAL(expected_ids, actual_ids);
     });
 }
@@ -83,18 +83,18 @@ BOOST_AUTO_TEST_CASE(nav_obstacles) {
     client_to_mock_pipeline<Navigation>(mock, [&](Navigation& client) {
         // empty case
         auto obstacles = client.get_obstacles();
-        BOOST_CHECK_EQUAL(obstacles->size(), 0);
+        BOOST_CHECK_EQUAL(obstacles.size(), 0);
 
         // one element
         mock->obstacles.push_back({});
         obstacles = client.get_obstacles();
-        BOOST_CHECK_EQUAL(obstacles->size(), 1);
+        BOOST_CHECK_EQUAL(obstacles.size(), 1);
 
         // one element with one sub-element
         mock->obstacles.back().geometries.push_back({});
         obstacles = client.get_obstacles();
-        BOOST_CHECK_EQUAL(obstacles->size(), 1);
-        BOOST_CHECK_EQUAL(obstacles->back().geometries.size(), 1);
+        BOOST_CHECK_EQUAL(obstacles.size(), 1);
+        BOOST_CHECK_EQUAL(obstacles.back().geometries.size(), 1);
     });
 }
 
@@ -103,13 +103,13 @@ BOOST_AUTO_TEST_CASE(nav_paths) {
     client_to_mock_pipeline<Navigation>(mock, [&](Navigation& client) {
         // empty
         auto paths = client.get_paths();
-        BOOST_CHECK_EQUAL(paths->size(), 0);
+        BOOST_CHECK_EQUAL(paths.size(), 0);
 
         // 1 element with 1 sub-element
         mock->paths.push_back({"2", {{}}});
         paths = client.get_paths();
         std::vector<Navigation::Path> expected = {Navigation::Path{"2", {{}}}};
-        BOOST_CHECK_EQUAL(*paths, expected);
+        BOOST_CHECK_EQUAL(paths, expected);
     });
 }
 
