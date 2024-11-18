@@ -3,6 +3,10 @@ name: Test
 on:
   pull_request:
   workflow_dispatch:
+    inputs:
+      clang-tidy:
+        type: boolean
+        default: true
 
 jobs:
   run-tests:
@@ -25,7 +29,7 @@ jobs:
             -DVIAMCPPSDK_OFFLINE_PROTO_GENERATION=ON \
             -DVIAMCPPSDK_BUILD_TESTS=ON \
             -DVIAMCPPSDK_BUILD_EXAMPLES=ON \
-            -DVIAMCPPSDK_CLANG_TIDY=ON \
+            -DVIAMCPPSDK_CLANG_TIDY=${{ inputs.clang-tidy && 'ON' || 'OFF' }} \
             -DVIAMCPPSDK_SANITIZED_BUILD=${{ matrix.BUILD_SHARED }}
       - name: build
         run: |
