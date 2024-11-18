@@ -17,14 +17,14 @@ namespace impl {
 
 using namespace service::navigation::v1;
 
-viam::service::navigation::v1::Waypoint waypoint_to_proto(const Navigation::Waypoint& wp) {
+viam::service::navigation::v1::Waypoint to_proto(const Navigation::Waypoint& wp) {
     viam::service::navigation::v1::Waypoint ret;
     *ret.mutable_id() = wp.id;
     *ret.mutable_location() = wp.location.to_proto();
     return ret;
 }
 
-viam::service::navigation::v1::Path path_to_proto(const Navigation::Path& p) {
+viam::service::navigation::v1::Path to_proto(const Navigation::Path& p) {
     viam::service::navigation::v1::Path ret;
     *ret.mutable_destination_waypoint_id() = p.destination_waypoint_id;
     vecToRepeatedPtr(p.geopoints, *ret.mutable_geopoints());
@@ -66,7 +66,7 @@ viam::service::navigation::v1::Path path_to_proto(const Navigation::Path& p) {
     return make_service_helper<Navigation>(
         "NavigationServer::GetWaypoints", this, request)([&](auto& helper, auto& nav) {
         const auto& waypoints = nav->get_waypoints(helper.getExtra());
-        vecToRepeatedPtr(*waypoints, *response->mutable_waypoints(), waypoint_to_proto);
+        vecToRepeatedPtr(*waypoints, *response->mutable_waypoints(), to_proto);
     });
 }
 
@@ -102,7 +102,7 @@ viam::service::navigation::v1::Path path_to_proto(const Navigation::Path& p) {
     return make_service_helper<Navigation>(
         "NavigationServer::GetPaths", this, request)([&](auto& helper, auto& nav) {
         const auto& paths = nav->get_paths(helper.getExtra());
-        vecToRepeatedPtr(*paths, *response->mutable_paths(), path_to_proto);
+        vecToRepeatedPtr(*paths, *response->mutable_paths(), to_proto);
     });
 }
 

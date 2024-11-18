@@ -19,11 +19,11 @@ namespace impl {
 
 using namespace viam::service::navigation::v1;
 
-Navigation::Waypoint waypoint_from_proto(const viam::service::navigation::v1::Waypoint& proto) {
+Navigation::Waypoint from_proto(const viam::service::navigation::v1::Waypoint& proto) {
     return Navigation::Waypoint{proto.id(), geo_point::from_proto(proto.location())};
 }
 
-Navigation::Path path_from_proto(const viam::service::navigation::v1::Path& proto) {
+Navigation::Path from_proto(const viam::service::navigation::v1::Path& proto) {
     Navigation::Path ret{proto.destination_waypoint_id()};
     repeatedPtrToVec(proto.geopoints(), ret.geopoints);
     return ret;
@@ -66,7 +66,7 @@ std::unique_ptr<std::vector<Navigation::Waypoint>> NavigationClient::get_waypoin
         .with([&](auto& request) { *request.mutable_extra() = map_to_struct(extra); })
         .invoke([](auto& response) {
             auto ret = std::make_unique<std::vector<Navigation::Waypoint>>();
-            repeatedPtrToVec(response.waypoints(), *ret, waypoint_from_proto);
+            repeatedPtrToVec(response.waypoints(), *ret, from_proto);
             return ret;
         });
 }
@@ -106,7 +106,7 @@ std::unique_ptr<std::vector<NavigationClient::Path>> NavigationClient::get_paths
         .with([&](auto& request) { *request.mutable_extra() = map_to_struct(extra); })
         .invoke([](auto& response) {
             auto ret = std::make_unique<std::vector<Path>>();
-            repeatedPtrToVec(response.paths(), *ret, path_from_proto);
+            repeatedPtrToVec(response.paths(), *ret, from_proto);
             return ret;
         });
 }
