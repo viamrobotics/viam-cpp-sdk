@@ -43,13 +43,14 @@ var searchData=
   ['traits_3c_20motion_20_3e_40',['traits&lt; Motion &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Motion_01_4.html',1,'viam::sdk::API']]],
   ['traits_3c_20motor_20_3e_41',['traits&lt; Motor &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Motor_01_4.html',1,'viam::sdk::API']]],
   ['traits_3c_20movementsensor_20_3e_42',['traits&lt; MovementSensor &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01MovementSensor_01_4.html',1,'viam::sdk::API']]],
-  ['traits_3c_20posetracker_20_3e_43',['traits&lt; PoseTracker &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01PoseTracker_01_4.html',1,'viam::sdk::API']]],
-  ['traits_3c_20powersensor_20_3e_44',['traits&lt; PowerSensor &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01PowerSensor_01_4.html',1,'viam::sdk::API']]],
-  ['traits_3c_20resource_20_3e_45',['traits&lt; Resource &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Resource_01_4.html',1,'viam::sdk::API']]],
-  ['traits_3c_20sensor_20_3e_46',['traits&lt; Sensor &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Sensor_01_4.html',1,'viam::sdk::API']]],
-  ['traits_3c_20servo_20_3e_47',['traits&lt; Servo &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Servo_01_4.html',1,'viam::sdk::API']]],
-  ['traits_3c_20summation_20_3e_48',['traits&lt; Summation &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Summation_01_4.html',1,'viam::sdk::API']]],
-  ['transform_49',['transform',['../structviam_1_1sdk_1_1WorldState_1_1transform.html',1,'viam::sdk::WorldState']]],
-  ['transform_5fpose_50',['transform_pose',['../classviam_1_1sdk_1_1RobotClient.html#a224a707fe7e12d6ab139c8d123d06ec2',1,'viam::sdk::RobotClient']]],
-  ['translation_51',['translation',['../structviam_1_1sdk_1_1translation.html',1,'viam::sdk']]]
+  ['traits_3c_20navigation_20_3e_43',['traits&lt; Navigation &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Navigation_01_4.html',1,'viam::sdk::API']]],
+  ['traits_3c_20posetracker_20_3e_44',['traits&lt; PoseTracker &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01PoseTracker_01_4.html',1,'viam::sdk::API']]],
+  ['traits_3c_20powersensor_20_3e_45',['traits&lt; PowerSensor &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01PowerSensor_01_4.html',1,'viam::sdk::API']]],
+  ['traits_3c_20resource_20_3e_46',['traits&lt; Resource &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Resource_01_4.html',1,'viam::sdk::API']]],
+  ['traits_3c_20sensor_20_3e_47',['traits&lt; Sensor &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Sensor_01_4.html',1,'viam::sdk::API']]],
+  ['traits_3c_20servo_20_3e_48',['traits&lt; Servo &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Servo_01_4.html',1,'viam::sdk::API']]],
+  ['traits_3c_20summation_20_3e_49',['traits&lt; Summation &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Summation_01_4.html',1,'viam::sdk::API']]],
+  ['transform_50',['transform',['../structviam_1_1sdk_1_1WorldState_1_1transform.html',1,'viam::sdk::WorldState']]],
+  ['transform_5fpose_51',['transform_pose',['../classviam_1_1sdk_1_1RobotClient.html#a224a707fe7e12d6ab139c8d123d06ec2',1,'viam::sdk::RobotClient']]],
+  ['translation_52',['translation',['../structviam_1_1sdk_1_1translation.html',1,'viam::sdk']]]
 ];

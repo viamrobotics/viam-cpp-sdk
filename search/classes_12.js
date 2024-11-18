@@ -18,12 +18,13 @@ var searchData=
   ['traits_3c_20motion_20_3e_15',['traits&lt; Motion &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Motion_01_4.html',1,'viam::sdk::API']]],
   ['traits_3c_20motor_20_3e_16',['traits&lt; Motor &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Motor_01_4.html',1,'viam::sdk::API']]],
   ['traits_3c_20movementsensor_20_3e_17',['traits&lt; MovementSensor &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01MovementSensor_01_4.html',1,'viam::sdk::API']]],
-  ['traits_3c_20posetracker_20_3e_18',['traits&lt; PoseTracker &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01PoseTracker_01_4.html',1,'viam::sdk::API']]],
-  ['traits_3c_20powersensor_20_3e_19',['traits&lt; PowerSensor &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01PowerSensor_01_4.html',1,'viam::sdk::API']]],
-  ['traits_3c_20resource_20_3e_20',['traits&lt; Resource &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Resource_01_4.html',1,'viam::sdk::API']]],
-  ['traits_3c_20sensor_20_3e_21',['traits&lt; Sensor &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Sensor_01_4.html',1,'viam::sdk::API']]],
-  ['traits_3c_20servo_20_3e_22',['traits&lt; Servo &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Servo_01_4.html',1,'viam::sdk::API']]],
-  ['traits_3c_20summation_20_3e_23',['traits&lt; Summation &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Summation_01_4.html',1,'viam::sdk::API']]],
-  ['transform_24',['transform',['../structviam_1_1sdk_1_1WorldState_1_1transform.html',1,'viam::sdk::WorldState']]],
-  ['translation_25',['translation',['../structviam_1_1sdk_1_1translation.html',1,'viam::sdk']]]
+  ['traits_3c_20navigation_20_3e_18',['traits&lt; Navigation &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Navigation_01_4.html',1,'viam::sdk::API']]],
+  ['traits_3c_20posetracker_20_3e_19',['traits&lt; PoseTracker &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01PoseTracker_01_4.html',1,'viam::sdk::API']]],
+  ['traits_3c_20powersensor_20_3e_20',['traits&lt; PowerSensor &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01PowerSensor_01_4.html',1,'viam::sdk::API']]],
+  ['traits_3c_20resource_20_3e_21',['traits&lt; Resource &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Resource_01_4.html',1,'viam::sdk::API']]],
+  ['traits_3c_20sensor_20_3e_22',['traits&lt; Sensor &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Sensor_01_4.html',1,'viam::sdk::API']]],
+  ['traits_3c_20servo_20_3e_23',['traits&lt; Servo &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Servo_01_4.html',1,'viam::sdk::API']]],
+  ['traits_3c_20summation_20_3e_24',['traits&lt; Summation &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Summation_01_4.html',1,'viam::sdk::API']]],
+  ['transform_25',['transform',['../structviam_1_1sdk_1_1WorldState_1_1transform.html',1,'viam::sdk::WorldState']]],
+  ['translation_26',['translation',['../structviam_1_1sdk_1_1translation.html',1,'viam::sdk']]]
 ];
