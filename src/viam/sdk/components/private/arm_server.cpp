@@ -63,7 +63,7 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
 
         positions.reserve(request->positions_size());
         for (const auto& values : request->positions()) {
-            positions.push_back({values.values().begin(), values.values().end()});
+            positions.emplace_back(values.values().begin(), values.values().end());
         }
 
         Arm::MoveOptions opts;
