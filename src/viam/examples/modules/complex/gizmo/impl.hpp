@@ -19,7 +19,7 @@ class MyGizmo : public Gizmo, public Reconfigurable {
         this->reconfigure(deps, cfg);
     };
     void reconfigure(const Dependencies& deps, const ResourceConfig& cfg) override;
-    static std::vector<std::string> validate(ResourceConfig cfg);
+    static std::vector<std::string> validate(const ResourceConfig& cfg);
 
     bool do_one(std::string arg1) override;
     bool do_one_client_stream(std::vector<std::string> arg1) override;

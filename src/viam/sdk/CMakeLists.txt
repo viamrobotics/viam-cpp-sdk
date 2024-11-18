@@ -49,6 +49,7 @@ target_sources(viamsdk
     common/client_helper.cpp
     common/exception.cpp
     common/linear_algebra.cpp
+    common/logger.cpp
     common/pose.cpp
     common/proto_value.cpp
     common/service_helper.cpp
@@ -137,6 +138,7 @@ target_sources(viamsdk
       ../../viam/sdk/common/client_helper.hpp
       ../../viam/sdk/common/exception.hpp
       ../../viam/sdk/common/linear_algebra.hpp
+      ../../viam/sdk/common/logger.hpp
       ../../viam/sdk/common/pose.hpp
       ../../viam/sdk/common/proto_value.hpp
       ../../viam/sdk/common/service_helper.hpp

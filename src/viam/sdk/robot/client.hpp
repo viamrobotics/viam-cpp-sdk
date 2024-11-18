@@ -3,6 +3,7 @@
 /// @brief gRPC client implementation for a `robot`.
 #pragma once
 
+#include <chrono>
 #include <string>
 #include <thread>
 
@@ -14,6 +15,7 @@
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
+#include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/services/service.hpp>
 
@@ -113,6 +115,12 @@ class RobotClient {
     /// Because the return type here is a `Resource`, the user will need to manually
     /// cast to the desired type.
     std::shared_ptr<Resource> resource_by_name(const Name& name);
+
+    void log(
+        std::string name,
+        std::string level,
+        std::string message,
+        const std::chrono::time_point<std::chrono::system_clock, std::chrono::nanoseconds>& time);
 
     template <typename T>
     /// @brief Lookup and return a `shared_ptr` to a resource of the requested type.

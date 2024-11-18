@@ -1,3 +1,4 @@
+#include <chrono>
 #include <viam/sdk/common/utils.hpp>
 
 #include <random>
@@ -5,9 +6,6 @@
 #include <vector>
 
 #include <boost/blank.hpp>
-#include <boost/log/core.hpp>
-#include <boost/log/expressions.hpp>
-#include <boost/log/trivial.hpp>
 #include <boost/optional/optional.hpp>
 #include <grpcpp/client_context.h>
 
@@ -38,6 +36,17 @@ time_point timestamp_to_time_pt(const google::protobuf::Timestamp& timestamp) {
     const std::chrono::nanoseconds nanos(timestamp.nanos());
     return time_point(std::chrono::duration_cast<std::chrono::system_clock::duration>(seconds) +
                       nanos);
+}
+
+google::protobuf::Timestamp time_pt_to_timestamp(
+    const std::chrono::time_point<std::chrono::system_clock, std::chrono::nanoseconds>& time_pt) {
+    const std::chrono::seconds duration_s =
+        std::chrono::duration_cast<std::chrono::seconds>(time_pt.time_since_epoch());
+    const std::chrono::nanoseconds duration_ns = time_pt.time_since_epoch() - duration_s;
+    google::protobuf::Timestamp timestamp;
+    timestamp.set_seconds(duration_s.count());
+    timestamp.set_nanos(static_cast<int32_t>(duration_ns.count()));
+    return timestamp;
 }
 
 google::protobuf::Timestamp time_pt_to_timestamp(const time_point& time_pt) {
@@ -89,15 +98,6 @@ google::protobuf::Duration to_proto(const std::chrono::microseconds& duration) {
     proto.set_nanos(static_cast<int32_t>(nanos.count()));
     proto.set_seconds(seconds.count());
     return proto;
-}
-
-void set_logger_severity_from_args(int argc, char** argv) {
-    if (argc >= 3 && strcmp(argv[2], "--log-level=debug") == 0) {
-        boost::log::core::get()->set_filter(boost::log::trivial::severity >=
-                                            boost::log::trivial::debug);
-        return;
-    }
-    boost::log::core::get()->set_filter(boost::log::trivial::severity >= boost::log::trivial::info);
 }
 
 bool operator==(const response_metadata& lhs, const response_metadata& rhs) {

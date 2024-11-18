@@ -1,7 +1,5 @@
 #pragma once
 
-#include <signal.h>
-
 #include <viam/api/component/generic/v1/generic.grpc.pb.h>
 #include <viam/api/module/v1/module.grpc.pb.h>
 
@@ -50,6 +48,7 @@ class ModuleService : viam::module::v1::ModuleService::Service {
     void add_model_from_registry(API api, Model model);
 
    private:
+    void init_logging_();
     ::grpc::Status AddResource(::grpc::ServerContext* context,
                                const ::viam::module::v1::AddResourceRequest* request,
                                ::viam::module::v1::AddResourceResponse* response) override;
@@ -76,9 +75,12 @@ class ModuleService : viam::module::v1::ModuleService::Service {
                                    std::string const& resource_name);
     std::shared_ptr<Resource> get_parent_resource_(const Name& name);
 
+    std::unique_ptr<Logger> logger_;
     std::mutex lock_;
-    std::unique_ptr<Module> module_;
+    struct impl;
     std::shared_ptr<RobotClient> parent_;
+    std::unique_ptr<impl> impl_;
+    std::unique_ptr<Module> module_;
     std::string parent_addr_;
     std::unique_ptr<Server> server_;
     SignalManager signal_manager_;

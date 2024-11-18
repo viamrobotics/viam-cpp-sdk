@@ -5,6 +5,7 @@
 #include <grpcpp/impl/service_type.h>
 #include <grpcpp/support/status.h>
 
+#include <viam/sdk/common/logger.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
@@ -28,8 +29,14 @@ class Resource {
     /// @brief Return the resource's name.
     virtual std::string name() const;
 
+    void set_log_level(log_level level);
+
    private:
     std::string name_;
+
+   protected:
+    // NOLINTNEXTLINE
+    std::unique_ptr<Logger> logger_;
 };
 
 template <>

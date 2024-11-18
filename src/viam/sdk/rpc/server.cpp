@@ -2,7 +2,6 @@
 
 #include <sstream>
 
-#include <boost/log/trivial.hpp>
 #include <grpcpp/security/server_credentials.h>
 
 #include <viam/sdk/common/exception.hpp>

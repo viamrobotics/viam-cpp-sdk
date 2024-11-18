@@ -13,7 +13,8 @@ namespace sdk {
 using common::v1::ResourceName;
 
 Resource::~Resource() = default;
-Resource::Resource(std::string name) : name_(std::move(name)) {}
+Resource::Resource(std::string name)
+    : name_(name), logger_(std::make_unique<Logger>(std::move(name))) {}
 
 std::string Resource::name() const {
     return name_;
@@ -27,6 +28,10 @@ ResourceName Resource::get_resource_name(std::string name) const {
     *r.mutable_name() = std::move(name);
 
     return r;
+}
+
+void Resource::set_log_level(log_level level) {
+    logger_->set_log_level(level);
 }
 
 }  // namespace sdk

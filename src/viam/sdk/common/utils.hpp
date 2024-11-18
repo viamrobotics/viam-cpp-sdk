@@ -1,6 +1,7 @@
 #pragma once
 
 #include <boost/optional/optional.hpp>
+#include <chrono>
 #include <grpcpp/client_context.h>
 
 #include <viam/api/common/v1/common.pb.h>
@@ -31,6 +32,11 @@ bool operator==(const response_metadata& lhs, const response_metadata& rhs);
 /// std::chrono::time_point<long long, std::chrono::nanoseconds>
 std::chrono::time_point<long long, std::chrono::nanoseconds> timestamp_to_time_pt(
     const google::protobuf::Timestamp& timestamp);
+
+/// @brief convert a std::chrono::time_point<system_clock, std::chrono::nanoseconds> to
+/// a google::protobuf::Timestamp.
+google::protobuf::Timestamp time_pt_to_timestamp(
+    const std::chrono::time_point<std::chrono::system_clock, std::chrono::nanoseconds>& time_pt);
 
 /// @brief convert a std::chrono::time_point<long long, std::chrono::nanoseconds> to
 /// a google::protobuf::Timestamp.
@@ -83,16 +89,6 @@ ProtoStruct with_debug_entry(ProtoStruct&& map, std::string debug_key);
 /// @brief Adds a random key to @param map for server-side debug logging
 /// @returns the new ProtoStruct
 ProtoStruct with_debug_entry(ProtoStruct&& map);
-
-/// @brief Set the boost trivial logger's severity depending on args.
-/// @param argc The number of args.
-/// @param argv The commandline arguments to parse.
-///
-/// Sets the boost trivial logger's severity to debug if "--log-level=debug" is the
-/// the third argument. Sets severity to info otherwise. Useful for module
-/// implementations. See LogLevel documentation in the RDK for more information on
-/// how to start modules with a "log-level" commandline argument.
-void set_logger_severity_from_args(int argc, char** argv);
 
 /// @brief Used in modular filter components to get the 'fromDataManagement' value from an extra
 /// ProtoStruct.

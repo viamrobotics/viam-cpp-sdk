@@ -9,7 +9,6 @@
 #include <unistd.h>
 #include <vector>
 
-#include <boost/log/trivial.hpp>
 #include <grpcpp/channel.h>
 #include <grpcpp/client_context.h>
 #include <grpcpp/grpcpp.h>
@@ -19,11 +18,13 @@
 #include <viam/api/robot/v1/robot.grpc.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
 
+#include <viam/sdk/common/logger.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
+#include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/rpc/private/viam_grpc_channel.hpp>
 #include <viam/sdk/services/service.hpp>
@@ -39,6 +40,7 @@ using viam::robot::v1::FrameSystemConfig;
 using viam::robot::v1::Operation;
 using viam::robot::v1::RobotService;
 using viam::robot::v1::Status;
+using ll = log_level;
 
 // gRPC responses are frequently coming back with a spurious `Stream removed`
 // error, leading to unhelpful and misleading logging. We should figure out why
@@ -147,20 +149,21 @@ RobotClient::~RobotClient() {
         try {
             this->close();
         } catch (const std::exception& e) {
-            BOOST_LOG_TRIVIAL(error) << "Received err while closing RobotClient: " << e.what();
+            VIAM_SDK_TRIVIAL_CUSTOM_FORMATTED_LOG(
+                ll::error, "Received err while closing RobotClient: " << e.what());
         } catch (...) {
-            BOOST_LOG_TRIVIAL(error) << "Received unknown err while closing RobotClient";
+            VIAM_SDK_TRIVIAL_CUSTOM_FORMATTED_LOG(ll::error,
+                                                  "Received unknown err while closing RobotClient");
         }
     }
 }
 
 void RobotClient::close() {
     should_refresh_.store(false);
-    for (const std::shared_ptr<std::thread>& t : threads_) {
+    for (const auto& t : threads_) {
         t->~thread();
     }
     stop_all();
-    viam_channel_->close();
 }
 
 bool is_error_response(const grpc::Status& response) {
@@ -170,6 +173,31 @@ std::vector<RobotClient::status> RobotClient::get_status() {
     auto resources = resource_names();
     return get_status(resources);
 }
+
+void RobotClient::log(
+    std::string name,
+    std::string level,
+    std::string message,
+    const std::chrono::time_point<std::chrono::system_clock, std::chrono::nanoseconds>& time) {
+    robot::v1::LogRequest req;
+    common::v1::LogEntry log;
+    *log.mutable_logger_name() = std::move(name);
+    std::transform(level.begin(), level.end(), level.begin(), ::toupper);
+    log.set_level(level);
+    *log.mutable_message() = std::move(message);
+    *log.mutable_time() = time_pt_to_timestamp(time);
+    *log.mutable_stack() = "";
+    *req.mutable_logs()->Add() = std::move(log);
+    robot::v1::LogResponse resp;
+    ClientContext ctx;
+    const auto response = impl_->stub_->Log(ctx, req, &resp);
+    if (is_error_response(response)) {
+        VIAM_SDK_TRIVIAL_CUSTOM_FORMATTED_LOG(
+            ll::error,
+            "Error sending log: " << response.error_message() << response.error_details());
+    }
+}
+
 // gets statuses of components associated with robot. If a specific component
 // vector is provided, only statuses for the given Names will be
 // returned
@@ -183,8 +211,9 @@ std::vector<RobotClient::status> RobotClient::get_status(std::vector<Name>& comp
 
     const grpc::Status response = impl_->stub_->GetStatus(ctx, req, &resp);
     if (is_error_response(response)) {
-        BOOST_LOG_TRIVIAL(error) << "Error getting status: " << response.error_message()
-                                 << response.error_details();
+        VIAM_SDK_TRIVIAL_CUSTOM_FORMATTED_LOG(
+            ll::error,
+            "Error getting status: " << response.error_message() << response.error_details());
     }
 
     const RepeatedPtrField<Status> resp_status = resp.status();
@@ -207,7 +236,8 @@ std::vector<RobotClient::operation> RobotClient::get_operations() {
 
     grpc::Status const response = impl_->stub_->GetOperations(ctx, req, &resp);
     if (is_error_response(response)) {
-        BOOST_LOG_TRIVIAL(error) << "Error getting operations: " << response.error_message();
+        VIAM_SDK_TRIVIAL_CUSTOM_FORMATTED_LOG(
+            ll::error, "Error getting operations: " << response.error_message());
     }
 
     for (int i = 0; i < resp.operations().size(); ++i) {
@@ -225,7 +255,8 @@ void RobotClient::cancel_operation(std::string id) {
     req.set_id(id);
     const grpc::Status response = impl_->stub_->CancelOperation(ctx, req, &resp);
     if (is_error_response(response)) {
-        BOOST_LOG_TRIVIAL(error) << "Error canceling operation with id " << id;
+        VIAM_SDK_TRIVIAL_CUSTOM_FORMATTED_LOG(ll::error,
+                                              "Error canceling operation with id " << id);
     }
 }
 
@@ -238,7 +269,8 @@ void RobotClient::block_for_operation(std::string id) {
 
     const grpc::Status response = impl_->stub_->BlockForOperation(ctx, req, &resp);
     if (is_error_response(response)) {
-        BOOST_LOG_TRIVIAL(error) << "Error blocking for operation with id " << id;
+        VIAM_SDK_TRIVIAL_CUSTOM_FORMATTED_LOG(ll::error,
+                                              "Error blocking for operation with id " << id);
     }
 }
 
@@ -249,7 +281,11 @@ void RobotClient::refresh() {
 
     const grpc::Status response = impl_->stub_->ResourceNames(ctx, req, &resp);
     if (is_error_response(response)) {
-        BOOST_LOG_TRIVIAL(error) << "Error getting resource names: " << response.error_message();
+        VIAM_SDK_TRIVIAL_CUSTOM_FORMATTED_LOG(
+            ll::error,
+            "Error getting resource names: " << response.error_message()
+                                             << response.error_details());
+        return;
     }
 
     std::unordered_map<Name, std::shared_ptr<Resource>> new_resources;
@@ -272,8 +308,9 @@ void RobotClient::refresh() {
                 const Name name_({name.namespace_(), name.type(), name.subtype()}, "", name.name());
                 new_resources.emplace(name_, rpc_client);
             } catch (const std::exception& exc) {
-                BOOST_LOG_TRIVIAL(debug)
-                    << "Error registering component " << name.subtype() << ": " << exc.what();
+                VIAM_SDK_TRIVIAL_CUSTOM_FORMATTED_LOG(
+                    ll::debug,
+                    "Error registering component " << name.subtype() << ": " << exc.what());
             }
         }
     }
@@ -375,8 +412,8 @@ std::vector<RobotClient::frame_system_config> RobotClient::get_frame_system_conf
 
     const grpc::Status response = impl_->stub_->FrameSystemConfig(ctx, req, &resp);
     if (is_error_response(response)) {
-        BOOST_LOG_TRIVIAL(error) << "Error getting frame system config: "
-                                 << response.error_message();
+        VIAM_SDK_TRIVIAL_CUSTOM_FORMATTED_LOG(
+            ll::error, "Error getting frame system config: " << response.error_message());
     }
 
     const RepeatedPtrField<FrameSystemConfig> configs = resp.frame_system_configs();
@@ -408,7 +445,8 @@ pose_in_frame RobotClient::transform_pose(
 
     const grpc::Status response = impl_->stub_->TransformPose(ctx, req, &resp);
     if (is_error_response(response)) {
-        BOOST_LOG_TRIVIAL(error) << "Error getting PoseInFrame: " << response.error_message();
+        VIAM_SDK_TRIVIAL_CUSTOM_FORMATTED_LOG(
+            ll::error, "Error getting PoseInFrame: " << response.error_message());
     }
 
     return pose_in_frame::from_proto(resp.pose());
@@ -428,7 +466,8 @@ std::vector<RobotClient::discovery> RobotClient::discover_components(
 
     const grpc::Status response = impl_->stub_->DiscoverComponents(ctx, req, &resp);
     if (is_error_response(response)) {
-        BOOST_LOG_TRIVIAL(error) << "Error discovering components: " << response.error_message();
+        VIAM_SDK_TRIVIAL_CUSTOM_FORMATTED_LOG(
+            ll::error, "Error discovering components: " << response.error_message());
     }
 
     std::vector<discovery> components = std::vector<discovery>();
@@ -469,8 +508,9 @@ void RobotClient::stop_all(const std::unordered_map<Name, ProtoStruct>& extra) {
     }
     const grpc::Status response = impl_->stub_->StopAll(ctx, req, &resp);
     if (is_error_response(response)) {
-        BOOST_LOG_TRIVIAL(error) << "Error stopping all: " << response.error_message()
-                                 << response.error_details();
+        VIAM_SDK_TRIVIAL_CUSTOM_FORMATTED_LOG(
+            ll::error,
+            "Error stopping all: " << response.error_message() << response.error_details());
     }
 }
 

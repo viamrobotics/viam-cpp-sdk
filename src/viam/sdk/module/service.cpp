@@ -1,5 +1,6 @@
 #include <viam/sdk/module/service.hpp>
 
+#include <chrono>
 #include <exception>
 #include <memory>
 #include <sstream>
@@ -7,7 +8,16 @@
 #include <sys/socket.h>
 #include <sys/stat.h>
 
+#include <boost/core/null_deleter.hpp>
+#include <boost/iostreams/stream_buffer.hpp>
+#include <boost/log/attributes/mutable_constant.hpp>
+#include <boost/log/expressions.hpp>
+#include <boost/log/sinks.hpp>
+#include <boost/log/sinks/text_ostream_backend.hpp>
+#include <boost/log/support/date_time.hpp>
 #include <boost/log/trivial.hpp>
+#include <boost/log/utility/setup/common_attributes.hpp>
+#include <boost/log/utility/setup/console.hpp>
 #include <boost/none.hpp>
 #include <google/protobuf/descriptor.h>
 #include <grpcpp/channel.h>
@@ -25,6 +35,7 @@
 #include <viam/api/module/v1/module.pb.h>
 
 #include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/common/logger.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -41,6 +52,10 @@
 
 namespace viam {
 namespace sdk {
+
+using ll = log_level;
+
+namespace logging = boost::log;
 
 Dependencies ModuleService::get_dependencies_(
     google::protobuf::RepeatedPtrField<std::string> const& proto,
@@ -83,6 +98,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
     if (reg) {
         try {
             res = reg->construct_resource(deps, cfg);
+            res->set_log_level(cfg.log_level());
         } catch (const std::exception& exc) {
             return grpc::Status(::grpc::INTERNAL, exc.what());
         }
@@ -120,6 +136,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
     }
     try {
         Reconfigurable::reconfigure_if_reconfigurable(res, deps, cfg);
+        res->set_log_level(cfg.log_level());
         return grpc::Status();
     } catch (const std::exception& exc) {
         return grpc::Status(::grpc::INTERNAL, exc.what());
@@ -129,7 +146,8 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
     try {
         Stoppable::stop_if_stoppable(res);
     } catch (const std::exception& err) {
-        BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err.what();
+        VIAM_SDK_CUSTOM_FORMATTED_LOG(
+            logger_, ll::error, "unable to stop resource: " << err.what());
     }
 
     const std::shared_ptr<const ModelRegistration> reg = Registry::lookup_model(cfg.name());
@@ -191,7 +209,8 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
     try {
         Stoppable::stop_if_stoppable(res);
     } catch (const std::exception& err) {
-        BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err.what();
+        VIAM_SDK_CUSTOM_FORMATTED_LOG(
+            logger_, ll::error, "unable to stop resource: " << err.what());
     }
 
     manager->remove(name);
@@ -204,24 +223,122 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
     const std::lock_guard<std::mutex> lock(lock_);
     const viam::module::v1::HandlerMap hm = this->module_->handles().to_proto();
     *response->mutable_handlermap() = hm;
-    parent_addr_ = request->parent_address();
+    auto new_parent_addr = request->parent_address();
+    if (parent_addr_ != new_parent_addr) {
+        parent_addr_ = std::move(new_parent_addr);
+        if (!parent_) {
+            parent_ = RobotClient::at_local_socket(parent_addr_, {0, boost::none});
+        }
+        init_logging_();
+    }
     response->set_ready(module_->ready());
     return grpc::Status();
 };
 
+namespace {
+// (ethan) I don't love having this logic here. Ideally we could have all the logging logic live in
+// a single place (logger.xpp). However, the logging for modular resources relies on not actually
+// logging to the console, but rather sending log messages over the wire to a robot client. If we
+// wanted this logic to live in logger.cpp, then we'd have to expose a dependency on `RobotClient`
+// in logger.hpp. this would likely create a circular dependency and imo is worse than having the
+// moduleservice be aware of logging logic in a way that is confined to the implementation file.
+class custom_logging_buf : public std::stringbuf {
+   public:
+    custom_logging_buf(std::shared_ptr<RobotClient> parent) : parent_(std::move(parent)){};
+    int sync() override {
+        if (!parent_) {
+            std::cerr << "Attempted to send custom gRPC log without parent address\n";
+            return -1;
+        }
+
+        auto name_attr =
+            logging::attribute_cast<logging::attributes::mutable_constant<std::string>>(
+                logging::core::get()->get_thread_attributes()["LoggerName"]);
+
+        std::string name = name_attr.get();
+        auto level_attr =
+            logging::attribute_cast<logging::attributes::mutable_constant<std::string>>(
+                logging::core::get()->get_thread_attributes()["LogLevel"]);
+
+        std::string level = level_attr.get();
+        if (name == "" || level == "") {
+            // logging is not being done from `Viam` logger but is still going through `Boost`.
+            // Because we use `Boost` as our backend and are overwriting defaults, this log will
+            // still go to `viam-server`. But, since the call is not made through our logger,
+            // we don't want to rely on a previously set level or logger name. So, we fall back
+            // on default values.
+            name = "viam-cpp-sdk";
+            level = "info";
+        }
+
+        // reset name and level attribute to "" in case a subsequent logging call is made
+        // through a boost macro directly, without using our loggers.
+        name_attr.set("");
+        level_attr.set("");
+
+        auto log = this->str();
+        this->str("");
+        // Boost loves to add newline chars at the end of log messages, but this causes RDK
+        // logs to break out over multiple lines, which isn't great. Since we break up the
+        // structure of our log messages into two parts for module logging purposes, we need to
+        // remove the final character (always a newline) and then the first occurrence of a
+        // newline after that if it exists.
+        log.pop_back();
+        auto first_newline_char = log.find('\n', 0);
+        if (first_newline_char != std::string::npos) {
+            log.erase(first_newline_char, 1);
+        }
+
+        parent_->log(
+            std::move(name), std::move(level), std::move(log), std::chrono::system_clock::now());
+        return 0;
+    }
+
+   private:
+    std::shared_ptr<RobotClient> parent_;
+};
+}  // namespace
+
+struct ModuleService::impl {
+    typedef logging::sinks::synchronous_sink<logging::sinks::text_ostream_backend> text_sink;
+    impl(const std::shared_ptr<RobotClient>& parent) : buf(custom_logging_buf(parent)) {
+        auto backend = boost::make_shared<logging::sinks::text_ostream_backend>();
+        auto strm = boost::make_shared<std::ostream>(&buf);
+        stream = strm;
+        backend->add_stream(strm);
+        backend->auto_flush(true);
+        sink = boost::make_shared<text_sink>(backend);
+    }
+
+    ~impl() {
+        logging::core::get()->remove_sink(sink);
+    }
+    custom_logging_buf buf;
+    boost::shared_ptr<std::ostream> stream;
+    boost::shared_ptr<text_sink> sink;
+};
+
+void ModuleService::init_logging_() {
+    impl_ = std::make_unique<impl>(parent_);
+    Logger::init_logging(*impl_->stream);
+    logging::core::get()->add_sink(impl_->sink);
+}
+
 ModuleService::ModuleService(std::string addr)
-    : module_(std::make_unique<Module>(std::move(addr))), server_(std::make_unique<Server>()) {}
+    : logger_(std::make_unique<Logger>("viam-cpp-module-service")),
+      module_(std::make_unique<Module>(std::move(addr))),
+      server_(std::make_unique<Server>()) {}
 
 ModuleService::ModuleService(int argc,
                              char** argv,
-                             const std::vector<std::shared_ptr<ModelRegistration>>& registrations) {
+                             const std::vector<std::shared_ptr<ModelRegistration>>& registrations)
+    : logger_(std::make_unique<Logger>("viam-cpp-module-service")) {
     if (argc < 2) {
         throw Exception(ErrorCondition::k_connection, "Need socket path as command line argument");
     }
     module_ = std::make_unique<Module>(argv[1]);
     server_ = std::make_unique<Server>();
     signal_manager_ = SignalManager();
-    set_logger_severity_from_args(argc, argv);
 
     for (auto&& mr : registrations) {
         Registry::register_model(mr);
@@ -242,25 +359,32 @@ void ModuleService::serve() {
     module_->set_ready();
     server_->start();
 
-    BOOST_LOG_TRIVIAL(info) << "Module listening on " << module_->addr();
-    BOOST_LOG_TRIVIAL(info) << "Module handles the following API/model pairs:\n"
-                            << module_->handles();
+    VIAM_SDK_CUSTOM_FORMATTED_LOG(logger_, ll::info, "Module listening on " << module_->addr());
+    VIAM_SDK_CUSTOM_FORMATTED_LOG(logger_,
+                                  ll::info,
+                                  "Module handles the following API/model pairs:\n"
+                                      << module_->handles());
 
     signal_manager_.wait();
 }
 
 ModuleService::~ModuleService() {
     // TODO(RSDK-5509): Run registered cleanup functions here.
-    BOOST_LOG_TRIVIAL(info) << "Shutting down gracefully.";
-    server_->shutdown();
-
-    if (parent_) {
-        try {
-            parent_->close();
-        } catch (const std::exception& exc) {
-            BOOST_LOG_TRIVIAL(error) << exc.what();
-        }
-    }
+    // CR erodkin: three things of note here:
+    // 1) occasionally at the end of the MS destructor we crash with abort trap, but
+    // it's totally unclear why, what memory is unresolved, what's going on at all. seems like a
+    // majority of the time we successfully shut down, however.
+    // 2) if we manually call `reset()` on all of our smart pointer-managed resources in this
+    // destructor, we get the abort trap error 100% of the time. If we just let them be destroyed
+    // naturally, we get the abort trap error significantly less than 100% of the time
+    // 3) Sometimes this is called after we've removed our custom logging buf sink, (see
+    // ModuleService::~impl()), sometimes before. It's not clear why this happens, but when
+    // it does the buffer gets flushed twice (i.e., we see "Shutting down gracefullyShutting down
+    // gracefully" being logged). Removing the `remove_all_sinks()` call when initing ostream
+    // logging in `logger.cpp` anecdotally seems to fix this, but is not tenable as it results
+    // in all module logs getting duplicated (one version going over gRPC, the other getting
+    // picked up from console)
+    VIAM_SDK_CUSTOM_FORMATTED_LOG(logger_, ll::info, "Shutting down gracefully");
 }
 
 void ModuleService::add_model_from_registry_inlock_(API api,

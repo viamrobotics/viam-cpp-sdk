@@ -7,7 +7,6 @@
 #include <vector>
 
 #include <boost/algorithm/string.hpp>
-#include <boost/log/trivial.hpp>
 #include <boost/optional/optional.hpp>
 #include <grpcpp/impl/service_type.h>
 #include <grpcpp/support/status.h>
@@ -15,6 +14,7 @@
 #include <viam/api/component/generic/v1/generic.grpc.pb.h>
 
 #include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/common/logger.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
@@ -22,6 +22,8 @@
 
 namespace viam {
 namespace sdk {
+
+using ll = log_level;
 
 std::shared_ptr<Resource> ResourceManager::resource(const std::string& name) {
     const std::lock_guard<std::mutex> lock(lock_);
@@ -52,7 +54,8 @@ void ResourceManager::replace_all(
         try {
             do_add(resource.first, resource.second);
         } catch (std::exception& exc) {
-            BOOST_LOG_TRIVIAL(error) << "Error replacing all resources" << exc.what();
+            VIAM_SDK_TRIVIAL_CUSTOM_FORMATTED_LOG(ll::error,
+                                                  "Error replacing all resources" << exc.what());
             return;
         }
     }
@@ -97,7 +100,8 @@ void ResourceManager::add(const Name& name, std::shared_ptr<Resource> resource) 
     try {
         do_add(name, std::move(resource));
     } catch (std::exception& exc) {
-        BOOST_LOG_TRIVIAL(error) << "Error adding resource to subtype service: " << exc.what();
+        VIAM_SDK_TRIVIAL_CUSTOM_FORMATTED_LOG(
+            ll::error, "Error adding resource to subtype service: " << exc.what());
     }
 };
 
@@ -134,7 +138,8 @@ void ResourceManager::remove(const Name& name) {
     try {
         do_remove(name);
     } catch (std::exception& exc) {
-        BOOST_LOG_TRIVIAL(error) << "unable to remove resource: " << exc.what();
+        VIAM_SDK_TRIVIAL_CUSTOM_FORMATTED_LOG(ll::error,
+                                              "unable to remove resource: " << exc.what());
     };
 };
 
@@ -144,8 +149,8 @@ void ResourceManager::replace_one(const Name& name, std::shared_ptr<Resource> re
         do_remove(name);
         do_add(name, std::move(resource));
     } catch (std::exception& exc) {
-        BOOST_LOG_TRIVIAL(error) << "failed to replace resource " << name.to_string() << ": "
-                                 << exc.what();
+        VIAM_SDK_TRIVIAL_CUSTOM_FORMATTED_LOG(
+            ll::error, "failed to replace resource " << name.to_string() << ": " << exc.what());
     }
 }
 
