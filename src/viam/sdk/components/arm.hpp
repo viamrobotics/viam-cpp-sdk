@@ -111,6 +111,8 @@ class Arm : public Component, public Stoppable {
 
     /// @brief Move each joint on the arm through the positions specified in @param positions
     /// @param options optional specifications to be obeyed during the motion.
+    /// TODO consider replacing vector vector with xtensor array, and also if it may be
+    /// possible to specify or constrain dimensionality of the array in advance.
     inline void move_through_joint_positions(const std::vector<std::vector<double>>& positions,
                                              const MoveOptions& options) {
         return move_through_joint_positions(positions, options, {});
