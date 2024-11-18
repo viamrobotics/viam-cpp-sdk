@@ -16,9 +16,13 @@ jobs:
           fetch-depth: 0
       - name: verify no uncommitted changes
         run: |
+          whoami
+          ls -ls .git
           git init
           git add .
+          ls -ls .git
           ./bin/run-clang-format.sh
+          ls -ls .git
           GEN_DIFF=$(git status -s)
 
           if [ -n "$GEN_DIFF" ]; then
