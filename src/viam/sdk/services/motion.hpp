@@ -219,7 +219,7 @@ class Motion : public Service {
     /// @param world_state Obstacles to avoid and transforms to add to the robot for the duration of
     /// the move.
     /// @param constraints Constraints to apply to how the robot will move.
-    /// @extra Any additional arguments to the method.
+    /// @param extra Any additional arguments to the method.
     /// @return Whether or not the move was successful.
     virtual bool move(const pose_in_frame& destination,
                       const Name& name,

@@ -5,6 +5,7 @@
 
 #include <string>
 
+#include <boost/optional/optional.hpp>
 #include <boost/variant/variant.hpp>
 
 #include <viam/sdk/common/pose.hpp>
@@ -58,6 +59,12 @@ class Arm : public Component, public Stoppable {
     using KinematicsData =
         boost::variant<KinematicsDataUnspecified, KinematicsDataSVA, KinematicsDataURDF>;
 
+    /// @brief Movement specifications for move_through_join_positions.
+    struct MoveOptions {
+        boost::optional<double> max_vel_degs_per_sec;
+        boost::optional<double> max_acc_degs_per_sec2;
+    };
+
     /// @brief Get the current position of the end of the arm.
     /// @return The `pose` representing the end position of the arm.
     inline pose get_end_position() {
@@ -97,6 +104,22 @@ class Arm : public Component, public Stoppable {
     /// @param extra Any additional arguments to the method.
     virtual void move_to_joint_positions(const std::vector<double>& positions,
                                          const ProtoStruct& extra) = 0;
+
+    /// @brief Move each joint on the arm through the positions specified in @param positions
+    /// @param options optional specifications to be obeyed during the motion.
+    /// TODO consider replacing vector vector with xtensor array, and also if it may be
+    /// possible to specify or constrain dimensionality of the array in advance.
+    inline void move_through_joint_positions(const std::vector<std::vector<double>>& positions,
+                                             const MoveOptions& options) {
+        return move_through_joint_positions(positions, options, {});
+    }
+
+    /// @brief Move each joint on the arm through the positions specified in @param positions
+    /// @param options optional specifications to be obeyed during the motion.
+    /// @param extra Any additional arguments to the method.
+    virtual void move_through_joint_positions(const std::vector<std::vector<double>>& positions,
+                                              const MoveOptions& options,
+                                              const ProtoStruct& extra) = 0;
 
     /// @brief Reports if the arm is in motion.
     virtual bool is_moving() = 0;
