@@ -5,8 +5,6 @@
 
 #include <string>
 
-#include <viam/api/component/motor/v1/motor.pb.h>
-
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -44,24 +42,6 @@ class Motor : public Component, public Stoppable {
         /// True if the motor supports reporting its position
         bool position_reporting;
     };
-
-    /// @brief Creates a `position` struct from its proto representation.
-    static position from_proto(const viam::component::motor::v1::GetPositionResponse& proto);
-
-    /// @brief Creates a `power_status` struct from its proto representation.
-    static power_status from_proto(const viam::component::motor::v1::IsPoweredResponse& proto);
-
-    /// @brief Creates a `properties` struct from its proto representation.
-    static properties from_proto(const viam::component::motor::v1::GetPropertiesResponse& proto);
-
-    /// @brief Converts a `position` struct to its proto representation.
-    static viam::component::motor::v1::GetPositionResponse to_proto(const position& position);
-
-    /// @brief Converts a `power_status` struct to its proto representation.
-    static viam::component::motor::v1::IsPoweredResponse to_proto(const power_status& power_status);
-
-    /// @brief Converts a `properties` struct to its proto representation.
-    static viam::component::motor::v1::GetPropertiesResponse to_proto(const properties& properties);
 
     /// @brief Sets the percentage of the motor's total power that should be employed.
     /// @param power_pct Percentage of motor's power, between -1 and 1, where negative values

@@ -16,10 +16,28 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
+Motor::position from_proto(const viam::component::motor::v1::GetPositionResponse& proto) {
+    return proto.position();
+}
+
+Motor::power_status from_proto(const viam::component::motor::v1::IsPoweredResponse& proto) {
+    Motor::power_status power_status;
+    power_status.is_on = proto.is_on();
+
+    power_status.power_pct = proto.power_pct();
+    return power_status;
+}
+
+Motor::properties from_proto(const viam::component::motor::v1::GetPropertiesResponse& proto) {
+    Motor::properties properties;
+    properties.position_reporting = proto.position_reporting();
+    return properties;
+}
+
 MotorClient::MotorClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Motor(std::move(name)),
       stub_(viam::component::motor::v1::MotorService::NewStub(channel)),
-      channel_(std::move(channel)){};
+      channel_(std::move(channel)) {}
 
 void MotorClient::set_power(double power_pct, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::SetPower)

@@ -14,8 +14,28 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
+viam::component::camera::v1::IntrinsicParameters to_proto(
+    const Camera::intrinsic_parameters& params) {
+    viam::component::camera::v1::IntrinsicParameters proto;
+    proto.set_width_px(params.width_px);
+    proto.set_height_px(params.height_px);
+    proto.set_focal_x_px(params.focal_x_px);
+    proto.set_focal_y_px(params.focal_y_px);
+    proto.set_center_x_px(params.center_x_px);
+    proto.set_center_y_px(params.center_y_px);
+    return proto;
+}
+
+viam::component::camera::v1::DistortionParameters to_proto(
+    const Camera::distortion_parameters& params) {
+    viam::component::camera::v1::DistortionParameters proto;
+    *proto.mutable_model() = params.model;
+    *proto.mutable_parameters() = {params.parameters.begin(), params.parameters.end()};
+    return proto;
+}
+
 CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)){};
+    : ResourceServer(std::move(manager)) {}
 
 ::grpc::Status CameraServer::DoCommand(::grpc::ServerContext*,
                                        const ::viam::common::v1::DoCommandRequest* request,
@@ -42,6 +62,22 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
+::viam::component::camera::v1::Format MIME_string_to_format(const std::string& mime_string) {
+    if (mime_string == "image/vnd.viam.rgba") {
+        return viam::component::camera::v1::FORMAT_RAW_RGBA;
+    }
+    if (mime_string == "image/vnd.viam.dep") {
+        return viam::component::camera::v1::FORMAT_RAW_DEPTH;
+    }
+    if (mime_string == "image/jpeg") {
+        return viam::component::camera::v1::FORMAT_JPEG;
+    }
+    if (mime_string == "image/png") {
+        return viam::component::camera::v1::FORMAT_PNG;
+    }
+    return viam::component::camera::v1::FORMAT_UNSPECIFIED;
+}
+
 ::grpc::Status CameraServer::GetImages(
     ::grpc::ServerContext*,
     const ::viam::component::camera::v1::GetImagesRequest* request,
@@ -54,7 +90,7 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
             const std::string img_string = bytes_to_string(img.bytes);
             proto_image.set_source_name(img.source_name);
             proto_image.set_format(
-                Camera::MIME_string_to_format(Camera::normalize_mime_type(img.mime_type)));
+                MIME_string_to_format(Camera::normalize_mime_type(img.mime_type)));
             proto_image.set_image(img_string);
             *response->mutable_images()->Add() = std::move(proto_image);
         }
@@ -109,10 +145,8 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
         "CameraServer::GetProperties", this, request)([&](auto&, auto& camera) {
         const Camera::properties properties = camera->get_properties();
 
-        *response->mutable_distortion_parameters() =
-            Camera::to_proto(properties.distortion_parameters);
-        *response->mutable_intrinsic_parameters() =
-            Camera::to_proto(properties.intrinsic_parameters);
+        *response->mutable_distortion_parameters() = to_proto(properties.distortion_parameters);
+        *response->mutable_intrinsic_parameters() = to_proto(properties.intrinsic_parameters);
         response->set_supports_pcd(properties.supports_pcd);
         response->set_frame_rate(properties.frame_rate);
     });

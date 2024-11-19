@@ -46,6 +46,31 @@ void ArmClient::move_to_joint_positions(const std::vector<double>& positions,
         .invoke();
 }
 
+void ArmClient::move_through_joint_positions(const std::vector<std::vector<double>>& positions,
+                                             const Arm::MoveOptions& options,
+                                             const ProtoStruct& extra) {
+    return make_client_helper(this, *stub_, &StubType::MoveThroughJointPositions)
+        .with(extra,
+              [&](viam::component::arm::v1::MoveThroughJointPositionsRequest& request) {
+                  if (options.max_vel_degs_per_sec) {
+                      request.mutable_options()->set_max_vel_degs_per_sec(
+                          *options.max_vel_degs_per_sec);
+                  }
+
+                  if (options.max_acc_degs_per_sec2) {
+                      request.mutable_options()->set_max_acc_degs_per_sec2(
+                          *options.max_acc_degs_per_sec2);
+                  }
+
+                  for (const auto& pos : positions) {
+                      viam::component::arm::v1::JointPositions jpos;
+                      jpos.mutable_values()->Add(pos.begin(), pos.end());
+                      request.mutable_positions()->Add(std::move(jpos));
+                  }
+              })
+        .invoke();
+}
+
 bool ArmClient::is_moving() {
     return make_client_helper(this, *stub_, &StubType::IsMoving).invoke([](auto& response) {
         return response.is_moving();
@@ -65,7 +90,20 @@ ProtoStruct ArmClient::do_command(const ProtoStruct& command) {
 Arm::KinematicsData ArmClient::get_kinematics(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetKinematics)
         .with(extra)
-        .invoke([](auto& response) { return Arm::from_proto(response); });
+        .invoke([](auto& response) -> Arm::KinematicsData {
+            std::vector<unsigned char> bytes(response.kinematics_data().begin(),
+                                             response.kinematics_data().end());
+            switch (response.format()) {
+                case common::v1::KinematicsFileFormat::KINEMATICS_FILE_FORMAT_SVA:
+                    return Arm::KinematicsDataSVA(std::move(bytes));
+                case common::v1::KinematicsFileFormat::KINEMATICS_FILE_FORMAT_URDF:
+                    return Arm::KinematicsDataURDF(std::move(bytes));
+                case common::v1::KinematicsFileFormat::
+                    KINEMATICS_FILE_FORMAT_UNSPECIFIED:  // fallthrough
+                default:
+                    return Arm::KinematicsDataUnspecified{};
+            }
+        });
 }
 
 std::vector<GeometryConfig> ArmClient::get_geometries(const ProtoStruct& extra) {
