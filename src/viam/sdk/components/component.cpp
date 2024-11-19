@@ -9,7 +9,7 @@ namespace sdk {
 
 Component::Component() : Resource("component") {}
 
-Component::Component(std::string name) : Resource(std::move(name)) {};
+Component::Component(std::string name) : Resource(std::move(name)) {}
 
 Name Component::get_resource_name() const {
     return Resource::get_resource_name(kComponent);
