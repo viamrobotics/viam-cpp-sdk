@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <vector>
 
+#include <boost/algorithm/string.hpp>
 #include <boost/blank.hpp>
 #include <boost/log/core.hpp>
 #include <boost/log/expressions.hpp>
@@ -182,6 +183,26 @@ bool from_dm_from_extra(const ProtoStruct& extra) {
         return (value.is_a<bool>() && value.get_unchecked<bool>());
     }
     return false;
+}
+std::pair<std::string, std::string> long_name_to_remote_and_short(const std::string& long_name) {
+    std::vector<std::string> name_parts;
+    // boost::split causes a clang-tidy false positive, see
+    // https://bugs.llvm.org/show_bug.cgi?id=41141
+    //
+    // NOLINTNEXTLINE
+    boost::split(name_parts, long_name, boost::is_any_of(":"));
+    auto name = name_parts.back();
+    name_parts.pop_back();
+    auto remote_name = name_parts.empty()
+                           ? ""
+                           : std::accumulate(std::next(name_parts.begin()),
+                                             name_parts.end(),
+                                             *name_parts.begin(),
+                                             [](const std::string& a, const std::string& b) {
+                                                 return a + ":" + b;
+                                             });
+
+    return {std::move(remote_name), std::move(name)};
 }
 
 }  // namespace sdk
