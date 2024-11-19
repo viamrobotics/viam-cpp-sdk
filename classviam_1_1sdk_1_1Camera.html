@@ -190,46 +190,6 @@ Static Public Member Functions</h2></td></tr>
 static std::string&#160;</td><td class="memItemRight" valign="bottom"><b>normalize_mime_type</b> (const std::string &amp;str)</td></tr>
 <tr class="memdesc:ae1347ee02a13c6027cc7cb166de3b56b"><td class="mdescLeft">&#160;</td><td class="mdescRight">remove any extra suffix's from the mime type string. <br /></td></tr>
 <tr class="separator:ae1347ee02a13c6027cc7cb166de3b56b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af352e8696f1cc9fffaffd990d63ad63e" id="r_af352e8696f1cc9fffaffd990d63ad63e"><td class="memItemLeft" align="right" valign="top"><a id="af352e8696f1cc9fffaffd990d63ad63e" name="af352e8696f1cc9fffaffd990d63ad63e"></a>
-static std::string&#160;</td><td class="memItemRight" valign="bottom"><b>format_to_MIME_string</b> (viam::component::camera::v1::Format format)</td></tr>
-<tr class="memdesc:af352e8696f1cc9fffaffd990d63ad63e"><td class="mdescLeft">&#160;</td><td class="mdescRight">convert a protobuf format enum with a MIME type string. <br /></td></tr>
-<tr class="separator:af352e8696f1cc9fffaffd990d63ad63e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae66cc224dbf0cb7a0b516cc48b1ede93" id="r_ae66cc224dbf0cb7a0b516cc48b1ede93"><td class="memItemLeft" align="right" valign="top"><a id="ae66cc224dbf0cb7a0b516cc48b1ede93" name="ae66cc224dbf0cb7a0b516cc48b1ede93"></a>
-static viam::component::camera::v1::Format&#160;</td><td class="memItemRight" valign="bottom"><b>MIME_string_to_format</b> (const std::string &amp;mime_string)</td></tr>
-<tr class="memdesc:ae66cc224dbf0cb7a0b516cc48b1ede93"><td class="mdescLeft">&#160;</td><td class="mdescRight">convert a MIME type string with a protobuf format enum. <br /></td></tr>
-<tr class="separator:ae66cc224dbf0cb7a0b516cc48b1ede93"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2216ad635a0ffc87afc3e83ba6c856d8" id="r_a2216ad635a0ffc87afc3e83ba6c856d8"><td class="memItemLeft" align="right" valign="top"><a id="a2216ad635a0ffc87afc3e83ba6c856d8" name="a2216ad635a0ffc87afc3e83ba6c856d8"></a>
-static <a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html">raw_image</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (const viam::component::camera::v1::GetImageResponse &amp;proto)</td></tr>
-<tr class="memdesc:a2216ad635a0ffc87afc3e83ba6c856d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html" title="the raw bytes, mime type of an image, and name of the source that produced it.">raw_image</a></code> struct from its proto representation. <br /></td></tr>
-<tr class="separator:a2216ad635a0ffc87afc3e83ba6c856d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a056cf9312286cc73d45f91838d29e2" id="r_a4a056cf9312286cc73d45f91838d29e2"><td class="memItemLeft" align="right" valign="top"><a id="a4a056cf9312286cc73d45f91838d29e2" name="a4a056cf9312286cc73d45f91838d29e2"></a>
-static <a class="el" href="structviam_1_1sdk_1_1Camera_1_1image__collection.html">image_collection</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (const viam::component::camera::v1::GetImagesResponse &amp;proto)</td></tr>
-<tr class="memdesc:a4a056cf9312286cc73d45f91838d29e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1image__collection.html" title="a collection of images that were collected from a camera all at the same time.">image_collection</a></code> struct from its proto representation. <br /></td></tr>
-<tr class="separator:a4a056cf9312286cc73d45f91838d29e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adeb0dc5f3c2477e4d981e3b723354cd2" id="r_adeb0dc5f3c2477e4d981e3b723354cd2"><td class="memItemLeft" align="right" valign="top"><a id="adeb0dc5f3c2477e4d981e3b723354cd2" name="adeb0dc5f3c2477e4d981e3b723354cd2"></a>
-static <a class="el" href="structviam_1_1sdk_1_1Camera_1_1point__cloud.html">point_cloud</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (const viam::component::camera::v1::GetPointCloudResponse &amp;proto)</td></tr>
-<tr class="memdesc:adeb0dc5f3c2477e4d981e3b723354cd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1point__cloud.html" title="The points and mime type of a point cloud.">point_cloud</a></code> struct from its proto representation. <br /></td></tr>
-<tr class="separator:adeb0dc5f3c2477e4d981e3b723354cd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea1c7b6ca25b72c63acb027978920ce0" id="r_aea1c7b6ca25b72c63acb027978920ce0"><td class="memItemLeft" align="right" valign="top"><a id="aea1c7b6ca25b72c63acb027978920ce0" name="aea1c7b6ca25b72c63acb027978920ce0"></a>
-static <a class="el" href="structviam_1_1sdk_1_1Camera_1_1intrinsic__parameters.html">intrinsic_parameters</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (const viam::component::camera::v1::IntrinsicParameters &amp;proto)</td></tr>
-<tr class="memdesc:aea1c7b6ca25b72c63acb027978920ce0"><td class="mdescLeft">&#160;</td><td class="mdescRight">creates an <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1intrinsic__parameters.html">intrinsic_parameters</a></code> struct from its proto representation. <br /></td></tr>
-<tr class="separator:aea1c7b6ca25b72c63acb027978920ce0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7eb253c94c1b0ac582a35d96bd61a1d" id="r_ae7eb253c94c1b0ac582a35d96bd61a1d"><td class="memItemLeft" align="right" valign="top"><a id="ae7eb253c94c1b0ac582a35d96bd61a1d" name="ae7eb253c94c1b0ac582a35d96bd61a1d"></a>
-static <a class="el" href="structviam_1_1sdk_1_1Camera_1_1distortion__parameters.html">distortion_parameters</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (const viam::component::camera::v1::DistortionParameters &amp;proto)</td></tr>
-<tr class="memdesc:ae7eb253c94c1b0ac582a35d96bd61a1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">creats a <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1distortion__parameters.html" title="The distortion parameters of the camera.">distortion_parameters</a></code> struct from its proto representation. <br /></td></tr>
-<tr class="separator:ae7eb253c94c1b0ac582a35d96bd61a1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1953465f3c859004dc995ed683427d02" id="r_a1953465f3c859004dc995ed683427d02"><td class="memItemLeft" align="right" valign="top"><a id="a1953465f3c859004dc995ed683427d02" name="a1953465f3c859004dc995ed683427d02"></a>
-static <a class="el" href="structviam_1_1sdk_1_1Camera_1_1properties.html">properties</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (const viam::component::camera::v1::GetPropertiesResponse &amp;proto)</td></tr>
-<tr class="memdesc:a1953465f3c859004dc995ed683427d02"><td class="mdescLeft">&#160;</td><td class="mdescRight">creates a <code>properties</code> struct from its proto representation. <br /></td></tr>
-<tr class="separator:a1953465f3c859004dc995ed683427d02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a228f388daf0c76826693088d24036372" id="r_a228f388daf0c76826693088d24036372"><td class="memItemLeft" align="right" valign="top"><a id="a228f388daf0c76826693088d24036372" name="a228f388daf0c76826693088d24036372"></a>
-static viam::component::camera::v1::DistortionParameters&#160;</td><td class="memItemRight" valign="bottom"><b>to_proto</b> (const <a class="el" href="structviam_1_1sdk_1_1Camera_1_1distortion__parameters.html">distortion_parameters</a> &amp;)</td></tr>
-<tr class="memdesc:a228f388daf0c76826693088d24036372"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts a <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1distortion__parameters.html" title="The distortion parameters of the camera.">distortion_parameters</a></code> struct to its proto representation. <br /></td></tr>
-<tr class="separator:a228f388daf0c76826693088d24036372"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6bf2b65bc7f94457d4b3dae3deccd81" id="r_aa6bf2b65bc7f94457d4b3dae3deccd81"><td class="memItemLeft" align="right" valign="top"><a id="aa6bf2b65bc7f94457d4b3dae3deccd81" name="aa6bf2b65bc7f94457d4b3dae3deccd81"></a>
-static viam::component::camera::v1::IntrinsicParameters&#160;</td><td class="memItemRight" valign="bottom"><b>to_proto</b> (const <a class="el" href="structviam_1_1sdk_1_1Camera_1_1intrinsic__parameters.html">intrinsic_parameters</a> &amp;)</td></tr>
-<tr class="memdesc:aa6bf2b65bc7f94457d4b3dae3deccd81"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts an <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1intrinsic__parameters.html">intrinsic_parameters</a></code> struct to its proto representation. <br /></td></tr>
-<tr class="separator:aa6bf2b65bc7f94457d4b3dae3deccd81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>

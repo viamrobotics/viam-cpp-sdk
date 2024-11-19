@@ -86,49 +86,47 @@ $(function() { codefold.init(0); });
 <a href="components_2generic_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;google/protobuf/descriptor.h&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;viam/sdk/common/proto_value.hpp&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;viam/sdk/common/utils.hpp&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;viam/sdk/config/resource.hpp&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span>viam {</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span>sdk {</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="foldopen" id="foldopen00022" data-start="{" data-end="};">
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1GenericComponent.html">   22</a></span><span class="keyword">class </span><a class="code hl_class" href="classviam_1_1sdk_1_1GenericComponent.html">GenericComponent</a> : <span class="keyword">public</span> <a class="code hl_class" href="classviam_1_1sdk_1_1Component.html">Component</a> {</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>   <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1GenericComponent.html#ae07607b5e6cfaeab99de862b570edc2b">   27</a></span>    <span class="keyword">virtual</span> ProtoStruct <a class="code hl_function" href="classviam_1_1sdk_1_1GenericComponent.html#ae07607b5e6cfaeab99de862b570edc2b">do_command</a>(<span class="keyword">const</span> ProtoStruct&amp; command) = 0;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="foldopen" id="foldopen00031" data-start="{" data-end="}">
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1GenericComponent.html#abc575b7b43ae5a19d5b6f0188a5730a8">   31</a></span>    <span class="keyword">inline</span> std::vector&lt;GeometryConfig&gt; <a class="code hl_function" href="classviam_1_1sdk_1_1GenericComponent.html#abc575b7b43ae5a19d5b6f0188a5730a8">get_geometries</a>() {</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="classviam_1_1sdk_1_1GenericComponent.html#abc575b7b43ae5a19d5b6f0188a5730a8">get_geometries</a>({});</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    }</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;viam/sdk/common/proto_value.hpp&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;viam/sdk/common/utils.hpp&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;viam/sdk/config/resource.hpp&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span>viam {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span>sdk {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="foldopen" id="foldopen00020" data-start="{" data-end="};">
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1GenericComponent.html">   20</a></span><span class="keyword">class </span><a class="code hl_class" href="classviam_1_1sdk_1_1GenericComponent.html">GenericComponent</a> : <span class="keyword">public</span> <a class="code hl_class" href="classviam_1_1sdk_1_1Component.html">Component</a> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1GenericComponent.html#ae07607b5e6cfaeab99de862b570edc2b">   25</a></span>    <span class="keyword">virtual</span> ProtoStruct <a class="code hl_function" href="classviam_1_1sdk_1_1GenericComponent.html#ae07607b5e6cfaeab99de862b570edc2b">do_command</a>(<span class="keyword">const</span> ProtoStruct&amp; command) = 0;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="foldopen" id="foldopen00029" data-start="{" data-end="}">
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1GenericComponent.html#abc575b7b43ae5a19d5b6f0188a5730a8">   29</a></span>    <span class="keyword">inline</span> std::vector&lt;GeometryConfig&gt; <a class="code hl_function" href="classviam_1_1sdk_1_1GenericComponent.html#abc575b7b43ae5a19d5b6f0188a5730a8">get_geometries</a>() {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="classviam_1_1sdk_1_1GenericComponent.html#abc575b7b43ae5a19d5b6f0188a5730a8">get_geometries</a>({});</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    }</div>
 </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">virtual</span> std::vector&lt;GeometryConfig&gt; <a class="code hl_function" href="classviam_1_1sdk_1_1GenericComponent.html#abc575b7b43ae5a19d5b6f0188a5730a8">get_geometries</a>(<span class="keyword">const</span> ProtoStruct&amp; extra) = 0;</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">virtual</span> std::vector&lt;GeometryConfig&gt; <a class="code hl_function" href="classviam_1_1sdk_1_1GenericComponent.html#abc575b7b43ae5a19d5b6f0188a5730a8">get_geometries</a>(<span class="keyword">const</span> ProtoStruct&amp; extra) = 0;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1GenericComponent.html#a5a30d4c97cb3ff8aa1850f5ea0d803d7">   38</a></span>    <a class="code hl_class" href="classviam_1_1sdk_1_1API.html">API</a> <a class="code hl_function" href="classviam_1_1sdk_1_1GenericComponent.html#a5a30d4c97cb3ff8aa1850f5ea0d803d7">api</a>() <span class="keyword">const override</span>;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>   <span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classviam_1_1sdk_1_1GenericComponent.html">GenericComponent</a>(std::string <a class="code hl_function" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>);</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>};</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1GenericComponent.html#a5a30d4c97cb3ff8aa1850f5ea0d803d7">   36</a></span>    <a class="code hl_class" href="classviam_1_1sdk_1_1API.html">API</a> <a class="code hl_function" href="classviam_1_1sdk_1_1GenericComponent.html#a5a30d4c97cb3ff8aa1850f5ea0d803d7">api</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>   <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classviam_1_1sdk_1_1GenericComponent.html">GenericComponent</a>(std::string <a class="code hl_function" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>};</div>
 </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="foldopen" id="foldopen00045" data-start="{" data-end="};">
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1API_1_1traits_3_01GenericComponent_01_4.html">   45</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1API_1_1traits.html">API::traits</a>&lt;<a class="code hl_class" href="classviam_1_1sdk_1_1GenericComponent.html">GenericComponent</a>&gt; {</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keyword">static</span> <a class="code hl_class" href="classviam_1_1sdk_1_1API.html">API</a> api();</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>};</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00043" data-start="{" data-end="};">
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1API_1_1traits_3_01GenericComponent_01_4.html">   43</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1API_1_1traits.html">API::traits</a>&lt;<a class="code hl_class" href="classviam_1_1sdk_1_1GenericComponent.html">GenericComponent</a>&gt; {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keyword">static</span> <a class="code hl_class" href="classviam_1_1sdk_1_1API.html">API</a> api();</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>};</div>
 </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>}  <span class="comment">// namespace sdk</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>}  <span class="comment">// namespace viam</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>}  <span class="comment">// namespace sdk</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}  <span class="comment">// namespace viam</span></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1API_html"><div class="ttname"><a href="classviam_1_1sdk_1_1API.html">viam::sdk::API</a></div><div class="ttdoc">Extends APIType to additionally define a resource's subtype (e.g., camera).</div><div class="ttdef"><b>Definition</b> resource_api.hpp:33</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Component_html"><div class="ttname"><a href="classviam_1_1sdk_1_1Component.html">viam::sdk::Component</a></div><div class="ttdef"><b>Definition</b> component.hpp:14</div></div>
-<div class="ttc" id="aclassviam_1_1sdk_1_1GenericComponent_html"><div class="ttname"><a href="classviam_1_1sdk_1_1GenericComponent.html">viam::sdk::GenericComponent</a></div><div class="ttdoc">A GenericComponent represents any component that can execute arbitrary commands.</div><div class="ttdef"><b>Definition</b> generic.hpp:22</div></div>
+<div class="ttc" id="aclassviam_1_1sdk_1_1GenericComponent_html"><div class="ttname"><a href="classviam_1_1sdk_1_1GenericComponent.html">viam::sdk::GenericComponent</a></div><div class="ttdoc">A GenericComponent represents any component that can execute arbitrary commands.</div><div class="ttdef"><b>Definition</b> generic.hpp:20</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1GenericComponent_html_a5a30d4c97cb3ff8aa1850f5ea0d803d7"><div class="ttname"><a href="classviam_1_1sdk_1_1GenericComponent.html#a5a30d4c97cb3ff8aa1850f5ea0d803d7">viam::sdk::GenericComponent::api</a></div><div class="ttdeci">API api() const override</div><div class="ttdoc">Creates a GenericComponent API.</div></div>
-<div class="ttc" id="aclassviam_1_1sdk_1_1GenericComponent_html_abc575b7b43ae5a19d5b6f0188a5730a8"><div class="ttname"><a href="classviam_1_1sdk_1_1GenericComponent.html#abc575b7b43ae5a19d5b6f0188a5730a8">viam::sdk::GenericComponent::get_geometries</a></div><div class="ttdeci">std::vector&lt; GeometryConfig &gt; get_geometries()</div><div class="ttdoc">Returns GeometryConfigs associated with the calling camera.</div><div class="ttdef"><b>Definition</b> generic.hpp:31</div></div>
+<div class="ttc" id="aclassviam_1_1sdk_1_1GenericComponent_html_abc575b7b43ae5a19d5b6f0188a5730a8"><div class="ttname"><a href="classviam_1_1sdk_1_1GenericComponent.html#abc575b7b43ae5a19d5b6f0188a5730a8">viam::sdk::GenericComponent::get_geometries</a></div><div class="ttdeci">std::vector&lt; GeometryConfig &gt; get_geometries()</div><div class="ttdoc">Returns GeometryConfigs associated with the calling camera.</div><div class="ttdef"><b>Definition</b> generic.hpp:29</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1GenericComponent_html_ae07607b5e6cfaeab99de862b570edc2b"><div class="ttname"><a href="classviam_1_1sdk_1_1GenericComponent.html#ae07607b5e6cfaeab99de862b570edc2b">viam::sdk::GenericComponent::do_command</a></div><div class="ttdeci">virtual ProtoStruct do_command(const ProtoStruct &amp;command)=0</div><div class="ttdoc">Send/receive arbitrary commands to the resource.</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Resource_html_a52ea612e31f5c09785b500bd2610d97d"><div class="ttname"><a href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">viam::sdk::Resource::name</a></div><div class="ttdeci">virtual std::string name() const</div><div class="ttdoc">Return the resource's name.</div></div>
 <div class="ttc" id="astructviam_1_1sdk_1_1API_1_1traits_html"><div class="ttname"><a href="structviam_1_1sdk_1_1API_1_1traits.html">viam::sdk::API::traits</a></div><div class="ttdef"><b>Definition</b> resource_api.hpp:50</div></div>

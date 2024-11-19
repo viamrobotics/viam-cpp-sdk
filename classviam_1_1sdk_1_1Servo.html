@@ -78,7 +78,6 @@ $(function() {
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classviam_1_1sdk_1_1Servo-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">viam::sdk::Servo Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__Servo.html">Classes related to the Servo component.</a></div></div></div>
@@ -157,20 +156,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
 <tr class="memdesc:a5248adce66d2ff61cf1c69daaf4cf754 inherit pub_methods_classviam_1_1sdk_1_1Stoppable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a resource from running. <br /></td></tr>
 <tr class="separator:a5248adce66d2ff61cf1c69daaf4cf754 inherit pub_methods_classviam_1_1sdk_1_1Stoppable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a4d9a875c4e4688019b3cc2abe584374a" id="r_a4d9a875c4e4688019b3cc2abe584374a"><td class="memItemLeft" align="right" valign="top"><a id="a4d9a875c4e4688019b3cc2abe584374a" name="a4d9a875c4e4688019b3cc2abe584374a"></a>
-static <a class="el" href="structposition.html">position</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (const viam::component::servo::v1::GetPositionResponse &amp;proto)</td></tr>
-<tr class="memdesc:a4d9a875c4e4688019b3cc2abe584374a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <code>position</code> struct from its proto representation. <br /></td></tr>
-<tr class="separator:a4d9a875c4e4688019b3cc2abe584374a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_methods_classviam_1_1sdk_1_1Stoppable')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Stoppable.html">viam::sdk::Stoppable</a></td></tr>
-<tr class="memitem:a9b209a040efc8f4ea35abb92dafb5fea inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable" id="r_a9b209a040efc8f4ea35abb92dafb5fea"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Stoppable.html#a9b209a040efc8f4ea35abb92dafb5fea">stop_if_stoppable</a> (const std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; &amp;resource, const ProtoStruct &amp;extra)</td></tr>
-<tr class="memdesc:a9b209a040efc8f4ea35abb92dafb5fea inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> if it is <a class="el" href="classviam_1_1sdk_1_1Stoppable.html">Stoppable</a>.  <br /></td></tr>
-<tr class="separator:a9b209a040efc8f4ea35abb92dafb5fea inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7a35a13e39132052b910f5b8718f29d inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable" id="r_ab7a35a13e39132052b910f5b8718f29d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Stoppable.html#ab7a35a13e39132052b910f5b8718f29d">stop_if_stoppable</a> (const std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; &amp;resource)</td></tr>
-<tr class="memdesc:ab7a35a13e39132052b910f5b8718f29d inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> if it is <a class="el" href="classviam_1_1sdk_1_1Stoppable.html">Stoppable</a>.  <br /></td></tr>
-<tr class="separator:ab7a35a13e39132052b910f5b8718f29d inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:afb5b4a8fba1cebb0bae984ebb9911338" id="r_afb5b4a8fba1cebb0bae984ebb9911338"><td class="memItemLeft" align="right" valign="top"><a id="afb5b4a8fba1cebb0bae984ebb9911338" name="afb5b4a8fba1cebb0bae984ebb9911338"></a>
@@ -180,6 +165,16 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a4071058aff087e7eab1c480e93ce7a60 inherit pro_methods_classviam_1_1sdk_1_1Component" id="r_a4071058aff087e7eab1c480e93ce7a60"><td class="memItemLeft" align="right" valign="top">
 &#160;</td><td class="memItemRight" valign="bottom"><b>Component</b> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>)</td></tr>
 <tr class="separator:a4071058aff087e7eab1c480e93ce7a60 inherit pro_methods_classviam_1_1sdk_1_1Component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_methods_classviam_1_1sdk_1_1Stoppable')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Stoppable.html">viam::sdk::Stoppable</a></td></tr>
+<tr class="memitem:a9b209a040efc8f4ea35abb92dafb5fea inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable" id="r_a9b209a040efc8f4ea35abb92dafb5fea"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Stoppable.html#a9b209a040efc8f4ea35abb92dafb5fea">stop_if_stoppable</a> (const std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; &amp;resource, const ProtoStruct &amp;extra)</td></tr>
+<tr class="memdesc:a9b209a040efc8f4ea35abb92dafb5fea inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> if it is <a class="el" href="classviam_1_1sdk_1_1Stoppable.html">Stoppable</a>.  <br /></td></tr>
+<tr class="separator:a9b209a040efc8f4ea35abb92dafb5fea inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7a35a13e39132052b910f5b8718f29d inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable" id="r_ab7a35a13e39132052b910f5b8718f29d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Stoppable.html#ab7a35a13e39132052b910f5b8718f29d">stop_if_stoppable</a> (const std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; &amp;resource)</td></tr>
+<tr class="memdesc:ab7a35a13e39132052b910f5b8718f29d inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> if it is <a class="el" href="classviam_1_1sdk_1_1Stoppable.html">Stoppable</a>.  <br /></td></tr>
+<tr class="separator:ab7a35a13e39132052b910f5b8718f29d inherit pub_static_methods_classviam_1_1sdk_1_1Stoppable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This acts as an abstract base class to be inherited form by any drivers representing specific servo implementations. This class cannot be used on its own. </p>
