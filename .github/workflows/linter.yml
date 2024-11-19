@@ -17,7 +17,8 @@ jobs:
       - name: verify no uncommitted changes
         run: |
           whoami
-          ls -ls .git . ..
+          chown $USER .
+          ls -ls ..
           git init
           git add .
           ls -ls .git
