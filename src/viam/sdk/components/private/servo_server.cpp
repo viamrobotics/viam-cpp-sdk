@@ -1,5 +1,6 @@
 #include <viam/sdk/components/private/servo_server.hpp>
 
+#include <viam/sdk/common/private/proto_conversions.hpp>
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/servo.hpp>
@@ -57,7 +58,7 @@ ServoServer::ServoServer(std::shared_ptr<ResourceManager> manager)
         "ServoServer::GetGeometries", this, request)([&](auto& helper, auto& servo) {
         const std::vector<GeometryConfig> geometries = servo->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = geometry.to_proto();
+            *response->mutable_geometries()->Add() = to_proto(geometry);
         }
     });
 }

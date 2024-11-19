@@ -4,6 +4,7 @@
 #include <viam/api/component/gripper/v1/gripper.pb.h>
 
 #include <viam/sdk/common/client_helper.hpp>
+#include <viam/sdk/common/private/proto_conversions.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
 
@@ -45,7 +46,7 @@ ProtoStruct GripperClient::do_command(const ProtoStruct& command) {
 std::vector<GeometryConfig> GripperClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
+        .invoke([](auto& response) { return from_proto(response); });
 }
 
 }  // namespace impl

@@ -5,6 +5,7 @@
 #include <viam/api/component/posetracker/v1/pose_tracker.pb.h>
 
 #include <viam/sdk/common/client_helper.hpp>
+#include <viam/sdk/common/private/proto_conversions.hpp>
 
 namespace viam {
 namespace sdk {
@@ -25,7 +26,7 @@ PoseTracker::pose_map PoseTrackerClient::get_poses(const std::vector<std::string
             PoseTracker::pose_map result;
 
             for (const auto& pair : response.body_poses()) {
-                result.emplace(pair.first, pose_in_frame::from_proto(pair.second));
+                result.emplace(pair.first, from_proto(pair.second));
             }
 
             return result;
@@ -35,7 +36,7 @@ PoseTracker::pose_map PoseTrackerClient::get_poses(const std::vector<std::string
 std::vector<GeometryConfig> PoseTrackerClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
+        .invoke([](auto& response) { return from_proto(response); });
 }
 
 ProtoStruct PoseTrackerClient::do_command(const ProtoStruct& command) {

@@ -21,6 +21,20 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
+PowerSensor::voltage from_proto(const GetVoltageResponse& proto) {
+    PowerSensor::voltage v;
+    v.volts = proto.volts();
+    v.is_ac = proto.is_ac();
+    return v;
+}
+
+PowerSensor::current from_proto(const GetCurrentResponse& proto) {
+    PowerSensor::current c;
+    c.amperes = proto.amperes();
+    c.is_ac = proto.is_ac();
+    return c;
+}
+
 PowerSensorClient::PowerSensorClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : PowerSensor(std::move(name)),
       stub_(PowerSensorService::NewStub(channel)),

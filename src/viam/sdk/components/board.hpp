@@ -7,8 +7,6 @@
 #include <string>
 #include <unordered_map>
 
-#include <viam/api/component/board/v1/board.pb.h>
-
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -75,18 +73,6 @@ class Board : public Component {
     enum class power_mode : uint8_t { normal = 0, offline_deep = 1 };
 
     API api() const override;
-
-    /// @brief Creates a `status` struct from its proto representation.
-    static status from_proto(const viam::component::board::v1::Status& proto);
-
-    /// @brief Creates a `power_mode` enum from its proto representation.
-    static power_mode from_proto(viam::component::board::v1::PowerMode proto);
-
-    /// @brief Converts a `status` struct to its proto representation.
-    static viam::component::board::v1::Status to_proto(const status& status);
-
-    /// @brief Converts a `power_mode` enum to its proto representation.
-    static viam::component::board::v1::PowerMode to_proto(power_mode power_mode);
 
     /// @brief Gets the high/low state of the given pin on a board.
     /// @param pin board pin name

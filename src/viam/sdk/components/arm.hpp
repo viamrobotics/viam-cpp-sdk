@@ -8,8 +8,6 @@
 #include <boost/optional/optional.hpp>
 #include <boost/variant/variant.hpp>
 
-#include <viam/api/common/v1/common.pb.h>
-
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/resource/stoppable.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
@@ -66,8 +64,6 @@ class Arm : public Component, public Stoppable {
         boost::optional<double> max_vel_degs_per_sec;
         boost::optional<double> max_acc_degs_per_sec2;
     };
-
-    static KinematicsData from_proto(const viam::common::v1::GetKinematicsResponse& proto);
 
     /// @brief Get the current position of the end of the arm.
     /// @return The `pose` representing the end position of the arm.
