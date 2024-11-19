@@ -76,6 +76,7 @@ target_sources(viamsdk
     components/private/board_server.cpp
     components/private/camera_client.cpp
     components/private/camera_server.cpp
+    components/private/encoder.cpp
     components/private/encoder_client.cpp
     components/private/encoder_server.cpp
     components/private/gantry_client.cpp

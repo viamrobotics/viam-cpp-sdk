@@ -8,7 +8,6 @@
 #include <viam/api/component/motor/v1/motor.grpc.pb.h>
 
 #include <viam/sdk/common/client_helper.hpp>
-#include <viam/sdk/common/private/proto_conversions.hpp>
 #include <viam/sdk/components/motor.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
@@ -38,7 +37,7 @@ Motor::properties from_proto(const viam::component::motor::v1::GetPropertiesResp
 MotorClient::MotorClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Motor(std::move(name)),
       stub_(viam::component::motor::v1::MotorService::NewStub(channel)),
-      channel_(std::move(channel)){};
+      channel_(std::move(channel)) {}
 
 void MotorClient::set_power(double power_pct, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::SetPower)
@@ -103,7 +102,7 @@ Motor::power_status MotorClient::get_power_status(const ProtoStruct& extra) {
 std::vector<GeometryConfig> MotorClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return from_proto(response); });
+        .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
 }
 
 bool MotorClient::is_moving() {

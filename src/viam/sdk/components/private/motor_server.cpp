@@ -1,6 +1,5 @@
 #include <viam/sdk/components/private/motor_server.hpp>
 
-#include <viam/sdk/common/private/proto_conversions.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
@@ -13,7 +12,7 @@ namespace sdk {
 namespace impl {
 
 MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)){};
+    : ResourceServer(std::move(manager)) {};
 
 ::grpc::Status MotorServer::SetPower(::grpc::ServerContext*,
                                      const ::viam::component::motor::v1::SetPowerRequest* request,
@@ -119,7 +118,7 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager)
         "MotorServer::GetGeometries", this, request)([&](auto& helper, auto& motor) {
         const std::vector<GeometryConfig> geometries = motor->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = to_proto(geometry);
+            *response->mutable_geometries()->Add() = geometry.to_proto();
         }
     });
 }

@@ -1,7 +1,6 @@
 #include <viam/sdk/components/private/encoder_server.hpp>
 
 #include <viam/sdk/common/exception.hpp>
-#include <viam/sdk/common/private/proto_conversions.hpp>
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/encoder.hpp>
@@ -14,7 +13,7 @@ namespace sdk {
 namespace impl {
 
 EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)){};
+    : ResourceServer(std::move(manager)) {};
 
 ::grpc::Status EncoderServer::GetPosition(
     ::grpc::ServerContext*,
@@ -57,7 +56,7 @@ EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager)
         "EncoderServer::GetGeometries", this, request)([&](auto& helper, auto& encoder) {
         const std::vector<GeometryConfig> geometries = encoder->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = to_proto(geometry);
+            *response->mutable_geometries()->Add() = geometry.to_proto();
         }
     });
 }

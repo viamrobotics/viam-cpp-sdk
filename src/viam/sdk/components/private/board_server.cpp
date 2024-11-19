@@ -1,7 +1,6 @@
 #include <viam/sdk/components/private/board_server.hpp>
 
 #include <viam/sdk/common/exception.hpp>
-#include <viam/sdk/common/private/proto_conversions.hpp>
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/board.hpp>
@@ -41,7 +40,7 @@ Board::power_mode from_proto(viam::component::board::v1::PowerMode proto) {
 }
 
 BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)){};
+    : ResourceServer(std::move(manager)) {};
 
 ::grpc::Status BoardServer::SetGPIO(::grpc::ServerContext*,
                                     const ::viam::component::board::v1::SetGPIORequest* request,
@@ -227,7 +226,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
     return make_service_helper<Board>(
         "BoardServer::SetPowerMode", this, request)([&](auto& helper, auto& board) {
         if (request->has_duration()) {
-            auto duration = from_proto(request->duration());
+            auto duration = ::viam::sdk::from_proto(request->duration());
             board->set_power_mode(from_proto(request->power_mode()), helper.getExtra(), duration);
         } else {
             board->set_power_mode(from_proto(request->power_mode()), helper.getExtra());
@@ -243,7 +242,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
         "BoardServer::GetGeometries", this, request)([&](auto& helper, auto& board) {
         const std::vector<GeometryConfig> geometries = board->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = to_proto(geometry);
+            *response->mutable_geometries()->Add() = geometry.to_proto();
         }
     });
 }

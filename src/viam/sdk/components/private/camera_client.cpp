@@ -9,7 +9,6 @@
 #include <viam/api/component/camera/v1/camera.grpc.pb.h>
 
 #include <viam/sdk/common/client_helper.hpp>
-#include <viam/sdk/common/private/proto_conversions.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/camera.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -57,7 +56,7 @@ Camera::image_collection from_proto(const viam::component::camera::v1::GetImages
         images.push_back(raw_image);
     }
     image_collection.images = std::move(images);
-    image_collection.metadata = from_proto(proto.response_metadata());
+    image_collection.metadata = response_metadata::from_proto(proto.response_metadata());
     return image_collection;
 }
 
@@ -103,7 +102,7 @@ Camera::properties from_proto(const viam::component::camera::v1::GetPropertiesRe
 CameraClient::CameraClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Camera(std::move(name)),
       stub_(viam::component::camera::v1::CameraService::NewStub(channel)),
-      channel_(std::move(channel)){};
+      channel_(std::move(channel)) {}
 
 ProtoStruct CameraClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
@@ -135,7 +134,7 @@ Camera::point_cloud CameraClient::get_point_cloud(std::string mime_type, const P
 std::vector<GeometryConfig> CameraClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return from_proto(response); });
+        .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
 };
 
 Camera::properties CameraClient::get_properties() {

@@ -8,7 +8,6 @@
 
 #include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/linear_algebra.hpp>
-#include <viam/sdk/common/private/proto_conversions.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/movement_sensor.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -28,7 +27,7 @@ MovementSensor::compassheading from_proto(
 MovementSensor::position from_proto(
     const viam::component::movementsensor::v1::GetPositionResponse& proto) {
     MovementSensor::position position;
-    position.coordinate = from_proto(proto.coordinate());
+    position.coordinate = geo_point::from_proto(proto.coordinate());
     position.altitude_m = proto.altitude_m();
     return position;
 }
@@ -57,20 +56,20 @@ MovementSensor::properties from_proto(
 MovementSensorClient::MovementSensorClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : MovementSensor(std::move(name)),
       stub_(viam::component::movementsensor::v1::MovementSensorService::NewStub(channel)),
-      channel_(std::move(channel)){};
+      channel_(std::move(channel)) {};
 
 using namespace viam::component::movementsensor::v1;
 
 Vector3 MovementSensorClient::get_linear_velocity(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetLinearVelocity)
         .with(extra)
-        .invoke([](auto& response) { return from_proto(response.linear_velocity()); });
+        .invoke([](auto& response) { return Vector3::from_proto(response.linear_velocity()); });
 }
 
 Vector3 MovementSensorClient::get_angular_velocity(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetAngularVelocity)
         .with(extra)
-        .invoke([](auto& response) { return from_proto(response.angular_velocity()); });
+        .invoke([](auto& response) { return Vector3::from_proto(response.angular_velocity()); });
 }
 
 MovementSensor::compassheading MovementSensorClient::get_compass_heading(const ProtoStruct& extra) {
@@ -113,7 +112,7 @@ std::unordered_map<std::string, float> MovementSensorClient::get_accuracy(
 Vector3 MovementSensorClient::get_linear_acceleration(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetLinearAcceleration)
         .with(extra)
-        .invoke([](auto& response) { return from_proto(response.linear_acceleration()); });
+        .invoke([](auto& response) { return Vector3::from_proto(response.linear_acceleration()); });
 }
 
 ProtoStruct MovementSensorClient::do_command(const ProtoStruct& command) {
@@ -125,7 +124,7 @@ ProtoStruct MovementSensorClient::do_command(const ProtoStruct& command) {
 std::vector<GeometryConfig> MovementSensorClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return from_proto(response); });
+        .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
 }
 
 }  // namespace impl

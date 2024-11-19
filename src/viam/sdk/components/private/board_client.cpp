@@ -11,7 +11,6 @@
 
 #include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/exception.hpp>
-#include <viam/sdk/common/private/proto_conversions.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/board.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -183,7 +182,7 @@ void BoardClient::set_power_mode(power_mode power_mode,
               [&](auto& request) {
                   request.set_power_mode(to_proto(power_mode));
                   if (duration.has_value()) {
-                      *request.mutable_duration() = to_proto(duration.get());
+                      *request.mutable_duration() = ::viam::sdk::to_proto(duration.get());
                   }
               })
         .invoke();
@@ -192,7 +191,7 @@ void BoardClient::set_power_mode(power_mode power_mode,
 std::vector<GeometryConfig> BoardClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return from_proto(response); });
+        .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
 };
 
 }  // namespace impl

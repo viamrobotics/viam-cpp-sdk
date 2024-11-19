@@ -3,7 +3,6 @@
 #include <google/protobuf/util/time_util.h>
 #include <grpcpp/support/status.h>
 
-#include <viam/sdk/common/private/proto_conversions.hpp>
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/camera.hpp>
@@ -36,7 +35,7 @@ viam::component::camera::v1::DistortionParameters to_proto(
 }
 
 CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)){};
+    : ResourceServer(std::move(manager)) {};
 
 ::grpc::Status CameraServer::DoCommand(::grpc::ServerContext*,
                                        const ::viam::common::v1::DoCommandRequest* request,
@@ -95,7 +94,7 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
             proto_image.set_image(img_string);
             *response->mutable_images()->Add() = std::move(proto_image);
         }
-        *response->mutable_response_metadata() = to_proto(image_coll.metadata);
+        *response->mutable_response_metadata() = response_metadata::to_proto(image_coll.metadata);
     });
 }
 
@@ -133,7 +132,7 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
         "CameraServer::GetGeometries", this, request)([&](auto& helper, auto& camera) {
         const std::vector<GeometryConfig> geometries = camera->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = to_proto(geometry);
+            *response->mutable_geometries()->Add() = geometry.to_proto();
         }
     });
 }

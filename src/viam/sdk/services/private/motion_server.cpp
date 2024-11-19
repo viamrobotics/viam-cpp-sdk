@@ -4,7 +4,6 @@
 
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/pose.hpp>
-#include <viam/sdk/common/private/proto_conversions.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
@@ -52,7 +51,7 @@ service::motion::v1::PlanStep to_proto(const Motion::steps::step& step) {
     service::motion::v1::PlanStep proto;
     for (const auto& kv : step) {
         service::motion::v1::ComponentState cs;
-        *cs.mutable_pose() = to_proto(kv.second);
+        *cs.mutable_pose() = kv.second.to_proto();
         proto.mutable_step()->insert({kv.first, cs});
     }
 
@@ -62,7 +61,7 @@ service::motion::v1::PlanStep to_proto(const Motion::steps::step& step) {
 service::motion::v1::Plan to_proto(const Motion::plan& plan) {
     service::motion::v1::Plan proto;
     *proto.mutable_id() = plan.id;
-    *proto.mutable_component_name() = to_proto(plan.component_name);
+    *proto.mutable_component_name() = plan.component_name.to_proto();
     *proto.mutable_execution_id() = plan.execution_id;
     for (const auto& step : plan.steps.steps) {
         *proto.mutable_steps()->Add() = to_proto(step);
@@ -86,7 +85,7 @@ service::motion::v1::PlanStatusWithID to_proto(const Motion::plan_status_with_id
     service::motion::v1::PlanStatusWithID proto;
 
     *proto.mutable_execution_id() = pswi.execution_id;
-    *proto.mutable_component_name() = to_proto(pswi.component_name);
+    *proto.mutable_component_name() = pswi.component_name.to_proto();
     *proto.mutable_plan_id() = pswi.plan_id;
     *proto.mutable_status() = to_proto(pswi.status);
 
@@ -95,8 +94,8 @@ service::motion::v1::PlanStatusWithID to_proto(const Motion::plan_status_with_id
 
 obstacle_detector from_proto(const service::motion::v1::ObstacleDetector& proto) {
     obstacle_detector oc;
-    oc.vision_service = from_proto(proto.vision_service());
-    oc.camera = from_proto(proto.camera());
+    oc.vision_service = Name::from_proto(proto.vision_service());
+    oc.camera = Name::from_proto(proto.camera());
     return oc;
 }
 
@@ -131,7 +130,7 @@ motion_configuration from_proto(const service::motion::v1::MotionConfiguration& 
 }
 
 MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)){};
+    : ResourceServer(std::move(manager)) {};
 
 Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
     std::vector<Motion::linear_constraint> lcs;
@@ -178,7 +177,7 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
         "MotionServer::Move", this, request)([&](auto& helper, auto& motion) {
         std::shared_ptr<WorldState> ws;
         if (request->has_world_state()) {
-            ws = std::make_shared<WorldState>(from_proto(request->world_state()));
+            ws = std::make_shared<WorldState>(WorldState::from_proto(request->world_state()));
         }
 
         std::shared_ptr<Motion::constraints> constraints;
@@ -186,8 +185,8 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
             constraints = std::make_shared<Motion::constraints>(from_proto(request->constraints()));
         }
 
-        const bool success = motion->move(from_proto(request->destination()),
-                                          from_proto(request->component_name()),
+        const bool success = motion->move(pose_in_frame::from_proto(request->destination()),
+                                          Name::from_proto(request->component_name()),
                                           std::move(ws),
                                           std::move(constraints),
                                           helper.getExtra());
@@ -201,9 +200,9 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
     ::viam::service::motion::v1::MoveOnMapResponse* response) noexcept {
     return make_service_helper<Motion>(
         "MotionServer::MoveOnMap", this, request)([&](auto& helper, auto& motion) {
-        const auto destination = from_proto(request->destination());
-        const auto component_name = from_proto(request->component_name());
-        const auto slam_name = from_proto(request->slam_service_name());
+        const auto destination = pose::from_proto(request->destination());
+        const auto component_name = Name::from_proto(request->component_name());
+        const auto slam_name = Name::from_proto(request->slam_service_name());
 
         std::shared_ptr<motion_configuration> mc;
         if (request->has_motion_configuration()) {
@@ -213,7 +212,7 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
 
         std::vector<GeometryConfig> obstacles;
         for (const auto& obstacle : request->obstacles()) {
-            obstacles.push_back(from_proto(obstacle));
+            obstacles.push_back(GeometryConfig::from_proto(obstacle));
         }
 
         const std::string execution_id = motion->move_on_map(
@@ -229,14 +228,14 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
     ::viam::service::motion::v1::MoveOnGlobeResponse* response) noexcept {
     return make_service_helper<Motion>(
         "MotionServer::MoveOnGlobe", this, request)([&](auto& helper, auto& motion) {
-        const auto destination = from_proto(request->destination());
-        const auto component_name = from_proto(request->component_name());
-        const auto movement_sensor_name = from_proto(request->movement_sensor_name());
+        const auto destination = geo_point::from_proto(request->destination());
+        const auto component_name = Name::from_proto(request->component_name());
+        const auto movement_sensor_name = Name::from_proto(request->movement_sensor_name());
         std::vector<geo_geometry> obstacles;
         std::vector<geo_geometry> bounding_regions;
 
         for (const auto& obstacle : request->obstacles()) {
-            obstacles.push_back(from_proto(obstacle));
+            obstacles.push_back(geo_geometry::from_proto(obstacle));
         }
 
         boost::optional<double> heading;
@@ -251,7 +250,7 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
         }
 
         for (const auto& bounding_region : request->bounding_regions()) {
-            bounding_regions.push_back(from_proto(bounding_region));
+            bounding_regions.push_back(geo_geometry::from_proto(bounding_region));
         }
 
         const std::string execution_id = motion->move_on_globe(destination,
@@ -273,15 +272,15 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
     ::viam::service::motion::v1::GetPoseResponse* response) noexcept {
     return make_service_helper<Motion>(
         "MotionServer::GetPose", this, request)([&](auto& helper, auto& motion) {
-        const auto& component_name = from_proto(request->component_name());
+        const auto& component_name = Name::from_proto(request->component_name());
         const std::string& destination_frame = request->destination_frame();
         std::vector<WorldState::transform> supplemental_transforms;
         for (const auto& proto_transform : request->supplemental_transforms()) {
-            supplemental_transforms.push_back(from_proto(proto_transform));
+            supplemental_transforms.push_back(WorldState::transform::from_proto(proto_transform));
         }
         const pose_in_frame pose = motion->get_pose(
             component_name, destination_frame, supplemental_transforms, helper.getExtra());
-        *response->mutable_pose() = to_proto(pose);
+        *response->mutable_pose() = pose.to_proto();
     });
 };
 
@@ -291,7 +290,7 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
     ::viam::service::motion::v1::GetPlanResponse* response) noexcept {
     return make_service_helper<Motion>(
         "MotionServer::GetPlan", this, request)([&](auto& helper, auto& motion) {
-        const auto& component_name = from_proto(request->component_name());
+        const auto& component_name = Name::from_proto(request->component_name());
         Motion::plan_with_status plan;
         std::vector<Motion::plan_with_status> replan_history;
         const bool last_plan_only(request->last_plan_only());
@@ -344,7 +343,7 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
                                       ::viam::service::motion::v1::StopPlanResponse*) noexcept {
     return make_service_helper<Motion>(
         "MotionServer::StopPlan", this, request)([&](auto& helper, auto& motion) {
-        const auto& component_name = from_proto(request->component_name());
+        const auto& component_name = Name::from_proto(request->component_name());
 
         motion->stop_plan(component_name, helper.getExtra());
     });

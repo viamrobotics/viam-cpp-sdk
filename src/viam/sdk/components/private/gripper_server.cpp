@@ -1,6 +1,5 @@
 #include <viam/sdk/components/private/gripper_server.hpp>
 
-#include <viam/sdk/common/private/proto_conversions.hpp>
 #include <viam/sdk/common/service_helper.hpp>
 
 namespace viam {
@@ -60,7 +59,7 @@ GripperServer::GripperServer(std::shared_ptr<ResourceManager> manager)
         "GripperServer::GetGeometries", this, request)([&](auto& helper, auto& gripper) {
         const std::vector<GeometryConfig> geometries = gripper->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = to_proto(geometry);
+            *response->mutable_geometries()->Add() = geometry.to_proto();
         }
     });
 }
