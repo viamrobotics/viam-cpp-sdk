@@ -3,8 +3,6 @@
 /// @brief Defines a `Servo` component.
 #pragma once
 
-#include <viam/api/component/servo/v1/servo.pb.h>
-
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -27,9 +25,6 @@ class Servo : public Component, public Stoppable {
     typedef uint32_t position;
 
     API api() const override;
-
-    /// @brief Creates a `position` struct from its proto representation.
-    static position from_proto(const viam::component::servo::v1::GetPositionResponse& proto);
 
     /// @brief Move the servo to the provided angle
     /// @param angle_deg The desired angle of the servo in degrees.

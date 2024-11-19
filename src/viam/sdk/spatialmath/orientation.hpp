@@ -1,11 +1,8 @@
 #pragma once
 
-#include <string>
 #include <vector>
 
 #include <boost/variant/variant.hpp>
-
-#include <viam/api/app/v1/robot.pb.h>
 
 #include <viam/sdk/spatialmath/orientation_types.hpp>
 
@@ -18,8 +15,6 @@ typedef boost::
 
 class OrientationConfig {
    public:
-    viam::app::v1::Orientation to_proto() const;
-    static OrientationConfig from_proto(const viam::app::v1::Orientation& proto);
     OrientationConfig(OrientationType type_,
                       std::vector<std::uint8_t> value,
                       orientation orientation)

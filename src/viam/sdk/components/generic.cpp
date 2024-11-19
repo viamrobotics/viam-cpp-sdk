@@ -1,14 +1,5 @@
 #include <viam/sdk/components/generic.hpp>
 
-#include <stdexcept>
-
-#include <google/protobuf/descriptor.h>
-
-#include <viam/api/component/generic/v1/generic.grpc.pb.h>
-
-#include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/resource/resource.hpp>
-
 namespace viam {
 namespace sdk {
 

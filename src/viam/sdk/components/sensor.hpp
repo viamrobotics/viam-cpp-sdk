@@ -5,8 +5,6 @@
 
 #include <string>
 
-#include <viam/api/component/sensor/v1/sensor.pb.h>
-
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>

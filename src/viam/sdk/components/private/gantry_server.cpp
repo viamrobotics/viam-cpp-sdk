@@ -1,5 +1,6 @@
 #include <viam/sdk/components/private/gantry_server.hpp>
 
+#include <viam/sdk/common/private/proto_conversions.hpp>
 #include <viam/sdk/common/service_helper.hpp>
 
 namespace viam {
@@ -88,7 +89,7 @@ GantryServer::GantryServer(std::shared_ptr<ResourceManager> manager)
         "GantryServer::GetGeometries", this, request)([&](auto& helper, auto& gantry) {
         const std::vector<GeometryConfig> geometries = gantry->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = geometry.to_proto();
+            *response->mutable_geometries()->Add() = to_proto(geometry);
         }
     });
 }

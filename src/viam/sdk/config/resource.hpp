@@ -1,10 +1,6 @@
 #pragma once
 
 #include <string>
-#include <unordered_map>
-
-#include <viam/api/app/v1/robot.pb.h>
-#include <viam/api/robot/v1/robot.pb.h>
 
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/referenceframe/frame.hpp>
@@ -22,9 +18,14 @@ class ResourceLevelServiceConfig {
 
 class ResourceConfig {
    public:
-    static ResourceConfig from_proto(const viam::app::v1::ComponentConfig& proto_cfg);
-    viam::app::v1::ComponentConfig to_proto() const;
     ResourceConfig(std::string type);
+    ResourceConfig(std::string type,
+                   std::string name,
+                   std::string namespace_,
+                   ProtoStruct attributes,
+                   std::string api,
+                   Model model,
+                   LinkConfig frame);
     Name resource_name();
     const API& api() const;
     const LinkConfig& frame() const;
@@ -33,6 +34,8 @@ class ResourceConfig {
     const std::string& namespace_() const;
     const std::string& type() const;
     const ProtoStruct& attributes() const;
+    const std::vector<std::string>& depends_on() const;
+    const std::vector<ResourceLevelServiceConfig>& service_config() const;
 
    private:
     API api_;

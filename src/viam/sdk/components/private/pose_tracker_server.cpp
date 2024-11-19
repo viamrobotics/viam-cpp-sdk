@@ -2,6 +2,7 @@
 
 #include <viam/api/component/posetracker/v1/pose_tracker.pb.h>
 
+#include <viam/sdk/common/private/proto_conversions.hpp>
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/pose_tracker.hpp>
@@ -25,7 +26,7 @@ PoseTrackerServer::PoseTrackerServer(std::shared_ptr<ResourceManager> manager)
             {request->body_names().begin(), request->body_names().end()}, helper.getExtra());
 
         for (const auto& pair : result) {
-            response->mutable_body_poses()->insert({pair.first, pair.second.to_proto()});
+            response->mutable_body_poses()->insert({pair.first, to_proto(pair.second)});
         }
     });
 }
@@ -50,7 +51,7 @@ PoseTrackerServer::PoseTrackerServer(std::shared_ptr<ResourceManager> manager)
         const std::vector<GeometryConfig> geometries =
             pose_tracker->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = geometry.to_proto();
+            *response->mutable_geometries()->Add() = to_proto(geometry);
         }
     });
 }

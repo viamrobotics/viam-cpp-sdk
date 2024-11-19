@@ -12,8 +12,6 @@
 #include <grpcpp/impl/service_type.h>
 #include <grpcpp/support/status.h>
 
-#include <viam/api/component/generic/v1/generic.grpc.pb.h>
-
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>

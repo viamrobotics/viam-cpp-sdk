@@ -5,7 +5,6 @@
 #include <boost/qvm/vec.hpp>
 #include <boost/qvm/vec_traits.hpp>
 
-#include <viam/api/common/v1/common.pb.h>
 namespace viam {
 namespace sdk {
 
@@ -30,8 +29,6 @@ class Vector3 {
 
     const std::array<scalar_type, 3>& data() const;
     std::array<scalar_type, 3>& data();
-    viam::common::v1::Vector3 to_proto() const;
-    static Vector3 from_proto(const viam::common::v1::Vector3& vec);
 
    private:
     std::array<scalar_type, 3> data_;

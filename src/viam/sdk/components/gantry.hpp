@@ -3,9 +3,6 @@
 /// @brief Defines a `Gantry` component
 #pragma once
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/component/gantry/v1/gantry.pb.h>
-
 #include <viam/sdk/resource/stoppable.hpp>
 
 namespace viam {

@@ -8,6 +8,7 @@
 #include <viam/api/component/motor/v1/motor.grpc.pb.h>
 
 #include <viam/sdk/common/client_helper.hpp>
+#include <viam/sdk/common/private/proto_conversions.hpp>
 #include <viam/sdk/components/motor.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
@@ -15,6 +16,24 @@
 namespace viam {
 namespace sdk {
 namespace impl {
+
+Motor::position from_proto(const viam::component::motor::v1::GetPositionResponse& proto) {
+    return proto.position();
+}
+
+Motor::power_status from_proto(const viam::component::motor::v1::IsPoweredResponse& proto) {
+    Motor::power_status power_status;
+    power_status.is_on = proto.is_on();
+
+    power_status.power_pct = proto.power_pct();
+    return power_status;
+}
+
+Motor::properties from_proto(const viam::component::motor::v1::GetPropertiesResponse& proto) {
+    Motor::properties properties;
+    properties.position_reporting = proto.position_reporting();
+    return properties;
+}
 
 MotorClient::MotorClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Motor(std::move(name)),
@@ -84,7 +103,7 @@ Motor::power_status MotorClient::get_power_status(const ProtoStruct& extra) {
 std::vector<GeometryConfig> MotorClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
+        .invoke([](auto& response) { return from_proto(response); });
 }
 
 bool MotorClient::is_moving() {

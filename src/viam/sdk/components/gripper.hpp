@@ -5,9 +5,6 @@
 
 #include <string>
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/component/gripper/v1/gripper.pb.h>
-
 #include <viam/sdk/resource/stoppable.hpp>
 
 namespace viam {

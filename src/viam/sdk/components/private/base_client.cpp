@@ -11,6 +11,7 @@
 
 #include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/linear_algebra.hpp>
+#include <viam/sdk/common/private/proto_conversions.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/base.hpp>
@@ -53,8 +54,8 @@ void BaseClient::set_power(const Vector3& linear,
     return make_client_helper(this, *stub_, &StubType::SetPower)
         .with(extra,
               [&](auto& request) {
-                  *request.mutable_linear() = linear.to_proto();
-                  *request.mutable_angular() = angular.to_proto();
+                  *request.mutable_linear() = to_proto(linear);
+                  *request.mutable_angular() = to_proto(angular);
               })
         .invoke();
 }
@@ -65,8 +66,8 @@ void BaseClient::set_velocity(const Vector3& linear,
     return make_client_helper(this, *stub_, &StubType::SetVelocity)
         .with(extra,
               [&](auto& request) {
-                  *request.mutable_linear() = linear.to_proto();
-                  *request.mutable_angular() = angular.to_proto();
+                  *request.mutable_linear() = to_proto(linear);
+                  *request.mutable_angular() = to_proto(angular);
               })
         .invoke();
 }
@@ -84,13 +85,17 @@ bool BaseClient::is_moving() {
 std::vector<GeometryConfig> BaseClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
+        .invoke([](auto& response) { return from_proto(response); });
 }
 
 Base::properties BaseClient::get_properties(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetProperties)
         .with(extra)
-        .invoke([](auto& response) { return properties::from_proto(response); });
+        .invoke([](auto& response) {
+            return properties{response.width_meters(),
+                              response.turning_radius_meters(),
+                              response.wheel_circumference_meters()};
+        });
 }
 
 ProtoStruct BaseClient::do_command(const ProtoStruct& command) {

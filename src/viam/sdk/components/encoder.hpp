@@ -5,8 +5,6 @@
 
 #include <string>
 
-#include <viam/api/component/encoder/v1/encoder.pb.h>
-
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -45,25 +43,6 @@ class Encoder : public Component {
         bool ticks_count_supported;
         bool angle_degrees_supported;
     };
-
-    /// @brief Creates a `position_type` struct from its proto representation.
-    static position_type from_proto(viam::component::encoder::v1::PositionType proto);
-
-    /// @brief Creates a `position` struct from its proto representation.
-    static position from_proto(const viam::component::encoder::v1::GetPositionResponse& proto);
-
-    /// @brief Creates a `properties` struct from its proto representation.
-    static properties from_proto(const viam::component::encoder::v1::GetPropertiesResponse& proto);
-
-    /// @brief Converts a `position_type` struct to its proto representation.
-    static viam::component::encoder::v1::PositionType to_proto(position_type position_type);
-
-    /// @brief Converts a `position` struct to its proto representation.
-    static viam::component::encoder::v1::GetPositionResponse to_proto(const position& position);
-
-    /// @brief Converts a `properties` struct to its proto representation.
-    static viam::component::encoder::v1::GetPropertiesResponse to_proto(
-        const properties& properties);
 
     /// @brief Returns position of the encoder which can either be ticks since last zeroing for an
     /// incremental encoder or degrees for an absolute encoder.

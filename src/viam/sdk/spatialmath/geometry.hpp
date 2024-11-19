@@ -1,10 +1,6 @@
 #pragma once
 
-#include <array>
 #include <string>
-#include <tuple>
-
-#include <viam/api/common/v1/common.pb.h>
 
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/spatialmath/orientation.hpp>
@@ -41,14 +37,6 @@ typedef boost::variant<struct box, struct sphere, struct capsule, boost::blank> 
 
 class GeometryConfig {
    public:
-    viam::common::v1::Geometry to_proto() const;
-    viam::common::v1::RectangularPrism box_proto() const;
-    viam::common::v1::Sphere sphere_proto() const;
-    viam::common::v1::Capsule capsule_proto() const;
-    viam::common::v1::Pose pose_proto() const;
-    static GeometryConfig from_proto(const viam::common::v1::Geometry& proto);
-    static std::vector<GeometryConfig> from_proto(
-        const viam::common::v1::GetGeometriesResponse& proto);
     void set_coordinates(coordinates coordinates);
     void set_pose(pose pose);
     void set_pose_orientation(pose_orientation orientation);
@@ -80,8 +68,6 @@ class GeometryConfig {
 struct geo_point {
     double longitude, latitude;
 
-    common::v1::GeoPoint to_proto() const;
-    static geo_point from_proto(const common::v1::GeoPoint& proto);
     friend bool operator==(const geo_point& lhs, const geo_point& rhs);
     friend std::ostream& operator<<(std::ostream& os, const geo_point& v);
 };
@@ -90,8 +76,6 @@ struct geo_geometry {
     geo_point location;
     std::vector<GeometryConfig> geometries;
 
-    common::v1::GeoGeometry to_proto() const;
-    static geo_geometry from_proto(const common::v1::GeoGeometry& proto);
     friend bool operator==(const geo_geometry& lhs, const geo_geometry& rhs);
 };
 

@@ -7,9 +7,6 @@
 #include <unordered_map>
 #include <vector>
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/component/posetracker/v1/pose_tracker.pb.h>
-
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>

@@ -14,6 +14,7 @@
 #include <viam/api/robot/v1/robot.grpc.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
 
+#include <viam/sdk/common/private/proto_conversions.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -31,6 +32,13 @@ using viam::common::v1::ResourceName;
 using viam::robot::v1::Status;
 
 namespace {
+Status create_status(const std::shared_ptr<Resource>& resource) {
+    Status status;
+    *status.mutable_name() = impl::to_proto(resource->get_resource_name());
+    *status.mutable_status() = google::protobuf::Struct();
+    return status;
+}
+
 std::vector<Name> registered_models_for_resource(const std::shared_ptr<Resource>& resource) {
     std::string resource_type;
     std::string resource_subtype;
@@ -67,7 +75,7 @@ std::vector<ResourceName> RobotService_::generate_metadata_() {
     std::vector<ResourceName> metadata;
     for (const auto& key_and_val : resource_manager()->resources()) {
         for (const Name& name : registered_models_for_resource(key_and_val.second)) {
-            metadata.push_back(name.to_proto());
+            metadata.push_back(impl::to_proto(name));
         }
     }
     return metadata;
@@ -82,7 +90,7 @@ std::vector<Status> RobotService_::generate_status_(
             const std::shared_ptr<const ModelRegistration> registration = kv.second;
             if (registration->api().resource_subtype() == resource->api().resource_subtype()) {
                 bool resource_present = false;
-                const ResourceName name = resource->get_resource_name(resource->name());
+                const ResourceName name = impl::to_proto(resource->get_resource_name());
                 for (const auto& resource_name : resource_names) {
                     if (name.SerializeAsString() == resource_name.SerializeAsString()) {
                         resource_present = true;
@@ -91,7 +99,7 @@ std::vector<Status> RobotService_::generate_status_(
                 }
 
                 if (resource_present) {
-                    const Status status = registration->create_status(resource);
+                    const Status status = create_status(resource);
                     statuses.push_back(status);
                 }
             }
@@ -195,7 +203,7 @@ void RobotService_::stream_status(
 
     for (const auto& r : resource_manager()->resources()) {
         const std::shared_ptr<Resource> resource = r.second;
-        const ResourceName rn = resource->get_resource_name(resource->name());
+        const ResourceName rn = impl::to_proto(resource->get_resource_name());
         const std::string rn_ = rn.SerializeAsString();
         if (extra.find(rn_) != extra.end()) {
             try {

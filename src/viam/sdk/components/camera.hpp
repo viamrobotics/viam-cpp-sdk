@@ -11,9 +11,6 @@
 #include <boost/endian/conversion.hpp>
 #include <xtensor/xarray.hpp>
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/component/camera/v1/camera.pb.h>
-
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -137,39 +134,6 @@ class Camera : public Component {
     /// @brief remove any extra suffix's from the mime type string.
     static std::string normalize_mime_type(const std::string& str);
 
-    /// @brief convert a protobuf format enum with a MIME type string.
-    static std::string format_to_MIME_string(viam::component::camera::v1::Format format);
-
-    /// @brief convert a MIME type string with a protobuf format enum.
-    static viam::component::camera::v1::Format MIME_string_to_format(
-        const std::string& mime_string);
-
-    /// @brief Creates a `raw_image` struct from its proto representation.
-    static raw_image from_proto(const viam::component::camera::v1::GetImageResponse& proto);
-
-    /// @brief Creates a `image_collection` struct from its proto representation.
-    static image_collection from_proto(const viam::component::camera::v1::GetImagesResponse& proto);
-
-    /// @brief Creates a `point_cloud` struct from its proto representation.
-    static point_cloud from_proto(const viam::component::camera::v1::GetPointCloudResponse& proto);
-
-    /// @brief creates an `intrinsic_parameters` struct from its proto representation.
-    static intrinsic_parameters from_proto(
-        const viam::component::camera::v1::IntrinsicParameters& proto);
-
-    /// @brief creats a `distortion_parameters` struct from its proto representation.
-    static distortion_parameters from_proto(
-        const viam::component::camera::v1::DistortionParameters& proto);
-
-    /// @brief creates a `properties` struct from its proto representation.
-    static properties from_proto(const viam::component::camera::v1::GetPropertiesResponse& proto);
-
-    /// @brief converts a `distortion_parameters` struct to its proto representation.
-    static viam::component::camera::v1::DistortionParameters to_proto(const distortion_parameters&);
-
-    /// @brief converts an `intrinsic_parameters` struct to its proto representation.
-    static viam::component::camera::v1::IntrinsicParameters to_proto(const intrinsic_parameters&);
-
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.
     /// @return The result of the executed command.
@@ -179,7 +143,7 @@ class Camera : public Component {
     /// @param mime_type the desired mime_type of the image (does not guarantee output type).
     /// @return The frame as a `raw_image`.
     inline raw_image get_image(std::string mime_type) {
-        return get_image(mime_type, {});
+        return get_image(std::move(mime_type), {});
     }
 
     /// @brief Get the next image from the camera as a raw image.
@@ -197,7 +161,7 @@ class Camera : public Component {
     /// @param mime_type the desired mime_type of the point_cloud (does not guarantee output type).
     /// @return The requested `point_cloud`.
     inline point_cloud get_point_cloud(std::string mime_type) {
-        return get_point_cloud(mime_type, {});
+        return get_point_cloud(std::move(mime_type), {});
     }
 
     /// @brief Get the next `point_cloud` from the camera.

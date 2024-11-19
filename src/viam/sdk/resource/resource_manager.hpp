@@ -11,8 +11,6 @@
 #include <boost/optional/optional.hpp>
 #include <grpcpp/impl/service_type.h>
 
-#include <viam/api/component/generic/v1/generic.grpc.pb.h>
-
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 

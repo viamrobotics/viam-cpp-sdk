@@ -3,11 +3,6 @@
 /// @brief gRPC service implementation for a `robot`.
 #pragma once
 
-#include <string>
-#include <thread>
-#include <unordered_map>
-
-#include <google/protobuf/struct.pb.h>
 #include <grpcpp/support/status.h>
 
 #include <viam/api/common/v1/common.pb.h>

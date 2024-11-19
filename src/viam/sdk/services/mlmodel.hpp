@@ -20,8 +20,6 @@
 #include <boost/variant/variant.hpp>
 #include <xtensor/xadapt.hpp>
 
-#include <viam/api/service/mlmodel/v1/mlmodel.grpc.pb.h>
-
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/services/service.hpp>
 

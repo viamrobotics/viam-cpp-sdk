@@ -7,6 +7,7 @@
 #include <common/v1/common.pb.h>
 #include <robot/v1/robot.pb.h>
 
+#include <viam/sdk/common/private/proto_conversions.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
@@ -35,7 +36,7 @@ pose default_pose(int offset) {
 }
 
 Pose default_proto_pose(int offset = 0) {
-    return default_pose(offset).to_proto();
+    return ::viam::sdk::impl::to_proto(default_pose(offset));
 }
 
 std::vector<RobotClient::operation> mock_operations_response() {

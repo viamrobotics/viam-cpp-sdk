@@ -16,6 +16,8 @@
 
 #include <vector>
 
+#include <viam/api/service/mlmodel/v1/mlmodel.grpc.pb.h>
+
 #include <viam/sdk/services/mlmodel.hpp>
 
 namespace viam {

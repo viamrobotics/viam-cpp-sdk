@@ -5,10 +5,6 @@
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/server_context.h>
 
-#include <viam/api/common/v1/common.grpc.pb.h>
-#include <viam/api/component/generic/v1/generic.grpc.pb.h>
-#include <viam/api/robot/v1/robot.pb.h>
-
 #include <viam/sdk/components/base.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/config/resource.hpp>

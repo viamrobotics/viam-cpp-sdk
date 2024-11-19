@@ -1,8 +1,6 @@
 #include <viam/sdk/components/private/sensor_client.hpp>
 
-#include <algorithm>
 #include <memory>
-#include <stdexcept>
 #include <string>
 #include <utility>
 
@@ -10,6 +8,7 @@
 #include <viam/api/component/sensor/v1/sensor.grpc.pb.h>
 
 #include <viam/sdk/common/client_helper.hpp>
+#include <viam/sdk/common/private/proto_conversions.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/sensor.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -46,7 +45,7 @@ ProtoStruct SensorClient::do_command(const ProtoStruct& command) {
 std::vector<GeometryConfig> SensorClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
+        .invoke([](auto& response) { return from_proto(response); });
 }
 
 }  // namespace impl

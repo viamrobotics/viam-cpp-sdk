@@ -5,8 +5,6 @@
 
 #include <string>
 
-#include <google/protobuf/descriptor.h>
-#include <google/protobuf/message.h>
 #include <grpcpp/channel.h>
 #include <grpcpp/impl/service_type.h>
 #include <grpcpp/server.h>
@@ -94,9 +92,6 @@ class ModelRegistration {
     /// @return a list of the resource's implicit dependencies.
     /// @throws Can throw exceptions, which will be returned to the parent via gRPC.
     std::function<std::vector<std::string>(ResourceConfig)> validate;
-
-    /// @brief Creates a `Status` object for a given resource.
-    viam::robot::v1::Status create_status(const std::shared_ptr<Resource>& resource) const;
 
    private:
     // default_validator is the default validator for all models if no validator

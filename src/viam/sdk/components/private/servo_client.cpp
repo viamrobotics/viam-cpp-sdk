@@ -10,6 +10,7 @@
 #include <viam/api/component/servo/v1/servo.grpc.pb.h>
 
 #include <viam/sdk/common/client_helper.hpp>
+#include <viam/sdk/common/private/proto_conversions.hpp>
 #include <viam/sdk/components/servo.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
@@ -17,6 +18,10 @@
 namespace viam {
 namespace sdk {
 namespace impl {
+
+Servo::position from_proto(const viam::component::servo::v1::GetPositionResponse& proto) {
+    return proto.position_deg();
+}
 
 ServoClient::ServoClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Servo(std::move(name)),
@@ -48,7 +53,7 @@ bool ServoClient::is_moving() {
 std::vector<GeometryConfig> ServoClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
+        .invoke([](auto& response) { return from_proto(response); });
 }
 
 ProtoStruct ServoClient::do_command(const ProtoStruct& command) {

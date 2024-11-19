@@ -12,6 +12,20 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
+GetVoltageResponse to_proto(const PowerSensor::voltage& v) {
+    GetVoltageResponse proto;
+    proto.set_volts(v.volts);
+    proto.set_is_ac(v.is_ac);
+    return proto;
+}
+
+GetCurrentResponse to_proto(const PowerSensor::current& c) {
+    GetCurrentResponse proto;
+    proto.set_amperes(c.amperes);
+    proto.set_is_ac(c.is_ac);
+    return proto;
+}
+
 PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)){};
 
@@ -21,7 +35,7 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
     return make_service_helper<PowerSensor>(
         "PowerSensorServer::GetVoltage", this, request)([&](auto& helper, auto& powersensor) {
         const PowerSensor::voltage result = powersensor->get_voltage(helper.getExtra());
-        *response = PowerSensor::to_proto(result);
+        *response = to_proto(result);
     });
 }
 
@@ -31,7 +45,7 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
     return make_service_helper<PowerSensor>(
         "PowerSensorServer::GetCurrent", this, request)([&](auto& helper, auto& powersensor) {
         const PowerSensor::current result = powersensor->get_current(helper.getExtra());
-        *response = PowerSensor::to_proto(result);
+        *response = to_proto(result);
     });
 }
 

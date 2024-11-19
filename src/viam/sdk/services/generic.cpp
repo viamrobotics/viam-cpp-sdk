@@ -1,10 +1,6 @@
 #include <viam/sdk/services/generic.hpp>
 
-#include <stdexcept>
-
 #include <google/protobuf/descriptor.h>
-
-#include <viam/api/service/generic/v1/generic.grpc.pb.h>
 
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/resource/resource.hpp>

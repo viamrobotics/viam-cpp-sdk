@@ -5,8 +5,6 @@
 
 #include <string>
 
-#include <viam/api/component/base/v1/base.pb.h>
-
 #include <viam/sdk/common/linear_algebra.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
@@ -32,8 +30,6 @@ class Base : public Component, public Stoppable {
         double width_meters;
         double turning_radius_meters;
         double wheel_circumference_meters;
-
-        static properties from_proto(const component::base::v1::GetPropertiesResponse& proto);
     };
     friend std::ostream& operator<<(std::ostream& os, const properties& v);
     friend bool operator==(const properties& lhs, const properties& rhs);
