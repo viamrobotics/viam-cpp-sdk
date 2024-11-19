@@ -25,7 +25,7 @@ Servo::position from_proto(const viam::component::servo::v1::GetPositionResponse
 ServoClient::ServoClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Servo(std::move(name)),
       stub_(viam::component::servo::v1::ServoService::NewStub(channel)),
-      channel_(std::move(channel)) {};
+      channel_(std::move(channel)) {}
 
 void ServoClient::move(uint32_t angle_deg, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::Move)

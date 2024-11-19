@@ -130,7 +130,7 @@ motion_configuration from_proto(const service::motion::v1::MotionConfiguration& 
 }
 
 MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)) {};
+    : ResourceServer(std::move(manager)) {}
 
 Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
     std::vector<Motion::linear_constraint> lcs;

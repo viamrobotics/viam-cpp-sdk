@@ -13,7 +13,7 @@ namespace sdk {
 namespace impl {
 
 EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)) {};
+    : ResourceServer(std::move(manager)) {}
 
 ::grpc::Status EncoderServer::GetPosition(
     ::grpc::ServerContext*,

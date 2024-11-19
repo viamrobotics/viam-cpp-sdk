@@ -40,7 +40,7 @@ Board::power_mode from_proto(viam::component::board::v1::PowerMode proto) {
 }
 
 BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)) {};
+    : ResourceServer(std::move(manager)) {}
 
 ::grpc::Status BoardServer::SetGPIO(::grpc::ServerContext*,
                                     const ::viam::component::board::v1::SetGPIORequest* request,
