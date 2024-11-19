@@ -12,7 +12,7 @@ namespace sdk {
 namespace impl {
 
 MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)){};
+    : ResourceServer(std::move(manager)) {}
 
 ::grpc::Status MotorServer::SetPower(::grpc::ServerContext*,
                                      const ::viam::component::motor::v1::SetPowerRequest* request,

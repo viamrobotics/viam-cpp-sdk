@@ -20,6 +20,32 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
+viam::component::board::v1::Status to_proto(const Board::status& status) {
+    viam::component::board::v1::Status proto;
+    for (const auto& analog : status.analog_reader_values) {
+        proto.mutable_analogs()->insert({analog.first, analog.second});
+    }
+
+    for (const auto& digital : status.digital_interrupt_values) {
+        proto.mutable_digital_interrupts()->insert({digital.first, digital.second});
+    }
+    return proto;
+}
+
+viam::component::board::v1::PowerMode to_proto(Board::power_mode power_mode) {
+    switch (power_mode) {
+        case Board::power_mode::normal: {
+            return viam::component::board::v1::POWER_MODE_NORMAL;
+        }
+        case Board::power_mode::offline_deep: {
+            return viam::component::board::v1::POWER_MODE_OFFLINE_DEEP;
+        }
+        default: {
+            throw Exception(ErrorCondition::k_not_supported, "Invalid board power_mode to encode");
+        }
+    }
+}
+
 BoardClient::BoardClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Board(std::move(name)),
       stub_(viam::component::board::v1::BoardService::NewStub(channel)),

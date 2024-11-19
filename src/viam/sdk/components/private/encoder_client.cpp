@@ -1,8 +1,6 @@
 #include <viam/sdk/components/private/encoder_client.hpp>
 
-#include <algorithm>
 #include <memory>
-#include <stdexcept>
 #include <string>
 #include <utility>
 
@@ -12,6 +10,7 @@
 #include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/encoder.hpp>
+#include <viam/sdk/components/private/encoder.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
 
@@ -19,10 +18,34 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
+viam::component::encoder::v1::GetPositionResponse to_proto(const Encoder::position& position) {
+    viam::component::encoder::v1::GetPositionResponse proto;
+    proto.set_value(position.value);
+
+    proto.set_position_type(to_proto(position.type));
+    return proto;
+}
+
+Encoder::position from_proto(const viam::component::encoder::v1::GetPositionResponse& proto) {
+    Encoder::position position;
+    position.value = proto.value();
+
+    position.type = from_proto(proto.position_type());
+    return position;
+}
+
+Encoder::properties from_proto(const viam::component::encoder::v1::GetPropertiesResponse& proto) {
+    Encoder::properties properties;
+    properties.ticks_count_supported = proto.ticks_count_supported();
+
+    properties.angle_degrees_supported = proto.angle_degrees_supported();
+    return properties;
+}
+
 EncoderClient::EncoderClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Encoder(std::move(name)),
       stub_(viam::component::encoder::v1::EncoderService::NewStub(channel)),
-      channel_(std::move(channel)){};
+      channel_(std::move(channel)) {}
 
 Encoder::position EncoderClient::get_position(const ProtoStruct& extra,
                                               position_type position_type) {

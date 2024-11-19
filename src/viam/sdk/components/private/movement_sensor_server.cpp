@@ -13,8 +13,17 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
+viam::common::v1::Orientation to_proto(const MovementSensor::orientation& orientation) {
+    viam::common::v1::Orientation proto;
+    proto.set_o_x(orientation.o_x);
+    proto.set_o_y(orientation.o_y);
+    proto.set_o_z(orientation.o_z);
+    proto.set_theta(orientation.theta);
+    return proto;
+}
+
 MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)){};
+    : ResourceServer(std::move(manager)) {}
 
 ::grpc::Status MovementSensorServer::GetLinearVelocity(
     ::grpc::ServerContext*,
@@ -61,7 +70,7 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
                                                request)([&](auto& helper, auto& movementsensor) {
         const MovementSensor::orientation result =
             movementsensor->get_orientation(helper.getExtra());
-        *response->mutable_orientation() = MovementSensor::to_proto(result);
+        *response->mutable_orientation() = to_proto(result);
     });
 }
 

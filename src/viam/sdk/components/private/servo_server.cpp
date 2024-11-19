@@ -11,7 +11,7 @@ namespace sdk {
 namespace impl {
 
 ServoServer::ServoServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)){};
+    : ResourceServer(std::move(manager)) {}
 
 ::grpc::Status ServoServer::Move(::grpc::ServerContext*,
                                  const ::viam::component::servo::v1::MoveRequest* request,

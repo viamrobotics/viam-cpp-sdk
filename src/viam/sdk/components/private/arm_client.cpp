@@ -90,7 +90,20 @@ ProtoStruct ArmClient::do_command(const ProtoStruct& command) {
 Arm::KinematicsData ArmClient::get_kinematics(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetKinematics)
         .with(extra)
-        .invoke([](auto& response) { return Arm::from_proto(response); });
+        .invoke([](auto& response) -> Arm::KinematicsData {
+            std::vector<unsigned char> bytes(response.kinematics_data().begin(),
+                                             response.kinematics_data().end());
+            switch (response.format()) {
+                case common::v1::KinematicsFileFormat::KINEMATICS_FILE_FORMAT_SVA:
+                    return Arm::KinematicsDataSVA(std::move(bytes));
+                case common::v1::KinematicsFileFormat::KINEMATICS_FILE_FORMAT_URDF:
+                    return Arm::KinematicsDataURDF(std::move(bytes));
+                case common::v1::KinematicsFileFormat::
+                    KINEMATICS_FILE_FORMAT_UNSPECIFIED:  // fallthrough
+                default:
+                    return Arm::KinematicsDataUnspecified{};
+            }
+        });
 }
 
 std::vector<GeometryConfig> ArmClient::get_geometries(const ProtoStruct& extra) {
