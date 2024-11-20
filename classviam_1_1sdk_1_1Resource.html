@@ -77,6 +77,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classviam_1_1sdk_1_1Resource-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">viam::sdk::Resource Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
@@ -122,13 +123,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:adb06db1f356533b597bc5cdb91ded2f0" id="r_adb06db1f356533b597bc5cdb91ded2f0"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb06db1f356533b597bc5cdb91ded2f0">api</a> () const =0</td></tr>
 <tr class="memdesc:adb06db1f356533b597bc5cdb91ded2f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code><a class="el" href="classviam_1_1sdk_1_1API.html" title="Extends APIType to additionally define a resource&#39;s subtype (e.g., camera).">API</a></code> associated with a particular resource.  <br /></td></tr>
 <tr class="separator:adb06db1f356533b597bc5cdb91ded2f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd3827d192d251d13b5686a874bf4bab" id="r_afd3827d192d251d13b5686a874bf4bab"><td class="memItemLeft" align="right" valign="top">virtual viam::common::v1::ResourceName&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd3827d192d251d13b5686a874bf4bab">get_resource_name</a> (std::string <a class="el" href="#a52ea612e31f5c09785b500bd2610d97d">name</a>) const</td></tr>
-<tr class="memdesc:afd3827d192d251d13b5686a874bf4bab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code>ResourceName</code> for a particular resource name.  <br /></td></tr>
-<tr class="separator:afd3827d192d251d13b5686a874bf4bab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e4a4753c45685951ee867c10443b6b4" id="r_a7e4a4753c45685951ee867c10443b6b4"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e4a4753c45685951ee867c10443b6b4">get_resource_name</a> () const</td></tr>
+<tr class="memdesc:a7e4a4753c45685951ee867c10443b6b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code><a class="el" href="classviam_1_1sdk_1_1Name.html" title="A name for specific instances of resources.">Name</a></code> for a particular resource.  <br /></td></tr>
+<tr class="separator:a7e4a4753c45685951ee867c10443b6b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52ea612e31f5c09785b500bd2610d97d" id="r_a52ea612e31f5c09785b500bd2610d97d"><td class="memItemLeft" align="right" valign="top"><a id="a52ea612e31f5c09785b500bd2610d97d" name="a52ea612e31f5c09785b500bd2610d97d"></a>
 virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b> () const</td></tr>
 <tr class="memdesc:a52ea612e31f5c09785b500bd2610d97d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the resource's name. <br /></td></tr>
 <tr class="separator:a52ea612e31f5c09785b500bd2610d97d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a9888a8a9011bf58157b8c7d8af431225" id="r_a9888a8a9011bf58157b8c7d8af431225"><td class="memItemLeft" align="right" valign="top"><a id="a9888a8a9011bf58157b8c7d8af431225" name="a9888a8a9011bf58157b8c7d8af431225"></a>
+<a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a>&#160;</td><td class="memItemRight" valign="bottom"><b>get_resource_name</b> (const std::string &amp;type) const</td></tr>
+<tr class="separator:a9888a8a9011bf58157b8c7d8af431225"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="adb06db1f356533b597bc5cdb91ded2f0" name="adb06db1f356533b597bc5cdb91ded2f0"></a>
@@ -160,8 +167,8 @@ virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</
 
 </div>
 </div>
-<a id="afd3827d192d251d13b5686a874bf4bab" name="afd3827d192d251d13b5686a874bf4bab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afd3827d192d251d13b5686a874bf4bab">&#9670;&#160;</a></span>get_resource_name()</h2>
+<a id="a7e4a4753c45685951ee867c10443b6b4" name="a7e4a4753c45685951ee867c10443b6b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e4a4753c45685951ee867c10443b6b4">&#9670;&#160;</a></span>get_resource_name()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -170,9 +177,9 @@ virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual viam::common::v1::ResourceName viam::sdk::Resource::get_resource_name </td>
+          <td class="memname">virtual <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> viam::sdk::Resource::get_resource_name </td>
           <td>(</td>
-          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -183,9 +190,9 @@ virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</
 </table>
 </div><div class="memdoc">
 
-<p>Returns a <code>ResourceName</code> for a particular resource name. </p>
+<p>Returns the <code><a class="el" href="classviam_1_1sdk_1_1Name.html" title="A name for specific instances of resources.">Name</a></code> for a particular resource. </p>
 
-<p>Reimplemented in <a class="el" href="classviam_1_1sdk_1_1Component.html#ae969386d6faa08e81f16fb55ce62aa5d">viam::sdk::Component</a>, and <a class="el" href="classviam_1_1sdk_1_1Service.html#a0567becf814d134f25649c2f5d7ffab0">viam::sdk::Service</a>.</p>
+<p>Reimplemented in <a class="el" href="classviam_1_1sdk_1_1Component.html#ad7224bb892d0b88ad0f2547850380747">viam::sdk::Component</a>, and <a class="el" href="classviam_1_1sdk_1_1Service.html#a6d3c10f83fc65688abccb2527cf3a18e">viam::sdk::Service</a>.</p>
 
 </div>
 </div>
