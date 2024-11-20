@@ -48,6 +48,8 @@
 #include <viam/sdk/services/private/mlmodel_server.hpp>
 #include <viam/sdk/services/private/motion_client.hpp>
 #include <viam/sdk/services/private/motion_server.hpp>
+#include <viam/sdk/services/private/navigation_client.hpp>
+#include <viam/sdk/services/private/navigation_server.hpp>
 #include <viam/sdk/services/service.hpp>
 
 namespace viam {
@@ -160,7 +162,7 @@ Registry::registered_models() {
 // NOLINTNEXTLINE(readability-convert-member-functions-to-static)
 Status ModelRegistration::create_status(const std::shared_ptr<Resource>& resource) const {
     Status status;
-    *status.mutable_name() = resource->get_resource_name(resource->name());
+    *status.mutable_name() = resource->get_resource_name().to_proto();
     *status.mutable_status() = google::protobuf::Struct();
     return status;
 }
@@ -190,6 +192,7 @@ void register_resources() {
     Registry::register_resource<impl::GenericServiceClient, impl::GenericServiceServer>();
     Registry::register_resource<impl::MLModelServiceClient, impl::MLModelServiceServer>();
     Registry::register_resource<impl::MotionClient, impl::MotionServer>();
+    Registry::register_resource<impl::NavigationClient, impl::NavigationServer>();
 }
 
 void Registry::initialize() {

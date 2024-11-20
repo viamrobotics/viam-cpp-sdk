@@ -8,9 +8,7 @@
 #include <viam/api/component/encoder/v1/encoder.grpc.pb.h>
 
 #include <viam/sdk/components/encoder.hpp>
-#include <viam/sdk/components/private/encoder_server.hpp>
 #include <viam/sdk/config/resource.hpp>
-#include <viam/sdk/robot/client.hpp>
 
 namespace viam {
 namespace sdk {

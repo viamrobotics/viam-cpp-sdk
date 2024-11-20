@@ -6,9 +6,6 @@
 #include <string>
 #include <utility>
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/component/movementsensor/v1/movementsensor.grpc.pb.h>
-
 #include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/linear_algebra.hpp>
 #include <viam/sdk/common/utils.hpp>
@@ -20,10 +17,46 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
+MovementSensor::compassheading from_proto(
+    const viam::component::movementsensor::v1::GetCompassHeadingResponse& proto) {
+    MovementSensor::compassheading compassheading;
+    compassheading.value = proto.value();
+    return compassheading;
+}
+
+MovementSensor::position from_proto(
+    const viam::component::movementsensor::v1::GetPositionResponse& proto) {
+    MovementSensor::position position;
+    position.coordinate = geo_point::from_proto(proto.coordinate());
+    position.altitude_m = proto.altitude_m();
+    return position;
+}
+
+MovementSensor::orientation from_proto(const viam::common::v1::Orientation& proto) {
+    MovementSensor::orientation orientation;
+    orientation.o_x = proto.o_x();
+    orientation.o_y = proto.o_y();
+    orientation.o_z = proto.o_z();
+    orientation.theta = proto.theta();
+    return orientation;
+}
+
+MovementSensor::properties from_proto(
+    const viam::component::movementsensor::v1::GetPropertiesResponse& proto) {
+    MovementSensor::properties properties;
+    properties.linear_velocity_supported = proto.linear_velocity_supported();
+    properties.angular_velocity_supported = proto.angular_velocity_supported();
+    properties.orientation_supported = proto.orientation_supported();
+    properties.position_supported = proto.position_supported();
+    properties.compass_heading_supported = proto.compass_heading_supported();
+    properties.linear_acceleration_supported = proto.linear_acceleration_supported();
+    return properties;
+}
+
 MovementSensorClient::MovementSensorClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : MovementSensor(std::move(name)),
       stub_(viam::component::movementsensor::v1::MovementSensorService::NewStub(channel)),
-      channel_(std::move(channel)){};
+      channel_(std::move(channel)) {}
 
 using namespace viam::component::movementsensor::v1;
 

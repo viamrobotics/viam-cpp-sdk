@@ -14,7 +14,7 @@ namespace sdk {
 namespace impl {
 
 BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)){};
+    : ResourceServer(std::move(manager)) {}
 
 ::grpc::Status BaseServer::MoveStraight(
     ::grpc::ServerContext*,

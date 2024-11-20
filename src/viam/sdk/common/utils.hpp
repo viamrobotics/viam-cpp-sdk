@@ -61,6 +61,10 @@ class ClientContext {
     grpc::ClientContext wrapped_context_;
 };
 
+/// @brief Given a fully qualified resource name, returns remote name (or "" if no remote name
+/// exists) and short name
+std::pair<std::string, std::string> long_name_to_remote_and_short(const std::string& long_name);
+
 /// @brief Returns a new `ProtoStruct` with a random key for server-side debug logging
 ProtoStruct debug_map();
 

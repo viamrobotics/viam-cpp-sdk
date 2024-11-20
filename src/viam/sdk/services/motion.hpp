@@ -5,8 +5,6 @@
 
 #include <string>
 
-#include <viam/api/service/motion/v1/motion.pb.h>
-
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
@@ -28,8 +26,6 @@ struct obstacle_detector {
     /// @brief The name of the camera component to be used for obstacle detection.
     Name camera;
 
-    service::motion::v1::ObstacleDetector to_proto() const;
-    static obstacle_detector from_proto(const service::motion::v1::ObstacleDetector& proto);
     friend bool operator==(const obstacle_detector& lhs, const obstacle_detector& rhs);
     friend std::ostream& operator<<(std::ostream& os, const obstacle_detector& v);
 };
@@ -56,8 +52,6 @@ struct motion_configuration {
     /// @brief Optional angular velocity to target when turning
     boost::optional<double> angular_degs_per_sec;
 
-    service::motion::v1::MotionConfiguration to_proto() const;
-    static motion_configuration from_proto(const service::motion::v1::MotionConfiguration& proto);
     friend bool operator==(const motion_configuration& lhs, const motion_configuration& rhs);
     friend std::ostream& operator<<(std::ostream& os, const motion_configuration& v);
 };
@@ -83,9 +77,6 @@ class Motion : public Service {
         k_failed,
     };
 
-    static plan_state from_proto(const service::motion::v1::PlanState& proto);
-    static service::motion::v1::PlanState to_proto(const plan_state& state);
-
     /// @struct plan_status
     /// @brief Describes the state of a given plan at a point in time.
     /// @ingroup Motion
@@ -100,10 +91,6 @@ class Motion : public Service {
         /// re-plan reason if re-planning was necessary.
         boost::optional<std::string> reason;
 
-        static plan_status from_proto(const service::motion::v1::PlanStatus& proto);
-        static std::vector<plan_status> from_proto(
-            const google::protobuf::RepeatedPtrField<service::motion::v1::PlanStatus>& proto);
-        service::motion::v1::PlanStatus to_proto() const;
         friend bool operator==(const plan_status& lhs, const plan_status& rhs);
     };
 
@@ -123,8 +110,6 @@ class Motion : public Service {
         /// @brief The plan status.
         plan_status status;
 
-        static plan_status_with_id from_proto(const service::motion::v1::PlanStatusWithID& proto);
-        service::motion::v1::PlanStatusWithID to_proto() const;
         friend bool operator==(const plan_status_with_id& lhs, const plan_status_with_id& rhs);
     };
 
@@ -139,10 +124,6 @@ class Motion : public Service {
         /// @brief The ordered list of steps.
         std::vector<step> steps;
 
-        static struct steps from_proto(
-            const google::protobuf::RepeatedPtrField<service::motion::v1::PlanStep>& proto);
-
-        static service::motion::v1::PlanStep to_proto(const step& step);
         friend bool operator==(const struct steps& lhs, const struct steps& rhs);
     };
 
@@ -163,8 +144,6 @@ class Motion : public Service {
         /// @brief An ordered list of plan steps.
         struct steps steps;
 
-        static plan from_proto(const service::motion::v1::Plan& proto);
-        service::motion::v1::Plan to_proto() const;
         friend bool operator==(const plan& lhs, const plan& rhs);
     };
 
@@ -182,10 +161,6 @@ class Motion : public Service {
         /// @brief The prior status changes that have happened during plan execution.
         std::vector<plan_status> status_history;
 
-        static plan_with_status from_proto(const service::motion::v1::PlanWithStatus& proto);
-        static std::vector<plan_with_status> from_proto(
-            const google::protobuf::RepeatedPtrField<service::motion::v1::PlanWithStatus>& proto);
-        service::motion::v1::PlanWithStatus to_proto() const;
         friend bool operator==(const plan_with_status& lhs, const plan_with_status& rhs);
     };
 
@@ -220,9 +195,6 @@ class Motion : public Service {
         std::vector<linear_constraint> linear_constraints;
         std::vector<orientation_constraint> orientation_constraints;
         std::vector<collision_specification> collision_specifications;
-
-        static constraints from_proto(const service::motion::v1::Constraints& proto);
-        service::motion::v1::Constraints to_proto() const;
     };
 
     API api() const override;
@@ -247,7 +219,7 @@ class Motion : public Service {
     /// @param world_state Obstacles to avoid and transforms to add to the robot for the duration of
     /// the move.
     /// @param constraints Constraints to apply to how the robot will move.
-    /// @extra Any additional arguments to the method.
+    /// @param extra Any additional arguments to the method.
     /// @return Whether or not the move was successful.
     virtual bool move(const pose_in_frame& destination,
                       const Name& name,
