@@ -1,6 +1,6 @@
 FROM debian:bullseye
 
-ENV HOME /root
+ENV HOME=/root
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update
@@ -39,7 +39,8 @@ RUN apt-get update
 
 RUN apt-get -y --no-install-recommends install -t llvm-toolchain-bullseye-15 \
     clang-15 \
-    clang-tidy-15
+    clang-tidy-15 \
+    clang-format
 
 RUN apt-get -y --no-install-recommends install -t bullseye-backports \
     cmake

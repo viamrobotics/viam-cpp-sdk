@@ -1,26 +1,25 @@
 name: cpp-linter
 
-on: pull_request
+on:
+  pull_request:
+  workflow_dispatch:
 
 jobs:
   cpp-linter:
     if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/viamrobotics/canon:amd64
+    container: ghcr.io/viamrobotics/cpp-base:bullseye-amd64
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: install clang-format
-        run: sudo apt install -y clang-format
       - name: verify no uncommitted changes
         run: |
+          chown $(whoami) .
           git init
           git add .
-          chown -R testbot .
-          sudo -u testbot bash -lc 'sh ./bin/run-clang-format.sh'
+          ./bin/run-clang-format.sh
           GEN_DIFF=$(git status -s)
 
           if [ -n "$GEN_DIFF" ]; then
