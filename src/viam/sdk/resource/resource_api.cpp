@@ -32,7 +32,7 @@ std::string APIType::to_string() const {
 }
 
 APIType::APIType(std::string namespace_, std::string resource_type)
-    : namespace_(std::move(namespace_)), resource_type_(std::move(resource_type)){};
+    : namespace_(std::move(namespace_)), resource_type_(std::move(resource_type)) {}
 
 std::string API::to_string() const {
     return APIType::to_string() + ":" + resource_subtype_;
@@ -126,21 +126,10 @@ viam::common::v1::ResourceName Name::to_proto() const {
 }
 
 Name Name::from_proto(const viam::common::v1::ResourceName& proto) {
-    const API api(proto.namespace_(), proto.type(), proto.subtype());
-    std::vector<std::string> name_parts;
-    boost::split(name_parts, proto.name(), boost::is_any_of(":"));
-    auto name = name_parts.back();
-    name_parts.pop_back();
-    auto remote_name = name_parts.empty()
-                           ? ""
-                           : std::accumulate(std::next(name_parts.begin()),
-                                             name_parts.end(),
-                                             *name_parts.begin(),
-                                             [](const std::string& a, const std::string& b) {
-                                                 return a + ":" + b;
-                                             });
+    auto name_parts = long_name_to_remote_and_short(proto.name());
 
-    return Name({proto.namespace_(), proto.type(), proto.subtype()}, remote_name, name);
+    return Name(
+        {proto.namespace_(), proto.type(), proto.subtype()}, name_parts.first, name_parts.second);
 };
 
 Name Name::from_string(std::string name) {

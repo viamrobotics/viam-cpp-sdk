@@ -82,7 +82,7 @@ std::vector<Status> RobotService_::generate_status_(
             const std::shared_ptr<const ModelRegistration> registration = kv.second;
             if (registration->api().resource_subtype() == resource->api().resource_subtype()) {
                 bool resource_present = false;
-                const ResourceName name = resource->get_resource_name(resource->name());
+                const ResourceName name = resource->get_resource_name().to_proto();
                 for (const auto& resource_name : resource_names) {
                     if (name.SerializeAsString() == resource_name.SerializeAsString()) {
                         resource_present = true;
@@ -195,7 +195,7 @@ void RobotService_::stream_status(
 
     for (const auto& r : resource_manager()->resources()) {
         const std::shared_ptr<Resource> resource = r.second;
-        const ResourceName rn = resource->get_resource_name(resource->name());
+        const ResourceName rn = resource->get_resource_name().to_proto();
         const std::string rn_ = rn.SerializeAsString();
         if (extra.find(rn_) != extra.end()) {
             try {

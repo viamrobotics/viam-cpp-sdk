@@ -123,6 +123,23 @@ BOOST_AUTO_TEST_CASE(test_version_metadata) {
     BOOST_CHECK_EQUAL(version_constructed, version);
 }
 
+BOOST_AUTO_TEST_CASE(test_name_conversion) {
+    std::string long_name1 = "foo:bar";
+    auto res1 = long_name_to_remote_and_short(long_name1);
+    BOOST_CHECK_EQUAL(res1.first, "foo");
+    BOOST_CHECK_EQUAL(res1.second, "bar");
+
+    std::string long_name2 = "foo:bar:baz";
+    auto res2 = long_name_to_remote_and_short(long_name2);
+    BOOST_CHECK_EQUAL(res2.first, "foo:bar");
+    BOOST_CHECK_EQUAL(res2.second, "baz");
+
+    std::string long_name3 = "foo";
+    auto res3 = long_name_to_remote_and_short(long_name3);
+    BOOST_CHECK_EQUAL(res3.first, "");
+    BOOST_CHECK_EQUAL(res3.second, "foo");
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 }  // namespace sdktests
