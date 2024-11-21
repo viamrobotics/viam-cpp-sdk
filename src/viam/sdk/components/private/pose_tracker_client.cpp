@@ -25,7 +25,7 @@ PoseTracker::pose_map PoseTrackerClient::get_poses(const std::vector<std::string
             PoseTracker::pose_map result;
 
             for (const auto& pair : response.body_poses()) {
-                result.emplace(pair.first, pose_in_frame::from_proto(pair.second));
+                result.emplace(pair.first, v2::from_proto(pair.second));
             }
 
             return result;

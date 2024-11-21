@@ -16,7 +16,7 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
     return make_service_helper<Arm>(
         "ArmServer::GetEndPosition", this, request)([&](auto& helper, auto& arm) {
         const pose p = arm->get_end_position(helper.getExtra());
-        *response->mutable_pose() = p.to_proto();
+        *response->mutable_pose() = v2::to_proto(p);
     });
 }
 
@@ -26,7 +26,7 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
     ::viam::component::arm::v1::MoveToPositionResponse*) noexcept {
     return make_service_helper<Arm>(
         "ArmServer::MoveToPosition", this, request)([&](auto& helper, auto& arm) {
-        arm->move_to_position(pose::from_proto(request->to()), helper.getExtra());
+        arm->move_to_position(v2::from_proto(request->to()), helper.getExtra());
     });
 }
 

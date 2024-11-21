@@ -398,7 +398,7 @@ pose_in_frame RobotClient::transform_pose(
     viam::robot::v1::TransformPoseResponse resp;
     ClientContext ctx;
 
-    *req.mutable_source() = query.to_proto();
+    *req.mutable_source() = v2::to_proto(query);
     *req.mutable_destination() = std::move(destination);
     RepeatedPtrField<Transform>* req_transforms = req.mutable_supplemental_transforms();
 
@@ -411,7 +411,7 @@ pose_in_frame RobotClient::transform_pose(
         BOOST_LOG_TRIVIAL(error) << "Error getting PoseInFrame: " << response.error_message();
     }
 
-    return pose_in_frame::from_proto(resp.pose());
+    return v2::from_proto(resp.pose());
 }
 
 std::vector<RobotClient::discovery> RobotClient::discover_components(

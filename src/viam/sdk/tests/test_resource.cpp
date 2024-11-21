@@ -139,7 +139,7 @@ BOOST_AUTO_TEST_CASE(test_linkconfig) {
     BOOST_CHECK_EQUAL(lc.get_translation().z, t.z());
     GeometryConfig gcfg = lc.get_geometry_config();
     BOOST_CHECK_EQUAL(gcfg.get_label(), "label");
-    BOOST_CHECK_EQUAL(gcfg.get_pose(), pose::from_proto(pose));
+    BOOST_CHECK_EQUAL(gcfg.get_pose(), v2::from_proto(pose));
     BOOST_CHECK_EQUAL(gcfg.get_geometry_type(), GeometryType::box);
     const auto gs = gcfg.box_proto();
     BOOST_CHECK_EQUAL(gs.dims_mm().x(), box.dims_mm().x());

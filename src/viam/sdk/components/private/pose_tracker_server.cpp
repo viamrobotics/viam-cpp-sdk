@@ -25,7 +25,7 @@ PoseTrackerServer::PoseTrackerServer(std::shared_ptr<ResourceManager> manager)
             {request->body_names().begin(), request->body_names().end()}, helper.getExtra());
 
         for (const auto& pair : result) {
-            response->mutable_body_poses()->insert({pair.first, pair.second.to_proto()});
+            response->mutable_body_poses()->insert({pair.first, v2::to_proto(pair.second)});
         }
     });
 }

@@ -140,7 +140,7 @@ Motion::steps steps_from_proto(
     for (const auto& ps : proto) {
         step step;
         for (const auto& component : ps.step()) {
-            step.emplace(component.first, pose::from_proto(component.second.pose()));
+            step.emplace(component.first, v2::from_proto(component.second.pose()));
         }
         steps.push_back(std::move(step));
     }
@@ -189,7 +189,7 @@ bool MotionClient::move(const pose_in_frame& destination,
         .with(extra,
               [&](auto& request) {
                   *request.mutable_component_name() = component_name.to_proto();
-                  *request.mutable_destination() = destination.to_proto();
+                  *request.mutable_destination() = v2::to_proto(destination);
                   if (constraints) {
                       *request.mutable_constraints() = to_proto(*constraints);
                   }
@@ -210,7 +210,7 @@ std::string MotionClient::move_on_map(
     return make_client_helper(this, *stub_, &StubType::MoveOnMap)
         .with(extra,
               [&](auto& request) {
-                  *request.mutable_destination() = destination.to_proto();
+                  *request.mutable_destination() = v2::to_proto(destination);
                   *request.mutable_component_name() = component_name.to_proto();
                   *request.mutable_slam_service_name() = slam_name.to_proto();
 
@@ -274,7 +274,7 @@ pose_in_frame MotionClient::get_pose(
                       *request.mutable_supplemental_transforms()->Add() = transform.to_proto();
                   }
               })
-        .invoke([](auto& response) { return pose_in_frame::from_proto(response.pose()); });
+        .invoke([](auto& response) { return v2::from_proto(response.pose()); });
 }
 
 void MotionClient::stop_plan(const Name& name, const ProtoStruct& extra) {

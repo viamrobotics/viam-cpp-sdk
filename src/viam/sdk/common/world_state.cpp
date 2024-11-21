@@ -60,7 +60,7 @@ common::v1::WorldState WorldState::to_proto() const {
 WorldState::transform WorldState::transform::from_proto(const common::v1::Transform& proto) {
     WorldState::transform transform;
     transform.reference_frame = proto.reference_frame();
-    transform.pose_in_observer_frame = pose_in_frame::from_proto(proto.pose_in_observer_frame());
+    transform.pose_in_observer_frame = v2::from_proto(proto.pose_in_observer_frame());
     if (proto.has_physical_object()) {
         transform.physical_object =
             std::make_shared<GeometryConfig>(GeometryConfig::from_proto(proto.physical_object()));
@@ -72,7 +72,7 @@ WorldState::transform WorldState::transform::from_proto(const common::v1::Transf
 common::v1::Transform WorldState::transform::to_proto() const {
     common::v1::Transform proto;
     *proto.mutable_reference_frame() = reference_frame;
-    *proto.mutable_pose_in_observer_frame() = pose_in_observer_frame.to_proto();
+    *proto.mutable_pose_in_observer_frame() = v2::to_proto(pose_in_observer_frame);
     if (physical_object) {
         *proto.mutable_physical_object() = physical_object->to_proto();
     }

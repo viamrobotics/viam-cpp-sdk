@@ -54,33 +54,7 @@ viam::common::v1::Capsule GeometryConfig::capsule_proto() const {
 }
 
 viam::common::v1::Pose GeometryConfig::pose_proto() const {
-    return pose_.to_proto();
-}
-
-pose pose::from_proto(const viam::common::v1::Pose& proto) {
-    struct pose pose;
-    pose.coordinates.x = proto.x();
-    pose.coordinates.y = proto.y();
-    pose.coordinates.z = proto.z();
-    pose.orientation.o_x = proto.o_x();
-    pose.orientation.o_y = proto.o_y();
-    pose.orientation.o_z = proto.o_z();
-    pose.theta = proto.theta();
-
-    return pose;
-}
-
-viam::common::v1::Pose pose::to_proto() const {
-    viam::common::v1::Pose proto;
-    proto.set_x(coordinates.x);
-    proto.set_y(coordinates.y);
-    proto.set_z(coordinates.z);
-    proto.set_o_x(orientation.o_x);
-    proto.set_o_y(orientation.o_y);
-    proto.set_o_z(orientation.o_z);
-    proto.set_theta(theta);
-
-    return proto;
+    return v2::to_proto(pose_);
 }
 
 GeometryConfig::GeometryConfig() : geometry_type_(GeometryType::box) {}
@@ -88,7 +62,7 @@ GeometryConfig::GeometryConfig() : geometry_type_(GeometryType::box) {}
 GeometryConfig GeometryConfig::from_proto(const viam::common::v1::Geometry& proto) {
     GeometryConfig cfg;
     const auto& pose = proto.center();
-    cfg.pose_ = pose::from_proto(pose);
+    cfg.pose_ = v2::from_proto(pose);
     cfg.label_ = proto.label();
 
     switch (proto.geometry_type_case()) {

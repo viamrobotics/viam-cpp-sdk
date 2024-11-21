@@ -35,7 +35,7 @@ pose default_pose(int offset) {
 }
 
 Pose default_proto_pose(int offset = 0) {
-    return default_pose(offset).to_proto();
+    return v2::to_proto(default_pose(offset));
 }
 
 std::vector<RobotClient::operation> mock_operations_response() {
