@@ -51,7 +51,7 @@ service::motion::v1::PlanStep to_proto(const Motion::steps::step& step) {
     service::motion::v1::PlanStep proto;
     for (const auto& kv : step) {
         service::motion::v1::ComponentState cs;
-        *cs.mutable_pose() = kv.second.to_proto();
+        *cs.mutable_pose() = v2::to_proto(kv.second);
         proto.mutable_step()->insert({kv.first, cs});
     }
 
@@ -107,23 +107,23 @@ motion_configuration from_proto(const service::motion::v1::MotionConfiguration& 
     }
 
     if (proto.has_position_polling_frequency_hz()) {
-        *mc.position_polling_frequency_hz = proto.position_polling_frequency_hz();
+        mc.position_polling_frequency_hz = proto.position_polling_frequency_hz();
     }
 
     if (proto.has_obstacle_polling_frequency_hz()) {
-        *mc.obstacle_polling_frequency_hz = proto.obstacle_polling_frequency_hz();
+        mc.obstacle_polling_frequency_hz = proto.obstacle_polling_frequency_hz();
     }
 
     if (proto.has_plan_deviation_m()) {
-        *mc.plan_deviation_m = proto.plan_deviation_m();
+        mc.plan_deviation_m = proto.plan_deviation_m();
     }
 
     if (proto.has_linear_m_per_sec()) {
-        *mc.linear_m_per_sec = proto.linear_m_per_sec();
+        mc.linear_m_per_sec = proto.linear_m_per_sec();
     }
 
     if (proto.has_angular_degs_per_sec()) {
-        *mc.angular_degs_per_sec = proto.angular_degs_per_sec();
+        mc.angular_degs_per_sec = proto.angular_degs_per_sec();
     }
 
     return mc;
@@ -185,7 +185,7 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
             constraints = std::make_shared<Motion::constraints>(from_proto(request->constraints()));
         }
 
-        const bool success = motion->move(pose_in_frame::from_proto(request->destination()),
+        const bool success = motion->move(v2::from_proto(request->destination()),
                                           Name::from_proto(request->component_name()),
                                           std::move(ws),
                                           std::move(constraints),
@@ -200,7 +200,7 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
     ::viam::service::motion::v1::MoveOnMapResponse* response) noexcept {
     return make_service_helper<Motion>(
         "MotionServer::MoveOnMap", this, request)([&](auto& helper, auto& motion) {
-        const auto destination = pose::from_proto(request->destination());
+        const auto destination = v2::from_proto(request->destination());
         const auto component_name = Name::from_proto(request->component_name());
         const auto slam_name = Name::from_proto(request->slam_service_name());
 
@@ -280,7 +280,7 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
         }
         const pose_in_frame pose = motion->get_pose(
             component_name, destination_frame, supplemental_transforms, helper.getExtra());
-        *response->mutable_pose() = pose.to_proto();
+        *response->mutable_pose() = v2::to_proto(pose);
     });
 };
 
