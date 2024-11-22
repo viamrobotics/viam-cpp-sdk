@@ -4,7 +4,7 @@
 
 #include <ostream>
 
-VIAM_SDK_API_FWD_NAMESPACE_BEGIN
+VIAM_SDK_API_FWD_NAMESPACE_BEGIN(common)
 
 class Pose;
 class PoseInFrame;
