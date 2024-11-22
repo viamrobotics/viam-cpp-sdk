@@ -4,17 +4,14 @@
 
 #include <ostream>
 
-namespace viam {
-
-namespace common {
-namespace v1 {
+VIAM_SDK_API_FWD_NAMESPACE_BEGIN
 
 class Pose;
 class PoseInFrame;
 
-}  // namespace v1
-}  // namespace common
+VIAM_SDK_API_FWD_NAMESPACE_END
 
+namespace viam {
 namespace sdk {
 
 struct coordinates {

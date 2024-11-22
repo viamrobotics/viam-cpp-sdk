@@ -6,6 +6,16 @@
 
 #include <type_traits>
 
+#define VIAM_SDK_API_FWD_NAMESPACE_BEGIN \
+    namespace viam {                     \
+    namespace common {                   \
+    namespace v1 {
+
+#define VIAM_SDK_API_FWD_NAMESPACE_END \
+    }                                  \
+    }                                  \
+    }
+
 namespace viam {
 namespace sdk {
 
