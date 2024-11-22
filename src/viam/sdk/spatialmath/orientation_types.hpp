@@ -1,6 +1,12 @@
 #pragma once
 
-#include <viam/api/app/v1/robot.pb.h>
+#include <viam/sdk/common/proto_convert.hpp>
+
+VIAM_SDK_API_FWD_NAMESPACE_BEGIN(app)
+
+class Translation;
+
+VIAM_SDK_API_FWD_NAMESPACE_END
 
 namespace viam {
 namespace sdk {
@@ -35,7 +41,15 @@ struct quaternion {
 
 struct translation {
     double x, y, z;
-    viam::app::v1::Translation to_proto() const;
 };
+
+namespace proto_convert_details {
+
+template <>
+struct to_proto<translation> {
+    void operator()(const translation&, app::v1::Translation*) const;
+};
+
+}  // namespace proto_convert_details
 }  // namespace sdk
 }  // namespace viam

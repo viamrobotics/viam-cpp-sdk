@@ -18,7 +18,7 @@ viam::app::v1::Frame LinkConfig::to_proto() const {
     *frame.mutable_parent() = parent_;
     *frame.mutable_geometry() = geometry_.to_proto();
     *frame.mutable_orientation() = orientation_.to_proto();
-    *frame.mutable_translation() = translation_.to_proto();
+    *frame.mutable_translation() = v2::to_proto(translation_);
     return frame;
 };
 
