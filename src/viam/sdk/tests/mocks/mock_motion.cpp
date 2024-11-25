@@ -177,7 +177,7 @@ std::vector<geo_geometry> fake_obstacles() {
     struct sphere sphere({1});
     gc.set_geometry_specifics(sphere);
     gc.set_label("label");
-    gc.set_orientation_config({AxisAngles, {}, axis_angles{1, 2, 3, 4}});
+    gc.set_orientation(axis_angles{1, 2, 3, 4});
     return {{fake_geo_point(), {std::move(gc)}}};
 }
 
@@ -188,7 +188,7 @@ std::vector<geo_geometry> fake_bounding_regions() {
     struct sphere sphere({2});
     gc.set_geometry_specifics(sphere);
     gc.set_label("label");
-    gc.set_orientation_config({AxisAngles, {}, axis_angles{1, 2, 3, 4}});
+    gc.set_orientation(axis_angles{1, 2, 3, 4});
     return {{fake_geo_point(), {std::move(gc)}}};
 }
 

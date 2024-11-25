@@ -15,14 +15,14 @@ class LinkConfig {
     viam::app::v1::Frame to_proto() const;
     static LinkConfig from_proto(const viam::app::v1::Frame& proto);
     translation get_translation() const;
-    OrientationConfig get_orientation_config() const;
+    const Orientation& get_orientation() const;
     GeometryConfig get_geometry_config() const;
     std::string get_parent() const;
 
    private:
     std::string id_;
     translation translation_;
-    OrientationConfig orientation_;
+    Orientation orientation_;
     GeometryConfig geometry_;
     std::string parent_;
 };

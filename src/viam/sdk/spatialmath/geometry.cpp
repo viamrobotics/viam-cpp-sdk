@@ -143,50 +143,64 @@ viam::common::v1::Geometry GeometryConfig::to_proto() const {
         }
     }
 }
+
 void GeometryConfig::set_coordinates(coordinates coordinates) {
     pose_.coordinates = std::move(coordinates);
 }
+
 void GeometryConfig::set_pose(pose pose) {
     pose_ = std::move(pose);
 }
+
 void GeometryConfig::set_geometry_specifics(geometry_specifics gs) {
     geometry_specifics_ = std::move(gs);
 }
+
 void GeometryConfig::set_pose_orientation(pose_orientation orientation) {
     pose_.orientation = std::move(orientation);
 }
+
 void GeometryConfig::set_theta(double theta) {
     pose_.theta = std::move(theta);
 }
+
 void GeometryConfig::set_geometry_type(GeometryType type) {
     geometry_type_ = std::move(type);
 }
-void GeometryConfig::set_orientation_config(OrientationConfig config) {
-    orientation_config_ = std::move(config);
+
+void GeometryConfig::set_orientation(Orientation o) {
+    orientation_ = std::move(o);
 }
+
 void GeometryConfig::set_label(std::string label) {
     label_ = std::move(label);
 }
-geometry_specifics GeometryConfig::get_geometry_specifics() const {
+
+const geometry_specifics& GeometryConfig::get_geometry_specifics() const {
     return geometry_specifics_;
 }
+
 double GeometryConfig::get_theta() const {
     return pose_.theta;
 }
+
 GeometryType GeometryConfig::get_geometry_type() const {
     return geometry_type_;
 }
-coordinates GeometryConfig::get_coordinates() const {
+
+const coordinates& GeometryConfig::get_coordinates() const {
     return pose_.coordinates;
 }
-pose GeometryConfig::get_pose() const {
+
+const pose& GeometryConfig::get_pose() const {
     return pose_;
 }
-OrientationConfig GeometryConfig::get_orientation_config() const {
-    return orientation_config_;
+
+const Orientation& GeometryConfig::get_orientation() const {
+    return orientation_;
 }
 
-std::string GeometryConfig::get_label() const {
+const std::string& GeometryConfig::get_label() const {
     return label_;
 }
 

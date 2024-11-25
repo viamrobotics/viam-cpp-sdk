@@ -49,22 +49,27 @@ class GeometryConfig {
     static GeometryConfig from_proto(const viam::common::v1::Geometry& proto);
     static std::vector<GeometryConfig> from_proto(
         const viam::common::v1::GetGeometriesResponse& proto);
+
+    // TODO replace trivial setters with constructor
     void set_coordinates(coordinates coordinates);
     void set_pose(pose pose);
     void set_pose_orientation(pose_orientation orientation);
     void set_theta(double theta);
     void set_geometry_specifics(geometry_specifics gs);
     void set_geometry_type(GeometryType type);
-    void set_orientation_config(OrientationConfig config);
+    void set_orientation(Orientation);
     void set_label(std::string label);
+
     double get_theta() const;
-    coordinates get_coordinates() const;
-    pose get_pose() const;
-    geometry_specifics get_geometry_specifics() const;
+    const coordinates& get_coordinates() const;
+    const pose& get_pose() const;
+    const geometry_specifics& get_geometry_specifics() const;
     GeometryType get_geometry_type() const;
-    OrientationConfig get_orientation_config() const;
-    std::string get_label() const;
+    const Orientation& get_orientation() const;
+    const std::string& get_label() const;
+
     friend bool operator==(const GeometryConfig& lhs, const GeometryConfig& rhs);
+
     GeometryConfig();
 
    private:
@@ -73,7 +78,7 @@ class GeometryConfig {
     geometry_specifics geometry_specifics_;
     // TODO: if and when RDK makes more explicit use of ox/oy/oz, we should
     // do the same here
-    OrientationConfig orientation_config_;
+    Orientation orientation_;
     std::string label_;
 };
 

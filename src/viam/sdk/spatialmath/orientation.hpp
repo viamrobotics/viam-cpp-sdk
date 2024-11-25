@@ -5,37 +5,35 @@
 
 #include <boost/variant/variant.hpp>
 
-#include <viam/api/app/v1/robot.pb.h>
-
+#include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/spatialmath/orientation_types.hpp>
+
+VIAM_SDK_API_FWD_NAMESPACE_BEGIN(app)
+
+class Orientation;
+
+VIAM_SDK_API_FWD_NAMESPACE_END
 
 namespace viam {
 namespace sdk {
 
-typedef boost::
-    variant<axis_angles, orientation_vector, orientation_vector_degrees, euler_angles, quaternion>
-        orientation;
+// Note that quaternion must be the first type because this is what is default constructed.
+using Orientation = boost::
+    variant<quaternion, axis_angles, orientation_vector, orientation_vector_degrees, euler_angles>;
 
-class OrientationConfig {
-   public:
-    viam::app::v1::Orientation to_proto() const;
-    static OrientationConfig from_proto(const viam::app::v1::Orientation& proto);
-    OrientationConfig(OrientationType type_,
-                      std::vector<std::uint8_t> value,
-                      orientation orientation)
-        : type_(std::move(type_)), value_(std::move(value)), orientation_(std::move(orientation)) {}
-    // Defaults to sentinel no rotation value
-    OrientationConfig();
+OrientationType get_type(const Orientation&);
 
-    OrientationType get_type() const;
-    const std::vector<std::uint8_t>& get_value() const;
-    const orientation& get_orientation() const;
+namespace proto_convert_details {
 
-   private:
-    OrientationType type_;
-    std::vector<std::uint8_t> value_;
-    orientation orientation_;
+template <>
+struct to_proto<Orientation> {
+    void operator()(const Orientation&, app::v1::Orientation*) const;
+};
+template <>
+struct from_proto<app::v1::Orientation> {
+    Orientation operator()(const app::v1::Orientation*) const;
 };
 
+}  // namespace proto_convert_details
 }  // namespace sdk
 }  // namespace viam

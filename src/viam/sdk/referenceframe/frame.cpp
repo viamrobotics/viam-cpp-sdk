@@ -17,7 +17,7 @@ viam::app::v1::Frame LinkConfig::to_proto() const {
 
     *frame.mutable_parent() = parent_;
     *frame.mutable_geometry() = geometry_.to_proto();
-    *frame.mutable_orientation() = orientation_.to_proto();
+    *frame.mutable_orientation() = v2::to_proto(orientation_);
     *frame.mutable_translation() = v2::to_proto(translation_);
     return frame;
 };
@@ -31,7 +31,7 @@ LinkConfig LinkConfig::from_proto(const viam::app::v1::Frame& proto) {
     lc.translation_.z = proto.translation().z();
 
     if (proto.has_orientation()) {
-        lc.orientation_ = OrientationConfig::from_proto(proto.orientation());
+        lc.orientation_ = v2::from_proto(proto.orientation());
     }
 
     if (proto.has_geometry()) {
@@ -45,7 +45,7 @@ translation LinkConfig::get_translation() const {
     return translation_;
 }
 
-OrientationConfig LinkConfig::get_orientation_config() const {
+const Orientation& LinkConfig::get_orientation() const {
     return orientation_;
 }
 
