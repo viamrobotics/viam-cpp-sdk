@@ -107,23 +107,23 @@ motion_configuration from_proto(const service::motion::v1::MotionConfiguration& 
     }
 
     if (proto.has_position_polling_frequency_hz()) {
-        *mc.position_polling_frequency_hz = proto.position_polling_frequency_hz();
+        mc.position_polling_frequency_hz = proto.position_polling_frequency_hz();
     }
 
     if (proto.has_obstacle_polling_frequency_hz()) {
-        *mc.obstacle_polling_frequency_hz = proto.obstacle_polling_frequency_hz();
+        mc.obstacle_polling_frequency_hz = proto.obstacle_polling_frequency_hz();
     }
 
     if (proto.has_plan_deviation_m()) {
-        *mc.plan_deviation_m = proto.plan_deviation_m();
+        mc.plan_deviation_m = proto.plan_deviation_m();
     }
 
     if (proto.has_linear_m_per_sec()) {
-        *mc.linear_m_per_sec = proto.linear_m_per_sec();
+        mc.linear_m_per_sec = proto.linear_m_per_sec();
     }
 
     if (proto.has_angular_degs_per_sec()) {
-        *mc.angular_degs_per_sec = proto.angular_degs_per_sec();
+        mc.angular_degs_per_sec = proto.angular_degs_per_sec();
     }
 
     return mc;
