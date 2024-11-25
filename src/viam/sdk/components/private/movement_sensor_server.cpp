@@ -33,7 +33,7 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
                                                this,
                                                request)([&](auto& helper, auto& movementsensor) {
         const Vector3 result = movementsensor->get_linear_velocity(helper.getExtra());
-        *response->mutable_linear_velocity() = result.to_proto();
+        *response->mutable_linear_velocity() = v2::to_proto(result);
     });
 }
 
@@ -45,7 +45,7 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
                                                this,
                                                request)([&](auto& helper, auto& movementsensor) {
         const Vector3 result = movementsensor->get_angular_velocity(helper.getExtra());
-        *response->mutable_angular_velocity() = result.to_proto();
+        *response->mutable_angular_velocity() = v2::to_proto(result);
     });
 }
 
@@ -121,7 +121,7 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
                                                this,
                                                request)([&](auto& helper, auto& movementsensor) {
         const Vector3 result = movementsensor->get_linear_acceleration(helper.getExtra());
-        *response->mutable_linear_acceleration() = result.to_proto();
+        *response->mutable_linear_acceleration() = v2::to_proto(result);
     });
 }
 

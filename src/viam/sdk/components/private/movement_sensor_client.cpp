@@ -63,13 +63,13 @@ using namespace viam::component::movementsensor::v1;
 Vector3 MovementSensorClient::get_linear_velocity(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetLinearVelocity)
         .with(extra)
-        .invoke([](auto& response) { return Vector3::from_proto(response.linear_velocity()); });
+        .invoke([](auto& response) { return v2::from_proto(response.linear_velocity()); });
 }
 
 Vector3 MovementSensorClient::get_angular_velocity(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetAngularVelocity)
         .with(extra)
-        .invoke([](auto& response) { return Vector3::from_proto(response.angular_velocity()); });
+        .invoke([](auto& response) { return v2::from_proto(response.angular_velocity()); });
 }
 
 MovementSensor::compassheading MovementSensorClient::get_compass_heading(const ProtoStruct& extra) {
@@ -112,7 +112,7 @@ std::unordered_map<std::string, float> MovementSensorClient::get_accuracy(
 Vector3 MovementSensorClient::get_linear_acceleration(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetLinearAcceleration)
         .with(extra)
-        .invoke([](auto& response) { return Vector3::from_proto(response.linear_acceleration()); });
+        .invoke([](auto& response) { return v2::from_proto(response.linear_acceleration()); });
 }
 
 ProtoStruct MovementSensorClient::do_command(const ProtoStruct& command) {

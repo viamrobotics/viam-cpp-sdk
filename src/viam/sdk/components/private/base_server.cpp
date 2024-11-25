@@ -40,8 +40,8 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager)
                                     ::viam::component::base::v1::SetPowerResponse*) noexcept {
     return make_service_helper<Base>(
         "BaseServer::SetPower", this, request)([&](auto& helper, auto& base) {
-        auto linear = Vector3::from_proto(request->linear());
-        auto angular = Vector3::from_proto(request->angular());
+        auto linear = v2::from_proto(request->linear());
+        auto angular = v2::from_proto(request->angular());
         base->set_power(linear, angular, helper.getExtra());
     });
 }
@@ -52,8 +52,8 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager)
     ::viam::component::base::v1::SetVelocityResponse*) noexcept {
     return make_service_helper<Base>(
         "BaseServer::SetVelocity", this, request)([&](auto& helper, auto& base) {
-        auto linear = Vector3::from_proto(request->linear());
-        auto angular = Vector3::from_proto(request->angular());
+        auto linear = v2::from_proto(request->linear());
+        auto angular = v2::from_proto(request->angular());
         base->set_velocity(linear, angular, helper.getExtra());
     });
 }

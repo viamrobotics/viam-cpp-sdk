@@ -61,7 +61,6 @@ class GeometryConfig {
     void set_label(std::string label);
 
     double get_theta() const;
-    const coordinates& get_coordinates() const;
     const pose& get_pose() const;
     const geometry_specifics& get_geometry_specifics() const;
     GeometryType get_geometry_type() const;

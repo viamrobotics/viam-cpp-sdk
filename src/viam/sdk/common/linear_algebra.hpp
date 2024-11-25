@@ -5,18 +5,22 @@
 #include <boost/qvm/vec.hpp>
 #include <boost/qvm/vec_traits.hpp>
 
-#include <viam/api/common/v1/common.pb.h>
+#include <viam/sdk/common/proto_convert.hpp>
+
+VIAM_SDK_API_FWD_NAMESPACE_BEGIN(common)
+
+class Vector3;
+
+VIAM_SDK_API_FWD_NAMESPACE_END
+
 namespace viam {
 namespace sdk {
 
 // In the future, we may wish to inline this whole class
 // for performance reasons.
 
-class Vector3 {
-   public:
+struct Vector3 {
     using scalar_type = double;
-    Vector3(scalar_type x, scalar_type y, scalar_type z);
-    Vector3();
 
     scalar_type x() const;
     scalar_type y() const;
@@ -28,15 +32,22 @@ class Vector3 {
     /// Set the z value of the vector (can be chained)
     Vector3& set_z(scalar_type z);
 
-    const std::array<scalar_type, 3>& data() const;
-    std::array<scalar_type, 3>& data();
-    viam::common::v1::Vector3 to_proto() const;
-    static Vector3 from_proto(const viam::common::v1::Vector3& vec);
-
-   private:
-    std::array<scalar_type, 3> data_;
+    std::array<scalar_type, 3> data;
 };
 
+namespace proto_convert_details {
+
+template <>
+struct to_proto<Vector3> {
+    void operator()(const Vector3&, common::v1::Vector3*) const;
+};
+
+template <>
+struct from_proto<common::v1::Vector3> {
+    Vector3 operator()(const common::v1::Vector3*) const;
+};
+
+}  // namespace proto_convert_details
 }  // namespace sdk
 }  // namespace viam
 
@@ -51,20 +62,20 @@ struct vec_traits<viam::sdk::Vector3> {
 
     template <int I>
     static inline scalar_type& write_element(vec_type& v) {
-        return v.data()[I];
+        return v.data[I];
     }
 
     template <int I>
     static inline scalar_type read_element(vec_type const& v) {
-        return v.data()[I];
+        return v.data[I];
     }
 
     static inline scalar_type& write_element_idx(int i, vec_type& v) {
-        return v.data()[i];
+        return v.data[i];
     }
 
     static inline scalar_type read_element_idx(int i, vec_type const& v) {
-        return v.data()[i];
+        return v.data[i];
     }
 };
 

@@ -188,10 +188,6 @@ GeometryType GeometryConfig::get_geometry_type() const {
     return geometry_type_;
 }
 
-const coordinates& GeometryConfig::get_coordinates() const {
-    return pose_.coordinates;
-}
-
 const pose& GeometryConfig::get_pose() const {
     return pose_;
 }
