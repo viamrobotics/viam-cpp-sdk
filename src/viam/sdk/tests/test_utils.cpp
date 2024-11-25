@@ -21,7 +21,6 @@ ProtoStruct fake_map() {
 std::vector<GeometryConfig> fake_geometries() {
     GeometryConfig sphere_config;
     sphere_config.set_geometry_type(GeometryType::sphere);
-    sphere_config.set_coordinates({1, 2, 3});
     sphere_config.set_pose({1, 2, 3});
     struct sphere sphere({1});
     sphere_config.set_geometry_specifics(std::move(sphere));
@@ -29,7 +28,6 @@ std::vector<GeometryConfig> fake_geometries() {
 
     GeometryConfig box_config;
     box_config.set_geometry_type(GeometryType::box);
-    box_config.set_coordinates({1, 2, 3});
     box_config.set_pose({1, 2, 3});
     struct box box({1, 2, 3});
     box_config.set_geometry_specifics(std::move(box));
@@ -37,7 +35,6 @@ std::vector<GeometryConfig> fake_geometries() {
 
     GeometryConfig point_config;
     point_config.set_geometry_type(GeometryType::point);
-    point_config.set_coordinates({1, 2, 3});
     point_config.set_pose({1, 2, 3});
     struct sphere point({0});
     point_config.set_geometry_specifics(std::move(point));
@@ -45,7 +42,6 @@ std::vector<GeometryConfig> fake_geometries() {
 
     GeometryConfig capsule_config;
     capsule_config.set_geometry_type(GeometryType::capsule);
-    capsule_config.set_coordinates({1, 2, 3});
     capsule_config.set_pose({1, 2, 3});
     struct capsule capsule({2, 4});
     capsule_config.set_geometry_specifics(std::move(capsule));

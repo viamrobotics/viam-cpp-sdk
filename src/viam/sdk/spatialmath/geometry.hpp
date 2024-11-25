@@ -51,10 +51,7 @@ class GeometryConfig {
         const viam::common::v1::GetGeometriesResponse& proto);
 
     // TODO replace trivial setters with constructor
-    void set_coordinates(coordinates coordinates);
     void set_pose(pose pose);
-    void set_pose_orientation(pose_orientation orientation);
-    void set_theta(double theta);
     void set_geometry_specifics(geometry_specifics gs);
     void set_geometry_type(GeometryType type);
     void set_orientation(Orientation);
