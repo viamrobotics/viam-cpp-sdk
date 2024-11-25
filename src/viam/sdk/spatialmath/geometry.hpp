@@ -45,7 +45,6 @@ class GeometryConfig {
     viam::common::v1::RectangularPrism box_proto() const;
     viam::common::v1::Sphere sphere_proto() const;
     viam::common::v1::Capsule capsule_proto() const;
-    viam::common::v1::Pose pose_proto() const;
     static GeometryConfig from_proto(const viam::common::v1::Geometry& proto);
     static std::vector<GeometryConfig> from_proto(
         const viam::common::v1::GetGeometriesResponse& proto);

@@ -53,10 +53,6 @@ viam::common::v1::Capsule GeometryConfig::capsule_proto() const {
     }
 }
 
-viam::common::v1::Pose GeometryConfig::pose_proto() const {
-    return v2::to_proto(pose_);
-}
-
 GeometryConfig::GeometryConfig() : geometry_type_(GeometryType::box) {}
 
 GeometryConfig GeometryConfig::from_proto(const viam::common::v1::Geometry& proto) {
@@ -112,7 +108,7 @@ std::vector<GeometryConfig> GeometryConfig::from_proto(
 viam::common::v1::Geometry GeometryConfig::to_proto() const {
     viam::common::v1::Geometry geometry_;
     *geometry_.mutable_label() = label_;
-    *geometry_.mutable_center() = pose_proto();
+    *geometry_.mutable_center() = v2::to_proto(pose_);
     switch (geometry_type_) {
         case GeometryType::box: {
             *geometry_.mutable_box() = box_proto();
