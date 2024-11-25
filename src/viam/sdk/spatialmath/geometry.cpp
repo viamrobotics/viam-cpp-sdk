@@ -224,24 +224,23 @@ bool operator==(const struct capsule& lhs, const struct capsule& rhs) {
 }
 
 bool operator==(const GeometryConfig& lhs, const GeometryConfig& rhs) {
-    const auto& lhs_coordinates = lhs.pose_.coordinates;
-    const auto& rhs_coordinates = rhs.pose_.coordinates;
-    const auto& lhs_orientation = lhs.pose_.orientation;
-    const auto& rhs_orientation = rhs.pose_.orientation;
-    return lhs_coordinates.x == rhs_coordinates.x && lhs_coordinates.y == rhs_coordinates.y &&
-           lhs_coordinates.z == rhs_coordinates.z && lhs_orientation.o_x == rhs_orientation.o_x &&
-           lhs_orientation.o_y == rhs_orientation.o_y &&
-           lhs_orientation.o_z == rhs_orientation.o_z && lhs.label_ == rhs.label_ &&
-           lhs.geometry_type_ == rhs.geometry_type_ &&
-           lhs.geometry_specifics_ == rhs.geometry_specifics_;
+    return std::tie(lhs.pose_.coordinates,
+                    lhs.pose_.orientation,
+                    lhs.label_,
+                    lhs.geometry_type_,
+                    lhs.geometry_specifics_) == std::tie(rhs.pose_.coordinates,
+                                                         rhs.pose_.orientation,
+                                                         rhs.label_,
+                                                         rhs.geometry_type_,
+                                                         rhs.geometry_specifics_);
 }
 
 bool operator==(const geo_point& lhs, const geo_point& rhs) {
-    return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude;
+    return std::tie(lhs.latitude, lhs.longitude) == std::tie(rhs.latitude, rhs.longitude);
 }
 
 bool operator==(const geo_geometry& lhs, const geo_geometry& rhs) {
-    return lhs.location == rhs.location && lhs.geometries == rhs.geometries;
+    return std::tie(lhs.location, lhs.geometries) == std::tie(rhs.location, rhs.geometries);
 }
 
 common::v1::GeoPoint geo_point::to_proto() const {
