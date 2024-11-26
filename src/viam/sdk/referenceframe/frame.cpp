@@ -12,36 +12,13 @@
 namespace viam {
 namespace sdk {
 
-viam::app::v1::Frame LinkConfig::to_proto() const {
-    viam::app::v1::Frame frame;
+LinkConfig::LinkConfig(translation t, Orientation o, GeometryConfig gcfg, std::string parent)
+    : translation_(std::move(t)),
+      orientation_(std::move(o)),
+      geometry_(std::move(gcfg)),
+      parent_(std::move(parent)) {}
 
-    *frame.mutable_parent() = parent_;
-    *frame.mutable_geometry() = v2::to_proto(geometry_);
-    *frame.mutable_orientation() = v2::to_proto(orientation_);
-    *frame.mutable_translation() = v2::to_proto(translation_);
-    return frame;
-};
-
-LinkConfig LinkConfig::from_proto(const viam::app::v1::Frame& proto) {
-    LinkConfig lc;
-
-    lc.parent_ = proto.parent();
-    lc.translation_.x = proto.translation().x();
-    lc.translation_.y = proto.translation().y();
-    lc.translation_.z = proto.translation().z();
-
-    if (proto.has_orientation()) {
-        lc.orientation_ = v2::from_proto(proto.orientation());
-    }
-
-    if (proto.has_geometry()) {
-        lc.geometry_ = v2::from_proto(proto.geometry());
-    }
-
-    return lc;
-};
-
-translation LinkConfig::get_translation() const {
+const translation& LinkConfig::get_translation() const {
     return translation_;
 }
 
@@ -49,13 +26,31 @@ const Orientation& LinkConfig::get_orientation() const {
     return orientation_;
 }
 
-GeometryConfig LinkConfig::get_geometry_config() const {
+const GeometryConfig& LinkConfig::get_geometry_config() const {
     return geometry_;
 }
 
-std::string LinkConfig::get_parent() const {
+const std::string& LinkConfig::get_parent() const {
     return parent_;
 }
 
+namespace proto_convert_details {
+
+void to_proto<LinkConfig>::operator()(const LinkConfig& self, app::v1::Frame* proto) const {
+    *(proto->mutable_parent()) = self.get_parent();
+    *(proto->mutable_geometry()) = v2::to_proto(self.get_geometry_config());
+    *(proto->mutable_orientation()) = v2::to_proto(self.get_orientation());
+    *(proto->mutable_translation()) = v2::to_proto(self.get_translation());
+}
+
+LinkConfig from_proto<app::v1::Frame>::operator()(const app::v1::Frame* proto) const {
+    return LinkConfig(
+        v2::from_proto(proto->translation()),
+        proto->has_orientation() ? v2::from_proto(proto->orientation()) : Orientation{},
+        proto->has_geometry() ? v2::from_proto(proto->geometry()) : GeometryConfig{},
+        proto->parent());
+}
+
+}  // namespace proto_convert_details
 }  // namespace sdk
 }  // namespace viam

@@ -104,7 +104,7 @@ ResourceConfig ResourceConfig::from_proto(const viam::app::v1::ComponentConfig& 
     resource.fix_api();
 
     if (proto_cfg.has_frame()) {
-        resource.frame_ = LinkConfig::from_proto(proto_cfg.frame());
+        resource.frame_ = v2::from_proto(proto_cfg.frame());
     }
 
     return resource;
@@ -133,12 +133,13 @@ viam::app::v1::ComponentConfig ResourceConfig::to_proto() const {
     for (const auto& dep : depends_on_) {
         *proto_cfg.mutable_depends_on()->Add() = dep;
     }
-    *proto_cfg.mutable_frame() = frame_.to_proto();
+    *proto_cfg.mutable_frame() = v2::to_proto(frame_);
 
     return proto_cfg;
 }
 
-ResourceConfig::ResourceConfig(std::string type) : api_({kRDK, type, ""}), type_(std::move(type)){};
+ResourceConfig::ResourceConfig(std::string type)
+    : api_({kRDK, type, ""}), type_(std::move(type)) {};
 
 }  // namespace sdk
 }  // namespace viam

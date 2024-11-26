@@ -50,6 +50,11 @@ struct to_proto<translation> {
     void operator()(const translation&, app::v1::Translation*) const;
 };
 
+template <>
+struct from_proto<app::v1::Translation> {
+    translation operator()(const app::v1::Translation*) const;
+};
+
 }  // namespace proto_convert_details
 }  // namespace sdk
 }  // namespace viam

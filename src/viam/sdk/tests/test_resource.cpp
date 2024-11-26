@@ -134,7 +134,7 @@ BOOST_AUTO_TEST_CASE(test_linkconfig) {
     *frame.mutable_orientation() = o;
     *frame.mutable_translation() = t;
 
-    LinkConfig lc = LinkConfig::from_proto(frame);
+    LinkConfig lc = v2::from_proto(frame);
     BOOST_CHECK_EQUAL(lc.get_parent(), "parent");
     BOOST_CHECK_EQUAL(lc.get_translation().x, t.x());
     BOOST_CHECK_EQUAL(lc.get_translation().y, t.y());
@@ -151,7 +151,7 @@ BOOST_AUTO_TEST_CASE(test_linkconfig) {
     BOOST_CHECK_EQUAL(gs.box().dims_mm().y(), box.dims_mm().y());
     BOOST_CHECK_EQUAL(gs.box().dims_mm().z(), box.dims_mm().z());
 
-    viam::app::v1::Frame proto_lc = lc.to_proto();
+    viam::app::v1::Frame proto_lc = v2::to_proto(lc);
     BOOST_CHECK_EQUAL(proto_lc.parent(), "parent");
     BOOST_CHECK_EQUAL(proto_lc.translation().x(), t.x());
     BOOST_CHECK_EQUAL(proto_lc.translation().y(), t.y());
