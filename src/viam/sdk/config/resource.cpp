@@ -18,6 +18,8 @@
 namespace viam {
 namespace sdk {
 
+ResourceConfig::ResourceConfig(std::string type) : api_({kRDK, type, ""}), type_(std::move(type)) {}
+
 Name ResourceConfig::resource_name() {
     this->fix_api();
     std::vector<std::string> remotes;
@@ -137,8 +139,6 @@ viam::app::v1::ComponentConfig ResourceConfig::to_proto() const {
 
     return proto_cfg;
 }
-
-ResourceConfig::ResourceConfig(std::string type) : api_({kRDK, type, ""}), type_(std::move(type)) {}
 
 }  // namespace sdk
 }  // namespace viam

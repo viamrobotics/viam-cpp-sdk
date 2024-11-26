@@ -177,7 +177,7 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
         "MotionServer::Move", this, request)([&](auto& helper, auto& motion) {
         std::shared_ptr<WorldState> ws;
         if (request->has_world_state()) {
-            ws = std::make_shared<WorldState>(WorldState::from_proto(request->world_state()));
+            ws = std::make_shared<WorldState>(v2::from_proto(request->world_state()));
         }
 
         std::shared_ptr<Motion::constraints> constraints;
@@ -276,7 +276,7 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
         const std::string& destination_frame = request->destination_frame();
         std::vector<WorldState::transform> supplemental_transforms;
         for (const auto& proto_transform : request->supplemental_transforms()) {
-            supplemental_transforms.push_back(WorldState::transform::from_proto(proto_transform));
+            supplemental_transforms.push_back(v2::from_proto(proto_transform));
         }
         const pose_in_frame pose = motion->get_pose(
             component_name, destination_frame, supplemental_transforms, helper.getExtra());

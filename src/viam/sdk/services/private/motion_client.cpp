@@ -194,7 +194,7 @@ bool MotionClient::move(const pose_in_frame& destination,
                       *request.mutable_constraints() = to_proto(*constraints);
                   }
                   if (world_state) {
-                      *request.mutable_world_state() = world_state->to_proto();
+                      *request.mutable_world_state() = v2::to_proto(*world_state);
                   }
               })
         .invoke([](auto& response) { return response.success(); });
@@ -270,9 +270,8 @@ pose_in_frame MotionClient::get_pose(
               [&](auto& request) {
                   *request.mutable_component_name() = component_name.to_proto();
                   *request.mutable_destination_frame() = destination_frame;
-                  for (const auto& transform : supplemental_transforms) {
-                      *request.mutable_supplemental_transforms()->Add() = transform.to_proto();
-                  }
+                  *request.mutable_supplemental_transforms() =
+                      v2::to_proto(supplemental_transforms);
               })
         .invoke([](auto& response) { return v2::from_proto(response.pose()); });
 }

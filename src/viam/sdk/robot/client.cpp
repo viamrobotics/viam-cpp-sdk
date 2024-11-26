@@ -72,7 +72,7 @@ RobotClient::discovery from_proto(const Discovery& proto) {
 
 RobotClient::frame_system_config from_proto(const FrameSystemConfig& proto) {
     RobotClient::frame_system_config fsconfig;
-    fsconfig.frame = WorldState::transform::from_proto(proto.frame());
+    fsconfig.frame = v2::from_proto(proto.frame());
     if (proto.has_kinematics()) {
         fsconfig.kinematics = struct_to_map(proto.kinematics());
     }
@@ -368,10 +368,7 @@ std::vector<RobotClient::frame_system_config> RobotClient::get_frame_system_conf
     viam::robot::v1::FrameSystemConfigResponse resp;
     ClientContext ctx;
 
-    RepeatedPtrField<Transform>* req_transforms = req.mutable_supplemental_transforms();
-    for (const WorldState::transform& transform : additional_transforms) {
-        *req_transforms->Add() = transform.to_proto();
-    }
+    *(req.mutable_supplemental_transforms()) = v2::to_proto(additional_transforms);
 
     const grpc::Status response = impl_->stub_->FrameSystemConfig(ctx, req, &resp);
     if (is_error_response(response)) {
@@ -400,11 +397,7 @@ pose_in_frame RobotClient::transform_pose(
 
     *req.mutable_source() = v2::to_proto(query);
     *req.mutable_destination() = std::move(destination);
-    RepeatedPtrField<Transform>* req_transforms = req.mutable_supplemental_transforms();
-
-    for (const WorldState::transform& transform : additional_transforms) {
-        *req_transforms->Add() = transform.to_proto();
-    }
+    *req.mutable_supplemental_transforms() = v2::to_proto(additional_transforms);
 
     const grpc::Status response = impl_->stub_->TransformPose(ctx, req, &resp);
     if (is_error_response(response)) {
