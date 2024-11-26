@@ -134,7 +134,7 @@ Camera::point_cloud CameraClient::get_point_cloud(std::string mime_type, const P
 std::vector<GeometryConfig> CameraClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
+        .invoke([](auto& response) { return v2::from_proto(response); });
 };
 
 Camera::properties CameraClient::get_properties() {

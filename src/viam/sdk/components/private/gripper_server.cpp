@@ -59,7 +59,7 @@ GripperServer::GripperServer(std::shared_ptr<ResourceManager> manager)
         "GripperServer::GetGeometries", this, request)([&](auto& helper, auto& gripper) {
         const std::vector<GeometryConfig> geometries = gripper->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = geometry.to_proto();
+            *response->mutable_geometries()->Add() = v2::to_proto(geometry);
         }
     });
 }

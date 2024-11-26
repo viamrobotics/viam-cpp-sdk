@@ -171,24 +171,13 @@ std::shared_ptr<motion_configuration> fake_motion_configuration() {
 }
 
 std::vector<geo_geometry> fake_obstacles() {
-    GeometryConfig gc;
-    gc.set_pose({{20, 25, 30}, {35, 40, 45}, 50});
-    gc.set_geometry_type(sdk::sphere);
-    struct sphere sphere({1});
-    gc.set_geometry_specifics(sphere);
-    gc.set_label("label");
-    gc.set_orientation(axis_angles{1, 2, 3, 4});
+    GeometryConfig gc(
+        {{20, 25, 30}, {35, 40, 45}, 50}, sphere{1}, axis_angles{1, 2, 3, 4}, "label");
     return {{fake_geo_point(), {std::move(gc)}}};
 }
 
 std::vector<geo_geometry> fake_bounding_regions() {
-    GeometryConfig gc;
-    gc.set_pose({{1, 2, 3}, {0, 0, 0}, 90});
-    gc.set_geometry_type(sdk::sphere);
-    struct sphere sphere({2});
-    gc.set_geometry_specifics(sphere);
-    gc.set_label("label");
-    gc.set_orientation(axis_angles{1, 2, 3, 4});
+    GeometryConfig gc({{1, 2, 3}, {0, 0, 0}, 90}, sphere{2}, axis_angles{1, 2, 3, 4}, "label");
     return {{fake_geo_point(), {std::move(gc)}}};
 }
 

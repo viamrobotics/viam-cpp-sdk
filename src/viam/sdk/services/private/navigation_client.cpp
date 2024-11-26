@@ -20,7 +20,7 @@ namespace impl {
 using namespace viam::service::navigation::v1;
 
 Navigation::Waypoint from_proto(const viam::service::navigation::v1::Waypoint& proto) {
-    return Navigation::Waypoint{proto.id(), geo_point::from_proto(proto.location())};
+    return Navigation::Waypoint{proto.id(), v2::from_proto(proto.location())};
 }
 
 Navigation::Path from_proto(const viam::service::navigation::v1::Path& proto) {
@@ -32,7 +32,7 @@ Navigation::Path from_proto(const viam::service::navigation::v1::Path& proto) {
 NavigationClient::NavigationClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Navigation(std::move(name)),
       stub_(service::navigation::v1::NavigationService::NewStub(channel)),
-      channel_(std::move(channel)){};
+      channel_(std::move(channel)) {};
 
 Navigation::Mode NavigationClient::get_mode(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetMode)
@@ -54,7 +54,7 @@ Navigation::LocationResponse NavigationClient::get_location(const ProtoStruct& e
         .with([&](auto& request) { *request.mutable_extra() = map_to_struct(extra); })
         .invoke([](auto& response) {
             return Navigation::LocationResponse{
-                geo_point::from_proto(response.location()),
+                v2::from_proto(response.location()),
                 response.compass_heading(),
             };
         });
@@ -73,7 +73,7 @@ std::vector<Navigation::Waypoint> NavigationClient::get_waypoints(const ProtoStr
 void NavigationClient::add_waypoint(const geo_point& location, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::AddWaypoint)
         .with([&](auto& request) {
-            *request.mutable_location() = location.to_proto();
+            *request.mutable_location() = v2::to_proto(location);
             *request.mutable_extra() = map_to_struct(extra);
         })
         .invoke([](auto& response) {});

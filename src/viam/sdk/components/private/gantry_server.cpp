@@ -88,7 +88,7 @@ GantryServer::GantryServer(std::shared_ptr<ResourceManager> manager)
         "GantryServer::GetGeometries", this, request)([&](auto& helper, auto& gantry) {
         const std::vector<GeometryConfig> geometries = gantry->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = geometry.to_proto();
+            *response->mutable_geometries()->Add() = v2::to_proto(geometry);
         }
     });
 }

@@ -56,7 +56,7 @@ EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager)
         "EncoderServer::GetGeometries", this, request)([&](auto& helper, auto& encoder) {
         const std::vector<GeometryConfig> geometries = encoder->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = geometry.to_proto();
+            *response->mutable_geometries()->Add() = v2::to_proto(geometry);
         }
     });
 }

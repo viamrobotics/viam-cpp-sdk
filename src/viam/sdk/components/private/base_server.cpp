@@ -83,7 +83,7 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager)
         "BaseServer::GetGeometries", this, request)([&](auto& helper, auto& base) {
         const std::vector<GeometryConfig> geometries = base->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = geometry.to_proto();
+            *response->mutable_geometries()->Add() = v2::to_proto(geometry);
         }
     });
 }

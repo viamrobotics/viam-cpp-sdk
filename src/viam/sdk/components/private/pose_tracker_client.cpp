@@ -35,7 +35,7 @@ PoseTracker::pose_map PoseTrackerClient::get_poses(const std::vector<std::string
 std::vector<GeometryConfig> PoseTrackerClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
+        .invoke([](auto& response) { return v2::from_proto(response); });
 }
 
 ProtoStruct PoseTrackerClient::do_command(const ProtoStruct& command) {

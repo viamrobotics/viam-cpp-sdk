@@ -4,22 +4,31 @@
 #include <string>
 #include <tuple>
 
-#include <viam/api/common/v1/common.pb.h>
-
 #include <viam/sdk/common/pose.hpp>
+#include <viam/sdk/common/proto_convert.hpp>
+#include <viam/sdk/common/proto_convert_vector.hpp>
 #include <viam/sdk/spatialmath/orientation.hpp>
+
+VIAM_SDK_API_FWD_NAMESPACE_BEGIN(common)
+
+class RectangularPrism;
+class Sphere;
+class Capsule;
+
+class Geometry;
+class GetGeometriesResponse;
+
+class GeoPoint;
+class GeoGeometry;
+
+VIAM_SDK_API_FWD_NAMESPACE_END
 
 namespace viam {
 namespace sdk {
 
 // TODO(RSDK-4553): add thorough documentation to this whole file.
-enum GeometryType {
-    box,
-    sphere,
-    capsule,
-    point,
-    unknown,
-};
+
+enum class GeometryType { box, sphere, capsule, point };
 
 struct box {
     double x;
@@ -37,24 +46,14 @@ struct capsule {
     friend bool operator==(const capsule& lhs, const capsule& rhs);
 };
 
-typedef boost::variant<struct box, struct sphere, struct capsule, boost::blank> geometry_specifics;
+typedef boost::variant<struct box, struct sphere, struct capsule> geometry_specifics;
 
 class GeometryConfig {
    public:
-    viam::common::v1::Geometry to_proto() const;
-    viam::common::v1::RectangularPrism box_proto() const;
-    viam::common::v1::Sphere sphere_proto() const;
-    viam::common::v1::Capsule capsule_proto() const;
-    static GeometryConfig from_proto(const viam::common::v1::Geometry& proto);
-    static std::vector<GeometryConfig> from_proto(
-        const viam::common::v1::GetGeometriesResponse& proto);
+    GeometryConfig() = default;
 
-    // TODO replace trivial setters with constructor
-    void set_pose(pose pose);
-    void set_geometry_specifics(geometry_specifics gs);
-    void set_geometry_type(GeometryType type);
-    void set_orientation(Orientation);
-    void set_label(std::string label);
+    GeometryConfig(pose, geometry_specifics, Orientation, std::string label);
+    GeometryConfig(pose, geometry_specifics, std::string label);
 
     double get_theta() const;
     const pose& get_pose() const;
@@ -65,10 +64,7 @@ class GeometryConfig {
 
     friend bool operator==(const GeometryConfig& lhs, const GeometryConfig& rhs);
 
-    GeometryConfig();
-
    private:
-    GeometryType geometry_type_;
     pose pose_;
     geometry_specifics geometry_specifics_;
     // TODO: if and when RDK makes more explicit use of ox/oy/oz, we should
@@ -78,10 +74,10 @@ class GeometryConfig {
 };
 
 struct geo_point {
+    // TODO it really bugs me that this is not in lat-long but this would break existing
+    // aggregate initializers
     double longitude, latitude;
 
-    common::v1::GeoPoint to_proto() const;
-    static geo_point from_proto(const common::v1::GeoPoint& proto);
     friend bool operator==(const geo_point& lhs, const geo_point& rhs);
     friend std::ostream& operator<<(std::ostream& os, const geo_point& v);
 };
@@ -94,6 +90,75 @@ struct geo_geometry {
     static geo_geometry from_proto(const common::v1::GeoGeometry& proto);
     friend bool operator==(const geo_geometry& lhs, const geo_geometry& rhs);
 };
+
+namespace proto_convert_details {
+
+template <>
+struct to_proto<box> {
+    void operator()(const box&, common::v1::RectangularPrism*) const;
+};
+
+template <>
+struct from_proto<common::v1::RectangularPrism> {
+    box operator()(const common::v1::RectangularPrism*) const;
+};
+
+template <>
+struct to_proto<sphere> {
+    void operator()(const sphere&, common::v1::Sphere*) const;
+};
+
+template <>
+struct from_proto<common::v1::Sphere> {
+    sphere operator()(const common::v1::Sphere*) const;
+};
+
+template <>
+struct to_proto<capsule> {
+    void operator()(const capsule&, common::v1::Capsule*) const;
+};
+
+template <>
+struct from_proto<common::v1::Capsule> {
+    capsule operator()(const common::v1::Capsule*) const;
+};
+
+template <>
+struct to_proto<GeometryConfig> {
+    void operator()(const GeometryConfig&, common::v1::Geometry*) const;
+};
+
+template <>
+struct from_proto<common::v1::Geometry> {
+    GeometryConfig operator()(const common::v1::Geometry*) const;
+};
+
+template <>
+struct to_proto<geo_point> {
+    void operator()(const geo_point&, common::v1::GeoPoint*) const;
+};
+
+template <>
+struct from_proto<common::v1::GeoPoint> {
+    geo_point operator()(const common::v1::GeoPoint*) const;
+};
+
+template <>
+struct to_proto<geo_geometry> {
+    void operator()(const geo_geometry&, common::v1::GeoGeometry*) const;
+};
+
+template <>
+struct from_proto<common::v1::GeoGeometry> {
+    geo_geometry operator()(const common::v1::GeoGeometry*) const;
+};
+
+template <>
+struct from_proto<common::v1::GetGeometriesResponse> {
+    std::vector<GeometryConfig> operator()(const common::v1::GetGeometriesResponse*) const;
+};
+
+}  // namespace proto_convert_details
 
 }  // namespace sdk
 }  // namespace viam

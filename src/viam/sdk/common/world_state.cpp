@@ -11,7 +11,7 @@ WorldState::geometries_in_frame WorldState::geometries_in_frame::from_proto(
     const common::v1::GeometriesInFrame& proto) {
     geometries_in_frame gif;
     for (const auto& geo : proto.geometries()) {
-        gif.geometries.push_back(GeometryConfig::from_proto(geo));
+        gif.geometries.push_back(v2::from_proto(geo));
     }
     gif.reference_frame = proto.reference_frame();
 
@@ -23,7 +23,7 @@ common::v1::GeometriesInFrame WorldState::geometries_in_frame::to_proto() const 
 
     *proto.mutable_reference_frame() = reference_frame;
     for (const auto& geometry : geometries) {
-        *proto.mutable_geometries()->Add() = geometry.to_proto();
+        *proto.mutable_geometries()->Add() = v2::to_proto(geometry);
     }
 
     return proto;
@@ -63,7 +63,7 @@ WorldState::transform WorldState::transform::from_proto(const common::v1::Transf
     transform.pose_in_observer_frame = v2::from_proto(proto.pose_in_observer_frame());
     if (proto.has_physical_object()) {
         transform.physical_object =
-            std::make_shared<GeometryConfig>(GeometryConfig::from_proto(proto.physical_object()));
+            std::make_shared<GeometryConfig>(v2::from_proto(proto.physical_object()));
     }
 
     return transform;
@@ -74,7 +74,7 @@ common::v1::Transform WorldState::transform::to_proto() const {
     *proto.mutable_reference_frame() = reference_frame;
     *proto.mutable_pose_in_observer_frame() = v2::to_proto(pose_in_observer_frame);
     if (physical_object) {
-        *proto.mutable_physical_object() = physical_object->to_proto();
+        *proto.mutable_physical_object() = v2::to_proto(*physical_object);
     }
 
     return proto;

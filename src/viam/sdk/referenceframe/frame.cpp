@@ -16,7 +16,7 @@ viam::app::v1::Frame LinkConfig::to_proto() const {
     viam::app::v1::Frame frame;
 
     *frame.mutable_parent() = parent_;
-    *frame.mutable_geometry() = geometry_.to_proto();
+    *frame.mutable_geometry() = v2::to_proto(geometry_);
     *frame.mutable_orientation() = v2::to_proto(orientation_);
     *frame.mutable_translation() = v2::to_proto(translation_);
     return frame;
@@ -35,7 +35,7 @@ LinkConfig LinkConfig::from_proto(const viam::app::v1::Frame& proto) {
     }
 
     if (proto.has_geometry()) {
-        lc.geometry_ = GeometryConfig::from_proto(proto.geometry());
+        lc.geometry_ = v2::from_proto(proto.geometry());
     }
 
     return lc;

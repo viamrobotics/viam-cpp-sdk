@@ -215,7 +215,7 @@ std::string MotionClient::move_on_map(
                   *request.mutable_slam_service_name() = slam_name.to_proto();
 
                   for (const auto& obstacle : obstacles) {
-                      *request.mutable_obstacles()->Add() = obstacle.to_proto();
+                      *request.mutable_obstacles()->Add() = v2::to_proto(obstacle);
                   }
 
                   if (motion_configuration) {
@@ -237,7 +237,7 @@ std::string MotionClient::move_on_globe(
     return make_client_helper(this, *stub_, &StubType::MoveOnGlobe)
         .with(extra,
               [&](auto& request) {
-                  *request.mutable_destination() = destination.to_proto();
+                  *request.mutable_destination() = v2::to_proto(destination);
                   *request.mutable_component_name() = component_name.to_proto();
                   *request.mutable_movement_sensor_name() = movement_sensor_name.to_proto();
 

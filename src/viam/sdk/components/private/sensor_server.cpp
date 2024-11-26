@@ -44,7 +44,7 @@ SensorServer::SensorServer(std::shared_ptr<ResourceManager> manager)
         "SensorServer::GetGeometries", this, request)([&](auto& helper, auto& sensor) {
         const auto geometries = sensor->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = geometry.to_proto();
+            *response->mutable_geometries()->Add() = v2::to_proto(geometry);
         }
     });
 }

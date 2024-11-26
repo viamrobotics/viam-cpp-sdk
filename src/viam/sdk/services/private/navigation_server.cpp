@@ -20,7 +20,7 @@ using namespace service::navigation::v1;
 viam::service::navigation::v1::Waypoint to_proto(const Navigation::Waypoint& wp) {
     viam::service::navigation::v1::Waypoint ret;
     *ret.mutable_id() = wp.id;
-    *ret.mutable_location() = wp.location.to_proto();
+    *ret.mutable_location() = v2::to_proto(wp.location);
     return ret;
 }
 
@@ -55,7 +55,7 @@ viam::service::navigation::v1::Path to_proto(const Navigation::Path& p) {
     return make_service_helper<Navigation>(
         "NavigationServer::GetLocation", this, request)([&](auto& helper, auto& nav) {
         const auto& loc = nav->get_location(helper.getExtra());
-        *response->mutable_location() = loc.location.to_proto();
+        *response->mutable_location() = v2::to_proto(loc.location);
         response->set_compass_heading(loc.compass_heading);
     });
 }
@@ -75,7 +75,7 @@ viam::service::navigation::v1::Path to_proto(const Navigation::Path& p) {
                                              AddWaypointResponse*) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::AddWaypoint", this, request)([&](auto& helper, auto& nav) {
-        nav->add_waypoint(geo_point::from_proto(request->location()), helper.getExtra());
+        nav->add_waypoint(v2::from_proto(request->location()), helper.getExtra());
     });
 }
 

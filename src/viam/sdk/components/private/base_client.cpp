@@ -84,7 +84,7 @@ bool BaseClient::is_moving() {
 std::vector<GeometryConfig> BaseClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
+        .invoke([](auto& response) { return v2::from_proto(response); });
 }
 
 Base::properties BaseClient::get_properties(const ProtoStruct& extra) {

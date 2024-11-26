@@ -12,6 +12,8 @@
 #include <viam/sdk/spatialmath/orientation.hpp>
 #include <viam/sdk/spatialmath/orientation_types.hpp>
 
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::GeometryType);
+
 namespace viam {
 namespace sdktests {
 
@@ -141,10 +143,13 @@ BOOST_AUTO_TEST_CASE(test_linkconfig) {
     BOOST_CHECK_EQUAL(gcfg.get_label(), "label");
     BOOST_CHECK_EQUAL(gcfg.get_pose(), v2::from_proto(pose));
     BOOST_CHECK_EQUAL(gcfg.get_geometry_type(), GeometryType::box);
-    const auto gs = gcfg.box_proto();
-    BOOST_CHECK_EQUAL(gs.dims_mm().x(), box.dims_mm().x());
-    BOOST_CHECK_EQUAL(gs.dims_mm().y(), box.dims_mm().y());
-    BOOST_CHECK_EQUAL(gs.dims_mm().z(), box.dims_mm().z());
+
+    common::v1::Geometry gs = v2::to_proto(gcfg);
+    BOOST_ASSERT(gs.has_box());
+
+    BOOST_CHECK_EQUAL(gs.box().dims_mm().x(), box.dims_mm().x());
+    BOOST_CHECK_EQUAL(gs.box().dims_mm().y(), box.dims_mm().y());
+    BOOST_CHECK_EQUAL(gs.box().dims_mm().z(), box.dims_mm().z());
 
     viam::app::v1::Frame proto_lc = lc.to_proto();
     BOOST_CHECK_EQUAL(proto_lc.parent(), "parent");

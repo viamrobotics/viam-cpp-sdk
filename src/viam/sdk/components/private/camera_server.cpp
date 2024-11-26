@@ -132,7 +132,7 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
         "CameraServer::GetGeometries", this, request)([&](auto& helper, auto& camera) {
         const std::vector<GeometryConfig> geometries = camera->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = geometry.to_proto();
+            *response->mutable_geometries()->Add() = v2::to_proto(geometry);
         }
     });
 }

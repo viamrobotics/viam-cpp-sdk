@@ -212,7 +212,7 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
 
         std::vector<GeometryConfig> obstacles;
         for (const auto& obstacle : request->obstacles()) {
-            obstacles.push_back(GeometryConfig::from_proto(obstacle));
+            obstacles.push_back(v2::from_proto(obstacle));
         }
 
         const std::string execution_id = motion->move_on_map(
@@ -228,7 +228,7 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
     ::viam::service::motion::v1::MoveOnGlobeResponse* response) noexcept {
     return make_service_helper<Motion>(
         "MotionServer::MoveOnGlobe", this, request)([&](auto& helper, auto& motion) {
-        const auto destination = geo_point::from_proto(request->destination());
+        const auto destination = v2::from_proto(request->destination());
         const auto component_name = Name::from_proto(request->component_name());
         const auto movement_sensor_name = Name::from_proto(request->movement_sensor_name());
         std::vector<geo_geometry> obstacles;

@@ -102,7 +102,7 @@ Motor::power_status MotorClient::get_power_status(const ProtoStruct& extra) {
 std::vector<GeometryConfig> MotorClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
+        .invoke([](auto& response) { return v2::from_proto(response); });
 }
 
 bool MotorClient::is_moving() {

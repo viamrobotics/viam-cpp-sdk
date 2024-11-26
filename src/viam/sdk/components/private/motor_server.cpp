@@ -118,7 +118,7 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager)
         "MotorServer::GetGeometries", this, request)([&](auto& helper, auto& motor) {
         const std::vector<GeometryConfig> geometries = motor->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = geometry.to_proto();
+            *response->mutable_geometries()->Add() = v2::to_proto(geometry);
         }
     });
 }

@@ -29,7 +29,7 @@ GenericComponentServer::GenericComponentServer(std::shared_ptr<ResourceManager> 
         "GenericComponentServer::GetGeometries", this, request)([&](auto& helper, auto& generic) {
         const std::vector<GeometryConfig> geometries = generic->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = geometry.to_proto();
+            *response->mutable_geometries()->Add() = v2::to_proto(geometry);
         }
     });
 }

@@ -57,7 +57,7 @@ ServoServer::ServoServer(std::shared_ptr<ResourceManager> manager)
         "ServoServer::GetGeometries", this, request)([&](auto& helper, auto& servo) {
         const std::vector<GeometryConfig> geometries = servo->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = geometry.to_proto();
+            *response->mutable_geometries()->Add() = v2::to_proto(geometry);
         }
     });
 }
