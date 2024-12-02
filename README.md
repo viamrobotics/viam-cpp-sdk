@@ -1,11 +1,5 @@
 # Viam C++ SDK
 
-## (In)stability Notice
-
-> **Warning** This is a beta release of the Viam C++ SDK. Stability
-> is not guaranteed. Breaking changes are likely to occur, and occur
-> often.
-
 ## Resources
 * [Documentation](https://cpp.viam.dev)
 * [Examples](https://github.com/viamrobotics/viam-cpp-sdk/tree/main/src/viam/examples)
