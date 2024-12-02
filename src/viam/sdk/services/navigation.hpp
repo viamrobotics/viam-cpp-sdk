@@ -35,7 +35,7 @@ class Navigation : public Service {
     };
 
     /// @struct LocationResponse
-    /// @brief Location and direction of the base configured
+    /// @brief Location and direction of the component configured with this nav service.
     /// @ingroup Navigation
     struct LocationResponse {
         geo_point location;
