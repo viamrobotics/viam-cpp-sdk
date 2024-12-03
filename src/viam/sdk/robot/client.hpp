@@ -57,9 +57,7 @@ class RobotClient {
     struct status {
         boost::optional<Name> name;
         ProtoStruct status_map;
-        // TODO: RSDK-6574: revisit time_point
-        boost::optional<std::chrono::time_point<long long, std::chrono::nanoseconds>>
-            last_reconfigured;
+        boost::optional<time_pt> last_reconfigured;
         friend bool operator==(const status& lhs, const status& rhs);
     };
 
@@ -68,8 +66,7 @@ class RobotClient {
         std::string method;
         boost::optional<std::string> session_id;
         ProtoStruct arguments;
-        // TODO: RSDK-6574: revisit time_point
-        boost::optional<std::chrono::time_point<long long, std::chrono::nanoseconds>> started;
+        boost::optional<time_pt> started;
         friend bool operator==(const operation& lhs, const operation& rhs);
     };
 

@@ -85,7 +85,7 @@ class Motion : public Service {
         plan_state state;
 
         /// @brief The time the executing plan transitioned to the state.
-        std::chrono::time_point<long long, std::chrono::nanoseconds> timestamp;
+        time_pt timestamp;
 
         /// @brief The reason for the state change. The error message if the plan failed, or the
         /// re-plan reason if re-planning was necessary.

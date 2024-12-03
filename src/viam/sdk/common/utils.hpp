@@ -18,8 +18,10 @@ const std::string kService = "service";
 const std::string kRDK = "rdk";
 const std::string kBuiltin = "builtin";
 
+using time_pt = std::chrono::time_point<std::chrono::system_clock, std::chrono::nanoseconds>;
+
 struct response_metadata {
-    std::chrono::time_point<long long, std::chrono::nanoseconds> captured_at;
+    time_pt captured_at;
 
     static response_metadata from_proto(const viam::common::v1::ResponseMetadata& proto);
     static viam::common::v1::ResponseMetadata to_proto(const response_metadata& metadata);
@@ -27,21 +29,17 @@ struct response_metadata {
 
 bool operator==(const response_metadata& lhs, const response_metadata& rhs);
 
-/// @brief convert a google::protobuf::Timestamp to
-/// std::chrono::time_point<long long, std::chrono::nanoseconds>
-std::chrono::time_point<long long, std::chrono::nanoseconds> timestamp_to_time_pt(
-    const google::protobuf::Timestamp& timestamp);
+/// @brief convert a google::protobuf::Timestamp to time_point
+time_pt timestamp_to_time_pt(const google::protobuf::Timestamp& timestamp);
 
-/// @brief convert a std::chrono::time_point<long long, std::chrono::nanoseconds> to
-/// a google::protobuf::Timestamp.
-google::protobuf::Timestamp time_pt_to_timestamp(
-    const std::chrono::time_point<long long, std::chrono::nanoseconds>& time_pt);
+/// @brief convert a time_point to a google::protobuf::Timestamp.
+google::protobuf::Timestamp time_pt_to_timestamp(time_pt);
 
 std::vector<unsigned char> string_to_bytes(std::string const& s);
 std::string bytes_to_string(std::vector<unsigned char> const& b);
 
 std::chrono::microseconds from_proto(const google::protobuf::Duration& proto);
-google::protobuf::Duration to_proto(const std::chrono::microseconds& duration);
+google::protobuf::Duration to_proto(std::chrono::microseconds duration);
 
 // the authority on a grpc::ClientContext is sometimes set to an invalid uri on mac, causing
 // `rust-utils` to fail to process gRPC requests. This class provides a convenience wrapper around a

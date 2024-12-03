@@ -22,8 +22,6 @@
 namespace viam {
 namespace sdk {
 
-using time_point = std::chrono::time_point<long long, std::chrono::nanoseconds>;
-
 std::vector<unsigned char> string_to_bytes(const std::string& s) {
     std::vector<unsigned char> bytes(s.begin(), s.end());
     return bytes;
@@ -34,21 +32,23 @@ std::string bytes_to_string(const std::vector<unsigned char>& b) {
     return img_string;
 };
 
-time_point timestamp_to_time_pt(const google::protobuf::Timestamp& timestamp) {
-    const std::chrono::seconds seconds(timestamp.seconds());
-    const std::chrono::nanoseconds nanos(timestamp.nanos());
-    return time_point(std::chrono::duration_cast<std::chrono::system_clock::duration>(seconds) +
-                      nanos);
+time_pt timestamp_to_time_pt(const google::protobuf::Timestamp& timestamp) {
+    return time_pt{std::chrono::seconds{timestamp.seconds()} +
+                   std::chrono::nanoseconds{timestamp.nanos()}};
 }
 
-google::protobuf::Timestamp time_pt_to_timestamp(const time_point& time_pt) {
-    const std::chrono::seconds duration_s =
-        std::chrono::duration_cast<std::chrono::seconds>(time_pt.time_since_epoch());
-    const std::chrono::nanoseconds duration_ns = time_pt.time_since_epoch() - duration_s;
-    google::protobuf::Timestamp timestamp;
-    timestamp.set_seconds(duration_s.count());
-    timestamp.set_nanos(static_cast<int32_t>(duration_ns.count()));
-    return timestamp;
+google::protobuf::Timestamp time_pt_to_timestamp(time_pt tp) {
+    const std::chrono::nanoseconds since_epoch = tp.time_since_epoch();
+
+    const auto sec_floor = std::chrono::floor<std::chrono::seconds>(since_epoch);
+    const std::chrono::nanoseconds nano_part = since_epoch - sec_floor;
+
+    google::protobuf::Timestamp result;
+
+    result.set_seconds(sec_floor.count());
+    result.set_nanos(static_cast<int32_t>(nano_part.count()));
+
+    return result;
 }
 
 response_metadata response_metadata::from_proto(const viam::common::v1::ResponseMetadata& proto) {
@@ -80,7 +80,7 @@ std::chrono::microseconds from_proto(const google::protobuf::Duration& proto) {
     return from_seconds + from_nanos;
 }
 
-google::protobuf::Duration to_proto(const std::chrono::microseconds& duration) {
+google::protobuf::Duration to_proto(std::chrono::microseconds duration) {
     namespace sc = std::chrono;
 
     const sc::seconds seconds = sc::duration_cast<sc::seconds>(duration);
