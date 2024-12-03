@@ -42,8 +42,8 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
                                        ::viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Camera>(
         "CameraServer::DoCommand", this, request)([&](auto&, auto& camera) {
-        const ProtoStruct result = camera->do_command(struct_to_map(request->command()));
-        *response->mutable_result() = map_to_struct(result);
+        const ProtoStruct result = camera->do_command(v2::from_proto(request->command()));
+        *response->mutable_result() = v2::to_proto(result);
     });
 }
 

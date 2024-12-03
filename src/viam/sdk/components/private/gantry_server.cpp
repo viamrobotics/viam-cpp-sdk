@@ -75,8 +75,8 @@ GantryServer::GantryServer(std::shared_ptr<ResourceManager> manager)
                                        ::viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Gantry>(
         "GantryServer::DoCommand", this, request)([&](auto&, auto& gantry) {
-        const ProtoStruct result = gantry->do_command(struct_to_map(request->command()));
-        *response->mutable_result() = map_to_struct(result);
+        const ProtoStruct result = gantry->do_command(v2::from_proto(request->command()));
+        *response->mutable_result() = v2::to_proto(result);
     });
 }
 

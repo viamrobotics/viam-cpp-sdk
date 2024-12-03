@@ -7,6 +7,8 @@
 #include <utility>
 #include <vector>
 
+#include <viam/sdk/common/proto_convert.hpp>
+
 namespace google {
 namespace protobuf {
 
@@ -52,6 +54,8 @@ struct all_moves_noexcept
 /// definition.
 class ProtoValue {
    public:
+    friend proto_convert_details::to_proto<ProtoValue>;
+
     /// @brief Type discriminator constants for possible values stored in a ProtoValue.
     enum Kind { k_null = 0, k_bool = 1, k_double = 2, k_string = 3, k_list = 4, k_struct = 5 };
 
@@ -109,15 +113,6 @@ class ProtoValue {
     friend bool operator==(const ProtoValue& lhs, const ProtoValue& rhs);
 
     void swap(ProtoValue& other) noexcept(proto_value_details::all_moves_noexcept{});
-
-    /// @brief Construct from proto value
-    /// @note This method is trivially templated to insulate google::protobuf::Value from our
-    /// API/ABI. It is meant to be called with no template parameters in a translation unit which
-    /// includes <google/protobuf/struct.pb.h>
-    template <typename Value = google::protobuf::Value>
-    static ProtoValue from_proto(const Value& v);  // NOLINT(misc-no-recursion)
-
-    friend void to_proto(const ProtoValue& t, google::protobuf::Value* v);
 
     /// @name Value access API
     ///@{
@@ -178,7 +173,7 @@ class ProtoValue {
         void (*dtor)(void*);
         void (*copy)(void const*, void*);
         void (*move)(void*, void*);
-        void (*to_proto)(void const*, google::protobuf::Value*);
+        void (*to_value)(void const*, google::protobuf::Value*);
         Kind (*kind)();
         bool (*equal_to)(void const*, void const*, const vtable&);
     };
@@ -199,13 +194,13 @@ class ProtoValue {
         // non-noexcept pointer anyway
         static void move(void* self, void* dest);
 
-        static void to_proto(void const* self, google::protobuf::Value* v);
+        static void to_value(void const* self, google::protobuf::Value* v);
 
         static Kind kind() noexcept;
 
         static bool equal_to(void const* self, void const* other, const vtable& other_vtable);
 
-        static constexpr vtable vtable_{dtor, copy, move, to_proto, kind, equal_to};
+        static constexpr vtable vtable_{dtor, copy, move, to_value, kind, equal_to};
         T data;
     };
 
@@ -320,54 +315,38 @@ extern template std::string&& ProtoValue::get_unchecked<std::string>() &&;
 extern template ProtoList&& ProtoValue::get_unchecked<ProtoList>() &&;
 extern template ProtoStruct&& ProtoValue::get_unchecked<ProtoStruct>() &&;
 
-void to_proto(std::nullptr_t, google::protobuf::Value* v);
-void to_proto(bool b, google::protobuf::Value* v);
-void to_proto(double d, google::protobuf::Value* v);
-void to_proto(std::string s, google::protobuf::Value* v);
-void to_proto(const ProtoList& vec, google::protobuf::Value* v);
-void to_proto(const ProtoStruct& m, google::protobuf::Value* v);
-void to_proto(const ProtoValue& t, google::protobuf::Value* v);
+namespace proto_convert_details {
 
-void struct_to_map(google::protobuf::Struct const* s, ProtoStruct& m);
-void map_to_struct(const ProtoStruct& m, google::protobuf::Struct* s);
+template <>
+struct to_proto<ProtoValue> {
+    void operator()(const ProtoValue&, google::protobuf::Value*) const;
+};
 
-/// @brief Convert a type to a google::protobuf::Value.
-/// @note This method is trivially templated to insulate google::protobuf::Value from our
-/// API/ABI. It is meant to be called with no template parameters in a translation unit which
-/// includes <google/protobuf/struct.pb.h>
-template <typename Value = google::protobuf::Value>
-Value to_proto(const ProtoValue& proto_value) {
-    Value v;
-    to_proto(proto_value, &v);
+template <>
+struct to_proto<ProtoStruct> {
+    void operator()(const ProtoStruct&, google::protobuf::Struct*) const;
+};
 
-    return v;
-}
+template <>
+struct from_proto<google::protobuf::Value> {
+    ProtoValue operator()(const google::protobuf::Value*) const;
+};
 
-/// @brief Convert a google::protobuf::Struct to a ProtoStruct.
-/// @note This method is trivially templated to insulate google::protobuf::Struct from our
-/// API/ABI. It is meant to be called with no template parameters in a translation unit which
-/// includes <google/protobuf/struct.pb.h>
-template <typename Struct = google::protobuf::Struct>
-ProtoStruct struct_to_map(const Struct& s) {
-    ProtoStruct result;
-    struct_to_map(&s, result);
+template <>
+struct from_proto<google::protobuf::Struct> {
+    ProtoStruct operator()(const google::protobuf::Struct*) const;
+};
 
-    return result;
-}
-
-/// @brief Convert a ProtoStruct to a google::protobuf::Struct.
-/// @note This method is trivially templated to insulate google::protobuf::Struct from our
-/// API/ABI. It is meant to be called with no template parameters in a translation unit which
-/// includes <google/protobuf/struct.pb.h>
-template <typename Struct = google::protobuf::Struct>
-Struct map_to_struct(const ProtoStruct& m) {
-    Struct s;
-    map_to_struct(m, &s);
-
-    return s;
-}
+}  // namespace proto_convert_details
 
 namespace proto_value_details {
+
+void to_value(std::nullptr_t, google::protobuf::Value* v);
+void to_value(bool b, google::protobuf::Value* v);
+void to_value(double d, google::protobuf::Value* v);
+void to_value(std::string s, google::protobuf::Value* v);
+void to_value(const ProtoList& vec, google::protobuf::Value* v);
+void to_value(const ProtoStruct& m, google::protobuf::Value* v);
 
 template <typename T>
 struct kind {};

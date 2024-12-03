@@ -246,7 +246,7 @@ BOOST_AUTO_TEST_CASE(test_resource) {
     Value value;
     for (const auto& key_and_value : resource2.attributes()) {
         key = key_and_value.first;
-        value = to_proto(key_and_value.second);
+        value = v2::to_proto(key_and_value.second);
     }
     BOOST_CHECK_EQUAL(key, "a");
     BOOST_CHECK_EQUAL(value.number_value(), 1);

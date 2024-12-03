@@ -95,7 +95,7 @@ std::vector<Discovery> mock_proto_discovery_response() {
 
         viam::robot::v1::Discovery discovery;
         *discovery.mutable_query() = query;
-        *discovery.mutable_results() = map_to_struct(d.results);
+        *discovery.mutable_results() = v2::to_proto(d.results);
 
         v.push_back(std::move(discovery));
     }
