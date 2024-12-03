@@ -40,7 +40,7 @@ time_pt timestamp_to_time_pt(const google::protobuf::Timestamp& timestamp) {
 google::protobuf::Timestamp time_pt_to_timestamp(time_pt tp) {
     const std::chrono::nanoseconds since_epoch = tp.time_since_epoch();
 
-    const auto sec_floor = std::chrono::floor<std::chrono::seconds>(since_epoch);
+    const auto sec_floor = std::chrono::duration_cast<std::chrono::seconds>(since_epoch);
     const std::chrono::nanoseconds nano_part = since_epoch - sec_floor;
 
     google::protobuf::Timestamp result;
