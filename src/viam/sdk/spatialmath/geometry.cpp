@@ -109,29 +109,6 @@ bool operator==(const geo_geometry& lhs, const geo_geometry& rhs) {
     return std::tie(lhs.location, lhs.geometries) == std::tie(rhs.location, rhs.geometries);
 }
 
-common::v1::GeoGeometry geo_geometry::to_proto() const {
-    common::v1::GeoGeometry proto;
-    *proto.mutable_location() = v2::to_proto(location);
-
-    for (const auto& geometry : geometries) {
-        *proto.mutable_geometries()->Add() = v2::to_proto(geometry);
-    }
-
-    return proto;
-}
-
-geo_geometry geo_geometry::from_proto(const common::v1::GeoGeometry& proto) {
-    struct geo_geometry geo_geometry;
-
-    geo_geometry.location = v2::from_proto(proto.location());
-    for (const auto& proto_geometry : proto.geometries()) {
-        auto geometry = v2::from_proto(proto_geometry);
-        geo_geometry.geometries.push_back(std::move(geometry));
-    }
-
-    return geo_geometry;
-}
-
 namespace proto_convert_details {
 
 void to_proto<box>::operator()(const box& self, common::v1::RectangularPrism* proto) const {

@@ -86,8 +86,6 @@ struct geo_geometry {
     geo_point location;
     std::vector<GeometryConfig> geometries;
 
-    common::v1::GeoGeometry to_proto() const;
-    static geo_geometry from_proto(const common::v1::GeoGeometry& proto);
     friend bool operator==(const geo_geometry& lhs, const geo_geometry& rhs);
 };
 

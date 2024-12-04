@@ -4,6 +4,7 @@
 
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/pose.hpp>
+#include <viam/sdk/common/proto_convert_vector.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
@@ -231,12 +232,8 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
         const auto destination = v2::from_proto(request->destination());
         const auto component_name = Name::from_proto(request->component_name());
         const auto movement_sensor_name = Name::from_proto(request->movement_sensor_name());
-        std::vector<geo_geometry> obstacles;
-        std::vector<geo_geometry> bounding_regions;
-
-        for (const auto& obstacle : request->obstacles()) {
-            obstacles.push_back(geo_geometry::from_proto(obstacle));
-        }
+        std::vector<geo_geometry> obstacles = v2::from_proto(request->obstacles());
+        std::vector<geo_geometry> bounding_regions = v2::from_proto(request->bounding_regions());
 
         boost::optional<double> heading;
         if (request->has_heading()) {
@@ -247,10 +244,6 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
         if (request->has_motion_configuration()) {
             mc =
                 std::make_shared<motion_configuration>(from_proto(request->motion_configuration()));
-        }
-
-        for (const auto& bounding_region : request->bounding_regions()) {
-            bounding_regions.push_back(geo_geometry::from_proto(bounding_region));
         }
 
         const std::string execution_id = motion->move_on_globe(destination,
