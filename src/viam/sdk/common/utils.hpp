@@ -29,10 +29,10 @@ struct response_metadata {
 
 bool operator==(const response_metadata& lhs, const response_metadata& rhs);
 
-/// @brief convert a google::protobuf::Timestamp to time_point
+/// @brief convert a google::protobuf::Timestamp to time_pt
 time_pt timestamp_to_time_pt(const google::protobuf::Timestamp& timestamp);
 
-/// @brief convert a time_point to a google::protobuf::Timestamp.
+/// @brief convert a time_pt to a google::protobuf::Timestamp.
 google::protobuf::Timestamp time_pt_to_timestamp(time_pt);
 
 std::vector<unsigned char> string_to_bytes(std::string const& s);
