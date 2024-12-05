@@ -23,9 +23,12 @@ struct to_proto;
 template <typename ProtoType>
 struct from_proto;
 
+// This is a helper type trait for deducing corresponding API types from a to_proto specialization.
+// We use boost::callable_traits to generate a tuple of the arguments to the to_proto call operator,
+// of which the last entry (mp_back) is a pointer to the API type.
 template <typename Callable>
-using ProtoArgType =
-    std::remove_pointer_t<boost::mp11::mp_back<boost::callable_traits::args_t<Callable>>>;
+using ProtoArgType = std::remove_pointer_t<
+    boost::mp11::mp_back<boost::callable_traits::args_t<Callable, boost::mp11::mp_list>>>;
 
 // Implementation struct for the omni-to_proto callable defined below.
 struct to_proto_impl {
