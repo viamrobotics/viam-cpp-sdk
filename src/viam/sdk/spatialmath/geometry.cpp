@@ -9,6 +9,7 @@
 
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/linear_algebra.hpp>
+#include <viam/sdk/common/private/repeated_ptr_convert.hpp>
 #include <viam/sdk/spatialmath/orientation.hpp>
 
 namespace viam {
