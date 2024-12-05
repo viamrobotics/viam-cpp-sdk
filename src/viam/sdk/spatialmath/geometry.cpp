@@ -198,17 +198,17 @@ geo_point from_proto<common::v1::GeoPoint>::operator()(const common::v1::GeoPoin
 void to_proto<geo_geometry>::operator()(const geo_geometry& self,
                                         common::v1::GeoGeometry* proto) const {
     *(proto->mutable_location()) = v2::to_proto(self.location);
-    *(proto->mutable_geometries()) = v2::to_proto(self.geometries);
+    *(proto->mutable_geometries()) = impl::to_repeated_field(self.geometries);
 }
 
 geo_geometry from_proto<common::v1::GeoGeometry>::operator()(
     const common::v1::GeoGeometry* proto) const {
-    return {v2::from_proto(proto->location()), v2::from_proto(proto->geometries())};
+    return {v2::from_proto(proto->location()), impl::from_repeated_field(proto->geometries())};
 }
 
 std::vector<GeometryConfig> from_proto<common::v1::GetGeometriesResponse>::operator()(
     const common::v1::GetGeometriesResponse* proto) const {
-    return v2::from_proto(proto->geometries());
+    return impl::from_repeated_field(proto->geometries());
 }
 
 }  // namespace proto_convert_details

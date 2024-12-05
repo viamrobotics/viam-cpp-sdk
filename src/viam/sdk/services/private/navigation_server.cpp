@@ -19,7 +19,7 @@ template <>
 struct to_proto<Navigation::Path> {
     void operator()(const Navigation::Path& self, service::navigation::v1::Path* proto) const {
         *(proto->mutable_destination_waypoint_id()) = self.destination_waypoint_id;
-        *(proto->mutable_geopoints()) = v2::to_proto(self.geopoints);
+        *(proto->mutable_geopoints()) = impl::to_repeated_field(self.geopoints);
     }
 };
 
@@ -72,7 +72,8 @@ using namespace service::navigation::v1;
                                               GetWaypointsResponse* response) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::GetWaypoints", this, request)([&](auto& helper, auto& nav) {
-        *(response->mutable_waypoints()) = v2::to_proto(nav->get_waypoints(helper.getExtra()));
+        *(response->mutable_waypoints()) =
+            impl::to_repeated_field(nav->get_waypoints(helper.getExtra()));
     });
 }
 
@@ -97,7 +98,8 @@ using namespace service::navigation::v1;
                                               GetObstaclesResponse* response) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::GetObstacles", this, request)([&](auto& helper, auto& nav) {
-        *(response->mutable_obstacles()) = v2::to_proto(nav->get_obstacles(helper.getExtra()));
+        *(response->mutable_obstacles()) =
+            impl::to_repeated_field(nav->get_obstacles(helper.getExtra()));
     });
 }
 
@@ -106,7 +108,7 @@ using namespace service::navigation::v1;
                                           GetPathsResponse* response) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::GetPaths", this, request)([&](auto& helper, auto& nav) {
-        *response->mutable_paths() = v2::to_proto(nav->get_paths(helper.getExtra()));
+        *response->mutable_paths() = impl::to_repeated_field(nav->get_paths(helper.getExtra()));
     });
 }
 

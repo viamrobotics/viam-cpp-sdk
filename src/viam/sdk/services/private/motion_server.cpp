@@ -4,7 +4,7 @@
 
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/pose.hpp>
-#include <viam/sdk/common/proto_convert_vector.hpp>
+#include <viam/sdk/common/private/repeated_ptr_convert.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
@@ -232,9 +232,9 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
         const auto destination = v2::from_proto(request->destination());
         const auto component_name = Name::from_proto(request->component_name());
         const auto movement_sensor_name = Name::from_proto(request->movement_sensor_name());
-        const std::vector<geo_geometry> obstacles = v2::from_proto(request->obstacles());
+        const std::vector<geo_geometry> obstacles = impl::from_repeated_field(request->obstacles());
         const std::vector<geo_geometry> bounding_regions =
-            v2::from_proto(request->bounding_regions());
+            impl::from_repeated_field(request->bounding_regions());
 
         boost::optional<double> heading;
         if (request->has_heading()) {

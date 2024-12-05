@@ -5,8 +5,8 @@
 #include <tuple>
 
 #include <viam/sdk/common/pose.hpp>
+#include <viam/sdk/common/private/repeated_ptr_convert.hpp>
 #include <viam/sdk/common/proto_convert.hpp>
-#include <viam/sdk/common/proto_convert_vector.hpp>
 #include <viam/sdk/spatialmath/orientation.hpp>
 
 namespace viam {

@@ -143,7 +143,6 @@ target_sources(viamsdk
       ../../viam/sdk/common/linear_algebra.hpp
       ../../viam/sdk/common/pose.hpp
       ../../viam/sdk/common/proto_convert.hpp
-      ../../viam/sdk/common/proto_convert_vector.hpp
       ../../viam/sdk/common/proto_value.hpp
       ../../viam/sdk/common/service_helper.hpp
       ../../viam/sdk/common/utils.hpp

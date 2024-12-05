@@ -8,7 +8,7 @@
 #include <viam/api/service/motion/v1/motion.pb.h>
 
 #include <viam/sdk/common/client_helper.hpp>
-#include <viam/sdk/common/proto_convert_vector.hpp>
+#include <viam/sdk/common/private/repeated_ptr_convert.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/services/motion.hpp>
@@ -246,13 +246,13 @@ std::string MotionClient::move_on_globe(
                       request.set_heading(*heading);
                   }
 
-                  *request.mutable_obstacles() = v2::to_proto(obstacles);
+                  *request.mutable_obstacles() = impl::to_repeated_field(obstacles);
 
                   if (motion_configuration) {
                       *request.mutable_motion_configuration() = to_proto(*motion_configuration);
                   }
 
-                  *request.mutable_bounding_regions() = v2::to_proto(bounding_regions);
+                  *request.mutable_bounding_regions() = impl::to_repeated_field(bounding_regions);
               })
         .invoke([](auto& response) { return response.execution_id(); });
 }
@@ -268,7 +268,7 @@ pose_in_frame MotionClient::get_pose(
                   *request.mutable_component_name() = component_name.to_proto();
                   *request.mutable_destination_frame() = destination_frame;
                   *request.mutable_supplemental_transforms() =
-                      v2::to_proto(supplemental_transforms);
+                      impl::to_repeated_field(supplemental_transforms);
               })
         .invoke([](auto& response) { return v2::from_proto(response.pose()); });
 }

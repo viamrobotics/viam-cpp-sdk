@@ -3,7 +3,7 @@
 #include <common/v1/common.pb.h>
 
 #include <viam/sdk/common/pose.hpp>
-#include <viam/sdk/common/proto_convert_vector.hpp>
+#include <viam/sdk/common/private/repeated_ptr_convert.hpp>
 
 namespace viam {
 namespace sdk {
@@ -38,13 +38,13 @@ namespace proto_convert_details {
 
 void to_proto<WorldState::geometries_in_frame>::operator()(
     const WorldState::geometries_in_frame& self, common::v1::GeometriesInFrame* proto) const {
-    *(proto->mutable_geometries()) = v2::to_proto(self.geometries);
+    *(proto->mutable_geometries()) = impl::to_repeated_field(self.geometries);
     *(proto->mutable_reference_frame()) = self.reference_frame;
 }
 
 WorldState::geometries_in_frame from_proto<common::v1::GeometriesInFrame>::operator()(
     const common::v1::GeometriesInFrame* proto) const {
-    return {v2::from_proto(proto->geometries()), proto->reference_frame()};
+    return {impl::from_repeated_field(proto->geometries()), proto->reference_frame()};
 }
 
 void to_proto<WorldState::transform>::operator()(const WorldState::transform& self,
@@ -68,13 +68,14 @@ WorldState::transform from_proto<common::v1::Transform>::operator()(
 }
 
 void to_proto<WorldState>::operator()(const WorldState& self, common::v1::WorldState* proto) const {
-    *(proto->mutable_obstacles()) = v2::to_proto(self.obstacles());
-    *(proto->mutable_transforms()) = v2::to_proto(self.transforms());
+    *(proto->mutable_obstacles()) = impl::to_repeated_field(self.obstacles());
+    *(proto->mutable_transforms()) = impl::to_repeated_field(self.transforms());
 }
 
 WorldState from_proto<common::v1::WorldState>::operator()(
     const common::v1::WorldState* proto) const {
-    return WorldState(v2::from_proto(proto->obstacles()), v2::from_proto(proto->transforms()));
+    return WorldState(impl::from_repeated_field(proto->obstacles()),
+                      impl::from_repeated_field(proto->transforms()));
 }
 
 }  // namespace proto_convert_details

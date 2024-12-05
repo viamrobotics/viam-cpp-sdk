@@ -368,7 +368,7 @@ std::vector<RobotClient::frame_system_config> RobotClient::get_frame_system_conf
     viam::robot::v1::FrameSystemConfigResponse resp;
     ClientContext ctx;
 
-    *(req.mutable_supplemental_transforms()) = v2::to_proto(additional_transforms);
+    *(req.mutable_supplemental_transforms()) = sdk::impl::to_repeated_field(additional_transforms);
 
     const grpc::Status response = impl_->stub_->FrameSystemConfig(ctx, req, &resp);
     if (is_error_response(response)) {
@@ -397,7 +397,7 @@ pose_in_frame RobotClient::transform_pose(
 
     *req.mutable_source() = v2::to_proto(query);
     *req.mutable_destination() = std::move(destination);
-    *req.mutable_supplemental_transforms() = v2::to_proto(additional_transforms);
+    *req.mutable_supplemental_transforms() = sdk::impl::to_repeated_field(additional_transforms);
 
     const grpc::Status response = impl_->stub_->TransformPose(ctx, req, &resp);
     if (is_error_response(response)) {
