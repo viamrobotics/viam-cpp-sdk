@@ -7,11 +7,14 @@
 
 #include <viam/sdk/common/proto_convert.hpp>
 
-VIAM_SDK_API_FWD_NAMESPACE_BEGIN(common)
+namespace viam {
+namespace common {
+namespace v1 {
 
 class Vector3;
-
-VIAM_SDK_API_FWD_NAMESPACE_END
+}
+}  // namespace common
+}  // namespace viam
 
 namespace viam {
 namespace sdk {

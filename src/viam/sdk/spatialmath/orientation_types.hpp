@@ -2,11 +2,14 @@
 
 #include <viam/sdk/common/proto_convert.hpp>
 
-VIAM_SDK_API_FWD_NAMESPACE_BEGIN(app)
+namespace viam {
+namespace app {
+namespace v1 {
 
 class Translation;
-
-VIAM_SDK_API_FWD_NAMESPACE_END
+}
+}  // namespace app
+}  // namespace viam
 
 namespace viam {
 namespace sdk {

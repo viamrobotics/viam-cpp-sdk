@@ -6,11 +6,14 @@
 #include <viam/sdk/spatialmath/geometry.hpp>
 #include <viam/sdk/spatialmath/orientation.hpp>
 
-VIAM_SDK_API_FWD_NAMESPACE_BEGIN(app)
+namespace viam {
+namespace app {
+namespace v1 {
 
 class Frame;
-
-VIAM_SDK_API_FWD_NAMESPACE_END
+}
+}  // namespace app
+}  // namespace viam
 
 namespace viam {
 namespace sdk {

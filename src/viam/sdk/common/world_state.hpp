@@ -6,13 +6,17 @@
 #include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
 
-VIAM_SDK_API_FWD_NAMESPACE_BEGIN(common)
+namespace viam {
+namespace common {
+namespace v1 {
 
 class GeometriesInFrame;
 class Transform;
 class WorldState;
 
-VIAM_SDK_API_FWD_NAMESPACE_END
+}  // namespace v1
+}  // namespace common
+}  // namespace viam
 
 namespace viam {
 namespace sdk {

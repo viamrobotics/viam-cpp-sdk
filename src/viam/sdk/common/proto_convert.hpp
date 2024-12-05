@@ -1,20 +1,10 @@
 #pragma once
 
+#include <type_traits>
+
 #include <boost/callable_traits/args.hpp>
 #include <boost/callable_traits/return_type.hpp>
 #include <boost/mp11/algorithm.hpp>
-
-#include <type_traits>
-
-#define VIAM_SDK_API_FWD_NAMESPACE_BEGIN(module_ns_name) \
-    namespace viam {                                     \
-    namespace module_ns_name {                           \
-    namespace v1 {
-
-#define VIAM_SDK_API_FWD_NAMESPACE_END \
-    }                                  \
-    }                                  \
-    }
 
 namespace viam {
 namespace sdk {

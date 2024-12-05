@@ -9,7 +9,9 @@
 #include <viam/sdk/common/proto_convert_vector.hpp>
 #include <viam/sdk/spatialmath/orientation.hpp>
 
-VIAM_SDK_API_FWD_NAMESPACE_BEGIN(common)
+namespace viam {
+namespace common {
+namespace v1 {
 
 class RectangularPrism;
 class Sphere;
@@ -20,8 +22,9 @@ class GetGeometriesResponse;
 
 class GeoPoint;
 class GeoGeometry;
-
-VIAM_SDK_API_FWD_NAMESPACE_END
+}  // namespace v1
+}  // namespace common
+}  // namespace viam
 
 namespace viam {
 namespace sdk {
