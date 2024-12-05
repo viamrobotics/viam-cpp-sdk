@@ -1,6 +1,15 @@
 #pragma once
 
-#include <viam/api/app/v1/robot.pb.h>
+#include <viam/sdk/common/proto_convert.hpp>
+
+namespace viam {
+namespace app {
+namespace v1 {
+
+class Translation;
+}
+}  // namespace app
+}  // namespace viam
 
 namespace viam {
 namespace sdk {
@@ -35,7 +44,20 @@ struct quaternion {
 
 struct translation {
     double x, y, z;
-    viam::app::v1::Translation to_proto() const;
 };
+
+namespace proto_convert_details {
+
+template <>
+struct to_proto<translation> {
+    void operator()(const translation&, app::v1::Translation*) const;
+};
+
+template <>
+struct from_proto<app::v1::Translation> {
+    translation operator()(const app::v1::Translation*) const;
+};
+
+}  // namespace proto_convert_details
 }  // namespace sdk
 }  // namespace viam

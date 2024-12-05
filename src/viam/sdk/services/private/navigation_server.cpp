@@ -3,7 +3,7 @@
 #include <grpcpp/support/status.h>
 
 #include <viam/sdk/common/pose.hpp>
-#include <viam/sdk/common/private/proto_utils.hpp>
+#include <viam/sdk/common/private/repeated_ptr_convert.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
@@ -13,23 +13,31 @@
 
 namespace viam {
 namespace sdk {
+
+namespace proto_convert_details {
+
+template <>
+struct to_proto<Navigation::Path> {
+    void operator()(const Navigation::Path& self, service::navigation::v1::Path* proto) const {
+        *(proto->mutable_destination_waypoint_id()) = self.destination_waypoint_id;
+        *(proto->mutable_geopoints()) = impl::to_repeated_field(self.geopoints);
+    }
+};
+
+template <>
+struct to_proto<Navigation::Waypoint> {
+    void operator()(const Navigation::Waypoint& self,
+                    service::navigation::v1::Waypoint* proto) const {
+        *(proto->mutable_id()) = self.id;
+        *(proto->mutable_location()) = v2::to_proto(self.location);
+    }
+};
+
+}  // namespace proto_convert_details
+
 namespace impl {
 
 using namespace service::navigation::v1;
-
-viam::service::navigation::v1::Waypoint to_proto(const Navigation::Waypoint& wp) {
-    viam::service::navigation::v1::Waypoint ret;
-    *ret.mutable_id() = wp.id;
-    *ret.mutable_location() = wp.location.to_proto();
-    return ret;
-}
-
-viam::service::navigation::v1::Path to_proto(const Navigation::Path& p) {
-    viam::service::navigation::v1::Path ret;
-    *ret.mutable_destination_waypoint_id() = p.destination_waypoint_id;
-    vecToRepeatedPtr(p.geopoints, *ret.mutable_geopoints());
-    return ret;
-}
 
 ::grpc::Status NavigationServer::GetMode(::grpc::ServerContext*,
                                          const GetModeRequest* request,
@@ -55,7 +63,7 @@ viam::service::navigation::v1::Path to_proto(const Navigation::Path& p) {
     return make_service_helper<Navigation>(
         "NavigationServer::GetLocation", this, request)([&](auto& helper, auto& nav) {
         const auto& loc = nav->get_location(helper.getExtra());
-        *response->mutable_location() = loc.location.to_proto();
+        *response->mutable_location() = v2::to_proto(loc.location);
         response->set_compass_heading(loc.compass_heading);
     });
 }
@@ -65,8 +73,8 @@ viam::service::navigation::v1::Path to_proto(const Navigation::Path& p) {
                                               GetWaypointsResponse* response) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::GetWaypoints", this, request)([&](auto& helper, auto& nav) {
-        const auto waypoints = nav->get_waypoints(helper.getExtra());
-        vecToRepeatedPtr(waypoints, *response->mutable_waypoints(), to_proto);
+        *(response->mutable_waypoints()) =
+            impl::to_repeated_field(nav->get_waypoints(helper.getExtra()));
     });
 }
 
@@ -75,7 +83,7 @@ viam::service::navigation::v1::Path to_proto(const Navigation::Path& p) {
                                              AddWaypointResponse*) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::AddWaypoint", this, request)([&](auto& helper, auto& nav) {
-        nav->add_waypoint(geo_point::from_proto(request->location()), helper.getExtra());
+        nav->add_waypoint(v2::from_proto(request->location()), helper.getExtra());
     });
 }
 
@@ -91,8 +99,8 @@ viam::service::navigation::v1::Path to_proto(const Navigation::Path& p) {
                                               GetObstaclesResponse* response) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::GetObstacles", this, request)([&](auto& helper, auto& nav) {
-        const auto obstacles = nav->get_obstacles(helper.getExtra());
-        vecToRepeatedPtr(obstacles, *response->mutable_obstacles());
+        *(response->mutable_obstacles()) =
+            impl::to_repeated_field(nav->get_obstacles(helper.getExtra()));
     });
 }
 
@@ -101,8 +109,7 @@ viam::service::navigation::v1::Path to_proto(const Navigation::Path& p) {
                                           GetPathsResponse* response) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::GetPaths", this, request)([&](auto& helper, auto& nav) {
-        const auto paths = nav->get_paths(helper.getExtra());
-        vecToRepeatedPtr(paths, *response->mutable_paths(), to_proto);
+        *response->mutable_paths() = impl::to_repeated_field(nav->get_paths(helper.getExtra()));
     });
 }
 
@@ -122,8 +129,8 @@ viam::service::navigation::v1::Path to_proto(const Navigation::Path& p) {
     ::viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::DoCommand", this, request)([&](auto&, auto& motion) {
-        const ProtoStruct result = motion->do_command(struct_to_map(request->command()));
-        *response->mutable_result() = map_to_struct(result);
+        const ProtoStruct result = motion->do_command(v2::from_proto(request->command()));
+        *response->mutable_result() = v2::to_proto(result);
     });
 };
 

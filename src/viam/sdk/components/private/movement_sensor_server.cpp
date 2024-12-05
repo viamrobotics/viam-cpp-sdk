@@ -33,7 +33,7 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
                                                this,
                                                request)([&](auto& helper, auto& movementsensor) {
         const Vector3 result = movementsensor->get_linear_velocity(helper.getExtra());
-        *response->mutable_linear_velocity() = result.to_proto();
+        *response->mutable_linear_velocity() = v2::to_proto(result);
     });
 }
 
@@ -45,7 +45,7 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
                                                this,
                                                request)([&](auto& helper, auto& movementsensor) {
         const Vector3 result = movementsensor->get_angular_velocity(helper.getExtra());
-        *response->mutable_angular_velocity() = result.to_proto();
+        *response->mutable_angular_velocity() = v2::to_proto(result);
     });
 }
 
@@ -80,7 +80,7 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
     return make_service_helper<MovementSensor>("MovementSensorServer::GetPosition", this, request)(
         [&](auto& helper, auto& movementsensor) {
             const MovementSensor::position result = movementsensor->get_position(helper.getExtra());
-            *response->mutable_coordinate() = result.coordinate.to_proto();
+            *response->mutable_coordinate() = v2::to_proto(result.coordinate);
             response->set_altitude_m(result.altitude_m);
         });
 }
@@ -121,7 +121,7 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
                                                this,
                                                request)([&](auto& helper, auto& movementsensor) {
         const Vector3 result = movementsensor->get_linear_acceleration(helper.getExtra());
-        *response->mutable_linear_acceleration() = result.to_proto();
+        *response->mutable_linear_acceleration() = v2::to_proto(result);
     });
 }
 
@@ -131,8 +131,8 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
     viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<MovementSensor>(
         "MovementSensorServer::DoCommand", this, request)([&](auto&, auto& movementsensor) {
-        const ProtoStruct result = movementsensor->do_command(struct_to_map(request->command()));
-        *response->mutable_result() = map_to_struct(result);
+        const ProtoStruct result = movementsensor->do_command(v2::from_proto(request->command()));
+        *response->mutable_result() = v2::to_proto(result);
     });
 }
 
@@ -145,7 +145,7 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
                                                request)([&](auto& helper, auto& movementsensor) {
         const auto geometries = movementsensor->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = geometry.to_proto();
+            *response->mutable_geometries()->Add() = v2::to_proto(geometry);
         }
     });
 }

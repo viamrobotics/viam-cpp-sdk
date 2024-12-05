@@ -40,8 +40,8 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager)
                                     ::viam::component::base::v1::SetPowerResponse*) noexcept {
     return make_service_helper<Base>(
         "BaseServer::SetPower", this, request)([&](auto& helper, auto& base) {
-        auto linear = Vector3::from_proto(request->linear());
-        auto angular = Vector3::from_proto(request->angular());
+        auto linear = v2::from_proto(request->linear());
+        auto angular = v2::from_proto(request->angular());
         base->set_power(linear, angular, helper.getExtra());
     });
 }
@@ -52,8 +52,8 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager)
     ::viam::component::base::v1::SetVelocityResponse*) noexcept {
     return make_service_helper<Base>(
         "BaseServer::SetVelocity", this, request)([&](auto& helper, auto& base) {
-        auto linear = Vector3::from_proto(request->linear());
-        auto angular = Vector3::from_proto(request->angular());
+        auto linear = v2::from_proto(request->linear());
+        auto angular = v2::from_proto(request->angular());
         base->set_velocity(linear, angular, helper.getExtra());
     });
 }
@@ -83,7 +83,7 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager)
         "BaseServer::GetGeometries", this, request)([&](auto& helper, auto& base) {
         const std::vector<GeometryConfig> geometries = base->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = geometry.to_proto();
+            *response->mutable_geometries()->Add() = v2::to_proto(geometry);
         }
     });
 }
@@ -106,8 +106,8 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager)
                                      viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Base>(
         "BaseServer::DoCommand", this, request)([&](auto&, auto& base) {
-        const ProtoStruct result = base->do_command(struct_to_map(request->command()));
-        *response->mutable_result() = map_to_struct(result);
+        const ProtoStruct result = base->do_command(v2::from_proto(request->command()));
+        *response->mutable_result() = v2::to_proto(result);
     });
 }
 

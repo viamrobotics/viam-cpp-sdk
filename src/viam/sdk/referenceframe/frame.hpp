@@ -2,30 +2,51 @@
 
 #include <string>
 
-#include <viam/api/app/v1/robot.pb.h>
-
+#include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
 #include <viam/sdk/spatialmath/orientation.hpp>
+
+namespace viam {
+namespace app {
+namespace v1 {
+
+class Frame;
+}
+}  // namespace app
+}  // namespace viam
 
 namespace viam {
 namespace sdk {
 
 class LinkConfig {
    public:
-    viam::app::v1::Frame to_proto() const;
-    static LinkConfig from_proto(const viam::app::v1::Frame& proto);
-    translation get_translation() const;
-    OrientationConfig get_orientation_config() const;
-    GeometryConfig get_geometry_config() const;
-    std::string get_parent() const;
+    LinkConfig() = default;
+    LinkConfig(translation t, Orientation o, GeometryConfig gcfg, std::string parent);
+
+    const translation& get_translation() const;
+    const Orientation& get_orientation() const;
+    const GeometryConfig& get_geometry_config() const;
+    const std::string& get_parent() const;
 
    private:
-    std::string id_;
     translation translation_;
-    OrientationConfig orientation_;
+    Orientation orientation_;
     GeometryConfig geometry_;
     std::string parent_;
 };
 
+namespace proto_convert_details {
+
+template <>
+struct to_proto<LinkConfig> {
+    void operator()(const LinkConfig&, app::v1::Frame*) const;
+};
+
+template <>
+struct from_proto<app::v1::Frame> {
+    LinkConfig operator()(const app::v1::Frame*) const;
+};
+
+}  // namespace proto_convert_details
 }  // namespace sdk
 }  // namespace viam

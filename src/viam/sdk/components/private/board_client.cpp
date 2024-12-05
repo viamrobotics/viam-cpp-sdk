@@ -105,8 +105,8 @@ void BoardClient::set_pwm_frequency(const std::string& pin,
 
 ProtoStruct BoardClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
-        .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
-        .invoke([](auto& response) { return struct_to_map(response.result()); });
+        .with([&](auto& request) { *request.mutable_command() = v2::to_proto(command); })
+        .invoke([](auto& response) { return v2::from_proto(response.result()); });
 }
 
 // TODO(RSDK-6048) update `client_wrapper` to allow for requests without a `mutable_name()` method,
@@ -119,7 +119,7 @@ Board::analog_response BoardClient::read_analog(const std::string& analog_reader
 
     request.set_board_name(this->name());
     request.set_analog_reader_name(analog_reader_name);
-    *request.mutable_extra() = map_to_struct(extra);
+    *request.mutable_extra() = v2::to_proto(extra);
 
     const grpc::Status status = stub_->ReadAnalogReader(ctx, request, &response);
     if (!status.ok()) {
@@ -149,7 +149,7 @@ Board::digital_value BoardClient::read_digital_interrupt(const std::string& digi
 
     request.set_board_name(this->name());
     request.set_digital_interrupt_name(digital_interrupt_name);
-    *request.mutable_extra() = map_to_struct(extra);
+    *request.mutable_extra() = v2::to_proto(extra);
 
     const grpc::Status status = stub_->GetDigitalInterruptValue(ctx, request, &response);
     if (!status.ok()) {
@@ -191,7 +191,7 @@ void BoardClient::set_power_mode(power_mode power_mode,
 std::vector<GeometryConfig> BoardClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
+        .invoke([](auto& response) { return v2::from_proto(response); });
 };
 
 }  // namespace impl

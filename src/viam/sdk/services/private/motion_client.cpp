@@ -8,6 +8,7 @@
 #include <viam/api/service/motion/v1/motion.pb.h>
 
 #include <viam/sdk/common/client_helper.hpp>
+#include <viam/sdk/common/private/repeated_ptr_convert.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/services/motion.hpp>
@@ -140,7 +141,7 @@ Motion::steps steps_from_proto(
     for (const auto& ps : proto) {
         step step;
         for (const auto& component : ps.step()) {
-            step.emplace(component.first, pose::from_proto(component.second.pose()));
+            step.emplace(component.first, v2::from_proto(component.second.pose()));
         }
         steps.push_back(std::move(step));
     }
@@ -189,12 +190,12 @@ bool MotionClient::move(const pose_in_frame& destination,
         .with(extra,
               [&](auto& request) {
                   *request.mutable_component_name() = component_name.to_proto();
-                  *request.mutable_destination() = destination.to_proto();
+                  *request.mutable_destination() = v2::to_proto(destination);
                   if (constraints) {
                       *request.mutable_constraints() = to_proto(*constraints);
                   }
                   if (world_state) {
-                      *request.mutable_world_state() = world_state->to_proto();
+                      *request.mutable_world_state() = v2::to_proto(*world_state);
                   }
               })
         .invoke([](auto& response) { return response.success(); });
@@ -210,12 +211,12 @@ std::string MotionClient::move_on_map(
     return make_client_helper(this, *stub_, &StubType::MoveOnMap)
         .with(extra,
               [&](auto& request) {
-                  *request.mutable_destination() = destination.to_proto();
+                  *request.mutable_destination() = v2::to_proto(destination);
                   *request.mutable_component_name() = component_name.to_proto();
                   *request.mutable_slam_service_name() = slam_name.to_proto();
 
                   for (const auto& obstacle : obstacles) {
-                      *request.mutable_obstacles()->Add() = obstacle.to_proto();
+                      *request.mutable_obstacles()->Add() = v2::to_proto(obstacle);
                   }
 
                   if (motion_configuration) {
@@ -237,7 +238,7 @@ std::string MotionClient::move_on_globe(
     return make_client_helper(this, *stub_, &StubType::MoveOnGlobe)
         .with(extra,
               [&](auto& request) {
-                  *request.mutable_destination() = destination.to_proto();
+                  *request.mutable_destination() = v2::to_proto(destination);
                   *request.mutable_component_name() = component_name.to_proto();
                   *request.mutable_movement_sensor_name() = movement_sensor_name.to_proto();
 
@@ -245,17 +246,13 @@ std::string MotionClient::move_on_globe(
                       request.set_heading(*heading);
                   }
 
-                  for (const auto& obstacle : obstacles) {
-                      *request.mutable_obstacles()->Add() = obstacle.to_proto();
-                  }
+                  *request.mutable_obstacles() = impl::to_repeated_field(obstacles);
 
                   if (motion_configuration) {
                       *request.mutable_motion_configuration() = to_proto(*motion_configuration);
                   }
 
-                  for (const auto& bounding_region : bounding_regions) {
-                      *request.mutable_bounding_regions()->Add() = bounding_region.to_proto();
-                  }
+                  *request.mutable_bounding_regions() = impl::to_repeated_field(bounding_regions);
               })
         .invoke([](auto& response) { return response.execution_id(); });
 }
@@ -270,11 +267,10 @@ pose_in_frame MotionClient::get_pose(
               [&](auto& request) {
                   *request.mutable_component_name() = component_name.to_proto();
                   *request.mutable_destination_frame() = destination_frame;
-                  for (const auto& transform : supplemental_transforms) {
-                      *request.mutable_supplemental_transforms()->Add() = transform.to_proto();
-                  }
+                  *request.mutable_supplemental_transforms() =
+                      impl::to_repeated_field(supplemental_transforms);
               })
-        .invoke([](auto& response) { return pose_in_frame::from_proto(response.pose()); });
+        .invoke([](auto& response) { return v2::from_proto(response.pose()); });
 }
 
 void MotionClient::stop_plan(const Name& name, const ProtoStruct& extra) {
@@ -352,8 +348,8 @@ std::vector<Motion::plan_status_with_id> MotionClient::list_active_plan_statuses
 
 ProtoStruct MotionClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
-        .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
-        .invoke([](auto& response) { return struct_to_map(response.result()); });
+        .with([&](auto& request) { *request.mutable_command() = v2::to_proto(command); })
+        .invoke([](auto& response) { return v2::from_proto(response.result()); });
 }
 
 }  // namespace impl

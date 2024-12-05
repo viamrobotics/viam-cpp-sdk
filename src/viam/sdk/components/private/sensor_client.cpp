@@ -29,7 +29,7 @@ ProtoStruct SensorClient::get_readings(const ProtoStruct& extra) {
         .invoke([](auto& response) {
             ProtoStruct result;
             for (const auto& r : response.readings()) {
-                result.emplace(r.first, ProtoValue::from_proto(r.second));
+                result.emplace(r.first, v2::from_proto(r.second));
             }
             return result;
         });
@@ -37,14 +37,14 @@ ProtoStruct SensorClient::get_readings(const ProtoStruct& extra) {
 
 ProtoStruct SensorClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
-        .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
-        .invoke([](auto& response) { return struct_to_map(response.result()); });
+        .with([&](auto& request) { *request.mutable_command() = v2::to_proto(command); })
+        .invoke([](auto& response) { return v2::from_proto(response.result()); });
 }
 
 std::vector<GeometryConfig> SensorClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
+        .invoke([](auto& response) { return v2::from_proto(response); });
 }
 
 }  // namespace impl

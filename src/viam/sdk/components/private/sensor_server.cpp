@@ -20,10 +20,8 @@ SensorServer::SensorServer(std::shared_ptr<ResourceManager> manager)
                                          GetReadingsResponse* response) noexcept {
     return make_service_helper<Sensor>(
         "SensorServer::GetReadings", this, request)([&](auto& helper, auto& sensor) {
-        const ProtoStruct result = sensor->get_readings(helper.getExtra());
-        for (const auto& r : result) {
-            response->mutable_readings()->insert({r.first, to_proto(r.second)});
-        }
+        *(response->mutable_readings()) =
+            v2::to_proto(sensor->get_readings(helper.getExtra())).fields();
     });
 }
 
@@ -32,8 +30,8 @@ SensorServer::SensorServer(std::shared_ptr<ResourceManager> manager)
                                        DoCommandResponse* response) noexcept {
     return make_service_helper<Sensor>(
         "SensorServer::DoCommand", this, request)([&](auto&, auto& sensor) {
-        const ProtoStruct result = sensor->do_command(struct_to_map(request->command()));
-        *response->mutable_result() = map_to_struct(result);
+        const ProtoStruct result = sensor->do_command(v2::from_proto(request->command()));
+        *response->mutable_result() = v2::to_proto(result);
     });
 }
 
@@ -44,7 +42,7 @@ SensorServer::SensorServer(std::shared_ptr<ResourceManager> manager)
         "SensorServer::GetGeometries", this, request)([&](auto& helper, auto& sensor) {
         const auto geometries = sensor->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = geometry.to_proto();
+            *response->mutable_geometries()->Add() = v2::to_proto(geometry);
         }
     });
 }

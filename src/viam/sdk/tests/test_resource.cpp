@@ -12,6 +12,8 @@
 #include <viam/sdk/spatialmath/orientation.hpp>
 #include <viam/sdk/spatialmath/orientation_types.hpp>
 
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::GeometryType);
+
 namespace viam {
 namespace sdktests {
 
@@ -132,21 +134,24 @@ BOOST_AUTO_TEST_CASE(test_linkconfig) {
     *frame.mutable_orientation() = o;
     *frame.mutable_translation() = t;
 
-    LinkConfig lc = LinkConfig::from_proto(frame);
+    LinkConfig lc = v2::from_proto(frame);
     BOOST_CHECK_EQUAL(lc.get_parent(), "parent");
     BOOST_CHECK_EQUAL(lc.get_translation().x, t.x());
     BOOST_CHECK_EQUAL(lc.get_translation().y, t.y());
     BOOST_CHECK_EQUAL(lc.get_translation().z, t.z());
     GeometryConfig gcfg = lc.get_geometry_config();
     BOOST_CHECK_EQUAL(gcfg.get_label(), "label");
-    BOOST_CHECK_EQUAL(gcfg.get_pose(), pose::from_proto(pose));
+    BOOST_CHECK_EQUAL(gcfg.get_pose(), v2::from_proto(pose));
     BOOST_CHECK_EQUAL(gcfg.get_geometry_type(), GeometryType::box);
-    const auto gs = gcfg.box_proto();
-    BOOST_CHECK_EQUAL(gs.dims_mm().x(), box.dims_mm().x());
-    BOOST_CHECK_EQUAL(gs.dims_mm().y(), box.dims_mm().y());
-    BOOST_CHECK_EQUAL(gs.dims_mm().z(), box.dims_mm().z());
 
-    viam::app::v1::Frame proto_lc = lc.to_proto();
+    common::v1::Geometry gs = v2::to_proto(gcfg);
+    BOOST_ASSERT(gs.has_box());
+
+    BOOST_CHECK_EQUAL(gs.box().dims_mm().x(), box.dims_mm().x());
+    BOOST_CHECK_EQUAL(gs.box().dims_mm().y(), box.dims_mm().y());
+    BOOST_CHECK_EQUAL(gs.box().dims_mm().z(), box.dims_mm().z());
+
+    viam::app::v1::Frame proto_lc = v2::to_proto(lc);
     BOOST_CHECK_EQUAL(proto_lc.parent(), "parent");
     BOOST_CHECK_EQUAL(proto_lc.translation().x(), t.x());
     BOOST_CHECK_EQUAL(proto_lc.translation().y(), t.y());
@@ -241,7 +246,7 @@ BOOST_AUTO_TEST_CASE(test_resource) {
     Value value;
     for (const auto& key_and_value : resource2.attributes()) {
         key = key_and_value.first;
-        value = to_proto(key_and_value.second);
+        value = v2::to_proto(key_and_value.second);
     }
     BOOST_CHECK_EQUAL(key, "a");
     BOOST_CHECK_EQUAL(value.number_value(), 1);

@@ -49,7 +49,7 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
     auto* const req = pb::Arena::VIAM_SDK_PB_CREATE_MESSAGE<mlpb::InferRequest>(arena.get());
 
     req->set_name(this->name());
-    *req->mutable_extra() = map_to_struct(extra);
+    *req->mutable_extra() = v2::to_proto(extra);
     auto* const resp = pb::Arena::VIAM_SDK_PB_CREATE_MESSAGE<mlpb::InferResponse>(arena.get());
     ClientContext ctx;
 
@@ -93,7 +93,7 @@ struct MLModelService::metadata MLModelServiceClient::metadata(const ProtoStruct
     // Encode metadata args into a `MetadataRequest`
     viam::service::mlmodel::v1::MetadataRequest req;
     *req.mutable_name() = name();
-    *req.mutable_extra() = map_to_struct(extra);
+    *req.mutable_extra() = v2::to_proto(extra);
 
     // Invoke the stub
     ClientContext ctx;
@@ -150,7 +150,7 @@ struct MLModelService::metadata MLModelServiceClient::metadata(const ProtoStruct
                     }
                 }
                 if (s.has_extra()) {
-                    ti.extra = struct_to_map(s.extra());
+                    ti.extra = v2::from_proto(s.extra());
                 }
             }
         };

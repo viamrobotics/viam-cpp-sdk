@@ -35,7 +35,7 @@ pose default_pose(int offset) {
 }
 
 Pose default_proto_pose(int offset = 0) {
-    return default_pose(offset).to_proto();
+    return v2::to_proto(default_pose(offset));
 }
 
 std::vector<RobotClient::operation> mock_operations_response() {
@@ -95,7 +95,7 @@ std::vector<Discovery> mock_proto_discovery_response() {
 
         viam::robot::v1::Discovery discovery;
         *discovery.mutable_query() = query;
-        *discovery.mutable_results() = map_to_struct(d.results);
+        *discovery.mutable_results() = v2::to_proto(d.results);
 
         v.push_back(std::move(discovery));
     }

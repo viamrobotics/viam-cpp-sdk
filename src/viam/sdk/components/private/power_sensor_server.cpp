@@ -27,7 +27,7 @@ GetCurrentResponse to_proto(const PowerSensor::current& c) {
 }
 
 PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)){};
+    : ResourceServer(std::move(manager)) {}
 
 ::grpc::Status PowerSensorServer::GetVoltage(::grpc::ServerContext*,
                                              const GetVoltageRequest* request,
@@ -65,10 +65,8 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
     viam::common::v1::GetReadingsResponse* response) noexcept {
     return make_service_helper<PowerSensor>(
         "PowerSensorServer::GetReadings", this, request)([&](auto& helper, auto& powersensor) {
-        const ProtoStruct result = powersensor->get_readings(helper.getExtra());
-        for (const auto& r : result) {
-            response->mutable_readings()->insert({r.first, to_proto(r.second)});
-        }
+        *(response->mutable_readings()) =
+            v2::to_proto(powersensor->get_readings(helper.getExtra())).fields();
     });
 }
 
@@ -78,8 +76,8 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
     viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<PowerSensor>(
         "PowerSensorServer::DoCommand", this, request)([&](auto&, auto& powersensor) {
-        const ProtoStruct result = powersensor->do_command(struct_to_map(request->command()));
-        *response->mutable_result() = map_to_struct(result);
+        const ProtoStruct result = powersensor->do_command(v2::from_proto(request->command()));
+        *response->mutable_result() = v2::to_proto(result);
     });
 }
 
