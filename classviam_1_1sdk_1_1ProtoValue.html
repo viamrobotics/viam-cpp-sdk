@@ -78,7 +78,6 @@ $(function() {
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="classviam_1_1sdk_1_1ProtoValue-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">viam::sdk::ProtoValue Class Reference</div></div>
@@ -210,56 +209,16 @@ template&lt;typename T &gt; </td></tr>
 <tr class="memdesc:ae07dabe96af1eb0c94c3a6b0d06337ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return an rvalue reference to the underlying T, without checking.  <br /></td></tr>
 <tr class="separator:ae07dabe96af1eb0c94c3a6b0d06337ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a0602c74ba4fba4d37ba5a196eec940d2" id="r_a0602c74ba4fba4d37ba5a196eec940d2"><td class="memTemplParams" colspan="2">template&lt;typename Value  = google::protobuf::Value&gt; </td></tr>
-<tr class="memitem:a0602c74ba4fba4d37ba5a196eec940d2"><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="classviam_1_1sdk_1_1ProtoValue.html">ProtoValue</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a0602c74ba4fba4d37ba5a196eec940d2">from_proto</a> (const Value &amp;v)</td></tr>
-<tr class="memdesc:a0602c74ba4fba4d37ba5a196eec940d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct from proto value.  <br /></td></tr>
-<tr class="separator:a0602c74ba4fba4d37ba5a196eec940d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
 <tr class="memitem:a743e5f6dc6e0f06f218f019c7fef7142" id="r_a743e5f6dc6e0f06f218f019c7fef7142"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a743e5f6dc6e0f06f218f019c7fef7142">operator==</a> (const <a class="el" href="classviam_1_1sdk_1_1ProtoValue.html">ProtoValue</a> &amp;lhs, const <a class="el" href="classviam_1_1sdk_1_1ProtoValue.html">ProtoValue</a> &amp;rhs)</td></tr>
 <tr class="memdesc:a743e5f6dc6e0f06f218f019c7fef7142"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test equality of two types.  <br /></td></tr>
 <tr class="separator:a743e5f6dc6e0f06f218f019c7fef7142"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a069a8757c733bc9f0563c3dfb7ba7474" id="r_a069a8757c733bc9f0563c3dfb7ba7474"><td class="memItemLeft" align="right" valign="top"><a id="a069a8757c733bc9f0563c3dfb7ba7474" name="a069a8757c733bc9f0563c3dfb7ba7474"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>to_proto</b> (const <a class="el" href="classviam_1_1sdk_1_1ProtoValue.html">ProtoValue</a> &amp;t, google::protobuf::Value *v)</td></tr>
-<tr class="separator:a069a8757c733bc9f0563c3dfb7ba7474"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Type-erased value for storing google::protobuf::Value types. A <a class="el" href="classviam_1_1sdk_1_1ProtoValue.html" title="Type-erased value for storing google::protobuf::Value types. A ProtoValue can be nullptr,...">ProtoValue</a> can be nullptr, bool, int, double, std::string, or, recursively, a vector or string-map of <a class="el" href="classviam_1_1sdk_1_1ProtoValue.html" title="Type-erased value for storing google::protobuf::Value types. A ProtoValue can be nullptr,...">ProtoValue</a>. This type is used at API/ABI boundaries for interfacing with grpc/proto code. </p>
 <dl class="section remark"><dt>Remarks</dt><dd>The (special) member function templates below all operate on a closed subset of types, so we provide explicit instantiations for all valid template types. See below the class definition. </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a0602c74ba4fba4d37ba5a196eec940d2" name="a0602c74ba4fba4d37ba5a196eec940d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0602c74ba4fba4d37ba5a196eec940d2">&#9670;&#160;</a></span>from_proto()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Value  = google::protobuf::Value&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static <a class="el" href="classviam_1_1sdk_1_1ProtoValue.html">ProtoValue</a> viam::sdk::ProtoValue::from_proto </td>
-          <td>(</td>
-          <td class="paramtype">const Value &amp;</td>          <td class="paramname"><span class="paramname"><em>v</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Construct from proto value. </p>
-<dl class="section note"><dt>Note</dt><dd>This method is trivially templated to insulate google::protobuf::Value from our API/ABI. It is meant to be called with no template parameters in a translation unit which includes &lt;google/protobuf/struct.pb.h&gt; </dd></dl>
-
-</div>
-</div>
 <a id="a508a7ecff2fb8363af16741f679128d9" name="a508a7ecff2fb8363af16741f679128d9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a508a7ecff2fb8363af16741f679128d9">&#9670;&#160;</a></span>get_unchecked() <span class="overload">[1/5]</span></h2>
 
