@@ -38,8 +38,14 @@ struct from_repeated_field_ {
     }
 };
 
-constexpr to_repeated_field_ to_repeated_field;
-constexpr from_repeated_field_ from_repeated_field;
+namespace {
+
+constexpr auto& to_repeated_field = proto_convert_details::static_const<to_repeated_field_>::value;
+
+constexpr auto& from_repeated_field =
+    proto_convert_details::static_const<from_repeated_field_>::value;
+
+}  // namespace
 
 }  // namespace impl
 }  // namespace sdk

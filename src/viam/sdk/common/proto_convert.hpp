@@ -11,6 +11,16 @@ namespace sdk {
 
 namespace proto_convert_details {
 
+// This is copied from range-v3 to allow the definition of callable object instances without
+// ODR/linkage issues. It is obviated in C++17 and onwards by constexpr inline.
+template <typename T>
+struct static_const {
+    static constexpr const T value{};
+};
+
+template <typename T>
+constexpr const T static_const<T>::value;
+
 // This struct should be explicitly specialized with a
 //      void operator()(const SdkType&, common::v1::ApiType*) const
 // to provide API/ABI insulated proto conversion
@@ -55,15 +65,21 @@ struct from_proto_impl {
 
 namespace v2 {
 
+namespace {
+
 /// @brief Function object implementing conversion from an SDK type to an API type.
 /// This callable works for any type with a proto_convert_details::to_proto specialization as
 /// described above.
-constexpr proto_convert_details::to_proto_impl to_proto{};
+constexpr auto& to_proto =
+    proto_convert_details::static_const<proto_convert_details::to_proto_impl>::value;
 
 /// @brief Function object implementing conversion from an API type to an SDK type.
 /// This callable works for any type with a proto_convert_details::from_proto specialization as
 /// described above.
-constexpr proto_convert_details::from_proto_impl from_proto{};
+constexpr auto& from_proto =
+    proto_convert_details::static_const<proto_convert_details::from_proto_impl>::value;
+
+}  // namespace
 
 }  // namespace v2
 

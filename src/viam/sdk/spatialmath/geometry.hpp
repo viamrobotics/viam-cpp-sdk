@@ -5,7 +5,6 @@
 #include <tuple>
 
 #include <viam/sdk/common/pose.hpp>
-#include <viam/sdk/common/private/repeated_ptr_convert.hpp>
 #include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/spatialmath/orientation.hpp>
 
@@ -22,6 +21,7 @@ class GetGeometriesResponse;
 
 class GeoPoint;
 class GeoGeometry;
+
 }  // namespace v1
 }  // namespace common
 }  // namespace viam
