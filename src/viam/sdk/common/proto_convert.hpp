@@ -53,7 +53,7 @@ struct to_proto_impl {
 // Implementation struct for the omni-from_proto callable defined below.
 struct from_proto_impl {
     template <typename ProtoType>
-    auto operator()(const ProtoType& proto) const {
+    auto operator()(const ProtoType& proto) const {  // NOLINT(misc-no-recursion)
         return from_proto<ProtoType>{}(&proto);
     }
 };

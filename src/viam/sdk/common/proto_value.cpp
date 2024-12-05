@@ -254,8 +254,8 @@ void to_proto<ProtoValue>::operator()(const ProtoValue& self, google::protobuf::
     self.vtable_.to_value(self.self_.get(), v);
 }
 
-ProtoValue from_proto<google::protobuf::Value>::operator()(
-    const google::protobuf::Value* v) const {  // NOLINT(misc-no-recursion)
+ProtoValue from_proto<google::protobuf::Value>::operator()(  // NOLINT(misc-no-recursion)
+    const google::protobuf::Value* v) const {
     switch (v->kind_case()) {
         case Value::KindCase::kBoolValue: {
             return ProtoValue(v->bool_value());
@@ -292,8 +292,8 @@ void to_proto<ProtoStruct>::operator()(const ProtoStruct& self, google::protobuf
     }
 }
 
-ProtoStruct from_proto<google::protobuf::Struct>::operator()(
-    const google::protobuf::Struct* s) const {  // NOLINT(misc-no-recursion)
+ProtoStruct from_proto<google::protobuf::Struct>::operator()(  // NOLINT(misc-no-recursion)
+    const google::protobuf::Struct* s) const {
     ProtoStruct result;
 
     for (const auto& val : s->fields()) {
