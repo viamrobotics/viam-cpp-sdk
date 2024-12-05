@@ -348,8 +348,8 @@ std::vector<Motion::plan_status_with_id> MotionClient::list_active_plan_statuses
 
 ProtoStruct MotionClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
-        .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
-        .invoke([](auto& response) { return struct_to_map(response.result()); });
+        .with([&](auto& request) { *request.mutable_command() = v2::to_proto(command); })
+        .invoke([](auto& response) { return v2::from_proto(response.result()); });
 }
 
 }  // namespace impl

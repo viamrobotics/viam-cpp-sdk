@@ -38,8 +38,8 @@ void GripperClient::stop(const ProtoStruct& extra) {
 
 ProtoStruct GripperClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
-        .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
-        .invoke([](auto& response) { return struct_to_map(response.result()); });
+        .with([&](auto& request) { *request.mutable_command() = v2::to_proto(command); })
+        .invoke([](auto& response) { return v2::from_proto(response.result()); });
 }
 
 std::vector<GeometryConfig> GripperClient::get_geometries(const ProtoStruct& extra) {

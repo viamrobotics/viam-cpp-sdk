@@ -9,7 +9,7 @@ namespace sdk {
 namespace impl {
 
 GenericServiceServer::GenericServiceServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)){};
+    : ResourceServer(std::move(manager)) {}
 
 ::grpc::Status GenericServiceServer::DoCommand(
     ::grpc::ServerContext*,
@@ -17,8 +17,8 @@ GenericServiceServer::GenericServiceServer(std::shared_ptr<ResourceManager> mana
     ::viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<GenericService>(
         "GenericServiceServer::DoCommand", this, request)([&](auto&, auto& generic) {
-        const ProtoStruct result = generic->do_command(struct_to_map(request->command()));
-        *response->mutable_result() = map_to_struct(result);
+        const ProtoStruct result = generic->do_command(v2::from_proto(request->command()));
+        *response->mutable_result() = v2::to_proto(result);
     });
 }
 

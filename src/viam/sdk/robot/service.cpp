@@ -185,7 +185,7 @@ void RobotService_::stream_status(
     std::unordered_map<std::string, ProtoStruct> extra;
     for (const auto& ex : request->extra()) {
         const google::protobuf::Struct& struct_ = ex.params();
-        const ProtoStruct value_map = struct_to_map(struct_);
+        const ProtoStruct value_map = v2::from_proto(struct_);
         const std::string name = ex.name().SerializeAsString();
         extra.emplace(name, value_map);
     }

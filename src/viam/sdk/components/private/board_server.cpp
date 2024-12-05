@@ -105,8 +105,8 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
                                       viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Board>(
         "BoardServer::DoCommand", this, request)([&](auto&, auto& board) {
-        const ProtoStruct result = board->do_command(struct_to_map(request->command()));
-        *response->mutable_result() = map_to_struct(result);
+        const ProtoStruct result = board->do_command(v2::from_proto(request->command()));
+        *response->mutable_result() = v2::to_proto(result);
     });
 }
 
@@ -128,7 +128,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
 
     ProtoStruct extra;
     if (request->has_extra()) {
-        extra = struct_to_map(request->extra());
+        extra = v2::from_proto(request->extra());
     }
 
     const Board::analog_response result = board->read_analog(request->analog_reader_name(), extra);
@@ -158,7 +158,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
 
     ProtoStruct extra;
     if (request->has_extra()) {
-        extra = struct_to_map(request->extra());
+        extra = v2::from_proto(request->extra());
     }
 
     board->write_analog(request->pin(), request->value(), extra);
@@ -183,7 +183,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
 
     ProtoStruct extra;
     if (request->has_extra()) {
-        extra = struct_to_map(request->extra());
+        extra = v2::from_proto(request->extra());
     }
 
     const Board::digital_value result =

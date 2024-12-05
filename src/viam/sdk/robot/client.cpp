@@ -66,7 +66,7 @@ RobotClient::discovery_query from_proto(const DiscoveryQuery& proto) {
 RobotClient::discovery from_proto(const Discovery& proto) {
     RobotClient::discovery discovery;
     discovery.query = from_proto(proto.query());
-    discovery.results = struct_to_map(proto.results());
+    discovery.results = v2::from_proto(proto.results());
     return discovery;
 }
 
@@ -74,7 +74,7 @@ RobotClient::frame_system_config from_proto(const FrameSystemConfig& proto) {
     RobotClient::frame_system_config fsconfig;
     fsconfig.frame = v2::from_proto(proto.frame());
     if (proto.has_kinematics()) {
-        fsconfig.kinematics = struct_to_map(proto.kinematics());
+        fsconfig.kinematics = v2::from_proto(proto.kinematics());
     }
     return fsconfig;
 }
@@ -85,7 +85,7 @@ RobotClient::status from_proto(const Status& proto) {
         status.name = Name::from_proto(proto.name());
     }
     if (proto.has_status()) {
-        status.status_map = struct_to_map(proto.status());
+        status.status_map = v2::from_proto(proto.status());
     }
     if (proto.has_last_reconfigured()) {
         status.last_reconfigured = timestamp_to_time_pt(proto.last_reconfigured());
@@ -101,7 +101,7 @@ RobotClient::operation from_proto(const Operation& proto) {
         op.session_id = proto.session_id();
     }
     if (proto.has_arguments()) {
-        op.arguments = struct_to_map(proto.arguments());
+        op.arguments = v2::from_proto(proto.arguments());
     }
     if (proto.has_started()) {
         op.started = timestamp_to_time_pt(proto.started());
@@ -115,20 +115,20 @@ bool operator==(const RobotClient::discovery_query& lhs, const RobotClient::disc
 }
 
 bool operator==(const RobotClient::discovery& lhs, const RobotClient::discovery& rhs) {
-    return lhs.query == rhs.query && map_to_struct(lhs.results).SerializeAsString() ==
-                                         map_to_struct(rhs.results).SerializeAsString();
+    return lhs.query == rhs.query && v2::to_proto(lhs.results).SerializeAsString() ==
+                                         v2::to_proto(rhs.results).SerializeAsString();
 }
 
 bool operator==(const RobotClient::frame_system_config& lhs,
                 const RobotClient::frame_system_config& rhs) {
-    return lhs.frame == rhs.frame && map_to_struct(lhs.kinematics).SerializeAsString() ==
-                                         map_to_struct(rhs.kinematics).SerializeAsString();
+    return lhs.frame == rhs.frame && v2::to_proto(lhs.kinematics).SerializeAsString() ==
+                                         v2::to_proto(rhs.kinematics).SerializeAsString();
 }
 
 bool operator==(const RobotClient::status& lhs, const RobotClient::status& rhs) {
     return lhs.name == rhs.name &&
-           map_to_struct(lhs.status_map).SerializeAsString() ==
-               map_to_struct(rhs.status_map).SerializeAsString() &&
+           v2::to_proto(lhs.status_map).SerializeAsString() ==
+               v2::to_proto(rhs.status_map).SerializeAsString() &&
            lhs.last_reconfigured == rhs.last_reconfigured;
 }
 
@@ -454,7 +454,7 @@ void RobotClient::stop_all(const std::unordered_map<Name, ProtoStruct>& extra) {
     for (const auto& xtra : extra) {
         const Name& name = xtra.first;
         const ProtoStruct& params = xtra.second;
-        const google::protobuf::Struct s = map_to_struct(params);
+        const google::protobuf::Struct s = v2::to_proto(params);
         viam::robot::v1::StopExtraParameters stop;
         *stop.mutable_name() = name.to_proto();
         *stop.mutable_params() = s;

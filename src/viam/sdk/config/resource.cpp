@@ -96,7 +96,7 @@ ResourceConfig ResourceConfig::from_proto(const viam::app::v1::ComponentConfig& 
     resource.name_ = proto_cfg.name();
     resource.namespace__ = proto_cfg.namespace_();
     resource.type_ = proto_cfg.type();
-    resource.attributes_ = struct_to_map(proto_cfg.attributes());
+    resource.attributes_ = v2::from_proto(proto_cfg.attributes());
     const std::string& api = proto_cfg.api();
     if (api.find(':') != std::string::npos) {
         resource.api_ = API::from_string(api);
@@ -114,14 +114,14 @@ ResourceConfig ResourceConfig::from_proto(const viam::app::v1::ComponentConfig& 
 
 viam::app::v1::ComponentConfig ResourceConfig::to_proto() const {
     viam::app::v1::ComponentConfig proto_cfg;
-    const google::protobuf::Struct s = map_to_struct(attributes_);
+    const google::protobuf::Struct s = v2::to_proto(attributes_);
     const google::protobuf::RepeatedPtrField<viam::app::v1::ResourceLevelServiceConfig>
         service_configs;
 
     for (const auto& svc_cfg : service_config_) {
         viam::app::v1::ResourceLevelServiceConfig cfg;
         *cfg.mutable_type() = svc_cfg.type;
-        *cfg.mutable_attributes() = map_to_struct(svc_cfg.attributes);
+        *cfg.mutable_attributes() = v2::to_proto(svc_cfg.attributes);
         *proto_cfg.mutable_service_configs()->Add() = cfg;
     }
 
@@ -131,7 +131,7 @@ viam::app::v1::ComponentConfig ResourceConfig::to_proto() const {
     *proto_cfg.mutable_api() = api_.to_string();
     const std::string mm = model_.to_string();
     *proto_cfg.mutable_model() = mm;
-    *proto_cfg.mutable_attributes() = map_to_struct(attributes_);
+    *proto_cfg.mutable_attributes() = v2::to_proto(attributes_);
     for (const auto& dep : depends_on_) {
         *proto_cfg.mutable_depends_on()->Add() = dep;
     }

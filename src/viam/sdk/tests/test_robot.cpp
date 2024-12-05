@@ -152,7 +152,7 @@ BOOST_AUTO_TEST_CASE(test_frame_system_config) {
                               proto1.frame().pose_in_observer_frame().pose().o_x());
             BOOST_CHECK_EQUAL(config1.frame.pose_in_observer_frame.pose.theta,
                               proto1.frame().pose_in_observer_frame().pose().theta());
-            BOOST_CHECK_EQUAL(map_to_struct(config1.kinematics).SerializeAsString(),
+            BOOST_CHECK_EQUAL(v2::to_proto(config1.kinematics).SerializeAsString(),
                               proto1.kinematics().SerializeAsString());
 
             BOOST_CHECK_EQUAL(config2.frame.reference_frame, proto2.frame().reference_frame());
@@ -162,7 +162,7 @@ BOOST_AUTO_TEST_CASE(test_frame_system_config) {
                               proto2.frame().pose_in_observer_frame().pose().o_x());
             BOOST_CHECK_EQUAL(config2.frame.pose_in_observer_frame.pose.theta,
                               proto2.frame().pose_in_observer_frame().pose().theta());
-            BOOST_CHECK_EQUAL(map_to_struct(config2.kinematics).SerializeAsString(),
+            BOOST_CHECK_EQUAL(v2::to_proto(config2.kinematics).SerializeAsString(),
                               proto2.kinematics().SerializeAsString());
         });
 }
@@ -227,7 +227,7 @@ BOOST_AUTO_TEST_CASE(test_discovery) {
             // test `ProtoValue` conversions. Unfortunately the protobuf `ListValue` type doesn't
             // seem to have `==` defined, so we convert to a `DebugString` here to verify
             // comparison and to provide helpful printing of differences in case of an error.
-            BOOST_CHECK_EQUAL(to_proto(results->second).DebugString(),
+            BOOST_CHECK_EQUAL(v2::to_proto(results->second).DebugString(),
                               proto_results->second.DebugString());
         });
 }

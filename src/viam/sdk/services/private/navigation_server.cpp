@@ -126,8 +126,8 @@ using namespace service::navigation::v1;
     ::viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::DoCommand", this, request)([&](auto&, auto& motion) {
-        const ProtoStruct result = motion->do_command(struct_to_map(request->command()));
-        *response->mutable_result() = map_to_struct(result);
+        const ProtoStruct result = motion->do_command(v2::from_proto(request->command()));
+        *response->mutable_result() = v2::to_proto(result);
     });
 };
 

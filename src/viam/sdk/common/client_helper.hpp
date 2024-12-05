@@ -59,7 +59,7 @@ class ClientHelper {
             ProtoValue value = key->second;
             debug_key_ = *value.get<std::string>();
         }
-        *request_.mutable_extra() = map_to_struct(extra);
+        *request_.mutable_extra() = v2::to_proto(extra);
         return with(std::forward<RequestSetupCallable>(rsc));
     }
 
