@@ -37,13 +37,6 @@ class RobotService_ : public ResourceServer, public viam::robot::v1::RobotServic
     ::grpc::Status ResourceNames(::grpc::ServerContext* context,
                                  const ::viam::robot::v1::ResourceNamesRequest* request,
                                  ::viam::robot::v1::ResourceNamesResponse* response) override;
-    ::grpc::Status GetStatus(::grpc::ServerContext* context,
-                             const ::viam::robot::v1::GetStatusRequest* request,
-                             ::viam::robot::v1::GetStatusResponse* response) override;
-    ::grpc::Status StreamStatus(
-        ::grpc::ServerContext* context,
-        const ::viam::robot::v1::StreamStatusRequest* request,
-        ::grpc::ServerWriter<::viam::robot::v1::StreamStatusResponse>* writer) override;
     ::grpc::Status StopAll(::grpc::ServerContext* context,
                            const ::viam::robot::v1::StopAllRequest* request,
                            ::viam::robot::v1::StopAllResponse* response) override;

@@ -54,13 +54,6 @@ class RobotClient {
         friend bool operator==(const frame_system_config& lhs, const frame_system_config& rhs);
     };
 
-    struct status {
-        boost::optional<Name> name;
-        ProtoStruct status_map;
-        boost::optional<time_pt> last_reconfigured;
-        friend bool operator==(const status& lhs, const status& rhs);
-    };
-
     struct operation {
         std::string id;
         std::string method;
