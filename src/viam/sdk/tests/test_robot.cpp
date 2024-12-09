@@ -23,7 +23,6 @@
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::discovery_query)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::discovery)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::frame_system_config)
-BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::status)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::operation)
 
 namespace viam {
@@ -105,31 +104,6 @@ BOOST_AUTO_TEST_CASE(test_resource_names) {
             std::vector<Name> names = client->resource_names();
             auto mocks = mock_resource_names_response();
             BOOST_TEST(names == mocks, boost::test_tools::per_element());
-        });
-}
-
-BOOST_AUTO_TEST_CASE(test_get_status) {
-    robot_client_to_mocks_pipeline(
-        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
-            auto mock_statuses = mock_status_response();
-
-            // get all resource statuses
-            auto statuses = client->get_status();
-
-            // ensure we get statuses for all resources, and that they are as expected.
-            BOOST_CHECK_EQUAL(statuses.size(), 3);
-            BOOST_TEST(statuses == mock_statuses, boost::test_tools::per_element());
-
-            // get only a subset of status responses
-            auto names = mock_resource_names_response();
-            std::vector<Name> some_names{names[0], names[1]};
-            auto some_statuses = client->get_status(some_names);
-            // ensure that we only get two of the three existing statuses
-            BOOST_CHECK_EQUAL(some_statuses.size(), 2);
-
-            std::vector<RobotClient::status> some_mock_statuses{mock_statuses[0], mock_statuses[1]};
-
-            BOOST_TEST(some_statuses == some_mock_statuses, boost::test_tools::per_element());
         });
 }
 

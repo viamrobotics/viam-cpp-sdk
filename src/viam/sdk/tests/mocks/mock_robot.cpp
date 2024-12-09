@@ -20,7 +20,6 @@ using viam::robot::v1::Discovery;
 using viam::robot::v1::DiscoveryQuery;
 using viam::robot::v1::FrameSystemConfig;
 using viam::robot::v1::Operation;
-using viam::robot::v1::Status;
 
 pose default_pose(int offset) {
     pose pose;
@@ -101,44 +100,6 @@ std::vector<Discovery> mock_proto_discovery_response() {
     }
 
     return v;
-}
-
-std::vector<RobotClient::status> mock_status_response() {
-    auto rns = mock_resource_names_response();
-
-    RobotClient::status camera_status;
-    camera_status.name = rns[0];
-
-    RobotClient::status motor_status;
-    motor_status.name = rns[1];
-
-    RobotClient::status generic_status;
-    generic_status.name = rns[2];
-
-    return {std::move(camera_status), std::move(motor_status), std::move(generic_status)};
-}
-
-std::vector<Status> mock_proto_status_response() {
-    auto rns = mock_proto_resource_names_response();
-
-    Status camera_status;
-    *camera_status.mutable_name() = rns[0];
-    *camera_status.mutable_status() = google::protobuf::Struct();
-
-    Status motor_status;
-    *motor_status.mutable_name() = rns[1];
-    *motor_status.mutable_status() = google::protobuf::Struct();
-
-    Status generic_status;
-    *generic_status.mutable_name() = rns[2];
-    *generic_status.mutable_status() = google::protobuf::Struct();
-
-    std::vector<Status> resp;
-    resp.push_back(camera_status);
-    resp.push_back(motor_status);
-    resp.push_back(generic_status);
-
-    return resp;
 }
 
 pose_in_frame mock_transform_response() {

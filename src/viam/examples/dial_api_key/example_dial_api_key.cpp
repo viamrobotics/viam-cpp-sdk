@@ -59,20 +59,5 @@ int main(int argc, char* argv[]) {
         std::cout << "\t" << resource << "\n";
     }
 
-    // ensure we can query statuses
-    std::vector<RobotClient::status> status_plural = robot->get_status();
-    std::cout << "Status plural len " << status_plural.size() << std::endl;
-    for (const RobotClient::status& s : status_plural) {
-        std::cout << " Status! " << s.name->api().resource_subtype() << std::endl;
-    }
-
-    // ensure we can send requests for specific resources
-    std::vector<Name> just_one = {resource_names[0]};
-    std::vector<RobotClient::status> status_singular = robot->get_status(just_one);
-    std::cout << "Status singular len " << status_singular.size() << std::endl;
-    for (const RobotClient::status& s : status_singular) {
-        std::cout << " Status! " << s.name->api().resource_subtype() << std::endl;
-    }
-
     return EXIT_SUCCESS;
 }

@@ -39,7 +39,6 @@ using viam::robot::v1::DiscoveryQuery;
 using viam::robot::v1::FrameSystemConfig;
 using viam::robot::v1::Operation;
 using viam::robot::v1::RobotService;
-using viam::robot::v1::Status;
 
 // gRPC responses are frequently coming back with a spurious `Stream removed`
 // error, leading to unhelpful and misleading logging. We should figure out why
@@ -80,20 +79,6 @@ RobotClient::frame_system_config from_proto(const FrameSystemConfig& proto) {
     return fsconfig;
 }
 
-RobotClient::status from_proto(const Status& proto) {
-    RobotClient::status status;
-    if (proto.has_name()) {
-        status.name = Name::from_proto(proto.name());
-    }
-    if (proto.has_status()) {
-        status.status_map = v2::from_proto(proto.status());
-    }
-    if (proto.has_last_reconfigured()) {
-        status.last_reconfigured = timestamp_to_time_pt(proto.last_reconfigured());
-    }
-    return status;
-}
-
 RobotClient::operation from_proto(const Operation& proto) {
     RobotClient::operation op;
     op.id = proto.id();
@@ -124,13 +109,6 @@ bool operator==(const RobotClient::frame_system_config& lhs,
                 const RobotClient::frame_system_config& rhs) {
     return lhs.frame == rhs.frame && v2::to_proto(lhs.kinematics).SerializeAsString() ==
                                          v2::to_proto(rhs.kinematics).SerializeAsString();
-}
-
-bool operator==(const RobotClient::status& lhs, const RobotClient::status& rhs) {
-    return lhs.name == rhs.name &&
-           v2::to_proto(lhs.status_map).SerializeAsString() ==
-               v2::to_proto(rhs.status_map).SerializeAsString() &&
-           lhs.last_reconfigured == rhs.last_reconfigured;
 }
 
 bool operator==(const RobotClient::operation& lhs, const RobotClient::operation& rhs) {
@@ -166,37 +144,6 @@ void RobotClient::close() {
 
 bool is_error_response(const grpc::Status& response) {
     return !response.ok() && (response.error_message() != kStreamRemoved);
-}
-std::vector<RobotClient::status> RobotClient::get_status() {
-    auto resources = resource_names();
-    return get_status(resources);
-}
-// gets statuses of components associated with robot. If a specific component
-// vector is provided, only statuses for the given Names will be
-// returned
-std::vector<RobotClient::status> RobotClient::get_status(std::vector<Name>& components) {
-    viam::robot::v1::GetStatusRequest req;
-    viam::robot::v1::GetStatusResponse resp;
-    ClientContext ctx;
-    for (const Name& name : components) {
-        *req.mutable_resource_names()->Add() = name.to_proto();
-    }
-
-    const grpc::Status response = impl_->stub_->GetStatus(ctx, req, &resp);
-    if (is_error_response(response)) {
-        BOOST_LOG_TRIVIAL(error) << "Error getting status: " << response.error_message()
-                                 << response.error_details();
-    }
-
-    const RepeatedPtrField<Status> resp_status = resp.status();
-
-    std::vector<status> statuses = std::vector<status>();
-
-    for (const Status& s : resp_status) {
-        statuses.push_back(from_proto(s));
-    }
-
-    return statuses;
 }
 
 std::vector<RobotClient::operation> RobotClient::get_operations() {
