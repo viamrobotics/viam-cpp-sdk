@@ -23,7 +23,6 @@
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::discovery_query)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::discovery)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::frame_system_config)
-BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::status)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::operation)
 
 namespace viam {
