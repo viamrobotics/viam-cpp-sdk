@@ -167,37 +167,6 @@ void RobotClient::close() {
 bool is_error_response(const grpc::Status& response) {
     return !response.ok() && (response.error_message() != kStreamRemoved);
 }
-std::vector<RobotClient::status> RobotClient::get_status() {
-    auto resources = resource_names();
-    return get_status(resources);
-}
-// gets statuses of components associated with robot. If a specific component
-// vector is provided, only statuses for the given Names will be
-// returned
-std::vector<RobotClient::status> RobotClient::get_status(std::vector<Name>& components) {
-    viam::robot::v1::GetStatusRequest req;
-    viam::robot::v1::GetStatusResponse resp;
-    ClientContext ctx;
-    for (const Name& name : components) {
-        *req.mutable_resource_names()->Add() = name.to_proto();
-    }
-
-    const grpc::Status response = impl_->stub_->GetStatus(ctx, req, &resp);
-    if (is_error_response(response)) {
-        BOOST_LOG_TRIVIAL(error) << "Error getting status: " << response.error_message()
-                                 << response.error_details();
-    }
-
-    const RepeatedPtrField<Status> resp_status = resp.status();
-
-    std::vector<status> statuses = std::vector<status>();
-
-    for (const Status& s : resp_status) {
-        statuses.push_back(from_proto(s));
-    }
-
-    return statuses;
-}
 
 std::vector<RobotClient::operation> RobotClient::get_operations() {
     const viam::robot::v1::GetOperationsRequest req;

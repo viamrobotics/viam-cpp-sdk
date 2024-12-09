@@ -129,15 +129,6 @@ class RobotClient {
     /// @return The list of operations currently running on the calling robot.
     std::vector<operation> get_operations();
 
-    /// @brief Get the status of the requested robot components.
-    /// @param components A list of the specific components for which status is desired.
-    /// @return A list of statuses.
-    std::vector<status> get_status(std::vector<Name>& components);
-
-    /// @brief Get the status of all robot components.
-    /// @return A list of statuses.
-    std::vector<status> get_status();
-
     std::vector<discovery> discover_components(const std::vector<discovery_query>& queries);
 
     /// @brief Transform a given `Pose` to a new specified destination which is a reference frame.
