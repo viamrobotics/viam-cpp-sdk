@@ -22,7 +22,6 @@
 #include <viam/sdk/robot/service.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 
-using viam::robot::v1::Status;
 using namespace viam::sdk;
 
 int main() {

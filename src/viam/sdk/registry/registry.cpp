@@ -55,8 +55,6 @@
 namespace viam {
 namespace sdk {
 
-using viam::robot::v1::Status;
-
 ResourceServerRegistration::~ResourceServerRegistration() = default;
 ResourceClientRegistration::~ResourceClientRegistration() = default;
 
@@ -157,14 +155,6 @@ Registry::registered_resource_servers() {
 const std::unordered_map<std::string, std::shared_ptr<const ModelRegistration>>&
 Registry::registered_models() {
     return resources_;
-}
-
-// NOLINTNEXTLINE(readability-convert-member-functions-to-static)
-Status ModelRegistration::create_status(const std::shared_ptr<Resource>& resource) const {
-    Status status;
-    *status.mutable_name() = resource->get_resource_name().to_proto();
-    *status.mutable_status() = google::protobuf::Struct();
-    return status;
 }
 
 const google::protobuf::ServiceDescriptor* ResourceServerRegistration::service_descriptor() const {

@@ -28,7 +28,6 @@ namespace sdk {
 
 using google::protobuf::RepeatedPtrField;
 using viam::common::v1::ResourceName;
-using viam::robot::v1::Status;
 
 namespace {
 std::vector<Name> registered_models_for_resource(const std::shared_ptr<Resource>& resource) {

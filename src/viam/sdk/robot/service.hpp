@@ -25,7 +25,6 @@ namespace sdk {
 
 using google::protobuf::RepeatedPtrField;
 using viam::common::v1::ResourceName;
-using viam::robot::v1::Status;
 
 /// @class RobotService_ service.hpp "robot/service.hpp"
 /// @brief a gRPC service for a robot.
