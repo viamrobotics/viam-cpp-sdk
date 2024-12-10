@@ -95,9 +95,6 @@ class ModelRegistration {
     /// @throws Can throw exceptions, which will be returned to the parent via gRPC.
     std::function<std::vector<std::string>(ResourceConfig)> validate;
 
-    /// @brief Creates a `Status` object for a given resource.
-    viam::robot::v1::Status create_status(const std::shared_ptr<Resource>& resource) const;
-
    private:
     // default_validator is the default validator for all models if no validator
     // is provided in construction. No dependencies are returned.

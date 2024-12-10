@@ -54,13 +54,6 @@ class RobotClient {
         friend bool operator==(const frame_system_config& lhs, const frame_system_config& rhs);
     };
 
-    struct status {
-        boost::optional<Name> name;
-        ProtoStruct status_map;
-        boost::optional<time_pt> last_reconfigured;
-        friend bool operator==(const status& lhs, const status& rhs);
-    };
-
     struct operation {
         std::string id;
         std::string method;
@@ -128,15 +121,6 @@ class RobotClient {
     /// @brief Get the list of operations currently running on a robot.
     /// @return The list of operations currently running on the calling robot.
     std::vector<operation> get_operations();
-
-    /// @brief Get the status of the requested robot components.
-    /// @param components A list of the specific components for which status is desired.
-    /// @return A list of statuses.
-    std::vector<status> get_status(std::vector<Name>& components);
-
-    /// @brief Get the status of all robot components.
-    /// @return A list of statuses.
-    std::vector<status> get_status();
 
     std::vector<discovery> discover_components(const std::vector<discovery_query>& queries);
 
