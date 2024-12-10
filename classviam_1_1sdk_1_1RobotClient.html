@@ -99,8 +99,6 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1RobotClient_1_1operation.html">operation</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1RobotClient_1_1status.html">status</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -129,12 +127,6 @@ std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &gt;
 <tr class="memitem:a6954271085823a46068d3a4bb7fee69c" id="r_a6954271085823a46068d3a4bb7fee69c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1RobotClient_1_1operation.html">operation</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6954271085823a46068d3a4bb7fee69c">get_operations</a> ()</td></tr>
 <tr class="memdesc:a6954271085823a46068d3a4bb7fee69c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the list of operations currently running on a robot.  <br /></td></tr>
 <tr class="separator:a6954271085823a46068d3a4bb7fee69c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a858d51016bcc63d7c08723c326d9a32f" id="r_a858d51016bcc63d7c08723c326d9a32f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1RobotClient_1_1status.html">status</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a858d51016bcc63d7c08723c326d9a32f">get_status</a> (std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &gt; &amp;components)</td></tr>
-<tr class="memdesc:a858d51016bcc63d7c08723c326d9a32f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the requested robot components.  <br /></td></tr>
-<tr class="separator:a858d51016bcc63d7c08723c326d9a32f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c9b7b1b1c3728e0cf41cd9905cf034b" id="r_a0c9b7b1b1c3728e0cf41cd9905cf034b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1RobotClient_1_1status.html">status</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c9b7b1b1c3728e0cf41cd9905cf034b">get_status</a> ()</td></tr>
-<tr class="memdesc:a0c9b7b1b1c3728e0cf41cd9905cf034b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of all robot components.  <br /></td></tr>
-<tr class="separator:a0c9b7b1b1c3728e0cf41cd9905cf034b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3328f3fa8cf02448b768935bb8afe027" id="r_a3328f3fa8cf02448b768935bb8afe027"><td class="memItemLeft" align="right" valign="top"><a id="a3328f3fa8cf02448b768935bb8afe027" name="a3328f3fa8cf02448b768935bb8afe027"></a>
 std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1RobotClient_1_1discovery.html">discovery</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>discover_components</b> (const std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1RobotClient_1_1discovery__query.html">discovery_query</a> &gt; &amp;queries)</td></tr>
 <tr class="separator:a3328f3fa8cf02448b768935bb8afe027"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -338,52 +330,6 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Get the list of operations currently running on a robot. </p>
 <dl class="section return"><dt>Returns</dt><dd>The list of operations currently running on the calling robot. </dd></dl>
-
-</div>
-</div>
-<a id="a0c9b7b1b1c3728e0cf41cd9905cf034b" name="a0c9b7b1b1c3728e0cf41cd9905cf034b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0c9b7b1b1c3728e0cf41cd9905cf034b">&#9670;&#160;</a></span>get_status() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1RobotClient_1_1status.html">status</a> &gt; viam::sdk::RobotClient::get_status </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get the status of all robot components. </p>
-<dl class="section return"><dt>Returns</dt><dd>A list of statuses. </dd></dl>
-
-</div>
-</div>
-<a id="a858d51016bcc63d7c08723c326d9a32f" name="a858d51016bcc63d7c08723c326d9a32f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a858d51016bcc63d7c08723c326d9a32f">&#9670;&#160;</a></span>get_status() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1RobotClient_1_1status.html">status</a> &gt; viam::sdk::RobotClient::get_status </td>
-          <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>components</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get the status of the requested robot components. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">components</td><td>A list of the specific components for which status is desired. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A list of statuses. </dd></dl>
 
 </div>
 </div>
