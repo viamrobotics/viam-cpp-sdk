@@ -104,10 +104,6 @@ void set_logger_severity_from_args(int argc, char** argv) {
     boost::log::core::get()->set_filter(boost::log::trivial::severity >= boost::log::trivial::info);
 }
 
-void ClientContext::set_client_ctx_authority_() {
-    wrapped_context_.set_authority("viam-placeholder");
-}
-
 std::string random_debug_key() {
     static const char alphanum[] = "abcdefghijklmnopqrstuvwxyz";
     static std::default_random_engine generator(
@@ -153,25 +149,31 @@ ProtoStruct with_debug_entry(ProtoStruct&& map) {
     return map;
 }
 
-void ClientContext::set_debug_key(const std::string& debug_key) {
-    wrapped_context_.AddMetadata("dtname", debug_key);
-}
-
-void ClientContext::add_viam_client_version_() {
-    wrapped_context_.AddMetadata("viam_client", impl::k_version);
-}
-
 ClientContext::ClientContext() {
     set_client_ctx_authority_();
     add_viam_client_version_();
 }
 
+ClientContext::~ClientContext() = default;
+
 ClientContext::operator const grpc::ClientContext*() const {
-    return &wrapped_context_;
+    return wrapped_context_.get();
 }
 
 ClientContext::operator grpc::ClientContext*() {
-    return &wrapped_context_;
+    return wrapped_context_.get();
+}
+
+void ClientContext::set_debug_key(const std::string& debug_key) {
+    wrapped_context_->AddMetadata("dtname", debug_key);
+}
+
+void ClientContext::set_client_ctx_authority_() {
+    wrapped_context_->set_authority("viam-placeholder");
+}
+
+void ClientContext::add_viam_client_version_() {
+    wrapped_context_->AddMetadata("viam_client", impl::k_version);
 }
 
 bool from_dm_from_extra(const ProtoStruct& extra) {

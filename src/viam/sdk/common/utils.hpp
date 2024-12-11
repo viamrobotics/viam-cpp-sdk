@@ -1,9 +1,8 @@
 #pragma once
 
-#include <boost/optional/optional.hpp>
-#include <grpcpp/client_context.h>
+#include <memory>
 
-#include <viam/api/common/v1/common.pb.h>
+#include <boost/optional/optional.hpp>
 
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/component.hpp>
@@ -17,6 +16,12 @@ class Timestamp;
 
 }  // namespace protobuf
 }  // namespace google
+
+namespace grpc {
+
+class ClientContext;
+
+}
 
 namespace viam {
 namespace common {
@@ -90,14 +95,17 @@ std::string bytes_to_string(std::vector<unsigned char> const& b);
 class ClientContext {
    public:
     ClientContext();
+    ~ClientContext();
+
     operator grpc::ClientContext*();
     operator const grpc::ClientContext*() const;
+
     void set_debug_key(const std::string& debug_key);
 
    private:
     void set_client_ctx_authority_();
     void add_viam_client_version_();
-    grpc::ClientContext wrapped_context_;
+    std::unique_ptr<grpc::ClientContext> wrapped_context_;
 };
 
 /// @brief Given a fully qualified resource name, returns remote name (or "" if no remote name
