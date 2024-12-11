@@ -109,7 +109,7 @@ Motion::plan_status from_proto(const service::motion::v1::PlanStatus& proto) {
     if (proto.has_reason()) {
         mps.reason = proto.reason();
     }
-    mps.timestamp = timestamp_to_time_pt(proto.timestamp());
+    mps.timestamp = v2::from_proto(proto.timestamp());
 
     return mps;
 }

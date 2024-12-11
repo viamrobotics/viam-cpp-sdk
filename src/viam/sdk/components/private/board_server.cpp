@@ -226,7 +226,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
     return make_service_helper<Board>(
         "BoardServer::SetPowerMode", this, request)([&](auto& helper, auto& board) {
         if (request->has_duration()) {
-            auto duration = ::viam::sdk::from_proto(request->duration());
+            auto duration = v2::from_proto(request->duration());
             board->set_power_mode(from_proto(request->power_mode()), helper.getExtra(), duration);
         } else {
             board->set_power_mode(from_proto(request->power_mode()), helper.getExtra());

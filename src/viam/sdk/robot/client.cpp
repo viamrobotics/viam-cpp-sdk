@@ -89,7 +89,7 @@ RobotClient::status from_proto(const Status& proto) {
         status.status_map = v2::from_proto(proto.status());
     }
     if (proto.has_last_reconfigured()) {
-        status.last_reconfigured = timestamp_to_time_pt(proto.last_reconfigured());
+        status.last_reconfigured = v2::from_proto(proto.last_reconfigured());
     }
     return status;
 }
@@ -105,7 +105,7 @@ RobotClient::operation from_proto(const Operation& proto) {
         op.arguments = v2::from_proto(proto.arguments());
     }
     if (proto.has_started()) {
-        op.started = timestamp_to_time_pt(proto.started());
+        op.started = v2::from_proto(proto.started());
     }
     return op;
 }

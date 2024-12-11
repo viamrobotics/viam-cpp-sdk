@@ -39,7 +39,7 @@ service::motion::v1::PlanState to_proto(const Motion::plan_state& state) {
 
 service::motion::v1::PlanStatus to_proto(const Motion::plan_status& ps) {
     service::motion::v1::PlanStatus proto;
-    *proto.mutable_timestamp() = time_pt_to_timestamp(ps.timestamp);
+    *proto.mutable_timestamp() = v2::to_proto(ps.timestamp);
     if (ps.reason) {
         *proto.mutable_reason() = *ps.reason;
     }
