@@ -86,6 +86,9 @@ bool API::is_component_type() {
     return (this->resource_type() == "component");
 }
 
+Name::Name(API api, std::string remote, std::string name)
+    : api_(std::move(api)), remote_name_(std::move(remote)), name_(std::move(name)) {}
+
 const API& Name::api() const {
     return api_;
 }
@@ -112,26 +115,6 @@ std::string Name::short_name() const {
     return name_;
 }
 
-viam::common::v1::ResourceName Name::to_proto() const {
-    viam::common::v1::ResourceName rn;
-    *rn.mutable_namespace_() = this->api().type_namespace();
-    if (this->remote_name().empty()) {
-        *rn.mutable_name() = this->name();
-    } else {
-        *rn.mutable_name() = this->remote_name() + ":" + this->name();
-    }
-    *rn.mutable_type() = this->api().resource_type();
-    *rn.mutable_subtype() = this->api().resource_subtype();
-    return rn;
-}
-
-Name Name::from_proto(const viam::common::v1::ResourceName& proto) {
-    auto name_parts = long_name_to_remote_and_short(proto.name());
-
-    return Name(
-        {proto.namespace_(), proto.type(), proto.subtype()}, name_parts.first, name_parts.second);
-};
-
 Name Name::from_string(std::string name) {
     if (!std::regex_match(name, NAME_REGEX)) {
         throw Exception("Received invalid Name string: " + name);
@@ -153,8 +136,28 @@ Name Name::from_string(std::string name) {
     return Name(api, remote, resource_name);
 }
 
-Name::Name(API api, std::string remote, std::string name)
-    : api_(std::move(api)), remote_name_(std::move(remote)), name_(std::move(name)) {}
+namespace proto_convert_details {
+
+void to_proto<Name>::operator()(const Name& self, common::v1::ResourceName* proto) const {
+    *proto->mutable_namespace_() = self.api().type_namespace();
+    if (self.remote_name().empty()) {
+        *proto->mutable_name() = self.name();
+    } else {
+        *proto->mutable_name() = self.remote_name() + ":" + self.name();
+    }
+    *proto->mutable_type() = self.api().resource_type();
+    *proto->mutable_subtype() = self.api().resource_subtype();
+}
+
+Name from_proto<common::v1::ResourceName>::operator()(const common::v1::ResourceName* proto) const {
+    auto name_parts = long_name_to_remote_and_short(proto->name());
+
+    return Name({proto->namespace_(), proto->type(), proto->subtype()},
+                name_parts.first,
+                name_parts.second);
+}
+
+}  // namespace proto_convert_details
 
 bool operator==(const API& lhs, const API& rhs) {
     return lhs.to_string() == rhs.to_string();

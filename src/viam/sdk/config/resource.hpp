@@ -24,7 +24,16 @@ class ResourceConfig {
    public:
     static ResourceConfig from_proto(const viam::app::v1::ComponentConfig& proto_cfg);
     viam::app::v1::ComponentConfig to_proto() const;
+    ResourceConfig(std::string type,
+                   std::string name,
+                   std::string namespace_,
+                   ProtoStruct attributes,
+                   std::string api,
+                   Model model,
+                   LinkConfig frame);
+
     ResourceConfig(std::string type);
+
     Name resource_name();
     const API& api() const;
     const LinkConfig& frame() const;

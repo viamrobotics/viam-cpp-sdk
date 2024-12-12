@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE(test_name) {
     BOOST_CHECK_EQUAL(name1.name(), "name");
     BOOST_CHECK_EQUAL(name1.short_name(), "remote:name");
     BOOST_CHECK_EQUAL(name1.to_string(), "ns:service:st/remote:name");
-    BOOST_CHECK_EQUAL(Name::from_proto(name1.to_proto()), name1);
+    BOOST_CHECK_EQUAL(v2::from_proto(v2::to_proto(name1)), name1);
 
     Name name2(API::from_string("ns:service:st"), "remote1:remote2", "name");
     BOOST_CHECK_EQUAL(name2.api().to_string(), "ns:service:st");
@@ -60,7 +60,7 @@ BOOST_AUTO_TEST_CASE(test_name) {
     BOOST_CHECK_EQUAL(name2.name(), "name");
     BOOST_CHECK_EQUAL(name2.short_name(), "remote1:remote2:name");
     BOOST_CHECK_EQUAL(name2.to_string(), "ns:service:st/remote1:remote2:name");
-    BOOST_CHECK_EQUAL(Name::from_proto(name2.to_proto()), name2);
+    BOOST_CHECK_EQUAL(v2::from_proto(v2::to_proto(name2)), name2);
 
     Name name3 = Name::from_string("ns:component:st/name");
     BOOST_CHECK_EQUAL(name3.api().to_string(), "ns:component:st");
@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE(test_name) {
     BOOST_CHECK_EQUAL(name3.name(), "name");
     BOOST_CHECK_EQUAL(name3.short_name(), "name");
     BOOST_CHECK_EQUAL(name3.to_string(), "ns:component:st/name");
-    BOOST_CHECK_EQUAL(Name::from_proto(name3.to_proto()), name3);
+    BOOST_CHECK_EQUAL(v2::from_proto(v2::to_proto(name3)), name3);
 
     BOOST_CHECK_THROW(Name::from_string("ns:service:#st/remote:name"), Exception);
 }

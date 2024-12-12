@@ -19,8 +19,8 @@ namespace impl {
 
 service::motion::v1::ObstacleDetector to_proto(const obstacle_detector& od) {
     service::motion::v1::ObstacleDetector proto;
-    *proto.mutable_vision_service() = od.vision_service.to_proto();
-    *proto.mutable_camera() = od.camera.to_proto();
+    *proto.mutable_vision_service() = v2::to_proto(od.vision_service);
+    *proto.mutable_camera() = v2::to_proto(od.camera);
     return proto;
 }
 
@@ -127,7 +127,7 @@ std::vector<Motion::plan_status> from_proto(
 Motion::plan_status_with_id from_proto(const service::motion::v1::PlanStatusWithID& proto) {
     Motion::plan_status_with_id pswi;
     pswi.execution_id = proto.execution_id();
-    pswi.component_name = Name::from_proto(proto.component_name());
+    pswi.component_name = v2::from_proto(proto.component_name());
     pswi.plan_id = proto.plan_id();
     pswi.status = from_proto(proto.status());
 
@@ -153,7 +153,7 @@ Motion::plan plan_from_proto(const service::motion::v1::Plan& proto) {
     Motion::plan plan;
     plan.id = proto.id();
     plan.execution_id = proto.execution_id();
-    plan.component_name = Name::from_proto(proto.component_name());
+    plan.component_name = v2::from_proto(proto.component_name());
     plan.steps = steps_from_proto(proto.steps());
     return plan;
 }
@@ -189,7 +189,7 @@ bool MotionClient::move(const pose_in_frame& destination,
     return make_client_helper(this, *stub_, &StubType::Move)
         .with(extra,
               [&](auto& request) {
-                  *request.mutable_component_name() = component_name.to_proto();
+                  *request.mutable_component_name() = v2::to_proto(component_name);
                   *request.mutable_destination() = v2::to_proto(destination);
                   if (constraints) {
                       *request.mutable_constraints() = to_proto(*constraints);
@@ -212,8 +212,8 @@ std::string MotionClient::move_on_map(
         .with(extra,
               [&](auto& request) {
                   *request.mutable_destination() = v2::to_proto(destination);
-                  *request.mutable_component_name() = component_name.to_proto();
-                  *request.mutable_slam_service_name() = slam_name.to_proto();
+                  *request.mutable_component_name() = v2::to_proto(component_name);
+                  *request.mutable_slam_service_name() = v2::to_proto(slam_name);
 
                   for (const auto& obstacle : obstacles) {
                       *request.mutable_obstacles()->Add() = v2::to_proto(obstacle);
@@ -239,8 +239,8 @@ std::string MotionClient::move_on_globe(
         .with(extra,
               [&](auto& request) {
                   *request.mutable_destination() = v2::to_proto(destination);
-                  *request.mutable_component_name() = component_name.to_proto();
-                  *request.mutable_movement_sensor_name() = movement_sensor_name.to_proto();
+                  *request.mutable_component_name() = v2::to_proto(component_name);
+                  *request.mutable_movement_sensor_name() = v2::to_proto(movement_sensor_name);
 
                   if (heading && !isnan(*heading)) {
                       request.set_heading(*heading);
@@ -265,7 +265,7 @@ pose_in_frame MotionClient::get_pose(
     return make_client_helper(this, *stub_, &StubType::GetPose)
         .with(extra,
               [&](auto& request) {
-                  *request.mutable_component_name() = component_name.to_proto();
+                  *request.mutable_component_name() = v2::to_proto(component_name);
                   *request.mutable_destination_frame() = destination_frame;
                   *request.mutable_supplemental_transforms() =
                       impl::to_repeated_field(supplemental_transforms);
@@ -275,7 +275,7 @@ pose_in_frame MotionClient::get_pose(
 
 void MotionClient::stop_plan(const Name& name, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::StopPlan)
-        .with(extra, [&](auto& request) { *request.mutable_component_name() = name.to_proto(); })
+        .with(extra, [&](auto& request) { *request.mutable_component_name() = v2::to_proto(name); })
         .invoke();
 }
 
@@ -287,7 +287,7 @@ std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>> Motio
     return make_client_helper(this, *stub_, &StubType::GetPlan)
         .with(extra,
               [&](auto& request) {
-                  *request.mutable_component_name() = component_name.to_proto();
+                  *request.mutable_component_name() = v2::to_proto(component_name);
                   request.set_last_plan_only(last_plan_only);
                   if (execution_id) {
                       *request.mutable_execution_id() = *execution_id;

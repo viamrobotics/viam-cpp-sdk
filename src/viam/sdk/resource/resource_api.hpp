@@ -4,7 +4,17 @@
 
 #include <google/protobuf/descriptor.h>
 
-#include <viam/api/common/v1/common.pb.h>
+#include <viam/sdk/common/proto_convert.hpp>
+
+namespace viam {
+namespace common {
+namespace v1 {
+
+class ResourceName;
+
+}
+}  // namespace common
+}  // namespace viam
 
 namespace viam {
 namespace sdk {
@@ -14,7 +24,7 @@ namespace sdk {
 class APIType {
    public:
     APIType(std::string namespace_, std::string resource_type);
-    APIType(){};
+    APIType() {};
     virtual std::string to_string() const;
 
     const std::string& type_namespace() const;
@@ -33,7 +43,7 @@ class APIType {
 class API : public APIType {
    public:
     virtual std::string to_string() const override;
-    API(){};
+    API() {};
     API(std::string namespace_, std::string resource_type, std::string resource_subtype);
     API(APIType type, std::string resource_subtype);
     static API from_string(std::string api);
@@ -62,16 +72,18 @@ class API : public APIType {
 /// @brief A name for specific instances of resources.
 class Name {
    public:
+    static Name from_string(std::string name);
+
+    Name(API api, std::string remote_name, std::string name);
+    Name() {};
+
     std::string short_name() const;
     std::string to_string() const;
-    viam::common::v1::ResourceName to_proto() const;
-    static Name from_proto(const viam::common::v1::ResourceName& proto);
-    static Name from_string(std::string name);
-    Name(API api, std::string remote_name, std::string name);
-    Name(){};
+
     const API& api() const;
     const std::string& name() const;
     const std::string& remote_name() const;
+
     friend bool operator==(const Name& lhs, const Name& rhs);
     friend std::ostream& operator<<(std::ostream& os, const Name& v);
 
@@ -80,6 +92,20 @@ class Name {
     std::string remote_name_;
     std::string name_;
 };
+
+namespace proto_convert_details {
+
+template <>
+struct to_proto<Name> {
+    void operator()(const Name&, common::v1::ResourceName*) const;
+};
+
+template <>
+struct from_proto<common::v1::ResourceName> {
+    Name operator()(const common::v1::ResourceName*) const;
+};
+
+}  // namespace proto_convert_details
 
 class RPCSubtype {
    public:
