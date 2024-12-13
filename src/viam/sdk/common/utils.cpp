@@ -73,7 +73,6 @@ std::chrono::microseconds from_proto<google::protobuf::Duration>::operator()(
         from_nanos += sc::microseconds(1);
     }
     return from_seconds + from_nanos;
-    return std::chrono::microseconds();
 }
 
 void to_proto<response_metadata>::operator()(const response_metadata& self,
