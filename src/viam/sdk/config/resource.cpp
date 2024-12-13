@@ -10,6 +10,7 @@
 #include <viam/api/robot/v1/robot.pb.h>
 
 #include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/common/private/repeated_ptr_convert.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/referenceframe/frame.hpp>
@@ -17,6 +18,26 @@
 
 namespace viam {
 namespace sdk {
+
+ResourceConfig::ResourceConfig(std::string type,
+                               std::string name,
+                               std::string namespace_,
+                               ProtoStruct attributes,
+                               std::string api,
+                               Model model,
+                               LinkConfig frame)
+    : api_({kRDK, type, ""}),
+      frame_(std::move(frame)),
+      model_(std::move(model)),
+      name_(std::move(name)),
+      namespace__(std::move(namespace_)),
+      type_(std::move(type)),
+      attributes_(std::move(attributes)) {
+    if (api.find(':') != std::string::npos) {
+        api_ = API::from_string(std::move(api));
+    }
+    fix_api();
+}
 
 ResourceConfig::ResourceConfig(std::string type) : api_({kRDK, type, ""}), type_(std::move(type)) {}
 
@@ -59,6 +80,14 @@ const std::string& ResourceConfig::type() const {
     return type_;
 }
 
+const std::vector<std::string>& viam::sdk::ResourceConfig::depends_on() const {
+    return depends_on_;
+}
+
+const std::vector<ResourceLevelServiceConfig>& viam::sdk::ResourceConfig::service_config() const {
+    return service_config_;
+}
+
 const ProtoStruct& ResourceConfig::attributes() const {
     return attributes_;
 }
@@ -91,54 +120,41 @@ void ResourceConfig::fix_api() {
     }
 }
 
-ResourceConfig ResourceConfig::from_proto(const viam::app::v1::ComponentConfig& proto_cfg) {
-    ResourceConfig resource(proto_cfg.type());
-    resource.name_ = proto_cfg.name();
-    resource.namespace__ = proto_cfg.namespace_();
-    resource.type_ = proto_cfg.type();
-    resource.attributes_ = v2::from_proto(proto_cfg.attributes());
-    const std::string& api = proto_cfg.api();
-    if (api.find(':') != std::string::npos) {
-        resource.api_ = API::from_string(api);
-    }
-    resource.model_ = Model::from_str(proto_cfg.model());
+namespace proto_convert_details {
 
-    resource.fix_api();
-
-    if (proto_cfg.has_frame()) {
-        resource.frame_ = v2::from_proto(proto_cfg.frame());
-    }
-
-    return resource;
-};
-
-viam::app::v1::ComponentConfig ResourceConfig::to_proto() const {
-    viam::app::v1::ComponentConfig proto_cfg;
-    const google::protobuf::Struct s = v2::to_proto(attributes_);
-    const google::protobuf::RepeatedPtrField<viam::app::v1::ResourceLevelServiceConfig>
-        service_configs;
-
-    for (const auto& svc_cfg : service_config_) {
-        viam::app::v1::ResourceLevelServiceConfig cfg;
-        *cfg.mutable_type() = svc_cfg.type;
-        *cfg.mutable_attributes() = v2::to_proto(svc_cfg.attributes);
-        *proto_cfg.mutable_service_configs()->Add() = cfg;
-    }
-
-    *proto_cfg.mutable_name() = name_;
-    *proto_cfg.mutable_namespace_() = namespace__;
-    *proto_cfg.mutable_type() = type_;
-    *proto_cfg.mutable_api() = api_.to_string();
-    const std::string mm = model_.to_string();
-    *proto_cfg.mutable_model() = mm;
-    *proto_cfg.mutable_attributes() = v2::to_proto(attributes_);
-    for (const auto& dep : depends_on_) {
-        *proto_cfg.mutable_depends_on()->Add() = dep;
-    }
-    *proto_cfg.mutable_frame() = v2::to_proto(frame_);
-
-    return proto_cfg;
+void to_proto<ResourceLevelServiceConfig>::operator()(
+    const ResourceLevelServiceConfig& self, app::v1::ResourceLevelServiceConfig* proto) const {
+    *proto->mutable_type() = self.type;
+    *proto->mutable_attributes() = v2::to_proto(self.attributes);
 }
 
+void to_proto<ResourceConfig>::operator()(const ResourceConfig& self,
+                                          app::v1::ComponentConfig* proto) const {
+    *proto->mutable_service_configs() = impl::to_repeated_field(self.service_config());
+
+    *proto->mutable_name() = self.name();
+    *proto->mutable_namespace_() = self.namespace_();
+    *proto->mutable_type() = self.type();
+    *proto->mutable_api() = self.api().to_string();
+    *proto->mutable_model() = self.model().to_string();
+    *proto->mutable_attributes() = v2::to_proto(self.attributes());
+
+    proto->mutable_depends_on()->Assign(self.depends_on().begin(), self.depends_on().end());
+
+    *proto->mutable_frame() = v2::to_proto(self.frame());
+}
+
+ResourceConfig from_proto<app::v1::ComponentConfig>::operator()(
+    const app::v1::ComponentConfig* proto) const {
+    return ResourceConfig(proto->type(),
+                          proto->name(),
+                          proto->namespace_(),
+                          v2::from_proto(proto->attributes()),
+                          proto->api(),
+                          Model::from_str(proto->model()),
+                          proto->has_frame() ? v2::from_proto(proto->frame()) : LinkConfig{});
+}
+
+}  // namespace proto_convert_details
 }  // namespace sdk
 }  // namespace viam

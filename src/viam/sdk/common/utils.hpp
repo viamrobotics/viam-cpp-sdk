@@ -97,6 +97,8 @@ class ClientContext {
     ClientContext();
     ~ClientContext();
 
+    void try_cancel();
+
     operator grpc::ClientContext*();
     operator const grpc::ClientContext*() const;
 

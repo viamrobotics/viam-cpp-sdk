@@ -3,12 +3,21 @@
 #include <string>
 #include <unordered_map>
 
-#include <viam/api/app/v1/robot.pb.h>
-#include <viam/api/robot/v1/robot.pb.h>
-
+#include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/referenceframe/frame.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
+
+namespace viam {
+namespace app {
+namespace v1 {
+
+class ComponentConfig;
+class ResourceLevelServiceConfig;
+
+}  // namespace v1
+}  // namespace app
+}  // namespace viam
 
 namespace viam {
 namespace sdk {
@@ -21,8 +30,6 @@ struct ResourceLevelServiceConfig {
 
 class ResourceConfig {
    public:
-    static ResourceConfig from_proto(const viam::app::v1::ComponentConfig& proto_cfg);
-    viam::app::v1::ComponentConfig to_proto() const;
     ResourceConfig(std::string type,
                    std::string name,
                    std::string namespace_,
@@ -40,6 +47,8 @@ class ResourceConfig {
     const std::string& name() const;
     const std::string& namespace_() const;
     const std::string& type() const;
+    const std::vector<std::string>& depends_on() const;
+    const std::vector<ResourceLevelServiceConfig>& service_config() const;
     const ProtoStruct& attributes() const;
 
    private:
@@ -56,6 +65,25 @@ class ResourceConfig {
     std::vector<std::string> implicit_depends_on_;
     void fix_api();
 };
+
+namespace proto_convert_details {
+
+template <>
+struct to_proto<ResourceLevelServiceConfig> {
+    void operator()(const ResourceLevelServiceConfig&, app::v1::ResourceLevelServiceConfig*) const;
+};
+
+template <>
+struct to_proto<ResourceConfig> {
+    void operator()(const ResourceConfig&, app::v1::ComponentConfig*) const;
+};
+
+template <>
+struct from_proto<app::v1::ComponentConfig> {
+    ResourceConfig operator()(const app::v1::ComponentConfig*) const;
+};
+
+}  // namespace proto_convert_details
 
 }  // namespace sdk
 }  // namespace viam

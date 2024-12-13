@@ -4,13 +4,16 @@
 #include <unordered_map>
 #include <vector>
 
+#include <google/protobuf/duration.pb.h>
+#include <google/protobuf/timestamp.pb.h>
+#include <grpcpp/client_context.h>
+
 #include <boost/algorithm/string.hpp>
 #include <boost/blank.hpp>
 #include <boost/log/core.hpp>
 #include <boost/log/expressions.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/optional/optional.hpp>
-#include <grpcpp/client_context.h>
 
 #include <viam/api/common/v1/common.pb.h>
 
@@ -162,6 +165,10 @@ ClientContext::operator const grpc::ClientContext*() const {
 
 ClientContext::operator grpc::ClientContext*() {
     return wrapped_context_.get();
+}
+
+void ClientContext::try_cancel() {
+    wrapped_context_->TryCancel();
 }
 
 void ClientContext::set_debug_key(const std::string& debug_key) {

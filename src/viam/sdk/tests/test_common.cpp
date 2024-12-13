@@ -2,6 +2,8 @@
 
 #include <boost/test/included/unit_test.hpp>
 
+#include <google/protobuf/duration.pb.h>
+
 #include <viam/api/common/v1/common.pb.h>
 
 #include <viam/sdk/common/utils.hpp>

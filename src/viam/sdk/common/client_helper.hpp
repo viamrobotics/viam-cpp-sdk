@@ -1,18 +1,27 @@
 #pragma once
 
-#include <grpcpp/client_context.h>
-#include <grpcpp/support/sync_stream.h>
-
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/private/utils.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
+
+namespace grpc {
+
+class Status;
+
+class ClientContext;
+
+template <typename T>
+class ClientReaderInterface;
+
+}  // namespace grpc
 
 namespace viam {
 namespace sdk {
 
 namespace client_helper_details {
 [[noreturn]] void errorHandlerReturnedUnexpectedly(const ::grpc::Status&) noexcept;
+
 }  // namespace client_helper_details
 
 // Method type for a gRPC call that returns a response message type.
@@ -59,7 +68,8 @@ class ClientHelper {
             ProtoValue value = key->second;
             debug_key_ = *value.get<std::string>();
         }
-        *request_.mutable_extra() = v2::to_proto(extra);
+
+        proto_convert_details::to_proto<ProtoStruct>{}(extra, request_.mutable_extra());
         return with(std::forward<RequestSetupCallable>(rsc));
     }
 
@@ -102,7 +112,7 @@ class ClientHelper {
         while (reader->Read(&response_)) {
             if (!rhc(response_)) {
                 cancelled_by_handler = true;
-                static_cast<::grpc::ClientContext*>(ctx)->TryCancel();
+                ctx.try_cancel();
                 break;
             }
         }

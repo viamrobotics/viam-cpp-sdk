@@ -2,6 +2,10 @@
 #include <boost/test/included/unit_test.hpp>
 
 #include <google/protobuf/struct.pb.h>
+
+#include <viam/api/app/v1/robot.pb.h>
+#include <viam/api/robot/v1/robot.pb.h>
+
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/proto_value.hpp>
@@ -235,7 +239,7 @@ BOOST_AUTO_TEST_CASE(test_resource) {
     *frame.mutable_translation() = t;
     *proto_cfg.mutable_frame() = frame;
 
-    ResourceConfig resource2 = ResourceConfig::from_proto(proto_cfg);
+    ResourceConfig resource2 = v2::from_proto(proto_cfg);
     BOOST_CHECK_EQUAL(resource2.name(), "name");
     BOOST_CHECK_EQUAL(resource2.namespace_(), "ns");
     BOOST_CHECK_EQUAL(resource2.type(), "type");
@@ -252,7 +256,7 @@ BOOST_AUTO_TEST_CASE(test_resource) {
     BOOST_CHECK_EQUAL(value.number_value(), 1);
 
     *proto_cfg.mutable_api() = "ns:component:test";
-    BOOST_CHECK_THROW(ResourceConfig::from_proto(proto_cfg), Exception);
+    BOOST_CHECK_THROW(v2::from_proto(proto_cfg), Exception);
 }
 
 }  // namespace sdktests
