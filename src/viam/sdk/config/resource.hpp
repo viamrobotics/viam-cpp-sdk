@@ -13,8 +13,7 @@
 namespace viam {
 namespace sdk {
 
-class ResourceLevelServiceConfig {
-   public:
+struct ResourceLevelServiceConfig {
     std::string type;
     ProtoStruct attributes;
     ProtoValue converted_attributes;
