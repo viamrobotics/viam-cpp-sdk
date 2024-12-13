@@ -23,8 +23,9 @@ namespace sdk {
 /// @brief Defines a resource's namespace (e.g., `RDK`) and type (e.g., component or service).
 class APIType {
    public:
+    APIType() = default;
     APIType(std::string namespace_, std::string resource_type);
-    APIType() {};
+
     virtual std::string to_string() const;
 
     const std::string& type_namespace() const;
@@ -40,13 +41,16 @@ class APIType {
 
 /// @class API
 /// @brief Extends `APIType` to additionally define a resource's subtype (e.g., `camera`).
+// TODO: Maybe just merge these two classes or at least use composition rather than inheritance
 class API : public APIType {
    public:
-    virtual std::string to_string() const override;
-    API() {};
+    static API from_string(std::string api);
+
+    API() = default;
     API(std::string namespace_, std::string resource_type, std::string resource_subtype);
     API(APIType type, std::string resource_subtype);
-    static API from_string(std::string api);
+
+    virtual std::string to_string() const override;
 
     const std::string& resource_subtype() const;
     void set_resource_subtype(const std::string& subtype);
@@ -75,7 +79,7 @@ class Name {
     static Name from_string(std::string name);
 
     Name(API api, std::string remote_name, std::string name);
-    Name() {};
+    Name() = default;
 
     std::string short_name() const;
     std::string to_string() const;

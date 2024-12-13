@@ -20,6 +20,8 @@ namespace sdk {
 /// @brief Defines a resource manager for use by anything that tracks resources.
 class ResourceManager {
    public:
+    ResourceManager() = default;
+
     /// @brief Returns a resource.
     /// @param name the name of the desired resource.
     /// @throws `Exception` if the desired resource does not exist.
@@ -59,8 +61,6 @@ class ResourceManager {
 
     /// @brief Returns a reference to the existing resources within the manager.
     const std::unordered_map<std::string, std::shared_ptr<Resource>>& resources() const;
-
-    ResourceManager() {};
 
    private:
     std::mutex lock_;
