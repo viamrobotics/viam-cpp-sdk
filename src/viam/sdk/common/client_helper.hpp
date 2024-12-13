@@ -20,6 +20,7 @@ namespace viam {
 namespace sdk {
 
 namespace client_helper_details {
+
 [[noreturn]] void errorHandlerReturnedUnexpectedly(const ::grpc::Status&) noexcept;
 
 }  // namespace client_helper_details
