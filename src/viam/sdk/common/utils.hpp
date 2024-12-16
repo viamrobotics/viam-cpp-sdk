@@ -3,6 +3,7 @@
 #include <memory>
 
 #include <boost/optional/optional.hpp>
+#include <grpcpp/client_context.h>
 
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/component.hpp>
@@ -16,12 +17,6 @@ class Timestamp;
 
 }  // namespace protobuf
 }  // namespace google
-
-namespace grpc {
-
-class ClientContext;
-
-}
 
 namespace viam {
 namespace common {

@@ -9,8 +9,6 @@ namespace grpc {
 
 class Status;
 
-class ClientContext;
-
 template <typename T>
 class ClientReaderInterface;
 
