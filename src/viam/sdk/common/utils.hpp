@@ -3,8 +3,8 @@
 #include <memory>
 
 #include <boost/optional/optional.hpp>
-#include <grpcpp/client_context.h>
 
+#include <viam/sdk/common/grpc_client_fwd.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/resource/resource_api.hpp>

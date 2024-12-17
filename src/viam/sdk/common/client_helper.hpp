@@ -1,9 +1,7 @@
 #pragma once
 
-#include <grpcpp/client_context.h>
-#include <grpcpp/support/sync_stream.h>
-
 #include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/common/grpc_client_fwd.hpp>
 #include <viam/sdk/common/private/utils.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>

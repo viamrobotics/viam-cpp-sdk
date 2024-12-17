@@ -29,6 +29,8 @@ endif()
 message(WARNING "api proto label is ${VIAMCPPSDK_API_PROTO_LABEL}")
 configure_file(common/private/version_metadata.hpp.in common/private/version_metadata.hpp @ONLY)
 
+# Configure the grpc client forward declarations file
+configure_file(common/grpc_client_fwd.hpp.in common/grpc_client_fwd.hpp)
 
 # Set compile and link options based on arguments
 if (VIAMCPPSDK_USE_WALL_WERROR)
@@ -137,6 +139,7 @@ target_sources(viamsdk
   PUBLIC FILE_SET viamsdk_public_includes TYPE HEADERS
     BASE_DIRS
       ../..
+      ${CMAKE_CURRENT_BINARY_DIR}
     FILES
       ../../viam/sdk/common/client_helper.hpp
       ../../viam/sdk/common/exception.hpp
@@ -189,6 +192,7 @@ target_sources(viamsdk
       ../../viam/sdk/spatialmath/geometry.hpp
       ../../viam/sdk/spatialmath/orientation.hpp
       ../../viam/sdk/spatialmath/orientation_types.hpp
+      ${CMAKE_CURRENT_BINARY_DIR}/common/grpc_client_fwd.hpp
 )
 
 set_target_properties(
@@ -207,7 +211,6 @@ target_include_directories(viamsdk
     "$<INSTALL_INTERFACE:${VIAMCPPSDK_GRPC_INCLUDE_DIRS}>"
     "$<BUILD_INTERFACE:${VIAMCPPSDK_PROTOBUF_INCLUDE_DIRS}>"
     "$<INSTALL_INTERFACE:${VIAMCPPSDK_PROTOBUF_INCLUDE_DIRS}>"
-  PRIVATE
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/../..>"
 )
 
