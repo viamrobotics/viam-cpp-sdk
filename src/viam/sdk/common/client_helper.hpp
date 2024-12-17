@@ -4,7 +4,6 @@
 #include <viam/sdk/common/grpc_client_fwd.hpp>
 #include <viam/sdk/common/private/utils.hpp>
 #include <viam/sdk/common/proto_value.hpp>
-#include <viam/sdk/common/utils.hpp>
 
 namespace grpc {
 
@@ -20,6 +19,29 @@ namespace client_helper_details {
 [[noreturn]] void errorHandlerReturnedUnexpectedly(const ::grpc::Status&) noexcept;
 
 }  // namespace client_helper_details
+
+// the authority on a grpc::ClientContext is sometimes set to an invalid uri on mac, causing
+// `rust-utils` to fail to process gRPC requests. This class provides a convenience wrapper around a
+// grpc ClientContext that allows us to make any necessary modifications to authority or else where
+// to avoid runtime issues.
+// For more details, see https://viam.atlassian.net/browse/RSDK-5194.
+class ClientContext {
+   public:
+    ClientContext();
+    ~ClientContext();
+
+    void try_cancel();
+
+    operator grpc::ClientContext*();
+    operator const grpc::ClientContext*() const;
+
+    void set_debug_key(const std::string& debug_key);
+
+   private:
+    void set_client_ctx_authority_();
+    void add_viam_client_version_();
+    std::unique_ptr<grpc::ClientContext> wrapped_context_;
+};
 
 // Method type for a gRPC call that returns a response message type.
 template <typename StubType, typename RequestType, typename ResponseType>

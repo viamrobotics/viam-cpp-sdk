@@ -4,7 +4,6 @@
 
 #include <boost/optional/optional.hpp>
 
-#include <viam/sdk/common/grpc_client_fwd.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
@@ -81,29 +80,6 @@ struct from_proto<common::v1::ResponseMetadata> {
 
 std::vector<unsigned char> string_to_bytes(std::string const& s);
 std::string bytes_to_string(std::vector<unsigned char> const& b);
-
-// the authority on a grpc::ClientContext is sometimes set to an invalid uri on mac, causing
-// `rust-utils` to fail to process gRPC requests. This class provides a convenience wrapper around a
-// grpc ClientContext that allows us to make any necessary modifications to authority or else where
-// to avoid runtime issues.
-// For more details, see https://viam.atlassian.net/browse/RSDK-5194.
-class ClientContext {
-   public:
-    ClientContext();
-    ~ClientContext();
-
-    void try_cancel();
-
-    operator grpc::ClientContext*();
-    operator const grpc::ClientContext*() const;
-
-    void set_debug_key(const std::string& debug_key);
-
-   private:
-    void set_client_ctx_authority_();
-    void add_viam_client_version_();
-    std::unique_ptr<grpc::ClientContext> wrapped_context_;
-};
 
 /// @brief Given a fully qualified resource name, returns remote name (or "" if no remote name
 /// exists) and short name
