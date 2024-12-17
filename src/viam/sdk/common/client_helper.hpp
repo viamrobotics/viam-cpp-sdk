@@ -1,5 +1,8 @@
 #pragma once
 
+#include <grpcpp/client_context.h>
+#include <grpcpp/support/sync_stream.h>
+
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/private/utils.hpp>
 #include <viam/sdk/common/proto_value.hpp>
@@ -8,9 +11,6 @@
 namespace grpc {
 
 class Status;
-
-template <typename T>
-class ClientReaderInterface;
 
 }  // namespace grpc
 
