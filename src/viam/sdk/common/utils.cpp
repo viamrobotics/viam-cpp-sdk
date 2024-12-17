@@ -151,7 +151,7 @@ ProtoStruct with_debug_entry(ProtoStruct&& map) {
     return map;
 }
 
-ClientContext::ClientContext() {
+ClientContext::ClientContext() : wrapped_context_(std::make_unique<grpc::ClientContext>()) {
     set_client_ctx_authority_();
     add_viam_client_version_();
 }
