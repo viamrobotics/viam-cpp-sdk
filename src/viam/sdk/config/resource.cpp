@@ -139,7 +139,7 @@ void to_proto<ResourceConfig>::operator()(const ResourceConfig& self,
     *proto->mutable_model() = self.model().to_string();
     *proto->mutable_attributes() = v2::to_proto(self.attributes());
 
-    proto->mutable_depends_on()->Assign(self.depends_on().begin(), self.depends_on().end());
+    proto->mutable_depends_on()->Add(self.depends_on().begin(), self.depends_on().end());
 
     *proto->mutable_frame() = v2::to_proto(self.frame());
 }
