@@ -11,12 +11,6 @@ class Status;
 
 }  // namespace grpc
 
-namespace grpc {
-
-class Status;
-
-}  // namespace grpc
-
 namespace viam {
 namespace sdk {
 
@@ -38,27 +32,27 @@ class ClientContext {
 
     void try_cancel();
 
-    operator grpc::ClientContext*();
-    operator const grpc::ClientContext*() const;
+    operator GrpcClientContext*();
+    operator const GrpcClientContext*() const;
 
     void set_debug_key(const std::string& debug_key);
 
    private:
     void set_client_ctx_authority_();
     void add_viam_client_version_();
-    std::unique_ptr<grpc::ClientContext> wrapped_context_;
+    std::unique_ptr<GrpcClientContext> wrapped_context_;
 };
 
 // Method type for a gRPC call that returns a response message type.
 template <typename StubType, typename RequestType, typename ResponseType>
-using SyncMethodType = ::grpc::Status (StubType::*)(::grpc::ClientContext*,
+using SyncMethodType = ::grpc::Status (StubType::*)(GrpcClientContext*,
                                                     const RequestType&,
                                                     ResponseType*);
 
 // Method type for a gRPC call that returns a stream of response message type.
 template <typename StubType, typename RequestType, typename ResponseType>
 using StreamingMethodType = std::unique_ptr<::grpc::ClientReaderInterface<ResponseType>> (
-    StubType::*)(::grpc::ClientContext*, const RequestType&);
+    StubType::*)(GrpcClientContext*, const RequestType&);
 
 template <typename ClientType,
           typename StubType,

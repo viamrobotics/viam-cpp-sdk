@@ -21,18 +21,18 @@ namespace client_helper_details {
 
 }  // namespace client_helper_details
 
-ClientContext::ClientContext() : wrapped_context_(std::make_unique<grpc::ClientContext>()) {
+ClientContext::ClientContext() : wrapped_context_(std::make_unique<GrpcClientContext>()) {
     set_client_ctx_authority_();
     add_viam_client_version_();
 }
 
 ClientContext::~ClientContext() = default;
 
-ClientContext::operator const grpc::ClientContext*() const {
+ClientContext::operator const GrpcClientContext*() const {
     return wrapped_context_.get();
 }
 
-ClientContext::operator grpc::ClientContext*() {
+ClientContext::operator GrpcClientContext*() {
     return wrapped_context_.get();
 }
 
