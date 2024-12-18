@@ -10,18 +10,13 @@
 #include <grpcpp/impl/service_type.h>
 #include <grpcpp/server.h>
 
+#include <viam/sdk/common/grpc_client_fwd.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
 #include <viam/sdk/rpc/server.hpp>
-
-namespace grpc {
-
-class Channel;
-
-}
 
 namespace viam {
 namespace sdk {
@@ -60,7 +55,7 @@ class ResourceClientRegistration {
     /// @param channel A channel connected to the client.
     /// @return A `shared_ptr` to the resource client.
     virtual std::shared_ptr<Resource> create_rpc_client(
-        std::string name, std::shared_ptr<grpc::Channel> channel) const = 0;
+        std::string name, std::shared_ptr<GrpcChannel> channel) const = 0;
 };
 
 // TODO(RSDK-6616): instead of std::functions, consider making these functions
@@ -130,7 +125,7 @@ class Registry {
             using ResourceClientRegistration::ResourceClientRegistration;
 
             std::shared_ptr<Resource> create_rpc_client(
-                std::string name, std::shared_ptr<grpc::Channel> chan) const override {
+                std::string name, std::shared_ptr<GrpcChannel> chan) const override {
                 return std::make_shared<ResourceClientT>(std::move(name), std::move(chan));
             }
         };

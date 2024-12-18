@@ -5,11 +5,7 @@
 
 #include <boost/optional.hpp>
 
-namespace grpc {
-
-class Channel;
-
-}
+#include <viam/sdk/common/grpc_client_fwd.hpp>
 
 namespace viam {
 namespace sdk {
@@ -18,14 +14,14 @@ class DialOptions;
 class ViamChannel {
    public:
     void close();
-    ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* path, void* runtime);
+    ViamChannel(std::shared_ptr<GrpcChannel> channel, const char* path, void* runtime);
     static std::shared_ptr<ViamChannel> dial(const char* uri,
                                              const boost::optional<DialOptions>& options);
 
-    const std::shared_ptr<grpc::Channel>& channel() const;
+    const std::shared_ptr<GrpcChannel>& channel() const;
 
    private:
-    std::shared_ptr<grpc::Channel> channel_;
+    std::shared_ptr<GrpcChannel> channel_;
     const char* path_;
     bool closed_;
     void* rust_runtime_;

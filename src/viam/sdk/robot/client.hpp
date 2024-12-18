@@ -6,6 +6,7 @@
 #include <string>
 #include <thread>
 
+#include <viam/sdk/common/grpc_client_fwd.hpp>
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/common/world_state.hpp>
@@ -148,7 +149,7 @@ class RobotClient {
     std::vector<std::shared_ptr<std::thread>> threads_;
     std::atomic<bool> should_refresh_;
     unsigned int refresh_interval_;
-    std::shared_ptr<grpc::Channel> channel_;
+    std::shared_ptr<GrpcChannel> channel_;
     std::shared_ptr<ViamChannel> viam_channel_;
     bool should_close_channel_;
     struct impl;
