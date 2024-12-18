@@ -51,8 +51,8 @@ using SyncMethodType = ::grpc::Status (StubType::*)(GrpcClientContext*,
 
 // Method type for a gRPC call that returns a stream of response message type.
 template <typename StubType, typename RequestType, typename ResponseType>
-using StreamingMethodType = std::unique_ptr<::grpc::ClientReaderInterface<ResponseType>> (
-    StubType::*)(GrpcClientContext*, const RequestType&);
+using StreamingMethodType = std::unique_ptr<GrpcClientReaderInterface<ResponseType>> (StubType::*)(
+    GrpcClientContext*, const RequestType&);
 
 template <typename ClientType,
           typename StubType,
