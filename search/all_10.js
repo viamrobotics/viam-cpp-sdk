@@ -42,7 +42,7 @@ var searchData=
   ['resource_5fmanager_2ehpp_39',['resource_manager.hpp',['../resource__manager_8hpp.html',1,'']]],
   ['resourceclientregistration_40',['ResourceClientRegistration',['../classviam_1_1sdk_1_1ResourceClientRegistration.html',1,'viam::sdk']]],
   ['resourceconfig_41',['ResourceConfig',['../classviam_1_1sdk_1_1ResourceConfig.html',1,'viam::sdk']]],
-  ['resourcelevelserviceconfig_42',['ResourceLevelServiceConfig',['../classviam_1_1sdk_1_1ResourceLevelServiceConfig.html',1,'viam::sdk']]],
+  ['resourcelevelserviceconfig_42',['ResourceLevelServiceConfig',['../structviam_1_1sdk_1_1ResourceLevelServiceConfig.html',1,'viam::sdk']]],
   ['resourcemanager_43',['ResourceManager',['../classviam_1_1sdk_1_1ResourceManager.html',1,'viam::sdk']]],
   ['resources_44',['resources',['../classviam_1_1sdk_1_1ResourceManager.html#a3685e45eba4a51f6bb666049d3cc5c51',1,'viam::sdk::ResourceManager']]],
   ['resources_45',['Resources',['../index.html#autotoc_md2',1,'']]],

@@ -6,7 +6,7 @@ var searchData=
   ['resource_3',['Resource',['../classviam_1_1sdk_1_1Resource.html',1,'viam::sdk']]],
   ['resourceclientregistration_4',['ResourceClientRegistration',['../classviam_1_1sdk_1_1ResourceClientRegistration.html',1,'viam::sdk']]],
   ['resourceconfig_5',['ResourceConfig',['../classviam_1_1sdk_1_1ResourceConfig.html',1,'viam::sdk']]],
-  ['resourcelevelserviceconfig_6',['ResourceLevelServiceConfig',['../classviam_1_1sdk_1_1ResourceLevelServiceConfig.html',1,'viam::sdk']]],
+  ['resourcelevelserviceconfig_6',['ResourceLevelServiceConfig',['../structviam_1_1sdk_1_1ResourceLevelServiceConfig.html',1,'viam::sdk']]],
   ['resourcemanager_7',['ResourceManager',['../classviam_1_1sdk_1_1ResourceManager.html',1,'viam::sdk']]],
   ['resourceserver_8',['ResourceServer',['../classviam_1_1sdk_1_1ResourceServer.html',1,'viam::sdk']]],
   ['resourceserverregistration_9',['ResourceServerRegistration',['../classviam_1_1sdk_1_1ResourceServerRegistration.html',1,'viam::sdk']]],
