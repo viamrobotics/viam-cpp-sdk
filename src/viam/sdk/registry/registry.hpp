@@ -72,21 +72,13 @@ class ModelRegistration {
     ModelRegistration(
         API api,
         Model model,
-        std::function<std::shared_ptr<Resource>(Dependencies, ResourceConfig)> constructor)
-        : construct_resource(std::move(constructor)),
-          validate(default_validator),
-          model_(std::move(model)),
-          api_(std::move(api)) {};
+        std::function<std::shared_ptr<Resource>(Dependencies, ResourceConfig)> constructor);
 
     ModelRegistration(
         API api,
         Model model,
         std::function<std::shared_ptr<Resource>(Dependencies, ResourceConfig)> constructor,
-        std::function<std::vector<std::string>(ResourceConfig)> validator)
-        : construct_resource(std::move(constructor)),
-          validate(std::move(validator)),
-          model_(std::move(model)),
-          api_(std::move(api)) {};
+        std::function<std::vector<std::string>(ResourceConfig)> validator);
 
     const API& api() const;
     const Model& model() const;
