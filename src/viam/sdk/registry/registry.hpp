@@ -7,7 +7,6 @@
 
 #include <google/protobuf/descriptor.h>
 #include <google/protobuf/message.h>
-#include <grpcpp/channel.h>
 #include <grpcpp/impl/service_type.h>
 #include <grpcpp/server.h>
 
@@ -18,12 +17,20 @@
 #include <viam/sdk/resource/resource_server_base.hpp>
 #include <viam/sdk/rpc/server.hpp>
 
+namespace grpc {
+
+class Channel;
+
+}
+
 namespace viam {
 namespace sdk {
 
 // TODO(RSDK-6617): one class per header
 class ResourceServerRegistration {
    public:
+    ResourceServerRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
+
     virtual ~ResourceServerRegistration();
 
     /// @brief Create a resource's gRPC server.
@@ -36,9 +43,6 @@ class ResourceServerRegistration {
     /// @brief Returns a reference to the `ResourceServerRegistration`'s service descriptor.
     const google::protobuf::ServiceDescriptor* service_descriptor() const;
 
-    ResourceServerRegistration(const google::protobuf::ServiceDescriptor* service_descriptor)
-        : service_descriptor_(service_descriptor){};
-
    private:
     const google::protobuf::ServiceDescriptor* service_descriptor_;
 };
@@ -47,6 +51,8 @@ class ResourceServerRegistration {
 /// @brief Defines registered `Resource` client creation functionality.
 class ResourceClientRegistration {
    public:
+    ResourceClientRegistration() = default;
+
     virtual ~ResourceClientRegistration();
 
     /// @brief Create gRPC client to a resource.
@@ -55,8 +61,6 @@ class ResourceClientRegistration {
     /// @return A `shared_ptr` to the resource client.
     virtual std::shared_ptr<Resource> create_rpc_client(
         std::string name, std::shared_ptr<grpc::Channel> channel) const = 0;
-
-    ResourceClientRegistration() = default;
 };
 
 // TODO(RSDK-6616): instead of std::functions, consider making these functions
@@ -72,7 +76,7 @@ class ModelRegistration {
         : construct_resource(std::move(constructor)),
           validate(default_validator),
           model_(std::move(model)),
-          api_(std::move(api)){};
+          api_(std::move(api)) {};
 
     ModelRegistration(
         API api,
@@ -82,7 +86,7 @@ class ModelRegistration {
         : construct_resource(std::move(constructor)),
           validate(std::move(validator)),
           model_(std::move(model)),
-          api_(std::move(api)){};
+          api_(std::move(api)) {};
 
     const API& api() const;
     const Model& model() const;

@@ -4,7 +4,12 @@
 #include <string>
 
 #include <boost/optional.hpp>
-#include <grpcpp/channel.h>
+
+namespace grpc {
+
+class Channel;
+
+}
 
 namespace viam {
 namespace sdk {

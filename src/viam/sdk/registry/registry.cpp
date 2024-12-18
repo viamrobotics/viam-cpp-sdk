@@ -55,6 +55,10 @@
 namespace viam {
 namespace sdk {
 
+ResourceServerRegistration::ResourceServerRegistration(
+    const google::protobuf::ServiceDescriptor* service_descriptor)
+    : service_descriptor_(service_descriptor) {}
+
 ResourceServerRegistration::~ResourceServerRegistration() = default;
 ResourceClientRegistration::~ResourceClientRegistration() = default;
 
