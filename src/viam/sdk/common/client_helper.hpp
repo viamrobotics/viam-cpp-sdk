@@ -11,6 +11,12 @@ class Status;
 
 }  // namespace grpc
 
+namespace grpc {
+
+class Status;
+
+}  // namespace grpc
+
 namespace viam {
 namespace sdk {
 
