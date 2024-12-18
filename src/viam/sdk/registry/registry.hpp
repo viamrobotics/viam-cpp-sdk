@@ -7,10 +7,10 @@
 
 #include <google/protobuf/descriptor.h>
 #include <google/protobuf/message.h>
-#include <grpcpp/channel.h>
 #include <grpcpp/impl/service_type.h>
 #include <grpcpp/server.h>
 
+#include <viam/sdk/common/grpc_client_fwd.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
@@ -24,6 +24,8 @@ namespace sdk {
 // TODO(RSDK-6617): one class per header
 class ResourceServerRegistration {
    public:
+    ResourceServerRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
+
     virtual ~ResourceServerRegistration();
 
     /// @brief Create a resource's gRPC server.
@@ -36,9 +38,6 @@ class ResourceServerRegistration {
     /// @brief Returns a reference to the `ResourceServerRegistration`'s service descriptor.
     const google::protobuf::ServiceDescriptor* service_descriptor() const;
 
-    ResourceServerRegistration(const google::protobuf::ServiceDescriptor* service_descriptor)
-        : service_descriptor_(service_descriptor){};
-
    private:
     const google::protobuf::ServiceDescriptor* service_descriptor_;
 };
@@ -47,6 +46,8 @@ class ResourceServerRegistration {
 /// @brief Defines registered `Resource` client creation functionality.
 class ResourceClientRegistration {
    public:
+    ResourceClientRegistration() = default;
+
     virtual ~ResourceClientRegistration();
 
     /// @brief Create gRPC client to a resource.
@@ -54,9 +55,7 @@ class ResourceClientRegistration {
     /// @param channel A channel connected to the client.
     /// @return A `shared_ptr` to the resource client.
     virtual std::shared_ptr<Resource> create_rpc_client(
-        std::string name, std::shared_ptr<grpc::Channel> channel) const = 0;
-
-    ResourceClientRegistration() = default;
+        std::string name, std::shared_ptr<GrpcChannel> channel) const = 0;
 };
 
 // TODO(RSDK-6616): instead of std::functions, consider making these functions
@@ -68,21 +67,13 @@ class ModelRegistration {
     ModelRegistration(
         API api,
         Model model,
-        std::function<std::shared_ptr<Resource>(Dependencies, ResourceConfig)> constructor)
-        : construct_resource(std::move(constructor)),
-          validate(default_validator),
-          model_(std::move(model)),
-          api_(std::move(api)){};
+        std::function<std::shared_ptr<Resource>(Dependencies, ResourceConfig)> constructor);
 
     ModelRegistration(
         API api,
         Model model,
         std::function<std::shared_ptr<Resource>(Dependencies, ResourceConfig)> constructor,
-        std::function<std::vector<std::string>(ResourceConfig)> validator)
-        : construct_resource(std::move(constructor)),
-          validate(std::move(validator)),
-          model_(std::move(model)),
-          api_(std::move(api)){};
+        std::function<std::vector<std::string>(ResourceConfig)> validator);
 
     const API& api() const;
     const Model& model() const;
@@ -134,7 +125,7 @@ class Registry {
             using ResourceClientRegistration::ResourceClientRegistration;
 
             std::shared_ptr<Resource> create_rpc_client(
-                std::string name, std::shared_ptr<grpc::Channel> chan) const override {
+                std::string name, std::shared_ptr<GrpcChannel> chan) const override {
                 return std::make_shared<ResourceClientT>(std::move(name), std::move(chan));
             }
         };

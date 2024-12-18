@@ -16,7 +16,7 @@
 
 #include <grpcpp/channel.h>
 
-#include <viam/sdk/common/utils.hpp>
+#include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/services/private/mlmodel.hpp>
 
 #include <viam/sdk/common/exception.hpp>
