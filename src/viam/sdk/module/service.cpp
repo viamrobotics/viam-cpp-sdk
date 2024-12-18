@@ -52,7 +52,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
                                const ::viam::module::v1::AddResourceRequest* request,
                                ::viam::module::v1::AddResourceResponse*) override {
         const viam::app::v1::ComponentConfig& proto = request->config();
-        const ResourceConfig cfg = ResourceConfig::from_proto(proto);
+        const ResourceConfig cfg = v2::from_proto(proto);
         const std::lock_guard<std::mutex> lock(parent.lock_);
 
         std::shared_ptr<Resource> res;
@@ -80,7 +80,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         const ::viam::module::v1::ReconfigureResourceRequest* request,
         ::viam::module::v1::ReconfigureResourceResponse*) override {
         const viam::app::v1::ComponentConfig& proto = request->config();
-        ResourceConfig cfg = ResourceConfig::from_proto(proto);
+        ResourceConfig cfg = v2::from_proto(proto);
 
         const Dependencies deps = parent.get_dependencies_(request->dependencies(), cfg.name());
 
@@ -129,7 +129,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
                                   const ::viam::module::v1::ValidateConfigRequest* request,
                                   ::viam::module::v1::ValidateConfigResponse* response) override {
         const viam::app::v1::ComponentConfig& proto = request->config();
-        ResourceConfig cfg = ResourceConfig::from_proto(proto);
+        ResourceConfig cfg = v2::from_proto(proto);
 
         const std::shared_ptr<const ModelRegistration> reg =
             Registry::lookup_model(cfg.api(), cfg.model());

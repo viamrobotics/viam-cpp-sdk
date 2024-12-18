@@ -4,13 +4,16 @@
 #include <unordered_map>
 #include <vector>
 
+#include <google/protobuf/duration.pb.h>
+#include <google/protobuf/timestamp.pb.h>
+#include <grpcpp/client_context.h>
+
 #include <boost/algorithm/string.hpp>
 #include <boost/blank.hpp>
 #include <boost/log/core.hpp>
 #include <boost/log/expressions.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/optional/optional.hpp>
-#include <grpcpp/client_context.h>
 
 #include <viam/api/common/v1/common.pb.h>
 
@@ -22,52 +25,44 @@
 namespace viam {
 namespace sdk {
 
-std::vector<unsigned char> string_to_bytes(const std::string& s) {
-    std::vector<unsigned char> bytes(s.begin(), s.end());
-    return bytes;
-};
-
-std::string bytes_to_string(const std::vector<unsigned char>& b) {
-    std::string img_string(b.begin(), b.end());
-    return img_string;
-};
-
-time_pt timestamp_to_time_pt(const google::protobuf::Timestamp& timestamp) {
-    return time_pt{std::chrono::seconds{timestamp.seconds()} +
-                   std::chrono::nanoseconds{timestamp.nanos()}};
+bool operator==(const response_metadata& lhs, const response_metadata& rhs) {
+    return lhs.captured_at == rhs.captured_at;
 }
 
-google::protobuf::Timestamp time_pt_to_timestamp(time_pt tp) {
+namespace proto_convert_details {
+
+void to_proto<time_pt>::operator()(time_pt tp, google::protobuf::Timestamp* result) const {
     const std::chrono::nanoseconds since_epoch = tp.time_since_epoch();
 
     const auto sec_floor = std::chrono::duration_cast<std::chrono::seconds>(since_epoch);
     const std::chrono::nanoseconds nano_part = since_epoch - sec_floor;
 
-    google::protobuf::Timestamp result;
-
-    result.set_seconds(sec_floor.count());
-    result.set_nanos(static_cast<int32_t>(nano_part.count()));
-
-    return result;
+    result->set_seconds(sec_floor.count());
+    result->set_nanos(static_cast<int32_t>(nano_part.count()));
 }
 
-response_metadata response_metadata::from_proto(const viam::common::v1::ResponseMetadata& proto) {
-    response_metadata metadata;
-    metadata.captured_at = timestamp_to_time_pt(proto.captured_at());
-    return metadata;
+time_pt from_proto<google::protobuf::Timestamp>::operator()(
+    const google::protobuf::Timestamp* timestamp) const {
+    return time_pt{std::chrono::seconds{timestamp->seconds()} +
+                   std::chrono::nanoseconds{timestamp->nanos()}};
 }
 
-viam::common::v1::ResponseMetadata response_metadata::to_proto(const response_metadata& metadata) {
-    viam::common::v1::ResponseMetadata proto;
-    google::protobuf::Timestamp ts = time_pt_to_timestamp(metadata.captured_at);
-    *proto.mutable_captured_at() = std::move(ts);
-    return proto;
-}
-
-std::chrono::microseconds from_proto(const google::protobuf::Duration& proto) {
+void to_proto<std::chrono::microseconds>::operator()(std::chrono::microseconds duration,
+                                                     google::protobuf::Duration* proto) const {
     namespace sc = std::chrono;
-    const sc::seconds seconds_part{proto.seconds()};
-    const sc::nanoseconds nanos_part{proto.nanos()};
+
+    const sc::seconds seconds = sc::duration_cast<sc::seconds>(duration);
+    const sc::nanoseconds nanos = duration - seconds;
+
+    proto->set_nanos(static_cast<int32_t>(nanos.count()));
+    proto->set_seconds(seconds.count());
+}
+
+std::chrono::microseconds from_proto<google::protobuf::Duration>::operator()(
+    const google::protobuf::Duration* proto) const {
+    namespace sc = std::chrono;
+    const sc::seconds seconds_part{proto->seconds()};
+    const sc::nanoseconds nanos_part{proto->nanos()};
 
     const sc::microseconds from_seconds = sc::duration_cast<sc::microseconds>(seconds_part);
     sc::microseconds from_nanos = sc::duration_cast<sc::microseconds>(nanos_part);
@@ -80,16 +75,26 @@ std::chrono::microseconds from_proto(const google::protobuf::Duration& proto) {
     return from_seconds + from_nanos;
 }
 
-google::protobuf::Duration to_proto(std::chrono::microseconds duration) {
-    namespace sc = std::chrono;
+void to_proto<response_metadata>::operator()(const response_metadata& self,
+                                             common::v1::ResponseMetadata* proto) const {
+    *(proto->mutable_captured_at()) = v2::to_proto(self.captured_at);
+}
 
-    const sc::seconds seconds = sc::duration_cast<sc::seconds>(duration);
-    const sc::nanoseconds nanos = duration - seconds;
+response_metadata from_proto<common::v1::ResponseMetadata>::operator()(
+    const common::v1::ResponseMetadata* proto) const {
+    return {v2::from_proto(proto->captured_at())};
+}
 
-    google::protobuf::Duration proto;
-    proto.set_nanos(static_cast<int32_t>(nanos.count()));
-    proto.set_seconds(seconds.count());
-    return proto;
+}  // namespace proto_convert_details
+
+std::vector<unsigned char> string_to_bytes(const std::string& s) {
+    std::vector<unsigned char> bytes(s.begin(), s.end());
+    return bytes;
+}
+
+std::string bytes_to_string(const std::vector<unsigned char>& b) {
+    std::string img_string(b.begin(), b.end());
+    return img_string;
 }
 
 void set_logger_severity_from_args(int argc, char** argv) {
@@ -99,14 +104,6 @@ void set_logger_severity_from_args(int argc, char** argv) {
         return;
     }
     boost::log::core::get()->set_filter(boost::log::trivial::severity >= boost::log::trivial::info);
-}
-
-bool operator==(const response_metadata& lhs, const response_metadata& rhs) {
-    return lhs.captured_at == rhs.captured_at;
-}
-
-void ClientContext::set_client_ctx_authority_() {
-    wrapped_context_.set_authority("viam-placeholder");
 }
 
 std::string random_debug_key() {
@@ -154,25 +151,35 @@ ProtoStruct with_debug_entry(ProtoStruct&& map) {
     return map;
 }
 
-void ClientContext::set_debug_key(const std::string& debug_key) {
-    wrapped_context_.AddMetadata("dtname", debug_key);
-}
-
-void ClientContext::add_viam_client_version_() {
-    wrapped_context_.AddMetadata("viam_client", impl::k_version);
-}
-
-ClientContext::ClientContext() {
+ClientContext::ClientContext() : wrapped_context_(std::make_unique<grpc::ClientContext>()) {
     set_client_ctx_authority_();
     add_viam_client_version_();
 }
 
+ClientContext::~ClientContext() = default;
+
 ClientContext::operator const grpc::ClientContext*() const {
-    return &wrapped_context_;
+    return wrapped_context_.get();
 }
 
 ClientContext::operator grpc::ClientContext*() {
-    return &wrapped_context_;
+    return wrapped_context_.get();
+}
+
+void ClientContext::try_cancel() {
+    wrapped_context_->TryCancel();
+}
+
+void ClientContext::set_debug_key(const std::string& debug_key) {
+    wrapped_context_->AddMetadata("dtname", debug_key);
+}
+
+void ClientContext::set_client_ctx_authority_() {
+    wrapped_context_->set_authority("viam-placeholder");
+}
+
+void ClientContext::add_viam_client_version_() {
+    wrapped_context_->AddMetadata("viam_client", impl::k_version);
 }
 
 bool from_dm_from_extra(const ProtoStruct& extra) {
