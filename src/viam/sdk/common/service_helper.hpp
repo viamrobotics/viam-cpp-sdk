@@ -2,6 +2,8 @@
 
 #include <type_traits>
 
+#include <grpcpp/support/status.h>
+
 #include <viam/sdk/resource/resource_server_base.hpp>
 
 namespace viam {

@@ -56,7 +56,7 @@ Camera::image_collection from_proto(const viam::component::camera::v1::GetImages
         images.push_back(raw_image);
     }
     image_collection.images = std::move(images);
-    image_collection.metadata = response_metadata::from_proto(proto.response_metadata());
+    image_collection.metadata = v2::from_proto(proto.response_metadata());
     return image_collection;
 }
 

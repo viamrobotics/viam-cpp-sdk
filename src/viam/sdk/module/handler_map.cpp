@@ -24,7 +24,7 @@ viam::module::v1::HandlerMap HandlerMap_::to_proto() const {
         }
         viam::robot::v1::ResourceRPCSubtype rpc_subtype;
         const Name name(h.first.api(), "", "");
-        const viam::common::v1::ResourceName resource_name = name.to_proto();
+        const viam::common::v1::ResourceName resource_name = v2::to_proto(name);
         *rpc_subtype.mutable_subtype() = resource_name;
         *rpc_subtype.mutable_proto_service() = h.first.proto_service_name();
         *hd.mutable_subtype() = rpc_subtype;
@@ -34,7 +34,7 @@ viam::module::v1::HandlerMap HandlerMap_::to_proto() const {
     return proto;
 };
 
-HandlerMap_::HandlerMap_(){};
+HandlerMap_::HandlerMap_() {}
 
 // NOLINTNEXTLINE(readability-const-return-type)
 const HandlerMap_ HandlerMap_::from_proto(const viam::module::v1::HandlerMap& proto) {

@@ -73,7 +73,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
                                           const ::viam::module::v1::AddResourceRequest* request,
                                           ::viam::module::v1::AddResourceResponse*) {
     const viam::app::v1::ComponentConfig& proto = request->config();
-    const ResourceConfig cfg = ResourceConfig::from_proto(proto);
+    const ResourceConfig cfg = v2::from_proto(proto);
     const std::lock_guard<std::mutex> lock(lock_);
 
     std::shared_ptr<Resource> res;
@@ -101,7 +101,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
     const ::viam::module::v1::ReconfigureResourceRequest* request,
     ::viam::module::v1::ReconfigureResourceResponse*) {
     const viam::app::v1::ComponentConfig& proto = request->config();
-    ResourceConfig cfg = ResourceConfig::from_proto(proto);
+    ResourceConfig cfg = v2::from_proto(proto);
 
     const Dependencies deps = get_dependencies_(request->dependencies(), cfg.name());
 
@@ -150,7 +150,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
     const ::viam::module::v1::ValidateConfigRequest* request,
     ::viam::module::v1::ValidateConfigResponse* response) {
     const viam::app::v1::ComponentConfig& proto = request->config();
-    ResourceConfig cfg = ResourceConfig::from_proto(proto);
+    ResourceConfig cfg = v2::from_proto(proto);
 
     const std::shared_ptr<const ModelRegistration> reg =
         Registry::lookup_model(cfg.api(), cfg.model());

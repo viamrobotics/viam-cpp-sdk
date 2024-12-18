@@ -66,7 +66,7 @@ std::vector<ResourceName> RobotService_::generate_metadata_() {
     std::vector<ResourceName> metadata;
     for (const auto& key_and_val : resource_manager()->resources()) {
         for (const Name& name : registered_models_for_resource(key_and_val.second)) {
-            metadata.push_back(name.to_proto());
+            metadata.push_back(v2::to_proto(name));
         }
     }
     return metadata;
@@ -104,7 +104,7 @@ std::vector<ResourceName> RobotService_::generate_metadata_() {
 
     for (const auto& r : resource_manager()->resources()) {
         const std::shared_ptr<Resource> resource = r.second;
-        const ResourceName rn = resource->get_resource_name().to_proto();
+        const ResourceName rn = v2::to_proto(resource->get_resource_name());
         const std::string rn_ = rn.SerializeAsString();
         if (extra.find(rn_) != extra.end()) {
             try {
