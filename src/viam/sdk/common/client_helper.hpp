@@ -1,12 +1,9 @@
 #pragma once
 
-#include <grpcpp/client_context.h>
-#include <grpcpp/support/sync_stream.h>
-
 #include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/common/grpc_client_fwd.hpp>
 #include <viam/sdk/common/private/utils.hpp>
 #include <viam/sdk/common/proto_value.hpp>
-#include <viam/sdk/common/utils.hpp>
 
 namespace grpc {
 
@@ -23,16 +20,39 @@ namespace client_helper_details {
 
 }  // namespace client_helper_details
 
+// the authority on a grpc::ClientContext is sometimes set to an invalid uri on mac, causing
+// `rust-utils` to fail to process gRPC requests. This class provides a convenience wrapper around a
+// grpc ClientContext that allows us to make any necessary modifications to authority or else where
+// to avoid runtime issues.
+// For more details, see https://viam.atlassian.net/browse/RSDK-5194.
+class ClientContext {
+   public:
+    ClientContext();
+    ~ClientContext();
+
+    void try_cancel();
+
+    operator GrpcClientContext*();
+    operator const GrpcClientContext*() const;
+
+    void set_debug_key(const std::string& debug_key);
+
+   private:
+    void set_client_ctx_authority_();
+    void add_viam_client_version_();
+    std::unique_ptr<GrpcClientContext> wrapped_context_;
+};
+
 // Method type for a gRPC call that returns a response message type.
 template <typename StubType, typename RequestType, typename ResponseType>
-using SyncMethodType = ::grpc::Status (StubType::*)(::grpc::ClientContext*,
+using SyncMethodType = ::grpc::Status (StubType::*)(GrpcClientContext*,
                                                     const RequestType&,
                                                     ResponseType*);
 
 // Method type for a gRPC call that returns a stream of response message type.
 template <typename StubType, typename RequestType, typename ResponseType>
-using StreamingMethodType = std::unique_ptr<::grpc::ClientReaderInterface<ResponseType>> (
-    StubType::*)(::grpc::ClientContext*, const RequestType&);
+using StreamingMethodType = std::unique_ptr<GrpcClientReaderInterface<ResponseType>> (StubType::*)(
+    GrpcClientContext*, const RequestType&);
 
 template <typename ClientType,
           typename StubType,

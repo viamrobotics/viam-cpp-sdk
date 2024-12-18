@@ -18,7 +18,6 @@
 #include <viam/api/common/v1/common.pb.h>
 
 #include <viam/sdk/common/private/utils.hpp>
-#include <viam/sdk/common/private/version_metadata.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/registry/registry.hpp>
 
@@ -149,37 +148,6 @@ ProtoStruct with_debug_entry(ProtoStruct&& map, std::string debug_key) {
 ProtoStruct with_debug_entry(ProtoStruct&& map) {
     add_debug_entry(map);
     return map;
-}
-
-ClientContext::ClientContext() : wrapped_context_(std::make_unique<grpc::ClientContext>()) {
-    set_client_ctx_authority_();
-    add_viam_client_version_();
-}
-
-ClientContext::~ClientContext() = default;
-
-ClientContext::operator const grpc::ClientContext*() const {
-    return wrapped_context_.get();
-}
-
-ClientContext::operator grpc::ClientContext*() {
-    return wrapped_context_.get();
-}
-
-void ClientContext::try_cancel() {
-    wrapped_context_->TryCancel();
-}
-
-void ClientContext::set_debug_key(const std::string& debug_key) {
-    wrapped_context_->AddMetadata("dtname", debug_key);
-}
-
-void ClientContext::set_client_ctx_authority_() {
-    wrapped_context_->set_authority("viam-placeholder");
-}
-
-void ClientContext::add_viam_client_version_() {
-    wrapped_context_->AddMetadata("viam_client", impl::k_version);
 }
 
 bool from_dm_from_extra(const ProtoStruct& extra) {
