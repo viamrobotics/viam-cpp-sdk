@@ -2,6 +2,10 @@
 #include <boost/test/included/unit_test.hpp>
 
 #include <google/protobuf/struct.pb.h>
+
+#include <viam/api/app/v1/robot.pb.h>
+#include <viam/api/robot/v1/robot.pb.h>
+
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/proto_value.hpp>
@@ -52,7 +56,7 @@ BOOST_AUTO_TEST_CASE(test_name) {
     BOOST_CHECK_EQUAL(name1.name(), "name");
     BOOST_CHECK_EQUAL(name1.short_name(), "remote:name");
     BOOST_CHECK_EQUAL(name1.to_string(), "ns:service:st/remote:name");
-    BOOST_CHECK_EQUAL(Name::from_proto(name1.to_proto()), name1);
+    BOOST_CHECK_EQUAL(v2::from_proto(v2::to_proto(name1)), name1);
 
     Name name2(API::from_string("ns:service:st"), "remote1:remote2", "name");
     BOOST_CHECK_EQUAL(name2.api().to_string(), "ns:service:st");
@@ -60,7 +64,7 @@ BOOST_AUTO_TEST_CASE(test_name) {
     BOOST_CHECK_EQUAL(name2.name(), "name");
     BOOST_CHECK_EQUAL(name2.short_name(), "remote1:remote2:name");
     BOOST_CHECK_EQUAL(name2.to_string(), "ns:service:st/remote1:remote2:name");
-    BOOST_CHECK_EQUAL(Name::from_proto(name2.to_proto()), name2);
+    BOOST_CHECK_EQUAL(v2::from_proto(v2::to_proto(name2)), name2);
 
     Name name3 = Name::from_string("ns:component:st/name");
     BOOST_CHECK_EQUAL(name3.api().to_string(), "ns:component:st");
@@ -68,7 +72,7 @@ BOOST_AUTO_TEST_CASE(test_name) {
     BOOST_CHECK_EQUAL(name3.name(), "name");
     BOOST_CHECK_EQUAL(name3.short_name(), "name");
     BOOST_CHECK_EQUAL(name3.to_string(), "ns:component:st/name");
-    BOOST_CHECK_EQUAL(Name::from_proto(name3.to_proto()), name3);
+    BOOST_CHECK_EQUAL(v2::from_proto(v2::to_proto(name3)), name3);
 
     BOOST_CHECK_THROW(Name::from_string("ns:service:#st/remote:name"), Exception);
 }
@@ -235,7 +239,7 @@ BOOST_AUTO_TEST_CASE(test_resource) {
     *frame.mutable_translation() = t;
     *proto_cfg.mutable_frame() = frame;
 
-    ResourceConfig resource2 = ResourceConfig::from_proto(proto_cfg);
+    ResourceConfig resource2 = v2::from_proto(proto_cfg);
     BOOST_CHECK_EQUAL(resource2.name(), "name");
     BOOST_CHECK_EQUAL(resource2.namespace_(), "ns");
     BOOST_CHECK_EQUAL(resource2.type(), "type");
@@ -252,7 +256,7 @@ BOOST_AUTO_TEST_CASE(test_resource) {
     BOOST_CHECK_EQUAL(value.number_value(), 1);
 
     *proto_cfg.mutable_api() = "ns:component:test";
-    BOOST_CHECK_THROW(ResourceConfig::from_proto(proto_cfg), Exception);
+    BOOST_CHECK_THROW(v2::from_proto(proto_cfg), Exception);
 }
 
 }  // namespace sdktests

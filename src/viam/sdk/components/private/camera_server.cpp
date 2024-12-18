@@ -94,7 +94,7 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
             proto_image.set_image(img_string);
             *response->mutable_images()->Add() = std::move(proto_image);
         }
-        *response->mutable_response_metadata() = response_metadata::to_proto(image_coll.metadata);
+        *response->mutable_response_metadata() = v2::to_proto(image_coll.metadata);
     });
 }
 

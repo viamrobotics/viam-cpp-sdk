@@ -19,6 +19,7 @@
 #include <viam/api/robot/v1/robot.grpc.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
 
+#include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/private/repeated_ptr_convert.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
@@ -90,7 +91,7 @@ RobotClient::operation from_proto(const Operation& proto) {
         op.arguments = v2::from_proto(proto.arguments());
     }
     if (proto.has_started()) {
-        op.started = timestamp_to_time_pt(proto.started());
+        op.started = v2::from_proto(proto.started());
     }
     return op;
 }
@@ -203,7 +204,7 @@ void RobotClient::refresh() {
     std::unordered_map<Name, std::shared_ptr<Resource>> new_resources;
     std::vector<Name> current_resources;
     for (const auto& name : resp.resources()) {
-        current_resources.push_back(Name::from_proto(name));
+        current_resources.push_back(v2::from_proto(name));
         if (name.subtype() == "remote") {
             continue;
         }
@@ -404,7 +405,7 @@ void RobotClient::stop_all(const std::unordered_map<Name, ProtoStruct>& extra) {
         const ProtoStruct& params = xtra.second;
         const google::protobuf::Struct s = v2::to_proto(params);
         viam::robot::v1::StopExtraParameters stop;
-        *stop.mutable_name() = name.to_proto();
+        *stop.mutable_name() = v2::to_proto(name);
         *stop.mutable_params() = s;
         *ep->Add() = stop;
     }

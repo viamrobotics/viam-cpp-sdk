@@ -1,13 +1,31 @@
 #pragma once
 
-#include <boost/optional/optional.hpp>
-#include <grpcpp/client_context.h>
+#include <memory>
 
-#include <viam/api/common/v1/common.pb.h>
+#include <boost/optional/optional.hpp>
 
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
+
+namespace google {
+namespace protobuf {
+
+class Duration;
+class Timestamp;
+
+}  // namespace protobuf
+}  // namespace google
+
+namespace viam {
+namespace common {
+namespace v1 {
+
+class ResponseMetadata;
+
+}
+}  // namespace common
+}  // namespace viam
 
 namespace viam {
 namespace sdk {
@@ -22,42 +40,46 @@ using time_pt = std::chrono::time_point<std::chrono::system_clock, std::chrono::
 
 struct response_metadata {
     time_pt captured_at;
-
-    static response_metadata from_proto(const viam::common::v1::ResponseMetadata& proto);
-    static viam::common::v1::ResponseMetadata to_proto(const response_metadata& metadata);
 };
 
 bool operator==(const response_metadata& lhs, const response_metadata& rhs);
 
-/// @brief convert a google::protobuf::Timestamp to time_pt
-time_pt timestamp_to_time_pt(const google::protobuf::Timestamp& timestamp);
+namespace proto_convert_details {
 
-/// @brief convert a time_pt to a google::protobuf::Timestamp.
-google::protobuf::Timestamp time_pt_to_timestamp(time_pt);
+template <>
+struct to_proto<time_pt> {
+    void operator()(time_pt, google::protobuf::Timestamp*) const;
+};
+
+template <>
+struct from_proto<google::protobuf::Timestamp> {
+    time_pt operator()(const google::protobuf::Timestamp*) const;
+};
+
+template <>
+struct to_proto<std::chrono::microseconds> {
+    void operator()(std::chrono::microseconds, google::protobuf::Duration*) const;
+};
+
+template <>
+struct from_proto<google::protobuf::Duration> {
+    std::chrono::microseconds operator()(const google::protobuf::Duration*) const;
+};
+
+template <>
+struct to_proto<response_metadata> {
+    void operator()(const response_metadata&, common::v1::ResponseMetadata*) const;
+};
+
+template <>
+struct from_proto<common::v1::ResponseMetadata> {
+    response_metadata operator()(const common::v1::ResponseMetadata*) const;
+};
+
+}  // namespace proto_convert_details
 
 std::vector<unsigned char> string_to_bytes(std::string const& s);
 std::string bytes_to_string(std::vector<unsigned char> const& b);
-
-std::chrono::microseconds from_proto(const google::protobuf::Duration& proto);
-google::protobuf::Duration to_proto(std::chrono::microseconds duration);
-
-// the authority on a grpc::ClientContext is sometimes set to an invalid uri on mac, causing
-// `rust-utils` to fail to process gRPC requests. This class provides a convenience wrapper around a
-// grpc ClientContext that allows us to make any necessary modifications to authority or else where
-// to avoid runtime issues.
-// For more details, see https://viam.atlassian.net/browse/RSDK-5194.
-class ClientContext {
-   public:
-    ClientContext();
-    operator grpc::ClientContext*();
-    operator const grpc::ClientContext*() const;
-    void set_debug_key(const std::string& debug_key);
-
-   private:
-    void set_client_ctx_authority_();
-    void add_viam_client_version_();
-    grpc::ClientContext wrapped_context_;
-};
 
 /// @brief Given a fully qualified resource name, returns remote name (or "" if no remote name
 /// exists) and short name

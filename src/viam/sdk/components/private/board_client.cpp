@@ -182,7 +182,7 @@ void BoardClient::set_power_mode(power_mode power_mode,
               [&](auto& request) {
                   request.set_power_mode(to_proto(power_mode));
                   if (duration.has_value()) {
-                      *request.mutable_duration() = ::viam::sdk::to_proto(duration.get());
+                      *request.mutable_duration() = v2::to_proto(duration.get());
                   }
               })
         .invoke();
