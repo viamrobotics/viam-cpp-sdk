@@ -2,9 +2,6 @@
 
 #include <signal.h>
 
-#include <viam/api/component/generic/v1/generic.grpc.pb.h>
-#include <viam/api/module/v1/module.grpc.pb.h>
-
 #include <viam/sdk/module/module.hpp>
 #include <viam/sdk/module/signal_manager.hpp>
 #include <viam/sdk/registry/registry.hpp>
@@ -21,7 +18,7 @@ namespace sdk {
 /// can construct a ModuleService and use its associated methods to write
 /// a working C++ module. See examples under `src/viam/examples/modules`.
 /// @ingroup Module
-class ModuleService : viam::module::v1::ModuleService::Service {
+class ModuleService {
    public:
     /// @brief Creates a new ModuleService that can serve on the provided socket.
     /// @param addr Address of socket to serve on.
@@ -50,26 +47,8 @@ class ModuleService : viam::module::v1::ModuleService::Service {
     void add_model_from_registry(API api, Model model);
 
    private:
-    ::grpc::Status AddResource(::grpc::ServerContext* context,
-                               const ::viam::module::v1::AddResourceRequest* request,
-                               ::viam::module::v1::AddResourceResponse* response) override;
-
-    ::grpc::Status ReconfigureResource(
-        ::grpc::ServerContext* context,
-        const ::viam::module::v1::ReconfigureResourceRequest* request,
-        ::viam::module::v1::ReconfigureResourceResponse* response) override;
-
-    ::grpc::Status RemoveResource(::grpc::ServerContext* context,
-                                  const ::viam::module::v1::RemoveResourceRequest* request,
-                                  ::viam::module::v1::RemoveResourceResponse* response) override;
-
-    ::grpc::Status Ready(::grpc::ServerContext* context,
-                         const ::viam::module::v1::ReadyRequest* request,
-                         ::viam::module::v1::ReadyResponse* response) override;
-
-    ::grpc::Status ValidateConfig(::grpc::ServerContext* context,
-                                  const ::viam::module::v1::ValidateConfigRequest* request,
-                                  ::viam::module::v1::ValidateConfigResponse* response) override;
+    struct ServiceImpl;
+    friend ModuleService::ServiceImpl;
 
     void add_model_from_registry_inlock_(API api, Model model, const std::lock_guard<std::mutex>&);
     Dependencies get_dependencies_(google::protobuf::RepeatedPtrField<std::string> const& proto,
@@ -82,6 +61,8 @@ class ModuleService : viam::module::v1::ModuleService::Service {
     std::string parent_addr_;
     std::unique_ptr<Server> server_;
     SignalManager signal_manager_;
+
+    std::unique_ptr<ServiceImpl> impl_;
 };
 
 }  // namespace sdk
