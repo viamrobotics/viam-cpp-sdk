@@ -33,7 +33,7 @@ jobs:
         run: ls etc/docs/api/current
 
       - name: test
-        run: echo 'test' > docs/_build/html/my-test-file.txt
+        run: echo 'test' > etc/docs/api/current/my-test-file.txt
 
       - name: Check folder 2
         run: ls etc/docs/api/current
