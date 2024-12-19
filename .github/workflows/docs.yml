@@ -10,7 +10,7 @@ on:
 
 jobs:
   generate-docs:
-    # if: github.repository_owner == 'viamrobotics'
+    if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/viamrobotics/canon:amd64
@@ -29,29 +29,17 @@ jobs:
       - name: Generate docs
         run: doxygen Doxyfile
 
-      - name: Check folder
-        run: ls etc/docs/api/current
-
-      - name: test
-        run: echo 'test' > etc/docs/api/current/my-test-file.txt
-
-      - name: Check folder 2
-        run: ls etc/docs/api/current
-
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: html-docs
           path: etc/docs/api/current
 
-      - name: Check folder 3
-        run: ls etc/docs/api/current
-
-      # - name: Deploy docs
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   if: github.ref == 'refs/heads/main'
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: etc/docs/api/current
-      #     publish_branch: docs-gh_pages
-      #     cname: cpp.viam.dev
+      - name: Deploy docs
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: etc/docs/api/current
+          publish_branch: docs-gh_pages
+          cname: cpp.viam.dev
