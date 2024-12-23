@@ -9,6 +9,8 @@
 
 namespace grpc {
 
+class Channel;
+
 class ClientContext;
 
 template <typename>
@@ -18,6 +20,8 @@ class ClientReaderInterface;
 
 namespace viam {
 namespace sdk {
+
+using GrpcChannel = ::grpc::Channel;
 
 using GrpcClientContext = ::grpc::ClientContext;
 
@@ -34,6 +38,8 @@ using GrpcClientReaderInterface = ::grpc::ClientReaderInterface<T>;
 
 namespace grpc_impl {
 
+class Channel;
+
 class ClientContext;
 
 template <typename>
@@ -43,6 +49,8 @@ class ClientReaderInterface;
 
 namespace viam {
 namespace sdk {
+
+using GrpcChannel = ::grpc_impl::Channel;
 
 using GrpcClientContext = ::grpc_impl::ClientContext;
 
