@@ -139,7 +139,7 @@ target_sources(viamsdk
   PUBLIC FILE_SET viamsdk_public_includes TYPE HEADERS
     BASE_DIRS
       ../..
-      ${CMAKE_CURRENT_BINARY_DIR}
+      ${CMAKE_CURRENT_BINARY_DIR}/../..
     FILES
       ../../viam/sdk/common/client_helper.hpp
       ../../viam/sdk/common/exception.hpp
@@ -192,7 +192,7 @@ target_sources(viamsdk
       ../../viam/sdk/spatialmath/geometry.hpp
       ../../viam/sdk/spatialmath/orientation.hpp
       ../../viam/sdk/spatialmath/orientation_types.hpp
-      ${CMAKE_CURRENT_BINARY_DIR}/common/grpc_client_fwd.hpp
+      ${CMAKE_CURRENT_BINARY_DIR}/../../viam/sdk/common/grpc_client_fwd.hpp
 )
 
 set_target_properties(
