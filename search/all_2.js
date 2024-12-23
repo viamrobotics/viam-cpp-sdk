@@ -36,7 +36,7 @@ var searchData=
   ['construct_5fresource_33',['construct_resource',['../classviam_1_1sdk_1_1ModelRegistration.html#a4089b61b35308baec8f6bf3c116c82aa',1,'viam::sdk::ModelRegistration']]],
   ['coordinates_34',['coordinates',['../structviam_1_1sdk_1_1coordinates.html',1,'viam::sdk']]],
   ['create_5fresource_5fserver_35',['create_resource_server',['../classviam_1_1sdk_1_1ResourceServerRegistration.html#ac29e547bd2badcc93001233b9bd495cd',1,'viam::sdk::ResourceServerRegistration']]],
-  ['create_5frpc_5fclient_36',['create_rpc_client',['../classviam_1_1sdk_1_1ResourceClientRegistration.html#a0573e4c48e2537e308903ac7016cbd7d',1,'viam::sdk::ResourceClientRegistration']]],
+  ['create_5frpc_5fclient_36',['create_rpc_client',['../classviam_1_1sdk_1_1ResourceClientRegistration.html#a2f791b6faca0f11dae7f7c03927b9d52',1,'viam::sdk::ResourceClientRegistration']]],
   ['credentials_37',['Credentials',['../classviam_1_1sdk_1_1Credentials.html',1,'viam::sdk::Credentials'],['../classviam_1_1sdk_1_1Credentials.html#a5332ea9f28be0f99df5c2dd6987c9720',1,'viam::sdk::Credentials::Credentials()']]],
   ['current_38',['current',['../structviam_1_1sdk_1_1PowerSensor_1_1current.html',1,'viam::sdk::PowerSensor']]]
 ];
