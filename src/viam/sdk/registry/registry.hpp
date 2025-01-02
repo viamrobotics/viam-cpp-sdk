@@ -5,11 +5,6 @@
 
 #include <string>
 
-#include <google/protobuf/descriptor.h>
-#include <google/protobuf/message.h>
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/server.h>
-
 #include <viam/sdk/common/grpc_client_fwd.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource.hpp>
@@ -18,13 +13,21 @@
 #include <viam/sdk/resource/resource_server_base.hpp>
 #include <viam/sdk/rpc/server.hpp>
 
+namespace google {
+namespace protobuf {
+
+class ServiceDescriptor;
+
+}
+}  // namespace google
+
 namespace viam {
 namespace sdk {
 
 // TODO(RSDK-6617): one class per header
 class ResourceServerRegistration {
    public:
-    ResourceServerRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
+    ResourceServerRegistration(const ::google::protobuf::ServiceDescriptor* service_descriptor);
 
     virtual ~ResourceServerRegistration();
 
@@ -36,10 +39,10 @@ class ResourceServerRegistration {
         std::shared_ptr<ResourceManager> manager, Server& server) const = 0;
 
     /// @brief Returns a reference to the `ResourceServerRegistration`'s service descriptor.
-    const google::protobuf::ServiceDescriptor* service_descriptor() const;
+    const ::google::protobuf::ServiceDescriptor* service_descriptor() const;
 
    private:
-    const google::protobuf::ServiceDescriptor* service_descriptor_;
+    const ::google::protobuf::ServiceDescriptor* service_descriptor_;
 };
 
 /// @class ResourceClientRegistration registry.hpp "registry/registry.hpp"
