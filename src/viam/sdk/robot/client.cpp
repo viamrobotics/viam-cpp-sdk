@@ -19,6 +19,7 @@
 #include <viam/api/robot/v1/robot.grpc.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
 
+#include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/private/repeated_ptr_convert.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>

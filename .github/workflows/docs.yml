@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'src/**'
-      - 'README.md'
+      - "src/**"
+      - "README.md"
     branches: [main]
 
 jobs:
@@ -30,7 +30,7 @@ jobs:
         run: doxygen Doxyfile
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: html-docs
           path: etc/docs/api/current
