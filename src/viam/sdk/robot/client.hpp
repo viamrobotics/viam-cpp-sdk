@@ -3,6 +3,7 @@
 /// @brief gRPC client implementation for a `robot`.
 #pragma once
 
+#include <atomic>
 #include <string>
 #include <thread>
 
