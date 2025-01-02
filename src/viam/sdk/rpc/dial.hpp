@@ -6,7 +6,7 @@
 
 #include <boost/optional.hpp>
 
-#include <viam/sdk/common/grpc_client_fwd.hpp>
+#include <viam/sdk/common/grpc_fwd.hpp>
 
 namespace viam {
 namespace sdk {

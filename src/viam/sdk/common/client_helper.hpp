@@ -1,7 +1,7 @@
 #pragma once
 
 #include <viam/sdk/common/exception.hpp>
-#include <viam/sdk/common/grpc_client_fwd.hpp>
+#include <viam/sdk/common/grpc_fwd.hpp>
 #include <viam/sdk/common/private/utils.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 

@@ -6,7 +6,7 @@
 #include <string>
 #include <thread>
 
-#include <viam/sdk/common/grpc_client_fwd.hpp>
+#include <viam/sdk/common/grpc_fwd.hpp>
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/common/world_state.hpp>

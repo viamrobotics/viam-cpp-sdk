@@ -5,7 +5,7 @@
 
 #include <string>
 
-#include <viam/sdk/common/grpc_client_fwd.hpp>
+#include <viam/sdk/common/grpc_fwd.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
