@@ -8,10 +8,6 @@
 #include <vector>
 
 #include <boost/optional.hpp>
-#include <grpcpp/channel.h>
-#include <grpcpp/client_context.h>
-#include <grpcpp/grpcpp.h>
-#include <grpcpp/support/status.h>
 
 #include <viam/sdk/components/generic.hpp>
 #include <viam/sdk/robot/client.hpp>
