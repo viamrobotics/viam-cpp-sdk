@@ -1,7 +1,7 @@
 var searchData=
 [
   ['add_0',['add',['../classviam_1_1sdk_1_1ResourceManager.html#a5323b8cbcbbc374cc7b499a949f6490f',1,'viam::sdk::ResourceManager::add(const Name &amp;name, std::shared_ptr&lt; Resource &gt; resource)'],['../classviam_1_1sdk_1_1ResourceManager.html#a2233eabc462a53457f94737421a1b0eb',1,'viam::sdk::ResourceManager::add(std::string name, std::shared_ptr&lt; Resource &gt; resource)']]],
-  ['add_5flistening_5fport_1',['add_listening_port',['../classviam_1_1sdk_1_1Server.html#a8d408c8dc6214e32d74ecfc54739db29',1,'viam::sdk::Server']]],
+  ['add_5flistening_5fport_1',['add_listening_port',['../classviam_1_1sdk_1_1Server.html#a1335a7a7f9d780960a682367d791de06',1,'viam::sdk::Server']]],
   ['add_5fmodel_5ffrom_5fregistry_2',['add_model_from_registry',['../classviam_1_1sdk_1_1ModuleService.html#adafbd2715ed170759d7e36ac0d5671cf',1,'viam::sdk::ModuleService']]],
   ['add_5fresource_3',['add_resource',['../classviam_1_1sdk_1_1Server.html#aa4de7327b91f01830f4e2520f97eb402',1,'viam::sdk::Server']]],
   ['add_5fwaypoint_4',['add_waypoint',['../classviam_1_1sdk_1_1Navigation.html#a80efb70f051a769a86745806ae738020',1,'viam::sdk::Navigation::add_waypoint()'],['../classviam_1_1sdk_1_1impl_1_1NavigationClient.html#ad11c366c3d82e8b13c32e730b81d87fc',1,'viam::sdk::impl::NavigationClient::add_waypoint()']]],

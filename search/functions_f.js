@@ -8,7 +8,7 @@ var searchData=
   ['register_5fresource_5',['register_resource',['../classviam_1_1sdk_1_1Registry.html#a9b166e97b12c65b88e07a1d62bee9bc2',1,'viam::sdk::Registry']]],
   ['register_5fresource_5fclient_6',['register_resource_client',['../classviam_1_1sdk_1_1Registry.html#adfa42da556ba37af38499e934aed680a',1,'viam::sdk::Registry']]],
   ['register_5fresource_5fserver_7',['register_resource_server',['../classviam_1_1sdk_1_1Registry.html#a7183e2cc762ef7f815cb12b2fe61b099',1,'viam::sdk::Registry']]],
-  ['register_5fservice_8',['register_service',['../classviam_1_1sdk_1_1Server.html#a79c7612254cd41387c3d9410628941d5',1,'viam::sdk::Server']]],
+  ['register_5fservice_8',['register_service',['../classviam_1_1sdk_1_1Server.html#a0ae1d7923f5c3476c146db62fc4f2375',1,'viam::sdk::Server']]],
   ['registered_5fmodels_9',['registered_models',['../classviam_1_1sdk_1_1Registry.html#ac39f056892e8f1bf40c95aee0366d7c9',1,'viam::sdk::Registry']]],
   ['registered_5fresource_5fservers_10',['registered_resource_servers',['../classviam_1_1sdk_1_1Registry.html#a276c2d9e813a7da41568c10454680de9',1,'viam::sdk::Registry']]],
   ['remove_11',['remove',['../classviam_1_1sdk_1_1ResourceManager.html#aa992f85df5f6a12a2606a5b3451240f1',1,'viam::sdk::ResourceManager']]],
