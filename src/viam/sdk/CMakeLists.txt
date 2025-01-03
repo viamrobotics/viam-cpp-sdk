@@ -30,7 +30,7 @@ message(WARNING "api proto label is ${VIAMCPPSDK_API_PROTO_LABEL}")
 configure_file(common/private/version_metadata.hpp.in common/private/version_metadata.hpp @ONLY)
 
 # Configure the grpc client forward declarations file
-configure_file(common/grpc_client_fwd.hpp.in common/grpc_client_fwd.hpp)
+configure_file(common/grpc_fwd.hpp.in common/grpc_fwd.hpp)
 
 # Set compile and link options based on arguments
 if (VIAMCPPSDK_USE_WALL_WERROR)
@@ -192,7 +192,7 @@ target_sources(viamsdk
       ../../viam/sdk/spatialmath/geometry.hpp
       ../../viam/sdk/spatialmath/orientation.hpp
       ../../viam/sdk/spatialmath/orientation_types.hpp
-      ${CMAKE_CURRENT_BINARY_DIR}/../../viam/sdk/common/grpc_client_fwd.hpp
+      ${CMAKE_CURRENT_BINARY_DIR}/../../viam/sdk/common/grpc_fwd.hpp
 )
 
 set_target_properties(

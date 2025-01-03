@@ -1,0 +1,89 @@
+#pragma once
+
+#cmakedefine VIAMCPPSDK_GRPCXX_LEGACY_FWD
+
+// Forward declaration file grpc client and server types.
+// This file provides includes for recent (>= 1.32.0) versions of grpc or older
+// versions, depending on if `VIAMCPPSDK_GRPCXX_LEGACY_FWD` is defined.
+// The default behavior is for the variable to be undefined, providing the behavior for recent
+// versions. If you are experiencing compilation errors in an installed version of the SDK it may be
+// due to a mismatch with the configured version of this header and the grpc version found by the
+// compiler. You may wish to comment/uncomment the define above as needed, or add the definition
+// with `-D` to the compiler.
+#ifndef VIAMCPPSDK_GRPCXX_LEGACY_FWD
+
+namespace grpc {
+
+class Channel;
+
+class ClientContext;
+
+template <typename>
+class ClientReaderInterface;
+
+class Server;
+
+class ServerBuilder;
+
+class ServerCredentials;
+
+}  // namespace grpc
+
+namespace viam {
+namespace sdk {
+
+using GrpcChannel = ::grpc::Channel;
+
+using GrpcClientContext = ::grpc::ClientContext;
+
+template <typename T>
+using GrpcClientReaderInterface = ::grpc::ClientReaderInterface<T>;
+
+using GrpcServer = ::grpc::Server;
+
+using GrpcServerBuilder = ::grpc::ServerBuilder;
+
+using GrpcServerCredentials = ::grpc::ServerCredentials;
+
+}  // namespace sdk
+}  // namespace viam
+
+#else
+
+namespace grpc_impl {
+
+class Channel;
+
+class ClientContext;
+
+template <typename>
+class ClientReaderInterface;
+
+class Server;
+
+class ServerBuilder;
+
+class ServerCredentials;
+
+}  // namespace grpc_impl
+
+namespace viam {
+namespace sdk {
+
+using GrpcChannel = ::grpc_impl::Channel;
+
+using GrpcClientContext = ::grpc_impl::ClientContext;
+
+template <typename T>
+using GrpcClientReaderInterface = ::grpc_impl::ClientReaderInterface<T>;
+
+using GrpcServer = ::grpc_impl::Server;
+
+using GrpcServerBuilder = ::grpc_impl::ServerBuilder;
+
+using GrpcServerCredentials = ::grpc_impl::ServerCredentials;
+
+}  // namespace sdk
+}  // namespace viam
+
+#endif
