@@ -56,7 +56,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         const std::lock_guard<std::mutex> lock(parent.lock_);
 
         std::shared_ptr<Resource> res;
-        const Dependencies deps = parent.get_dependencies_(request->dependencies(), cfg.name());
+        const Dependencies deps = parent.get_dependencies_(&request->dependencies(), cfg.name());
         const std::shared_ptr<const ModelRegistration> reg =
             Registry::lookup_model(cfg.api(), cfg.model());
         if (reg) {
@@ -82,7 +82,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         const viam::app::v1::ComponentConfig& proto = request->config();
         ResourceConfig cfg = v2::from_proto(proto);
 
-        const Dependencies deps = parent.get_dependencies_(request->dependencies(), cfg.name());
+        const Dependencies deps = parent.get_dependencies_(&request->dependencies(), cfg.name());
 
         auto resource_server = parent.server_->lookup_resource_server(cfg.api());
         if (!resource_server) {
@@ -189,10 +189,10 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
 };
 
 Dependencies ModuleService::get_dependencies_(
-    google::protobuf::RepeatedPtrField<std::string> const& proto,
+    google::protobuf::RepeatedPtrField<std::string> const* proto,
     std::string const& resource_name) {
     Dependencies deps;
-    for (const auto& dep : proto) {
+    for (const auto& dep : *proto) {
         auto dep_name = Name::from_string(dep);
         const std::shared_ptr<Resource> dep_resource = get_parent_resource_(dep_name);
         if (!dep_resource) {
@@ -277,12 +277,10 @@ void ModuleService::add_model_from_registry_inlock_(API api,
     const std::shared_ptr<const ResourceServerRegistration> creator =
         Registry::lookup_resource_server(api);
     std::string name;
-    const google::protobuf::ServiceDescriptor* sd = nullptr;
     if (creator && creator->service_descriptor()) {
         name = creator->service_descriptor()->full_name();
-        sd = creator->service_descriptor();
     }
-    const RPCSubtype rpc_subtype(std::move(api), name, *sd);
+    const RPCSubtype rpc_subtype(std::move(api), name);
     module_->mutable_handles().add_model(std::move(model), rpc_subtype);
 };
 

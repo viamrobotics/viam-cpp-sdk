@@ -8,6 +8,15 @@
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/rpc/server.hpp>
 
+namespace google {
+namespace protobuf {
+
+template <typename>
+class RepeatedPtrField;
+
+}  // namespace protobuf
+}  // namespace google
+
 namespace viam {
 namespace sdk {
 
@@ -51,7 +60,7 @@ class ModuleService {
     friend ModuleService::ServiceImpl;
 
     void add_model_from_registry_inlock_(API api, Model model, const std::lock_guard<std::mutex>&);
-    Dependencies get_dependencies_(google::protobuf::RepeatedPtrField<std::string> const& proto,
+    Dependencies get_dependencies_(google::protobuf::RepeatedPtrField<std::string> const* proto,
                                    std::string const& resource_name);
     std::shared_ptr<Resource> get_parent_resource_(const Name& name);
 
