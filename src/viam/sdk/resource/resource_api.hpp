@@ -2,8 +2,6 @@
 
 #include <string>
 
-#include <google/protobuf/descriptor.h>
-
 #include <viam/sdk/common/proto_convert.hpp>
 
 namespace viam {
@@ -99,23 +97,18 @@ struct from_proto<common::v1::ResourceName> {
 
 class RPCSubtype {
    public:
-    bool operator<(const RPCSubtype& rhs) const {
-        return (api_.to_string() + proto_service_name_ + descriptor_.DebugString()) <
-               (rhs.api_.to_string() + rhs.proto_service_name_ + rhs.descriptor_.DebugString());
-    };
-    const std::string& proto_service_name() const;
-    const API& api() const;
+    RPCSubtype(API api);
+    RPCSubtype(API api, std::string proto_service_name);
 
-    RPCSubtype(API api, const google::protobuf::ServiceDescriptor& descriptor);
-    RPCSubtype(API api,
-               std::string proto_service_name,
-               const google::protobuf::ServiceDescriptor& descriptor);
+    const API& api() const;
+    const std::string& proto_service_name() const;
+
     friend bool operator==(const RPCSubtype& lhs, const RPCSubtype& rhs);
+    friend bool operator<(const RPCSubtype& lhs, const RPCSubtype& rhs);
 
    private:
-    const google::protobuf::ServiceDescriptor& descriptor_;
-    std::string proto_service_name_;
     API api_;
+    std::string proto_service_name_;
 };
 
 class ModelFamily {

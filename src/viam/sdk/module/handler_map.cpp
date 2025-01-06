@@ -3,7 +3,6 @@
 #include <memory>
 
 #include <boost/log/trivial.hpp>
-#include <google/protobuf/descriptor.h>
 
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/module/v1/module.pb.h>
@@ -62,14 +61,11 @@ HandlerMap_ from_proto<module::v1::HandlerMap>::operator()(
     for (const auto& handler : handlers) {
         const viam::common::v1::ResourceName name = handler.subtype().subtype();
         const API api(name.namespace_(), name.type(), name.subtype());
-        const google::protobuf::DescriptorPool* pool =
-            google::protobuf::DescriptorPool::generated_pool();
-        const google::protobuf::ServiceDescriptor* sd = pool->FindServiceByName(name.type());
-        const RPCSubtype handle(api, *sd);
+        const RPCSubtype handle(api);
         for (const auto& mod : handler.models()) {
             try {
                 hm.add_model(Model::from_str(mod), handle);
-            } catch (const std::exception& ex) {  // NOLINT
+            } catch (const std::exception& ex) {
                 BOOST_LOG_TRIVIAL(error) << "Error " << ex.what() << " processing model " + mod;
             }
         }

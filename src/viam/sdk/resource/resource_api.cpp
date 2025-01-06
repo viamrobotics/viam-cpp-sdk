@@ -165,25 +165,24 @@ std::ostream& operator<<(std::ostream& os, const Name& v) {
     return os;
 }
 
+bool operator<(const RPCSubtype& lhs, const RPCSubtype& rhs) {
+    return std::tie(lhs.api(), lhs.proto_service_name()) <
+           std::tie(rhs.api(), rhs.proto_service_name());
+}
+
 bool operator==(const RPCSubtype& lhs, const RPCSubtype& rhs) {
-    return lhs.api_.to_string() == rhs.api_.to_string() &&
-           lhs.proto_service_name_ == rhs.proto_service_name_ &&
-           lhs.descriptor_.DebugString() == rhs.descriptor_.DebugString();
+    return std::tie(lhs.api(), lhs.proto_service_name()) ==
+           std::tie(rhs.api(), rhs.proto_service_name());
 }
 
 bool operator==(const Model& lhs, const Model& rhs) {
     return lhs.to_string() == rhs.to_string();
 }
 
-RPCSubtype::RPCSubtype(API api,
-                       std::string proto_service_name,
-                       const google::protobuf::ServiceDescriptor& descriptor)
-    : descriptor_(descriptor),
-      proto_service_name_(std::move(proto_service_name)),
-      api_(std::move(api)) {}
+RPCSubtype::RPCSubtype(API api, std::string proto_service_name)
+    : api_(std::move(api)), proto_service_name_(std::move(proto_service_name)) {}
 
-RPCSubtype::RPCSubtype(API api, const google::protobuf::ServiceDescriptor& descriptor)
-    : descriptor_(descriptor), api_(std::move(api)) {}
+RPCSubtype::RPCSubtype(API api) : api_(std::move(api)) {}
 
 const std::string& RPCSubtype::proto_service_name() const {
     return proto_service_name_;
