@@ -3,8 +3,10 @@
 /// @brief Defines custom exceptions for the SDK.
 #pragma once
 #include <grpcpp/support/status.h>
+
 #include <stdexcept>
 #include <string>
+#include <system_error>
 
 #include <viam/sdk/resource/resource_api.hpp>
 
