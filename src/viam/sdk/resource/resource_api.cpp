@@ -27,39 +27,23 @@ const std::regex MODEL_REGEX("^([\\w-]+):([\\w-]+):([\\w-]+)$");
 // NOLINTNEXTLINE
 std::regex SINGLE_FIELD_REGEX("^([\\w-]+)$");
 
-std::string APIType::to_string() const {
-    return namespace_ + ":" + resource_type_;
-}
-
-APIType::APIType(std::string namespace_, std::string resource_type)
-    : namespace_(std::move(namespace_)), resource_type_(std::move(resource_type)) {}
-
 std::string API::to_string() const {
-    return APIType::to_string() + ":" + resource_subtype_;
+    std::ostringstream os;
+    os << namespace_ << ":" << resource_type_ << ":" << resource_subtype_;
+
+    return os.str();
 }
 
-const std::string& APIType::type_namespace() const {
+const std::string& API::type_namespace() const {
     return namespace_;
 }
 
-void APIType::set_namespace(const std::string& type_namespace) {
-    this->namespace_ = type_namespace;
-}
-
-void APIType::set_resource_type(const std::string& resource_type) {
-    this->resource_type_ = resource_type;
-}
-
-const std::string& APIType::resource_type() const {
+const std::string& API::resource_type() const {
     return resource_type_;
 }
 
 const std::string& API::resource_subtype() const {
     return resource_subtype_;
-}
-
-void API::set_resource_subtype(const std::string& subtype) {
-    this->resource_subtype_ = subtype;
 }
 
 API API::from_string(std::string api) {
@@ -71,19 +55,17 @@ API API::from_string(std::string api) {
     throw Exception("string " + api + " is not a valid api name");
 }
 
-API::API(APIType type, std::string resource_subtype)
-    : APIType(std::move(type)), resource_subtype_(std::move(resource_subtype)) {}
-
-API::API(std::string namespace_, std::string resource_type, std::string resource_subtype)
-    : APIType(std::move(namespace_), std::move(resource_type)),
+API::API(std::string ns, std::string resource_type, std::string resource_subtype)
+    : namespace_(std::move(ns)),
+      resource_type_(std::move(resource_type)),
       resource_subtype_(std::move(resource_subtype)) {}
 
 bool API::is_service_type() {
-    return (this->resource_type() == "service");
+    return resource_type_ == "service";
 }
 
 bool API::is_component_type() {
-    return (this->resource_type() == "component");
+    return resource_type_ == "component";
 }
 
 Name::Name(API api, std::string remote, std::string name)
@@ -160,11 +142,13 @@ Name from_proto<common::v1::ResourceName>::operator()(const common::v1::Resource
 }  // namespace proto_convert_details
 
 bool operator==(const API& lhs, const API& rhs) {
-    return lhs.to_string() == rhs.to_string();
+    return std::tie(lhs.namespace_, lhs.resource_type_, lhs.resource_subtype_) ==
+           std::tie(rhs.namespace_, rhs.resource_type_, rhs.resource_subtype_);
 }
 
 bool operator<(const API& lhs, const API& rhs) {
-    return lhs.to_string() < rhs.to_string();
+    return std::tie(lhs.namespace_, lhs.resource_type_, lhs.resource_subtype_) <
+           std::tie(rhs.namespace_, rhs.resource_type_, rhs.resource_subtype_);
 }
 
 std::ostream& operator<<(std::ostream& os, const API& v) {

@@ -95,19 +95,19 @@ const ProtoStruct& ResourceConfig::attributes() const {
 void ResourceConfig::fix_api() {
     if (this->api_.type_namespace().empty() && this->namespace__.empty()) {
         this->namespace__ = kRDK;
-        this->api_.set_namespace(kRDK);
+        this->api_.namespace_ = kRDK;
     } else if (this->api_.type_namespace().empty()) {
-        this->api_.set_namespace(this->namespace__);
+        api_.namespace_ = namespace__;
     } else {
         this->namespace__ = this->api_.type_namespace();
     }
 
     if (this->api_.resource_type().empty()) {
-        this->api_.set_resource_type(kComponent);
+        api_.resource_type_ = kComponent;
     }
 
     if (this->api_.resource_subtype().empty()) {
-        this->api_.set_resource_subtype(this->type_);
+        api_.resource_subtype_ = this->type_;
     } else if (this->type_.empty()) {
         this->type_ = this->api_.resource_subtype();
     }

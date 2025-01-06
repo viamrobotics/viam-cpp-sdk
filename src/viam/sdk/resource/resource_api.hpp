@@ -19,45 +19,29 @@ class ResourceName;
 namespace viam {
 namespace sdk {
 
-/// @class APIType
-/// @brief Defines a resource's namespace (e.g., `RDK`) and type (e.g., component or service).
-class APIType {
-   public:
-    APIType() = default;
-    APIType(std::string namespace_, std::string resource_type);
-
-    virtual std::string to_string() const;
-
-    const std::string& type_namespace() const;
-    const std::string& resource_type() const;
-
-    void set_namespace(const std::string& type_namespace);
-    void set_resource_type(const std::string& resource_type);
-
-   private:
-    std::string namespace_;
-    std::string resource_type_;
-};
-
 /// @class API
-/// @brief Extends `APIType` to additionally define a resource's subtype (e.g., `camera`).
-// TODO: Maybe just merge these two classes or at least use composition rather than inheritance
-class API : public APIType {
+class API {
    public:
+    // Choosing to make this a friend rather than exposing public setters for everyone.
+    friend class ResourceConfig;
+
     static API from_string(std::string api);
 
     API() = default;
     API(std::string namespace_, std::string resource_type, std::string resource_subtype);
-    API(APIType type, std::string resource_subtype);
 
-    virtual std::string to_string() const override;
+    std::string to_string() const;
 
+    const std::string& type_namespace() const;
+    const std::string& resource_type() const;
     const std::string& resource_subtype() const;
-    void set_resource_subtype(const std::string& subtype);
+
     bool is_component_type();
     bool is_service_type();
+
     friend bool operator==(API const& lhs, API const& rhs);
     friend bool operator<(const API& lhs, const API& rhs);
+
     friend std::ostream& operator<<(std::ostream& os, const API& v);
 
     template <typename T>
@@ -69,6 +53,8 @@ class API : public APIType {
     }
 
    private:
+    std::string namespace_;
+    std::string resource_type_;
     std::string resource_subtype_;
 };
 
