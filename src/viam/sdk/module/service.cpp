@@ -180,7 +180,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
                          const ::viam::module::v1::ReadyRequest* request,
                          ::viam::module::v1::ReadyResponse* response) override {
         const std::lock_guard<std::mutex> lock(parent.lock_);
-        const viam::module::v1::HandlerMap hm = parent.module_->handles().to_proto();
+        const viam::module::v1::HandlerMap hm = v2::to_proto(parent.module_->handles());
         *response->mutable_handlermap() = hm;
         parent.parent_addr_ = request->parent_address();
         response->set_ready(parent.module_->ready());
