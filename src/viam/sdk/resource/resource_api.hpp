@@ -26,7 +26,7 @@ class API {
     static API from_string(std::string api);
 
     API() = default;
-    API(std::string namespace_, std::string resource_type, std::string resource_subtype);
+    API(std::string ns, std::string resource_type, std::string resource_subtype);
 
     std::string to_string() const;
 
