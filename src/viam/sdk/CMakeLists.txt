@@ -115,7 +115,6 @@ target_sources(viamsdk
     resource/resource_server_base.cpp
     resource/stoppable.cpp
     robot/client.cpp
-    robot/service.cpp
     rpc/dial.cpp
     rpc/server.cpp
     rpc/private/viam_grpc_channel.cpp
@@ -180,7 +179,6 @@ target_sources(viamsdk
       ../../viam/sdk/resource/resource_server_base.hpp
       ../../viam/sdk/resource/stoppable.hpp
       ../../viam/sdk/robot/client.hpp
-      ../../viam/sdk/robot/service.hpp
       ../../viam/sdk/rpc/dial.hpp
       ../../viam/sdk/rpc/message_sizes.hpp
       ../../viam/sdk/rpc/server.hpp
