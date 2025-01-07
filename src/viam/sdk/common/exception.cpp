@@ -6,9 +6,9 @@ namespace viam {
 namespace sdk {
 
 Exception::Exception(ErrorCondition condition, const std::string& what)
-    : std::runtime_error("viam::sdk::Exception: " + what), condition_(condition) {};
+    : std::runtime_error("viam::sdk::Exception: " + what), condition_(condition) {}
 
-Exception::Exception(const std::string& what) : Exception(ErrorCondition::k_general, what) {};
+Exception::Exception(const std::string& what) : Exception(ErrorCondition::k_general, what) {}
 
 const std::error_condition& Exception::condition() const noexcept {
     return condition_;
