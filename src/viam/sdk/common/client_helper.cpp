@@ -21,7 +21,7 @@ namespace client_helper_details {
 }
 
 bool isStatusCancelled(int status) noexcept {
-    return status = ::grpc::StatusCode::CANCELLED;
+    return status == ::grpc::StatusCode::CANCELLED;
 }
 
 }  // namespace client_helper_details
