@@ -2,11 +2,17 @@
 ///
 /// @brief Defines custom exceptions for the SDK.
 #pragma once
-#include <grpcpp/support/status.h>
+
+#include <memory>
 #include <stdexcept>
 #include <string>
+#include <system_error>
 
-#include <viam/sdk/resource/resource_api.hpp>
+namespace grpc {
+
+class Status;
+
+}  // namespace grpc
 
 namespace viam {
 namespace sdk {
@@ -49,12 +55,13 @@ class Exception : public std::runtime_error {
 /// @ingroup Exception
 class GRPCException : public Exception {
    public:
-    explicit GRPCException(grpc::Status status);
+    explicit GRPCException(const grpc::Status* status);
+    ~GRPCException();
 
-    const grpc::Status& status() const noexcept;
+    const grpc::Status* status() const noexcept;
 
    private:
-    grpc::Status status_;
+    std::unique_ptr<grpc::Status> status_;
 };
 
 }  // namespace sdk
