@@ -42,7 +42,8 @@ class Exception : public std::runtime_error {
    public:
     explicit Exception(ErrorCondition condition, const std::string& what);
     explicit Exception(const std::string& what);
-    virtual ~Exception();
+
+    ~Exception() override = default;
 
     const std::error_condition& condition() const noexcept;
 
@@ -56,12 +57,12 @@ class Exception : public std::runtime_error {
 class GRPCException : public Exception {
    public:
     explicit GRPCException(const grpc::Status* status);
-    ~GRPCException();
+    ~GRPCException() override = default;
 
     const grpc::Status* status() const noexcept;
 
    private:
-    std::unique_ptr<grpc::Status> status_;
+    std::shared_ptr<grpc::Status> status_;
 };
 
 }  // namespace sdk

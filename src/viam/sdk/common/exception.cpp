@@ -10,8 +10,6 @@ Exception::Exception(ErrorCondition condition, const std::string& what)
 
 Exception::Exception(const std::string& what) : Exception(ErrorCondition::k_general, what) {};
 
-Exception::~Exception() = default;
-
 const std::error_condition& Exception::condition() const noexcept {
     return condition_;
 };
@@ -49,9 +47,7 @@ std::error_condition make_error_condition(ErrorCondition e) {
 
 GRPCException::GRPCException(const grpc::Status* status)
     : Exception(ErrorCondition::k_grpc, status->error_message()),
-      status_(std::make_unique<grpc::Status>(*status)) {}
-
-GRPCException::~GRPCException() = default;
+      status_(std::make_shared<grpc::Status>(*status)) {}
 
 const grpc::Status* GRPCException::status() const noexcept {
     return status_.get();
