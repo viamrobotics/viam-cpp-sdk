@@ -1,5 +1,6 @@
 #pragma once
 
+#include <chrono>
 #include <memory>
 
 #include <boost/optional/optional.hpp>
