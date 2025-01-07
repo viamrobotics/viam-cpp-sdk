@@ -14,7 +14,7 @@
 
 #include <viam/sdk/services/private/mlmodel_server.hpp>
 
-#include <viam/sdk/common/service_helper.hpp>
+#include <viam/sdk/common/private/service_helper.hpp>
 #include <viam/sdk/rpc/server.hpp>
 #include <viam/sdk/services/mlmodel.hpp>
 #include <viam/sdk/services/private/mlmodel.hpp>

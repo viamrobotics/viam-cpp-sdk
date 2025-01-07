@@ -5,8 +5,8 @@
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/private/repeated_ptr_convert.hpp>
+#include <viam/sdk/common/private/service_helper.hpp>
 #include <viam/sdk/common/proto_value.hpp>
-#include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/services/motion.hpp>
 #include <viam/sdk/services/private/motion_server.hpp>

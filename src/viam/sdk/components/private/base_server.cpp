@@ -3,7 +3,7 @@
 #include <viam/api/component/base/v1/base.pb.h>
 
 #include <viam/sdk/common/linear_algebra.hpp>
-#include <viam/sdk/common/service_helper.hpp>
+#include <viam/sdk/common/private/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/base.hpp>
 #include <viam/sdk/config/resource.hpp>
