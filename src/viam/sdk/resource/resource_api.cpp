@@ -165,11 +165,6 @@ std::ostream& operator<<(std::ostream& os, const Name& v) {
     return os;
 }
 
-bool operator<(const RPCSubtype& lhs, const RPCSubtype& rhs) {
-    return std::tie(lhs.api(), lhs.proto_service_name()) <
-           std::tie(rhs.api(), rhs.proto_service_name());
-}
-
 bool operator==(const RPCSubtype& lhs, const RPCSubtype& rhs) {
     return std::tie(lhs.api(), lhs.proto_service_name()) ==
            std::tie(rhs.api(), rhs.proto_service_name());

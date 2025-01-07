@@ -104,7 +104,6 @@ class RPCSubtype {
     const std::string& proto_service_name() const;
 
     friend bool operator==(const RPCSubtype& lhs, const RPCSubtype& rhs);
-    friend bool operator<(const RPCSubtype& lhs, const RPCSubtype& rhs);
 
    private:
     API api_;
