@@ -36,7 +36,6 @@
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/stoppable.hpp>
 #include <viam/sdk/robot/client.hpp>
-#include <viam/sdk/robot/service.hpp>
 #include <viam/sdk/rpc/server.hpp>
 
 namespace viam {

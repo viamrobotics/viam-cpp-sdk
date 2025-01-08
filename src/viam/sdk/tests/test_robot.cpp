@@ -12,7 +12,6 @@
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/camera.hpp>
 #include <viam/sdk/components/motor.hpp>
-#include <viam/sdk/robot/service.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/tests/mocks/camera_mocks.hpp>
 #include <viam/sdk/tests/mocks/generic_mocks.hpp>
