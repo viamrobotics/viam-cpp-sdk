@@ -1,6 +1,6 @@
 #include <viam/sdk/components/private/generic_server.hpp>
 
-#include <viam/sdk/common/service_helper.hpp>
+#include <viam/sdk/common/private/service_helper.hpp>
 #include <viam/sdk/components/generic.hpp>
 #include <viam/sdk/rpc/server.hpp>
 

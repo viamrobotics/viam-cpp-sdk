@@ -71,7 +71,7 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
 
     const auto result = stub_->Infer(ctx, *req, resp);
     if (!result.ok()) {
-        throw GRPCException(result);
+        throw GRPCException(&result);
     }
 
     for (const auto& kv : resp->output_tensors().tensors()) {

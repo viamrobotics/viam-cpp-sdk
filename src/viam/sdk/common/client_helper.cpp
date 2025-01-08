@@ -3,6 +3,7 @@
 #include <cstdlib>
 
 #include <grpcpp/client_context.h>
+#include <grpcpp/support/status.h>
 
 #include <boost/log/trivial.hpp>
 
@@ -13,10 +14,14 @@ namespace sdk {
 
 namespace client_helper_details {
 
-[[noreturn]] void errorHandlerReturnedUnexpectedly(const ::grpc::Status& status) noexcept {
+[[noreturn]] void errorHandlerReturnedUnexpectedly(const ::grpc::Status* status) noexcept {
     BOOST_LOG_TRIVIAL(fatal) << "ClientHelper error handler callback returned instead of throwing: "
-                             << status.error_message() << '(' << status.error_details() << ')';
+                             << status->error_message() << '(' << status->error_details() << ')';
     std::abort();
+}
+
+bool isStatusCancelled(int status) noexcept {
+    return status == ::grpc::StatusCode::CANCELLED;
 }
 
 }  // namespace client_helper_details

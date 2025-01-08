@@ -5,18 +5,15 @@
 #include <viam/sdk/common/private/utils.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 
-namespace grpc {
-
-class Status;
-
-}  // namespace grpc
-
 namespace viam {
 namespace sdk {
 
 namespace client_helper_details {
 
-[[noreturn]] void errorHandlerReturnedUnexpectedly(const ::grpc::Status&) noexcept;
+[[noreturn]] void errorHandlerReturnedUnexpectedly(const ::grpc::Status*) noexcept;
+
+// Helper function to test equality of status with grpc::StatusCode::CANCELLED.
+bool isStatusCancelled(int status) noexcept;
 
 }  // namespace client_helper_details
 
@@ -62,7 +59,7 @@ template <typename ClientType,
 class ClientHelper {
     static void default_rsc_(RequestType&) {}
     static void default_rhc_(const ResponseType&) {}
-    static void default_ehc_(const ::grpc::Status& status) {
+    static void default_ehc_(const ::grpc::Status* status) {
         throw GRPCException(status);
     }
 
@@ -111,8 +108,8 @@ class ClientHelper {
                 const_cast<const ResponseType&>(response_));
         }
 
-        std::forward<ErrorHandlerCallable>(ehc)(result);
-        client_helper_details::errorHandlerReturnedUnexpectedly(result);
+        std::forward<ErrorHandlerCallable>(ehc)(&result);
+        client_helper_details::errorHandlerReturnedUnexpectedly(&result);
     }
 
     // A version of invoke for gRPC calls returning `(stream ResponseType)`.
@@ -138,13 +135,13 @@ class ClientHelper {
 
         const auto result = reader->Finish();
 
-        if (result.ok() ||
-            (cancelled_by_handler && result.error_code() == ::grpc::StatusCode::CANCELLED)) {
+        if (result.ok() || (cancelled_by_handler &&
+                            client_helper_details::isStatusCancelled(result.error_code()))) {
             return;
         }
 
-        std::forward<ErrorHandlerCallable>(ehc)(result);
-        client_helper_details::errorHandlerReturnedUnexpectedly(result);
+        std::forward<ErrorHandlerCallable>(ehc)(&result);
+        client_helper_details::errorHandlerReturnedUnexpectedly(&result);
     }
 
    private:

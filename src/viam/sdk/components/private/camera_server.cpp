@@ -3,7 +3,7 @@
 #include <google/protobuf/util/time_util.h>
 #include <grpcpp/support/status.h>
 
-#include <viam/sdk/common/service_helper.hpp>
+#include <viam/sdk/common/private/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/camera.hpp>
 #include <viam/sdk/config/resource.hpp>
