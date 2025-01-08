@@ -11,7 +11,6 @@
 
 #include <viam/sdk/components/generic.hpp>
 #include <viam/sdk/robot/client.hpp>
-#include <viam/sdk/robot/service.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 
 using namespace viam::sdk;

@@ -53,10 +53,10 @@ target_sources(viamsdk
     common/linear_algebra.cpp
     common/pose.cpp
     common/proto_value.cpp
-    common/service_helper.cpp
     common/utils.cpp
     common/version_metadata.cpp
     common/world_state.cpp
+    common/private/service_helper.cpp
     components/arm.cpp
     components/base.cpp
     components/board.cpp
@@ -115,7 +115,6 @@ target_sources(viamsdk
     resource/resource_server_base.cpp
     resource/stoppable.cpp
     robot/client.cpp
-    robot/service.cpp
     rpc/dial.cpp
     rpc/server.cpp
     rpc/private/viam_grpc_channel.cpp
@@ -147,7 +146,6 @@ target_sources(viamsdk
       ../../viam/sdk/common/pose.hpp
       ../../viam/sdk/common/proto_convert.hpp
       ../../viam/sdk/common/proto_value.hpp
-      ../../viam/sdk/common/service_helper.hpp
       ../../viam/sdk/common/utils.hpp
       ../../viam/sdk/common/version_metadata.hpp
       ../../viam/sdk/common/world_state.hpp
@@ -180,7 +178,6 @@ target_sources(viamsdk
       ../../viam/sdk/resource/resource_server_base.hpp
       ../../viam/sdk/resource/stoppable.hpp
       ../../viam/sdk/robot/client.hpp
-      ../../viam/sdk/robot/service.hpp
       ../../viam/sdk/rpc/dial.hpp
       ../../viam/sdk/rpc/message_sizes.hpp
       ../../viam/sdk/rpc/server.hpp

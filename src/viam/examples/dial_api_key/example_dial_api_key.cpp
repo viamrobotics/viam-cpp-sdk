@@ -15,7 +15,6 @@
 #include <grpcpp/support/status.h>
 
 #include <viam/sdk/robot/client.hpp>
-#include <viam/sdk/robot/service.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 
 using namespace viam::sdk;

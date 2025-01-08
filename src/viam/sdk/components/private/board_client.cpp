@@ -123,7 +123,7 @@ Board::analog_response BoardClient::read_analog(const std::string& analog_reader
 
     const grpc::Status status = stub_->ReadAnalogReader(ctx, request, &response);
     if (!status.ok()) {
-        throw GRPCException(status);
+        throw GRPCException(&status);
     }
     return Board::analog_response{
         response.value(), response.min_range(), response.max_range(), response.step_size()};
@@ -153,7 +153,7 @@ Board::digital_value BoardClient::read_digital_interrupt(const std::string& digi
 
     const grpc::Status status = stub_->GetDigitalInterruptValue(ctx, request, &response);
     if (!status.ok()) {
-        throw GRPCException(status);
+        throw GRPCException(&status);
     }
     return response.value();
 }

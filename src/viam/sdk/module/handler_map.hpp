@@ -9,7 +9,7 @@ namespace v1 {
 
 class HandlerMap;
 
-}
+}  // namespace v1
 }  // namespace module
 }  // namespace viam
 
