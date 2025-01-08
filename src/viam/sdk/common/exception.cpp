@@ -1,14 +1,14 @@
 #include <viam/sdk/common/exception.hpp>
 
+#include <grpcpp/support/status.h>
+
 namespace viam {
 namespace sdk {
 
 Exception::Exception(ErrorCondition condition, const std::string& what)
-    : std::runtime_error("viam::sdk::Exception: " + what), condition_(condition){};
+    : std::runtime_error("viam::sdk::Exception: " + what), condition_(condition) {}
 
-Exception::Exception(const std::string& what) : Exception(ErrorCondition::k_general, what){};
-
-Exception::~Exception() = default;
+Exception::Exception(const std::string& what) : Exception(ErrorCondition::k_general, what) {}
 
 const std::error_condition& Exception::condition() const noexcept {
     return condition_;
@@ -45,11 +45,12 @@ std::error_condition make_error_condition(ErrorCondition e) {
     return {static_cast<int>(e), errorCategory};
 }
 
-GRPCException::GRPCException(grpc::Status status)
-    : Exception(ErrorCondition::k_grpc, status.error_message()), status_(std::move(status)){};
+GRPCException::GRPCException(const grpc::Status* status)
+    : Exception(ErrorCondition::k_grpc, status->error_message()),
+      status_(std::make_shared<grpc::Status>(*status)) {}
 
-const grpc::Status& GRPCException::status() const noexcept {
-    return status_;
+const grpc::Status* GRPCException::status() const noexcept {
+    return status_.get();
 }
 
 }  // namespace sdk

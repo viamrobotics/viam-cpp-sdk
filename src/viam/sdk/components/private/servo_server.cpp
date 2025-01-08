@@ -1,6 +1,6 @@
 #include <viam/sdk/components/private/servo_server.hpp>
 
-#include <viam/sdk/common/service_helper.hpp>
+#include <viam/sdk/common/private/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/servo.hpp>
 #include <viam/sdk/config/resource.hpp>
