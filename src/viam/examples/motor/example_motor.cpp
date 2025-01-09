@@ -1,7 +1,9 @@
+#include <unistd.h>
+
 #include <chrono>
 #include <fstream>
+#include <iostream>
 #include <string>
-#include <unistd.h>
 #include <vector>
 
 #include <viam/sdk/components/motor.hpp>

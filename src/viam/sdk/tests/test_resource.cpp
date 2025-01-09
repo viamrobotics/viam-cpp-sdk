@@ -26,12 +26,9 @@ using google::protobuf::Struct;
 using google::protobuf::Value;
 
 BOOST_AUTO_TEST_CASE(test_api) {
-    API api1;
-    api1.set_namespace("ns");
+    API api1("ns", "component", "st");
     BOOST_CHECK_EQUAL(api1.type_namespace(), "ns");
-    api1.set_resource_type("component");
     BOOST_CHECK_EQUAL(api1.resource_type(), "component");
-    api1.set_resource_subtype("st");
     BOOST_CHECK_EQUAL(api1.resource_subtype(), "st");
     BOOST_CHECK_EQUAL(api1.to_string(), "ns:component:st");
     BOOST_CHECK(!api1.is_service_type());
