@@ -17,7 +17,7 @@ namespace sdk {
 namespace proto_convert_details {
 
 template <>
-struct to_proto<Navigation::Path> {
+struct to_proto_impl<Navigation::Path> {
     void operator()(const Navigation::Path& self, service::navigation::v1::Path* proto) const {
         *(proto->mutable_destination_waypoint_id()) = self.destination_waypoint_id;
         *(proto->mutable_geopoints()) = impl::to_repeated_field(self.geopoints);
@@ -25,7 +25,7 @@ struct to_proto<Navigation::Path> {
 };
 
 template <>
-struct to_proto<Navigation::Waypoint> {
+struct to_proto_impl<Navigation::Waypoint> {
     void operator()(const Navigation::Waypoint& self,
                     service::navigation::v1::Waypoint* proto) const {
         *(proto->mutable_id()) = self.id;

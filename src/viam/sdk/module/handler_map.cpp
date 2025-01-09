@@ -33,8 +33,8 @@ std::ostream& operator<<(std::ostream& os, const HandlerMap_& hm) {
 
 namespace proto_convert_details {
 
-void to_proto<HandlerMap_>::operator()(const HandlerMap_& self,
-                                       module::v1::HandlerMap* proto) const {
+void to_proto_impl<HandlerMap_>::operator()(const HandlerMap_& self,
+                                            module::v1::HandlerMap* proto) const {
     for (const auto& h : self.handles()) {
         viam::module::v1::HandlerDefinition hd;
         for (const auto& model : h.second) {
@@ -51,7 +51,7 @@ void to_proto<HandlerMap_>::operator()(const HandlerMap_& self,
     }
 }
 
-HandlerMap_ from_proto<module::v1::HandlerMap>::operator()(
+HandlerMap_ from_proto_impl<module::v1::HandlerMap>::operator()(
     const module::v1::HandlerMap* proto) const {
     HandlerMap_ hm;
 

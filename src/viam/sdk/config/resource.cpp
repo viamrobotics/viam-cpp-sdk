@@ -122,14 +122,14 @@ void ResourceConfig::fix_api() {
 
 namespace proto_convert_details {
 
-void to_proto<ResourceLevelServiceConfig>::operator()(
+void to_proto_impl<ResourceLevelServiceConfig>::operator()(
     const ResourceLevelServiceConfig& self, app::v1::ResourceLevelServiceConfig* proto) const {
     *proto->mutable_type() = self.type;
     *proto->mutable_attributes() = v2::to_proto(self.attributes);
 }
 
-void to_proto<ResourceConfig>::operator()(const ResourceConfig& self,
-                                          app::v1::ComponentConfig* proto) const {
+void to_proto_impl<ResourceConfig>::operator()(const ResourceConfig& self,
+                                               app::v1::ComponentConfig* proto) const {
     *proto->mutable_service_configs() = impl::to_repeated_field(self.service_config());
 
     *proto->mutable_name() = self.name();
@@ -145,7 +145,7 @@ void to_proto<ResourceConfig>::operator()(const ResourceConfig& self,
     *proto->mutable_frame() = v2::to_proto(self.frame());
 }
 
-ResourceConfig from_proto<app::v1::ComponentConfig>::operator()(
+ResourceConfig from_proto_impl<app::v1::ComponentConfig>::operator()(
     const app::v1::ComponentConfig* proto) const {
     return ResourceConfig(proto->type(),
                           proto->name(),

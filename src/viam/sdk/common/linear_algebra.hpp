@@ -41,12 +41,12 @@ struct Vector3 {
 namespace proto_convert_details {
 
 template <>
-struct to_proto<Vector3> {
+struct to_proto_impl<Vector3> {
     void operator()(const Vector3&, common::v1::Vector3*) const;
 };
 
 template <>
-struct from_proto<common::v1::Vector3> {
+struct from_proto_impl<common::v1::Vector3> {
     Vector3 operator()(const common::v1::Vector3*) const;
 };
 

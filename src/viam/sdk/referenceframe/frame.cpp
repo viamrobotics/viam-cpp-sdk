@@ -36,14 +36,14 @@ const std::string& LinkConfig::get_parent() const {
 
 namespace proto_convert_details {
 
-void to_proto<LinkConfig>::operator()(const LinkConfig& self, app::v1::Frame* proto) const {
+void to_proto_impl<LinkConfig>::operator()(const LinkConfig& self, app::v1::Frame* proto) const {
     *(proto->mutable_parent()) = self.get_parent();
     *(proto->mutable_geometry()) = v2::to_proto(self.get_geometry_config());
     *(proto->mutable_orientation()) = v2::to_proto(self.get_orientation());
     *(proto->mutable_translation()) = v2::to_proto(self.get_translation());
 }
 
-LinkConfig from_proto<app::v1::Frame>::operator()(const app::v1::Frame* proto) const {
+LinkConfig from_proto_impl<app::v1::Frame>::operator()(const app::v1::Frame* proto) const {
     return LinkConfig(
         v2::from_proto(proto->translation()),
         proto->has_orientation() ? v2::from_proto(proto->orientation()) : Orientation{},

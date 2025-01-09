@@ -30,7 +30,7 @@ bool operator==(const response_metadata& lhs, const response_metadata& rhs) {
 
 namespace proto_convert_details {
 
-void to_proto<time_pt>::operator()(time_pt tp, google::protobuf::Timestamp* result) const {
+void to_proto_impl<time_pt>::operator()(time_pt tp, google::protobuf::Timestamp* result) const {
     const std::chrono::nanoseconds since_epoch = tp.time_since_epoch();
 
     const auto sec_floor = std::chrono::duration_cast<std::chrono::seconds>(since_epoch);
@@ -40,14 +40,14 @@ void to_proto<time_pt>::operator()(time_pt tp, google::protobuf::Timestamp* resu
     result->set_nanos(static_cast<int32_t>(nano_part.count()));
 }
 
-time_pt from_proto<google::protobuf::Timestamp>::operator()(
+time_pt from_proto_impl<google::protobuf::Timestamp>::operator()(
     const google::protobuf::Timestamp* timestamp) const {
     return time_pt{std::chrono::seconds{timestamp->seconds()} +
                    std::chrono::nanoseconds{timestamp->nanos()}};
 }
 
-void to_proto<std::chrono::microseconds>::operator()(std::chrono::microseconds duration,
-                                                     google::protobuf::Duration* proto) const {
+void to_proto_impl<std::chrono::microseconds>::operator()(std::chrono::microseconds duration,
+                                                          google::protobuf::Duration* proto) const {
     namespace sc = std::chrono;
 
     const sc::seconds seconds = sc::duration_cast<sc::seconds>(duration);
@@ -57,7 +57,7 @@ void to_proto<std::chrono::microseconds>::operator()(std::chrono::microseconds d
     proto->set_seconds(seconds.count());
 }
 
-std::chrono::microseconds from_proto<google::protobuf::Duration>::operator()(
+std::chrono::microseconds from_proto_impl<google::protobuf::Duration>::operator()(
     const google::protobuf::Duration* proto) const {
     namespace sc = std::chrono;
     const sc::seconds seconds_part{proto->seconds()};
@@ -74,12 +74,12 @@ std::chrono::microseconds from_proto<google::protobuf::Duration>::operator()(
     return from_seconds + from_nanos;
 }
 
-void to_proto<response_metadata>::operator()(const response_metadata& self,
-                                             common::v1::ResponseMetadata* proto) const {
+void to_proto_impl<response_metadata>::operator()(const response_metadata& self,
+                                                  common::v1::ResponseMetadata* proto) const {
     *(proto->mutable_captured_at()) = v2::to_proto(self.captured_at);
 }
 
-response_metadata from_proto<common::v1::ResponseMetadata>::operator()(
+response_metadata from_proto_impl<common::v1::ResponseMetadata>::operator()(
     const common::v1::ResponseMetadata* proto) const {
     return {v2::from_proto(proto->captured_at())};
 }

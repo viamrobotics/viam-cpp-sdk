@@ -19,14 +19,14 @@ namespace sdk {
 namespace proto_convert_details {
 
 template <>
-struct from_proto<service::navigation::v1::Path> {
+struct from_proto_impl<service::navigation::v1::Path> {
     Navigation::Path operator()(const service::navigation::v1::Path* proto) const {
         return {proto->destination_waypoint_id(), impl::from_repeated_field(proto->geopoints())};
     }
 };
 
 template <>
-struct from_proto<service::navigation::v1::Waypoint> {
+struct from_proto_impl<service::navigation::v1::Waypoint> {
     Navigation::Waypoint operator()(const service::navigation::v1::Waypoint* proto) const {
         return {proto->id(), v2::from_proto(proto->location())};
     }

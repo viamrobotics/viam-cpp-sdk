@@ -112,35 +112,35 @@ bool operator==(const geo_geometry& lhs, const geo_geometry& rhs) {
 
 namespace proto_convert_details {
 
-void to_proto<box>::operator()(const box& self, common::v1::RectangularPrism* proto) const {
+void to_proto_impl<box>::operator()(const box& self, common::v1::RectangularPrism* proto) const {
     *(proto->mutable_dims_mm()) = v2::to_proto(Vector3{self.x, self.y, self.z});
 }
 
-box from_proto<common::v1::RectangularPrism>::operator()(
+box from_proto_impl<common::v1::RectangularPrism>::operator()(
     const common::v1::RectangularPrism* proto) const {
     const auto& dims = proto->dims_mm();
     return {dims.x(), dims.y(), dims.z()};
 }
 
-void to_proto<sphere>::operator()(const sphere& self, common::v1::Sphere* proto) const {
+void to_proto_impl<sphere>::operator()(const sphere& self, common::v1::Sphere* proto) const {
     proto->set_radius_mm(self.radius);
 }
 
-sphere from_proto<common::v1::Sphere>::operator()(const common::v1::Sphere* proto) const {
+sphere from_proto_impl<common::v1::Sphere>::operator()(const common::v1::Sphere* proto) const {
     return {proto->radius_mm()};
 }
 
-void to_proto<capsule>::operator()(const capsule& self, common::v1::Capsule* proto) const {
+void to_proto_impl<capsule>::operator()(const capsule& self, common::v1::Capsule* proto) const {
     proto->set_radius_mm(self.radius);
     proto->set_length_mm(self.length);
 }
 
-capsule from_proto<common::v1::Capsule>::operator()(const common::v1::Capsule* proto) const {
+capsule from_proto_impl<common::v1::Capsule>::operator()(const common::v1::Capsule* proto) const {
     return {proto->radius_mm(), proto->length_mm()};
 }
 
-void to_proto<GeometryConfig>::operator()(const GeometryConfig& self,
-                                          common::v1::Geometry* proto) const {
+void to_proto_impl<GeometryConfig>::operator()(const GeometryConfig& self,
+                                               common::v1::Geometry* proto) const {
     struct Visitor {
         common::v1::Geometry& geometry;
 
@@ -163,7 +163,7 @@ void to_proto<GeometryConfig>::operator()(const GeometryConfig& self,
     *(proto->mutable_center()) = v2::to_proto(self.get_pose());
 }
 
-GeometryConfig from_proto<common::v1::Geometry>::operator()(
+GeometryConfig from_proto_impl<common::v1::Geometry>::operator()(
     const common::v1::Geometry* proto) const {
     auto get_specifics = [proto]() -> geometry_specifics {
         switch (proto->geometry_type_case()) {
@@ -183,12 +183,14 @@ GeometryConfig from_proto<common::v1::Geometry>::operator()(
     return GeometryConfig(v2::from_proto(proto->center()), get_specifics(), proto->label());
 }
 
-void to_proto<geo_point>::operator()(const geo_point& self, common::v1::GeoPoint* proto) const {
+void to_proto_impl<geo_point>::operator()(const geo_point& self,
+                                          common::v1::GeoPoint* proto) const {
     proto->set_latitude(self.latitude);
     proto->set_longitude(self.longitude);
 }
 
-geo_point from_proto<common::v1::GeoPoint>::operator()(const common::v1::GeoPoint* proto) const {
+geo_point from_proto_impl<common::v1::GeoPoint>::operator()(
+    const common::v1::GeoPoint* proto) const {
     geo_point result;
     result.latitude = proto->latitude();
     result.longitude = proto->longitude();
@@ -196,18 +198,18 @@ geo_point from_proto<common::v1::GeoPoint>::operator()(const common::v1::GeoPoin
     return result;
 }
 
-void to_proto<geo_geometry>::operator()(const geo_geometry& self,
-                                        common::v1::GeoGeometry* proto) const {
+void to_proto_impl<geo_geometry>::operator()(const geo_geometry& self,
+                                             common::v1::GeoGeometry* proto) const {
     *(proto->mutable_location()) = v2::to_proto(self.location);
     *(proto->mutable_geometries()) = impl::to_repeated_field(self.geometries);
 }
 
-geo_geometry from_proto<common::v1::GeoGeometry>::operator()(
+geo_geometry from_proto_impl<common::v1::GeoGeometry>::operator()(
     const common::v1::GeoGeometry* proto) const {
     return {v2::from_proto(proto->location()), impl::from_repeated_field(proto->geometries())};
 }
 
-std::vector<GeometryConfig> from_proto<common::v1::GetGeometriesResponse>::operator()(
+std::vector<GeometryConfig> from_proto_impl<common::v1::GetGeometriesResponse>::operator()(
     const common::v1::GetGeometriesResponse* proto) const {
     return impl::from_repeated_field(proto->geometries());
 }

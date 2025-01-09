@@ -250,11 +250,12 @@ void to_value(const ProtoStruct& m, Value* v) {
 
 namespace proto_convert_details {
 
-void to_proto<ProtoValue>::operator()(const ProtoValue& self, google::protobuf::Value* v) const {
+void to_proto_impl<ProtoValue>::operator()(const ProtoValue& self,
+                                           google::protobuf::Value* v) const {
     self.vtable_.to_value(self.self_.get(), v);
 }
 
-ProtoValue from_proto<google::protobuf::Value>::operator()(  // NOLINT(misc-no-recursion)
+ProtoValue from_proto_impl<google::protobuf::Value>::operator()(  // NOLINT(misc-no-recursion)
     const google::protobuf::Value* v) const {
     switch (v->kind_case()) {
         case Value::KindCase::kBoolValue: {
@@ -285,14 +286,15 @@ ProtoValue from_proto<google::protobuf::Value>::operator()(  // NOLINT(misc-no-r
     }
 }
 
-void to_proto<ProtoStruct>::operator()(const ProtoStruct& self, google::protobuf::Struct* s) const {
+void to_proto_impl<ProtoStruct>::operator()(const ProtoStruct& self,
+                                            google::protobuf::Struct* s) const {
     for (const auto& kv : self) {
         s->mutable_fields()->insert(
             google::protobuf::MapPair<std::string, Value>(kv.first, v2::to_proto(kv.second)));
     }
 }
 
-ProtoStruct from_proto<google::protobuf::Struct>::operator()(  // NOLINT(misc-no-recursion)
+ProtoStruct from_proto_impl<google::protobuf::Struct>::operator()(  // NOLINT(misc-no-recursion)
     const google::protobuf::Struct* s) const {
     ProtoStruct result;
 

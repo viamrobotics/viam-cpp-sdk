@@ -48,32 +48,32 @@ bool operator==(const response_metadata& lhs, const response_metadata& rhs);
 namespace proto_convert_details {
 
 template <>
-struct to_proto<time_pt> {
+struct to_proto_impl<time_pt> {
     void operator()(time_pt, google::protobuf::Timestamp*) const;
 };
 
 template <>
-struct from_proto<google::protobuf::Timestamp> {
+struct from_proto_impl<google::protobuf::Timestamp> {
     time_pt operator()(const google::protobuf::Timestamp*) const;
 };
 
 template <>
-struct to_proto<std::chrono::microseconds> {
+struct to_proto_impl<std::chrono::microseconds> {
     void operator()(std::chrono::microseconds, google::protobuf::Duration*) const;
 };
 
 template <>
-struct from_proto<google::protobuf::Duration> {
+struct from_proto_impl<google::protobuf::Duration> {
     std::chrono::microseconds operator()(const google::protobuf::Duration*) const;
 };
 
 template <>
-struct to_proto<response_metadata> {
+struct to_proto_impl<response_metadata> {
     void operator()(const response_metadata&, common::v1::ResponseMetadata*) const;
 };
 
 template <>
-struct from_proto<common::v1::ResponseMetadata> {
+struct from_proto_impl<common::v1::ResponseMetadata> {
     response_metadata operator()(const common::v1::ResponseMetadata*) const;
 };
 

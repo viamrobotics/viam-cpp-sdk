@@ -84,12 +84,12 @@ class Name {
 namespace proto_convert_details {
 
 template <>
-struct to_proto<Name> {
+struct to_proto_impl<Name> {
     void operator()(const Name&, common::v1::ResourceName*) const;
 };
 
 template <>
-struct from_proto<common::v1::ResourceName> {
+struct from_proto_impl<common::v1::ResourceName> {
     Name operator()(const common::v1::ResourceName*) const;
 };
 

@@ -54,7 +54,7 @@ struct all_moves_noexcept
 /// definition.
 class ProtoValue {
    public:
-    friend proto_convert_details::to_proto<ProtoValue>;
+    friend proto_convert_details::to_proto_impl<ProtoValue>;
 
     /// @brief Type discriminator constants for possible values stored in a ProtoValue.
     enum Kind { k_null = 0, k_bool = 1, k_double = 2, k_string = 3, k_list = 4, k_struct = 5 };
@@ -318,22 +318,22 @@ extern template ProtoStruct&& ProtoValue::get_unchecked<ProtoStruct>() &&;
 namespace proto_convert_details {
 
 template <>
-struct to_proto<ProtoValue> {
+struct to_proto_impl<ProtoValue> {
     void operator()(const ProtoValue&, google::protobuf::Value*) const;
 };
 
 template <>
-struct to_proto<ProtoStruct> {
+struct to_proto_impl<ProtoStruct> {
     void operator()(const ProtoStruct&, google::protobuf::Struct*) const;
 };
 
 template <>
-struct from_proto<google::protobuf::Value> {
+struct from_proto_impl<google::protobuf::Value> {
     ProtoValue operator()(const google::protobuf::Value*) const;
 };
 
 template <>
-struct from_proto<google::protobuf::Struct> {
+struct from_proto_impl<google::protobuf::Struct> {
     ProtoStruct operator()(const google::protobuf::Struct*) const;
 };
 

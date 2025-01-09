@@ -50,22 +50,22 @@ struct pose_in_frame {
 namespace proto_convert_details {
 
 template <>
-struct to_proto<pose> {
+struct to_proto_impl<pose> {
     void operator()(const pose&, common::v1::Pose*) const;
 };
 
 template <>
-struct from_proto<common::v1::Pose> {
+struct from_proto_impl<common::v1::Pose> {
     pose operator()(const common::v1::Pose*) const;
 };
 
 template <>
-struct to_proto<pose_in_frame> {
+struct to_proto_impl<pose_in_frame> {
     void operator()(const pose_in_frame&, common::v1::PoseInFrame*) const;
 };
 
 template <>
-struct from_proto<common::v1::PoseInFrame> {
+struct from_proto_impl<common::v1::PoseInFrame> {
     pose_in_frame operator()(const common::v1::PoseInFrame*) const;
 };
 

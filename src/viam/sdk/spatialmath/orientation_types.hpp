@@ -49,12 +49,12 @@ struct translation {
 namespace proto_convert_details {
 
 template <>
-struct to_proto<translation> {
+struct to_proto_impl<translation> {
     void operator()(const translation&, app::v1::Translation*) const;
 };
 
 template <>
-struct from_proto<app::v1::Translation> {
+struct from_proto_impl<app::v1::Translation> {
     translation operator()(const app::v1::Translation*) const;
 };
 

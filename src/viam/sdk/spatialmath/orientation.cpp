@@ -41,7 +41,8 @@ OrientationType get_type(const Orientation& o) {
 
 namespace proto_convert_details {
 
-void to_proto<Orientation>::operator()(const Orientation& self, app::v1::Orientation* o) const {
+void to_proto_impl<Orientation>::operator()(const Orientation& self,
+                                            app::v1::Orientation* o) const {
     struct Visitor {
         void operator()(const axis_angles& a) {
             app::v1::Orientation_AxisAngles aa;
@@ -93,7 +94,8 @@ void to_proto<Orientation>::operator()(const Orientation& self, app::v1::Orienta
     boost::apply_visitor(Visitor{*o}, self);
 }
 
-Orientation from_proto<app::v1::Orientation>::operator()(const app::v1::Orientation* proto) const {
+Orientation from_proto_impl<app::v1::Orientation>::operator()(
+    const app::v1::Orientation* proto) const {
     switch (proto->type_case()) {
         case app::v1::Orientation::TypeCase::kAxisAngles: {
             axis_angles aa;
