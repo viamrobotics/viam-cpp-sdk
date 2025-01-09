@@ -26,6 +26,7 @@ var searchData=
   ['from_5fproto_3c_20google_3a_3aprotobuf_3a_3astruct_20_3e_23',['from_proto&lt; google::protobuf::Struct &gt;',['../structviam_1_1sdk_1_1proto__convert__details_1_1from__proto_3_01google_1_1protobuf_1_1Struct_01_4.html',1,'viam::sdk::proto_convert_details']]],
   ['from_5fproto_3c_20google_3a_3aprotobuf_3a_3atimestamp_20_3e_24',['from_proto&lt; google::protobuf::Timestamp &gt;',['../structviam_1_1sdk_1_1proto__convert__details_1_1from__proto_3_01google_1_1protobuf_1_1Timestamp_01_4.html',1,'viam::sdk::proto_convert_details']]],
   ['from_5fproto_3c_20google_3a_3aprotobuf_3a_3avalue_20_3e_25',['from_proto&lt; google::protobuf::Value &gt;',['../structviam_1_1sdk_1_1proto__convert__details_1_1from__proto_3_01google_1_1protobuf_1_1Value_01_4.html',1,'viam::sdk::proto_convert_details']]],
-  ['from_5fproto_5fimpl_26',['from_proto_impl',['../structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl.html',1,'viam::sdk::proto_convert_details']]],
-  ['from_5frepeated_5ffield_5f_27',['from_repeated_field_',['../structviam_1_1sdk_1_1impl_1_1from__repeated__field__.html',1,'viam::sdk::impl']]]
+  ['from_5fproto_3c_20module_3a_3av1_3a_3ahandlermap_20_3e_26',['from_proto&lt; module::v1::HandlerMap &gt;',['../structviam_1_1sdk_1_1proto__convert__details_1_1from__proto_3_01module_1_1v1_1_1HandlerMap_01_4.html',1,'viam::sdk::proto_convert_details']]],
+  ['from_5fproto_5fimpl_27',['from_proto_impl',['../structviam_1_1sdk_1_1proto__convert__details_1_1from__proto__impl.html',1,'viam::sdk::proto_convert_details']]],
+  ['from_5frepeated_5ffield_5f_28',['from_repeated_field_',['../structviam_1_1sdk_1_1impl_1_1from__repeated__field__.html',1,'viam::sdk::impl']]]
 ];
