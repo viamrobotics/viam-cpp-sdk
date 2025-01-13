@@ -5,6 +5,7 @@
 
 #include <boost/optional/optional.hpp>
 
+#include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/resource/resource_api.hpp>

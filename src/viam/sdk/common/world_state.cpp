@@ -50,18 +50,18 @@ WorldState::geometries_in_frame from_proto_impl<common::v1::GeometriesInFrame>::
 void to_proto_impl<WorldState::transform>::operator()(const WorldState::transform& self,
                                                       common::v1::Transform* proto) const {
     *(proto->mutable_reference_frame()) = self.reference_frame;
-    *(proto->mutable_pose_in_observer_frame()) = v2::to_proto(self.pose_in_observer_frame);
+    *(proto->mutable_pose_in_observer_frame()) = to_proto(self.pose_in_observer_frame);
     if (self.physical_object) {
-        *(proto->mutable_physical_object()) = v2::to_proto(*self.physical_object);
+        *(proto->mutable_physical_object()) = to_proto(*self.physical_object);
     }
 }
 
 WorldState::transform from_proto_impl<common::v1::Transform>::operator()(
     const common::v1::Transform* proto) const {
     WorldState::transform result{proto->reference_frame(),
-                                 v2::from_proto(proto->pose_in_observer_frame())};
+                                 from_proto(proto->pose_in_observer_frame())};
     if (proto->has_physical_object()) {
-        result.physical_object = v2::from_proto(proto->physical_object());
+        result.physical_object = from_proto(proto->physical_object());
     }
 
     return result;

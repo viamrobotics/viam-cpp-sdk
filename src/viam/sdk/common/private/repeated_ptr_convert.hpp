@@ -10,42 +10,29 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-struct to_repeated_field_ {
-    template <typename T, typename = EquivalentApiType<T>>
-    auto operator()(const std::vector<T>& v) const {
-        ::google::protobuf::RepeatedPtrField<EquivalentApiType<T>> result;
-        result.Reserve(v.size());
+template <typename T, typename = EquivalentApiType<T>>
+auto to_repeated_field(const std::vector<T>& v) {
+    ::google::protobuf::RepeatedPtrField<EquivalentApiType<T>> result;
+    result.Reserve(v.size());
 
-        for (const auto& elem : v) {
-            *(result.Add()) = v2::to_proto(elem);
-        }
-
-        return result;
+    for (const auto& elem : v) {
+        *(result.Add()) = to_proto(elem);
     }
-};
 
-struct from_repeated_field_ {
-    template <typename T, typename = EquivalentSdkType<T>>
-    auto operator()(const ::google::protobuf::RepeatedPtrField<T>& v) const {
-        std::vector<EquivalentSdkType<T>> result;
-        result.reserve(v.size());
+    return result;
+}
 
-        for (const auto& elem : v) {
-            result.push_back(v2::from_proto(elem));
-        }
+template <typename T, typename = EquivalentSdkType<T>>
+auto from_repeated_field(const ::google::protobuf::RepeatedPtrField<T>& v) {
+    std::vector<EquivalentSdkType<T>> result;
+    result.reserve(v.size());
 
-        return result;
+    for (const auto& elem : v) {
+        result.push_back(from_proto(elem));
     }
-};
 
-namespace {
-
-constexpr auto& to_repeated_field = proto_convert_details::static_const<to_repeated_field_>::value;
-
-constexpr auto& from_repeated_field =
-    proto_convert_details::static_const<from_repeated_field_>::value;
-
-}  // namespace
+    return result;
+}
 
 }  // namespace impl
 }  // namespace sdk

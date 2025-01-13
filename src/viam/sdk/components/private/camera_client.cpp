@@ -18,6 +18,9 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
+using sdk::from_proto;
+using sdk::to_proto;
+
 std::string format_to_MIME_string(viam::component::camera::v1::Format format) {
     switch (format) {
         case viam::component::camera::v1::FORMAT_RAW_RGBA:
@@ -56,7 +59,7 @@ Camera::image_collection from_proto(const viam::component::camera::v1::GetImages
         images.push_back(raw_image);
     }
     image_collection.images = std::move(images);
-    image_collection.metadata = v2::from_proto(proto.response_metadata());
+    image_collection.metadata = from_proto(proto.response_metadata());
     return image_collection;
 }
 
@@ -106,8 +109,8 @@ CameraClient::CameraClient(std::string name, std::shared_ptr<grpc::Channel> chan
 
 ProtoStruct CameraClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
-        .with([&](auto& request) { *request.mutable_command() = v2::to_proto(command); })
-        .invoke([](auto& response) { return v2::from_proto(response.result()); });
+        .with([&](auto& request) { *request.mutable_command() = to_proto(command); })
+        .invoke([](auto& response) { return from_proto(response.result()); });
 };
 
 Camera::raw_image CameraClient::get_image(std::string mime_type, const ProtoStruct& extra) {
@@ -134,7 +137,7 @@ Camera::point_cloud CameraClient::get_point_cloud(std::string mime_type, const P
 std::vector<GeometryConfig> CameraClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return v2::from_proto(response); });
+        .invoke([](auto& response) { return from_proto(response); });
 };
 
 Camera::properties CameraClient::get_properties() {

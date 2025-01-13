@@ -76,12 +76,12 @@ std::chrono::microseconds from_proto_impl<google::protobuf::Duration>::operator(
 
 void to_proto_impl<response_metadata>::operator()(const response_metadata& self,
                                                   common::v1::ResponseMetadata* proto) const {
-    *(proto->mutable_captured_at()) = v2::to_proto(self.captured_at);
+    *(proto->mutable_captured_at()) = to_proto(self.captured_at);
 }
 
 response_metadata from_proto_impl<common::v1::ResponseMetadata>::operator()(
     const common::v1::ResponseMetadata* proto) const {
-    return {v2::from_proto(proto->captured_at())};
+    return {from_proto(proto->captured_at())};
 }
 
 }  // namespace proto_convert_details

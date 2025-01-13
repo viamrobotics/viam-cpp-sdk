@@ -51,7 +51,7 @@ class ServiceHelper : public ServiceHelperBase {
     }
 
     auto getExtra() const {
-        return request_->has_extra() ? v2::from_proto(request_->extra()) : ProtoStruct{};
+        return request_->has_extra() ? from_proto(request_->extra()) : ProtoStruct{};
     }
 
    private:

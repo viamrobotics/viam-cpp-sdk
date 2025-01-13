@@ -237,13 +237,13 @@ void to_value(std::string s, Value* v) {
 void to_value(const ProtoList& vec, Value* v) {
     ::google::protobuf::ListValue l;
     for (const auto& val : vec) {
-        *l.add_values() = v2::to_proto(val);
+        *l.add_values() = to_proto(val);
     }
     *(v->mutable_list_value()) = std::move(l);
 }
 
 void to_value(const ProtoStruct& m, Value* v) {
-    *(v->mutable_struct_value()) = v2::to_proto(m);
+    *(v->mutable_struct_value()) = to_proto(m);
 }
 
 }  // namespace proto_value_details
@@ -271,13 +271,13 @@ ProtoValue from_proto_impl<google::protobuf::Value>::operator()(  // NOLINT(misc
             ProtoList vec;
             vec.reserve(v->list_value().values_size());
             for (const Value& list_val : v->list_value().values()) {
-                vec.push_back(v2::from_proto(list_val));
+                vec.push_back(from_proto(list_val));
             }
 
             return ProtoValue(std::move(vec));
         }
         case Value::KindCase::kStructValue: {
-            return ProtoValue(v2::from_proto(v->struct_value()));
+            return ProtoValue(from_proto(v->struct_value()));
         }
         case Value::KindCase::KIND_NOT_SET:
         case Value::KindCase::kNullValue:
@@ -290,7 +290,7 @@ void to_proto_impl<ProtoStruct>::operator()(const ProtoStruct& self,
                                             google::protobuf::Struct* s) const {
     for (const auto& kv : self) {
         s->mutable_fields()->insert(
-            google::protobuf::MapPair<std::string, Value>(kv.first, v2::to_proto(kv.second)));
+            google::protobuf::MapPair<std::string, Value>(kv.first, to_proto(kv.second)));
     }
 }
 
@@ -299,7 +299,7 @@ ProtoStruct from_proto_impl<google::protobuf::Struct>::operator()(  // NOLINT(mi
     ProtoStruct result;
 
     for (const auto& val : s->fields()) {
-        result.emplace(val.first, v2::from_proto(val.second));
+        result.emplace(val.first, from_proto(val.second));
     }
 
     return result;

@@ -22,8 +22,8 @@ GenericServiceClient::GenericServiceClient(std::string name, std::shared_ptr<grp
 
 ProtoStruct GenericServiceClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
-        .with([&](auto& request) { *request.mutable_command() = v2::to_proto(command); })
-        .invoke([](auto& response) { return v2::from_proto(response.result()); });
+        .with([&](auto& request) { *request.mutable_command() = to_proto(command); })
+        .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
 }  // namespace impl

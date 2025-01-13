@@ -125,7 +125,7 @@ namespace proto_convert_details {
 void to_proto_impl<ResourceLevelServiceConfig>::operator()(
     const ResourceLevelServiceConfig& self, app::v1::ResourceLevelServiceConfig* proto) const {
     *proto->mutable_type() = self.type;
-    *proto->mutable_attributes() = v2::to_proto(self.attributes);
+    *proto->mutable_attributes() = to_proto(self.attributes);
 }
 
 void to_proto_impl<ResourceConfig>::operator()(const ResourceConfig& self,
@@ -137,12 +137,12 @@ void to_proto_impl<ResourceConfig>::operator()(const ResourceConfig& self,
     *proto->mutable_type() = self.type();
     *proto->mutable_api() = self.api().to_string();
     *proto->mutable_model() = self.model().to_string();
-    *proto->mutable_attributes() = v2::to_proto(self.attributes());
+    *proto->mutable_attributes() = to_proto(self.attributes());
 
     *proto->mutable_depends_on() = ::google::protobuf::RepeatedPtrField<std::string>(
         self.depends_on().begin(), self.depends_on().end());
 
-    *proto->mutable_frame() = v2::to_proto(self.frame());
+    *proto->mutable_frame() = to_proto(self.frame());
 }
 
 ResourceConfig from_proto_impl<app::v1::ComponentConfig>::operator()(
@@ -150,10 +150,10 @@ ResourceConfig from_proto_impl<app::v1::ComponentConfig>::operator()(
     return ResourceConfig(proto->type(),
                           proto->name(),
                           proto->namespace_(),
-                          v2::from_proto(proto->attributes()),
+                          from_proto(proto->attributes()),
                           proto->api(),
                           Model::from_str(proto->model()),
-                          proto->has_frame() ? v2::from_proto(proto->frame()) : LinkConfig{});
+                          proto->has_frame() ? from_proto(proto->frame()) : LinkConfig{});
 }
 
 }  // namespace proto_convert_details

@@ -53,8 +53,8 @@ void BaseClient::set_power(const Vector3& linear,
     return make_client_helper(this, *stub_, &StubType::SetPower)
         .with(extra,
               [&](auto& request) {
-                  *request.mutable_linear() = v2::to_proto(linear);
-                  *request.mutable_angular() = v2::to_proto(angular);
+                  *request.mutable_linear() = to_proto(linear);
+                  *request.mutable_angular() = to_proto(angular);
               })
         .invoke();
 }
@@ -65,8 +65,8 @@ void BaseClient::set_velocity(const Vector3& linear,
     return make_client_helper(this, *stub_, &StubType::SetVelocity)
         .with(extra,
               [&](auto& request) {
-                  *request.mutable_linear() = v2::to_proto(linear);
-                  *request.mutable_angular() = v2::to_proto(angular);
+                  *request.mutable_linear() = to_proto(linear);
+                  *request.mutable_angular() = to_proto(angular);
               })
         .invoke();
 }
@@ -84,7 +84,7 @@ bool BaseClient::is_moving() {
 std::vector<GeometryConfig> BaseClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return v2::from_proto(response); });
+        .invoke([](auto& response) { return from_proto(response); });
 }
 
 Base::properties BaseClient::get_properties(const ProtoStruct& extra) {
@@ -99,8 +99,8 @@ Base::properties BaseClient::get_properties(const ProtoStruct& extra) {
 
 ProtoStruct BaseClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
-        .with([&](auto& request) { *request.mutable_command() = v2::to_proto(command); })
-        .invoke([](auto& response) { return v2::from_proto(response.result()); });
+        .with([&](auto& request) { *request.mutable_command() = to_proto(command); })
+        .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
 }  // namespace impl

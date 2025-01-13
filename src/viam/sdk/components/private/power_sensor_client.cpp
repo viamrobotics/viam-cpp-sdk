@@ -21,6 +21,9 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
+using sdk::from_proto;
+using sdk::to_proto;
+
 PowerSensor::voltage from_proto(const GetVoltageResponse& proto) {
     PowerSensor::voltage v;
     v.volts = proto.volts();
@@ -64,7 +67,7 @@ ProtoStruct PowerSensorClient::get_readings(const ProtoStruct& extra) {
         .invoke([](auto& response) {
             ProtoStruct result;
             for (const auto& r : response.readings()) {
-                result.emplace(r.first, v2::from_proto(r.second));
+                result.emplace(r.first, from_proto(r.second));
             }
             return result;
         });
@@ -72,8 +75,8 @@ ProtoStruct PowerSensorClient::get_readings(const ProtoStruct& extra) {
 
 ProtoStruct PowerSensorClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
-        .with([&](auto& request) { *request.mutable_command() = v2::to_proto(command); })
-        .invoke([](auto& response) { return v2::from_proto(response.result()); });
+        .with([&](auto& request) { *request.mutable_command() = to_proto(command); })
+        .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
 }  // namespace impl

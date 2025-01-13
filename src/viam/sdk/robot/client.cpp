@@ -48,7 +48,6 @@ using viam::robot::v1::RobotService;
 // NOLINTNEXTLINE
 const std::string kStreamRemoved("Stream removed");
 
-namespace {
 // TODO: add a traits class for proto to type and back conversion
 DiscoveryQuery to_proto(const RobotClient::discovery_query& query) {
     DiscoveryQuery proto;
@@ -67,15 +66,15 @@ RobotClient::discovery_query from_proto(const DiscoveryQuery& proto) {
 RobotClient::discovery from_proto(const Discovery& proto) {
     RobotClient::discovery discovery;
     discovery.query = from_proto(proto.query());
-    discovery.results = v2::from_proto(proto.results());
+    discovery.results = from_proto(proto.results());
     return discovery;
 }
 
 RobotClient::frame_system_config from_proto(const FrameSystemConfig& proto) {
     RobotClient::frame_system_config fsconfig;
-    fsconfig.frame = v2::from_proto(proto.frame());
+    fsconfig.frame = from_proto(proto.frame());
     if (proto.has_kinematics()) {
-        fsconfig.kinematics = v2::from_proto(proto.kinematics());
+        fsconfig.kinematics = from_proto(proto.kinematics());
     }
     return fsconfig;
 }
@@ -88,28 +87,27 @@ RobotClient::operation from_proto(const Operation& proto) {
         op.session_id = proto.session_id();
     }
     if (proto.has_arguments()) {
-        op.arguments = v2::from_proto(proto.arguments());
+        op.arguments = from_proto(proto.arguments());
     }
     if (proto.has_started()) {
-        op.started = v2::from_proto(proto.started());
+        op.started = from_proto(proto.started());
     }
     return op;
 }
-}  // namespace
 
 bool operator==(const RobotClient::discovery_query& lhs, const RobotClient::discovery_query& rhs) {
     return lhs.subtype == rhs.subtype && lhs.model == rhs.model;
 }
 
 bool operator==(const RobotClient::discovery& lhs, const RobotClient::discovery& rhs) {
-    return lhs.query == rhs.query && v2::to_proto(lhs.results).SerializeAsString() ==
-                                         v2::to_proto(rhs.results).SerializeAsString();
+    return lhs.query == rhs.query &&
+           to_proto(lhs.results).SerializeAsString() == to_proto(rhs.results).SerializeAsString();
 }
 
 bool operator==(const RobotClient::frame_system_config& lhs,
                 const RobotClient::frame_system_config& rhs) {
-    return lhs.frame == rhs.frame && v2::to_proto(lhs.kinematics).SerializeAsString() ==
-                                         v2::to_proto(rhs.kinematics).SerializeAsString();
+    return lhs.frame == rhs.frame && to_proto(lhs.kinematics).SerializeAsString() ==
+                                         to_proto(rhs.kinematics).SerializeAsString();
 }
 
 bool operator==(const RobotClient::operation& lhs, const RobotClient::operation& rhs) {
@@ -204,7 +202,7 @@ void RobotClient::refresh() {
     std::unordered_map<Name, std::shared_ptr<Resource>> new_resources;
     std::vector<Name> current_resources;
     for (const auto& name : resp.resources()) {
-        current_resources.push_back(v2::from_proto(name));
+        current_resources.push_back(from_proto(name));
         if (name.subtype() == "remote") {
             continue;
         }
@@ -344,7 +342,7 @@ pose_in_frame RobotClient::transform_pose(
     viam::robot::v1::TransformPoseResponse resp;
     ClientContext ctx;
 
-    *req.mutable_source() = v2::to_proto(query);
+    *req.mutable_source() = to_proto(query);
     *req.mutable_destination() = std::move(destination);
     *req.mutable_supplemental_transforms() = sdk::impl::to_repeated_field(additional_transforms);
 
@@ -353,7 +351,7 @@ pose_in_frame RobotClient::transform_pose(
         BOOST_LOG_TRIVIAL(error) << "Error getting PoseInFrame: " << response.error_message();
     }
 
-    return v2::from_proto(resp.pose());
+    return from_proto(resp.pose());
 }
 
 std::vector<RobotClient::discovery> RobotClient::discover_components(
@@ -403,9 +401,9 @@ void RobotClient::stop_all(const std::unordered_map<Name, ProtoStruct>& extra) {
     for (const auto& xtra : extra) {
         const Name& name = xtra.first;
         const ProtoStruct& params = xtra.second;
-        const google::protobuf::Struct s = v2::to_proto(params);
+        const google::protobuf::Struct s = to_proto(params);
         viam::robot::v1::StopExtraParameters stop;
-        *stop.mutable_name() = v2::to_proto(name);
+        *stop.mutable_name() = to_proto(name);
         *stop.mutable_params() = s;
         *ep->Add() = stop;
     }

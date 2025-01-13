@@ -43,7 +43,7 @@ void to_proto_impl<HandlerMap_>::operator()(const HandlerMap_& self,
 
         viam::robot::v1::ResourceRPCSubtype rpc_subtype;
 
-        *rpc_subtype.mutable_subtype() = v2::to_proto(Name(h.first.api(), "", ""));
+        *rpc_subtype.mutable_subtype() = to_proto(Name(h.first.api(), "", ""));
         *rpc_subtype.mutable_proto_service() = h.first.proto_service_name();
         *hd.mutable_subtype() = rpc_subtype;
 

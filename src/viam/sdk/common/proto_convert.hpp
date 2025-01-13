@@ -11,16 +11,6 @@ namespace sdk {
 
 namespace proto_convert_details {
 
-// This is copied from range-v3 to allow the definition of callable object instances without
-// ODR/linkage issues. It is obviated in C++17 and onwards by constexpr inline.
-template <typename T>
-struct static_const {
-    static constexpr const T value{};
-};
-
-template <typename T>
-constexpr const T static_const<T>::value;
-
 // This struct should be explicitly specialized with a
 //      void operator()(const SdkType&, common::v1::ApiType*) const
 // to provide API/ABI insulated proto conversion
@@ -40,48 +30,30 @@ template <typename Callable>
 using ProtoArgType = std::remove_pointer_t<
     boost::mp11::mp_back<boost::callable_traits::args_t<Callable, boost::mp11::mp_list>>>;
 
-// Implementation struct for the omni-to_proto callable defined below.
-struct to_proto_fn {
-    template <typename SdkType>
-    auto operator()(const SdkType& t) const {
-        using ProtoReturnType = ProtoArgType<to_proto_impl<SdkType>>;
-
-        ProtoReturnType ret;
-        to_proto_impl<SdkType>{}(t, &ret);
-
-        return ret;
-    }
-};
-
-// Implementation struct for the omni-from_proto callable defined below.
-struct from_proto_fn {
-    template <typename ProtoType>
-    auto operator()(const ProtoType& proto) const {  // NOLINT(misc-no-recursion)
-        return from_proto_impl<ProtoType>{}(&proto);
-    }
-};
-
 }  // namespace proto_convert_details
 
-namespace v2 {
+/// @brief Convert an SDK type to its corresponding API type.
+/// @remark Only participates in overload resolution if to_proto_impl<SdkType> has been specialized.
+template <typename SdkType,
+          typename = decltype(sizeof(proto_convert_details::to_proto_impl<SdkType>))>
+auto to_proto(const SdkType& t) {
+    namespace pcd = proto_convert_details;
+    using ProtoReturnType = pcd::ProtoArgType<pcd::to_proto_impl<SdkType>>;
 
-namespace {
+    ProtoReturnType ret;
+    pcd::to_proto_impl<SdkType>{}(t, &ret);
 
-/// @brief Function object implementing conversion from an SDK type to an API type.
-/// This callable works for any type with a proto_convert_details::to_proto specialization as
-/// described above.
-constexpr auto& to_proto =
-    proto_convert_details::static_const<proto_convert_details::to_proto_fn>::value;
+    return ret;
+}
 
-/// @brief Function object implementing conversion from an API type to an SDK type.
-/// This callable works for any type with a proto_convert_details::from_proto specialization as
-/// described above.
-constexpr auto& from_proto =
-    proto_convert_details::static_const<proto_convert_details::from_proto_fn>::value;
-
-}  // namespace
-
-}  // namespace v2
+/// @brief Convert an API type to its corresponding SDK type.
+/// @remark Only participates in overload resolution if from_proto_impl<ApiType> has been
+/// specialized.
+template <typename ApiType,
+          typename = decltype(sizeof(proto_convert_details::from_proto_impl<ApiType>))>
+auto from_proto(const ApiType& proto) {
+    return proto_convert_details::from_proto_impl<ApiType>{}(&proto);
+}
 
 /// @brief Type alias for the API type corresponding to a given SDK type.
 /// This is the return type of calling to_proto on an instance of SdkType.

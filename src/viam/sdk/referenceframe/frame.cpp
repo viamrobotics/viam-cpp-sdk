@@ -38,17 +38,16 @@ namespace proto_convert_details {
 
 void to_proto_impl<LinkConfig>::operator()(const LinkConfig& self, app::v1::Frame* proto) const {
     *(proto->mutable_parent()) = self.get_parent();
-    *(proto->mutable_geometry()) = v2::to_proto(self.get_geometry_config());
-    *(proto->mutable_orientation()) = v2::to_proto(self.get_orientation());
-    *(proto->mutable_translation()) = v2::to_proto(self.get_translation());
+    *(proto->mutable_geometry()) = to_proto(self.get_geometry_config());
+    *(proto->mutable_orientation()) = to_proto(self.get_orientation());
+    *(proto->mutable_translation()) = to_proto(self.get_translation());
 }
 
 LinkConfig from_proto_impl<app::v1::Frame>::operator()(const app::v1::Frame* proto) const {
-    return LinkConfig(
-        v2::from_proto(proto->translation()),
-        proto->has_orientation() ? v2::from_proto(proto->orientation()) : Orientation{},
-        proto->has_geometry() ? v2::from_proto(proto->geometry()) : GeometryConfig{},
-        proto->parent());
+    return LinkConfig(from_proto(proto->translation()),
+                      proto->has_orientation() ? from_proto(proto->orientation()) : Orientation{},
+                      proto->has_geometry() ? from_proto(proto->geometry()) : GeometryConfig{},
+                      proto->parent());
 }
 
 }  // namespace proto_convert_details
