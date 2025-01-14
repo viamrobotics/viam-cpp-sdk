@@ -36,7 +36,7 @@ using ProtoArgType = std::remove_pointer_t<
 /// @remark Only participates in overload resolution if to_proto_impl<SdkType> has been specialized.
 template <typename SdkType,
           typename = decltype(sizeof(proto_convert_details::to_proto_impl<SdkType>))>
-auto to_proto(const SdkType& t) {
+auto to_proto(const SdkType& t) {  // NOLINT(misc-no-recursion)
     namespace pcd = proto_convert_details;
     using ProtoReturnType = pcd::ProtoArgType<pcd::to_proto_impl<SdkType>>;
 
@@ -51,7 +51,7 @@ auto to_proto(const SdkType& t) {
 /// specialized.
 template <typename ApiType,
           typename = decltype(sizeof(proto_convert_details::from_proto_impl<ApiType>))>
-auto from_proto(const ApiType& proto) {
+auto from_proto(const ApiType& proto) {  // NOLINT(misc-no-recursion)
     return proto_convert_details::from_proto_impl<ApiType>{}(&proto);
 }
 
