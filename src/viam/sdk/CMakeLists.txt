@@ -15,7 +15,7 @@ add_library(viam-cpp-sdk::viamsdk ALIAS viamsdk)
 # `BASE_DIRS` below, because otherwise we will pull in the static
 # versions of the proto files even if we are generating dynamically.
 target_include_directories(viamsdk
-  PUBLIC
+  PRIVATE
     "$<BUILD_INTERFACE:$<TARGET_PROPERTY:viam-cpp-sdk::viamapi,INTERFACE_INCLUDE_DIRECTORIES>>"
 )
 
@@ -234,9 +234,9 @@ target_link_directories(viamsdk
 )
 
 if (BUILD_SHARED_LIBS)
-  target_link_libraries(viamsdk PUBLIC viam-cpp-sdk::viamapi)
+  target_link_libraries(viamsdk PRIVATE viam-cpp-sdk::viamapi)
 else()
-  target_link_libraries(viamsdk PUBLIC "$<LINK_LIBRARY:WHOLE_ARCHIVE,viam-cpp-sdk::viamapi>")
+  target_link_libraries(viamsdk PRIVATE "$<LINK_LIBRARY:WHOLE_ARCHIVE,viam-cpp-sdk::viamapi>")
 endif()
 
 target_link_libraries(viamsdk

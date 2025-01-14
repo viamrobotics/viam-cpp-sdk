@@ -106,6 +106,7 @@ target_include_directories(complex_module_sources
 )
 target_link_libraries(complex_module_sources
   viam-cpp-sdk::viamsdk
+  viam-cpp-sdk::viamapi
 )
 
 add_executable(complex_module)
