@@ -49,6 +49,8 @@ target_link_libraries(viamsdk_test
   PUBLIC viam-cpp-sdk::viamapi
 )
 
+viamcppsdk_link_viam_api(viamsdk_test PUBLIC)
+
 viamcppsdk_add_boost_test(test_arm.cpp)
 viamcppsdk_add_boost_test(test_base.cpp)
 viamcppsdk_add_boost_test(test_board.cpp)

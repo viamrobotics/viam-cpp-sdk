@@ -233,11 +233,7 @@ target_link_directories(viamsdk
     "$<INSTALL_INTERFACE:${VIAMCPPSDK_PROTOBUF_LIBRARY_DIRS}>"
 )
 
-if (BUILD_SHARED_LIBS)
-  target_link_libraries(viamsdk PRIVATE viam-cpp-sdk::viamapi)
-else()
-  target_link_libraries(viamsdk PRIVATE "$<LINK_LIBRARY:WHOLE_ARCHIVE,viam-cpp-sdk::viamapi>")
-endif()
+viamcppsdk_link_viam_api(viamsdk PRIVATE)
 
 target_link_libraries(viamsdk
   PUBLIC ${VIAMCPPSDK_GRPCXX_LIBRARIES}
