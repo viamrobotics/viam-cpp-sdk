@@ -39,9 +39,16 @@ target_sources(viamsdk_test
     test_utils.cpp
 )
 
+target_include_directories(viamsdk_test
+  PUBLIC
+    "$<BUILD_INTERFACE:$<TARGET_PROPERTY:viam-cpp-sdk::viamapi,INTERFACE_INCLUDE_DIRECTORIES>>"
+)
+
 target_link_libraries(viamsdk_test
   PUBLIC viam-cpp-sdk::viamsdk
 )
+
+viamcppsdk_link_viam_api(viamsdk_test PUBLIC)
 
 viamcppsdk_add_boost_test(test_arm.cpp)
 viamcppsdk_add_boost_test(test_base.cpp)

@@ -112,13 +112,13 @@ class ViamCppSdkRecipe(ConanFile):
             self.cpp_info.components["viamapi"].sharedlinkflags.append(whole_archive)
 
         self.cpp_info.components["viamsdk"].requires.extend([
-            "viamapi",
             "boost::headers",
             "boost::log",
             "grpc::grpc++_reflection",
             "protobuf::libprotobuf",
             "xtensor::xtensor",
 
+            "viamapi",
             "viam_rust_utils",
             "abseil::absl_strings",
         ])

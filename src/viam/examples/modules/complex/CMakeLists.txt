@@ -108,6 +108,8 @@ target_link_libraries(complex_module_sources
   viam-cpp-sdk::viamsdk
 )
 
+viamcppsdk_link_viam_api(complex_module_sources)
+
 add_executable(complex_module)
 target_sources(complex_module
   PRIVATE

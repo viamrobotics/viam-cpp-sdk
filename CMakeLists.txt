@@ -194,10 +194,8 @@ set(CMAKE_MODULE_PATH
   ${CMAKE_MODULE_PATH}
   ${PROJECT_SOURCE_DIR}/src/viam/cmake
 )
-if (VIAMCPPSDK_BUILD_TESTS OR VIAMCPPSDK_BUILD_EXAMPLES)
-  # We maybe could include this unconditionally, but technically only tests or examples need it
-  include(viamcppsdk_utils)
-endif()
+
+include(viamcppsdk_utils)
 
 
 
