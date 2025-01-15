@@ -118,7 +118,7 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager)
         "MotorServer::GetGeometries", this, request)([&](auto& helper, auto& motor) {
         const std::vector<GeometryConfig> geometries = motor->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = v2::to_proto(geometry);
+            *response->mutable_geometries()->Add() = to_proto(geometry);
         }
     });
 }
@@ -128,8 +128,8 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager)
                                       viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Motor>(
         "MotorServer::GetGeometries", this, request)([&](auto&, auto& motor) {
-        const ProtoStruct result = motor->do_command(v2::from_proto(request->command()));
-        *response->mutable_result() = v2::to_proto(result);
+        const ProtoStruct result = motor->do_command(from_proto(request->command()));
+        *response->mutable_result() = to_proto(result);
     });
 }
 

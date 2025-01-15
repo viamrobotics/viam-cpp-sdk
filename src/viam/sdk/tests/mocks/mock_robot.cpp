@@ -58,7 +58,7 @@ pose default_pose(int offset) {
 }
 
 Pose default_proto_pose(int offset = 0) {
-    return v2::to_proto(default_pose(offset));
+    return to_proto(default_pose(offset));
 }
 
 std::vector<RobotClient::operation> mock_operations_response() {
@@ -211,7 +211,7 @@ std::vector<ResourceName> MockRobotService::generate_metadata_() {
     std::vector<ResourceName> metadata;
     for (const auto& key_and_val : resource_manager()->resources()) {
         for (const Name& name : registered_models_for_resource(key_and_val.second)) {
-            metadata.push_back(v2::to_proto(name));
+            metadata.push_back(to_proto(name));
         }
     }
     return metadata;
@@ -240,7 +240,7 @@ std::vector<ResourceName> MockRobotService::generate_metadata_() {
     std::unordered_map<std::string, ProtoStruct> extra;
     for (const auto& ex : request->extra()) {
         const google::protobuf::Struct& struct_ = ex.params();
-        const ProtoStruct value_map = v2::from_proto(struct_);
+        const ProtoStruct value_map = from_proto(struct_);
         const std::string name = ex.name().SerializeAsString();
         extra.emplace(name, value_map);
     }
@@ -250,7 +250,7 @@ std::vector<ResourceName> MockRobotService::generate_metadata_() {
 
     for (const auto& r : resource_manager()->resources()) {
         const std::shared_ptr<Resource> resource = r.second;
-        const ResourceName rn = v2::to_proto(resource->get_resource_name());
+        const ResourceName rn = to_proto(resource->get_resource_name());
         const std::string rn_ = rn.SerializeAsString();
         if (extra.find(rn_) != extra.end()) {
             try {

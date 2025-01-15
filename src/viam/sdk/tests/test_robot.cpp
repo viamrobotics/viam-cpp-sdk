@@ -123,7 +123,7 @@ BOOST_AUTO_TEST_CASE(test_frame_system_config) {
                               proto1.frame().pose_in_observer_frame().pose().o_x());
             BOOST_CHECK_EQUAL(config1.frame.pose_in_observer_frame.pose.theta,
                               proto1.frame().pose_in_observer_frame().pose().theta());
-            BOOST_CHECK_EQUAL(v2::to_proto(config1.kinematics).SerializeAsString(),
+            BOOST_CHECK_EQUAL(to_proto(config1.kinematics).SerializeAsString(),
                               proto1.kinematics().SerializeAsString());
 
             BOOST_CHECK_EQUAL(config2.frame.reference_frame, proto2.frame().reference_frame());
@@ -133,7 +133,7 @@ BOOST_AUTO_TEST_CASE(test_frame_system_config) {
                               proto2.frame().pose_in_observer_frame().pose().o_x());
             BOOST_CHECK_EQUAL(config2.frame.pose_in_observer_frame.pose.theta,
                               proto2.frame().pose_in_observer_frame().pose().theta());
-            BOOST_CHECK_EQUAL(v2::to_proto(config2.kinematics).SerializeAsString(),
+            BOOST_CHECK_EQUAL(to_proto(config2.kinematics).SerializeAsString(),
                               proto2.kinematics().SerializeAsString());
         });
 }

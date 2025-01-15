@@ -16,6 +16,9 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
+using sdk::from_proto;
+using sdk::to_proto;
+
 Motor::position from_proto(const viam::component::motor::v1::GetPositionResponse& proto) {
     return proto.position();
 }
@@ -102,7 +105,7 @@ Motor::power_status MotorClient::get_power_status(const ProtoStruct& extra) {
 std::vector<GeometryConfig> MotorClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return v2::from_proto(response); });
+        .invoke([](auto& response) { return from_proto(response); });
 }
 
 bool MotorClient::is_moving() {
@@ -113,8 +116,8 @@ bool MotorClient::is_moving() {
 
 ProtoStruct MotorClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
-        .with([&](auto& request) { *request.mutable_command() = v2::to_proto(command); })
-        .invoke([](auto& response) { return v2::from_proto(response.result()); });
+        .with([&](auto& request) { *request.mutable_command() = to_proto(command); })
+        .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
 }  // namespace impl

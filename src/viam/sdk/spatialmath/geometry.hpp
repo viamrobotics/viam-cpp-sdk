@@ -95,67 +95,67 @@ struct geo_geometry {
 namespace proto_convert_details {
 
 template <>
-struct to_proto<box> {
+struct to_proto_impl<box> {
     void operator()(const box&, common::v1::RectangularPrism*) const;
 };
 
 template <>
-struct from_proto<common::v1::RectangularPrism> {
+struct from_proto_impl<common::v1::RectangularPrism> {
     box operator()(const common::v1::RectangularPrism*) const;
 };
 
 template <>
-struct to_proto<sphere> {
+struct to_proto_impl<sphere> {
     void operator()(const sphere&, common::v1::Sphere*) const;
 };
 
 template <>
-struct from_proto<common::v1::Sphere> {
+struct from_proto_impl<common::v1::Sphere> {
     sphere operator()(const common::v1::Sphere*) const;
 };
 
 template <>
-struct to_proto<capsule> {
+struct to_proto_impl<capsule> {
     void operator()(const capsule&, common::v1::Capsule*) const;
 };
 
 template <>
-struct from_proto<common::v1::Capsule> {
+struct from_proto_impl<common::v1::Capsule> {
     capsule operator()(const common::v1::Capsule*) const;
 };
 
 template <>
-struct to_proto<GeometryConfig> {
+struct to_proto_impl<GeometryConfig> {
     void operator()(const GeometryConfig&, common::v1::Geometry*) const;
 };
 
 template <>
-struct from_proto<common::v1::Geometry> {
+struct from_proto_impl<common::v1::Geometry> {
     GeometryConfig operator()(const common::v1::Geometry*) const;
 };
 
 template <>
-struct to_proto<geo_point> {
+struct to_proto_impl<geo_point> {
     void operator()(const geo_point&, common::v1::GeoPoint*) const;
 };
 
 template <>
-struct from_proto<common::v1::GeoPoint> {
+struct from_proto_impl<common::v1::GeoPoint> {
     geo_point operator()(const common::v1::GeoPoint*) const;
 };
 
 template <>
-struct to_proto<geo_geometry> {
+struct to_proto_impl<geo_geometry> {
     void operator()(const geo_geometry&, common::v1::GeoGeometry*) const;
 };
 
 template <>
-struct from_proto<common::v1::GeoGeometry> {
+struct from_proto_impl<common::v1::GeoGeometry> {
     geo_geometry operator()(const common::v1::GeoGeometry*) const;
 };
 
 template <>
-struct from_proto<common::v1::GetGeometriesResponse> {
+struct from_proto_impl<common::v1::GetGeometriesResponse> {
     std::vector<GeometryConfig> operator()(const common::v1::GetGeometriesResponse*) const;
 };
 

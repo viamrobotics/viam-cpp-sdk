@@ -38,12 +38,12 @@ class LinkConfig {
 namespace proto_convert_details {
 
 template <>
-struct to_proto<LinkConfig> {
+struct to_proto_impl<LinkConfig> {
     void operator()(const LinkConfig&, app::v1::Frame*) const;
 };
 
 template <>
-struct from_proto<app::v1::Frame> {
+struct from_proto_impl<app::v1::Frame> {
     LinkConfig operator()(const app::v1::Frame*) const;
 };
 

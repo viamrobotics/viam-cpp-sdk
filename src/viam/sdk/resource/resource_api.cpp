@@ -120,7 +120,7 @@ Name Name::from_string(std::string name) {
 
 namespace proto_convert_details {
 
-void to_proto<Name>::operator()(const Name& self, common::v1::ResourceName* proto) const {
+void to_proto_impl<Name>::operator()(const Name& self, common::v1::ResourceName* proto) const {
     *proto->mutable_namespace_() = self.api().type_namespace();
     if (self.remote_name().empty()) {
         *proto->mutable_name() = self.name();
@@ -131,7 +131,8 @@ void to_proto<Name>::operator()(const Name& self, common::v1::ResourceName* prot
     *proto->mutable_subtype() = self.api().resource_subtype();
 }
 
-Name from_proto<common::v1::ResourceName>::operator()(const common::v1::ResourceName* proto) const {
+Name from_proto_impl<common::v1::ResourceName>::operator()(
+    const common::v1::ResourceName* proto) const {
     auto name_parts = long_name_to_remote_and_short(proto->name());
 
     return Name({proto->namespace_(), proto->type(), proto->subtype()},

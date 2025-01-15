@@ -16,7 +16,7 @@ std::ostream& operator<<(std::ostream& os, const pose_in_frame& v) {
 
 namespace proto_convert_details {
 
-void to_proto<pose>::operator()(const pose& self, common::v1::Pose* proto) const {
+void to_proto_impl<pose>::operator()(const pose& self, common::v1::Pose* proto) const {
     proto->set_x(self.coordinates.x);
     proto->set_y(self.coordinates.y);
     proto->set_z(self.coordinates.z);
@@ -26,7 +26,7 @@ void to_proto<pose>::operator()(const pose& self, common::v1::Pose* proto) const
     proto->set_theta(self.theta);
 }
 
-pose from_proto<common::v1::Pose>::operator()(const common::v1::Pose* proto) const {
+pose from_proto_impl<common::v1::Pose>::operator()(const common::v1::Pose* proto) const {
     pose pose;
     pose.coordinates.x = proto->x();
     pose.coordinates.y = proto->y();
@@ -39,19 +39,19 @@ pose from_proto<common::v1::Pose>::operator()(const common::v1::Pose* proto) con
     return pose;
 }
 
-void to_proto<pose_in_frame>::operator()(const pose_in_frame& self,
-                                         common::v1::PoseInFrame* pif) const {
+void to_proto_impl<pose_in_frame>::operator()(const pose_in_frame& self,
+                                              common::v1::PoseInFrame* pif) const {
     *(pif->mutable_reference_frame()) = self.reference_frame;
     common::v1::Pose proto_pose;
-    to_proto<pose>{}(self.pose, &proto_pose);
+    to_proto_impl<pose>{}(self.pose, &proto_pose);
     *(pif->mutable_pose()) = std::move(proto_pose);
 };
 
-pose_in_frame from_proto<common::v1::PoseInFrame>::operator()(
+pose_in_frame from_proto_impl<common::v1::PoseInFrame>::operator()(
     const common::v1::PoseInFrame* proto) const {
     pose_in_frame pif;
     pif.reference_frame = proto->reference_frame();
-    pif.pose = from_proto<common::v1::Pose>{}(&(proto->pose()));
+    pif.pose = from_proto_impl<common::v1::Pose>{}(&(proto->pose()));
 
     return pif;
 }

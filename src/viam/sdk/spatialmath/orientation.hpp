@@ -29,11 +29,11 @@ OrientationType get_type(const Orientation&);
 namespace proto_convert_details {
 
 template <>
-struct to_proto<Orientation> {
+struct to_proto_impl<Orientation> {
     void operator()(const Orientation&, app::v1::Orientation*) const;
 };
 template <>
-struct from_proto<app::v1::Orientation> {
+struct from_proto_impl<app::v1::Orientation> {
     Orientation operator()(const app::v1::Orientation*) const;
 };
 

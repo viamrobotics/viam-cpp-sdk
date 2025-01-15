@@ -17,12 +17,12 @@ ArmClient::ArmClient(std::string name, std::shared_ptr<grpc::Channel> channel)
 pose ArmClient::get_end_position(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetEndPosition)
         .with(extra)
-        .invoke([&](auto& response) { return v2::from_proto(response.pose()); });
+        .invoke([&](auto& response) { return from_proto(response.pose()); });
 }
 
 void ArmClient::move_to_position(const pose& pose, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::MoveToPosition)
-        .with(extra, [&](auto& request) { *request.mutable_to() = v2::to_proto(pose); })
+        .with(extra, [&](auto& request) { *request.mutable_to() = to_proto(pose); })
         .invoke();
 }
 
@@ -83,8 +83,8 @@ void ArmClient::stop(const ProtoStruct& extra) {
 
 ProtoStruct ArmClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
-        .with([&](auto& request) { *request.mutable_command() = v2::to_proto(command); })
-        .invoke([](auto& response) { return v2::from_proto(response.result()); });
+        .with([&](auto& request) { *request.mutable_command() = to_proto(command); })
+        .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
 Arm::KinematicsData ArmClient::get_kinematics(const ProtoStruct& extra) {
@@ -109,7 +109,7 @@ Arm::KinematicsData ArmClient::get_kinematics(const ProtoStruct& extra) {
 std::vector<GeometryConfig> ArmClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return v2::from_proto(response); });
+        .invoke([](auto& response) { return from_proto(response); });
 }
 
 }  // namespace impl

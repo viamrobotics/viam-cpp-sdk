@@ -66,7 +66,7 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
     return make_service_helper<PowerSensor>(
         "PowerSensorServer::GetReadings", this, request)([&](auto& helper, auto& powersensor) {
         *(response->mutable_readings()) =
-            v2::to_proto(powersensor->get_readings(helper.getExtra())).fields();
+            to_proto(powersensor->get_readings(helper.getExtra())).fields();
     });
 }
 
@@ -76,8 +76,8 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
     viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<PowerSensor>(
         "PowerSensorServer::DoCommand", this, request)([&](auto&, auto& powersensor) {
-        const ProtoStruct result = powersensor->do_command(v2::from_proto(request->command()));
-        *response->mutable_result() = v2::to_proto(result);
+        const ProtoStruct result = powersensor->do_command(from_proto(request->command()));
+        *response->mutable_result() = to_proto(result);
     });
 }
 

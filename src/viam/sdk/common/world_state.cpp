@@ -36,43 +36,44 @@ bool operator==(const WorldState& lhs, const WorldState& rhs) {
 
 namespace proto_convert_details {
 
-void to_proto<WorldState::geometries_in_frame>::operator()(
+void to_proto_impl<WorldState::geometries_in_frame>::operator()(
     const WorldState::geometries_in_frame& self, common::v1::GeometriesInFrame* proto) const {
     *(proto->mutable_geometries()) = impl::to_repeated_field(self.geometries);
     *(proto->mutable_reference_frame()) = self.reference_frame;
 }
 
-WorldState::geometries_in_frame from_proto<common::v1::GeometriesInFrame>::operator()(
+WorldState::geometries_in_frame from_proto_impl<common::v1::GeometriesInFrame>::operator()(
     const common::v1::GeometriesInFrame* proto) const {
     return {impl::from_repeated_field(proto->geometries()), proto->reference_frame()};
 }
 
-void to_proto<WorldState::transform>::operator()(const WorldState::transform& self,
-                                                 common::v1::Transform* proto) const {
+void to_proto_impl<WorldState::transform>::operator()(const WorldState::transform& self,
+                                                      common::v1::Transform* proto) const {
     *(proto->mutable_reference_frame()) = self.reference_frame;
-    *(proto->mutable_pose_in_observer_frame()) = v2::to_proto(self.pose_in_observer_frame);
+    *(proto->mutable_pose_in_observer_frame()) = to_proto(self.pose_in_observer_frame);
     if (self.physical_object) {
-        *(proto->mutable_physical_object()) = v2::to_proto(*self.physical_object);
+        *(proto->mutable_physical_object()) = to_proto(*self.physical_object);
     }
 }
 
-WorldState::transform from_proto<common::v1::Transform>::operator()(
+WorldState::transform from_proto_impl<common::v1::Transform>::operator()(
     const common::v1::Transform* proto) const {
     WorldState::transform result{proto->reference_frame(),
-                                 v2::from_proto(proto->pose_in_observer_frame())};
+                                 from_proto(proto->pose_in_observer_frame())};
     if (proto->has_physical_object()) {
-        result.physical_object = v2::from_proto(proto->physical_object());
+        result.physical_object = from_proto(proto->physical_object());
     }
 
     return result;
 }
 
-void to_proto<WorldState>::operator()(const WorldState& self, common::v1::WorldState* proto) const {
+void to_proto_impl<WorldState>::operator()(const WorldState& self,
+                                           common::v1::WorldState* proto) const {
     *(proto->mutable_obstacles()) = impl::to_repeated_field(self.obstacles());
     *(proto->mutable_transforms()) = impl::to_repeated_field(self.transforms());
 }
 
-WorldState from_proto<common::v1::WorldState>::operator()(
+WorldState from_proto_impl<common::v1::WorldState>::operator()(
     const common::v1::WorldState* proto) const {
     return WorldState(impl::from_repeated_field(proto->obstacles()),
                       impl::from_repeated_field(proto->transforms()));

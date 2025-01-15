@@ -36,13 +36,13 @@ Vector3& Vector3::set_z(double z) {
 
 namespace proto_convert_details {
 
-void to_proto<Vector3>::operator()(const Vector3& self, common::v1::Vector3* proto) const {
+void to_proto_impl<Vector3>::operator()(const Vector3& self, common::v1::Vector3* proto) const {
     proto->set_x(self.x());
     proto->set_y(self.y());
     proto->set_z(self.z());
 }
 
-Vector3 from_proto<common::v1::Vector3>::operator()(const common::v1::Vector3* proto) const {
+Vector3 from_proto_impl<common::v1::Vector3>::operator()(const common::v1::Vector3* proto) const {
     return {proto->x(), proto->y(), proto->z()};
 }
 

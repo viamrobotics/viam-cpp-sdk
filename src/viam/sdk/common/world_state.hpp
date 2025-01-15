@@ -54,32 +54,32 @@ class WorldState {
 namespace proto_convert_details {
 
 template <>
-struct to_proto<WorldState::geometries_in_frame> {
+struct to_proto_impl<WorldState::geometries_in_frame> {
     void operator()(const WorldState::geometries_in_frame&, common::v1::GeometriesInFrame*) const;
 };
 
 template <>
-struct from_proto<common::v1::GeometriesInFrame> {
+struct from_proto_impl<common::v1::GeometriesInFrame> {
     WorldState::geometries_in_frame operator()(const common::v1::GeometriesInFrame*) const;
 };
 
 template <>
-struct to_proto<WorldState::transform> {
+struct to_proto_impl<WorldState::transform> {
     void operator()(const WorldState::transform&, common::v1::Transform*) const;
 };
 
 template <>
-struct from_proto<common::v1::Transform> {
+struct from_proto_impl<common::v1::Transform> {
     WorldState::transform operator()(const common::v1::Transform*) const;
 };
 
 template <>
-struct to_proto<WorldState> {
+struct to_proto_impl<WorldState> {
     void operator()(const WorldState&, common::v1::WorldState*) const;
 };
 
 template <>
-struct from_proto<common::v1::WorldState> {
+struct from_proto_impl<common::v1::WorldState> {
     WorldState operator()(const common::v1::WorldState*) const;
 };
 
