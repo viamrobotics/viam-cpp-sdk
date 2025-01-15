@@ -46,11 +46,6 @@ class MockRobotService : public ResourceServer, public viam::robot::v1::RobotSer
                                  const ::viam::robot::v1::TransformPoseRequest* request,
                                  ::viam::robot::v1::TransformPoseResponse* response) override;
 
-    ::grpc::Status DiscoverComponents(
-        ::grpc::ServerContext* context,
-        const ::viam::robot::v1::DiscoverComponentsRequest* request,
-        ::viam::robot::v1::DiscoverComponentsResponse* response) override;
-
     ::grpc::Status GetOperations(::grpc::ServerContext* context,
                                  const ::viam::robot::v1::GetOperationsRequest* request,
                                  ::viam::robot::v1::GetOperationsResponse* response) override;
@@ -63,8 +58,6 @@ class MockRobotService : public ResourceServer, public viam::robot::v1::RobotSer
 pose default_pose(int offset = 0);
 std::vector<RobotClient::operation> mock_operations_response();
 std::vector<viam::robot::v1::Operation> mock_proto_operations_response();
-std::vector<RobotClient::discovery> mock_discovery_response();
-std::vector<viam::robot::v1::Discovery> mock_proto_discovery_response();
 std::vector<Name> mock_resource_names_response();
 std::vector<common::v1::ResourceName> mock_proto_resource_names_response();
 std::vector<RobotClient::frame_system_config> mock_config_response();
