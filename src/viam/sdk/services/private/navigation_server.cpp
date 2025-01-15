@@ -17,7 +17,7 @@ namespace sdk {
 namespace proto_convert_details {
 
 template <>
-struct to_proto<Navigation::Path> {
+struct to_proto_impl<Navigation::Path> {
     void operator()(const Navigation::Path& self, service::navigation::v1::Path* proto) const {
         *(proto->mutable_destination_waypoint_id()) = self.destination_waypoint_id;
         *(proto->mutable_geopoints()) = impl::to_repeated_field(self.geopoints);
@@ -25,11 +25,11 @@ struct to_proto<Navigation::Path> {
 };
 
 template <>
-struct to_proto<Navigation::Waypoint> {
+struct to_proto_impl<Navigation::Waypoint> {
     void operator()(const Navigation::Waypoint& self,
                     service::navigation::v1::Waypoint* proto) const {
         *(proto->mutable_id()) = self.id;
-        *(proto->mutable_location()) = v2::to_proto(self.location);
+        *(proto->mutable_location()) = to_proto(self.location);
     }
 };
 
@@ -63,7 +63,7 @@ using namespace service::navigation::v1;
     return make_service_helper<Navigation>(
         "NavigationServer::GetLocation", this, request)([&](auto& helper, auto& nav) {
         const auto& loc = nav->get_location(helper.getExtra());
-        *response->mutable_location() = v2::to_proto(loc.location);
+        *response->mutable_location() = to_proto(loc.location);
         response->set_compass_heading(loc.compass_heading);
     });
 }
@@ -83,7 +83,7 @@ using namespace service::navigation::v1;
                                              AddWaypointResponse*) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::AddWaypoint", this, request)([&](auto& helper, auto& nav) {
-        nav->add_waypoint(v2::from_proto(request->location()), helper.getExtra());
+        nav->add_waypoint(from_proto(request->location()), helper.getExtra());
     });
 }
 
@@ -129,8 +129,8 @@ using namespace service::navigation::v1;
     ::viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Navigation>(
         "NavigationServer::DoCommand", this, request)([&](auto&, auto& motion) {
-        const ProtoStruct result = motion->do_command(v2::from_proto(request->command()));
-        *response->mutable_result() = v2::to_proto(result);
+        const ProtoStruct result = motion->do_command(from_proto(request->command()));
+        *response->mutable_result() = to_proto(result);
     });
 };
 

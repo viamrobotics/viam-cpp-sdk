@@ -20,6 +20,9 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
+using sdk::from_proto;
+using sdk::to_proto;
+
 viam::component::board::v1::Status to_proto(const Board::status& status) {
     viam::component::board::v1::Status proto;
     for (const auto& analog : status.analog_reader_values) {
@@ -105,8 +108,8 @@ void BoardClient::set_pwm_frequency(const std::string& pin,
 
 ProtoStruct BoardClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
-        .with([&](auto& request) { *request.mutable_command() = v2::to_proto(command); })
-        .invoke([](auto& response) { return v2::from_proto(response.result()); });
+        .with([&](auto& request) { *request.mutable_command() = to_proto(command); })
+        .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
 // TODO(RSDK-6048) update `client_wrapper` to allow for requests without a `mutable_name()` method,
@@ -119,7 +122,7 @@ Board::analog_response BoardClient::read_analog(const std::string& analog_reader
 
     request.set_board_name(this->name());
     request.set_analog_reader_name(analog_reader_name);
-    *request.mutable_extra() = v2::to_proto(extra);
+    *request.mutable_extra() = to_proto(extra);
 
     const grpc::Status status = stub_->ReadAnalogReader(ctx, request, &response);
     if (!status.ok()) {
@@ -149,7 +152,7 @@ Board::digital_value BoardClient::read_digital_interrupt(const std::string& digi
 
     request.set_board_name(this->name());
     request.set_digital_interrupt_name(digital_interrupt_name);
-    *request.mutable_extra() = v2::to_proto(extra);
+    *request.mutable_extra() = to_proto(extra);
 
     const grpc::Status status = stub_->GetDigitalInterruptValue(ctx, request, &response);
     if (!status.ok()) {
@@ -182,7 +185,7 @@ void BoardClient::set_power_mode(power_mode power_mode,
               [&](auto& request) {
                   request.set_power_mode(to_proto(power_mode));
                   if (duration.has_value()) {
-                      *request.mutable_duration() = v2::to_proto(duration.get());
+                      *request.mutable_duration() = to_proto(duration.get());
                   }
               })
         .invoke();
@@ -191,7 +194,7 @@ void BoardClient::set_power_mode(power_mode power_mode,
 std::vector<GeometryConfig> BoardClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return v2::from_proto(response); });
+        .invoke([](auto& response) { return from_proto(response); });
 };
 
 }  // namespace impl

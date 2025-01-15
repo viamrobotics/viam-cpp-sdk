@@ -75,8 +75,8 @@ GantryServer::GantryServer(std::shared_ptr<ResourceManager> manager)
                                        ::viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Gantry>(
         "GantryServer::DoCommand", this, request)([&](auto&, auto& gantry) {
-        const ProtoStruct result = gantry->do_command(v2::from_proto(request->command()));
-        *response->mutable_result() = v2::to_proto(result);
+        const ProtoStruct result = gantry->do_command(from_proto(request->command()));
+        *response->mutable_result() = to_proto(result);
     });
 }
 
@@ -88,7 +88,7 @@ GantryServer::GantryServer(std::shared_ptr<ResourceManager> manager)
         "GantryServer::GetGeometries", this, request)([&](auto& helper, auto& gantry) {
         const std::vector<GeometryConfig> geometries = gantry->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = v2::to_proto(geometry);
+            *response->mutable_geometries()->Add() = to_proto(geometry);
         }
     });
 }

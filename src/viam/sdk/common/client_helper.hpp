@@ -85,7 +85,7 @@ class ClientHelper {
             debug_key_ = *value.get<std::string>();
         }
 
-        proto_convert_details::to_proto<ProtoStruct>{}(extra, request_.mutable_extra());
+        proto_convert_details::to_proto_impl<ProtoStruct>{}(extra, request_.mutable_extra());
         return with(std::forward<RequestSetupCallable>(rsc));
     }
 

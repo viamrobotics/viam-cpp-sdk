@@ -91,9 +91,9 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
             BOOST_CHECK(v1_copy_to_change == v3);
         }
 
-        Value converted = v2::to_proto(v3);
-        auto roundtrip = v2::from_proto(converted);
-        Value value_roundtrip = v2::to_proto(roundtrip);
+        Value converted = to_proto(v3);
+        auto roundtrip = from_proto(converted);
+        Value value_roundtrip = to_proto(roundtrip);
 
         BOOST_CHECK(v3.kind() == roundtrip.kind());
 
@@ -215,9 +215,9 @@ BOOST_AUTO_TEST_CASE(test_nested_objects) {
 
     ProtoValue map_proto(map);
 
-    Value val = v2::to_proto(map_proto);
-    auto roundtrip = v2::from_proto(val);
-    Value val2 = v2::to_proto(roundtrip);
+    Value val = to_proto(map_proto);
+    auto roundtrip = from_proto(val);
+    Value val2 = to_proto(roundtrip);
 
     BOOST_CHECK(map_proto == roundtrip);
 
@@ -243,13 +243,13 @@ BOOST_AUTO_TEST_CASE(test_manual_list_conversion) {
         Value protoval;
         set_proto_value(protoval, test_val);
 
-        auto from_value = v2::from_proto(protoval);
+        auto from_value = from_proto(protoval);
         BOOST_CHECK(val == from_value);
 
-        Value converted_to_value = v2::to_proto(val);
+        Value converted_to_value = to_proto(val);
         BOOST_CHECK(protoval.ShortDebugString() == converted_to_value.ShortDebugString());
 
-        auto roundtrip = v2::from_proto(converted_to_value);
+        auto roundtrip = from_proto(converted_to_value);
 
         BOOST_CHECK(val == roundtrip);
     });
@@ -286,10 +286,10 @@ BOOST_AUTO_TEST_CASE(test_manual_list_conversion) {
     Value v;
     *v.mutable_list_value() = lv;
 
-    Value value_from_proto = v2::to_proto(proto);
+    Value value_from_proto = to_proto(proto);
     BOOST_CHECK(v.ShortDebugString() == value_from_proto.ShortDebugString());
 
-    auto roundtrip = v2::from_proto(value_from_proto);
+    auto roundtrip = from_proto(value_from_proto);
     BOOST_CHECK(proto == roundtrip);
 }
 
@@ -314,9 +314,9 @@ BOOST_AUTO_TEST_CASE(test_manual_map_conversion) {
     Value v;
     *v.mutable_struct_value() = proto_struct;
 
-    auto from_proto = v2::from_proto(v);
+    auto from_proto_ = from_proto(v);
     ProtoValue from_map(m);
-    BOOST_CHECK(from_proto == from_map);
+    BOOST_CHECK(from_proto_ == from_map);
 
     const ProtoStruct* ptr = from_map.get<ProtoStruct>();
     BOOST_REQUIRE(ptr);

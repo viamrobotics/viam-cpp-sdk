@@ -25,7 +25,7 @@ PoseTrackerServer::PoseTrackerServer(std::shared_ptr<ResourceManager> manager)
             {request->body_names().begin(), request->body_names().end()}, helper.getExtra());
 
         for (const auto& pair : result) {
-            response->mutable_body_poses()->insert({pair.first, v2::to_proto(pair.second)});
+            response->mutable_body_poses()->insert({pair.first, to_proto(pair.second)});
         }
     });
 }
@@ -36,8 +36,8 @@ PoseTrackerServer::PoseTrackerServer(std::shared_ptr<ResourceManager> manager)
     viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<PoseTracker>(
         "PoseTrackerServer::DoCommand", this, request)([&](auto&, auto& pose_tracker) {
-        const ProtoStruct result = pose_tracker->do_command(v2::from_proto(request->command()));
-        *response->mutable_result() = v2::to_proto(result);
+        const ProtoStruct result = pose_tracker->do_command(from_proto(request->command()));
+        *response->mutable_result() = to_proto(result);
     });
 }
 
@@ -50,7 +50,7 @@ PoseTrackerServer::PoseTrackerServer(std::shared_ptr<ResourceManager> manager)
         const std::vector<GeometryConfig> geometries =
             pose_tracker->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = v2::to_proto(geometry);
+            *response->mutable_geometries()->Add() = to_proto(geometry);
         }
     });
 }

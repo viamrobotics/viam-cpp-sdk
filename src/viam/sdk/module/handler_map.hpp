@@ -33,12 +33,12 @@ std::ostream& operator<<(std::ostream& os, const HandlerMap_& hm);
 namespace proto_convert_details {
 
 template <>
-struct to_proto<HandlerMap_> {
+struct to_proto_impl<HandlerMap_> {
     void operator()(const HandlerMap_&, module::v1::HandlerMap*) const;
 };
 
 template <>
-struct from_proto<module::v1::HandlerMap> {
+struct from_proto_impl<module::v1::HandlerMap> {
     HandlerMap_ operator()(const module::v1::HandlerMap*) const;
 };
 

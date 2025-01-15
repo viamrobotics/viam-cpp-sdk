@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE(test_name) {
     BOOST_CHECK_EQUAL(name1.name(), "name");
     BOOST_CHECK_EQUAL(name1.short_name(), "remote:name");
     BOOST_CHECK_EQUAL(name1.to_string(), "ns:service:st/remote:name");
-    BOOST_CHECK_EQUAL(v2::from_proto(v2::to_proto(name1)), name1);
+    BOOST_CHECK_EQUAL(from_proto(to_proto(name1)), name1);
 
     Name name2(API::from_string("ns:service:st"), "remote1:remote2", "name");
     BOOST_CHECK_EQUAL(name2.api().to_string(), "ns:service:st");
@@ -61,7 +61,7 @@ BOOST_AUTO_TEST_CASE(test_name) {
     BOOST_CHECK_EQUAL(name2.name(), "name");
     BOOST_CHECK_EQUAL(name2.short_name(), "remote1:remote2:name");
     BOOST_CHECK_EQUAL(name2.to_string(), "ns:service:st/remote1:remote2:name");
-    BOOST_CHECK_EQUAL(v2::from_proto(v2::to_proto(name2)), name2);
+    BOOST_CHECK_EQUAL(from_proto(to_proto(name2)), name2);
 
     Name name3 = Name::from_string("ns:component:st/name");
     BOOST_CHECK_EQUAL(name3.api().to_string(), "ns:component:st");
@@ -69,7 +69,7 @@ BOOST_AUTO_TEST_CASE(test_name) {
     BOOST_CHECK_EQUAL(name3.name(), "name");
     BOOST_CHECK_EQUAL(name3.short_name(), "name");
     BOOST_CHECK_EQUAL(name3.to_string(), "ns:component:st/name");
-    BOOST_CHECK_EQUAL(v2::from_proto(v2::to_proto(name3)), name3);
+    BOOST_CHECK_EQUAL(from_proto(to_proto(name3)), name3);
 
     BOOST_CHECK_THROW(Name::from_string("ns:service:#st/remote:name"), Exception);
 }
@@ -135,24 +135,24 @@ BOOST_AUTO_TEST_CASE(test_linkconfig) {
     *frame.mutable_orientation() = o;
     *frame.mutable_translation() = t;
 
-    LinkConfig lc = v2::from_proto(frame);
+    LinkConfig lc = from_proto(frame);
     BOOST_CHECK_EQUAL(lc.get_parent(), "parent");
     BOOST_CHECK_EQUAL(lc.get_translation().x, t.x());
     BOOST_CHECK_EQUAL(lc.get_translation().y, t.y());
     BOOST_CHECK_EQUAL(lc.get_translation().z, t.z());
     GeometryConfig gcfg = lc.get_geometry_config();
     BOOST_CHECK_EQUAL(gcfg.get_label(), "label");
-    BOOST_CHECK_EQUAL(gcfg.get_pose(), v2::from_proto(pose));
+    BOOST_CHECK_EQUAL(gcfg.get_pose(), from_proto(pose));
     BOOST_CHECK_EQUAL(gcfg.get_geometry_type(), GeometryType::box);
 
-    common::v1::Geometry gs = v2::to_proto(gcfg);
+    common::v1::Geometry gs = to_proto(gcfg);
     BOOST_ASSERT(gs.has_box());
 
     BOOST_CHECK_EQUAL(gs.box().dims_mm().x(), box.dims_mm().x());
     BOOST_CHECK_EQUAL(gs.box().dims_mm().y(), box.dims_mm().y());
     BOOST_CHECK_EQUAL(gs.box().dims_mm().z(), box.dims_mm().z());
 
-    viam::app::v1::Frame proto_lc = v2::to_proto(lc);
+    viam::app::v1::Frame proto_lc = to_proto(lc);
     BOOST_CHECK_EQUAL(proto_lc.parent(), "parent");
     BOOST_CHECK_EQUAL(proto_lc.translation().x(), t.x());
     BOOST_CHECK_EQUAL(proto_lc.translation().y(), t.y());
@@ -236,7 +236,7 @@ BOOST_AUTO_TEST_CASE(test_resource) {
     *frame.mutable_translation() = t;
     *proto_cfg.mutable_frame() = frame;
 
-    ResourceConfig resource2 = v2::from_proto(proto_cfg);
+    ResourceConfig resource2 = from_proto(proto_cfg);
     BOOST_CHECK_EQUAL(resource2.name(), "name");
     BOOST_CHECK_EQUAL(resource2.namespace_(), "ns");
     BOOST_CHECK_EQUAL(resource2.type(), "type");
@@ -247,13 +247,13 @@ BOOST_AUTO_TEST_CASE(test_resource) {
     Value value;
     for (const auto& key_and_value : resource2.attributes()) {
         key = key_and_value.first;
-        value = v2::to_proto(key_and_value.second);
+        value = to_proto(key_and_value.second);
     }
     BOOST_CHECK_EQUAL(key, "a");
     BOOST_CHECK_EQUAL(value.number_value(), 1);
 
     *proto_cfg.mutable_api() = "ns:component:test";
-    BOOST_CHECK_THROW(v2::from_proto(proto_cfg), Exception);
+    BOOST_CHECK_THROW(from_proto(proto_cfg), Exception);
 }
 
 }  // namespace sdktests

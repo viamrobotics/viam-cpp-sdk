@@ -69,17 +69,17 @@ class ResourceConfig {
 namespace proto_convert_details {
 
 template <>
-struct to_proto<ResourceLevelServiceConfig> {
+struct to_proto_impl<ResourceLevelServiceConfig> {
     void operator()(const ResourceLevelServiceConfig&, app::v1::ResourceLevelServiceConfig*) const;
 };
 
 template <>
-struct to_proto<ResourceConfig> {
+struct to_proto_impl<ResourceConfig> {
     void operator()(const ResourceConfig&, app::v1::ComponentConfig*) const;
 };
 
 template <>
-struct from_proto<app::v1::ComponentConfig> {
+struct from_proto_impl<app::v1::ComponentConfig> {
     ResourceConfig operator()(const app::v1::ComponentConfig*) const;
 };
 
