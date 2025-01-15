@@ -35,8 +35,6 @@ namespace sdk {
 
 using google::protobuf::RepeatedPtrField;
 using viam::common::v1::Transform;
-using viam::robot::v1::Discovery;
-using viam::robot::v1::DiscoveryQuery;
 using viam::robot::v1::FrameSystemConfig;
 using viam::robot::v1::Operation;
 using viam::robot::v1::RobotService;
@@ -47,28 +45,6 @@ using viam::robot::v1::RobotService;
 // error on the C++ side.
 // NOLINTNEXTLINE
 const std::string kStreamRemoved("Stream removed");
-
-// TODO: add a traits class for proto to type and back conversion
-DiscoveryQuery to_proto(const RobotClient::discovery_query& query) {
-    DiscoveryQuery proto;
-    *proto.mutable_subtype() = query.subtype;
-    *proto.mutable_model() = query.model;
-    return proto;
-}
-
-RobotClient::discovery_query from_proto(const DiscoveryQuery& proto) {
-    RobotClient::discovery_query query;
-    query.subtype = proto.subtype();
-    query.model = proto.model();
-    return query;
-}
-
-RobotClient::discovery from_proto(const Discovery& proto) {
-    RobotClient::discovery discovery;
-    discovery.query = from_proto(proto.query());
-    discovery.results = from_proto(proto.results());
-    return discovery;
-}
 
 RobotClient::frame_system_config from_proto(const FrameSystemConfig& proto) {
     RobotClient::frame_system_config fsconfig;
@@ -93,15 +69,6 @@ RobotClient::operation from_proto(const Operation& proto) {
         op.started = from_proto(proto.started());
     }
     return op;
-}
-
-bool operator==(const RobotClient::discovery_query& lhs, const RobotClient::discovery_query& rhs) {
-    return lhs.subtype == rhs.subtype && lhs.model == rhs.model;
-}
-
-bool operator==(const RobotClient::discovery& lhs, const RobotClient::discovery& rhs) {
-    return lhs.query == rhs.query &&
-           to_proto(lhs.results).SerializeAsString() == to_proto(rhs.results).SerializeAsString();
 }
 
 bool operator==(const RobotClient::frame_system_config& lhs,
@@ -352,32 +319,6 @@ pose_in_frame RobotClient::transform_pose(
     }
 
     return from_proto(resp.pose());
-}
-
-std::vector<RobotClient::discovery> RobotClient::discover_components(
-    const std::vector<discovery_query>& queries) {
-    viam::robot::v1::DiscoverComponentsRequest req;
-    viam::robot::v1::DiscoverComponentsResponse resp;
-    ClientContext ctx;
-
-    RepeatedPtrField<DiscoveryQuery>* req_queries = req.mutable_queries();
-
-    for (const discovery_query& query : queries) {
-        *req_queries->Add() = to_proto(query);
-    }
-
-    const grpc::Status response = impl_->stub_->DiscoverComponents(ctx, req, &resp);
-    if (is_error_response(response)) {
-        BOOST_LOG_TRIVIAL(error) << "Error discovering components: " << response.error_message();
-    }
-
-    std::vector<discovery> components = std::vector<discovery>();
-
-    for (const Discovery& d : resp.discovery()) {
-        components.push_back(from_proto(d));
-    }
-
-    return components;
 }
 
 std::shared_ptr<Resource> RobotClient::resource_by_name(const Name& name) {

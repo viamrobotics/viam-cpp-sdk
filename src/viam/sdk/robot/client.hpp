@@ -34,18 +34,6 @@ namespace sdk {
 /// `with_channel` require a user call to `close()`.
 class RobotClient {
    public:
-    struct discovery_query {
-        std::string subtype;
-        std::string model;
-        friend bool operator==(const discovery_query& lhs, const discovery_query& rhs);
-    };
-
-    struct discovery {
-        discovery_query query;
-        ProtoStruct results;
-        friend bool operator==(const discovery& lhs, const discovery& rhs);
-    };
-
     struct frame_system_config {
         WorldState::transform frame;
         ProtoStruct kinematics;
@@ -119,8 +107,6 @@ class RobotClient {
     /// @brief Get the list of operations currently running on a robot.
     /// @return The list of operations currently running on the calling robot.
     std::vector<operation> get_operations();
-
-    std::vector<discovery> discover_components(const std::vector<discovery_query>& queries);
 
     /// @brief Transform a given `Pose` to a new specified destination which is a reference frame.
     /// @param query The pose that should be transformed.

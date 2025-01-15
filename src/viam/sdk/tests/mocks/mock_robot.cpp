@@ -18,8 +18,6 @@ using namespace viam::sdk;
 using common::v1::Pose;
 using common::v1::PoseInFrame;
 using common::v1::ResourceName;
-using viam::robot::v1::Discovery;
-using viam::robot::v1::DiscoveryQuery;
 using viam::robot::v1::FrameSystemConfig;
 using viam::robot::v1::Operation;
 
@@ -91,41 +89,6 @@ std::vector<Operation> mock_proto_operations_response() {
     resp.push_back(op);
     resp.push_back(op1);
     return resp;
-}
-
-std::vector<RobotClient::discovery> mock_discovery_response() {
-    RobotClient::discovery_query query;
-    query.subtype = "camera";
-    query.model = "webcam";
-    ProtoValue s("bar");
-    ProtoValue map(fake_map());
-
-    ProtoList inner{{map}};
-    ProtoList l{{s, ProtoValue{false}, ProtoValue{3.0}, ProtoValue{4.2}, map, std::move(inner)}};
-
-    ProtoStruct results{{"foo", l}};
-
-    RobotClient::discovery discovery;
-    discovery.query = std::move(query);
-    discovery.results = std::move(results);
-    return std::vector<RobotClient::discovery>{std::move(discovery)};
-}
-
-std::vector<Discovery> mock_proto_discovery_response() {
-    std::vector<viam::robot::v1::Discovery> v;
-    for (const auto& d : mock_discovery_response()) {
-        DiscoveryQuery query;
-        *query.mutable_subtype() = d.query.subtype;
-        *query.mutable_model() = d.query.model;
-
-        viam::robot::v1::Discovery discovery;
-        *discovery.mutable_query() = query;
-        *discovery.mutable_results() = to_proto(d.results);
-
-        v.push_back(std::move(discovery));
-    }
-
-    return v;
 }
 
 pose_in_frame mock_transform_response() {
@@ -343,22 +306,6 @@ std::shared_ptr<Resource> MockRobotService::resource_by_name(const Name& name) {
     auto* configs = response->mutable_frame_system_configs();
     for (const auto& c : mock_proto_config_response()) {
         *configs->Add() = c;
-    }
-    return ::grpc::Status();
-}
-
-::grpc::Status MockRobotService::DiscoverComponents(
-    ::grpc::ServerContext* context,
-    const ::viam::robot::v1::DiscoverComponentsRequest*,
-    ::viam::robot::v1::DiscoverComponentsResponse* response) {
-    auto client_md = context->client_metadata();
-    if (auto client_info = client_md.find("viam_client"); client_info == client_md.end()) {
-        return ::grpc::Status(::grpc::StatusCode::FAILED_PRECONDITION,
-                              "viam_client info not properly set in metadata");
-    }
-    auto* discovery = response->mutable_discovery();
-    for (auto& d : mock_proto_discovery_response()) {
-        *discovery->Add() = d;
     }
     return ::grpc::Status();
 }
