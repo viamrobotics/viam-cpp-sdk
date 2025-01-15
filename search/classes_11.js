@@ -12,11 +12,10 @@ var searchData=
   ['servoserver_9',['ServoServer',['../classviam_1_1sdk_1_1impl_1_1ServoServer.html',1,'viam::sdk::impl']]],
   ['signalmanager_10',['SignalManager',['../classviam_1_1sdk_1_1SignalManager.html',1,'viam::sdk']]],
   ['sphere_11',['sphere',['../structviam_1_1sdk_1_1sphere.html',1,'viam::sdk']]],
-  ['static_5fconst_12',['static_const',['../structviam_1_1sdk_1_1proto__convert__details_1_1static__const.html',1,'viam::sdk::proto_convert_details']]],
-  ['status_13',['status',['../structviam_1_1sdk_1_1Board_1_1status.html',1,'viam::sdk::Board']]],
-  ['steps_14',['steps',['../structviam_1_1sdk_1_1Motion_1_1steps.html',1,'viam::sdk::Motion']]],
-  ['stoppable_15',['Stoppable',['../classviam_1_1sdk_1_1Stoppable.html',1,'viam::sdk']]],
-  ['summation_16',['Summation',['../classSummation.html',1,'']]],
-  ['summationclient_17',['SummationClient',['../classSummationClient.html',1,'']]],
-  ['summationserver_18',['SummationServer',['../classSummationServer.html',1,'']]]
+  ['status_12',['status',['../structviam_1_1sdk_1_1Board_1_1status.html',1,'viam::sdk::Board']]],
+  ['steps_13',['steps',['../structviam_1_1sdk_1_1Motion_1_1steps.html',1,'viam::sdk::Motion']]],
+  ['stoppable_14',['Stoppable',['../classviam_1_1sdk_1_1Stoppable.html',1,'viam::sdk']]],
+  ['summation_15',['Summation',['../classSummation.html',1,'']]],
+  ['summationclient_16',['SummationClient',['../classSummationClient.html',1,'']]],
+  ['summationserver_17',['SummationServer',['../classSummationServer.html',1,'']]]
 ];

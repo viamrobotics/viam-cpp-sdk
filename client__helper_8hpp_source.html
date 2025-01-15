@@ -173,7 +173,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            debug_key_ = *value.<a class="code hl_function" href="classviam_1_1sdk_1_1ProtoValue.html#a4689670f33c18048ac60bc4f6efc8458">get</a>&lt;std::string&gt;();</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        }</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto.html">proto_convert_details::to_proto&lt;ProtoStruct&gt;</a>{}(extra, request_.mutable_extra());</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <a class="code hl_struct" href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl.html">proto_convert_details::to_proto_impl&lt;ProtoStruct&gt;</a>{}(extra, request_.mutable_extra());</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keywordflow">return</span> with(std::forward&lt;RequestSetupCallable&gt;(rsc));</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    }</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
@@ -273,7 +273,7 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassviam_1_1sdk_1_1ProtoValue_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ProtoValue.html">viam::sdk::ProtoValue</a></div><div class="ttdoc">Type-erased value for storing google::protobuf::Value types. A ProtoValue can be nullptr,...</div><div class="ttdef"><b>Definition</b> proto_value.hpp:55</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ProtoValue_html_a4689670f33c18048ac60bc4f6efc8458"><div class="ttname"><a href="classviam_1_1sdk_1_1ProtoValue.html#a4689670f33c18048ac60bc4f6efc8458">viam::sdk::ProtoValue::get</a></div><div class="ttdeci">T * get()</div><div class="ttdoc">Return a T pointer if this is_a&lt;T&gt;(), else return nullptr.</div><div class="ttdef"><b>Definition</b> proto_value.hpp:395</div></div>
 <div class="ttc" id="aexception_8hpp_html"><div class="ttname"><a href="exception_8hpp.html">exception.hpp</a></div><div class="ttdoc">Defines custom exceptions for the SDK.</div></div>
-<div class="ttc" id="astructviam_1_1sdk_1_1proto__convert__details_1_1to__proto_html"><div class="ttname"><a href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto.html">viam::sdk::proto_convert_details::to_proto</a></div><div class="ttdef"><b>Definition</b> proto_convert.hpp:28</div></div>
+<div class="ttc" id="astructviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl_html"><div class="ttname"><a href="structviam_1_1sdk_1_1proto__convert__details_1_1to__proto__impl.html">viam::sdk::proto_convert_details::to_proto_impl</a></div><div class="ttdef"><b>Definition</b> proto_convert.hpp:18</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
