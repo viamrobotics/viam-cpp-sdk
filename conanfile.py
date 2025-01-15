@@ -47,8 +47,8 @@ class ViamCppSdkRecipe(ConanFile):
 
         # The SDK supports older grpc and protobuf, but these are the oldest
         # maintained conan packages.
-        self.requires('grpc/[>=1.48.4]', transitive_headers=True)
-        self.requires('protobuf/[>=3.17.1]', transitive_headers=True)
+        self.requires('grpc/[>=1.48.4]', transitive_libs=True)
+        self.requires('protobuf/[>=3.17.1]', transitive_libs=True)
 
         self.requires('xtensor/[>=0.24.3]')
         self.requires('abseil/[>=20230125.3]', transitive_libs=True)

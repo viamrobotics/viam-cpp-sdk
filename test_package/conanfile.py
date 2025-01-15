@@ -13,6 +13,7 @@ class viamCppSdkTest(ConanFile):
 
     def requirements(self):
         self.requires(self.tested_reference_str)
+        self.requires('grpc/[>=1.48.4]')
 
     def build(self):
         cmake = CMake(self)
