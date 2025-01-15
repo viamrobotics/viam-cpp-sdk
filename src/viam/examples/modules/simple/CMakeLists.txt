@@ -19,6 +19,7 @@ add_executable(simple_module
 target_link_libraries(simple_module
   PRIVATE Threads::Threads
   viam-cpp-sdk::viamsdk
+  ${VIAMCPPSDK_GRPCXX_LIBRARIES}
 )
 
 install(

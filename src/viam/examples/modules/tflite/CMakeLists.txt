@@ -44,6 +44,7 @@ if (VIAMCPPSDK_BUILD_TFLITE_EXAMPLE_MODULE)
   target_link_libraries(tflite_module
     PRIVATE Threads::Threads
     PRIVATE viam-cpp-sdk::viamsdk
+    PRIVATE ${VIAMCPPSDK_GRPCXX_LIBRARIES}
     PRIVATE tensorflowlite_c
   )
 

@@ -45,6 +45,8 @@ find_package(Threads REQUIRED)
 #
 find_package(viam-cpp-sdk CONFIG REQUIRED viamsdk)
 
+find_package(gRPC CONFIG REQUIRED)
+
 
 # Here we compile the `examle_dial.cpp` and `example_module.cpp` source
 # files into executables, but as parts of separate projects rather than
@@ -72,4 +74,5 @@ target_link_libraries(example_dial
 
 target_link_libraries(example_module
   viam-cpp-sdk::viamsdk
+  gRPC::grpc++
 )
