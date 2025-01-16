@@ -19,7 +19,6 @@ add_executable(example_dial_api_key
 target_link_libraries(example_dial_api_key
   Boost::program_options
   viam-cpp-sdk::viamsdk
-  ${VIAMCPPSDK_GRPCXX_LIBRARIES}
 )
 
 install(

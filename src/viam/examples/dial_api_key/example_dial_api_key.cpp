@@ -9,10 +9,6 @@
 
 #include <boost/optional.hpp>
 #include <boost/program_options.hpp>
-#include <grpcpp/channel.h>
-#include <grpcpp/client_context.h>
-#include <grpcpp/grpcpp.h>
-#include <grpcpp/support/status.h>
 
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/rpc/dial.hpp>
