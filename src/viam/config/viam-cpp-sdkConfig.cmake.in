@@ -2,8 +2,6 @@
 
 include(CMakeFindDependencyMacro)
 
-find_dependency(absl)
-
 find_dependency(Boost @Boost_VERSION_MAJOR@.@Boost_VERSION_MINOR@ COMPONENTS headers log)
 
 if (@gRPC_FOUND@)

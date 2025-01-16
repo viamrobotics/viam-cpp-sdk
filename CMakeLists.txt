@@ -317,16 +317,11 @@ add_custom_target(
 )
 
 
-set(VIAMCPPSDK_ABSL_VERSION_MINIMUM)  # Someday?
 set(VIAMCPPSDK_BOOST_VERSION_MINIMUM 1.71)
 set(VIAMCPPSDK_GRPC_VERSION_MINIMUM 1.30.2)
 set(VIAMCPPSDK_PROTOBUF_VERSION_MINIMUM 3.12.4)
 set(VIAMCPPSDK_XTL_VERSION_MINIMUM 0.7.2)
 set(VIAMCPPSDK_XTENSOR_VERSION_MINIMUM 0.24.3)
-
-# Time to find absl. Note that the version min value is currently empty,
-# because absl doesn't use a versioning scheme that works here.
-find_package(absl ${VIAMCPPSDK_ABSL_VERSION_MINIMUM} REQUIRED)
 
 # Time to find `BOOST`.
 find_package(Boost ${VIAMCPPSDK_BOOST_VERSION_MINIMUM} REQUIRED COMPONENTS headers log program_options)

@@ -128,7 +128,6 @@ jobs:
               gnupg \
               gpg \
               less \
-              libabsl-dev \
               libboost-all-dev \
               libgrpc++-dev \
               libprotobuf-dev \
@@ -221,7 +220,6 @@ jobs:
               gnupg \
               gpg \
               less \
-              libabsl-dev \
               libboost-all-dev \
               libc-ares-dev \
               libgrpc++-dev \
