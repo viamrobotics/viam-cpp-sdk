@@ -47,11 +47,11 @@ class ViamCppSdkRecipe(ConanFile):
 
         # The SDK supports older grpc and protobuf, but these are the oldest
         # maintained conan packages.
-        self.requires('grpc/[>=1.48.4]', transitive_headers=True)
-        self.requires('protobuf/[>=3.17.1]', transitive_headers=True)
+        self.requires('grpc/[>=1.48.4]')
+        self.requires('protobuf/[>=3.17.1]')
 
         self.requires('xtensor/[>=0.24.3]')
-        self.requires('abseil/[>=20230125.3]', transitive_libs=True)
+        self.requires('abseil/[>=20230125.3]')
 
     def build_requirements(self):
         if self.options.offline_proto_generation:
@@ -94,6 +94,8 @@ class ViamCppSdkRecipe(ConanFile):
            if self.settings.os in ["Linux", "FreeBSD"]:
             self.cpp_info.components[component].system_libs = ["pthread"]
 
+        self.cpp_info.components["viamapi"].requires.append("abseil::absl_strings")
+
         if self.settings.os in ["Linux", "FreeBSD"]:
             self.cpp_info.components["viamsdk"].system_libs.extend(["dl", "rt"])
 
@@ -119,8 +121,7 @@ class ViamCppSdkRecipe(ConanFile):
             "xtensor::xtensor",
 
             "viamapi",
-            "viam_rust_utils",
-            "abseil::absl_strings",
+            "viam_rust_utils"
         ])
 
         self.cpp_info.components["viamsdk"].frameworks = ["Security"]

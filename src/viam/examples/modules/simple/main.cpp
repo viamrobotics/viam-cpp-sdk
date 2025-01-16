@@ -3,8 +3,6 @@
 #include <sstream>
 
 #include <boost/log/trivial.hpp>
-#include <grpcpp/grpcpp.h>
-#include <grpcpp/server_context.h>
 
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/proto_value.hpp>
