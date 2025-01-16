@@ -243,7 +243,6 @@ target_link_libraries(viamsdk
   PRIVATE ${VIAMCPPSDK_GRPCXX_LIBRARIES}
   PRIVATE ${VIAMCPPSDK_GRPC_LIBRARIES}
   PRIVATE ${VIAMCPPSDK_PROTOBUF_LIBRARIES}
-  PRIVATE absl::strings
   PRIVATE viam_rust_utils
   PRIVATE Threads::Threads
 )

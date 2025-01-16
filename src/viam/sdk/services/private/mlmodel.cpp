@@ -20,7 +20,6 @@
 #include <type_traits>
 #include <utility>
 
-#include <absl/strings/escaping.h>
 #include <boost/variant/get.hpp>
 
 #include <viam/sdk/common/exception.hpp>

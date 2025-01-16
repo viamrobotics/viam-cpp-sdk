@@ -56,7 +56,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          brew install abseil cmake boost grpc protobuf xtensor
+          brew install cmake boost grpc protobuf xtensor
           brew install pkg-config ninja buf
 
       - name: Setup build directory
