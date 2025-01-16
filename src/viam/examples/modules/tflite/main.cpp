@@ -21,9 +21,6 @@
 #include <sstream>
 #include <stdexcept>
 
-#include <grpcpp/channel.h>
-#include <grpcpp/create_channel.h>
-#include <grpcpp/security/credentials.h>
 #include <tensorflow/lite/c/c_api.h>
 
 #include <viam/sdk/common/proto_value.hpp>
