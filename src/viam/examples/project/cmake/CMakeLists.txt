@@ -74,5 +74,4 @@ target_link_libraries(example_dial
 
 target_link_libraries(example_module
   viam-cpp-sdk::viamsdk
-  gRPC::grpc++
 )
