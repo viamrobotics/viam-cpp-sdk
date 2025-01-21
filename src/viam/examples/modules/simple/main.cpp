@@ -2,18 +2,13 @@
 #include <memory>
 #include <sstream>
 
-#include <viam/sdk/components/sensor.hpp>
-#include <viam/sdk/config/resource.hpp>
-
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/proto_value.hpp>
-#include <viam/sdk/module/module.hpp>
+#include <viam/sdk/components/sensor.hpp>
+#include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/module/service.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/reconfigurable.hpp>
-#include <viam/sdk/resource/resource.hpp>
-#include <viam/sdk/rpc/dial.hpp>
-#include <viam/sdk/rpc/server.hpp>
 
 using namespace viam::sdk;
 
