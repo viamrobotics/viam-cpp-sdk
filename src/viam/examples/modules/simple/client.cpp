@@ -44,7 +44,7 @@ int main() {
     ProtoStruct resp = sensor->do_command(command);
 
     if (command != resp) {
-        std::cerr << "Got unexpected result from 'printer1'\n";
+        std::cerr << "Got unexpected result from 'mysensor'\n";
         return EXIT_FAILURE;
     }
 
