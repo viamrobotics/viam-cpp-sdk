@@ -17,6 +17,8 @@
 
 using namespace viam::sdk;
 
+// Implements a trivial sensor component, constructed with a ResourceConfig that specifies a
+// "multiplier" value which is then returned as the only sensor reading.
 class MySensor : public Sensor, public Reconfigurable {
    public:
     MySensor(const ResourceConfig& cfg) : Sensor(cfg.name()) {
