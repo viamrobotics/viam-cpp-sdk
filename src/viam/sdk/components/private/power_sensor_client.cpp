@@ -21,6 +21,9 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
+using sdk::from_proto;
+using sdk::to_proto;
+
 PowerSensor::voltage from_proto(const GetVoltageResponse& proto) {
     PowerSensor::voltage v;
     v.volts = proto.volts();
@@ -38,7 +41,7 @@ PowerSensor::current from_proto(const GetCurrentResponse& proto) {
 PowerSensorClient::PowerSensorClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : PowerSensor(std::move(name)),
       stub_(PowerSensorService::NewStub(channel)),
-      channel_(std::move(channel)){};
+      channel_(std::move(channel)) {}
 
 PowerSensor::voltage PowerSensorClient::get_voltage(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetVoltage)
@@ -64,7 +67,7 @@ ProtoStruct PowerSensorClient::get_readings(const ProtoStruct& extra) {
         .invoke([](auto& response) {
             ProtoStruct result;
             for (const auto& r : response.readings()) {
-                result.emplace(r.first, ProtoValue::from_proto(r.second));
+                result.emplace(r.first, from_proto(r.second));
             }
             return result;
         });
@@ -72,8 +75,8 @@ ProtoStruct PowerSensorClient::get_readings(const ProtoStruct& extra) {
 
 ProtoStruct PowerSensorClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
-        .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
-        .invoke([](auto& response) { return struct_to_map(response.result()); });
+        .with([&](auto& request) { *request.mutable_command() = to_proto(command); })
+        .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
 }  // namespace impl

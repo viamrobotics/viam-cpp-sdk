@@ -1,10 +1,11 @@
+#include <iostream>
 #include <memory>
 #include <string>
 
 #include <viam/sdk/common/proto_value.hpp>
+#include <viam/sdk/components/sensor.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/rpc/dial.hpp>
-#include <viam/sdk/services/generic.hpp>
 
 using namespace viam::sdk;
 
@@ -32,18 +33,34 @@ int main() {
         std::cout << "\t" << resource << "\n";
     }
 
-    // Exercise printer methods
-    auto printer = robot->resource_by_name<GenericService>("printer1");
-    if (!printer) {
-        std::cerr << "could not get 'printer1' resource from robot\n";
+    // Exercise sensor methods
+    auto sensor = robot->resource_by_name<Sensor>("mysensor");
+    if (!sensor) {
+        std::cerr << "could not get 'mysensor' resource from robot\n";
         return EXIT_FAILURE;
     }
 
     ProtoStruct command{{"hello", "world"}};
-    ProtoStruct resp = printer->do_command(command);
+    ProtoStruct resp = sensor->do_command(command);
 
     if (command != resp) {
-        std::cerr << "Got unexpected result from 'printer1'\n";
+        std::cerr << "Got unexpected result from 'mysensor'\n";
+        return EXIT_FAILURE;
+    }
+
+    ProtoStruct readings = sensor->get_readings();
+
+    auto itr = readings.find("signal");
+    if (itr == readings.end()) {
+        std::cerr << "Expected signal not found in sensor readings\n";
+        return EXIT_FAILURE;
+    }
+
+    const double* signal = itr->second.get<double>();
+    if (signal) {
+        std::cout << "\t" << itr->first << ": " << *signal << "\n";
+    } else {
+        std::cerr << "Unexpected value type for sensor reading\n";
         return EXIT_FAILURE;
     }
 

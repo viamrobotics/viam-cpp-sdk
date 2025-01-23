@@ -19,42 +19,11 @@ ProtoStruct fake_map() {
 }
 
 std::vector<GeometryConfig> fake_geometries() {
-    GeometryConfig sphere_config;
-    sphere_config.set_geometry_type(GeometryType::sphere);
-    sphere_config.set_coordinates({1, 2, 3});
-    sphere_config.set_pose({1, 2, 3});
-    struct sphere sphere({1});
-    sphere_config.set_geometry_specifics(std::move(sphere));
-    sphere_config.set_label("sphere");
-
-    GeometryConfig box_config;
-    box_config.set_geometry_type(GeometryType::box);
-    box_config.set_coordinates({1, 2, 3});
-    box_config.set_pose({1, 2, 3});
-    struct box box({1, 2, 3});
-    box_config.set_geometry_specifics(std::move(box));
-    box_config.set_label("box");
-
-    GeometryConfig point_config;
-    point_config.set_geometry_type(GeometryType::point);
-    point_config.set_coordinates({1, 2, 3});
-    point_config.set_pose({1, 2, 3});
-    struct sphere point({0});
-    point_config.set_geometry_specifics(std::move(point));
-    point_config.set_label("point");
-
-    GeometryConfig capsule_config;
-    capsule_config.set_geometry_type(GeometryType::capsule);
-    capsule_config.set_coordinates({1, 2, 3});
-    capsule_config.set_pose({1, 2, 3});
-    struct capsule capsule({2, 4});
-    capsule_config.set_geometry_specifics(std::move(capsule));
-    capsule_config.set_label("capsule");
-
-    return {std::move(sphere_config),
-            std::move(box_config),
-            std::move(point_config),
-            std::move(capsule_config)};
+    pose p{1, 2, 3};
+    return {GeometryConfig(p, sphere{1}, "sphere"),
+            GeometryConfig(p, box{1, 2, 3}, "box"),
+            GeometryConfig(p, sphere{0}, "point"),
+            GeometryConfig(p, capsule{2, 4}, "capsule")};
 }
 
 TestServer::TestServer(std::shared_ptr<Server> sdk_server) : sdk_server_(std::move(sdk_server)) {}

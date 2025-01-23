@@ -1,5 +1,4 @@
 #include <cstddef>
-#include <functional>
 #include <iostream>
 #include <memory>
 #include <ostream>
@@ -12,13 +11,8 @@
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/support/status.h>
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/robot/v1/robot.grpc.pb.h>
-#include <viam/api/robot/v1/robot.pb.h>
-
 #include <viam/sdk/components/motor.hpp>
 #include <viam/sdk/robot/client.hpp>
-#include <viam/sdk/robot/service.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 
 #include "gizmo/api.hpp"

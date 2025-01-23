@@ -16,7 +16,7 @@ namespace sdk {
 class Navigation : public Service {
    public:
     /// @enum Mode
-    /// @brief Enum affecting this nav service's goal.
+    /// @brief Enum affecting how this nav service's goal is specified.
     /// @ingroup Navigation
     enum class Mode : uint8_t {
         k_unspecified,
@@ -26,7 +26,7 @@ class Navigation : public Service {
     };
 
     /// @enum MapType
-    /// @brief Is the map navigating in GPS or a custom map.
+    /// @brief Enum affecting the format of the map used with this nav service.
     /// @ingroup Navigation
     enum class MapType : uint8_t {
         k_unspecified,
@@ -35,7 +35,7 @@ class Navigation : public Service {
     };
 
     /// @struct LocationResponse
-    /// @brief Location and direction.
+    /// @brief Location and direction of the component configured with this nav service.
     /// @ingroup Navigation
     struct LocationResponse {
         geo_point location;

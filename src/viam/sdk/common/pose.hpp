@@ -1,6 +1,18 @@
 #pragma once
 
-#include <common/v1/common.pb.h>
+#include <viam/sdk/common/proto_convert.hpp>
+
+#include <ostream>
+
+namespace viam {
+namespace common {
+namespace v1 {
+
+class Pose;
+class PoseInFrame;
+}  // namespace v1
+}  // namespace common
+}  // namespace viam
 
 namespace viam {
 namespace sdk {
@@ -20,16 +32,11 @@ struct pose {
     pose_orientation orientation;
     double theta;
 
-    static pose from_proto(const viam::common::v1::Pose& proto);
-    viam::common::v1::Pose to_proto() const;
-
     friend bool operator==(const pose& lhs, const pose& rhs);
     friend std::ostream& operator<<(std::ostream& os, const pose& v);
 };
 
 struct pose_in_frame {
-    viam::common::v1::PoseInFrame to_proto() const;
-    static pose_in_frame from_proto(const viam::common::v1::PoseInFrame& proto);
     pose_in_frame(std::string reference_frame_, struct pose pose_)
         : reference_frame(std::move(reference_frame_)), pose(std::move(pose_)) {}
     pose_in_frame() {}
@@ -39,6 +46,30 @@ struct pose_in_frame {
     friend bool operator==(const pose_in_frame& lhs, const pose_in_frame& rhs);
     friend std::ostream& operator<<(std::ostream& os, const pose_in_frame& v);
 };
+
+namespace proto_convert_details {
+
+template <>
+struct to_proto_impl<pose> {
+    void operator()(const pose&, common::v1::Pose*) const;
+};
+
+template <>
+struct from_proto_impl<common::v1::Pose> {
+    pose operator()(const common::v1::Pose*) const;
+};
+
+template <>
+struct to_proto_impl<pose_in_frame> {
+    void operator()(const pose_in_frame&, common::v1::PoseInFrame*) const;
+};
+
+template <>
+struct from_proto_impl<common::v1::PoseInFrame> {
+    pose_in_frame operator()(const common::v1::PoseInFrame*) const;
+};
+
+}  // namespace proto_convert_details
 
 }  // namespace sdk
 }  // namespace viam

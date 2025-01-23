@@ -2,7 +2,7 @@
 
 #include <viam/api/component/posetracker/v1/pose_tracker.pb.h>
 
-#include <viam/sdk/common/service_helper.hpp>
+#include <viam/sdk/common/private/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/pose_tracker.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -25,7 +25,7 @@ PoseTrackerServer::PoseTrackerServer(std::shared_ptr<ResourceManager> manager)
             {request->body_names().begin(), request->body_names().end()}, helper.getExtra());
 
         for (const auto& pair : result) {
-            response->mutable_body_poses()->insert({pair.first, pair.second.to_proto()});
+            response->mutable_body_poses()->insert({pair.first, to_proto(pair.second)});
         }
     });
 }
@@ -36,8 +36,8 @@ PoseTrackerServer::PoseTrackerServer(std::shared_ptr<ResourceManager> manager)
     viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<PoseTracker>(
         "PoseTrackerServer::DoCommand", this, request)([&](auto&, auto& pose_tracker) {
-        const ProtoStruct result = pose_tracker->do_command(struct_to_map(request->command()));
-        *response->mutable_result() = map_to_struct(result);
+        const ProtoStruct result = pose_tracker->do_command(from_proto(request->command()));
+        *response->mutable_result() = to_proto(result);
     });
 }
 
@@ -50,7 +50,7 @@ PoseTrackerServer::PoseTrackerServer(std::shared_ptr<ResourceManager> manager)
         const std::vector<GeometryConfig> geometries =
             pose_tracker->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = geometry.to_proto();
+            *response->mutable_geometries()->Add() = to_proto(geometry);
         }
     });
 }

@@ -16,11 +16,10 @@ std::string Resource::name() const {
 }
 
 Name Resource::get_resource_name(const std::string& type) const {
-    auto api_ = api();
-    api_.set_resource_type(type);
-
     auto name_parts = long_name_to_remote_and_short(name_);
-    return {api_, name_parts.first, name_parts.second};
+    return {API(api().type_namespace(), type, api().resource_subtype()),
+            name_parts.first,
+            name_parts.second};
 }
 
 Name Resource::get_resource_name() const {

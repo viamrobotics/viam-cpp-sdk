@@ -19,6 +19,8 @@
 #include <viam/api/robot/v1/robot.grpc.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
 
+#include <viam/sdk/common/client_helper.hpp>
+#include <viam/sdk/common/private/repeated_ptr_convert.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/component.hpp>
@@ -33,12 +35,9 @@ namespace sdk {
 
 using google::protobuf::RepeatedPtrField;
 using viam::common::v1::Transform;
-using viam::robot::v1::Discovery;
-using viam::robot::v1::DiscoveryQuery;
 using viam::robot::v1::FrameSystemConfig;
 using viam::robot::v1::Operation;
 using viam::robot::v1::RobotService;
-using viam::robot::v1::Status;
 
 // gRPC responses are frequently coming back with a spurious `Stream removed`
 // error, leading to unhelpful and misleading logging. We should figure out why
@@ -47,50 +46,13 @@ using viam::robot::v1::Status;
 // NOLINTNEXTLINE
 const std::string kStreamRemoved("Stream removed");
 
-namespace {
-// TODO: add a traits class for proto to type and back conversion
-DiscoveryQuery to_proto(const RobotClient::discovery_query& query) {
-    DiscoveryQuery proto;
-    *proto.mutable_subtype() = query.subtype;
-    *proto.mutable_model() = query.model;
-    return proto;
-}
-
-RobotClient::discovery_query from_proto(const DiscoveryQuery& proto) {
-    RobotClient::discovery_query query;
-    query.subtype = proto.subtype();
-    query.model = proto.model();
-    return query;
-}
-
-RobotClient::discovery from_proto(const Discovery& proto) {
-    RobotClient::discovery discovery;
-    discovery.query = from_proto(proto.query());
-    discovery.results = struct_to_map(proto.results());
-    return discovery;
-}
-
 RobotClient::frame_system_config from_proto(const FrameSystemConfig& proto) {
     RobotClient::frame_system_config fsconfig;
-    fsconfig.frame = WorldState::transform::from_proto(proto.frame());
+    fsconfig.frame = from_proto(proto.frame());
     if (proto.has_kinematics()) {
-        fsconfig.kinematics = struct_to_map(proto.kinematics());
+        fsconfig.kinematics = from_proto(proto.kinematics());
     }
     return fsconfig;
-}
-
-RobotClient::status from_proto(const Status& proto) {
-    RobotClient::status status;
-    if (proto.has_name()) {
-        status.name = Name::from_proto(proto.name());
-    }
-    if (proto.has_status()) {
-        status.status_map = struct_to_map(proto.status());
-    }
-    if (proto.has_last_reconfigured()) {
-        status.last_reconfigured = timestamp_to_time_pt(proto.last_reconfigured());
-    }
-    return status;
 }
 
 RobotClient::operation from_proto(const Operation& proto) {
@@ -101,35 +63,18 @@ RobotClient::operation from_proto(const Operation& proto) {
         op.session_id = proto.session_id();
     }
     if (proto.has_arguments()) {
-        op.arguments = struct_to_map(proto.arguments());
+        op.arguments = from_proto(proto.arguments());
     }
     if (proto.has_started()) {
-        op.started = timestamp_to_time_pt(proto.started());
+        op.started = from_proto(proto.started());
     }
     return op;
-}
-}  // namespace
-
-bool operator==(const RobotClient::discovery_query& lhs, const RobotClient::discovery_query& rhs) {
-    return lhs.subtype == rhs.subtype && lhs.model == rhs.model;
-}
-
-bool operator==(const RobotClient::discovery& lhs, const RobotClient::discovery& rhs) {
-    return lhs.query == rhs.query && map_to_struct(lhs.results).SerializeAsString() ==
-                                         map_to_struct(rhs.results).SerializeAsString();
 }
 
 bool operator==(const RobotClient::frame_system_config& lhs,
                 const RobotClient::frame_system_config& rhs) {
-    return lhs.frame == rhs.frame && map_to_struct(lhs.kinematics).SerializeAsString() ==
-                                         map_to_struct(rhs.kinematics).SerializeAsString();
-}
-
-bool operator==(const RobotClient::status& lhs, const RobotClient::status& rhs) {
-    return lhs.name == rhs.name &&
-           map_to_struct(lhs.status_map).SerializeAsString() ==
-               map_to_struct(rhs.status_map).SerializeAsString() &&
-           lhs.last_reconfigured == rhs.last_reconfigured;
+    return lhs.frame == rhs.frame && to_proto(lhs.kinematics).SerializeAsString() ==
+                                         to_proto(rhs.kinematics).SerializeAsString();
 }
 
 bool operator==(const RobotClient::operation& lhs, const RobotClient::operation& rhs) {
@@ -165,37 +110,6 @@ void RobotClient::close() {
 
 bool is_error_response(const grpc::Status& response) {
     return !response.ok() && (response.error_message() != kStreamRemoved);
-}
-std::vector<RobotClient::status> RobotClient::get_status() {
-    auto resources = resource_names();
-    return get_status(resources);
-}
-// gets statuses of components associated with robot. If a specific component
-// vector is provided, only statuses for the given Names will be
-// returned
-std::vector<RobotClient::status> RobotClient::get_status(std::vector<Name>& components) {
-    viam::robot::v1::GetStatusRequest req;
-    viam::robot::v1::GetStatusResponse resp;
-    ClientContext ctx;
-    for (const Name& name : components) {
-        *req.mutable_resource_names()->Add() = name.to_proto();
-    }
-
-    const grpc::Status response = impl_->stub_->GetStatus(ctx, req, &resp);
-    if (is_error_response(response)) {
-        BOOST_LOG_TRIVIAL(error) << "Error getting status: " << response.error_message()
-                                 << response.error_details();
-    }
-
-    const RepeatedPtrField<Status> resp_status = resp.status();
-
-    std::vector<status> statuses = std::vector<status>();
-
-    for (const Status& s : resp_status) {
-        statuses.push_back(from_proto(s));
-    }
-
-    return statuses;
 }
 
 std::vector<RobotClient::operation> RobotClient::get_operations() {
@@ -255,7 +169,7 @@ void RobotClient::refresh() {
     std::unordered_map<Name, std::shared_ptr<Resource>> new_resources;
     std::vector<Name> current_resources;
     for (const auto& name : resp.resources()) {
-        current_resources.push_back(Name::from_proto(name));
+        current_resources.push_back(from_proto(name));
         if (name.subtype() == "remote") {
             continue;
         }
@@ -368,10 +282,7 @@ std::vector<RobotClient::frame_system_config> RobotClient::get_frame_system_conf
     viam::robot::v1::FrameSystemConfigResponse resp;
     ClientContext ctx;
 
-    RepeatedPtrField<Transform>* req_transforms = req.mutable_supplemental_transforms();
-    for (const WorldState::transform& transform : additional_transforms) {
-        *req_transforms->Add() = transform.to_proto();
-    }
+    *(req.mutable_supplemental_transforms()) = sdk::impl::to_repeated_field(additional_transforms);
 
     const grpc::Status response = impl_->stub_->FrameSystemConfig(ctx, req, &resp);
     if (is_error_response(response)) {
@@ -398,46 +309,16 @@ pose_in_frame RobotClient::transform_pose(
     viam::robot::v1::TransformPoseResponse resp;
     ClientContext ctx;
 
-    *req.mutable_source() = query.to_proto();
+    *req.mutable_source() = to_proto(query);
     *req.mutable_destination() = std::move(destination);
-    RepeatedPtrField<Transform>* req_transforms = req.mutable_supplemental_transforms();
-
-    for (const WorldState::transform& transform : additional_transforms) {
-        *req_transforms->Add() = transform.to_proto();
-    }
+    *req.mutable_supplemental_transforms() = sdk::impl::to_repeated_field(additional_transforms);
 
     const grpc::Status response = impl_->stub_->TransformPose(ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error getting PoseInFrame: " << response.error_message();
     }
 
-    return pose_in_frame::from_proto(resp.pose());
-}
-
-std::vector<RobotClient::discovery> RobotClient::discover_components(
-    const std::vector<discovery_query>& queries) {
-    viam::robot::v1::DiscoverComponentsRequest req;
-    viam::robot::v1::DiscoverComponentsResponse resp;
-    ClientContext ctx;
-
-    RepeatedPtrField<DiscoveryQuery>* req_queries = req.mutable_queries();
-
-    for (const discovery_query& query : queries) {
-        *req_queries->Add() = to_proto(query);
-    }
-
-    const grpc::Status response = impl_->stub_->DiscoverComponents(ctx, req, &resp);
-    if (is_error_response(response)) {
-        BOOST_LOG_TRIVIAL(error) << "Error discovering components: " << response.error_message();
-    }
-
-    std::vector<discovery> components = std::vector<discovery>();
-
-    for (const Discovery& d : resp.discovery()) {
-        components.push_back(from_proto(d));
-    }
-
-    return components;
+    return from_proto(resp.pose());
 }
 
 std::shared_ptr<Resource> RobotClient::resource_by_name(const Name& name) {
@@ -461,9 +342,9 @@ void RobotClient::stop_all(const std::unordered_map<Name, ProtoStruct>& extra) {
     for (const auto& xtra : extra) {
         const Name& name = xtra.first;
         const ProtoStruct& params = xtra.second;
-        const google::protobuf::Struct s = map_to_struct(params);
+        const google::protobuf::Struct s = to_proto(params);
         viam::robot::v1::StopExtraParameters stop;
-        *stop.mutable_name() = name.to_proto();
+        *stop.mutable_name() = to_proto(name);
         *stop.mutable_params() = s;
         *ep->Add() = stop;
     }

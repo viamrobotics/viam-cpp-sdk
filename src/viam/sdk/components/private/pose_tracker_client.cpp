@@ -25,7 +25,7 @@ PoseTracker::pose_map PoseTrackerClient::get_poses(const std::vector<std::string
             PoseTracker::pose_map result;
 
             for (const auto& pair : response.body_poses()) {
-                result.emplace(pair.first, pose_in_frame::from_proto(pair.second));
+                result.emplace(pair.first, from_proto(pair.second));
             }
 
             return result;
@@ -35,13 +35,13 @@ PoseTracker::pose_map PoseTrackerClient::get_poses(const std::vector<std::string
 std::vector<GeometryConfig> PoseTrackerClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
+        .invoke([](auto& response) { return from_proto(response); });
 }
 
 ProtoStruct PoseTrackerClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
-        .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
-        .invoke([](auto& response) { return struct_to_map(response.result()); });
+        .with([&](auto& request) { *request.mutable_command() = to_proto(command); })
+        .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
 }  // namespace impl

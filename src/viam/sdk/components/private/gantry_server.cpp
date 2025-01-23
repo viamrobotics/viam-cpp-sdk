@@ -1,6 +1,6 @@
 #include <viam/sdk/components/private/gantry_server.hpp>
 
-#include <viam/sdk/common/service_helper.hpp>
+#include <viam/sdk/common/private/service_helper.hpp>
 
 namespace viam {
 namespace sdk {
@@ -75,8 +75,8 @@ GantryServer::GantryServer(std::shared_ptr<ResourceManager> manager)
                                        ::viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Gantry>(
         "GantryServer::DoCommand", this, request)([&](auto&, auto& gantry) {
-        const ProtoStruct result = gantry->do_command(struct_to_map(request->command()));
-        *response->mutable_result() = map_to_struct(result);
+        const ProtoStruct result = gantry->do_command(from_proto(request->command()));
+        *response->mutable_result() = to_proto(result);
     });
 }
 
@@ -88,7 +88,7 @@ GantryServer::GantryServer(std::shared_ptr<ResourceManager> manager)
         "GantryServer::GetGeometries", this, request)([&](auto& helper, auto& gantry) {
         const std::vector<GeometryConfig> geometries = gantry->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = geometry.to_proto();
+            *response->mutable_geometries()->Add() = to_proto(geometry);
         }
     });
 }

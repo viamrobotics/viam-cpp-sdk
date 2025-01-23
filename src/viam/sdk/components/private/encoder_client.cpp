@@ -18,6 +18,9 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
+using sdk::from_proto;
+using sdk::to_proto;
+
 viam::component::encoder::v1::GetPositionResponse to_proto(const Encoder::position& position) {
     viam::component::encoder::v1::GetPositionResponse proto;
     proto.set_value(position.value);
@@ -67,13 +70,13 @@ Encoder::properties EncoderClient::get_properties(const ProtoStruct& extra) {
 std::vector<GeometryConfig> EncoderClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
+        .invoke([](auto& response) { return from_proto(response); });
 };
 
 ProtoStruct EncoderClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
-        .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
-        .invoke([](auto& response) { return struct_to_map(response.result()); });
+        .with([&](auto& request) { *request.mutable_command() = to_proto(command); })
+        .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
 }  // namespace impl

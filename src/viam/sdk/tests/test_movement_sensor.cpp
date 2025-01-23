@@ -36,16 +36,16 @@ BOOST_AUTO_TEST_CASE(mock_get_api) {
 BOOST_AUTO_TEST_CASE(test_linear_vel) {
     std::shared_ptr<MockMovementSensor> mock = MockMovementSensor::get_mock_movementsensor();
     client_to_mock_pipeline<MovementSensor>(mock, [&](MovementSensor& client) {
-        mock->peek_return_vec = Vector3(1, 2, 3);
-        BOOST_CHECK(client.get_linear_velocity().data() == mock->peek_return_vec.data());
+        mock->peek_return_vec = Vector3{1, 2, 3};
+        BOOST_CHECK(client.get_linear_velocity().data == mock->peek_return_vec.data);
     });
 }
 
 BOOST_AUTO_TEST_CASE(test_angular_vel) {
     std::shared_ptr<MockMovementSensor> mock = MockMovementSensor::get_mock_movementsensor();
     client_to_mock_pipeline<MovementSensor>(mock, [&](MovementSensor& client) {
-        mock->peek_return_vec = Vector3(1, 2, -3);
-        BOOST_CHECK(client.get_angular_velocity().data() == mock->peek_return_vec.data());
+        mock->peek_return_vec = Vector3{1, 2, -3};
+        BOOST_CHECK(client.get_angular_velocity().data == mock->peek_return_vec.data);
     });
 }
 
@@ -117,8 +117,8 @@ BOOST_AUTO_TEST_CASE(test_accuracy) {
 BOOST_AUTO_TEST_CASE(test_linear_accel) {
     std::shared_ptr<MockMovementSensor> mock = MockMovementSensor::get_mock_movementsensor();
     client_to_mock_pipeline<MovementSensor>(mock, [&](MovementSensor& client) {
-        mock->peek_return_vec = Vector3(-1, 2.1, 3);
-        BOOST_CHECK(client.get_linear_acceleration().data() == mock->peek_return_vec.data());
+        mock->peek_return_vec = Vector3{-1, 2.1, 3};
+        BOOST_CHECK(client.get_linear_acceleration().data == mock->peek_return_vec.data);
     });
 }
 

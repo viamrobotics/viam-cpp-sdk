@@ -3,13 +3,16 @@
 /// @brief Defines the `Server` class.
 #pragma once
 
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/security/server_credentials.h>
-#include <grpcpp/server_builder.h>
-
+#include <viam/sdk/common/grpc_fwd.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
+
+namespace grpc {
+
+class Service;
+
+}  // namespace grpc
 
 namespace viam {
 
@@ -35,7 +38,7 @@ class Server {
     /// @brief Registers a gRPC service.
     /// @param service The gRPC service to be registered.
     /// @throws `Exception` if called after the server has been `start`ed.
-    void register_service(grpc::Service* service);
+    void register_service(::grpc::Service* service);
 
     /// @brief Returns reference to managed resource server.
     /// @param api The api of the managed resource server.
@@ -52,7 +55,7 @@ class Server {
     /// @param creds The server credentials; defaults to a insecure server credentials.
     /// @throws `Exception` if called after the server has been `start`ed.
     void add_listening_port(const std::string& address,
-                            std::shared_ptr<grpc::ServerCredentials> creds = nullptr);
+                            std::shared_ptr<GrpcServerCredentials> creds = nullptr);
 
     /// @brief waits on server close, only returning when the server is closed.
     void wait();
@@ -65,8 +68,8 @@ class Server {
 
    private:
     std::unordered_map<API, std::shared_ptr<ResourceServer>> managed_servers_;
-    std::unique_ptr<grpc::ServerBuilder> builder_;
-    std::unique_ptr<grpc::Server> server_;
+    std::unique_ptr<GrpcServerBuilder> builder_;
+    std::unique_ptr<GrpcServer> server_;
 };
 
 }  // namespace sdk

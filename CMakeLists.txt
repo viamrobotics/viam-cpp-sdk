@@ -34,7 +34,7 @@
 # constrained by the version of CMake available on target systems.
 cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 
-set(CMAKE_PROJECT_VERSION 0.0.16)
+set(CMAKE_PROJECT_VERSION 0.0.21)
 
 # Identify the project.
 project(viam-cpp-sdk
@@ -194,10 +194,8 @@ set(CMAKE_MODULE_PATH
   ${CMAKE_MODULE_PATH}
   ${PROJECT_SOURCE_DIR}/src/viam/cmake
 )
-if (VIAMCPPSDK_BUILD_TESTS OR VIAMCPPSDK_BUILD_EXAMPLES)
-  # We maybe could include this unconditionally, but technically only tests or examples need it
-  include(viamcppsdk_utils)
-endif()
+
+include(viamcppsdk_utils)
 
 
 
@@ -319,16 +317,11 @@ add_custom_target(
 )
 
 
-set(VIAMCPPSDK_ABSL_VERSION_MINIMUM)  # Someday?
 set(VIAMCPPSDK_BOOST_VERSION_MINIMUM 1.71)
 set(VIAMCPPSDK_GRPC_VERSION_MINIMUM 1.30.2)
 set(VIAMCPPSDK_PROTOBUF_VERSION_MINIMUM 3.12.4)
 set(VIAMCPPSDK_XTL_VERSION_MINIMUM 0.7.2)
 set(VIAMCPPSDK_XTENSOR_VERSION_MINIMUM 0.24.3)
-
-# Time to find absl. Note that the version min value is currently empty,
-# because absl doesn't use a versioning scheme that works here.
-find_package(absl ${VIAMCPPSDK_ABSL_VERSION_MINIMUM} REQUIRED)
 
 # Time to find `BOOST`.
 find_package(Boost ${VIAMCPPSDK_BOOST_VERSION_MINIMUM} REQUIRED COMPONENTS headers log program_options)
@@ -428,6 +421,10 @@ endif()
 # These are the minimum versions of gRPC and protobuf for which remote plugins with buf are supported.
 if ((VIAMCPPSDK_GRPCXX_VERSION VERSION_GREATER 1.51.1) AND (VIAMCPPSDK_PROTOC_VERSION VERSION_GREATER 21.7.0))
   set(VIAMCPPSDK_BUF_REMOTE_PLUGIN_SUPPORTED 1)
+endif()
+
+if (VIAMCPPSDK_GRPCXX_VERSION VERSION_LESS 1.32.0)
+  set(VIAMCPPSDK_GRPCXX_LEGACY_FWD 1)
 endif()
 
 include(FetchContent)

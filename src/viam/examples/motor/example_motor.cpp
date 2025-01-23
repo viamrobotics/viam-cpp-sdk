@@ -1,12 +1,13 @@
+#include <unistd.h>
+
 #include <chrono>
 #include <fstream>
+#include <iostream>
 #include <string>
-#include <unistd.h>
 #include <vector>
 
 #include <viam/sdk/components/motor.hpp>
 #include <viam/sdk/robot/client.hpp>
-#include <viam/sdk/robot/service.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 
 void print_motor_position(std::shared_ptr<viam::sdk::Motor> motor) {

@@ -19,7 +19,6 @@ RUN apt-get -y --no-install-recommends install \
     gnupg \
     gpg \
     less \
-    libabsl-dev \
     libboost-all-dev \
     libgrpc++-dev \
     libprotobuf-dev \

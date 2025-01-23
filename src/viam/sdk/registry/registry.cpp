@@ -55,10 +55,31 @@
 namespace viam {
 namespace sdk {
 
-using viam::robot::v1::Status;
+ResourceServerRegistration::ResourceServerRegistration(
+    const google::protobuf::ServiceDescriptor* service_descriptor)
+    : service_descriptor_(service_descriptor) {}
 
 ResourceServerRegistration::~ResourceServerRegistration() = default;
 ResourceClientRegistration::~ResourceClientRegistration() = default;
+
+ModelRegistration::ModelRegistration(
+    API api,
+    Model model,
+    std::function<std::shared_ptr<Resource>(Dependencies, ResourceConfig)> constructor)
+    : construct_resource(std::move(constructor)),
+      validate(default_validator),
+      model_(std::move(model)),
+      api_(std::move(api)) {}
+
+ModelRegistration::ModelRegistration(
+    API api,
+    Model model,
+    std::function<std::shared_ptr<Resource>(Dependencies, ResourceConfig)> constructor,
+    std::function<std::vector<std::string>(ResourceConfig)> validator)
+    : construct_resource(std::move(constructor)),
+      validate(std::move(validator)),
+      model_(std::move(model)),
+      api_(std::move(api)) {}
 
 const API& ModelRegistration::api() const {
     return api_;
@@ -157,14 +178,6 @@ Registry::registered_resource_servers() {
 const std::unordered_map<std::string, std::shared_ptr<const ModelRegistration>>&
 Registry::registered_models() {
     return resources_;
-}
-
-// NOLINTNEXTLINE(readability-convert-member-functions-to-static)
-Status ModelRegistration::create_status(const std::shared_ptr<Resource>& resource) const {
-    Status status;
-    *status.mutable_name() = resource->get_resource_name().to_proto();
-    *status.mutable_status() = google::protobuf::Struct();
-    return status;
 }
 
 const google::protobuf::ServiceDescriptor* ResourceServerRegistration::service_descriptor() const {

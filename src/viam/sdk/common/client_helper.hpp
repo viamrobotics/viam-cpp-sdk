@@ -1,30 +1,55 @@
 #pragma once
 
-#include <grpcpp/client_context.h>
-#include <grpcpp/support/sync_stream.h>
-
 #include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/common/grpc_fwd.hpp>
 #include <viam/sdk/common/private/utils.hpp>
 #include <viam/sdk/common/proto_value.hpp>
-#include <viam/sdk/common/utils.hpp>
 
 namespace viam {
 namespace sdk {
 
 namespace client_helper_details {
-[[noreturn]] void errorHandlerReturnedUnexpectedly(const ::grpc::Status&) noexcept;
+
+[[noreturn]] void errorHandlerReturnedUnexpectedly(const ::grpc::Status*) noexcept;
+
+// Helper function to test equality of status with grpc::StatusCode::CANCELLED.
+bool isStatusCancelled(int status) noexcept;
+
 }  // namespace client_helper_details
+
+// the authority on a grpc::ClientContext is sometimes set to an invalid uri on mac, causing
+// `rust-utils` to fail to process gRPC requests. This class provides a convenience wrapper around a
+// grpc ClientContext that allows us to make any necessary modifications to authority or else where
+// to avoid runtime issues.
+// For more details, see https://viam.atlassian.net/browse/RSDK-5194.
+class ClientContext {
+   public:
+    ClientContext();
+    ~ClientContext();
+
+    void try_cancel();
+
+    operator GrpcClientContext*();
+    operator const GrpcClientContext*() const;
+
+    void set_debug_key(const std::string& debug_key);
+
+   private:
+    void set_client_ctx_authority_();
+    void add_viam_client_version_();
+    std::unique_ptr<GrpcClientContext> wrapped_context_;
+};
 
 // Method type for a gRPC call that returns a response message type.
 template <typename StubType, typename RequestType, typename ResponseType>
-using SyncMethodType = ::grpc::Status (StubType::*)(::grpc::ClientContext*,
+using SyncMethodType = ::grpc::Status (StubType::*)(GrpcClientContext*,
                                                     const RequestType&,
                                                     ResponseType*);
 
 // Method type for a gRPC call that returns a stream of response message type.
 template <typename StubType, typename RequestType, typename ResponseType>
-using StreamingMethodType = std::unique_ptr<::grpc::ClientReaderInterface<ResponseType>> (
-    StubType::*)(::grpc::ClientContext*, const RequestType&);
+using StreamingMethodType = std::unique_ptr<GrpcClientReaderInterface<ResponseType>> (StubType::*)(
+    GrpcClientContext*, const RequestType&);
 
 template <typename ClientType,
           typename StubType,
@@ -34,7 +59,7 @@ template <typename ClientType,
 class ClientHelper {
     static void default_rsc_(RequestType&) {}
     static void default_rhc_(const ResponseType&) {}
-    static void default_ehc_(const ::grpc::Status& status) {
+    static void default_ehc_(const ::grpc::Status* status) {
         throw GRPCException(status);
     }
 
@@ -59,7 +84,8 @@ class ClientHelper {
             ProtoValue value = key->second;
             debug_key_ = *value.get<std::string>();
         }
-        *request_.mutable_extra() = map_to_struct(extra);
+
+        proto_convert_details::to_proto_impl<ProtoStruct>{}(extra, request_.mutable_extra());
         return with(std::forward<RequestSetupCallable>(rsc));
     }
 
@@ -82,8 +108,8 @@ class ClientHelper {
                 const_cast<const ResponseType&>(response_));
         }
 
-        std::forward<ErrorHandlerCallable>(ehc)(result);
-        client_helper_details::errorHandlerReturnedUnexpectedly(result);
+        std::forward<ErrorHandlerCallable>(ehc)(&result);
+        client_helper_details::errorHandlerReturnedUnexpectedly(&result);
     }
 
     // A version of invoke for gRPC calls returning `(stream ResponseType)`.
@@ -102,20 +128,20 @@ class ClientHelper {
         while (reader->Read(&response_)) {
             if (!rhc(response_)) {
                 cancelled_by_handler = true;
-                static_cast<::grpc::ClientContext*>(ctx)->TryCancel();
+                ctx.try_cancel();
                 break;
             }
         }
 
         const auto result = reader->Finish();
 
-        if (result.ok() ||
-            (cancelled_by_handler && result.error_code() == ::grpc::StatusCode::CANCELLED)) {
+        if (result.ok() || (cancelled_by_handler &&
+                            client_helper_details::isStatusCancelled(result.error_code()))) {
             return;
         }
 
-        std::forward<ErrorHandlerCallable>(ehc)(result);
-        client_helper_details::errorHandlerReturnedUnexpectedly(result);
+        std::forward<ErrorHandlerCallable>(ehc)(&result);
+        client_helper_details::errorHandlerReturnedUnexpectedly(&result);
     }
 
    private:

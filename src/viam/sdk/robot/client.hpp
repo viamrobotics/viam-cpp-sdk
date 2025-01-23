@@ -3,11 +3,11 @@
 /// @brief gRPC client implementation for a `robot`.
 #pragma once
 
+#include <atomic>
 #include <string>
 #include <thread>
 
-#include <grpcpp/channel.h>
-
+#include <viam/sdk/common/grpc_fwd.hpp>
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/common/world_state.hpp>
@@ -19,8 +19,6 @@
 
 namespace viam {
 namespace sdk {
-
-using grpc::Channel;
 
 /// @defgroup Robot Classes related to a Robot representation.
 
@@ -36,31 +34,10 @@ using grpc::Channel;
 /// `with_channel` require a user call to `close()`.
 class RobotClient {
    public:
-    struct discovery_query {
-        std::string subtype;
-        std::string model;
-        friend bool operator==(const discovery_query& lhs, const discovery_query& rhs);
-    };
-
-    struct discovery {
-        discovery_query query;
-        ProtoStruct results;
-        friend bool operator==(const discovery& lhs, const discovery& rhs);
-    };
-
     struct frame_system_config {
         WorldState::transform frame;
         ProtoStruct kinematics;
         friend bool operator==(const frame_system_config& lhs, const frame_system_config& rhs);
-    };
-
-    struct status {
-        boost::optional<Name> name;
-        ProtoStruct status_map;
-        // TODO: RSDK-6574: revisit time_point
-        boost::optional<std::chrono::time_point<long long, std::chrono::nanoseconds>>
-            last_reconfigured;
-        friend bool operator==(const status& lhs, const status& rhs);
     };
 
     struct operation {
@@ -68,8 +45,7 @@ class RobotClient {
         std::string method;
         boost::optional<std::string> session_id;
         ProtoStruct arguments;
-        // TODO: RSDK-6574: revisit time_point
-        boost::optional<std::chrono::time_point<long long, std::chrono::nanoseconds>> started;
+        boost::optional<time_pt> started;
         friend bool operator==(const operation& lhs, const operation& rhs);
     };
 
@@ -132,17 +108,6 @@ class RobotClient {
     /// @return The list of operations currently running on the calling robot.
     std::vector<operation> get_operations();
 
-    /// @brief Get the status of the requested robot components.
-    /// @param components A list of the specific components for which status is desired.
-    /// @return A list of statuses.
-    std::vector<status> get_status(std::vector<Name>& components);
-
-    /// @brief Get the status of all robot components.
-    /// @return A list of statuses.
-    std::vector<status> get_status();
-
-    std::vector<discovery> discover_components(const std::vector<discovery_query>& queries);
-
     /// @brief Transform a given `Pose` to a new specified destination which is a reference frame.
     /// @param query The pose that should be transformed.
     /// @param destination The name of the reference frame to transform the given pose to.
@@ -171,7 +136,7 @@ class RobotClient {
     std::vector<std::shared_ptr<std::thread>> threads_;
     std::atomic<bool> should_refresh_;
     unsigned int refresh_interval_;
-    std::shared_ptr<Channel> channel_;
+    std::shared_ptr<GrpcChannel> channel_;
     std::shared_ptr<ViamChannel> viam_channel_;
     bool should_close_channel_;
     struct impl;

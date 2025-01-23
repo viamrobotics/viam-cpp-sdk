@@ -1,7 +1,7 @@
 #include <viam/sdk/components/private/motor_server.hpp>
 
+#include <viam/sdk/common/private/service_helper.hpp>
 #include <viam/sdk/common/proto_value.hpp>
-#include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/motor.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -118,7 +118,7 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager)
         "MotorServer::GetGeometries", this, request)([&](auto& helper, auto& motor) {
         const std::vector<GeometryConfig> geometries = motor->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = geometry.to_proto();
+            *response->mutable_geometries()->Add() = to_proto(geometry);
         }
     });
 }
@@ -128,8 +128,8 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager)
                                       viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Motor>(
         "MotorServer::GetGeometries", this, request)([&](auto&, auto& motor) {
-        const ProtoStruct result = motor->do_command(struct_to_map(request->command()));
-        *response->mutable_result() = map_to_struct(result);
+        const ProtoStruct result = motor->do_command(from_proto(request->command()));
+        *response->mutable_result() = to_proto(result);
     });
 }
 
