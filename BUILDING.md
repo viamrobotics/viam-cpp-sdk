@@ -1,11 +1,4 @@
 # Viam C++ SDK - Build Instructions
-
-## (In)stability Notice
-
-> **Warning** This is a beta release of the Viam C++ SDK. Stability
-> is not guaranteed. Breaking changes are likely to occur, and occur
-> often.
-
 ## Overview
 
 The `viam-cpp-sdk` has a newly introduced CMake build system to
