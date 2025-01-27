@@ -76,28 +76,23 @@ $(function() {
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_README"></a> </p>
 <h1><a class="anchor" id="autotoc_md1"></a>
-(In)stability Notice</h1>
-<blockquote class="doxtable">
-<p>&zwj;<b>Warning</b> This is a beta release of the Viam C++ SDK. Stability is not guaranteed. Breaking changes are likely to occur, and occur often. </p>
-</blockquote>
-<h1><a class="anchor" id="autotoc_md2"></a>
 Resources</h1>
 <ul>
 <li><a href="https://cpp.viam.dev">Documentation</a></li>
 <li><a href="https://github.com/viamrobotics/viam-cpp-sdk/tree/main/src/viam/examples">Examples</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3"></a>
+<h1><a class="anchor" id="autotoc_md2"></a>
 Repository Layout</h1>
 <ul>
 <li><code>src/viam/sdk</code> The implementation of the C++ sdk library</li>
 <li><code>src/viam/api</code> All the google and viam api autogen files</li>
 <li><code>src/viam/examples</code> A list of examples</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md4"></a>
+<h1><a class="anchor" id="autotoc_md3"></a>
 Getting Started</h1>
 <p>Please see <a href="https://github.com/viamrobotics/viam-cpp-sdk/blob/main/BUILDING.md">BUILDING.md</a> for instructions on how to use CMake-based build system for this project.</p>
 <p>NOTE: Windows is not supported. If you are using Windows, build the project in WSL.</p>
-<h1><a class="anchor" id="autotoc_md5"></a>
+<h1><a class="anchor" id="autotoc_md4"></a>
 Using Docker for Development</h1>
 <p>Some Dockerfiles are provided for C++ SDK development, either for developing on the SDK itself, or for module development. The docker images are split up into base images, found in <a href="etc/docker/base-images">etc/docker/base-images</a>, and an <a href="etc/docker/Dockerfile.sdk-build">SDK build image</a>. The base images install apt packages required to build and develop the SDK, whereas the SDK build image is meant to be built on top of a base image using multi-stage Docker building.</p>
 <p>From the root of this repository, run </p><div class="fragment"><div class="line">docker build -t base/bullseye -f etc/docker/base-images/Dockerfile.debian.bullseye .</div>
@@ -107,17 +102,17 @@ Using Docker for Development</h1>
 <p>You can also do </p><div class="fragment"><div class="line">docker build --build-arg BASE_TAG=base/bullseye --build-arg REPO_SETUP=copy -f etc/docker/Dockerfile.sdk-build .</div>
 </div><!-- fragment --><p>Note the use of the build argument <code>REPO_SETUP=copy</code>, which adds a Docker instruction to copy the SDK repo from the current working directory, rather than cloning from GitHub. This approach may make more sense for developing on the SDK itself, or if your C++ SDK development relies on a localversion of the SDK.</p>
 <p>The examples above illustrated the use of several <code>--build-arg</code> arguments, namely <code>BASE_TAG</code>, <code>GIT_TAG</code>, and <code>REPO_SETUP</code>. Please see <a href="etc/docker/Dockerfile.sdk-build">Dockerfile.sdk-build</a> for a complete account of all build arguments and their defaults.</p>
-<h1><a class="anchor" id="autotoc_md6"></a>
+<h1><a class="anchor" id="autotoc_md5"></a>
 Building Documentation Locally for Testing</h1>
 <p>The C++ sdk uses <a href="https://www.doxygen.nl/">Doxygen</a> to generate documentation. An automated workflow will generate and update our documentation on each merge, and publish it to <a href="https://cpp.viam.dev">cpp.viam.dev</a>.</p>
 <p>Generating documentation locally to observe changes while developing with the C++ SDK is simple. First, make sure doxygen is installed, e.g., </p><div class="fragment"><div class="line">(on mac) brew install doxygen</div>
 <div class="line">(on linux) apt-get install -y doxygen</div>
 </div><!-- fragment --><p>Next, generate the documentation. From the SDK root, run: </p><div class="fragment"><div class="line">./bin/build-docs.sh</div>
 </div><!-- fragment --><p>That will run <code>doxygen Doxyfile</code> and create the <code>etc/docs/api/current</code> folder. Then simply open the <code>index.html</code> file in your preferred browser to view the documentation.</p>
-<h1><a class="anchor" id="autotoc_md7"></a>
+<h1><a class="anchor" id="autotoc_md6"></a>
 A Note on Connectivity and webRTC Functionality</h1>
 <p>The rust webRTC implementation (which C++ relies on via rust's foreign function interface) is still new, and liable to have bugs. At a minimum, we expect that calls to <code>ShellService::shell()</code> have a high likelihood of strange behavior. If you encounter any issues with streaming requests over webRTC, direct dial (by disabling webrtc as above) should resolve them. And please file a bug report! We will endeavor to be as responsive as possible, and resolve issues as quickly as possible.</p>
-<h1><a class="anchor" id="autotoc_md8"></a>
+<h1><a class="anchor" id="autotoc_md7"></a>
 License</h1>
 <p>Copyright 2022 Viam Inc.</p>
 <p>Apache 2.0 - See <a href="https://github.com/viamrobotics/viam-cpp-sdk/blob/main/LICENSE">LICENSE</a> file </p>

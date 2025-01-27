@@ -15,5 +15,5 @@ var searchData=
   ['boardclient_12',['BoardClient',['../classviam_1_1sdk_1_1impl_1_1BoardClient.html',1,'viam::sdk::impl']]],
   ['boardserver_13',['BoardServer',['../classviam_1_1sdk_1_1impl_1_1BoardServer.html',1,'viam::sdk::impl']]],
   ['box_14',['box',['../structviam_1_1sdk_1_1box.html',1,'viam::sdk']]],
-  ['building_20documentation_20locally_20for_20testing_15',['Building Documentation Locally for Testing',['../index.html#autotoc_md6',1,'']]]
+  ['building_20documentation_20locally_20for_20testing_15',['Building Documentation Locally for Testing',['../index.html#autotoc_md5',1,'']]]
 ];

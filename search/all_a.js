@@ -1,14 +1,14 @@
 var searchData=
 [
-  ['layout_0',['Repository Layout',['../index.html#autotoc_md3',1,'']]],
-  ['license_1',['License',['../index.html#autotoc_md8',1,'']]],
+  ['layout_0',['Repository Layout',['../index.html#autotoc_md2',1,'']]],
+  ['license_1',['License',['../index.html#autotoc_md7',1,'']]],
   ['linear_5fconstraint_2',['linear_constraint',['../structviam_1_1sdk_1_1Motion_1_1linear__constraint.html',1,'viam::sdk::Motion']]],
   ['linear_5fm_5fper_5fsec_3',['linear_m_per_sec',['../structviam_1_1sdk_1_1motion__configuration.html#a959e4ef1d77474235c8121f9cb619a67',1,'viam::sdk::motion_configuration']]],
   ['linkconfig_4',['LinkConfig',['../classviam_1_1sdk_1_1LinkConfig.html',1,'viam::sdk']]],
   ['list_5',['Deprecated List',['../deprecated.html',1,'']]],
   ['list_5factive_5fplan_5fstatuses_6',['list_active_plan_statuses',['../classviam_1_1sdk_1_1Motion.html#aead6803e8494d297ad16908cb5070e3d',1,'viam::sdk::Motion::list_active_plan_statuses()'],['../classviam_1_1sdk_1_1Motion.html#a77298da63f79a51e83506ce9e22fa625',1,'viam::sdk::Motion::list_active_plan_statuses(const ProtoStruct &amp;extra)=0'],['../classviam_1_1sdk_1_1impl_1_1MotionClient.html#a389203c1be71c3f1fdb7ffe92c390214',1,'viam::sdk::impl::MotionClient::list_active_plan_statuses(const ProtoStruct &amp;extra) override'],['../classviam_1_1sdk_1_1impl_1_1MotionClient.html#aead6803e8494d297ad16908cb5070e3d',1,'viam::sdk::impl::MotionClient::list_active_plan_statuses()'],['../classviam_1_1sdk_1_1impl_1_1MotionClient.html#a77298da63f79a51e83506ce9e22fa625',1,'viam::sdk::impl::MotionClient::list_active_plan_statuses(const ProtoStruct &amp;extra)=0']]],
   ['list_5fplan_5fstatuses_7',['list_plan_statuses',['../classviam_1_1sdk_1_1Motion.html#a81ae1fd3066cfa2fee74b52cd11af5e1',1,'viam::sdk::Motion::list_plan_statuses()'],['../classviam_1_1sdk_1_1Motion.html#a2b4101eacceabada01ec36f66e69cb5d',1,'viam::sdk::Motion::list_plan_statuses(const ProtoStruct &amp;extra)=0'],['../classviam_1_1sdk_1_1impl_1_1MotionClient.html#a47f3bcda920f7c08a1486cae887ac55d',1,'viam::sdk::impl::MotionClient::list_plan_statuses(const ProtoStruct &amp;extra) override'],['../classviam_1_1sdk_1_1impl_1_1MotionClient.html#a81ae1fd3066cfa2fee74b52cd11af5e1',1,'viam::sdk::impl::MotionClient::list_plan_statuses()'],['../classviam_1_1sdk_1_1impl_1_1MotionClient.html#a2b4101eacceabada01ec36f66e69cb5d',1,'viam::sdk::impl::MotionClient::list_plan_statuses(const ProtoStruct &amp;extra)=0']]],
-  ['locally_20for_20testing_8',['Building Documentation Locally for Testing',['../index.html#autotoc_md6',1,'']]],
+  ['locally_20for_20testing_8',['Building Documentation Locally for Testing',['../index.html#autotoc_md5',1,'']]],
   ['locationresponse_9',['LocationResponse',['../structviam_1_1sdk_1_1Navigation_1_1LocationResponse.html',1,'viam::sdk::Navigation']]],
   ['lookup_5fmodel_10',['lookup_model',['../classviam_1_1sdk_1_1Registry.html#a353e0a263914a3e0047cc3e4aa8453d6',1,'viam::sdk::Registry::lookup_model(const std::string &amp;name)'],['../classviam_1_1sdk_1_1Registry.html#a5474802670fe9dbce92899885498a31b',1,'viam::sdk::Registry::lookup_model(const API &amp;api, const Model &amp;model)']]],
   ['lookup_5fresource_5fclient_11',['lookup_resource_client',['../classviam_1_1sdk_1_1Registry.html#a18deafb10028460abae8a69e40bdc148',1,'viam::sdk::Registry']]],
