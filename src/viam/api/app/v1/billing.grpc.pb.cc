@@ -6,19 +6,19 @@
 #include "app/v1/billing.grpc.pb.h"
 
 #include <functional>
-#include <grpcpp/support/async_stream.h>
-#include <grpcpp/support/async_unary_call.h>
-#include <grpcpp/impl/channel_interface.h>
-#include <grpcpp/impl/client_unary_call.h>
-#include <grpcpp/support/client_callback.h>
-#include <grpcpp/support/message_allocator.h>
-#include <grpcpp/support/method_handler.h>
-#include <grpcpp/impl/rpc_service_method.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/sync_stream.h>
+#include <grpcpp/impl/codegen/async_stream.h>
+#include <grpcpp/impl/codegen/async_unary_call.h>
+#include <grpcpp/impl/codegen/channel_interface.h>
+#include <grpcpp/impl/codegen/client_unary_call.h>
+#include <grpcpp/impl/codegen/client_callback.h>
+#include <grpcpp/impl/codegen/message_allocator.h>
+#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/impl/codegen/rpc_service_method.h>
+#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/codegen/server_callback_handlers.h>
+#include <grpcpp/impl/codegen/server_context.h>
+#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/impl/codegen/sync_stream.h>
 namespace viam {
 namespace app {
 namespace v1 {
@@ -33,133 +33,153 @@ static const char* BillingService_method_names[] = {
 
 std::unique_ptr< BillingService::Stub> BillingService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< BillingService::Stub> stub(new BillingService::Stub(channel, options));
+  std::unique_ptr< BillingService::Stub> stub(new BillingService::Stub(channel));
   return stub;
 }
 
-BillingService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_GetCurrentMonthUsage_(BillingService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetOrgBillingInformation_(BillingService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetInvoicesSummary_(BillingService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetInvoicePdf_(BillingService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
-  , rpcmethod_SendPaymentRequiredEmail_(BillingService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+BillingService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
+  : channel_(channel), rpcmethod_GetCurrentMonthUsage_(BillingService_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetOrgBillingInformation_(BillingService_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetInvoicesSummary_(BillingService_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetInvoicePdf_(BillingService_method_names[3], ::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_SendPaymentRequiredEmail_(BillingService_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status BillingService::Stub::GetCurrentMonthUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest& request, ::viam::app::v1::GetCurrentMonthUsageResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::GetCurrentMonthUsageRequest, ::viam::app::v1::GetCurrentMonthUsageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetCurrentMonthUsage_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetCurrentMonthUsage_, context, request, response);
 }
 
-void BillingService::Stub::async::GetCurrentMonthUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::GetCurrentMonthUsageRequest, ::viam::app::v1::GetCurrentMonthUsageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetCurrentMonthUsage_, context, request, response, std::move(f));
+void BillingService::Stub::experimental_async::GetCurrentMonthUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetCurrentMonthUsage_, context, request, response, std::move(f));
 }
 
-void BillingService::Stub::async::GetCurrentMonthUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetCurrentMonthUsage_, context, request, response, reactor);
+void BillingService::Stub::experimental_async::GetCurrentMonthUsage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetCurrentMonthUsage_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetCurrentMonthUsageResponse>* BillingService::Stub::PrepareAsyncGetCurrentMonthUsageRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::GetCurrentMonthUsageResponse, ::viam::app::v1::GetCurrentMonthUsageRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetCurrentMonthUsage_, context, request);
+void BillingService::Stub::experimental_async::GetCurrentMonthUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetCurrentMonthUsage_, context, request, response, reactor);
+}
+
+void BillingService::Stub::experimental_async::GetCurrentMonthUsage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetCurrentMonthUsage_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetCurrentMonthUsageResponse>* BillingService::Stub::AsyncGetCurrentMonthUsageRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetCurrentMonthUsageRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetCurrentMonthUsageResponse>::Create(channel_.get(), cq, rpcmethod_GetCurrentMonthUsage_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetCurrentMonthUsageResponse>* BillingService::Stub::PrepareAsyncGetCurrentMonthUsageRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetCurrentMonthUsageResponse>::Create(channel_.get(), cq, rpcmethod_GetCurrentMonthUsage_, context, request, false);
 }
 
 ::grpc::Status BillingService::Stub::GetOrgBillingInformation(::grpc::ClientContext* context, const ::viam::app::v1::GetOrgBillingInformationRequest& request, ::viam::app::v1::GetOrgBillingInformationResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::GetOrgBillingInformationRequest, ::viam::app::v1::GetOrgBillingInformationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetOrgBillingInformation_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetOrgBillingInformation_, context, request, response);
 }
 
-void BillingService::Stub::async::GetOrgBillingInformation(::grpc::ClientContext* context, const ::viam::app::v1::GetOrgBillingInformationRequest* request, ::viam::app::v1::GetOrgBillingInformationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::GetOrgBillingInformationRequest, ::viam::app::v1::GetOrgBillingInformationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetOrgBillingInformation_, context, request, response, std::move(f));
+void BillingService::Stub::experimental_async::GetOrgBillingInformation(::grpc::ClientContext* context, const ::viam::app::v1::GetOrgBillingInformationRequest* request, ::viam::app::v1::GetOrgBillingInformationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetOrgBillingInformation_, context, request, response, std::move(f));
 }
 
-void BillingService::Stub::async::GetOrgBillingInformation(::grpc::ClientContext* context, const ::viam::app::v1::GetOrgBillingInformationRequest* request, ::viam::app::v1::GetOrgBillingInformationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetOrgBillingInformation_, context, request, response, reactor);
+void BillingService::Stub::experimental_async::GetOrgBillingInformation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetOrgBillingInformationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetOrgBillingInformation_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetOrgBillingInformationResponse>* BillingService::Stub::PrepareAsyncGetOrgBillingInformationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetOrgBillingInformationRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::GetOrgBillingInformationResponse, ::viam::app::v1::GetOrgBillingInformationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetOrgBillingInformation_, context, request);
+void BillingService::Stub::experimental_async::GetOrgBillingInformation(::grpc::ClientContext* context, const ::viam::app::v1::GetOrgBillingInformationRequest* request, ::viam::app::v1::GetOrgBillingInformationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetOrgBillingInformation_, context, request, response, reactor);
+}
+
+void BillingService::Stub::experimental_async::GetOrgBillingInformation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetOrgBillingInformationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetOrgBillingInformation_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetOrgBillingInformationResponse>* BillingService::Stub::AsyncGetOrgBillingInformationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetOrgBillingInformationRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetOrgBillingInformationRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetOrgBillingInformationResponse>::Create(channel_.get(), cq, rpcmethod_GetOrgBillingInformation_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetOrgBillingInformationResponse>* BillingService::Stub::PrepareAsyncGetOrgBillingInformationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetOrgBillingInformationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetOrgBillingInformationResponse>::Create(channel_.get(), cq, rpcmethod_GetOrgBillingInformation_, context, request, false);
 }
 
 ::grpc::Status BillingService::Stub::GetInvoicesSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicesSummaryRequest& request, ::viam::app::v1::GetInvoicesSummaryResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::GetInvoicesSummaryRequest, ::viam::app::v1::GetInvoicesSummaryResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetInvoicesSummary_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetInvoicesSummary_, context, request, response);
 }
 
-void BillingService::Stub::async::GetInvoicesSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicesSummaryRequest* request, ::viam::app::v1::GetInvoicesSummaryResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::GetInvoicesSummaryRequest, ::viam::app::v1::GetInvoicesSummaryResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetInvoicesSummary_, context, request, response, std::move(f));
+void BillingService::Stub::experimental_async::GetInvoicesSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicesSummaryRequest* request, ::viam::app::v1::GetInvoicesSummaryResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetInvoicesSummary_, context, request, response, std::move(f));
 }
 
-void BillingService::Stub::async::GetInvoicesSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicesSummaryRequest* request, ::viam::app::v1::GetInvoicesSummaryResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetInvoicesSummary_, context, request, response, reactor);
+void BillingService::Stub::experimental_async::GetInvoicesSummary(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetInvoicesSummaryResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetInvoicesSummary_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetInvoicesSummaryResponse>* BillingService::Stub::PrepareAsyncGetInvoicesSummaryRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicesSummaryRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::GetInvoicesSummaryResponse, ::viam::app::v1::GetInvoicesSummaryRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetInvoicesSummary_, context, request);
+void BillingService::Stub::experimental_async::GetInvoicesSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicesSummaryRequest* request, ::viam::app::v1::GetInvoicesSummaryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetInvoicesSummary_, context, request, response, reactor);
+}
+
+void BillingService::Stub::experimental_async::GetInvoicesSummary(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetInvoicesSummaryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetInvoicesSummary_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetInvoicesSummaryResponse>* BillingService::Stub::AsyncGetInvoicesSummaryRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicesSummaryRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetInvoicesSummaryRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetInvoicesSummaryResponse>::Create(channel_.get(), cq, rpcmethod_GetInvoicesSummary_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetInvoicesSummaryResponse>* BillingService::Stub::PrepareAsyncGetInvoicesSummaryRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicesSummaryRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetInvoicesSummaryResponse>::Create(channel_.get(), cq, rpcmethod_GetInvoicesSummary_, context, request, false);
 }
 
 ::grpc::ClientReader< ::viam::app::v1::GetInvoicePdfResponse>* BillingService::Stub::GetInvoicePdfRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicePdfRequest& request) {
-  return ::grpc::internal::ClientReaderFactory< ::viam::app::v1::GetInvoicePdfResponse>::Create(channel_.get(), rpcmethod_GetInvoicePdf_, context, request);
+  return ::grpc_impl::internal::ClientReaderFactory< ::viam::app::v1::GetInvoicePdfResponse>::Create(channel_.get(), rpcmethod_GetInvoicePdf_, context, request);
 }
 
-void BillingService::Stub::async::GetInvoicePdf(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicePdfRequest* request, ::grpc::ClientReadReactor< ::viam::app::v1::GetInvoicePdfResponse>* reactor) {
-  ::grpc::internal::ClientCallbackReaderFactory< ::viam::app::v1::GetInvoicePdfResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_GetInvoicePdf_, context, request, reactor);
+void BillingService::Stub::experimental_async::GetInvoicePdf(::grpc::ClientContext* context, ::viam::app::v1::GetInvoicePdfRequest* request, ::grpc::experimental::ClientReadReactor< ::viam::app::v1::GetInvoicePdfResponse>* reactor) {
+  ::grpc_impl::internal::ClientCallbackReaderFactory< ::viam::app::v1::GetInvoicePdfResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_GetInvoicePdf_, context, request, reactor);
 }
 
 ::grpc::ClientAsyncReader< ::viam::app::v1::GetInvoicePdfResponse>* BillingService::Stub::AsyncGetInvoicePdfRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicePdfRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
-  return ::grpc::internal::ClientAsyncReaderFactory< ::viam::app::v1::GetInvoicePdfResponse>::Create(channel_.get(), cq, rpcmethod_GetInvoicePdf_, context, request, true, tag);
+  return ::grpc_impl::internal::ClientAsyncReaderFactory< ::viam::app::v1::GetInvoicePdfResponse>::Create(channel_.get(), cq, rpcmethod_GetInvoicePdf_, context, request, true, tag);
 }
 
 ::grpc::ClientAsyncReader< ::viam::app::v1::GetInvoicePdfResponse>* BillingService::Stub::PrepareAsyncGetInvoicePdfRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicePdfRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncReaderFactory< ::viam::app::v1::GetInvoicePdfResponse>::Create(channel_.get(), cq, rpcmethod_GetInvoicePdf_, context, request, false, nullptr);
+  return ::grpc_impl::internal::ClientAsyncReaderFactory< ::viam::app::v1::GetInvoicePdfResponse>::Create(channel_.get(), cq, rpcmethod_GetInvoicePdf_, context, request, false, nullptr);
 }
 
 ::grpc::Status BillingService::Stub::SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest& request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::SendPaymentRequiredEmailRequest, ::viam::app::v1::SendPaymentRequiredEmailResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SendPaymentRequiredEmail_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SendPaymentRequiredEmail_, context, request, response);
 }
 
-void BillingService::Stub::async::SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::SendPaymentRequiredEmailRequest, ::viam::app::v1::SendPaymentRequiredEmailResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SendPaymentRequiredEmail_, context, request, response, std::move(f));
+void BillingService::Stub::experimental_async::SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SendPaymentRequiredEmail_, context, request, response, std::move(f));
 }
 
-void BillingService::Stub::async::SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SendPaymentRequiredEmail_, context, request, response, reactor);
+void BillingService::Stub::experimental_async::SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SendPaymentRequiredEmail_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::SendPaymentRequiredEmailResponse>* BillingService::Stub::PrepareAsyncSendPaymentRequiredEmailRaw(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::SendPaymentRequiredEmailResponse, ::viam::app::v1::SendPaymentRequiredEmailRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SendPaymentRequiredEmail_, context, request);
+void BillingService::Stub::experimental_async::SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SendPaymentRequiredEmail_, context, request, response, reactor);
+}
+
+void BillingService::Stub::experimental_async::SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SendPaymentRequiredEmail_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::SendPaymentRequiredEmailResponse>* BillingService::Stub::AsyncSendPaymentRequiredEmailRaw(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSendPaymentRequiredEmailRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::SendPaymentRequiredEmailResponse>::Create(channel_.get(), cq, rpcmethod_SendPaymentRequiredEmail_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::SendPaymentRequiredEmailResponse>* BillingService::Stub::PrepareAsyncSendPaymentRequiredEmailRaw(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::SendPaymentRequiredEmailResponse>::Create(channel_.get(), cq, rpcmethod_SendPaymentRequiredEmail_, context, request, false);
 }
 
 BillingService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BillingService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BillingService::Service, ::viam::app::v1::GetCurrentMonthUsageRequest, ::viam::app::v1::GetCurrentMonthUsageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< BillingService::Service, ::viam::app::v1::GetCurrentMonthUsageRequest, ::viam::app::v1::GetCurrentMonthUsageResponse>(
           [](BillingService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::GetCurrentMonthUsageRequest* req,
              ::viam::app::v1::GetCurrentMonthUsageResponse* resp) {
                return service->GetCurrentMonthUsage(ctx, req, resp);
@@ -167,9 +187,9 @@ BillingService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BillingService_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BillingService::Service, ::viam::app::v1::GetOrgBillingInformationRequest, ::viam::app::v1::GetOrgBillingInformationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< BillingService::Service, ::viam::app::v1::GetOrgBillingInformationRequest, ::viam::app::v1::GetOrgBillingInformationResponse>(
           [](BillingService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::GetOrgBillingInformationRequest* req,
              ::viam::app::v1::GetOrgBillingInformationResponse* resp) {
                return service->GetOrgBillingInformation(ctx, req, resp);
@@ -177,9 +197,9 @@ BillingService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BillingService_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BillingService::Service, ::viam::app::v1::GetInvoicesSummaryRequest, ::viam::app::v1::GetInvoicesSummaryResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< BillingService::Service, ::viam::app::v1::GetInvoicesSummaryRequest, ::viam::app::v1::GetInvoicesSummaryResponse>(
           [](BillingService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::GetInvoicesSummaryRequest* req,
              ::viam::app::v1::GetInvoicesSummaryResponse* resp) {
                return service->GetInvoicesSummary(ctx, req, resp);
@@ -189,17 +209,17 @@ BillingService::Service::Service() {
       ::grpc::internal::RpcMethod::SERVER_STREAMING,
       new ::grpc::internal::ServerStreamingHandler< BillingService::Service, ::viam::app::v1::GetInvoicePdfRequest, ::viam::app::v1::GetInvoicePdfResponse>(
           [](BillingService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::GetInvoicePdfRequest* req,
-             ::grpc::ServerWriter<::viam::app::v1::GetInvoicePdfResponse>* writer) {
+             ::grpc_impl::ServerWriter<::viam::app::v1::GetInvoicePdfResponse>* writer) {
                return service->GetInvoicePdf(ctx, req, writer);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BillingService_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BillingService::Service, ::viam::app::v1::SendPaymentRequiredEmailRequest, ::viam::app::v1::SendPaymentRequiredEmailResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< BillingService::Service, ::viam::app::v1::SendPaymentRequiredEmailRequest, ::viam::app::v1::SendPaymentRequiredEmailResponse>(
           [](BillingService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::SendPaymentRequiredEmailRequest* req,
              ::viam::app::v1::SendPaymentRequiredEmailResponse* resp) {
                return service->SendPaymentRequiredEmail(ctx, req, resp);

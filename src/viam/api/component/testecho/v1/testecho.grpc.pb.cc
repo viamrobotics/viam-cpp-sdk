@@ -6,19 +6,19 @@
 #include "component/testecho/v1/testecho.grpc.pb.h"
 
 #include <functional>
-#include <grpcpp/support/async_stream.h>
-#include <grpcpp/support/async_unary_call.h>
-#include <grpcpp/impl/channel_interface.h>
-#include <grpcpp/impl/client_unary_call.h>
-#include <grpcpp/support/client_callback.h>
-#include <grpcpp/support/message_allocator.h>
-#include <grpcpp/support/method_handler.h>
-#include <grpcpp/impl/rpc_service_method.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/sync_stream.h>
+#include <grpcpp/impl/codegen/async_stream.h>
+#include <grpcpp/impl/codegen/async_unary_call.h>
+#include <grpcpp/impl/codegen/channel_interface.h>
+#include <grpcpp/impl/codegen/client_unary_call.h>
+#include <grpcpp/impl/codegen/client_callback.h>
+#include <grpcpp/impl/codegen/message_allocator.h>
+#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/impl/codegen/rpc_service_method.h>
+#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/codegen/server_callback_handlers.h>
+#include <grpcpp/impl/codegen/server_context.h>
+#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/impl/codegen/sync_stream.h>
 namespace viam {
 namespace component {
 namespace testecho {
@@ -33,102 +33,112 @@ static const char* TestEchoService_method_names[] = {
 
 std::unique_ptr< TestEchoService::Stub> TestEchoService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< TestEchoService::Stub> stub(new TestEchoService::Stub(channel, options));
+  std::unique_ptr< TestEchoService::Stub> stub(new TestEchoService::Stub(channel));
   return stub;
 }
 
-TestEchoService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_Echo_(TestEchoService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_EchoMultiple_(TestEchoService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
-  , rpcmethod_EchoBiDi_(TestEchoService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
-  , rpcmethod_Stop_(TestEchoService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+TestEchoService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
+  : channel_(channel), rpcmethod_Echo_(TestEchoService_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_EchoMultiple_(TestEchoService_method_names[1], ::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_EchoBiDi_(TestEchoService_method_names[2], ::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
+  , rpcmethod_Stop_(TestEchoService_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status TestEchoService::Stub::Echo(::grpc::ClientContext* context, const ::viam::component::testecho::v1::EchoRequest& request, ::viam::component::testecho::v1::EchoResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::testecho::v1::EchoRequest, ::viam::component::testecho::v1::EchoResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Echo_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_Echo_, context, request, response);
 }
 
-void TestEchoService::Stub::async::Echo(::grpc::ClientContext* context, const ::viam::component::testecho::v1::EchoRequest* request, ::viam::component::testecho::v1::EchoResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::testecho::v1::EchoRequest, ::viam::component::testecho::v1::EchoResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Echo_, context, request, response, std::move(f));
+void TestEchoService::Stub::experimental_async::Echo(::grpc::ClientContext* context, const ::viam::component::testecho::v1::EchoRequest* request, ::viam::component::testecho::v1::EchoResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Echo_, context, request, response, std::move(f));
 }
 
-void TestEchoService::Stub::async::Echo(::grpc::ClientContext* context, const ::viam::component::testecho::v1::EchoRequest* request, ::viam::component::testecho::v1::EchoResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Echo_, context, request, response, reactor);
+void TestEchoService::Stub::experimental_async::Echo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::testecho::v1::EchoResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Echo_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::testecho::v1::EchoResponse>* TestEchoService::Stub::PrepareAsyncEchoRaw(::grpc::ClientContext* context, const ::viam::component::testecho::v1::EchoRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::testecho::v1::EchoResponse, ::viam::component::testecho::v1::EchoRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Echo_, context, request);
+void TestEchoService::Stub::experimental_async::Echo(::grpc::ClientContext* context, const ::viam::component::testecho::v1::EchoRequest* request, ::viam::component::testecho::v1::EchoResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Echo_, context, request, response, reactor);
+}
+
+void TestEchoService::Stub::experimental_async::Echo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::testecho::v1::EchoResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Echo_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::testecho::v1::EchoResponse>* TestEchoService::Stub::AsyncEchoRaw(::grpc::ClientContext* context, const ::viam::component::testecho::v1::EchoRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncEchoRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::testecho::v1::EchoResponse>::Create(channel_.get(), cq, rpcmethod_Echo_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::testecho::v1::EchoResponse>* TestEchoService::Stub::PrepareAsyncEchoRaw(::grpc::ClientContext* context, const ::viam::component::testecho::v1::EchoRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::testecho::v1::EchoResponse>::Create(channel_.get(), cq, rpcmethod_Echo_, context, request, false);
 }
 
 ::grpc::ClientReader< ::viam::component::testecho::v1::EchoMultipleResponse>* TestEchoService::Stub::EchoMultipleRaw(::grpc::ClientContext* context, const ::viam::component::testecho::v1::EchoMultipleRequest& request) {
-  return ::grpc::internal::ClientReaderFactory< ::viam::component::testecho::v1::EchoMultipleResponse>::Create(channel_.get(), rpcmethod_EchoMultiple_, context, request);
+  return ::grpc_impl::internal::ClientReaderFactory< ::viam::component::testecho::v1::EchoMultipleResponse>::Create(channel_.get(), rpcmethod_EchoMultiple_, context, request);
 }
 
-void TestEchoService::Stub::async::EchoMultiple(::grpc::ClientContext* context, const ::viam::component::testecho::v1::EchoMultipleRequest* request, ::grpc::ClientReadReactor< ::viam::component::testecho::v1::EchoMultipleResponse>* reactor) {
-  ::grpc::internal::ClientCallbackReaderFactory< ::viam::component::testecho::v1::EchoMultipleResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_EchoMultiple_, context, request, reactor);
+void TestEchoService::Stub::experimental_async::EchoMultiple(::grpc::ClientContext* context, ::viam::component::testecho::v1::EchoMultipleRequest* request, ::grpc::experimental::ClientReadReactor< ::viam::component::testecho::v1::EchoMultipleResponse>* reactor) {
+  ::grpc_impl::internal::ClientCallbackReaderFactory< ::viam::component::testecho::v1::EchoMultipleResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_EchoMultiple_, context, request, reactor);
 }
 
 ::grpc::ClientAsyncReader< ::viam::component::testecho::v1::EchoMultipleResponse>* TestEchoService::Stub::AsyncEchoMultipleRaw(::grpc::ClientContext* context, const ::viam::component::testecho::v1::EchoMultipleRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
-  return ::grpc::internal::ClientAsyncReaderFactory< ::viam::component::testecho::v1::EchoMultipleResponse>::Create(channel_.get(), cq, rpcmethod_EchoMultiple_, context, request, true, tag);
+  return ::grpc_impl::internal::ClientAsyncReaderFactory< ::viam::component::testecho::v1::EchoMultipleResponse>::Create(channel_.get(), cq, rpcmethod_EchoMultiple_, context, request, true, tag);
 }
 
 ::grpc::ClientAsyncReader< ::viam::component::testecho::v1::EchoMultipleResponse>* TestEchoService::Stub::PrepareAsyncEchoMultipleRaw(::grpc::ClientContext* context, const ::viam::component::testecho::v1::EchoMultipleRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncReaderFactory< ::viam::component::testecho::v1::EchoMultipleResponse>::Create(channel_.get(), cq, rpcmethod_EchoMultiple_, context, request, false, nullptr);
+  return ::grpc_impl::internal::ClientAsyncReaderFactory< ::viam::component::testecho::v1::EchoMultipleResponse>::Create(channel_.get(), cq, rpcmethod_EchoMultiple_, context, request, false, nullptr);
 }
 
 ::grpc::ClientReaderWriter< ::viam::component::testecho::v1::EchoBiDiRequest, ::viam::component::testecho::v1::EchoBiDiResponse>* TestEchoService::Stub::EchoBiDiRaw(::grpc::ClientContext* context) {
-  return ::grpc::internal::ClientReaderWriterFactory< ::viam::component::testecho::v1::EchoBiDiRequest, ::viam::component::testecho::v1::EchoBiDiResponse>::Create(channel_.get(), rpcmethod_EchoBiDi_, context);
+  return ::grpc_impl::internal::ClientReaderWriterFactory< ::viam::component::testecho::v1::EchoBiDiRequest, ::viam::component::testecho::v1::EchoBiDiResponse>::Create(channel_.get(), rpcmethod_EchoBiDi_, context);
 }
 
-void TestEchoService::Stub::async::EchoBiDi(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::viam::component::testecho::v1::EchoBiDiRequest,::viam::component::testecho::v1::EchoBiDiResponse>* reactor) {
-  ::grpc::internal::ClientCallbackReaderWriterFactory< ::viam::component::testecho::v1::EchoBiDiRequest,::viam::component::testecho::v1::EchoBiDiResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_EchoBiDi_, context, reactor);
+void TestEchoService::Stub::experimental_async::EchoBiDi(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::viam::component::testecho::v1::EchoBiDiRequest,::viam::component::testecho::v1::EchoBiDiResponse>* reactor) {
+  ::grpc_impl::internal::ClientCallbackReaderWriterFactory< ::viam::component::testecho::v1::EchoBiDiRequest,::viam::component::testecho::v1::EchoBiDiResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_EchoBiDi_, context, reactor);
 }
 
 ::grpc::ClientAsyncReaderWriter< ::viam::component::testecho::v1::EchoBiDiRequest, ::viam::component::testecho::v1::EchoBiDiResponse>* TestEchoService::Stub::AsyncEchoBiDiRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
-  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::viam::component::testecho::v1::EchoBiDiRequest, ::viam::component::testecho::v1::EchoBiDiResponse>::Create(channel_.get(), cq, rpcmethod_EchoBiDi_, context, true, tag);
+  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::viam::component::testecho::v1::EchoBiDiRequest, ::viam::component::testecho::v1::EchoBiDiResponse>::Create(channel_.get(), cq, rpcmethod_EchoBiDi_, context, true, tag);
 }
 
 ::grpc::ClientAsyncReaderWriter< ::viam::component::testecho::v1::EchoBiDiRequest, ::viam::component::testecho::v1::EchoBiDiResponse>* TestEchoService::Stub::PrepareAsyncEchoBiDiRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::viam::component::testecho::v1::EchoBiDiRequest, ::viam::component::testecho::v1::EchoBiDiResponse>::Create(channel_.get(), cq, rpcmethod_EchoBiDi_, context, false, nullptr);
+  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::viam::component::testecho::v1::EchoBiDiRequest, ::viam::component::testecho::v1::EchoBiDiResponse>::Create(channel_.get(), cq, rpcmethod_EchoBiDi_, context, false, nullptr);
 }
 
 ::grpc::Status TestEchoService::Stub::Stop(::grpc::ClientContext* context, const ::viam::component::testecho::v1::StopRequest& request, ::viam::component::testecho::v1::StopResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::testecho::v1::StopRequest, ::viam::component::testecho::v1::StopResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Stop_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_Stop_, context, request, response);
 }
 
-void TestEchoService::Stub::async::Stop(::grpc::ClientContext* context, const ::viam::component::testecho::v1::StopRequest* request, ::viam::component::testecho::v1::StopResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::testecho::v1::StopRequest, ::viam::component::testecho::v1::StopResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, std::move(f));
+void TestEchoService::Stub::experimental_async::Stop(::grpc::ClientContext* context, const ::viam::component::testecho::v1::StopRequest* request, ::viam::component::testecho::v1::StopResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, std::move(f));
 }
 
-void TestEchoService::Stub::async::Stop(::grpc::ClientContext* context, const ::viam::component::testecho::v1::StopRequest* request, ::viam::component::testecho::v1::StopResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, reactor);
+void TestEchoService::Stub::experimental_async::Stop(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::testecho::v1::StopResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::testecho::v1::StopResponse>* TestEchoService::Stub::PrepareAsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::testecho::v1::StopRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::testecho::v1::StopResponse, ::viam::component::testecho::v1::StopRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Stop_, context, request);
+void TestEchoService::Stub::experimental_async::Stop(::grpc::ClientContext* context, const ::viam::component::testecho::v1::StopRequest* request, ::viam::component::testecho::v1::StopResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, reactor);
+}
+
+void TestEchoService::Stub::experimental_async::Stop(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::testecho::v1::StopResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::testecho::v1::StopResponse>* TestEchoService::Stub::AsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::testecho::v1::StopRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncStopRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::testecho::v1::StopResponse>::Create(channel_.get(), cq, rpcmethod_Stop_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::testecho::v1::StopResponse>* TestEchoService::Stub::PrepareAsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::testecho::v1::StopRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::testecho::v1::StopResponse>::Create(channel_.get(), cq, rpcmethod_Stop_, context, request, false);
 }
 
 TestEchoService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       TestEchoService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< TestEchoService::Service, ::viam::component::testecho::v1::EchoRequest, ::viam::component::testecho::v1::EchoResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< TestEchoService::Service, ::viam::component::testecho::v1::EchoRequest, ::viam::component::testecho::v1::EchoResponse>(
           [](TestEchoService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::testecho::v1::EchoRequest* req,
              ::viam::component::testecho::v1::EchoResponse* resp) {
                return service->Echo(ctx, req, resp);
@@ -138,9 +148,9 @@ TestEchoService::Service::Service() {
       ::grpc::internal::RpcMethod::SERVER_STREAMING,
       new ::grpc::internal::ServerStreamingHandler< TestEchoService::Service, ::viam::component::testecho::v1::EchoMultipleRequest, ::viam::component::testecho::v1::EchoMultipleResponse>(
           [](TestEchoService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::testecho::v1::EchoMultipleRequest* req,
-             ::grpc::ServerWriter<::viam::component::testecho::v1::EchoMultipleResponse>* writer) {
+             ::grpc_impl::ServerWriter<::viam::component::testecho::v1::EchoMultipleResponse>* writer) {
                return service->EchoMultiple(ctx, req, writer);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
@@ -148,17 +158,17 @@ TestEchoService::Service::Service() {
       ::grpc::internal::RpcMethod::BIDI_STREAMING,
       new ::grpc::internal::BidiStreamingHandler< TestEchoService::Service, ::viam::component::testecho::v1::EchoBiDiRequest, ::viam::component::testecho::v1::EchoBiDiResponse>(
           [](TestEchoService::Service* service,
-             ::grpc::ServerContext* ctx,
-             ::grpc::ServerReaderWriter<::viam::component::testecho::v1::EchoBiDiResponse,
+             ::grpc_impl::ServerContext* ctx,
+             ::grpc_impl::ServerReaderWriter<::viam::component::testecho::v1::EchoBiDiResponse,
              ::viam::component::testecho::v1::EchoBiDiRequest>* stream) {
                return service->EchoBiDi(ctx, stream);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       TestEchoService_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< TestEchoService::Service, ::viam::component::testecho::v1::StopRequest, ::viam::component::testecho::v1::StopResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< TestEchoService::Service, ::viam::component::testecho::v1::StopRequest, ::viam::component::testecho::v1::StopResponse>(
           [](TestEchoService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::testecho::v1::StopRequest* req,
              ::viam::component::testecho::v1::StopResponse* resp) {
                return service->Stop(ctx, req, resp);

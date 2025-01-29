@@ -4,514 +4,434 @@
 #include "proto/rpc/examples/echoresource/v1/echoresource.pb.h"
 
 #include <algorithm>
-#include "google/protobuf/io/coded_stream.h"
-#include "google/protobuf/extension_set.h"
-#include "google/protobuf/wire_format_lite.h"
-#include "google/protobuf/descriptor.h"
-#include "google/protobuf/generated_message_reflection.h"
-#include "google/protobuf/reflection_ops.h"
-#include "google/protobuf/wire_format.h"
-#include "google/protobuf/generated_message_tctable_impl.h"
-// @@protoc_insertion_point(includes)
 
-// Must be included last.
-#include "google/protobuf/port_def.inc"
+#include <google/protobuf/io/coded_stream.h>
+#include <google/protobuf/extension_set.h>
+#include <google/protobuf/wire_format_lite.h>
+#include <google/protobuf/descriptor.h>
+#include <google/protobuf/generated_message_reflection.h>
+#include <google/protobuf/reflection_ops.h>
+#include <google/protobuf/wire_format.h>
+// @@protoc_insertion_point(includes)
+#include <google/protobuf/port_def.inc>
+
 PROTOBUF_PRAGMA_INIT_SEG
-namespace _pb = ::google::protobuf;
-namespace _pbi = ::google::protobuf::internal;
-namespace _fl = ::google::protobuf::internal::field_layout;
+
+namespace _pb = ::PROTOBUF_NAMESPACE_ID;
+namespace _pbi = _pb::internal;
+
 namespace proto {
 namespace rpc {
 namespace examples {
 namespace echoresource {
 namespace v1 {
-
-inline constexpr EchoResourceResponse::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : message_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR EchoResourceResponse::EchoResourceResponse(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct EchoResourceResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR EchoResourceResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~EchoResourceResponseDefaultTypeInternal() {}
-  union {
-    EchoResourceResponse _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EchoResourceResponseDefaultTypeInternal _EchoResourceResponse_default_instance_;
-
-inline constexpr EchoResourceRequest::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : name_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        message_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR EchoResourceRequest::EchoResourceRequest(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
+PROTOBUF_CONSTEXPR EchoResourceRequest::EchoResourceRequest(
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , message_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct EchoResourceRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR EchoResourceRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR EchoResourceRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
   ~EchoResourceRequestDefaultTypeInternal() {}
   union {
     EchoResourceRequest _instance;
   };
 };
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EchoResourceRequestDefaultTypeInternal _EchoResourceRequest_default_instance_;
-
-inline constexpr EchoResourceMultipleResponse::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : message_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR EchoResourceMultipleResponse::EchoResourceMultipleResponse(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct EchoResourceMultipleResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR EchoResourceMultipleResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~EchoResourceMultipleResponseDefaultTypeInternal() {}
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EchoResourceRequestDefaultTypeInternal _EchoResourceRequest_default_instance_;
+PROTOBUF_CONSTEXPR EchoResourceResponse::EchoResourceResponse(
+    ::_pbi::ConstantInitialized)
+  : message_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct EchoResourceResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR EchoResourceResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~EchoResourceResponseDefaultTypeInternal() {}
   union {
-    EchoResourceMultipleResponse _instance;
+    EchoResourceResponse _instance;
   };
 };
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EchoResourceMultipleResponseDefaultTypeInternal _EchoResourceMultipleResponse_default_instance_;
-
-inline constexpr EchoResourceMultipleRequest::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : name_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        message_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR EchoResourceMultipleRequest::EchoResourceMultipleRequest(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EchoResourceResponseDefaultTypeInternal _EchoResourceResponse_default_instance_;
+PROTOBUF_CONSTEXPR EchoResourceMultipleRequest::EchoResourceMultipleRequest(
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , message_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct EchoResourceMultipleRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR EchoResourceMultipleRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR EchoResourceMultipleRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
   ~EchoResourceMultipleRequestDefaultTypeInternal() {}
   union {
     EchoResourceMultipleRequest _instance;
   };
 };
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EchoResourceMultipleRequestDefaultTypeInternal _EchoResourceMultipleRequest_default_instance_;
-
-inline constexpr EchoResourceBiDiResponse::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : message_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR EchoResourceBiDiResponse::EchoResourceBiDiResponse(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct EchoResourceBiDiResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR EchoResourceBiDiResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~EchoResourceBiDiResponseDefaultTypeInternal() {}
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EchoResourceMultipleRequestDefaultTypeInternal _EchoResourceMultipleRequest_default_instance_;
+PROTOBUF_CONSTEXPR EchoResourceMultipleResponse::EchoResourceMultipleResponse(
+    ::_pbi::ConstantInitialized)
+  : message_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct EchoResourceMultipleResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR EchoResourceMultipleResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~EchoResourceMultipleResponseDefaultTypeInternal() {}
   union {
-    EchoResourceBiDiResponse _instance;
+    EchoResourceMultipleResponse _instance;
   };
 };
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EchoResourceBiDiResponseDefaultTypeInternal _EchoResourceBiDiResponse_default_instance_;
-
-inline constexpr EchoResourceBiDiRequest::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : name_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        message_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR EchoResourceBiDiRequest::EchoResourceBiDiRequest(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EchoResourceMultipleResponseDefaultTypeInternal _EchoResourceMultipleResponse_default_instance_;
+PROTOBUF_CONSTEXPR EchoResourceBiDiRequest::EchoResourceBiDiRequest(
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , message_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct EchoResourceBiDiRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR EchoResourceBiDiRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR EchoResourceBiDiRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
   ~EchoResourceBiDiRequestDefaultTypeInternal() {}
   union {
     EchoResourceBiDiRequest _instance;
   };
 };
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EchoResourceBiDiRequestDefaultTypeInternal _EchoResourceBiDiRequest_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EchoResourceBiDiRequestDefaultTypeInternal _EchoResourceBiDiRequest_default_instance_;
+PROTOBUF_CONSTEXPR EchoResourceBiDiResponse::EchoResourceBiDiResponse(
+    ::_pbi::ConstantInitialized)
+  : message_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct EchoResourceBiDiResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR EchoResourceBiDiResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~EchoResourceBiDiResponseDefaultTypeInternal() {}
+  union {
+    EchoResourceBiDiResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EchoResourceBiDiResponseDefaultTypeInternal _EchoResourceBiDiResponse_default_instance_;
 }  // namespace v1
 }  // namespace echoresource
 }  // namespace examples
 }  // namespace rpc
 }  // namespace proto
 static ::_pb::Metadata file_level_metadata_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto[6];
-static constexpr const ::_pb::EnumDescriptor**
-    file_level_enum_descriptors_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto = nullptr;
-static constexpr const ::_pb::ServiceDescriptor**
-    file_level_service_descriptors_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto = nullptr;
-const ::uint32_t TableStruct_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
-    protodesc_cold) = {
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceRequest, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceRequest, _impl_.name_),
-    PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceRequest, _impl_.message_),
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceResponse, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceResponse, _impl_.message_),
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceMultipleRequest, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceMultipleRequest, _impl_.name_),
-    PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceMultipleRequest, _impl_.message_),
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceMultipleResponse, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceMultipleResponse, _impl_.message_),
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest, _impl_.name_),
-    PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest, _impl_.message_),
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceBiDiResponse, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceBiDiResponse, _impl_.message_),
-};
+static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto = nullptr;
+static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto = nullptr;
 
-static const ::_pbi::MigrationSchema
-    schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-        {0, -1, -1, sizeof(::proto::rpc::examples::echoresource::v1::EchoResourceRequest)},
-        {10, -1, -1, sizeof(::proto::rpc::examples::echoresource::v1::EchoResourceResponse)},
-        {19, -1, -1, sizeof(::proto::rpc::examples::echoresource::v1::EchoResourceMultipleRequest)},
-        {29, -1, -1, sizeof(::proto::rpc::examples::echoresource::v1::EchoResourceMultipleResponse)},
-        {38, -1, -1, sizeof(::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest)},
-        {48, -1, -1, sizeof(::proto::rpc::examples::echoresource::v1::EchoResourceBiDiResponse)},
+const uint32_t TableStruct_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceRequest, message_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceResponse, message_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceMultipleRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceMultipleRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceMultipleRequest, message_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceMultipleResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceMultipleResponse, message_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest, message_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceBiDiResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::echoresource::v1::EchoResourceBiDiResponse, message_),
+};
+static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  { 0, -1, -1, sizeof(::proto::rpc::examples::echoresource::v1::EchoResourceRequest)},
+  { 8, -1, -1, sizeof(::proto::rpc::examples::echoresource::v1::EchoResourceResponse)},
+  { 15, -1, -1, sizeof(::proto::rpc::examples::echoresource::v1::EchoResourceMultipleRequest)},
+  { 23, -1, -1, sizeof(::proto::rpc::examples::echoresource::v1::EchoResourceMultipleResponse)},
+  { 30, -1, -1, sizeof(::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest)},
+  { 38, -1, -1, sizeof(::proto::rpc::examples::echoresource::v1::EchoResourceBiDiResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-    &::proto::rpc::examples::echoresource::v1::_EchoResourceRequest_default_instance_._instance,
-    &::proto::rpc::examples::echoresource::v1::_EchoResourceResponse_default_instance_._instance,
-    &::proto::rpc::examples::echoresource::v1::_EchoResourceMultipleRequest_default_instance_._instance,
-    &::proto::rpc::examples::echoresource::v1::_EchoResourceMultipleResponse_default_instance_._instance,
-    &::proto::rpc::examples::echoresource::v1::_EchoResourceBiDiRequest_default_instance_._instance,
-    &::proto::rpc::examples::echoresource::v1::_EchoResourceBiDiResponse_default_instance_._instance,
-};
-const char descriptor_table_protodef_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n5proto/rpc/examples/echoresource/v1/ech"
-    "oresource.proto\022\"proto.rpc.examples.echo"
-    "resource.v1\"C\n\023EchoResourceRequest\022\022\n\004na"
-    "me\030\001 \001(\tR\004name\022\030\n\007message\030\002 \001(\tR\007message"
-    "\"0\n\024EchoResourceResponse\022\030\n\007message\030\001 \001("
-    "\tR\007message\"K\n\033EchoResourceMultipleReques"
-    "t\022\022\n\004name\030\001 \001(\tR\004name\022\030\n\007message\030\002 \001(\tR\007"
-    "message\"8\n\034EchoResourceMultipleResponse\022"
-    "\030\n\007message\030\001 \001(\tR\007message\"G\n\027EchoResourc"
-    "eBiDiRequest\022\022\n\004name\030\001 \001(\tR\004name\022\030\n\007mess"
-    "age\030\002 \001(\tR\007message\"4\n\030EchoResourceBiDiRe"
-    "sponse\022\030\n\007message\030\001 \001(\tR\007message2\321\003\n\023Ech"
-    "oResourceService\022\203\001\n\014EchoResource\0227.prot"
-    "o.rpc.examples.echoresource.v1.EchoResou"
-    "rceRequest\0328.proto.rpc.examples.echoreso"
-    "urce.v1.EchoResourceResponse\"\000\022\235\001\n\024EchoR"
-    "esourceMultiple\022\?.proto.rpc.examples.ech"
-    "oresource.v1.EchoResourceMultipleRequest"
-    "\032@.proto.rpc.examples.echoresource.v1.Ec"
-    "hoResourceMultipleResponse\"\0000\001\022\223\001\n\020EchoR"
-    "esourceBiDi\022;.proto.rpc.examples.echores"
-    "ource.v1.EchoResourceBiDiRequest\032<.proto"
-    ".rpc.examples.echoresource.v1.EchoResour"
-    "ceBiDiResponse\"\000(\0010\001B\236\002\n&com.proto.rpc.e"
-    "xamples.echoresource.v1B\021EchoresourcePro"
-    "toP\001Z4go.viam.com/utils/proto/rpc/exampl"
-    "es/echoresource/v1\242\002\004PREE\252\002\"Proto.Rpc.Ex"
-    "amples.Echoresource.V1\312\002\"Proto\\Rpc\\Examp"
-    "les\\Echoresource\\V1\342\002.Proto\\Rpc\\Examples"
-    "\\Echoresource\\V1\\GPBMetadata\352\002&Proto::Rp"
-    "c::Examples::Echoresource::V1b\006proto3"
-};
-static ::absl::once_flag descriptor_table_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto_once;
-const ::_pbi::DescriptorTable descriptor_table_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto = {
-    false,
-    false,
-    1237,
-    descriptor_table_protodef_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto,
-    "proto/rpc/examples/echoresource/v1/echoresource.proto",
-    &descriptor_table_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto_once,
-    nullptr,
-    0,
-    6,
-    schemas,
-    file_default_instances,
-    TableStruct_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto::offsets,
-    file_level_metadata_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto,
-    file_level_enum_descriptors_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto,
-    file_level_service_descriptors_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto,
+  &::proto::rpc::examples::echoresource::v1::_EchoResourceRequest_default_instance_._instance,
+  &::proto::rpc::examples::echoresource::v1::_EchoResourceResponse_default_instance_._instance,
+  &::proto::rpc::examples::echoresource::v1::_EchoResourceMultipleRequest_default_instance_._instance,
+  &::proto::rpc::examples::echoresource::v1::_EchoResourceMultipleResponse_default_instance_._instance,
+  &::proto::rpc::examples::echoresource::v1::_EchoResourceBiDiRequest_default_instance_._instance,
+  &::proto::rpc::examples::echoresource::v1::_EchoResourceBiDiResponse_default_instance_._instance,
 };
 
-// This function exists to be marked as weak.
-// It can significantly speed up compilation by breaking up LLVM's SCC
-// in the .pb.cc translation units. Large translation units see a
-// reduction of more than 35% of walltime for optimized builds. Without
-// the weak attribute all the messages in the file, including all the
-// vtables and everything they use become part of the same SCC through
-// a cycle like:
-// GetMetadata -> descriptor table -> default instances ->
-//   vtables -> GetMetadata
-// By adding a weak function here we break the connection from the
-// individual vtables back into the descriptor table.
+const char descriptor_table_protodef_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
+  "\n5proto/rpc/examples/echoresource/v1/ech"
+  "oresource.proto\022\"proto.rpc.examples.echo"
+  "resource.v1\"C\n\023EchoResourceRequest\022\022\n\004na"
+  "me\030\001 \001(\tR\004name\022\030\n\007message\030\002 \001(\tR\007message"
+  "\"0\n\024EchoResourceResponse\022\030\n\007message\030\001 \001("
+  "\tR\007message\"K\n\033EchoResourceMultipleReques"
+  "t\022\022\n\004name\030\001 \001(\tR\004name\022\030\n\007message\030\002 \001(\tR\007"
+  "message\"8\n\034EchoResourceMultipleResponse\022"
+  "\030\n\007message\030\001 \001(\tR\007message\"G\n\027EchoResourc"
+  "eBiDiRequest\022\022\n\004name\030\001 \001(\tR\004name\022\030\n\007mess"
+  "age\030\002 \001(\tR\007message\"4\n\030EchoResourceBiDiRe"
+  "sponse\022\030\n\007message\030\001 \001(\tR\007message2\321\003\n\023Ech"
+  "oResourceService\022\203\001\n\014EchoResource\0227.prot"
+  "o.rpc.examples.echoresource.v1.EchoResou"
+  "rceRequest\0328.proto.rpc.examples.echoreso"
+  "urce.v1.EchoResourceResponse\"\000\022\235\001\n\024EchoR"
+  "esourceMultiple\022\?.proto.rpc.examples.ech"
+  "oresource.v1.EchoResourceMultipleRequest"
+  "\032@.proto.rpc.examples.echoresource.v1.Ec"
+  "hoResourceMultipleResponse\"\0000\001\022\223\001\n\020EchoR"
+  "esourceBiDi\022;.proto.rpc.examples.echores"
+  "ource.v1.EchoResourceBiDiRequest\032<.proto"
+  ".rpc.examples.echoresource.v1.EchoResour"
+  "ceBiDiResponse\"\000(\0010\001B6Z4go.viam.com/util"
+  "s/proto/rpc/examples/echoresource/v1b\006pr"
+  "oto3"
+  ;
+static ::_pbi::once_flag descriptor_table_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto_once;
+const ::_pbi::DescriptorTable descriptor_table_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto = {
+    false, false, 1004, descriptor_table_protodef_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto,
+    "proto/rpc/examples/echoresource/v1/echoresource.proto",
+    &descriptor_table_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto_once, nullptr, 0, 6,
+    schemas, file_default_instances, TableStruct_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto::offsets,
+    file_level_metadata_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto, file_level_enum_descriptors_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto,
+    file_level_service_descriptors_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto,
+};
 PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto_getter() {
   return &descriptor_table_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto;
 }
+
 // Force running AddDescriptors() at dynamic initialization time.
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
-static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto(&descriptor_table_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto(&descriptor_table_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto);
 namespace proto {
 namespace rpc {
 namespace examples {
 namespace echoresource {
 namespace v1 {
+
 // ===================================================================
 
 class EchoResourceRequest::_Internal {
  public:
 };
 
-EchoResourceRequest::EchoResourceRequest(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
+EchoResourceRequest::EchoResourceRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:proto.rpc.examples.echoresource.v1.EchoResourceRequest)
 }
-inline PROTOBUF_NDEBUG_INLINE EchoResourceRequest::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from)
-      : name_(arena, from.name_),
-        message_(arena, from.message_),
-        _cached_size_{0} {}
-
-EchoResourceRequest::EchoResourceRequest(
-    ::google::protobuf::Arena* arena,
-    const EchoResourceRequest& from)
-    : ::google::protobuf::Message(arena) {
-  EchoResourceRequest* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-
+EchoResourceRequest::EchoResourceRequest(const EchoResourceRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  message_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    message_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_message().empty()) {
+    message_.Set(from._internal_message(), 
+      GetArenaForAllocation());
+  }
   // @@protoc_insertion_point(copy_constructor:proto.rpc.examples.echoresource.v1.EchoResourceRequest)
 }
-inline PROTOBUF_NDEBUG_INLINE EchoResourceRequest::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : name_(arena),
-        message_(arena),
-        _cached_size_{0} {}
 
-inline void EchoResourceRequest::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
+inline void EchoResourceRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+message_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  message_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
+
 EchoResourceRequest::~EchoResourceRequest() {
   // @@protoc_insertion_point(destructor:proto.rpc.examples.echoresource.v1.EchoResourceRequest)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
 }
+
 inline void EchoResourceRequest::SharedDtor() {
-  ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.name_.Destroy();
-  _impl_.message_.Destroy();
-  _impl_.~Impl_();
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+  message_.Destroy();
 }
 
-PROTOBUF_NOINLINE void EchoResourceRequest::Clear() {
+void EchoResourceRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void EchoResourceRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:proto.rpc.examples.echoresource.v1.EchoResourceRequest)
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::uint32_t cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.name_.ClearToEmpty();
-  _impl_.message_.ClearToEmpty();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  name_.ClearToEmpty();
+  message_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* EchoResourceRequest::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+const char* EchoResourceRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "proto.rpc.examples.echoresource.v1.EchoResourceRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string message = 2 [json_name = "message"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_message();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "proto.rpc.examples.echoresource.v1.EchoResourceRequest.message"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
   return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
 }
 
-
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 74, 2> EchoResourceRequest::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_EchoResourceRequest_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // string message = 2 [json_name = "message"];
-    {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(EchoResourceRequest, _impl_.message_)}},
-    // string name = 1 [json_name = "name"];
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(EchoResourceRequest, _impl_.name_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // string name = 1 [json_name = "name"];
-    {PROTOBUF_FIELD_OFFSET(EchoResourceRequest, _impl_.name_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string message = 2 [json_name = "message"];
-    {PROTOBUF_FIELD_OFFSET(EchoResourceRequest, _impl_.message_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-  }},
-  // no aux_entries
-  {{
-    "\66\4\7\0\0\0\0\0"
-    "proto.rpc.examples.echoresource.v1.EchoResourceRequest"
-    "name"
-    "message"
-  }},
-};
-
-::uint8_t* EchoResourceRequest::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+uint8_t* EchoResourceRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:proto.rpc.examples.echoresource.v1.EchoResourceRequest)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    const std::string& _s = this->_internal_name();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "proto.rpc.examples.echoresource.v1.EchoResourceRequest.name");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "proto.rpc.examples.echoresource.v1.EchoResourceRequest.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
   }
 
   // string message = 2 [json_name = "message"];
   if (!this->_internal_message().empty()) {
-    const std::string& _s = this->_internal_message();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "proto.rpc.examples.echoresource.v1.EchoResourceRequest.message");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_message().data(), static_cast<int>(this->_internal_message().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "proto.rpc.examples.echoresource.v1.EchoResourceRequest.message");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_message(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:proto.rpc.examples.echoresource.v1.EchoResourceRequest)
   return target;
 }
 
-::size_t EchoResourceRequest::ByteSizeLong() const {
+size_t EchoResourceRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:proto.rpc.examples.echoresource.v1.EchoResourceRequest)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_name());
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
   }
 
   // string message = 2 [json_name = "message"];
   if (!this->_internal_message().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_message());
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_message());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData EchoResourceRequest::_class_data_ = {
-    EchoResourceRequest::MergeImpl,
-    nullptr,  // OnDemandRegisterArenaDtor
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData EchoResourceRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    EchoResourceRequest::MergeImpl
 };
-const ::google::protobuf::Message::ClassData* EchoResourceRequest::GetClassData() const {
-  return &_class_data_;
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*EchoResourceRequest::GetClassData() const { return &_class_data_; }
+
+void EchoResourceRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<EchoResourceRequest *>(to)->MergeFrom(
+      static_cast<const EchoResourceRequest &>(from));
 }
 
-void EchoResourceRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<EchoResourceRequest*>(&to_msg);
-  auto& from = static_cast<const EchoResourceRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.examples.echoresource.v1.EchoResourceRequest)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+
+void EchoResourceRequest::MergeFrom(const EchoResourceRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.examples.echoresource.v1.EchoResourceRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _this->_internal_set_name(from._internal_name());
+    _internal_set_name(from._internal_name());
   }
   if (!from._internal_message().empty()) {
-    _this->_internal_set_message(from._internal_message());
+    _internal_set_message(from._internal_message());
   }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void EchoResourceRequest::CopyFrom(const EchoResourceRequest& from) {
@@ -521,188 +441,196 @@ void EchoResourceRequest::CopyFrom(const EchoResourceRequest& from) {
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool EchoResourceRequest::IsInitialized() const {
+bool EchoResourceRequest::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* EchoResourceRequest::AccessCachedSize() const {
-  return &_impl_._cached_size_;
-}
-void EchoResourceRequest::InternalSwap(EchoResourceRequest* PROTOBUF_RESTRICT other) {
+void EchoResourceRequest::InternalSwap(EchoResourceRequest* other) {
   using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &message_, lhs_arena,
+      &other->message_, rhs_arena
+  );
 }
 
-::google::protobuf::Metadata EchoResourceRequest::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata EchoResourceRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto_getter, &descriptor_table_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto_once,
       file_level_metadata_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto[0]);
 }
+
 // ===================================================================
 
 class EchoResourceResponse::_Internal {
  public:
 };
 
-EchoResourceResponse::EchoResourceResponse(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
+EchoResourceResponse::EchoResourceResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:proto.rpc.examples.echoresource.v1.EchoResourceResponse)
 }
-inline PROTOBUF_NDEBUG_INLINE EchoResourceResponse::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from)
-      : message_(arena, from.message_),
-        _cached_size_{0} {}
-
-EchoResourceResponse::EchoResourceResponse(
-    ::google::protobuf::Arena* arena,
-    const EchoResourceResponse& from)
-    : ::google::protobuf::Message(arena) {
-  EchoResourceResponse* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-
+EchoResourceResponse::EchoResourceResponse(const EchoResourceResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  message_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    message_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_message().empty()) {
+    message_.Set(from._internal_message(), 
+      GetArenaForAllocation());
+  }
   // @@protoc_insertion_point(copy_constructor:proto.rpc.examples.echoresource.v1.EchoResourceResponse)
 }
-inline PROTOBUF_NDEBUG_INLINE EchoResourceResponse::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : message_(arena),
-        _cached_size_{0} {}
 
-inline void EchoResourceResponse::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
+inline void EchoResourceResponse::SharedCtor() {
+message_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  message_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
+
 EchoResourceResponse::~EchoResourceResponse() {
   // @@protoc_insertion_point(destructor:proto.rpc.examples.echoresource.v1.EchoResourceResponse)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
 }
+
 inline void EchoResourceResponse::SharedDtor() {
-  ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.message_.Destroy();
-  _impl_.~Impl_();
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  message_.Destroy();
 }
 
-PROTOBUF_NOINLINE void EchoResourceResponse::Clear() {
+void EchoResourceResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void EchoResourceResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:proto.rpc.examples.echoresource.v1.EchoResourceResponse)
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::uint32_t cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.message_.ClearToEmpty();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  message_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* EchoResourceResponse::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+const char* EchoResourceResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string message = 1 [json_name = "message"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_message();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "proto.rpc.examples.echoresource.v1.EchoResourceResponse.message"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
   return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
 }
 
-
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 71, 2> EchoResourceResponse::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_EchoResourceResponse_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // string message = 1 [json_name = "message"];
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(EchoResourceResponse, _impl_.message_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // string message = 1 [json_name = "message"];
-    {PROTOBUF_FIELD_OFFSET(EchoResourceResponse, _impl_.message_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-  }},
-  // no aux_entries
-  {{
-    "\67\7\0\0\0\0\0\0"
-    "proto.rpc.examples.echoresource.v1.EchoResourceResponse"
-    "message"
-  }},
-};
-
-::uint8_t* EchoResourceResponse::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+uint8_t* EchoResourceResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:proto.rpc.examples.echoresource.v1.EchoResourceResponse)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
 
   // string message = 1 [json_name = "message"];
   if (!this->_internal_message().empty()) {
-    const std::string& _s = this->_internal_message();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "proto.rpc.examples.echoresource.v1.EchoResourceResponse.message");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_message().data(), static_cast<int>(this->_internal_message().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "proto.rpc.examples.echoresource.v1.EchoResourceResponse.message");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_message(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:proto.rpc.examples.echoresource.v1.EchoResourceResponse)
   return target;
 }
 
-::size_t EchoResourceResponse::ByteSizeLong() const {
+size_t EchoResourceResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:proto.rpc.examples.echoresource.v1.EchoResourceResponse)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string message = 1 [json_name = "message"];
   if (!this->_internal_message().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_message());
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_message());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData EchoResourceResponse::_class_data_ = {
-    EchoResourceResponse::MergeImpl,
-    nullptr,  // OnDemandRegisterArenaDtor
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData EchoResourceResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    EchoResourceResponse::MergeImpl
 };
-const ::google::protobuf::Message::ClassData* EchoResourceResponse::GetClassData() const {
-  return &_class_data_;
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*EchoResourceResponse::GetClassData() const { return &_class_data_; }
+
+void EchoResourceResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<EchoResourceResponse *>(to)->MergeFrom(
+      static_cast<const EchoResourceResponse &>(from));
 }
 
-void EchoResourceResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<EchoResourceResponse*>(&to_msg);
-  auto& from = static_cast<const EchoResourceResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.examples.echoresource.v1.EchoResourceResponse)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+
+void EchoResourceResponse::MergeFrom(const EchoResourceResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.examples.echoresource.v1.EchoResourceResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_message().empty()) {
-    _this->_internal_set_message(from._internal_message());
+    _internal_set_message(from._internal_message());
   }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void EchoResourceResponse::CopyFrom(const EchoResourceResponse& from) {
@@ -712,215 +640,236 @@ void EchoResourceResponse::CopyFrom(const EchoResourceResponse& from) {
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool EchoResourceResponse::IsInitialized() const {
+bool EchoResourceResponse::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* EchoResourceResponse::AccessCachedSize() const {
-  return &_impl_._cached_size_;
-}
-void EchoResourceResponse::InternalSwap(EchoResourceResponse* PROTOBUF_RESTRICT other) {
+void EchoResourceResponse::InternalSwap(EchoResourceResponse* other) {
   using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &message_, lhs_arena,
+      &other->message_, rhs_arena
+  );
 }
 
-::google::protobuf::Metadata EchoResourceResponse::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata EchoResourceResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto_getter, &descriptor_table_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto_once,
       file_level_metadata_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto[1]);
 }
+
 // ===================================================================
 
 class EchoResourceMultipleRequest::_Internal {
  public:
 };
 
-EchoResourceMultipleRequest::EchoResourceMultipleRequest(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
+EchoResourceMultipleRequest::EchoResourceMultipleRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:proto.rpc.examples.echoresource.v1.EchoResourceMultipleRequest)
 }
-inline PROTOBUF_NDEBUG_INLINE EchoResourceMultipleRequest::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from)
-      : name_(arena, from.name_),
-        message_(arena, from.message_),
-        _cached_size_{0} {}
-
-EchoResourceMultipleRequest::EchoResourceMultipleRequest(
-    ::google::protobuf::Arena* arena,
-    const EchoResourceMultipleRequest& from)
-    : ::google::protobuf::Message(arena) {
-  EchoResourceMultipleRequest* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-
+EchoResourceMultipleRequest::EchoResourceMultipleRequest(const EchoResourceMultipleRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  message_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    message_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_message().empty()) {
+    message_.Set(from._internal_message(), 
+      GetArenaForAllocation());
+  }
   // @@protoc_insertion_point(copy_constructor:proto.rpc.examples.echoresource.v1.EchoResourceMultipleRequest)
 }
-inline PROTOBUF_NDEBUG_INLINE EchoResourceMultipleRequest::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : name_(arena),
-        message_(arena),
-        _cached_size_{0} {}
 
-inline void EchoResourceMultipleRequest::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
+inline void EchoResourceMultipleRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+message_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  message_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
+
 EchoResourceMultipleRequest::~EchoResourceMultipleRequest() {
   // @@protoc_insertion_point(destructor:proto.rpc.examples.echoresource.v1.EchoResourceMultipleRequest)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
 }
+
 inline void EchoResourceMultipleRequest::SharedDtor() {
-  ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.name_.Destroy();
-  _impl_.message_.Destroy();
-  _impl_.~Impl_();
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+  message_.Destroy();
 }
 
-PROTOBUF_NOINLINE void EchoResourceMultipleRequest::Clear() {
+void EchoResourceMultipleRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void EchoResourceMultipleRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:proto.rpc.examples.echoresource.v1.EchoResourceMultipleRequest)
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::uint32_t cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.name_.ClearToEmpty();
-  _impl_.message_.ClearToEmpty();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  name_.ClearToEmpty();
+  message_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* EchoResourceMultipleRequest::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+const char* EchoResourceMultipleRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "proto.rpc.examples.echoresource.v1.EchoResourceMultipleRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string message = 2 [json_name = "message"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_message();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "proto.rpc.examples.echoresource.v1.EchoResourceMultipleRequest.message"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
   return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
 }
 
-
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 82, 2> EchoResourceMultipleRequest::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_EchoResourceMultipleRequest_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // string message = 2 [json_name = "message"];
-    {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(EchoResourceMultipleRequest, _impl_.message_)}},
-    // string name = 1 [json_name = "name"];
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(EchoResourceMultipleRequest, _impl_.name_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // string name = 1 [json_name = "name"];
-    {PROTOBUF_FIELD_OFFSET(EchoResourceMultipleRequest, _impl_.name_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string message = 2 [json_name = "message"];
-    {PROTOBUF_FIELD_OFFSET(EchoResourceMultipleRequest, _impl_.message_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-  }},
-  // no aux_entries
-  {{
-    "\76\4\7\0\0\0\0\0"
-    "proto.rpc.examples.echoresource.v1.EchoResourceMultipleRequest"
-    "name"
-    "message"
-  }},
-};
-
-::uint8_t* EchoResourceMultipleRequest::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+uint8_t* EchoResourceMultipleRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:proto.rpc.examples.echoresource.v1.EchoResourceMultipleRequest)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    const std::string& _s = this->_internal_name();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "proto.rpc.examples.echoresource.v1.EchoResourceMultipleRequest.name");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "proto.rpc.examples.echoresource.v1.EchoResourceMultipleRequest.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
   }
 
   // string message = 2 [json_name = "message"];
   if (!this->_internal_message().empty()) {
-    const std::string& _s = this->_internal_message();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "proto.rpc.examples.echoresource.v1.EchoResourceMultipleRequest.message");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_message().data(), static_cast<int>(this->_internal_message().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "proto.rpc.examples.echoresource.v1.EchoResourceMultipleRequest.message");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_message(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:proto.rpc.examples.echoresource.v1.EchoResourceMultipleRequest)
   return target;
 }
 
-::size_t EchoResourceMultipleRequest::ByteSizeLong() const {
+size_t EchoResourceMultipleRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:proto.rpc.examples.echoresource.v1.EchoResourceMultipleRequest)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_name());
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
   }
 
   // string message = 2 [json_name = "message"];
   if (!this->_internal_message().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_message());
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_message());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData EchoResourceMultipleRequest::_class_data_ = {
-    EchoResourceMultipleRequest::MergeImpl,
-    nullptr,  // OnDemandRegisterArenaDtor
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData EchoResourceMultipleRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    EchoResourceMultipleRequest::MergeImpl
 };
-const ::google::protobuf::Message::ClassData* EchoResourceMultipleRequest::GetClassData() const {
-  return &_class_data_;
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*EchoResourceMultipleRequest::GetClassData() const { return &_class_data_; }
+
+void EchoResourceMultipleRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<EchoResourceMultipleRequest *>(to)->MergeFrom(
+      static_cast<const EchoResourceMultipleRequest &>(from));
 }
 
-void EchoResourceMultipleRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<EchoResourceMultipleRequest*>(&to_msg);
-  auto& from = static_cast<const EchoResourceMultipleRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.examples.echoresource.v1.EchoResourceMultipleRequest)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+
+void EchoResourceMultipleRequest::MergeFrom(const EchoResourceMultipleRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.examples.echoresource.v1.EchoResourceMultipleRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _this->_internal_set_name(from._internal_name());
+    _internal_set_name(from._internal_name());
   }
   if (!from._internal_message().empty()) {
-    _this->_internal_set_message(from._internal_message());
+    _internal_set_message(from._internal_message());
   }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void EchoResourceMultipleRequest::CopyFrom(const EchoResourceMultipleRequest& from) {
@@ -930,188 +879,196 @@ void EchoResourceMultipleRequest::CopyFrom(const EchoResourceMultipleRequest& fr
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool EchoResourceMultipleRequest::IsInitialized() const {
+bool EchoResourceMultipleRequest::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* EchoResourceMultipleRequest::AccessCachedSize() const {
-  return &_impl_._cached_size_;
-}
-void EchoResourceMultipleRequest::InternalSwap(EchoResourceMultipleRequest* PROTOBUF_RESTRICT other) {
+void EchoResourceMultipleRequest::InternalSwap(EchoResourceMultipleRequest* other) {
   using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &message_, lhs_arena,
+      &other->message_, rhs_arena
+  );
 }
 
-::google::protobuf::Metadata EchoResourceMultipleRequest::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata EchoResourceMultipleRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto_getter, &descriptor_table_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto_once,
       file_level_metadata_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto[2]);
 }
+
 // ===================================================================
 
 class EchoResourceMultipleResponse::_Internal {
  public:
 };
 
-EchoResourceMultipleResponse::EchoResourceMultipleResponse(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
+EchoResourceMultipleResponse::EchoResourceMultipleResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:proto.rpc.examples.echoresource.v1.EchoResourceMultipleResponse)
 }
-inline PROTOBUF_NDEBUG_INLINE EchoResourceMultipleResponse::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from)
-      : message_(arena, from.message_),
-        _cached_size_{0} {}
-
-EchoResourceMultipleResponse::EchoResourceMultipleResponse(
-    ::google::protobuf::Arena* arena,
-    const EchoResourceMultipleResponse& from)
-    : ::google::protobuf::Message(arena) {
-  EchoResourceMultipleResponse* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-
+EchoResourceMultipleResponse::EchoResourceMultipleResponse(const EchoResourceMultipleResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  message_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    message_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_message().empty()) {
+    message_.Set(from._internal_message(), 
+      GetArenaForAllocation());
+  }
   // @@protoc_insertion_point(copy_constructor:proto.rpc.examples.echoresource.v1.EchoResourceMultipleResponse)
 }
-inline PROTOBUF_NDEBUG_INLINE EchoResourceMultipleResponse::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : message_(arena),
-        _cached_size_{0} {}
 
-inline void EchoResourceMultipleResponse::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
+inline void EchoResourceMultipleResponse::SharedCtor() {
+message_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  message_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
+
 EchoResourceMultipleResponse::~EchoResourceMultipleResponse() {
   // @@protoc_insertion_point(destructor:proto.rpc.examples.echoresource.v1.EchoResourceMultipleResponse)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
 }
+
 inline void EchoResourceMultipleResponse::SharedDtor() {
-  ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.message_.Destroy();
-  _impl_.~Impl_();
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  message_.Destroy();
 }
 
-PROTOBUF_NOINLINE void EchoResourceMultipleResponse::Clear() {
+void EchoResourceMultipleResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void EchoResourceMultipleResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:proto.rpc.examples.echoresource.v1.EchoResourceMultipleResponse)
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::uint32_t cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.message_.ClearToEmpty();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  message_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* EchoResourceMultipleResponse::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+const char* EchoResourceMultipleResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string message = 1 [json_name = "message"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_message();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "proto.rpc.examples.echoresource.v1.EchoResourceMultipleResponse.message"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
   return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
 }
 
-
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 79, 2> EchoResourceMultipleResponse::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_EchoResourceMultipleResponse_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // string message = 1 [json_name = "message"];
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(EchoResourceMultipleResponse, _impl_.message_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // string message = 1 [json_name = "message"];
-    {PROTOBUF_FIELD_OFFSET(EchoResourceMultipleResponse, _impl_.message_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-  }},
-  // no aux_entries
-  {{
-    "\77\7\0\0\0\0\0\0"
-    "proto.rpc.examples.echoresource.v1.EchoResourceMultipleResponse"
-    "message"
-  }},
-};
-
-::uint8_t* EchoResourceMultipleResponse::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+uint8_t* EchoResourceMultipleResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:proto.rpc.examples.echoresource.v1.EchoResourceMultipleResponse)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
 
   // string message = 1 [json_name = "message"];
   if (!this->_internal_message().empty()) {
-    const std::string& _s = this->_internal_message();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "proto.rpc.examples.echoresource.v1.EchoResourceMultipleResponse.message");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_message().data(), static_cast<int>(this->_internal_message().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "proto.rpc.examples.echoresource.v1.EchoResourceMultipleResponse.message");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_message(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:proto.rpc.examples.echoresource.v1.EchoResourceMultipleResponse)
   return target;
 }
 
-::size_t EchoResourceMultipleResponse::ByteSizeLong() const {
+size_t EchoResourceMultipleResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:proto.rpc.examples.echoresource.v1.EchoResourceMultipleResponse)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string message = 1 [json_name = "message"];
   if (!this->_internal_message().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_message());
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_message());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData EchoResourceMultipleResponse::_class_data_ = {
-    EchoResourceMultipleResponse::MergeImpl,
-    nullptr,  // OnDemandRegisterArenaDtor
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData EchoResourceMultipleResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    EchoResourceMultipleResponse::MergeImpl
 };
-const ::google::protobuf::Message::ClassData* EchoResourceMultipleResponse::GetClassData() const {
-  return &_class_data_;
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*EchoResourceMultipleResponse::GetClassData() const { return &_class_data_; }
+
+void EchoResourceMultipleResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<EchoResourceMultipleResponse *>(to)->MergeFrom(
+      static_cast<const EchoResourceMultipleResponse &>(from));
 }
 
-void EchoResourceMultipleResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<EchoResourceMultipleResponse*>(&to_msg);
-  auto& from = static_cast<const EchoResourceMultipleResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.examples.echoresource.v1.EchoResourceMultipleResponse)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+
+void EchoResourceMultipleResponse::MergeFrom(const EchoResourceMultipleResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.examples.echoresource.v1.EchoResourceMultipleResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_message().empty()) {
-    _this->_internal_set_message(from._internal_message());
+    _internal_set_message(from._internal_message());
   }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void EchoResourceMultipleResponse::CopyFrom(const EchoResourceMultipleResponse& from) {
@@ -1121,215 +1078,236 @@ void EchoResourceMultipleResponse::CopyFrom(const EchoResourceMultipleResponse& 
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool EchoResourceMultipleResponse::IsInitialized() const {
+bool EchoResourceMultipleResponse::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* EchoResourceMultipleResponse::AccessCachedSize() const {
-  return &_impl_._cached_size_;
-}
-void EchoResourceMultipleResponse::InternalSwap(EchoResourceMultipleResponse* PROTOBUF_RESTRICT other) {
+void EchoResourceMultipleResponse::InternalSwap(EchoResourceMultipleResponse* other) {
   using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &message_, lhs_arena,
+      &other->message_, rhs_arena
+  );
 }
 
-::google::protobuf::Metadata EchoResourceMultipleResponse::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata EchoResourceMultipleResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto_getter, &descriptor_table_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto_once,
       file_level_metadata_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto[3]);
 }
+
 // ===================================================================
 
 class EchoResourceBiDiRequest::_Internal {
  public:
 };
 
-EchoResourceBiDiRequest::EchoResourceBiDiRequest(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
+EchoResourceBiDiRequest::EchoResourceBiDiRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:proto.rpc.examples.echoresource.v1.EchoResourceBiDiRequest)
 }
-inline PROTOBUF_NDEBUG_INLINE EchoResourceBiDiRequest::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from)
-      : name_(arena, from.name_),
-        message_(arena, from.message_),
-        _cached_size_{0} {}
-
-EchoResourceBiDiRequest::EchoResourceBiDiRequest(
-    ::google::protobuf::Arena* arena,
-    const EchoResourceBiDiRequest& from)
-    : ::google::protobuf::Message(arena) {
-  EchoResourceBiDiRequest* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-
+EchoResourceBiDiRequest::EchoResourceBiDiRequest(const EchoResourceBiDiRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  message_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    message_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_message().empty()) {
+    message_.Set(from._internal_message(), 
+      GetArenaForAllocation());
+  }
   // @@protoc_insertion_point(copy_constructor:proto.rpc.examples.echoresource.v1.EchoResourceBiDiRequest)
 }
-inline PROTOBUF_NDEBUG_INLINE EchoResourceBiDiRequest::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : name_(arena),
-        message_(arena),
-        _cached_size_{0} {}
 
-inline void EchoResourceBiDiRequest::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
+inline void EchoResourceBiDiRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+message_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  message_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
+
 EchoResourceBiDiRequest::~EchoResourceBiDiRequest() {
   // @@protoc_insertion_point(destructor:proto.rpc.examples.echoresource.v1.EchoResourceBiDiRequest)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
 }
+
 inline void EchoResourceBiDiRequest::SharedDtor() {
-  ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.name_.Destroy();
-  _impl_.message_.Destroy();
-  _impl_.~Impl_();
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+  message_.Destroy();
 }
 
-PROTOBUF_NOINLINE void EchoResourceBiDiRequest::Clear() {
+void EchoResourceBiDiRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void EchoResourceBiDiRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:proto.rpc.examples.echoresource.v1.EchoResourceBiDiRequest)
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::uint32_t cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.name_.ClearToEmpty();
-  _impl_.message_.ClearToEmpty();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  name_.ClearToEmpty();
+  message_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* EchoResourceBiDiRequest::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+const char* EchoResourceBiDiRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "proto.rpc.examples.echoresource.v1.EchoResourceBiDiRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string message = 2 [json_name = "message"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_message();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "proto.rpc.examples.echoresource.v1.EchoResourceBiDiRequest.message"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
   return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
 }
 
-
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 78, 2> EchoResourceBiDiRequest::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_EchoResourceBiDiRequest_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // string message = 2 [json_name = "message"];
-    {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(EchoResourceBiDiRequest, _impl_.message_)}},
-    // string name = 1 [json_name = "name"];
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(EchoResourceBiDiRequest, _impl_.name_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // string name = 1 [json_name = "name"];
-    {PROTOBUF_FIELD_OFFSET(EchoResourceBiDiRequest, _impl_.name_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string message = 2 [json_name = "message"];
-    {PROTOBUF_FIELD_OFFSET(EchoResourceBiDiRequest, _impl_.message_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-  }},
-  // no aux_entries
-  {{
-    "\72\4\7\0\0\0\0\0"
-    "proto.rpc.examples.echoresource.v1.EchoResourceBiDiRequest"
-    "name"
-    "message"
-  }},
-};
-
-::uint8_t* EchoResourceBiDiRequest::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+uint8_t* EchoResourceBiDiRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:proto.rpc.examples.echoresource.v1.EchoResourceBiDiRequest)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    const std::string& _s = this->_internal_name();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "proto.rpc.examples.echoresource.v1.EchoResourceBiDiRequest.name");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "proto.rpc.examples.echoresource.v1.EchoResourceBiDiRequest.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
   }
 
   // string message = 2 [json_name = "message"];
   if (!this->_internal_message().empty()) {
-    const std::string& _s = this->_internal_message();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "proto.rpc.examples.echoresource.v1.EchoResourceBiDiRequest.message");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_message().data(), static_cast<int>(this->_internal_message().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "proto.rpc.examples.echoresource.v1.EchoResourceBiDiRequest.message");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_message(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:proto.rpc.examples.echoresource.v1.EchoResourceBiDiRequest)
   return target;
 }
 
-::size_t EchoResourceBiDiRequest::ByteSizeLong() const {
+size_t EchoResourceBiDiRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:proto.rpc.examples.echoresource.v1.EchoResourceBiDiRequest)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_name());
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
   }
 
   // string message = 2 [json_name = "message"];
   if (!this->_internal_message().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_message());
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_message());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData EchoResourceBiDiRequest::_class_data_ = {
-    EchoResourceBiDiRequest::MergeImpl,
-    nullptr,  // OnDemandRegisterArenaDtor
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData EchoResourceBiDiRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    EchoResourceBiDiRequest::MergeImpl
 };
-const ::google::protobuf::Message::ClassData* EchoResourceBiDiRequest::GetClassData() const {
-  return &_class_data_;
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*EchoResourceBiDiRequest::GetClassData() const { return &_class_data_; }
+
+void EchoResourceBiDiRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<EchoResourceBiDiRequest *>(to)->MergeFrom(
+      static_cast<const EchoResourceBiDiRequest &>(from));
 }
 
-void EchoResourceBiDiRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<EchoResourceBiDiRequest*>(&to_msg);
-  auto& from = static_cast<const EchoResourceBiDiRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.examples.echoresource.v1.EchoResourceBiDiRequest)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+
+void EchoResourceBiDiRequest::MergeFrom(const EchoResourceBiDiRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.examples.echoresource.v1.EchoResourceBiDiRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _this->_internal_set_name(from._internal_name());
+    _internal_set_name(from._internal_name());
   }
   if (!from._internal_message().empty()) {
-    _this->_internal_set_message(from._internal_message());
+    _internal_set_message(from._internal_message());
   }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void EchoResourceBiDiRequest::CopyFrom(const EchoResourceBiDiRequest& from) {
@@ -1339,188 +1317,196 @@ void EchoResourceBiDiRequest::CopyFrom(const EchoResourceBiDiRequest& from) {
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool EchoResourceBiDiRequest::IsInitialized() const {
+bool EchoResourceBiDiRequest::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* EchoResourceBiDiRequest::AccessCachedSize() const {
-  return &_impl_._cached_size_;
-}
-void EchoResourceBiDiRequest::InternalSwap(EchoResourceBiDiRequest* PROTOBUF_RESTRICT other) {
+void EchoResourceBiDiRequest::InternalSwap(EchoResourceBiDiRequest* other) {
   using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &message_, lhs_arena,
+      &other->message_, rhs_arena
+  );
 }
 
-::google::protobuf::Metadata EchoResourceBiDiRequest::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata EchoResourceBiDiRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto_getter, &descriptor_table_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto_once,
       file_level_metadata_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto[4]);
 }
+
 // ===================================================================
 
 class EchoResourceBiDiResponse::_Internal {
  public:
 };
 
-EchoResourceBiDiResponse::EchoResourceBiDiResponse(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
+EchoResourceBiDiResponse::EchoResourceBiDiResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:proto.rpc.examples.echoresource.v1.EchoResourceBiDiResponse)
 }
-inline PROTOBUF_NDEBUG_INLINE EchoResourceBiDiResponse::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from)
-      : message_(arena, from.message_),
-        _cached_size_{0} {}
-
-EchoResourceBiDiResponse::EchoResourceBiDiResponse(
-    ::google::protobuf::Arena* arena,
-    const EchoResourceBiDiResponse& from)
-    : ::google::protobuf::Message(arena) {
-  EchoResourceBiDiResponse* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-
+EchoResourceBiDiResponse::EchoResourceBiDiResponse(const EchoResourceBiDiResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  message_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    message_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_message().empty()) {
+    message_.Set(from._internal_message(), 
+      GetArenaForAllocation());
+  }
   // @@protoc_insertion_point(copy_constructor:proto.rpc.examples.echoresource.v1.EchoResourceBiDiResponse)
 }
-inline PROTOBUF_NDEBUG_INLINE EchoResourceBiDiResponse::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : message_(arena),
-        _cached_size_{0} {}
 
-inline void EchoResourceBiDiResponse::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
+inline void EchoResourceBiDiResponse::SharedCtor() {
+message_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  message_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
+
 EchoResourceBiDiResponse::~EchoResourceBiDiResponse() {
   // @@protoc_insertion_point(destructor:proto.rpc.examples.echoresource.v1.EchoResourceBiDiResponse)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
 }
+
 inline void EchoResourceBiDiResponse::SharedDtor() {
-  ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.message_.Destroy();
-  _impl_.~Impl_();
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  message_.Destroy();
 }
 
-PROTOBUF_NOINLINE void EchoResourceBiDiResponse::Clear() {
+void EchoResourceBiDiResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void EchoResourceBiDiResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:proto.rpc.examples.echoresource.v1.EchoResourceBiDiResponse)
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::uint32_t cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.message_.ClearToEmpty();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  message_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* EchoResourceBiDiResponse::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+const char* EchoResourceBiDiResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string message = 1 [json_name = "message"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_message();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "proto.rpc.examples.echoresource.v1.EchoResourceBiDiResponse.message"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
   return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
 }
 
-
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 75, 2> EchoResourceBiDiResponse::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_EchoResourceBiDiResponse_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // string message = 1 [json_name = "message"];
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(EchoResourceBiDiResponse, _impl_.message_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // string message = 1 [json_name = "message"];
-    {PROTOBUF_FIELD_OFFSET(EchoResourceBiDiResponse, _impl_.message_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-  }},
-  // no aux_entries
-  {{
-    "\73\7\0\0\0\0\0\0"
-    "proto.rpc.examples.echoresource.v1.EchoResourceBiDiResponse"
-    "message"
-  }},
-};
-
-::uint8_t* EchoResourceBiDiResponse::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+uint8_t* EchoResourceBiDiResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:proto.rpc.examples.echoresource.v1.EchoResourceBiDiResponse)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
 
   // string message = 1 [json_name = "message"];
   if (!this->_internal_message().empty()) {
-    const std::string& _s = this->_internal_message();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "proto.rpc.examples.echoresource.v1.EchoResourceBiDiResponse.message");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_message().data(), static_cast<int>(this->_internal_message().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "proto.rpc.examples.echoresource.v1.EchoResourceBiDiResponse.message");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_message(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:proto.rpc.examples.echoresource.v1.EchoResourceBiDiResponse)
   return target;
 }
 
-::size_t EchoResourceBiDiResponse::ByteSizeLong() const {
+size_t EchoResourceBiDiResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:proto.rpc.examples.echoresource.v1.EchoResourceBiDiResponse)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string message = 1 [json_name = "message"];
   if (!this->_internal_message().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_message());
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_message());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData EchoResourceBiDiResponse::_class_data_ = {
-    EchoResourceBiDiResponse::MergeImpl,
-    nullptr,  // OnDemandRegisterArenaDtor
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData EchoResourceBiDiResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    EchoResourceBiDiResponse::MergeImpl
 };
-const ::google::protobuf::Message::ClassData* EchoResourceBiDiResponse::GetClassData() const {
-  return &_class_data_;
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*EchoResourceBiDiResponse::GetClassData() const { return &_class_data_; }
+
+void EchoResourceBiDiResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<EchoResourceBiDiResponse *>(to)->MergeFrom(
+      static_cast<const EchoResourceBiDiResponse &>(from));
 }
 
-void EchoResourceBiDiResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<EchoResourceBiDiResponse*>(&to_msg);
-  auto& from = static_cast<const EchoResourceBiDiResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.examples.echoresource.v1.EchoResourceBiDiResponse)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+
+void EchoResourceBiDiResponse::MergeFrom(const EchoResourceBiDiResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.examples.echoresource.v1.EchoResourceBiDiResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_message().empty()) {
-    _this->_internal_set_message(from._internal_message());
+    _internal_set_message(from._internal_message());
   }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void EchoResourceBiDiResponse::CopyFrom(const EchoResourceBiDiResponse& from) {
@@ -1530,35 +1516,59 @@ void EchoResourceBiDiResponse::CopyFrom(const EchoResourceBiDiResponse& from) {
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool EchoResourceBiDiResponse::IsInitialized() const {
+bool EchoResourceBiDiResponse::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* EchoResourceBiDiResponse::AccessCachedSize() const {
-  return &_impl_._cached_size_;
-}
-void EchoResourceBiDiResponse::InternalSwap(EchoResourceBiDiResponse* PROTOBUF_RESTRICT other) {
+void EchoResourceBiDiResponse::InternalSwap(EchoResourceBiDiResponse* other) {
   using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &message_, lhs_arena,
+      &other->message_, rhs_arena
+  );
 }
 
-::google::protobuf::Metadata EchoResourceBiDiResponse::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata EchoResourceBiDiResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto_getter, &descriptor_table_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto_once,
       file_level_metadata_proto_2frpc_2fexamples_2fechoresource_2fv1_2fechoresource_2eproto[5]);
 }
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace echoresource
 }  // namespace examples
 }  // namespace rpc
 }  // namespace proto
-namespace google {
-namespace protobuf {
-}  // namespace protobuf
-}  // namespace google
+PROTOBUF_NAMESPACE_OPEN
+template<> PROTOBUF_NOINLINE ::proto::rpc::examples::echoresource::v1::EchoResourceRequest*
+Arena::CreateMaybeMessage< ::proto::rpc::examples::echoresource::v1::EchoResourceRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::proto::rpc::examples::echoresource::v1::EchoResourceRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::proto::rpc::examples::echoresource::v1::EchoResourceResponse*
+Arena::CreateMaybeMessage< ::proto::rpc::examples::echoresource::v1::EchoResourceResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::proto::rpc::examples::echoresource::v1::EchoResourceResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleRequest*
+Arena::CreateMaybeMessage< ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleResponse*
+Arena::CreateMaybeMessage< ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest*
+Arena::CreateMaybeMessage< ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiResponse*
+Arena::CreateMaybeMessage< ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiResponse >(arena);
+}
+PROTOBUF_NAMESPACE_CLOSE
+
 // @@protoc_insertion_point(global_scope)
-#include "google/protobuf/port_undef.inc"
+#include <google/protobuf/port_undef.inc>

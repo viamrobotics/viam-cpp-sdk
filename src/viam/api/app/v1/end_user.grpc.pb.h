@@ -7,23 +7,24 @@
 #include "app/v1/end_user.pb.h"
 
 #include <functional>
-#include <grpcpp/generic/async_generic_service.h>
-#include <grpcpp/support/async_stream.h>
-#include <grpcpp/support/async_unary_call.h>
-#include <grpcpp/support/client_callback.h>
-#include <grpcpp/client_context.h>
-#include <grpcpp/completion_queue.h>
-#include <grpcpp/support/message_allocator.h>
-#include <grpcpp/support/method_handler.h>
-#include <grpcpp/impl/proto_utils.h>
-#include <grpcpp/impl/rpc_method.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/status.h>
-#include <grpcpp/support/stub_options.h>
-#include <grpcpp/support/sync_stream.h>
+#include <grpc/impl/codegen/port_platform.h>
+#include <grpcpp/impl/codegen/async_generic_service.h>
+#include <grpcpp/impl/codegen/async_stream.h>
+#include <grpcpp/impl/codegen/async_unary_call.h>
+#include <grpcpp/impl/codegen/client_callback.h>
+#include <grpcpp/impl/codegen/client_context.h>
+#include <grpcpp/impl/codegen/completion_queue.h>
+#include <grpcpp/impl/codegen/message_allocator.h>
+#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/impl/codegen/proto_utils.h>
+#include <grpcpp/impl/codegen/rpc_method.h>
+#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/codegen/server_callback_handlers.h>
+#include <grpcpp/impl/codegen/server_context.h>
+#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/impl/codegen/status.h>
+#include <grpcpp/impl/codegen/stub_options.h>
+#include <grpcpp/impl/codegen/sync_stream.h>
 
 namespace viam {
 namespace app {
@@ -78,30 +79,84 @@ class EndUserService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetAuthApplicationResponse>> PrepareAsyncGetAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::GetAuthApplicationRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetAuthApplicationResponse>>(PrepareAsyncGetAuthApplicationRaw(context, request, cq));
     }
-    class async_interface {
+    class experimental_async_interface {
      public:
-      virtual ~async_interface() {}
+      virtual ~experimental_async_interface() {}
       // Returns whether the specified user has accepted end user license agreements.
       // If false, the user should not be able to use the application.
       virtual void IsLegalAccepted(::grpc::ClientContext* context, const ::viam::app::v1::IsLegalAcceptedRequest* request, ::viam::app::v1::IsLegalAcceptedResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void IsLegalAccepted(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::IsLegalAcceptedResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void IsLegalAccepted(::grpc::ClientContext* context, const ::viam::app::v1::IsLegalAcceptedRequest* request, ::viam::app::v1::IsLegalAcceptedResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void IsLegalAccepted(::grpc::ClientContext* context, const ::viam::app::v1::IsLegalAcceptedRequest* request, ::viam::app::v1::IsLegalAcceptedResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void IsLegalAccepted(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::IsLegalAcceptedResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void IsLegalAccepted(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::IsLegalAcceptedResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // Marks that the specified user has accepted end user license agreements.
       virtual void AcceptLegal(::grpc::ClientContext* context, const ::viam::app::v1::AcceptLegalRequest* request, ::viam::app::v1::AcceptLegalResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void AcceptLegal(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::AcceptLegalResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void AcceptLegal(::grpc::ClientContext* context, const ::viam::app::v1::AcceptLegalRequest* request, ::viam::app::v1::AcceptLegalResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void AcceptLegal(::grpc::ClientContext* context, const ::viam::app::v1::AcceptLegalRequest* request, ::viam::app::v1::AcceptLegalResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void AcceptLegal(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::AcceptLegalResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void AcceptLegal(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::AcceptLegalResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // Allows users to register third party auth applications using Viam linked to the indicated organization
       virtual void RegisterAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::RegisterAuthApplicationRequest* request, ::viam::app::v1::RegisterAuthApplicationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void RegisterAuthApplication(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::RegisterAuthApplicationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void RegisterAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::RegisterAuthApplicationRequest* request, ::viam::app::v1::RegisterAuthApplicationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void RegisterAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::RegisterAuthApplicationRequest* request, ::viam::app::v1::RegisterAuthApplicationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void RegisterAuthApplication(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::RegisterAuthApplicationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void RegisterAuthApplication(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::RegisterAuthApplicationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // Allows users to update their third party auth applications
       virtual void UpdateAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::UpdateAuthApplicationRequest* request, ::viam::app::v1::UpdateAuthApplicationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void UpdateAuthApplication(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateAuthApplicationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void UpdateAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::UpdateAuthApplicationRequest* request, ::viam::app::v1::UpdateAuthApplicationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void UpdateAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::UpdateAuthApplicationRequest* request, ::viam::app::v1::UpdateAuthApplicationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void UpdateAuthApplication(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateAuthApplicationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void UpdateAuthApplication(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateAuthApplicationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // Allows users to get the config for their third party auth applications
       virtual void GetAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::GetAuthApplicationRequest* request, ::viam::app::v1::GetAuthApplicationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetAuthApplication(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetAuthApplicationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::GetAuthApplicationRequest* request, ::viam::app::v1::GetAuthApplicationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::GetAuthApplicationRequest* request, ::viam::app::v1::GetAuthApplicationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetAuthApplication(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetAuthApplicationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetAuthApplication(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetAuthApplicationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
     };
-    typedef class async_interface experimental_async_interface;
-    virtual class async_interface* async() { return nullptr; }
-    class async_interface* experimental_async() { return async(); }
-   private:
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    typedef class experimental_async_interface async_interface;
+    #endif
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    async_interface* async() { return experimental_async(); }
+    #endif
+    virtual class experimental_async_interface* experimental_async() { return nullptr; }
+  private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::IsLegalAcceptedResponse>* AsyncIsLegalAcceptedRaw(::grpc::ClientContext* context, const ::viam::app::v1::IsLegalAcceptedRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::IsLegalAcceptedResponse>* PrepareAsyncIsLegalAcceptedRaw(::grpc::ClientContext* context, const ::viam::app::v1::IsLegalAcceptedRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::AcceptLegalResponse>* AsyncAcceptLegalRaw(::grpc::ClientContext* context, const ::viam::app::v1::AcceptLegalRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -115,7 +170,7 @@ class EndUserService final {
   };
   class Stub final : public StubInterface {
    public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
     ::grpc::Status IsLegalAccepted(::grpc::ClientContext* context, const ::viam::app::v1::IsLegalAcceptedRequest& request, ::viam::app::v1::IsLegalAcceptedResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::IsLegalAcceptedResponse>> AsyncIsLegalAccepted(::grpc::ClientContext* context, const ::viam::app::v1::IsLegalAcceptedRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::IsLegalAcceptedResponse>>(AsyncIsLegalAcceptedRaw(context, request, cq));
@@ -151,30 +206,80 @@ class EndUserService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetAuthApplicationResponse>> PrepareAsyncGetAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::GetAuthApplicationRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetAuthApplicationResponse>>(PrepareAsyncGetAuthApplicationRaw(context, request, cq));
     }
-    class async final :
-      public StubInterface::async_interface {
+    class experimental_async final :
+      public StubInterface::experimental_async_interface {
      public:
       void IsLegalAccepted(::grpc::ClientContext* context, const ::viam::app::v1::IsLegalAcceptedRequest* request, ::viam::app::v1::IsLegalAcceptedResponse* response, std::function<void(::grpc::Status)>) override;
+      void IsLegalAccepted(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::IsLegalAcceptedResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void IsLegalAccepted(::grpc::ClientContext* context, const ::viam::app::v1::IsLegalAcceptedRequest* request, ::viam::app::v1::IsLegalAcceptedResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void IsLegalAccepted(::grpc::ClientContext* context, const ::viam::app::v1::IsLegalAcceptedRequest* request, ::viam::app::v1::IsLegalAcceptedResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void IsLegalAccepted(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::IsLegalAcceptedResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void IsLegalAccepted(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::IsLegalAcceptedResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void AcceptLegal(::grpc::ClientContext* context, const ::viam::app::v1::AcceptLegalRequest* request, ::viam::app::v1::AcceptLegalResponse* response, std::function<void(::grpc::Status)>) override;
+      void AcceptLegal(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::AcceptLegalResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void AcceptLegal(::grpc::ClientContext* context, const ::viam::app::v1::AcceptLegalRequest* request, ::viam::app::v1::AcceptLegalResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void AcceptLegal(::grpc::ClientContext* context, const ::viam::app::v1::AcceptLegalRequest* request, ::viam::app::v1::AcceptLegalResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void AcceptLegal(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::AcceptLegalResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void AcceptLegal(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::AcceptLegalResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void RegisterAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::RegisterAuthApplicationRequest* request, ::viam::app::v1::RegisterAuthApplicationResponse* response, std::function<void(::grpc::Status)>) override;
+      void RegisterAuthApplication(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::RegisterAuthApplicationResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void RegisterAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::RegisterAuthApplicationRequest* request, ::viam::app::v1::RegisterAuthApplicationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void RegisterAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::RegisterAuthApplicationRequest* request, ::viam::app::v1::RegisterAuthApplicationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void RegisterAuthApplication(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::RegisterAuthApplicationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void RegisterAuthApplication(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::RegisterAuthApplicationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void UpdateAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::UpdateAuthApplicationRequest* request, ::viam::app::v1::UpdateAuthApplicationResponse* response, std::function<void(::grpc::Status)>) override;
+      void UpdateAuthApplication(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateAuthApplicationResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void UpdateAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::UpdateAuthApplicationRequest* request, ::viam::app::v1::UpdateAuthApplicationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void UpdateAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::UpdateAuthApplicationRequest* request, ::viam::app::v1::UpdateAuthApplicationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void UpdateAuthApplication(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateAuthApplicationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void UpdateAuthApplication(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateAuthApplicationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::GetAuthApplicationRequest* request, ::viam::app::v1::GetAuthApplicationResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetAuthApplication(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetAuthApplicationResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::GetAuthApplicationRequest* request, ::viam::app::v1::GetAuthApplicationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetAuthApplication(::grpc::ClientContext* context, const ::viam::app::v1::GetAuthApplicationRequest* request, ::viam::app::v1::GetAuthApplicationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetAuthApplication(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetAuthApplicationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetAuthApplication(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetAuthApplicationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
      private:
       friend class Stub;
-      explicit async(Stub* stub): stub_(stub) { }
+      explicit experimental_async(Stub* stub): stub_(stub) { }
       Stub* stub() { return stub_; }
       Stub* stub_;
     };
-    class async* async() override { return &async_stub_; }
+    class experimental_async_interface* experimental_async() override { return &async_stub_; }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class async async_stub_{this};
+    class experimental_async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::IsLegalAcceptedResponse>* AsyncIsLegalAcceptedRaw(::grpc::ClientContext* context, const ::viam::app::v1::IsLegalAcceptedRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::IsLegalAcceptedResponse>* PrepareAsyncIsLegalAcceptedRaw(::grpc::ClientContext* context, const ::viam::app::v1::IsLegalAcceptedRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::AcceptLegalResponse>* AsyncAcceptLegalRaw(::grpc::ClientContext* context, const ::viam::app::v1::AcceptLegalRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -311,22 +416,36 @@ class EndUserService final {
   };
   typedef WithAsyncMethod_IsLegalAccepted<WithAsyncMethod_AcceptLegal<WithAsyncMethod_RegisterAuthApplication<WithAsyncMethod_UpdateAuthApplication<WithAsyncMethod_GetAuthApplication<Service > > > > > AsyncService;
   template <class BaseClass>
-  class WithCallbackMethod_IsLegalAccepted : public BaseClass {
+  class ExperimentalWithCallbackMethod_IsLegalAccepted : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_IsLegalAccepted() {
-      ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::IsLegalAcceptedRequest, ::viam::app::v1::IsLegalAcceptedResponse>(
+    ExperimentalWithCallbackMethod_IsLegalAccepted() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(0,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::v1::IsLegalAcceptedRequest, ::viam::app::v1::IsLegalAcceptedResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::IsLegalAcceptedRequest* request, ::viam::app::v1::IsLegalAcceptedResponse* response) { return this->IsLegalAccepted(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::app::v1::IsLegalAcceptedRequest* request, ::viam::app::v1::IsLegalAcceptedResponse* response) { return this->IsLegalAccepted(context, request, response); }));}
     void SetMessageAllocatorFor_IsLegalAccepted(
-        ::grpc::MessageAllocator< ::viam::app::v1::IsLegalAcceptedRequest, ::viam::app::v1::IsLegalAcceptedResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::app::v1::IsLegalAcceptedRequest, ::viam::app::v1::IsLegalAcceptedResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::IsLegalAcceptedRequest, ::viam::app::v1::IsLegalAcceptedResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::v1::IsLegalAcceptedRequest, ::viam::app::v1::IsLegalAcceptedResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_IsLegalAccepted() override {
+    ~ExperimentalWithCallbackMethod_IsLegalAccepted() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -334,26 +453,46 @@ class EndUserService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* IsLegalAccepted(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::IsLegalAcceptedRequest* /*request*/, ::viam::app::v1::IsLegalAcceptedResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::IsLegalAcceptedRequest* /*request*/, ::viam::app::v1::IsLegalAcceptedResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* IsLegalAccepted(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::app::v1::IsLegalAcceptedRequest* /*request*/, ::viam::app::v1::IsLegalAcceptedResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_AcceptLegal : public BaseClass {
+  class ExperimentalWithCallbackMethod_AcceptLegal : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_AcceptLegal() {
-      ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::AcceptLegalRequest, ::viam::app::v1::AcceptLegalResponse>(
+    ExperimentalWithCallbackMethod_AcceptLegal() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::v1::AcceptLegalRequest, ::viam::app::v1::AcceptLegalResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::AcceptLegalRequest* request, ::viam::app::v1::AcceptLegalResponse* response) { return this->AcceptLegal(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::app::v1::AcceptLegalRequest* request, ::viam::app::v1::AcceptLegalResponse* response) { return this->AcceptLegal(context, request, response); }));}
     void SetMessageAllocatorFor_AcceptLegal(
-        ::grpc::MessageAllocator< ::viam::app::v1::AcceptLegalRequest, ::viam::app::v1::AcceptLegalResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::app::v1::AcceptLegalRequest, ::viam::app::v1::AcceptLegalResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::AcceptLegalRequest, ::viam::app::v1::AcceptLegalResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::v1::AcceptLegalRequest, ::viam::app::v1::AcceptLegalResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_AcceptLegal() override {
+    ~ExperimentalWithCallbackMethod_AcceptLegal() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -361,26 +500,46 @@ class EndUserService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* AcceptLegal(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::AcceptLegalRequest* /*request*/, ::viam::app::v1::AcceptLegalResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::AcceptLegalRequest* /*request*/, ::viam::app::v1::AcceptLegalResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* AcceptLegal(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::app::v1::AcceptLegalRequest* /*request*/, ::viam::app::v1::AcceptLegalResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_RegisterAuthApplication : public BaseClass {
+  class ExperimentalWithCallbackMethod_RegisterAuthApplication : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_RegisterAuthApplication() {
-      ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::RegisterAuthApplicationRequest, ::viam::app::v1::RegisterAuthApplicationResponse>(
+    ExperimentalWithCallbackMethod_RegisterAuthApplication() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::v1::RegisterAuthApplicationRequest, ::viam::app::v1::RegisterAuthApplicationResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::RegisterAuthApplicationRequest* request, ::viam::app::v1::RegisterAuthApplicationResponse* response) { return this->RegisterAuthApplication(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::app::v1::RegisterAuthApplicationRequest* request, ::viam::app::v1::RegisterAuthApplicationResponse* response) { return this->RegisterAuthApplication(context, request, response); }));}
     void SetMessageAllocatorFor_RegisterAuthApplication(
-        ::grpc::MessageAllocator< ::viam::app::v1::RegisterAuthApplicationRequest, ::viam::app::v1::RegisterAuthApplicationResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::app::v1::RegisterAuthApplicationRequest, ::viam::app::v1::RegisterAuthApplicationResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::RegisterAuthApplicationRequest, ::viam::app::v1::RegisterAuthApplicationResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::v1::RegisterAuthApplicationRequest, ::viam::app::v1::RegisterAuthApplicationResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_RegisterAuthApplication() override {
+    ~ExperimentalWithCallbackMethod_RegisterAuthApplication() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -388,26 +547,46 @@ class EndUserService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* RegisterAuthApplication(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::RegisterAuthApplicationRequest* /*request*/, ::viam::app::v1::RegisterAuthApplicationResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::RegisterAuthApplicationRequest* /*request*/, ::viam::app::v1::RegisterAuthApplicationResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* RegisterAuthApplication(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::app::v1::RegisterAuthApplicationRequest* /*request*/, ::viam::app::v1::RegisterAuthApplicationResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_UpdateAuthApplication : public BaseClass {
+  class ExperimentalWithCallbackMethod_UpdateAuthApplication : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_UpdateAuthApplication() {
-      ::grpc::Service::MarkMethodCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateAuthApplicationRequest, ::viam::app::v1::UpdateAuthApplicationResponse>(
+    ExperimentalWithCallbackMethod_UpdateAuthApplication() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateAuthApplicationRequest, ::viam::app::v1::UpdateAuthApplicationResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::UpdateAuthApplicationRequest* request, ::viam::app::v1::UpdateAuthApplicationResponse* response) { return this->UpdateAuthApplication(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::app::v1::UpdateAuthApplicationRequest* request, ::viam::app::v1::UpdateAuthApplicationResponse* response) { return this->UpdateAuthApplication(context, request, response); }));}
     void SetMessageAllocatorFor_UpdateAuthApplication(
-        ::grpc::MessageAllocator< ::viam::app::v1::UpdateAuthApplicationRequest, ::viam::app::v1::UpdateAuthApplicationResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::app::v1::UpdateAuthApplicationRequest, ::viam::app::v1::UpdateAuthApplicationResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateAuthApplicationRequest, ::viam::app::v1::UpdateAuthApplicationResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateAuthApplicationRequest, ::viam::app::v1::UpdateAuthApplicationResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_UpdateAuthApplication() override {
+    ~ExperimentalWithCallbackMethod_UpdateAuthApplication() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -415,26 +594,46 @@ class EndUserService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* UpdateAuthApplication(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::UpdateAuthApplicationRequest* /*request*/, ::viam::app::v1::UpdateAuthApplicationResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::UpdateAuthApplicationRequest* /*request*/, ::viam::app::v1::UpdateAuthApplicationResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* UpdateAuthApplication(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::app::v1::UpdateAuthApplicationRequest* /*request*/, ::viam::app::v1::UpdateAuthApplicationResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetAuthApplication : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetAuthApplication : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetAuthApplication() {
-      ::grpc::Service::MarkMethodCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetAuthApplicationRequest, ::viam::app::v1::GetAuthApplicationResponse>(
+    ExperimentalWithCallbackMethod_GetAuthApplication() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::v1::GetAuthApplicationRequest, ::viam::app::v1::GetAuthApplicationResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetAuthApplicationRequest* request, ::viam::app::v1::GetAuthApplicationResponse* response) { return this->GetAuthApplication(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::app::v1::GetAuthApplicationRequest* request, ::viam::app::v1::GetAuthApplicationResponse* response) { return this->GetAuthApplication(context, request, response); }));}
     void SetMessageAllocatorFor_GetAuthApplication(
-        ::grpc::MessageAllocator< ::viam::app::v1::GetAuthApplicationRequest, ::viam::app::v1::GetAuthApplicationResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::app::v1::GetAuthApplicationRequest, ::viam::app::v1::GetAuthApplicationResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetAuthApplicationRequest, ::viam::app::v1::GetAuthApplicationResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(4);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::v1::GetAuthApplicationRequest, ::viam::app::v1::GetAuthApplicationResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetAuthApplication() override {
+    ~ExperimentalWithCallbackMethod_GetAuthApplication() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -442,11 +641,20 @@ class EndUserService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetAuthApplication(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::GetAuthApplicationRequest* /*request*/, ::viam::app::v1::GetAuthApplicationResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::GetAuthApplicationRequest* /*request*/, ::viam::app::v1::GetAuthApplicationResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetAuthApplication(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::app::v1::GetAuthApplicationRequest* /*request*/, ::viam::app::v1::GetAuthApplicationResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
-  typedef WithCallbackMethod_IsLegalAccepted<WithCallbackMethod_AcceptLegal<WithCallbackMethod_RegisterAuthApplication<WithCallbackMethod_UpdateAuthApplication<WithCallbackMethod_GetAuthApplication<Service > > > > > CallbackService;
-  typedef CallbackService ExperimentalCallbackService;
+  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+  typedef ExperimentalWithCallbackMethod_IsLegalAccepted<ExperimentalWithCallbackMethod_AcceptLegal<ExperimentalWithCallbackMethod_RegisterAuthApplication<ExperimentalWithCallbackMethod_UpdateAuthApplication<ExperimentalWithCallbackMethod_GetAuthApplication<Service > > > > > CallbackService;
+  #endif
+
+  typedef ExperimentalWithCallbackMethod_IsLegalAccepted<ExperimentalWithCallbackMethod_AcceptLegal<ExperimentalWithCallbackMethod_RegisterAuthApplication<ExperimentalWithCallbackMethod_UpdateAuthApplication<ExperimentalWithCallbackMethod_GetAuthApplication<Service > > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_IsLegalAccepted : public BaseClass {
    private:
@@ -633,17 +841,27 @@ class EndUserService final {
     }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_IsLegalAccepted : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_IsLegalAccepted : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_IsLegalAccepted() {
-      ::grpc::Service::MarkMethodRawCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_IsLegalAccepted() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(0,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->IsLegalAccepted(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->IsLegalAccepted(context, request, response); }));
     }
-    ~WithRawCallbackMethod_IsLegalAccepted() override {
+    ~ExperimentalWithRawCallbackMethod_IsLegalAccepted() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -651,21 +869,37 @@ class EndUserService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* IsLegalAccepted(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* IsLegalAccepted(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_AcceptLegal : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_AcceptLegal : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_AcceptLegal() {
-      ::grpc::Service::MarkMethodRawCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_AcceptLegal() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AcceptLegal(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AcceptLegal(context, request, response); }));
     }
-    ~WithRawCallbackMethod_AcceptLegal() override {
+    ~ExperimentalWithRawCallbackMethod_AcceptLegal() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -673,21 +907,37 @@ class EndUserService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* AcceptLegal(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* AcceptLegal(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_RegisterAuthApplication : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_RegisterAuthApplication : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_RegisterAuthApplication() {
-      ::grpc::Service::MarkMethodRawCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_RegisterAuthApplication() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RegisterAuthApplication(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RegisterAuthApplication(context, request, response); }));
     }
-    ~WithRawCallbackMethod_RegisterAuthApplication() override {
+    ~ExperimentalWithRawCallbackMethod_RegisterAuthApplication() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -695,21 +945,37 @@ class EndUserService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* RegisterAuthApplication(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* RegisterAuthApplication(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_UpdateAuthApplication : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_UpdateAuthApplication : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_UpdateAuthApplication() {
-      ::grpc::Service::MarkMethodRawCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_UpdateAuthApplication() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UpdateAuthApplication(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UpdateAuthApplication(context, request, response); }));
     }
-    ~WithRawCallbackMethod_UpdateAuthApplication() override {
+    ~ExperimentalWithRawCallbackMethod_UpdateAuthApplication() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -717,21 +983,37 @@ class EndUserService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* UpdateAuthApplication(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* UpdateAuthApplication(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetAuthApplication : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetAuthApplication : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetAuthApplication() {
-      ::grpc::Service::MarkMethodRawCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetAuthApplication() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetAuthApplication(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetAuthApplication(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetAuthApplication() override {
+    ~ExperimentalWithRawCallbackMethod_GetAuthApplication() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -739,8 +1021,14 @@ class EndUserService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetAuthApplication(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetAuthApplication(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_IsLegalAccepted : public BaseClass {
@@ -751,8 +1039,8 @@ class EndUserService final {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::IsLegalAcceptedRequest, ::viam::app::v1::IsLegalAcceptedResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::app::v1::IsLegalAcceptedRequest, ::viam::app::v1::IsLegalAcceptedResponse>* streamer) {
                        return this->StreamedIsLegalAccepted(context,
                          streamer);
@@ -778,8 +1066,8 @@ class EndUserService final {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::AcceptLegalRequest, ::viam::app::v1::AcceptLegalResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::app::v1::AcceptLegalRequest, ::viam::app::v1::AcceptLegalResponse>* streamer) {
                        return this->StreamedAcceptLegal(context,
                          streamer);
@@ -805,8 +1093,8 @@ class EndUserService final {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::RegisterAuthApplicationRequest, ::viam::app::v1::RegisterAuthApplicationResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::app::v1::RegisterAuthApplicationRequest, ::viam::app::v1::RegisterAuthApplicationResponse>* streamer) {
                        return this->StreamedRegisterAuthApplication(context,
                          streamer);
@@ -832,8 +1120,8 @@ class EndUserService final {
       ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::UpdateAuthApplicationRequest, ::viam::app::v1::UpdateAuthApplicationResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::app::v1::UpdateAuthApplicationRequest, ::viam::app::v1::UpdateAuthApplicationResponse>* streamer) {
                        return this->StreamedUpdateAuthApplication(context,
                          streamer);
@@ -859,8 +1147,8 @@ class EndUserService final {
       ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetAuthApplicationRequest, ::viam::app::v1::GetAuthApplicationResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::app::v1::GetAuthApplicationRequest, ::viam::app::v1::GetAuthApplicationResponse>* streamer) {
                        return this->StreamedGetAuthApplication(context,
                          streamer);

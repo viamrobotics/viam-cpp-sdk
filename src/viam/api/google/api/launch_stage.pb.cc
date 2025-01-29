@@ -4,96 +4,85 @@
 #include "google/api/launch_stage.pb.h"
 
 #include <algorithm>
-#include "google/protobuf/io/coded_stream.h"
-#include "google/protobuf/extension_set.h"
-#include "google/protobuf/wire_format_lite.h"
-#include "google/protobuf/descriptor.h"
-#include "google/protobuf/generated_message_reflection.h"
-#include "google/protobuf/reflection_ops.h"
-#include "google/protobuf/wire_format.h"
-#include "google/protobuf/generated_message_tctable_impl.h"
-// @@protoc_insertion_point(includes)
 
-// Must be included last.
-#include "google/protobuf/port_def.inc"
+#include <google/protobuf/io/coded_stream.h>
+#include <google/protobuf/extension_set.h>
+#include <google/protobuf/wire_format_lite.h>
+#include <google/protobuf/descriptor.h>
+#include <google/protobuf/generated_message_reflection.h>
+#include <google/protobuf/reflection_ops.h>
+#include <google/protobuf/wire_format.h>
+// @@protoc_insertion_point(includes)
+#include <google/protobuf/port_def.inc>
+
 PROTOBUF_PRAGMA_INIT_SEG
-namespace _pb = ::google::protobuf;
-namespace _pbi = ::google::protobuf::internal;
-namespace _fl = ::google::protobuf::internal::field_layout;
+
+namespace _pb = ::PROTOBUF_NAMESPACE_ID;
+namespace _pbi = _pb::internal;
+
 namespace google {
 namespace api {
 }  // namespace api
 }  // namespace google
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_google_2fapi_2flaunch_5fstage_2eproto[1];
-static constexpr const ::_pb::ServiceDescriptor**
-    file_level_service_descriptors_google_2fapi_2flaunch_5fstage_2eproto = nullptr;
-const ::uint32_t TableStruct_google_2fapi_2flaunch_5fstage_2eproto::offsets[1] = {};
+static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_google_2fapi_2flaunch_5fstage_2eproto = nullptr;
+const uint32_t TableStruct_google_2fapi_2flaunch_5fstage_2eproto::offsets[1] = {};
 static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
 static constexpr ::_pb::Message* const* file_default_instances = nullptr;
-const char descriptor_table_protodef_google_2fapi_2flaunch_5fstage_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\035google/api/launch_stage.proto\022\ngoogle."
-    "api*\214\001\n\013LaunchStage\022\034\n\030LAUNCH_STAGE_UNSP"
-    "ECIFIED\020\000\022\021\n\rUNIMPLEMENTED\020\006\022\r\n\tPRELAUNC"
-    "H\020\007\022\020\n\014EARLY_ACCESS\020\001\022\t\n\005ALPHA\020\002\022\010\n\004BETA"
-    "\020\003\022\006\n\002GA\020\004\022\016\n\nDEPRECATED\020\005B\232\001\n\016com.googl"
-    "e.apiB\020LaunchStageProtoP\001Z-google.golang"
-    ".org/genproto/googleapis/api;api\242\002\003GAX\252\002"
-    "\nGoogle.Api\312\002\nGoogle\\Api\342\002\026Google\\Api\\GP"
-    "BMetadata\352\002\013Google::Apib\006proto3"
-};
-static ::absl::once_flag descriptor_table_google_2fapi_2flaunch_5fstage_2eproto_once;
+
+const char descriptor_table_protodef_google_2fapi_2flaunch_5fstage_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
+  "\n\035google/api/launch_stage.proto\022\ngoogle."
+  "api*\214\001\n\013LaunchStage\022\034\n\030LAUNCH_STAGE_UNSP"
+  "ECIFIED\020\000\022\021\n\rUNIMPLEMENTED\020\006\022\r\n\tPRELAUNC"
+  "H\020\007\022\020\n\014EARLY_ACCESS\020\001\022\t\n\005ALPHA\020\002\022\010\n\004BETA"
+  "\020\003\022\006\n\002GA\020\004\022\016\n\nDEPRECATED\020\005BZ\n\016com.google"
+  ".apiB\020LaunchStageProtoP\001Z-google.golang."
+  "org/genproto/googleapis/api;api\242\002\004GAPIb\006"
+  "proto3"
+  ;
+static ::_pbi::once_flag descriptor_table_google_2fapi_2flaunch_5fstage_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2flaunch_5fstage_2eproto = {
-    false,
-    false,
-    351,
-    descriptor_table_protodef_google_2fapi_2flaunch_5fstage_2eproto,
+    false, false, 286, descriptor_table_protodef_google_2fapi_2flaunch_5fstage_2eproto,
     "google/api/launch_stage.proto",
-    &descriptor_table_google_2fapi_2flaunch_5fstage_2eproto_once,
-    nullptr,
-    0,
-    0,
-    schemas,
-    file_default_instances,
-    TableStruct_google_2fapi_2flaunch_5fstage_2eproto::offsets,
-    nullptr,
-    file_level_enum_descriptors_google_2fapi_2flaunch_5fstage_2eproto,
+    &descriptor_table_google_2fapi_2flaunch_5fstage_2eproto_once, nullptr, 0, 0,
+    schemas, file_default_instances, TableStruct_google_2fapi_2flaunch_5fstage_2eproto::offsets,
+    nullptr, file_level_enum_descriptors_google_2fapi_2flaunch_5fstage_2eproto,
     file_level_service_descriptors_google_2fapi_2flaunch_5fstage_2eproto,
 };
-
-// This function exists to be marked as weak.
-// It can significantly speed up compilation by breaking up LLVM's SCC
-// in the .pb.cc translation units. Large translation units see a
-// reduction of more than 35% of walltime for optimized builds. Without
-// the weak attribute all the messages in the file, including all the
-// vtables and everything they use become part of the same SCC through
-// a cycle like:
-// GetMetadata -> descriptor table -> default instances ->
-//   vtables -> GetMetadata
-// By adding a weak function here we break the connection from the
-// individual vtables back into the descriptor table.
 PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_google_2fapi_2flaunch_5fstage_2eproto_getter() {
   return &descriptor_table_google_2fapi_2flaunch_5fstage_2eproto;
 }
+
 // Force running AddDescriptors() at dynamic initialization time.
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
-static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_google_2fapi_2flaunch_5fstage_2eproto(&descriptor_table_google_2fapi_2flaunch_5fstage_2eproto);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_google_2fapi_2flaunch_5fstage_2eproto(&descriptor_table_google_2fapi_2flaunch_5fstage_2eproto);
 namespace google {
 namespace api {
-const ::google::protobuf::EnumDescriptor* LaunchStage_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_google_2fapi_2flaunch_5fstage_2eproto);
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* LaunchStage_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_google_2fapi_2flaunch_5fstage_2eproto);
   return file_level_enum_descriptors_google_2fapi_2flaunch_5fstage_2eproto[0];
 }
-PROTOBUF_CONSTINIT const uint32_t LaunchStage_internal_data_[] = {
-    524288u, 0u, };
 bool LaunchStage_IsValid(int value) {
-  return 0 <= value && value <= 7;
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+      return true;
+    default:
+      return false;
+  }
 }
+
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace api
 }  // namespace google
-namespace google {
-namespace protobuf {
-}  // namespace protobuf
-}  // namespace google
+PROTOBUF_NAMESPACE_OPEN
+PROTOBUF_NAMESPACE_CLOSE
+
 // @@protoc_insertion_point(global_scope)
-#include "google/protobuf/port_undef.inc"
+#include <google/protobuf/port_undef.inc>

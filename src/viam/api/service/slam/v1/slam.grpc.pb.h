@@ -7,23 +7,24 @@
 #include "service/slam/v1/slam.pb.h"
 
 #include <functional>
-#include <grpcpp/generic/async_generic_service.h>
-#include <grpcpp/support/async_stream.h>
-#include <grpcpp/support/async_unary_call.h>
-#include <grpcpp/support/client_callback.h>
-#include <grpcpp/client_context.h>
-#include <grpcpp/completion_queue.h>
-#include <grpcpp/support/message_allocator.h>
-#include <grpcpp/support/method_handler.h>
-#include <grpcpp/impl/proto_utils.h>
-#include <grpcpp/impl/rpc_method.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/status.h>
-#include <grpcpp/support/stub_options.h>
-#include <grpcpp/support/sync_stream.h>
+#include <grpc/impl/codegen/port_platform.h>
+#include <grpcpp/impl/codegen/async_generic_service.h>
+#include <grpcpp/impl/codegen/async_stream.h>
+#include <grpcpp/impl/codegen/async_unary_call.h>
+#include <grpcpp/impl/codegen/client_callback.h>
+#include <grpcpp/impl/codegen/client_context.h>
+#include <grpcpp/impl/codegen/completion_queue.h>
+#include <grpcpp/impl/codegen/message_allocator.h>
+#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/impl/codegen/proto_utils.h>
+#include <grpcpp/impl/codegen/rpc_method.h>
+#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/codegen/server_callback_handlers.h>
+#include <grpcpp/impl/codegen/server_context.h>
+#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/impl/codegen/status.h>
+#include <grpcpp/impl/codegen/stub_options.h>
+#include <grpcpp/impl/codegen/sync_stream.h>
 
 namespace viam {
 namespace service {
@@ -89,33 +90,75 @@ class SLAMService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>> PrepareAsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>>(PrepareAsyncDoCommandRaw(context, request, cq));
     }
-    class async_interface {
+    class experimental_async_interface {
      public:
-      virtual ~async_interface() {}
+      virtual ~experimental_async_interface() {}
       // GetPosition returns the current estimated position of the robot with
       // respect to a returned component reference.
       virtual void GetPosition(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest* request, ::viam::service::slam::v1::GetPositionResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::slam::v1::GetPositionResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetPosition(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest* request, ::viam::service::slam::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetPosition(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest* request, ::viam::service::slam::v1::GetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::slam::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::slam::v1::GetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // GetPointCloudMap returns the latest pointcloud map available where XY is the ground
       // plane and positive Z is up, following the Right Hand Rule.
-      virtual void GetPointCloudMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest* request, ::grpc::ClientReadReactor< ::viam::service::slam::v1::GetPointCloudMapResponse>* reactor) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetPointCloudMap(::grpc::ClientContext* context, ::viam::service::slam::v1::GetPointCloudMapRequest* request, ::grpc::ClientReadReactor< ::viam::service::slam::v1::GetPointCloudMapResponse>* reactor) = 0;
+      #else
+      virtual void GetPointCloudMap(::grpc::ClientContext* context, ::viam::service::slam::v1::GetPointCloudMapRequest* request, ::grpc::experimental::ClientReadReactor< ::viam::service::slam::v1::GetPointCloudMapResponse>* reactor) = 0;
+      #endif
       // GetInternalState returns the internal map as defined by the specified slam
       // algorithm required to continue mapping/localizing.
       // This endpoint is not intended for end users.
-      virtual void GetInternalState(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest* request, ::grpc::ClientReadReactor< ::viam::service::slam::v1::GetInternalStateResponse>* reactor) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetInternalState(::grpc::ClientContext* context, ::viam::service::slam::v1::GetInternalStateRequest* request, ::grpc::ClientReadReactor< ::viam::service::slam::v1::GetInternalStateResponse>* reactor) = 0;
+      #else
+      virtual void GetInternalState(::grpc::ClientContext* context, ::viam::service::slam::v1::GetInternalStateRequest* request, ::grpc::experimental::ClientReadReactor< ::viam::service::slam::v1::GetInternalStateResponse>* reactor) = 0;
+      #endif
       // GetProperties returns properties of the current slam service including mapping_mode
       // and cloud_slam, where mapping_mode is the type of mapping/localizing being performed
       // and cloud_slam is a boolean representing if this SLAM service is being run in the cloud.
       virtual void GetProperties(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPropertiesRequest* request, ::viam::service::slam::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::slam::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetProperties(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPropertiesRequest* request, ::viam::service::slam::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetProperties(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPropertiesRequest* request, ::viam::service::slam::v1::GetPropertiesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::slam::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::slam::v1::GetPropertiesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // DoCommand sends/receives arbitrary commands.
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
     };
-    typedef class async_interface experimental_async_interface;
-    virtual class async_interface* async() { return nullptr; }
-    class async_interface* experimental_async() { return async(); }
-   private:
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    typedef class experimental_async_interface async_interface;
+    #endif
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    async_interface* async() { return experimental_async(); }
+    #endif
+    virtual class experimental_async_interface* experimental_async() { return nullptr; }
+  private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetPositionResponse>* AsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetPositionResponse>* PrepareAsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientReaderInterface< ::viam::service::slam::v1::GetPointCloudMapResponse>* GetPointCloudMapRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request) = 0;
@@ -131,7 +174,7 @@ class SLAMService final {
   };
   class Stub final : public StubInterface {
    public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
     ::grpc::Status GetPosition(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest& request, ::viam::service::slam::v1::GetPositionResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetPositionResponse>> AsyncGetPosition(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetPositionResponse>>(AsyncGetPositionRaw(context, request, cq));
@@ -171,28 +214,66 @@ class SLAMService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>> PrepareAsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>>(PrepareAsyncDoCommandRaw(context, request, cq));
     }
-    class async final :
-      public StubInterface::async_interface {
+    class experimental_async final :
+      public StubInterface::experimental_async_interface {
      public:
       void GetPosition(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest* request, ::viam::service::slam::v1::GetPositionResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::slam::v1::GetPositionResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetPosition(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest* request, ::viam::service::slam::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void GetPointCloudMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest* request, ::grpc::ClientReadReactor< ::viam::service::slam::v1::GetPointCloudMapResponse>* reactor) override;
-      void GetInternalState(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest* request, ::grpc::ClientReadReactor< ::viam::service::slam::v1::GetInternalStateResponse>* reactor) override;
+      #else
+      void GetPosition(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest* request, ::viam::service::slam::v1::GetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::slam::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::slam::v1::GetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetPointCloudMap(::grpc::ClientContext* context, ::viam::service::slam::v1::GetPointCloudMapRequest* request, ::grpc::ClientReadReactor< ::viam::service::slam::v1::GetPointCloudMapResponse>* reactor) override;
+      #else
+      void GetPointCloudMap(::grpc::ClientContext* context, ::viam::service::slam::v1::GetPointCloudMapRequest* request, ::grpc::experimental::ClientReadReactor< ::viam::service::slam::v1::GetPointCloudMapResponse>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetInternalState(::grpc::ClientContext* context, ::viam::service::slam::v1::GetInternalStateRequest* request, ::grpc::ClientReadReactor< ::viam::service::slam::v1::GetInternalStateResponse>* reactor) override;
+      #else
+      void GetInternalState(::grpc::ClientContext* context, ::viam::service::slam::v1::GetInternalStateRequest* request, ::grpc::experimental::ClientReadReactor< ::viam::service::slam::v1::GetInternalStateResponse>* reactor) override;
+      #endif
       void GetProperties(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPropertiesRequest* request, ::viam::service::slam::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::slam::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetProperties(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPropertiesRequest* request, ::viam::service::slam::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetProperties(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPropertiesRequest* request, ::viam::service::slam::v1::GetPropertiesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::slam::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::slam::v1::GetPropertiesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
+      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
      private:
       friend class Stub;
-      explicit async(Stub* stub): stub_(stub) { }
+      explicit experimental_async(Stub* stub): stub_(stub) { }
       Stub* stub() { return stub_; }
       Stub* stub_;
     };
-    class async* async() override { return &async_stub_; }
+    class experimental_async_interface* experimental_async() override { return &async_stub_; }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class async async_stub_{this};
+    class experimental_async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetPositionResponse>* AsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetPositionResponse>* PrepareAsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientReader< ::viam::service::slam::v1::GetPointCloudMapResponse>* GetPointCloudMapRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request) override;
@@ -336,22 +417,36 @@ class SLAMService final {
   };
   typedef WithAsyncMethod_GetPosition<WithAsyncMethod_GetPointCloudMap<WithAsyncMethod_GetInternalState<WithAsyncMethod_GetProperties<WithAsyncMethod_DoCommand<Service > > > > > AsyncService;
   template <class BaseClass>
-  class WithCallbackMethod_GetPosition : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetPosition : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetPosition() {
-      ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::slam::v1::GetPositionRequest, ::viam::service::slam::v1::GetPositionResponse>(
+    ExperimentalWithCallbackMethod_GetPosition() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(0,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::slam::v1::GetPositionRequest, ::viam::service::slam::v1::GetPositionResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::slam::v1::GetPositionRequest* request, ::viam::service::slam::v1::GetPositionResponse* response) { return this->GetPosition(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::service::slam::v1::GetPositionRequest* request, ::viam::service::slam::v1::GetPositionResponse* response) { return this->GetPosition(context, request, response); }));}
     void SetMessageAllocatorFor_GetPosition(
-        ::grpc::MessageAllocator< ::viam::service::slam::v1::GetPositionRequest, ::viam::service::slam::v1::GetPositionResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::service::slam::v1::GetPositionRequest, ::viam::service::slam::v1::GetPositionResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::slam::v1::GetPositionRequest, ::viam::service::slam::v1::GetPositionResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::slam::v1::GetPositionRequest, ::viam::service::slam::v1::GetPositionResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetPosition() override {
+    ~ExperimentalWithCallbackMethod_GetPosition() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -359,21 +454,37 @@ class SLAMService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetPosition(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::slam::v1::GetPositionRequest* /*request*/, ::viam::service::slam::v1::GetPositionResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::slam::v1::GetPositionRequest* /*request*/, ::viam::service::slam::v1::GetPositionResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetPosition(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::service::slam::v1::GetPositionRequest* /*request*/, ::viam::service::slam::v1::GetPositionResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetPointCloudMap : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetPointCloudMap : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetPointCloudMap() {
-      ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackServerStreamingHandler< ::viam::service::slam::v1::GetPointCloudMapRequest, ::viam::service::slam::v1::GetPointCloudMapResponse>(
+    ExperimentalWithCallbackMethod_GetPointCloudMap() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(1,
+          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::viam::service::slam::v1::GetPointCloudMapRequest, ::viam::service::slam::v1::GetPointCloudMapResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest* request) { return this->GetPointCloudMap(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::service::slam::v1::GetPointCloudMapRequest* request) { return this->GetPointCloudMap(context, request); }));
     }
-    ~WithCallbackMethod_GetPointCloudMap() override {
+    ~ExperimentalWithCallbackMethod_GetPointCloudMap() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -381,21 +492,37 @@ class SLAMService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::viam::service::slam::v1::GetPointCloudMapResponse>* GetPointCloudMap(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::slam::v1::GetPointCloudMapRequest* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::slam::v1::GetPointCloudMapRequest* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::viam::service::slam::v1::GetPointCloudMapResponse>* GetPointCloudMap(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::service::slam::v1::GetPointCloudMapRequest* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetInternalState : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetInternalState : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetInternalState() {
-      ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackServerStreamingHandler< ::viam::service::slam::v1::GetInternalStateRequest, ::viam::service::slam::v1::GetInternalStateResponse>(
+    ExperimentalWithCallbackMethod_GetInternalState() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(2,
+          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::viam::service::slam::v1::GetInternalStateRequest, ::viam::service::slam::v1::GetInternalStateResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::slam::v1::GetInternalStateRequest* request) { return this->GetInternalState(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::service::slam::v1::GetInternalStateRequest* request) { return this->GetInternalState(context, request); }));
     }
-    ~WithCallbackMethod_GetInternalState() override {
+    ~ExperimentalWithCallbackMethod_GetInternalState() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -403,26 +530,46 @@ class SLAMService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::viam::service::slam::v1::GetInternalStateResponse>* GetInternalState(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::slam::v1::GetInternalStateRequest* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::slam::v1::GetInternalStateRequest* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::viam::service::slam::v1::GetInternalStateResponse>* GetInternalState(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::service::slam::v1::GetInternalStateRequest* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetProperties : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetProperties : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetProperties() {
-      ::grpc::Service::MarkMethodCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::slam::v1::GetPropertiesRequest, ::viam::service::slam::v1::GetPropertiesResponse>(
+    ExperimentalWithCallbackMethod_GetProperties() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::slam::v1::GetPropertiesRequest, ::viam::service::slam::v1::GetPropertiesResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::slam::v1::GetPropertiesRequest* request, ::viam::service::slam::v1::GetPropertiesResponse* response) { return this->GetProperties(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::service::slam::v1::GetPropertiesRequest* request, ::viam::service::slam::v1::GetPropertiesResponse* response) { return this->GetProperties(context, request, response); }));}
     void SetMessageAllocatorFor_GetProperties(
-        ::grpc::MessageAllocator< ::viam::service::slam::v1::GetPropertiesRequest, ::viam::service::slam::v1::GetPropertiesResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::service::slam::v1::GetPropertiesRequest, ::viam::service::slam::v1::GetPropertiesResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::slam::v1::GetPropertiesRequest, ::viam::service::slam::v1::GetPropertiesResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::slam::v1::GetPropertiesRequest, ::viam::service::slam::v1::GetPropertiesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetProperties() override {
+    ~ExperimentalWithCallbackMethod_GetProperties() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -430,26 +577,46 @@ class SLAMService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetProperties(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::slam::v1::GetPropertiesRequest* /*request*/, ::viam::service::slam::v1::GetPropertiesResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::slam::v1::GetPropertiesRequest* /*request*/, ::viam::service::slam::v1::GetPropertiesResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetProperties(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::service::slam::v1::GetPropertiesRequest* /*request*/, ::viam::service::slam::v1::GetPropertiesResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_DoCommand : public BaseClass {
+  class ExperimentalWithCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
+    ExperimentalWithCallbackMethod_DoCommand() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
     void SetMessageAllocatorFor_DoCommand(
-        ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(4);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_DoCommand() override {
+    ~ExperimentalWithCallbackMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -457,11 +624,20 @@ class SLAMService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DoCommand(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* DoCommand(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
-  typedef WithCallbackMethod_GetPosition<WithCallbackMethod_GetPointCloudMap<WithCallbackMethod_GetInternalState<WithCallbackMethod_GetProperties<WithCallbackMethod_DoCommand<Service > > > > > CallbackService;
-  typedef CallbackService ExperimentalCallbackService;
+  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+  typedef ExperimentalWithCallbackMethod_GetPosition<ExperimentalWithCallbackMethod_GetPointCloudMap<ExperimentalWithCallbackMethod_GetInternalState<ExperimentalWithCallbackMethod_GetProperties<ExperimentalWithCallbackMethod_DoCommand<Service > > > > > CallbackService;
+  #endif
+
+  typedef ExperimentalWithCallbackMethod_GetPosition<ExperimentalWithCallbackMethod_GetPointCloudMap<ExperimentalWithCallbackMethod_GetInternalState<ExperimentalWithCallbackMethod_GetProperties<ExperimentalWithCallbackMethod_DoCommand<Service > > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetPosition : public BaseClass {
    private:
@@ -648,17 +824,27 @@ class SLAMService final {
     }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetPosition : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetPosition : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetPosition() {
-      ::grpc::Service::MarkMethodRawCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetPosition() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(0,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetPosition(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetPosition(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetPosition() override {
+    ~ExperimentalWithRawCallbackMethod_GetPosition() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -666,21 +852,37 @@ class SLAMService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetPosition(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetPosition(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetPointCloudMap : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetPointCloudMap : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetPointCloudMap() {
-      ::grpc::Service::MarkMethodRawCallback(1,
-          new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetPointCloudMap() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(1,
+          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->GetPointCloudMap(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->GetPointCloudMap(context, request); }));
     }
-    ~WithRawCallbackMethod_GetPointCloudMap() override {
+    ~ExperimentalWithRawCallbackMethod_GetPointCloudMap() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -688,21 +890,37 @@ class SLAMService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* GetPointCloudMap(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* GetPointCloudMap(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetInternalState : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetInternalState : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetInternalState() {
-      ::grpc::Service::MarkMethodRawCallback(2,
-          new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetInternalState() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(2,
+          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->GetInternalState(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->GetInternalState(context, request); }));
     }
-    ~WithRawCallbackMethod_GetInternalState() override {
+    ~ExperimentalWithRawCallbackMethod_GetInternalState() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -710,21 +928,37 @@ class SLAMService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* GetInternalState(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* GetInternalState(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetProperties : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetProperties : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetProperties() {
-      ::grpc::Service::MarkMethodRawCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetProperties() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetProperties(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetProperties(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetProperties() override {
+    ~ExperimentalWithRawCallbackMethod_GetProperties() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -732,21 +966,37 @@ class SLAMService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetProperties(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetProperties(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_DoCommand : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRawCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_DoCommand() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
     }
-    ~WithRawCallbackMethod_DoCommand() override {
+    ~ExperimentalWithRawCallbackMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -754,8 +1004,14 @@ class SLAMService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DoCommand(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* DoCommand(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_GetPosition : public BaseClass {
@@ -766,8 +1022,8 @@ class SLAMService final {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::slam::v1::GetPositionRequest, ::viam::service::slam::v1::GetPositionResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::service::slam::v1::GetPositionRequest, ::viam::service::slam::v1::GetPositionResponse>* streamer) {
                        return this->StreamedGetPosition(context,
                          streamer);
@@ -793,8 +1049,8 @@ class SLAMService final {
       ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::slam::v1::GetPropertiesRequest, ::viam::service::slam::v1::GetPropertiesResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::service::slam::v1::GetPropertiesRequest, ::viam::service::slam::v1::GetPropertiesResponse>* streamer) {
                        return this->StreamedGetProperties(context,
                          streamer);
@@ -820,8 +1076,8 @@ class SLAMService final {
       ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* streamer) {
                        return this->StreamedDoCommand(context,
                          streamer);
@@ -848,8 +1104,8 @@ class SLAMService final {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::SplitServerStreamingHandler<
           ::viam::service::slam::v1::GetPointCloudMapRequest, ::viam::service::slam::v1::GetPointCloudMapResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerSplitStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerSplitStreamer<
                      ::viam::service::slam::v1::GetPointCloudMapRequest, ::viam::service::slam::v1::GetPointCloudMapResponse>* streamer) {
                        return this->StreamedGetPointCloudMap(context,
                          streamer);
@@ -875,8 +1131,8 @@ class SLAMService final {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::SplitServerStreamingHandler<
           ::viam::service::slam::v1::GetInternalStateRequest, ::viam::service::slam::v1::GetInternalStateResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerSplitStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerSplitStreamer<
                      ::viam::service::slam::v1::GetInternalStateRequest, ::viam::service::slam::v1::GetInternalStateResponse>* streamer) {
                        return this->StreamedGetInternalState(context,
                          streamer);

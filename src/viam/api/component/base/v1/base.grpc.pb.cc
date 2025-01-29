@@ -6,19 +6,19 @@
 #include "component/base/v1/base.grpc.pb.h"
 
 #include <functional>
-#include <grpcpp/support/async_stream.h>
-#include <grpcpp/support/async_unary_call.h>
-#include <grpcpp/impl/channel_interface.h>
-#include <grpcpp/impl/client_unary_call.h>
-#include <grpcpp/support/client_callback.h>
-#include <grpcpp/support/message_allocator.h>
-#include <grpcpp/support/method_handler.h>
-#include <grpcpp/impl/rpc_service_method.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/sync_stream.h>
+#include <grpcpp/impl/codegen/async_stream.h>
+#include <grpcpp/impl/codegen/async_unary_call.h>
+#include <grpcpp/impl/codegen/channel_interface.h>
+#include <grpcpp/impl/codegen/client_unary_call.h>
+#include <grpcpp/impl/codegen/client_callback.h>
+#include <grpcpp/impl/codegen/message_allocator.h>
+#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/impl/codegen/rpc_service_method.h>
+#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/codegen/server_callback_handlers.h>
+#include <grpcpp/impl/codegen/server_context.h>
+#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/impl/codegen/sync_stream.h>
 namespace viam {
 namespace component {
 namespace base {
@@ -38,236 +38,281 @@ static const char* BaseService_method_names[] = {
 
 std::unique_ptr< BaseService::Stub> BaseService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< BaseService::Stub> stub(new BaseService::Stub(channel, options));
+  std::unique_ptr< BaseService::Stub> stub(new BaseService::Stub(channel));
   return stub;
 }
 
-BaseService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_MoveStraight_(BaseService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Spin_(BaseService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetPower_(BaseService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetVelocity_(BaseService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Stop_(BaseService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_IsMoving_(BaseService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DoCommand_(BaseService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetGeometries_(BaseService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetProperties_(BaseService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+BaseService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
+  : channel_(channel), rpcmethod_MoveStraight_(BaseService_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Spin_(BaseService_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetPower_(BaseService_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetVelocity_(BaseService_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Stop_(BaseService_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_IsMoving_(BaseService_method_names[5], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DoCommand_(BaseService_method_names[6], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGeometries_(BaseService_method_names[7], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetProperties_(BaseService_method_names[8], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status BaseService::Stub::MoveStraight(::grpc::ClientContext* context, const ::viam::component::base::v1::MoveStraightRequest& request, ::viam::component::base::v1::MoveStraightResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::base::v1::MoveStraightRequest, ::viam::component::base::v1::MoveStraightResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_MoveStraight_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_MoveStraight_, context, request, response);
 }
 
-void BaseService::Stub::async::MoveStraight(::grpc::ClientContext* context, const ::viam::component::base::v1::MoveStraightRequest* request, ::viam::component::base::v1::MoveStraightResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::base::v1::MoveStraightRequest, ::viam::component::base::v1::MoveStraightResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MoveStraight_, context, request, response, std::move(f));
+void BaseService::Stub::experimental_async::MoveStraight(::grpc::ClientContext* context, const ::viam::component::base::v1::MoveStraightRequest* request, ::viam::component::base::v1::MoveStraightResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_MoveStraight_, context, request, response, std::move(f));
 }
 
-void BaseService::Stub::async::MoveStraight(::grpc::ClientContext* context, const ::viam::component::base::v1::MoveStraightRequest* request, ::viam::component::base::v1::MoveStraightResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MoveStraight_, context, request, response, reactor);
+void BaseService::Stub::experimental_async::MoveStraight(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::base::v1::MoveStraightResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_MoveStraight_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::MoveStraightResponse>* BaseService::Stub::PrepareAsyncMoveStraightRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::MoveStraightRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::base::v1::MoveStraightResponse, ::viam::component::base::v1::MoveStraightRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_MoveStraight_, context, request);
+void BaseService::Stub::experimental_async::MoveStraight(::grpc::ClientContext* context, const ::viam::component::base::v1::MoveStraightRequest* request, ::viam::component::base::v1::MoveStraightResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_MoveStraight_, context, request, response, reactor);
+}
+
+void BaseService::Stub::experimental_async::MoveStraight(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::base::v1::MoveStraightResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_MoveStraight_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::MoveStraightResponse>* BaseService::Stub::AsyncMoveStraightRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::MoveStraightRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncMoveStraightRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::base::v1::MoveStraightResponse>::Create(channel_.get(), cq, rpcmethod_MoveStraight_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::MoveStraightResponse>* BaseService::Stub::PrepareAsyncMoveStraightRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::MoveStraightRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::base::v1::MoveStraightResponse>::Create(channel_.get(), cq, rpcmethod_MoveStraight_, context, request, false);
 }
 
 ::grpc::Status BaseService::Stub::Spin(::grpc::ClientContext* context, const ::viam::component::base::v1::SpinRequest& request, ::viam::component::base::v1::SpinResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::base::v1::SpinRequest, ::viam::component::base::v1::SpinResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Spin_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_Spin_, context, request, response);
 }
 
-void BaseService::Stub::async::Spin(::grpc::ClientContext* context, const ::viam::component::base::v1::SpinRequest* request, ::viam::component::base::v1::SpinResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::base::v1::SpinRequest, ::viam::component::base::v1::SpinResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Spin_, context, request, response, std::move(f));
+void BaseService::Stub::experimental_async::Spin(::grpc::ClientContext* context, const ::viam::component::base::v1::SpinRequest* request, ::viam::component::base::v1::SpinResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Spin_, context, request, response, std::move(f));
 }
 
-void BaseService::Stub::async::Spin(::grpc::ClientContext* context, const ::viam::component::base::v1::SpinRequest* request, ::viam::component::base::v1::SpinResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Spin_, context, request, response, reactor);
+void BaseService::Stub::experimental_async::Spin(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::base::v1::SpinResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Spin_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::SpinResponse>* BaseService::Stub::PrepareAsyncSpinRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::SpinRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::base::v1::SpinResponse, ::viam::component::base::v1::SpinRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Spin_, context, request);
+void BaseService::Stub::experimental_async::Spin(::grpc::ClientContext* context, const ::viam::component::base::v1::SpinRequest* request, ::viam::component::base::v1::SpinResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Spin_, context, request, response, reactor);
+}
+
+void BaseService::Stub::experimental_async::Spin(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::base::v1::SpinResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Spin_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::SpinResponse>* BaseService::Stub::AsyncSpinRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::SpinRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSpinRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::base::v1::SpinResponse>::Create(channel_.get(), cq, rpcmethod_Spin_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::SpinResponse>* BaseService::Stub::PrepareAsyncSpinRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::SpinRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::base::v1::SpinResponse>::Create(channel_.get(), cq, rpcmethod_Spin_, context, request, false);
 }
 
 ::grpc::Status BaseService::Stub::SetPower(::grpc::ClientContext* context, const ::viam::component::base::v1::SetPowerRequest& request, ::viam::component::base::v1::SetPowerResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::base::v1::SetPowerRequest, ::viam::component::base::v1::SetPowerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetPower_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetPower_, context, request, response);
 }
 
-void BaseService::Stub::async::SetPower(::grpc::ClientContext* context, const ::viam::component::base::v1::SetPowerRequest* request, ::viam::component::base::v1::SetPowerResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::base::v1::SetPowerRequest, ::viam::component::base::v1::SetPowerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPower_, context, request, response, std::move(f));
+void BaseService::Stub::experimental_async::SetPower(::grpc::ClientContext* context, const ::viam::component::base::v1::SetPowerRequest* request, ::viam::component::base::v1::SetPowerResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetPower_, context, request, response, std::move(f));
 }
 
-void BaseService::Stub::async::SetPower(::grpc::ClientContext* context, const ::viam::component::base::v1::SetPowerRequest* request, ::viam::component::base::v1::SetPowerResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPower_, context, request, response, reactor);
+void BaseService::Stub::experimental_async::SetPower(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::base::v1::SetPowerResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetPower_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::SetPowerResponse>* BaseService::Stub::PrepareAsyncSetPowerRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::SetPowerRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::base::v1::SetPowerResponse, ::viam::component::base::v1::SetPowerRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetPower_, context, request);
+void BaseService::Stub::experimental_async::SetPower(::grpc::ClientContext* context, const ::viam::component::base::v1::SetPowerRequest* request, ::viam::component::base::v1::SetPowerResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetPower_, context, request, response, reactor);
+}
+
+void BaseService::Stub::experimental_async::SetPower(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::base::v1::SetPowerResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetPower_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::SetPowerResponse>* BaseService::Stub::AsyncSetPowerRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::SetPowerRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetPowerRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::base::v1::SetPowerResponse>::Create(channel_.get(), cq, rpcmethod_SetPower_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::SetPowerResponse>* BaseService::Stub::PrepareAsyncSetPowerRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::SetPowerRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::base::v1::SetPowerResponse>::Create(channel_.get(), cq, rpcmethod_SetPower_, context, request, false);
 }
 
 ::grpc::Status BaseService::Stub::SetVelocity(::grpc::ClientContext* context, const ::viam::component::base::v1::SetVelocityRequest& request, ::viam::component::base::v1::SetVelocityResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::base::v1::SetVelocityRequest, ::viam::component::base::v1::SetVelocityResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetVelocity_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetVelocity_, context, request, response);
 }
 
-void BaseService::Stub::async::SetVelocity(::grpc::ClientContext* context, const ::viam::component::base::v1::SetVelocityRequest* request, ::viam::component::base::v1::SetVelocityResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::base::v1::SetVelocityRequest, ::viam::component::base::v1::SetVelocityResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetVelocity_, context, request, response, std::move(f));
+void BaseService::Stub::experimental_async::SetVelocity(::grpc::ClientContext* context, const ::viam::component::base::v1::SetVelocityRequest* request, ::viam::component::base::v1::SetVelocityResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetVelocity_, context, request, response, std::move(f));
 }
 
-void BaseService::Stub::async::SetVelocity(::grpc::ClientContext* context, const ::viam::component::base::v1::SetVelocityRequest* request, ::viam::component::base::v1::SetVelocityResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetVelocity_, context, request, response, reactor);
+void BaseService::Stub::experimental_async::SetVelocity(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::base::v1::SetVelocityResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetVelocity_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::SetVelocityResponse>* BaseService::Stub::PrepareAsyncSetVelocityRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::SetVelocityRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::base::v1::SetVelocityResponse, ::viam::component::base::v1::SetVelocityRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetVelocity_, context, request);
+void BaseService::Stub::experimental_async::SetVelocity(::grpc::ClientContext* context, const ::viam::component::base::v1::SetVelocityRequest* request, ::viam::component::base::v1::SetVelocityResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetVelocity_, context, request, response, reactor);
+}
+
+void BaseService::Stub::experimental_async::SetVelocity(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::base::v1::SetVelocityResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetVelocity_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::SetVelocityResponse>* BaseService::Stub::AsyncSetVelocityRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::SetVelocityRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetVelocityRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::base::v1::SetVelocityResponse>::Create(channel_.get(), cq, rpcmethod_SetVelocity_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::SetVelocityResponse>* BaseService::Stub::PrepareAsyncSetVelocityRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::SetVelocityRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::base::v1::SetVelocityResponse>::Create(channel_.get(), cq, rpcmethod_SetVelocity_, context, request, false);
 }
 
 ::grpc::Status BaseService::Stub::Stop(::grpc::ClientContext* context, const ::viam::component::base::v1::StopRequest& request, ::viam::component::base::v1::StopResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::base::v1::StopRequest, ::viam::component::base::v1::StopResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Stop_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_Stop_, context, request, response);
 }
 
-void BaseService::Stub::async::Stop(::grpc::ClientContext* context, const ::viam::component::base::v1::StopRequest* request, ::viam::component::base::v1::StopResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::base::v1::StopRequest, ::viam::component::base::v1::StopResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, std::move(f));
+void BaseService::Stub::experimental_async::Stop(::grpc::ClientContext* context, const ::viam::component::base::v1::StopRequest* request, ::viam::component::base::v1::StopResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, std::move(f));
 }
 
-void BaseService::Stub::async::Stop(::grpc::ClientContext* context, const ::viam::component::base::v1::StopRequest* request, ::viam::component::base::v1::StopResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, reactor);
+void BaseService::Stub::experimental_async::Stop(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::base::v1::StopResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::StopResponse>* BaseService::Stub::PrepareAsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::StopRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::base::v1::StopResponse, ::viam::component::base::v1::StopRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Stop_, context, request);
+void BaseService::Stub::experimental_async::Stop(::grpc::ClientContext* context, const ::viam::component::base::v1::StopRequest* request, ::viam::component::base::v1::StopResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, reactor);
+}
+
+void BaseService::Stub::experimental_async::Stop(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::base::v1::StopResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::StopResponse>* BaseService::Stub::AsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::StopRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncStopRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::base::v1::StopResponse>::Create(channel_.get(), cq, rpcmethod_Stop_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::StopResponse>* BaseService::Stub::PrepareAsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::StopRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::base::v1::StopResponse>::Create(channel_.get(), cq, rpcmethod_Stop_, context, request, false);
 }
 
 ::grpc::Status BaseService::Stub::IsMoving(::grpc::ClientContext* context, const ::viam::component::base::v1::IsMovingRequest& request, ::viam::component::base::v1::IsMovingResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::base::v1::IsMovingRequest, ::viam::component::base::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_IsMoving_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_IsMoving_, context, request, response);
 }
 
-void BaseService::Stub::async::IsMoving(::grpc::ClientContext* context, const ::viam::component::base::v1::IsMovingRequest* request, ::viam::component::base::v1::IsMovingResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::base::v1::IsMovingRequest, ::viam::component::base::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, std::move(f));
+void BaseService::Stub::experimental_async::IsMoving(::grpc::ClientContext* context, const ::viam::component::base::v1::IsMovingRequest* request, ::viam::component::base::v1::IsMovingResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, std::move(f));
 }
 
-void BaseService::Stub::async::IsMoving(::grpc::ClientContext* context, const ::viam::component::base::v1::IsMovingRequest* request, ::viam::component::base::v1::IsMovingResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, reactor);
+void BaseService::Stub::experimental_async::IsMoving(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::base::v1::IsMovingResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::IsMovingResponse>* BaseService::Stub::PrepareAsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::base::v1::IsMovingResponse, ::viam::component::base::v1::IsMovingRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_IsMoving_, context, request);
+void BaseService::Stub::experimental_async::IsMoving(::grpc::ClientContext* context, const ::viam::component::base::v1::IsMovingRequest* request, ::viam::component::base::v1::IsMovingResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, reactor);
+}
+
+void BaseService::Stub::experimental_async::IsMoving(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::base::v1::IsMovingResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::IsMovingResponse>* BaseService::Stub::AsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncIsMovingRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::base::v1::IsMovingResponse>::Create(channel_.get(), cq, rpcmethod_IsMoving_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::IsMovingResponse>* BaseService::Stub::PrepareAsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::base::v1::IsMovingResponse>::Create(channel_.get(), cq, rpcmethod_IsMoving_, context, request, false);
 }
 
 ::grpc::Status BaseService::Stub::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DoCommand_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DoCommand_, context, request, response);
 }
 
-void BaseService::Stub::async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
+void BaseService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
 }
 
-void BaseService::Stub::async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
+void BaseService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* BaseService::Stub::PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::DoCommandResponse, ::viam::common::v1::DoCommandRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DoCommand_, context, request);
+void BaseService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
+}
+
+void BaseService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* BaseService::Stub::AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncDoCommandRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::DoCommandResponse>::Create(channel_.get(), cq, rpcmethod_DoCommand_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* BaseService::Stub::PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::DoCommandResponse>::Create(channel_.get(), cq, rpcmethod_DoCommand_, context, request, false);
 }
 
 ::grpc::Status BaseService::Stub::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::viam::common::v1::GetGeometriesResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetGeometries_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetGeometries_, context, request, response);
 }
 
-void BaseService::Stub::async::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, std::move(f));
+void BaseService::Stub::experimental_async::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, std::move(f));
 }
 
-void BaseService::Stub::async::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, reactor);
+void BaseService::Stub::experimental_async::GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* BaseService::Stub::PrepareAsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::GetGeometriesResponse, ::viam::common::v1::GetGeometriesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetGeometries_, context, request);
+void BaseService::Stub::experimental_async::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, reactor);
+}
+
+void BaseService::Stub::experimental_async::GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* BaseService::Stub::AsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetGeometriesRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::GetGeometriesResponse>::Create(channel_.get(), cq, rpcmethod_GetGeometries_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* BaseService::Stub::PrepareAsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::GetGeometriesResponse>::Create(channel_.get(), cq, rpcmethod_GetGeometries_, context, request, false);
 }
 
 ::grpc::Status BaseService::Stub::GetProperties(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest& request, ::viam::component::base::v1::GetPropertiesResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::base::v1::GetPropertiesRequest, ::viam::component::base::v1::GetPropertiesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetProperties_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetProperties_, context, request, response);
 }
 
-void BaseService::Stub::async::GetProperties(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest* request, ::viam::component::base::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::base::v1::GetPropertiesRequest, ::viam::component::base::v1::GetPropertiesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetProperties_, context, request, response, std::move(f));
+void BaseService::Stub::experimental_async::GetProperties(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest* request, ::viam::component::base::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetProperties_, context, request, response, std::move(f));
 }
 
-void BaseService::Stub::async::GetProperties(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest* request, ::viam::component::base::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetProperties_, context, request, response, reactor);
+void BaseService::Stub::experimental_async::GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::base::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetProperties_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::GetPropertiesResponse>* BaseService::Stub::PrepareAsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::base::v1::GetPropertiesResponse, ::viam::component::base::v1::GetPropertiesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetProperties_, context, request);
+void BaseService::Stub::experimental_async::GetProperties(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest* request, ::viam::component::base::v1::GetPropertiesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetProperties_, context, request, response, reactor);
+}
+
+void BaseService::Stub::experimental_async::GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::base::v1::GetPropertiesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetProperties_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::GetPropertiesResponse>* BaseService::Stub::AsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetPropertiesRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::base::v1::GetPropertiesResponse>::Create(channel_.get(), cq, rpcmethod_GetProperties_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::GetPropertiesResponse>* BaseService::Stub::PrepareAsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::base::v1::GetPropertiesResponse>::Create(channel_.get(), cq, rpcmethod_GetProperties_, context, request, false);
 }
 
 BaseService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BaseService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BaseService::Service, ::viam::component::base::v1::MoveStraightRequest, ::viam::component::base::v1::MoveStraightResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< BaseService::Service, ::viam::component::base::v1::MoveStraightRequest, ::viam::component::base::v1::MoveStraightResponse>(
           [](BaseService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::base::v1::MoveStraightRequest* req,
              ::viam::component::base::v1::MoveStraightResponse* resp) {
                return service->MoveStraight(ctx, req, resp);
@@ -275,9 +320,9 @@ BaseService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BaseService_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BaseService::Service, ::viam::component::base::v1::SpinRequest, ::viam::component::base::v1::SpinResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< BaseService::Service, ::viam::component::base::v1::SpinRequest, ::viam::component::base::v1::SpinResponse>(
           [](BaseService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::base::v1::SpinRequest* req,
              ::viam::component::base::v1::SpinResponse* resp) {
                return service->Spin(ctx, req, resp);
@@ -285,9 +330,9 @@ BaseService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BaseService_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BaseService::Service, ::viam::component::base::v1::SetPowerRequest, ::viam::component::base::v1::SetPowerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< BaseService::Service, ::viam::component::base::v1::SetPowerRequest, ::viam::component::base::v1::SetPowerResponse>(
           [](BaseService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::base::v1::SetPowerRequest* req,
              ::viam::component::base::v1::SetPowerResponse* resp) {
                return service->SetPower(ctx, req, resp);
@@ -295,9 +340,9 @@ BaseService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BaseService_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BaseService::Service, ::viam::component::base::v1::SetVelocityRequest, ::viam::component::base::v1::SetVelocityResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< BaseService::Service, ::viam::component::base::v1::SetVelocityRequest, ::viam::component::base::v1::SetVelocityResponse>(
           [](BaseService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::base::v1::SetVelocityRequest* req,
              ::viam::component::base::v1::SetVelocityResponse* resp) {
                return service->SetVelocity(ctx, req, resp);
@@ -305,9 +350,9 @@ BaseService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BaseService_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BaseService::Service, ::viam::component::base::v1::StopRequest, ::viam::component::base::v1::StopResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< BaseService::Service, ::viam::component::base::v1::StopRequest, ::viam::component::base::v1::StopResponse>(
           [](BaseService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::base::v1::StopRequest* req,
              ::viam::component::base::v1::StopResponse* resp) {
                return service->Stop(ctx, req, resp);
@@ -315,9 +360,9 @@ BaseService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BaseService_method_names[5],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BaseService::Service, ::viam::component::base::v1::IsMovingRequest, ::viam::component::base::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< BaseService::Service, ::viam::component::base::v1::IsMovingRequest, ::viam::component::base::v1::IsMovingResponse>(
           [](BaseService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::base::v1::IsMovingRequest* req,
              ::viam::component::base::v1::IsMovingResponse* resp) {
                return service->IsMoving(ctx, req, resp);
@@ -325,9 +370,9 @@ BaseService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BaseService_method_names[6],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BaseService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< BaseService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
           [](BaseService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::common::v1::DoCommandRequest* req,
              ::viam::common::v1::DoCommandResponse* resp) {
                return service->DoCommand(ctx, req, resp);
@@ -335,9 +380,9 @@ BaseService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BaseService_method_names[7],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BaseService::Service, ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< BaseService::Service, ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
           [](BaseService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::common::v1::GetGeometriesRequest* req,
              ::viam::common::v1::GetGeometriesResponse* resp) {
                return service->GetGeometries(ctx, req, resp);
@@ -345,9 +390,9 @@ BaseService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BaseService_method_names[8],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BaseService::Service, ::viam::component::base::v1::GetPropertiesRequest, ::viam::component::base::v1::GetPropertiesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< BaseService::Service, ::viam::component::base::v1::GetPropertiesRequest, ::viam::component::base::v1::GetPropertiesResponse>(
           [](BaseService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::base::v1::GetPropertiesRequest* req,
              ::viam::component::base::v1::GetPropertiesResponse* resp) {
                return service->GetProperties(ctx, req, resp);
