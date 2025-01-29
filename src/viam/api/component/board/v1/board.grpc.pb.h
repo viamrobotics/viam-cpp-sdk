@@ -7,23 +7,24 @@
 #include "component/board/v1/board.pb.h"
 
 #include <functional>
-#include <grpcpp/generic/async_generic_service.h>
-#include <grpcpp/support/async_stream.h>
-#include <grpcpp/support/async_unary_call.h>
-#include <grpcpp/support/client_callback.h>
-#include <grpcpp/client_context.h>
-#include <grpcpp/completion_queue.h>
-#include <grpcpp/support/message_allocator.h>
-#include <grpcpp/support/method_handler.h>
-#include <grpcpp/impl/proto_utils.h>
-#include <grpcpp/impl/rpc_method.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/status.h>
-#include <grpcpp/support/stub_options.h>
-#include <grpcpp/support/sync_stream.h>
+#include <grpc/impl/codegen/port_platform.h>
+#include <grpcpp/impl/codegen/async_generic_service.h>
+#include <grpcpp/impl/codegen/async_stream.h>
+#include <grpcpp/impl/codegen/async_unary_call.h>
+#include <grpcpp/impl/codegen/client_callback.h>
+#include <grpcpp/impl/codegen/client_context.h>
+#include <grpcpp/impl/codegen/completion_queue.h>
+#include <grpcpp/impl/codegen/message_allocator.h>
+#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/impl/codegen/proto_utils.h>
+#include <grpcpp/impl/codegen/rpc_method.h>
+#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/codegen/server_callback_handlers.h>
+#include <grpcpp/impl/codegen/server_context.h>
+#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/impl/codegen/status.h>
+#include <grpcpp/impl/codegen/stub_options.h>
+#include <grpcpp/impl/codegen/sync_stream.h>
 
 namespace viam {
 namespace component {
@@ -152,59 +153,187 @@ class BoardService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetGeometriesResponse>> PrepareAsyncGetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetGeometriesResponse>>(PrepareAsyncGetGeometriesRaw(context, request, cq));
     }
-    class async_interface {
+    class experimental_async_interface {
      public:
-      virtual ~async_interface() {}
+      virtual ~experimental_async_interface() {}
       virtual void SetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::SetGPIORequest* request, ::viam::component::board::v1::SetGPIOResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetGPIO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetGPIOResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void SetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::SetGPIORequest* request, ::viam::component::board::v1::SetGPIOResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void SetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::SetGPIORequest* request, ::viam::component::board::v1::SetGPIOResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void SetGPIO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetGPIOResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void SetGPIO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetGPIOResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // GetGPIO gets the high/low state of the given pin of a board of the underlying robot.
       virtual void GetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::GetGPIORequest* request, ::viam::component::board::v1::GetGPIOResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetGPIO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::GetGPIOResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::GetGPIORequest* request, ::viam::component::board::v1::GetGPIOResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::GetGPIORequest* request, ::viam::component::board::v1::GetGPIOResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetGPIO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::GetGPIOResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetGPIO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::GetGPIOResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // PWM gets the duty cycle of the given pin of a board of the underlying robot.
       virtual void PWM(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMRequest* request, ::viam::component::board::v1::PWMResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void PWM(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::PWMResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void PWM(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMRequest* request, ::viam::component::board::v1::PWMResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void PWM(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMRequest* request, ::viam::component::board::v1::PWMResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void PWM(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::PWMResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void PWM(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::PWMResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // SetPWM sets the given pin of a board of the underlying robot to the given duty cycle.
       virtual void SetPWM(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMRequest* request, ::viam::component::board::v1::SetPWMResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetPWM(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetPWMResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void SetPWM(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMRequest* request, ::viam::component::board::v1::SetPWMResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void SetPWM(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMRequest* request, ::viam::component::board::v1::SetPWMResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void SetPWM(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetPWMResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void SetPWM(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetPWMResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // PWMFrequency gets the PWM frequency of the given pin of a board of the underlying robot.
       virtual void PWMFrequency(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMFrequencyRequest* request, ::viam::component::board::v1::PWMFrequencyResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void PWMFrequency(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::PWMFrequencyResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void PWMFrequency(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMFrequencyRequest* request, ::viam::component::board::v1::PWMFrequencyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void PWMFrequency(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMFrequencyRequest* request, ::viam::component::board::v1::PWMFrequencyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void PWMFrequency(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::PWMFrequencyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void PWMFrequency(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::PWMFrequencyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // SetPWMFrequency sets the given pin of a board of the underlying robot to the given PWM frequency. 0 will use the board's default PWM frequency.
       virtual void SetPWMFrequency(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMFrequencyRequest* request, ::viam::component::board::v1::SetPWMFrequencyResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetPWMFrequency(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetPWMFrequencyResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void SetPWMFrequency(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMFrequencyRequest* request, ::viam::component::board::v1::SetPWMFrequencyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void SetPWMFrequency(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMFrequencyRequest* request, ::viam::component::board::v1::SetPWMFrequencyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void SetPWMFrequency(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetPWMFrequencyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void SetPWMFrequency(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetPWMFrequencyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // DoCommand sends/receives arbitrary commands
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // Analog Reader
       //
       // ReadAnalogReader reads off the current value of an analog reader of a board of the underlying robot.
       virtual void ReadAnalogReader(::grpc::ClientContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ReadAnalogReader(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void ReadAnalogReader(::grpc::ClientContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void ReadAnalogReader(::grpc::ClientContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void ReadAnalogReader(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void ReadAnalogReader(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // Analog Writer
       //
       // WriteAnalog writes the value to the analog writer of the board.
       virtual void WriteAnalog(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest* request, ::viam::component::board::v1::WriteAnalogResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void WriteAnalog(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::WriteAnalogResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void WriteAnalog(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest* request, ::viam::component::board::v1::WriteAnalogResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void WriteAnalog(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest* request, ::viam::component::board::v1::WriteAnalogResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void WriteAnalog(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::WriteAnalogResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void WriteAnalog(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::WriteAnalogResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // Digital Interrupt
       //
       // GetDigitalInterruptValue returns the current value of the interrupt which is based on the type of interrupt.
       virtual void GetDigitalInterruptValue(::grpc::ClientContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest* request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetDigitalInterruptValue(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetDigitalInterruptValue(::grpc::ClientContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest* request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetDigitalInterruptValue(::grpc::ClientContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest* request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetDigitalInterruptValue(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetDigitalInterruptValue(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // StreamTicks starts a stream of ticks for the given digital interrupts.
-      virtual void StreamTicks(::grpc::ClientContext* context, const ::viam::component::board::v1::StreamTicksRequest* request, ::grpc::ClientReadReactor< ::viam::component::board::v1::StreamTicksResponse>* reactor) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void StreamTicks(::grpc::ClientContext* context, ::viam::component::board::v1::StreamTicksRequest* request, ::grpc::ClientReadReactor< ::viam::component::board::v1::StreamTicksResponse>* reactor) = 0;
+      #else
+      virtual void StreamTicks(::grpc::ClientContext* context, ::viam::component::board::v1::StreamTicksRequest* request, ::grpc::experimental::ClientReadReactor< ::viam::component::board::v1::StreamTicksResponse>* reactor) = 0;
+      #endif
       // Power Management
       //
       // `SetPowerMode` sets the power consumption mode of the board to the requested setting for the given duration.
       virtual void SetPowerMode(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest* request, ::viam::component::board::v1::SetPowerModeResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetPowerMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetPowerModeResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void SetPowerMode(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest* request, ::viam::component::board::v1::SetPowerModeResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void SetPowerMode(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest* request, ::viam::component::board::v1::SetPowerModeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void SetPowerMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetPowerModeResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void SetPowerMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetPowerModeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // GetGeometries returns the geometries of the component in their current configuration.
       virtual void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
     };
-    typedef class async_interface experimental_async_interface;
-    virtual class async_interface* async() { return nullptr; }
-    class async_interface* experimental_async() { return async(); }
-   private:
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    typedef class experimental_async_interface async_interface;
+    #endif
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    async_interface* async() { return experimental_async(); }
+    #endif
+    virtual class experimental_async_interface* experimental_async() { return nullptr; }
+  private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::board::v1::SetGPIOResponse>* AsyncSetGPIORaw(::grpc::ClientContext* context, const ::viam::component::board::v1::SetGPIORequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::board::v1::SetGPIOResponse>* PrepareAsyncSetGPIORaw(::grpc::ClientContext* context, const ::viam::component::board::v1::SetGPIORequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::board::v1::GetGPIOResponse>* AsyncGetGPIORaw(::grpc::ClientContext* context, const ::viam::component::board::v1::GetGPIORequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -235,7 +364,7 @@ class BoardService final {
   };
   class Stub final : public StubInterface {
    public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
     ::grpc::Status SetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::SetGPIORequest& request, ::viam::component::board::v1::SetGPIOResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::SetGPIOResponse>> AsyncSetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::SetGPIORequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::SetGPIOResponse>>(AsyncSetGPIORaw(context, request, cq));
@@ -329,45 +458,169 @@ class BoardService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>> PrepareAsyncGetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>>(PrepareAsyncGetGeometriesRaw(context, request, cq));
     }
-    class async final :
-      public StubInterface::async_interface {
+    class experimental_async final :
+      public StubInterface::experimental_async_interface {
      public:
       void SetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::SetGPIORequest* request, ::viam::component::board::v1::SetGPIOResponse* response, std::function<void(::grpc::Status)>) override;
+      void SetGPIO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetGPIOResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void SetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::SetGPIORequest* request, ::viam::component::board::v1::SetGPIOResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void SetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::SetGPIORequest* request, ::viam::component::board::v1::SetGPIOResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void SetGPIO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetGPIOResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void SetGPIO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetGPIOResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::GetGPIORequest* request, ::viam::component::board::v1::GetGPIOResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetGPIO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::GetGPIOResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::GetGPIORequest* request, ::viam::component::board::v1::GetGPIOResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::GetGPIORequest* request, ::viam::component::board::v1::GetGPIOResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetGPIO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::GetGPIOResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetGPIO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::GetGPIOResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void PWM(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMRequest* request, ::viam::component::board::v1::PWMResponse* response, std::function<void(::grpc::Status)>) override;
+      void PWM(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::PWMResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void PWM(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMRequest* request, ::viam::component::board::v1::PWMResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void PWM(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMRequest* request, ::viam::component::board::v1::PWMResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void PWM(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::PWMResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void PWM(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::PWMResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void SetPWM(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMRequest* request, ::viam::component::board::v1::SetPWMResponse* response, std::function<void(::grpc::Status)>) override;
+      void SetPWM(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetPWMResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void SetPWM(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMRequest* request, ::viam::component::board::v1::SetPWMResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void SetPWM(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMRequest* request, ::viam::component::board::v1::SetPWMResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void SetPWM(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetPWMResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void SetPWM(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetPWMResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void PWMFrequency(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMFrequencyRequest* request, ::viam::component::board::v1::PWMFrequencyResponse* response, std::function<void(::grpc::Status)>) override;
+      void PWMFrequency(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::PWMFrequencyResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void PWMFrequency(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMFrequencyRequest* request, ::viam::component::board::v1::PWMFrequencyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void PWMFrequency(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMFrequencyRequest* request, ::viam::component::board::v1::PWMFrequencyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void PWMFrequency(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::PWMFrequencyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void PWMFrequency(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::PWMFrequencyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void SetPWMFrequency(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMFrequencyRequest* request, ::viam::component::board::v1::SetPWMFrequencyResponse* response, std::function<void(::grpc::Status)>) override;
+      void SetPWMFrequency(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetPWMFrequencyResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void SetPWMFrequency(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMFrequencyRequest* request, ::viam::component::board::v1::SetPWMFrequencyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void SetPWMFrequency(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMFrequencyRequest* request, ::viam::component::board::v1::SetPWMFrequencyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void SetPWMFrequency(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetPWMFrequencyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void SetPWMFrequency(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetPWMFrequencyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
+      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void ReadAnalogReader(::grpc::ClientContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response, std::function<void(::grpc::Status)>) override;
+      void ReadAnalogReader(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void ReadAnalogReader(::grpc::ClientContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void ReadAnalogReader(::grpc::ClientContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void ReadAnalogReader(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void ReadAnalogReader(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void WriteAnalog(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest* request, ::viam::component::board::v1::WriteAnalogResponse* response, std::function<void(::grpc::Status)>) override;
+      void WriteAnalog(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::WriteAnalogResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void WriteAnalog(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest* request, ::viam::component::board::v1::WriteAnalogResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void WriteAnalog(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest* request, ::viam::component::board::v1::WriteAnalogResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void WriteAnalog(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::WriteAnalogResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void WriteAnalog(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::WriteAnalogResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetDigitalInterruptValue(::grpc::ClientContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest* request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetDigitalInterruptValue(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetDigitalInterruptValue(::grpc::ClientContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest* request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void StreamTicks(::grpc::ClientContext* context, const ::viam::component::board::v1::StreamTicksRequest* request, ::grpc::ClientReadReactor< ::viam::component::board::v1::StreamTicksResponse>* reactor) override;
+      #else
+      void GetDigitalInterruptValue(::grpc::ClientContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest* request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetDigitalInterruptValue(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetDigitalInterruptValue(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void StreamTicks(::grpc::ClientContext* context, ::viam::component::board::v1::StreamTicksRequest* request, ::grpc::ClientReadReactor< ::viam::component::board::v1::StreamTicksResponse>* reactor) override;
+      #else
+      void StreamTicks(::grpc::ClientContext* context, ::viam::component::board::v1::StreamTicksRequest* request, ::grpc::experimental::ClientReadReactor< ::viam::component::board::v1::StreamTicksResponse>* reactor) override;
+      #endif
       void SetPowerMode(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest* request, ::viam::component::board::v1::SetPowerModeResponse* response, std::function<void(::grpc::Status)>) override;
+      void SetPowerMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetPowerModeResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void SetPowerMode(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest* request, ::viam::component::board::v1::SetPowerModeResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void SetPowerMode(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest* request, ::viam::component::board::v1::SetPowerModeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void SetPowerMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetPowerModeResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void SetPowerMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetPowerModeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
      private:
       friend class Stub;
-      explicit async(Stub* stub): stub_(stub) { }
+      explicit experimental_async(Stub* stub): stub_(stub) { }
       Stub* stub() { return stub_; }
       Stub* stub_;
     };
-    class async* async() override { return &async_stub_; }
+    class experimental_async_interface* experimental_async() override { return &async_stub_; }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class async async_stub_{this};
+    class experimental_async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::SetGPIOResponse>* AsyncSetGPIORaw(::grpc::ClientContext* context, const ::viam::component::board::v1::SetGPIORequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::SetGPIOResponse>* PrepareAsyncSetGPIORaw(::grpc::ClientContext* context, const ::viam::component::board::v1::SetGPIORequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::GetGPIOResponse>* AsyncGetGPIORaw(::grpc::ClientContext* context, const ::viam::component::board::v1::GetGPIORequest& request, ::grpc::CompletionQueue* cq) override;
@@ -711,22 +964,36 @@ class BoardService final {
   };
   typedef WithAsyncMethod_SetGPIO<WithAsyncMethod_GetGPIO<WithAsyncMethod_PWM<WithAsyncMethod_SetPWM<WithAsyncMethod_PWMFrequency<WithAsyncMethod_SetPWMFrequency<WithAsyncMethod_DoCommand<WithAsyncMethod_ReadAnalogReader<WithAsyncMethod_WriteAnalog<WithAsyncMethod_GetDigitalInterruptValue<WithAsyncMethod_StreamTicks<WithAsyncMethod_SetPowerMode<WithAsyncMethod_GetGeometries<Service > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
-  class WithCallbackMethod_SetGPIO : public BaseClass {
+  class ExperimentalWithCallbackMethod_SetGPIO : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_SetGPIO() {
-      ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::SetGPIORequest, ::viam::component::board::v1::SetGPIOResponse>(
+    ExperimentalWithCallbackMethod_SetGPIO() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(0,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::board::v1::SetGPIORequest, ::viam::component::board::v1::SetGPIOResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::board::v1::SetGPIORequest* request, ::viam::component::board::v1::SetGPIOResponse* response) { return this->SetGPIO(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::board::v1::SetGPIORequest* request, ::viam::component::board::v1::SetGPIOResponse* response) { return this->SetGPIO(context, request, response); }));}
     void SetMessageAllocatorFor_SetGPIO(
-        ::grpc::MessageAllocator< ::viam::component::board::v1::SetGPIORequest, ::viam::component::board::v1::SetGPIOResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::board::v1::SetGPIORequest, ::viam::component::board::v1::SetGPIOResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::SetGPIORequest, ::viam::component::board::v1::SetGPIOResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::board::v1::SetGPIORequest, ::viam::component::board::v1::SetGPIOResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_SetGPIO() override {
+    ~ExperimentalWithCallbackMethod_SetGPIO() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -734,26 +1001,46 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SetGPIO(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::SetGPIORequest* /*request*/, ::viam::component::board::v1::SetGPIOResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::SetGPIORequest* /*request*/, ::viam::component::board::v1::SetGPIOResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* SetGPIO(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::board::v1::SetGPIORequest* /*request*/, ::viam::component::board::v1::SetGPIOResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetGPIO : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetGPIO : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetGPIO() {
-      ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::GetGPIORequest, ::viam::component::board::v1::GetGPIOResponse>(
+    ExperimentalWithCallbackMethod_GetGPIO() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::board::v1::GetGPIORequest, ::viam::component::board::v1::GetGPIOResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::board::v1::GetGPIORequest* request, ::viam::component::board::v1::GetGPIOResponse* response) { return this->GetGPIO(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::board::v1::GetGPIORequest* request, ::viam::component::board::v1::GetGPIOResponse* response) { return this->GetGPIO(context, request, response); }));}
     void SetMessageAllocatorFor_GetGPIO(
-        ::grpc::MessageAllocator< ::viam::component::board::v1::GetGPIORequest, ::viam::component::board::v1::GetGPIOResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::board::v1::GetGPIORequest, ::viam::component::board::v1::GetGPIOResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::GetGPIORequest, ::viam::component::board::v1::GetGPIOResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::board::v1::GetGPIORequest, ::viam::component::board::v1::GetGPIOResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetGPIO() override {
+    ~ExperimentalWithCallbackMethod_GetGPIO() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -761,26 +1048,46 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetGPIO(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::GetGPIORequest* /*request*/, ::viam::component::board::v1::GetGPIOResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::GetGPIORequest* /*request*/, ::viam::component::board::v1::GetGPIOResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetGPIO(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::board::v1::GetGPIORequest* /*request*/, ::viam::component::board::v1::GetGPIOResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_PWM : public BaseClass {
+  class ExperimentalWithCallbackMethod_PWM : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_PWM() {
-      ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::PWMRequest, ::viam::component::board::v1::PWMResponse>(
+    ExperimentalWithCallbackMethod_PWM() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::board::v1::PWMRequest, ::viam::component::board::v1::PWMResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::board::v1::PWMRequest* request, ::viam::component::board::v1::PWMResponse* response) { return this->PWM(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::board::v1::PWMRequest* request, ::viam::component::board::v1::PWMResponse* response) { return this->PWM(context, request, response); }));}
     void SetMessageAllocatorFor_PWM(
-        ::grpc::MessageAllocator< ::viam::component::board::v1::PWMRequest, ::viam::component::board::v1::PWMResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::board::v1::PWMRequest, ::viam::component::board::v1::PWMResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::PWMRequest, ::viam::component::board::v1::PWMResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::board::v1::PWMRequest, ::viam::component::board::v1::PWMResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_PWM() override {
+    ~ExperimentalWithCallbackMethod_PWM() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -788,26 +1095,46 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* PWM(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::PWMRequest* /*request*/, ::viam::component::board::v1::PWMResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::PWMRequest* /*request*/, ::viam::component::board::v1::PWMResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* PWM(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::board::v1::PWMRequest* /*request*/, ::viam::component::board::v1::PWMResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_SetPWM : public BaseClass {
+  class ExperimentalWithCallbackMethod_SetPWM : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_SetPWM() {
-      ::grpc::Service::MarkMethodCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::SetPWMRequest, ::viam::component::board::v1::SetPWMResponse>(
+    ExperimentalWithCallbackMethod_SetPWM() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::board::v1::SetPWMRequest, ::viam::component::board::v1::SetPWMResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::board::v1::SetPWMRequest* request, ::viam::component::board::v1::SetPWMResponse* response) { return this->SetPWM(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::board::v1::SetPWMRequest* request, ::viam::component::board::v1::SetPWMResponse* response) { return this->SetPWM(context, request, response); }));}
     void SetMessageAllocatorFor_SetPWM(
-        ::grpc::MessageAllocator< ::viam::component::board::v1::SetPWMRequest, ::viam::component::board::v1::SetPWMResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::board::v1::SetPWMRequest, ::viam::component::board::v1::SetPWMResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::SetPWMRequest, ::viam::component::board::v1::SetPWMResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::board::v1::SetPWMRequest, ::viam::component::board::v1::SetPWMResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_SetPWM() override {
+    ~ExperimentalWithCallbackMethod_SetPWM() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -815,26 +1142,46 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SetPWM(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::SetPWMRequest* /*request*/, ::viam::component::board::v1::SetPWMResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::SetPWMRequest* /*request*/, ::viam::component::board::v1::SetPWMResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* SetPWM(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::board::v1::SetPWMRequest* /*request*/, ::viam::component::board::v1::SetPWMResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_PWMFrequency : public BaseClass {
+  class ExperimentalWithCallbackMethod_PWMFrequency : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_PWMFrequency() {
-      ::grpc::Service::MarkMethodCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::PWMFrequencyRequest, ::viam::component::board::v1::PWMFrequencyResponse>(
+    ExperimentalWithCallbackMethod_PWMFrequency() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::board::v1::PWMFrequencyRequest, ::viam::component::board::v1::PWMFrequencyResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::board::v1::PWMFrequencyRequest* request, ::viam::component::board::v1::PWMFrequencyResponse* response) { return this->PWMFrequency(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::board::v1::PWMFrequencyRequest* request, ::viam::component::board::v1::PWMFrequencyResponse* response) { return this->PWMFrequency(context, request, response); }));}
     void SetMessageAllocatorFor_PWMFrequency(
-        ::grpc::MessageAllocator< ::viam::component::board::v1::PWMFrequencyRequest, ::viam::component::board::v1::PWMFrequencyResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::board::v1::PWMFrequencyRequest, ::viam::component::board::v1::PWMFrequencyResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::PWMFrequencyRequest, ::viam::component::board::v1::PWMFrequencyResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(4);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::board::v1::PWMFrequencyRequest, ::viam::component::board::v1::PWMFrequencyResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_PWMFrequency() override {
+    ~ExperimentalWithCallbackMethod_PWMFrequency() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -842,26 +1189,46 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* PWMFrequency(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::PWMFrequencyRequest* /*request*/, ::viam::component::board::v1::PWMFrequencyResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::PWMFrequencyRequest* /*request*/, ::viam::component::board::v1::PWMFrequencyResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* PWMFrequency(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::board::v1::PWMFrequencyRequest* /*request*/, ::viam::component::board::v1::PWMFrequencyResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_SetPWMFrequency : public BaseClass {
+  class ExperimentalWithCallbackMethod_SetPWMFrequency : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_SetPWMFrequency() {
-      ::grpc::Service::MarkMethodCallback(5,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::SetPWMFrequencyRequest, ::viam::component::board::v1::SetPWMFrequencyResponse>(
+    ExperimentalWithCallbackMethod_SetPWMFrequency() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(5,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::board::v1::SetPWMFrequencyRequest, ::viam::component::board::v1::SetPWMFrequencyResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::board::v1::SetPWMFrequencyRequest* request, ::viam::component::board::v1::SetPWMFrequencyResponse* response) { return this->SetPWMFrequency(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::board::v1::SetPWMFrequencyRequest* request, ::viam::component::board::v1::SetPWMFrequencyResponse* response) { return this->SetPWMFrequency(context, request, response); }));}
     void SetMessageAllocatorFor_SetPWMFrequency(
-        ::grpc::MessageAllocator< ::viam::component::board::v1::SetPWMFrequencyRequest, ::viam::component::board::v1::SetPWMFrequencyResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::board::v1::SetPWMFrequencyRequest, ::viam::component::board::v1::SetPWMFrequencyResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::SetPWMFrequencyRequest, ::viam::component::board::v1::SetPWMFrequencyResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(5);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::board::v1::SetPWMFrequencyRequest, ::viam::component::board::v1::SetPWMFrequencyResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_SetPWMFrequency() override {
+    ~ExperimentalWithCallbackMethod_SetPWMFrequency() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -869,26 +1236,46 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SetPWMFrequency(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::SetPWMFrequencyRequest* /*request*/, ::viam::component::board::v1::SetPWMFrequencyResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::SetPWMFrequencyRequest* /*request*/, ::viam::component::board::v1::SetPWMFrequencyResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* SetPWMFrequency(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::board::v1::SetPWMFrequencyRequest* /*request*/, ::viam::component::board::v1::SetPWMFrequencyResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_DoCommand : public BaseClass {
+  class ExperimentalWithCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodCallback(6,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
+    ExperimentalWithCallbackMethod_DoCommand() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(6,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
     void SetMessageAllocatorFor_DoCommand(
-        ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(6);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_DoCommand() override {
+    ~ExperimentalWithCallbackMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -896,26 +1283,46 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DoCommand(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* DoCommand(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_ReadAnalogReader : public BaseClass {
+  class ExperimentalWithCallbackMethod_ReadAnalogReader : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_ReadAnalogReader() {
-      ::grpc::Service::MarkMethodCallback(7,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::ReadAnalogReaderRequest, ::viam::component::board::v1::ReadAnalogReaderResponse>(
+    ExperimentalWithCallbackMethod_ReadAnalogReader() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(7,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::board::v1::ReadAnalogReaderRequest, ::viam::component::board::v1::ReadAnalogReaderResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response) { return this->ReadAnalogReader(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::board::v1::ReadAnalogReaderRequest* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response) { return this->ReadAnalogReader(context, request, response); }));}
     void SetMessageAllocatorFor_ReadAnalogReader(
-        ::grpc::MessageAllocator< ::viam::component::board::v1::ReadAnalogReaderRequest, ::viam::component::board::v1::ReadAnalogReaderResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::board::v1::ReadAnalogReaderRequest, ::viam::component::board::v1::ReadAnalogReaderResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::ReadAnalogReaderRequest, ::viam::component::board::v1::ReadAnalogReaderResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(7);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::board::v1::ReadAnalogReaderRequest, ::viam::component::board::v1::ReadAnalogReaderResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_ReadAnalogReader() override {
+    ~ExperimentalWithCallbackMethod_ReadAnalogReader() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -923,26 +1330,46 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* ReadAnalogReader(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::ReadAnalogReaderRequest* /*request*/, ::viam::component::board::v1::ReadAnalogReaderResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::ReadAnalogReaderRequest* /*request*/, ::viam::component::board::v1::ReadAnalogReaderResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ReadAnalogReader(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::board::v1::ReadAnalogReaderRequest* /*request*/, ::viam::component::board::v1::ReadAnalogReaderResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_WriteAnalog : public BaseClass {
+  class ExperimentalWithCallbackMethod_WriteAnalog : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_WriteAnalog() {
-      ::grpc::Service::MarkMethodCallback(8,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::WriteAnalogRequest, ::viam::component::board::v1::WriteAnalogResponse>(
+    ExperimentalWithCallbackMethod_WriteAnalog() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(8,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::board::v1::WriteAnalogRequest, ::viam::component::board::v1::WriteAnalogResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::board::v1::WriteAnalogRequest* request, ::viam::component::board::v1::WriteAnalogResponse* response) { return this->WriteAnalog(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::board::v1::WriteAnalogRequest* request, ::viam::component::board::v1::WriteAnalogResponse* response) { return this->WriteAnalog(context, request, response); }));}
     void SetMessageAllocatorFor_WriteAnalog(
-        ::grpc::MessageAllocator< ::viam::component::board::v1::WriteAnalogRequest, ::viam::component::board::v1::WriteAnalogResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::board::v1::WriteAnalogRequest, ::viam::component::board::v1::WriteAnalogResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::WriteAnalogRequest, ::viam::component::board::v1::WriteAnalogResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(8);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::board::v1::WriteAnalogRequest, ::viam::component::board::v1::WriteAnalogResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_WriteAnalog() override {
+    ~ExperimentalWithCallbackMethod_WriteAnalog() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -950,26 +1377,46 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* WriteAnalog(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::WriteAnalogRequest* /*request*/, ::viam::component::board::v1::WriteAnalogResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::WriteAnalogRequest* /*request*/, ::viam::component::board::v1::WriteAnalogResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* WriteAnalog(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::board::v1::WriteAnalogRequest* /*request*/, ::viam::component::board::v1::WriteAnalogResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetDigitalInterruptValue : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetDigitalInterruptValue : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetDigitalInterruptValue() {
-      ::grpc::Service::MarkMethodCallback(9,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::GetDigitalInterruptValueRequest, ::viam::component::board::v1::GetDigitalInterruptValueResponse>(
+    ExperimentalWithCallbackMethod_GetDigitalInterruptValue() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(9,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::board::v1::GetDigitalInterruptValueRequest, ::viam::component::board::v1::GetDigitalInterruptValueResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest* request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response) { return this->GetDigitalInterruptValue(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest* request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response) { return this->GetDigitalInterruptValue(context, request, response); }));}
     void SetMessageAllocatorFor_GetDigitalInterruptValue(
-        ::grpc::MessageAllocator< ::viam::component::board::v1::GetDigitalInterruptValueRequest, ::viam::component::board::v1::GetDigitalInterruptValueResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::board::v1::GetDigitalInterruptValueRequest, ::viam::component::board::v1::GetDigitalInterruptValueResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::GetDigitalInterruptValueRequest, ::viam::component::board::v1::GetDigitalInterruptValueResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(9);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::board::v1::GetDigitalInterruptValueRequest, ::viam::component::board::v1::GetDigitalInterruptValueResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetDigitalInterruptValue() override {
+    ~ExperimentalWithCallbackMethod_GetDigitalInterruptValue() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -977,21 +1424,37 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetDigitalInterruptValue(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::GetDigitalInterruptValueRequest* /*request*/, ::viam::component::board::v1::GetDigitalInterruptValueResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::GetDigitalInterruptValueRequest* /*request*/, ::viam::component::board::v1::GetDigitalInterruptValueResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetDigitalInterruptValue(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::board::v1::GetDigitalInterruptValueRequest* /*request*/, ::viam::component::board::v1::GetDigitalInterruptValueResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_StreamTicks : public BaseClass {
+  class ExperimentalWithCallbackMethod_StreamTicks : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_StreamTicks() {
-      ::grpc::Service::MarkMethodCallback(10,
-          new ::grpc::internal::CallbackServerStreamingHandler< ::viam::component::board::v1::StreamTicksRequest, ::viam::component::board::v1::StreamTicksResponse>(
+    ExperimentalWithCallbackMethod_StreamTicks() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(10,
+          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::viam::component::board::v1::StreamTicksRequest, ::viam::component::board::v1::StreamTicksResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::board::v1::StreamTicksRequest* request) { return this->StreamTicks(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::board::v1::StreamTicksRequest* request) { return this->StreamTicks(context, request); }));
     }
-    ~WithCallbackMethod_StreamTicks() override {
+    ~ExperimentalWithCallbackMethod_StreamTicks() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -999,26 +1462,46 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::viam::component::board::v1::StreamTicksResponse>* StreamTicks(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::StreamTicksRequest* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::StreamTicksRequest* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::viam::component::board::v1::StreamTicksResponse>* StreamTicks(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::board::v1::StreamTicksRequest* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_SetPowerMode : public BaseClass {
+  class ExperimentalWithCallbackMethod_SetPowerMode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_SetPowerMode() {
-      ::grpc::Service::MarkMethodCallback(11,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse>(
+    ExperimentalWithCallbackMethod_SetPowerMode() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(11,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::board::v1::SetPowerModeRequest* request, ::viam::component::board::v1::SetPowerModeResponse* response) { return this->SetPowerMode(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::board::v1::SetPowerModeRequest* request, ::viam::component::board::v1::SetPowerModeResponse* response) { return this->SetPowerMode(context, request, response); }));}
     void SetMessageAllocatorFor_SetPowerMode(
-        ::grpc::MessageAllocator< ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(11);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_SetPowerMode() override {
+    ~ExperimentalWithCallbackMethod_SetPowerMode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1026,26 +1509,46 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SetPowerMode(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::SetPowerModeRequest* /*request*/, ::viam::component::board::v1::SetPowerModeResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::SetPowerModeRequest* /*request*/, ::viam::component::board::v1::SetPowerModeResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* SetPowerMode(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::board::v1::SetPowerModeRequest* /*request*/, ::viam::component::board::v1::SetPowerModeResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetGeometries : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetGeometries : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodCallback(12,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
+    ExperimentalWithCallbackMethod_GetGeometries() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(12,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response) { return this->GetGeometries(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response) { return this->GetGeometries(context, request, response); }));}
     void SetMessageAllocatorFor_GetGeometries(
-        ::grpc::MessageAllocator< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(12);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(12);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetGeometries() override {
+    ~ExperimentalWithCallbackMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1053,11 +1556,20 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetGeometries(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::GetGeometriesRequest* /*request*/, ::viam::common::v1::GetGeometriesResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::GetGeometriesRequest* /*request*/, ::viam::common::v1::GetGeometriesResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetGeometries(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::common::v1::GetGeometriesRequest* /*request*/, ::viam::common::v1::GetGeometriesResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
-  typedef WithCallbackMethod_SetGPIO<WithCallbackMethod_GetGPIO<WithCallbackMethod_PWM<WithCallbackMethod_SetPWM<WithCallbackMethod_PWMFrequency<WithCallbackMethod_SetPWMFrequency<WithCallbackMethod_DoCommand<WithCallbackMethod_ReadAnalogReader<WithCallbackMethod_WriteAnalog<WithCallbackMethod_GetDigitalInterruptValue<WithCallbackMethod_StreamTicks<WithCallbackMethod_SetPowerMode<WithCallbackMethod_GetGeometries<Service > > > > > > > > > > > > > CallbackService;
-  typedef CallbackService ExperimentalCallbackService;
+  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+  typedef ExperimentalWithCallbackMethod_SetGPIO<ExperimentalWithCallbackMethod_GetGPIO<ExperimentalWithCallbackMethod_PWM<ExperimentalWithCallbackMethod_SetPWM<ExperimentalWithCallbackMethod_PWMFrequency<ExperimentalWithCallbackMethod_SetPWMFrequency<ExperimentalWithCallbackMethod_DoCommand<ExperimentalWithCallbackMethod_ReadAnalogReader<ExperimentalWithCallbackMethod_WriteAnalog<ExperimentalWithCallbackMethod_GetDigitalInterruptValue<ExperimentalWithCallbackMethod_StreamTicks<ExperimentalWithCallbackMethod_SetPowerMode<ExperimentalWithCallbackMethod_GetGeometries<Service > > > > > > > > > > > > > CallbackService;
+  #endif
+
+  typedef ExperimentalWithCallbackMethod_SetGPIO<ExperimentalWithCallbackMethod_GetGPIO<ExperimentalWithCallbackMethod_PWM<ExperimentalWithCallbackMethod_SetPWM<ExperimentalWithCallbackMethod_PWMFrequency<ExperimentalWithCallbackMethod_SetPWMFrequency<ExperimentalWithCallbackMethod_DoCommand<ExperimentalWithCallbackMethod_ReadAnalogReader<ExperimentalWithCallbackMethod_WriteAnalog<ExperimentalWithCallbackMethod_GetDigitalInterruptValue<ExperimentalWithCallbackMethod_StreamTicks<ExperimentalWithCallbackMethod_SetPowerMode<ExperimentalWithCallbackMethod_GetGeometries<Service > > > > > > > > > > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_SetGPIO : public BaseClass {
    private:
@@ -1540,17 +2052,27 @@ class BoardService final {
     }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_SetGPIO : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_SetGPIO : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_SetGPIO() {
-      ::grpc::Service::MarkMethodRawCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_SetGPIO() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(0,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetGPIO(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetGPIO(context, request, response); }));
     }
-    ~WithRawCallbackMethod_SetGPIO() override {
+    ~ExperimentalWithRawCallbackMethod_SetGPIO() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1558,21 +2080,37 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SetGPIO(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* SetGPIO(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetGPIO : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetGPIO : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetGPIO() {
-      ::grpc::Service::MarkMethodRawCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetGPIO() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetGPIO(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetGPIO(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetGPIO() override {
+    ~ExperimentalWithRawCallbackMethod_GetGPIO() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1580,21 +2118,37 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetGPIO(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetGPIO(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_PWM : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_PWM : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_PWM() {
-      ::grpc::Service::MarkMethodRawCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_PWM() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->PWM(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->PWM(context, request, response); }));
     }
-    ~WithRawCallbackMethod_PWM() override {
+    ~ExperimentalWithRawCallbackMethod_PWM() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1602,21 +2156,37 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* PWM(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* PWM(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_SetPWM : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_SetPWM : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_SetPWM() {
-      ::grpc::Service::MarkMethodRawCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_SetPWM() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetPWM(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetPWM(context, request, response); }));
     }
-    ~WithRawCallbackMethod_SetPWM() override {
+    ~ExperimentalWithRawCallbackMethod_SetPWM() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1624,21 +2194,37 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SetPWM(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* SetPWM(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_PWMFrequency : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_PWMFrequency : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_PWMFrequency() {
-      ::grpc::Service::MarkMethodRawCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_PWMFrequency() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->PWMFrequency(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->PWMFrequency(context, request, response); }));
     }
-    ~WithRawCallbackMethod_PWMFrequency() override {
+    ~ExperimentalWithRawCallbackMethod_PWMFrequency() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1646,21 +2232,37 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* PWMFrequency(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* PWMFrequency(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_SetPWMFrequency : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_SetPWMFrequency : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_SetPWMFrequency() {
-      ::grpc::Service::MarkMethodRawCallback(5,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_SetPWMFrequency() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(5,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetPWMFrequency(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetPWMFrequency(context, request, response); }));
     }
-    ~WithRawCallbackMethod_SetPWMFrequency() override {
+    ~ExperimentalWithRawCallbackMethod_SetPWMFrequency() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1668,21 +2270,37 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SetPWMFrequency(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* SetPWMFrequency(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_DoCommand : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRawCallback(6,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_DoCommand() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(6,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
     }
-    ~WithRawCallbackMethod_DoCommand() override {
+    ~ExperimentalWithRawCallbackMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1690,21 +2308,37 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DoCommand(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* DoCommand(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_ReadAnalogReader : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_ReadAnalogReader : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_ReadAnalogReader() {
-      ::grpc::Service::MarkMethodRawCallback(7,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_ReadAnalogReader() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(7,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ReadAnalogReader(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ReadAnalogReader(context, request, response); }));
     }
-    ~WithRawCallbackMethod_ReadAnalogReader() override {
+    ~ExperimentalWithRawCallbackMethod_ReadAnalogReader() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1712,21 +2346,37 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* ReadAnalogReader(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ReadAnalogReader(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_WriteAnalog : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_WriteAnalog : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_WriteAnalog() {
-      ::grpc::Service::MarkMethodRawCallback(8,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_WriteAnalog() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(8,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->WriteAnalog(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->WriteAnalog(context, request, response); }));
     }
-    ~WithRawCallbackMethod_WriteAnalog() override {
+    ~ExperimentalWithRawCallbackMethod_WriteAnalog() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1734,21 +2384,37 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* WriteAnalog(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* WriteAnalog(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetDigitalInterruptValue : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetDigitalInterruptValue : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetDigitalInterruptValue() {
-      ::grpc::Service::MarkMethodRawCallback(9,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetDigitalInterruptValue() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(9,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetDigitalInterruptValue(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetDigitalInterruptValue(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetDigitalInterruptValue() override {
+    ~ExperimentalWithRawCallbackMethod_GetDigitalInterruptValue() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1756,21 +2422,37 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetDigitalInterruptValue(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetDigitalInterruptValue(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_StreamTicks : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_StreamTicks : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_StreamTicks() {
-      ::grpc::Service::MarkMethodRawCallback(10,
-          new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_StreamTicks() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(10,
+          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->StreamTicks(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->StreamTicks(context, request); }));
     }
-    ~WithRawCallbackMethod_StreamTicks() override {
+    ~ExperimentalWithRawCallbackMethod_StreamTicks() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1778,21 +2460,37 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* StreamTicks(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* StreamTicks(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_SetPowerMode : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_SetPowerMode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_SetPowerMode() {
-      ::grpc::Service::MarkMethodRawCallback(11,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_SetPowerMode() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(11,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetPowerMode(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetPowerMode(context, request, response); }));
     }
-    ~WithRawCallbackMethod_SetPowerMode() override {
+    ~ExperimentalWithRawCallbackMethod_SetPowerMode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1800,21 +2498,37 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SetPowerMode(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* SetPowerMode(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetGeometries : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetGeometries : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodRawCallback(12,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetGeometries() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(12,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetGeometries(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetGeometries(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetGeometries() override {
+    ~ExperimentalWithRawCallbackMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1822,8 +2536,14 @@ class BoardService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetGeometries(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetGeometries(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_SetGPIO : public BaseClass {
@@ -1834,8 +2554,8 @@ class BoardService final {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::board::v1::SetGPIORequest, ::viam::component::board::v1::SetGPIOResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::board::v1::SetGPIORequest, ::viam::component::board::v1::SetGPIOResponse>* streamer) {
                        return this->StreamedSetGPIO(context,
                          streamer);
@@ -1861,8 +2581,8 @@ class BoardService final {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::board::v1::GetGPIORequest, ::viam::component::board::v1::GetGPIOResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::board::v1::GetGPIORequest, ::viam::component::board::v1::GetGPIOResponse>* streamer) {
                        return this->StreamedGetGPIO(context,
                          streamer);
@@ -1888,8 +2608,8 @@ class BoardService final {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::board::v1::PWMRequest, ::viam::component::board::v1::PWMResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::board::v1::PWMRequest, ::viam::component::board::v1::PWMResponse>* streamer) {
                        return this->StreamedPWM(context,
                          streamer);
@@ -1915,8 +2635,8 @@ class BoardService final {
       ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::board::v1::SetPWMRequest, ::viam::component::board::v1::SetPWMResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::board::v1::SetPWMRequest, ::viam::component::board::v1::SetPWMResponse>* streamer) {
                        return this->StreamedSetPWM(context,
                          streamer);
@@ -1942,8 +2662,8 @@ class BoardService final {
       ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::board::v1::PWMFrequencyRequest, ::viam::component::board::v1::PWMFrequencyResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::board::v1::PWMFrequencyRequest, ::viam::component::board::v1::PWMFrequencyResponse>* streamer) {
                        return this->StreamedPWMFrequency(context,
                          streamer);
@@ -1969,8 +2689,8 @@ class BoardService final {
       ::grpc::Service::MarkMethodStreamed(5,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::board::v1::SetPWMFrequencyRequest, ::viam::component::board::v1::SetPWMFrequencyResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::board::v1::SetPWMFrequencyRequest, ::viam::component::board::v1::SetPWMFrequencyResponse>* streamer) {
                        return this->StreamedSetPWMFrequency(context,
                          streamer);
@@ -1996,8 +2716,8 @@ class BoardService final {
       ::grpc::Service::MarkMethodStreamed(6,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* streamer) {
                        return this->StreamedDoCommand(context,
                          streamer);
@@ -2023,8 +2743,8 @@ class BoardService final {
       ::grpc::Service::MarkMethodStreamed(7,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::board::v1::ReadAnalogReaderRequest, ::viam::component::board::v1::ReadAnalogReaderResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::board::v1::ReadAnalogReaderRequest, ::viam::component::board::v1::ReadAnalogReaderResponse>* streamer) {
                        return this->StreamedReadAnalogReader(context,
                          streamer);
@@ -2050,8 +2770,8 @@ class BoardService final {
       ::grpc::Service::MarkMethodStreamed(8,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::board::v1::WriteAnalogRequest, ::viam::component::board::v1::WriteAnalogResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::board::v1::WriteAnalogRequest, ::viam::component::board::v1::WriteAnalogResponse>* streamer) {
                        return this->StreamedWriteAnalog(context,
                          streamer);
@@ -2077,8 +2797,8 @@ class BoardService final {
       ::grpc::Service::MarkMethodStreamed(9,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::board::v1::GetDigitalInterruptValueRequest, ::viam::component::board::v1::GetDigitalInterruptValueResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::board::v1::GetDigitalInterruptValueRequest, ::viam::component::board::v1::GetDigitalInterruptValueResponse>* streamer) {
                        return this->StreamedGetDigitalInterruptValue(context,
                          streamer);
@@ -2104,8 +2824,8 @@ class BoardService final {
       ::grpc::Service::MarkMethodStreamed(11,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse>* streamer) {
                        return this->StreamedSetPowerMode(context,
                          streamer);
@@ -2131,8 +2851,8 @@ class BoardService final {
       ::grpc::Service::MarkMethodStreamed(12,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>* streamer) {
                        return this->StreamedGetGeometries(context,
                          streamer);
@@ -2159,8 +2879,8 @@ class BoardService final {
       ::grpc::Service::MarkMethodStreamed(10,
         new ::grpc::internal::SplitServerStreamingHandler<
           ::viam::component::board::v1::StreamTicksRequest, ::viam::component::board::v1::StreamTicksResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerSplitStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerSplitStreamer<
                      ::viam::component::board::v1::StreamTicksRequest, ::viam::component::board::v1::StreamTicksResponse>* streamer) {
                        return this->StreamedStreamTicks(context,
                          streamer);
