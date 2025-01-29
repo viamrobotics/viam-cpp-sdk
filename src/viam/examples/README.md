@@ -1,3 +1,11 @@
+# Viam C++ SDK Examples
+
+This directory contains some examples for working with the Viam SDK, ranging from component and service examples to module examples which show how to create modular resources.
+
+Note that with the exception of examples in the [`project`](./project) directory, all these examples are _part of the C++ SDK build tree_, which means that their build files only work if you are using them within an existing SDK build. For learning about SDK features and concepts this is fine, but it is **not** what you should use for starter code if you want, for example,  to develop and deploy a standalone C++ module which lives outside of the SDK build tree. For that look in the [`project`](./project) directory, where you will find CMake and Makefile code which adapts the source code from the simple module example to work as a standalone project which consumes the Viam C++ SDK as a dependency.
+
+
+
 # Component & Service Examples
 Examples: 
  - camera
@@ -16,9 +24,15 @@ This will setup a server running on `localhost:8080` that has a mock setup of th
 
 Download and build the C++ SDK by following the instructions [here](https://github.com/viamrobotics/viam-cpp-sdk#getting-started).
 
-Then run: 
+Then run the executable for whichever component you chose to build above. This will be
 ``` shell
-viam-cpp-sdk/build/viam/examples/[component name]/example_[component name]
+# Camera
+viam-cpp-sdk/build/viam/examples/camera/example_camera
+```
+or
+```shell
+# Motor
+viam-cpp-sdk/build/viam/examples/motor/example_motor
 ```
 
 # Module examples
@@ -27,14 +41,9 @@ Examples:
   - complex
   - tflite
 
-These examples go through how to create custom modular resources using Viam's C++ SDK, and how to connect them to a Robot. Refer to each directory's README file for more information.
+These examples go through how to create custom modular resources using Viam's C++ SDK, and how to connect them to a Robot. Refer to each directory's README file for more information. As mentioned above, these can either be built as part of the SDK build tree, or you can use some of the build code in [`project`](./project) to build the simple module example as a standalone project which consumes the SDK as a dependency.
 
-# Generic Examples
-
-## Project example
-This example shows how to setup a simple CMake-based project that uses Viam's C++ SDK. 
-
-## Dial Example
+# Dial Example
 
 If you are connecting to a robot with authentication you will need to
 add credentials. Update path code :
