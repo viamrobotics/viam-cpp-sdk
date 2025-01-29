@@ -6,19 +6,19 @@
 #include "component/audioinput/v1/audioinput.grpc.pb.h"
 
 #include <functional>
-#include <grpcpp/support/async_stream.h>
-#include <grpcpp/support/async_unary_call.h>
-#include <grpcpp/impl/channel_interface.h>
-#include <grpcpp/impl/client_unary_call.h>
-#include <grpcpp/support/client_callback.h>
-#include <grpcpp/support/message_allocator.h>
-#include <grpcpp/support/method_handler.h>
-#include <grpcpp/impl/rpc_service_method.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/sync_stream.h>
+#include <grpcpp/impl/codegen/async_stream.h>
+#include <grpcpp/impl/codegen/async_unary_call.h>
+#include <grpcpp/impl/codegen/channel_interface.h>
+#include <grpcpp/impl/codegen/client_unary_call.h>
+#include <grpcpp/impl/codegen/client_callback.h>
+#include <grpcpp/impl/codegen/message_allocator.h>
+#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/impl/codegen/rpc_service_method.h>
+#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/codegen/server_callback_handlers.h>
+#include <grpcpp/impl/codegen/server_context.h>
+#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/impl/codegen/sync_stream.h>
 namespace viam {
 namespace component {
 namespace audioinput {
@@ -34,124 +34,144 @@ static const char* AudioInputService_method_names[] = {
 
 std::unique_ptr< AudioInputService::Stub> AudioInputService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< AudioInputService::Stub> stub(new AudioInputService::Stub(channel, options));
+  std::unique_ptr< AudioInputService::Stub> stub(new AudioInputService::Stub(channel));
   return stub;
 }
 
-AudioInputService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_Chunks_(AudioInputService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
-  , rpcmethod_Properties_(AudioInputService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Record_(AudioInputService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DoCommand_(AudioInputService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetGeometries_(AudioInputService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+AudioInputService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
+  : channel_(channel), rpcmethod_Chunks_(AudioInputService_method_names[0], ::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_Properties_(AudioInputService_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Record_(AudioInputService_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DoCommand_(AudioInputService_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGeometries_(AudioInputService_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::ClientReader< ::viam::component::audioinput::v1::ChunksResponse>* AudioInputService::Stub::ChunksRaw(::grpc::ClientContext* context, const ::viam::component::audioinput::v1::ChunksRequest& request) {
-  return ::grpc::internal::ClientReaderFactory< ::viam::component::audioinput::v1::ChunksResponse>::Create(channel_.get(), rpcmethod_Chunks_, context, request);
+  return ::grpc_impl::internal::ClientReaderFactory< ::viam::component::audioinput::v1::ChunksResponse>::Create(channel_.get(), rpcmethod_Chunks_, context, request);
 }
 
-void AudioInputService::Stub::async::Chunks(::grpc::ClientContext* context, const ::viam::component::audioinput::v1::ChunksRequest* request, ::grpc::ClientReadReactor< ::viam::component::audioinput::v1::ChunksResponse>* reactor) {
-  ::grpc::internal::ClientCallbackReaderFactory< ::viam::component::audioinput::v1::ChunksResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_Chunks_, context, request, reactor);
+void AudioInputService::Stub::experimental_async::Chunks(::grpc::ClientContext* context, ::viam::component::audioinput::v1::ChunksRequest* request, ::grpc::experimental::ClientReadReactor< ::viam::component::audioinput::v1::ChunksResponse>* reactor) {
+  ::grpc_impl::internal::ClientCallbackReaderFactory< ::viam::component::audioinput::v1::ChunksResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_Chunks_, context, request, reactor);
 }
 
 ::grpc::ClientAsyncReader< ::viam::component::audioinput::v1::ChunksResponse>* AudioInputService::Stub::AsyncChunksRaw(::grpc::ClientContext* context, const ::viam::component::audioinput::v1::ChunksRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
-  return ::grpc::internal::ClientAsyncReaderFactory< ::viam::component::audioinput::v1::ChunksResponse>::Create(channel_.get(), cq, rpcmethod_Chunks_, context, request, true, tag);
+  return ::grpc_impl::internal::ClientAsyncReaderFactory< ::viam::component::audioinput::v1::ChunksResponse>::Create(channel_.get(), cq, rpcmethod_Chunks_, context, request, true, tag);
 }
 
 ::grpc::ClientAsyncReader< ::viam::component::audioinput::v1::ChunksResponse>* AudioInputService::Stub::PrepareAsyncChunksRaw(::grpc::ClientContext* context, const ::viam::component::audioinput::v1::ChunksRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncReaderFactory< ::viam::component::audioinput::v1::ChunksResponse>::Create(channel_.get(), cq, rpcmethod_Chunks_, context, request, false, nullptr);
+  return ::grpc_impl::internal::ClientAsyncReaderFactory< ::viam::component::audioinput::v1::ChunksResponse>::Create(channel_.get(), cq, rpcmethod_Chunks_, context, request, false, nullptr);
 }
 
 ::grpc::Status AudioInputService::Stub::Properties(::grpc::ClientContext* context, const ::viam::component::audioinput::v1::PropertiesRequest& request, ::viam::component::audioinput::v1::PropertiesResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::audioinput::v1::PropertiesRequest, ::viam::component::audioinput::v1::PropertiesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Properties_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_Properties_, context, request, response);
 }
 
-void AudioInputService::Stub::async::Properties(::grpc::ClientContext* context, const ::viam::component::audioinput::v1::PropertiesRequest* request, ::viam::component::audioinput::v1::PropertiesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::audioinput::v1::PropertiesRequest, ::viam::component::audioinput::v1::PropertiesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Properties_, context, request, response, std::move(f));
+void AudioInputService::Stub::experimental_async::Properties(::grpc::ClientContext* context, const ::viam::component::audioinput::v1::PropertiesRequest* request, ::viam::component::audioinput::v1::PropertiesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Properties_, context, request, response, std::move(f));
 }
 
-void AudioInputService::Stub::async::Properties(::grpc::ClientContext* context, const ::viam::component::audioinput::v1::PropertiesRequest* request, ::viam::component::audioinput::v1::PropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Properties_, context, request, response, reactor);
+void AudioInputService::Stub::experimental_async::Properties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::audioinput::v1::PropertiesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Properties_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::audioinput::v1::PropertiesResponse>* AudioInputService::Stub::PrepareAsyncPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::audioinput::v1::PropertiesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::audioinput::v1::PropertiesResponse, ::viam::component::audioinput::v1::PropertiesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Properties_, context, request);
+void AudioInputService::Stub::experimental_async::Properties(::grpc::ClientContext* context, const ::viam::component::audioinput::v1::PropertiesRequest* request, ::viam::component::audioinput::v1::PropertiesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Properties_, context, request, response, reactor);
+}
+
+void AudioInputService::Stub::experimental_async::Properties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::audioinput::v1::PropertiesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Properties_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::audioinput::v1::PropertiesResponse>* AudioInputService::Stub::AsyncPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::audioinput::v1::PropertiesRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncPropertiesRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::audioinput::v1::PropertiesResponse>::Create(channel_.get(), cq, rpcmethod_Properties_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::audioinput::v1::PropertiesResponse>* AudioInputService::Stub::PrepareAsyncPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::audioinput::v1::PropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::audioinput::v1::PropertiesResponse>::Create(channel_.get(), cq, rpcmethod_Properties_, context, request, false);
 }
 
 ::grpc::Status AudioInputService::Stub::Record(::grpc::ClientContext* context, const ::viam::component::audioinput::v1::RecordRequest& request, ::google::api::HttpBody* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::audioinput::v1::RecordRequest, ::google::api::HttpBody, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Record_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_Record_, context, request, response);
 }
 
-void AudioInputService::Stub::async::Record(::grpc::ClientContext* context, const ::viam::component::audioinput::v1::RecordRequest* request, ::google::api::HttpBody* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::audioinput::v1::RecordRequest, ::google::api::HttpBody, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Record_, context, request, response, std::move(f));
+void AudioInputService::Stub::experimental_async::Record(::grpc::ClientContext* context, const ::viam::component::audioinput::v1::RecordRequest* request, ::google::api::HttpBody* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Record_, context, request, response, std::move(f));
 }
 
-void AudioInputService::Stub::async::Record(::grpc::ClientContext* context, const ::viam::component::audioinput::v1::RecordRequest* request, ::google::api::HttpBody* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Record_, context, request, response, reactor);
+void AudioInputService::Stub::experimental_async::Record(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::google::api::HttpBody* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Record_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::google::api::HttpBody>* AudioInputService::Stub::PrepareAsyncRecordRaw(::grpc::ClientContext* context, const ::viam::component::audioinput::v1::RecordRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::api::HttpBody, ::viam::component::audioinput::v1::RecordRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Record_, context, request);
+void AudioInputService::Stub::experimental_async::Record(::grpc::ClientContext* context, const ::viam::component::audioinput::v1::RecordRequest* request, ::google::api::HttpBody* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Record_, context, request, response, reactor);
+}
+
+void AudioInputService::Stub::experimental_async::Record(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::google::api::HttpBody* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Record_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::google::api::HttpBody>* AudioInputService::Stub::AsyncRecordRaw(::grpc::ClientContext* context, const ::viam::component::audioinput::v1::RecordRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncRecordRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::google::api::HttpBody>::Create(channel_.get(), cq, rpcmethod_Record_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::api::HttpBody>* AudioInputService::Stub::PrepareAsyncRecordRaw(::grpc::ClientContext* context, const ::viam::component::audioinput::v1::RecordRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::google::api::HttpBody>::Create(channel_.get(), cq, rpcmethod_Record_, context, request, false);
 }
 
 ::grpc::Status AudioInputService::Stub::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DoCommand_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DoCommand_, context, request, response);
 }
 
-void AudioInputService::Stub::async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
+void AudioInputService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
 }
 
-void AudioInputService::Stub::async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
+void AudioInputService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* AudioInputService::Stub::PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::DoCommandResponse, ::viam::common::v1::DoCommandRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DoCommand_, context, request);
+void AudioInputService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
+}
+
+void AudioInputService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* AudioInputService::Stub::AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncDoCommandRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::DoCommandResponse>::Create(channel_.get(), cq, rpcmethod_DoCommand_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* AudioInputService::Stub::PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::DoCommandResponse>::Create(channel_.get(), cq, rpcmethod_DoCommand_, context, request, false);
 }
 
 ::grpc::Status AudioInputService::Stub::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::viam::common::v1::GetGeometriesResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetGeometries_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetGeometries_, context, request, response);
 }
 
-void AudioInputService::Stub::async::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, std::move(f));
+void AudioInputService::Stub::experimental_async::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, std::move(f));
 }
 
-void AudioInputService::Stub::async::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, reactor);
+void AudioInputService::Stub::experimental_async::GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* AudioInputService::Stub::PrepareAsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::GetGeometriesResponse, ::viam::common::v1::GetGeometriesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetGeometries_, context, request);
+void AudioInputService::Stub::experimental_async::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, reactor);
+}
+
+void AudioInputService::Stub::experimental_async::GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* AudioInputService::Stub::AsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetGeometriesRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::GetGeometriesResponse>::Create(channel_.get(), cq, rpcmethod_GetGeometries_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* AudioInputService::Stub::PrepareAsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::GetGeometriesResponse>::Create(channel_.get(), cq, rpcmethod_GetGeometries_, context, request, false);
 }
 
 AudioInputService::Service::Service() {
@@ -160,17 +180,17 @@ AudioInputService::Service::Service() {
       ::grpc::internal::RpcMethod::SERVER_STREAMING,
       new ::grpc::internal::ServerStreamingHandler< AudioInputService::Service, ::viam::component::audioinput::v1::ChunksRequest, ::viam::component::audioinput::v1::ChunksResponse>(
           [](AudioInputService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::audioinput::v1::ChunksRequest* req,
-             ::grpc::ServerWriter<::viam::component::audioinput::v1::ChunksResponse>* writer) {
+             ::grpc_impl::ServerWriter<::viam::component::audioinput::v1::ChunksResponse>* writer) {
                return service->Chunks(ctx, req, writer);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       AudioInputService_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AudioInputService::Service, ::viam::component::audioinput::v1::PropertiesRequest, ::viam::component::audioinput::v1::PropertiesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AudioInputService::Service, ::viam::component::audioinput::v1::PropertiesRequest, ::viam::component::audioinput::v1::PropertiesResponse>(
           [](AudioInputService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::audioinput::v1::PropertiesRequest* req,
              ::viam::component::audioinput::v1::PropertiesResponse* resp) {
                return service->Properties(ctx, req, resp);
@@ -178,9 +198,9 @@ AudioInputService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       AudioInputService_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AudioInputService::Service, ::viam::component::audioinput::v1::RecordRequest, ::google::api::HttpBody, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AudioInputService::Service, ::viam::component::audioinput::v1::RecordRequest, ::google::api::HttpBody>(
           [](AudioInputService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::audioinput::v1::RecordRequest* req,
              ::google::api::HttpBody* resp) {
                return service->Record(ctx, req, resp);
@@ -188,9 +208,9 @@ AudioInputService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       AudioInputService_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AudioInputService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AudioInputService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
           [](AudioInputService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::common::v1::DoCommandRequest* req,
              ::viam::common::v1::DoCommandResponse* resp) {
                return service->DoCommand(ctx, req, resp);
@@ -198,9 +218,9 @@ AudioInputService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       AudioInputService_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AudioInputService::Service, ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AudioInputService::Service, ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
           [](AudioInputService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::common::v1::GetGeometriesRequest* req,
              ::viam::common::v1::GetGeometriesResponse* resp) {
                return service->GetGeometries(ctx, req, resp);

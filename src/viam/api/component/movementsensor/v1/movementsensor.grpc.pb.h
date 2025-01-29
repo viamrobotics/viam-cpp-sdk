@@ -7,23 +7,24 @@
 #include "component/movementsensor/v1/movementsensor.pb.h"
 
 #include <functional>
-#include <grpcpp/generic/async_generic_service.h>
-#include <grpcpp/support/async_stream.h>
-#include <grpcpp/support/async_unary_call.h>
-#include <grpcpp/support/client_callback.h>
-#include <grpcpp/client_context.h>
-#include <grpcpp/completion_queue.h>
-#include <grpcpp/support/message_allocator.h>
-#include <grpcpp/support/method_handler.h>
-#include <grpcpp/impl/proto_utils.h>
-#include <grpcpp/impl/rpc_method.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/status.h>
-#include <grpcpp/support/stub_options.h>
-#include <grpcpp/support/sync_stream.h>
+#include <grpc/impl/codegen/port_platform.h>
+#include <grpcpp/impl/codegen/async_generic_service.h>
+#include <grpcpp/impl/codegen/async_stream.h>
+#include <grpcpp/impl/codegen/async_unary_call.h>
+#include <grpcpp/impl/codegen/client_callback.h>
+#include <grpcpp/impl/codegen/client_context.h>
+#include <grpcpp/impl/codegen/completion_queue.h>
+#include <grpcpp/impl/codegen/message_allocator.h>
+#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/impl/codegen/proto_utils.h>
+#include <grpcpp/impl/codegen/rpc_method.h>
+#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/codegen/server_callback_handlers.h>
+#include <grpcpp/impl/codegen/server_context.h>
+#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/impl/codegen/status.h>
+#include <grpcpp/impl/codegen/stub_options.h>
+#include <grpcpp/impl/codegen/sync_stream.h>
 
 namespace viam {
 namespace component {
@@ -117,38 +118,152 @@ class MovementSensorService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetReadingsResponse>> PrepareAsyncGetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetReadingsResponse>>(PrepareAsyncGetReadingsRaw(context, request, cq));
     }
-    class async_interface {
+    class experimental_async_interface {
      public:
-      virtual ~async_interface() {}
+      virtual ~experimental_async_interface() {}
       virtual void GetLinearVelocity(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearVelocityRequest* request, ::viam::component::movementsensor::v1::GetLinearVelocityResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetLinearVelocity(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetLinearVelocityResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetLinearVelocity(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearVelocityRequest* request, ::viam::component::movementsensor::v1::GetLinearVelocityResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetLinearVelocity(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearVelocityRequest* request, ::viam::component::movementsensor::v1::GetLinearVelocityResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetLinearVelocity(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetLinearVelocityResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetLinearVelocity(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetLinearVelocityResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void GetAngularVelocity(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetAngularVelocityRequest* request, ::viam::component::movementsensor::v1::GetAngularVelocityResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetAngularVelocity(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetAngularVelocityResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetAngularVelocity(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetAngularVelocityRequest* request, ::viam::component::movementsensor::v1::GetAngularVelocityResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetAngularVelocity(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetAngularVelocityRequest* request, ::viam::component::movementsensor::v1::GetAngularVelocityResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetAngularVelocity(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetAngularVelocityResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetAngularVelocity(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetAngularVelocityResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void GetCompassHeading(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetCompassHeadingRequest* request, ::viam::component::movementsensor::v1::GetCompassHeadingResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetCompassHeading(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetCompassHeadingResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetCompassHeading(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetCompassHeadingRequest* request, ::viam::component::movementsensor::v1::GetCompassHeadingResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetCompassHeading(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetCompassHeadingRequest* request, ::viam::component::movementsensor::v1::GetCompassHeadingResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetCompassHeading(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetCompassHeadingResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetCompassHeading(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetCompassHeadingResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void GetOrientation(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetOrientationRequest* request, ::viam::component::movementsensor::v1::GetOrientationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetOrientation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetOrientationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetOrientation(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetOrientationRequest* request, ::viam::component::movementsensor::v1::GetOrientationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetOrientation(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetOrientationRequest* request, ::viam::component::movementsensor::v1::GetOrientationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetOrientation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetOrientationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetOrientation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetOrientationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void GetPosition(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetPositionRequest* request, ::viam::component::movementsensor::v1::GetPositionResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetPositionResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetPosition(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetPositionRequest* request, ::viam::component::movementsensor::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetPosition(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetPositionRequest* request, ::viam::component::movementsensor::v1::GetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void GetProperties(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetPropertiesRequest* request, ::viam::component::movementsensor::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetProperties(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetPropertiesRequest* request, ::viam::component::movementsensor::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetProperties(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetPropertiesRequest* request, ::viam::component::movementsensor::v1::GetPropertiesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetPropertiesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void GetAccuracy(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetAccuracyRequest* request, ::viam::component::movementsensor::v1::GetAccuracyResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetAccuracy(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetAccuracyResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetAccuracy(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetAccuracyRequest* request, ::viam::component::movementsensor::v1::GetAccuracyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetAccuracy(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetAccuracyRequest* request, ::viam::component::movementsensor::v1::GetAccuracyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetAccuracy(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetAccuracyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetAccuracy(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetAccuracyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void GetLinearAcceleration(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetLinearAcceleration(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetLinearAcceleration(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetLinearAcceleration(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetLinearAcceleration(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetLinearAcceleration(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // GetGeometries returns the geometries of the component in their current configuration
       virtual void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // GetReadings returns the readings of a sensor of the underlying robot.
       virtual void GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetReadings(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetReadingsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetReadings(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetReadings(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
     };
-    typedef class async_interface experimental_async_interface;
-    virtual class async_interface* async() { return nullptr; }
-    class async_interface* experimental_async() { return async(); }
-   private:
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    typedef class experimental_async_interface async_interface;
+    #endif
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    async_interface* async() { return experimental_async(); }
+    #endif
+    virtual class experimental_async_interface* experimental_async() { return nullptr; }
+  private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::movementsensor::v1::GetLinearVelocityResponse>* AsyncGetLinearVelocityRaw(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearVelocityRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::movementsensor::v1::GetLinearVelocityResponse>* PrepareAsyncGetLinearVelocityRaw(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearVelocityRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::movementsensor::v1::GetAngularVelocityResponse>* AsyncGetAngularVelocityRaw(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetAngularVelocityRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -174,7 +289,7 @@ class MovementSensorService final {
   };
   class Stub final : public StubInterface {
    public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
     ::grpc::Status GetLinearVelocity(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearVelocityRequest& request, ::viam::component::movementsensor::v1::GetLinearVelocityResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::movementsensor::v1::GetLinearVelocityResponse>> AsyncGetLinearVelocity(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearVelocityRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::movementsensor::v1::GetLinearVelocityResponse>>(AsyncGetLinearVelocityRaw(context, request, cq));
@@ -252,42 +367,152 @@ class MovementSensorService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetReadingsResponse>> PrepareAsyncGetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetReadingsResponse>>(PrepareAsyncGetReadingsRaw(context, request, cq));
     }
-    class async final :
-      public StubInterface::async_interface {
+    class experimental_async final :
+      public StubInterface::experimental_async_interface {
      public:
       void GetLinearVelocity(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearVelocityRequest* request, ::viam::component::movementsensor::v1::GetLinearVelocityResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetLinearVelocity(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetLinearVelocityResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetLinearVelocity(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearVelocityRequest* request, ::viam::component::movementsensor::v1::GetLinearVelocityResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetLinearVelocity(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearVelocityRequest* request, ::viam::component::movementsensor::v1::GetLinearVelocityResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetLinearVelocity(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetLinearVelocityResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetLinearVelocity(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetLinearVelocityResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetAngularVelocity(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetAngularVelocityRequest* request, ::viam::component::movementsensor::v1::GetAngularVelocityResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetAngularVelocity(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetAngularVelocityResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetAngularVelocity(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetAngularVelocityRequest* request, ::viam::component::movementsensor::v1::GetAngularVelocityResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetAngularVelocity(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetAngularVelocityRequest* request, ::viam::component::movementsensor::v1::GetAngularVelocityResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetAngularVelocity(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetAngularVelocityResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetAngularVelocity(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetAngularVelocityResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetCompassHeading(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetCompassHeadingRequest* request, ::viam::component::movementsensor::v1::GetCompassHeadingResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetCompassHeading(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetCompassHeadingResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetCompassHeading(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetCompassHeadingRequest* request, ::viam::component::movementsensor::v1::GetCompassHeadingResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetCompassHeading(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetCompassHeadingRequest* request, ::viam::component::movementsensor::v1::GetCompassHeadingResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetCompassHeading(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetCompassHeadingResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetCompassHeading(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetCompassHeadingResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetOrientation(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetOrientationRequest* request, ::viam::component::movementsensor::v1::GetOrientationResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetOrientation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetOrientationResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetOrientation(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetOrientationRequest* request, ::viam::component::movementsensor::v1::GetOrientationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetOrientation(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetOrientationRequest* request, ::viam::component::movementsensor::v1::GetOrientationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetOrientation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetOrientationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetOrientation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetOrientationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetPosition(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetPositionRequest* request, ::viam::component::movementsensor::v1::GetPositionResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetPositionResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetPosition(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetPositionRequest* request, ::viam::component::movementsensor::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetPosition(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetPositionRequest* request, ::viam::component::movementsensor::v1::GetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetProperties(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetPropertiesRequest* request, ::viam::component::movementsensor::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetProperties(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetPropertiesRequest* request, ::viam::component::movementsensor::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetProperties(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetPropertiesRequest* request, ::viam::component::movementsensor::v1::GetPropertiesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetPropertiesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetAccuracy(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetAccuracyRequest* request, ::viam::component::movementsensor::v1::GetAccuracyResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetAccuracy(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetAccuracyResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetAccuracy(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetAccuracyRequest* request, ::viam::component::movementsensor::v1::GetAccuracyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetAccuracy(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetAccuracyRequest* request, ::viam::component::movementsensor::v1::GetAccuracyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetAccuracy(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetAccuracyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetAccuracy(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetAccuracyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetLinearAcceleration(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetLinearAcceleration(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetLinearAcceleration(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetLinearAcceleration(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetLinearAcceleration(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetLinearAcceleration(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
+      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetReadings(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetReadingsResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetReadings(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetReadings(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
      private:
       friend class Stub;
-      explicit async(Stub* stub): stub_(stub) { }
+      explicit experimental_async(Stub* stub): stub_(stub) { }
       Stub* stub() { return stub_; }
       Stub* stub_;
     };
-    class async* async() override { return &async_stub_; }
+    class experimental_async_interface* experimental_async() override { return &async_stub_; }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class async async_stub_{this};
+    class experimental_async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::viam::component::movementsensor::v1::GetLinearVelocityResponse>* AsyncGetLinearVelocityRaw(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearVelocityRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::movementsensor::v1::GetLinearVelocityResponse>* PrepareAsyncGetLinearVelocityRaw(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearVelocityRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::movementsensor::v1::GetAngularVelocityResponse>* AsyncGetAngularVelocityRaw(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetAngularVelocityRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -564,22 +789,36 @@ class MovementSensorService final {
   };
   typedef WithAsyncMethod_GetLinearVelocity<WithAsyncMethod_GetAngularVelocity<WithAsyncMethod_GetCompassHeading<WithAsyncMethod_GetOrientation<WithAsyncMethod_GetPosition<WithAsyncMethod_GetProperties<WithAsyncMethod_GetAccuracy<WithAsyncMethod_GetLinearAcceleration<WithAsyncMethod_DoCommand<WithAsyncMethod_GetGeometries<WithAsyncMethod_GetReadings<Service > > > > > > > > > > > AsyncService;
   template <class BaseClass>
-  class WithCallbackMethod_GetLinearVelocity : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetLinearVelocity : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetLinearVelocity() {
-      ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetLinearVelocityRequest, ::viam::component::movementsensor::v1::GetLinearVelocityResponse>(
+    ExperimentalWithCallbackMethod_GetLinearVelocity() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(0,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetLinearVelocityRequest, ::viam::component::movementsensor::v1::GetLinearVelocityResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::movementsensor::v1::GetLinearVelocityRequest* request, ::viam::component::movementsensor::v1::GetLinearVelocityResponse* response) { return this->GetLinearVelocity(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::movementsensor::v1::GetLinearVelocityRequest* request, ::viam::component::movementsensor::v1::GetLinearVelocityResponse* response) { return this->GetLinearVelocity(context, request, response); }));}
     void SetMessageAllocatorFor_GetLinearVelocity(
-        ::grpc::MessageAllocator< ::viam::component::movementsensor::v1::GetLinearVelocityRequest, ::viam::component::movementsensor::v1::GetLinearVelocityResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::movementsensor::v1::GetLinearVelocityRequest, ::viam::component::movementsensor::v1::GetLinearVelocityResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetLinearVelocityRequest, ::viam::component::movementsensor::v1::GetLinearVelocityResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetLinearVelocityRequest, ::viam::component::movementsensor::v1::GetLinearVelocityResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetLinearVelocity() override {
+    ~ExperimentalWithCallbackMethod_GetLinearVelocity() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -587,26 +826,46 @@ class MovementSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetLinearVelocity(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetLinearVelocityRequest* /*request*/, ::viam::component::movementsensor::v1::GetLinearVelocityResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetLinearVelocityRequest* /*request*/, ::viam::component::movementsensor::v1::GetLinearVelocityResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetLinearVelocity(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetLinearVelocityRequest* /*request*/, ::viam::component::movementsensor::v1::GetLinearVelocityResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetAngularVelocity : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetAngularVelocity : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetAngularVelocity() {
-      ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetAngularVelocityRequest, ::viam::component::movementsensor::v1::GetAngularVelocityResponse>(
+    ExperimentalWithCallbackMethod_GetAngularVelocity() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetAngularVelocityRequest, ::viam::component::movementsensor::v1::GetAngularVelocityResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::movementsensor::v1::GetAngularVelocityRequest* request, ::viam::component::movementsensor::v1::GetAngularVelocityResponse* response) { return this->GetAngularVelocity(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::movementsensor::v1::GetAngularVelocityRequest* request, ::viam::component::movementsensor::v1::GetAngularVelocityResponse* response) { return this->GetAngularVelocity(context, request, response); }));}
     void SetMessageAllocatorFor_GetAngularVelocity(
-        ::grpc::MessageAllocator< ::viam::component::movementsensor::v1::GetAngularVelocityRequest, ::viam::component::movementsensor::v1::GetAngularVelocityResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::movementsensor::v1::GetAngularVelocityRequest, ::viam::component::movementsensor::v1::GetAngularVelocityResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetAngularVelocityRequest, ::viam::component::movementsensor::v1::GetAngularVelocityResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetAngularVelocityRequest, ::viam::component::movementsensor::v1::GetAngularVelocityResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetAngularVelocity() override {
+    ~ExperimentalWithCallbackMethod_GetAngularVelocity() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -614,26 +873,46 @@ class MovementSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetAngularVelocity(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetAngularVelocityRequest* /*request*/, ::viam::component::movementsensor::v1::GetAngularVelocityResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetAngularVelocityRequest* /*request*/, ::viam::component::movementsensor::v1::GetAngularVelocityResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetAngularVelocity(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetAngularVelocityRequest* /*request*/, ::viam::component::movementsensor::v1::GetAngularVelocityResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetCompassHeading : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetCompassHeading : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetCompassHeading() {
-      ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetCompassHeadingRequest, ::viam::component::movementsensor::v1::GetCompassHeadingResponse>(
+    ExperimentalWithCallbackMethod_GetCompassHeading() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetCompassHeadingRequest, ::viam::component::movementsensor::v1::GetCompassHeadingResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::movementsensor::v1::GetCompassHeadingRequest* request, ::viam::component::movementsensor::v1::GetCompassHeadingResponse* response) { return this->GetCompassHeading(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::movementsensor::v1::GetCompassHeadingRequest* request, ::viam::component::movementsensor::v1::GetCompassHeadingResponse* response) { return this->GetCompassHeading(context, request, response); }));}
     void SetMessageAllocatorFor_GetCompassHeading(
-        ::grpc::MessageAllocator< ::viam::component::movementsensor::v1::GetCompassHeadingRequest, ::viam::component::movementsensor::v1::GetCompassHeadingResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::movementsensor::v1::GetCompassHeadingRequest, ::viam::component::movementsensor::v1::GetCompassHeadingResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetCompassHeadingRequest, ::viam::component::movementsensor::v1::GetCompassHeadingResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetCompassHeadingRequest, ::viam::component::movementsensor::v1::GetCompassHeadingResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetCompassHeading() override {
+    ~ExperimentalWithCallbackMethod_GetCompassHeading() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -641,26 +920,46 @@ class MovementSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetCompassHeading(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetCompassHeadingRequest* /*request*/, ::viam::component::movementsensor::v1::GetCompassHeadingResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetCompassHeadingRequest* /*request*/, ::viam::component::movementsensor::v1::GetCompassHeadingResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetCompassHeading(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetCompassHeadingRequest* /*request*/, ::viam::component::movementsensor::v1::GetCompassHeadingResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetOrientation : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetOrientation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetOrientation() {
-      ::grpc::Service::MarkMethodCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetOrientationRequest, ::viam::component::movementsensor::v1::GetOrientationResponse>(
+    ExperimentalWithCallbackMethod_GetOrientation() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetOrientationRequest, ::viam::component::movementsensor::v1::GetOrientationResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::movementsensor::v1::GetOrientationRequest* request, ::viam::component::movementsensor::v1::GetOrientationResponse* response) { return this->GetOrientation(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::movementsensor::v1::GetOrientationRequest* request, ::viam::component::movementsensor::v1::GetOrientationResponse* response) { return this->GetOrientation(context, request, response); }));}
     void SetMessageAllocatorFor_GetOrientation(
-        ::grpc::MessageAllocator< ::viam::component::movementsensor::v1::GetOrientationRequest, ::viam::component::movementsensor::v1::GetOrientationResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::movementsensor::v1::GetOrientationRequest, ::viam::component::movementsensor::v1::GetOrientationResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetOrientationRequest, ::viam::component::movementsensor::v1::GetOrientationResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetOrientationRequest, ::viam::component::movementsensor::v1::GetOrientationResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetOrientation() override {
+    ~ExperimentalWithCallbackMethod_GetOrientation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -668,26 +967,46 @@ class MovementSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetOrientation(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetOrientationRequest* /*request*/, ::viam::component::movementsensor::v1::GetOrientationResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetOrientationRequest* /*request*/, ::viam::component::movementsensor::v1::GetOrientationResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetOrientation(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetOrientationRequest* /*request*/, ::viam::component::movementsensor::v1::GetOrientationResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetPosition : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetPosition : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetPosition() {
-      ::grpc::Service::MarkMethodCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetPositionRequest, ::viam::component::movementsensor::v1::GetPositionResponse>(
+    ExperimentalWithCallbackMethod_GetPosition() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetPositionRequest, ::viam::component::movementsensor::v1::GetPositionResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::movementsensor::v1::GetPositionRequest* request, ::viam::component::movementsensor::v1::GetPositionResponse* response) { return this->GetPosition(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::movementsensor::v1::GetPositionRequest* request, ::viam::component::movementsensor::v1::GetPositionResponse* response) { return this->GetPosition(context, request, response); }));}
     void SetMessageAllocatorFor_GetPosition(
-        ::grpc::MessageAllocator< ::viam::component::movementsensor::v1::GetPositionRequest, ::viam::component::movementsensor::v1::GetPositionResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::movementsensor::v1::GetPositionRequest, ::viam::component::movementsensor::v1::GetPositionResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetPositionRequest, ::viam::component::movementsensor::v1::GetPositionResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(4);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetPositionRequest, ::viam::component::movementsensor::v1::GetPositionResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetPosition() override {
+    ~ExperimentalWithCallbackMethod_GetPosition() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -695,26 +1014,46 @@ class MovementSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetPosition(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetPositionRequest* /*request*/, ::viam::component::movementsensor::v1::GetPositionResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetPositionRequest* /*request*/, ::viam::component::movementsensor::v1::GetPositionResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetPosition(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetPositionRequest* /*request*/, ::viam::component::movementsensor::v1::GetPositionResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetProperties : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetProperties : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetProperties() {
-      ::grpc::Service::MarkMethodCallback(5,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetPropertiesRequest, ::viam::component::movementsensor::v1::GetPropertiesResponse>(
+    ExperimentalWithCallbackMethod_GetProperties() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(5,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetPropertiesRequest, ::viam::component::movementsensor::v1::GetPropertiesResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::movementsensor::v1::GetPropertiesRequest* request, ::viam::component::movementsensor::v1::GetPropertiesResponse* response) { return this->GetProperties(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::movementsensor::v1::GetPropertiesRequest* request, ::viam::component::movementsensor::v1::GetPropertiesResponse* response) { return this->GetProperties(context, request, response); }));}
     void SetMessageAllocatorFor_GetProperties(
-        ::grpc::MessageAllocator< ::viam::component::movementsensor::v1::GetPropertiesRequest, ::viam::component::movementsensor::v1::GetPropertiesResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::movementsensor::v1::GetPropertiesRequest, ::viam::component::movementsensor::v1::GetPropertiesResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetPropertiesRequest, ::viam::component::movementsensor::v1::GetPropertiesResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(5);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetPropertiesRequest, ::viam::component::movementsensor::v1::GetPropertiesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetProperties() override {
+    ~ExperimentalWithCallbackMethod_GetProperties() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -722,26 +1061,46 @@ class MovementSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetProperties(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetPropertiesRequest* /*request*/, ::viam::component::movementsensor::v1::GetPropertiesResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetPropertiesRequest* /*request*/, ::viam::component::movementsensor::v1::GetPropertiesResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetProperties(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetPropertiesRequest* /*request*/, ::viam::component::movementsensor::v1::GetPropertiesResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetAccuracy : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetAccuracy : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetAccuracy() {
-      ::grpc::Service::MarkMethodCallback(6,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetAccuracyRequest, ::viam::component::movementsensor::v1::GetAccuracyResponse>(
+    ExperimentalWithCallbackMethod_GetAccuracy() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(6,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetAccuracyRequest, ::viam::component::movementsensor::v1::GetAccuracyResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::movementsensor::v1::GetAccuracyRequest* request, ::viam::component::movementsensor::v1::GetAccuracyResponse* response) { return this->GetAccuracy(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::movementsensor::v1::GetAccuracyRequest* request, ::viam::component::movementsensor::v1::GetAccuracyResponse* response) { return this->GetAccuracy(context, request, response); }));}
     void SetMessageAllocatorFor_GetAccuracy(
-        ::grpc::MessageAllocator< ::viam::component::movementsensor::v1::GetAccuracyRequest, ::viam::component::movementsensor::v1::GetAccuracyResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::movementsensor::v1::GetAccuracyRequest, ::viam::component::movementsensor::v1::GetAccuracyResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetAccuracyRequest, ::viam::component::movementsensor::v1::GetAccuracyResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(6);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetAccuracyRequest, ::viam::component::movementsensor::v1::GetAccuracyResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetAccuracy() override {
+    ~ExperimentalWithCallbackMethod_GetAccuracy() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -749,26 +1108,46 @@ class MovementSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetAccuracy(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetAccuracyRequest* /*request*/, ::viam::component::movementsensor::v1::GetAccuracyResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetAccuracyRequest* /*request*/, ::viam::component::movementsensor::v1::GetAccuracyResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetAccuracy(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetAccuracyRequest* /*request*/, ::viam::component::movementsensor::v1::GetAccuracyResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetLinearAcceleration : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetLinearAcceleration : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetLinearAcceleration() {
-      ::grpc::Service::MarkMethodCallback(7,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetLinearAccelerationRequest, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>(
+    ExperimentalWithCallbackMethod_GetLinearAcceleration() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(7,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetLinearAccelerationRequest, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response) { return this->GetLinearAcceleration(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response) { return this->GetLinearAcceleration(context, request, response); }));}
     void SetMessageAllocatorFor_GetLinearAcceleration(
-        ::grpc::MessageAllocator< ::viam::component::movementsensor::v1::GetLinearAccelerationRequest, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::movementsensor::v1::GetLinearAccelerationRequest, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetLinearAccelerationRequest, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(7);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetLinearAccelerationRequest, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetLinearAcceleration() override {
+    ~ExperimentalWithCallbackMethod_GetLinearAcceleration() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -776,26 +1155,46 @@ class MovementSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetLinearAcceleration(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* /*request*/, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* /*request*/, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetLinearAcceleration(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* /*request*/, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_DoCommand : public BaseClass {
+  class ExperimentalWithCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodCallback(8,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
+    ExperimentalWithCallbackMethod_DoCommand() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(8,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
     void SetMessageAllocatorFor_DoCommand(
-        ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(8);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_DoCommand() override {
+    ~ExperimentalWithCallbackMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -803,26 +1202,46 @@ class MovementSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DoCommand(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* DoCommand(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetGeometries : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetGeometries : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodCallback(9,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
+    ExperimentalWithCallbackMethod_GetGeometries() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(9,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response) { return this->GetGeometries(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response) { return this->GetGeometries(context, request, response); }));}
     void SetMessageAllocatorFor_GetGeometries(
-        ::grpc::MessageAllocator< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(9);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetGeometries() override {
+    ~ExperimentalWithCallbackMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -830,26 +1249,46 @@ class MovementSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetGeometries(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::GetGeometriesRequest* /*request*/, ::viam::common::v1::GetGeometriesResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::GetGeometriesRequest* /*request*/, ::viam::common::v1::GetGeometriesResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetGeometries(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::common::v1::GetGeometriesRequest* /*request*/, ::viam::common::v1::GetGeometriesResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetReadings : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetReadings : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetReadings() {
-      ::grpc::Service::MarkMethodCallback(10,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>(
+    ExperimentalWithCallbackMethod_GetReadings() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(10,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response) { return this->GetReadings(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response) { return this->GetReadings(context, request, response); }));}
     void SetMessageAllocatorFor_GetReadings(
-        ::grpc::MessageAllocator< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(10);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetReadings() override {
+    ~ExperimentalWithCallbackMethod_GetReadings() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -857,11 +1296,20 @@ class MovementSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetReadings(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::GetReadingsRequest* /*request*/, ::viam::common::v1::GetReadingsResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::GetReadingsRequest* /*request*/, ::viam::common::v1::GetReadingsResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetReadings(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::common::v1::GetReadingsRequest* /*request*/, ::viam::common::v1::GetReadingsResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
-  typedef WithCallbackMethod_GetLinearVelocity<WithCallbackMethod_GetAngularVelocity<WithCallbackMethod_GetCompassHeading<WithCallbackMethod_GetOrientation<WithCallbackMethod_GetPosition<WithCallbackMethod_GetProperties<WithCallbackMethod_GetAccuracy<WithCallbackMethod_GetLinearAcceleration<WithCallbackMethod_DoCommand<WithCallbackMethod_GetGeometries<WithCallbackMethod_GetReadings<Service > > > > > > > > > > > CallbackService;
-  typedef CallbackService ExperimentalCallbackService;
+  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+  typedef ExperimentalWithCallbackMethod_GetLinearVelocity<ExperimentalWithCallbackMethod_GetAngularVelocity<ExperimentalWithCallbackMethod_GetCompassHeading<ExperimentalWithCallbackMethod_GetOrientation<ExperimentalWithCallbackMethod_GetPosition<ExperimentalWithCallbackMethod_GetProperties<ExperimentalWithCallbackMethod_GetAccuracy<ExperimentalWithCallbackMethod_GetLinearAcceleration<ExperimentalWithCallbackMethod_DoCommand<ExperimentalWithCallbackMethod_GetGeometries<ExperimentalWithCallbackMethod_GetReadings<Service > > > > > > > > > > > CallbackService;
+  #endif
+
+  typedef ExperimentalWithCallbackMethod_GetLinearVelocity<ExperimentalWithCallbackMethod_GetAngularVelocity<ExperimentalWithCallbackMethod_GetCompassHeading<ExperimentalWithCallbackMethod_GetOrientation<ExperimentalWithCallbackMethod_GetPosition<ExperimentalWithCallbackMethod_GetProperties<ExperimentalWithCallbackMethod_GetAccuracy<ExperimentalWithCallbackMethod_GetLinearAcceleration<ExperimentalWithCallbackMethod_DoCommand<ExperimentalWithCallbackMethod_GetGeometries<ExperimentalWithCallbackMethod_GetReadings<Service > > > > > > > > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetLinearVelocity : public BaseClass {
    private:
@@ -1270,17 +1718,27 @@ class MovementSensorService final {
     }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetLinearVelocity : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetLinearVelocity : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetLinearVelocity() {
-      ::grpc::Service::MarkMethodRawCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetLinearVelocity() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(0,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetLinearVelocity(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetLinearVelocity(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetLinearVelocity() override {
+    ~ExperimentalWithRawCallbackMethod_GetLinearVelocity() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1288,21 +1746,37 @@ class MovementSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetLinearVelocity(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetLinearVelocity(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetAngularVelocity : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetAngularVelocity : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetAngularVelocity() {
-      ::grpc::Service::MarkMethodRawCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetAngularVelocity() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetAngularVelocity(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetAngularVelocity(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetAngularVelocity() override {
+    ~ExperimentalWithRawCallbackMethod_GetAngularVelocity() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1310,21 +1784,37 @@ class MovementSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetAngularVelocity(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetAngularVelocity(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetCompassHeading : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetCompassHeading : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetCompassHeading() {
-      ::grpc::Service::MarkMethodRawCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetCompassHeading() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetCompassHeading(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetCompassHeading(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetCompassHeading() override {
+    ~ExperimentalWithRawCallbackMethod_GetCompassHeading() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1332,21 +1822,37 @@ class MovementSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetCompassHeading(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetCompassHeading(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetOrientation : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetOrientation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetOrientation() {
-      ::grpc::Service::MarkMethodRawCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetOrientation() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetOrientation(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetOrientation(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetOrientation() override {
+    ~ExperimentalWithRawCallbackMethod_GetOrientation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1354,21 +1860,37 @@ class MovementSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetOrientation(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetOrientation(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetPosition : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetPosition : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetPosition() {
-      ::grpc::Service::MarkMethodRawCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetPosition() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetPosition(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetPosition(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetPosition() override {
+    ~ExperimentalWithRawCallbackMethod_GetPosition() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1376,21 +1898,37 @@ class MovementSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetPosition(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetPosition(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetProperties : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetProperties : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetProperties() {
-      ::grpc::Service::MarkMethodRawCallback(5,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetProperties() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(5,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetProperties(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetProperties(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetProperties() override {
+    ~ExperimentalWithRawCallbackMethod_GetProperties() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1398,21 +1936,37 @@ class MovementSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetProperties(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetProperties(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetAccuracy : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetAccuracy : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetAccuracy() {
-      ::grpc::Service::MarkMethodRawCallback(6,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetAccuracy() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(6,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetAccuracy(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetAccuracy(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetAccuracy() override {
+    ~ExperimentalWithRawCallbackMethod_GetAccuracy() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1420,21 +1974,37 @@ class MovementSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetAccuracy(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetAccuracy(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetLinearAcceleration : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetLinearAcceleration : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetLinearAcceleration() {
-      ::grpc::Service::MarkMethodRawCallback(7,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetLinearAcceleration() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(7,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetLinearAcceleration(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetLinearAcceleration(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetLinearAcceleration() override {
+    ~ExperimentalWithRawCallbackMethod_GetLinearAcceleration() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1442,21 +2012,37 @@ class MovementSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetLinearAcceleration(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetLinearAcceleration(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_DoCommand : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRawCallback(8,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_DoCommand() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(8,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
     }
-    ~WithRawCallbackMethod_DoCommand() override {
+    ~ExperimentalWithRawCallbackMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1464,21 +2050,37 @@ class MovementSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DoCommand(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* DoCommand(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetGeometries : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetGeometries : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodRawCallback(9,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetGeometries() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(9,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetGeometries(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetGeometries(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetGeometries() override {
+    ~ExperimentalWithRawCallbackMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1486,21 +2088,37 @@ class MovementSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetGeometries(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetGeometries(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetReadings : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetReadings : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetReadings() {
-      ::grpc::Service::MarkMethodRawCallback(10,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetReadings() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(10,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetReadings(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetReadings(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetReadings() override {
+    ~ExperimentalWithRawCallbackMethod_GetReadings() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1508,8 +2126,14 @@ class MovementSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetReadings(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetReadings(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_GetLinearVelocity : public BaseClass {
@@ -1520,8 +2144,8 @@ class MovementSensorService final {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::movementsensor::v1::GetLinearVelocityRequest, ::viam::component::movementsensor::v1::GetLinearVelocityResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::movementsensor::v1::GetLinearVelocityRequest, ::viam::component::movementsensor::v1::GetLinearVelocityResponse>* streamer) {
                        return this->StreamedGetLinearVelocity(context,
                          streamer);
@@ -1547,8 +2171,8 @@ class MovementSensorService final {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::movementsensor::v1::GetAngularVelocityRequest, ::viam::component::movementsensor::v1::GetAngularVelocityResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::movementsensor::v1::GetAngularVelocityRequest, ::viam::component::movementsensor::v1::GetAngularVelocityResponse>* streamer) {
                        return this->StreamedGetAngularVelocity(context,
                          streamer);
@@ -1574,8 +2198,8 @@ class MovementSensorService final {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::movementsensor::v1::GetCompassHeadingRequest, ::viam::component::movementsensor::v1::GetCompassHeadingResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::movementsensor::v1::GetCompassHeadingRequest, ::viam::component::movementsensor::v1::GetCompassHeadingResponse>* streamer) {
                        return this->StreamedGetCompassHeading(context,
                          streamer);
@@ -1601,8 +2225,8 @@ class MovementSensorService final {
       ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::movementsensor::v1::GetOrientationRequest, ::viam::component::movementsensor::v1::GetOrientationResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::movementsensor::v1::GetOrientationRequest, ::viam::component::movementsensor::v1::GetOrientationResponse>* streamer) {
                        return this->StreamedGetOrientation(context,
                          streamer);
@@ -1628,8 +2252,8 @@ class MovementSensorService final {
       ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::movementsensor::v1::GetPositionRequest, ::viam::component::movementsensor::v1::GetPositionResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::movementsensor::v1::GetPositionRequest, ::viam::component::movementsensor::v1::GetPositionResponse>* streamer) {
                        return this->StreamedGetPosition(context,
                          streamer);
@@ -1655,8 +2279,8 @@ class MovementSensorService final {
       ::grpc::Service::MarkMethodStreamed(5,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::movementsensor::v1::GetPropertiesRequest, ::viam::component::movementsensor::v1::GetPropertiesResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::movementsensor::v1::GetPropertiesRequest, ::viam::component::movementsensor::v1::GetPropertiesResponse>* streamer) {
                        return this->StreamedGetProperties(context,
                          streamer);
@@ -1682,8 +2306,8 @@ class MovementSensorService final {
       ::grpc::Service::MarkMethodStreamed(6,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::movementsensor::v1::GetAccuracyRequest, ::viam::component::movementsensor::v1::GetAccuracyResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::movementsensor::v1::GetAccuracyRequest, ::viam::component::movementsensor::v1::GetAccuracyResponse>* streamer) {
                        return this->StreamedGetAccuracy(context,
                          streamer);
@@ -1709,8 +2333,8 @@ class MovementSensorService final {
       ::grpc::Service::MarkMethodStreamed(7,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::movementsensor::v1::GetLinearAccelerationRequest, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::movementsensor::v1::GetLinearAccelerationRequest, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>* streamer) {
                        return this->StreamedGetLinearAcceleration(context,
                          streamer);
@@ -1736,8 +2360,8 @@ class MovementSensorService final {
       ::grpc::Service::MarkMethodStreamed(8,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* streamer) {
                        return this->StreamedDoCommand(context,
                          streamer);
@@ -1763,8 +2387,8 @@ class MovementSensorService final {
       ::grpc::Service::MarkMethodStreamed(9,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>* streamer) {
                        return this->StreamedGetGeometries(context,
                          streamer);
@@ -1790,8 +2414,8 @@ class MovementSensorService final {
       ::grpc::Service::MarkMethodStreamed(10,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>* streamer) {
                        return this->StreamedGetReadings(context,
                          streamer);
