@@ -6722,6 +6722,7 @@ class BillingAddress final :
     kCityFieldNumber = 3,
     kStateFieldNumber = 4,
     kZipcodeFieldNumber = 5,
+    kCountryFieldNumber = 6,
   };
   // string address_line_1 = 1 [json_name = "addressLine1"];
   void clear_address_line_1();
@@ -6797,6 +6798,20 @@ class BillingAddress final :
   std::string* _internal_mutable_zipcode();
   public:
 
+  // string country = 6 [json_name = "country"];
+  void clear_country();
+  const std::string& country() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_country(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_country();
+  PROTOBUF_NODISCARD std::string* release_country();
+  void set_allocated_country(std::string* country);
+  private:
+  const std::string& _internal_country() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_country(const std::string& value);
+  std::string* _internal_mutable_country();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.BillingAddress)
  private:
   class _Internal;
@@ -6811,6 +6826,7 @@ class BillingAddress final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr city_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr state_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr zipcode_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr country_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -42596,6 +42612,56 @@ inline void BillingAddress::set_allocated_zipcode(std::string* zipcode) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.BillingAddress.zipcode)
+}
+
+// string country = 6 [json_name = "country"];
+inline void BillingAddress::clear_country() {
+  country_.ClearToEmpty();
+}
+inline const std::string& BillingAddress::country() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.BillingAddress.country)
+  return _internal_country();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void BillingAddress::set_country(ArgT0&& arg0, ArgT... args) {
+ 
+ country_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.BillingAddress.country)
+}
+inline std::string* BillingAddress::mutable_country() {
+  std::string* _s = _internal_mutable_country();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.BillingAddress.country)
+  return _s;
+}
+inline const std::string& BillingAddress::_internal_country() const {
+  return country_.Get();
+}
+inline void BillingAddress::_internal_set_country(const std::string& value) {
+  
+  country_.Set(value, GetArenaForAllocation());
+}
+inline std::string* BillingAddress::_internal_mutable_country() {
+  
+  return country_.Mutable(GetArenaForAllocation());
+}
+inline std::string* BillingAddress::release_country() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.BillingAddress.country)
+  return country_.Release();
+}
+inline void BillingAddress::set_allocated_country(std::string* country) {
+  if (country != nullptr) {
+    
+  } else {
+    
+  }
+  country_.SetAllocated(country, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (country_.IsDefault()) {
+    country_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.BillingAddress.country)
 }
 
 // -------------------------------------------------------------------
