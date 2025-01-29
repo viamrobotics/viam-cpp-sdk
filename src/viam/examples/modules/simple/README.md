@@ -40,7 +40,7 @@ An example configuration for our sensor could look like this:
     {
       "type": "local",
       "name": "my-module",
-      "executable_path": "/home/viam-cpp-sdk/build/src/viam/examples/modules/simple/simple_module"
+      "executable_path": "/home/viam-cpp-sdk/build/install/bin/simple_module"
     }
   ]
 }
