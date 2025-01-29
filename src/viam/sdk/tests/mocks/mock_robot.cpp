@@ -322,6 +322,21 @@ std::shared_ptr<Resource> MockRobotService::resource_by_name(const Name& name) {
     return ::grpc::Status();
 }
 
+::grpc::Status MockRobotService::GetMachineStatus(
+    ::grpc::ServerContext* context,
+    const ::viam::robot::v1::GetMachineStatusRequest*,
+    ::viam::robot::v1::GetMachineStatusResponse* response) {
+    auto client_md = context->client_metadata();
+    if (auto client_info = client_md.find("viam_client"); client_info == client_md.end()) {
+        return ::grpc::Status(::grpc::StatusCode::FAILED_PRECONDITION,
+                              "viam_client info not properly set in metadata");
+    }
+
+    response->set_state(::viam::robot::v1::GetMachineStatusResponse_State_STATE_RUNNING);
+
+    return ::grpc::Status();
+}
+
 ::grpc::Status MockRobotService::GetOperations(::grpc::ServerContext* context,
                                                const ::viam::robot::v1::GetOperationsRequest*,
                                                ::viam::robot::v1::GetOperationsResponse* response) {
