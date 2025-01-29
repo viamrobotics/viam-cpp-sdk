@@ -69,14 +69,17 @@ jobs:
           BOOST_ROOT: ${{ github.workspace }}/boost/boost
       - name: Generate buf
         run: |
-          cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DCMAKE_PREFIX_PATH=./vcpkg/installed/x64-linux/share \
-          && cmake --build ./build --target update-static-protos
+          cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON && cmake --build ./build --target update-static-protos
+        #run: |
+          #cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DCMAKE_PREFIX_PATH=./vcpkg/installed/x64-linux/share \
+          #&& cmake --build ./build --target update-static-protos
         env:
           BOOST_ROOT: ${{ github.workspace }}/boost/boost
       - name: cleanup
-        run: rm -rf boost/ && rm -rf vcpkg/
+        run: echo $(git status)
+        #run: rm -rf boost/ && rm -rf vcpkg/
       - name: Update proto tag
-        run: echo "${{ github.event.client_payload.tag }}" > src/viam/api/api_proto_tag.lock
+        run: echo "${{ github.event.client_payload.tag }}" > src/viam/api/api_proto_tag.lock && echo $(git diff src/viam/api/api_proto_tag.lock)
       - name: Add + Commit + Open PR
         uses: peter-evans/create-pull-request@v3
         with:
