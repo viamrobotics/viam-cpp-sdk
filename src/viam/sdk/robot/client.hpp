@@ -34,15 +34,6 @@ namespace sdk {
 /// `with_channel` require a user call to `close()`.
 class RobotClient {
    public:
-    /// @enum status
-    /// @brief the current status of the robot
-    /// @ingroup Robot
-    // enum class status : uint8_t {
-    // k_initializing,
-    // k_running,
-    // k_unspecified,
-    //};
-
     struct frame_system_config {
         WorldState::transform frame;
         ProtoStruct kinematics;
@@ -140,9 +131,6 @@ class RobotClient {
     /// @brief Cancel a specified operation on the robot.
     /// @param id The ID of the operation to cancel.
     void cancel_operation(std::string id);
-
-    /// @brief gets the current status of the machine
-    // status get_machine_status() const;
 
    private:
     std::vector<std::shared_ptr<std::thread>> threads_;

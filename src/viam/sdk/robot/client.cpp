@@ -355,16 +355,5 @@ void RobotClient::stop_all(const std::unordered_map<Name, ProtoStruct>& extra) {
     }
 }
 
-// RobotClient::status RobotClient::get_machine_status() const {
-// robot::v1::GetMachineStatusResponse resp;
-// resp.config();
-//  return make_client_helper(this, *impl_->stub_, &StubType::GetMachineStatus)
-//.invoke([](auto& response) {
-//  switch (response.state) {
-//  case
-//  }
-// });
-//}
-
 }  // namespace sdk
 }  // namespace viam
