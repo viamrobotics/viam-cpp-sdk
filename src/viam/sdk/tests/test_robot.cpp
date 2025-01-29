@@ -190,6 +190,15 @@ BOOST_AUTO_TEST_CASE(test_transform_pose) {
         });
 }
 
+BOOST_AUTO_TEST_CASE(test_get_machine_status) {
+    robot_client_to_mocks_pipeline(
+        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+            auto status = client->get_machine_status();
+
+            BOOST_CHECK_EQUAL(status, RobotClient::status::k_running);
+        });
+}
+
 BOOST_AUTO_TEST_CASE(test_stop_all) {
     robot_client_to_mocks_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {

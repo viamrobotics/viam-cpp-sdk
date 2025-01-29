@@ -46,6 +46,10 @@ class MockRobotService : public ResourceServer, public viam::robot::v1::RobotSer
                                  const ::viam::robot::v1::TransformPoseRequest* request,
                                  ::viam::robot::v1::TransformPoseResponse* response) override;
 
+    ::grpc::Status GetMachineStatus(::grpc::ServerContext* context,
+                                    const ::viam::robot::v1::GetMachineStatusRequest* request,
+                                    ::viam::robot::v1::GetMachineStatusResponse* response) override;
+
     ::grpc::Status GetOperations(::grpc::ServerContext* context,
                                  const ::viam::robot::v1::GetOperationsRequest* request,
                                  ::viam::robot::v1::GetOperationsResponse* response) override;

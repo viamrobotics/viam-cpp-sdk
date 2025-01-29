@@ -355,5 +355,43 @@ void RobotClient::stop_all(const std::unordered_map<Name, ProtoStruct>& extra) {
     }
 }
 
+std::ostream& operator<<(std::ostream& os, const RobotClient::status& v) {
+    std::string status;
+    switch (v) {
+        case RobotClient::status::k_running:
+            status = "running";
+            break;
+        case RobotClient::status::k_initializing:
+            status = "initializing";
+            break;
+        case RobotClient::status::k_unspecified:
+        default:
+            status = "unspecified";
+    }
+    os << status;
+    return os;
+}
+
+RobotClient::status RobotClient::get_machine_status() const {
+    const robot::v1::GetMachineStatusRequest req;
+    robot::v1::GetMachineStatusResponse resp;
+    ClientContext ctx;
+
+    const grpc::Status response = impl_->stub_->GetMachineStatus(ctx, req, &resp);
+    if (is_error_response(response)) {
+        BOOST_LOG_TRIVIAL(error) << "Error getting machine status: " << response.error_message()
+                                 << response.error_details();
+    }
+    switch (resp.state()) {
+        case robot::v1::GetMachineStatusResponse_State_STATE_INITIALIZING:
+            return RobotClient::status::k_initializing;
+        case robot::v1::GetMachineStatusResponse_State_STATE_RUNNING:
+            return RobotClient::status::k_running;
+        case robot::v1::GetMachineStatusResponse_State_STATE_UNSPECIFIED:
+        default:
+            return RobotClient::status::k_unspecified;
+    }
+}
+
 }  // namespace sdk
 }  // namespace viam
