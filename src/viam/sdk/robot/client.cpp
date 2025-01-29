@@ -373,7 +373,7 @@ std::ostream& operator<<(std::ostream& os, const RobotClient::status& v) {
 }
 
 RobotClient::status RobotClient::get_machine_status() const {
-    robot::v1::GetMachineStatusRequest req;
+    const robot::v1::GetMachineStatusRequest req;
     robot::v1::GetMachineStatusResponse resp;
     ClientContext ctx;
 
