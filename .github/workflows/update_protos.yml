@@ -1,9 +1,6 @@
 name: Update Protos + Open PR
 
 on:
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
   repository_dispatch:
     types:
@@ -11,12 +8,14 @@ on:
 
 jobs:
   update-protos:
-    #if: github.repository_owner == 'viamrobotics'
+    if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/viamrobotics/canon:amd64
     steps:
       - uses: actions/checkout@v4
+      # note (erodkin): these dependencies were cribbed from what we use to build the SDK
+      # in the release job. Only very cursory effort was made to prune.
       - name: install dependencies
         run: |
           apt-get update
@@ -41,14 +40,6 @@ jobs:
               software-properties-common \
               sudo \
               wget \
-      #- name: setup-grpc
-        #run: |
-          #git clone https://github.com/Microsoft/vcpkg.git \
-          #&& cd vcpkg && ./bootstrap-vcpkg.sh && ./vcpkg integrate install \
-          #&& ./vcpkg install grpc \
-          #&& ./vcpkg install upb
-      #- name: setup-openssl
-        #run: apt-get update && sudo apt-get -y --no-install-recommends install libssl-dev
       - uses: MarkusJx/install-boost@v2.4.4
         with:
           boost_version: 1.81.0
@@ -62,24 +53,17 @@ jobs:
       - name: Update buf
         run: |
           cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON && cmake --build ./build --target update-buf
-        #run: |
-          #cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DCMAKE_PREFIX_PATH=./vcpkg/installed/x64-linux/share \
-          #&& cmake --build ./build --target update-buf
         env:
           BOOST_ROOT: ${{ github.workspace }}/boost/boost
       - name: Generate buf
         run: |
           cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON && cmake --build ./build --target update-static-protos
-        #run: |
-          #cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DCMAKE_PREFIX_PATH=./vcpkg/installed/x64-linux/share \
-          #&& cmake --build ./build --target update-static-protos
         env:
           BOOST_ROOT: ${{ github.workspace }}/boost/boost
       - name: cleanup
-        run: echo $(git status)
-        #run: rm -rf boost/ && rm -rf vcpkg/
+        run: rm -rf boost/
       - name: Update proto tag
-        run: echo "${{ github.event.client_payload.tag }}" > src/viam/api/api_proto_tag.lock && echo $(git diff src/viam/api/api_proto_tag.lock)
+        run: echo "${{ github.event.client_payload.tag }}" > src/viam/api/api_proto_tag.lock
       - name: Add + Commit + Open PR
         uses: peter-evans/create-pull-request@v3
         with:
