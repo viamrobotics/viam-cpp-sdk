@@ -14,14 +14,32 @@ jobs:
       image: ghcr.io/viamrobotics/canon:amd64
     steps:
       - uses: actions/checkout@v4
-      - name: setup-grpc
+      # note (erodkin): these dependencies were cribbed from what we use to build the SDK
+      # in the release job. Only very cursory effort was made to prune.
+      - name: install dependencies
         run: |
-          git clone https://github.com/Microsoft/vcpkg.git \
-          && cd vcpkg && ./bootstrap-vcpkg.sh && ./vcpkg integrate install \
-          && ./vcpkg install grpc \
-          && ./vcpkg install upb
-      - name: setup-openssl
-        run: apt-get update && sudo apt-get -y --no-install-recommends install libssl-dev
+          apt-get update
+          apt-get -y dist-upgrade
+          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
+              build-essential \
+              ca-certificates \
+              curl \
+              g++ \
+              gdb \
+              gnupg \
+              gpg \
+              less \
+              libboost-all-dev \
+              libgrpc++-dev \
+              libprotobuf-dev \
+              libssl-dev \
+              ninja-build \
+              pkg-config \
+              protobuf-compiler \
+              protobuf-compiler-grpc \
+              software-properties-common \
+              sudo \
+              wget \
       - uses: MarkusJx/install-boost@v2.4.4
         with:
           boost_version: 1.81.0
@@ -34,18 +52,16 @@ jobs:
       - uses: arduino/setup-protoc@v1
       - name: Update buf
         run: |
-          cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DCMAKE_PREFIX_PATH=./vcpkg/installed/x64-linux/share \
-          && cmake --build ./build --target update-buf
+          cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON && cmake --build ./build --target update-buf
         env:
           BOOST_ROOT: ${{ github.workspace }}/boost/boost
       - name: Generate buf
         run: |
-          cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DCMAKE_PREFIX_PATH=./vcpkg/installed/x64-linux/share \
-          && cmake --build ./build --target update-static-protos
+          cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON && cmake --build ./build --target update-static-protos
         env:
           BOOST_ROOT: ${{ github.workspace }}/boost/boost
       - name: cleanup
-        run: rm -rf boost/ && rm -rf vcpkg/
+        run: rm -rf boost/
       - name: Update proto tag
         run: echo "${{ github.event.client_payload.tag }}" > src/viam/api/api_proto_tag.lock
       - name: Add + Commit + Open PR
