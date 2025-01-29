@@ -1,6 +1,9 @@
 name: Update Protos + Open PR
 
 on:
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
   repository_dispatch:
     types:
@@ -8,20 +11,44 @@ on:
 
 jobs:
   update-protos:
-    if: github.repository_owner == 'viamrobotics'
+    #if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/viamrobotics/canon:amd64
     steps:
       - uses: actions/checkout@v4
-      - name: setup-grpc
+      - name: install dependencies
         run: |
-          git clone https://github.com/Microsoft/vcpkg.git \
-          && cd vcpkg && ./bootstrap-vcpkg.sh && ./vcpkg integrate install \
-          && ./vcpkg install grpc \
-          && ./vcpkg install upb
-      - name: setup-openssl
-        run: apt-get update && sudo apt-get -y --no-install-recommends install libssl-dev
+          apt-get update
+          apt-get -y dist-upgrade
+          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
+              build-essential \
+              ca-certificates \
+              curl \
+              g++ \
+              gdb \
+              gnupg \
+              gpg \
+              less \
+              libboost-all-dev \
+              libgrpc++-dev \
+              libprotobuf-dev \
+              libssl-dev \
+              ninja-build \
+              pkg-config \
+              protobuf-compiler \
+              protobuf-compiler-grpc \
+              software-properties-common \
+              sudo \
+              wget \
+      #- name: setup-grpc
+        #run: |
+          #git clone https://github.com/Microsoft/vcpkg.git \
+          #&& cd vcpkg && ./bootstrap-vcpkg.sh && ./vcpkg integrate install \
+          #&& ./vcpkg install grpc \
+          #&& ./vcpkg install upb
+      #- name: setup-openssl
+        #run: apt-get update && sudo apt-get -y --no-install-recommends install libssl-dev
       - uses: MarkusJx/install-boost@v2.4.4
         with:
           boost_version: 1.81.0
@@ -34,8 +61,10 @@ jobs:
       - uses: arduino/setup-protoc@v1
       - name: Update buf
         run: |
-          cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DCMAKE_PREFIX_PATH=./vcpkg/installed/x64-linux/share \
-          && cmake --build ./build --target update-buf
+          cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON && cmake --build ./build --target update-buf
+        #run: |
+          #cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DCMAKE_PREFIX_PATH=./vcpkg/installed/x64-linux/share \
+          #&& cmake --build ./build --target update-buf
         env:
           BOOST_ROOT: ${{ github.workspace }}/boost/boost
       - name: Generate buf
