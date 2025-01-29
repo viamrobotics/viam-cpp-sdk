@@ -11,9 +11,9 @@ For more information, see the [documentation](https://docs.viam.com/registry/). 
 For a list of example modules in different Viam SDKs, take a look [here](https://github.com/viamrobotics/upload-module/#example-repos).
 
 ## Project structure
-The `main.cpp` file contains the definition of a new generic model and code to register it. It also has the optional validator function and implements reconfigure. The validator function is defined upon resource registration, and the reconfigure method is implemented on the resource class.
+The `main.cpp` file contains the definition of a new sensor component and code to register it. It also has the optional validator function and implements reconfigure. The validator function is defined upon resource registration, and the reconfigure method is implemented on the resource class.
 
-The validator function can throw errors that are triggered due to errors in the configuration. It also returns a vector of strings representing the implicit dependencies of the resource. Note that printers have no implicit dependencies; see the [complex module example](https://github.com/viamrobotics/viam-cpp-sdk/tree/main/src/viam/examples/modules/complex) for examples of modular resources with implicit dependencies.
+The validator function can throw errors that are triggered due to errors in the configuration. It also returns a vector of strings representing the implicit dependencies of the resource. Note that this sensor has no implicit dependencies; see the [complex module example](https://github.com/viamrobotics/viam-cpp-sdk/tree/main/src/viam/examples/modules/complex) for examples of modular resources with implicit dependencies.
 
 The reconfiguration method reconfigures the resource based on the new configuration passed in.
 
@@ -22,28 +22,28 @@ When simple_module is run, the main function creates and starts the module. Read
 ## Configuring and using the module
 The `simple_module` binary generated after building is the entrypoint for this module. To connect this module with your robot, you must add this module's entrypoint to the robot's config. For example, this could be `/home/viam-cpp-sdk/build/install/bin/simple_module`. See the [documentation](https://docs.viam.com/registry/configure/#add-a-local-module) for more details.
 
-Once the module has been added to your robot, you will then need to add a component that uses the `viam:generic:printer` model. See the [documentation](https://docs.viam.com/registry/configure/#add-a-local-modular-resource) for more details.
+Once the module has been added to your robot, you will then need to add a component that uses the `viam:sensor:mysensor` model. See the [documentation](https://docs.viam.com/registry/configure/#add-a-local-modular-resource) for more details.
 
-An example configuration for a printer could look like this:
-```json
-{
-	"modules": [
-		{
-			"name": "MyModule",
-			"executable_path": "/home/viam-cpp-sdk/build/install/bin/simple_module"
-		}
-	],
-	"components": [
-		{
-			"namespace": "rdk",
-			"type": "generic",
-			"name": "printer1",
-			"model": "viam:generic:printer",
-			"attributes": {
-				"to_print": "foo"
-			}
-		}
-	]
+An example configuration for our sensor could look like this:
+```json{
+  "components": [
+    {
+      "name": "mysensor",
+      "api": "rdk:component:sensor",
+      "model": "viam:sensor:mysensor",
+      "attributes": {
+        "multiplier": 2
+      }
+    }
+  ],
+  "modules": [
+    {
+      "type": "local",
+      "name": "my-module",
+      "executable_path": "/home/viam-cpp-sdk/build/src/viam/examples/modules/simple/simple_module"
+    }
+  ]
 }
 ```
 
+Note in particular that our sensor has a `multiplier` attribute whose presence is checked in the `validate` and `reconfigure` methods, defaulting to 1.0 if not present.
