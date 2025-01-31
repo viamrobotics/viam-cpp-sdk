@@ -265,6 +265,12 @@ extern FragmentErrorDefaultTypeInternal _FragmentError_default_instance_;
 class FragmentHistoryEntry;
 struct FragmentHistoryEntryDefaultTypeInternal;
 extern FragmentHistoryEntryDefaultTypeInternal _FragmentHistoryEntry_default_instance_;
+class FragmentRevision;
+struct FragmentRevisionDefaultTypeInternal;
+extern FragmentRevisionDefaultTypeInternal _FragmentRevision_default_instance_;
+class FragmentTag;
+struct FragmentTagDefaultTypeInternal;
+extern FragmentTagDefaultTypeInternal _FragmentTag_default_instance_;
 class FragmentUsage;
 struct FragmentUsageDefaultTypeInternal;
 extern FragmentUsageDefaultTypeInternal _FragmentUsage_default_instance_;
@@ -786,6 +792,8 @@ template<> ::viam::app::v1::EnableBillingServiceResponse* Arena::CreateMaybeMess
 template<> ::viam::app::v1::Fragment* Arena::CreateMaybeMessage<::viam::app::v1::Fragment>(Arena*);
 template<> ::viam::app::v1::FragmentError* Arena::CreateMaybeMessage<::viam::app::v1::FragmentError>(Arena*);
 template<> ::viam::app::v1::FragmentHistoryEntry* Arena::CreateMaybeMessage<::viam::app::v1::FragmentHistoryEntry>(Arena*);
+template<> ::viam::app::v1::FragmentRevision* Arena::CreateMaybeMessage<::viam::app::v1::FragmentRevision>(Arena*);
+template<> ::viam::app::v1::FragmentTag* Arena::CreateMaybeMessage<::viam::app::v1::FragmentTag>(Arena*);
 template<> ::viam::app::v1::FragmentUsage* Arena::CreateMaybeMessage<::viam::app::v1::FragmentUsage>(Arena*);
 template<> ::viam::app::v1::GetBillingServiceConfigRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetBillingServiceConfigRequest>(Arena*);
 template<> ::viam::app::v1::GetBillingServiceConfigResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetBillingServiceConfigResponse>(Arena*);
@@ -17090,6 +17098,7 @@ class Fragment final :
     kNameFieldNumber = 2,
     kOrganizationOwnerFieldNumber = 4,
     kOrganizationNameFieldNumber = 7,
+    kRevisionFieldNumber = 14,
     kFragmentFieldNumber = 3,
     kCreatedOnFieldNumber = 6,
     kLastUpdatedFieldNumber = 13,
@@ -17153,6 +17162,20 @@ class Fragment final :
   const std::string& _internal_organization_name() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_organization_name(const std::string& value);
   std::string* _internal_mutable_organization_name();
+  public:
+
+  // string revision = 14 [json_name = "revision"];
+  void clear_revision();
+  const std::string& revision() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_revision(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_revision();
+  PROTOBUF_NODISCARD std::string* release_revision();
+  void set_allocated_revision(std::string* revision);
+  private:
+  const std::string& _internal_revision() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_revision(const std::string& value);
+  std::string* _internal_mutable_revision();
   public:
 
   // .google.protobuf.Struct fragment = 3 [json_name = "fragment", (.tagger.v1.tags) = "bson:\"fragment\" json:\"fragment\""];
@@ -17265,6 +17288,7 @@ class Fragment final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_owner_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr revision_;
   ::PROTOBUF_NAMESPACE_ID::Struct* fragment_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* created_on_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* last_updated_;
@@ -17522,6 +17546,338 @@ class FragmentHistoryEntry final :
 };
 // -------------------------------------------------------------------
 
+class FragmentRevision final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.FragmentRevision) */ {
+ public:
+  inline FragmentRevision() : FragmentRevision(nullptr) {}
+  ~FragmentRevision() override;
+  explicit PROTOBUF_CONSTEXPR FragmentRevision(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  FragmentRevision(const FragmentRevision& from);
+  FragmentRevision(FragmentRevision&& from) noexcept
+    : FragmentRevision() {
+    *this = ::std::move(from);
+  }
+
+  inline FragmentRevision& operator=(const FragmentRevision& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FragmentRevision& operator=(FragmentRevision&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const FragmentRevision& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const FragmentRevision* internal_default_instance() {
+    return reinterpret_cast<const FragmentRevision*>(
+               &_FragmentRevision_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    98;
+
+  friend void swap(FragmentRevision& a, FragmentRevision& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FragmentRevision* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(FragmentRevision* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  FragmentRevision* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<FragmentRevision>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const FragmentRevision& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const FragmentRevision& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FragmentRevision* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.FragmentRevision";
+  }
+  protected:
+  explicit FragmentRevision(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRevisionFieldNumber = 1,
+    kCreatedAtFieldNumber = 2,
+  };
+  // string revision = 1 [json_name = "revision"];
+  void clear_revision();
+  const std::string& revision() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_revision(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_revision();
+  PROTOBUF_NODISCARD std::string* release_revision();
+  void set_allocated_revision(std::string* revision);
+  private:
+  const std::string& _internal_revision() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_revision(const std::string& value);
+  std::string* _internal_mutable_revision();
+  public:
+
+  // .google.protobuf.Timestamp created_at = 2 [json_name = "createdAt"];
+  bool has_created_at() const;
+  private:
+  bool _internal_has_created_at() const;
+  public:
+  void clear_created_at();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& created_at() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_created_at();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_created_at();
+  void set_allocated_created_at(::PROTOBUF_NAMESPACE_ID::Timestamp* created_at);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_created_at() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_created_at();
+  public:
+  void unsafe_arena_set_allocated_created_at(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* created_at);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_created_at();
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.FragmentRevision)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr revision_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* created_at_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class FragmentTag final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.FragmentTag) */ {
+ public:
+  inline FragmentTag() : FragmentTag(nullptr) {}
+  ~FragmentTag() override;
+  explicit PROTOBUF_CONSTEXPR FragmentTag(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  FragmentTag(const FragmentTag& from);
+  FragmentTag(FragmentTag&& from) noexcept
+    : FragmentTag() {
+    *this = ::std::move(from);
+  }
+
+  inline FragmentTag& operator=(const FragmentTag& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FragmentTag& operator=(FragmentTag&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const FragmentTag& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const FragmentTag* internal_default_instance() {
+    return reinterpret_cast<const FragmentTag*>(
+               &_FragmentTag_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    99;
+
+  friend void swap(FragmentTag& a, FragmentTag& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FragmentTag* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(FragmentTag* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  FragmentTag* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<FragmentTag>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const FragmentTag& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const FragmentTag& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FragmentTag* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.FragmentTag";
+  }
+  protected:
+  explicit FragmentTag(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTagFieldNumber = 1,
+    kRevisionFieldNumber = 2,
+  };
+  // string tag = 1 [json_name = "tag"];
+  void clear_tag();
+  const std::string& tag() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_tag(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_tag();
+  PROTOBUF_NODISCARD std::string* release_tag();
+  void set_allocated_tag(std::string* tag);
+  private:
+  const std::string& _internal_tag() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_tag(const std::string& value);
+  std::string* _internal_mutable_tag();
+  public:
+
+  // string revision = 2 [json_name = "revision"];
+  void clear_revision();
+  const std::string& revision() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_revision(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_revision();
+  PROTOBUF_NODISCARD std::string* release_revision();
+  void set_allocated_revision(std::string* revision);
+  private:
+  const std::string& _internal_revision() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_revision(const std::string& value);
+  std::string* _internal_mutable_revision();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.FragmentTag)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr tag_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr revision_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
 class FragmentError final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.FragmentError) */ {
  public:
@@ -17570,7 +17926,7 @@ class FragmentError final :
                &_FragmentError_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    98;
+    100;
 
   friend void swap(FragmentError& a, FragmentError& b) {
     a.Swap(&b);
@@ -17745,7 +18101,7 @@ class FragmentUsage final :
                &_FragmentUsage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    99;
+    101;
 
   friend void swap(FragmentUsage& a, FragmentUsage& b) {
     a.Swap(&b);
@@ -17817,6 +18173,7 @@ class FragmentUsage final :
 
   enum : int {
     kFragmentIdFieldNumber = 1,
+    kVersionFieldNumber = 5,
     kOrganizationsFieldNumber = 2,
     kMachinesFieldNumber = 3,
     kMachinesInCurrentOrgFieldNumber = 4,
@@ -17833,6 +18190,24 @@ class FragmentUsage final :
   const std::string& _internal_fragment_id() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_fragment_id(const std::string& value);
   std::string* _internal_mutable_fragment_id();
+  public:
+
+  // optional string version = 5 [json_name = "version"];
+  bool has_version() const;
+  private:
+  bool _internal_has_version() const;
+  public:
+  void clear_version();
+  const std::string& version() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_version(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_version();
+  PROTOBUF_NODISCARD std::string* release_version();
+  void set_allocated_version(std::string* version);
+  private:
+  const std::string& _internal_version() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_version(const std::string& value);
+  std::string* _internal_mutable_version();
   public:
 
   // int32 organizations = 2 [json_name = "organizations"];
@@ -17869,11 +18244,13 @@ class FragmentUsage final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr fragment_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr version_;
   int32_t organizations_;
   int32_t machines_;
   int32_t machines_in_current_org_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -17926,7 +18303,7 @@ class ResolvedFragment final :
                &_ResolvedFragment_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    100;
+    102;
 
   friend void swap(ResolvedFragment& a, ResolvedFragment& b) {
     a.Swap(&b);
@@ -18114,7 +18491,7 @@ class ListFragmentsRequest final :
                &_ListFragmentsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    101;
+    103;
 
   friend void swap(ListFragmentsRequest& a, ListFragmentsRequest& b) {
     a.Swap(&b);
@@ -18293,7 +18670,7 @@ class ListFragmentsResponse final :
                &_ListFragmentsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    102;
+    104;
 
   friend void swap(ListFragmentsResponse& a, ListFragmentsResponse& b) {
     a.Swap(&b);
@@ -18465,7 +18842,7 @@ class GetFragmentRequest final :
                &_GetFragmentRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    103;
+    105;
 
   friend void swap(GetFragmentRequest& a, GetFragmentRequest& b) {
     a.Swap(&b);
@@ -18538,6 +18915,7 @@ class GetFragmentRequest final :
   enum : int {
     kIdFieldNumber = 1,
     kCurrentOrganizationIdFieldNumber = 2,
+    kVersionFieldNumber = 3,
   };
   // string id = 1 [json_name = "id"];
   void clear_id();
@@ -18567,6 +18945,24 @@ class GetFragmentRequest final :
   std::string* _internal_mutable_current_organization_id();
   public:
 
+  // optional string version = 3 [json_name = "version"];
+  bool has_version() const;
+  private:
+  bool _internal_has_version() const;
+  public:
+  void clear_version();
+  const std::string& version() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_version(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_version();
+  PROTOBUF_NODISCARD std::string* release_version();
+  void set_allocated_version(std::string* version);
+  private:
+  const std::string& _internal_version() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_version(const std::string& value);
+  std::string* _internal_mutable_version();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.GetFragmentRequest)
  private:
   class _Internal;
@@ -18574,9 +18970,11 @@ class GetFragmentRequest final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr current_organization_id_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr version_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -18629,7 +19027,7 @@ class GetFragmentResponse final :
                &_GetFragmentResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    104;
+    106;
 
   friend void swap(GetFragmentResponse& a, GetFragmentResponse& b) {
     a.Swap(&b);
@@ -18700,9 +19098,47 @@ class GetFragmentResponse final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kRevisionsFieldNumber = 3,
+    kTagsFieldNumber = 4,
     kFragmentFieldNumber = 1,
     kFragmentUsageFieldNumber = 2,
   };
+  // repeated .viam.app.v1.FragmentRevision revisions = 3 [json_name = "revisions"];
+  int revisions_size() const;
+  private:
+  int _internal_revisions_size() const;
+  public:
+  void clear_revisions();
+  ::viam::app::v1::FragmentRevision* mutable_revisions(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::FragmentRevision >*
+      mutable_revisions();
+  private:
+  const ::viam::app::v1::FragmentRevision& _internal_revisions(int index) const;
+  ::viam::app::v1::FragmentRevision* _internal_add_revisions();
+  public:
+  const ::viam::app::v1::FragmentRevision& revisions(int index) const;
+  ::viam::app::v1::FragmentRevision* add_revisions();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::FragmentRevision >&
+      revisions() const;
+
+  // repeated .viam.app.v1.FragmentTag tags = 4 [json_name = "tags"];
+  int tags_size() const;
+  private:
+  int _internal_tags_size() const;
+  public:
+  void clear_tags();
+  ::viam::app::v1::FragmentTag* mutable_tags(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::FragmentTag >*
+      mutable_tags();
+  private:
+  const ::viam::app::v1::FragmentTag& _internal_tags(int index) const;
+  ::viam::app::v1::FragmentTag* _internal_add_tags();
+  public:
+  const ::viam::app::v1::FragmentTag& tags(int index) const;
+  ::viam::app::v1::FragmentTag* add_tags();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::FragmentTag >&
+      tags() const;
+
   // .viam.app.v1.Fragment fragment = 1 [json_name = "fragment"];
   bool has_fragment() const;
   private:
@@ -18746,6 +19182,8 @@ class GetFragmentResponse final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::FragmentRevision > revisions_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::FragmentTag > tags_;
   ::viam::app::v1::Fragment* fragment_;
   ::viam::app::v1::FragmentUsage* fragment_usage_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -18801,7 +19239,7 @@ class CreateFragmentRequest final :
                &_CreateFragmentRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    105;
+    107;
 
   friend void swap(CreateFragmentRequest& a, CreateFragmentRequest& b) {
     a.Swap(&b);
@@ -19001,7 +19439,7 @@ class CreateFragmentResponse final :
                &_CreateFragmentResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    106;
+    108;
 
   friend void swap(CreateFragmentResponse& a, CreateFragmentResponse& b) {
     a.Swap(&b);
@@ -19153,7 +19591,7 @@ class UpdateFragmentRequest final :
                &_UpdateFragmentRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    107;
+    109;
 
   friend void swap(UpdateFragmentRequest& a, UpdateFragmentRequest& b) {
     a.Swap(&b);
@@ -19368,7 +19806,7 @@ class UpdateFragmentResponse final :
                &_UpdateFragmentResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    108;
+    110;
 
   friend void swap(UpdateFragmentResponse& a, UpdateFragmentResponse& b) {
     a.Swap(&b);
@@ -19520,7 +19958,7 @@ class DeleteFragmentRequest final :
                &_DeleteFragmentRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    109;
+    111;
 
   friend void swap(DeleteFragmentRequest& a, DeleteFragmentRequest& b) {
     a.Swap(&b);
@@ -19667,7 +20105,7 @@ class DeleteFragmentResponse final :
                &_DeleteFragmentResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    110;
+    112;
 
   friend void swap(DeleteFragmentResponse& a, DeleteFragmentResponse& b) {
     a.Swap(&b);
@@ -19784,7 +20222,7 @@ class GetFragmentHistoryRequest final :
                &_GetFragmentHistoryRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    111;
+    113;
 
   friend void swap(GetFragmentHistoryRequest& a, GetFragmentHistoryRequest& b) {
     a.Swap(&b);
@@ -19968,7 +20406,7 @@ class GetFragmentHistoryResponse final :
                &_GetFragmentHistoryResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    112;
+    114;
 
   friend void swap(GetFragmentHistoryResponse& a, GetFragmentHistoryResponse& b) {
     a.Swap(&b);
@@ -20136,7 +20574,7 @@ class ListRobotsRequest final :
                &_ListRobotsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    113;
+    115;
 
   friend void swap(ListRobotsRequest& a, ListRobotsRequest& b) {
     a.Swap(&b);
@@ -20284,7 +20722,7 @@ class ListMachineFragmentsRequest final :
                &_ListMachineFragmentsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    114;
+    116;
 
   friend void swap(ListMachineFragmentsRequest& a, ListMachineFragmentsRequest& b) {
     a.Swap(&b);
@@ -20458,7 +20896,7 @@ class ListMachineFragmentsResponse final :
                &_ListMachineFragmentsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    115;
+    117;
 
   friend void swap(ListMachineFragmentsResponse& a, ListMachineFragmentsResponse& b) {
     a.Swap(&b);
@@ -20630,7 +21068,7 @@ class ListRobotsResponse final :
                &_ListRobotsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    116;
+    118;
 
   friend void swap(ListRobotsResponse& a, ListRobotsResponse& b) {
     a.Swap(&b);
@@ -20782,7 +21220,7 @@ class NewRobotRequest final :
                &_NewRobotRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    117;
+    119;
 
   friend void swap(NewRobotRequest& a, NewRobotRequest& b) {
     a.Swap(&b);
@@ -20946,7 +21384,7 @@ class NewRobotResponse final :
                &_NewRobotResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    118;
+    120;
 
   friend void swap(NewRobotResponse& a, NewRobotResponse& b) {
     a.Swap(&b);
@@ -21094,7 +21532,7 @@ class UpdateRobotRequest final :
                &_UpdateRobotRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    119;
+    121;
 
   friend void swap(UpdateRobotRequest& a, UpdateRobotRequest& b) {
     a.Swap(&b);
@@ -21274,7 +21712,7 @@ class UpdateRobotResponse final :
                &_UpdateRobotResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    120;
+    122;
 
   friend void swap(UpdateRobotResponse& a, UpdateRobotResponse& b) {
     a.Swap(&b);
@@ -21426,7 +21864,7 @@ class DeleteRobotRequest final :
                &_DeleteRobotRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    121;
+    123;
 
   friend void swap(DeleteRobotRequest& a, DeleteRobotRequest& b) {
     a.Swap(&b);
@@ -21573,7 +22011,7 @@ class DeleteRobotResponse final :
                &_DeleteRobotResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    122;
+    124;
 
   friend void swap(DeleteRobotResponse& a, DeleteRobotResponse& b) {
     a.Swap(&b);
@@ -21690,7 +22128,7 @@ class MarkPartAsMainRequest final :
                &_MarkPartAsMainRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    123;
+    125;
 
   friend void swap(MarkPartAsMainRequest& a, MarkPartAsMainRequest& b) {
     a.Swap(&b);
@@ -21837,7 +22275,7 @@ class MarkPartAsMainResponse final :
                &_MarkPartAsMainResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    124;
+    126;
 
   friend void swap(MarkPartAsMainResponse& a, MarkPartAsMainResponse& b) {
     a.Swap(&b);
@@ -21954,7 +22392,7 @@ class MarkPartForRestartRequest final :
                &_MarkPartForRestartRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    125;
+    127;
 
   friend void swap(MarkPartForRestartRequest& a, MarkPartForRestartRequest& b) {
     a.Swap(&b);
@@ -22101,7 +22539,7 @@ class MarkPartForRestartResponse final :
                &_MarkPartForRestartResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    126;
+    128;
 
   friend void swap(MarkPartForRestartResponse& a, MarkPartForRestartResponse& b) {
     a.Swap(&b);
@@ -22218,7 +22656,7 @@ class CreateRobotPartSecretRequest final :
                &_CreateRobotPartSecretRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    127;
+    129;
 
   friend void swap(CreateRobotPartSecretRequest& a, CreateRobotPartSecretRequest& b) {
     a.Swap(&b);
@@ -22366,7 +22804,7 @@ class CreateRobotPartSecretResponse final :
                &_CreateRobotPartSecretResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    128;
+    130;
 
   friend void swap(CreateRobotPartSecretResponse& a, CreateRobotPartSecretResponse& b) {
     a.Swap(&b);
@@ -22518,7 +22956,7 @@ class DeleteRobotPartSecretRequest final :
                &_DeleteRobotPartSecretRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    129;
+    131;
 
   friend void swap(DeleteRobotPartSecretRequest& a, DeleteRobotPartSecretRequest& b) {
     a.Swap(&b);
@@ -22681,7 +23119,7 @@ class DeleteRobotPartSecretResponse final :
                &_DeleteRobotPartSecretResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    130;
+    132;
 
   friend void swap(DeleteRobotPartSecretResponse& a, DeleteRobotPartSecretResponse& b) {
     a.Swap(&b);
@@ -22798,7 +23236,7 @@ class Authorization final :
                &_Authorization_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    131;
+    133;
 
   friend void swap(Authorization& a, Authorization& b) {
     a.Swap(&b);
@@ -23042,7 +23480,7 @@ class AddRoleRequest final :
                &_AddRoleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    132;
+    134;
 
   friend void swap(AddRoleRequest& a, AddRoleRequest& b) {
     a.Swap(&b);
@@ -23193,7 +23631,7 @@ class AddRoleResponse final :
                &_AddRoleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    133;
+    135;
 
   friend void swap(AddRoleResponse& a, AddRoleResponse& b) {
     a.Swap(&b);
@@ -23310,7 +23748,7 @@ class RemoveRoleRequest final :
                &_RemoveRoleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    134;
+    136;
 
   friend void swap(RemoveRoleRequest& a, RemoveRoleRequest& b) {
     a.Swap(&b);
@@ -23461,7 +23899,7 @@ class RemoveRoleResponse final :
                &_RemoveRoleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    135;
+    137;
 
   friend void swap(RemoveRoleResponse& a, RemoveRoleResponse& b) {
     a.Swap(&b);
@@ -23578,7 +24016,7 @@ class ChangeRoleRequest final :
                &_ChangeRoleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    136;
+    138;
 
   friend void swap(ChangeRoleRequest& a, ChangeRoleRequest& b) {
     a.Swap(&b);
@@ -23749,7 +24187,7 @@ class ChangeRoleResponse final :
                &_ChangeRoleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    137;
+    139;
 
   friend void swap(ChangeRoleResponse& a, ChangeRoleResponse& b) {
     a.Swap(&b);
@@ -23866,7 +24304,7 @@ class ListAuthorizationsRequest final :
                &_ListAuthorizationsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    138;
+    140;
 
   friend void swap(ListAuthorizationsRequest& a, ListAuthorizationsRequest& b) {
     a.Swap(&b);
@@ -24040,7 +24478,7 @@ class ListAuthorizationsResponse final :
                &_ListAuthorizationsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    139;
+    141;
 
   friend void swap(ListAuthorizationsResponse& a, ListAuthorizationsResponse& b) {
     a.Swap(&b);
@@ -24192,7 +24630,7 @@ class CheckPermissionsRequest final :
                &_CheckPermissionsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    140;
+    142;
 
   friend void swap(CheckPermissionsRequest& a, CheckPermissionsRequest& b) {
     a.Swap(&b);
@@ -24344,7 +24782,7 @@ class AuthorizedPermissions final :
                &_AuthorizedPermissions_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    141;
+    143;
 
   friend void swap(AuthorizedPermissions& a, AuthorizedPermissions& b) {
     a.Swap(&b);
@@ -24534,7 +24972,7 @@ class CheckPermissionsResponse final :
                &_CheckPermissionsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    142;
+    144;
 
   friend void swap(CheckPermissionsResponse& a, CheckPermissionsResponse& b) {
     a.Swap(&b);
@@ -24686,7 +25124,7 @@ class ModuleVersion final :
                &_ModuleVersion_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    143;
+    145;
 
   friend void swap(ModuleVersion& a, ModuleVersion& b) {
     a.Swap(&b);
@@ -24911,7 +25349,7 @@ class ModuleMetadata final :
                &_ModuleMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    144;
+    146;
 
   friend void swap(ModuleMetadata& a, ModuleMetadata& b) {
     a.Swap(&b);
@@ -25120,7 +25558,7 @@ class MLModelMetadata final :
                &_MLModelMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    145;
+    147;
 
   friend void swap(MLModelMetadata& a, MLModelMetadata& b) {
     a.Swap(&b);
@@ -25300,7 +25738,7 @@ class MLTrainingVersion final :
                &_MLTrainingVersion_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    146;
+    148;
 
   friend void swap(MLTrainingVersion& a, MLTrainingVersion& b) {
     a.Swap(&b);
@@ -25468,7 +25906,7 @@ class MLTrainingMetadata final :
                &_MLTrainingMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    147;
+    149;
 
   friend void swap(MLTrainingMetadata& a, MLTrainingMetadata& b) {
     a.Swap(&b);
@@ -25660,7 +26098,7 @@ class RegistryItem final :
                &_RegistryItem_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    148;
+    150;
 
   friend void swap(RegistryItem& a, RegistryItem& b) {
     a.Swap(&b);
@@ -26068,7 +26506,7 @@ class GetRegistryItemRequest final :
                &_GetRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    149;
+    151;
 
   friend void swap(GetRegistryItemRequest& a, GetRegistryItemRequest& b) {
     a.Swap(&b);
@@ -26232,7 +26670,7 @@ class GetRegistryItemResponse final :
                &_GetRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    150;
+    152;
 
   friend void swap(GetRegistryItemResponse& a, GetRegistryItemResponse& b) {
     a.Swap(&b);
@@ -26384,7 +26822,7 @@ class CreateRegistryItemRequest final :
                &_CreateRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    151;
+    153;
 
   friend void swap(CreateRegistryItemRequest& a, CreateRegistryItemRequest& b) {
     a.Swap(&b);
@@ -26558,7 +26996,7 @@ class CreateRegistryItemResponse final :
                &_CreateRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    152;
+    154;
 
   friend void swap(CreateRegistryItemResponse& a, CreateRegistryItemResponse& b) {
     a.Swap(&b);
@@ -26682,7 +27120,7 @@ class UpdateRegistryItemRequest final :
                &_UpdateRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    153;
+    155;
 
   friend void swap(UpdateRegistryItemRequest& a, UpdateRegistryItemRequest& b) {
     a.Swap(&b);
@@ -26962,7 +27400,7 @@ class UpdateRegistryItemResponse final :
                &_UpdateRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    154;
+    156;
 
   friend void swap(UpdateRegistryItemResponse& a, UpdateRegistryItemResponse& b) {
     a.Swap(&b);
@@ -27079,7 +27517,7 @@ class ListRegistryItemsRequest final :
                &_ListRegistryItemsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    155;
+    157;
 
   friend void swap(ListRegistryItemsRequest& a, ListRegistryItemsRequest& b) {
     a.Swap(&b);
@@ -27399,7 +27837,7 @@ class ListRegistryItemsResponse final :
                &_ListRegistryItemsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    156;
+    158;
 
   friend void swap(ListRegistryItemsResponse& a, ListRegistryItemsResponse& b) {
     a.Swap(&b);
@@ -27551,7 +27989,7 @@ class DeleteRegistryItemRequest final :
                &_DeleteRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    157;
+    159;
 
   friend void swap(DeleteRegistryItemRequest& a, DeleteRegistryItemRequest& b) {
     a.Swap(&b);
@@ -27698,7 +28136,7 @@ class DeleteRegistryItemResponse final :
                &_DeleteRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    158;
+    160;
 
   friend void swap(DeleteRegistryItemResponse& a, DeleteRegistryItemResponse& b) {
     a.Swap(&b);
@@ -27815,7 +28253,7 @@ class TransferRegistryItemRequest final :
                &_TransferRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    159;
+    161;
 
   friend void swap(TransferRegistryItemRequest& a, TransferRegistryItemRequest& b) {
     a.Swap(&b);
@@ -27978,7 +28416,7 @@ class TransferRegistryItemResponse final :
                &_TransferRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    160;
+    162;
 
   friend void swap(TransferRegistryItemResponse& a, TransferRegistryItemResponse& b) {
     a.Swap(&b);
@@ -28095,7 +28533,7 @@ class CreateModuleRequest final :
                &_CreateModuleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    161;
+    163;
 
   friend void swap(CreateModuleRequest& a, CreateModuleRequest& b) {
     a.Swap(&b);
@@ -28259,7 +28697,7 @@ class CreateModuleResponse final :
                &_CreateModuleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    162;
+    164;
 
   friend void swap(CreateModuleResponse& a, CreateModuleResponse& b) {
     a.Swap(&b);
@@ -28423,7 +28861,7 @@ class UpdateModuleRequest final :
                &_UpdateModuleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    163;
+    165;
 
   friend void swap(UpdateModuleRequest& a, UpdateModuleRequest& b) {
     a.Swap(&b);
@@ -28671,7 +29109,7 @@ class UpdateModuleResponse final :
                &_UpdateModuleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    164;
+    166;
 
   friend void swap(UpdateModuleResponse& a, UpdateModuleResponse& b) {
     a.Swap(&b);
@@ -28819,7 +29257,7 @@ class UpdateModuleMetadata final :
                &_UpdateModuleMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    165;
+    167;
 
   friend void swap(UpdateModuleMetadata& a, UpdateModuleMetadata& b) {
     a.Swap(&b);
@@ -28987,7 +29425,7 @@ class UpdateMLModelMetadata final :
                &_UpdateMLModelMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    166;
+    168;
 
   friend void swap(UpdateMLModelMetadata& a, UpdateMLModelMetadata& b) {
     a.Swap(&b);
@@ -29141,7 +29579,7 @@ class UpdateMLTrainingMetadata final :
                &_UpdateMLTrainingMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    167;
+    169;
 
   friend void swap(UpdateMLTrainingMetadata& a, UpdateMLTrainingMetadata& b) {
     a.Swap(&b);
@@ -29306,7 +29744,7 @@ class Model final :
                &_Model_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    168;
+    170;
 
   friend void swap(Model& a, Model& b) {
     a.Swap(&b);
@@ -29511,7 +29949,7 @@ class ModuleFileInfo final :
                &_ModuleFileInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    169;
+    171;
 
   friend void swap(ModuleFileInfo& a, ModuleFileInfo& b) {
     a.Swap(&b);
@@ -29723,7 +30161,7 @@ class UploadModuleFileRequest final :
                &_UploadModuleFileRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    170;
+    172;
 
   friend void swap(UploadModuleFileRequest& a, UploadModuleFileRequest& b) {
     a.Swap(&b);
@@ -29908,7 +30346,7 @@ class UploadModuleFileResponse final :
                &_UploadModuleFileResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    171;
+    173;
 
   friend void swap(UploadModuleFileResponse& a, UploadModuleFileResponse& b) {
     a.Swap(&b);
@@ -30056,7 +30494,7 @@ class GetModuleRequest final :
                &_GetModuleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    172;
+    174;
 
   friend void swap(GetModuleRequest& a, GetModuleRequest& b) {
     a.Swap(&b);
@@ -30220,7 +30658,7 @@ class GetModuleResponse final :
                &_GetModuleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    173;
+    175;
 
   friend void swap(GetModuleResponse& a, GetModuleResponse& b) {
     a.Swap(&b);
@@ -30372,7 +30810,7 @@ class Module final :
                &_Module_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    174;
+    176;
 
   friend void swap(Module& a, Module& b) {
     a.Swap(&b);
@@ -30710,7 +31148,7 @@ class VersionHistory final :
                &_VersionHistory_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    175;
+    177;
 
   friend void swap(VersionHistory& a, VersionHistory& b) {
     a.Swap(&b);
@@ -30935,7 +31373,7 @@ class Uploads final :
                &_Uploads_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    176;
+    178;
 
   friend void swap(Uploads& a, Uploads& b) {
     a.Swap(&b);
@@ -31103,7 +31541,7 @@ class ListModulesRequest final :
                &_ListModulesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    177;
+    179;
 
   friend void swap(ListModulesRequest& a, ListModulesRequest& b) {
     a.Swap(&b);
@@ -31271,7 +31709,7 @@ class ListModulesResponse final :
                &_ListModulesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    178;
+    180;
 
   friend void swap(ListModulesResponse& a, ListModulesResponse& b) {
     a.Swap(&b);
@@ -31423,7 +31861,7 @@ class GetUserIDByEmailRequest final :
                &_GetUserIDByEmailRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    179;
+    181;
 
   friend void swap(GetUserIDByEmailRequest& a, GetUserIDByEmailRequest& b) {
     a.Swap(&b);
@@ -31571,7 +32009,7 @@ class GetUserIDByEmailResponse final :
                &_GetUserIDByEmailResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    180;
+    182;
 
   friend void swap(GetUserIDByEmailResponse& a, GetUserIDByEmailResponse& b) {
     a.Swap(&b);
@@ -31719,7 +32157,7 @@ class ListOrganizationsByUserRequest final :
                &_ListOrganizationsByUserRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    181;
+    183;
 
   friend void swap(ListOrganizationsByUserRequest& a, ListOrganizationsByUserRequest& b) {
     a.Swap(&b);
@@ -31867,7 +32305,7 @@ class OrgDetails final :
                &_OrgDetails_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    182;
+    184;
 
   friend void swap(OrgDetails& a, OrgDetails& b) {
     a.Swap(&b);
@@ -32072,7 +32510,7 @@ class ListOrganizationsByUserResponse final :
                &_ListOrganizationsByUserResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    183;
+    185;
 
   friend void swap(ListOrganizationsByUserResponse& a, ListOrganizationsByUserResponse& b) {
     a.Swap(&b);
@@ -32224,7 +32662,7 @@ class SearchOrganizationsRequest final :
                &_SearchOrganizationsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    184;
+    186;
 
   friend void swap(SearchOrganizationsRequest& a, SearchOrganizationsRequest& b) {
     a.Swap(&b);
@@ -32437,7 +32875,7 @@ class SearchOrganizationsResponse final :
                &_SearchOrganizationsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    185;
+    187;
 
   friend void swap(SearchOrganizationsResponse& a, SearchOrganizationsResponse& b) {
     a.Swap(&b);
@@ -32589,7 +33027,7 @@ class CreateKeyRequest final :
                &_CreateKeyRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    186;
+    188;
 
   friend void swap(CreateKeyRequest& a, CreateKeyRequest& b) {
     a.Swap(&b);
@@ -32757,7 +33195,7 @@ class CreateKeyResponse final :
                &_CreateKeyResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    187;
+    189;
 
   friend void swap(CreateKeyResponse& a, CreateKeyResponse& b) {
     a.Swap(&b);
@@ -32921,7 +33359,7 @@ class DeleteKeyRequest final :
                &_DeleteKeyRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    188;
+    190;
 
   friend void swap(DeleteKeyRequest& a, DeleteKeyRequest& b) {
     a.Swap(&b);
@@ -33068,7 +33506,7 @@ class DeleteKeyResponse final :
                &_DeleteKeyResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    189;
+    191;
 
   friend void swap(DeleteKeyResponse& a, DeleteKeyResponse& b) {
     a.Swap(&b);
@@ -33185,7 +33623,7 @@ class RenameKeyRequest final :
                &_RenameKeyRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    190;
+    192;
 
   friend void swap(RenameKeyRequest& a, RenameKeyRequest& b) {
     a.Swap(&b);
@@ -33349,7 +33787,7 @@ class RenameKeyResponse final :
                &_RenameKeyResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    191;
+    193;
 
   friend void swap(RenameKeyResponse& a, RenameKeyResponse& b) {
     a.Swap(&b);
@@ -33513,7 +33951,7 @@ class AuthorizationDetails final :
                &_AuthorizationDetails_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    192;
+    194;
 
   friend void swap(AuthorizationDetails& a, AuthorizationDetails& b) {
     a.Swap(&b);
@@ -33725,7 +34163,7 @@ class APIKeyWithAuthorizations final :
                &_APIKeyWithAuthorizations_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    193;
+    195;
 
   friend void swap(APIKeyWithAuthorizations& a, APIKeyWithAuthorizations& b) {
     a.Swap(&b);
@@ -33897,7 +34335,7 @@ class ListKeysRequest final :
                &_ListKeysRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    194;
+    196;
 
   friend void swap(ListKeysRequest& a, ListKeysRequest& b) {
     a.Swap(&b);
@@ -34045,7 +34483,7 @@ class ListKeysResponse final :
                &_ListKeysResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    195;
+    197;
 
   friend void swap(ListKeysResponse& a, ListKeysResponse& b) {
     a.Swap(&b);
@@ -34197,7 +34635,7 @@ class RotateKeyRequest final :
                &_RotateKeyRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    196;
+    198;
 
   friend void swap(RotateKeyRequest& a, RotateKeyRequest& b) {
     a.Swap(&b);
@@ -34345,7 +34783,7 @@ class RotateKeyResponse final :
                &_RotateKeyResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    197;
+    199;
 
   friend void swap(RotateKeyResponse& a, RotateKeyResponse& b) {
     a.Swap(&b);
@@ -34509,7 +34947,7 @@ class CreateKeyFromExistingKeyAuthorizationsRequest final :
                &_CreateKeyFromExistingKeyAuthorizationsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    198;
+    200;
 
   friend void swap(CreateKeyFromExistingKeyAuthorizationsRequest& a, CreateKeyFromExistingKeyAuthorizationsRequest& b) {
     a.Swap(&b);
@@ -34657,7 +35095,7 @@ class CreateKeyFromExistingKeyAuthorizationsResponse final :
                &_CreateKeyFromExistingKeyAuthorizationsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    199;
+    201;
 
   friend void swap(CreateKeyFromExistingKeyAuthorizationsResponse& a, CreateKeyFromExistingKeyAuthorizationsResponse& b) {
     a.Swap(&b);
@@ -34821,7 +35259,7 @@ class OrganizationSetLogoRequest final :
                &_OrganizationSetLogoRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    200;
+    202;
 
   friend void swap(OrganizationSetLogoRequest& a, OrganizationSetLogoRequest& b) {
     a.Swap(&b);
@@ -34984,7 +35422,7 @@ class OrganizationSetLogoResponse final :
                &_OrganizationSetLogoResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    201;
+    203;
 
   friend void swap(OrganizationSetLogoResponse& a, OrganizationSetLogoResponse& b) {
     a.Swap(&b);
@@ -35101,7 +35539,7 @@ class OrganizationGetLogoRequest final :
                &_OrganizationGetLogoRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    202;
+    204;
 
   friend void swap(OrganizationGetLogoRequest& a, OrganizationGetLogoRequest& b) {
     a.Swap(&b);
@@ -35249,7 +35687,7 @@ class OrganizationGetLogoResponse final :
                &_OrganizationGetLogoResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    203;
+    205;
 
   friend void swap(OrganizationGetLogoResponse& a, OrganizationGetLogoResponse& b) {
     a.Swap(&b);
@@ -35397,7 +35835,7 @@ class EnableAuthServiceRequest final :
                &_EnableAuthServiceRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    204;
+    206;
 
   friend void swap(EnableAuthServiceRequest& a, EnableAuthServiceRequest& b) {
     a.Swap(&b);
@@ -35544,7 +35982,7 @@ class EnableAuthServiceResponse final :
                &_EnableAuthServiceResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    205;
+    207;
 
   friend void swap(EnableAuthServiceResponse& a, EnableAuthServiceResponse& b) {
     a.Swap(&b);
@@ -35661,7 +36099,7 @@ class DisableAuthServiceRequest final :
                &_DisableAuthServiceRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    206;
+    208;
 
   friend void swap(DisableAuthServiceRequest& a, DisableAuthServiceRequest& b) {
     a.Swap(&b);
@@ -35808,7 +36246,7 @@ class DisableAuthServiceResponse final :
                &_DisableAuthServiceResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    207;
+    209;
 
   friend void swap(DisableAuthServiceResponse& a, DisableAuthServiceResponse& b) {
     a.Swap(&b);
@@ -35925,7 +36363,7 @@ class CreateOAuthAppRequest final :
                &_CreateOAuthAppRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    208;
+    210;
 
   friend void swap(CreateOAuthAppRequest& a, CreateOAuthAppRequest& b) {
     a.Swap(&b);
@@ -36109,7 +36547,7 @@ class CreateOAuthAppResponse final :
                &_CreateOAuthAppResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    209;
+    211;
 
   friend void swap(CreateOAuthAppResponse& a, CreateOAuthAppResponse& b) {
     a.Swap(&b);
@@ -36273,7 +36711,7 @@ class ReadOAuthAppRequest final :
                &_ReadOAuthAppRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    210;
+    212;
 
   friend void swap(ReadOAuthAppRequest& a, ReadOAuthAppRequest& b) {
     a.Swap(&b);
@@ -36437,7 +36875,7 @@ class ReadOAuthAppResponse final :
                &_ReadOAuthAppResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    211;
+    213;
 
   friend void swap(ReadOAuthAppResponse& a, ReadOAuthAppResponse& b) {
     a.Swap(&b);
@@ -36621,7 +37059,7 @@ class UpdateOAuthAppRequest final :
                &_UpdateOAuthAppRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    212;
+    214;
 
   friend void swap(UpdateOAuthAppRequest& a, UpdateOAuthAppRequest& b) {
     a.Swap(&b);
@@ -36820,7 +37258,7 @@ class UpdateOAuthAppResponse final :
                &_UpdateOAuthAppResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    213;
+    215;
 
   friend void swap(UpdateOAuthAppResponse& a, UpdateOAuthAppResponse& b) {
     a.Swap(&b);
@@ -36937,7 +37375,7 @@ class DeleteOAuthAppRequest final :
                &_DeleteOAuthAppRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    214;
+    216;
 
   friend void swap(DeleteOAuthAppRequest& a, DeleteOAuthAppRequest& b) {
     a.Swap(&b);
@@ -37100,7 +37538,7 @@ class DeleteOAuthAppResponse final :
                &_DeleteOAuthAppResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    215;
+    217;
 
   friend void swap(DeleteOAuthAppResponse& a, DeleteOAuthAppResponse& b) {
     a.Swap(&b);
@@ -37217,7 +37655,7 @@ class ListOAuthAppsRequest final :
                &_ListOAuthAppsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    216;
+    218;
 
   friend void swap(ListOAuthAppsRequest& a, ListOAuthAppsRequest& b) {
     a.Swap(&b);
@@ -37365,7 +37803,7 @@ class ListOAuthAppsResponse final :
                &_ListOAuthAppsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    217;
+    219;
 
   friend void swap(ListOAuthAppsResponse& a, ListOAuthAppsResponse& b) {
     a.Swap(&b);
@@ -37523,7 +37961,7 @@ class OAuthConfig final :
                &_OAuthConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    218;
+    220;
 
   friend void swap(OAuthConfig& a, OAuthConfig& b) {
     a.Swap(&b);
@@ -49304,6 +49742,56 @@ inline void Fragment::set_allocated_last_updated(::PROTOBUF_NAMESPACE_ID::Timest
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Fragment.last_updated)
 }
 
+// string revision = 14 [json_name = "revision"];
+inline void Fragment::clear_revision() {
+  revision_.ClearToEmpty();
+}
+inline const std::string& Fragment::revision() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Fragment.revision)
+  return _internal_revision();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Fragment::set_revision(ArgT0&& arg0, ArgT... args) {
+ 
+ revision_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.Fragment.revision)
+}
+inline std::string* Fragment::mutable_revision() {
+  std::string* _s = _internal_mutable_revision();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Fragment.revision)
+  return _s;
+}
+inline const std::string& Fragment::_internal_revision() const {
+  return revision_.Get();
+}
+inline void Fragment::_internal_set_revision(const std::string& value) {
+  
+  revision_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Fragment::_internal_mutable_revision() {
+  
+  return revision_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Fragment::release_revision() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.Fragment.revision)
+  return revision_.Release();
+}
+inline void Fragment::set_allocated_revision(std::string* revision) {
+  if (revision != nullptr) {
+    
+  } else {
+    
+  }
+  revision_.SetAllocated(revision, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (revision_.IsDefault()) {
+    revision_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Fragment.revision)
+}
+
 // -------------------------------------------------------------------
 
 // FragmentHistoryEntry
@@ -49760,6 +50248,249 @@ inline void FragmentHistoryEntry::set_allocated_config(::PROTOBUF_NAMESPACE_ID::
 
 // -------------------------------------------------------------------
 
+// FragmentRevision
+
+// string revision = 1 [json_name = "revision"];
+inline void FragmentRevision::clear_revision() {
+  revision_.ClearToEmpty();
+}
+inline const std::string& FragmentRevision::revision() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.FragmentRevision.revision)
+  return _internal_revision();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void FragmentRevision::set_revision(ArgT0&& arg0, ArgT... args) {
+ 
+ revision_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.FragmentRevision.revision)
+}
+inline std::string* FragmentRevision::mutable_revision() {
+  std::string* _s = _internal_mutable_revision();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.FragmentRevision.revision)
+  return _s;
+}
+inline const std::string& FragmentRevision::_internal_revision() const {
+  return revision_.Get();
+}
+inline void FragmentRevision::_internal_set_revision(const std::string& value) {
+  
+  revision_.Set(value, GetArenaForAllocation());
+}
+inline std::string* FragmentRevision::_internal_mutable_revision() {
+  
+  return revision_.Mutable(GetArenaForAllocation());
+}
+inline std::string* FragmentRevision::release_revision() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.FragmentRevision.revision)
+  return revision_.Release();
+}
+inline void FragmentRevision::set_allocated_revision(std::string* revision) {
+  if (revision != nullptr) {
+    
+  } else {
+    
+  }
+  revision_.SetAllocated(revision, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (revision_.IsDefault()) {
+    revision_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.FragmentRevision.revision)
+}
+
+// .google.protobuf.Timestamp created_at = 2 [json_name = "createdAt"];
+inline bool FragmentRevision::_internal_has_created_at() const {
+  return this != internal_default_instance() && created_at_ != nullptr;
+}
+inline bool FragmentRevision::has_created_at() const {
+  return _internal_has_created_at();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& FragmentRevision::_internal_created_at() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = created_at_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& FragmentRevision::created_at() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.FragmentRevision.created_at)
+  return _internal_created_at();
+}
+inline void FragmentRevision::unsafe_arena_set_allocated_created_at(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* created_at) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(created_at_);
+  }
+  created_at_ = created_at;
+  if (created_at) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.FragmentRevision.created_at)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* FragmentRevision::release_created_at() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = created_at_;
+  created_at_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* FragmentRevision::unsafe_arena_release_created_at() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.FragmentRevision.created_at)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = created_at_;
+  created_at_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* FragmentRevision::_internal_mutable_created_at() {
+  
+  if (created_at_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    created_at_ = p;
+  }
+  return created_at_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* FragmentRevision::mutable_created_at() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_created_at();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.FragmentRevision.created_at)
+  return _msg;
+}
+inline void FragmentRevision::set_allocated_created_at(::PROTOBUF_NAMESPACE_ID::Timestamp* created_at) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(created_at_);
+  }
+  if (created_at) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(created_at));
+    if (message_arena != submessage_arena) {
+      created_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, created_at, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  created_at_ = created_at;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.FragmentRevision.created_at)
+}
+
+// -------------------------------------------------------------------
+
+// FragmentTag
+
+// string tag = 1 [json_name = "tag"];
+inline void FragmentTag::clear_tag() {
+  tag_.ClearToEmpty();
+}
+inline const std::string& FragmentTag::tag() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.FragmentTag.tag)
+  return _internal_tag();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void FragmentTag::set_tag(ArgT0&& arg0, ArgT... args) {
+ 
+ tag_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.FragmentTag.tag)
+}
+inline std::string* FragmentTag::mutable_tag() {
+  std::string* _s = _internal_mutable_tag();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.FragmentTag.tag)
+  return _s;
+}
+inline const std::string& FragmentTag::_internal_tag() const {
+  return tag_.Get();
+}
+inline void FragmentTag::_internal_set_tag(const std::string& value) {
+  
+  tag_.Set(value, GetArenaForAllocation());
+}
+inline std::string* FragmentTag::_internal_mutable_tag() {
+  
+  return tag_.Mutable(GetArenaForAllocation());
+}
+inline std::string* FragmentTag::release_tag() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.FragmentTag.tag)
+  return tag_.Release();
+}
+inline void FragmentTag::set_allocated_tag(std::string* tag) {
+  if (tag != nullptr) {
+    
+  } else {
+    
+  }
+  tag_.SetAllocated(tag, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (tag_.IsDefault()) {
+    tag_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.FragmentTag.tag)
+}
+
+// string revision = 2 [json_name = "revision"];
+inline void FragmentTag::clear_revision() {
+  revision_.ClearToEmpty();
+}
+inline const std::string& FragmentTag::revision() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.FragmentTag.revision)
+  return _internal_revision();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void FragmentTag::set_revision(ArgT0&& arg0, ArgT... args) {
+ 
+ revision_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.FragmentTag.revision)
+}
+inline std::string* FragmentTag::mutable_revision() {
+  std::string* _s = _internal_mutable_revision();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.FragmentTag.revision)
+  return _s;
+}
+inline const std::string& FragmentTag::_internal_revision() const {
+  return revision_.Get();
+}
+inline void FragmentTag::_internal_set_revision(const std::string& value) {
+  
+  revision_.Set(value, GetArenaForAllocation());
+}
+inline std::string* FragmentTag::_internal_mutable_revision() {
+  
+  return revision_.Mutable(GetArenaForAllocation());
+}
+inline std::string* FragmentTag::release_revision() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.FragmentTag.revision)
+  return revision_.Release();
+}
+inline void FragmentTag::set_allocated_revision(std::string* revision) {
+  if (revision != nullptr) {
+    
+  } else {
+    
+  }
+  revision_.SetAllocated(revision, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (revision_.IsDefault()) {
+    revision_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.FragmentTag.revision)
+}
+
+// -------------------------------------------------------------------
+
 // FragmentError
 
 // .viam.app.v1.FragmentErrorType error_type = 1 [json_name = "errorType"];
@@ -49994,6 +50725,74 @@ inline void FragmentUsage::_internal_set_machines_in_current_org(int32_t value) 
 inline void FragmentUsage::set_machines_in_current_org(int32_t value) {
   _internal_set_machines_in_current_org(value);
   // @@protoc_insertion_point(field_set:viam.app.v1.FragmentUsage.machines_in_current_org)
+}
+
+// optional string version = 5 [json_name = "version"];
+inline bool FragmentUsage::_internal_has_version() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool FragmentUsage::has_version() const {
+  return _internal_has_version();
+}
+inline void FragmentUsage::clear_version() {
+  version_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& FragmentUsage::version() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.FragmentUsage.version)
+  return _internal_version();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void FragmentUsage::set_version(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ version_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.FragmentUsage.version)
+}
+inline std::string* FragmentUsage::mutable_version() {
+  std::string* _s = _internal_mutable_version();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.FragmentUsage.version)
+  return _s;
+}
+inline const std::string& FragmentUsage::_internal_version() const {
+  return version_.Get();
+}
+inline void FragmentUsage::_internal_set_version(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  version_.Set(value, GetArenaForAllocation());
+}
+inline std::string* FragmentUsage::_internal_mutable_version() {
+  _has_bits_[0] |= 0x00000001u;
+  return version_.Mutable(GetArenaForAllocation());
+}
+inline std::string* FragmentUsage::release_version() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.FragmentUsage.version)
+  if (!_internal_has_version()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = version_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (version_.IsDefault()) {
+    version_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void FragmentUsage::set_allocated_version(std::string* version) {
+  if (version != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  version_.SetAllocated(version, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (version_.IsDefault()) {
+    version_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.FragmentUsage.version)
 }
 
 // -------------------------------------------------------------------
@@ -50530,6 +51329,74 @@ inline void GetFragmentRequest::set_allocated_current_organization_id(std::strin
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetFragmentRequest.current_organization_id)
 }
 
+// optional string version = 3 [json_name = "version"];
+inline bool GetFragmentRequest::_internal_has_version() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool GetFragmentRequest::has_version() const {
+  return _internal_has_version();
+}
+inline void GetFragmentRequest::clear_version() {
+  version_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& GetFragmentRequest::version() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetFragmentRequest.version)
+  return _internal_version();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetFragmentRequest::set_version(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ version_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetFragmentRequest.version)
+}
+inline std::string* GetFragmentRequest::mutable_version() {
+  std::string* _s = _internal_mutable_version();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetFragmentRequest.version)
+  return _s;
+}
+inline const std::string& GetFragmentRequest::_internal_version() const {
+  return version_.Get();
+}
+inline void GetFragmentRequest::_internal_set_version(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  version_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetFragmentRequest::_internal_mutable_version() {
+  _has_bits_[0] |= 0x00000001u;
+  return version_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetFragmentRequest::release_version() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetFragmentRequest.version)
+  if (!_internal_has_version()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = version_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (version_.IsDefault()) {
+    version_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void GetFragmentRequest::set_allocated_version(std::string* version) {
+  if (version != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  version_.SetAllocated(version, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (version_.IsDefault()) {
+    version_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetFragmentRequest.version)
+}
+
 // -------------------------------------------------------------------
 
 // GetFragmentResponse
@@ -50712,6 +51579,86 @@ inline void GetFragmentResponse::set_allocated_fragment_usage(::viam::app::v1::F
   }
   fragment_usage_ = fragment_usage;
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetFragmentResponse.fragment_usage)
+}
+
+// repeated .viam.app.v1.FragmentRevision revisions = 3 [json_name = "revisions"];
+inline int GetFragmentResponse::_internal_revisions_size() const {
+  return revisions_.size();
+}
+inline int GetFragmentResponse::revisions_size() const {
+  return _internal_revisions_size();
+}
+inline void GetFragmentResponse::clear_revisions() {
+  revisions_.Clear();
+}
+inline ::viam::app::v1::FragmentRevision* GetFragmentResponse::mutable_revisions(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetFragmentResponse.revisions)
+  return revisions_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::FragmentRevision >*
+GetFragmentResponse::mutable_revisions() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.GetFragmentResponse.revisions)
+  return &revisions_;
+}
+inline const ::viam::app::v1::FragmentRevision& GetFragmentResponse::_internal_revisions(int index) const {
+  return revisions_.Get(index);
+}
+inline const ::viam::app::v1::FragmentRevision& GetFragmentResponse::revisions(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetFragmentResponse.revisions)
+  return _internal_revisions(index);
+}
+inline ::viam::app::v1::FragmentRevision* GetFragmentResponse::_internal_add_revisions() {
+  return revisions_.Add();
+}
+inline ::viam::app::v1::FragmentRevision* GetFragmentResponse::add_revisions() {
+  ::viam::app::v1::FragmentRevision* _add = _internal_add_revisions();
+  // @@protoc_insertion_point(field_add:viam.app.v1.GetFragmentResponse.revisions)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::FragmentRevision >&
+GetFragmentResponse::revisions() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.GetFragmentResponse.revisions)
+  return revisions_;
+}
+
+// repeated .viam.app.v1.FragmentTag tags = 4 [json_name = "tags"];
+inline int GetFragmentResponse::_internal_tags_size() const {
+  return tags_.size();
+}
+inline int GetFragmentResponse::tags_size() const {
+  return _internal_tags_size();
+}
+inline void GetFragmentResponse::clear_tags() {
+  tags_.Clear();
+}
+inline ::viam::app::v1::FragmentTag* GetFragmentResponse::mutable_tags(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetFragmentResponse.tags)
+  return tags_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::FragmentTag >*
+GetFragmentResponse::mutable_tags() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.GetFragmentResponse.tags)
+  return &tags_;
+}
+inline const ::viam::app::v1::FragmentTag& GetFragmentResponse::_internal_tags(int index) const {
+  return tags_.Get(index);
+}
+inline const ::viam::app::v1::FragmentTag& GetFragmentResponse::tags(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetFragmentResponse.tags)
+  return _internal_tags(index);
+}
+inline ::viam::app::v1::FragmentTag* GetFragmentResponse::_internal_add_tags() {
+  return tags_.Add();
+}
+inline ::viam::app::v1::FragmentTag* GetFragmentResponse::add_tags() {
+  ::viam::app::v1::FragmentTag* _add = _internal_add_tags();
+  // @@protoc_insertion_point(field_add:viam.app.v1.GetFragmentResponse.tags)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::FragmentTag >&
+GetFragmentResponse::tags() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.GetFragmentResponse.tags)
+  return tags_;
 }
 
 // -------------------------------------------------------------------
@@ -63623,6 +64570,10 @@ OAuthConfig::mutable_enabled_grants() {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
