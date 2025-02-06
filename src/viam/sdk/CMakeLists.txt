@@ -15,7 +15,7 @@ add_library(viam-cpp-sdk::viamsdk ALIAS viamsdk)
 # `BASE_DIRS` below, because otherwise we will pull in the static
 # versions of the proto files even if we are generating dynamically.
 target_include_directories(viamsdk
-  PUBLIC
+  PRIVATE
     "$<BUILD_INTERFACE:$<TARGET_PROPERTY:viam-cpp-sdk::viamapi,INTERFACE_INCLUDE_DIRECTORIES>>"
 )
 
@@ -29,6 +29,8 @@ endif()
 message(WARNING "api proto label is ${VIAMCPPSDK_API_PROTO_LABEL}")
 configure_file(common/private/version_metadata.hpp.in common/private/version_metadata.hpp @ONLY)
 
+# Configure the grpc client forward declarations file
+configure_file(common/grpc_fwd.hpp.in common/grpc_fwd.hpp)
 
 # Set compile and link options based on arguments
 if (VIAMCPPSDK_USE_WALL_WERROR)
@@ -50,10 +52,11 @@ target_sources(viamsdk
     common/exception.cpp
     common/linear_algebra.cpp
     common/pose.cpp
-    common/proto_type.cpp
-    common/service_helper.cpp
+    common/proto_value.cpp
     common/utils.cpp
+    common/version_metadata.cpp
     common/world_state.cpp
+    common/private/service_helper.cpp
     components/arm.cpp
     components/base.cpp
     components/board.cpp
@@ -75,6 +78,7 @@ target_sources(viamsdk
     components/private/board_server.cpp
     components/private/camera_client.cpp
     components/private/camera_server.cpp
+    components/private/encoder.cpp
     components/private/encoder_client.cpp
     components/private/encoder_server.cpp
     components/private/gantry_client.cpp
@@ -111,13 +115,13 @@ target_sources(viamsdk
     resource/resource_server_base.cpp
     resource/stoppable.cpp
     robot/client.cpp
-    robot/service.cpp
     rpc/dial.cpp
     rpc/server.cpp
     rpc/private/viam_grpc_channel.cpp
     services/generic.cpp
     services/mlmodel.cpp
     services/motion.cpp
+    services/navigation.cpp
     services/private/generic_client.cpp
     services/private/generic_server.cpp
     services/private/mlmodel.cpp
@@ -125,6 +129,8 @@ target_sources(viamsdk
     services/private/mlmodel_server.cpp
     services/private/motion_client.cpp
     services/private/motion_server.cpp
+    services/private/navigation_client.cpp
+    services/private/navigation_server.cpp
     services/service.cpp
     spatialmath/geometry.cpp
     spatialmath/orientation.cpp
@@ -132,14 +138,16 @@ target_sources(viamsdk
   PUBLIC FILE_SET viamsdk_public_includes TYPE HEADERS
     BASE_DIRS
       ../..
+      ${CMAKE_CURRENT_BINARY_DIR}/../..
     FILES
       ../../viam/sdk/common/client_helper.hpp
       ../../viam/sdk/common/exception.hpp
       ../../viam/sdk/common/linear_algebra.hpp
       ../../viam/sdk/common/pose.hpp
-      ../../viam/sdk/common/proto_type.hpp
-      ../../viam/sdk/common/service_helper.hpp
+      ../../viam/sdk/common/proto_convert.hpp
+      ../../viam/sdk/common/proto_value.hpp
       ../../viam/sdk/common/utils.hpp
+      ../../viam/sdk/common/version_metadata.hpp
       ../../viam/sdk/common/world_state.hpp
       ../../viam/sdk/components/arm.hpp
       ../../viam/sdk/components/base.hpp
@@ -170,17 +178,18 @@ target_sources(viamsdk
       ../../viam/sdk/resource/resource_server_base.hpp
       ../../viam/sdk/resource/stoppable.hpp
       ../../viam/sdk/robot/client.hpp
-      ../../viam/sdk/robot/service.hpp
       ../../viam/sdk/rpc/dial.hpp
       ../../viam/sdk/rpc/message_sizes.hpp
       ../../viam/sdk/rpc/server.hpp
       ../../viam/sdk/services/generic.hpp
       ../../viam/sdk/services/mlmodel.hpp
       ../../viam/sdk/services/motion.hpp
+      ../../viam/sdk/services/navigation.hpp
       ../../viam/sdk/services/service.hpp
       ../../viam/sdk/spatialmath/geometry.hpp
       ../../viam/sdk/spatialmath/orientation.hpp
       ../../viam/sdk/spatialmath/orientation_types.hpp
+      ${CMAKE_CURRENT_BINARY_DIR}/../../viam/sdk/common/grpc_fwd.hpp
 )
 
 set_target_properties(
@@ -199,7 +208,6 @@ target_include_directories(viamsdk
     "$<INSTALL_INTERFACE:${VIAMCPPSDK_GRPC_INCLUDE_DIRS}>"
     "$<BUILD_INTERFACE:${VIAMCPPSDK_PROTOBUF_INCLUDE_DIRS}>"
     "$<INSTALL_INTERFACE:${VIAMCPPSDK_PROTOBUF_INCLUDE_DIRS}>"
-  PRIVATE
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/../..>"
 )
 
@@ -225,16 +233,16 @@ target_link_directories(viamsdk
     "$<INSTALL_INTERFACE:${VIAMCPPSDK_PROTOBUF_LIBRARY_DIRS}>"
 )
 
+viamcppsdk_link_viam_api(viamsdk PRIVATE)
+
 target_link_libraries(viamsdk
-  PUBLIC viam-cpp-sdk::viamapi
-  PUBLIC ${VIAMCPPSDK_GRPCXX_LIBRARIES}
-  PUBLIC ${VIAMCPPSDK_GRPC_LIBRARIES}
-  PUBLIC ${VIAMCPPSDK_PROTOBUF_LIBRARIES}
   PUBLIC Boost::headers
   PUBLIC Boost::log
   PUBLIC xtensor
   PRIVATE ${VIAMCPPSDK_GRPCXX_REFLECTION_LIBRARIES}
-  PRIVATE absl::strings
+  PRIVATE ${VIAMCPPSDK_GRPCXX_LIBRARIES}
+  PRIVATE ${VIAMCPPSDK_GRPC_LIBRARIES}
+  PRIVATE ${VIAMCPPSDK_PROTOBUF_LIBRARIES}
   PRIVATE viam_rust_utils
   PRIVATE Threads::Threads
 )
@@ -242,6 +250,9 @@ target_link_libraries(viamsdk
 
 if (APPLE)
   target_link_libraries(viamsdk PUBLIC "-framework Security")
+else()
+  target_link_libraries(viamsdk PRIVATE dl)
+  target_link_libraries(viamsdk PRIVATE rt)
 endif()
 
 
@@ -285,5 +296,6 @@ install(FILES
   COMPONENT viam-cpp-sdk_dev
 )
 
-
-add_subdirectory(tests)
+if (VIAMCPPSDK_BUILD_TESTS)
+  add_subdirectory(tests)
+endif()

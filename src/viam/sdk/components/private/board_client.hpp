@@ -23,30 +23,30 @@ class BoardClient : public Board {
    public:
     using interface_type = Board;
     BoardClient(std::string name, std::shared_ptr<grpc::Channel> channel);
-    AttributeMap do_command(const AttributeMap& command) override;
-    void set_gpio(const std::string& pin, bool high, const AttributeMap& extra) override;
-    bool get_gpio(const std::string& pin, const AttributeMap& extra) override;
-    double get_pwm_duty_cycle(const std::string& pin, const AttributeMap& extra) override;
+    ProtoStruct do_command(const ProtoStruct& command) override;
+    void set_gpio(const std::string& pin, bool high, const ProtoStruct& extra) override;
+    bool get_gpio(const std::string& pin, const ProtoStruct& extra) override;
+    double get_pwm_duty_cycle(const std::string& pin, const ProtoStruct& extra) override;
     void set_pwm_duty_cycle(const std::string& pin,
                             double duty_cycle_pct,
-                            const AttributeMap& extra) override;
-    uint64_t get_pwm_frequency(const std::string& pin, const AttributeMap& extra) override;
+                            const ProtoStruct& extra) override;
+    uint64_t get_pwm_frequency(const std::string& pin, const ProtoStruct& extra) override;
     void set_pwm_frequency(const std::string& pin,
                            uint64_t frequency_hz,
-                           const AttributeMap& extra) override;
+                           const ProtoStruct& extra) override;
     analog_response read_analog(const std::string& analog_reader_name,
-                                const AttributeMap& extra) override;
-    void write_analog(const std::string& pin, int value, const AttributeMap& extra) override;
+                                const ProtoStruct& extra) override;
+    void write_analog(const std::string& pin, int value, const ProtoStruct& extra) override;
     digital_value read_digital_interrupt(const std::string& digital_interrupt_name,
-                                         const AttributeMap& extra) override;
+                                         const ProtoStruct& extra) override;
     void set_power_mode(power_mode power_mode,
-                        const AttributeMap& extra,
+                        const ProtoStruct& extra,
                         const boost::optional<std::chrono::microseconds>& duration) override;
-    std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
+    std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 
     void stream_ticks(std::vector<std::string> const& digital_interrupt_names,
                       std::function<bool(Tick&& tick)> const& tick_handler,
-                      const AttributeMap& extra) override;
+                      const ProtoStruct& extra) override;
 
     // the `extra` param is frequently unnecessary but needs to be supported. Ideally, we'd
     // like to live in a world where implementers of derived classes don't need to go out of

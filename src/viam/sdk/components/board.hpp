@@ -7,9 +7,7 @@
 #include <string>
 #include <unordered_map>
 
-#include <viam/api/component/board/v1/board.pb.h>
-
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
 
@@ -76,18 +74,6 @@ class Board : public Component {
 
     API api() const override;
 
-    /// @brief Creates a `status` struct from its proto representation.
-    static status from_proto(const viam::component::board::v1::Status& proto);
-
-    /// @brief Creates a `power_mode` enum from its proto representation.
-    static power_mode from_proto(viam::component::board::v1::PowerMode proto);
-
-    /// @brief Converts a `status` struct to its proto representation.
-    static viam::component::board::v1::Status to_proto(const status& status);
-
-    /// @brief Converts a `power_mode` enum to its proto representation.
-    static viam::component::board::v1::PowerMode to_proto(power_mode power_mode);
-
     /// @brief Gets the high/low state of the given pin on a board.
     /// @param pin board pin name
     /// @return high/low state of the given pin. High = on, low = off
@@ -99,7 +85,7 @@ class Board : public Component {
     /// @param pin board pin name
     /// @param extra Any additional arguments to the method
     /// @return high/low state of the given pin. High = on, low = off
-    virtual bool get_gpio(const std::string& pin, const AttributeMap& extra) = 0;
+    virtual bool get_gpio(const std::string& pin, const ProtoStruct& extra) = 0;
 
     /// @brief Set the gpio high/low state of the given pin on a board
     /// @param high true if the pin should be set to high (on) or false if it should be low (off)
@@ -110,7 +96,7 @@ class Board : public Component {
     /// @brief Set the gpio high/low state of the given pin on a board
     /// @param high true if the pin should be set to high (on) or false if it should be low (off)
     /// @param extra Any additional arguments to the method
-    virtual void set_gpio(const std::string& pin, bool high, const AttributeMap& extra) = 0;
+    virtual void set_gpio(const std::string& pin, bool high, const ProtoStruct& extra) = 0;
 
     /// @brief Gets the duty cycle of the given pin on a board.
     /// @param pin board pin name
@@ -123,7 +109,7 @@ class Board : public Component {
     /// @param pin board pin name
     /// @param extra Any additional arguments to the method
     /// @return duty cycle percentage (0 to 1)
-    virtual double get_pwm_duty_cycle(const std::string& pin, const AttributeMap& extra) = 0;
+    virtual double get_pwm_duty_cycle(const std::string& pin, const ProtoStruct& extra) = 0;
 
     /// @brief Sets the given pin of a board to the given duty cycle.
     /// @param pin board pin name
@@ -138,7 +124,7 @@ class Board : public Component {
     /// @param extra Any additional arguments to the method
     virtual void set_pwm_duty_cycle(const std::string& pin,
                                     double duty_cycle_pct,
-                                    const AttributeMap& extra) = 0;
+                                    const ProtoStruct& extra) = 0;
 
     /// @brief Gets the PWM frequency of the given pin on a board.
     /// @param pin board pin name
@@ -149,7 +135,7 @@ class Board : public Component {
     /// @brief Gets the PWM frequency of the given pin on a board.
     /// @param pin board pin name
     /// @param extra Any additional arguments to the method
-    virtual uint64_t get_pwm_frequency(const std::string& pin, const AttributeMap& extra) = 0;
+    virtual uint64_t get_pwm_frequency(const std::string& pin, const ProtoStruct& extra) = 0;
 
     /// @brief Sets the given pin on a board to the given PWM frequency. 0 will use the board's
     /// default PWM frequency.
@@ -166,7 +152,7 @@ class Board : public Component {
     /// @param extra Any additional arguments to the method
     virtual void set_pwm_frequency(const std::string& pin,
                                    uint64_t frequency_hz,
-                                   const AttributeMap& extra) = 0;
+                                   const ProtoStruct& extra) = 0;
 
     /// @brief Reads off the current value of an analog reader on a board. Consult your ADC's docs
     /// or Viam's `Board` docs for more information.
@@ -180,7 +166,7 @@ class Board : public Component {
     /// @param analog_reader_name analog reader to read from
     /// @param extra Any additional arguments to the method
     virtual analog_response read_analog(const std::string& analog_reader_name,
-                                        const AttributeMap& extra) = 0;
+                                        const ProtoStruct& extra) = 0;
 
     /// @brief Writes the value to the analog writer of the board.
     /// @param pin the pin to write to
@@ -193,7 +179,7 @@ class Board : public Component {
     /// @param pin the pin to write to
     /// @param value the value to set the pin to
     /// @param extra any additional arguments to the method
-    virtual void write_analog(const std::string& pin, int value, const AttributeMap& extra) = 0;
+    virtual void write_analog(const std::string& pin, int value, const ProtoStruct& extra) = 0;
 
     /// @brief Returns the current value of the interrupt which is based on the type of
     /// interrupt. Consult Viam's `Board` docs for more information.
@@ -207,7 +193,7 @@ class Board : public Component {
     /// @param digital_interrupt_name digital interrupt to check
     /// @param extra Any additional arguments to the method
     virtual digital_value read_digital_interrupt(const std::string& digital_interrupt_name,
-                                                 const AttributeMap& extra) = 0;
+                                                 const ProtoStruct& extra) = 0;
 
     /// @brief Returns a stream of digital interrupt ticks.
     /// @param digital_interrupt_names digital interrupts to stream
@@ -225,7 +211,7 @@ class Board : public Component {
     /// @param extra Any additional arguments to the method
     virtual void stream_ticks(std::vector<std::string> const& digital_interrupt_names,
                               std::function<bool(Tick&& tick)> const& tick_handler,
-                              const AttributeMap& extra) = 0;
+                              const ProtoStruct& extra) = 0;
 
     /// @brief Sets the power consumption mode of the board to the requested setting for the given
     /// duration.
@@ -243,13 +229,13 @@ class Board : public Component {
     /// @param duration Requested duration to stay in `power_mode` (in microseconds)
     virtual void set_power_mode(
         power_mode power_mode,
-        const AttributeMap& extra,
+        const ProtoStruct& extra,
         const boost::optional<std::chrono::microseconds>& duration = {}) = 0;
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.
     /// @return The result of the executed command.
-    virtual AttributeMap do_command(const AttributeMap& command) = 0;
+    virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
     /// @brief Returns `GeometryConfig`s associated with the calling board.
     /// @return The requested `GeometryConfig`s associated with the component.
@@ -260,7 +246,7 @@ class Board : public Component {
     /// @brief Returns `GeometryConfig`s associated with the calling board.
     /// @param extra Any additional arguments to the method.
     /// @return The requested `GeometryConfig`s associated with the component.
-    virtual std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) = 0;
+    virtual std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) = 0;
 
    protected:
     explicit Board(std::string name);

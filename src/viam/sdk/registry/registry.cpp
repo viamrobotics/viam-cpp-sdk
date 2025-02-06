@@ -48,15 +48,38 @@
 #include <viam/sdk/services/private/mlmodel_server.hpp>
 #include <viam/sdk/services/private/motion_client.hpp>
 #include <viam/sdk/services/private/motion_server.hpp>
+#include <viam/sdk/services/private/navigation_client.hpp>
+#include <viam/sdk/services/private/navigation_server.hpp>
 #include <viam/sdk/services/service.hpp>
 
 namespace viam {
 namespace sdk {
 
-using viam::robot::v1::Status;
+ResourceServerRegistration::ResourceServerRegistration(
+    const google::protobuf::ServiceDescriptor* service_descriptor)
+    : service_descriptor_(service_descriptor) {}
 
 ResourceServerRegistration::~ResourceServerRegistration() = default;
 ResourceClientRegistration::~ResourceClientRegistration() = default;
+
+ModelRegistration::ModelRegistration(
+    API api,
+    Model model,
+    std::function<std::shared_ptr<Resource>(Dependencies, ResourceConfig)> constructor)
+    : construct_resource(std::move(constructor)),
+      validate(default_validator),
+      model_(std::move(model)),
+      api_(std::move(api)) {}
+
+ModelRegistration::ModelRegistration(
+    API api,
+    Model model,
+    std::function<std::shared_ptr<Resource>(Dependencies, ResourceConfig)> constructor,
+    std::function<std::vector<std::string>(ResourceConfig)> validator)
+    : construct_resource(std::move(constructor)),
+      validate(std::move(validator)),
+      model_(std::move(model)),
+      api_(std::move(api)) {}
 
 const API& ModelRegistration::api() const {
     return api_;
@@ -157,14 +180,6 @@ Registry::registered_models() {
     return resources_;
 }
 
-// NOLINTNEXTLINE(readability-convert-member-functions-to-static)
-Status ModelRegistration::create_status(const std::shared_ptr<Resource>& resource) const {
-    Status status;
-    *status.mutable_name() = resource->get_resource_name(resource->name());
-    *status.mutable_status() = google::protobuf::Struct();
-    return status;
-}
-
 const google::protobuf::ServiceDescriptor* ResourceServerRegistration::service_descriptor() const {
     return service_descriptor_;
 }
@@ -190,6 +205,7 @@ void register_resources() {
     Registry::register_resource<impl::GenericServiceClient, impl::GenericServiceServer>();
     Registry::register_resource<impl::MLModelServiceClient, impl::MLModelServiceServer>();
     Registry::register_resource<impl::MotionClient, impl::MotionServer>();
+    Registry::register_resource<impl::NavigationClient, impl::NavigationServer>();
 }
 
 void Registry::initialize() {

@@ -7,9 +7,7 @@
 
 #include <boost/test/included/unit_test.hpp>
 
-#include <viam/api/common/v1/common.pb.h>
-
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
 #include "gizmo.grpc.pb.h"

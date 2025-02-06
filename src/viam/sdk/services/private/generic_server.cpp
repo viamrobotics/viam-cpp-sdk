@@ -1,6 +1,6 @@
 #include <viam/sdk/services/private/generic_server.hpp>
 
-#include <viam/sdk/common/service_helper.hpp>
+#include <viam/sdk/common/private/service_helper.hpp>
 #include <viam/sdk/rpc/server.hpp>
 #include <viam/sdk/services/generic.hpp>
 
@@ -9,7 +9,7 @@ namespace sdk {
 namespace impl {
 
 GenericServiceServer::GenericServiceServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)){};
+    : ResourceServer(std::move(manager)) {}
 
 ::grpc::Status GenericServiceServer::DoCommand(
     ::grpc::ServerContext*,
@@ -17,8 +17,8 @@ GenericServiceServer::GenericServiceServer(std::shared_ptr<ResourceManager> mana
     ::viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<GenericService>(
         "GenericServiceServer::DoCommand", this, request)([&](auto&, auto& generic) {
-        const AttributeMap result = generic->do_command(struct_to_map(request->command()));
-        *response->mutable_result() = map_to_struct(result);
+        const ProtoStruct result = generic->do_command(from_proto(request->command()));
+        *response->mutable_result() = to_proto(result);
     });
 }
 

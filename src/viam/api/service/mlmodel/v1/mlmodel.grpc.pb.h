@@ -7,23 +7,24 @@
 #include "service/mlmodel/v1/mlmodel.pb.h"
 
 #include <functional>
-#include <grpcpp/generic/async_generic_service.h>
-#include <grpcpp/support/async_stream.h>
-#include <grpcpp/support/async_unary_call.h>
-#include <grpcpp/support/client_callback.h>
-#include <grpcpp/client_context.h>
-#include <grpcpp/completion_queue.h>
-#include <grpcpp/support/message_allocator.h>
-#include <grpcpp/support/method_handler.h>
-#include <grpcpp/impl/proto_utils.h>
-#include <grpcpp/impl/rpc_method.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/status.h>
-#include <grpcpp/support/stub_options.h>
-#include <grpcpp/support/sync_stream.h>
+#include <grpc/impl/codegen/port_platform.h>
+#include <grpcpp/impl/codegen/async_generic_service.h>
+#include <grpcpp/impl/codegen/async_stream.h>
+#include <grpcpp/impl/codegen/async_unary_call.h>
+#include <grpcpp/impl/codegen/client_callback.h>
+#include <grpcpp/impl/codegen/client_context.h>
+#include <grpcpp/impl/codegen/completion_queue.h>
+#include <grpcpp/impl/codegen/message_allocator.h>
+#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/impl/codegen/proto_utils.h>
+#include <grpcpp/impl/codegen/rpc_method.h>
+#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/codegen/server_callback_handlers.h>
+#include <grpcpp/impl/codegen/server_context.h>
+#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/impl/codegen/status.h>
+#include <grpcpp/impl/codegen/stub_options.h>
+#include <grpcpp/impl/codegen/sync_stream.h>
 
 namespace viam {
 namespace service {
@@ -56,20 +57,44 @@ class MLModelService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::mlmodel::v1::MetadataResponse>> PrepareAsyncMetadata(::grpc::ClientContext* context, const ::viam::service::mlmodel::v1::MetadataRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::mlmodel::v1::MetadataResponse>>(PrepareAsyncMetadataRaw(context, request, cq));
     }
-    class async_interface {
+    class experimental_async_interface {
      public:
-      virtual ~async_interface() {}
+      virtual ~experimental_async_interface() {}
       // Infer takes an already ordered input tensor as a map, makes an inference on the model, and returns an output data map.
       virtual void Infer(::grpc::ClientContext* context, const ::viam::service::mlmodel::v1::InferRequest* request, ::viam::service::mlmodel::v1::InferResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Infer(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::mlmodel::v1::InferResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void Infer(::grpc::ClientContext* context, const ::viam::service::mlmodel::v1::InferRequest* request, ::viam::service::mlmodel::v1::InferResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void Infer(::grpc::ClientContext* context, const ::viam::service::mlmodel::v1::InferRequest* request, ::viam::service::mlmodel::v1::InferResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void Infer(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::mlmodel::v1::InferResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void Infer(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::mlmodel::v1::InferResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // Metadata returns the metadata associated with the ML model.
       virtual void Metadata(::grpc::ClientContext* context, const ::viam::service::mlmodel::v1::MetadataRequest* request, ::viam::service::mlmodel::v1::MetadataResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Metadata(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::mlmodel::v1::MetadataResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void Metadata(::grpc::ClientContext* context, const ::viam::service::mlmodel::v1::MetadataRequest* request, ::viam::service::mlmodel::v1::MetadataResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void Metadata(::grpc::ClientContext* context, const ::viam::service::mlmodel::v1::MetadataRequest* request, ::viam::service::mlmodel::v1::MetadataResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void Metadata(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::mlmodel::v1::MetadataResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void Metadata(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::mlmodel::v1::MetadataResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
     };
-    typedef class async_interface experimental_async_interface;
-    virtual class async_interface* async() { return nullptr; }
-    class async_interface* experimental_async() { return async(); }
-   private:
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    typedef class experimental_async_interface async_interface;
+    #endif
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    async_interface* async() { return experimental_async(); }
+    #endif
+    virtual class experimental_async_interface* experimental_async() { return nullptr; }
+  private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::mlmodel::v1::InferResponse>* AsyncInferRaw(::grpc::ClientContext* context, const ::viam::service::mlmodel::v1::InferRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::mlmodel::v1::InferResponse>* PrepareAsyncInferRaw(::grpc::ClientContext* context, const ::viam::service::mlmodel::v1::InferRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::mlmodel::v1::MetadataResponse>* AsyncMetadataRaw(::grpc::ClientContext* context, const ::viam::service::mlmodel::v1::MetadataRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -77,7 +102,7 @@ class MLModelService final {
   };
   class Stub final : public StubInterface {
    public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
     ::grpc::Status Infer(::grpc::ClientContext* context, const ::viam::service::mlmodel::v1::InferRequest& request, ::viam::service::mlmodel::v1::InferResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::mlmodel::v1::InferResponse>> AsyncInfer(::grpc::ClientContext* context, const ::viam::service::mlmodel::v1::InferRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::mlmodel::v1::InferResponse>>(AsyncInferRaw(context, request, cq));
@@ -92,24 +117,44 @@ class MLModelService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::mlmodel::v1::MetadataResponse>> PrepareAsyncMetadata(::grpc::ClientContext* context, const ::viam::service::mlmodel::v1::MetadataRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::mlmodel::v1::MetadataResponse>>(PrepareAsyncMetadataRaw(context, request, cq));
     }
-    class async final :
-      public StubInterface::async_interface {
+    class experimental_async final :
+      public StubInterface::experimental_async_interface {
      public:
       void Infer(::grpc::ClientContext* context, const ::viam::service::mlmodel::v1::InferRequest* request, ::viam::service::mlmodel::v1::InferResponse* response, std::function<void(::grpc::Status)>) override;
+      void Infer(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::mlmodel::v1::InferResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void Infer(::grpc::ClientContext* context, const ::viam::service::mlmodel::v1::InferRequest* request, ::viam::service::mlmodel::v1::InferResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void Infer(::grpc::ClientContext* context, const ::viam::service::mlmodel::v1::InferRequest* request, ::viam::service::mlmodel::v1::InferResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void Infer(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::mlmodel::v1::InferResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void Infer(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::mlmodel::v1::InferResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void Metadata(::grpc::ClientContext* context, const ::viam::service::mlmodel::v1::MetadataRequest* request, ::viam::service::mlmodel::v1::MetadataResponse* response, std::function<void(::grpc::Status)>) override;
+      void Metadata(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::mlmodel::v1::MetadataResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void Metadata(::grpc::ClientContext* context, const ::viam::service::mlmodel::v1::MetadataRequest* request, ::viam::service::mlmodel::v1::MetadataResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void Metadata(::grpc::ClientContext* context, const ::viam::service::mlmodel::v1::MetadataRequest* request, ::viam::service::mlmodel::v1::MetadataResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void Metadata(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::mlmodel::v1::MetadataResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void Metadata(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::mlmodel::v1::MetadataResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
      private:
       friend class Stub;
-      explicit async(Stub* stub): stub_(stub) { }
+      explicit experimental_async(Stub* stub): stub_(stub) { }
       Stub* stub() { return stub_; }
       Stub* stub_;
     };
-    class async* async() override { return &async_stub_; }
+    class experimental_async_interface* experimental_async() override { return &async_stub_; }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class async async_stub_{this};
+    class experimental_async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::viam::service::mlmodel::v1::InferResponse>* AsyncInferRaw(::grpc::ClientContext* context, const ::viam::service::mlmodel::v1::InferRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::mlmodel::v1::InferResponse>* PrepareAsyncInferRaw(::grpc::ClientContext* context, const ::viam::service::mlmodel::v1::InferRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::mlmodel::v1::MetadataResponse>* AsyncMetadataRaw(::grpc::ClientContext* context, const ::viam::service::mlmodel::v1::MetadataRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -170,22 +215,36 @@ class MLModelService final {
   };
   typedef WithAsyncMethod_Infer<WithAsyncMethod_Metadata<Service > > AsyncService;
   template <class BaseClass>
-  class WithCallbackMethod_Infer : public BaseClass {
+  class ExperimentalWithCallbackMethod_Infer : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_Infer() {
-      ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::mlmodel::v1::InferRequest, ::viam::service::mlmodel::v1::InferResponse>(
+    ExperimentalWithCallbackMethod_Infer() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(0,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::mlmodel::v1::InferRequest, ::viam::service::mlmodel::v1::InferResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::mlmodel::v1::InferRequest* request, ::viam::service::mlmodel::v1::InferResponse* response) { return this->Infer(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::service::mlmodel::v1::InferRequest* request, ::viam::service::mlmodel::v1::InferResponse* response) { return this->Infer(context, request, response); }));}
     void SetMessageAllocatorFor_Infer(
-        ::grpc::MessageAllocator< ::viam::service::mlmodel::v1::InferRequest, ::viam::service::mlmodel::v1::InferResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::service::mlmodel::v1::InferRequest, ::viam::service::mlmodel::v1::InferResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::mlmodel::v1::InferRequest, ::viam::service::mlmodel::v1::InferResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::mlmodel::v1::InferRequest, ::viam::service::mlmodel::v1::InferResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_Infer() override {
+    ~ExperimentalWithCallbackMethod_Infer() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -193,26 +252,46 @@ class MLModelService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* Infer(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::mlmodel::v1::InferRequest* /*request*/, ::viam::service::mlmodel::v1::InferResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::mlmodel::v1::InferRequest* /*request*/, ::viam::service::mlmodel::v1::InferResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Infer(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::service::mlmodel::v1::InferRequest* /*request*/, ::viam::service::mlmodel::v1::InferResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_Metadata : public BaseClass {
+  class ExperimentalWithCallbackMethod_Metadata : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_Metadata() {
-      ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::mlmodel::v1::MetadataRequest, ::viam::service::mlmodel::v1::MetadataResponse>(
+    ExperimentalWithCallbackMethod_Metadata() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::mlmodel::v1::MetadataRequest, ::viam::service::mlmodel::v1::MetadataResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::mlmodel::v1::MetadataRequest* request, ::viam::service::mlmodel::v1::MetadataResponse* response) { return this->Metadata(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::service::mlmodel::v1::MetadataRequest* request, ::viam::service::mlmodel::v1::MetadataResponse* response) { return this->Metadata(context, request, response); }));}
     void SetMessageAllocatorFor_Metadata(
-        ::grpc::MessageAllocator< ::viam::service::mlmodel::v1::MetadataRequest, ::viam::service::mlmodel::v1::MetadataResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::service::mlmodel::v1::MetadataRequest, ::viam::service::mlmodel::v1::MetadataResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::mlmodel::v1::MetadataRequest, ::viam::service::mlmodel::v1::MetadataResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::mlmodel::v1::MetadataRequest, ::viam::service::mlmodel::v1::MetadataResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_Metadata() override {
+    ~ExperimentalWithCallbackMethod_Metadata() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -220,11 +299,20 @@ class MLModelService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* Metadata(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::mlmodel::v1::MetadataRequest* /*request*/, ::viam::service::mlmodel::v1::MetadataResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::mlmodel::v1::MetadataRequest* /*request*/, ::viam::service::mlmodel::v1::MetadataResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Metadata(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::service::mlmodel::v1::MetadataRequest* /*request*/, ::viam::service::mlmodel::v1::MetadataResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
-  typedef WithCallbackMethod_Infer<WithCallbackMethod_Metadata<Service > > CallbackService;
-  typedef CallbackService ExperimentalCallbackService;
+  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+  typedef ExperimentalWithCallbackMethod_Infer<ExperimentalWithCallbackMethod_Metadata<Service > > CallbackService;
+  #endif
+
+  typedef ExperimentalWithCallbackMethod_Infer<ExperimentalWithCallbackMethod_Metadata<Service > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Infer : public BaseClass {
    private:
@@ -300,17 +388,27 @@ class MLModelService final {
     }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_Infer : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_Infer : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_Infer() {
-      ::grpc::Service::MarkMethodRawCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_Infer() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(0,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Infer(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Infer(context, request, response); }));
     }
-    ~WithRawCallbackMethod_Infer() override {
+    ~ExperimentalWithRawCallbackMethod_Infer() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -318,21 +416,37 @@ class MLModelService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* Infer(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Infer(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_Metadata : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_Metadata : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_Metadata() {
-      ::grpc::Service::MarkMethodRawCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_Metadata() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Metadata(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Metadata(context, request, response); }));
     }
-    ~WithRawCallbackMethod_Metadata() override {
+    ~ExperimentalWithRawCallbackMethod_Metadata() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -340,8 +454,14 @@ class MLModelService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* Metadata(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Metadata(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_Infer : public BaseClass {
@@ -352,8 +472,8 @@ class MLModelService final {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::mlmodel::v1::InferRequest, ::viam::service::mlmodel::v1::InferResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::service::mlmodel::v1::InferRequest, ::viam::service::mlmodel::v1::InferResponse>* streamer) {
                        return this->StreamedInfer(context,
                          streamer);
@@ -379,8 +499,8 @@ class MLModelService final {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::mlmodel::v1::MetadataRequest, ::viam::service::mlmodel::v1::MetadataResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::service::mlmodel::v1::MetadataRequest, ::viam::service::mlmodel::v1::MetadataResponse>* streamer) {
                        return this->StreamedMetadata(context,
                          streamer);

@@ -4,545 +4,452 @@
 #include "service/sensors/v1/sensors.pb.h"
 
 #include <algorithm>
-#include "google/protobuf/io/coded_stream.h"
-#include "google/protobuf/extension_set.h"
-#include "google/protobuf/wire_format_lite.h"
-#include "google/protobuf/descriptor.h"
-#include "google/protobuf/generated_message_reflection.h"
-#include "google/protobuf/reflection_ops.h"
-#include "google/protobuf/wire_format.h"
-#include "google/protobuf/generated_message_tctable_impl.h"
-// @@protoc_insertion_point(includes)
 
-// Must be included last.
-#include "google/protobuf/port_def.inc"
+#include <google/protobuf/io/coded_stream.h>
+#include <google/protobuf/extension_set.h>
+#include <google/protobuf/wire_format_lite.h>
+#include <google/protobuf/descriptor.h>
+#include <google/protobuf/generated_message_reflection.h>
+#include <google/protobuf/reflection_ops.h>
+#include <google/protobuf/wire_format.h>
+// @@protoc_insertion_point(includes)
+#include <google/protobuf/port_def.inc>
+
 PROTOBUF_PRAGMA_INIT_SEG
-namespace _pb = ::google::protobuf;
-namespace _pbi = ::google::protobuf::internal;
-namespace _fl = ::google::protobuf::internal::field_layout;
+
+namespace _pb = ::PROTOBUF_NAMESPACE_ID;
+namespace _pbi = _pb::internal;
+
 namespace viam {
 namespace service {
 namespace sensors {
 namespace v1 {
-      template <typename>
-PROTOBUF_CONSTEXPR Readings_ReadingsEntry_DoNotUse::Readings_ReadingsEntry_DoNotUse(::_pbi::ConstantInitialized) {}
-struct Readings_ReadingsEntry_DoNotUseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR Readings_ReadingsEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~Readings_ReadingsEntry_DoNotUseDefaultTypeInternal() {}
-  union {
-    Readings_ReadingsEntry_DoNotUse _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Readings_ReadingsEntry_DoNotUseDefaultTypeInternal _Readings_ReadingsEntry_DoNotUse_default_instance_;
-
-inline constexpr GetSensorsResponse::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : sensor_names_{},
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR GetSensorsResponse::GetSensorsResponse(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct GetSensorsResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetSensorsResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetSensorsResponseDefaultTypeInternal() {}
-  union {
-    GetSensorsResponse _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetSensorsResponseDefaultTypeInternal _GetSensorsResponse_default_instance_;
-
-inline constexpr GetSensorsRequest::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        name_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        extra_{nullptr} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR GetSensorsRequest::GetSensorsRequest(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
+PROTOBUF_CONSTEXPR GetSensorsRequest::GetSensorsRequest(
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , extra_(nullptr){}
 struct GetSensorsRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetSensorsRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR GetSensorsRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
   ~GetSensorsRequestDefaultTypeInternal() {}
   union {
     GetSensorsRequest _instance;
   };
 };
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetSensorsRequestDefaultTypeInternal _GetSensorsRequest_default_instance_;
-
-inline constexpr GetReadingsRequest::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        sensor_names_{},
-        name_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        extra_{nullptr} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR GetReadingsRequest::GetReadingsRequest(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetSensorsRequestDefaultTypeInternal _GetSensorsRequest_default_instance_;
+PROTOBUF_CONSTEXPR GetSensorsResponse::GetSensorsResponse(
+    ::_pbi::ConstantInitialized)
+  : sensor_names_(){}
+struct GetSensorsResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetSensorsResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetSensorsResponseDefaultTypeInternal() {}
+  union {
+    GetSensorsResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetSensorsResponseDefaultTypeInternal _GetSensorsResponse_default_instance_;
+PROTOBUF_CONSTEXPR GetReadingsRequest::GetReadingsRequest(
+    ::_pbi::ConstantInitialized)
+  : sensor_names_()
+  , name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , extra_(nullptr){}
 struct GetReadingsRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetReadingsRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR GetReadingsRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
   ~GetReadingsRequestDefaultTypeInternal() {}
   union {
     GetReadingsRequest _instance;
   };
 };
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetReadingsRequestDefaultTypeInternal _GetReadingsRequest_default_instance_;
-
-inline constexpr Readings::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        readings_{},
-        name_{nullptr} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR Readings::Readings(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetReadingsRequestDefaultTypeInternal _GetReadingsRequest_default_instance_;
+PROTOBUF_CONSTEXPR Readings_ReadingsEntry_DoNotUse::Readings_ReadingsEntry_DoNotUse(
+    ::_pbi::ConstantInitialized){}
+struct Readings_ReadingsEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Readings_ReadingsEntry_DoNotUseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Readings_ReadingsEntry_DoNotUseDefaultTypeInternal() {}
+  union {
+    Readings_ReadingsEntry_DoNotUse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Readings_ReadingsEntry_DoNotUseDefaultTypeInternal _Readings_ReadingsEntry_DoNotUse_default_instance_;
+PROTOBUF_CONSTEXPR Readings::Readings(
+    ::_pbi::ConstantInitialized)
+  : readings_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
+  , name_(nullptr){}
 struct ReadingsDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ReadingsDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR ReadingsDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
   ~ReadingsDefaultTypeInternal() {}
   union {
     Readings _instance;
   };
 };
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ReadingsDefaultTypeInternal _Readings_default_instance_;
-
-inline constexpr GetReadingsResponse::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : readings_{},
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR GetReadingsResponse::GetReadingsResponse(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ReadingsDefaultTypeInternal _Readings_default_instance_;
+PROTOBUF_CONSTEXPR GetReadingsResponse::GetReadingsResponse(
+    ::_pbi::ConstantInitialized)
+  : readings_(){}
 struct GetReadingsResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetReadingsResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR GetReadingsResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
   ~GetReadingsResponseDefaultTypeInternal() {}
   union {
     GetReadingsResponse _instance;
   };
 };
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetReadingsResponseDefaultTypeInternal _GetReadingsResponse_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetReadingsResponseDefaultTypeInternal _GetReadingsResponse_default_instance_;
 }  // namespace v1
 }  // namespace sensors
 }  // namespace service
 }  // namespace viam
 static ::_pb::Metadata file_level_metadata_service_2fsensors_2fv1_2fsensors_2eproto[6];
-static constexpr const ::_pb::EnumDescriptor**
-    file_level_enum_descriptors_service_2fsensors_2fv1_2fsensors_2eproto = nullptr;
-static constexpr const ::_pb::ServiceDescriptor**
-    file_level_service_descriptors_service_2fsensors_2fv1_2fsensors_2eproto = nullptr;
-const ::uint32_t TableStruct_service_2fsensors_2fv1_2fsensors_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
-    protodesc_cold) = {
-    PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::GetSensorsRequest, _impl_._has_bits_),
-    PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::GetSensorsRequest, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::GetSensorsRequest, _impl_.name_),
-    PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::GetSensorsRequest, _impl_.extra_),
-    ~0u,
-    0,
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::GetSensorsResponse, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::GetSensorsResponse, _impl_.sensor_names_),
-    PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::GetReadingsRequest, _impl_._has_bits_),
-    PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::GetReadingsRequest, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::GetReadingsRequest, _impl_.name_),
-    PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::GetReadingsRequest, _impl_.sensor_names_),
-    PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::GetReadingsRequest, _impl_.extra_),
-    ~0u,
-    ~0u,
-    0,
-    PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::Readings_ReadingsEntry_DoNotUse, _has_bits_),
-    PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::Readings_ReadingsEntry_DoNotUse, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::Readings_ReadingsEntry_DoNotUse, key_),
-    PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::Readings_ReadingsEntry_DoNotUse, value_),
-    0,
-    1,
-    PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::Readings, _impl_._has_bits_),
-    PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::Readings, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::Readings, _impl_.name_),
-    PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::Readings, _impl_.readings_),
-    0,
-    ~0u,
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::GetReadingsResponse, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::GetReadingsResponse, _impl_.readings_),
-};
+static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_service_2fsensors_2fv1_2fsensors_2eproto = nullptr;
+static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_service_2fsensors_2fv1_2fsensors_2eproto = nullptr;
 
-static const ::_pbi::MigrationSchema
-    schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-        {0, 10, -1, sizeof(::viam::service::sensors::v1::GetSensorsRequest)},
-        {12, -1, -1, sizeof(::viam::service::sensors::v1::GetSensorsResponse)},
-        {21, 32, -1, sizeof(::viam::service::sensors::v1::GetReadingsRequest)},
-        {35, 45, -1, sizeof(::viam::service::sensors::v1::Readings_ReadingsEntry_DoNotUse)},
-        {47, 57, -1, sizeof(::viam::service::sensors::v1::Readings)},
-        {59, -1, -1, sizeof(::viam::service::sensors::v1::GetReadingsResponse)},
+const uint32_t TableStruct_service_2fsensors_2fv1_2fsensors_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::GetSensorsRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::GetSensorsRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::GetSensorsRequest, extra_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::GetSensorsResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::GetSensorsResponse, sensor_names_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::GetReadingsRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::GetReadingsRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::GetReadingsRequest, sensor_names_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::GetReadingsRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::Readings_ReadingsEntry_DoNotUse, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::Readings_ReadingsEntry_DoNotUse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::Readings_ReadingsEntry_DoNotUse, key_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::Readings_ReadingsEntry_DoNotUse, value_),
+  0,
+  1,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::Readings, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::Readings, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::Readings, readings_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::GetReadingsResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::service::sensors::v1::GetReadingsResponse, readings_),
+};
+static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  { 0, -1, -1, sizeof(::viam::service::sensors::v1::GetSensorsRequest)},
+  { 8, -1, -1, sizeof(::viam::service::sensors::v1::GetSensorsResponse)},
+  { 15, -1, -1, sizeof(::viam::service::sensors::v1::GetReadingsRequest)},
+  { 24, 32, -1, sizeof(::viam::service::sensors::v1::Readings_ReadingsEntry_DoNotUse)},
+  { 34, -1, -1, sizeof(::viam::service::sensors::v1::Readings)},
+  { 42, -1, -1, sizeof(::viam::service::sensors::v1::GetReadingsResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-    &::viam::service::sensors::v1::_GetSensorsRequest_default_instance_._instance,
-    &::viam::service::sensors::v1::_GetSensorsResponse_default_instance_._instance,
-    &::viam::service::sensors::v1::_GetReadingsRequest_default_instance_._instance,
-    &::viam::service::sensors::v1::_Readings_ReadingsEntry_DoNotUse_default_instance_._instance,
-    &::viam::service::sensors::v1::_Readings_default_instance_._instance,
-    &::viam::service::sensors::v1::_GetReadingsResponse_default_instance_._instance,
-};
-const char descriptor_table_protodef_service_2fsensors_2fv1_2fsensors_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n service/sensors/v1/sensors.proto\022\027viam"
-    ".service.sensors.v1\032\026common/v1/common.pr"
-    "oto\032\034google/api/annotations.proto\032\034googl"
-    "e/protobuf/struct.proto\"b\n\021GetSensorsReq"
-    "uest\022\026\n\004name\030\001 \001(\tB\002\030\001R\004name\0221\n\005extra\030c "
-    "\001(\0132\027.google.protobuf.StructB\002\030\001R\005extra:"
-    "\002\030\001\"]\n\022GetSensorsResponse\022C\n\014sensor_name"
-    "s\030\001 \003(\0132\034.viam.common.v1.ResourceNameB\002\030"
-    "\001R\013sensorNames:\002\030\001\"\250\001\n\022GetReadingsReques"
-    "t\022\026\n\004name\030\001 \001(\tB\002\030\001R\004name\022C\n\014sensor_name"
-    "s\030\002 \003(\0132\034.viam.common.v1.ResourceNameB\002\030"
-    "\001R\013sensorNames\0221\n\005extra\030c \001(\0132\027.google.p"
-    "rotobuf.StructB\002\030\001R\005extra:\002\030\001\"\352\001\n\010Readin"
-    "gs\0224\n\004name\030\001 \001(\0132\034.viam.common.v1.Resour"
-    "ceNameB\002\030\001R\004name\022O\n\010readings\030\002 \003(\0132/.via"
-    "m.service.sensors.v1.Readings.ReadingsEn"
-    "tryB\002\030\001R\010readings\032S\n\rReadingsEntry\022\020\n\003ke"
-    "y\030\001 \001(\tR\003key\022,\n\005value\030\002 \001(\0132\026.google.pro"
-    "tobuf.ValueR\005value:\0028\001:\002\030\001\"\\\n\023GetReading"
-    "sResponse\022A\n\010readings\030\001 \003(\0132!.viam.servi"
-    "ce.sensors.v1.ReadingsB\002\030\001R\010readings:\002\030\001"
-    "2\332\003\n\016SensorsService\022\225\001\n\nGetSensors\022*.via"
-    "m.service.sensors.v1.GetSensorsRequest\032+"
-    ".viam.service.sensors.v1.GetSensorsRespo"
-    "nse\".\210\002\001\202\323\344\223\002%\022#/viam/api/v1/service/{na"
-    "me}/sensors\022\241\001\n\013GetReadings\022+.viam.servi"
-    "ce.sensors.v1.GetReadingsRequest\032,.viam."
-    "service.sensors.v1.GetReadingsResponse\"7"
-    "\210\002\001\202\323\344\223\002.\022,/viam/api/v1/service/sensors/"
-    "{name}/readings\022\213\001\n\tDoCommand\022 .viam.com"
-    "mon.v1.DoCommandRequest\032!.viam.common.v1"
-    ".DoCommandResponse\"9\210\002\001\202\323\344\223\0020\"./viam/api"
-    "/v1/service/sensors/{name}/do_commandB\321\001"
-    "\n\033com.viam.service.sensors.v1B\014SensorsPr"
-    "otoP\001Z\"go.viam.com/api/service/sensors/v"
-    "1\270\001\001\242\002\003VSS\252\002\027Viam.Service.Sensors.V1\312\002\027V"
-    "iam\\Service\\Sensors\\V1\342\002#Viam\\Service\\Se"
-    "nsors\\V1\\GPBMetadata\352\002\032Viam::Service::Se"
-    "nsors::V1b\006proto3"
-};
-static const ::_pbi::DescriptorTable* const descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_deps[3] =
-    {
-        &::descriptor_table_common_2fv1_2fcommon_2eproto,
-        &::descriptor_table_google_2fapi_2fannotations_2eproto,
-        &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
-};
-static ::absl::once_flag descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_once;
-const ::_pbi::DescriptorTable descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto = {
-    false,
-    false,
-    1537,
-    descriptor_table_protodef_service_2fsensors_2fv1_2fsensors_2eproto,
-    "service/sensors/v1/sensors.proto",
-    &descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_once,
-    descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_deps,
-    3,
-    6,
-    schemas,
-    file_default_instances,
-    TableStruct_service_2fsensors_2fv1_2fsensors_2eproto::offsets,
-    file_level_metadata_service_2fsensors_2fv1_2fsensors_2eproto,
-    file_level_enum_descriptors_service_2fsensors_2fv1_2fsensors_2eproto,
-    file_level_service_descriptors_service_2fsensors_2fv1_2fsensors_2eproto,
+  &::viam::service::sensors::v1::_GetSensorsRequest_default_instance_._instance,
+  &::viam::service::sensors::v1::_GetSensorsResponse_default_instance_._instance,
+  &::viam::service::sensors::v1::_GetReadingsRequest_default_instance_._instance,
+  &::viam::service::sensors::v1::_Readings_ReadingsEntry_DoNotUse_default_instance_._instance,
+  &::viam::service::sensors::v1::_Readings_default_instance_._instance,
+  &::viam::service::sensors::v1::_GetReadingsResponse_default_instance_._instance,
 };
 
-// This function exists to be marked as weak.
-// It can significantly speed up compilation by breaking up LLVM's SCC
-// in the .pb.cc translation units. Large translation units see a
-// reduction of more than 35% of walltime for optimized builds. Without
-// the weak attribute all the messages in the file, including all the
-// vtables and everything they use become part of the same SCC through
-// a cycle like:
-// GetMetadata -> descriptor table -> default instances ->
-//   vtables -> GetMetadata
-// By adding a weak function here we break the connection from the
-// individual vtables back into the descriptor table.
+const char descriptor_table_protodef_service_2fsensors_2fv1_2fsensors_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
+  "\n service/sensors/v1/sensors.proto\022\027viam"
+  ".service.sensors.v1\032\026common/v1/common.pr"
+  "oto\032\034google/api/annotations.proto\032\034googl"
+  "e/protobuf/struct.proto\"b\n\021GetSensorsReq"
+  "uest\022\026\n\004name\030\001 \001(\tB\002\030\001R\004name\0221\n\005extra\030c "
+  "\001(\0132\027.google.protobuf.StructB\002\030\001R\005extra:"
+  "\002\030\001\"]\n\022GetSensorsResponse\022C\n\014sensor_name"
+  "s\030\001 \003(\0132\034.viam.common.v1.ResourceNameB\002\030"
+  "\001R\013sensorNames:\002\030\001\"\250\001\n\022GetReadingsReques"
+  "t\022\026\n\004name\030\001 \001(\tB\002\030\001R\004name\022C\n\014sensor_name"
+  "s\030\002 \003(\0132\034.viam.common.v1.ResourceNameB\002\030"
+  "\001R\013sensorNames\0221\n\005extra\030c \001(\0132\027.google.p"
+  "rotobuf.StructB\002\030\001R\005extra:\002\030\001\"\352\001\n\010Readin"
+  "gs\0224\n\004name\030\001 \001(\0132\034.viam.common.v1.Resour"
+  "ceNameB\002\030\001R\004name\022O\n\010readings\030\002 \003(\0132/.via"
+  "m.service.sensors.v1.Readings.ReadingsEn"
+  "tryB\002\030\001R\010readings\032S\n\rReadingsEntry\022\020\n\003ke"
+  "y\030\001 \001(\tR\003key\022,\n\005value\030\002 \001(\0132\026.google.pro"
+  "tobuf.ValueR\005value:\0028\001:\002\030\001\"\\\n\023GetReading"
+  "sResponse\022A\n\010readings\030\001 \003(\0132!.viam.servi"
+  "ce.sensors.v1.ReadingsB\002\030\001R\010readings:\002\030\001"
+  "2\332\003\n\016SensorsService\022\225\001\n\nGetSensors\022*.via"
+  "m.service.sensors.v1.GetSensorsRequest\032+"
+  ".viam.service.sensors.v1.GetSensorsRespo"
+  "nse\".\210\002\001\202\323\344\223\002%\022#/viam/api/v1/service/{na"
+  "me}/sensors\022\241\001\n\013GetReadings\022+.viam.servi"
+  "ce.sensors.v1.GetReadingsRequest\032,.viam."
+  "service.sensors.v1.GetReadingsResponse\"7"
+  "\210\002\001\202\323\344\223\002.\022,/viam/api/v1/service/sensors/"
+  "{name}/readings\022\213\001\n\tDoCommand\022 .viam.com"
+  "mon.v1.DoCommandRequest\032!.viam.common.v1"
+  ".DoCommandResponse\"9\210\002\001\202\323\344\223\0020\"./viam/api"
+  "/v1/service/sensors/{name}/do_commandBD\n"
+  "\033com.viam.service.sensors.v1Z\"go.viam.co"
+  "m/api/service/sensors/v1\270\001\001b\006proto3"
+  ;
+static const ::_pbi::DescriptorTable* const descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_deps[3] = {
+  &::descriptor_table_common_2fv1_2fcommon_2eproto,
+  &::descriptor_table_google_2fapi_2fannotations_2eproto,
+  &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
+};
+static ::_pbi::once_flag descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_once;
+const ::_pbi::DescriptorTable descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto = {
+    false, false, 1395, descriptor_table_protodef_service_2fsensors_2fv1_2fsensors_2eproto,
+    "service/sensors/v1/sensors.proto",
+    &descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_once, descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_deps, 3, 6,
+    schemas, file_default_instances, TableStruct_service_2fsensors_2fv1_2fsensors_2eproto::offsets,
+    file_level_metadata_service_2fsensors_2fv1_2fsensors_2eproto, file_level_enum_descriptors_service_2fsensors_2fv1_2fsensors_2eproto,
+    file_level_service_descriptors_service_2fsensors_2fv1_2fsensors_2eproto,
+};
 PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_getter() {
   return &descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto;
 }
+
 // Force running AddDescriptors() at dynamic initialization time.
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
-static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_service_2fsensors_2fv1_2fsensors_2eproto(&descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_service_2fsensors_2fv1_2fsensors_2eproto(&descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto);
 namespace viam {
 namespace service {
 namespace sensors {
 namespace v1 {
+
 // ===================================================================
 
 class GetSensorsRequest::_Internal {
  public:
-  using HasBits = decltype(std::declval<GetSensorsRequest>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-    8 * PROTOBUF_FIELD_OFFSET(GetSensorsRequest, _impl_._has_bits_);
-  static const ::google::protobuf::Struct& extra(const GetSensorsRequest* msg);
-  static void set_has_extra(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
-  }
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetSensorsRequest* msg);
 };
 
-const ::google::protobuf::Struct& GetSensorsRequest::_Internal::extra(const GetSensorsRequest* msg) {
-  return *msg->_impl_.extra_;
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+GetSensorsRequest::_Internal::extra(const GetSensorsRequest* msg) {
+  return *msg->extra_;
 }
 void GetSensorsRequest::clear_extra() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (_impl_.extra_ != nullptr) _impl_.extra_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
 }
-GetSensorsRequest::GetSensorsRequest(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
+GetSensorsRequest::GetSensorsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.service.sensors.v1.GetSensorsRequest)
 }
-inline PROTOBUF_NDEBUG_INLINE GetSensorsRequest::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from)
-      : _has_bits_{from._has_bits_},
-        _cached_size_{0},
-        name_(arena, from.name_) {}
-
-GetSensorsRequest::GetSensorsRequest(
-    ::google::protobuf::Arena* arena,
-    const GetSensorsRequest& from)
-    : ::google::protobuf::Message(arena) {
-  GetSensorsRequest* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.extra_ = (cached_has_bits & 0x00000001u)
-                ? CreateMaybeMessage<::google::protobuf::Struct>(arena, *from._impl_.extra_)
-                : nullptr;
-
+GetSensorsRequest::GetSensorsRequest(const GetSensorsRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_extra()) {
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
+  }
   // @@protoc_insertion_point(copy_constructor:viam.service.sensors.v1.GetSensorsRequest)
 }
-inline PROTOBUF_NDEBUG_INLINE GetSensorsRequest::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : _cached_size_{0},
-        name_(arena) {}
 
-inline void GetSensorsRequest::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.extra_ = {};
+inline void GetSensorsRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+extra_ = nullptr;
 }
+
 GetSensorsRequest::~GetSensorsRequest() {
   // @@protoc_insertion_point(destructor:viam.service.sensors.v1.GetSensorsRequest)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
 }
+
 inline void GetSensorsRequest::SharedDtor() {
-  ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.name_.Destroy();
-  delete _impl_.extra_;
-  _impl_.~Impl_();
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+  if (this != internal_default_instance()) delete extra_;
 }
 
-PROTOBUF_NOINLINE void GetSensorsRequest::Clear() {
+void GetSensorsRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetSensorsRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.service.sensors.v1.GetSensorsRequest)
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::uint32_t cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.name_.ClearToEmpty();
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.extra_ != nullptr);
-    _impl_.extra_->Clear();
+  name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
   }
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  extra_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* GetSensorsRequest::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+const char* GetSensorsRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name", deprecated = true];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.service.sensors.v1.GetSensorsRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct extra = 99 [json_name = "extra", deprecated = true];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
   return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
 }
 
-
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 2, 1, 54, 7> GetSensorsRequest::_table_ = {
-  {
-    PROTOBUF_FIELD_OFFSET(GetSensorsRequest, _impl_._has_bits_),
-    0, // no _extensions_
-    99, 24,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_GetSensorsRequest_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-    // string name = 1 [json_name = "name", deprecated = true];
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetSensorsRequest, _impl_.name_)}},
-    {::_pbi::TcParser::MiniParse, {}},
-    // .google.protobuf.Struct extra = 99 [json_name = "extra", deprecated = true];
-    {::_pbi::TcParser::FastMtS2,
-     {1690, 0, 0, PROTOBUF_FIELD_OFFSET(GetSensorsRequest, _impl_.extra_)}},
-  }}, {{
-    99, 0, 1,
-    65534, 1,
-    65535, 65535
-  }}, {{
-    // string name = 1 [json_name = "name", deprecated = true];
-    {PROTOBUF_FIELD_OFFSET(GetSensorsRequest, _impl_.name_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .google.protobuf.Struct extra = 99 [json_name = "extra", deprecated = true];
-    {PROTOBUF_FIELD_OFFSET(GetSensorsRequest, _impl_.extra_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::google::protobuf::Struct>()},
-  }}, {{
-    "\51\4\0\0\0\0\0\0"
-    "viam.service.sensors.v1.GetSensorsRequest"
-    "name"
-  }},
-};
-
-::uint8_t* GetSensorsRequest::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+uint8_t* GetSensorsRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:viam.service.sensors.v1.GetSensorsRequest)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
 
   // string name = 1 [json_name = "name", deprecated = true];
   if (!this->_internal_name().empty()) {
-    const std::string& _s = this->_internal_name();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.service.sensors.v1.GetSensorsRequest.name");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.service.sensors.v1.GetSensorsRequest.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
   }
 
-  cached_has_bits = _impl_._has_bits_[0];
   // .google.protobuf.Struct extra = 99 [json_name = "extra", deprecated = true];
-  if (cached_has_bits & 0x00000001u) {
-    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        99, _Internal::extra(this),
+  if (this->_internal_has_extra()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::extra(this),
         _Internal::extra(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.service.sensors.v1.GetSensorsRequest)
   return target;
 }
 
-::size_t GetSensorsRequest::ByteSizeLong() const {
+size_t GetSensorsRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.service.sensors.v1.GetSensorsRequest)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string name = 1 [json_name = "name", deprecated = true];
   if (!this->_internal_name().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_name());
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra", deprecated = true];
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size +=
-        2 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.extra_);
+  if (this->_internal_has_extra()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData GetSensorsRequest::_class_data_ = {
-    GetSensorsRequest::MergeImpl,
-    nullptr,  // OnDemandRegisterArenaDtor
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetSensorsRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetSensorsRequest::MergeImpl
 };
-const ::google::protobuf::Message::ClassData* GetSensorsRequest::GetClassData() const {
-  return &_class_data_;
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetSensorsRequest::GetClassData() const { return &_class_data_; }
+
+void GetSensorsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetSensorsRequest *>(to)->MergeFrom(
+      static_cast<const GetSensorsRequest &>(from));
 }
 
-void GetSensorsRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<GetSensorsRequest*>(&to_msg);
-  auto& from = static_cast<const GetSensorsRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.sensors.v1.GetSensorsRequest)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+
+void GetSensorsRequest::MergeFrom(const GetSensorsRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.sensors.v1.GetSensorsRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _this->_internal_set_name(from._internal_name());
+    _internal_set_name(from._internal_name());
   }
-  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    _this->_internal_mutable_extra()->::google::protobuf::Struct::MergeFrom(
-        from._internal_extra());
+  if (from._internal_has_extra()) {
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
   }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetSensorsRequest::CopyFrom(const GetSensorsRequest& from) {
@@ -552,28 +459,28 @@ void GetSensorsRequest::CopyFrom(const GetSensorsRequest& from) {
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool GetSensorsRequest::IsInitialized() const {
+bool GetSensorsRequest::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* GetSensorsRequest::AccessCachedSize() const {
-  return &_impl_._cached_size_;
-}
-void GetSensorsRequest::InternalSwap(GetSensorsRequest* PROTOBUF_RESTRICT other) {
+void GetSensorsRequest::InternalSwap(GetSensorsRequest* other) {
   using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
-  swap(_impl_.extra_, other->_impl_.extra_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+  swap(extra_, other->extra_);
 }
 
-::google::protobuf::Metadata GetSensorsRequest::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata GetSensorsRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_getter, &descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_once,
       file_level_metadata_service_2fsensors_2fv1_2fsensors_2eproto[0]);
 }
+
 // ===================================================================
 
 class GetSensorsResponse::_Internal {
@@ -581,159 +488,155 @@ class GetSensorsResponse::_Internal {
 };
 
 void GetSensorsResponse::clear_sensor_names() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.sensor_names_.Clear();
+  sensor_names_.Clear();
 }
-GetSensorsResponse::GetSensorsResponse(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
+GetSensorsResponse::GetSensorsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  sensor_names_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.service.sensors.v1.GetSensorsResponse)
 }
-inline PROTOBUF_NDEBUG_INLINE GetSensorsResponse::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from)
-      : sensor_names_{visibility, arena, from.sensor_names_},
-        _cached_size_{0} {}
-
-GetSensorsResponse::GetSensorsResponse(
-    ::google::protobuf::Arena* arena,
-    const GetSensorsResponse& from)
-    : ::google::protobuf::Message(arena) {
-  GetSensorsResponse* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-
+GetSensorsResponse::GetSensorsResponse(const GetSensorsResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      sensor_names_(from.sensor_names_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.service.sensors.v1.GetSensorsResponse)
 }
-inline PROTOBUF_NDEBUG_INLINE GetSensorsResponse::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : sensor_names_{visibility, arena},
-        _cached_size_{0} {}
 
-inline void GetSensorsResponse::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
+inline void GetSensorsResponse::SharedCtor() {
 }
+
 GetSensorsResponse::~GetSensorsResponse() {
   // @@protoc_insertion_point(destructor:viam.service.sensors.v1.GetSensorsResponse)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
 }
+
 inline void GetSensorsResponse::SharedDtor() {
-  ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.~Impl_();
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
-PROTOBUF_NOINLINE void GetSensorsResponse::Clear() {
+void GetSensorsResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetSensorsResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.service.sensors.v1.GetSensorsResponse)
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::uint32_t cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.sensor_names_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  sensor_names_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* GetSensorsResponse::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+const char* GetSensorsResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .viam.common.v1.ResourceName sensor_names = 1 [json_name = "sensorNames", deprecated = true];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_sensor_names(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
   return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
 }
 
-
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 1, 0, 2> GetSensorsResponse::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_GetSensorsResponse_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // repeated .viam.common.v1.ResourceName sensor_names = 1 [json_name = "sensorNames", deprecated = true];
-    {::_pbi::TcParser::FastMtR1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetSensorsResponse, _impl_.sensor_names_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // repeated .viam.common.v1.ResourceName sensor_names = 1 [json_name = "sensorNames", deprecated = true];
-    {PROTOBUF_FIELD_OFFSET(GetSensorsResponse, _impl_.sensor_names_), 0, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::viam::common::v1::ResourceName>()},
-  }}, {{
-  }},
-};
-
-::uint8_t* GetSensorsResponse::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+uint8_t* GetSensorsResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:viam.service.sensors.v1.GetSensorsResponse)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
 
   // repeated .viam.common.v1.ResourceName sensor_names = 1 [json_name = "sensorNames", deprecated = true];
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_sensor_names_size()); i < n; i++) {
-    const auto& repfield = this->_internal_sensor_names().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
+    const auto& repfield = this->_internal_sensor_names(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
         InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.service.sensors.v1.GetSensorsResponse)
   return target;
 }
 
-::size_t GetSensorsResponse::ByteSizeLong() const {
+size_t GetSensorsResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.service.sensors.v1.GetSensorsResponse)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated .viam.common.v1.ResourceName sensor_names = 1 [json_name = "sensorNames", deprecated = true];
   total_size += 1UL * this->_internal_sensor_names_size();
-  for (const auto& msg : this->_internal_sensor_names()) {
+  for (const auto& msg : this->sensor_names_) {
     total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData GetSensorsResponse::_class_data_ = {
-    GetSensorsResponse::MergeImpl,
-    nullptr,  // OnDemandRegisterArenaDtor
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetSensorsResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetSensorsResponse::MergeImpl
 };
-const ::google::protobuf::Message::ClassData* GetSensorsResponse::GetClassData() const {
-  return &_class_data_;
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetSensorsResponse::GetClassData() const { return &_class_data_; }
+
+void GetSensorsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetSensorsResponse *>(to)->MergeFrom(
+      static_cast<const GetSensorsResponse &>(from));
 }
 
-void GetSensorsResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<GetSensorsResponse*>(&to_msg);
-  auto& from = static_cast<const GetSensorsResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.sensors.v1.GetSensorsResponse)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+
+void GetSensorsResponse::MergeFrom(const GetSensorsResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.sensors.v1.GetSensorsResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_internal_mutable_sensor_names()->MergeFrom(
-      from._internal_sensor_names());
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+  sensor_names_.MergeFrom(from.sensor_names_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetSensorsResponse::CopyFrom(const GetSensorsResponse& from) {
@@ -743,271 +646,269 @@ void GetSensorsResponse::CopyFrom(const GetSensorsResponse& from) {
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool GetSensorsResponse::IsInitialized() const {
+bool GetSensorsResponse::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* GetSensorsResponse::AccessCachedSize() const {
-  return &_impl_._cached_size_;
-}
-void GetSensorsResponse::InternalSwap(GetSensorsResponse* PROTOBUF_RESTRICT other) {
+void GetSensorsResponse::InternalSwap(GetSensorsResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.sensor_names_.InternalSwap(&other->_impl_.sensor_names_);
+  sensor_names_.InternalSwap(&other->sensor_names_);
 }
 
-::google::protobuf::Metadata GetSensorsResponse::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata GetSensorsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_getter, &descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_once,
       file_level_metadata_service_2fsensors_2fv1_2fsensors_2eproto[1]);
 }
+
 // ===================================================================
 
 class GetReadingsRequest::_Internal {
  public:
-  using HasBits = decltype(std::declval<GetReadingsRequest>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-    8 * PROTOBUF_FIELD_OFFSET(GetReadingsRequest, _impl_._has_bits_);
-  static const ::google::protobuf::Struct& extra(const GetReadingsRequest* msg);
-  static void set_has_extra(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
-  }
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetReadingsRequest* msg);
 };
 
-const ::google::protobuf::Struct& GetReadingsRequest::_Internal::extra(const GetReadingsRequest* msg) {
-  return *msg->_impl_.extra_;
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+GetReadingsRequest::_Internal::extra(const GetReadingsRequest* msg) {
+  return *msg->extra_;
 }
 void GetReadingsRequest::clear_sensor_names() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.sensor_names_.Clear();
+  sensor_names_.Clear();
 }
 void GetReadingsRequest::clear_extra() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (_impl_.extra_ != nullptr) _impl_.extra_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
 }
-GetReadingsRequest::GetReadingsRequest(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
+GetReadingsRequest::GetReadingsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  sensor_names_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.service.sensors.v1.GetReadingsRequest)
 }
-inline PROTOBUF_NDEBUG_INLINE GetReadingsRequest::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from)
-      : _has_bits_{from._has_bits_},
-        _cached_size_{0},
-        sensor_names_{visibility, arena, from.sensor_names_},
-        name_(arena, from.name_) {}
-
-GetReadingsRequest::GetReadingsRequest(
-    ::google::protobuf::Arena* arena,
-    const GetReadingsRequest& from)
-    : ::google::protobuf::Message(arena) {
-  GetReadingsRequest* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.extra_ = (cached_has_bits & 0x00000001u)
-                ? CreateMaybeMessage<::google::protobuf::Struct>(arena, *from._impl_.extra_)
-                : nullptr;
-
+GetReadingsRequest::GetReadingsRequest(const GetReadingsRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      sensor_names_(from.sensor_names_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_extra()) {
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
+  }
   // @@protoc_insertion_point(copy_constructor:viam.service.sensors.v1.GetReadingsRequest)
 }
-inline PROTOBUF_NDEBUG_INLINE GetReadingsRequest::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : _cached_size_{0},
-        sensor_names_{visibility, arena},
-        name_(arena) {}
 
-inline void GetReadingsRequest::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.extra_ = {};
+inline void GetReadingsRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+extra_ = nullptr;
 }
+
 GetReadingsRequest::~GetReadingsRequest() {
   // @@protoc_insertion_point(destructor:viam.service.sensors.v1.GetReadingsRequest)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
 }
+
 inline void GetReadingsRequest::SharedDtor() {
-  ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.name_.Destroy();
-  delete _impl_.extra_;
-  _impl_.~Impl_();
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+  if (this != internal_default_instance()) delete extra_;
 }
 
-PROTOBUF_NOINLINE void GetReadingsRequest::Clear() {
+void GetReadingsRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetReadingsRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.service.sensors.v1.GetReadingsRequest)
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::uint32_t cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.sensor_names_.Clear();
-  _impl_.name_.ClearToEmpty();
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.extra_ != nullptr);
-    _impl_.extra_->Clear();
+  sensor_names_.Clear();
+  name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
   }
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  extra_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* GetReadingsRequest::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+const char* GetReadingsRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name", deprecated = true];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.service.sensors.v1.GetReadingsRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .viam.common.v1.ResourceName sensor_names = 2 [json_name = "sensorNames", deprecated = true];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_sensor_names(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct extra = 99 [json_name = "extra", deprecated = true];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
   return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
 }
 
-
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 2, 55, 7> GetReadingsRequest::_table_ = {
-  {
-    PROTOBUF_FIELD_OFFSET(GetReadingsRequest, _impl_._has_bits_),
-    0, // no _extensions_
-    99, 24,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
-    2,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_GetReadingsRequest_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-    // string name = 1 [json_name = "name", deprecated = true];
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetReadingsRequest, _impl_.name_)}},
-    // repeated .viam.common.v1.ResourceName sensor_names = 2 [json_name = "sensorNames", deprecated = true];
-    {::_pbi::TcParser::FastMtR1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(GetReadingsRequest, _impl_.sensor_names_)}},
-    // .google.protobuf.Struct extra = 99 [json_name = "extra", deprecated = true];
-    {::_pbi::TcParser::FastMtS2,
-     {1690, 0, 1, PROTOBUF_FIELD_OFFSET(GetReadingsRequest, _impl_.extra_)}},
-  }}, {{
-    99, 0, 1,
-    65534, 2,
-    65535, 65535
-  }}, {{
-    // string name = 1 [json_name = "name", deprecated = true];
-    {PROTOBUF_FIELD_OFFSET(GetReadingsRequest, _impl_.name_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // repeated .viam.common.v1.ResourceName sensor_names = 2 [json_name = "sensorNames", deprecated = true];
-    {PROTOBUF_FIELD_OFFSET(GetReadingsRequest, _impl_.sensor_names_), -1, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-    // .google.protobuf.Struct extra = 99 [json_name = "extra", deprecated = true];
-    {PROTOBUF_FIELD_OFFSET(GetReadingsRequest, _impl_.extra_), _Internal::kHasBitsOffset + 0, 1,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::viam::common::v1::ResourceName>()},
-    {::_pbi::TcParser::GetTable<::google::protobuf::Struct>()},
-  }}, {{
-    "\52\4\0\0\0\0\0\0"
-    "viam.service.sensors.v1.GetReadingsRequest"
-    "name"
-  }},
-};
-
-::uint8_t* GetReadingsRequest::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+uint8_t* GetReadingsRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:viam.service.sensors.v1.GetReadingsRequest)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
 
   // string name = 1 [json_name = "name", deprecated = true];
   if (!this->_internal_name().empty()) {
-    const std::string& _s = this->_internal_name();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.service.sensors.v1.GetReadingsRequest.name");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.service.sensors.v1.GetReadingsRequest.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
   }
 
   // repeated .viam.common.v1.ResourceName sensor_names = 2 [json_name = "sensorNames", deprecated = true];
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_sensor_names_size()); i < n; i++) {
-    const auto& repfield = this->_internal_sensor_names().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
+    const auto& repfield = this->_internal_sensor_names(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
         InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
   }
 
-  cached_has_bits = _impl_._has_bits_[0];
   // .google.protobuf.Struct extra = 99 [json_name = "extra", deprecated = true];
-  if (cached_has_bits & 0x00000001u) {
-    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        99, _Internal::extra(this),
+  if (this->_internal_has_extra()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::extra(this),
         _Internal::extra(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.service.sensors.v1.GetReadingsRequest)
   return target;
 }
 
-::size_t GetReadingsRequest::ByteSizeLong() const {
+size_t GetReadingsRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.service.sensors.v1.GetReadingsRequest)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated .viam.common.v1.ResourceName sensor_names = 2 [json_name = "sensorNames", deprecated = true];
   total_size += 1UL * this->_internal_sensor_names_size();
-  for (const auto& msg : this->_internal_sensor_names()) {
+  for (const auto& msg : this->sensor_names_) {
     total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
+
   // string name = 1 [json_name = "name", deprecated = true];
   if (!this->_internal_name().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_name());
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra", deprecated = true];
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size +=
-        2 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.extra_);
+  if (this->_internal_has_extra()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData GetReadingsRequest::_class_data_ = {
-    GetReadingsRequest::MergeImpl,
-    nullptr,  // OnDemandRegisterArenaDtor
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetReadingsRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetReadingsRequest::MergeImpl
 };
-const ::google::protobuf::Message::ClassData* GetReadingsRequest::GetClassData() const {
-  return &_class_data_;
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetReadingsRequest::GetClassData() const { return &_class_data_; }
+
+void GetReadingsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetReadingsRequest *>(to)->MergeFrom(
+      static_cast<const GetReadingsRequest &>(from));
 }
 
-void GetReadingsRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<GetReadingsRequest*>(&to_msg);
-  auto& from = static_cast<const GetReadingsRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.sensors.v1.GetReadingsRequest)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+
+void GetReadingsRequest::MergeFrom(const GetReadingsRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.sensors.v1.GetReadingsRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_internal_mutable_sensor_names()->MergeFrom(
-      from._internal_sensor_names());
+  sensor_names_.MergeFrom(from.sensor_names_);
   if (!from._internal_name().empty()) {
-    _this->_internal_set_name(from._internal_name());
+    _internal_set_name(from._internal_name());
   }
-  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    _this->_internal_mutable_extra()->::google::protobuf::Struct::MergeFrom(
-        from._internal_extra());
+  if (from._internal_has_extra()) {
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
   }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetReadingsRequest::CopyFrom(const GetReadingsRequest& from) {
@@ -1017,276 +918,275 @@ void GetReadingsRequest::CopyFrom(const GetReadingsRequest& from) {
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool GetReadingsRequest::IsInitialized() const {
+bool GetReadingsRequest::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* GetReadingsRequest::AccessCachedSize() const {
-  return &_impl_._cached_size_;
-}
-void GetReadingsRequest::InternalSwap(GetReadingsRequest* PROTOBUF_RESTRICT other) {
+void GetReadingsRequest::InternalSwap(GetReadingsRequest* other) {
   using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  _impl_.sensor_names_.InternalSwap(&other->_impl_.sensor_names_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
-  swap(_impl_.extra_, other->_impl_.extra_);
+  sensor_names_.InternalSwap(&other->sensor_names_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+  swap(extra_, other->extra_);
 }
 
-::google::protobuf::Metadata GetReadingsRequest::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata GetReadingsRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_getter, &descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_once,
       file_level_metadata_service_2fsensors_2fv1_2fsensors_2eproto[2]);
 }
+
 // ===================================================================
 
 Readings_ReadingsEntry_DoNotUse::Readings_ReadingsEntry_DoNotUse() {}
-Readings_ReadingsEntry_DoNotUse::Readings_ReadingsEntry_DoNotUse(::google::protobuf::Arena* arena)
+Readings_ReadingsEntry_DoNotUse::Readings_ReadingsEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
     : SuperType(arena) {}
-::google::protobuf::Metadata Readings_ReadingsEntry_DoNotUse::GetMetadata() const {
+void Readings_ReadingsEntry_DoNotUse::MergeFrom(const Readings_ReadingsEntry_DoNotUse& other) {
+  MergeFromInternal(other);
+}
+::PROTOBUF_NAMESPACE_ID::Metadata Readings_ReadingsEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_getter, &descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_once,
       file_level_metadata_service_2fsensors_2fv1_2fsensors_2eproto[3]);
 }
+
 // ===================================================================
 
 class Readings::_Internal {
  public:
-  using HasBits = decltype(std::declval<Readings>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-    8 * PROTOBUF_FIELD_OFFSET(Readings, _impl_._has_bits_);
   static const ::viam::common::v1::ResourceName& name(const Readings* msg);
-  static void set_has_name(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
-  }
 };
 
-const ::viam::common::v1::ResourceName& Readings::_Internal::name(const Readings* msg) {
-  return *msg->_impl_.name_;
+const ::viam::common::v1::ResourceName&
+Readings::_Internal::name(const Readings* msg) {
+  return *msg->name_;
 }
 void Readings::clear_name() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (_impl_.name_ != nullptr) _impl_.name_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  if (GetArenaForAllocation() == nullptr && name_ != nullptr) {
+    delete name_;
+  }
+  name_ = nullptr;
 }
 void Readings::clear_readings() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.readings_.Clear();
+  readings_.Clear();
 }
-Readings::Readings(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
+Readings::Readings(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  readings_(arena) {
+  SharedCtor();
+  if (arena != nullptr && !is_message_owned) {
+    arena->OwnCustomDestructor(this, &Readings::ArenaDtor);
+  }
   // @@protoc_insertion_point(arena_constructor:viam.service.sensors.v1.Readings)
 }
-inline PROTOBUF_NDEBUG_INLINE Readings::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from)
-      : _has_bits_{from._has_bits_},
-        _cached_size_{0},
-        readings_{visibility, arena, from.readings_} {}
-
-Readings::Readings(
-    ::google::protobuf::Arena* arena,
-    const Readings& from)
-    : ::google::protobuf::Message(arena) {
-  Readings* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.name_ = (cached_has_bits & 0x00000001u)
-                ? CreateMaybeMessage<::viam::common::v1::ResourceName>(arena, *from._impl_.name_)
-                : nullptr;
-
+Readings::Readings(const Readings& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  readings_.MergeFrom(from.readings_);
+  if (from._internal_has_name()) {
+    name_ = new ::viam::common::v1::ResourceName(*from.name_);
+  } else {
+    name_ = nullptr;
+  }
   // @@protoc_insertion_point(copy_constructor:viam.service.sensors.v1.Readings)
 }
-inline PROTOBUF_NDEBUG_INLINE Readings::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : _cached_size_{0},
-        readings_{visibility, arena} {}
 
-inline void Readings::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.name_ = {};
+inline void Readings::SharedCtor() {
+name_ = nullptr;
 }
+
 Readings::~Readings() {
   // @@protoc_insertion_point(destructor:viam.service.sensors.v1.Readings)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    ArenaDtor(this);
+    return;
+  }
   SharedDtor();
 }
+
 inline void Readings::SharedDtor() {
-  ABSL_DCHECK(GetArena() == nullptr);
-  delete _impl_.name_;
-  _impl_.~Impl_();
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  readings_.Destruct();
+  if (this != internal_default_instance()) delete name_;
 }
 
-PROTOBUF_NOINLINE void Readings::Clear() {
+void Readings::ArenaDtor(void* object) {
+  Readings* _this = reinterpret_cast< Readings* >(object);
+  _this->readings_.Destruct();
+}
+void Readings::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void Readings::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.service.sensors.v1.Readings)
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::uint32_t cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.readings_.Clear();
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.name_ != nullptr);
-    _impl_.name_->Clear();
+  readings_.Clear();
+  if (GetArenaForAllocation() == nullptr && name_ != nullptr) {
+    delete name_;
   }
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  name_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* Readings::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+const char* Readings::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .viam.common.v1.ResourceName name = 1 [json_name = "name", deprecated = true];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_name(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // map<string, .google.protobuf.Value> readings = 2 [json_name = "readings", deprecated = true];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(&readings_, ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
   return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
 }
 
-
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 2, 3, 49, 2> Readings::_table_ = {
-  {
-    PROTOBUF_FIELD_OFFSET(Readings, _impl_._has_bits_),
-    0, // no _extensions_
-    2, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    3,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_Readings_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // .viam.common.v1.ResourceName name = 1 [json_name = "name", deprecated = true];
-    {::_pbi::TcParser::FastMtS1,
-     {10, 0, 0, PROTOBUF_FIELD_OFFSET(Readings, _impl_.name_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // .viam.common.v1.ResourceName name = 1 [json_name = "name", deprecated = true];
-    {PROTOBUF_FIELD_OFFSET(Readings, _impl_.name_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // map<string, .google.protobuf.Value> readings = 2 [json_name = "readings", deprecated = true];
-    {PROTOBUF_FIELD_OFFSET(Readings, _impl_.readings_), -1, 1,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::viam::common::v1::ResourceName>()},
-    {::_pbi::TcParser::GetMapAuxInfo<
-        decltype(Readings()._impl_.readings_)>(
-        1, 0, 0, 9,
-        11)},
-    {::_pbi::TcParser::CreateInArenaStorageCb<::google::protobuf::Value>},
-  }}, {{
-    "\40\0\10\0\0\0\0\0"
-    "viam.service.sensors.v1.Readings"
-    "readings"
-  }},
-};
-
-::uint8_t* Readings::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+uint8_t* Readings::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:viam.service.sensors.v1.Readings)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
   // .viam.common.v1.ResourceName name = 1 [json_name = "name", deprecated = true];
-  if (cached_has_bits & 0x00000001u) {
-    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        1, _Internal::name(this),
+  if (this->_internal_has_name()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::name(this),
         _Internal::name(this).GetCachedSize(), target, stream);
   }
 
   // map<string, .google.protobuf.Value> readings = 2 [json_name = "readings", deprecated = true];
-  if (!_internal_readings().empty()) {
-    using MapType = ::google::protobuf::Map<std::string, ::google::protobuf::Value>;
-    using WireHelper = _pbi::MapEntryFuncs<std::string, ::google::protobuf::Value,
-                                   _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_MESSAGE>;
-    const auto& field = _internal_readings();
+  if (!this->_internal_readings().empty()) {
+    using MapType = ::_pb::Map<std::string, ::PROTOBUF_NAMESPACE_ID::Value>;
+    using WireHelper = Readings_ReadingsEntry_DoNotUse::Funcs;
+    const auto& map_field = this->_internal_readings();
+    auto check_utf8 = [](const MapType::value_type& entry) {
+      (void)entry;
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+        entry.first.data(), static_cast<int>(entry.first.length()),
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+        "viam.service.sensors.v1.Readings.ReadingsEntry.key");
+    };
 
-    if (stream->IsSerializationDeterministic() && field.size() > 1) {
-      for (const auto& entry : ::google::protobuf::internal::MapSorterPtr<MapType>(field)) {
-        target = WireHelper::InternalSerialize(
-            2, entry.first, entry.second, target, stream);
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.service.sensors.v1.Readings.readings");
+    if (stream->IsSerializationDeterministic() && map_field.size() > 1) {
+      for (const auto& entry : ::_pbi::MapSorterPtr<MapType>(map_field)) {
+        target = WireHelper::InternalSerialize(2, entry.first, entry.second, target, stream);
+        check_utf8(entry);
       }
     } else {
-      for (const auto& entry : field) {
-        target = WireHelper::InternalSerialize(
-            2, entry.first, entry.second, target, stream);
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "viam.service.sensors.v1.Readings.readings");
+      for (const auto& entry : map_field) {
+        target = WireHelper::InternalSerialize(2, entry.first, entry.second, target, stream);
+        check_utf8(entry);
       }
     }
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.service.sensors.v1.Readings)
   return target;
 }
 
-::size_t Readings::ByteSizeLong() const {
+size_t Readings::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.service.sensors.v1.Readings)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // map<string, .google.protobuf.Value> readings = 2 [json_name = "readings", deprecated = true];
-  total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_readings_size());
-  for (const auto& entry : _internal_readings()) {
-    total_size += _pbi::MapEntryFuncs<std::string, ::google::protobuf::Value,
-                                   _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_MESSAGE>::ByteSizeLong(entry.first, entry.second);
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_readings_size());
+  for (::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Value >::const_iterator
+      it = this->_internal_readings().begin();
+      it != this->_internal_readings().end(); ++it) {
+    total_size += Readings_ReadingsEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
   }
+
   // .viam.common.v1.ResourceName name = 1 [json_name = "name", deprecated = true];
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size +=
-        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.name_);
+  if (this->_internal_has_name()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *name_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData Readings::_class_data_ = {
-    Readings::MergeImpl,
-    nullptr,  // OnDemandRegisterArenaDtor
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Readings::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    Readings::MergeImpl
 };
-const ::google::protobuf::Message::ClassData* Readings::GetClassData() const {
-  return &_class_data_;
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Readings::GetClassData() const { return &_class_data_; }
+
+void Readings::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Readings *>(to)->MergeFrom(
+      static_cast<const Readings &>(from));
 }
 
-void Readings::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<Readings*>(&to_msg);
-  auto& from = static_cast<const Readings&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.sensors.v1.Readings)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+
+void Readings::MergeFrom(const Readings& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.sensors.v1.Readings)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.readings_.MergeFrom(from._impl_.readings_);
-  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    _this->_internal_mutable_name()->::viam::common::v1::ResourceName::MergeFrom(
-        from._internal_name());
+  readings_.MergeFrom(from.readings_);
+  if (from._internal_has_name()) {
+    _internal_mutable_name()->::viam::common::v1::ResourceName::MergeFrom(from._internal_name());
   }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Readings::CopyFrom(const Readings& from) {
@@ -1296,182 +1196,176 @@ void Readings::CopyFrom(const Readings& from) {
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool Readings::IsInitialized() const {
+bool Readings::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* Readings::AccessCachedSize() const {
-  return &_impl_._cached_size_;
-}
-void Readings::InternalSwap(Readings* PROTOBUF_RESTRICT other) {
+void Readings::InternalSwap(Readings* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  _impl_.readings_.InternalSwap(&other->_impl_.readings_);
-  swap(_impl_.name_, other->_impl_.name_);
+  readings_.InternalSwap(&other->readings_);
+  swap(name_, other->name_);
 }
 
-::google::protobuf::Metadata Readings::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata Readings::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_getter, &descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_once,
       file_level_metadata_service_2fsensors_2fv1_2fsensors_2eproto[4]);
 }
+
 // ===================================================================
 
 class GetReadingsResponse::_Internal {
  public:
 };
 
-GetReadingsResponse::GetReadingsResponse(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
+GetReadingsResponse::GetReadingsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  readings_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.service.sensors.v1.GetReadingsResponse)
 }
-inline PROTOBUF_NDEBUG_INLINE GetReadingsResponse::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from)
-      : readings_{visibility, arena, from.readings_},
-        _cached_size_{0} {}
-
-GetReadingsResponse::GetReadingsResponse(
-    ::google::protobuf::Arena* arena,
-    const GetReadingsResponse& from)
-    : ::google::protobuf::Message(arena) {
-  GetReadingsResponse* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-
+GetReadingsResponse::GetReadingsResponse(const GetReadingsResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      readings_(from.readings_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.service.sensors.v1.GetReadingsResponse)
 }
-inline PROTOBUF_NDEBUG_INLINE GetReadingsResponse::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : readings_{visibility, arena},
-        _cached_size_{0} {}
 
-inline void GetReadingsResponse::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
+inline void GetReadingsResponse::SharedCtor() {
 }
+
 GetReadingsResponse::~GetReadingsResponse() {
   // @@protoc_insertion_point(destructor:viam.service.sensors.v1.GetReadingsResponse)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
 }
+
 inline void GetReadingsResponse::SharedDtor() {
-  ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.~Impl_();
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
-PROTOBUF_NOINLINE void GetReadingsResponse::Clear() {
+void GetReadingsResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetReadingsResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:viam.service.sensors.v1.GetReadingsResponse)
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::uint32_t cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.readings_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  readings_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* GetReadingsResponse::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+const char* GetReadingsResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .viam.service.sensors.v1.Readings readings = 1 [json_name = "readings", deprecated = true];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_readings(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
   return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
 }
 
-
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 1, 0, 2> GetReadingsResponse::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_GetReadingsResponse_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // repeated .viam.service.sensors.v1.Readings readings = 1 [json_name = "readings", deprecated = true];
-    {::_pbi::TcParser::FastMtR1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetReadingsResponse, _impl_.readings_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // repeated .viam.service.sensors.v1.Readings readings = 1 [json_name = "readings", deprecated = true];
-    {PROTOBUF_FIELD_OFFSET(GetReadingsResponse, _impl_.readings_), 0, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::viam::service::sensors::v1::Readings>()},
-  }}, {{
-  }},
-};
-
-::uint8_t* GetReadingsResponse::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+uint8_t* GetReadingsResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:viam.service.sensors.v1.GetReadingsResponse)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
 
   // repeated .viam.service.sensors.v1.Readings readings = 1 [json_name = "readings", deprecated = true];
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_readings_size()); i < n; i++) {
-    const auto& repfield = this->_internal_readings().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
+    const auto& repfield = this->_internal_readings(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
         InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:viam.service.sensors.v1.GetReadingsResponse)
   return target;
 }
 
-::size_t GetReadingsResponse::ByteSizeLong() const {
+size_t GetReadingsResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:viam.service.sensors.v1.GetReadingsResponse)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated .viam.service.sensors.v1.Readings readings = 1 [json_name = "readings", deprecated = true];
   total_size += 1UL * this->_internal_readings_size();
-  for (const auto& msg : this->_internal_readings()) {
+  for (const auto& msg : this->readings_) {
     total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData GetReadingsResponse::_class_data_ = {
-    GetReadingsResponse::MergeImpl,
-    nullptr,  // OnDemandRegisterArenaDtor
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetReadingsResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetReadingsResponse::MergeImpl
 };
-const ::google::protobuf::Message::ClassData* GetReadingsResponse::GetClassData() const {
-  return &_class_data_;
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetReadingsResponse::GetClassData() const { return &_class_data_; }
+
+void GetReadingsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetReadingsResponse *>(to)->MergeFrom(
+      static_cast<const GetReadingsResponse &>(from));
 }
 
-void GetReadingsResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<GetReadingsResponse*>(&to_msg);
-  auto& from = static_cast<const GetReadingsResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.sensors.v1.GetReadingsResponse)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+
+void GetReadingsResponse::MergeFrom(const GetReadingsResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.sensors.v1.GetReadingsResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_internal_mutable_readings()->MergeFrom(
-      from._internal_readings());
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+  readings_.MergeFrom(from.readings_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetReadingsResponse::CopyFrom(const GetReadingsResponse& from) {
@@ -1481,32 +1375,53 @@ void GetReadingsResponse::CopyFrom(const GetReadingsResponse& from) {
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool GetReadingsResponse::IsInitialized() const {
+bool GetReadingsResponse::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* GetReadingsResponse::AccessCachedSize() const {
-  return &_impl_._cached_size_;
-}
-void GetReadingsResponse::InternalSwap(GetReadingsResponse* PROTOBUF_RESTRICT other) {
+void GetReadingsResponse::InternalSwap(GetReadingsResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.readings_.InternalSwap(&other->_impl_.readings_);
+  readings_.InternalSwap(&other->readings_);
 }
 
-::google::protobuf::Metadata GetReadingsResponse::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata GetReadingsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_getter, &descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_once,
       file_level_metadata_service_2fsensors_2fv1_2fsensors_2eproto[5]);
 }
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace sensors
 }  // namespace service
 }  // namespace viam
-namespace google {
-namespace protobuf {
-}  // namespace protobuf
-}  // namespace google
+PROTOBUF_NAMESPACE_OPEN
+template<> PROTOBUF_NOINLINE ::viam::service::sensors::v1::GetSensorsRequest*
+Arena::CreateMaybeMessage< ::viam::service::sensors::v1::GetSensorsRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::service::sensors::v1::GetSensorsRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::service::sensors::v1::GetSensorsResponse*
+Arena::CreateMaybeMessage< ::viam::service::sensors::v1::GetSensorsResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::service::sensors::v1::GetSensorsResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::service::sensors::v1::GetReadingsRequest*
+Arena::CreateMaybeMessage< ::viam::service::sensors::v1::GetReadingsRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::service::sensors::v1::GetReadingsRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::service::sensors::v1::Readings_ReadingsEntry_DoNotUse*
+Arena::CreateMaybeMessage< ::viam::service::sensors::v1::Readings_ReadingsEntry_DoNotUse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::service::sensors::v1::Readings_ReadingsEntry_DoNotUse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::service::sensors::v1::Readings*
+Arena::CreateMaybeMessage< ::viam::service::sensors::v1::Readings >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::service::sensors::v1::Readings >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::service::sensors::v1::GetReadingsResponse*
+Arena::CreateMaybeMessage< ::viam::service::sensors::v1::GetReadingsResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::service::sensors::v1::GetReadingsResponse >(arena);
+}
+PROTOBUF_NAMESPACE_CLOSE
+
 // @@protoc_insertion_point(global_scope)
-#include "google/protobuf/port_undef.inc"
+#include <google/protobuf/port_undef.inc>

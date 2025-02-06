@@ -18,5 +18,5 @@ managed:
 plugins:
   - plugin: buf.build/grpc/cpp:v@VIAMCPPSDK_GRPCXX_VERSION@
     out: gen/viam/api
-  - plugin: buf.build/protocolbuffers/cpp:v@VIAMCPPSDK_PROTOBUF_VERSION_MAJOR@.@VIAMCPPSDK_PROTOBUF_VERSION_MINOR@
+  - plugin: buf.build/protocolbuffers/cpp:v@VIAMCPPSDK_PROTOC_VERSION@
     out: gen/viam/api

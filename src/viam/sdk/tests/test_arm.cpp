@@ -1,14 +1,16 @@
 #define BOOST_TEST_MODULE test module test_arm
+#include <viam/sdk/components/arm.hpp>
 
+#include <boost/optional/optional_io.hpp>
 #include <boost/qvm/all.hpp>
 #include <boost/test/included/unit_test.hpp>
 
-#include <viam/sdk/components/arm.hpp>
 #include <viam/sdk/tests/mocks/mock_arm.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
 BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<viam::sdk::GeometryConfig>)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<double>)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<std::vector<double>>)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::Arm::KinematicsData)
 
 namespace viam {
@@ -49,6 +51,17 @@ BOOST_AUTO_TEST_CASE(joint_positions) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(thru_joint_positions) {
+    std::shared_ptr<MockArm> mock = MockArm::get_mock_arm();
+    client_to_mock_pipeline<Arm>(mock, [&](Arm& client) {
+        std::vector<std::vector<double>> positions{{1.0, 2.0}, {3.0}};
+        client.move_through_joint_positions(positions, {1.0, 2.0}, {});
+        BOOST_CHECK_EQUAL(mock->move_thru_positions, positions);
+        BOOST_CHECK_EQUAL(mock->move_opts.max_vel_degs_per_sec, 1.0);
+        BOOST_CHECK_EQUAL(mock->move_opts.max_acc_degs_per_sec2, 2.0);
+    });
+}
+
 BOOST_AUTO_TEST_CASE(test_stop) {
     std::shared_ptr<MockArm> mock = MockArm::get_mock_arm();
     client_to_mock_pipeline<Arm>(mock, [&](Arm& client) {
@@ -82,14 +95,12 @@ BOOST_AUTO_TEST_CASE(test_is_moving) {
 BOOST_AUTO_TEST_CASE(test_do_command) {
     std::shared_ptr<MockArm> mock = MockArm::get_mock_arm();
     client_to_mock_pipeline<Arm>(mock, [](Arm& client) {
-        AttributeMap expected = fake_map();
+        ProtoStruct expected = fake_map();
 
-        AttributeMap command = fake_map();
-        AttributeMap result_map = client.do_command(command);
+        ProtoStruct command = fake_map();
+        ProtoStruct result_map = client.do_command(command);
 
-        ProtoType expected_pt = *(expected->at(std::string("test")));
-        ProtoType result_pt = *(result_map->at(std::string("test")));
-        BOOST_CHECK(result_pt == expected_pt);
+        BOOST_CHECK(result_map.at("test") == expected.at("test"));
     });
 }
 

@@ -1,6 +1,6 @@
 #include <viam/sdk/components/private/power_sensor_server.hpp>
 
-#include <viam/sdk/common/service_helper.hpp>
+#include <viam/sdk/common/private/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/power_sensor.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -12,8 +12,22 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
+GetVoltageResponse to_proto(const PowerSensor::voltage& v) {
+    GetVoltageResponse proto;
+    proto.set_volts(v.volts);
+    proto.set_is_ac(v.is_ac);
+    return proto;
+}
+
+GetCurrentResponse to_proto(const PowerSensor::current& c) {
+    GetCurrentResponse proto;
+    proto.set_amperes(c.amperes);
+    proto.set_is_ac(c.is_ac);
+    return proto;
+}
+
 PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)){};
+    : ResourceServer(std::move(manager)) {}
 
 ::grpc::Status PowerSensorServer::GetVoltage(::grpc::ServerContext*,
                                              const GetVoltageRequest* request,
@@ -21,7 +35,7 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
     return make_service_helper<PowerSensor>(
         "PowerSensorServer::GetVoltage", this, request)([&](auto& helper, auto& powersensor) {
         const PowerSensor::voltage result = powersensor->get_voltage(helper.getExtra());
-        *response = PowerSensor::to_proto(result);
+        *response = to_proto(result);
     });
 }
 
@@ -31,7 +45,7 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
     return make_service_helper<PowerSensor>(
         "PowerSensorServer::GetCurrent", this, request)([&](auto& helper, auto& powersensor) {
         const PowerSensor::current result = powersensor->get_current(helper.getExtra());
-        *response = PowerSensor::to_proto(result);
+        *response = to_proto(result);
     });
 }
 
@@ -51,10 +65,8 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
     viam::common::v1::GetReadingsResponse* response) noexcept {
     return make_service_helper<PowerSensor>(
         "PowerSensorServer::GetReadings", this, request)([&](auto& helper, auto& powersensor) {
-        const AttributeMap result = powersensor->get_readings(helper.getExtra());
-        for (const auto& r : *result) {
-            response->mutable_readings()->insert({r.first, r.second->proto_value()});
-        }
+        *(response->mutable_readings()) =
+            to_proto(powersensor->get_readings(helper.getExtra())).fields();
     });
 }
 
@@ -64,8 +76,8 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
     viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<PowerSensor>(
         "PowerSensorServer::DoCommand", this, request)([&](auto&, auto& powersensor) {
-        const AttributeMap result = powersensor->do_command(struct_to_map(request->command()));
-        *response->mutable_result() = map_to_struct(result);
+        const ProtoStruct result = powersensor->do_command(from_proto(request->command()));
+        *response->mutable_result() = to_proto(result);
     });
 }
 

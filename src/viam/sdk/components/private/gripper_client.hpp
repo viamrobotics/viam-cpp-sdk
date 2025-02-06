@@ -23,12 +23,12 @@ class GripperClient : public Gripper {
     using interface_type = Gripper;
     GripperClient(std::string names, std::shared_ptr<grpc::Channel> channel);
 
-    void open(const AttributeMap& extra) override;
-    bool grab(const AttributeMap& extra) override;
-    void stop(const AttributeMap& extra) override;
+    void open(const ProtoStruct& extra) override;
+    bool grab(const ProtoStruct& extra) override;
+    void stop(const ProtoStruct& extra) override;
     bool is_moving() override;
-    AttributeMap do_command(const AttributeMap& command) override;
-    std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
+    ProtoStruct do_command(const ProtoStruct& command) override;
+    std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 
     using Gripper::get_geometries;
     using Gripper::grab;

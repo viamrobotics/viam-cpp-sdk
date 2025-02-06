@@ -1,12 +1,13 @@
+#include <unistd.h>
+
 #include <chrono>
 #include <fstream>
+#include <iostream>
 #include <string>
-#include <unistd.h>
 #include <vector>
 
 #include <viam/sdk/components/motor.hpp>
 #include <viam/sdk/robot/client.hpp>
-#include <viam/sdk/robot/service.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 
 void print_motor_position(std::shared_ptr<viam::sdk::Motor> motor) {
@@ -109,9 +110,7 @@ int main() {
 
         // Explicitly stop the motor
         cout << "Stopping motor" << endl;
-        vs::AttributeMap stop_map =
-            std::make_shared<std::unordered_map<std::string, std::shared_ptr<vs::ProtoType>>>();
-        motor->stop(stop_map);
+        motor->stop({});
 
     } catch (const std::exception& ex) {
         cerr << "Program failed. Exception: " << std::string(ex.what()) << endl;

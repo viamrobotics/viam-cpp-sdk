@@ -1,0 +1,67 @@
+on:
+  workflow_dispatch:
+    inputs:
+      image-prefix:
+        description: "gets suffixed with 'base' and 'sdk' to create actual image name"
+        default: ghcr.io/viamrobotics/cpp-
+      dockerfile:
+        default: Dockerfile.debian.bullseye
+      tag:
+        default: bullseye-amd64
+      build-base:
+        description: "whether to build the base image. the base images change less often and may not be necessary to rebuild."
+        type: boolean
+        default: false
+      build-sdk:
+        description: "whether to build the SDK image. if this is true and no corresponding base image exists, the job will fail."
+        type: boolean
+        default: false
+      push:
+        description: "whether to push the images after building them"
+        type: boolean
+        default: false
+
+jobs:
+  build-container:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    # build base (if inputs.build-base)
+    - uses: docker/metadata-action@v5
+      id: base-meta
+      if: inputs.build-base
+      with:
+        images: ${{ inputs.image-prefix }}base
+    - uses: docker/build-push-action@v5
+      if: inputs.build-base
+      with:
+        push: ${{ inputs.push }}
+        tags: "${{ inputs.image-prefix }}base:${{ inputs.tag }}"
+        file: etc/docker/base-images/${{ inputs.dockerfile }}
+        labels: ${{ steps.base-meta.output.labels }}
+
+    # build sdk (if inputs.build-sdk)
+    - uses: docker/metadata-action@v5
+      id: sdk-meta
+      if: inputs.build-sdk
+      with:
+        images: ${{ inputs.image-prefix }}sdk
+    - uses: docker/build-push-action@v5
+      if: inputs.build-sdk
+      with:
+        build-args: |
+          BASE_TAG=${{ inputs.image-prefix }}base:${{ inputs.tag }}
+        push: ${{ inputs.push }}
+        tags: "${{ inputs.image-prefix }}sdk:${{ inputs.tag }}"
+        file: etc/docker/Dockerfile.sdk-build
+        labels: ${{ steps.sdk-meta.output.labels }}

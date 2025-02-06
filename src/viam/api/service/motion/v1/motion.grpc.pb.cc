@@ -6,19 +6,19 @@
 #include "service/motion/v1/motion.grpc.pb.h"
 
 #include <functional>
-#include <grpcpp/support/async_stream.h>
-#include <grpcpp/support/async_unary_call.h>
-#include <grpcpp/impl/channel_interface.h>
-#include <grpcpp/impl/client_unary_call.h>
-#include <grpcpp/support/client_callback.h>
-#include <grpcpp/support/message_allocator.h>
-#include <grpcpp/support/method_handler.h>
-#include <grpcpp/impl/rpc_service_method.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/sync_stream.h>
+#include <grpcpp/impl/codegen/async_stream.h>
+#include <grpcpp/impl/codegen/async_unary_call.h>
+#include <grpcpp/impl/codegen/channel_interface.h>
+#include <grpcpp/impl/codegen/client_unary_call.h>
+#include <grpcpp/impl/codegen/client_callback.h>
+#include <grpcpp/impl/codegen/message_allocator.h>
+#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/impl/codegen/rpc_service_method.h>
+#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/codegen/server_callback_handlers.h>
+#include <grpcpp/impl/codegen/server_context.h>
+#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/impl/codegen/sync_stream.h>
 namespace viam {
 namespace service {
 namespace motion {
@@ -37,212 +37,252 @@ static const char* MotionService_method_names[] = {
 
 std::unique_ptr< MotionService::Stub> MotionService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< MotionService::Stub> stub(new MotionService::Stub(channel, options));
+  std::unique_ptr< MotionService::Stub> stub(new MotionService::Stub(channel));
   return stub;
 }
 
-MotionService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_Move_(MotionService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_MoveOnMap_(MotionService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_MoveOnGlobe_(MotionService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetPose_(MotionService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_StopPlan_(MotionService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListPlanStatuses_(MotionService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetPlan_(MotionService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DoCommand_(MotionService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+MotionService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
+  : channel_(channel), rpcmethod_Move_(MotionService_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MoveOnMap_(MotionService_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MoveOnGlobe_(MotionService_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPose_(MotionService_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_StopPlan_(MotionService_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListPlanStatuses_(MotionService_method_names[5], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPlan_(MotionService_method_names[6], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DoCommand_(MotionService_method_names[7], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status MotionService::Stub::Move(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveRequest& request, ::viam::service::motion::v1::MoveResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::service::motion::v1::MoveRequest, ::viam::service::motion::v1::MoveResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Move_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_Move_, context, request, response);
 }
 
-void MotionService::Stub::async::Move(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveRequest* request, ::viam::service::motion::v1::MoveResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::service::motion::v1::MoveRequest, ::viam::service::motion::v1::MoveResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Move_, context, request, response, std::move(f));
+void MotionService::Stub::experimental_async::Move(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveRequest* request, ::viam::service::motion::v1::MoveResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Move_, context, request, response, std::move(f));
 }
 
-void MotionService::Stub::async::Move(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveRequest* request, ::viam::service::motion::v1::MoveResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Move_, context, request, response, reactor);
+void MotionService::Stub::experimental_async::Move(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::motion::v1::MoveResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Move_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveResponse>* MotionService::Stub::PrepareAsyncMoveRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::motion::v1::MoveResponse, ::viam::service::motion::v1::MoveRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Move_, context, request);
+void MotionService::Stub::experimental_async::Move(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveRequest* request, ::viam::service::motion::v1::MoveResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Move_, context, request, response, reactor);
+}
+
+void MotionService::Stub::experimental_async::Move(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::motion::v1::MoveResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Move_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveResponse>* MotionService::Stub::AsyncMoveRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncMoveRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::service::motion::v1::MoveResponse>::Create(channel_.get(), cq, rpcmethod_Move_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveResponse>* MotionService::Stub::PrepareAsyncMoveRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::service::motion::v1::MoveResponse>::Create(channel_.get(), cq, rpcmethod_Move_, context, request, false);
 }
 
 ::grpc::Status MotionService::Stub::MoveOnMap(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest& request, ::viam::service::motion::v1::MoveOnMapResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::service::motion::v1::MoveOnMapRequest, ::viam::service::motion::v1::MoveOnMapResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_MoveOnMap_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_MoveOnMap_, context, request, response);
 }
 
-void MotionService::Stub::async::MoveOnMap(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest* request, ::viam::service::motion::v1::MoveOnMapResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::service::motion::v1::MoveOnMapRequest, ::viam::service::motion::v1::MoveOnMapResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MoveOnMap_, context, request, response, std::move(f));
+void MotionService::Stub::experimental_async::MoveOnMap(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest* request, ::viam::service::motion::v1::MoveOnMapResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_MoveOnMap_, context, request, response, std::move(f));
 }
 
-void MotionService::Stub::async::MoveOnMap(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest* request, ::viam::service::motion::v1::MoveOnMapResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MoveOnMap_, context, request, response, reactor);
+void MotionService::Stub::experimental_async::MoveOnMap(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::motion::v1::MoveOnMapResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_MoveOnMap_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveOnMapResponse>* MotionService::Stub::PrepareAsyncMoveOnMapRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::motion::v1::MoveOnMapResponse, ::viam::service::motion::v1::MoveOnMapRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_MoveOnMap_, context, request);
+void MotionService::Stub::experimental_async::MoveOnMap(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest* request, ::viam::service::motion::v1::MoveOnMapResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_MoveOnMap_, context, request, response, reactor);
+}
+
+void MotionService::Stub::experimental_async::MoveOnMap(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::motion::v1::MoveOnMapResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_MoveOnMap_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveOnMapResponse>* MotionService::Stub::AsyncMoveOnMapRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncMoveOnMapRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::service::motion::v1::MoveOnMapResponse>::Create(channel_.get(), cq, rpcmethod_MoveOnMap_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveOnMapResponse>* MotionService::Stub::PrepareAsyncMoveOnMapRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::service::motion::v1::MoveOnMapResponse>::Create(channel_.get(), cq, rpcmethod_MoveOnMap_, context, request, false);
 }
 
 ::grpc::Status MotionService::Stub::MoveOnGlobe(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnGlobeRequest& request, ::viam::service::motion::v1::MoveOnGlobeResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::service::motion::v1::MoveOnGlobeRequest, ::viam::service::motion::v1::MoveOnGlobeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_MoveOnGlobe_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_MoveOnGlobe_, context, request, response);
 }
 
-void MotionService::Stub::async::MoveOnGlobe(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnGlobeRequest* request, ::viam::service::motion::v1::MoveOnGlobeResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::service::motion::v1::MoveOnGlobeRequest, ::viam::service::motion::v1::MoveOnGlobeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MoveOnGlobe_, context, request, response, std::move(f));
+void MotionService::Stub::experimental_async::MoveOnGlobe(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnGlobeRequest* request, ::viam::service::motion::v1::MoveOnGlobeResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_MoveOnGlobe_, context, request, response, std::move(f));
 }
 
-void MotionService::Stub::async::MoveOnGlobe(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnGlobeRequest* request, ::viam::service::motion::v1::MoveOnGlobeResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MoveOnGlobe_, context, request, response, reactor);
+void MotionService::Stub::experimental_async::MoveOnGlobe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::motion::v1::MoveOnGlobeResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_MoveOnGlobe_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveOnGlobeResponse>* MotionService::Stub::PrepareAsyncMoveOnGlobeRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnGlobeRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::motion::v1::MoveOnGlobeResponse, ::viam::service::motion::v1::MoveOnGlobeRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_MoveOnGlobe_, context, request);
+void MotionService::Stub::experimental_async::MoveOnGlobe(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnGlobeRequest* request, ::viam::service::motion::v1::MoveOnGlobeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_MoveOnGlobe_, context, request, response, reactor);
+}
+
+void MotionService::Stub::experimental_async::MoveOnGlobe(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::motion::v1::MoveOnGlobeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_MoveOnGlobe_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveOnGlobeResponse>* MotionService::Stub::AsyncMoveOnGlobeRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnGlobeRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncMoveOnGlobeRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::service::motion::v1::MoveOnGlobeResponse>::Create(channel_.get(), cq, rpcmethod_MoveOnGlobe_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveOnGlobeResponse>* MotionService::Stub::PrepareAsyncMoveOnGlobeRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnGlobeRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::service::motion::v1::MoveOnGlobeResponse>::Create(channel_.get(), cq, rpcmethod_MoveOnGlobe_, context, request, false);
 }
 
 ::grpc::Status MotionService::Stub::GetPose(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPoseRequest& request, ::viam::service::motion::v1::GetPoseResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::service::motion::v1::GetPoseRequest, ::viam::service::motion::v1::GetPoseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetPose_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetPose_, context, request, response);
 }
 
-void MotionService::Stub::async::GetPose(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPoseRequest* request, ::viam::service::motion::v1::GetPoseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::service::motion::v1::GetPoseRequest, ::viam::service::motion::v1::GetPoseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPose_, context, request, response, std::move(f));
+void MotionService::Stub::experimental_async::GetPose(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPoseRequest* request, ::viam::service::motion::v1::GetPoseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetPose_, context, request, response, std::move(f));
 }
 
-void MotionService::Stub::async::GetPose(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPoseRequest* request, ::viam::service::motion::v1::GetPoseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPose_, context, request, response, reactor);
+void MotionService::Stub::experimental_async::GetPose(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::motion::v1::GetPoseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetPose_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::GetPoseResponse>* MotionService::Stub::PrepareAsyncGetPoseRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPoseRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::motion::v1::GetPoseResponse, ::viam::service::motion::v1::GetPoseRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetPose_, context, request);
+void MotionService::Stub::experimental_async::GetPose(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPoseRequest* request, ::viam::service::motion::v1::GetPoseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetPose_, context, request, response, reactor);
+}
+
+void MotionService::Stub::experimental_async::GetPose(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::motion::v1::GetPoseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetPose_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::GetPoseResponse>* MotionService::Stub::AsyncGetPoseRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPoseRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetPoseRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::service::motion::v1::GetPoseResponse>::Create(channel_.get(), cq, rpcmethod_GetPose_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::GetPoseResponse>* MotionService::Stub::PrepareAsyncGetPoseRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPoseRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::service::motion::v1::GetPoseResponse>::Create(channel_.get(), cq, rpcmethod_GetPose_, context, request, false);
 }
 
 ::grpc::Status MotionService::Stub::StopPlan(::grpc::ClientContext* context, const ::viam::service::motion::v1::StopPlanRequest& request, ::viam::service::motion::v1::StopPlanResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::service::motion::v1::StopPlanRequest, ::viam::service::motion::v1::StopPlanResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_StopPlan_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_StopPlan_, context, request, response);
 }
 
-void MotionService::Stub::async::StopPlan(::grpc::ClientContext* context, const ::viam::service::motion::v1::StopPlanRequest* request, ::viam::service::motion::v1::StopPlanResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::service::motion::v1::StopPlanRequest, ::viam::service::motion::v1::StopPlanResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_StopPlan_, context, request, response, std::move(f));
+void MotionService::Stub::experimental_async::StopPlan(::grpc::ClientContext* context, const ::viam::service::motion::v1::StopPlanRequest* request, ::viam::service::motion::v1::StopPlanResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_StopPlan_, context, request, response, std::move(f));
 }
 
-void MotionService::Stub::async::StopPlan(::grpc::ClientContext* context, const ::viam::service::motion::v1::StopPlanRequest* request, ::viam::service::motion::v1::StopPlanResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_StopPlan_, context, request, response, reactor);
+void MotionService::Stub::experimental_async::StopPlan(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::motion::v1::StopPlanResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_StopPlan_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::StopPlanResponse>* MotionService::Stub::PrepareAsyncStopPlanRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::StopPlanRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::motion::v1::StopPlanResponse, ::viam::service::motion::v1::StopPlanRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_StopPlan_, context, request);
+void MotionService::Stub::experimental_async::StopPlan(::grpc::ClientContext* context, const ::viam::service::motion::v1::StopPlanRequest* request, ::viam::service::motion::v1::StopPlanResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_StopPlan_, context, request, response, reactor);
+}
+
+void MotionService::Stub::experimental_async::StopPlan(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::motion::v1::StopPlanResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_StopPlan_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::StopPlanResponse>* MotionService::Stub::AsyncStopPlanRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::StopPlanRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncStopPlanRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::service::motion::v1::StopPlanResponse>::Create(channel_.get(), cq, rpcmethod_StopPlan_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::StopPlanResponse>* MotionService::Stub::PrepareAsyncStopPlanRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::StopPlanRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::service::motion::v1::StopPlanResponse>::Create(channel_.get(), cq, rpcmethod_StopPlan_, context, request, false);
 }
 
 ::grpc::Status MotionService::Stub::ListPlanStatuses(::grpc::ClientContext* context, const ::viam::service::motion::v1::ListPlanStatusesRequest& request, ::viam::service::motion::v1::ListPlanStatusesResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::service::motion::v1::ListPlanStatusesRequest, ::viam::service::motion::v1::ListPlanStatusesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListPlanStatuses_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListPlanStatuses_, context, request, response);
 }
 
-void MotionService::Stub::async::ListPlanStatuses(::grpc::ClientContext* context, const ::viam::service::motion::v1::ListPlanStatusesRequest* request, ::viam::service::motion::v1::ListPlanStatusesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::service::motion::v1::ListPlanStatusesRequest, ::viam::service::motion::v1::ListPlanStatusesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListPlanStatuses_, context, request, response, std::move(f));
+void MotionService::Stub::experimental_async::ListPlanStatuses(::grpc::ClientContext* context, const ::viam::service::motion::v1::ListPlanStatusesRequest* request, ::viam::service::motion::v1::ListPlanStatusesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListPlanStatuses_, context, request, response, std::move(f));
 }
 
-void MotionService::Stub::async::ListPlanStatuses(::grpc::ClientContext* context, const ::viam::service::motion::v1::ListPlanStatusesRequest* request, ::viam::service::motion::v1::ListPlanStatusesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListPlanStatuses_, context, request, response, reactor);
+void MotionService::Stub::experimental_async::ListPlanStatuses(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::motion::v1::ListPlanStatusesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListPlanStatuses_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::ListPlanStatusesResponse>* MotionService::Stub::PrepareAsyncListPlanStatusesRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::ListPlanStatusesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::motion::v1::ListPlanStatusesResponse, ::viam::service::motion::v1::ListPlanStatusesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListPlanStatuses_, context, request);
+void MotionService::Stub::experimental_async::ListPlanStatuses(::grpc::ClientContext* context, const ::viam::service::motion::v1::ListPlanStatusesRequest* request, ::viam::service::motion::v1::ListPlanStatusesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListPlanStatuses_, context, request, response, reactor);
+}
+
+void MotionService::Stub::experimental_async::ListPlanStatuses(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::motion::v1::ListPlanStatusesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListPlanStatuses_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::ListPlanStatusesResponse>* MotionService::Stub::AsyncListPlanStatusesRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::ListPlanStatusesRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncListPlanStatusesRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::service::motion::v1::ListPlanStatusesResponse>::Create(channel_.get(), cq, rpcmethod_ListPlanStatuses_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::ListPlanStatusesResponse>* MotionService::Stub::PrepareAsyncListPlanStatusesRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::ListPlanStatusesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::service::motion::v1::ListPlanStatusesResponse>::Create(channel_.get(), cq, rpcmethod_ListPlanStatuses_, context, request, false);
 }
 
 ::grpc::Status MotionService::Stub::GetPlan(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPlanRequest& request, ::viam::service::motion::v1::GetPlanResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::service::motion::v1::GetPlanRequest, ::viam::service::motion::v1::GetPlanResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetPlan_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetPlan_, context, request, response);
 }
 
-void MotionService::Stub::async::GetPlan(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPlanRequest* request, ::viam::service::motion::v1::GetPlanResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::service::motion::v1::GetPlanRequest, ::viam::service::motion::v1::GetPlanResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPlan_, context, request, response, std::move(f));
+void MotionService::Stub::experimental_async::GetPlan(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPlanRequest* request, ::viam::service::motion::v1::GetPlanResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetPlan_, context, request, response, std::move(f));
 }
 
-void MotionService::Stub::async::GetPlan(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPlanRequest* request, ::viam::service::motion::v1::GetPlanResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPlan_, context, request, response, reactor);
+void MotionService::Stub::experimental_async::GetPlan(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::motion::v1::GetPlanResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetPlan_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::GetPlanResponse>* MotionService::Stub::PrepareAsyncGetPlanRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPlanRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::motion::v1::GetPlanResponse, ::viam::service::motion::v1::GetPlanRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetPlan_, context, request);
+void MotionService::Stub::experimental_async::GetPlan(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPlanRequest* request, ::viam::service::motion::v1::GetPlanResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetPlan_, context, request, response, reactor);
+}
+
+void MotionService::Stub::experimental_async::GetPlan(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::motion::v1::GetPlanResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetPlan_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::GetPlanResponse>* MotionService::Stub::AsyncGetPlanRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPlanRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetPlanRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::service::motion::v1::GetPlanResponse>::Create(channel_.get(), cq, rpcmethod_GetPlan_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::GetPlanResponse>* MotionService::Stub::PrepareAsyncGetPlanRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPlanRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::service::motion::v1::GetPlanResponse>::Create(channel_.get(), cq, rpcmethod_GetPlan_, context, request, false);
 }
 
 ::grpc::Status MotionService::Stub::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DoCommand_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DoCommand_, context, request, response);
 }
 
-void MotionService::Stub::async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
+void MotionService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
 }
 
-void MotionService::Stub::async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
+void MotionService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* MotionService::Stub::PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::DoCommandResponse, ::viam::common::v1::DoCommandRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DoCommand_, context, request);
+void MotionService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
+}
+
+void MotionService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* MotionService::Stub::AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncDoCommandRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::DoCommandResponse>::Create(channel_.get(), cq, rpcmethod_DoCommand_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* MotionService::Stub::PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::DoCommandResponse>::Create(channel_.get(), cq, rpcmethod_DoCommand_, context, request, false);
 }
 
 MotionService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotionService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::service::motion::v1::MoveRequest, ::viam::service::motion::v1::MoveResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::service::motion::v1::MoveRequest, ::viam::service::motion::v1::MoveResponse>(
           [](MotionService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::service::motion::v1::MoveRequest* req,
              ::viam::service::motion::v1::MoveResponse* resp) {
                return service->Move(ctx, req, resp);
@@ -250,9 +290,9 @@ MotionService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotionService_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::service::motion::v1::MoveOnMapRequest, ::viam::service::motion::v1::MoveOnMapResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::service::motion::v1::MoveOnMapRequest, ::viam::service::motion::v1::MoveOnMapResponse>(
           [](MotionService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::service::motion::v1::MoveOnMapRequest* req,
              ::viam::service::motion::v1::MoveOnMapResponse* resp) {
                return service->MoveOnMap(ctx, req, resp);
@@ -260,9 +300,9 @@ MotionService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotionService_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::service::motion::v1::MoveOnGlobeRequest, ::viam::service::motion::v1::MoveOnGlobeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::service::motion::v1::MoveOnGlobeRequest, ::viam::service::motion::v1::MoveOnGlobeResponse>(
           [](MotionService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::service::motion::v1::MoveOnGlobeRequest* req,
              ::viam::service::motion::v1::MoveOnGlobeResponse* resp) {
                return service->MoveOnGlobe(ctx, req, resp);
@@ -270,9 +310,9 @@ MotionService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotionService_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::service::motion::v1::GetPoseRequest, ::viam::service::motion::v1::GetPoseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::service::motion::v1::GetPoseRequest, ::viam::service::motion::v1::GetPoseResponse>(
           [](MotionService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::service::motion::v1::GetPoseRequest* req,
              ::viam::service::motion::v1::GetPoseResponse* resp) {
                return service->GetPose(ctx, req, resp);
@@ -280,9 +320,9 @@ MotionService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotionService_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::service::motion::v1::StopPlanRequest, ::viam::service::motion::v1::StopPlanResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::service::motion::v1::StopPlanRequest, ::viam::service::motion::v1::StopPlanResponse>(
           [](MotionService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::service::motion::v1::StopPlanRequest* req,
              ::viam::service::motion::v1::StopPlanResponse* resp) {
                return service->StopPlan(ctx, req, resp);
@@ -290,9 +330,9 @@ MotionService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotionService_method_names[5],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::service::motion::v1::ListPlanStatusesRequest, ::viam::service::motion::v1::ListPlanStatusesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::service::motion::v1::ListPlanStatusesRequest, ::viam::service::motion::v1::ListPlanStatusesResponse>(
           [](MotionService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::service::motion::v1::ListPlanStatusesRequest* req,
              ::viam::service::motion::v1::ListPlanStatusesResponse* resp) {
                return service->ListPlanStatuses(ctx, req, resp);
@@ -300,9 +340,9 @@ MotionService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotionService_method_names[6],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::service::motion::v1::GetPlanRequest, ::viam::service::motion::v1::GetPlanResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::service::motion::v1::GetPlanRequest, ::viam::service::motion::v1::GetPlanResponse>(
           [](MotionService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::service::motion::v1::GetPlanRequest* req,
              ::viam::service::motion::v1::GetPlanResponse* resp) {
                return service->GetPlan(ctx, req, resp);
@@ -310,9 +350,9 @@ MotionService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotionService_method_names[7],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
           [](MotionService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::common::v1::DoCommandRequest* req,
              ::viam::common::v1::DoCommandResponse* resp) {
                return service->DoCommand(ctx, req, resp);

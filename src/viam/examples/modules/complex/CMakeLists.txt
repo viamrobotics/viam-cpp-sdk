@@ -108,6 +108,8 @@ target_link_libraries(complex_module_sources
   viam-cpp-sdk::viamsdk
 )
 
+viamcppsdk_link_viam_api(complex_module_sources)
+
 add_executable(complex_module)
 target_sources(complex_module
   PRIVATE
@@ -140,11 +142,13 @@ install(
 # writing their own modules. We are simply integrating tests from
 # `test_complex_module.cpp` into the Viam C++ SDK testing suite.
 
-enable_testing()
-viamcppsdk_add_boost_test(test_complex_module.cpp)
-target_sources(test_complex_module
-  PRIVATE
-    gizmo/impl.cpp
-    summation/impl.cpp
-)
-target_link_libraries(test_complex_module complex_module_sources)
+if (VIAMCPPSDK_BUILD_TESTS)
+ enable_testing()
+ viamcppsdk_add_boost_test(test_complex_module.cpp)
+ target_sources(test_complex_module
+   PRIVATE
+     gizmo/impl.cpp
+     summation/impl.cpp
+ )
+ target_link_libraries(test_complex_module complex_module_sources)
+endif()

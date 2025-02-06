@@ -20,8 +20,6 @@
 #include <boost/variant/variant.hpp>
 #include <xtensor/xadapt.hpp>
 
-#include <viam/api/service/mlmodel/v1/mlmodel.grpc.pb.h>
-
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/services/service.hpp>
 
@@ -107,7 +105,7 @@ class MLModelService : public Service {
     /// @returns The results of the inference as a shared pointer to `named_tensor_views`. The data
     /// viewed by the views is only valid for the lifetime of the returned shared_ptr.
     virtual std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs,
-                                                      const AttributeMap& extra) = 0;
+                                                      const ProtoStruct& extra) = 0;
 
     struct tensor_info {
         struct file {
@@ -139,7 +137,7 @@ class MLModelService : public Service {
         std::vector<int> shape;
         std::vector<file> associated_files;
 
-        AttributeMap extra;
+        ProtoStruct extra;
 
         static boost::optional<data_types> string_to_data_type(const std::string& str);
         static const char* data_type_to_string(data_types data_type);
@@ -163,7 +161,7 @@ class MLModelService : public Service {
     /// @brief Returns metadata describing the inputs and outputs of the model
     ///
     /// @param `extra`: Any additional arguments to the method.
-    virtual struct metadata metadata(const AttributeMap& extra) = 0;
+    virtual struct metadata metadata(const ProtoStruct& extra) = 0;
 
    protected:
     explicit MLModelService(std::string name);

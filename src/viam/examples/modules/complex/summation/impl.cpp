@@ -13,15 +13,12 @@ using namespace viam::sdk;
 // Returns value of "subtract" in cfg.attributes() or `false` if subtract is not
 // in attributes or is not a boolean value.
 bool find_subtract(ResourceConfig cfg) {
-    auto subtract = cfg.attributes()->find("subtract");
-    if (subtract == cfg.attributes()->end()) {
+    auto subtract = cfg.attributes().find("subtract");
+    if (subtract == cfg.attributes().end()) {
         return false;
     }
-    const bool* const subtract_bool = subtract->second->get<bool>();
-    if (!subtract_bool) {
-        return false;
-    }
-    return *subtract_bool;
+
+    return subtract->second.is_a<bool>() && subtract->second.get_unchecked<bool>();
 }
 
 void MySummation::reconfigure(const Dependencies& deps, const ResourceConfig& cfg) {

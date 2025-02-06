@@ -1,6 +1,6 @@
 #include <viam/sdk/tests/mocks/mock_encoder.hpp>
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/encoder.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
@@ -10,24 +10,24 @@ namespace encoder {
 
 using namespace viam::sdk;
 
-Encoder::position MockEncoder::get_position(const AttributeMap&, position_type position_type) {
+Encoder::position MockEncoder::get_position(const ProtoStruct&, position_type position_type) {
     this->peek_get_position_position_type = position_type;
     return this->peek_get_position_ret;
 };
 
-void MockEncoder::reset_position(const AttributeMap&) {
+void MockEncoder::reset_position(const ProtoStruct&) {
     this->peek_reset_position_called = true;
 };
 
-Encoder::properties MockEncoder::get_properties(const AttributeMap&) {
+Encoder::properties MockEncoder::get_properties(const ProtoStruct&) {
     return this->peek_get_properties_ret;
 };
 
-std::vector<GeometryConfig> MockEncoder::get_geometries(const sdk::AttributeMap&) {
+std::vector<GeometryConfig> MockEncoder::get_geometries(const sdk::ProtoStruct&) {
     return fake_geometries();
 }
 
-AttributeMap MockEncoder::do_command(const AttributeMap& command) {
+ProtoStruct MockEncoder::do_command(const ProtoStruct& command) {
     return command;
 };
 

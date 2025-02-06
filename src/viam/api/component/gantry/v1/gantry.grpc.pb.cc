@@ -6,19 +6,19 @@
 #include "component/gantry/v1/gantry.grpc.pb.h"
 
 #include <functional>
-#include <grpcpp/support/async_stream.h>
-#include <grpcpp/support/async_unary_call.h>
-#include <grpcpp/impl/channel_interface.h>
-#include <grpcpp/impl/client_unary_call.h>
-#include <grpcpp/support/client_callback.h>
-#include <grpcpp/support/message_allocator.h>
-#include <grpcpp/support/method_handler.h>
-#include <grpcpp/impl/rpc_service_method.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/sync_stream.h>
+#include <grpcpp/impl/codegen/async_stream.h>
+#include <grpcpp/impl/codegen/async_unary_call.h>
+#include <grpcpp/impl/codegen/channel_interface.h>
+#include <grpcpp/impl/codegen/client_unary_call.h>
+#include <grpcpp/impl/codegen/client_callback.h>
+#include <grpcpp/impl/codegen/message_allocator.h>
+#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/impl/codegen/rpc_service_method.h>
+#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/codegen/server_callback_handlers.h>
+#include <grpcpp/impl/codegen/server_context.h>
+#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/impl/codegen/sync_stream.h>
 namespace viam {
 namespace component {
 namespace gantry {
@@ -37,212 +37,252 @@ static const char* GantryService_method_names[] = {
 
 std::unique_ptr< GantryService::Stub> GantryService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< GantryService::Stub> stub(new GantryService::Stub(channel, options));
+  std::unique_ptr< GantryService::Stub> stub(new GantryService::Stub(channel));
   return stub;
 }
 
-GantryService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_GetPosition_(GantryService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_MoveToPosition_(GantryService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Home_(GantryService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetLengths_(GantryService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Stop_(GantryService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_IsMoving_(GantryService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DoCommand_(GantryService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetGeometries_(GantryService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+GantryService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
+  : channel_(channel), rpcmethod_GetPosition_(GantryService_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MoveToPosition_(GantryService_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Home_(GantryService_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetLengths_(GantryService_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Stop_(GantryService_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_IsMoving_(GantryService_method_names[5], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DoCommand_(GantryService_method_names[6], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGeometries_(GantryService_method_names[7], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status GantryService::Stub::GetPosition(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetPositionRequest& request, ::viam::component::gantry::v1::GetPositionResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::gantry::v1::GetPositionRequest, ::viam::component::gantry::v1::GetPositionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetPosition_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetPosition_, context, request, response);
 }
 
-void GantryService::Stub::async::GetPosition(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetPositionRequest* request, ::viam::component::gantry::v1::GetPositionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::gantry::v1::GetPositionRequest, ::viam::component::gantry::v1::GetPositionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPosition_, context, request, response, std::move(f));
+void GantryService::Stub::experimental_async::GetPosition(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetPositionRequest* request, ::viam::component::gantry::v1::GetPositionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetPosition_, context, request, response, std::move(f));
 }
 
-void GantryService::Stub::async::GetPosition(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetPositionRequest* request, ::viam::component::gantry::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPosition_, context, request, response, reactor);
+void GantryService::Stub::experimental_async::GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::gantry::v1::GetPositionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetPosition_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::GetPositionResponse>* GantryService::Stub::PrepareAsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::gantry::v1::GetPositionResponse, ::viam::component::gantry::v1::GetPositionRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetPosition_, context, request);
+void GantryService::Stub::experimental_async::GetPosition(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetPositionRequest* request, ::viam::component::gantry::v1::GetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetPosition_, context, request, response, reactor);
+}
+
+void GantryService::Stub::experimental_async::GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::gantry::v1::GetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetPosition_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::GetPositionResponse>* GantryService::Stub::AsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetPositionRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::gantry::v1::GetPositionResponse>::Create(channel_.get(), cq, rpcmethod_GetPosition_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::GetPositionResponse>* GantryService::Stub::PrepareAsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::gantry::v1::GetPositionResponse>::Create(channel_.get(), cq, rpcmethod_GetPosition_, context, request, false);
 }
 
 ::grpc::Status GantryService::Stub::MoveToPosition(::grpc::ClientContext* context, const ::viam::component::gantry::v1::MoveToPositionRequest& request, ::viam::component::gantry::v1::MoveToPositionResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::gantry::v1::MoveToPositionRequest, ::viam::component::gantry::v1::MoveToPositionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_MoveToPosition_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_MoveToPosition_, context, request, response);
 }
 
-void GantryService::Stub::async::MoveToPosition(::grpc::ClientContext* context, const ::viam::component::gantry::v1::MoveToPositionRequest* request, ::viam::component::gantry::v1::MoveToPositionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::gantry::v1::MoveToPositionRequest, ::viam::component::gantry::v1::MoveToPositionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MoveToPosition_, context, request, response, std::move(f));
+void GantryService::Stub::experimental_async::MoveToPosition(::grpc::ClientContext* context, const ::viam::component::gantry::v1::MoveToPositionRequest* request, ::viam::component::gantry::v1::MoveToPositionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_MoveToPosition_, context, request, response, std::move(f));
 }
 
-void GantryService::Stub::async::MoveToPosition(::grpc::ClientContext* context, const ::viam::component::gantry::v1::MoveToPositionRequest* request, ::viam::component::gantry::v1::MoveToPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MoveToPosition_, context, request, response, reactor);
+void GantryService::Stub::experimental_async::MoveToPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::gantry::v1::MoveToPositionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_MoveToPosition_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::MoveToPositionResponse>* GantryService::Stub::PrepareAsyncMoveToPositionRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::MoveToPositionRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::gantry::v1::MoveToPositionResponse, ::viam::component::gantry::v1::MoveToPositionRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_MoveToPosition_, context, request);
+void GantryService::Stub::experimental_async::MoveToPosition(::grpc::ClientContext* context, const ::viam::component::gantry::v1::MoveToPositionRequest* request, ::viam::component::gantry::v1::MoveToPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_MoveToPosition_, context, request, response, reactor);
+}
+
+void GantryService::Stub::experimental_async::MoveToPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::gantry::v1::MoveToPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_MoveToPosition_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::MoveToPositionResponse>* GantryService::Stub::AsyncMoveToPositionRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::MoveToPositionRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncMoveToPositionRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::gantry::v1::MoveToPositionResponse>::Create(channel_.get(), cq, rpcmethod_MoveToPosition_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::MoveToPositionResponse>* GantryService::Stub::PrepareAsyncMoveToPositionRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::MoveToPositionRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::gantry::v1::MoveToPositionResponse>::Create(channel_.get(), cq, rpcmethod_MoveToPosition_, context, request, false);
 }
 
 ::grpc::Status GantryService::Stub::Home(::grpc::ClientContext* context, const ::viam::component::gantry::v1::HomeRequest& request, ::viam::component::gantry::v1::HomeResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::gantry::v1::HomeRequest, ::viam::component::gantry::v1::HomeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Home_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_Home_, context, request, response);
 }
 
-void GantryService::Stub::async::Home(::grpc::ClientContext* context, const ::viam::component::gantry::v1::HomeRequest* request, ::viam::component::gantry::v1::HomeResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::gantry::v1::HomeRequest, ::viam::component::gantry::v1::HomeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Home_, context, request, response, std::move(f));
+void GantryService::Stub::experimental_async::Home(::grpc::ClientContext* context, const ::viam::component::gantry::v1::HomeRequest* request, ::viam::component::gantry::v1::HomeResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Home_, context, request, response, std::move(f));
 }
 
-void GantryService::Stub::async::Home(::grpc::ClientContext* context, const ::viam::component::gantry::v1::HomeRequest* request, ::viam::component::gantry::v1::HomeResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Home_, context, request, response, reactor);
+void GantryService::Stub::experimental_async::Home(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::gantry::v1::HomeResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Home_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::HomeResponse>* GantryService::Stub::PrepareAsyncHomeRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::HomeRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::gantry::v1::HomeResponse, ::viam::component::gantry::v1::HomeRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Home_, context, request);
+void GantryService::Stub::experimental_async::Home(::grpc::ClientContext* context, const ::viam::component::gantry::v1::HomeRequest* request, ::viam::component::gantry::v1::HomeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Home_, context, request, response, reactor);
+}
+
+void GantryService::Stub::experimental_async::Home(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::gantry::v1::HomeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Home_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::HomeResponse>* GantryService::Stub::AsyncHomeRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::HomeRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncHomeRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::gantry::v1::HomeResponse>::Create(channel_.get(), cq, rpcmethod_Home_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::HomeResponse>* GantryService::Stub::PrepareAsyncHomeRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::HomeRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::gantry::v1::HomeResponse>::Create(channel_.get(), cq, rpcmethod_Home_, context, request, false);
 }
 
 ::grpc::Status GantryService::Stub::GetLengths(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetLengthsRequest& request, ::viam::component::gantry::v1::GetLengthsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::gantry::v1::GetLengthsRequest, ::viam::component::gantry::v1::GetLengthsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetLengths_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetLengths_, context, request, response);
 }
 
-void GantryService::Stub::async::GetLengths(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetLengthsRequest* request, ::viam::component::gantry::v1::GetLengthsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::gantry::v1::GetLengthsRequest, ::viam::component::gantry::v1::GetLengthsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetLengths_, context, request, response, std::move(f));
+void GantryService::Stub::experimental_async::GetLengths(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetLengthsRequest* request, ::viam::component::gantry::v1::GetLengthsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetLengths_, context, request, response, std::move(f));
 }
 
-void GantryService::Stub::async::GetLengths(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetLengthsRequest* request, ::viam::component::gantry::v1::GetLengthsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetLengths_, context, request, response, reactor);
+void GantryService::Stub::experimental_async::GetLengths(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::gantry::v1::GetLengthsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetLengths_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::GetLengthsResponse>* GantryService::Stub::PrepareAsyncGetLengthsRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetLengthsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::gantry::v1::GetLengthsResponse, ::viam::component::gantry::v1::GetLengthsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetLengths_, context, request);
+void GantryService::Stub::experimental_async::GetLengths(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetLengthsRequest* request, ::viam::component::gantry::v1::GetLengthsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetLengths_, context, request, response, reactor);
+}
+
+void GantryService::Stub::experimental_async::GetLengths(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::gantry::v1::GetLengthsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetLengths_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::GetLengthsResponse>* GantryService::Stub::AsyncGetLengthsRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetLengthsRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetLengthsRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::gantry::v1::GetLengthsResponse>::Create(channel_.get(), cq, rpcmethod_GetLengths_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::GetLengthsResponse>* GantryService::Stub::PrepareAsyncGetLengthsRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetLengthsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::gantry::v1::GetLengthsResponse>::Create(channel_.get(), cq, rpcmethod_GetLengths_, context, request, false);
 }
 
 ::grpc::Status GantryService::Stub::Stop(::grpc::ClientContext* context, const ::viam::component::gantry::v1::StopRequest& request, ::viam::component::gantry::v1::StopResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::gantry::v1::StopRequest, ::viam::component::gantry::v1::StopResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Stop_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_Stop_, context, request, response);
 }
 
-void GantryService::Stub::async::Stop(::grpc::ClientContext* context, const ::viam::component::gantry::v1::StopRequest* request, ::viam::component::gantry::v1::StopResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::gantry::v1::StopRequest, ::viam::component::gantry::v1::StopResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, std::move(f));
+void GantryService::Stub::experimental_async::Stop(::grpc::ClientContext* context, const ::viam::component::gantry::v1::StopRequest* request, ::viam::component::gantry::v1::StopResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, std::move(f));
 }
 
-void GantryService::Stub::async::Stop(::grpc::ClientContext* context, const ::viam::component::gantry::v1::StopRequest* request, ::viam::component::gantry::v1::StopResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, reactor);
+void GantryService::Stub::experimental_async::Stop(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::gantry::v1::StopResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::StopResponse>* GantryService::Stub::PrepareAsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::StopRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::gantry::v1::StopResponse, ::viam::component::gantry::v1::StopRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Stop_, context, request);
+void GantryService::Stub::experimental_async::Stop(::grpc::ClientContext* context, const ::viam::component::gantry::v1::StopRequest* request, ::viam::component::gantry::v1::StopResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, reactor);
+}
+
+void GantryService::Stub::experimental_async::Stop(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::gantry::v1::StopResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::StopResponse>* GantryService::Stub::AsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::StopRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncStopRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::gantry::v1::StopResponse>::Create(channel_.get(), cq, rpcmethod_Stop_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::StopResponse>* GantryService::Stub::PrepareAsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::StopRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::gantry::v1::StopResponse>::Create(channel_.get(), cq, rpcmethod_Stop_, context, request, false);
 }
 
 ::grpc::Status GantryService::Stub::IsMoving(::grpc::ClientContext* context, const ::viam::component::gantry::v1::IsMovingRequest& request, ::viam::component::gantry::v1::IsMovingResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::gantry::v1::IsMovingRequest, ::viam::component::gantry::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_IsMoving_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_IsMoving_, context, request, response);
 }
 
-void GantryService::Stub::async::IsMoving(::grpc::ClientContext* context, const ::viam::component::gantry::v1::IsMovingRequest* request, ::viam::component::gantry::v1::IsMovingResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::gantry::v1::IsMovingRequest, ::viam::component::gantry::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, std::move(f));
+void GantryService::Stub::experimental_async::IsMoving(::grpc::ClientContext* context, const ::viam::component::gantry::v1::IsMovingRequest* request, ::viam::component::gantry::v1::IsMovingResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, std::move(f));
 }
 
-void GantryService::Stub::async::IsMoving(::grpc::ClientContext* context, const ::viam::component::gantry::v1::IsMovingRequest* request, ::viam::component::gantry::v1::IsMovingResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, reactor);
+void GantryService::Stub::experimental_async::IsMoving(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::gantry::v1::IsMovingResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::IsMovingResponse>* GantryService::Stub::PrepareAsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::gantry::v1::IsMovingResponse, ::viam::component::gantry::v1::IsMovingRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_IsMoving_, context, request);
+void GantryService::Stub::experimental_async::IsMoving(::grpc::ClientContext* context, const ::viam::component::gantry::v1::IsMovingRequest* request, ::viam::component::gantry::v1::IsMovingResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, reactor);
+}
+
+void GantryService::Stub::experimental_async::IsMoving(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::gantry::v1::IsMovingResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::IsMovingResponse>* GantryService::Stub::AsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncIsMovingRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::gantry::v1::IsMovingResponse>::Create(channel_.get(), cq, rpcmethod_IsMoving_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::IsMovingResponse>* GantryService::Stub::PrepareAsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::gantry::v1::IsMovingResponse>::Create(channel_.get(), cq, rpcmethod_IsMoving_, context, request, false);
 }
 
 ::grpc::Status GantryService::Stub::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DoCommand_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DoCommand_, context, request, response);
 }
 
-void GantryService::Stub::async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
+void GantryService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
 }
 
-void GantryService::Stub::async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
+void GantryService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* GantryService::Stub::PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::DoCommandResponse, ::viam::common::v1::DoCommandRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DoCommand_, context, request);
+void GantryService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
+}
+
+void GantryService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* GantryService::Stub::AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncDoCommandRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::DoCommandResponse>::Create(channel_.get(), cq, rpcmethod_DoCommand_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* GantryService::Stub::PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::DoCommandResponse>::Create(channel_.get(), cq, rpcmethod_DoCommand_, context, request, false);
 }
 
 ::grpc::Status GantryService::Stub::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::viam::common::v1::GetGeometriesResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetGeometries_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetGeometries_, context, request, response);
 }
 
-void GantryService::Stub::async::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, std::move(f));
+void GantryService::Stub::experimental_async::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, std::move(f));
 }
 
-void GantryService::Stub::async::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, reactor);
+void GantryService::Stub::experimental_async::GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* GantryService::Stub::PrepareAsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::GetGeometriesResponse, ::viam::common::v1::GetGeometriesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetGeometries_, context, request);
+void GantryService::Stub::experimental_async::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, reactor);
+}
+
+void GantryService::Stub::experimental_async::GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* GantryService::Stub::AsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetGeometriesRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::GetGeometriesResponse>::Create(channel_.get(), cq, rpcmethod_GetGeometries_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* GantryService::Stub::PrepareAsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::GetGeometriesResponse>::Create(channel_.get(), cq, rpcmethod_GetGeometries_, context, request, false);
 }
 
 GantryService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GantryService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< GantryService::Service, ::viam::component::gantry::v1::GetPositionRequest, ::viam::component::gantry::v1::GetPositionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< GantryService::Service, ::viam::component::gantry::v1::GetPositionRequest, ::viam::component::gantry::v1::GetPositionResponse>(
           [](GantryService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::gantry::v1::GetPositionRequest* req,
              ::viam::component::gantry::v1::GetPositionResponse* resp) {
                return service->GetPosition(ctx, req, resp);
@@ -250,9 +290,9 @@ GantryService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GantryService_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< GantryService::Service, ::viam::component::gantry::v1::MoveToPositionRequest, ::viam::component::gantry::v1::MoveToPositionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< GantryService::Service, ::viam::component::gantry::v1::MoveToPositionRequest, ::viam::component::gantry::v1::MoveToPositionResponse>(
           [](GantryService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::gantry::v1::MoveToPositionRequest* req,
              ::viam::component::gantry::v1::MoveToPositionResponse* resp) {
                return service->MoveToPosition(ctx, req, resp);
@@ -260,9 +300,9 @@ GantryService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GantryService_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< GantryService::Service, ::viam::component::gantry::v1::HomeRequest, ::viam::component::gantry::v1::HomeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< GantryService::Service, ::viam::component::gantry::v1::HomeRequest, ::viam::component::gantry::v1::HomeResponse>(
           [](GantryService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::gantry::v1::HomeRequest* req,
              ::viam::component::gantry::v1::HomeResponse* resp) {
                return service->Home(ctx, req, resp);
@@ -270,9 +310,9 @@ GantryService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GantryService_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< GantryService::Service, ::viam::component::gantry::v1::GetLengthsRequest, ::viam::component::gantry::v1::GetLengthsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< GantryService::Service, ::viam::component::gantry::v1::GetLengthsRequest, ::viam::component::gantry::v1::GetLengthsResponse>(
           [](GantryService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::gantry::v1::GetLengthsRequest* req,
              ::viam::component::gantry::v1::GetLengthsResponse* resp) {
                return service->GetLengths(ctx, req, resp);
@@ -280,9 +320,9 @@ GantryService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GantryService_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< GantryService::Service, ::viam::component::gantry::v1::StopRequest, ::viam::component::gantry::v1::StopResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< GantryService::Service, ::viam::component::gantry::v1::StopRequest, ::viam::component::gantry::v1::StopResponse>(
           [](GantryService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::gantry::v1::StopRequest* req,
              ::viam::component::gantry::v1::StopResponse* resp) {
                return service->Stop(ctx, req, resp);
@@ -290,9 +330,9 @@ GantryService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GantryService_method_names[5],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< GantryService::Service, ::viam::component::gantry::v1::IsMovingRequest, ::viam::component::gantry::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< GantryService::Service, ::viam::component::gantry::v1::IsMovingRequest, ::viam::component::gantry::v1::IsMovingResponse>(
           [](GantryService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::gantry::v1::IsMovingRequest* req,
              ::viam::component::gantry::v1::IsMovingResponse* resp) {
                return service->IsMoving(ctx, req, resp);
@@ -300,9 +340,9 @@ GantryService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GantryService_method_names[6],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< GantryService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< GantryService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
           [](GantryService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::common::v1::DoCommandRequest* req,
              ::viam::common::v1::DoCommandResponse* resp) {
                return service->DoCommand(ctx, req, resp);
@@ -310,9 +350,9 @@ GantryService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GantryService_method_names[7],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< GantryService::Service, ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< GantryService::Service, ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
           [](GantryService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::common::v1::GetGeometriesRequest* req,
              ::viam::common::v1::GetGeometriesResponse* resp) {
                return service->GetGeometries(ctx, req, resp);

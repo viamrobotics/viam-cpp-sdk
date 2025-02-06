@@ -7,23 +7,24 @@
 #include "module/v1/module.pb.h"
 
 #include <functional>
-#include <grpcpp/generic/async_generic_service.h>
-#include <grpcpp/support/async_stream.h>
-#include <grpcpp/support/async_unary_call.h>
-#include <grpcpp/support/client_callback.h>
-#include <grpcpp/client_context.h>
-#include <grpcpp/completion_queue.h>
-#include <grpcpp/support/message_allocator.h>
-#include <grpcpp/support/method_handler.h>
-#include <grpcpp/impl/proto_utils.h>
-#include <grpcpp/impl/rpc_method.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/status.h>
-#include <grpcpp/support/stub_options.h>
-#include <grpcpp/support/sync_stream.h>
+#include <grpc/impl/codegen/port_platform.h>
+#include <grpcpp/impl/codegen/async_generic_service.h>
+#include <grpcpp/impl/codegen/async_stream.h>
+#include <grpcpp/impl/codegen/async_unary_call.h>
+#include <grpcpp/impl/codegen/client_callback.h>
+#include <grpcpp/impl/codegen/client_context.h>
+#include <grpcpp/impl/codegen/completion_queue.h>
+#include <grpcpp/impl/codegen/message_allocator.h>
+#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/impl/codegen/proto_utils.h>
+#include <grpcpp/impl/codegen/rpc_method.h>
+#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/codegen/server_callback_handlers.h>
+#include <grpcpp/impl/codegen/server_context.h>
+#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/impl/codegen/status.h>
+#include <grpcpp/impl/codegen/stub_options.h>
+#include <grpcpp/impl/codegen/sync_stream.h>
 
 namespace viam {
 namespace module {
@@ -79,30 +80,84 @@ class ModuleService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::module::v1::ValidateConfigResponse>> PrepareAsyncValidateConfig(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::module::v1::ValidateConfigResponse>>(PrepareAsyncValidateConfigRaw(context, request, cq));
     }
-    class async_interface {
+    class experimental_async_interface {
      public:
-      virtual ~async_interface() {}
+      virtual ~experimental_async_interface() {}
       // AddResource tells a module about a new resource to handle
       virtual void AddResource(::grpc::ClientContext* context, const ::viam::module::v1::AddResourceRequest* request, ::viam::module::v1::AddResourceResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void AddResource(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::AddResourceResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void AddResource(::grpc::ClientContext* context, const ::viam::module::v1::AddResourceRequest* request, ::viam::module::v1::AddResourceResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void AddResource(::grpc::ClientContext* context, const ::viam::module::v1::AddResourceRequest* request, ::viam::module::v1::AddResourceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void AddResource(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::AddResourceResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void AddResource(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::AddResourceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // ReconfigureResource tells a module to reconfigure an existing resource
       virtual void ReconfigureResource(::grpc::ClientContext* context, const ::viam::module::v1::ReconfigureResourceRequest* request, ::viam::module::v1::ReconfigureResourceResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ReconfigureResource(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::ReconfigureResourceResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void ReconfigureResource(::grpc::ClientContext* context, const ::viam::module::v1::ReconfigureResourceRequest* request, ::viam::module::v1::ReconfigureResourceResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void ReconfigureResource(::grpc::ClientContext* context, const ::viam::module::v1::ReconfigureResourceRequest* request, ::viam::module::v1::ReconfigureResourceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void ReconfigureResource(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::ReconfigureResourceResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void ReconfigureResource(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::ReconfigureResourceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // RemoveResource tells a module to close/stop a component/service and remove it
       virtual void RemoveResource(::grpc::ClientContext* context, const ::viam::module::v1::RemoveResourceRequest* request, ::viam::module::v1::RemoveResourceResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void RemoveResource(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::RemoveResourceResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void RemoveResource(::grpc::ClientContext* context, const ::viam::module::v1::RemoveResourceRequest* request, ::viam::module::v1::RemoveResourceResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void RemoveResource(::grpc::ClientContext* context, const ::viam::module::v1::RemoveResourceRequest* request, ::viam::module::v1::RemoveResourceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void RemoveResource(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::RemoveResourceResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void RemoveResource(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::RemoveResourceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // Ready determines if the server is started and ready to recieve resource configurations.
       virtual void Ready(::grpc::ClientContext* context, const ::viam::module::v1::ReadyRequest* request, ::viam::module::v1::ReadyResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Ready(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::ReadyResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void Ready(::grpc::ClientContext* context, const ::viam::module::v1::ReadyRequest* request, ::viam::module::v1::ReadyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void Ready(::grpc::ClientContext* context, const ::viam::module::v1::ReadyRequest* request, ::viam::module::v1::ReadyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void Ready(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::ReadyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void Ready(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::ReadyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // ValidateConfig determines whether the given config is valid and registers/returns implicit
       // dependencies.
       virtual void ValidateConfig(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest* request, ::viam::module::v1::ValidateConfigResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ValidateConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::ValidateConfigResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void ValidateConfig(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest* request, ::viam::module::v1::ValidateConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void ValidateConfig(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest* request, ::viam::module::v1::ValidateConfigResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void ValidateConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::ValidateConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void ValidateConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::ValidateConfigResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
     };
-    typedef class async_interface experimental_async_interface;
-    virtual class async_interface* async() { return nullptr; }
-    class async_interface* experimental_async() { return async(); }
-   private:
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    typedef class experimental_async_interface async_interface;
+    #endif
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    async_interface* async() { return experimental_async(); }
+    #endif
+    virtual class experimental_async_interface* experimental_async() { return nullptr; }
+  private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::module::v1::AddResourceResponse>* AsyncAddResourceRaw(::grpc::ClientContext* context, const ::viam::module::v1::AddResourceRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::module::v1::AddResourceResponse>* PrepareAsyncAddResourceRaw(::grpc::ClientContext* context, const ::viam::module::v1::AddResourceRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::module::v1::ReconfigureResourceResponse>* AsyncReconfigureResourceRaw(::grpc::ClientContext* context, const ::viam::module::v1::ReconfigureResourceRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -116,7 +171,7 @@ class ModuleService final {
   };
   class Stub final : public StubInterface {
    public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
     ::grpc::Status AddResource(::grpc::ClientContext* context, const ::viam::module::v1::AddResourceRequest& request, ::viam::module::v1::AddResourceResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::module::v1::AddResourceResponse>> AsyncAddResource(::grpc::ClientContext* context, const ::viam::module::v1::AddResourceRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::module::v1::AddResourceResponse>>(AsyncAddResourceRaw(context, request, cq));
@@ -152,30 +207,80 @@ class ModuleService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::module::v1::ValidateConfigResponse>> PrepareAsyncValidateConfig(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::module::v1::ValidateConfigResponse>>(PrepareAsyncValidateConfigRaw(context, request, cq));
     }
-    class async final :
-      public StubInterface::async_interface {
+    class experimental_async final :
+      public StubInterface::experimental_async_interface {
      public:
       void AddResource(::grpc::ClientContext* context, const ::viam::module::v1::AddResourceRequest* request, ::viam::module::v1::AddResourceResponse* response, std::function<void(::grpc::Status)>) override;
+      void AddResource(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::AddResourceResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void AddResource(::grpc::ClientContext* context, const ::viam::module::v1::AddResourceRequest* request, ::viam::module::v1::AddResourceResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void AddResource(::grpc::ClientContext* context, const ::viam::module::v1::AddResourceRequest* request, ::viam::module::v1::AddResourceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void AddResource(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::AddResourceResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void AddResource(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::AddResourceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void ReconfigureResource(::grpc::ClientContext* context, const ::viam::module::v1::ReconfigureResourceRequest* request, ::viam::module::v1::ReconfigureResourceResponse* response, std::function<void(::grpc::Status)>) override;
+      void ReconfigureResource(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::ReconfigureResourceResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void ReconfigureResource(::grpc::ClientContext* context, const ::viam::module::v1::ReconfigureResourceRequest* request, ::viam::module::v1::ReconfigureResourceResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void ReconfigureResource(::grpc::ClientContext* context, const ::viam::module::v1::ReconfigureResourceRequest* request, ::viam::module::v1::ReconfigureResourceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void ReconfigureResource(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::ReconfigureResourceResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void ReconfigureResource(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::ReconfigureResourceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void RemoveResource(::grpc::ClientContext* context, const ::viam::module::v1::RemoveResourceRequest* request, ::viam::module::v1::RemoveResourceResponse* response, std::function<void(::grpc::Status)>) override;
+      void RemoveResource(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::RemoveResourceResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void RemoveResource(::grpc::ClientContext* context, const ::viam::module::v1::RemoveResourceRequest* request, ::viam::module::v1::RemoveResourceResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void RemoveResource(::grpc::ClientContext* context, const ::viam::module::v1::RemoveResourceRequest* request, ::viam::module::v1::RemoveResourceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void RemoveResource(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::RemoveResourceResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void RemoveResource(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::RemoveResourceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void Ready(::grpc::ClientContext* context, const ::viam::module::v1::ReadyRequest* request, ::viam::module::v1::ReadyResponse* response, std::function<void(::grpc::Status)>) override;
+      void Ready(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::ReadyResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void Ready(::grpc::ClientContext* context, const ::viam::module::v1::ReadyRequest* request, ::viam::module::v1::ReadyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void Ready(::grpc::ClientContext* context, const ::viam::module::v1::ReadyRequest* request, ::viam::module::v1::ReadyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void Ready(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::ReadyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void Ready(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::ReadyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void ValidateConfig(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest* request, ::viam::module::v1::ValidateConfigResponse* response, std::function<void(::grpc::Status)>) override;
+      void ValidateConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::ValidateConfigResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void ValidateConfig(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest* request, ::viam::module::v1::ValidateConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void ValidateConfig(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest* request, ::viam::module::v1::ValidateConfigResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void ValidateConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::ValidateConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void ValidateConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::ValidateConfigResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
      private:
       friend class Stub;
-      explicit async(Stub* stub): stub_(stub) { }
+      explicit experimental_async(Stub* stub): stub_(stub) { }
       Stub* stub() { return stub_; }
       Stub* stub_;
     };
-    class async* async() override { return &async_stub_; }
+    class experimental_async_interface* experimental_async() override { return &async_stub_; }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class async async_stub_{this};
+    class experimental_async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::viam::module::v1::AddResourceResponse>* AsyncAddResourceRaw(::grpc::ClientContext* context, const ::viam::module::v1::AddResourceRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::module::v1::AddResourceResponse>* PrepareAsyncAddResourceRaw(::grpc::ClientContext* context, const ::viam::module::v1::AddResourceRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::module::v1::ReconfigureResourceResponse>* AsyncReconfigureResourceRaw(::grpc::ClientContext* context, const ::viam::module::v1::ReconfigureResourceRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -312,22 +417,36 @@ class ModuleService final {
   };
   typedef WithAsyncMethod_AddResource<WithAsyncMethod_ReconfigureResource<WithAsyncMethod_RemoveResource<WithAsyncMethod_Ready<WithAsyncMethod_ValidateConfig<Service > > > > > AsyncService;
   template <class BaseClass>
-  class WithCallbackMethod_AddResource : public BaseClass {
+  class ExperimentalWithCallbackMethod_AddResource : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_AddResource() {
-      ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::module::v1::AddResourceRequest, ::viam::module::v1::AddResourceResponse>(
+    ExperimentalWithCallbackMethod_AddResource() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(0,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::module::v1::AddResourceRequest, ::viam::module::v1::AddResourceResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::module::v1::AddResourceRequest* request, ::viam::module::v1::AddResourceResponse* response) { return this->AddResource(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::module::v1::AddResourceRequest* request, ::viam::module::v1::AddResourceResponse* response) { return this->AddResource(context, request, response); }));}
     void SetMessageAllocatorFor_AddResource(
-        ::grpc::MessageAllocator< ::viam::module::v1::AddResourceRequest, ::viam::module::v1::AddResourceResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::module::v1::AddResourceRequest, ::viam::module::v1::AddResourceResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::module::v1::AddResourceRequest, ::viam::module::v1::AddResourceResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::module::v1::AddResourceRequest, ::viam::module::v1::AddResourceResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_AddResource() override {
+    ~ExperimentalWithCallbackMethod_AddResource() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -335,26 +454,46 @@ class ModuleService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* AddResource(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::module::v1::AddResourceRequest* /*request*/, ::viam::module::v1::AddResourceResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::module::v1::AddResourceRequest* /*request*/, ::viam::module::v1::AddResourceResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* AddResource(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::module::v1::AddResourceRequest* /*request*/, ::viam::module::v1::AddResourceResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_ReconfigureResource : public BaseClass {
+  class ExperimentalWithCallbackMethod_ReconfigureResource : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_ReconfigureResource() {
-      ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::module::v1::ReconfigureResourceRequest, ::viam::module::v1::ReconfigureResourceResponse>(
+    ExperimentalWithCallbackMethod_ReconfigureResource() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::module::v1::ReconfigureResourceRequest, ::viam::module::v1::ReconfigureResourceResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::module::v1::ReconfigureResourceRequest* request, ::viam::module::v1::ReconfigureResourceResponse* response) { return this->ReconfigureResource(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::module::v1::ReconfigureResourceRequest* request, ::viam::module::v1::ReconfigureResourceResponse* response) { return this->ReconfigureResource(context, request, response); }));}
     void SetMessageAllocatorFor_ReconfigureResource(
-        ::grpc::MessageAllocator< ::viam::module::v1::ReconfigureResourceRequest, ::viam::module::v1::ReconfigureResourceResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::module::v1::ReconfigureResourceRequest, ::viam::module::v1::ReconfigureResourceResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::module::v1::ReconfigureResourceRequest, ::viam::module::v1::ReconfigureResourceResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::module::v1::ReconfigureResourceRequest, ::viam::module::v1::ReconfigureResourceResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_ReconfigureResource() override {
+    ~ExperimentalWithCallbackMethod_ReconfigureResource() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -362,26 +501,46 @@ class ModuleService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* ReconfigureResource(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::module::v1::ReconfigureResourceRequest* /*request*/, ::viam::module::v1::ReconfigureResourceResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::module::v1::ReconfigureResourceRequest* /*request*/, ::viam::module::v1::ReconfigureResourceResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ReconfigureResource(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::module::v1::ReconfigureResourceRequest* /*request*/, ::viam::module::v1::ReconfigureResourceResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_RemoveResource : public BaseClass {
+  class ExperimentalWithCallbackMethod_RemoveResource : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_RemoveResource() {
-      ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::module::v1::RemoveResourceRequest, ::viam::module::v1::RemoveResourceResponse>(
+    ExperimentalWithCallbackMethod_RemoveResource() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::module::v1::RemoveResourceRequest, ::viam::module::v1::RemoveResourceResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::module::v1::RemoveResourceRequest* request, ::viam::module::v1::RemoveResourceResponse* response) { return this->RemoveResource(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::module::v1::RemoveResourceRequest* request, ::viam::module::v1::RemoveResourceResponse* response) { return this->RemoveResource(context, request, response); }));}
     void SetMessageAllocatorFor_RemoveResource(
-        ::grpc::MessageAllocator< ::viam::module::v1::RemoveResourceRequest, ::viam::module::v1::RemoveResourceResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::module::v1::RemoveResourceRequest, ::viam::module::v1::RemoveResourceResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::module::v1::RemoveResourceRequest, ::viam::module::v1::RemoveResourceResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::module::v1::RemoveResourceRequest, ::viam::module::v1::RemoveResourceResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_RemoveResource() override {
+    ~ExperimentalWithCallbackMethod_RemoveResource() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -389,26 +548,46 @@ class ModuleService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* RemoveResource(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::module::v1::RemoveResourceRequest* /*request*/, ::viam::module::v1::RemoveResourceResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::module::v1::RemoveResourceRequest* /*request*/, ::viam::module::v1::RemoveResourceResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* RemoveResource(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::module::v1::RemoveResourceRequest* /*request*/, ::viam::module::v1::RemoveResourceResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_Ready : public BaseClass {
+  class ExperimentalWithCallbackMethod_Ready : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_Ready() {
-      ::grpc::Service::MarkMethodCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::module::v1::ReadyRequest, ::viam::module::v1::ReadyResponse>(
+    ExperimentalWithCallbackMethod_Ready() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::module::v1::ReadyRequest, ::viam::module::v1::ReadyResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::module::v1::ReadyRequest* request, ::viam::module::v1::ReadyResponse* response) { return this->Ready(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::module::v1::ReadyRequest* request, ::viam::module::v1::ReadyResponse* response) { return this->Ready(context, request, response); }));}
     void SetMessageAllocatorFor_Ready(
-        ::grpc::MessageAllocator< ::viam::module::v1::ReadyRequest, ::viam::module::v1::ReadyResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::module::v1::ReadyRequest, ::viam::module::v1::ReadyResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::module::v1::ReadyRequest, ::viam::module::v1::ReadyResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::module::v1::ReadyRequest, ::viam::module::v1::ReadyResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_Ready() override {
+    ~ExperimentalWithCallbackMethod_Ready() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -416,26 +595,46 @@ class ModuleService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* Ready(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::module::v1::ReadyRequest* /*request*/, ::viam::module::v1::ReadyResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::module::v1::ReadyRequest* /*request*/, ::viam::module::v1::ReadyResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Ready(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::module::v1::ReadyRequest* /*request*/, ::viam::module::v1::ReadyResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_ValidateConfig : public BaseClass {
+  class ExperimentalWithCallbackMethod_ValidateConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_ValidateConfig() {
-      ::grpc::Service::MarkMethodCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::module::v1::ValidateConfigRequest, ::viam::module::v1::ValidateConfigResponse>(
+    ExperimentalWithCallbackMethod_ValidateConfig() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::module::v1::ValidateConfigRequest, ::viam::module::v1::ValidateConfigResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::module::v1::ValidateConfigRequest* request, ::viam::module::v1::ValidateConfigResponse* response) { return this->ValidateConfig(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::module::v1::ValidateConfigRequest* request, ::viam::module::v1::ValidateConfigResponse* response) { return this->ValidateConfig(context, request, response); }));}
     void SetMessageAllocatorFor_ValidateConfig(
-        ::grpc::MessageAllocator< ::viam::module::v1::ValidateConfigRequest, ::viam::module::v1::ValidateConfigResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::module::v1::ValidateConfigRequest, ::viam::module::v1::ValidateConfigResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::module::v1::ValidateConfigRequest, ::viam::module::v1::ValidateConfigResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(4);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::module::v1::ValidateConfigRequest, ::viam::module::v1::ValidateConfigResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_ValidateConfig() override {
+    ~ExperimentalWithCallbackMethod_ValidateConfig() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -443,11 +642,20 @@ class ModuleService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* ValidateConfig(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::module::v1::ValidateConfigRequest* /*request*/, ::viam::module::v1::ValidateConfigResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::module::v1::ValidateConfigRequest* /*request*/, ::viam::module::v1::ValidateConfigResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ValidateConfig(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::module::v1::ValidateConfigRequest* /*request*/, ::viam::module::v1::ValidateConfigResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
-  typedef WithCallbackMethod_AddResource<WithCallbackMethod_ReconfigureResource<WithCallbackMethod_RemoveResource<WithCallbackMethod_Ready<WithCallbackMethod_ValidateConfig<Service > > > > > CallbackService;
-  typedef CallbackService ExperimentalCallbackService;
+  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+  typedef ExperimentalWithCallbackMethod_AddResource<ExperimentalWithCallbackMethod_ReconfigureResource<ExperimentalWithCallbackMethod_RemoveResource<ExperimentalWithCallbackMethod_Ready<ExperimentalWithCallbackMethod_ValidateConfig<Service > > > > > CallbackService;
+  #endif
+
+  typedef ExperimentalWithCallbackMethod_AddResource<ExperimentalWithCallbackMethod_ReconfigureResource<ExperimentalWithCallbackMethod_RemoveResource<ExperimentalWithCallbackMethod_Ready<ExperimentalWithCallbackMethod_ValidateConfig<Service > > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_AddResource : public BaseClass {
    private:
@@ -634,17 +842,27 @@ class ModuleService final {
     }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_AddResource : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_AddResource : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_AddResource() {
-      ::grpc::Service::MarkMethodRawCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_AddResource() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(0,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AddResource(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AddResource(context, request, response); }));
     }
-    ~WithRawCallbackMethod_AddResource() override {
+    ~ExperimentalWithRawCallbackMethod_AddResource() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -652,21 +870,37 @@ class ModuleService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* AddResource(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* AddResource(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_ReconfigureResource : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_ReconfigureResource : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_ReconfigureResource() {
-      ::grpc::Service::MarkMethodRawCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_ReconfigureResource() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ReconfigureResource(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ReconfigureResource(context, request, response); }));
     }
-    ~WithRawCallbackMethod_ReconfigureResource() override {
+    ~ExperimentalWithRawCallbackMethod_ReconfigureResource() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -674,21 +908,37 @@ class ModuleService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* ReconfigureResource(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ReconfigureResource(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_RemoveResource : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_RemoveResource : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_RemoveResource() {
-      ::grpc::Service::MarkMethodRawCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_RemoveResource() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RemoveResource(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RemoveResource(context, request, response); }));
     }
-    ~WithRawCallbackMethod_RemoveResource() override {
+    ~ExperimentalWithRawCallbackMethod_RemoveResource() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -696,21 +946,37 @@ class ModuleService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* RemoveResource(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* RemoveResource(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_Ready : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_Ready : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_Ready() {
-      ::grpc::Service::MarkMethodRawCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_Ready() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Ready(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Ready(context, request, response); }));
     }
-    ~WithRawCallbackMethod_Ready() override {
+    ~ExperimentalWithRawCallbackMethod_Ready() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -718,21 +984,37 @@ class ModuleService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* Ready(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Ready(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_ValidateConfig : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_ValidateConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_ValidateConfig() {
-      ::grpc::Service::MarkMethodRawCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_ValidateConfig() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ValidateConfig(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ValidateConfig(context, request, response); }));
     }
-    ~WithRawCallbackMethod_ValidateConfig() override {
+    ~ExperimentalWithRawCallbackMethod_ValidateConfig() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -740,8 +1022,14 @@ class ModuleService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* ValidateConfig(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ValidateConfig(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_AddResource : public BaseClass {
@@ -752,8 +1040,8 @@ class ModuleService final {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::module::v1::AddResourceRequest, ::viam::module::v1::AddResourceResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::module::v1::AddResourceRequest, ::viam::module::v1::AddResourceResponse>* streamer) {
                        return this->StreamedAddResource(context,
                          streamer);
@@ -779,8 +1067,8 @@ class ModuleService final {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::module::v1::ReconfigureResourceRequest, ::viam::module::v1::ReconfigureResourceResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::module::v1::ReconfigureResourceRequest, ::viam::module::v1::ReconfigureResourceResponse>* streamer) {
                        return this->StreamedReconfigureResource(context,
                          streamer);
@@ -806,8 +1094,8 @@ class ModuleService final {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::module::v1::RemoveResourceRequest, ::viam::module::v1::RemoveResourceResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::module::v1::RemoveResourceRequest, ::viam::module::v1::RemoveResourceResponse>* streamer) {
                        return this->StreamedRemoveResource(context,
                          streamer);
@@ -833,8 +1121,8 @@ class ModuleService final {
       ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::module::v1::ReadyRequest, ::viam::module::v1::ReadyResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::module::v1::ReadyRequest, ::viam::module::v1::ReadyResponse>* streamer) {
                        return this->StreamedReady(context,
                          streamer);
@@ -860,8 +1148,8 @@ class ModuleService final {
       ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::module::v1::ValidateConfigRequest, ::viam::module::v1::ValidateConfigResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::module::v1::ValidateConfigRequest, ::viam::module::v1::ValidateConfigResponse>* streamer) {
                        return this->StreamedValidateConfig(context,
                          streamer);

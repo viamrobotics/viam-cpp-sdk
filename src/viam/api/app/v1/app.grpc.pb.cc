@@ -6,19 +6,19 @@
 #include "app/v1/app.grpc.pb.h"
 
 #include <functional>
-#include <grpcpp/support/async_stream.h>
-#include <grpcpp/support/async_unary_call.h>
-#include <grpcpp/impl/channel_interface.h>
-#include <grpcpp/impl/client_unary_call.h>
-#include <grpcpp/support/client_callback.h>
-#include <grpcpp/support/message_allocator.h>
-#include <grpcpp/support/method_handler.h>
-#include <grpcpp/impl/rpc_service_method.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/sync_stream.h>
+#include <grpcpp/impl/codegen/async_stream.h>
+#include <grpcpp/impl/codegen/async_unary_call.h>
+#include <grpcpp/impl/codegen/channel_interface.h>
+#include <grpcpp/impl/codegen/client_unary_call.h>
+#include <grpcpp/impl/codegen/client_callback.h>
+#include <grpcpp/impl/codegen/message_allocator.h>
+#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/impl/codegen/rpc_service_method.h>
+#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/codegen/server_callback_handlers.h>
+#include <grpcpp/impl/codegen/server_context.h>
+#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/impl/codegen/sync_stream.h>
 namespace viam {
 namespace app {
 namespace v1 {
@@ -29,6 +29,7 @@ static const char* AppService_method_names[] = {
   "/viam.app.v1.AppService/ListOrganizations",
   "/viam.app.v1.AppService/GetOrganizationsWithAccessToLocation",
   "/viam.app.v1.AppService/ListOrganizationsByUser",
+  "/viam.app.v1.AppService/SearchOrganizations",
   "/viam.app.v1.AppService/GetOrganization",
   "/viam.app.v1.AppService/GetOrganizationNamespaceAvailability",
   "/viam.app.v1.AppService/UpdateOrganization",
@@ -39,6 +40,21 @@ static const char* AppService_method_names[] = {
   "/viam.app.v1.AppService/DeleteOrganizationMember",
   "/viam.app.v1.AppService/DeleteOrganizationInvite",
   "/viam.app.v1.AppService/ResendOrganizationInvite",
+  "/viam.app.v1.AppService/EnableBillingService",
+  "/viam.app.v1.AppService/DisableBillingService",
+  "/viam.app.v1.AppService/UpdateBillingService",
+  "/viam.app.v1.AppService/GetBillingServiceConfig",
+  "/viam.app.v1.AppService/OrganizationSetSupportEmail",
+  "/viam.app.v1.AppService/OrganizationGetSupportEmail",
+  "/viam.app.v1.AppService/OrganizationSetLogo",
+  "/viam.app.v1.AppService/OrganizationGetLogo",
+  "/viam.app.v1.AppService/EnableAuthService",
+  "/viam.app.v1.AppService/DisableAuthService",
+  "/viam.app.v1.AppService/CreateOAuthApp",
+  "/viam.app.v1.AppService/ReadOAuthApp",
+  "/viam.app.v1.AppService/UpdateOAuthApp",
+  "/viam.app.v1.AppService/DeleteOAuthApp",
+  "/viam.app.v1.AppService/ListOAuthApps",
   "/viam.app.v1.AppService/CreateLocation",
   "/viam.app.v1.AppService/GetLocation",
   "/viam.app.v1.AppService/UpdateLocation",
@@ -101,1758 +117,2577 @@ static const char* AppService_method_names[] = {
 
 std::unique_ptr< AppService::Stub> AppService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< AppService::Stub> stub(new AppService::Stub(channel, options));
+  std::unique_ptr< AppService::Stub> stub(new AppService::Stub(channel));
   return stub;
 }
 
-AppService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_GetUserIDByEmail_(AppService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreateOrganization_(AppService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListOrganizations_(AppService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetOrganizationsWithAccessToLocation_(AppService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListOrganizationsByUser_(AppService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetOrganization_(AppService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetOrganizationNamespaceAvailability_(AppService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UpdateOrganization_(AppService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteOrganization_(AppService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListOrganizationMembers_(AppService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreateOrganizationInvite_(AppService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UpdateOrganizationInviteAuthorizations_(AppService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteOrganizationMember_(AppService_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteOrganizationInvite_(AppService_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ResendOrganizationInvite_(AppService_method_names[14], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreateLocation_(AppService_method_names[15], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetLocation_(AppService_method_names[16], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UpdateLocation_(AppService_method_names[17], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteLocation_(AppService_method_names[18], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListLocations_(AppService_method_names[19], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ShareLocation_(AppService_method_names[20], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UnshareLocation_(AppService_method_names[21], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_LocationAuth_(AppService_method_names[22], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreateLocationSecret_(AppService_method_names[23], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteLocationSecret_(AppService_method_names[24], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetRobot_(AppService_method_names[25], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetRoverRentalRobots_(AppService_method_names[26], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetRobotParts_(AppService_method_names[27], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetRobotPart_(AppService_method_names[28], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetRobotPartLogs_(AppService_method_names[29], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_TailRobotPartLogs_(AppService_method_names[30], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
-  , rpcmethod_GetRobotPartHistory_(AppService_method_names[31], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UpdateRobotPart_(AppService_method_names[32], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_NewRobotPart_(AppService_method_names[33], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteRobotPart_(AppService_method_names[34], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetRobotAPIKeys_(AppService_method_names[35], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_MarkPartAsMain_(AppService_method_names[36], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_MarkPartForRestart_(AppService_method_names[37], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreateRobotPartSecret_(AppService_method_names[38], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteRobotPartSecret_(AppService_method_names[39], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListRobots_(AppService_method_names[40], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_NewRobot_(AppService_method_names[41], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UpdateRobot_(AppService_method_names[42], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteRobot_(AppService_method_names[43], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListFragments_(AppService_method_names[44], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetFragment_(AppService_method_names[45], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreateFragment_(AppService_method_names[46], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UpdateFragment_(AppService_method_names[47], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteFragment_(AppService_method_names[48], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListMachineFragments_(AppService_method_names[49], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetFragmentHistory_(AppService_method_names[50], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_AddRole_(AppService_method_names[51], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_RemoveRole_(AppService_method_names[52], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ChangeRole_(AppService_method_names[53], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListAuthorizations_(AppService_method_names[54], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CheckPermissions_(AppService_method_names[55], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetRegistryItem_(AppService_method_names[56], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreateRegistryItem_(AppService_method_names[57], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UpdateRegistryItem_(AppService_method_names[58], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListRegistryItems_(AppService_method_names[59], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteRegistryItem_(AppService_method_names[60], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_TransferRegistryItem_(AppService_method_names[61], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreateModule_(AppService_method_names[62], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UpdateModule_(AppService_method_names[63], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UploadModuleFile_(AppService_method_names[64], options.suffix_for_stats(),::grpc::internal::RpcMethod::CLIENT_STREAMING, channel)
-  , rpcmethod_GetModule_(AppService_method_names[65], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListModules_(AppService_method_names[66], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreateKey_(AppService_method_names[67], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteKey_(AppService_method_names[68], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListKeys_(AppService_method_names[69], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_RenameKey_(AppService_method_names[70], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_RotateKey_(AppService_method_names[71], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreateKeyFromExistingKeyAuthorizations_(AppService_method_names[72], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+AppService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
+  : channel_(channel), rpcmethod_GetUserIDByEmail_(AppService_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateOrganization_(AppService_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListOrganizations_(AppService_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetOrganizationsWithAccessToLocation_(AppService_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListOrganizationsByUser_(AppService_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SearchOrganizations_(AppService_method_names[5], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetOrganization_(AppService_method_names[6], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetOrganizationNamespaceAvailability_(AppService_method_names[7], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateOrganization_(AppService_method_names[8], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteOrganization_(AppService_method_names[9], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListOrganizationMembers_(AppService_method_names[10], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateOrganizationInvite_(AppService_method_names[11], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateOrganizationInviteAuthorizations_(AppService_method_names[12], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteOrganizationMember_(AppService_method_names[13], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteOrganizationInvite_(AppService_method_names[14], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ResendOrganizationInvite_(AppService_method_names[15], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_EnableBillingService_(AppService_method_names[16], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DisableBillingService_(AppService_method_names[17], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateBillingService_(AppService_method_names[18], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetBillingServiceConfig_(AppService_method_names[19], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_OrganizationSetSupportEmail_(AppService_method_names[20], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_OrganizationGetSupportEmail_(AppService_method_names[21], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_OrganizationSetLogo_(AppService_method_names[22], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_OrganizationGetLogo_(AppService_method_names[23], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_EnableAuthService_(AppService_method_names[24], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DisableAuthService_(AppService_method_names[25], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateOAuthApp_(AppService_method_names[26], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ReadOAuthApp_(AppService_method_names[27], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateOAuthApp_(AppService_method_names[28], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteOAuthApp_(AppService_method_names[29], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListOAuthApps_(AppService_method_names[30], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateLocation_(AppService_method_names[31], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetLocation_(AppService_method_names[32], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateLocation_(AppService_method_names[33], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteLocation_(AppService_method_names[34], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListLocations_(AppService_method_names[35], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ShareLocation_(AppService_method_names[36], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UnshareLocation_(AppService_method_names[37], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_LocationAuth_(AppService_method_names[38], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateLocationSecret_(AppService_method_names[39], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteLocationSecret_(AppService_method_names[40], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetRobot_(AppService_method_names[41], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetRoverRentalRobots_(AppService_method_names[42], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetRobotParts_(AppService_method_names[43], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetRobotPart_(AppService_method_names[44], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetRobotPartLogs_(AppService_method_names[45], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_TailRobotPartLogs_(AppService_method_names[46], ::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_GetRobotPartHistory_(AppService_method_names[47], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateRobotPart_(AppService_method_names[48], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_NewRobotPart_(AppService_method_names[49], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteRobotPart_(AppService_method_names[50], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetRobotAPIKeys_(AppService_method_names[51], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MarkPartAsMain_(AppService_method_names[52], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MarkPartForRestart_(AppService_method_names[53], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateRobotPartSecret_(AppService_method_names[54], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteRobotPartSecret_(AppService_method_names[55], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListRobots_(AppService_method_names[56], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_NewRobot_(AppService_method_names[57], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateRobot_(AppService_method_names[58], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteRobot_(AppService_method_names[59], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListFragments_(AppService_method_names[60], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetFragment_(AppService_method_names[61], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateFragment_(AppService_method_names[62], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateFragment_(AppService_method_names[63], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteFragment_(AppService_method_names[64], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListMachineFragments_(AppService_method_names[65], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetFragmentHistory_(AppService_method_names[66], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_AddRole_(AppService_method_names[67], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RemoveRole_(AppService_method_names[68], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ChangeRole_(AppService_method_names[69], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListAuthorizations_(AppService_method_names[70], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CheckPermissions_(AppService_method_names[71], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetRegistryItem_(AppService_method_names[72], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateRegistryItem_(AppService_method_names[73], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateRegistryItem_(AppService_method_names[74], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListRegistryItems_(AppService_method_names[75], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteRegistryItem_(AppService_method_names[76], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_TransferRegistryItem_(AppService_method_names[77], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateModule_(AppService_method_names[78], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateModule_(AppService_method_names[79], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UploadModuleFile_(AppService_method_names[80], ::grpc::internal::RpcMethod::CLIENT_STREAMING, channel)
+  , rpcmethod_GetModule_(AppService_method_names[81], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListModules_(AppService_method_names[82], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateKey_(AppService_method_names[83], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteKey_(AppService_method_names[84], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListKeys_(AppService_method_names[85], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RenameKey_(AppService_method_names[86], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RotateKey_(AppService_method_names[87], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateKeyFromExistingKeyAuthorizations_(AppService_method_names[88], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status AppService::Stub::GetUserIDByEmail(::grpc::ClientContext* context, const ::viam::app::v1::GetUserIDByEmailRequest& request, ::viam::app::v1::GetUserIDByEmailResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::GetUserIDByEmailRequest, ::viam::app::v1::GetUserIDByEmailResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetUserIDByEmail_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetUserIDByEmail_, context, request, response);
 }
 
-void AppService::Stub::async::GetUserIDByEmail(::grpc::ClientContext* context, const ::viam::app::v1::GetUserIDByEmailRequest* request, ::viam::app::v1::GetUserIDByEmailResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::GetUserIDByEmailRequest, ::viam::app::v1::GetUserIDByEmailResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetUserIDByEmail_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::GetUserIDByEmail(::grpc::ClientContext* context, const ::viam::app::v1::GetUserIDByEmailRequest* request, ::viam::app::v1::GetUserIDByEmailResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetUserIDByEmail_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::GetUserIDByEmail(::grpc::ClientContext* context, const ::viam::app::v1::GetUserIDByEmailRequest* request, ::viam::app::v1::GetUserIDByEmailResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetUserIDByEmail_, context, request, response, reactor);
+void AppService::Stub::experimental_async::GetUserIDByEmail(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetUserIDByEmailResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetUserIDByEmail_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetUserIDByEmailResponse>* AppService::Stub::PrepareAsyncGetUserIDByEmailRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetUserIDByEmailRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::GetUserIDByEmailResponse, ::viam::app::v1::GetUserIDByEmailRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetUserIDByEmail_, context, request);
+void AppService::Stub::experimental_async::GetUserIDByEmail(::grpc::ClientContext* context, const ::viam::app::v1::GetUserIDByEmailRequest* request, ::viam::app::v1::GetUserIDByEmailResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetUserIDByEmail_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::GetUserIDByEmail(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetUserIDByEmailResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetUserIDByEmail_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetUserIDByEmailResponse>* AppService::Stub::AsyncGetUserIDByEmailRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetUserIDByEmailRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetUserIDByEmailRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetUserIDByEmailResponse>::Create(channel_.get(), cq, rpcmethod_GetUserIDByEmail_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetUserIDByEmailResponse>* AppService::Stub::PrepareAsyncGetUserIDByEmailRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetUserIDByEmailRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetUserIDByEmailResponse>::Create(channel_.get(), cq, rpcmethod_GetUserIDByEmail_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::CreateOrganization(::grpc::ClientContext* context, const ::viam::app::v1::CreateOrganizationRequest& request, ::viam::app::v1::CreateOrganizationResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::CreateOrganizationRequest, ::viam::app::v1::CreateOrganizationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CreateOrganization_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_CreateOrganization_, context, request, response);
 }
 
-void AppService::Stub::async::CreateOrganization(::grpc::ClientContext* context, const ::viam::app::v1::CreateOrganizationRequest* request, ::viam::app::v1::CreateOrganizationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::CreateOrganizationRequest, ::viam::app::v1::CreateOrganizationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateOrganization_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::CreateOrganization(::grpc::ClientContext* context, const ::viam::app::v1::CreateOrganizationRequest* request, ::viam::app::v1::CreateOrganizationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CreateOrganization_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::CreateOrganization(::grpc::ClientContext* context, const ::viam::app::v1::CreateOrganizationRequest* request, ::viam::app::v1::CreateOrganizationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateOrganization_, context, request, response, reactor);
+void AppService::Stub::experimental_async::CreateOrganization(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::CreateOrganizationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CreateOrganization_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateOrganizationResponse>* AppService::Stub::PrepareAsyncCreateOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::CreateOrganizationResponse, ::viam::app::v1::CreateOrganizationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CreateOrganization_, context, request);
+void AppService::Stub::experimental_async::CreateOrganization(::grpc::ClientContext* context, const ::viam::app::v1::CreateOrganizationRequest* request, ::viam::app::v1::CreateOrganizationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CreateOrganization_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::CreateOrganization(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::CreateOrganizationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CreateOrganization_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateOrganizationResponse>* AppService::Stub::AsyncCreateOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncCreateOrganizationRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::CreateOrganizationResponse>::Create(channel_.get(), cq, rpcmethod_CreateOrganization_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateOrganizationResponse>* AppService::Stub::PrepareAsyncCreateOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::CreateOrganizationResponse>::Create(channel_.get(), cq, rpcmethod_CreateOrganization_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::ListOrganizations(::grpc::ClientContext* context, const ::viam::app::v1::ListOrganizationsRequest& request, ::viam::app::v1::ListOrganizationsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::ListOrganizationsRequest, ::viam::app::v1::ListOrganizationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListOrganizations_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListOrganizations_, context, request, response);
 }
 
-void AppService::Stub::async::ListOrganizations(::grpc::ClientContext* context, const ::viam::app::v1::ListOrganizationsRequest* request, ::viam::app::v1::ListOrganizationsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::ListOrganizationsRequest, ::viam::app::v1::ListOrganizationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListOrganizations_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::ListOrganizations(::grpc::ClientContext* context, const ::viam::app::v1::ListOrganizationsRequest* request, ::viam::app::v1::ListOrganizationsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListOrganizations_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::ListOrganizations(::grpc::ClientContext* context, const ::viam::app::v1::ListOrganizationsRequest* request, ::viam::app::v1::ListOrganizationsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListOrganizations_, context, request, response, reactor);
+void AppService::Stub::experimental_async::ListOrganizations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ListOrganizationsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListOrganizations_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListOrganizationsResponse>* AppService::Stub::PrepareAsyncListOrganizationsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListOrganizationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::ListOrganizationsResponse, ::viam::app::v1::ListOrganizationsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListOrganizations_, context, request);
+void AppService::Stub::experimental_async::ListOrganizations(::grpc::ClientContext* context, const ::viam::app::v1::ListOrganizationsRequest* request, ::viam::app::v1::ListOrganizationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListOrganizations_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::ListOrganizations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ListOrganizationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListOrganizations_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListOrganizationsResponse>* AppService::Stub::AsyncListOrganizationsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListOrganizationsRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncListOrganizationsRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ListOrganizationsResponse>::Create(channel_.get(), cq, rpcmethod_ListOrganizations_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListOrganizationsResponse>* AppService::Stub::PrepareAsyncListOrganizationsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListOrganizationsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ListOrganizationsResponse>::Create(channel_.get(), cq, rpcmethod_ListOrganizations_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::GetOrganizationsWithAccessToLocation(::grpc::ClientContext* context, const ::viam::app::v1::GetOrganizationsWithAccessToLocationRequest& request, ::viam::app::v1::GetOrganizationsWithAccessToLocationResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::GetOrganizationsWithAccessToLocationRequest, ::viam::app::v1::GetOrganizationsWithAccessToLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetOrganizationsWithAccessToLocation_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetOrganizationsWithAccessToLocation_, context, request, response);
 }
 
-void AppService::Stub::async::GetOrganizationsWithAccessToLocation(::grpc::ClientContext* context, const ::viam::app::v1::GetOrganizationsWithAccessToLocationRequest* request, ::viam::app::v1::GetOrganizationsWithAccessToLocationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::GetOrganizationsWithAccessToLocationRequest, ::viam::app::v1::GetOrganizationsWithAccessToLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetOrganizationsWithAccessToLocation_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::GetOrganizationsWithAccessToLocation(::grpc::ClientContext* context, const ::viam::app::v1::GetOrganizationsWithAccessToLocationRequest* request, ::viam::app::v1::GetOrganizationsWithAccessToLocationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetOrganizationsWithAccessToLocation_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::GetOrganizationsWithAccessToLocation(::grpc::ClientContext* context, const ::viam::app::v1::GetOrganizationsWithAccessToLocationRequest* request, ::viam::app::v1::GetOrganizationsWithAccessToLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetOrganizationsWithAccessToLocation_, context, request, response, reactor);
+void AppService::Stub::experimental_async::GetOrganizationsWithAccessToLocation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetOrganizationsWithAccessToLocationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetOrganizationsWithAccessToLocation_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetOrganizationsWithAccessToLocationResponse>* AppService::Stub::PrepareAsyncGetOrganizationsWithAccessToLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetOrganizationsWithAccessToLocationRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::GetOrganizationsWithAccessToLocationResponse, ::viam::app::v1::GetOrganizationsWithAccessToLocationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetOrganizationsWithAccessToLocation_, context, request);
+void AppService::Stub::experimental_async::GetOrganizationsWithAccessToLocation(::grpc::ClientContext* context, const ::viam::app::v1::GetOrganizationsWithAccessToLocationRequest* request, ::viam::app::v1::GetOrganizationsWithAccessToLocationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetOrganizationsWithAccessToLocation_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::GetOrganizationsWithAccessToLocation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetOrganizationsWithAccessToLocationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetOrganizationsWithAccessToLocation_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetOrganizationsWithAccessToLocationResponse>* AppService::Stub::AsyncGetOrganizationsWithAccessToLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetOrganizationsWithAccessToLocationRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetOrganizationsWithAccessToLocationRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetOrganizationsWithAccessToLocationResponse>::Create(channel_.get(), cq, rpcmethod_GetOrganizationsWithAccessToLocation_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetOrganizationsWithAccessToLocationResponse>* AppService::Stub::PrepareAsyncGetOrganizationsWithAccessToLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetOrganizationsWithAccessToLocationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetOrganizationsWithAccessToLocationResponse>::Create(channel_.get(), cq, rpcmethod_GetOrganizationsWithAccessToLocation_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::ListOrganizationsByUser(::grpc::ClientContext* context, const ::viam::app::v1::ListOrganizationsByUserRequest& request, ::viam::app::v1::ListOrganizationsByUserResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::ListOrganizationsByUserRequest, ::viam::app::v1::ListOrganizationsByUserResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListOrganizationsByUser_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListOrganizationsByUser_, context, request, response);
 }
 
-void AppService::Stub::async::ListOrganizationsByUser(::grpc::ClientContext* context, const ::viam::app::v1::ListOrganizationsByUserRequest* request, ::viam::app::v1::ListOrganizationsByUserResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::ListOrganizationsByUserRequest, ::viam::app::v1::ListOrganizationsByUserResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListOrganizationsByUser_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::ListOrganizationsByUser(::grpc::ClientContext* context, const ::viam::app::v1::ListOrganizationsByUserRequest* request, ::viam::app::v1::ListOrganizationsByUserResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListOrganizationsByUser_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::ListOrganizationsByUser(::grpc::ClientContext* context, const ::viam::app::v1::ListOrganizationsByUserRequest* request, ::viam::app::v1::ListOrganizationsByUserResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListOrganizationsByUser_, context, request, response, reactor);
+void AppService::Stub::experimental_async::ListOrganizationsByUser(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ListOrganizationsByUserResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListOrganizationsByUser_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListOrganizationsByUserResponse>* AppService::Stub::PrepareAsyncListOrganizationsByUserRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListOrganizationsByUserRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::ListOrganizationsByUserResponse, ::viam::app::v1::ListOrganizationsByUserRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListOrganizationsByUser_, context, request);
+void AppService::Stub::experimental_async::ListOrganizationsByUser(::grpc::ClientContext* context, const ::viam::app::v1::ListOrganizationsByUserRequest* request, ::viam::app::v1::ListOrganizationsByUserResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListOrganizationsByUser_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::ListOrganizationsByUser(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ListOrganizationsByUserResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListOrganizationsByUser_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListOrganizationsByUserResponse>* AppService::Stub::AsyncListOrganizationsByUserRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListOrganizationsByUserRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncListOrganizationsByUserRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ListOrganizationsByUserResponse>::Create(channel_.get(), cq, rpcmethod_ListOrganizationsByUser_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListOrganizationsByUserResponse>* AppService::Stub::PrepareAsyncListOrganizationsByUserRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListOrganizationsByUserRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ListOrganizationsByUserResponse>::Create(channel_.get(), cq, rpcmethod_ListOrganizationsByUser_, context, request, false);
+}
+
+::grpc::Status AppService::Stub::SearchOrganizations(::grpc::ClientContext* context, const ::viam::app::v1::SearchOrganizationsRequest& request, ::viam::app::v1::SearchOrganizationsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SearchOrganizations_, context, request, response);
+}
+
+void AppService::Stub::experimental_async::SearchOrganizations(::grpc::ClientContext* context, const ::viam::app::v1::SearchOrganizationsRequest* request, ::viam::app::v1::SearchOrganizationsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SearchOrganizations_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::SearchOrganizations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::SearchOrganizationsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SearchOrganizations_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::SearchOrganizations(::grpc::ClientContext* context, const ::viam::app::v1::SearchOrganizationsRequest* request, ::viam::app::v1::SearchOrganizationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SearchOrganizations_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::SearchOrganizations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::SearchOrganizationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SearchOrganizations_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::SearchOrganizationsResponse>* AppService::Stub::AsyncSearchOrganizationsRaw(::grpc::ClientContext* context, const ::viam::app::v1::SearchOrganizationsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::SearchOrganizationsResponse>::Create(channel_.get(), cq, rpcmethod_SearchOrganizations_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::SearchOrganizationsResponse>* AppService::Stub::PrepareAsyncSearchOrganizationsRaw(::grpc::ClientContext* context, const ::viam::app::v1::SearchOrganizationsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::SearchOrganizationsResponse>::Create(channel_.get(), cq, rpcmethod_SearchOrganizations_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::GetOrganization(::grpc::ClientContext* context, const ::viam::app::v1::GetOrganizationRequest& request, ::viam::app::v1::GetOrganizationResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::GetOrganizationRequest, ::viam::app::v1::GetOrganizationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetOrganization_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetOrganization_, context, request, response);
 }
 
-void AppService::Stub::async::GetOrganization(::grpc::ClientContext* context, const ::viam::app::v1::GetOrganizationRequest* request, ::viam::app::v1::GetOrganizationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::GetOrganizationRequest, ::viam::app::v1::GetOrganizationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetOrganization_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::GetOrganization(::grpc::ClientContext* context, const ::viam::app::v1::GetOrganizationRequest* request, ::viam::app::v1::GetOrganizationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetOrganization_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::GetOrganization(::grpc::ClientContext* context, const ::viam::app::v1::GetOrganizationRequest* request, ::viam::app::v1::GetOrganizationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetOrganization_, context, request, response, reactor);
+void AppService::Stub::experimental_async::GetOrganization(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetOrganizationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetOrganization_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetOrganizationResponse>* AppService::Stub::PrepareAsyncGetOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::GetOrganizationResponse, ::viam::app::v1::GetOrganizationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetOrganization_, context, request);
+void AppService::Stub::experimental_async::GetOrganization(::grpc::ClientContext* context, const ::viam::app::v1::GetOrganizationRequest* request, ::viam::app::v1::GetOrganizationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetOrganization_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::GetOrganization(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetOrganizationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetOrganization_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetOrganizationResponse>* AppService::Stub::AsyncGetOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetOrganizationRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetOrganizationResponse>::Create(channel_.get(), cq, rpcmethod_GetOrganization_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetOrganizationResponse>* AppService::Stub::PrepareAsyncGetOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetOrganizationResponse>::Create(channel_.get(), cq, rpcmethod_GetOrganization_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::GetOrganizationNamespaceAvailability(::grpc::ClientContext* context, const ::viam::app::v1::GetOrganizationNamespaceAvailabilityRequest& request, ::viam::app::v1::GetOrganizationNamespaceAvailabilityResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::GetOrganizationNamespaceAvailabilityRequest, ::viam::app::v1::GetOrganizationNamespaceAvailabilityResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetOrganizationNamespaceAvailability_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetOrganizationNamespaceAvailability_, context, request, response);
 }
 
-void AppService::Stub::async::GetOrganizationNamespaceAvailability(::grpc::ClientContext* context, const ::viam::app::v1::GetOrganizationNamespaceAvailabilityRequest* request, ::viam::app::v1::GetOrganizationNamespaceAvailabilityResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::GetOrganizationNamespaceAvailabilityRequest, ::viam::app::v1::GetOrganizationNamespaceAvailabilityResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetOrganizationNamespaceAvailability_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::GetOrganizationNamespaceAvailability(::grpc::ClientContext* context, const ::viam::app::v1::GetOrganizationNamespaceAvailabilityRequest* request, ::viam::app::v1::GetOrganizationNamespaceAvailabilityResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetOrganizationNamespaceAvailability_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::GetOrganizationNamespaceAvailability(::grpc::ClientContext* context, const ::viam::app::v1::GetOrganizationNamespaceAvailabilityRequest* request, ::viam::app::v1::GetOrganizationNamespaceAvailabilityResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetOrganizationNamespaceAvailability_, context, request, response, reactor);
+void AppService::Stub::experimental_async::GetOrganizationNamespaceAvailability(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetOrganizationNamespaceAvailabilityResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetOrganizationNamespaceAvailability_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetOrganizationNamespaceAvailabilityResponse>* AppService::Stub::PrepareAsyncGetOrganizationNamespaceAvailabilityRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetOrganizationNamespaceAvailabilityRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::GetOrganizationNamespaceAvailabilityResponse, ::viam::app::v1::GetOrganizationNamespaceAvailabilityRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetOrganizationNamespaceAvailability_, context, request);
+void AppService::Stub::experimental_async::GetOrganizationNamespaceAvailability(::grpc::ClientContext* context, const ::viam::app::v1::GetOrganizationNamespaceAvailabilityRequest* request, ::viam::app::v1::GetOrganizationNamespaceAvailabilityResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetOrganizationNamespaceAvailability_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::GetOrganizationNamespaceAvailability(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetOrganizationNamespaceAvailabilityResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetOrganizationNamespaceAvailability_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetOrganizationNamespaceAvailabilityResponse>* AppService::Stub::AsyncGetOrganizationNamespaceAvailabilityRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetOrganizationNamespaceAvailabilityRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetOrganizationNamespaceAvailabilityRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetOrganizationNamespaceAvailabilityResponse>::Create(channel_.get(), cq, rpcmethod_GetOrganizationNamespaceAvailability_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetOrganizationNamespaceAvailabilityResponse>* AppService::Stub::PrepareAsyncGetOrganizationNamespaceAvailabilityRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetOrganizationNamespaceAvailabilityRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetOrganizationNamespaceAvailabilityResponse>::Create(channel_.get(), cq, rpcmethod_GetOrganizationNamespaceAvailability_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::UpdateOrganization(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationRequest& request, ::viam::app::v1::UpdateOrganizationResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::UpdateOrganizationRequest, ::viam::app::v1::UpdateOrganizationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UpdateOrganization_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_UpdateOrganization_, context, request, response);
 }
 
-void AppService::Stub::async::UpdateOrganization(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationRequest* request, ::viam::app::v1::UpdateOrganizationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::UpdateOrganizationRequest, ::viam::app::v1::UpdateOrganizationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateOrganization_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::UpdateOrganization(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationRequest* request, ::viam::app::v1::UpdateOrganizationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateOrganization_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::UpdateOrganization(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationRequest* request, ::viam::app::v1::UpdateOrganizationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateOrganization_, context, request, response, reactor);
+void AppService::Stub::experimental_async::UpdateOrganization(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateOrganizationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateOrganization_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateOrganizationResponse>* AppService::Stub::PrepareAsyncUpdateOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::UpdateOrganizationResponse, ::viam::app::v1::UpdateOrganizationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UpdateOrganization_, context, request);
+void AppService::Stub::experimental_async::UpdateOrganization(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationRequest* request, ::viam::app::v1::UpdateOrganizationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateOrganization_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::UpdateOrganization(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateOrganizationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateOrganization_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateOrganizationResponse>* AppService::Stub::AsyncUpdateOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncUpdateOrganizationRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::UpdateOrganizationResponse>::Create(channel_.get(), cq, rpcmethod_UpdateOrganization_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateOrganizationResponse>* AppService::Stub::PrepareAsyncUpdateOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::UpdateOrganizationResponse>::Create(channel_.get(), cq, rpcmethod_UpdateOrganization_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::DeleteOrganization(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOrganizationRequest& request, ::viam::app::v1::DeleteOrganizationResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::DeleteOrganizationRequest, ::viam::app::v1::DeleteOrganizationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteOrganization_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteOrganization_, context, request, response);
 }
 
-void AppService::Stub::async::DeleteOrganization(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOrganizationRequest* request, ::viam::app::v1::DeleteOrganizationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::DeleteOrganizationRequest, ::viam::app::v1::DeleteOrganizationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteOrganization_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::DeleteOrganization(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOrganizationRequest* request, ::viam::app::v1::DeleteOrganizationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteOrganization_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::DeleteOrganization(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOrganizationRequest* request, ::viam::app::v1::DeleteOrganizationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteOrganization_, context, request, response, reactor);
+void AppService::Stub::experimental_async::DeleteOrganization(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteOrganizationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteOrganization_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteOrganizationResponse>* AppService::Stub::PrepareAsyncDeleteOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::DeleteOrganizationResponse, ::viam::app::v1::DeleteOrganizationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteOrganization_, context, request);
+void AppService::Stub::experimental_async::DeleteOrganization(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOrganizationRequest* request, ::viam::app::v1::DeleteOrganizationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteOrganization_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::DeleteOrganization(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteOrganizationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteOrganization_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteOrganizationResponse>* AppService::Stub::AsyncDeleteOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncDeleteOrganizationRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteOrganizationResponse>::Create(channel_.get(), cq, rpcmethod_DeleteOrganization_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteOrganizationResponse>* AppService::Stub::PrepareAsyncDeleteOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteOrganizationResponse>::Create(channel_.get(), cq, rpcmethod_DeleteOrganization_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::ListOrganizationMembers(::grpc::ClientContext* context, const ::viam::app::v1::ListOrganizationMembersRequest& request, ::viam::app::v1::ListOrganizationMembersResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::ListOrganizationMembersRequest, ::viam::app::v1::ListOrganizationMembersResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListOrganizationMembers_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListOrganizationMembers_, context, request, response);
 }
 
-void AppService::Stub::async::ListOrganizationMembers(::grpc::ClientContext* context, const ::viam::app::v1::ListOrganizationMembersRequest* request, ::viam::app::v1::ListOrganizationMembersResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::ListOrganizationMembersRequest, ::viam::app::v1::ListOrganizationMembersResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListOrganizationMembers_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::ListOrganizationMembers(::grpc::ClientContext* context, const ::viam::app::v1::ListOrganizationMembersRequest* request, ::viam::app::v1::ListOrganizationMembersResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListOrganizationMembers_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::ListOrganizationMembers(::grpc::ClientContext* context, const ::viam::app::v1::ListOrganizationMembersRequest* request, ::viam::app::v1::ListOrganizationMembersResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListOrganizationMembers_, context, request, response, reactor);
+void AppService::Stub::experimental_async::ListOrganizationMembers(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ListOrganizationMembersResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListOrganizationMembers_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListOrganizationMembersResponse>* AppService::Stub::PrepareAsyncListOrganizationMembersRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListOrganizationMembersRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::ListOrganizationMembersResponse, ::viam::app::v1::ListOrganizationMembersRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListOrganizationMembers_, context, request);
+void AppService::Stub::experimental_async::ListOrganizationMembers(::grpc::ClientContext* context, const ::viam::app::v1::ListOrganizationMembersRequest* request, ::viam::app::v1::ListOrganizationMembersResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListOrganizationMembers_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::ListOrganizationMembers(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ListOrganizationMembersResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListOrganizationMembers_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListOrganizationMembersResponse>* AppService::Stub::AsyncListOrganizationMembersRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListOrganizationMembersRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncListOrganizationMembersRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ListOrganizationMembersResponse>::Create(channel_.get(), cq, rpcmethod_ListOrganizationMembers_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListOrganizationMembersResponse>* AppService::Stub::PrepareAsyncListOrganizationMembersRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListOrganizationMembersRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ListOrganizationMembersResponse>::Create(channel_.get(), cq, rpcmethod_ListOrganizationMembers_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::CreateOrganizationInvite(::grpc::ClientContext* context, const ::viam::app::v1::CreateOrganizationInviteRequest& request, ::viam::app::v1::CreateOrganizationInviteResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::CreateOrganizationInviteRequest, ::viam::app::v1::CreateOrganizationInviteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CreateOrganizationInvite_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_CreateOrganizationInvite_, context, request, response);
 }
 
-void AppService::Stub::async::CreateOrganizationInvite(::grpc::ClientContext* context, const ::viam::app::v1::CreateOrganizationInviteRequest* request, ::viam::app::v1::CreateOrganizationInviteResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::CreateOrganizationInviteRequest, ::viam::app::v1::CreateOrganizationInviteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateOrganizationInvite_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::CreateOrganizationInvite(::grpc::ClientContext* context, const ::viam::app::v1::CreateOrganizationInviteRequest* request, ::viam::app::v1::CreateOrganizationInviteResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CreateOrganizationInvite_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::CreateOrganizationInvite(::grpc::ClientContext* context, const ::viam::app::v1::CreateOrganizationInviteRequest* request, ::viam::app::v1::CreateOrganizationInviteResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateOrganizationInvite_, context, request, response, reactor);
+void AppService::Stub::experimental_async::CreateOrganizationInvite(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::CreateOrganizationInviteResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CreateOrganizationInvite_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateOrganizationInviteResponse>* AppService::Stub::PrepareAsyncCreateOrganizationInviteRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateOrganizationInviteRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::CreateOrganizationInviteResponse, ::viam::app::v1::CreateOrganizationInviteRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CreateOrganizationInvite_, context, request);
+void AppService::Stub::experimental_async::CreateOrganizationInvite(::grpc::ClientContext* context, const ::viam::app::v1::CreateOrganizationInviteRequest* request, ::viam::app::v1::CreateOrganizationInviteResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CreateOrganizationInvite_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::CreateOrganizationInvite(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::CreateOrganizationInviteResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CreateOrganizationInvite_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateOrganizationInviteResponse>* AppService::Stub::AsyncCreateOrganizationInviteRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateOrganizationInviteRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncCreateOrganizationInviteRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::CreateOrganizationInviteResponse>::Create(channel_.get(), cq, rpcmethod_CreateOrganizationInvite_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateOrganizationInviteResponse>* AppService::Stub::PrepareAsyncCreateOrganizationInviteRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateOrganizationInviteRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::CreateOrganizationInviteResponse>::Create(channel_.get(), cq, rpcmethod_CreateOrganizationInvite_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::UpdateOrganizationInviteAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationInviteAuthorizationsRequest& request, ::viam::app::v1::UpdateOrganizationInviteAuthorizationsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::UpdateOrganizationInviteAuthorizationsRequest, ::viam::app::v1::UpdateOrganizationInviteAuthorizationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UpdateOrganizationInviteAuthorizations_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_UpdateOrganizationInviteAuthorizations_, context, request, response);
 }
 
-void AppService::Stub::async::UpdateOrganizationInviteAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationInviteAuthorizationsRequest* request, ::viam::app::v1::UpdateOrganizationInviteAuthorizationsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::UpdateOrganizationInviteAuthorizationsRequest, ::viam::app::v1::UpdateOrganizationInviteAuthorizationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateOrganizationInviteAuthorizations_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::UpdateOrganizationInviteAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationInviteAuthorizationsRequest* request, ::viam::app::v1::UpdateOrganizationInviteAuthorizationsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateOrganizationInviteAuthorizations_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::UpdateOrganizationInviteAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationInviteAuthorizationsRequest* request, ::viam::app::v1::UpdateOrganizationInviteAuthorizationsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateOrganizationInviteAuthorizations_, context, request, response, reactor);
+void AppService::Stub::experimental_async::UpdateOrganizationInviteAuthorizations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateOrganizationInviteAuthorizationsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateOrganizationInviteAuthorizations_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateOrganizationInviteAuthorizationsResponse>* AppService::Stub::PrepareAsyncUpdateOrganizationInviteAuthorizationsRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationInviteAuthorizationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::UpdateOrganizationInviteAuthorizationsResponse, ::viam::app::v1::UpdateOrganizationInviteAuthorizationsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UpdateOrganizationInviteAuthorizations_, context, request);
+void AppService::Stub::experimental_async::UpdateOrganizationInviteAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationInviteAuthorizationsRequest* request, ::viam::app::v1::UpdateOrganizationInviteAuthorizationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateOrganizationInviteAuthorizations_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::UpdateOrganizationInviteAuthorizations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateOrganizationInviteAuthorizationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateOrganizationInviteAuthorizations_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateOrganizationInviteAuthorizationsResponse>* AppService::Stub::AsyncUpdateOrganizationInviteAuthorizationsRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationInviteAuthorizationsRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncUpdateOrganizationInviteAuthorizationsRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::UpdateOrganizationInviteAuthorizationsResponse>::Create(channel_.get(), cq, rpcmethod_UpdateOrganizationInviteAuthorizations_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateOrganizationInviteAuthorizationsResponse>* AppService::Stub::PrepareAsyncUpdateOrganizationInviteAuthorizationsRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationInviteAuthorizationsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::UpdateOrganizationInviteAuthorizationsResponse>::Create(channel_.get(), cq, rpcmethod_UpdateOrganizationInviteAuthorizations_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::DeleteOrganizationMember(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOrganizationMemberRequest& request, ::viam::app::v1::DeleteOrganizationMemberResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::DeleteOrganizationMemberRequest, ::viam::app::v1::DeleteOrganizationMemberResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteOrganizationMember_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteOrganizationMember_, context, request, response);
 }
 
-void AppService::Stub::async::DeleteOrganizationMember(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOrganizationMemberRequest* request, ::viam::app::v1::DeleteOrganizationMemberResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::DeleteOrganizationMemberRequest, ::viam::app::v1::DeleteOrganizationMemberResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteOrganizationMember_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::DeleteOrganizationMember(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOrganizationMemberRequest* request, ::viam::app::v1::DeleteOrganizationMemberResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteOrganizationMember_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::DeleteOrganizationMember(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOrganizationMemberRequest* request, ::viam::app::v1::DeleteOrganizationMemberResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteOrganizationMember_, context, request, response, reactor);
+void AppService::Stub::experimental_async::DeleteOrganizationMember(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteOrganizationMemberResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteOrganizationMember_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteOrganizationMemberResponse>* AppService::Stub::PrepareAsyncDeleteOrganizationMemberRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOrganizationMemberRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::DeleteOrganizationMemberResponse, ::viam::app::v1::DeleteOrganizationMemberRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteOrganizationMember_, context, request);
+void AppService::Stub::experimental_async::DeleteOrganizationMember(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOrganizationMemberRequest* request, ::viam::app::v1::DeleteOrganizationMemberResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteOrganizationMember_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::DeleteOrganizationMember(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteOrganizationMemberResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteOrganizationMember_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteOrganizationMemberResponse>* AppService::Stub::AsyncDeleteOrganizationMemberRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOrganizationMemberRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncDeleteOrganizationMemberRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteOrganizationMemberResponse>::Create(channel_.get(), cq, rpcmethod_DeleteOrganizationMember_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteOrganizationMemberResponse>* AppService::Stub::PrepareAsyncDeleteOrganizationMemberRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOrganizationMemberRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteOrganizationMemberResponse>::Create(channel_.get(), cq, rpcmethod_DeleteOrganizationMember_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::DeleteOrganizationInvite(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOrganizationInviteRequest& request, ::viam::app::v1::DeleteOrganizationInviteResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::DeleteOrganizationInviteRequest, ::viam::app::v1::DeleteOrganizationInviteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteOrganizationInvite_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteOrganizationInvite_, context, request, response);
 }
 
-void AppService::Stub::async::DeleteOrganizationInvite(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOrganizationInviteRequest* request, ::viam::app::v1::DeleteOrganizationInviteResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::DeleteOrganizationInviteRequest, ::viam::app::v1::DeleteOrganizationInviteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteOrganizationInvite_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::DeleteOrganizationInvite(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOrganizationInviteRequest* request, ::viam::app::v1::DeleteOrganizationInviteResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteOrganizationInvite_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::DeleteOrganizationInvite(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOrganizationInviteRequest* request, ::viam::app::v1::DeleteOrganizationInviteResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteOrganizationInvite_, context, request, response, reactor);
+void AppService::Stub::experimental_async::DeleteOrganizationInvite(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteOrganizationInviteResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteOrganizationInvite_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteOrganizationInviteResponse>* AppService::Stub::PrepareAsyncDeleteOrganizationInviteRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOrganizationInviteRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::DeleteOrganizationInviteResponse, ::viam::app::v1::DeleteOrganizationInviteRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteOrganizationInvite_, context, request);
+void AppService::Stub::experimental_async::DeleteOrganizationInvite(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOrganizationInviteRequest* request, ::viam::app::v1::DeleteOrganizationInviteResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteOrganizationInvite_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::DeleteOrganizationInvite(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteOrganizationInviteResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteOrganizationInvite_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteOrganizationInviteResponse>* AppService::Stub::AsyncDeleteOrganizationInviteRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOrganizationInviteRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncDeleteOrganizationInviteRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteOrganizationInviteResponse>::Create(channel_.get(), cq, rpcmethod_DeleteOrganizationInvite_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteOrganizationInviteResponse>* AppService::Stub::PrepareAsyncDeleteOrganizationInviteRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOrganizationInviteRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteOrganizationInviteResponse>::Create(channel_.get(), cq, rpcmethod_DeleteOrganizationInvite_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::ResendOrganizationInvite(::grpc::ClientContext* context, const ::viam::app::v1::ResendOrganizationInviteRequest& request, ::viam::app::v1::ResendOrganizationInviteResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::ResendOrganizationInviteRequest, ::viam::app::v1::ResendOrganizationInviteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ResendOrganizationInvite_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ResendOrganizationInvite_, context, request, response);
 }
 
-void AppService::Stub::async::ResendOrganizationInvite(::grpc::ClientContext* context, const ::viam::app::v1::ResendOrganizationInviteRequest* request, ::viam::app::v1::ResendOrganizationInviteResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::ResendOrganizationInviteRequest, ::viam::app::v1::ResendOrganizationInviteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ResendOrganizationInvite_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::ResendOrganizationInvite(::grpc::ClientContext* context, const ::viam::app::v1::ResendOrganizationInviteRequest* request, ::viam::app::v1::ResendOrganizationInviteResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ResendOrganizationInvite_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::ResendOrganizationInvite(::grpc::ClientContext* context, const ::viam::app::v1::ResendOrganizationInviteRequest* request, ::viam::app::v1::ResendOrganizationInviteResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ResendOrganizationInvite_, context, request, response, reactor);
+void AppService::Stub::experimental_async::ResendOrganizationInvite(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ResendOrganizationInviteResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ResendOrganizationInvite_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::ResendOrganizationInviteResponse>* AppService::Stub::PrepareAsyncResendOrganizationInviteRaw(::grpc::ClientContext* context, const ::viam::app::v1::ResendOrganizationInviteRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::ResendOrganizationInviteResponse, ::viam::app::v1::ResendOrganizationInviteRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ResendOrganizationInvite_, context, request);
+void AppService::Stub::experimental_async::ResendOrganizationInvite(::grpc::ClientContext* context, const ::viam::app::v1::ResendOrganizationInviteRequest* request, ::viam::app::v1::ResendOrganizationInviteResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ResendOrganizationInvite_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::ResendOrganizationInvite(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ResendOrganizationInviteResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ResendOrganizationInvite_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ResendOrganizationInviteResponse>* AppService::Stub::AsyncResendOrganizationInviteRaw(::grpc::ClientContext* context, const ::viam::app::v1::ResendOrganizationInviteRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncResendOrganizationInviteRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ResendOrganizationInviteResponse>::Create(channel_.get(), cq, rpcmethod_ResendOrganizationInvite_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ResendOrganizationInviteResponse>* AppService::Stub::PrepareAsyncResendOrganizationInviteRaw(::grpc::ClientContext* context, const ::viam::app::v1::ResendOrganizationInviteRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ResendOrganizationInviteResponse>::Create(channel_.get(), cq, rpcmethod_ResendOrganizationInvite_, context, request, false);
+}
+
+::grpc::Status AppService::Stub::EnableBillingService(::grpc::ClientContext* context, const ::viam::app::v1::EnableBillingServiceRequest& request, ::viam::app::v1::EnableBillingServiceResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_EnableBillingService_, context, request, response);
+}
+
+void AppService::Stub::experimental_async::EnableBillingService(::grpc::ClientContext* context, const ::viam::app::v1::EnableBillingServiceRequest* request, ::viam::app::v1::EnableBillingServiceResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_EnableBillingService_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::EnableBillingService(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::EnableBillingServiceResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_EnableBillingService_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::EnableBillingService(::grpc::ClientContext* context, const ::viam::app::v1::EnableBillingServiceRequest* request, ::viam::app::v1::EnableBillingServiceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_EnableBillingService_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::EnableBillingService(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::EnableBillingServiceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_EnableBillingService_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::EnableBillingServiceResponse>* AppService::Stub::AsyncEnableBillingServiceRaw(::grpc::ClientContext* context, const ::viam::app::v1::EnableBillingServiceRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::EnableBillingServiceResponse>::Create(channel_.get(), cq, rpcmethod_EnableBillingService_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::EnableBillingServiceResponse>* AppService::Stub::PrepareAsyncEnableBillingServiceRaw(::grpc::ClientContext* context, const ::viam::app::v1::EnableBillingServiceRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::EnableBillingServiceResponse>::Create(channel_.get(), cq, rpcmethod_EnableBillingService_, context, request, false);
+}
+
+::grpc::Status AppService::Stub::DisableBillingService(::grpc::ClientContext* context, const ::viam::app::v1::DisableBillingServiceRequest& request, ::viam::app::v1::DisableBillingServiceResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DisableBillingService_, context, request, response);
+}
+
+void AppService::Stub::experimental_async::DisableBillingService(::grpc::ClientContext* context, const ::viam::app::v1::DisableBillingServiceRequest* request, ::viam::app::v1::DisableBillingServiceResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DisableBillingService_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::DisableBillingService(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DisableBillingServiceResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DisableBillingService_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::DisableBillingService(::grpc::ClientContext* context, const ::viam::app::v1::DisableBillingServiceRequest* request, ::viam::app::v1::DisableBillingServiceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DisableBillingService_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::DisableBillingService(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DisableBillingServiceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DisableBillingService_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DisableBillingServiceResponse>* AppService::Stub::AsyncDisableBillingServiceRaw(::grpc::ClientContext* context, const ::viam::app::v1::DisableBillingServiceRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DisableBillingServiceResponse>::Create(channel_.get(), cq, rpcmethod_DisableBillingService_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DisableBillingServiceResponse>* AppService::Stub::PrepareAsyncDisableBillingServiceRaw(::grpc::ClientContext* context, const ::viam::app::v1::DisableBillingServiceRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DisableBillingServiceResponse>::Create(channel_.get(), cq, rpcmethod_DisableBillingService_, context, request, false);
+}
+
+::grpc::Status AppService::Stub::UpdateBillingService(::grpc::ClientContext* context, const ::viam::app::v1::UpdateBillingServiceRequest& request, ::viam::app::v1::UpdateBillingServiceResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_UpdateBillingService_, context, request, response);
+}
+
+void AppService::Stub::experimental_async::UpdateBillingService(::grpc::ClientContext* context, const ::viam::app::v1::UpdateBillingServiceRequest* request, ::viam::app::v1::UpdateBillingServiceResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateBillingService_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::UpdateBillingService(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateBillingServiceResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateBillingService_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::UpdateBillingService(::grpc::ClientContext* context, const ::viam::app::v1::UpdateBillingServiceRequest* request, ::viam::app::v1::UpdateBillingServiceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateBillingService_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::UpdateBillingService(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateBillingServiceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateBillingService_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateBillingServiceResponse>* AppService::Stub::AsyncUpdateBillingServiceRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateBillingServiceRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::UpdateBillingServiceResponse>::Create(channel_.get(), cq, rpcmethod_UpdateBillingService_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateBillingServiceResponse>* AppService::Stub::PrepareAsyncUpdateBillingServiceRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateBillingServiceRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::UpdateBillingServiceResponse>::Create(channel_.get(), cq, rpcmethod_UpdateBillingService_, context, request, false);
+}
+
+::grpc::Status AppService::Stub::GetBillingServiceConfig(::grpc::ClientContext* context, const ::viam::app::v1::GetBillingServiceConfigRequest& request, ::viam::app::v1::GetBillingServiceConfigResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetBillingServiceConfig_, context, request, response);
+}
+
+void AppService::Stub::experimental_async::GetBillingServiceConfig(::grpc::ClientContext* context, const ::viam::app::v1::GetBillingServiceConfigRequest* request, ::viam::app::v1::GetBillingServiceConfigResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetBillingServiceConfig_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::GetBillingServiceConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetBillingServiceConfigResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetBillingServiceConfig_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::GetBillingServiceConfig(::grpc::ClientContext* context, const ::viam::app::v1::GetBillingServiceConfigRequest* request, ::viam::app::v1::GetBillingServiceConfigResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetBillingServiceConfig_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::GetBillingServiceConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetBillingServiceConfigResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetBillingServiceConfig_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetBillingServiceConfigResponse>* AppService::Stub::AsyncGetBillingServiceConfigRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetBillingServiceConfigRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetBillingServiceConfigResponse>::Create(channel_.get(), cq, rpcmethod_GetBillingServiceConfig_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetBillingServiceConfigResponse>* AppService::Stub::PrepareAsyncGetBillingServiceConfigRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetBillingServiceConfigRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetBillingServiceConfigResponse>::Create(channel_.get(), cq, rpcmethod_GetBillingServiceConfig_, context, request, false);
+}
+
+::grpc::Status AppService::Stub::OrganizationSetSupportEmail(::grpc::ClientContext* context, const ::viam::app::v1::OrganizationSetSupportEmailRequest& request, ::viam::app::v1::OrganizationSetSupportEmailResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_OrganizationSetSupportEmail_, context, request, response);
+}
+
+void AppService::Stub::experimental_async::OrganizationSetSupportEmail(::grpc::ClientContext* context, const ::viam::app::v1::OrganizationSetSupportEmailRequest* request, ::viam::app::v1::OrganizationSetSupportEmailResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_OrganizationSetSupportEmail_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::OrganizationSetSupportEmail(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::OrganizationSetSupportEmailResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_OrganizationSetSupportEmail_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::OrganizationSetSupportEmail(::grpc::ClientContext* context, const ::viam::app::v1::OrganizationSetSupportEmailRequest* request, ::viam::app::v1::OrganizationSetSupportEmailResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_OrganizationSetSupportEmail_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::OrganizationSetSupportEmail(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::OrganizationSetSupportEmailResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_OrganizationSetSupportEmail_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::OrganizationSetSupportEmailResponse>* AppService::Stub::AsyncOrganizationSetSupportEmailRaw(::grpc::ClientContext* context, const ::viam::app::v1::OrganizationSetSupportEmailRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::OrganizationSetSupportEmailResponse>::Create(channel_.get(), cq, rpcmethod_OrganizationSetSupportEmail_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::OrganizationSetSupportEmailResponse>* AppService::Stub::PrepareAsyncOrganizationSetSupportEmailRaw(::grpc::ClientContext* context, const ::viam::app::v1::OrganizationSetSupportEmailRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::OrganizationSetSupportEmailResponse>::Create(channel_.get(), cq, rpcmethod_OrganizationSetSupportEmail_, context, request, false);
+}
+
+::grpc::Status AppService::Stub::OrganizationGetSupportEmail(::grpc::ClientContext* context, const ::viam::app::v1::OrganizationGetSupportEmailRequest& request, ::viam::app::v1::OrganizationGetSupportEmailResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_OrganizationGetSupportEmail_, context, request, response);
+}
+
+void AppService::Stub::experimental_async::OrganizationGetSupportEmail(::grpc::ClientContext* context, const ::viam::app::v1::OrganizationGetSupportEmailRequest* request, ::viam::app::v1::OrganizationGetSupportEmailResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_OrganizationGetSupportEmail_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::OrganizationGetSupportEmail(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::OrganizationGetSupportEmailResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_OrganizationGetSupportEmail_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::OrganizationGetSupportEmail(::grpc::ClientContext* context, const ::viam::app::v1::OrganizationGetSupportEmailRequest* request, ::viam::app::v1::OrganizationGetSupportEmailResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_OrganizationGetSupportEmail_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::OrganizationGetSupportEmail(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::OrganizationGetSupportEmailResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_OrganizationGetSupportEmail_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::OrganizationGetSupportEmailResponse>* AppService::Stub::AsyncOrganizationGetSupportEmailRaw(::grpc::ClientContext* context, const ::viam::app::v1::OrganizationGetSupportEmailRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::OrganizationGetSupportEmailResponse>::Create(channel_.get(), cq, rpcmethod_OrganizationGetSupportEmail_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::OrganizationGetSupportEmailResponse>* AppService::Stub::PrepareAsyncOrganizationGetSupportEmailRaw(::grpc::ClientContext* context, const ::viam::app::v1::OrganizationGetSupportEmailRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::OrganizationGetSupportEmailResponse>::Create(channel_.get(), cq, rpcmethod_OrganizationGetSupportEmail_, context, request, false);
+}
+
+::grpc::Status AppService::Stub::OrganizationSetLogo(::grpc::ClientContext* context, const ::viam::app::v1::OrganizationSetLogoRequest& request, ::viam::app::v1::OrganizationSetLogoResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_OrganizationSetLogo_, context, request, response);
+}
+
+void AppService::Stub::experimental_async::OrganizationSetLogo(::grpc::ClientContext* context, const ::viam::app::v1::OrganizationSetLogoRequest* request, ::viam::app::v1::OrganizationSetLogoResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_OrganizationSetLogo_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::OrganizationSetLogo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::OrganizationSetLogoResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_OrganizationSetLogo_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::OrganizationSetLogo(::grpc::ClientContext* context, const ::viam::app::v1::OrganizationSetLogoRequest* request, ::viam::app::v1::OrganizationSetLogoResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_OrganizationSetLogo_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::OrganizationSetLogo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::OrganizationSetLogoResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_OrganizationSetLogo_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::OrganizationSetLogoResponse>* AppService::Stub::AsyncOrganizationSetLogoRaw(::grpc::ClientContext* context, const ::viam::app::v1::OrganizationSetLogoRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::OrganizationSetLogoResponse>::Create(channel_.get(), cq, rpcmethod_OrganizationSetLogo_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::OrganizationSetLogoResponse>* AppService::Stub::PrepareAsyncOrganizationSetLogoRaw(::grpc::ClientContext* context, const ::viam::app::v1::OrganizationSetLogoRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::OrganizationSetLogoResponse>::Create(channel_.get(), cq, rpcmethod_OrganizationSetLogo_, context, request, false);
+}
+
+::grpc::Status AppService::Stub::OrganizationGetLogo(::grpc::ClientContext* context, const ::viam::app::v1::OrganizationGetLogoRequest& request, ::viam::app::v1::OrganizationGetLogoResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_OrganizationGetLogo_, context, request, response);
+}
+
+void AppService::Stub::experimental_async::OrganizationGetLogo(::grpc::ClientContext* context, const ::viam::app::v1::OrganizationGetLogoRequest* request, ::viam::app::v1::OrganizationGetLogoResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_OrganizationGetLogo_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::OrganizationGetLogo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::OrganizationGetLogoResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_OrganizationGetLogo_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::OrganizationGetLogo(::grpc::ClientContext* context, const ::viam::app::v1::OrganizationGetLogoRequest* request, ::viam::app::v1::OrganizationGetLogoResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_OrganizationGetLogo_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::OrganizationGetLogo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::OrganizationGetLogoResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_OrganizationGetLogo_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::OrganizationGetLogoResponse>* AppService::Stub::AsyncOrganizationGetLogoRaw(::grpc::ClientContext* context, const ::viam::app::v1::OrganizationGetLogoRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::OrganizationGetLogoResponse>::Create(channel_.get(), cq, rpcmethod_OrganizationGetLogo_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::OrganizationGetLogoResponse>* AppService::Stub::PrepareAsyncOrganizationGetLogoRaw(::grpc::ClientContext* context, const ::viam::app::v1::OrganizationGetLogoRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::OrganizationGetLogoResponse>::Create(channel_.get(), cq, rpcmethod_OrganizationGetLogo_, context, request, false);
+}
+
+::grpc::Status AppService::Stub::EnableAuthService(::grpc::ClientContext* context, const ::viam::app::v1::EnableAuthServiceRequest& request, ::viam::app::v1::EnableAuthServiceResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_EnableAuthService_, context, request, response);
+}
+
+void AppService::Stub::experimental_async::EnableAuthService(::grpc::ClientContext* context, const ::viam::app::v1::EnableAuthServiceRequest* request, ::viam::app::v1::EnableAuthServiceResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_EnableAuthService_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::EnableAuthService(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::EnableAuthServiceResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_EnableAuthService_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::EnableAuthService(::grpc::ClientContext* context, const ::viam::app::v1::EnableAuthServiceRequest* request, ::viam::app::v1::EnableAuthServiceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_EnableAuthService_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::EnableAuthService(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::EnableAuthServiceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_EnableAuthService_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::EnableAuthServiceResponse>* AppService::Stub::AsyncEnableAuthServiceRaw(::grpc::ClientContext* context, const ::viam::app::v1::EnableAuthServiceRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::EnableAuthServiceResponse>::Create(channel_.get(), cq, rpcmethod_EnableAuthService_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::EnableAuthServiceResponse>* AppService::Stub::PrepareAsyncEnableAuthServiceRaw(::grpc::ClientContext* context, const ::viam::app::v1::EnableAuthServiceRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::EnableAuthServiceResponse>::Create(channel_.get(), cq, rpcmethod_EnableAuthService_, context, request, false);
+}
+
+::grpc::Status AppService::Stub::DisableAuthService(::grpc::ClientContext* context, const ::viam::app::v1::DisableAuthServiceRequest& request, ::viam::app::v1::DisableAuthServiceResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DisableAuthService_, context, request, response);
+}
+
+void AppService::Stub::experimental_async::DisableAuthService(::grpc::ClientContext* context, const ::viam::app::v1::DisableAuthServiceRequest* request, ::viam::app::v1::DisableAuthServiceResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DisableAuthService_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::DisableAuthService(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DisableAuthServiceResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DisableAuthService_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::DisableAuthService(::grpc::ClientContext* context, const ::viam::app::v1::DisableAuthServiceRequest* request, ::viam::app::v1::DisableAuthServiceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DisableAuthService_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::DisableAuthService(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DisableAuthServiceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DisableAuthService_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DisableAuthServiceResponse>* AppService::Stub::AsyncDisableAuthServiceRaw(::grpc::ClientContext* context, const ::viam::app::v1::DisableAuthServiceRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DisableAuthServiceResponse>::Create(channel_.get(), cq, rpcmethod_DisableAuthService_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DisableAuthServiceResponse>* AppService::Stub::PrepareAsyncDisableAuthServiceRaw(::grpc::ClientContext* context, const ::viam::app::v1::DisableAuthServiceRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DisableAuthServiceResponse>::Create(channel_.get(), cq, rpcmethod_DisableAuthService_, context, request, false);
+}
+
+::grpc::Status AppService::Stub::CreateOAuthApp(::grpc::ClientContext* context, const ::viam::app::v1::CreateOAuthAppRequest& request, ::viam::app::v1::CreateOAuthAppResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_CreateOAuthApp_, context, request, response);
+}
+
+void AppService::Stub::experimental_async::CreateOAuthApp(::grpc::ClientContext* context, const ::viam::app::v1::CreateOAuthAppRequest* request, ::viam::app::v1::CreateOAuthAppResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CreateOAuthApp_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::CreateOAuthApp(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::CreateOAuthAppResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CreateOAuthApp_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::CreateOAuthApp(::grpc::ClientContext* context, const ::viam::app::v1::CreateOAuthAppRequest* request, ::viam::app::v1::CreateOAuthAppResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CreateOAuthApp_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::CreateOAuthApp(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::CreateOAuthAppResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CreateOAuthApp_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateOAuthAppResponse>* AppService::Stub::AsyncCreateOAuthAppRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateOAuthAppRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::CreateOAuthAppResponse>::Create(channel_.get(), cq, rpcmethod_CreateOAuthApp_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateOAuthAppResponse>* AppService::Stub::PrepareAsyncCreateOAuthAppRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateOAuthAppRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::CreateOAuthAppResponse>::Create(channel_.get(), cq, rpcmethod_CreateOAuthApp_, context, request, false);
+}
+
+::grpc::Status AppService::Stub::ReadOAuthApp(::grpc::ClientContext* context, const ::viam::app::v1::ReadOAuthAppRequest& request, ::viam::app::v1::ReadOAuthAppResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ReadOAuthApp_, context, request, response);
+}
+
+void AppService::Stub::experimental_async::ReadOAuthApp(::grpc::ClientContext* context, const ::viam::app::v1::ReadOAuthAppRequest* request, ::viam::app::v1::ReadOAuthAppResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ReadOAuthApp_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::ReadOAuthApp(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ReadOAuthAppResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ReadOAuthApp_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::ReadOAuthApp(::grpc::ClientContext* context, const ::viam::app::v1::ReadOAuthAppRequest* request, ::viam::app::v1::ReadOAuthAppResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ReadOAuthApp_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::ReadOAuthApp(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ReadOAuthAppResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ReadOAuthApp_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ReadOAuthAppResponse>* AppService::Stub::AsyncReadOAuthAppRaw(::grpc::ClientContext* context, const ::viam::app::v1::ReadOAuthAppRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ReadOAuthAppResponse>::Create(channel_.get(), cq, rpcmethod_ReadOAuthApp_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ReadOAuthAppResponse>* AppService::Stub::PrepareAsyncReadOAuthAppRaw(::grpc::ClientContext* context, const ::viam::app::v1::ReadOAuthAppRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ReadOAuthAppResponse>::Create(channel_.get(), cq, rpcmethod_ReadOAuthApp_, context, request, false);
+}
+
+::grpc::Status AppService::Stub::UpdateOAuthApp(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOAuthAppRequest& request, ::viam::app::v1::UpdateOAuthAppResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_UpdateOAuthApp_, context, request, response);
+}
+
+void AppService::Stub::experimental_async::UpdateOAuthApp(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOAuthAppRequest* request, ::viam::app::v1::UpdateOAuthAppResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateOAuthApp_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::UpdateOAuthApp(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateOAuthAppResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateOAuthApp_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::UpdateOAuthApp(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOAuthAppRequest* request, ::viam::app::v1::UpdateOAuthAppResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateOAuthApp_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::UpdateOAuthApp(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateOAuthAppResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateOAuthApp_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateOAuthAppResponse>* AppService::Stub::AsyncUpdateOAuthAppRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOAuthAppRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::UpdateOAuthAppResponse>::Create(channel_.get(), cq, rpcmethod_UpdateOAuthApp_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateOAuthAppResponse>* AppService::Stub::PrepareAsyncUpdateOAuthAppRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOAuthAppRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::UpdateOAuthAppResponse>::Create(channel_.get(), cq, rpcmethod_UpdateOAuthApp_, context, request, false);
+}
+
+::grpc::Status AppService::Stub::DeleteOAuthApp(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOAuthAppRequest& request, ::viam::app::v1::DeleteOAuthAppResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteOAuthApp_, context, request, response);
+}
+
+void AppService::Stub::experimental_async::DeleteOAuthApp(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOAuthAppRequest* request, ::viam::app::v1::DeleteOAuthAppResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteOAuthApp_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::DeleteOAuthApp(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteOAuthAppResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteOAuthApp_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::DeleteOAuthApp(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOAuthAppRequest* request, ::viam::app::v1::DeleteOAuthAppResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteOAuthApp_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::DeleteOAuthApp(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteOAuthAppResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteOAuthApp_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteOAuthAppResponse>* AppService::Stub::AsyncDeleteOAuthAppRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOAuthAppRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteOAuthAppResponse>::Create(channel_.get(), cq, rpcmethod_DeleteOAuthApp_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteOAuthAppResponse>* AppService::Stub::PrepareAsyncDeleteOAuthAppRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOAuthAppRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteOAuthAppResponse>::Create(channel_.get(), cq, rpcmethod_DeleteOAuthApp_, context, request, false);
+}
+
+::grpc::Status AppService::Stub::ListOAuthApps(::grpc::ClientContext* context, const ::viam::app::v1::ListOAuthAppsRequest& request, ::viam::app::v1::ListOAuthAppsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListOAuthApps_, context, request, response);
+}
+
+void AppService::Stub::experimental_async::ListOAuthApps(::grpc::ClientContext* context, const ::viam::app::v1::ListOAuthAppsRequest* request, ::viam::app::v1::ListOAuthAppsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListOAuthApps_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::ListOAuthApps(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ListOAuthAppsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListOAuthApps_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::ListOAuthApps(::grpc::ClientContext* context, const ::viam::app::v1::ListOAuthAppsRequest* request, ::viam::app::v1::ListOAuthAppsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListOAuthApps_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::ListOAuthApps(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ListOAuthAppsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListOAuthApps_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListOAuthAppsResponse>* AppService::Stub::AsyncListOAuthAppsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListOAuthAppsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ListOAuthAppsResponse>::Create(channel_.get(), cq, rpcmethod_ListOAuthApps_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListOAuthAppsResponse>* AppService::Stub::PrepareAsyncListOAuthAppsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListOAuthAppsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ListOAuthAppsResponse>::Create(channel_.get(), cq, rpcmethod_ListOAuthApps_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::CreateLocation(::grpc::ClientContext* context, const ::viam::app::v1::CreateLocationRequest& request, ::viam::app::v1::CreateLocationResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::CreateLocationRequest, ::viam::app::v1::CreateLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CreateLocation_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_CreateLocation_, context, request, response);
 }
 
-void AppService::Stub::async::CreateLocation(::grpc::ClientContext* context, const ::viam::app::v1::CreateLocationRequest* request, ::viam::app::v1::CreateLocationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::CreateLocationRequest, ::viam::app::v1::CreateLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateLocation_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::CreateLocation(::grpc::ClientContext* context, const ::viam::app::v1::CreateLocationRequest* request, ::viam::app::v1::CreateLocationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CreateLocation_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::CreateLocation(::grpc::ClientContext* context, const ::viam::app::v1::CreateLocationRequest* request, ::viam::app::v1::CreateLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateLocation_, context, request, response, reactor);
+void AppService::Stub::experimental_async::CreateLocation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::CreateLocationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CreateLocation_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateLocationResponse>* AppService::Stub::PrepareAsyncCreateLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateLocationRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::CreateLocationResponse, ::viam::app::v1::CreateLocationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CreateLocation_, context, request);
+void AppService::Stub::experimental_async::CreateLocation(::grpc::ClientContext* context, const ::viam::app::v1::CreateLocationRequest* request, ::viam::app::v1::CreateLocationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CreateLocation_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::CreateLocation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::CreateLocationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CreateLocation_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateLocationResponse>* AppService::Stub::AsyncCreateLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateLocationRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncCreateLocationRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::CreateLocationResponse>::Create(channel_.get(), cq, rpcmethod_CreateLocation_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateLocationResponse>* AppService::Stub::PrepareAsyncCreateLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateLocationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::CreateLocationResponse>::Create(channel_.get(), cq, rpcmethod_CreateLocation_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::GetLocation(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationRequest& request, ::viam::app::v1::GetLocationResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::GetLocationRequest, ::viam::app::v1::GetLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetLocation_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetLocation_, context, request, response);
 }
 
-void AppService::Stub::async::GetLocation(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationRequest* request, ::viam::app::v1::GetLocationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::GetLocationRequest, ::viam::app::v1::GetLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetLocation_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::GetLocation(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationRequest* request, ::viam::app::v1::GetLocationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetLocation_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::GetLocation(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationRequest* request, ::viam::app::v1::GetLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetLocation_, context, request, response, reactor);
+void AppService::Stub::experimental_async::GetLocation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetLocationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetLocation_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetLocationResponse>* AppService::Stub::PrepareAsyncGetLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::GetLocationResponse, ::viam::app::v1::GetLocationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetLocation_, context, request);
+void AppService::Stub::experimental_async::GetLocation(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationRequest* request, ::viam::app::v1::GetLocationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetLocation_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::GetLocation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetLocationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetLocation_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetLocationResponse>* AppService::Stub::AsyncGetLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetLocationRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetLocationResponse>::Create(channel_.get(), cq, rpcmethod_GetLocation_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetLocationResponse>* AppService::Stub::PrepareAsyncGetLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetLocationResponse>::Create(channel_.get(), cq, rpcmethod_GetLocation_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::UpdateLocation(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationRequest& request, ::viam::app::v1::UpdateLocationResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::UpdateLocationRequest, ::viam::app::v1::UpdateLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UpdateLocation_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_UpdateLocation_, context, request, response);
 }
 
-void AppService::Stub::async::UpdateLocation(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationRequest* request, ::viam::app::v1::UpdateLocationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::UpdateLocationRequest, ::viam::app::v1::UpdateLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateLocation_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::UpdateLocation(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationRequest* request, ::viam::app::v1::UpdateLocationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateLocation_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::UpdateLocation(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationRequest* request, ::viam::app::v1::UpdateLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateLocation_, context, request, response, reactor);
+void AppService::Stub::experimental_async::UpdateLocation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateLocationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateLocation_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateLocationResponse>* AppService::Stub::PrepareAsyncUpdateLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::UpdateLocationResponse, ::viam::app::v1::UpdateLocationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UpdateLocation_, context, request);
+void AppService::Stub::experimental_async::UpdateLocation(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationRequest* request, ::viam::app::v1::UpdateLocationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateLocation_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::UpdateLocation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateLocationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateLocation_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateLocationResponse>* AppService::Stub::AsyncUpdateLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncUpdateLocationRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::UpdateLocationResponse>::Create(channel_.get(), cq, rpcmethod_UpdateLocation_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateLocationResponse>* AppService::Stub::PrepareAsyncUpdateLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::UpdateLocationResponse>::Create(channel_.get(), cq, rpcmethod_UpdateLocation_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::DeleteLocation(::grpc::ClientContext* context, const ::viam::app::v1::DeleteLocationRequest& request, ::viam::app::v1::DeleteLocationResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::DeleteLocationRequest, ::viam::app::v1::DeleteLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteLocation_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteLocation_, context, request, response);
 }
 
-void AppService::Stub::async::DeleteLocation(::grpc::ClientContext* context, const ::viam::app::v1::DeleteLocationRequest* request, ::viam::app::v1::DeleteLocationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::DeleteLocationRequest, ::viam::app::v1::DeleteLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteLocation_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::DeleteLocation(::grpc::ClientContext* context, const ::viam::app::v1::DeleteLocationRequest* request, ::viam::app::v1::DeleteLocationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteLocation_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::DeleteLocation(::grpc::ClientContext* context, const ::viam::app::v1::DeleteLocationRequest* request, ::viam::app::v1::DeleteLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteLocation_, context, request, response, reactor);
+void AppService::Stub::experimental_async::DeleteLocation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteLocationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteLocation_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteLocationResponse>* AppService::Stub::PrepareAsyncDeleteLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteLocationRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::DeleteLocationResponse, ::viam::app::v1::DeleteLocationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteLocation_, context, request);
+void AppService::Stub::experimental_async::DeleteLocation(::grpc::ClientContext* context, const ::viam::app::v1::DeleteLocationRequest* request, ::viam::app::v1::DeleteLocationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteLocation_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::DeleteLocation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteLocationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteLocation_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteLocationResponse>* AppService::Stub::AsyncDeleteLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteLocationRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncDeleteLocationRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteLocationResponse>::Create(channel_.get(), cq, rpcmethod_DeleteLocation_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteLocationResponse>* AppService::Stub::PrepareAsyncDeleteLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteLocationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteLocationResponse>::Create(channel_.get(), cq, rpcmethod_DeleteLocation_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::ListLocations(::grpc::ClientContext* context, const ::viam::app::v1::ListLocationsRequest& request, ::viam::app::v1::ListLocationsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::ListLocationsRequest, ::viam::app::v1::ListLocationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListLocations_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListLocations_, context, request, response);
 }
 
-void AppService::Stub::async::ListLocations(::grpc::ClientContext* context, const ::viam::app::v1::ListLocationsRequest* request, ::viam::app::v1::ListLocationsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::ListLocationsRequest, ::viam::app::v1::ListLocationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListLocations_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::ListLocations(::grpc::ClientContext* context, const ::viam::app::v1::ListLocationsRequest* request, ::viam::app::v1::ListLocationsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListLocations_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::ListLocations(::grpc::ClientContext* context, const ::viam::app::v1::ListLocationsRequest* request, ::viam::app::v1::ListLocationsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListLocations_, context, request, response, reactor);
+void AppService::Stub::experimental_async::ListLocations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ListLocationsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListLocations_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListLocationsResponse>* AppService::Stub::PrepareAsyncListLocationsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListLocationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::ListLocationsResponse, ::viam::app::v1::ListLocationsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListLocations_, context, request);
+void AppService::Stub::experimental_async::ListLocations(::grpc::ClientContext* context, const ::viam::app::v1::ListLocationsRequest* request, ::viam::app::v1::ListLocationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListLocations_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::ListLocations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ListLocationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListLocations_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListLocationsResponse>* AppService::Stub::AsyncListLocationsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListLocationsRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncListLocationsRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ListLocationsResponse>::Create(channel_.get(), cq, rpcmethod_ListLocations_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListLocationsResponse>* AppService::Stub::PrepareAsyncListLocationsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListLocationsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ListLocationsResponse>::Create(channel_.get(), cq, rpcmethod_ListLocations_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::ShareLocation(::grpc::ClientContext* context, const ::viam::app::v1::ShareLocationRequest& request, ::viam::app::v1::ShareLocationResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::ShareLocationRequest, ::viam::app::v1::ShareLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ShareLocation_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ShareLocation_, context, request, response);
 }
 
-void AppService::Stub::async::ShareLocation(::grpc::ClientContext* context, const ::viam::app::v1::ShareLocationRequest* request, ::viam::app::v1::ShareLocationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::ShareLocationRequest, ::viam::app::v1::ShareLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ShareLocation_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::ShareLocation(::grpc::ClientContext* context, const ::viam::app::v1::ShareLocationRequest* request, ::viam::app::v1::ShareLocationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ShareLocation_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::ShareLocation(::grpc::ClientContext* context, const ::viam::app::v1::ShareLocationRequest* request, ::viam::app::v1::ShareLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ShareLocation_, context, request, response, reactor);
+void AppService::Stub::experimental_async::ShareLocation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ShareLocationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ShareLocation_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::ShareLocationResponse>* AppService::Stub::PrepareAsyncShareLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::ShareLocationRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::ShareLocationResponse, ::viam::app::v1::ShareLocationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ShareLocation_, context, request);
+void AppService::Stub::experimental_async::ShareLocation(::grpc::ClientContext* context, const ::viam::app::v1::ShareLocationRequest* request, ::viam::app::v1::ShareLocationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ShareLocation_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::ShareLocation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ShareLocationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ShareLocation_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ShareLocationResponse>* AppService::Stub::AsyncShareLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::ShareLocationRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncShareLocationRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ShareLocationResponse>::Create(channel_.get(), cq, rpcmethod_ShareLocation_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ShareLocationResponse>* AppService::Stub::PrepareAsyncShareLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::ShareLocationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ShareLocationResponse>::Create(channel_.get(), cq, rpcmethod_ShareLocation_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::UnshareLocation(::grpc::ClientContext* context, const ::viam::app::v1::UnshareLocationRequest& request, ::viam::app::v1::UnshareLocationResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::UnshareLocationRequest, ::viam::app::v1::UnshareLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UnshareLocation_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_UnshareLocation_, context, request, response);
 }
 
-void AppService::Stub::async::UnshareLocation(::grpc::ClientContext* context, const ::viam::app::v1::UnshareLocationRequest* request, ::viam::app::v1::UnshareLocationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::UnshareLocationRequest, ::viam::app::v1::UnshareLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UnshareLocation_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::UnshareLocation(::grpc::ClientContext* context, const ::viam::app::v1::UnshareLocationRequest* request, ::viam::app::v1::UnshareLocationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UnshareLocation_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::UnshareLocation(::grpc::ClientContext* context, const ::viam::app::v1::UnshareLocationRequest* request, ::viam::app::v1::UnshareLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UnshareLocation_, context, request, response, reactor);
+void AppService::Stub::experimental_async::UnshareLocation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UnshareLocationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UnshareLocation_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::UnshareLocationResponse>* AppService::Stub::PrepareAsyncUnshareLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::UnshareLocationRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::UnshareLocationResponse, ::viam::app::v1::UnshareLocationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UnshareLocation_, context, request);
+void AppService::Stub::experimental_async::UnshareLocation(::grpc::ClientContext* context, const ::viam::app::v1::UnshareLocationRequest* request, ::viam::app::v1::UnshareLocationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UnshareLocation_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::UnshareLocation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UnshareLocationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UnshareLocation_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UnshareLocationResponse>* AppService::Stub::AsyncUnshareLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::UnshareLocationRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncUnshareLocationRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::UnshareLocationResponse>::Create(channel_.get(), cq, rpcmethod_UnshareLocation_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::UnshareLocationResponse>* AppService::Stub::PrepareAsyncUnshareLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::UnshareLocationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::UnshareLocationResponse>::Create(channel_.get(), cq, rpcmethod_UnshareLocation_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::LocationAuth(::grpc::ClientContext* context, const ::viam::app::v1::LocationAuthRequest& request, ::viam::app::v1::LocationAuthResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::LocationAuthRequest, ::viam::app::v1::LocationAuthResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_LocationAuth_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_LocationAuth_, context, request, response);
 }
 
-void AppService::Stub::async::LocationAuth(::grpc::ClientContext* context, const ::viam::app::v1::LocationAuthRequest* request, ::viam::app::v1::LocationAuthResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::LocationAuthRequest, ::viam::app::v1::LocationAuthResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_LocationAuth_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::LocationAuth(::grpc::ClientContext* context, const ::viam::app::v1::LocationAuthRequest* request, ::viam::app::v1::LocationAuthResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_LocationAuth_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::LocationAuth(::grpc::ClientContext* context, const ::viam::app::v1::LocationAuthRequest* request, ::viam::app::v1::LocationAuthResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_LocationAuth_, context, request, response, reactor);
+void AppService::Stub::experimental_async::LocationAuth(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::LocationAuthResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_LocationAuth_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::LocationAuthResponse>* AppService::Stub::PrepareAsyncLocationAuthRaw(::grpc::ClientContext* context, const ::viam::app::v1::LocationAuthRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::LocationAuthResponse, ::viam::app::v1::LocationAuthRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_LocationAuth_, context, request);
+void AppService::Stub::experimental_async::LocationAuth(::grpc::ClientContext* context, const ::viam::app::v1::LocationAuthRequest* request, ::viam::app::v1::LocationAuthResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_LocationAuth_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::LocationAuth(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::LocationAuthResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_LocationAuth_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::LocationAuthResponse>* AppService::Stub::AsyncLocationAuthRaw(::grpc::ClientContext* context, const ::viam::app::v1::LocationAuthRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncLocationAuthRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::LocationAuthResponse>::Create(channel_.get(), cq, rpcmethod_LocationAuth_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::LocationAuthResponse>* AppService::Stub::PrepareAsyncLocationAuthRaw(::grpc::ClientContext* context, const ::viam::app::v1::LocationAuthRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::LocationAuthResponse>::Create(channel_.get(), cq, rpcmethod_LocationAuth_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::CreateLocationSecret(::grpc::ClientContext* context, const ::viam::app::v1::CreateLocationSecretRequest& request, ::viam::app::v1::CreateLocationSecretResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::CreateLocationSecretRequest, ::viam::app::v1::CreateLocationSecretResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CreateLocationSecret_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_CreateLocationSecret_, context, request, response);
 }
 
-void AppService::Stub::async::CreateLocationSecret(::grpc::ClientContext* context, const ::viam::app::v1::CreateLocationSecretRequest* request, ::viam::app::v1::CreateLocationSecretResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::CreateLocationSecretRequest, ::viam::app::v1::CreateLocationSecretResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateLocationSecret_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::CreateLocationSecret(::grpc::ClientContext* context, const ::viam::app::v1::CreateLocationSecretRequest* request, ::viam::app::v1::CreateLocationSecretResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CreateLocationSecret_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::CreateLocationSecret(::grpc::ClientContext* context, const ::viam::app::v1::CreateLocationSecretRequest* request, ::viam::app::v1::CreateLocationSecretResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateLocationSecret_, context, request, response, reactor);
+void AppService::Stub::experimental_async::CreateLocationSecret(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::CreateLocationSecretResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CreateLocationSecret_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateLocationSecretResponse>* AppService::Stub::PrepareAsyncCreateLocationSecretRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateLocationSecretRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::CreateLocationSecretResponse, ::viam::app::v1::CreateLocationSecretRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CreateLocationSecret_, context, request);
+void AppService::Stub::experimental_async::CreateLocationSecret(::grpc::ClientContext* context, const ::viam::app::v1::CreateLocationSecretRequest* request, ::viam::app::v1::CreateLocationSecretResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CreateLocationSecret_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::CreateLocationSecret(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::CreateLocationSecretResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CreateLocationSecret_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateLocationSecretResponse>* AppService::Stub::AsyncCreateLocationSecretRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateLocationSecretRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncCreateLocationSecretRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::CreateLocationSecretResponse>::Create(channel_.get(), cq, rpcmethod_CreateLocationSecret_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateLocationSecretResponse>* AppService::Stub::PrepareAsyncCreateLocationSecretRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateLocationSecretRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::CreateLocationSecretResponse>::Create(channel_.get(), cq, rpcmethod_CreateLocationSecret_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::DeleteLocationSecret(::grpc::ClientContext* context, const ::viam::app::v1::DeleteLocationSecretRequest& request, ::viam::app::v1::DeleteLocationSecretResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::DeleteLocationSecretRequest, ::viam::app::v1::DeleteLocationSecretResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteLocationSecret_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteLocationSecret_, context, request, response);
 }
 
-void AppService::Stub::async::DeleteLocationSecret(::grpc::ClientContext* context, const ::viam::app::v1::DeleteLocationSecretRequest* request, ::viam::app::v1::DeleteLocationSecretResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::DeleteLocationSecretRequest, ::viam::app::v1::DeleteLocationSecretResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteLocationSecret_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::DeleteLocationSecret(::grpc::ClientContext* context, const ::viam::app::v1::DeleteLocationSecretRequest* request, ::viam::app::v1::DeleteLocationSecretResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteLocationSecret_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::DeleteLocationSecret(::grpc::ClientContext* context, const ::viam::app::v1::DeleteLocationSecretRequest* request, ::viam::app::v1::DeleteLocationSecretResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteLocationSecret_, context, request, response, reactor);
+void AppService::Stub::experimental_async::DeleteLocationSecret(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteLocationSecretResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteLocationSecret_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteLocationSecretResponse>* AppService::Stub::PrepareAsyncDeleteLocationSecretRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteLocationSecretRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::DeleteLocationSecretResponse, ::viam::app::v1::DeleteLocationSecretRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteLocationSecret_, context, request);
+void AppService::Stub::experimental_async::DeleteLocationSecret(::grpc::ClientContext* context, const ::viam::app::v1::DeleteLocationSecretRequest* request, ::viam::app::v1::DeleteLocationSecretResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteLocationSecret_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::DeleteLocationSecret(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteLocationSecretResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteLocationSecret_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteLocationSecretResponse>* AppService::Stub::AsyncDeleteLocationSecretRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteLocationSecretRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncDeleteLocationSecretRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteLocationSecretResponse>::Create(channel_.get(), cq, rpcmethod_DeleteLocationSecret_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteLocationSecretResponse>* AppService::Stub::PrepareAsyncDeleteLocationSecretRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteLocationSecretRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteLocationSecretResponse>::Create(channel_.get(), cq, rpcmethod_DeleteLocationSecret_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::GetRobot(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotRequest& request, ::viam::app::v1::GetRobotResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::GetRobotRequest, ::viam::app::v1::GetRobotResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetRobot_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetRobot_, context, request, response);
 }
 
-void AppService::Stub::async::GetRobot(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotRequest* request, ::viam::app::v1::GetRobotResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::GetRobotRequest, ::viam::app::v1::GetRobotResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRobot_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::GetRobot(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotRequest* request, ::viam::app::v1::GetRobotResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRobot_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::GetRobot(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotRequest* request, ::viam::app::v1::GetRobotResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRobot_, context, request, response, reactor);
+void AppService::Stub::experimental_async::GetRobot(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetRobotResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRobot_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRobotResponse>* AppService::Stub::PrepareAsyncGetRobotRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::GetRobotResponse, ::viam::app::v1::GetRobotRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetRobot_, context, request);
+void AppService::Stub::experimental_async::GetRobot(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotRequest* request, ::viam::app::v1::GetRobotResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRobot_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::GetRobot(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetRobotResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRobot_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRobotResponse>* AppService::Stub::AsyncGetRobotRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetRobotRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetRobotResponse>::Create(channel_.get(), cq, rpcmethod_GetRobot_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRobotResponse>* AppService::Stub::PrepareAsyncGetRobotRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetRobotResponse>::Create(channel_.get(), cq, rpcmethod_GetRobot_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::GetRoverRentalRobots(::grpc::ClientContext* context, const ::viam::app::v1::GetRoverRentalRobotsRequest& request, ::viam::app::v1::GetRoverRentalRobotsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::GetRoverRentalRobotsRequest, ::viam::app::v1::GetRoverRentalRobotsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetRoverRentalRobots_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetRoverRentalRobots_, context, request, response);
 }
 
-void AppService::Stub::async::GetRoverRentalRobots(::grpc::ClientContext* context, const ::viam::app::v1::GetRoverRentalRobotsRequest* request, ::viam::app::v1::GetRoverRentalRobotsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::GetRoverRentalRobotsRequest, ::viam::app::v1::GetRoverRentalRobotsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRoverRentalRobots_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::GetRoverRentalRobots(::grpc::ClientContext* context, const ::viam::app::v1::GetRoverRentalRobotsRequest* request, ::viam::app::v1::GetRoverRentalRobotsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRoverRentalRobots_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::GetRoverRentalRobots(::grpc::ClientContext* context, const ::viam::app::v1::GetRoverRentalRobotsRequest* request, ::viam::app::v1::GetRoverRentalRobotsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRoverRentalRobots_, context, request, response, reactor);
+void AppService::Stub::experimental_async::GetRoverRentalRobots(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetRoverRentalRobotsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRoverRentalRobots_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRoverRentalRobotsResponse>* AppService::Stub::PrepareAsyncGetRoverRentalRobotsRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRoverRentalRobotsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::GetRoverRentalRobotsResponse, ::viam::app::v1::GetRoverRentalRobotsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetRoverRentalRobots_, context, request);
+void AppService::Stub::experimental_async::GetRoverRentalRobots(::grpc::ClientContext* context, const ::viam::app::v1::GetRoverRentalRobotsRequest* request, ::viam::app::v1::GetRoverRentalRobotsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRoverRentalRobots_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::GetRoverRentalRobots(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetRoverRentalRobotsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRoverRentalRobots_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRoverRentalRobotsResponse>* AppService::Stub::AsyncGetRoverRentalRobotsRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRoverRentalRobotsRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetRoverRentalRobotsRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetRoverRentalRobotsResponse>::Create(channel_.get(), cq, rpcmethod_GetRoverRentalRobots_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRoverRentalRobotsResponse>* AppService::Stub::PrepareAsyncGetRoverRentalRobotsRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRoverRentalRobotsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetRoverRentalRobotsResponse>::Create(channel_.get(), cq, rpcmethod_GetRoverRentalRobots_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::GetRobotParts(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartsRequest& request, ::viam::app::v1::GetRobotPartsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::GetRobotPartsRequest, ::viam::app::v1::GetRobotPartsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetRobotParts_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetRobotParts_, context, request, response);
 }
 
-void AppService::Stub::async::GetRobotParts(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartsRequest* request, ::viam::app::v1::GetRobotPartsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::GetRobotPartsRequest, ::viam::app::v1::GetRobotPartsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRobotParts_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::GetRobotParts(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartsRequest* request, ::viam::app::v1::GetRobotPartsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRobotParts_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::GetRobotParts(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartsRequest* request, ::viam::app::v1::GetRobotPartsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRobotParts_, context, request, response, reactor);
+void AppService::Stub::experimental_async::GetRobotParts(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetRobotPartsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRobotParts_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRobotPartsResponse>* AppService::Stub::PrepareAsyncGetRobotPartsRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::GetRobotPartsResponse, ::viam::app::v1::GetRobotPartsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetRobotParts_, context, request);
+void AppService::Stub::experimental_async::GetRobotParts(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartsRequest* request, ::viam::app::v1::GetRobotPartsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRobotParts_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::GetRobotParts(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetRobotPartsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRobotParts_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRobotPartsResponse>* AppService::Stub::AsyncGetRobotPartsRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartsRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetRobotPartsRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetRobotPartsResponse>::Create(channel_.get(), cq, rpcmethod_GetRobotParts_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRobotPartsResponse>* AppService::Stub::PrepareAsyncGetRobotPartsRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetRobotPartsResponse>::Create(channel_.get(), cq, rpcmethod_GetRobotParts_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::GetRobotPart(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartRequest& request, ::viam::app::v1::GetRobotPartResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::GetRobotPartRequest, ::viam::app::v1::GetRobotPartResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetRobotPart_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetRobotPart_, context, request, response);
 }
 
-void AppService::Stub::async::GetRobotPart(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartRequest* request, ::viam::app::v1::GetRobotPartResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::GetRobotPartRequest, ::viam::app::v1::GetRobotPartResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRobotPart_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::GetRobotPart(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartRequest* request, ::viam::app::v1::GetRobotPartResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRobotPart_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::GetRobotPart(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartRequest* request, ::viam::app::v1::GetRobotPartResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRobotPart_, context, request, response, reactor);
+void AppService::Stub::experimental_async::GetRobotPart(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetRobotPartResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRobotPart_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRobotPartResponse>* AppService::Stub::PrepareAsyncGetRobotPartRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::GetRobotPartResponse, ::viam::app::v1::GetRobotPartRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetRobotPart_, context, request);
+void AppService::Stub::experimental_async::GetRobotPart(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartRequest* request, ::viam::app::v1::GetRobotPartResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRobotPart_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::GetRobotPart(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetRobotPartResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRobotPart_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRobotPartResponse>* AppService::Stub::AsyncGetRobotPartRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetRobotPartRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetRobotPartResponse>::Create(channel_.get(), cq, rpcmethod_GetRobotPart_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRobotPartResponse>* AppService::Stub::PrepareAsyncGetRobotPartRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetRobotPartResponse>::Create(channel_.get(), cq, rpcmethod_GetRobotPart_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::GetRobotPartLogs(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartLogsRequest& request, ::viam::app::v1::GetRobotPartLogsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::GetRobotPartLogsRequest, ::viam::app::v1::GetRobotPartLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetRobotPartLogs_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetRobotPartLogs_, context, request, response);
 }
 
-void AppService::Stub::async::GetRobotPartLogs(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartLogsRequest* request, ::viam::app::v1::GetRobotPartLogsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::GetRobotPartLogsRequest, ::viam::app::v1::GetRobotPartLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRobotPartLogs_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::GetRobotPartLogs(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartLogsRequest* request, ::viam::app::v1::GetRobotPartLogsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRobotPartLogs_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::GetRobotPartLogs(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartLogsRequest* request, ::viam::app::v1::GetRobotPartLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRobotPartLogs_, context, request, response, reactor);
+void AppService::Stub::experimental_async::GetRobotPartLogs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetRobotPartLogsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRobotPartLogs_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRobotPartLogsResponse>* AppService::Stub::PrepareAsyncGetRobotPartLogsRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartLogsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::GetRobotPartLogsResponse, ::viam::app::v1::GetRobotPartLogsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetRobotPartLogs_, context, request);
+void AppService::Stub::experimental_async::GetRobotPartLogs(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartLogsRequest* request, ::viam::app::v1::GetRobotPartLogsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRobotPartLogs_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::GetRobotPartLogs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetRobotPartLogsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRobotPartLogs_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRobotPartLogsResponse>* AppService::Stub::AsyncGetRobotPartLogsRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartLogsRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetRobotPartLogsRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetRobotPartLogsResponse>::Create(channel_.get(), cq, rpcmethod_GetRobotPartLogs_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRobotPartLogsResponse>* AppService::Stub::PrepareAsyncGetRobotPartLogsRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartLogsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetRobotPartLogsResponse>::Create(channel_.get(), cq, rpcmethod_GetRobotPartLogs_, context, request, false);
 }
 
 ::grpc::ClientReader< ::viam::app::v1::TailRobotPartLogsResponse>* AppService::Stub::TailRobotPartLogsRaw(::grpc::ClientContext* context, const ::viam::app::v1::TailRobotPartLogsRequest& request) {
-  return ::grpc::internal::ClientReaderFactory< ::viam::app::v1::TailRobotPartLogsResponse>::Create(channel_.get(), rpcmethod_TailRobotPartLogs_, context, request);
+  return ::grpc_impl::internal::ClientReaderFactory< ::viam::app::v1::TailRobotPartLogsResponse>::Create(channel_.get(), rpcmethod_TailRobotPartLogs_, context, request);
 }
 
-void AppService::Stub::async::TailRobotPartLogs(::grpc::ClientContext* context, const ::viam::app::v1::TailRobotPartLogsRequest* request, ::grpc::ClientReadReactor< ::viam::app::v1::TailRobotPartLogsResponse>* reactor) {
-  ::grpc::internal::ClientCallbackReaderFactory< ::viam::app::v1::TailRobotPartLogsResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_TailRobotPartLogs_, context, request, reactor);
+void AppService::Stub::experimental_async::TailRobotPartLogs(::grpc::ClientContext* context, ::viam::app::v1::TailRobotPartLogsRequest* request, ::grpc::experimental::ClientReadReactor< ::viam::app::v1::TailRobotPartLogsResponse>* reactor) {
+  ::grpc_impl::internal::ClientCallbackReaderFactory< ::viam::app::v1::TailRobotPartLogsResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_TailRobotPartLogs_, context, request, reactor);
 }
 
 ::grpc::ClientAsyncReader< ::viam::app::v1::TailRobotPartLogsResponse>* AppService::Stub::AsyncTailRobotPartLogsRaw(::grpc::ClientContext* context, const ::viam::app::v1::TailRobotPartLogsRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
-  return ::grpc::internal::ClientAsyncReaderFactory< ::viam::app::v1::TailRobotPartLogsResponse>::Create(channel_.get(), cq, rpcmethod_TailRobotPartLogs_, context, request, true, tag);
+  return ::grpc_impl::internal::ClientAsyncReaderFactory< ::viam::app::v1::TailRobotPartLogsResponse>::Create(channel_.get(), cq, rpcmethod_TailRobotPartLogs_, context, request, true, tag);
 }
 
 ::grpc::ClientAsyncReader< ::viam::app::v1::TailRobotPartLogsResponse>* AppService::Stub::PrepareAsyncTailRobotPartLogsRaw(::grpc::ClientContext* context, const ::viam::app::v1::TailRobotPartLogsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncReaderFactory< ::viam::app::v1::TailRobotPartLogsResponse>::Create(channel_.get(), cq, rpcmethod_TailRobotPartLogs_, context, request, false, nullptr);
+  return ::grpc_impl::internal::ClientAsyncReaderFactory< ::viam::app::v1::TailRobotPartLogsResponse>::Create(channel_.get(), cq, rpcmethod_TailRobotPartLogs_, context, request, false, nullptr);
 }
 
 ::grpc::Status AppService::Stub::GetRobotPartHistory(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartHistoryRequest& request, ::viam::app::v1::GetRobotPartHistoryResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::GetRobotPartHistoryRequest, ::viam::app::v1::GetRobotPartHistoryResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetRobotPartHistory_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetRobotPartHistory_, context, request, response);
 }
 
-void AppService::Stub::async::GetRobotPartHistory(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartHistoryRequest* request, ::viam::app::v1::GetRobotPartHistoryResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::GetRobotPartHistoryRequest, ::viam::app::v1::GetRobotPartHistoryResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRobotPartHistory_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::GetRobotPartHistory(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartHistoryRequest* request, ::viam::app::v1::GetRobotPartHistoryResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRobotPartHistory_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::GetRobotPartHistory(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartHistoryRequest* request, ::viam::app::v1::GetRobotPartHistoryResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRobotPartHistory_, context, request, response, reactor);
+void AppService::Stub::experimental_async::GetRobotPartHistory(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetRobotPartHistoryResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRobotPartHistory_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRobotPartHistoryResponse>* AppService::Stub::PrepareAsyncGetRobotPartHistoryRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartHistoryRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::GetRobotPartHistoryResponse, ::viam::app::v1::GetRobotPartHistoryRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetRobotPartHistory_, context, request);
+void AppService::Stub::experimental_async::GetRobotPartHistory(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartHistoryRequest* request, ::viam::app::v1::GetRobotPartHistoryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRobotPartHistory_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::GetRobotPartHistory(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetRobotPartHistoryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRobotPartHistory_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRobotPartHistoryResponse>* AppService::Stub::AsyncGetRobotPartHistoryRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartHistoryRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetRobotPartHistoryRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetRobotPartHistoryResponse>::Create(channel_.get(), cq, rpcmethod_GetRobotPartHistory_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRobotPartHistoryResponse>* AppService::Stub::PrepareAsyncGetRobotPartHistoryRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotPartHistoryRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetRobotPartHistoryResponse>::Create(channel_.get(), cq, rpcmethod_GetRobotPartHistory_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::UpdateRobotPart(::grpc::ClientContext* context, const ::viam::app::v1::UpdateRobotPartRequest& request, ::viam::app::v1::UpdateRobotPartResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::UpdateRobotPartRequest, ::viam::app::v1::UpdateRobotPartResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UpdateRobotPart_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_UpdateRobotPart_, context, request, response);
 }
 
-void AppService::Stub::async::UpdateRobotPart(::grpc::ClientContext* context, const ::viam::app::v1::UpdateRobotPartRequest* request, ::viam::app::v1::UpdateRobotPartResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::UpdateRobotPartRequest, ::viam::app::v1::UpdateRobotPartResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateRobotPart_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::UpdateRobotPart(::grpc::ClientContext* context, const ::viam::app::v1::UpdateRobotPartRequest* request, ::viam::app::v1::UpdateRobotPartResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateRobotPart_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::UpdateRobotPart(::grpc::ClientContext* context, const ::viam::app::v1::UpdateRobotPartRequest* request, ::viam::app::v1::UpdateRobotPartResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateRobotPart_, context, request, response, reactor);
+void AppService::Stub::experimental_async::UpdateRobotPart(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateRobotPartResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateRobotPart_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateRobotPartResponse>* AppService::Stub::PrepareAsyncUpdateRobotPartRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateRobotPartRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::UpdateRobotPartResponse, ::viam::app::v1::UpdateRobotPartRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UpdateRobotPart_, context, request);
+void AppService::Stub::experimental_async::UpdateRobotPart(::grpc::ClientContext* context, const ::viam::app::v1::UpdateRobotPartRequest* request, ::viam::app::v1::UpdateRobotPartResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateRobotPart_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::UpdateRobotPart(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateRobotPartResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateRobotPart_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateRobotPartResponse>* AppService::Stub::AsyncUpdateRobotPartRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateRobotPartRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncUpdateRobotPartRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::UpdateRobotPartResponse>::Create(channel_.get(), cq, rpcmethod_UpdateRobotPart_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateRobotPartResponse>* AppService::Stub::PrepareAsyncUpdateRobotPartRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateRobotPartRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::UpdateRobotPartResponse>::Create(channel_.get(), cq, rpcmethod_UpdateRobotPart_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::NewRobotPart(::grpc::ClientContext* context, const ::viam::app::v1::NewRobotPartRequest& request, ::viam::app::v1::NewRobotPartResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::NewRobotPartRequest, ::viam::app::v1::NewRobotPartResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_NewRobotPart_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_NewRobotPart_, context, request, response);
 }
 
-void AppService::Stub::async::NewRobotPart(::grpc::ClientContext* context, const ::viam::app::v1::NewRobotPartRequest* request, ::viam::app::v1::NewRobotPartResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::NewRobotPartRequest, ::viam::app::v1::NewRobotPartResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_NewRobotPart_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::NewRobotPart(::grpc::ClientContext* context, const ::viam::app::v1::NewRobotPartRequest* request, ::viam::app::v1::NewRobotPartResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_NewRobotPart_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::NewRobotPart(::grpc::ClientContext* context, const ::viam::app::v1::NewRobotPartRequest* request, ::viam::app::v1::NewRobotPartResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_NewRobotPart_, context, request, response, reactor);
+void AppService::Stub::experimental_async::NewRobotPart(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::NewRobotPartResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_NewRobotPart_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::NewRobotPartResponse>* AppService::Stub::PrepareAsyncNewRobotPartRaw(::grpc::ClientContext* context, const ::viam::app::v1::NewRobotPartRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::NewRobotPartResponse, ::viam::app::v1::NewRobotPartRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_NewRobotPart_, context, request);
+void AppService::Stub::experimental_async::NewRobotPart(::grpc::ClientContext* context, const ::viam::app::v1::NewRobotPartRequest* request, ::viam::app::v1::NewRobotPartResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_NewRobotPart_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::NewRobotPart(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::NewRobotPartResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_NewRobotPart_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::NewRobotPartResponse>* AppService::Stub::AsyncNewRobotPartRaw(::grpc::ClientContext* context, const ::viam::app::v1::NewRobotPartRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncNewRobotPartRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::NewRobotPartResponse>::Create(channel_.get(), cq, rpcmethod_NewRobotPart_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::NewRobotPartResponse>* AppService::Stub::PrepareAsyncNewRobotPartRaw(::grpc::ClientContext* context, const ::viam::app::v1::NewRobotPartRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::NewRobotPartResponse>::Create(channel_.get(), cq, rpcmethod_NewRobotPart_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::DeleteRobotPart(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRobotPartRequest& request, ::viam::app::v1::DeleteRobotPartResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::DeleteRobotPartRequest, ::viam::app::v1::DeleteRobotPartResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteRobotPart_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteRobotPart_, context, request, response);
 }
 
-void AppService::Stub::async::DeleteRobotPart(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRobotPartRequest* request, ::viam::app::v1::DeleteRobotPartResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::DeleteRobotPartRequest, ::viam::app::v1::DeleteRobotPartResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteRobotPart_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::DeleteRobotPart(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRobotPartRequest* request, ::viam::app::v1::DeleteRobotPartResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteRobotPart_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::DeleteRobotPart(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRobotPartRequest* request, ::viam::app::v1::DeleteRobotPartResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteRobotPart_, context, request, response, reactor);
+void AppService::Stub::experimental_async::DeleteRobotPart(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteRobotPartResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteRobotPart_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteRobotPartResponse>* AppService::Stub::PrepareAsyncDeleteRobotPartRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRobotPartRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::DeleteRobotPartResponse, ::viam::app::v1::DeleteRobotPartRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteRobotPart_, context, request);
+void AppService::Stub::experimental_async::DeleteRobotPart(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRobotPartRequest* request, ::viam::app::v1::DeleteRobotPartResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteRobotPart_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::DeleteRobotPart(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteRobotPartResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteRobotPart_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteRobotPartResponse>* AppService::Stub::AsyncDeleteRobotPartRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRobotPartRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncDeleteRobotPartRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteRobotPartResponse>::Create(channel_.get(), cq, rpcmethod_DeleteRobotPart_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteRobotPartResponse>* AppService::Stub::PrepareAsyncDeleteRobotPartRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRobotPartRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteRobotPartResponse>::Create(channel_.get(), cq, rpcmethod_DeleteRobotPart_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::GetRobotAPIKeys(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotAPIKeysRequest& request, ::viam::app::v1::GetRobotAPIKeysResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::GetRobotAPIKeysRequest, ::viam::app::v1::GetRobotAPIKeysResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetRobotAPIKeys_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetRobotAPIKeys_, context, request, response);
 }
 
-void AppService::Stub::async::GetRobotAPIKeys(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotAPIKeysRequest* request, ::viam::app::v1::GetRobotAPIKeysResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::GetRobotAPIKeysRequest, ::viam::app::v1::GetRobotAPIKeysResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRobotAPIKeys_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::GetRobotAPIKeys(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotAPIKeysRequest* request, ::viam::app::v1::GetRobotAPIKeysResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRobotAPIKeys_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::GetRobotAPIKeys(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotAPIKeysRequest* request, ::viam::app::v1::GetRobotAPIKeysResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRobotAPIKeys_, context, request, response, reactor);
+void AppService::Stub::experimental_async::GetRobotAPIKeys(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetRobotAPIKeysResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRobotAPIKeys_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRobotAPIKeysResponse>* AppService::Stub::PrepareAsyncGetRobotAPIKeysRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotAPIKeysRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::GetRobotAPIKeysResponse, ::viam::app::v1::GetRobotAPIKeysRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetRobotAPIKeys_, context, request);
+void AppService::Stub::experimental_async::GetRobotAPIKeys(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotAPIKeysRequest* request, ::viam::app::v1::GetRobotAPIKeysResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRobotAPIKeys_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::GetRobotAPIKeys(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetRobotAPIKeysResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRobotAPIKeys_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRobotAPIKeysResponse>* AppService::Stub::AsyncGetRobotAPIKeysRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotAPIKeysRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetRobotAPIKeysRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetRobotAPIKeysResponse>::Create(channel_.get(), cq, rpcmethod_GetRobotAPIKeys_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRobotAPIKeysResponse>* AppService::Stub::PrepareAsyncGetRobotAPIKeysRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotAPIKeysRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetRobotAPIKeysResponse>::Create(channel_.get(), cq, rpcmethod_GetRobotAPIKeys_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::MarkPartAsMain(::grpc::ClientContext* context, const ::viam::app::v1::MarkPartAsMainRequest& request, ::viam::app::v1::MarkPartAsMainResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::MarkPartAsMainRequest, ::viam::app::v1::MarkPartAsMainResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_MarkPartAsMain_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_MarkPartAsMain_, context, request, response);
 }
 
-void AppService::Stub::async::MarkPartAsMain(::grpc::ClientContext* context, const ::viam::app::v1::MarkPartAsMainRequest* request, ::viam::app::v1::MarkPartAsMainResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::MarkPartAsMainRequest, ::viam::app::v1::MarkPartAsMainResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MarkPartAsMain_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::MarkPartAsMain(::grpc::ClientContext* context, const ::viam::app::v1::MarkPartAsMainRequest* request, ::viam::app::v1::MarkPartAsMainResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_MarkPartAsMain_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::MarkPartAsMain(::grpc::ClientContext* context, const ::viam::app::v1::MarkPartAsMainRequest* request, ::viam::app::v1::MarkPartAsMainResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MarkPartAsMain_, context, request, response, reactor);
+void AppService::Stub::experimental_async::MarkPartAsMain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::MarkPartAsMainResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_MarkPartAsMain_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::MarkPartAsMainResponse>* AppService::Stub::PrepareAsyncMarkPartAsMainRaw(::grpc::ClientContext* context, const ::viam::app::v1::MarkPartAsMainRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::MarkPartAsMainResponse, ::viam::app::v1::MarkPartAsMainRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_MarkPartAsMain_, context, request);
+void AppService::Stub::experimental_async::MarkPartAsMain(::grpc::ClientContext* context, const ::viam::app::v1::MarkPartAsMainRequest* request, ::viam::app::v1::MarkPartAsMainResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_MarkPartAsMain_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::MarkPartAsMain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::MarkPartAsMainResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_MarkPartAsMain_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::MarkPartAsMainResponse>* AppService::Stub::AsyncMarkPartAsMainRaw(::grpc::ClientContext* context, const ::viam::app::v1::MarkPartAsMainRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncMarkPartAsMainRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::MarkPartAsMainResponse>::Create(channel_.get(), cq, rpcmethod_MarkPartAsMain_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::MarkPartAsMainResponse>* AppService::Stub::PrepareAsyncMarkPartAsMainRaw(::grpc::ClientContext* context, const ::viam::app::v1::MarkPartAsMainRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::MarkPartAsMainResponse>::Create(channel_.get(), cq, rpcmethod_MarkPartAsMain_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::MarkPartForRestart(::grpc::ClientContext* context, const ::viam::app::v1::MarkPartForRestartRequest& request, ::viam::app::v1::MarkPartForRestartResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::MarkPartForRestartRequest, ::viam::app::v1::MarkPartForRestartResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_MarkPartForRestart_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_MarkPartForRestart_, context, request, response);
 }
 
-void AppService::Stub::async::MarkPartForRestart(::grpc::ClientContext* context, const ::viam::app::v1::MarkPartForRestartRequest* request, ::viam::app::v1::MarkPartForRestartResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::MarkPartForRestartRequest, ::viam::app::v1::MarkPartForRestartResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MarkPartForRestart_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::MarkPartForRestart(::grpc::ClientContext* context, const ::viam::app::v1::MarkPartForRestartRequest* request, ::viam::app::v1::MarkPartForRestartResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_MarkPartForRestart_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::MarkPartForRestart(::grpc::ClientContext* context, const ::viam::app::v1::MarkPartForRestartRequest* request, ::viam::app::v1::MarkPartForRestartResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MarkPartForRestart_, context, request, response, reactor);
+void AppService::Stub::experimental_async::MarkPartForRestart(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::MarkPartForRestartResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_MarkPartForRestart_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::MarkPartForRestartResponse>* AppService::Stub::PrepareAsyncMarkPartForRestartRaw(::grpc::ClientContext* context, const ::viam::app::v1::MarkPartForRestartRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::MarkPartForRestartResponse, ::viam::app::v1::MarkPartForRestartRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_MarkPartForRestart_, context, request);
+void AppService::Stub::experimental_async::MarkPartForRestart(::grpc::ClientContext* context, const ::viam::app::v1::MarkPartForRestartRequest* request, ::viam::app::v1::MarkPartForRestartResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_MarkPartForRestart_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::MarkPartForRestart(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::MarkPartForRestartResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_MarkPartForRestart_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::MarkPartForRestartResponse>* AppService::Stub::AsyncMarkPartForRestartRaw(::grpc::ClientContext* context, const ::viam::app::v1::MarkPartForRestartRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncMarkPartForRestartRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::MarkPartForRestartResponse>::Create(channel_.get(), cq, rpcmethod_MarkPartForRestart_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::MarkPartForRestartResponse>* AppService::Stub::PrepareAsyncMarkPartForRestartRaw(::grpc::ClientContext* context, const ::viam::app::v1::MarkPartForRestartRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::MarkPartForRestartResponse>::Create(channel_.get(), cq, rpcmethod_MarkPartForRestart_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::CreateRobotPartSecret(::grpc::ClientContext* context, const ::viam::app::v1::CreateRobotPartSecretRequest& request, ::viam::app::v1::CreateRobotPartSecretResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::CreateRobotPartSecretRequest, ::viam::app::v1::CreateRobotPartSecretResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CreateRobotPartSecret_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_CreateRobotPartSecret_, context, request, response);
 }
 
-void AppService::Stub::async::CreateRobotPartSecret(::grpc::ClientContext* context, const ::viam::app::v1::CreateRobotPartSecretRequest* request, ::viam::app::v1::CreateRobotPartSecretResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::CreateRobotPartSecretRequest, ::viam::app::v1::CreateRobotPartSecretResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateRobotPartSecret_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::CreateRobotPartSecret(::grpc::ClientContext* context, const ::viam::app::v1::CreateRobotPartSecretRequest* request, ::viam::app::v1::CreateRobotPartSecretResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CreateRobotPartSecret_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::CreateRobotPartSecret(::grpc::ClientContext* context, const ::viam::app::v1::CreateRobotPartSecretRequest* request, ::viam::app::v1::CreateRobotPartSecretResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateRobotPartSecret_, context, request, response, reactor);
+void AppService::Stub::experimental_async::CreateRobotPartSecret(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::CreateRobotPartSecretResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CreateRobotPartSecret_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateRobotPartSecretResponse>* AppService::Stub::PrepareAsyncCreateRobotPartSecretRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateRobotPartSecretRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::CreateRobotPartSecretResponse, ::viam::app::v1::CreateRobotPartSecretRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CreateRobotPartSecret_, context, request);
+void AppService::Stub::experimental_async::CreateRobotPartSecret(::grpc::ClientContext* context, const ::viam::app::v1::CreateRobotPartSecretRequest* request, ::viam::app::v1::CreateRobotPartSecretResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CreateRobotPartSecret_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::CreateRobotPartSecret(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::CreateRobotPartSecretResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CreateRobotPartSecret_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateRobotPartSecretResponse>* AppService::Stub::AsyncCreateRobotPartSecretRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateRobotPartSecretRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncCreateRobotPartSecretRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::CreateRobotPartSecretResponse>::Create(channel_.get(), cq, rpcmethod_CreateRobotPartSecret_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateRobotPartSecretResponse>* AppService::Stub::PrepareAsyncCreateRobotPartSecretRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateRobotPartSecretRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::CreateRobotPartSecretResponse>::Create(channel_.get(), cq, rpcmethod_CreateRobotPartSecret_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::DeleteRobotPartSecret(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRobotPartSecretRequest& request, ::viam::app::v1::DeleteRobotPartSecretResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::DeleteRobotPartSecretRequest, ::viam::app::v1::DeleteRobotPartSecretResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteRobotPartSecret_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteRobotPartSecret_, context, request, response);
 }
 
-void AppService::Stub::async::DeleteRobotPartSecret(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRobotPartSecretRequest* request, ::viam::app::v1::DeleteRobotPartSecretResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::DeleteRobotPartSecretRequest, ::viam::app::v1::DeleteRobotPartSecretResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteRobotPartSecret_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::DeleteRobotPartSecret(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRobotPartSecretRequest* request, ::viam::app::v1::DeleteRobotPartSecretResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteRobotPartSecret_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::DeleteRobotPartSecret(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRobotPartSecretRequest* request, ::viam::app::v1::DeleteRobotPartSecretResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteRobotPartSecret_, context, request, response, reactor);
+void AppService::Stub::experimental_async::DeleteRobotPartSecret(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteRobotPartSecretResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteRobotPartSecret_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteRobotPartSecretResponse>* AppService::Stub::PrepareAsyncDeleteRobotPartSecretRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRobotPartSecretRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::DeleteRobotPartSecretResponse, ::viam::app::v1::DeleteRobotPartSecretRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteRobotPartSecret_, context, request);
+void AppService::Stub::experimental_async::DeleteRobotPartSecret(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRobotPartSecretRequest* request, ::viam::app::v1::DeleteRobotPartSecretResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteRobotPartSecret_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::DeleteRobotPartSecret(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteRobotPartSecretResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteRobotPartSecret_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteRobotPartSecretResponse>* AppService::Stub::AsyncDeleteRobotPartSecretRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRobotPartSecretRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncDeleteRobotPartSecretRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteRobotPartSecretResponse>::Create(channel_.get(), cq, rpcmethod_DeleteRobotPartSecret_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteRobotPartSecretResponse>* AppService::Stub::PrepareAsyncDeleteRobotPartSecretRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRobotPartSecretRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteRobotPartSecretResponse>::Create(channel_.get(), cq, rpcmethod_DeleteRobotPartSecret_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::ListRobots(::grpc::ClientContext* context, const ::viam::app::v1::ListRobotsRequest& request, ::viam::app::v1::ListRobotsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::ListRobotsRequest, ::viam::app::v1::ListRobotsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListRobots_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListRobots_, context, request, response);
 }
 
-void AppService::Stub::async::ListRobots(::grpc::ClientContext* context, const ::viam::app::v1::ListRobotsRequest* request, ::viam::app::v1::ListRobotsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::ListRobotsRequest, ::viam::app::v1::ListRobotsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListRobots_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::ListRobots(::grpc::ClientContext* context, const ::viam::app::v1::ListRobotsRequest* request, ::viam::app::v1::ListRobotsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListRobots_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::ListRobots(::grpc::ClientContext* context, const ::viam::app::v1::ListRobotsRequest* request, ::viam::app::v1::ListRobotsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListRobots_, context, request, response, reactor);
+void AppService::Stub::experimental_async::ListRobots(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ListRobotsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListRobots_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListRobotsResponse>* AppService::Stub::PrepareAsyncListRobotsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListRobotsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::ListRobotsResponse, ::viam::app::v1::ListRobotsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListRobots_, context, request);
+void AppService::Stub::experimental_async::ListRobots(::grpc::ClientContext* context, const ::viam::app::v1::ListRobotsRequest* request, ::viam::app::v1::ListRobotsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListRobots_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::ListRobots(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ListRobotsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListRobots_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListRobotsResponse>* AppService::Stub::AsyncListRobotsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListRobotsRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncListRobotsRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ListRobotsResponse>::Create(channel_.get(), cq, rpcmethod_ListRobots_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListRobotsResponse>* AppService::Stub::PrepareAsyncListRobotsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListRobotsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ListRobotsResponse>::Create(channel_.get(), cq, rpcmethod_ListRobots_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::NewRobot(::grpc::ClientContext* context, const ::viam::app::v1::NewRobotRequest& request, ::viam::app::v1::NewRobotResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::NewRobotRequest, ::viam::app::v1::NewRobotResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_NewRobot_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_NewRobot_, context, request, response);
 }
 
-void AppService::Stub::async::NewRobot(::grpc::ClientContext* context, const ::viam::app::v1::NewRobotRequest* request, ::viam::app::v1::NewRobotResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::NewRobotRequest, ::viam::app::v1::NewRobotResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_NewRobot_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::NewRobot(::grpc::ClientContext* context, const ::viam::app::v1::NewRobotRequest* request, ::viam::app::v1::NewRobotResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_NewRobot_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::NewRobot(::grpc::ClientContext* context, const ::viam::app::v1::NewRobotRequest* request, ::viam::app::v1::NewRobotResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_NewRobot_, context, request, response, reactor);
+void AppService::Stub::experimental_async::NewRobot(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::NewRobotResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_NewRobot_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::NewRobotResponse>* AppService::Stub::PrepareAsyncNewRobotRaw(::grpc::ClientContext* context, const ::viam::app::v1::NewRobotRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::NewRobotResponse, ::viam::app::v1::NewRobotRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_NewRobot_, context, request);
+void AppService::Stub::experimental_async::NewRobot(::grpc::ClientContext* context, const ::viam::app::v1::NewRobotRequest* request, ::viam::app::v1::NewRobotResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_NewRobot_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::NewRobot(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::NewRobotResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_NewRobot_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::NewRobotResponse>* AppService::Stub::AsyncNewRobotRaw(::grpc::ClientContext* context, const ::viam::app::v1::NewRobotRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncNewRobotRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::NewRobotResponse>::Create(channel_.get(), cq, rpcmethod_NewRobot_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::NewRobotResponse>* AppService::Stub::PrepareAsyncNewRobotRaw(::grpc::ClientContext* context, const ::viam::app::v1::NewRobotRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::NewRobotResponse>::Create(channel_.get(), cq, rpcmethod_NewRobot_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::UpdateRobot(::grpc::ClientContext* context, const ::viam::app::v1::UpdateRobotRequest& request, ::viam::app::v1::UpdateRobotResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::UpdateRobotRequest, ::viam::app::v1::UpdateRobotResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UpdateRobot_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_UpdateRobot_, context, request, response);
 }
 
-void AppService::Stub::async::UpdateRobot(::grpc::ClientContext* context, const ::viam::app::v1::UpdateRobotRequest* request, ::viam::app::v1::UpdateRobotResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::UpdateRobotRequest, ::viam::app::v1::UpdateRobotResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateRobot_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::UpdateRobot(::grpc::ClientContext* context, const ::viam::app::v1::UpdateRobotRequest* request, ::viam::app::v1::UpdateRobotResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateRobot_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::UpdateRobot(::grpc::ClientContext* context, const ::viam::app::v1::UpdateRobotRequest* request, ::viam::app::v1::UpdateRobotResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateRobot_, context, request, response, reactor);
+void AppService::Stub::experimental_async::UpdateRobot(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateRobotResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateRobot_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateRobotResponse>* AppService::Stub::PrepareAsyncUpdateRobotRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateRobotRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::UpdateRobotResponse, ::viam::app::v1::UpdateRobotRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UpdateRobot_, context, request);
+void AppService::Stub::experimental_async::UpdateRobot(::grpc::ClientContext* context, const ::viam::app::v1::UpdateRobotRequest* request, ::viam::app::v1::UpdateRobotResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateRobot_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::UpdateRobot(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateRobotResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateRobot_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateRobotResponse>* AppService::Stub::AsyncUpdateRobotRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateRobotRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncUpdateRobotRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::UpdateRobotResponse>::Create(channel_.get(), cq, rpcmethod_UpdateRobot_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateRobotResponse>* AppService::Stub::PrepareAsyncUpdateRobotRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateRobotRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::UpdateRobotResponse>::Create(channel_.get(), cq, rpcmethod_UpdateRobot_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::DeleteRobot(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRobotRequest& request, ::viam::app::v1::DeleteRobotResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::DeleteRobotRequest, ::viam::app::v1::DeleteRobotResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteRobot_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteRobot_, context, request, response);
 }
 
-void AppService::Stub::async::DeleteRobot(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRobotRequest* request, ::viam::app::v1::DeleteRobotResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::DeleteRobotRequest, ::viam::app::v1::DeleteRobotResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteRobot_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::DeleteRobot(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRobotRequest* request, ::viam::app::v1::DeleteRobotResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteRobot_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::DeleteRobot(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRobotRequest* request, ::viam::app::v1::DeleteRobotResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteRobot_, context, request, response, reactor);
+void AppService::Stub::experimental_async::DeleteRobot(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteRobotResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteRobot_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteRobotResponse>* AppService::Stub::PrepareAsyncDeleteRobotRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRobotRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::DeleteRobotResponse, ::viam::app::v1::DeleteRobotRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteRobot_, context, request);
+void AppService::Stub::experimental_async::DeleteRobot(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRobotRequest* request, ::viam::app::v1::DeleteRobotResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteRobot_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::DeleteRobot(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteRobotResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteRobot_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteRobotResponse>* AppService::Stub::AsyncDeleteRobotRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRobotRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncDeleteRobotRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteRobotResponse>::Create(channel_.get(), cq, rpcmethod_DeleteRobot_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteRobotResponse>* AppService::Stub::PrepareAsyncDeleteRobotRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRobotRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteRobotResponse>::Create(channel_.get(), cq, rpcmethod_DeleteRobot_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::ListFragments(::grpc::ClientContext* context, const ::viam::app::v1::ListFragmentsRequest& request, ::viam::app::v1::ListFragmentsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::ListFragmentsRequest, ::viam::app::v1::ListFragmentsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListFragments_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListFragments_, context, request, response);
 }
 
-void AppService::Stub::async::ListFragments(::grpc::ClientContext* context, const ::viam::app::v1::ListFragmentsRequest* request, ::viam::app::v1::ListFragmentsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::ListFragmentsRequest, ::viam::app::v1::ListFragmentsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListFragments_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::ListFragments(::grpc::ClientContext* context, const ::viam::app::v1::ListFragmentsRequest* request, ::viam::app::v1::ListFragmentsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListFragments_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::ListFragments(::grpc::ClientContext* context, const ::viam::app::v1::ListFragmentsRequest* request, ::viam::app::v1::ListFragmentsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListFragments_, context, request, response, reactor);
+void AppService::Stub::experimental_async::ListFragments(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ListFragmentsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListFragments_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListFragmentsResponse>* AppService::Stub::PrepareAsyncListFragmentsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListFragmentsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::ListFragmentsResponse, ::viam::app::v1::ListFragmentsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListFragments_, context, request);
+void AppService::Stub::experimental_async::ListFragments(::grpc::ClientContext* context, const ::viam::app::v1::ListFragmentsRequest* request, ::viam::app::v1::ListFragmentsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListFragments_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::ListFragments(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ListFragmentsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListFragments_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListFragmentsResponse>* AppService::Stub::AsyncListFragmentsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListFragmentsRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncListFragmentsRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ListFragmentsResponse>::Create(channel_.get(), cq, rpcmethod_ListFragments_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListFragmentsResponse>* AppService::Stub::PrepareAsyncListFragmentsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListFragmentsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ListFragmentsResponse>::Create(channel_.get(), cq, rpcmethod_ListFragments_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::GetFragment(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentRequest& request, ::viam::app::v1::GetFragmentResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::GetFragmentRequest, ::viam::app::v1::GetFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetFragment_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetFragment_, context, request, response);
 }
 
-void AppService::Stub::async::GetFragment(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentRequest* request, ::viam::app::v1::GetFragmentResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::GetFragmentRequest, ::viam::app::v1::GetFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetFragment_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::GetFragment(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentRequest* request, ::viam::app::v1::GetFragmentResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetFragment_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::GetFragment(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentRequest* request, ::viam::app::v1::GetFragmentResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetFragment_, context, request, response, reactor);
+void AppService::Stub::experimental_async::GetFragment(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetFragmentResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetFragment_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetFragmentResponse>* AppService::Stub::PrepareAsyncGetFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::GetFragmentResponse, ::viam::app::v1::GetFragmentRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetFragment_, context, request);
+void AppService::Stub::experimental_async::GetFragment(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentRequest* request, ::viam::app::v1::GetFragmentResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetFragment_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::GetFragment(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetFragmentResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetFragment_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetFragmentResponse>* AppService::Stub::AsyncGetFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetFragmentRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetFragmentResponse>::Create(channel_.get(), cq, rpcmethod_GetFragment_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetFragmentResponse>* AppService::Stub::PrepareAsyncGetFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetFragmentResponse>::Create(channel_.get(), cq, rpcmethod_GetFragment_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::CreateFragment(::grpc::ClientContext* context, const ::viam::app::v1::CreateFragmentRequest& request, ::viam::app::v1::CreateFragmentResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::CreateFragmentRequest, ::viam::app::v1::CreateFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CreateFragment_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_CreateFragment_, context, request, response);
 }
 
-void AppService::Stub::async::CreateFragment(::grpc::ClientContext* context, const ::viam::app::v1::CreateFragmentRequest* request, ::viam::app::v1::CreateFragmentResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::CreateFragmentRequest, ::viam::app::v1::CreateFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateFragment_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::CreateFragment(::grpc::ClientContext* context, const ::viam::app::v1::CreateFragmentRequest* request, ::viam::app::v1::CreateFragmentResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CreateFragment_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::CreateFragment(::grpc::ClientContext* context, const ::viam::app::v1::CreateFragmentRequest* request, ::viam::app::v1::CreateFragmentResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateFragment_, context, request, response, reactor);
+void AppService::Stub::experimental_async::CreateFragment(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::CreateFragmentResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CreateFragment_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateFragmentResponse>* AppService::Stub::PrepareAsyncCreateFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateFragmentRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::CreateFragmentResponse, ::viam::app::v1::CreateFragmentRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CreateFragment_, context, request);
+void AppService::Stub::experimental_async::CreateFragment(::grpc::ClientContext* context, const ::viam::app::v1::CreateFragmentRequest* request, ::viam::app::v1::CreateFragmentResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CreateFragment_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::CreateFragment(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::CreateFragmentResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CreateFragment_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateFragmentResponse>* AppService::Stub::AsyncCreateFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateFragmentRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncCreateFragmentRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::CreateFragmentResponse>::Create(channel_.get(), cq, rpcmethod_CreateFragment_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateFragmentResponse>* AppService::Stub::PrepareAsyncCreateFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateFragmentRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::CreateFragmentResponse>::Create(channel_.get(), cq, rpcmethod_CreateFragment_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::UpdateFragment(::grpc::ClientContext* context, const ::viam::app::v1::UpdateFragmentRequest& request, ::viam::app::v1::UpdateFragmentResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::UpdateFragmentRequest, ::viam::app::v1::UpdateFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UpdateFragment_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_UpdateFragment_, context, request, response);
 }
 
-void AppService::Stub::async::UpdateFragment(::grpc::ClientContext* context, const ::viam::app::v1::UpdateFragmentRequest* request, ::viam::app::v1::UpdateFragmentResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::UpdateFragmentRequest, ::viam::app::v1::UpdateFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateFragment_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::UpdateFragment(::grpc::ClientContext* context, const ::viam::app::v1::UpdateFragmentRequest* request, ::viam::app::v1::UpdateFragmentResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateFragment_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::UpdateFragment(::grpc::ClientContext* context, const ::viam::app::v1::UpdateFragmentRequest* request, ::viam::app::v1::UpdateFragmentResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateFragment_, context, request, response, reactor);
+void AppService::Stub::experimental_async::UpdateFragment(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateFragmentResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateFragment_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateFragmentResponse>* AppService::Stub::PrepareAsyncUpdateFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateFragmentRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::UpdateFragmentResponse, ::viam::app::v1::UpdateFragmentRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UpdateFragment_, context, request);
+void AppService::Stub::experimental_async::UpdateFragment(::grpc::ClientContext* context, const ::viam::app::v1::UpdateFragmentRequest* request, ::viam::app::v1::UpdateFragmentResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateFragment_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::UpdateFragment(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateFragmentResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateFragment_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateFragmentResponse>* AppService::Stub::AsyncUpdateFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateFragmentRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncUpdateFragmentRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::UpdateFragmentResponse>::Create(channel_.get(), cq, rpcmethod_UpdateFragment_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateFragmentResponse>* AppService::Stub::PrepareAsyncUpdateFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateFragmentRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::UpdateFragmentResponse>::Create(channel_.get(), cq, rpcmethod_UpdateFragment_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::DeleteFragment(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentRequest& request, ::viam::app::v1::DeleteFragmentResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::DeleteFragmentRequest, ::viam::app::v1::DeleteFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteFragment_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteFragment_, context, request, response);
 }
 
-void AppService::Stub::async::DeleteFragment(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentRequest* request, ::viam::app::v1::DeleteFragmentResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::DeleteFragmentRequest, ::viam::app::v1::DeleteFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteFragment_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::DeleteFragment(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentRequest* request, ::viam::app::v1::DeleteFragmentResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteFragment_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::DeleteFragment(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentRequest* request, ::viam::app::v1::DeleteFragmentResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteFragment_, context, request, response, reactor);
+void AppService::Stub::experimental_async::DeleteFragment(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteFragmentResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteFragment_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteFragmentResponse>* AppService::Stub::PrepareAsyncDeleteFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::DeleteFragmentResponse, ::viam::app::v1::DeleteFragmentRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteFragment_, context, request);
+void AppService::Stub::experimental_async::DeleteFragment(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentRequest* request, ::viam::app::v1::DeleteFragmentResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteFragment_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::DeleteFragment(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteFragmentResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteFragment_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteFragmentResponse>* AppService::Stub::AsyncDeleteFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncDeleteFragmentRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteFragmentResponse>::Create(channel_.get(), cq, rpcmethod_DeleteFragment_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteFragmentResponse>* AppService::Stub::PrepareAsyncDeleteFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteFragmentResponse>::Create(channel_.get(), cq, rpcmethod_DeleteFragment_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::ListMachineFragments(::grpc::ClientContext* context, const ::viam::app::v1::ListMachineFragmentsRequest& request, ::viam::app::v1::ListMachineFragmentsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::ListMachineFragmentsRequest, ::viam::app::v1::ListMachineFragmentsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListMachineFragments_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListMachineFragments_, context, request, response);
 }
 
-void AppService::Stub::async::ListMachineFragments(::grpc::ClientContext* context, const ::viam::app::v1::ListMachineFragmentsRequest* request, ::viam::app::v1::ListMachineFragmentsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::ListMachineFragmentsRequest, ::viam::app::v1::ListMachineFragmentsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListMachineFragments_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::ListMachineFragments(::grpc::ClientContext* context, const ::viam::app::v1::ListMachineFragmentsRequest* request, ::viam::app::v1::ListMachineFragmentsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListMachineFragments_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::ListMachineFragments(::grpc::ClientContext* context, const ::viam::app::v1::ListMachineFragmentsRequest* request, ::viam::app::v1::ListMachineFragmentsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListMachineFragments_, context, request, response, reactor);
+void AppService::Stub::experimental_async::ListMachineFragments(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ListMachineFragmentsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListMachineFragments_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListMachineFragmentsResponse>* AppService::Stub::PrepareAsyncListMachineFragmentsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListMachineFragmentsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::ListMachineFragmentsResponse, ::viam::app::v1::ListMachineFragmentsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListMachineFragments_, context, request);
+void AppService::Stub::experimental_async::ListMachineFragments(::grpc::ClientContext* context, const ::viam::app::v1::ListMachineFragmentsRequest* request, ::viam::app::v1::ListMachineFragmentsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListMachineFragments_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::ListMachineFragments(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ListMachineFragmentsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListMachineFragments_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListMachineFragmentsResponse>* AppService::Stub::AsyncListMachineFragmentsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListMachineFragmentsRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncListMachineFragmentsRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ListMachineFragmentsResponse>::Create(channel_.get(), cq, rpcmethod_ListMachineFragments_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListMachineFragmentsResponse>* AppService::Stub::PrepareAsyncListMachineFragmentsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListMachineFragmentsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ListMachineFragmentsResponse>::Create(channel_.get(), cq, rpcmethod_ListMachineFragments_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::GetFragmentHistory(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentHistoryRequest& request, ::viam::app::v1::GetFragmentHistoryResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::GetFragmentHistoryRequest, ::viam::app::v1::GetFragmentHistoryResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetFragmentHistory_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetFragmentHistory_, context, request, response);
 }
 
-void AppService::Stub::async::GetFragmentHistory(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentHistoryRequest* request, ::viam::app::v1::GetFragmentHistoryResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::GetFragmentHistoryRequest, ::viam::app::v1::GetFragmentHistoryResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetFragmentHistory_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::GetFragmentHistory(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentHistoryRequest* request, ::viam::app::v1::GetFragmentHistoryResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetFragmentHistory_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::GetFragmentHistory(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentHistoryRequest* request, ::viam::app::v1::GetFragmentHistoryResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetFragmentHistory_, context, request, response, reactor);
+void AppService::Stub::experimental_async::GetFragmentHistory(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetFragmentHistoryResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetFragmentHistory_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetFragmentHistoryResponse>* AppService::Stub::PrepareAsyncGetFragmentHistoryRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentHistoryRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::GetFragmentHistoryResponse, ::viam::app::v1::GetFragmentHistoryRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetFragmentHistory_, context, request);
+void AppService::Stub::experimental_async::GetFragmentHistory(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentHistoryRequest* request, ::viam::app::v1::GetFragmentHistoryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetFragmentHistory_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::GetFragmentHistory(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetFragmentHistoryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetFragmentHistory_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetFragmentHistoryResponse>* AppService::Stub::AsyncGetFragmentHistoryRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentHistoryRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetFragmentHistoryRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetFragmentHistoryResponse>::Create(channel_.get(), cq, rpcmethod_GetFragmentHistory_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetFragmentHistoryResponse>* AppService::Stub::PrepareAsyncGetFragmentHistoryRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentHistoryRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetFragmentHistoryResponse>::Create(channel_.get(), cq, rpcmethod_GetFragmentHistory_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::AddRole(::grpc::ClientContext* context, const ::viam::app::v1::AddRoleRequest& request, ::viam::app::v1::AddRoleResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::AddRoleRequest, ::viam::app::v1::AddRoleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_AddRole_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_AddRole_, context, request, response);
 }
 
-void AppService::Stub::async::AddRole(::grpc::ClientContext* context, const ::viam::app::v1::AddRoleRequest* request, ::viam::app::v1::AddRoleResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::AddRoleRequest, ::viam::app::v1::AddRoleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddRole_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::AddRole(::grpc::ClientContext* context, const ::viam::app::v1::AddRoleRequest* request, ::viam::app::v1::AddRoleResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_AddRole_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::AddRole(::grpc::ClientContext* context, const ::viam::app::v1::AddRoleRequest* request, ::viam::app::v1::AddRoleResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddRole_, context, request, response, reactor);
+void AppService::Stub::experimental_async::AddRole(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::AddRoleResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_AddRole_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::AddRoleResponse>* AppService::Stub::PrepareAsyncAddRoleRaw(::grpc::ClientContext* context, const ::viam::app::v1::AddRoleRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::AddRoleResponse, ::viam::app::v1::AddRoleRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_AddRole_, context, request);
+void AppService::Stub::experimental_async::AddRole(::grpc::ClientContext* context, const ::viam::app::v1::AddRoleRequest* request, ::viam::app::v1::AddRoleResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_AddRole_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::AddRole(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::AddRoleResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_AddRole_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::AddRoleResponse>* AppService::Stub::AsyncAddRoleRaw(::grpc::ClientContext* context, const ::viam::app::v1::AddRoleRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncAddRoleRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::AddRoleResponse>::Create(channel_.get(), cq, rpcmethod_AddRole_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::AddRoleResponse>* AppService::Stub::PrepareAsyncAddRoleRaw(::grpc::ClientContext* context, const ::viam::app::v1::AddRoleRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::AddRoleResponse>::Create(channel_.get(), cq, rpcmethod_AddRole_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::RemoveRole(::grpc::ClientContext* context, const ::viam::app::v1::RemoveRoleRequest& request, ::viam::app::v1::RemoveRoleResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::RemoveRoleRequest, ::viam::app::v1::RemoveRoleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_RemoveRole_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_RemoveRole_, context, request, response);
 }
 
-void AppService::Stub::async::RemoveRole(::grpc::ClientContext* context, const ::viam::app::v1::RemoveRoleRequest* request, ::viam::app::v1::RemoveRoleResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::RemoveRoleRequest, ::viam::app::v1::RemoveRoleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RemoveRole_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::RemoveRole(::grpc::ClientContext* context, const ::viam::app::v1::RemoveRoleRequest* request, ::viam::app::v1::RemoveRoleResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_RemoveRole_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::RemoveRole(::grpc::ClientContext* context, const ::viam::app::v1::RemoveRoleRequest* request, ::viam::app::v1::RemoveRoleResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RemoveRole_, context, request, response, reactor);
+void AppService::Stub::experimental_async::RemoveRole(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::RemoveRoleResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_RemoveRole_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::RemoveRoleResponse>* AppService::Stub::PrepareAsyncRemoveRoleRaw(::grpc::ClientContext* context, const ::viam::app::v1::RemoveRoleRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::RemoveRoleResponse, ::viam::app::v1::RemoveRoleRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_RemoveRole_, context, request);
+void AppService::Stub::experimental_async::RemoveRole(::grpc::ClientContext* context, const ::viam::app::v1::RemoveRoleRequest* request, ::viam::app::v1::RemoveRoleResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_RemoveRole_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::RemoveRole(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::RemoveRoleResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_RemoveRole_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::RemoveRoleResponse>* AppService::Stub::AsyncRemoveRoleRaw(::grpc::ClientContext* context, const ::viam::app::v1::RemoveRoleRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncRemoveRoleRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::RemoveRoleResponse>::Create(channel_.get(), cq, rpcmethod_RemoveRole_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::RemoveRoleResponse>* AppService::Stub::PrepareAsyncRemoveRoleRaw(::grpc::ClientContext* context, const ::viam::app::v1::RemoveRoleRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::RemoveRoleResponse>::Create(channel_.get(), cq, rpcmethod_RemoveRole_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::ChangeRole(::grpc::ClientContext* context, const ::viam::app::v1::ChangeRoleRequest& request, ::viam::app::v1::ChangeRoleResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::ChangeRoleRequest, ::viam::app::v1::ChangeRoleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ChangeRole_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ChangeRole_, context, request, response);
 }
 
-void AppService::Stub::async::ChangeRole(::grpc::ClientContext* context, const ::viam::app::v1::ChangeRoleRequest* request, ::viam::app::v1::ChangeRoleResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::ChangeRoleRequest, ::viam::app::v1::ChangeRoleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ChangeRole_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::ChangeRole(::grpc::ClientContext* context, const ::viam::app::v1::ChangeRoleRequest* request, ::viam::app::v1::ChangeRoleResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ChangeRole_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::ChangeRole(::grpc::ClientContext* context, const ::viam::app::v1::ChangeRoleRequest* request, ::viam::app::v1::ChangeRoleResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ChangeRole_, context, request, response, reactor);
+void AppService::Stub::experimental_async::ChangeRole(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ChangeRoleResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ChangeRole_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::ChangeRoleResponse>* AppService::Stub::PrepareAsyncChangeRoleRaw(::grpc::ClientContext* context, const ::viam::app::v1::ChangeRoleRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::ChangeRoleResponse, ::viam::app::v1::ChangeRoleRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ChangeRole_, context, request);
+void AppService::Stub::experimental_async::ChangeRole(::grpc::ClientContext* context, const ::viam::app::v1::ChangeRoleRequest* request, ::viam::app::v1::ChangeRoleResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ChangeRole_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::ChangeRole(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ChangeRoleResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ChangeRole_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ChangeRoleResponse>* AppService::Stub::AsyncChangeRoleRaw(::grpc::ClientContext* context, const ::viam::app::v1::ChangeRoleRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncChangeRoleRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ChangeRoleResponse>::Create(channel_.get(), cq, rpcmethod_ChangeRole_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ChangeRoleResponse>* AppService::Stub::PrepareAsyncChangeRoleRaw(::grpc::ClientContext* context, const ::viam::app::v1::ChangeRoleRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ChangeRoleResponse>::Create(channel_.get(), cq, rpcmethod_ChangeRole_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::ListAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::ListAuthorizationsRequest& request, ::viam::app::v1::ListAuthorizationsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::ListAuthorizationsRequest, ::viam::app::v1::ListAuthorizationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListAuthorizations_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListAuthorizations_, context, request, response);
 }
 
-void AppService::Stub::async::ListAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::ListAuthorizationsRequest* request, ::viam::app::v1::ListAuthorizationsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::ListAuthorizationsRequest, ::viam::app::v1::ListAuthorizationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListAuthorizations_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::ListAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::ListAuthorizationsRequest* request, ::viam::app::v1::ListAuthorizationsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListAuthorizations_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::ListAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::ListAuthorizationsRequest* request, ::viam::app::v1::ListAuthorizationsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListAuthorizations_, context, request, response, reactor);
+void AppService::Stub::experimental_async::ListAuthorizations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ListAuthorizationsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListAuthorizations_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListAuthorizationsResponse>* AppService::Stub::PrepareAsyncListAuthorizationsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListAuthorizationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::ListAuthorizationsResponse, ::viam::app::v1::ListAuthorizationsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListAuthorizations_, context, request);
+void AppService::Stub::experimental_async::ListAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::ListAuthorizationsRequest* request, ::viam::app::v1::ListAuthorizationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListAuthorizations_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::ListAuthorizations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ListAuthorizationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListAuthorizations_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListAuthorizationsResponse>* AppService::Stub::AsyncListAuthorizationsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListAuthorizationsRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncListAuthorizationsRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ListAuthorizationsResponse>::Create(channel_.get(), cq, rpcmethod_ListAuthorizations_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListAuthorizationsResponse>* AppService::Stub::PrepareAsyncListAuthorizationsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListAuthorizationsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ListAuthorizationsResponse>::Create(channel_.get(), cq, rpcmethod_ListAuthorizations_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::CheckPermissions(::grpc::ClientContext* context, const ::viam::app::v1::CheckPermissionsRequest& request, ::viam::app::v1::CheckPermissionsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::CheckPermissionsRequest, ::viam::app::v1::CheckPermissionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CheckPermissions_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_CheckPermissions_, context, request, response);
 }
 
-void AppService::Stub::async::CheckPermissions(::grpc::ClientContext* context, const ::viam::app::v1::CheckPermissionsRequest* request, ::viam::app::v1::CheckPermissionsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::CheckPermissionsRequest, ::viam::app::v1::CheckPermissionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CheckPermissions_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::CheckPermissions(::grpc::ClientContext* context, const ::viam::app::v1::CheckPermissionsRequest* request, ::viam::app::v1::CheckPermissionsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CheckPermissions_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::CheckPermissions(::grpc::ClientContext* context, const ::viam::app::v1::CheckPermissionsRequest* request, ::viam::app::v1::CheckPermissionsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CheckPermissions_, context, request, response, reactor);
+void AppService::Stub::experimental_async::CheckPermissions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::CheckPermissionsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CheckPermissions_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::CheckPermissionsResponse>* AppService::Stub::PrepareAsyncCheckPermissionsRaw(::grpc::ClientContext* context, const ::viam::app::v1::CheckPermissionsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::CheckPermissionsResponse, ::viam::app::v1::CheckPermissionsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CheckPermissions_, context, request);
+void AppService::Stub::experimental_async::CheckPermissions(::grpc::ClientContext* context, const ::viam::app::v1::CheckPermissionsRequest* request, ::viam::app::v1::CheckPermissionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CheckPermissions_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::CheckPermissions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::CheckPermissionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CheckPermissions_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CheckPermissionsResponse>* AppService::Stub::AsyncCheckPermissionsRaw(::grpc::ClientContext* context, const ::viam::app::v1::CheckPermissionsRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncCheckPermissionsRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::CheckPermissionsResponse>::Create(channel_.get(), cq, rpcmethod_CheckPermissions_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::CheckPermissionsResponse>* AppService::Stub::PrepareAsyncCheckPermissionsRaw(::grpc::ClientContext* context, const ::viam::app::v1::CheckPermissionsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::CheckPermissionsResponse>::Create(channel_.get(), cq, rpcmethod_CheckPermissions_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::GetRegistryItem(::grpc::ClientContext* context, const ::viam::app::v1::GetRegistryItemRequest& request, ::viam::app::v1::GetRegistryItemResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::GetRegistryItemRequest, ::viam::app::v1::GetRegistryItemResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetRegistryItem_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetRegistryItem_, context, request, response);
 }
 
-void AppService::Stub::async::GetRegistryItem(::grpc::ClientContext* context, const ::viam::app::v1::GetRegistryItemRequest* request, ::viam::app::v1::GetRegistryItemResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::GetRegistryItemRequest, ::viam::app::v1::GetRegistryItemResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRegistryItem_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::GetRegistryItem(::grpc::ClientContext* context, const ::viam::app::v1::GetRegistryItemRequest* request, ::viam::app::v1::GetRegistryItemResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRegistryItem_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::GetRegistryItem(::grpc::ClientContext* context, const ::viam::app::v1::GetRegistryItemRequest* request, ::viam::app::v1::GetRegistryItemResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRegistryItem_, context, request, response, reactor);
+void AppService::Stub::experimental_async::GetRegistryItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetRegistryItemResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRegistryItem_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRegistryItemResponse>* AppService::Stub::PrepareAsyncGetRegistryItemRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRegistryItemRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::GetRegistryItemResponse, ::viam::app::v1::GetRegistryItemRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetRegistryItem_, context, request);
+void AppService::Stub::experimental_async::GetRegistryItem(::grpc::ClientContext* context, const ::viam::app::v1::GetRegistryItemRequest* request, ::viam::app::v1::GetRegistryItemResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRegistryItem_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::GetRegistryItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetRegistryItemResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRegistryItem_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRegistryItemResponse>* AppService::Stub::AsyncGetRegistryItemRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRegistryItemRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetRegistryItemRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetRegistryItemResponse>::Create(channel_.get(), cq, rpcmethod_GetRegistryItem_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRegistryItemResponse>* AppService::Stub::PrepareAsyncGetRegistryItemRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRegistryItemRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetRegistryItemResponse>::Create(channel_.get(), cq, rpcmethod_GetRegistryItem_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::CreateRegistryItem(::grpc::ClientContext* context, const ::viam::app::v1::CreateRegistryItemRequest& request, ::viam::app::v1::CreateRegistryItemResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::CreateRegistryItemRequest, ::viam::app::v1::CreateRegistryItemResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CreateRegistryItem_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_CreateRegistryItem_, context, request, response);
 }
 
-void AppService::Stub::async::CreateRegistryItem(::grpc::ClientContext* context, const ::viam::app::v1::CreateRegistryItemRequest* request, ::viam::app::v1::CreateRegistryItemResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::CreateRegistryItemRequest, ::viam::app::v1::CreateRegistryItemResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateRegistryItem_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::CreateRegistryItem(::grpc::ClientContext* context, const ::viam::app::v1::CreateRegistryItemRequest* request, ::viam::app::v1::CreateRegistryItemResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CreateRegistryItem_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::CreateRegistryItem(::grpc::ClientContext* context, const ::viam::app::v1::CreateRegistryItemRequest* request, ::viam::app::v1::CreateRegistryItemResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateRegistryItem_, context, request, response, reactor);
+void AppService::Stub::experimental_async::CreateRegistryItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::CreateRegistryItemResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CreateRegistryItem_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateRegistryItemResponse>* AppService::Stub::PrepareAsyncCreateRegistryItemRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateRegistryItemRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::CreateRegistryItemResponse, ::viam::app::v1::CreateRegistryItemRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CreateRegistryItem_, context, request);
+void AppService::Stub::experimental_async::CreateRegistryItem(::grpc::ClientContext* context, const ::viam::app::v1::CreateRegistryItemRequest* request, ::viam::app::v1::CreateRegistryItemResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CreateRegistryItem_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::CreateRegistryItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::CreateRegistryItemResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CreateRegistryItem_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateRegistryItemResponse>* AppService::Stub::AsyncCreateRegistryItemRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateRegistryItemRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncCreateRegistryItemRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::CreateRegistryItemResponse>::Create(channel_.get(), cq, rpcmethod_CreateRegistryItem_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateRegistryItemResponse>* AppService::Stub::PrepareAsyncCreateRegistryItemRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateRegistryItemRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::CreateRegistryItemResponse>::Create(channel_.get(), cq, rpcmethod_CreateRegistryItem_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::UpdateRegistryItem(::grpc::ClientContext* context, const ::viam::app::v1::UpdateRegistryItemRequest& request, ::viam::app::v1::UpdateRegistryItemResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::UpdateRegistryItemRequest, ::viam::app::v1::UpdateRegistryItemResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UpdateRegistryItem_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_UpdateRegistryItem_, context, request, response);
 }
 
-void AppService::Stub::async::UpdateRegistryItem(::grpc::ClientContext* context, const ::viam::app::v1::UpdateRegistryItemRequest* request, ::viam::app::v1::UpdateRegistryItemResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::UpdateRegistryItemRequest, ::viam::app::v1::UpdateRegistryItemResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateRegistryItem_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::UpdateRegistryItem(::grpc::ClientContext* context, const ::viam::app::v1::UpdateRegistryItemRequest* request, ::viam::app::v1::UpdateRegistryItemResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateRegistryItem_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::UpdateRegistryItem(::grpc::ClientContext* context, const ::viam::app::v1::UpdateRegistryItemRequest* request, ::viam::app::v1::UpdateRegistryItemResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateRegistryItem_, context, request, response, reactor);
+void AppService::Stub::experimental_async::UpdateRegistryItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateRegistryItemResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateRegistryItem_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateRegistryItemResponse>* AppService::Stub::PrepareAsyncUpdateRegistryItemRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateRegistryItemRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::UpdateRegistryItemResponse, ::viam::app::v1::UpdateRegistryItemRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UpdateRegistryItem_, context, request);
+void AppService::Stub::experimental_async::UpdateRegistryItem(::grpc::ClientContext* context, const ::viam::app::v1::UpdateRegistryItemRequest* request, ::viam::app::v1::UpdateRegistryItemResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateRegistryItem_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::UpdateRegistryItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateRegistryItemResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateRegistryItem_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateRegistryItemResponse>* AppService::Stub::AsyncUpdateRegistryItemRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateRegistryItemRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncUpdateRegistryItemRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::UpdateRegistryItemResponse>::Create(channel_.get(), cq, rpcmethod_UpdateRegistryItem_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateRegistryItemResponse>* AppService::Stub::PrepareAsyncUpdateRegistryItemRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateRegistryItemRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::UpdateRegistryItemResponse>::Create(channel_.get(), cq, rpcmethod_UpdateRegistryItem_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::ListRegistryItems(::grpc::ClientContext* context, const ::viam::app::v1::ListRegistryItemsRequest& request, ::viam::app::v1::ListRegistryItemsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::ListRegistryItemsRequest, ::viam::app::v1::ListRegistryItemsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListRegistryItems_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListRegistryItems_, context, request, response);
 }
 
-void AppService::Stub::async::ListRegistryItems(::grpc::ClientContext* context, const ::viam::app::v1::ListRegistryItemsRequest* request, ::viam::app::v1::ListRegistryItemsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::ListRegistryItemsRequest, ::viam::app::v1::ListRegistryItemsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListRegistryItems_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::ListRegistryItems(::grpc::ClientContext* context, const ::viam::app::v1::ListRegistryItemsRequest* request, ::viam::app::v1::ListRegistryItemsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListRegistryItems_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::ListRegistryItems(::grpc::ClientContext* context, const ::viam::app::v1::ListRegistryItemsRequest* request, ::viam::app::v1::ListRegistryItemsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListRegistryItems_, context, request, response, reactor);
+void AppService::Stub::experimental_async::ListRegistryItems(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ListRegistryItemsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListRegistryItems_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListRegistryItemsResponse>* AppService::Stub::PrepareAsyncListRegistryItemsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListRegistryItemsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::ListRegistryItemsResponse, ::viam::app::v1::ListRegistryItemsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListRegistryItems_, context, request);
+void AppService::Stub::experimental_async::ListRegistryItems(::grpc::ClientContext* context, const ::viam::app::v1::ListRegistryItemsRequest* request, ::viam::app::v1::ListRegistryItemsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListRegistryItems_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::ListRegistryItems(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ListRegistryItemsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListRegistryItems_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListRegistryItemsResponse>* AppService::Stub::AsyncListRegistryItemsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListRegistryItemsRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncListRegistryItemsRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ListRegistryItemsResponse>::Create(channel_.get(), cq, rpcmethod_ListRegistryItems_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListRegistryItemsResponse>* AppService::Stub::PrepareAsyncListRegistryItemsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListRegistryItemsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ListRegistryItemsResponse>::Create(channel_.get(), cq, rpcmethod_ListRegistryItems_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::DeleteRegistryItem(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRegistryItemRequest& request, ::viam::app::v1::DeleteRegistryItemResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::DeleteRegistryItemRequest, ::viam::app::v1::DeleteRegistryItemResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteRegistryItem_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteRegistryItem_, context, request, response);
 }
 
-void AppService::Stub::async::DeleteRegistryItem(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRegistryItemRequest* request, ::viam::app::v1::DeleteRegistryItemResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::DeleteRegistryItemRequest, ::viam::app::v1::DeleteRegistryItemResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteRegistryItem_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::DeleteRegistryItem(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRegistryItemRequest* request, ::viam::app::v1::DeleteRegistryItemResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteRegistryItem_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::DeleteRegistryItem(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRegistryItemRequest* request, ::viam::app::v1::DeleteRegistryItemResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteRegistryItem_, context, request, response, reactor);
+void AppService::Stub::experimental_async::DeleteRegistryItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteRegistryItemResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteRegistryItem_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteRegistryItemResponse>* AppService::Stub::PrepareAsyncDeleteRegistryItemRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRegistryItemRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::DeleteRegistryItemResponse, ::viam::app::v1::DeleteRegistryItemRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteRegistryItem_, context, request);
+void AppService::Stub::experimental_async::DeleteRegistryItem(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRegistryItemRequest* request, ::viam::app::v1::DeleteRegistryItemResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteRegistryItem_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::DeleteRegistryItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteRegistryItemResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteRegistryItem_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteRegistryItemResponse>* AppService::Stub::AsyncDeleteRegistryItemRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRegistryItemRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncDeleteRegistryItemRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteRegistryItemResponse>::Create(channel_.get(), cq, rpcmethod_DeleteRegistryItem_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteRegistryItemResponse>* AppService::Stub::PrepareAsyncDeleteRegistryItemRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRegistryItemRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteRegistryItemResponse>::Create(channel_.get(), cq, rpcmethod_DeleteRegistryItem_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::TransferRegistryItem(::grpc::ClientContext* context, const ::viam::app::v1::TransferRegistryItemRequest& request, ::viam::app::v1::TransferRegistryItemResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::TransferRegistryItemRequest, ::viam::app::v1::TransferRegistryItemResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_TransferRegistryItem_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_TransferRegistryItem_, context, request, response);
 }
 
-void AppService::Stub::async::TransferRegistryItem(::grpc::ClientContext* context, const ::viam::app::v1::TransferRegistryItemRequest* request, ::viam::app::v1::TransferRegistryItemResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::TransferRegistryItemRequest, ::viam::app::v1::TransferRegistryItemResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_TransferRegistryItem_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::TransferRegistryItem(::grpc::ClientContext* context, const ::viam::app::v1::TransferRegistryItemRequest* request, ::viam::app::v1::TransferRegistryItemResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_TransferRegistryItem_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::TransferRegistryItem(::grpc::ClientContext* context, const ::viam::app::v1::TransferRegistryItemRequest* request, ::viam::app::v1::TransferRegistryItemResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_TransferRegistryItem_, context, request, response, reactor);
+void AppService::Stub::experimental_async::TransferRegistryItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::TransferRegistryItemResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_TransferRegistryItem_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::TransferRegistryItemResponse>* AppService::Stub::PrepareAsyncTransferRegistryItemRaw(::grpc::ClientContext* context, const ::viam::app::v1::TransferRegistryItemRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::TransferRegistryItemResponse, ::viam::app::v1::TransferRegistryItemRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_TransferRegistryItem_, context, request);
+void AppService::Stub::experimental_async::TransferRegistryItem(::grpc::ClientContext* context, const ::viam::app::v1::TransferRegistryItemRequest* request, ::viam::app::v1::TransferRegistryItemResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_TransferRegistryItem_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::TransferRegistryItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::TransferRegistryItemResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_TransferRegistryItem_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::TransferRegistryItemResponse>* AppService::Stub::AsyncTransferRegistryItemRaw(::grpc::ClientContext* context, const ::viam::app::v1::TransferRegistryItemRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncTransferRegistryItemRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::TransferRegistryItemResponse>::Create(channel_.get(), cq, rpcmethod_TransferRegistryItem_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::TransferRegistryItemResponse>* AppService::Stub::PrepareAsyncTransferRegistryItemRaw(::grpc::ClientContext* context, const ::viam::app::v1::TransferRegistryItemRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::TransferRegistryItemResponse>::Create(channel_.get(), cq, rpcmethod_TransferRegistryItem_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::CreateModule(::grpc::ClientContext* context, const ::viam::app::v1::CreateModuleRequest& request, ::viam::app::v1::CreateModuleResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::CreateModuleRequest, ::viam::app::v1::CreateModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CreateModule_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_CreateModule_, context, request, response);
 }
 
-void AppService::Stub::async::CreateModule(::grpc::ClientContext* context, const ::viam::app::v1::CreateModuleRequest* request, ::viam::app::v1::CreateModuleResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::CreateModuleRequest, ::viam::app::v1::CreateModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateModule_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::CreateModule(::grpc::ClientContext* context, const ::viam::app::v1::CreateModuleRequest* request, ::viam::app::v1::CreateModuleResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CreateModule_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::CreateModule(::grpc::ClientContext* context, const ::viam::app::v1::CreateModuleRequest* request, ::viam::app::v1::CreateModuleResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateModule_, context, request, response, reactor);
+void AppService::Stub::experimental_async::CreateModule(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::CreateModuleResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CreateModule_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateModuleResponse>* AppService::Stub::PrepareAsyncCreateModuleRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateModuleRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::CreateModuleResponse, ::viam::app::v1::CreateModuleRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CreateModule_, context, request);
+void AppService::Stub::experimental_async::CreateModule(::grpc::ClientContext* context, const ::viam::app::v1::CreateModuleRequest* request, ::viam::app::v1::CreateModuleResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CreateModule_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::CreateModule(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::CreateModuleResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CreateModule_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateModuleResponse>* AppService::Stub::AsyncCreateModuleRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateModuleRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncCreateModuleRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::CreateModuleResponse>::Create(channel_.get(), cq, rpcmethod_CreateModule_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateModuleResponse>* AppService::Stub::PrepareAsyncCreateModuleRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateModuleRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::CreateModuleResponse>::Create(channel_.get(), cq, rpcmethod_CreateModule_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::UpdateModule(::grpc::ClientContext* context, const ::viam::app::v1::UpdateModuleRequest& request, ::viam::app::v1::UpdateModuleResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::UpdateModuleRequest, ::viam::app::v1::UpdateModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UpdateModule_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_UpdateModule_, context, request, response);
 }
 
-void AppService::Stub::async::UpdateModule(::grpc::ClientContext* context, const ::viam::app::v1::UpdateModuleRequest* request, ::viam::app::v1::UpdateModuleResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::UpdateModuleRequest, ::viam::app::v1::UpdateModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateModule_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::UpdateModule(::grpc::ClientContext* context, const ::viam::app::v1::UpdateModuleRequest* request, ::viam::app::v1::UpdateModuleResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateModule_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::UpdateModule(::grpc::ClientContext* context, const ::viam::app::v1::UpdateModuleRequest* request, ::viam::app::v1::UpdateModuleResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateModule_, context, request, response, reactor);
+void AppService::Stub::experimental_async::UpdateModule(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateModuleResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateModule_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateModuleResponse>* AppService::Stub::PrepareAsyncUpdateModuleRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateModuleRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::UpdateModuleResponse, ::viam::app::v1::UpdateModuleRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UpdateModule_, context, request);
+void AppService::Stub::experimental_async::UpdateModule(::grpc::ClientContext* context, const ::viam::app::v1::UpdateModuleRequest* request, ::viam::app::v1::UpdateModuleResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateModule_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::UpdateModule(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateModuleResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateModule_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateModuleResponse>* AppService::Stub::AsyncUpdateModuleRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateModuleRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncUpdateModuleRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::UpdateModuleResponse>::Create(channel_.get(), cq, rpcmethod_UpdateModule_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateModuleResponse>* AppService::Stub::PrepareAsyncUpdateModuleRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateModuleRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::UpdateModuleResponse>::Create(channel_.get(), cq, rpcmethod_UpdateModule_, context, request, false);
 }
 
 ::grpc::ClientWriter< ::viam::app::v1::UploadModuleFileRequest>* AppService::Stub::UploadModuleFileRaw(::grpc::ClientContext* context, ::viam::app::v1::UploadModuleFileResponse* response) {
-  return ::grpc::internal::ClientWriterFactory< ::viam::app::v1::UploadModuleFileRequest>::Create(channel_.get(), rpcmethod_UploadModuleFile_, context, response);
+  return ::grpc_impl::internal::ClientWriterFactory< ::viam::app::v1::UploadModuleFileRequest>::Create(channel_.get(), rpcmethod_UploadModuleFile_, context, response);
 }
 
-void AppService::Stub::async::UploadModuleFile(::grpc::ClientContext* context, ::viam::app::v1::UploadModuleFileResponse* response, ::grpc::ClientWriteReactor< ::viam::app::v1::UploadModuleFileRequest>* reactor) {
-  ::grpc::internal::ClientCallbackWriterFactory< ::viam::app::v1::UploadModuleFileRequest>::Create(stub_->channel_.get(), stub_->rpcmethod_UploadModuleFile_, context, response, reactor);
+void AppService::Stub::experimental_async::UploadModuleFile(::grpc::ClientContext* context, ::viam::app::v1::UploadModuleFileResponse* response, ::grpc::experimental::ClientWriteReactor< ::viam::app::v1::UploadModuleFileRequest>* reactor) {
+  ::grpc_impl::internal::ClientCallbackWriterFactory< ::viam::app::v1::UploadModuleFileRequest>::Create(stub_->channel_.get(), stub_->rpcmethod_UploadModuleFile_, context, response, reactor);
 }
 
 ::grpc::ClientAsyncWriter< ::viam::app::v1::UploadModuleFileRequest>* AppService::Stub::AsyncUploadModuleFileRaw(::grpc::ClientContext* context, ::viam::app::v1::UploadModuleFileResponse* response, ::grpc::CompletionQueue* cq, void* tag) {
-  return ::grpc::internal::ClientAsyncWriterFactory< ::viam::app::v1::UploadModuleFileRequest>::Create(channel_.get(), cq, rpcmethod_UploadModuleFile_, context, response, true, tag);
+  return ::grpc_impl::internal::ClientAsyncWriterFactory< ::viam::app::v1::UploadModuleFileRequest>::Create(channel_.get(), cq, rpcmethod_UploadModuleFile_, context, response, true, tag);
 }
 
 ::grpc::ClientAsyncWriter< ::viam::app::v1::UploadModuleFileRequest>* AppService::Stub::PrepareAsyncUploadModuleFileRaw(::grpc::ClientContext* context, ::viam::app::v1::UploadModuleFileResponse* response, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncWriterFactory< ::viam::app::v1::UploadModuleFileRequest>::Create(channel_.get(), cq, rpcmethod_UploadModuleFile_, context, response, false, nullptr);
+  return ::grpc_impl::internal::ClientAsyncWriterFactory< ::viam::app::v1::UploadModuleFileRequest>::Create(channel_.get(), cq, rpcmethod_UploadModuleFile_, context, response, false, nullptr);
 }
 
 ::grpc::Status AppService::Stub::GetModule(::grpc::ClientContext* context, const ::viam::app::v1::GetModuleRequest& request, ::viam::app::v1::GetModuleResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::GetModuleRequest, ::viam::app::v1::GetModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetModule_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetModule_, context, request, response);
 }
 
-void AppService::Stub::async::GetModule(::grpc::ClientContext* context, const ::viam::app::v1::GetModuleRequest* request, ::viam::app::v1::GetModuleResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::GetModuleRequest, ::viam::app::v1::GetModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetModule_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::GetModule(::grpc::ClientContext* context, const ::viam::app::v1::GetModuleRequest* request, ::viam::app::v1::GetModuleResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetModule_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::GetModule(::grpc::ClientContext* context, const ::viam::app::v1::GetModuleRequest* request, ::viam::app::v1::GetModuleResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetModule_, context, request, response, reactor);
+void AppService::Stub::experimental_async::GetModule(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetModuleResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetModule_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetModuleResponse>* AppService::Stub::PrepareAsyncGetModuleRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetModuleRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::GetModuleResponse, ::viam::app::v1::GetModuleRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetModule_, context, request);
+void AppService::Stub::experimental_async::GetModule(::grpc::ClientContext* context, const ::viam::app::v1::GetModuleRequest* request, ::viam::app::v1::GetModuleResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetModule_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::GetModule(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetModuleResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetModule_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetModuleResponse>* AppService::Stub::AsyncGetModuleRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetModuleRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetModuleRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetModuleResponse>::Create(channel_.get(), cq, rpcmethod_GetModule_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetModuleResponse>* AppService::Stub::PrepareAsyncGetModuleRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetModuleRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetModuleResponse>::Create(channel_.get(), cq, rpcmethod_GetModule_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::ListModules(::grpc::ClientContext* context, const ::viam::app::v1::ListModulesRequest& request, ::viam::app::v1::ListModulesResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::ListModulesRequest, ::viam::app::v1::ListModulesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListModules_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListModules_, context, request, response);
 }
 
-void AppService::Stub::async::ListModules(::grpc::ClientContext* context, const ::viam::app::v1::ListModulesRequest* request, ::viam::app::v1::ListModulesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::ListModulesRequest, ::viam::app::v1::ListModulesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListModules_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::ListModules(::grpc::ClientContext* context, const ::viam::app::v1::ListModulesRequest* request, ::viam::app::v1::ListModulesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListModules_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::ListModules(::grpc::ClientContext* context, const ::viam::app::v1::ListModulesRequest* request, ::viam::app::v1::ListModulesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListModules_, context, request, response, reactor);
+void AppService::Stub::experimental_async::ListModules(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ListModulesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListModules_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListModulesResponse>* AppService::Stub::PrepareAsyncListModulesRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListModulesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::ListModulesResponse, ::viam::app::v1::ListModulesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListModules_, context, request);
+void AppService::Stub::experimental_async::ListModules(::grpc::ClientContext* context, const ::viam::app::v1::ListModulesRequest* request, ::viam::app::v1::ListModulesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListModules_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::ListModules(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ListModulesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListModules_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListModulesResponse>* AppService::Stub::AsyncListModulesRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListModulesRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncListModulesRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ListModulesResponse>::Create(channel_.get(), cq, rpcmethod_ListModules_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListModulesResponse>* AppService::Stub::PrepareAsyncListModulesRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListModulesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ListModulesResponse>::Create(channel_.get(), cq, rpcmethod_ListModules_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::CreateKey(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyRequest& request, ::viam::app::v1::CreateKeyResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::CreateKeyRequest, ::viam::app::v1::CreateKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CreateKey_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_CreateKey_, context, request, response);
 }
 
-void AppService::Stub::async::CreateKey(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyRequest* request, ::viam::app::v1::CreateKeyResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::CreateKeyRequest, ::viam::app::v1::CreateKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateKey_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::CreateKey(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyRequest* request, ::viam::app::v1::CreateKeyResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CreateKey_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::CreateKey(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyRequest* request, ::viam::app::v1::CreateKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateKey_, context, request, response, reactor);
+void AppService::Stub::experimental_async::CreateKey(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::CreateKeyResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CreateKey_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateKeyResponse>* AppService::Stub::PrepareAsyncCreateKeyRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::CreateKeyResponse, ::viam::app::v1::CreateKeyRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CreateKey_, context, request);
+void AppService::Stub::experimental_async::CreateKey(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyRequest* request, ::viam::app::v1::CreateKeyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CreateKey_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::CreateKey(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::CreateKeyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CreateKey_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateKeyResponse>* AppService::Stub::AsyncCreateKeyRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncCreateKeyRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::CreateKeyResponse>::Create(channel_.get(), cq, rpcmethod_CreateKey_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateKeyResponse>* AppService::Stub::PrepareAsyncCreateKeyRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::CreateKeyResponse>::Create(channel_.get(), cq, rpcmethod_CreateKey_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::DeleteKey(::grpc::ClientContext* context, const ::viam::app::v1::DeleteKeyRequest& request, ::viam::app::v1::DeleteKeyResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::DeleteKeyRequest, ::viam::app::v1::DeleteKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteKey_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteKey_, context, request, response);
 }
 
-void AppService::Stub::async::DeleteKey(::grpc::ClientContext* context, const ::viam::app::v1::DeleteKeyRequest* request, ::viam::app::v1::DeleteKeyResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::DeleteKeyRequest, ::viam::app::v1::DeleteKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteKey_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::DeleteKey(::grpc::ClientContext* context, const ::viam::app::v1::DeleteKeyRequest* request, ::viam::app::v1::DeleteKeyResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteKey_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::DeleteKey(::grpc::ClientContext* context, const ::viam::app::v1::DeleteKeyRequest* request, ::viam::app::v1::DeleteKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteKey_, context, request, response, reactor);
+void AppService::Stub::experimental_async::DeleteKey(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteKeyResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteKey_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteKeyResponse>* AppService::Stub::PrepareAsyncDeleteKeyRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::DeleteKeyResponse, ::viam::app::v1::DeleteKeyRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteKey_, context, request);
+void AppService::Stub::experimental_async::DeleteKey(::grpc::ClientContext* context, const ::viam::app::v1::DeleteKeyRequest* request, ::viam::app::v1::DeleteKeyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteKey_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::DeleteKey(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteKeyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteKey_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteKeyResponse>* AppService::Stub::AsyncDeleteKeyRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncDeleteKeyRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteKeyResponse>::Create(channel_.get(), cq, rpcmethod_DeleteKey_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteKeyResponse>* AppService::Stub::PrepareAsyncDeleteKeyRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteKeyResponse>::Create(channel_.get(), cq, rpcmethod_DeleteKey_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::ListKeys(::grpc::ClientContext* context, const ::viam::app::v1::ListKeysRequest& request, ::viam::app::v1::ListKeysResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::ListKeysRequest, ::viam::app::v1::ListKeysResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListKeys_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListKeys_, context, request, response);
 }
 
-void AppService::Stub::async::ListKeys(::grpc::ClientContext* context, const ::viam::app::v1::ListKeysRequest* request, ::viam::app::v1::ListKeysResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::ListKeysRequest, ::viam::app::v1::ListKeysResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListKeys_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::ListKeys(::grpc::ClientContext* context, const ::viam::app::v1::ListKeysRequest* request, ::viam::app::v1::ListKeysResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListKeys_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::ListKeys(::grpc::ClientContext* context, const ::viam::app::v1::ListKeysRequest* request, ::viam::app::v1::ListKeysResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListKeys_, context, request, response, reactor);
+void AppService::Stub::experimental_async::ListKeys(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ListKeysResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListKeys_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListKeysResponse>* AppService::Stub::PrepareAsyncListKeysRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListKeysRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::ListKeysResponse, ::viam::app::v1::ListKeysRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListKeys_, context, request);
+void AppService::Stub::experimental_async::ListKeys(::grpc::ClientContext* context, const ::viam::app::v1::ListKeysRequest* request, ::viam::app::v1::ListKeysResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListKeys_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::ListKeys(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::ListKeysResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListKeys_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListKeysResponse>* AppService::Stub::AsyncListKeysRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListKeysRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncListKeysRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ListKeysResponse>::Create(channel_.get(), cq, rpcmethod_ListKeys_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListKeysResponse>* AppService::Stub::PrepareAsyncListKeysRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListKeysRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::ListKeysResponse>::Create(channel_.get(), cq, rpcmethod_ListKeys_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::RenameKey(::grpc::ClientContext* context, const ::viam::app::v1::RenameKeyRequest& request, ::viam::app::v1::RenameKeyResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::RenameKeyRequest, ::viam::app::v1::RenameKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_RenameKey_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_RenameKey_, context, request, response);
 }
 
-void AppService::Stub::async::RenameKey(::grpc::ClientContext* context, const ::viam::app::v1::RenameKeyRequest* request, ::viam::app::v1::RenameKeyResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::RenameKeyRequest, ::viam::app::v1::RenameKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RenameKey_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::RenameKey(::grpc::ClientContext* context, const ::viam::app::v1::RenameKeyRequest* request, ::viam::app::v1::RenameKeyResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_RenameKey_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::RenameKey(::grpc::ClientContext* context, const ::viam::app::v1::RenameKeyRequest* request, ::viam::app::v1::RenameKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RenameKey_, context, request, response, reactor);
+void AppService::Stub::experimental_async::RenameKey(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::RenameKeyResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_RenameKey_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::RenameKeyResponse>* AppService::Stub::PrepareAsyncRenameKeyRaw(::grpc::ClientContext* context, const ::viam::app::v1::RenameKeyRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::RenameKeyResponse, ::viam::app::v1::RenameKeyRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_RenameKey_, context, request);
+void AppService::Stub::experimental_async::RenameKey(::grpc::ClientContext* context, const ::viam::app::v1::RenameKeyRequest* request, ::viam::app::v1::RenameKeyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_RenameKey_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::RenameKey(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::RenameKeyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_RenameKey_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::RenameKeyResponse>* AppService::Stub::AsyncRenameKeyRaw(::grpc::ClientContext* context, const ::viam::app::v1::RenameKeyRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncRenameKeyRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::RenameKeyResponse>::Create(channel_.get(), cq, rpcmethod_RenameKey_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::RenameKeyResponse>* AppService::Stub::PrepareAsyncRenameKeyRaw(::grpc::ClientContext* context, const ::viam::app::v1::RenameKeyRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::RenameKeyResponse>::Create(channel_.get(), cq, rpcmethod_RenameKey_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::RotateKey(::grpc::ClientContext* context, const ::viam::app::v1::RotateKeyRequest& request, ::viam::app::v1::RotateKeyResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::RotateKeyRequest, ::viam::app::v1::RotateKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_RotateKey_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_RotateKey_, context, request, response);
 }
 
-void AppService::Stub::async::RotateKey(::grpc::ClientContext* context, const ::viam::app::v1::RotateKeyRequest* request, ::viam::app::v1::RotateKeyResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::RotateKeyRequest, ::viam::app::v1::RotateKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RotateKey_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::RotateKey(::grpc::ClientContext* context, const ::viam::app::v1::RotateKeyRequest* request, ::viam::app::v1::RotateKeyResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_RotateKey_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::RotateKey(::grpc::ClientContext* context, const ::viam::app::v1::RotateKeyRequest* request, ::viam::app::v1::RotateKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RotateKey_, context, request, response, reactor);
+void AppService::Stub::experimental_async::RotateKey(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::RotateKeyResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_RotateKey_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::RotateKeyResponse>* AppService::Stub::PrepareAsyncRotateKeyRaw(::grpc::ClientContext* context, const ::viam::app::v1::RotateKeyRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::RotateKeyResponse, ::viam::app::v1::RotateKeyRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_RotateKey_, context, request);
+void AppService::Stub::experimental_async::RotateKey(::grpc::ClientContext* context, const ::viam::app::v1::RotateKeyRequest* request, ::viam::app::v1::RotateKeyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_RotateKey_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::RotateKey(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::RotateKeyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_RotateKey_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::RotateKeyResponse>* AppService::Stub::AsyncRotateKeyRaw(::grpc::ClientContext* context, const ::viam::app::v1::RotateKeyRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncRotateKeyRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::RotateKeyResponse>::Create(channel_.get(), cq, rpcmethod_RotateKey_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::RotateKeyResponse>* AppService::Stub::PrepareAsyncRotateKeyRaw(::grpc::ClientContext* context, const ::viam::app::v1::RotateKeyRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::RotateKeyResponse>::Create(channel_.get(), cq, rpcmethod_RotateKey_, context, request, false);
 }
 
 ::grpc::Status AppService::Stub::CreateKeyFromExistingKeyAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest& request, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CreateKeyFromExistingKeyAuthorizations_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_CreateKeyFromExistingKeyAuthorizations_, context, request, response);
 }
 
-void AppService::Stub::async::CreateKeyFromExistingKeyAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest* request, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateKeyFromExistingKeyAuthorizations_, context, request, response, std::move(f));
+void AppService::Stub::experimental_async::CreateKeyFromExistingKeyAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest* request, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CreateKeyFromExistingKeyAuthorizations_, context, request, response, std::move(f));
 }
 
-void AppService::Stub::async::CreateKeyFromExistingKeyAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest* request, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateKeyFromExistingKeyAuthorizations_, context, request, response, reactor);
+void AppService::Stub::experimental_async::CreateKeyFromExistingKeyAuthorizations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CreateKeyFromExistingKeyAuthorizations_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse>* AppService::Stub::PrepareAsyncCreateKeyFromExistingKeyAuthorizationsRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CreateKeyFromExistingKeyAuthorizations_, context, request);
+void AppService::Stub::experimental_async::CreateKeyFromExistingKeyAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest* request, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CreateKeyFromExistingKeyAuthorizations_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::CreateKeyFromExistingKeyAuthorizations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CreateKeyFromExistingKeyAuthorizations_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse>* AppService::Stub::AsyncCreateKeyFromExistingKeyAuthorizationsRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncCreateKeyFromExistingKeyAuthorizationsRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse>::Create(channel_.get(), cq, rpcmethod_CreateKeyFromExistingKeyAuthorizations_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse>* AppService::Stub::PrepareAsyncCreateKeyFromExistingKeyAuthorizationsRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse>::Create(channel_.get(), cq, rpcmethod_CreateKeyFromExistingKeyAuthorizations_, context, request, false);
 }
 
 AppService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       AppService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetUserIDByEmailRequest, ::viam::app::v1::GetUserIDByEmailResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetUserIDByEmailRequest, ::viam::app::v1::GetUserIDByEmailResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::GetUserIDByEmailRequest* req,
              ::viam::app::v1::GetUserIDByEmailResponse* resp) {
                return service->GetUserIDByEmail(ctx, req, resp);
@@ -1860,9 +2695,9 @@ AppService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       AppService_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateOrganizationRequest, ::viam::app::v1::CreateOrganizationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateOrganizationRequest, ::viam::app::v1::CreateOrganizationResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::CreateOrganizationRequest* req,
              ::viam::app::v1::CreateOrganizationResponse* resp) {
                return service->CreateOrganization(ctx, req, resp);
@@ -1870,9 +2705,9 @@ AppService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       AppService_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListOrganizationsRequest, ::viam::app::v1::ListOrganizationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListOrganizationsRequest, ::viam::app::v1::ListOrganizationsResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::ListOrganizationsRequest* req,
              ::viam::app::v1::ListOrganizationsResponse* resp) {
                return service->ListOrganizations(ctx, req, resp);
@@ -1880,9 +2715,9 @@ AppService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       AppService_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetOrganizationsWithAccessToLocationRequest, ::viam::app::v1::GetOrganizationsWithAccessToLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetOrganizationsWithAccessToLocationRequest, ::viam::app::v1::GetOrganizationsWithAccessToLocationResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::GetOrganizationsWithAccessToLocationRequest* req,
              ::viam::app::v1::GetOrganizationsWithAccessToLocationResponse* resp) {
                return service->GetOrganizationsWithAccessToLocation(ctx, req, resp);
@@ -1890,9 +2725,9 @@ AppService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       AppService_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListOrganizationsByUserRequest, ::viam::app::v1::ListOrganizationsByUserResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListOrganizationsByUserRequest, ::viam::app::v1::ListOrganizationsByUserResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::ListOrganizationsByUserRequest* req,
              ::viam::app::v1::ListOrganizationsByUserResponse* resp) {
                return service->ListOrganizationsByUser(ctx, req, resp);
@@ -1900,679 +2735,839 @@ AppService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       AppService_method_names[5],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetOrganizationRequest, ::viam::app::v1::GetOrganizationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::SearchOrganizationsRequest, ::viam::app::v1::SearchOrganizationsResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::app::v1::SearchOrganizationsRequest* req,
+             ::viam::app::v1::SearchOrganizationsResponse* resp) {
+               return service->SearchOrganizations(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetOrganizationRequest, ::viam::app::v1::GetOrganizationResponse>(
+          [](AppService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::GetOrganizationRequest* req,
              ::viam::app::v1::GetOrganizationResponse* resp) {
                return service->GetOrganization(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[6],
+      AppService_method_names[7],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetOrganizationNamespaceAvailabilityRequest, ::viam::app::v1::GetOrganizationNamespaceAvailabilityResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetOrganizationNamespaceAvailabilityRequest, ::viam::app::v1::GetOrganizationNamespaceAvailabilityResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::GetOrganizationNamespaceAvailabilityRequest* req,
              ::viam::app::v1::GetOrganizationNamespaceAvailabilityResponse* resp) {
                return service->GetOrganizationNamespaceAvailability(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[7],
+      AppService_method_names[8],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateOrganizationRequest, ::viam::app::v1::UpdateOrganizationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateOrganizationRequest, ::viam::app::v1::UpdateOrganizationResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::UpdateOrganizationRequest* req,
              ::viam::app::v1::UpdateOrganizationResponse* resp) {
                return service->UpdateOrganization(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[8],
+      AppService_method_names[9],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteOrganizationRequest, ::viam::app::v1::DeleteOrganizationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteOrganizationRequest, ::viam::app::v1::DeleteOrganizationResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::DeleteOrganizationRequest* req,
              ::viam::app::v1::DeleteOrganizationResponse* resp) {
                return service->DeleteOrganization(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[9],
+      AppService_method_names[10],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListOrganizationMembersRequest, ::viam::app::v1::ListOrganizationMembersResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListOrganizationMembersRequest, ::viam::app::v1::ListOrganizationMembersResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::ListOrganizationMembersRequest* req,
              ::viam::app::v1::ListOrganizationMembersResponse* resp) {
                return service->ListOrganizationMembers(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[10],
+      AppService_method_names[11],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateOrganizationInviteRequest, ::viam::app::v1::CreateOrganizationInviteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateOrganizationInviteRequest, ::viam::app::v1::CreateOrganizationInviteResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::CreateOrganizationInviteRequest* req,
              ::viam::app::v1::CreateOrganizationInviteResponse* resp) {
                return service->CreateOrganizationInvite(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[11],
+      AppService_method_names[12],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateOrganizationInviteAuthorizationsRequest, ::viam::app::v1::UpdateOrganizationInviteAuthorizationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateOrganizationInviteAuthorizationsRequest, ::viam::app::v1::UpdateOrganizationInviteAuthorizationsResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::UpdateOrganizationInviteAuthorizationsRequest* req,
              ::viam::app::v1::UpdateOrganizationInviteAuthorizationsResponse* resp) {
                return service->UpdateOrganizationInviteAuthorizations(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[12],
+      AppService_method_names[13],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteOrganizationMemberRequest, ::viam::app::v1::DeleteOrganizationMemberResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteOrganizationMemberRequest, ::viam::app::v1::DeleteOrganizationMemberResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::DeleteOrganizationMemberRequest* req,
              ::viam::app::v1::DeleteOrganizationMemberResponse* resp) {
                return service->DeleteOrganizationMember(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[13],
+      AppService_method_names[14],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteOrganizationInviteRequest, ::viam::app::v1::DeleteOrganizationInviteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteOrganizationInviteRequest, ::viam::app::v1::DeleteOrganizationInviteResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::DeleteOrganizationInviteRequest* req,
              ::viam::app::v1::DeleteOrganizationInviteResponse* resp) {
                return service->DeleteOrganizationInvite(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[14],
+      AppService_method_names[15],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ResendOrganizationInviteRequest, ::viam::app::v1::ResendOrganizationInviteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ResendOrganizationInviteRequest, ::viam::app::v1::ResendOrganizationInviteResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::ResendOrganizationInviteRequest* req,
              ::viam::app::v1::ResendOrganizationInviteResponse* resp) {
                return service->ResendOrganizationInvite(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[15],
+      AppService_method_names[16],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateLocationRequest, ::viam::app::v1::CreateLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::EnableBillingServiceRequest, ::viam::app::v1::EnableBillingServiceResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::app::v1::EnableBillingServiceRequest* req,
+             ::viam::app::v1::EnableBillingServiceResponse* resp) {
+               return service->EnableBillingService(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[17],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DisableBillingServiceRequest, ::viam::app::v1::DisableBillingServiceResponse>(
+          [](AppService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::app::v1::DisableBillingServiceRequest* req,
+             ::viam::app::v1::DisableBillingServiceResponse* resp) {
+               return service->DisableBillingService(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[18],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateBillingServiceRequest, ::viam::app::v1::UpdateBillingServiceResponse>(
+          [](AppService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::app::v1::UpdateBillingServiceRequest* req,
+             ::viam::app::v1::UpdateBillingServiceResponse* resp) {
+               return service->UpdateBillingService(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[19],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetBillingServiceConfigRequest, ::viam::app::v1::GetBillingServiceConfigResponse>(
+          [](AppService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::app::v1::GetBillingServiceConfigRequest* req,
+             ::viam::app::v1::GetBillingServiceConfigResponse* resp) {
+               return service->GetBillingServiceConfig(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[20],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::OrganizationSetSupportEmailRequest, ::viam::app::v1::OrganizationSetSupportEmailResponse>(
+          [](AppService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::app::v1::OrganizationSetSupportEmailRequest* req,
+             ::viam::app::v1::OrganizationSetSupportEmailResponse* resp) {
+               return service->OrganizationSetSupportEmail(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[21],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::OrganizationGetSupportEmailRequest, ::viam::app::v1::OrganizationGetSupportEmailResponse>(
+          [](AppService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::app::v1::OrganizationGetSupportEmailRequest* req,
+             ::viam::app::v1::OrganizationGetSupportEmailResponse* resp) {
+               return service->OrganizationGetSupportEmail(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[22],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::OrganizationSetLogoRequest, ::viam::app::v1::OrganizationSetLogoResponse>(
+          [](AppService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::app::v1::OrganizationSetLogoRequest* req,
+             ::viam::app::v1::OrganizationSetLogoResponse* resp) {
+               return service->OrganizationSetLogo(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[23],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::OrganizationGetLogoRequest, ::viam::app::v1::OrganizationGetLogoResponse>(
+          [](AppService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::app::v1::OrganizationGetLogoRequest* req,
+             ::viam::app::v1::OrganizationGetLogoResponse* resp) {
+               return service->OrganizationGetLogo(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[24],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::EnableAuthServiceRequest, ::viam::app::v1::EnableAuthServiceResponse>(
+          [](AppService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::app::v1::EnableAuthServiceRequest* req,
+             ::viam::app::v1::EnableAuthServiceResponse* resp) {
+               return service->EnableAuthService(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[25],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DisableAuthServiceRequest, ::viam::app::v1::DisableAuthServiceResponse>(
+          [](AppService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::app::v1::DisableAuthServiceRequest* req,
+             ::viam::app::v1::DisableAuthServiceResponse* resp) {
+               return service->DisableAuthService(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[26],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateOAuthAppRequest, ::viam::app::v1::CreateOAuthAppResponse>(
+          [](AppService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::app::v1::CreateOAuthAppRequest* req,
+             ::viam::app::v1::CreateOAuthAppResponse* resp) {
+               return service->CreateOAuthApp(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[27],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ReadOAuthAppRequest, ::viam::app::v1::ReadOAuthAppResponse>(
+          [](AppService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::app::v1::ReadOAuthAppRequest* req,
+             ::viam::app::v1::ReadOAuthAppResponse* resp) {
+               return service->ReadOAuthApp(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[28],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateOAuthAppRequest, ::viam::app::v1::UpdateOAuthAppResponse>(
+          [](AppService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::app::v1::UpdateOAuthAppRequest* req,
+             ::viam::app::v1::UpdateOAuthAppResponse* resp) {
+               return service->UpdateOAuthApp(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[29],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteOAuthAppRequest, ::viam::app::v1::DeleteOAuthAppResponse>(
+          [](AppService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::app::v1::DeleteOAuthAppRequest* req,
+             ::viam::app::v1::DeleteOAuthAppResponse* resp) {
+               return service->DeleteOAuthApp(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[30],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListOAuthAppsRequest, ::viam::app::v1::ListOAuthAppsResponse>(
+          [](AppService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::app::v1::ListOAuthAppsRequest* req,
+             ::viam::app::v1::ListOAuthAppsResponse* resp) {
+               return service->ListOAuthApps(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[31],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateLocationRequest, ::viam::app::v1::CreateLocationResponse>(
+          [](AppService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::CreateLocationRequest* req,
              ::viam::app::v1::CreateLocationResponse* resp) {
                return service->CreateLocation(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[16],
+      AppService_method_names[32],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetLocationRequest, ::viam::app::v1::GetLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetLocationRequest, ::viam::app::v1::GetLocationResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::GetLocationRequest* req,
              ::viam::app::v1::GetLocationResponse* resp) {
                return service->GetLocation(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[17],
+      AppService_method_names[33],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateLocationRequest, ::viam::app::v1::UpdateLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateLocationRequest, ::viam::app::v1::UpdateLocationResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::UpdateLocationRequest* req,
              ::viam::app::v1::UpdateLocationResponse* resp) {
                return service->UpdateLocation(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[18],
+      AppService_method_names[34],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteLocationRequest, ::viam::app::v1::DeleteLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteLocationRequest, ::viam::app::v1::DeleteLocationResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::DeleteLocationRequest* req,
              ::viam::app::v1::DeleteLocationResponse* resp) {
                return service->DeleteLocation(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[19],
+      AppService_method_names[35],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListLocationsRequest, ::viam::app::v1::ListLocationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListLocationsRequest, ::viam::app::v1::ListLocationsResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::ListLocationsRequest* req,
              ::viam::app::v1::ListLocationsResponse* resp) {
                return service->ListLocations(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[20],
+      AppService_method_names[36],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ShareLocationRequest, ::viam::app::v1::ShareLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ShareLocationRequest, ::viam::app::v1::ShareLocationResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::ShareLocationRequest* req,
              ::viam::app::v1::ShareLocationResponse* resp) {
                return service->ShareLocation(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[21],
+      AppService_method_names[37],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UnshareLocationRequest, ::viam::app::v1::UnshareLocationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UnshareLocationRequest, ::viam::app::v1::UnshareLocationResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::UnshareLocationRequest* req,
              ::viam::app::v1::UnshareLocationResponse* resp) {
                return service->UnshareLocation(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[22],
+      AppService_method_names[38],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::LocationAuthRequest, ::viam::app::v1::LocationAuthResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::LocationAuthRequest, ::viam::app::v1::LocationAuthResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::LocationAuthRequest* req,
              ::viam::app::v1::LocationAuthResponse* resp) {
                return service->LocationAuth(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[23],
+      AppService_method_names[39],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateLocationSecretRequest, ::viam::app::v1::CreateLocationSecretResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateLocationSecretRequest, ::viam::app::v1::CreateLocationSecretResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::CreateLocationSecretRequest* req,
              ::viam::app::v1::CreateLocationSecretResponse* resp) {
                return service->CreateLocationSecret(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[24],
+      AppService_method_names[40],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteLocationSecretRequest, ::viam::app::v1::DeleteLocationSecretResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteLocationSecretRequest, ::viam::app::v1::DeleteLocationSecretResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::DeleteLocationSecretRequest* req,
              ::viam::app::v1::DeleteLocationSecretResponse* resp) {
                return service->DeleteLocationSecret(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[25],
+      AppService_method_names[41],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetRobotRequest, ::viam::app::v1::GetRobotResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetRobotRequest, ::viam::app::v1::GetRobotResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::GetRobotRequest* req,
              ::viam::app::v1::GetRobotResponse* resp) {
                return service->GetRobot(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[26],
+      AppService_method_names[42],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetRoverRentalRobotsRequest, ::viam::app::v1::GetRoverRentalRobotsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetRoverRentalRobotsRequest, ::viam::app::v1::GetRoverRentalRobotsResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::GetRoverRentalRobotsRequest* req,
              ::viam::app::v1::GetRoverRentalRobotsResponse* resp) {
                return service->GetRoverRentalRobots(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[27],
+      AppService_method_names[43],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetRobotPartsRequest, ::viam::app::v1::GetRobotPartsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetRobotPartsRequest, ::viam::app::v1::GetRobotPartsResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::GetRobotPartsRequest* req,
              ::viam::app::v1::GetRobotPartsResponse* resp) {
                return service->GetRobotParts(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[28],
+      AppService_method_names[44],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetRobotPartRequest, ::viam::app::v1::GetRobotPartResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetRobotPartRequest, ::viam::app::v1::GetRobotPartResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::GetRobotPartRequest* req,
              ::viam::app::v1::GetRobotPartResponse* resp) {
                return service->GetRobotPart(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[29],
+      AppService_method_names[45],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetRobotPartLogsRequest, ::viam::app::v1::GetRobotPartLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetRobotPartLogsRequest, ::viam::app::v1::GetRobotPartLogsResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::GetRobotPartLogsRequest* req,
              ::viam::app::v1::GetRobotPartLogsResponse* resp) {
                return service->GetRobotPartLogs(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[30],
+      AppService_method_names[46],
       ::grpc::internal::RpcMethod::SERVER_STREAMING,
       new ::grpc::internal::ServerStreamingHandler< AppService::Service, ::viam::app::v1::TailRobotPartLogsRequest, ::viam::app::v1::TailRobotPartLogsResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::TailRobotPartLogsRequest* req,
-             ::grpc::ServerWriter<::viam::app::v1::TailRobotPartLogsResponse>* writer) {
+             ::grpc_impl::ServerWriter<::viam::app::v1::TailRobotPartLogsResponse>* writer) {
                return service->TailRobotPartLogs(ctx, req, writer);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[31],
+      AppService_method_names[47],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetRobotPartHistoryRequest, ::viam::app::v1::GetRobotPartHistoryResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetRobotPartHistoryRequest, ::viam::app::v1::GetRobotPartHistoryResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::GetRobotPartHistoryRequest* req,
              ::viam::app::v1::GetRobotPartHistoryResponse* resp) {
                return service->GetRobotPartHistory(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[32],
+      AppService_method_names[48],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateRobotPartRequest, ::viam::app::v1::UpdateRobotPartResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateRobotPartRequest, ::viam::app::v1::UpdateRobotPartResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::UpdateRobotPartRequest* req,
              ::viam::app::v1::UpdateRobotPartResponse* resp) {
                return service->UpdateRobotPart(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[33],
+      AppService_method_names[49],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::NewRobotPartRequest, ::viam::app::v1::NewRobotPartResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::NewRobotPartRequest, ::viam::app::v1::NewRobotPartResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::NewRobotPartRequest* req,
              ::viam::app::v1::NewRobotPartResponse* resp) {
                return service->NewRobotPart(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[34],
+      AppService_method_names[50],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteRobotPartRequest, ::viam::app::v1::DeleteRobotPartResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteRobotPartRequest, ::viam::app::v1::DeleteRobotPartResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::DeleteRobotPartRequest* req,
              ::viam::app::v1::DeleteRobotPartResponse* resp) {
                return service->DeleteRobotPart(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[35],
+      AppService_method_names[51],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetRobotAPIKeysRequest, ::viam::app::v1::GetRobotAPIKeysResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetRobotAPIKeysRequest, ::viam::app::v1::GetRobotAPIKeysResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::GetRobotAPIKeysRequest* req,
              ::viam::app::v1::GetRobotAPIKeysResponse* resp) {
                return service->GetRobotAPIKeys(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[36],
+      AppService_method_names[52],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::MarkPartAsMainRequest, ::viam::app::v1::MarkPartAsMainResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::MarkPartAsMainRequest, ::viam::app::v1::MarkPartAsMainResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::MarkPartAsMainRequest* req,
              ::viam::app::v1::MarkPartAsMainResponse* resp) {
                return service->MarkPartAsMain(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[37],
+      AppService_method_names[53],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::MarkPartForRestartRequest, ::viam::app::v1::MarkPartForRestartResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::MarkPartForRestartRequest, ::viam::app::v1::MarkPartForRestartResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::MarkPartForRestartRequest* req,
              ::viam::app::v1::MarkPartForRestartResponse* resp) {
                return service->MarkPartForRestart(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[38],
+      AppService_method_names[54],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateRobotPartSecretRequest, ::viam::app::v1::CreateRobotPartSecretResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateRobotPartSecretRequest, ::viam::app::v1::CreateRobotPartSecretResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::CreateRobotPartSecretRequest* req,
              ::viam::app::v1::CreateRobotPartSecretResponse* resp) {
                return service->CreateRobotPartSecret(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[39],
+      AppService_method_names[55],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteRobotPartSecretRequest, ::viam::app::v1::DeleteRobotPartSecretResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteRobotPartSecretRequest, ::viam::app::v1::DeleteRobotPartSecretResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::DeleteRobotPartSecretRequest* req,
              ::viam::app::v1::DeleteRobotPartSecretResponse* resp) {
                return service->DeleteRobotPartSecret(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[40],
+      AppService_method_names[56],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListRobotsRequest, ::viam::app::v1::ListRobotsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListRobotsRequest, ::viam::app::v1::ListRobotsResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::ListRobotsRequest* req,
              ::viam::app::v1::ListRobotsResponse* resp) {
                return service->ListRobots(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[41],
+      AppService_method_names[57],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::NewRobotRequest, ::viam::app::v1::NewRobotResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::NewRobotRequest, ::viam::app::v1::NewRobotResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::NewRobotRequest* req,
              ::viam::app::v1::NewRobotResponse* resp) {
                return service->NewRobot(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[42],
+      AppService_method_names[58],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateRobotRequest, ::viam::app::v1::UpdateRobotResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateRobotRequest, ::viam::app::v1::UpdateRobotResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::UpdateRobotRequest* req,
              ::viam::app::v1::UpdateRobotResponse* resp) {
                return service->UpdateRobot(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[43],
+      AppService_method_names[59],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteRobotRequest, ::viam::app::v1::DeleteRobotResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteRobotRequest, ::viam::app::v1::DeleteRobotResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::DeleteRobotRequest* req,
              ::viam::app::v1::DeleteRobotResponse* resp) {
                return service->DeleteRobot(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[44],
+      AppService_method_names[60],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListFragmentsRequest, ::viam::app::v1::ListFragmentsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListFragmentsRequest, ::viam::app::v1::ListFragmentsResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::ListFragmentsRequest* req,
              ::viam::app::v1::ListFragmentsResponse* resp) {
                return service->ListFragments(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[45],
+      AppService_method_names[61],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetFragmentRequest, ::viam::app::v1::GetFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetFragmentRequest, ::viam::app::v1::GetFragmentResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::GetFragmentRequest* req,
              ::viam::app::v1::GetFragmentResponse* resp) {
                return service->GetFragment(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[46],
+      AppService_method_names[62],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateFragmentRequest, ::viam::app::v1::CreateFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateFragmentRequest, ::viam::app::v1::CreateFragmentResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::CreateFragmentRequest* req,
              ::viam::app::v1::CreateFragmentResponse* resp) {
                return service->CreateFragment(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[47],
+      AppService_method_names[63],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateFragmentRequest, ::viam::app::v1::UpdateFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateFragmentRequest, ::viam::app::v1::UpdateFragmentResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::UpdateFragmentRequest* req,
              ::viam::app::v1::UpdateFragmentResponse* resp) {
                return service->UpdateFragment(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[48],
+      AppService_method_names[64],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteFragmentRequest, ::viam::app::v1::DeleteFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteFragmentRequest, ::viam::app::v1::DeleteFragmentResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::DeleteFragmentRequest* req,
              ::viam::app::v1::DeleteFragmentResponse* resp) {
                return service->DeleteFragment(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[49],
+      AppService_method_names[65],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListMachineFragmentsRequest, ::viam::app::v1::ListMachineFragmentsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListMachineFragmentsRequest, ::viam::app::v1::ListMachineFragmentsResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::ListMachineFragmentsRequest* req,
              ::viam::app::v1::ListMachineFragmentsResponse* resp) {
                return service->ListMachineFragments(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[50],
+      AppService_method_names[66],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetFragmentHistoryRequest, ::viam::app::v1::GetFragmentHistoryResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetFragmentHistoryRequest, ::viam::app::v1::GetFragmentHistoryResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::GetFragmentHistoryRequest* req,
              ::viam::app::v1::GetFragmentHistoryResponse* resp) {
                return service->GetFragmentHistory(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[51],
+      AppService_method_names[67],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::AddRoleRequest, ::viam::app::v1::AddRoleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::AddRoleRequest, ::viam::app::v1::AddRoleResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::AddRoleRequest* req,
              ::viam::app::v1::AddRoleResponse* resp) {
                return service->AddRole(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[52],
+      AppService_method_names[68],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::RemoveRoleRequest, ::viam::app::v1::RemoveRoleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::RemoveRoleRequest, ::viam::app::v1::RemoveRoleResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::RemoveRoleRequest* req,
              ::viam::app::v1::RemoveRoleResponse* resp) {
                return service->RemoveRole(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[53],
+      AppService_method_names[69],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ChangeRoleRequest, ::viam::app::v1::ChangeRoleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ChangeRoleRequest, ::viam::app::v1::ChangeRoleResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::ChangeRoleRequest* req,
              ::viam::app::v1::ChangeRoleResponse* resp) {
                return service->ChangeRole(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[54],
+      AppService_method_names[70],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListAuthorizationsRequest, ::viam::app::v1::ListAuthorizationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListAuthorizationsRequest, ::viam::app::v1::ListAuthorizationsResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::ListAuthorizationsRequest* req,
              ::viam::app::v1::ListAuthorizationsResponse* resp) {
                return service->ListAuthorizations(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[55],
+      AppService_method_names[71],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CheckPermissionsRequest, ::viam::app::v1::CheckPermissionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CheckPermissionsRequest, ::viam::app::v1::CheckPermissionsResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::CheckPermissionsRequest* req,
              ::viam::app::v1::CheckPermissionsResponse* resp) {
                return service->CheckPermissions(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[56],
+      AppService_method_names[72],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetRegistryItemRequest, ::viam::app::v1::GetRegistryItemResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetRegistryItemRequest, ::viam::app::v1::GetRegistryItemResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::GetRegistryItemRequest* req,
              ::viam::app::v1::GetRegistryItemResponse* resp) {
                return service->GetRegistryItem(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[57],
+      AppService_method_names[73],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateRegistryItemRequest, ::viam::app::v1::CreateRegistryItemResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateRegistryItemRequest, ::viam::app::v1::CreateRegistryItemResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::CreateRegistryItemRequest* req,
              ::viam::app::v1::CreateRegistryItemResponse* resp) {
                return service->CreateRegistryItem(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[58],
+      AppService_method_names[74],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateRegistryItemRequest, ::viam::app::v1::UpdateRegistryItemResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateRegistryItemRequest, ::viam::app::v1::UpdateRegistryItemResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::UpdateRegistryItemRequest* req,
              ::viam::app::v1::UpdateRegistryItemResponse* resp) {
                return service->UpdateRegistryItem(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[59],
+      AppService_method_names[75],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListRegistryItemsRequest, ::viam::app::v1::ListRegistryItemsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListRegistryItemsRequest, ::viam::app::v1::ListRegistryItemsResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::ListRegistryItemsRequest* req,
              ::viam::app::v1::ListRegistryItemsResponse* resp) {
                return service->ListRegistryItems(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[60],
+      AppService_method_names[76],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteRegistryItemRequest, ::viam::app::v1::DeleteRegistryItemResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteRegistryItemRequest, ::viam::app::v1::DeleteRegistryItemResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::DeleteRegistryItemRequest* req,
              ::viam::app::v1::DeleteRegistryItemResponse* resp) {
                return service->DeleteRegistryItem(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[61],
+      AppService_method_names[77],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::TransferRegistryItemRequest, ::viam::app::v1::TransferRegistryItemResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::TransferRegistryItemRequest, ::viam::app::v1::TransferRegistryItemResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::TransferRegistryItemRequest* req,
              ::viam::app::v1::TransferRegistryItemResponse* resp) {
                return service->TransferRegistryItem(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[62],
+      AppService_method_names[78],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateModuleRequest, ::viam::app::v1::CreateModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateModuleRequest, ::viam::app::v1::CreateModuleResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::CreateModuleRequest* req,
              ::viam::app::v1::CreateModuleResponse* resp) {
                return service->CreateModule(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[63],
+      AppService_method_names[79],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateModuleRequest, ::viam::app::v1::UpdateModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateModuleRequest, ::viam::app::v1::UpdateModuleResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::UpdateModuleRequest* req,
              ::viam::app::v1::UpdateModuleResponse* resp) {
                return service->UpdateModule(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[64],
+      AppService_method_names[80],
       ::grpc::internal::RpcMethod::CLIENT_STREAMING,
       new ::grpc::internal::ClientStreamingHandler< AppService::Service, ::viam::app::v1::UploadModuleFileRequest, ::viam::app::v1::UploadModuleFileResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
-             ::grpc::ServerReader<::viam::app::v1::UploadModuleFileRequest>* reader,
+             ::grpc_impl::ServerContext* ctx,
+             ::grpc_impl::ServerReader<::viam::app::v1::UploadModuleFileRequest>* reader,
              ::viam::app::v1::UploadModuleFileResponse* resp) {
                return service->UploadModuleFile(ctx, reader, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[65],
+      AppService_method_names[81],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetModuleRequest, ::viam::app::v1::GetModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetModuleRequest, ::viam::app::v1::GetModuleResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::GetModuleRequest* req,
              ::viam::app::v1::GetModuleResponse* resp) {
                return service->GetModule(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[66],
+      AppService_method_names[82],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListModulesRequest, ::viam::app::v1::ListModulesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListModulesRequest, ::viam::app::v1::ListModulesResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::ListModulesRequest* req,
              ::viam::app::v1::ListModulesResponse* resp) {
                return service->ListModules(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[67],
+      AppService_method_names[83],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateKeyRequest, ::viam::app::v1::CreateKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateKeyRequest, ::viam::app::v1::CreateKeyResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::CreateKeyRequest* req,
              ::viam::app::v1::CreateKeyResponse* resp) {
                return service->CreateKey(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[68],
+      AppService_method_names[84],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteKeyRequest, ::viam::app::v1::DeleteKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteKeyRequest, ::viam::app::v1::DeleteKeyResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::DeleteKeyRequest* req,
              ::viam::app::v1::DeleteKeyResponse* resp) {
                return service->DeleteKey(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[69],
+      AppService_method_names[85],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListKeysRequest, ::viam::app::v1::ListKeysResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListKeysRequest, ::viam::app::v1::ListKeysResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::ListKeysRequest* req,
              ::viam::app::v1::ListKeysResponse* resp) {
                return service->ListKeys(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[70],
+      AppService_method_names[86],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::RenameKeyRequest, ::viam::app::v1::RenameKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::RenameKeyRequest, ::viam::app::v1::RenameKeyResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::RenameKeyRequest* req,
              ::viam::app::v1::RenameKeyResponse* resp) {
                return service->RenameKey(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[71],
+      AppService_method_names[87],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::RotateKeyRequest, ::viam::app::v1::RotateKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::RotateKeyRequest, ::viam::app::v1::RotateKeyResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::RotateKeyRequest* req,
              ::viam::app::v1::RotateKeyResponse* resp) {
                return service->RotateKey(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[72],
+      AppService_method_names[88],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse>(
           [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest* req,
              ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse* resp) {
                return service->CreateKeyFromExistingKeyAuthorizations(ctx, req, resp);
@@ -2611,6 +3606,13 @@ AppService::Service::~Service() {
 }
 
 ::grpc::Status AppService::Service::ListOrganizationsByUser(::grpc::ServerContext* context, const ::viam::app::v1::ListOrganizationsByUserRequest* request, ::viam::app::v1::ListOrganizationsByUserResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::SearchOrganizations(::grpc::ServerContext* context, const ::viam::app::v1::SearchOrganizationsRequest* request, ::viam::app::v1::SearchOrganizationsResponse* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -2681,6 +3683,111 @@ AppService::Service::~Service() {
 }
 
 ::grpc::Status AppService::Service::ResendOrganizationInvite(::grpc::ServerContext* context, const ::viam::app::v1::ResendOrganizationInviteRequest* request, ::viam::app::v1::ResendOrganizationInviteResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::EnableBillingService(::grpc::ServerContext* context, const ::viam::app::v1::EnableBillingServiceRequest* request, ::viam::app::v1::EnableBillingServiceResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::DisableBillingService(::grpc::ServerContext* context, const ::viam::app::v1::DisableBillingServiceRequest* request, ::viam::app::v1::DisableBillingServiceResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::UpdateBillingService(::grpc::ServerContext* context, const ::viam::app::v1::UpdateBillingServiceRequest* request, ::viam::app::v1::UpdateBillingServiceResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::GetBillingServiceConfig(::grpc::ServerContext* context, const ::viam::app::v1::GetBillingServiceConfigRequest* request, ::viam::app::v1::GetBillingServiceConfigResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::OrganizationSetSupportEmail(::grpc::ServerContext* context, const ::viam::app::v1::OrganizationSetSupportEmailRequest* request, ::viam::app::v1::OrganizationSetSupportEmailResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::OrganizationGetSupportEmail(::grpc::ServerContext* context, const ::viam::app::v1::OrganizationGetSupportEmailRequest* request, ::viam::app::v1::OrganizationGetSupportEmailResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::OrganizationSetLogo(::grpc::ServerContext* context, const ::viam::app::v1::OrganizationSetLogoRequest* request, ::viam::app::v1::OrganizationSetLogoResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::OrganizationGetLogo(::grpc::ServerContext* context, const ::viam::app::v1::OrganizationGetLogoRequest* request, ::viam::app::v1::OrganizationGetLogoResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::EnableAuthService(::grpc::ServerContext* context, const ::viam::app::v1::EnableAuthServiceRequest* request, ::viam::app::v1::EnableAuthServiceResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::DisableAuthService(::grpc::ServerContext* context, const ::viam::app::v1::DisableAuthServiceRequest* request, ::viam::app::v1::DisableAuthServiceResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::CreateOAuthApp(::grpc::ServerContext* context, const ::viam::app::v1::CreateOAuthAppRequest* request, ::viam::app::v1::CreateOAuthAppResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::ReadOAuthApp(::grpc::ServerContext* context, const ::viam::app::v1::ReadOAuthAppRequest* request, ::viam::app::v1::ReadOAuthAppResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::UpdateOAuthApp(::grpc::ServerContext* context, const ::viam::app::v1::UpdateOAuthAppRequest* request, ::viam::app::v1::UpdateOAuthAppResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::DeleteOAuthApp(::grpc::ServerContext* context, const ::viam::app::v1::DeleteOAuthAppRequest* request, ::viam::app::v1::DeleteOAuthAppResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::ListOAuthApps(::grpc::ServerContext* context, const ::viam::app::v1::ListOAuthAppsRequest* request, ::viam::app::v1::ListOAuthAppsResponse* response) {
   (void) context;
   (void) request;
   (void) response;

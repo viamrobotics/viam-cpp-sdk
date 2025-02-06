@@ -39,48 +39,44 @@ class FileUploadService final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    // Due to an issue described by https://github.com/improbable-eng/ts-protoc-gen/pull/264
-    // we use a streaming response but only expect one response.
-    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>> UploadFile(::grpc::ClientContext* context) {
-      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>>(UploadFileRaw(context));
+    std::unique_ptr< ::grpc::ClientWriterInterface< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>> UploadFile(::grpc::ClientContext* context, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* response) {
+      return std::unique_ptr< ::grpc::ClientWriterInterface< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>>(UploadFileRaw(context, response));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>> AsyncUploadFile(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>>(AsyncUploadFileRaw(context, cq, tag));
+    std::unique_ptr< ::grpc::ClientAsyncWriterInterface< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>> AsyncUploadFile(::grpc::ClientContext* context, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* response, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncWriterInterface< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>>(AsyncUploadFileRaw(context, response, cq, tag));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>> PrepareAsyncUploadFile(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>>(PrepareAsyncUploadFileRaw(context, cq));
+    std::unique_ptr< ::grpc::ClientAsyncWriterInterface< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>> PrepareAsyncUploadFile(::grpc::ClientContext* context, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* response, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncWriterInterface< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>>(PrepareAsyncUploadFileRaw(context, response, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
-      // Due to an issue described by https://github.com/improbable-eng/ts-protoc-gen/pull/264
-      // we use a streaming response but only expect one response.
-      virtual void UploadFile(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::proto::rpc::examples::fileupload::v1::UploadFileRequest,::proto::rpc::examples::fileupload::v1::UploadFileResponse>* reactor) = 0;
+      virtual void UploadFile(::grpc::ClientContext* context, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* response, ::grpc::ClientWriteReactor< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientReaderWriterInterface< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>* UploadFileRaw(::grpc::ClientContext* context) = 0;
-    virtual ::grpc::ClientAsyncReaderWriterInterface< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>* AsyncUploadFileRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
-    virtual ::grpc::ClientAsyncReaderWriterInterface< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>* PrepareAsyncUploadFileRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientWriterInterface< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* UploadFileRaw(::grpc::ClientContext* context, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* response) = 0;
+    virtual ::grpc::ClientAsyncWriterInterface< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* AsyncUploadFileRaw(::grpc::ClientContext* context, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* response, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncWriterInterface< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* PrepareAsyncUploadFileRaw(::grpc::ClientContext* context, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* response, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    std::unique_ptr< ::grpc::ClientReaderWriter< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>> UploadFile(::grpc::ClientContext* context) {
-      return std::unique_ptr< ::grpc::ClientReaderWriter< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>>(UploadFileRaw(context));
+    std::unique_ptr< ::grpc::ClientWriter< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>> UploadFile(::grpc::ClientContext* context, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* response) {
+      return std::unique_ptr< ::grpc::ClientWriter< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>>(UploadFileRaw(context, response));
     }
-    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>> AsyncUploadFile(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>>(AsyncUploadFileRaw(context, cq, tag));
+    std::unique_ptr< ::grpc::ClientAsyncWriter< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>> AsyncUploadFile(::grpc::ClientContext* context, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* response, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncWriter< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>>(AsyncUploadFileRaw(context, response, cq, tag));
     }
-    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>> PrepareAsyncUploadFile(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>>(PrepareAsyncUploadFileRaw(context, cq));
+    std::unique_ptr< ::grpc::ClientAsyncWriter< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>> PrepareAsyncUploadFile(::grpc::ClientContext* context, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* response, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncWriter< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>>(PrepareAsyncUploadFileRaw(context, response, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void UploadFile(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::proto::rpc::examples::fileupload::v1::UploadFileRequest,::proto::rpc::examples::fileupload::v1::UploadFileResponse>* reactor) override;
+      void UploadFile(::grpc::ClientContext* context, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* response, ::grpc::ClientWriteReactor< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -92,9 +88,9 @@ class FileUploadService final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientReaderWriter< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>* UploadFileRaw(::grpc::ClientContext* context) override;
-    ::grpc::ClientAsyncReaderWriter< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>* AsyncUploadFileRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
-    ::grpc::ClientAsyncReaderWriter< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>* PrepareAsyncUploadFileRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientWriter< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* UploadFileRaw(::grpc::ClientContext* context, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* response) override;
+    ::grpc::ClientAsyncWriter< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* AsyncUploadFileRaw(::grpc::ClientContext* context, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* response, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncWriter< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* PrepareAsyncUploadFileRaw(::grpc::ClientContext* context, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* response, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_UploadFile_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
@@ -103,9 +99,7 @@ class FileUploadService final {
    public:
     Service();
     virtual ~Service();
-    // Due to an issue described by https://github.com/improbable-eng/ts-protoc-gen/pull/264
-    // we use a streaming response but only expect one response.
-    virtual ::grpc::Status UploadFile(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::proto::rpc::examples::fileupload::v1::UploadFileResponse, ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* stream);
+    virtual ::grpc::Status UploadFile(::grpc::ServerContext* context, ::grpc::ServerReader< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* reader, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_UploadFile : public BaseClass {
@@ -119,12 +113,12 @@ class FileUploadService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status UploadFile(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::proto::rpc::examples::fileupload::v1::UploadFileResponse, ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* /*stream*/)  override {
+    ::grpc::Status UploadFile(::grpc::ServerContext* /*context*/, ::grpc::ServerReader< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* /*reader*/, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestUploadFile(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::proto::rpc::examples::fileupload::v1::UploadFileResponse, ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncBidiStreaming(0, context, stream, new_call_cq, notification_cq, tag);
+    void RequestUploadFile(::grpc::ServerContext* context, ::grpc::ServerAsyncReader< ::proto::rpc::examples::fileupload::v1::UploadFileResponse, ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* reader, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncClientStreaming(0, context, reader, new_call_cq, notification_cq, tag);
     }
   };
   typedef WithAsyncMethod_UploadFile<Service > AsyncService;
@@ -135,21 +129,20 @@ class FileUploadService final {
    public:
     WithCallbackMethod_UploadFile() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackBidiHandler< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>(
+          new ::grpc::internal::CallbackClientStreamingHandler< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context) { return this->UploadFile(context); }));
+                   ::grpc::CallbackServerContext* context, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* response) { return this->UploadFile(context, response); }));
     }
     ~WithCallbackMethod_UploadFile() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status UploadFile(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::proto::rpc::examples::fileupload::v1::UploadFileResponse, ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* /*stream*/)  override {
+    ::grpc::Status UploadFile(::grpc::ServerContext* /*context*/, ::grpc::ServerReader< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* /*reader*/, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerBidiReactor< ::proto::rpc::examples::fileupload::v1::UploadFileRequest, ::proto::rpc::examples::fileupload::v1::UploadFileResponse>* UploadFile(
-      ::grpc::CallbackServerContext* /*context*/)
-      { return nullptr; }
+    virtual ::grpc::ServerReadReactor< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* UploadFile(
+      ::grpc::CallbackServerContext* /*context*/, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* /*response*/)  { return nullptr; }
   };
   typedef WithCallbackMethod_UploadFile<Service > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
@@ -165,7 +158,7 @@ class FileUploadService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status UploadFile(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::proto::rpc::examples::fileupload::v1::UploadFileResponse, ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* /*stream*/)  override {
+    ::grpc::Status UploadFile(::grpc::ServerContext* /*context*/, ::grpc::ServerReader< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* /*reader*/, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -182,12 +175,12 @@ class FileUploadService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status UploadFile(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::proto::rpc::examples::fileupload::v1::UploadFileResponse, ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* /*stream*/)  override {
+    ::grpc::Status UploadFile(::grpc::ServerContext* /*context*/, ::grpc::ServerReader< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* /*reader*/, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestUploadFile(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncBidiStreaming(0, context, stream, new_call_cq, notification_cq, tag);
+    void RequestUploadFile(::grpc::ServerContext* context, ::grpc::ServerAsyncReader< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* reader, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncClientStreaming(0, context, reader, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -197,21 +190,20 @@ class FileUploadService final {
    public:
     WithRawCallbackMethod_UploadFile() {
       ::grpc::Service::MarkMethodRawCallback(0,
-          new ::grpc::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          new ::grpc::internal::CallbackClientStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context) { return this->UploadFile(context); }));
+                   ::grpc::CallbackServerContext* context, ::grpc::ByteBuffer* response) { return this->UploadFile(context, response); }));
     }
     ~WithRawCallbackMethod_UploadFile() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status UploadFile(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::proto::rpc::examples::fileupload::v1::UploadFileResponse, ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* /*stream*/)  override {
+    ::grpc::Status UploadFile(::grpc::ServerContext* /*context*/, ::grpc::ServerReader< ::proto::rpc::examples::fileupload::v1::UploadFileRequest>* /*reader*/, ::proto::rpc::examples::fileupload::v1::UploadFileResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* UploadFile(
-      ::grpc::CallbackServerContext* /*context*/)
-      { return nullptr; }
+    virtual ::grpc::ServerReadReactor< ::grpc::ByteBuffer>* UploadFile(
+      ::grpc::CallbackServerContext* /*context*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   typedef Service StreamedUnaryService;
   typedef Service SplitStreamedService;

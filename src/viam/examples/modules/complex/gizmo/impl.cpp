@@ -15,13 +15,13 @@ using namespace viam::sdk;
 
 std::string find_arg1(ResourceConfig cfg) {
     auto gizmo_name = cfg.name();
-    auto arg1 = cfg.attributes()->find("arg1");
-    if (arg1 == cfg.attributes()->end()) {
+    auto arg1 = cfg.attributes().find("arg1");
+    if (arg1 == cfg.attributes().end()) {
         std::ostringstream buffer;
         buffer << gizmo_name << ": Required parameter `arg1` not found in configuration";
         throw std::invalid_argument(buffer.str());
     }
-    const auto* const arg1_string = arg1->second->get<std::string>();
+    const auto* const arg1_string = arg1->second.get<std::string>();
     if (!arg1_string || arg1_string->empty()) {
         std::ostringstream buffer;
         buffer << gizmo_name << ": Required non-empty string parameter `arg1`"

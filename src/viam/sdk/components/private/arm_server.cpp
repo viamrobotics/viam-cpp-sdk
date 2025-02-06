@@ -1,6 +1,6 @@
 #include <viam/sdk/components/private/arm_server.hpp>
 
-#include <viam/sdk/common/service_helper.hpp>
+#include <viam/sdk/common/private/service_helper.hpp>
 
 namespace viam {
 namespace sdk {
@@ -16,7 +16,7 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
     return make_service_helper<Arm>(
         "ArmServer::GetEndPosition", this, request)([&](auto& helper, auto& arm) {
         const pose p = arm->get_end_position(helper.getExtra());
-        *response->mutable_pose() = p.to_proto();
+        *response->mutable_pose() = to_proto(p);
     });
 }
 
@@ -26,7 +26,7 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
     ::viam::component::arm::v1::MoveToPositionResponse*) noexcept {
     return make_service_helper<Arm>(
         "ArmServer::MoveToPosition", this, request)([&](auto& helper, auto& arm) {
-        arm->move_to_position(pose::from_proto(request->to()), helper.getExtra());
+        arm->move_to_position(from_proto(request->to()), helper.getExtra());
     });
 }
 
@@ -53,6 +53,32 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
+::grpc::Status ArmServer::MoveThroughJointPositions(
+    ::grpc::ServerContext*,
+    const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* request,
+    ::viam::component::arm::v1::MoveThroughJointPositionsResponse*) noexcept {
+    return make_service_helper<Arm>(
+        "ArmServer::MoveThroughJointPositions", this, request)([&](auto& helper, auto& arm) {
+        std::vector<std::vector<double>> positions;
+
+        positions.reserve(request->positions_size());
+        for (const auto& values : request->positions()) {
+            positions.emplace_back(values.values().begin(), values.values().end());
+        }
+
+        Arm::MoveOptions opts;
+        if (request->options().has_max_vel_degs_per_sec()) {
+            opts.max_vel_degs_per_sec = request->options().max_vel_degs_per_sec();
+        }
+
+        if (request->options().has_max_acc_degs_per_sec2()) {
+            opts.max_acc_degs_per_sec2 = request->options().max_acc_degs_per_sec2();
+        }
+
+        arm->move_through_joint_positions(positions, opts, helper.getExtra());
+    });
+}
+
 ::grpc::Status ArmServer::Stop(::grpc::ServerContext*,
                                const ::viam::component::arm::v1::StopRequest* request,
                                ::viam::component::arm::v1::StopResponse*) noexcept {
@@ -72,8 +98,8 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
                                     const ::viam::common::v1::DoCommandRequest* request,
                                     ::viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Arm>("ArmServer::DoCommand", this, request)([&](auto&, auto& arm) {
-        const AttributeMap result = arm->do_command(struct_to_map(request->command()));
-        *response->mutable_result() = map_to_struct(result);
+        const ProtoStruct result = arm->do_command(from_proto(request->command()));
+        *response->mutable_result() = to_proto(result);
     });
 }
 
@@ -117,7 +143,7 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
         "ArmServer::GetGeometries", this, request)([&](auto& helper, auto& arm) {
         const std::vector<GeometryConfig> geometries = arm->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = geometry.to_proto();
+            *response->mutable_geometries()->Add() = to_proto(geometry);
         }
     });
 }

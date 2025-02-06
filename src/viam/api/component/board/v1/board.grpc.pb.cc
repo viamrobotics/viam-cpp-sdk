@@ -6,19 +6,19 @@
 #include "component/board/v1/board.grpc.pb.h"
 
 #include <functional>
-#include <grpcpp/support/async_stream.h>
-#include <grpcpp/support/async_unary_call.h>
-#include <grpcpp/impl/channel_interface.h>
-#include <grpcpp/impl/client_unary_call.h>
-#include <grpcpp/support/client_callback.h>
-#include <grpcpp/support/message_allocator.h>
-#include <grpcpp/support/method_handler.h>
-#include <grpcpp/impl/rpc_service_method.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/sync_stream.h>
+#include <grpcpp/impl/codegen/async_stream.h>
+#include <grpcpp/impl/codegen/async_unary_call.h>
+#include <grpcpp/impl/codegen/channel_interface.h>
+#include <grpcpp/impl/codegen/client_unary_call.h>
+#include <grpcpp/impl/codegen/client_callback.h>
+#include <grpcpp/impl/codegen/message_allocator.h>
+#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/impl/codegen/rpc_service_method.h>
+#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/codegen/server_callback_handlers.h>
+#include <grpcpp/impl/codegen/server_context.h>
+#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/impl/codegen/sync_stream.h>
 namespace viam {
 namespace component {
 namespace board {
@@ -42,325 +42,385 @@ static const char* BoardService_method_names[] = {
 
 std::unique_ptr< BoardService::Stub> BoardService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< BoardService::Stub> stub(new BoardService::Stub(channel, options));
+  std::unique_ptr< BoardService::Stub> stub(new BoardService::Stub(channel));
   return stub;
 }
 
-BoardService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_SetGPIO_(BoardService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetGPIO_(BoardService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PWM_(BoardService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetPWM_(BoardService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PWMFrequency_(BoardService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetPWMFrequency_(BoardService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DoCommand_(BoardService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ReadAnalogReader_(BoardService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_WriteAnalog_(BoardService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetDigitalInterruptValue_(BoardService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_StreamTicks_(BoardService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
-  , rpcmethod_SetPowerMode_(BoardService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetGeometries_(BoardService_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+BoardService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
+  : channel_(channel), rpcmethod_SetGPIO_(BoardService_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGPIO_(BoardService_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PWM_(BoardService_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetPWM_(BoardService_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PWMFrequency_(BoardService_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetPWMFrequency_(BoardService_method_names[5], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DoCommand_(BoardService_method_names[6], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ReadAnalogReader_(BoardService_method_names[7], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_WriteAnalog_(BoardService_method_names[8], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetDigitalInterruptValue_(BoardService_method_names[9], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_StreamTicks_(BoardService_method_names[10], ::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_SetPowerMode_(BoardService_method_names[11], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGeometries_(BoardService_method_names[12], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status BoardService::Stub::SetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::SetGPIORequest& request, ::viam::component::board::v1::SetGPIOResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::board::v1::SetGPIORequest, ::viam::component::board::v1::SetGPIOResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetGPIO_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetGPIO_, context, request, response);
 }
 
-void BoardService::Stub::async::SetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::SetGPIORequest* request, ::viam::component::board::v1::SetGPIOResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::board::v1::SetGPIORequest, ::viam::component::board::v1::SetGPIOResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetGPIO_, context, request, response, std::move(f));
+void BoardService::Stub::experimental_async::SetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::SetGPIORequest* request, ::viam::component::board::v1::SetGPIOResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetGPIO_, context, request, response, std::move(f));
 }
 
-void BoardService::Stub::async::SetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::SetGPIORequest* request, ::viam::component::board::v1::SetGPIOResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetGPIO_, context, request, response, reactor);
+void BoardService::Stub::experimental_async::SetGPIO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetGPIOResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetGPIO_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::SetGPIOResponse>* BoardService::Stub::PrepareAsyncSetGPIORaw(::grpc::ClientContext* context, const ::viam::component::board::v1::SetGPIORequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::board::v1::SetGPIOResponse, ::viam::component::board::v1::SetGPIORequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetGPIO_, context, request);
+void BoardService::Stub::experimental_async::SetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::SetGPIORequest* request, ::viam::component::board::v1::SetGPIOResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetGPIO_, context, request, response, reactor);
+}
+
+void BoardService::Stub::experimental_async::SetGPIO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetGPIOResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetGPIO_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::SetGPIOResponse>* BoardService::Stub::AsyncSetGPIORaw(::grpc::ClientContext* context, const ::viam::component::board::v1::SetGPIORequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetGPIORaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::board::v1::SetGPIOResponse>::Create(channel_.get(), cq, rpcmethod_SetGPIO_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::SetGPIOResponse>* BoardService::Stub::PrepareAsyncSetGPIORaw(::grpc::ClientContext* context, const ::viam::component::board::v1::SetGPIORequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::board::v1::SetGPIOResponse>::Create(channel_.get(), cq, rpcmethod_SetGPIO_, context, request, false);
 }
 
 ::grpc::Status BoardService::Stub::GetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::GetGPIORequest& request, ::viam::component::board::v1::GetGPIOResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::board::v1::GetGPIORequest, ::viam::component::board::v1::GetGPIOResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetGPIO_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetGPIO_, context, request, response);
 }
 
-void BoardService::Stub::async::GetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::GetGPIORequest* request, ::viam::component::board::v1::GetGPIOResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::board::v1::GetGPIORequest, ::viam::component::board::v1::GetGPIOResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetGPIO_, context, request, response, std::move(f));
+void BoardService::Stub::experimental_async::GetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::GetGPIORequest* request, ::viam::component::board::v1::GetGPIOResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetGPIO_, context, request, response, std::move(f));
 }
 
-void BoardService::Stub::async::GetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::GetGPIORequest* request, ::viam::component::board::v1::GetGPIOResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetGPIO_, context, request, response, reactor);
+void BoardService::Stub::experimental_async::GetGPIO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::GetGPIOResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetGPIO_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::GetGPIOResponse>* BoardService::Stub::PrepareAsyncGetGPIORaw(::grpc::ClientContext* context, const ::viam::component::board::v1::GetGPIORequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::board::v1::GetGPIOResponse, ::viam::component::board::v1::GetGPIORequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetGPIO_, context, request);
+void BoardService::Stub::experimental_async::GetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::GetGPIORequest* request, ::viam::component::board::v1::GetGPIOResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetGPIO_, context, request, response, reactor);
+}
+
+void BoardService::Stub::experimental_async::GetGPIO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::GetGPIOResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetGPIO_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::GetGPIOResponse>* BoardService::Stub::AsyncGetGPIORaw(::grpc::ClientContext* context, const ::viam::component::board::v1::GetGPIORequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetGPIORaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::board::v1::GetGPIOResponse>::Create(channel_.get(), cq, rpcmethod_GetGPIO_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::GetGPIOResponse>* BoardService::Stub::PrepareAsyncGetGPIORaw(::grpc::ClientContext* context, const ::viam::component::board::v1::GetGPIORequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::board::v1::GetGPIOResponse>::Create(channel_.get(), cq, rpcmethod_GetGPIO_, context, request, false);
 }
 
 ::grpc::Status BoardService::Stub::PWM(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMRequest& request, ::viam::component::board::v1::PWMResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::board::v1::PWMRequest, ::viam::component::board::v1::PWMResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PWM_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PWM_, context, request, response);
 }
 
-void BoardService::Stub::async::PWM(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMRequest* request, ::viam::component::board::v1::PWMResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::board::v1::PWMRequest, ::viam::component::board::v1::PWMResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PWM_, context, request, response, std::move(f));
+void BoardService::Stub::experimental_async::PWM(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMRequest* request, ::viam::component::board::v1::PWMResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PWM_, context, request, response, std::move(f));
 }
 
-void BoardService::Stub::async::PWM(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMRequest* request, ::viam::component::board::v1::PWMResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PWM_, context, request, response, reactor);
+void BoardService::Stub::experimental_async::PWM(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::PWMResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PWM_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::PWMResponse>* BoardService::Stub::PrepareAsyncPWMRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::board::v1::PWMResponse, ::viam::component::board::v1::PWMRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PWM_, context, request);
+void BoardService::Stub::experimental_async::PWM(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMRequest* request, ::viam::component::board::v1::PWMResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PWM_, context, request, response, reactor);
+}
+
+void BoardService::Stub::experimental_async::PWM(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::PWMResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PWM_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::PWMResponse>* BoardService::Stub::AsyncPWMRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncPWMRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::board::v1::PWMResponse>::Create(channel_.get(), cq, rpcmethod_PWM_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::PWMResponse>* BoardService::Stub::PrepareAsyncPWMRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::board::v1::PWMResponse>::Create(channel_.get(), cq, rpcmethod_PWM_, context, request, false);
 }
 
 ::grpc::Status BoardService::Stub::SetPWM(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMRequest& request, ::viam::component::board::v1::SetPWMResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::board::v1::SetPWMRequest, ::viam::component::board::v1::SetPWMResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetPWM_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetPWM_, context, request, response);
 }
 
-void BoardService::Stub::async::SetPWM(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMRequest* request, ::viam::component::board::v1::SetPWMResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::board::v1::SetPWMRequest, ::viam::component::board::v1::SetPWMResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPWM_, context, request, response, std::move(f));
+void BoardService::Stub::experimental_async::SetPWM(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMRequest* request, ::viam::component::board::v1::SetPWMResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetPWM_, context, request, response, std::move(f));
 }
 
-void BoardService::Stub::async::SetPWM(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMRequest* request, ::viam::component::board::v1::SetPWMResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPWM_, context, request, response, reactor);
+void BoardService::Stub::experimental_async::SetPWM(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetPWMResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetPWM_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::SetPWMResponse>* BoardService::Stub::PrepareAsyncSetPWMRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::board::v1::SetPWMResponse, ::viam::component::board::v1::SetPWMRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetPWM_, context, request);
+void BoardService::Stub::experimental_async::SetPWM(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMRequest* request, ::viam::component::board::v1::SetPWMResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetPWM_, context, request, response, reactor);
+}
+
+void BoardService::Stub::experimental_async::SetPWM(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetPWMResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetPWM_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::SetPWMResponse>* BoardService::Stub::AsyncSetPWMRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetPWMRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::board::v1::SetPWMResponse>::Create(channel_.get(), cq, rpcmethod_SetPWM_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::SetPWMResponse>* BoardService::Stub::PrepareAsyncSetPWMRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::board::v1::SetPWMResponse>::Create(channel_.get(), cq, rpcmethod_SetPWM_, context, request, false);
 }
 
 ::grpc::Status BoardService::Stub::PWMFrequency(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMFrequencyRequest& request, ::viam::component::board::v1::PWMFrequencyResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::board::v1::PWMFrequencyRequest, ::viam::component::board::v1::PWMFrequencyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PWMFrequency_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PWMFrequency_, context, request, response);
 }
 
-void BoardService::Stub::async::PWMFrequency(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMFrequencyRequest* request, ::viam::component::board::v1::PWMFrequencyResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::board::v1::PWMFrequencyRequest, ::viam::component::board::v1::PWMFrequencyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PWMFrequency_, context, request, response, std::move(f));
+void BoardService::Stub::experimental_async::PWMFrequency(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMFrequencyRequest* request, ::viam::component::board::v1::PWMFrequencyResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PWMFrequency_, context, request, response, std::move(f));
 }
 
-void BoardService::Stub::async::PWMFrequency(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMFrequencyRequest* request, ::viam::component::board::v1::PWMFrequencyResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PWMFrequency_, context, request, response, reactor);
+void BoardService::Stub::experimental_async::PWMFrequency(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::PWMFrequencyResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PWMFrequency_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::PWMFrequencyResponse>* BoardService::Stub::PrepareAsyncPWMFrequencyRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMFrequencyRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::board::v1::PWMFrequencyResponse, ::viam::component::board::v1::PWMFrequencyRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PWMFrequency_, context, request);
+void BoardService::Stub::experimental_async::PWMFrequency(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMFrequencyRequest* request, ::viam::component::board::v1::PWMFrequencyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PWMFrequency_, context, request, response, reactor);
+}
+
+void BoardService::Stub::experimental_async::PWMFrequency(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::PWMFrequencyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PWMFrequency_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::PWMFrequencyResponse>* BoardService::Stub::AsyncPWMFrequencyRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMFrequencyRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncPWMFrequencyRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::board::v1::PWMFrequencyResponse>::Create(channel_.get(), cq, rpcmethod_PWMFrequency_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::PWMFrequencyResponse>* BoardService::Stub::PrepareAsyncPWMFrequencyRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::PWMFrequencyRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::board::v1::PWMFrequencyResponse>::Create(channel_.get(), cq, rpcmethod_PWMFrequency_, context, request, false);
 }
 
 ::grpc::Status BoardService::Stub::SetPWMFrequency(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMFrequencyRequest& request, ::viam::component::board::v1::SetPWMFrequencyResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::board::v1::SetPWMFrequencyRequest, ::viam::component::board::v1::SetPWMFrequencyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetPWMFrequency_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetPWMFrequency_, context, request, response);
 }
 
-void BoardService::Stub::async::SetPWMFrequency(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMFrequencyRequest* request, ::viam::component::board::v1::SetPWMFrequencyResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::board::v1::SetPWMFrequencyRequest, ::viam::component::board::v1::SetPWMFrequencyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPWMFrequency_, context, request, response, std::move(f));
+void BoardService::Stub::experimental_async::SetPWMFrequency(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMFrequencyRequest* request, ::viam::component::board::v1::SetPWMFrequencyResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetPWMFrequency_, context, request, response, std::move(f));
 }
 
-void BoardService::Stub::async::SetPWMFrequency(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMFrequencyRequest* request, ::viam::component::board::v1::SetPWMFrequencyResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPWMFrequency_, context, request, response, reactor);
+void BoardService::Stub::experimental_async::SetPWMFrequency(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetPWMFrequencyResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetPWMFrequency_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::SetPWMFrequencyResponse>* BoardService::Stub::PrepareAsyncSetPWMFrequencyRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMFrequencyRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::board::v1::SetPWMFrequencyResponse, ::viam::component::board::v1::SetPWMFrequencyRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetPWMFrequency_, context, request);
+void BoardService::Stub::experimental_async::SetPWMFrequency(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMFrequencyRequest* request, ::viam::component::board::v1::SetPWMFrequencyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetPWMFrequency_, context, request, response, reactor);
+}
+
+void BoardService::Stub::experimental_async::SetPWMFrequency(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetPWMFrequencyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetPWMFrequency_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::SetPWMFrequencyResponse>* BoardService::Stub::AsyncSetPWMFrequencyRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMFrequencyRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetPWMFrequencyRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::board::v1::SetPWMFrequencyResponse>::Create(channel_.get(), cq, rpcmethod_SetPWMFrequency_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::SetPWMFrequencyResponse>* BoardService::Stub::PrepareAsyncSetPWMFrequencyRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPWMFrequencyRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::board::v1::SetPWMFrequencyResponse>::Create(channel_.get(), cq, rpcmethod_SetPWMFrequency_, context, request, false);
 }
 
 ::grpc::Status BoardService::Stub::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DoCommand_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DoCommand_, context, request, response);
 }
 
-void BoardService::Stub::async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
+void BoardService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
 }
 
-void BoardService::Stub::async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
+void BoardService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* BoardService::Stub::PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::DoCommandResponse, ::viam::common::v1::DoCommandRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DoCommand_, context, request);
+void BoardService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
+}
+
+void BoardService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* BoardService::Stub::AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncDoCommandRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::DoCommandResponse>::Create(channel_.get(), cq, rpcmethod_DoCommand_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* BoardService::Stub::PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::DoCommandResponse>::Create(channel_.get(), cq, rpcmethod_DoCommand_, context, request, false);
 }
 
 ::grpc::Status BoardService::Stub::ReadAnalogReader(::grpc::ClientContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest& request, ::viam::component::board::v1::ReadAnalogReaderResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::board::v1::ReadAnalogReaderRequest, ::viam::component::board::v1::ReadAnalogReaderResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ReadAnalogReader_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ReadAnalogReader_, context, request, response);
 }
 
-void BoardService::Stub::async::ReadAnalogReader(::grpc::ClientContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::board::v1::ReadAnalogReaderRequest, ::viam::component::board::v1::ReadAnalogReaderResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ReadAnalogReader_, context, request, response, std::move(f));
+void BoardService::Stub::experimental_async::ReadAnalogReader(::grpc::ClientContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ReadAnalogReader_, context, request, response, std::move(f));
 }
 
-void BoardService::Stub::async::ReadAnalogReader(::grpc::ClientContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ReadAnalogReader_, context, request, response, reactor);
+void BoardService::Stub::experimental_async::ReadAnalogReader(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ReadAnalogReader_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::ReadAnalogReaderResponse>* BoardService::Stub::PrepareAsyncReadAnalogReaderRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::board::v1::ReadAnalogReaderResponse, ::viam::component::board::v1::ReadAnalogReaderRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ReadAnalogReader_, context, request);
+void BoardService::Stub::experimental_async::ReadAnalogReader(::grpc::ClientContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ReadAnalogReader_, context, request, response, reactor);
+}
+
+void BoardService::Stub::experimental_async::ReadAnalogReader(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ReadAnalogReader_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::ReadAnalogReaderResponse>* BoardService::Stub::AsyncReadAnalogReaderRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncReadAnalogReaderRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::board::v1::ReadAnalogReaderResponse>::Create(channel_.get(), cq, rpcmethod_ReadAnalogReader_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::ReadAnalogReaderResponse>* BoardService::Stub::PrepareAsyncReadAnalogReaderRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::board::v1::ReadAnalogReaderResponse>::Create(channel_.get(), cq, rpcmethod_ReadAnalogReader_, context, request, false);
 }
 
 ::grpc::Status BoardService::Stub::WriteAnalog(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest& request, ::viam::component::board::v1::WriteAnalogResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::board::v1::WriteAnalogRequest, ::viam::component::board::v1::WriteAnalogResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_WriteAnalog_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_WriteAnalog_, context, request, response);
 }
 
-void BoardService::Stub::async::WriteAnalog(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest* request, ::viam::component::board::v1::WriteAnalogResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::board::v1::WriteAnalogRequest, ::viam::component::board::v1::WriteAnalogResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_WriteAnalog_, context, request, response, std::move(f));
+void BoardService::Stub::experimental_async::WriteAnalog(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest* request, ::viam::component::board::v1::WriteAnalogResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_WriteAnalog_, context, request, response, std::move(f));
 }
 
-void BoardService::Stub::async::WriteAnalog(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest* request, ::viam::component::board::v1::WriteAnalogResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_WriteAnalog_, context, request, response, reactor);
+void BoardService::Stub::experimental_async::WriteAnalog(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::WriteAnalogResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_WriteAnalog_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::WriteAnalogResponse>* BoardService::Stub::PrepareAsyncWriteAnalogRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::board::v1::WriteAnalogResponse, ::viam::component::board::v1::WriteAnalogRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_WriteAnalog_, context, request);
+void BoardService::Stub::experimental_async::WriteAnalog(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest* request, ::viam::component::board::v1::WriteAnalogResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_WriteAnalog_, context, request, response, reactor);
+}
+
+void BoardService::Stub::experimental_async::WriteAnalog(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::WriteAnalogResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_WriteAnalog_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::WriteAnalogResponse>* BoardService::Stub::AsyncWriteAnalogRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncWriteAnalogRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::board::v1::WriteAnalogResponse>::Create(channel_.get(), cq, rpcmethod_WriteAnalog_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::WriteAnalogResponse>* BoardService::Stub::PrepareAsyncWriteAnalogRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::board::v1::WriteAnalogResponse>::Create(channel_.get(), cq, rpcmethod_WriteAnalog_, context, request, false);
 }
 
 ::grpc::Status BoardService::Stub::GetDigitalInterruptValue(::grpc::ClientContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest& request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::board::v1::GetDigitalInterruptValueRequest, ::viam::component::board::v1::GetDigitalInterruptValueResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetDigitalInterruptValue_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetDigitalInterruptValue_, context, request, response);
 }
 
-void BoardService::Stub::async::GetDigitalInterruptValue(::grpc::ClientContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest* request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::board::v1::GetDigitalInterruptValueRequest, ::viam::component::board::v1::GetDigitalInterruptValueResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDigitalInterruptValue_, context, request, response, std::move(f));
+void BoardService::Stub::experimental_async::GetDigitalInterruptValue(::grpc::ClientContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest* request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetDigitalInterruptValue_, context, request, response, std::move(f));
 }
 
-void BoardService::Stub::async::GetDigitalInterruptValue(::grpc::ClientContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest* request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDigitalInterruptValue_, context, request, response, reactor);
+void BoardService::Stub::experimental_async::GetDigitalInterruptValue(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetDigitalInterruptValue_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::GetDigitalInterruptValueResponse>* BoardService::Stub::PrepareAsyncGetDigitalInterruptValueRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::board::v1::GetDigitalInterruptValueResponse, ::viam::component::board::v1::GetDigitalInterruptValueRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetDigitalInterruptValue_, context, request);
+void BoardService::Stub::experimental_async::GetDigitalInterruptValue(::grpc::ClientContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest* request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetDigitalInterruptValue_, context, request, response, reactor);
+}
+
+void BoardService::Stub::experimental_async::GetDigitalInterruptValue(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetDigitalInterruptValue_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::GetDigitalInterruptValueResponse>* BoardService::Stub::AsyncGetDigitalInterruptValueRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetDigitalInterruptValueRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::board::v1::GetDigitalInterruptValueResponse>::Create(channel_.get(), cq, rpcmethod_GetDigitalInterruptValue_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::GetDigitalInterruptValueResponse>* BoardService::Stub::PrepareAsyncGetDigitalInterruptValueRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::board::v1::GetDigitalInterruptValueResponse>::Create(channel_.get(), cq, rpcmethod_GetDigitalInterruptValue_, context, request, false);
 }
 
 ::grpc::ClientReader< ::viam::component::board::v1::StreamTicksResponse>* BoardService::Stub::StreamTicksRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::StreamTicksRequest& request) {
-  return ::grpc::internal::ClientReaderFactory< ::viam::component::board::v1::StreamTicksResponse>::Create(channel_.get(), rpcmethod_StreamTicks_, context, request);
+  return ::grpc_impl::internal::ClientReaderFactory< ::viam::component::board::v1::StreamTicksResponse>::Create(channel_.get(), rpcmethod_StreamTicks_, context, request);
 }
 
-void BoardService::Stub::async::StreamTicks(::grpc::ClientContext* context, const ::viam::component::board::v1::StreamTicksRequest* request, ::grpc::ClientReadReactor< ::viam::component::board::v1::StreamTicksResponse>* reactor) {
-  ::grpc::internal::ClientCallbackReaderFactory< ::viam::component::board::v1::StreamTicksResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_StreamTicks_, context, request, reactor);
+void BoardService::Stub::experimental_async::StreamTicks(::grpc::ClientContext* context, ::viam::component::board::v1::StreamTicksRequest* request, ::grpc::experimental::ClientReadReactor< ::viam::component::board::v1::StreamTicksResponse>* reactor) {
+  ::grpc_impl::internal::ClientCallbackReaderFactory< ::viam::component::board::v1::StreamTicksResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_StreamTicks_, context, request, reactor);
 }
 
 ::grpc::ClientAsyncReader< ::viam::component::board::v1::StreamTicksResponse>* BoardService::Stub::AsyncStreamTicksRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::StreamTicksRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
-  return ::grpc::internal::ClientAsyncReaderFactory< ::viam::component::board::v1::StreamTicksResponse>::Create(channel_.get(), cq, rpcmethod_StreamTicks_, context, request, true, tag);
+  return ::grpc_impl::internal::ClientAsyncReaderFactory< ::viam::component::board::v1::StreamTicksResponse>::Create(channel_.get(), cq, rpcmethod_StreamTicks_, context, request, true, tag);
 }
 
 ::grpc::ClientAsyncReader< ::viam::component::board::v1::StreamTicksResponse>* BoardService::Stub::PrepareAsyncStreamTicksRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::StreamTicksRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncReaderFactory< ::viam::component::board::v1::StreamTicksResponse>::Create(channel_.get(), cq, rpcmethod_StreamTicks_, context, request, false, nullptr);
+  return ::grpc_impl::internal::ClientAsyncReaderFactory< ::viam::component::board::v1::StreamTicksResponse>::Create(channel_.get(), cq, rpcmethod_StreamTicks_, context, request, false, nullptr);
 }
 
 ::grpc::Status BoardService::Stub::SetPowerMode(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest& request, ::viam::component::board::v1::SetPowerModeResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetPowerMode_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetPowerMode_, context, request, response);
 }
 
-void BoardService::Stub::async::SetPowerMode(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest* request, ::viam::component::board::v1::SetPowerModeResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPowerMode_, context, request, response, std::move(f));
+void BoardService::Stub::experimental_async::SetPowerMode(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest* request, ::viam::component::board::v1::SetPowerModeResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetPowerMode_, context, request, response, std::move(f));
 }
 
-void BoardService::Stub::async::SetPowerMode(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest* request, ::viam::component::board::v1::SetPowerModeResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPowerMode_, context, request, response, reactor);
+void BoardService::Stub::experimental_async::SetPowerMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetPowerModeResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetPowerMode_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::SetPowerModeResponse>* BoardService::Stub::PrepareAsyncSetPowerModeRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::board::v1::SetPowerModeResponse, ::viam::component::board::v1::SetPowerModeRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetPowerMode_, context, request);
+void BoardService::Stub::experimental_async::SetPowerMode(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest* request, ::viam::component::board::v1::SetPowerModeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetPowerMode_, context, request, response, reactor);
+}
+
+void BoardService::Stub::experimental_async::SetPowerMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::board::v1::SetPowerModeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetPowerMode_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::SetPowerModeResponse>* BoardService::Stub::AsyncSetPowerModeRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetPowerModeRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::board::v1::SetPowerModeResponse>::Create(channel_.get(), cq, rpcmethod_SetPowerMode_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::SetPowerModeResponse>* BoardService::Stub::PrepareAsyncSetPowerModeRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::board::v1::SetPowerModeResponse>::Create(channel_.get(), cq, rpcmethod_SetPowerMode_, context, request, false);
 }
 
 ::grpc::Status BoardService::Stub::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::viam::common::v1::GetGeometriesResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetGeometries_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetGeometries_, context, request, response);
 }
 
-void BoardService::Stub::async::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, std::move(f));
+void BoardService::Stub::experimental_async::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, std::move(f));
 }
 
-void BoardService::Stub::async::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, reactor);
+void BoardService::Stub::experimental_async::GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* BoardService::Stub::PrepareAsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::GetGeometriesResponse, ::viam::common::v1::GetGeometriesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetGeometries_, context, request);
+void BoardService::Stub::experimental_async::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, reactor);
+}
+
+void BoardService::Stub::experimental_async::GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* BoardService::Stub::AsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetGeometriesRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::GetGeometriesResponse>::Create(channel_.get(), cq, rpcmethod_GetGeometries_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* BoardService::Stub::PrepareAsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::GetGeometriesResponse>::Create(channel_.get(), cq, rpcmethod_GetGeometries_, context, request, false);
 }
 
 BoardService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BoardService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::SetGPIORequest, ::viam::component::board::v1::SetGPIOResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::SetGPIORequest, ::viam::component::board::v1::SetGPIOResponse>(
           [](BoardService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::board::v1::SetGPIORequest* req,
              ::viam::component::board::v1::SetGPIOResponse* resp) {
                return service->SetGPIO(ctx, req, resp);
@@ -368,9 +428,9 @@ BoardService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BoardService_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::GetGPIORequest, ::viam::component::board::v1::GetGPIOResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::GetGPIORequest, ::viam::component::board::v1::GetGPIOResponse>(
           [](BoardService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::board::v1::GetGPIORequest* req,
              ::viam::component::board::v1::GetGPIOResponse* resp) {
                return service->GetGPIO(ctx, req, resp);
@@ -378,9 +438,9 @@ BoardService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BoardService_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::PWMRequest, ::viam::component::board::v1::PWMResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::PWMRequest, ::viam::component::board::v1::PWMResponse>(
           [](BoardService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::board::v1::PWMRequest* req,
              ::viam::component::board::v1::PWMResponse* resp) {
                return service->PWM(ctx, req, resp);
@@ -388,9 +448,9 @@ BoardService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BoardService_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::SetPWMRequest, ::viam::component::board::v1::SetPWMResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::SetPWMRequest, ::viam::component::board::v1::SetPWMResponse>(
           [](BoardService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::board::v1::SetPWMRequest* req,
              ::viam::component::board::v1::SetPWMResponse* resp) {
                return service->SetPWM(ctx, req, resp);
@@ -398,9 +458,9 @@ BoardService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BoardService_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::PWMFrequencyRequest, ::viam::component::board::v1::PWMFrequencyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::PWMFrequencyRequest, ::viam::component::board::v1::PWMFrequencyResponse>(
           [](BoardService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::board::v1::PWMFrequencyRequest* req,
              ::viam::component::board::v1::PWMFrequencyResponse* resp) {
                return service->PWMFrequency(ctx, req, resp);
@@ -408,9 +468,9 @@ BoardService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BoardService_method_names[5],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::SetPWMFrequencyRequest, ::viam::component::board::v1::SetPWMFrequencyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::SetPWMFrequencyRequest, ::viam::component::board::v1::SetPWMFrequencyResponse>(
           [](BoardService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::board::v1::SetPWMFrequencyRequest* req,
              ::viam::component::board::v1::SetPWMFrequencyResponse* resp) {
                return service->SetPWMFrequency(ctx, req, resp);
@@ -418,9 +478,9 @@ BoardService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BoardService_method_names[6],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
           [](BoardService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::common::v1::DoCommandRequest* req,
              ::viam::common::v1::DoCommandResponse* resp) {
                return service->DoCommand(ctx, req, resp);
@@ -428,9 +488,9 @@ BoardService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BoardService_method_names[7],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::ReadAnalogReaderRequest, ::viam::component::board::v1::ReadAnalogReaderResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::ReadAnalogReaderRequest, ::viam::component::board::v1::ReadAnalogReaderResponse>(
           [](BoardService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::board::v1::ReadAnalogReaderRequest* req,
              ::viam::component::board::v1::ReadAnalogReaderResponse* resp) {
                return service->ReadAnalogReader(ctx, req, resp);
@@ -438,9 +498,9 @@ BoardService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BoardService_method_names[8],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::WriteAnalogRequest, ::viam::component::board::v1::WriteAnalogResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::WriteAnalogRequest, ::viam::component::board::v1::WriteAnalogResponse>(
           [](BoardService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::board::v1::WriteAnalogRequest* req,
              ::viam::component::board::v1::WriteAnalogResponse* resp) {
                return service->WriteAnalog(ctx, req, resp);
@@ -448,9 +508,9 @@ BoardService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BoardService_method_names[9],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::GetDigitalInterruptValueRequest, ::viam::component::board::v1::GetDigitalInterruptValueResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::GetDigitalInterruptValueRequest, ::viam::component::board::v1::GetDigitalInterruptValueResponse>(
           [](BoardService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::board::v1::GetDigitalInterruptValueRequest* req,
              ::viam::component::board::v1::GetDigitalInterruptValueResponse* resp) {
                return service->GetDigitalInterruptValue(ctx, req, resp);
@@ -460,17 +520,17 @@ BoardService::Service::Service() {
       ::grpc::internal::RpcMethod::SERVER_STREAMING,
       new ::grpc::internal::ServerStreamingHandler< BoardService::Service, ::viam::component::board::v1::StreamTicksRequest, ::viam::component::board::v1::StreamTicksResponse>(
           [](BoardService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::board::v1::StreamTicksRequest* req,
-             ::grpc::ServerWriter<::viam::component::board::v1::StreamTicksResponse>* writer) {
+             ::grpc_impl::ServerWriter<::viam::component::board::v1::StreamTicksResponse>* writer) {
                return service->StreamTicks(ctx, req, writer);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BoardService_method_names[11],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse>(
           [](BoardService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::component::board::v1::SetPowerModeRequest* req,
              ::viam::component::board::v1::SetPowerModeResponse* resp) {
                return service->SetPowerMode(ctx, req, resp);
@@ -478,9 +538,9 @@ BoardService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BoardService_method_names[12],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
           [](BoardService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::common::v1::GetGeometriesRequest* req,
              ::viam::common::v1::GetGeometriesResponse* resp) {
                return service->GetGeometries(ctx, req, resp);

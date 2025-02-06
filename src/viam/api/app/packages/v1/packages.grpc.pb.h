@@ -7,23 +7,24 @@
 #include "app/packages/v1/packages.pb.h"
 
 #include <functional>
-#include <grpcpp/generic/async_generic_service.h>
-#include <grpcpp/support/async_stream.h>
-#include <grpcpp/support/async_unary_call.h>
-#include <grpcpp/support/client_callback.h>
-#include <grpcpp/client_context.h>
-#include <grpcpp/completion_queue.h>
-#include <grpcpp/support/message_allocator.h>
-#include <grpcpp/support/method_handler.h>
-#include <grpcpp/impl/proto_utils.h>
-#include <grpcpp/impl/rpc_method.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/status.h>
-#include <grpcpp/support/stub_options.h>
-#include <grpcpp/support/sync_stream.h>
+#include <grpc/impl/codegen/port_platform.h>
+#include <grpcpp/impl/codegen/async_generic_service.h>
+#include <grpcpp/impl/codegen/async_stream.h>
+#include <grpcpp/impl/codegen/async_unary_call.h>
+#include <grpcpp/impl/codegen/client_callback.h>
+#include <grpcpp/impl/codegen/client_context.h>
+#include <grpcpp/impl/codegen/completion_queue.h>
+#include <grpcpp/impl/codegen/message_allocator.h>
+#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/impl/codegen/proto_utils.h>
+#include <grpcpp/impl/codegen/rpc_method.h>
+#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/codegen/server_callback_handlers.h>
+#include <grpcpp/impl/codegen/server_context.h>
+#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/impl/codegen/status.h>
+#include <grpcpp/impl/codegen/stub_options.h>
+#include <grpcpp/impl/codegen/sync_stream.h>
 
 namespace viam {
 namespace app {
@@ -75,28 +76,66 @@ class PackageService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::packages::v1::ListPackagesResponse>> PrepareAsyncListPackages(::grpc::ClientContext* context, const ::viam::app::packages::v1::ListPackagesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::packages::v1::ListPackagesResponse>>(PrepareAsyncListPackagesRaw(context, request, cq));
     }
-    class async_interface {
+    class experimental_async_interface {
      public:
-      virtual ~async_interface() {}
+      virtual ~experimental_async_interface() {}
       // CreatePackage uploads a package to the cloud
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void CreatePackage(::grpc::ClientContext* context, ::viam::app::packages::v1::CreatePackageResponse* response, ::grpc::ClientWriteReactor< ::viam::app::packages::v1::CreatePackageRequest>* reactor) = 0;
+      #else
+      virtual void CreatePackage(::grpc::ClientContext* context, ::viam::app::packages::v1::CreatePackageResponse* response, ::grpc::experimental::ClientWriteReactor< ::viam::app::packages::v1::CreatePackageRequest>* reactor) = 0;
+      #endif
       // DeletePackage removes the given package versions
       virtual void DeletePackage(::grpc::ClientContext* context, const ::viam::app::packages::v1::DeletePackageRequest* request, ::viam::app::packages::v1::DeletePackageResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void DeletePackage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::packages::v1::DeletePackageResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void DeletePackage(::grpc::ClientContext* context, const ::viam::app::packages::v1::DeletePackageRequest* request, ::viam::app::packages::v1::DeletePackageResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void DeletePackage(::grpc::ClientContext* context, const ::viam::app::packages::v1::DeletePackageRequest* request, ::viam::app::packages::v1::DeletePackageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void DeletePackage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::packages::v1::DeletePackageResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void DeletePackage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::packages::v1::DeletePackageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // GetPackage returns the metadata for a requested package version. It also returns a URL
       // for downloading the package if one is requested.
       virtual void GetPackage(::grpc::ClientContext* context, const ::viam::app::packages::v1::GetPackageRequest* request, ::viam::app::packages::v1::GetPackageResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetPackage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::packages::v1::GetPackageResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetPackage(::grpc::ClientContext* context, const ::viam::app::packages::v1::GetPackageRequest* request, ::viam::app::packages::v1::GetPackageResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetPackage(::grpc::ClientContext* context, const ::viam::app::packages::v1::GetPackageRequest* request, ::viam::app::packages::v1::GetPackageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetPackage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::packages::v1::GetPackageResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetPackage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::packages::v1::GetPackageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // ListPackages gets the metadata for the requested packages. Includes package name, version, and/or
       // type to filter beyond the required organization_id. ListPackages also returns URLs for
       // downloading each package if they are requested.
       virtual void ListPackages(::grpc::ClientContext* context, const ::viam::app::packages::v1::ListPackagesRequest* request, ::viam::app::packages::v1::ListPackagesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ListPackages(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::packages::v1::ListPackagesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void ListPackages(::grpc::ClientContext* context, const ::viam::app::packages::v1::ListPackagesRequest* request, ::viam::app::packages::v1::ListPackagesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void ListPackages(::grpc::ClientContext* context, const ::viam::app::packages::v1::ListPackagesRequest* request, ::viam::app::packages::v1::ListPackagesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void ListPackages(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::packages::v1::ListPackagesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void ListPackages(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::packages::v1::ListPackagesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
     };
-    typedef class async_interface experimental_async_interface;
-    virtual class async_interface* async() { return nullptr; }
-    class async_interface* experimental_async() { return async(); }
-   private:
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    typedef class experimental_async_interface async_interface;
+    #endif
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    async_interface* async() { return experimental_async(); }
+    #endif
+    virtual class experimental_async_interface* experimental_async() { return nullptr; }
+  private:
     virtual ::grpc::ClientWriterInterface< ::viam::app::packages::v1::CreatePackageRequest>* CreatePackageRaw(::grpc::ClientContext* context, ::viam::app::packages::v1::CreatePackageResponse* response) = 0;
     virtual ::grpc::ClientAsyncWriterInterface< ::viam::app::packages::v1::CreatePackageRequest>* AsyncCreatePackageRaw(::grpc::ClientContext* context, ::viam::app::packages::v1::CreatePackageResponse* response, ::grpc::CompletionQueue* cq, void* tag) = 0;
     virtual ::grpc::ClientAsyncWriterInterface< ::viam::app::packages::v1::CreatePackageRequest>* PrepareAsyncCreatePackageRaw(::grpc::ClientContext* context, ::viam::app::packages::v1::CreatePackageResponse* response, ::grpc::CompletionQueue* cq) = 0;
@@ -109,7 +148,7 @@ class PackageService final {
   };
   class Stub final : public StubInterface {
    public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
     std::unique_ptr< ::grpc::ClientWriter< ::viam::app::packages::v1::CreatePackageRequest>> CreatePackage(::grpc::ClientContext* context, ::viam::app::packages::v1::CreatePackageResponse* response) {
       return std::unique_ptr< ::grpc::ClientWriter< ::viam::app::packages::v1::CreatePackageRequest>>(CreatePackageRaw(context, response));
     }
@@ -140,27 +179,61 @@ class PackageService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::packages::v1::ListPackagesResponse>> PrepareAsyncListPackages(::grpc::ClientContext* context, const ::viam::app::packages::v1::ListPackagesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::packages::v1::ListPackagesResponse>>(PrepareAsyncListPackagesRaw(context, request, cq));
     }
-    class async final :
-      public StubInterface::async_interface {
+    class experimental_async final :
+      public StubInterface::experimental_async_interface {
      public:
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void CreatePackage(::grpc::ClientContext* context, ::viam::app::packages::v1::CreatePackageResponse* response, ::grpc::ClientWriteReactor< ::viam::app::packages::v1::CreatePackageRequest>* reactor) override;
+      #else
+      void CreatePackage(::grpc::ClientContext* context, ::viam::app::packages::v1::CreatePackageResponse* response, ::grpc::experimental::ClientWriteReactor< ::viam::app::packages::v1::CreatePackageRequest>* reactor) override;
+      #endif
       void DeletePackage(::grpc::ClientContext* context, const ::viam::app::packages::v1::DeletePackageRequest* request, ::viam::app::packages::v1::DeletePackageResponse* response, std::function<void(::grpc::Status)>) override;
+      void DeletePackage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::packages::v1::DeletePackageResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void DeletePackage(::grpc::ClientContext* context, const ::viam::app::packages::v1::DeletePackageRequest* request, ::viam::app::packages::v1::DeletePackageResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void DeletePackage(::grpc::ClientContext* context, const ::viam::app::packages::v1::DeletePackageRequest* request, ::viam::app::packages::v1::DeletePackageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void DeletePackage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::packages::v1::DeletePackageResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void DeletePackage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::packages::v1::DeletePackageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetPackage(::grpc::ClientContext* context, const ::viam::app::packages::v1::GetPackageRequest* request, ::viam::app::packages::v1::GetPackageResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetPackage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::packages::v1::GetPackageResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetPackage(::grpc::ClientContext* context, const ::viam::app::packages::v1::GetPackageRequest* request, ::viam::app::packages::v1::GetPackageResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetPackage(::grpc::ClientContext* context, const ::viam::app::packages::v1::GetPackageRequest* request, ::viam::app::packages::v1::GetPackageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetPackage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::packages::v1::GetPackageResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetPackage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::packages::v1::GetPackageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void ListPackages(::grpc::ClientContext* context, const ::viam::app::packages::v1::ListPackagesRequest* request, ::viam::app::packages::v1::ListPackagesResponse* response, std::function<void(::grpc::Status)>) override;
+      void ListPackages(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::packages::v1::ListPackagesResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void ListPackages(::grpc::ClientContext* context, const ::viam::app::packages::v1::ListPackagesRequest* request, ::viam::app::packages::v1::ListPackagesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void ListPackages(::grpc::ClientContext* context, const ::viam::app::packages::v1::ListPackagesRequest* request, ::viam::app::packages::v1::ListPackagesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void ListPackages(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::packages::v1::ListPackagesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void ListPackages(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::packages::v1::ListPackagesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
      private:
       friend class Stub;
-      explicit async(Stub* stub): stub_(stub) { }
+      explicit experimental_async(Stub* stub): stub_(stub) { }
       Stub* stub() { return stub_; }
       Stub* stub_;
     };
-    class async* async() override { return &async_stub_; }
+    class experimental_async_interface* experimental_async() override { return &async_stub_; }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class async async_stub_{this};
+    class experimental_async async_stub_{this};
     ::grpc::ClientWriter< ::viam::app::packages::v1::CreatePackageRequest>* CreatePackageRaw(::grpc::ClientContext* context, ::viam::app::packages::v1::CreatePackageResponse* response) override;
     ::grpc::ClientAsyncWriter< ::viam::app::packages::v1::CreatePackageRequest>* AsyncCreatePackageRaw(::grpc::ClientContext* context, ::viam::app::packages::v1::CreatePackageResponse* response, ::grpc::CompletionQueue* cq, void* tag) override;
     ::grpc::ClientAsyncWriter< ::viam::app::packages::v1::CreatePackageRequest>* PrepareAsyncCreatePackageRaw(::grpc::ClientContext* context, ::viam::app::packages::v1::CreatePackageResponse* response, ::grpc::CompletionQueue* cq) override;
@@ -275,17 +348,27 @@ class PackageService final {
   };
   typedef WithAsyncMethod_CreatePackage<WithAsyncMethod_DeletePackage<WithAsyncMethod_GetPackage<WithAsyncMethod_ListPackages<Service > > > > AsyncService;
   template <class BaseClass>
-  class WithCallbackMethod_CreatePackage : public BaseClass {
+  class ExperimentalWithCallbackMethod_CreatePackage : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_CreatePackage() {
-      ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackClientStreamingHandler< ::viam::app::packages::v1::CreatePackageRequest, ::viam::app::packages::v1::CreatePackageResponse>(
+    ExperimentalWithCallbackMethod_CreatePackage() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(0,
+          new ::grpc_impl::internal::CallbackClientStreamingHandler< ::viam::app::packages::v1::CreatePackageRequest, ::viam::app::packages::v1::CreatePackageResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, ::viam::app::packages::v1::CreatePackageResponse* response) { return this->CreatePackage(context, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, ::viam::app::packages::v1::CreatePackageResponse* response) { return this->CreatePackage(context, response); }));
     }
-    ~WithCallbackMethod_CreatePackage() override {
+    ~ExperimentalWithCallbackMethod_CreatePackage() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -293,26 +376,46 @@ class PackageService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerReadReactor< ::viam::app::packages::v1::CreatePackageRequest>* CreatePackage(
-      ::grpc::CallbackServerContext* /*context*/, ::viam::app::packages::v1::CreatePackageResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, ::viam::app::packages::v1::CreatePackageResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerReadReactor< ::viam::app::packages::v1::CreatePackageRequest>* CreatePackage(
+      ::grpc::experimental::CallbackServerContext* /*context*/, ::viam::app::packages::v1::CreatePackageResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_DeletePackage : public BaseClass {
+  class ExperimentalWithCallbackMethod_DeletePackage : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_DeletePackage() {
-      ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::packages::v1::DeletePackageRequest, ::viam::app::packages::v1::DeletePackageResponse>(
+    ExperimentalWithCallbackMethod_DeletePackage() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::packages::v1::DeletePackageRequest, ::viam::app::packages::v1::DeletePackageResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::app::packages::v1::DeletePackageRequest* request, ::viam::app::packages::v1::DeletePackageResponse* response) { return this->DeletePackage(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::app::packages::v1::DeletePackageRequest* request, ::viam::app::packages::v1::DeletePackageResponse* response) { return this->DeletePackage(context, request, response); }));}
     void SetMessageAllocatorFor_DeletePackage(
-        ::grpc::MessageAllocator< ::viam::app::packages::v1::DeletePackageRequest, ::viam::app::packages::v1::DeletePackageResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::app::packages::v1::DeletePackageRequest, ::viam::app::packages::v1::DeletePackageResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::packages::v1::DeletePackageRequest, ::viam::app::packages::v1::DeletePackageResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::packages::v1::DeletePackageRequest, ::viam::app::packages::v1::DeletePackageResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_DeletePackage() override {
+    ~ExperimentalWithCallbackMethod_DeletePackage() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -320,26 +423,46 @@ class PackageService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DeletePackage(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::packages::v1::DeletePackageRequest* /*request*/, ::viam::app::packages::v1::DeletePackageResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::packages::v1::DeletePackageRequest* /*request*/, ::viam::app::packages::v1::DeletePackageResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* DeletePackage(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::app::packages::v1::DeletePackageRequest* /*request*/, ::viam::app::packages::v1::DeletePackageResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetPackage : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetPackage : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetPackage() {
-      ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::packages::v1::GetPackageRequest, ::viam::app::packages::v1::GetPackageResponse>(
+    ExperimentalWithCallbackMethod_GetPackage() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::packages::v1::GetPackageRequest, ::viam::app::packages::v1::GetPackageResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::app::packages::v1::GetPackageRequest* request, ::viam::app::packages::v1::GetPackageResponse* response) { return this->GetPackage(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::app::packages::v1::GetPackageRequest* request, ::viam::app::packages::v1::GetPackageResponse* response) { return this->GetPackage(context, request, response); }));}
     void SetMessageAllocatorFor_GetPackage(
-        ::grpc::MessageAllocator< ::viam::app::packages::v1::GetPackageRequest, ::viam::app::packages::v1::GetPackageResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::app::packages::v1::GetPackageRequest, ::viam::app::packages::v1::GetPackageResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::packages::v1::GetPackageRequest, ::viam::app::packages::v1::GetPackageResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::packages::v1::GetPackageRequest, ::viam::app::packages::v1::GetPackageResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetPackage() override {
+    ~ExperimentalWithCallbackMethod_GetPackage() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -347,26 +470,46 @@ class PackageService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetPackage(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::packages::v1::GetPackageRequest* /*request*/, ::viam::app::packages::v1::GetPackageResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::packages::v1::GetPackageRequest* /*request*/, ::viam::app::packages::v1::GetPackageResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetPackage(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::app::packages::v1::GetPackageRequest* /*request*/, ::viam::app::packages::v1::GetPackageResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_ListPackages : public BaseClass {
+  class ExperimentalWithCallbackMethod_ListPackages : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_ListPackages() {
-      ::grpc::Service::MarkMethodCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::packages::v1::ListPackagesRequest, ::viam::app::packages::v1::ListPackagesResponse>(
+    ExperimentalWithCallbackMethod_ListPackages() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::packages::v1::ListPackagesRequest, ::viam::app::packages::v1::ListPackagesResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::app::packages::v1::ListPackagesRequest* request, ::viam::app::packages::v1::ListPackagesResponse* response) { return this->ListPackages(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::app::packages::v1::ListPackagesRequest* request, ::viam::app::packages::v1::ListPackagesResponse* response) { return this->ListPackages(context, request, response); }));}
     void SetMessageAllocatorFor_ListPackages(
-        ::grpc::MessageAllocator< ::viam::app::packages::v1::ListPackagesRequest, ::viam::app::packages::v1::ListPackagesResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::app::packages::v1::ListPackagesRequest, ::viam::app::packages::v1::ListPackagesResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::packages::v1::ListPackagesRequest, ::viam::app::packages::v1::ListPackagesResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::packages::v1::ListPackagesRequest, ::viam::app::packages::v1::ListPackagesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_ListPackages() override {
+    ~ExperimentalWithCallbackMethod_ListPackages() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -374,11 +517,20 @@ class PackageService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* ListPackages(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::packages::v1::ListPackagesRequest* /*request*/, ::viam::app::packages::v1::ListPackagesResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::packages::v1::ListPackagesRequest* /*request*/, ::viam::app::packages::v1::ListPackagesResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ListPackages(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::app::packages::v1::ListPackagesRequest* /*request*/, ::viam::app::packages::v1::ListPackagesResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
-  typedef WithCallbackMethod_CreatePackage<WithCallbackMethod_DeletePackage<WithCallbackMethod_GetPackage<WithCallbackMethod_ListPackages<Service > > > > CallbackService;
-  typedef CallbackService ExperimentalCallbackService;
+  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+  typedef ExperimentalWithCallbackMethod_CreatePackage<ExperimentalWithCallbackMethod_DeletePackage<ExperimentalWithCallbackMethod_GetPackage<ExperimentalWithCallbackMethod_ListPackages<Service > > > > CallbackService;
+  #endif
+
+  typedef ExperimentalWithCallbackMethod_CreatePackage<ExperimentalWithCallbackMethod_DeletePackage<ExperimentalWithCallbackMethod_GetPackage<ExperimentalWithCallbackMethod_ListPackages<Service > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_CreatePackage : public BaseClass {
    private:
@@ -528,17 +680,27 @@ class PackageService final {
     }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_CreatePackage : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_CreatePackage : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_CreatePackage() {
-      ::grpc::Service::MarkMethodRawCallback(0,
-          new ::grpc::internal::CallbackClientStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_CreatePackage() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(0,
+          new ::grpc_impl::internal::CallbackClientStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, ::grpc::ByteBuffer* response) { return this->CreatePackage(context, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, ::grpc::ByteBuffer* response) { return this->CreatePackage(context, response); }));
     }
-    ~WithRawCallbackMethod_CreatePackage() override {
+    ~ExperimentalWithRawCallbackMethod_CreatePackage() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -546,21 +708,37 @@ class PackageService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerReadReactor< ::grpc::ByteBuffer>* CreatePackage(
-      ::grpc::CallbackServerContext* /*context*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerReadReactor< ::grpc::ByteBuffer>* CreatePackage(
+      ::grpc::experimental::CallbackServerContext* /*context*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_DeletePackage : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_DeletePackage : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_DeletePackage() {
-      ::grpc::Service::MarkMethodRawCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_DeletePackage() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeletePackage(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeletePackage(context, request, response); }));
     }
-    ~WithRawCallbackMethod_DeletePackage() override {
+    ~ExperimentalWithRawCallbackMethod_DeletePackage() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -568,21 +746,37 @@ class PackageService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DeletePackage(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* DeletePackage(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetPackage : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetPackage : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetPackage() {
-      ::grpc::Service::MarkMethodRawCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetPackage() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetPackage(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetPackage(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetPackage() override {
+    ~ExperimentalWithRawCallbackMethod_GetPackage() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -590,21 +784,37 @@ class PackageService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetPackage(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetPackage(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_ListPackages : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_ListPackages : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_ListPackages() {
-      ::grpc::Service::MarkMethodRawCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_ListPackages() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListPackages(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListPackages(context, request, response); }));
     }
-    ~WithRawCallbackMethod_ListPackages() override {
+    ~ExperimentalWithRawCallbackMethod_ListPackages() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -612,8 +822,14 @@ class PackageService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* ListPackages(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ListPackages(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_DeletePackage : public BaseClass {
@@ -624,8 +840,8 @@ class PackageService final {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::packages::v1::DeletePackageRequest, ::viam::app::packages::v1::DeletePackageResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::app::packages::v1::DeletePackageRequest, ::viam::app::packages::v1::DeletePackageResponse>* streamer) {
                        return this->StreamedDeletePackage(context,
                          streamer);
@@ -651,8 +867,8 @@ class PackageService final {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::packages::v1::GetPackageRequest, ::viam::app::packages::v1::GetPackageResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::app::packages::v1::GetPackageRequest, ::viam::app::packages::v1::GetPackageResponse>* streamer) {
                        return this->StreamedGetPackage(context,
                          streamer);
@@ -678,8 +894,8 @@ class PackageService final {
       ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::packages::v1::ListPackagesRequest, ::viam::app::packages::v1::ListPackagesResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::app::packages::v1::ListPackagesRequest, ::viam::app::packages::v1::ListPackagesResponse>* streamer) {
                        return this->StreamedListPackages(context,
                          streamer);

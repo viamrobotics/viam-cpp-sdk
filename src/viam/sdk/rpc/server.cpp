@@ -3,7 +3,10 @@
 #include <sstream>
 
 #include <boost/log/trivial.hpp>
+
+#include <grpcpp/impl/service_type.h>
 #include <grpcpp/security/server_credentials.h>
+#include <grpcpp/server_builder.h>
 
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/registry/registry.hpp>

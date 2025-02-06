@@ -3,19 +3,38 @@ name: Test
 on:
   pull_request:
   workflow_dispatch:
+    inputs:
+      no-tidy:
+        type: boolean
+        description: set to true to build without clang-tidy (2x faster)
 
 jobs:
   run-tests:
     if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/viamrobotics/canon:amd64
+    container: ghcr.io/viamrobotics/cpp-base:bullseye-amd64
+    strategy:
+      matrix:
+        include:
+          - BUILD_SHARED: ON
+          - BUILD_SHARED: OFF
     steps:
       - uses: actions/checkout@v4
-      ###########################################
-      #     necessary installs for building     #
-      ###########################################
-      - name: build-docker-test
+      - name: cmake
         run: |
-          docker build -t cpp . -f etc/docker/tests/Dockerfile.debian.bullseye
-          docker run --rm -i -w /tmp cpp /bin/bash
+          mkdir build
+          cd build
+          cmake .. -G Ninja \
+            -DBUILD_SHARED_LIBS=${{ matrix.BUILD_SHARED }} \
+            -DVIAMCPPSDK_OFFLINE_PROTO_GENERATION=ON \
+            -DVIAMCPPSDK_BUILD_TESTS=ON \
+            -DVIAMCPPSDK_BUILD_EXAMPLES=ON \
+            -DVIAMCPPSDK_CLANG_TIDY=${{ inputs.no-tidy && 'OFF' || 'ON' }} \
+            -DVIAMCPPSDK_SANITIZED_BUILD=${{ matrix.BUILD_SHARED }}
+      - name: build
+        run: |
+          cmake --build build --target install
+          cmake --install build
+      - name: test
+        working-directory: build
+        run: ../etc/docker/tests/run_test.sh

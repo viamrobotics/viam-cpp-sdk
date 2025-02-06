@@ -1,6 +1,6 @@
 #include <viam/sdk/tests/mocks/camera_mocks.hpp>
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/camera.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
@@ -10,19 +10,19 @@ namespace camera {
 
 using namespace viam::sdk;
 
-AttributeMap MockCamera::do_command(const AttributeMap&) {
+ProtoStruct MockCamera::do_command(const ProtoStruct&) {
     return map_;
 }
-Camera::raw_image MockCamera::get_image(std::string, const AttributeMap&) {
+Camera::raw_image MockCamera::get_image(std::string, const ProtoStruct&) {
     return image_;
 }
 Camera::image_collection MockCamera::get_images() {
     return images_;
 }
-Camera::point_cloud MockCamera::get_point_cloud(std::string, const AttributeMap&) {
+Camera::point_cloud MockCamera::get_point_cloud(std::string, const ProtoStruct&) {
     return pc_;
 }
-std::vector<GeometryConfig> MockCamera::get_geometries(const AttributeMap&) {
+std::vector<GeometryConfig> MockCamera::get_geometries(const ProtoStruct&) {
     return geometries_;
 }
 Camera::properties MockCamera::get_properties() {
@@ -56,8 +56,8 @@ Camera::image_collection fake_raw_images() {
     std::chrono::seconds seconds(12345);
     std::chrono::nanoseconds nanos(0);
     collection.images = images;
-    collection.metadata.captured_at = std::chrono::time_point<long long, std::chrono::nanoseconds>(
-        std::chrono::duration_cast<std::chrono::system_clock::duration>(seconds) + nanos);
+    collection.metadata.captured_at =
+        time_pt{std::chrono::duration_cast<std::chrono::system_clock::duration>(seconds) + nanos};
     return collection;
 }
 
@@ -96,6 +96,7 @@ Camera::properties fake_properties() {
     properties.intrinsic_parameters = fake_intrinsic_parameters();
     properties.distortion_parameters = fake_distortion_parameters();
     properties.mime_types = fake_mime_types();
+    properties.frame_rate = 10.0;
     return properties;
 }
 

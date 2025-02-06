@@ -6,19 +6,19 @@
 #include "robot/v1/robot.grpc.pb.h"
 
 #include <functional>
-#include <grpcpp/support/async_stream.h>
-#include <grpcpp/support/async_unary_call.h>
-#include <grpcpp/impl/channel_interface.h>
-#include <grpcpp/impl/client_unary_call.h>
-#include <grpcpp/support/client_callback.h>
-#include <grpcpp/support/message_allocator.h>
-#include <grpcpp/support/method_handler.h>
-#include <grpcpp/impl/rpc_service_method.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/sync_stream.h>
+#include <grpcpp/impl/codegen/async_stream.h>
+#include <grpcpp/impl/codegen/async_unary_call.h>
+#include <grpcpp/impl/codegen/channel_interface.h>
+#include <grpcpp/impl/codegen/client_unary_call.h>
+#include <grpcpp/impl/codegen/client_callback.h>
+#include <grpcpp/impl/codegen/message_allocator.h>
+#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/impl/codegen/rpc_service_method.h>
+#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/codegen/server_callback_handlers.h>
+#include <grpcpp/impl/codegen/server_context.h>
+#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/impl/codegen/sync_stream.h>
 namespace viam {
 namespace robot {
 namespace v1 {
@@ -30,6 +30,7 @@ static const char* RobotService_method_names[] = {
   "/viam.robot.v1.RobotService/ResourceRPCSubtypes",
   "/viam.robot.v1.RobotService/CancelOperation",
   "/viam.robot.v1.RobotService/BlockForOperation",
+  "/viam.robot.v1.RobotService/GetModelsFromModules",
   "/viam.robot.v1.RobotService/DiscoverComponents",
   "/viam.robot.v1.RobotService/FrameSystemConfig",
   "/viam.robot.v1.RobotService/TransformPose",
@@ -45,521 +46,668 @@ static const char* RobotService_method_names[] = {
   "/viam.robot.v1.RobotService/Shutdown",
   "/viam.robot.v1.RobotService/GetMachineStatus",
   "/viam.robot.v1.RobotService/GetVersion",
+  "/viam.robot.v1.RobotService/Tunnel",
 };
 
 std::unique_ptr< RobotService::Stub> RobotService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< RobotService::Stub> stub(new RobotService::Stub(channel, options));
+  std::unique_ptr< RobotService::Stub> stub(new RobotService::Stub(channel));
   return stub;
 }
 
-RobotService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_GetOperations_(RobotService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetSessions_(RobotService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ResourceNames_(RobotService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ResourceRPCSubtypes_(RobotService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CancelOperation_(RobotService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_BlockForOperation_(RobotService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DiscoverComponents_(RobotService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_FrameSystemConfig_(RobotService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_TransformPose_(RobotService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_TransformPCD_(RobotService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetStatus_(RobotService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_StreamStatus_(RobotService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
-  , rpcmethod_StopAll_(RobotService_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_StartSession_(RobotService_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SendSessionHeartbeat_(RobotService_method_names[14], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Log_(RobotService_method_names[15], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetCloudMetadata_(RobotService_method_names[16], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_RestartModule_(RobotService_method_names[17], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Shutdown_(RobotService_method_names[18], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetMachineStatus_(RobotService_method_names[19], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetVersion_(RobotService_method_names[20], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+RobotService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
+  : channel_(channel), rpcmethod_GetOperations_(RobotService_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetSessions_(RobotService_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ResourceNames_(RobotService_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ResourceRPCSubtypes_(RobotService_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CancelOperation_(RobotService_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_BlockForOperation_(RobotService_method_names[5], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetModelsFromModules_(RobotService_method_names[6], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DiscoverComponents_(RobotService_method_names[7], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_FrameSystemConfig_(RobotService_method_names[8], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_TransformPose_(RobotService_method_names[9], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_TransformPCD_(RobotService_method_names[10], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetStatus_(RobotService_method_names[11], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_StreamStatus_(RobotService_method_names[12], ::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_StopAll_(RobotService_method_names[13], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_StartSession_(RobotService_method_names[14], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SendSessionHeartbeat_(RobotService_method_names[15], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Log_(RobotService_method_names[16], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetCloudMetadata_(RobotService_method_names[17], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RestartModule_(RobotService_method_names[18], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Shutdown_(RobotService_method_names[19], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetMachineStatus_(RobotService_method_names[20], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetVersion_(RobotService_method_names[21], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Tunnel_(RobotService_method_names[22], ::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
   {}
 
 ::grpc::Status RobotService::Stub::GetOperations(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest& request, ::viam::robot::v1::GetOperationsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::GetOperationsRequest, ::viam::robot::v1::GetOperationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetOperations_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetOperations_, context, request, response);
 }
 
-void RobotService::Stub::async::GetOperations(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest* request, ::viam::robot::v1::GetOperationsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::GetOperationsRequest, ::viam::robot::v1::GetOperationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetOperations_, context, request, response, std::move(f));
+void RobotService::Stub::experimental_async::GetOperations(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest* request, ::viam::robot::v1::GetOperationsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetOperations_, context, request, response, std::move(f));
 }
 
-void RobotService::Stub::async::GetOperations(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest* request, ::viam::robot::v1::GetOperationsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetOperations_, context, request, response, reactor);
+void RobotService::Stub::experimental_async::GetOperations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetOperationsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetOperations_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetOperationsResponse>* RobotService::Stub::PrepareAsyncGetOperationsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::GetOperationsResponse, ::viam::robot::v1::GetOperationsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetOperations_, context, request);
+void RobotService::Stub::experimental_async::GetOperations(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest* request, ::viam::robot::v1::GetOperationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetOperations_, context, request, response, reactor);
+}
+
+void RobotService::Stub::experimental_async::GetOperations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetOperationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetOperations_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetOperationsResponse>* RobotService::Stub::AsyncGetOperationsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetOperationsRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::GetOperationsResponse>::Create(channel_.get(), cq, rpcmethod_GetOperations_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetOperationsResponse>* RobotService::Stub::PrepareAsyncGetOperationsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::GetOperationsResponse>::Create(channel_.get(), cq, rpcmethod_GetOperations_, context, request, false);
 }
 
 ::grpc::Status RobotService::Stub::GetSessions(::grpc::ClientContext* context, const ::viam::robot::v1::GetSessionsRequest& request, ::viam::robot::v1::GetSessionsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::GetSessionsRequest, ::viam::robot::v1::GetSessionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetSessions_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetSessions_, context, request, response);
 }
 
-void RobotService::Stub::async::GetSessions(::grpc::ClientContext* context, const ::viam::robot::v1::GetSessionsRequest* request, ::viam::robot::v1::GetSessionsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::GetSessionsRequest, ::viam::robot::v1::GetSessionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetSessions_, context, request, response, std::move(f));
+void RobotService::Stub::experimental_async::GetSessions(::grpc::ClientContext* context, const ::viam::robot::v1::GetSessionsRequest* request, ::viam::robot::v1::GetSessionsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetSessions_, context, request, response, std::move(f));
 }
 
-void RobotService::Stub::async::GetSessions(::grpc::ClientContext* context, const ::viam::robot::v1::GetSessionsRequest* request, ::viam::robot::v1::GetSessionsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetSessions_, context, request, response, reactor);
+void RobotService::Stub::experimental_async::GetSessions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetSessionsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetSessions_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetSessionsResponse>* RobotService::Stub::PrepareAsyncGetSessionsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetSessionsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::GetSessionsResponse, ::viam::robot::v1::GetSessionsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetSessions_, context, request);
+void RobotService::Stub::experimental_async::GetSessions(::grpc::ClientContext* context, const ::viam::robot::v1::GetSessionsRequest* request, ::viam::robot::v1::GetSessionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetSessions_, context, request, response, reactor);
+}
+
+void RobotService::Stub::experimental_async::GetSessions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetSessionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetSessions_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetSessionsResponse>* RobotService::Stub::AsyncGetSessionsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetSessionsRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetSessionsRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::GetSessionsResponse>::Create(channel_.get(), cq, rpcmethod_GetSessions_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetSessionsResponse>* RobotService::Stub::PrepareAsyncGetSessionsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetSessionsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::GetSessionsResponse>::Create(channel_.get(), cq, rpcmethod_GetSessions_, context, request, false);
 }
 
 ::grpc::Status RobotService::Stub::ResourceNames(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceNamesRequest& request, ::viam::robot::v1::ResourceNamesResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::ResourceNamesRequest, ::viam::robot::v1::ResourceNamesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ResourceNames_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ResourceNames_, context, request, response);
 }
 
-void RobotService::Stub::async::ResourceNames(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceNamesRequest* request, ::viam::robot::v1::ResourceNamesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::ResourceNamesRequest, ::viam::robot::v1::ResourceNamesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ResourceNames_, context, request, response, std::move(f));
+void RobotService::Stub::experimental_async::ResourceNames(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceNamesRequest* request, ::viam::robot::v1::ResourceNamesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ResourceNames_, context, request, response, std::move(f));
 }
 
-void RobotService::Stub::async::ResourceNames(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceNamesRequest* request, ::viam::robot::v1::ResourceNamesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ResourceNames_, context, request, response, reactor);
+void RobotService::Stub::experimental_async::ResourceNames(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ResourceNamesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ResourceNames_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::robot::v1::ResourceNamesResponse>* RobotService::Stub::PrepareAsyncResourceNamesRaw(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceNamesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::ResourceNamesResponse, ::viam::robot::v1::ResourceNamesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ResourceNames_, context, request);
+void RobotService::Stub::experimental_async::ResourceNames(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceNamesRequest* request, ::viam::robot::v1::ResourceNamesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ResourceNames_, context, request, response, reactor);
+}
+
+void RobotService::Stub::experimental_async::ResourceNames(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ResourceNamesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ResourceNames_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::ResourceNamesResponse>* RobotService::Stub::AsyncResourceNamesRaw(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceNamesRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncResourceNamesRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::ResourceNamesResponse>::Create(channel_.get(), cq, rpcmethod_ResourceNames_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::ResourceNamesResponse>* RobotService::Stub::PrepareAsyncResourceNamesRaw(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceNamesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::ResourceNamesResponse>::Create(channel_.get(), cq, rpcmethod_ResourceNames_, context, request, false);
 }
 
 ::grpc::Status RobotService::Stub::ResourceRPCSubtypes(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceRPCSubtypesRequest& request, ::viam::robot::v1::ResourceRPCSubtypesResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::ResourceRPCSubtypesRequest, ::viam::robot::v1::ResourceRPCSubtypesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ResourceRPCSubtypes_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ResourceRPCSubtypes_, context, request, response);
 }
 
-void RobotService::Stub::async::ResourceRPCSubtypes(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceRPCSubtypesRequest* request, ::viam::robot::v1::ResourceRPCSubtypesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::ResourceRPCSubtypesRequest, ::viam::robot::v1::ResourceRPCSubtypesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ResourceRPCSubtypes_, context, request, response, std::move(f));
+void RobotService::Stub::experimental_async::ResourceRPCSubtypes(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceRPCSubtypesRequest* request, ::viam::robot::v1::ResourceRPCSubtypesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ResourceRPCSubtypes_, context, request, response, std::move(f));
 }
 
-void RobotService::Stub::async::ResourceRPCSubtypes(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceRPCSubtypesRequest* request, ::viam::robot::v1::ResourceRPCSubtypesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ResourceRPCSubtypes_, context, request, response, reactor);
+void RobotService::Stub::experimental_async::ResourceRPCSubtypes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ResourceRPCSubtypesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ResourceRPCSubtypes_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::robot::v1::ResourceRPCSubtypesResponse>* RobotService::Stub::PrepareAsyncResourceRPCSubtypesRaw(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceRPCSubtypesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::ResourceRPCSubtypesResponse, ::viam::robot::v1::ResourceRPCSubtypesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ResourceRPCSubtypes_, context, request);
+void RobotService::Stub::experimental_async::ResourceRPCSubtypes(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceRPCSubtypesRequest* request, ::viam::robot::v1::ResourceRPCSubtypesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ResourceRPCSubtypes_, context, request, response, reactor);
+}
+
+void RobotService::Stub::experimental_async::ResourceRPCSubtypes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ResourceRPCSubtypesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ResourceRPCSubtypes_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::ResourceRPCSubtypesResponse>* RobotService::Stub::AsyncResourceRPCSubtypesRaw(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceRPCSubtypesRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncResourceRPCSubtypesRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::ResourceRPCSubtypesResponse>::Create(channel_.get(), cq, rpcmethod_ResourceRPCSubtypes_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::ResourceRPCSubtypesResponse>* RobotService::Stub::PrepareAsyncResourceRPCSubtypesRaw(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceRPCSubtypesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::ResourceRPCSubtypesResponse>::Create(channel_.get(), cq, rpcmethod_ResourceRPCSubtypes_, context, request, false);
 }
 
 ::grpc::Status RobotService::Stub::CancelOperation(::grpc::ClientContext* context, const ::viam::robot::v1::CancelOperationRequest& request, ::viam::robot::v1::CancelOperationResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::CancelOperationRequest, ::viam::robot::v1::CancelOperationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CancelOperation_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_CancelOperation_, context, request, response);
 }
 
-void RobotService::Stub::async::CancelOperation(::grpc::ClientContext* context, const ::viam::robot::v1::CancelOperationRequest* request, ::viam::robot::v1::CancelOperationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::CancelOperationRequest, ::viam::robot::v1::CancelOperationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CancelOperation_, context, request, response, std::move(f));
+void RobotService::Stub::experimental_async::CancelOperation(::grpc::ClientContext* context, const ::viam::robot::v1::CancelOperationRequest* request, ::viam::robot::v1::CancelOperationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CancelOperation_, context, request, response, std::move(f));
 }
 
-void RobotService::Stub::async::CancelOperation(::grpc::ClientContext* context, const ::viam::robot::v1::CancelOperationRequest* request, ::viam::robot::v1::CancelOperationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CancelOperation_, context, request, response, reactor);
+void RobotService::Stub::experimental_async::CancelOperation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::CancelOperationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CancelOperation_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::robot::v1::CancelOperationResponse>* RobotService::Stub::PrepareAsyncCancelOperationRaw(::grpc::ClientContext* context, const ::viam::robot::v1::CancelOperationRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::CancelOperationResponse, ::viam::robot::v1::CancelOperationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CancelOperation_, context, request);
+void RobotService::Stub::experimental_async::CancelOperation(::grpc::ClientContext* context, const ::viam::robot::v1::CancelOperationRequest* request, ::viam::robot::v1::CancelOperationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CancelOperation_, context, request, response, reactor);
+}
+
+void RobotService::Stub::experimental_async::CancelOperation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::CancelOperationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CancelOperation_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::CancelOperationResponse>* RobotService::Stub::AsyncCancelOperationRaw(::grpc::ClientContext* context, const ::viam::robot::v1::CancelOperationRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncCancelOperationRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::CancelOperationResponse>::Create(channel_.get(), cq, rpcmethod_CancelOperation_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::CancelOperationResponse>* RobotService::Stub::PrepareAsyncCancelOperationRaw(::grpc::ClientContext* context, const ::viam::robot::v1::CancelOperationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::CancelOperationResponse>::Create(channel_.get(), cq, rpcmethod_CancelOperation_, context, request, false);
 }
 
 ::grpc::Status RobotService::Stub::BlockForOperation(::grpc::ClientContext* context, const ::viam::robot::v1::BlockForOperationRequest& request, ::viam::robot::v1::BlockForOperationResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::BlockForOperationRequest, ::viam::robot::v1::BlockForOperationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_BlockForOperation_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_BlockForOperation_, context, request, response);
 }
 
-void RobotService::Stub::async::BlockForOperation(::grpc::ClientContext* context, const ::viam::robot::v1::BlockForOperationRequest* request, ::viam::robot::v1::BlockForOperationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::BlockForOperationRequest, ::viam::robot::v1::BlockForOperationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_BlockForOperation_, context, request, response, std::move(f));
+void RobotService::Stub::experimental_async::BlockForOperation(::grpc::ClientContext* context, const ::viam::robot::v1::BlockForOperationRequest* request, ::viam::robot::v1::BlockForOperationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_BlockForOperation_, context, request, response, std::move(f));
 }
 
-void RobotService::Stub::async::BlockForOperation(::grpc::ClientContext* context, const ::viam::robot::v1::BlockForOperationRequest* request, ::viam::robot::v1::BlockForOperationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_BlockForOperation_, context, request, response, reactor);
+void RobotService::Stub::experimental_async::BlockForOperation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::BlockForOperationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_BlockForOperation_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::robot::v1::BlockForOperationResponse>* RobotService::Stub::PrepareAsyncBlockForOperationRaw(::grpc::ClientContext* context, const ::viam::robot::v1::BlockForOperationRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::BlockForOperationResponse, ::viam::robot::v1::BlockForOperationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_BlockForOperation_, context, request);
+void RobotService::Stub::experimental_async::BlockForOperation(::grpc::ClientContext* context, const ::viam::robot::v1::BlockForOperationRequest* request, ::viam::robot::v1::BlockForOperationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_BlockForOperation_, context, request, response, reactor);
+}
+
+void RobotService::Stub::experimental_async::BlockForOperation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::BlockForOperationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_BlockForOperation_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::BlockForOperationResponse>* RobotService::Stub::AsyncBlockForOperationRaw(::grpc::ClientContext* context, const ::viam::robot::v1::BlockForOperationRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncBlockForOperationRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::BlockForOperationResponse>::Create(channel_.get(), cq, rpcmethod_BlockForOperation_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::BlockForOperationResponse>* RobotService::Stub::PrepareAsyncBlockForOperationRaw(::grpc::ClientContext* context, const ::viam::robot::v1::BlockForOperationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::BlockForOperationResponse>::Create(channel_.get(), cq, rpcmethod_BlockForOperation_, context, request, false);
+}
+
+::grpc::Status RobotService::Stub::GetModelsFromModules(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest& request, ::viam::robot::v1::GetModelsFromModulesResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetModelsFromModules_, context, request, response);
+}
+
+void RobotService::Stub::experimental_async::GetModelsFromModules(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest* request, ::viam::robot::v1::GetModelsFromModulesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetModelsFromModules_, context, request, response, std::move(f));
+}
+
+void RobotService::Stub::experimental_async::GetModelsFromModules(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetModelsFromModulesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetModelsFromModules_, context, request, response, std::move(f));
+}
+
+void RobotService::Stub::experimental_async::GetModelsFromModules(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest* request, ::viam::robot::v1::GetModelsFromModulesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetModelsFromModules_, context, request, response, reactor);
+}
+
+void RobotService::Stub::experimental_async::GetModelsFromModules(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetModelsFromModulesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetModelsFromModules_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetModelsFromModulesResponse>* RobotService::Stub::AsyncGetModelsFromModulesRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::GetModelsFromModulesResponse>::Create(channel_.get(), cq, rpcmethod_GetModelsFromModules_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetModelsFromModulesResponse>* RobotService::Stub::PrepareAsyncGetModelsFromModulesRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::GetModelsFromModulesResponse>::Create(channel_.get(), cq, rpcmethod_GetModelsFromModules_, context, request, false);
 }
 
 ::grpc::Status RobotService::Stub::DiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::viam::robot::v1::DiscoverComponentsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::DiscoverComponentsRequest, ::viam::robot::v1::DiscoverComponentsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DiscoverComponents_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DiscoverComponents_, context, request, response);
 }
 
-void RobotService::Stub::async::DiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest* request, ::viam::robot::v1::DiscoverComponentsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::DiscoverComponentsRequest, ::viam::robot::v1::DiscoverComponentsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DiscoverComponents_, context, request, response, std::move(f));
+void RobotService::Stub::experimental_async::DiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest* request, ::viam::robot::v1::DiscoverComponentsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DiscoverComponents_, context, request, response, std::move(f));
 }
 
-void RobotService::Stub::async::DiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest* request, ::viam::robot::v1::DiscoverComponentsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DiscoverComponents_, context, request, response, reactor);
+void RobotService::Stub::experimental_async::DiscoverComponents(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::DiscoverComponentsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DiscoverComponents_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::robot::v1::DiscoverComponentsResponse>* RobotService::Stub::PrepareAsyncDiscoverComponentsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::DiscoverComponentsResponse, ::viam::robot::v1::DiscoverComponentsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DiscoverComponents_, context, request);
+void RobotService::Stub::experimental_async::DiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest* request, ::viam::robot::v1::DiscoverComponentsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DiscoverComponents_, context, request, response, reactor);
+}
+
+void RobotService::Stub::experimental_async::DiscoverComponents(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::DiscoverComponentsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DiscoverComponents_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::DiscoverComponentsResponse>* RobotService::Stub::AsyncDiscoverComponentsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncDiscoverComponentsRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::DiscoverComponentsResponse>::Create(channel_.get(), cq, rpcmethod_DiscoverComponents_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::DiscoverComponentsResponse>* RobotService::Stub::PrepareAsyncDiscoverComponentsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::DiscoverComponentsResponse>::Create(channel_.get(), cq, rpcmethod_DiscoverComponents_, context, request, false);
 }
 
 ::grpc::Status RobotService::Stub::FrameSystemConfig(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest& request, ::viam::robot::v1::FrameSystemConfigResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::FrameSystemConfigRequest, ::viam::robot::v1::FrameSystemConfigResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_FrameSystemConfig_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_FrameSystemConfig_, context, request, response);
 }
 
-void RobotService::Stub::async::FrameSystemConfig(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest* request, ::viam::robot::v1::FrameSystemConfigResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::FrameSystemConfigRequest, ::viam::robot::v1::FrameSystemConfigResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_FrameSystemConfig_, context, request, response, std::move(f));
+void RobotService::Stub::experimental_async::FrameSystemConfig(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest* request, ::viam::robot::v1::FrameSystemConfigResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_FrameSystemConfig_, context, request, response, std::move(f));
 }
 
-void RobotService::Stub::async::FrameSystemConfig(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest* request, ::viam::robot::v1::FrameSystemConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_FrameSystemConfig_, context, request, response, reactor);
+void RobotService::Stub::experimental_async::FrameSystemConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::FrameSystemConfigResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_FrameSystemConfig_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::robot::v1::FrameSystemConfigResponse>* RobotService::Stub::PrepareAsyncFrameSystemConfigRaw(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::FrameSystemConfigResponse, ::viam::robot::v1::FrameSystemConfigRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_FrameSystemConfig_, context, request);
+void RobotService::Stub::experimental_async::FrameSystemConfig(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest* request, ::viam::robot::v1::FrameSystemConfigResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_FrameSystemConfig_, context, request, response, reactor);
+}
+
+void RobotService::Stub::experimental_async::FrameSystemConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::FrameSystemConfigResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_FrameSystemConfig_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::FrameSystemConfigResponse>* RobotService::Stub::AsyncFrameSystemConfigRaw(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncFrameSystemConfigRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::FrameSystemConfigResponse>::Create(channel_.get(), cq, rpcmethod_FrameSystemConfig_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::FrameSystemConfigResponse>* RobotService::Stub::PrepareAsyncFrameSystemConfigRaw(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::FrameSystemConfigResponse>::Create(channel_.get(), cq, rpcmethod_FrameSystemConfig_, context, request, false);
 }
 
 ::grpc::Status RobotService::Stub::TransformPose(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPoseRequest& request, ::viam::robot::v1::TransformPoseResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::TransformPoseRequest, ::viam::robot::v1::TransformPoseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_TransformPose_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_TransformPose_, context, request, response);
 }
 
-void RobotService::Stub::async::TransformPose(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPoseRequest* request, ::viam::robot::v1::TransformPoseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::TransformPoseRequest, ::viam::robot::v1::TransformPoseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_TransformPose_, context, request, response, std::move(f));
+void RobotService::Stub::experimental_async::TransformPose(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPoseRequest* request, ::viam::robot::v1::TransformPoseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_TransformPose_, context, request, response, std::move(f));
 }
 
-void RobotService::Stub::async::TransformPose(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPoseRequest* request, ::viam::robot::v1::TransformPoseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_TransformPose_, context, request, response, reactor);
+void RobotService::Stub::experimental_async::TransformPose(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::TransformPoseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_TransformPose_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::robot::v1::TransformPoseResponse>* RobotService::Stub::PrepareAsyncTransformPoseRaw(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPoseRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::TransformPoseResponse, ::viam::robot::v1::TransformPoseRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_TransformPose_, context, request);
+void RobotService::Stub::experimental_async::TransformPose(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPoseRequest* request, ::viam::robot::v1::TransformPoseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_TransformPose_, context, request, response, reactor);
+}
+
+void RobotService::Stub::experimental_async::TransformPose(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::TransformPoseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_TransformPose_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::TransformPoseResponse>* RobotService::Stub::AsyncTransformPoseRaw(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPoseRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncTransformPoseRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::TransformPoseResponse>::Create(channel_.get(), cq, rpcmethod_TransformPose_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::TransformPoseResponse>* RobotService::Stub::PrepareAsyncTransformPoseRaw(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPoseRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::TransformPoseResponse>::Create(channel_.get(), cq, rpcmethod_TransformPose_, context, request, false);
 }
 
 ::grpc::Status RobotService::Stub::TransformPCD(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPCDRequest& request, ::viam::robot::v1::TransformPCDResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::TransformPCDRequest, ::viam::robot::v1::TransformPCDResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_TransformPCD_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_TransformPCD_, context, request, response);
 }
 
-void RobotService::Stub::async::TransformPCD(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPCDRequest* request, ::viam::robot::v1::TransformPCDResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::TransformPCDRequest, ::viam::robot::v1::TransformPCDResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_TransformPCD_, context, request, response, std::move(f));
+void RobotService::Stub::experimental_async::TransformPCD(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPCDRequest* request, ::viam::robot::v1::TransformPCDResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_TransformPCD_, context, request, response, std::move(f));
 }
 
-void RobotService::Stub::async::TransformPCD(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPCDRequest* request, ::viam::robot::v1::TransformPCDResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_TransformPCD_, context, request, response, reactor);
+void RobotService::Stub::experimental_async::TransformPCD(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::TransformPCDResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_TransformPCD_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::robot::v1::TransformPCDResponse>* RobotService::Stub::PrepareAsyncTransformPCDRaw(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPCDRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::TransformPCDResponse, ::viam::robot::v1::TransformPCDRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_TransformPCD_, context, request);
+void RobotService::Stub::experimental_async::TransformPCD(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPCDRequest* request, ::viam::robot::v1::TransformPCDResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_TransformPCD_, context, request, response, reactor);
+}
+
+void RobotService::Stub::experimental_async::TransformPCD(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::TransformPCDResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_TransformPCD_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::TransformPCDResponse>* RobotService::Stub::AsyncTransformPCDRaw(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPCDRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncTransformPCDRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::TransformPCDResponse>::Create(channel_.get(), cq, rpcmethod_TransformPCD_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::TransformPCDResponse>* RobotService::Stub::PrepareAsyncTransformPCDRaw(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPCDRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::TransformPCDResponse>::Create(channel_.get(), cq, rpcmethod_TransformPCD_, context, request, false);
 }
 
 ::grpc::Status RobotService::Stub::GetStatus(::grpc::ClientContext* context, const ::viam::robot::v1::GetStatusRequest& request, ::viam::robot::v1::GetStatusResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::GetStatusRequest, ::viam::robot::v1::GetStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetStatus_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetStatus_, context, request, response);
 }
 
-void RobotService::Stub::async::GetStatus(::grpc::ClientContext* context, const ::viam::robot::v1::GetStatusRequest* request, ::viam::robot::v1::GetStatusResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::GetStatusRequest, ::viam::robot::v1::GetStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetStatus_, context, request, response, std::move(f));
+void RobotService::Stub::experimental_async::GetStatus(::grpc::ClientContext* context, const ::viam::robot::v1::GetStatusRequest* request, ::viam::robot::v1::GetStatusResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetStatus_, context, request, response, std::move(f));
 }
 
-void RobotService::Stub::async::GetStatus(::grpc::ClientContext* context, const ::viam::robot::v1::GetStatusRequest* request, ::viam::robot::v1::GetStatusResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetStatus_, context, request, response, reactor);
+void RobotService::Stub::experimental_async::GetStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetStatusResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetStatus_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetStatusResponse>* RobotService::Stub::PrepareAsyncGetStatusRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetStatusRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::GetStatusResponse, ::viam::robot::v1::GetStatusRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetStatus_, context, request);
+void RobotService::Stub::experimental_async::GetStatus(::grpc::ClientContext* context, const ::viam::robot::v1::GetStatusRequest* request, ::viam::robot::v1::GetStatusResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetStatus_, context, request, response, reactor);
+}
+
+void RobotService::Stub::experimental_async::GetStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetStatusResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetStatus_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetStatusResponse>* RobotService::Stub::AsyncGetStatusRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetStatusRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetStatusRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::GetStatusResponse>::Create(channel_.get(), cq, rpcmethod_GetStatus_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetStatusResponse>* RobotService::Stub::PrepareAsyncGetStatusRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetStatusRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::GetStatusResponse>::Create(channel_.get(), cq, rpcmethod_GetStatus_, context, request, false);
 }
 
 ::grpc::ClientReader< ::viam::robot::v1::StreamStatusResponse>* RobotService::Stub::StreamStatusRaw(::grpc::ClientContext* context, const ::viam::robot::v1::StreamStatusRequest& request) {
-  return ::grpc::internal::ClientReaderFactory< ::viam::robot::v1::StreamStatusResponse>::Create(channel_.get(), rpcmethod_StreamStatus_, context, request);
+  return ::grpc_impl::internal::ClientReaderFactory< ::viam::robot::v1::StreamStatusResponse>::Create(channel_.get(), rpcmethod_StreamStatus_, context, request);
 }
 
-void RobotService::Stub::async::StreamStatus(::grpc::ClientContext* context, const ::viam::robot::v1::StreamStatusRequest* request, ::grpc::ClientReadReactor< ::viam::robot::v1::StreamStatusResponse>* reactor) {
-  ::grpc::internal::ClientCallbackReaderFactory< ::viam::robot::v1::StreamStatusResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_StreamStatus_, context, request, reactor);
+void RobotService::Stub::experimental_async::StreamStatus(::grpc::ClientContext* context, ::viam::robot::v1::StreamStatusRequest* request, ::grpc::experimental::ClientReadReactor< ::viam::robot::v1::StreamStatusResponse>* reactor) {
+  ::grpc_impl::internal::ClientCallbackReaderFactory< ::viam::robot::v1::StreamStatusResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_StreamStatus_, context, request, reactor);
 }
 
 ::grpc::ClientAsyncReader< ::viam::robot::v1::StreamStatusResponse>* RobotService::Stub::AsyncStreamStatusRaw(::grpc::ClientContext* context, const ::viam::robot::v1::StreamStatusRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
-  return ::grpc::internal::ClientAsyncReaderFactory< ::viam::robot::v1::StreamStatusResponse>::Create(channel_.get(), cq, rpcmethod_StreamStatus_, context, request, true, tag);
+  return ::grpc_impl::internal::ClientAsyncReaderFactory< ::viam::robot::v1::StreamStatusResponse>::Create(channel_.get(), cq, rpcmethod_StreamStatus_, context, request, true, tag);
 }
 
 ::grpc::ClientAsyncReader< ::viam::robot::v1::StreamStatusResponse>* RobotService::Stub::PrepareAsyncStreamStatusRaw(::grpc::ClientContext* context, const ::viam::robot::v1::StreamStatusRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncReaderFactory< ::viam::robot::v1::StreamStatusResponse>::Create(channel_.get(), cq, rpcmethod_StreamStatus_, context, request, false, nullptr);
+  return ::grpc_impl::internal::ClientAsyncReaderFactory< ::viam::robot::v1::StreamStatusResponse>::Create(channel_.get(), cq, rpcmethod_StreamStatus_, context, request, false, nullptr);
 }
 
 ::grpc::Status RobotService::Stub::StopAll(::grpc::ClientContext* context, const ::viam::robot::v1::StopAllRequest& request, ::viam::robot::v1::StopAllResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::StopAllRequest, ::viam::robot::v1::StopAllResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_StopAll_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_StopAll_, context, request, response);
 }
 
-void RobotService::Stub::async::StopAll(::grpc::ClientContext* context, const ::viam::robot::v1::StopAllRequest* request, ::viam::robot::v1::StopAllResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::StopAllRequest, ::viam::robot::v1::StopAllResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_StopAll_, context, request, response, std::move(f));
+void RobotService::Stub::experimental_async::StopAll(::grpc::ClientContext* context, const ::viam::robot::v1::StopAllRequest* request, ::viam::robot::v1::StopAllResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_StopAll_, context, request, response, std::move(f));
 }
 
-void RobotService::Stub::async::StopAll(::grpc::ClientContext* context, const ::viam::robot::v1::StopAllRequest* request, ::viam::robot::v1::StopAllResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_StopAll_, context, request, response, reactor);
+void RobotService::Stub::experimental_async::StopAll(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::StopAllResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_StopAll_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::robot::v1::StopAllResponse>* RobotService::Stub::PrepareAsyncStopAllRaw(::grpc::ClientContext* context, const ::viam::robot::v1::StopAllRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::StopAllResponse, ::viam::robot::v1::StopAllRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_StopAll_, context, request);
+void RobotService::Stub::experimental_async::StopAll(::grpc::ClientContext* context, const ::viam::robot::v1::StopAllRequest* request, ::viam::robot::v1::StopAllResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_StopAll_, context, request, response, reactor);
+}
+
+void RobotService::Stub::experimental_async::StopAll(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::StopAllResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_StopAll_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::StopAllResponse>* RobotService::Stub::AsyncStopAllRaw(::grpc::ClientContext* context, const ::viam::robot::v1::StopAllRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncStopAllRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::StopAllResponse>::Create(channel_.get(), cq, rpcmethod_StopAll_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::StopAllResponse>* RobotService::Stub::PrepareAsyncStopAllRaw(::grpc::ClientContext* context, const ::viam::robot::v1::StopAllRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::StopAllResponse>::Create(channel_.get(), cq, rpcmethod_StopAll_, context, request, false);
 }
 
 ::grpc::Status RobotService::Stub::StartSession(::grpc::ClientContext* context, const ::viam::robot::v1::StartSessionRequest& request, ::viam::robot::v1::StartSessionResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::StartSessionRequest, ::viam::robot::v1::StartSessionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_StartSession_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_StartSession_, context, request, response);
 }
 
-void RobotService::Stub::async::StartSession(::grpc::ClientContext* context, const ::viam::robot::v1::StartSessionRequest* request, ::viam::robot::v1::StartSessionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::StartSessionRequest, ::viam::robot::v1::StartSessionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_StartSession_, context, request, response, std::move(f));
+void RobotService::Stub::experimental_async::StartSession(::grpc::ClientContext* context, const ::viam::robot::v1::StartSessionRequest* request, ::viam::robot::v1::StartSessionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_StartSession_, context, request, response, std::move(f));
 }
 
-void RobotService::Stub::async::StartSession(::grpc::ClientContext* context, const ::viam::robot::v1::StartSessionRequest* request, ::viam::robot::v1::StartSessionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_StartSession_, context, request, response, reactor);
+void RobotService::Stub::experimental_async::StartSession(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::StartSessionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_StartSession_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::robot::v1::StartSessionResponse>* RobotService::Stub::PrepareAsyncStartSessionRaw(::grpc::ClientContext* context, const ::viam::robot::v1::StartSessionRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::StartSessionResponse, ::viam::robot::v1::StartSessionRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_StartSession_, context, request);
+void RobotService::Stub::experimental_async::StartSession(::grpc::ClientContext* context, const ::viam::robot::v1::StartSessionRequest* request, ::viam::robot::v1::StartSessionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_StartSession_, context, request, response, reactor);
+}
+
+void RobotService::Stub::experimental_async::StartSession(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::StartSessionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_StartSession_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::StartSessionResponse>* RobotService::Stub::AsyncStartSessionRaw(::grpc::ClientContext* context, const ::viam::robot::v1::StartSessionRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncStartSessionRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::StartSessionResponse>::Create(channel_.get(), cq, rpcmethod_StartSession_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::StartSessionResponse>* RobotService::Stub::PrepareAsyncStartSessionRaw(::grpc::ClientContext* context, const ::viam::robot::v1::StartSessionRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::StartSessionResponse>::Create(channel_.get(), cq, rpcmethod_StartSession_, context, request, false);
 }
 
 ::grpc::Status RobotService::Stub::SendSessionHeartbeat(::grpc::ClientContext* context, const ::viam::robot::v1::SendSessionHeartbeatRequest& request, ::viam::robot::v1::SendSessionHeartbeatResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::SendSessionHeartbeatRequest, ::viam::robot::v1::SendSessionHeartbeatResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SendSessionHeartbeat_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SendSessionHeartbeat_, context, request, response);
 }
 
-void RobotService::Stub::async::SendSessionHeartbeat(::grpc::ClientContext* context, const ::viam::robot::v1::SendSessionHeartbeatRequest* request, ::viam::robot::v1::SendSessionHeartbeatResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::SendSessionHeartbeatRequest, ::viam::robot::v1::SendSessionHeartbeatResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SendSessionHeartbeat_, context, request, response, std::move(f));
+void RobotService::Stub::experimental_async::SendSessionHeartbeat(::grpc::ClientContext* context, const ::viam::robot::v1::SendSessionHeartbeatRequest* request, ::viam::robot::v1::SendSessionHeartbeatResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SendSessionHeartbeat_, context, request, response, std::move(f));
 }
 
-void RobotService::Stub::async::SendSessionHeartbeat(::grpc::ClientContext* context, const ::viam::robot::v1::SendSessionHeartbeatRequest* request, ::viam::robot::v1::SendSessionHeartbeatResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SendSessionHeartbeat_, context, request, response, reactor);
+void RobotService::Stub::experimental_async::SendSessionHeartbeat(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::SendSessionHeartbeatResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SendSessionHeartbeat_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::robot::v1::SendSessionHeartbeatResponse>* RobotService::Stub::PrepareAsyncSendSessionHeartbeatRaw(::grpc::ClientContext* context, const ::viam::robot::v1::SendSessionHeartbeatRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::SendSessionHeartbeatResponse, ::viam::robot::v1::SendSessionHeartbeatRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SendSessionHeartbeat_, context, request);
+void RobotService::Stub::experimental_async::SendSessionHeartbeat(::grpc::ClientContext* context, const ::viam::robot::v1::SendSessionHeartbeatRequest* request, ::viam::robot::v1::SendSessionHeartbeatResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SendSessionHeartbeat_, context, request, response, reactor);
+}
+
+void RobotService::Stub::experimental_async::SendSessionHeartbeat(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::SendSessionHeartbeatResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SendSessionHeartbeat_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::SendSessionHeartbeatResponse>* RobotService::Stub::AsyncSendSessionHeartbeatRaw(::grpc::ClientContext* context, const ::viam::robot::v1::SendSessionHeartbeatRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSendSessionHeartbeatRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::SendSessionHeartbeatResponse>::Create(channel_.get(), cq, rpcmethod_SendSessionHeartbeat_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::SendSessionHeartbeatResponse>* RobotService::Stub::PrepareAsyncSendSessionHeartbeatRaw(::grpc::ClientContext* context, const ::viam::robot::v1::SendSessionHeartbeatRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::SendSessionHeartbeatResponse>::Create(channel_.get(), cq, rpcmethod_SendSessionHeartbeat_, context, request, false);
 }
 
 ::grpc::Status RobotService::Stub::Log(::grpc::ClientContext* context, const ::viam::robot::v1::LogRequest& request, ::viam::robot::v1::LogResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::LogRequest, ::viam::robot::v1::LogResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Log_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_Log_, context, request, response);
 }
 
-void RobotService::Stub::async::Log(::grpc::ClientContext* context, const ::viam::robot::v1::LogRequest* request, ::viam::robot::v1::LogResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::LogRequest, ::viam::robot::v1::LogResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Log_, context, request, response, std::move(f));
+void RobotService::Stub::experimental_async::Log(::grpc::ClientContext* context, const ::viam::robot::v1::LogRequest* request, ::viam::robot::v1::LogResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Log_, context, request, response, std::move(f));
 }
 
-void RobotService::Stub::async::Log(::grpc::ClientContext* context, const ::viam::robot::v1::LogRequest* request, ::viam::robot::v1::LogResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Log_, context, request, response, reactor);
+void RobotService::Stub::experimental_async::Log(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::LogResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Log_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::robot::v1::LogResponse>* RobotService::Stub::PrepareAsyncLogRaw(::grpc::ClientContext* context, const ::viam::robot::v1::LogRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::LogResponse, ::viam::robot::v1::LogRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Log_, context, request);
+void RobotService::Stub::experimental_async::Log(::grpc::ClientContext* context, const ::viam::robot::v1::LogRequest* request, ::viam::robot::v1::LogResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Log_, context, request, response, reactor);
+}
+
+void RobotService::Stub::experimental_async::Log(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::LogResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Log_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::LogResponse>* RobotService::Stub::AsyncLogRaw(::grpc::ClientContext* context, const ::viam::robot::v1::LogRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncLogRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::LogResponse>::Create(channel_.get(), cq, rpcmethod_Log_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::LogResponse>* RobotService::Stub::PrepareAsyncLogRaw(::grpc::ClientContext* context, const ::viam::robot::v1::LogRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::LogResponse>::Create(channel_.get(), cq, rpcmethod_Log_, context, request, false);
 }
 
 ::grpc::Status RobotService::Stub::GetCloudMetadata(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest& request, ::viam::robot::v1::GetCloudMetadataResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::GetCloudMetadataRequest, ::viam::robot::v1::GetCloudMetadataResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetCloudMetadata_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetCloudMetadata_, context, request, response);
 }
 
-void RobotService::Stub::async::GetCloudMetadata(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest* request, ::viam::robot::v1::GetCloudMetadataResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::GetCloudMetadataRequest, ::viam::robot::v1::GetCloudMetadataResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetCloudMetadata_, context, request, response, std::move(f));
+void RobotService::Stub::experimental_async::GetCloudMetadata(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest* request, ::viam::robot::v1::GetCloudMetadataResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetCloudMetadata_, context, request, response, std::move(f));
 }
 
-void RobotService::Stub::async::GetCloudMetadata(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest* request, ::viam::robot::v1::GetCloudMetadataResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetCloudMetadata_, context, request, response, reactor);
+void RobotService::Stub::experimental_async::GetCloudMetadata(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetCloudMetadataResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetCloudMetadata_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetCloudMetadataResponse>* RobotService::Stub::PrepareAsyncGetCloudMetadataRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::GetCloudMetadataResponse, ::viam::robot::v1::GetCloudMetadataRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetCloudMetadata_, context, request);
+void RobotService::Stub::experimental_async::GetCloudMetadata(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest* request, ::viam::robot::v1::GetCloudMetadataResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetCloudMetadata_, context, request, response, reactor);
+}
+
+void RobotService::Stub::experimental_async::GetCloudMetadata(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetCloudMetadataResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetCloudMetadata_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetCloudMetadataResponse>* RobotService::Stub::AsyncGetCloudMetadataRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetCloudMetadataRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::GetCloudMetadataResponse>::Create(channel_.get(), cq, rpcmethod_GetCloudMetadata_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetCloudMetadataResponse>* RobotService::Stub::PrepareAsyncGetCloudMetadataRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::GetCloudMetadataResponse>::Create(channel_.get(), cq, rpcmethod_GetCloudMetadata_, context, request, false);
 }
 
 ::grpc::Status RobotService::Stub::RestartModule(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest& request, ::viam::robot::v1::RestartModuleResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::RestartModuleRequest, ::viam::robot::v1::RestartModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_RestartModule_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_RestartModule_, context, request, response);
 }
 
-void RobotService::Stub::async::RestartModule(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest* request, ::viam::robot::v1::RestartModuleResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::RestartModuleRequest, ::viam::robot::v1::RestartModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RestartModule_, context, request, response, std::move(f));
+void RobotService::Stub::experimental_async::RestartModule(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest* request, ::viam::robot::v1::RestartModuleResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_RestartModule_, context, request, response, std::move(f));
 }
 
-void RobotService::Stub::async::RestartModule(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest* request, ::viam::robot::v1::RestartModuleResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RestartModule_, context, request, response, reactor);
+void RobotService::Stub::experimental_async::RestartModule(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::RestartModuleResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_RestartModule_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::robot::v1::RestartModuleResponse>* RobotService::Stub::PrepareAsyncRestartModuleRaw(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::RestartModuleResponse, ::viam::robot::v1::RestartModuleRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_RestartModule_, context, request);
+void RobotService::Stub::experimental_async::RestartModule(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest* request, ::viam::robot::v1::RestartModuleResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_RestartModule_, context, request, response, reactor);
+}
+
+void RobotService::Stub::experimental_async::RestartModule(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::RestartModuleResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_RestartModule_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::RestartModuleResponse>* RobotService::Stub::AsyncRestartModuleRaw(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncRestartModuleRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::RestartModuleResponse>::Create(channel_.get(), cq, rpcmethod_RestartModule_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::RestartModuleResponse>* RobotService::Stub::PrepareAsyncRestartModuleRaw(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::RestartModuleResponse>::Create(channel_.get(), cq, rpcmethod_RestartModule_, context, request, false);
 }
 
 ::grpc::Status RobotService::Stub::Shutdown(::grpc::ClientContext* context, const ::viam::robot::v1::ShutdownRequest& request, ::viam::robot::v1::ShutdownResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::ShutdownRequest, ::viam::robot::v1::ShutdownResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Shutdown_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_Shutdown_, context, request, response);
 }
 
-void RobotService::Stub::async::Shutdown(::grpc::ClientContext* context, const ::viam::robot::v1::ShutdownRequest* request, ::viam::robot::v1::ShutdownResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::ShutdownRequest, ::viam::robot::v1::ShutdownResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Shutdown_, context, request, response, std::move(f));
+void RobotService::Stub::experimental_async::Shutdown(::grpc::ClientContext* context, const ::viam::robot::v1::ShutdownRequest* request, ::viam::robot::v1::ShutdownResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Shutdown_, context, request, response, std::move(f));
 }
 
-void RobotService::Stub::async::Shutdown(::grpc::ClientContext* context, const ::viam::robot::v1::ShutdownRequest* request, ::viam::robot::v1::ShutdownResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Shutdown_, context, request, response, reactor);
+void RobotService::Stub::experimental_async::Shutdown(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ShutdownResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Shutdown_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::robot::v1::ShutdownResponse>* RobotService::Stub::PrepareAsyncShutdownRaw(::grpc::ClientContext* context, const ::viam::robot::v1::ShutdownRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::ShutdownResponse, ::viam::robot::v1::ShutdownRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Shutdown_, context, request);
+void RobotService::Stub::experimental_async::Shutdown(::grpc::ClientContext* context, const ::viam::robot::v1::ShutdownRequest* request, ::viam::robot::v1::ShutdownResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Shutdown_, context, request, response, reactor);
+}
+
+void RobotService::Stub::experimental_async::Shutdown(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ShutdownResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Shutdown_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::ShutdownResponse>* RobotService::Stub::AsyncShutdownRaw(::grpc::ClientContext* context, const ::viam::robot::v1::ShutdownRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncShutdownRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::ShutdownResponse>::Create(channel_.get(), cq, rpcmethod_Shutdown_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::ShutdownResponse>* RobotService::Stub::PrepareAsyncShutdownRaw(::grpc::ClientContext* context, const ::viam::robot::v1::ShutdownRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::ShutdownResponse>::Create(channel_.get(), cq, rpcmethod_Shutdown_, context, request, false);
 }
 
 ::grpc::Status RobotService::Stub::GetMachineStatus(::grpc::ClientContext* context, const ::viam::robot::v1::GetMachineStatusRequest& request, ::viam::robot::v1::GetMachineStatusResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::GetMachineStatusRequest, ::viam::robot::v1::GetMachineStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetMachineStatus_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetMachineStatus_, context, request, response);
 }
 
-void RobotService::Stub::async::GetMachineStatus(::grpc::ClientContext* context, const ::viam::robot::v1::GetMachineStatusRequest* request, ::viam::robot::v1::GetMachineStatusResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::GetMachineStatusRequest, ::viam::robot::v1::GetMachineStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetMachineStatus_, context, request, response, std::move(f));
+void RobotService::Stub::experimental_async::GetMachineStatus(::grpc::ClientContext* context, const ::viam::robot::v1::GetMachineStatusRequest* request, ::viam::robot::v1::GetMachineStatusResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetMachineStatus_, context, request, response, std::move(f));
 }
 
-void RobotService::Stub::async::GetMachineStatus(::grpc::ClientContext* context, const ::viam::robot::v1::GetMachineStatusRequest* request, ::viam::robot::v1::GetMachineStatusResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetMachineStatus_, context, request, response, reactor);
+void RobotService::Stub::experimental_async::GetMachineStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetMachineStatusResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetMachineStatus_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetMachineStatusResponse>* RobotService::Stub::PrepareAsyncGetMachineStatusRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetMachineStatusRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::GetMachineStatusResponse, ::viam::robot::v1::GetMachineStatusRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetMachineStatus_, context, request);
+void RobotService::Stub::experimental_async::GetMachineStatus(::grpc::ClientContext* context, const ::viam::robot::v1::GetMachineStatusRequest* request, ::viam::robot::v1::GetMachineStatusResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetMachineStatus_, context, request, response, reactor);
+}
+
+void RobotService::Stub::experimental_async::GetMachineStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetMachineStatusResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetMachineStatus_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetMachineStatusResponse>* RobotService::Stub::AsyncGetMachineStatusRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetMachineStatusRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetMachineStatusRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::GetMachineStatusResponse>::Create(channel_.get(), cq, rpcmethod_GetMachineStatus_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetMachineStatusResponse>* RobotService::Stub::PrepareAsyncGetMachineStatusRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetMachineStatusRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::GetMachineStatusResponse>::Create(channel_.get(), cq, rpcmethod_GetMachineStatus_, context, request, false);
 }
 
 ::grpc::Status RobotService::Stub::GetVersion(::grpc::ClientContext* context, const ::viam::robot::v1::GetVersionRequest& request, ::viam::robot::v1::GetVersionResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::GetVersionRequest, ::viam::robot::v1::GetVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetVersion_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetVersion_, context, request, response);
 }
 
-void RobotService::Stub::async::GetVersion(::grpc::ClientContext* context, const ::viam::robot::v1::GetVersionRequest* request, ::viam::robot::v1::GetVersionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::GetVersionRequest, ::viam::robot::v1::GetVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetVersion_, context, request, response, std::move(f));
+void RobotService::Stub::experimental_async::GetVersion(::grpc::ClientContext* context, const ::viam::robot::v1::GetVersionRequest* request, ::viam::robot::v1::GetVersionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetVersion_, context, request, response, std::move(f));
 }
 
-void RobotService::Stub::async::GetVersion(::grpc::ClientContext* context, const ::viam::robot::v1::GetVersionRequest* request, ::viam::robot::v1::GetVersionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetVersion_, context, request, response, reactor);
+void RobotService::Stub::experimental_async::GetVersion(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetVersionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetVersion_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetVersionResponse>* RobotService::Stub::PrepareAsyncGetVersionRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetVersionRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::GetVersionResponse, ::viam::robot::v1::GetVersionRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetVersion_, context, request);
+void RobotService::Stub::experimental_async::GetVersion(::grpc::ClientContext* context, const ::viam::robot::v1::GetVersionRequest* request, ::viam::robot::v1::GetVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetVersion_, context, request, response, reactor);
+}
+
+void RobotService::Stub::experimental_async::GetVersion(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetVersion_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetVersionResponse>* RobotService::Stub::AsyncGetVersionRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetVersionRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetVersionRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::GetVersionResponse>::Create(channel_.get(), cq, rpcmethod_GetVersion_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetVersionResponse>* RobotService::Stub::PrepareAsyncGetVersionRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetVersionRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::GetVersionResponse>::Create(channel_.get(), cq, rpcmethod_GetVersion_, context, request, false);
+}
+
+::grpc::ClientReaderWriter< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>* RobotService::Stub::TunnelRaw(::grpc::ClientContext* context) {
+  return ::grpc_impl::internal::ClientReaderWriterFactory< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>::Create(channel_.get(), rpcmethod_Tunnel_, context);
+}
+
+void RobotService::Stub::experimental_async::Tunnel(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::viam::robot::v1::TunnelRequest,::viam::robot::v1::TunnelResponse>* reactor) {
+  ::grpc_impl::internal::ClientCallbackReaderWriterFactory< ::viam::robot::v1::TunnelRequest,::viam::robot::v1::TunnelResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_Tunnel_, context, reactor);
+}
+
+::grpc::ClientAsyncReaderWriter< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>* RobotService::Stub::AsyncTunnelRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>::Create(channel_.get(), cq, rpcmethod_Tunnel_, context, true, tag);
+}
+
+::grpc::ClientAsyncReaderWriter< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>* RobotService::Stub::PrepareAsyncTunnelRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>::Create(channel_.get(), cq, rpcmethod_Tunnel_, context, false, nullptr);
 }
 
 RobotService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       RobotService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::GetOperationsRequest, ::viam::robot::v1::GetOperationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::GetOperationsRequest, ::viam::robot::v1::GetOperationsResponse>(
           [](RobotService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::robot::v1::GetOperationsRequest* req,
              ::viam::robot::v1::GetOperationsResponse* resp) {
                return service->GetOperations(ctx, req, resp);
@@ -567,9 +715,9 @@ RobotService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       RobotService_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::GetSessionsRequest, ::viam::robot::v1::GetSessionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::GetSessionsRequest, ::viam::robot::v1::GetSessionsResponse>(
           [](RobotService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::robot::v1::GetSessionsRequest* req,
              ::viam::robot::v1::GetSessionsResponse* resp) {
                return service->GetSessions(ctx, req, resp);
@@ -577,9 +725,9 @@ RobotService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       RobotService_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::ResourceNamesRequest, ::viam::robot::v1::ResourceNamesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::ResourceNamesRequest, ::viam::robot::v1::ResourceNamesResponse>(
           [](RobotService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::robot::v1::ResourceNamesRequest* req,
              ::viam::robot::v1::ResourceNamesResponse* resp) {
                return service->ResourceNames(ctx, req, resp);
@@ -587,9 +735,9 @@ RobotService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       RobotService_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::ResourceRPCSubtypesRequest, ::viam::robot::v1::ResourceRPCSubtypesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::ResourceRPCSubtypesRequest, ::viam::robot::v1::ResourceRPCSubtypesResponse>(
           [](RobotService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::robot::v1::ResourceRPCSubtypesRequest* req,
              ::viam::robot::v1::ResourceRPCSubtypesResponse* resp) {
                return service->ResourceRPCSubtypes(ctx, req, resp);
@@ -597,9 +745,9 @@ RobotService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       RobotService_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::CancelOperationRequest, ::viam::robot::v1::CancelOperationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::CancelOperationRequest, ::viam::robot::v1::CancelOperationResponse>(
           [](RobotService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::robot::v1::CancelOperationRequest* req,
              ::viam::robot::v1::CancelOperationResponse* resp) {
                return service->CancelOperation(ctx, req, resp);
@@ -607,9 +755,9 @@ RobotService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       RobotService_method_names[5],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::BlockForOperationRequest, ::viam::robot::v1::BlockForOperationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::BlockForOperationRequest, ::viam::robot::v1::BlockForOperationResponse>(
           [](RobotService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::robot::v1::BlockForOperationRequest* req,
              ::viam::robot::v1::BlockForOperationResponse* resp) {
                return service->BlockForOperation(ctx, req, resp);
@@ -617,152 +765,172 @@ RobotService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       RobotService_method_names[6],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::DiscoverComponentsRequest, ::viam::robot::v1::DiscoverComponentsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::GetModelsFromModulesRequest, ::viam::robot::v1::GetModelsFromModulesResponse>(
           [](RobotService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::robot::v1::GetModelsFromModulesRequest* req,
+             ::viam::robot::v1::GetModelsFromModulesResponse* resp) {
+               return service->GetModelsFromModules(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      RobotService_method_names[7],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::DiscoverComponentsRequest, ::viam::robot::v1::DiscoverComponentsResponse>(
+          [](RobotService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::robot::v1::DiscoverComponentsRequest* req,
              ::viam::robot::v1::DiscoverComponentsResponse* resp) {
                return service->DiscoverComponents(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[7],
+      RobotService_method_names[8],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::FrameSystemConfigRequest, ::viam::robot::v1::FrameSystemConfigResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::FrameSystemConfigRequest, ::viam::robot::v1::FrameSystemConfigResponse>(
           [](RobotService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::robot::v1::FrameSystemConfigRequest* req,
              ::viam::robot::v1::FrameSystemConfigResponse* resp) {
                return service->FrameSystemConfig(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[8],
+      RobotService_method_names[9],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::TransformPoseRequest, ::viam::robot::v1::TransformPoseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::TransformPoseRequest, ::viam::robot::v1::TransformPoseResponse>(
           [](RobotService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::robot::v1::TransformPoseRequest* req,
              ::viam::robot::v1::TransformPoseResponse* resp) {
                return service->TransformPose(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[9],
+      RobotService_method_names[10],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::TransformPCDRequest, ::viam::robot::v1::TransformPCDResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::TransformPCDRequest, ::viam::robot::v1::TransformPCDResponse>(
           [](RobotService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::robot::v1::TransformPCDRequest* req,
              ::viam::robot::v1::TransformPCDResponse* resp) {
                return service->TransformPCD(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[10],
+      RobotService_method_names[11],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::GetStatusRequest, ::viam::robot::v1::GetStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::GetStatusRequest, ::viam::robot::v1::GetStatusResponse>(
           [](RobotService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::robot::v1::GetStatusRequest* req,
              ::viam::robot::v1::GetStatusResponse* resp) {
                return service->GetStatus(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[11],
+      RobotService_method_names[12],
       ::grpc::internal::RpcMethod::SERVER_STREAMING,
       new ::grpc::internal::ServerStreamingHandler< RobotService::Service, ::viam::robot::v1::StreamStatusRequest, ::viam::robot::v1::StreamStatusResponse>(
           [](RobotService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::robot::v1::StreamStatusRequest* req,
-             ::grpc::ServerWriter<::viam::robot::v1::StreamStatusResponse>* writer) {
+             ::grpc_impl::ServerWriter<::viam::robot::v1::StreamStatusResponse>* writer) {
                return service->StreamStatus(ctx, req, writer);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[12],
+      RobotService_method_names[13],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::StopAllRequest, ::viam::robot::v1::StopAllResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::StopAllRequest, ::viam::robot::v1::StopAllResponse>(
           [](RobotService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::robot::v1::StopAllRequest* req,
              ::viam::robot::v1::StopAllResponse* resp) {
                return service->StopAll(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[13],
+      RobotService_method_names[14],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::StartSessionRequest, ::viam::robot::v1::StartSessionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::StartSessionRequest, ::viam::robot::v1::StartSessionResponse>(
           [](RobotService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::robot::v1::StartSessionRequest* req,
              ::viam::robot::v1::StartSessionResponse* resp) {
                return service->StartSession(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[14],
+      RobotService_method_names[15],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::SendSessionHeartbeatRequest, ::viam::robot::v1::SendSessionHeartbeatResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::SendSessionHeartbeatRequest, ::viam::robot::v1::SendSessionHeartbeatResponse>(
           [](RobotService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::robot::v1::SendSessionHeartbeatRequest* req,
              ::viam::robot::v1::SendSessionHeartbeatResponse* resp) {
                return service->SendSessionHeartbeat(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[15],
+      RobotService_method_names[16],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::LogRequest, ::viam::robot::v1::LogResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::LogRequest, ::viam::robot::v1::LogResponse>(
           [](RobotService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::robot::v1::LogRequest* req,
              ::viam::robot::v1::LogResponse* resp) {
                return service->Log(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[16],
+      RobotService_method_names[17],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::GetCloudMetadataRequest, ::viam::robot::v1::GetCloudMetadataResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::GetCloudMetadataRequest, ::viam::robot::v1::GetCloudMetadataResponse>(
           [](RobotService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::robot::v1::GetCloudMetadataRequest* req,
              ::viam::robot::v1::GetCloudMetadataResponse* resp) {
                return service->GetCloudMetadata(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[17],
+      RobotService_method_names[18],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::RestartModuleRequest, ::viam::robot::v1::RestartModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::RestartModuleRequest, ::viam::robot::v1::RestartModuleResponse>(
           [](RobotService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::robot::v1::RestartModuleRequest* req,
              ::viam::robot::v1::RestartModuleResponse* resp) {
                return service->RestartModule(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[18],
+      RobotService_method_names[19],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::ShutdownRequest, ::viam::robot::v1::ShutdownResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::ShutdownRequest, ::viam::robot::v1::ShutdownResponse>(
           [](RobotService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::robot::v1::ShutdownRequest* req,
              ::viam::robot::v1::ShutdownResponse* resp) {
                return service->Shutdown(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[19],
+      RobotService_method_names[20],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::GetMachineStatusRequest, ::viam::robot::v1::GetMachineStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::GetMachineStatusRequest, ::viam::robot::v1::GetMachineStatusResponse>(
           [](RobotService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::robot::v1::GetMachineStatusRequest* req,
              ::viam::robot::v1::GetMachineStatusResponse* resp) {
                return service->GetMachineStatus(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[20],
+      RobotService_method_names[21],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::GetVersionRequest, ::viam::robot::v1::GetVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::GetVersionRequest, ::viam::robot::v1::GetVersionResponse>(
           [](RobotService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::viam::robot::v1::GetVersionRequest* req,
              ::viam::robot::v1::GetVersionResponse* resp) {
                return service->GetVersion(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      RobotService_method_names[22],
+      ::grpc::internal::RpcMethod::BIDI_STREAMING,
+      new ::grpc::internal::BidiStreamingHandler< RobotService::Service, ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>(
+          [](RobotService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             ::grpc_impl::ServerReaderWriter<::viam::robot::v1::TunnelResponse,
+             ::viam::robot::v1::TunnelRequest>* stream) {
+               return service->Tunnel(ctx, stream);
              }, this)));
 }
 
@@ -805,6 +973,13 @@ RobotService::Service::~Service() {
 }
 
 ::grpc::Status RobotService::Service::BlockForOperation(::grpc::ServerContext* context, const ::viam::robot::v1::BlockForOperationRequest* request, ::viam::robot::v1::BlockForOperationResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status RobotService::Service::GetModelsFromModules(::grpc::ServerContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest* request, ::viam::robot::v1::GetModelsFromModulesResponse* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -913,6 +1088,12 @@ RobotService::Service::~Service() {
   (void) context;
   (void) request;
   (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status RobotService::Service::Tunnel(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::viam::robot::v1::TunnelResponse, ::viam::robot::v1::TunnelRequest>* stream) {
+  (void) context;
+  (void) stream;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 

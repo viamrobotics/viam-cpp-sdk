@@ -3,28 +3,43 @@
 #include <string>
 #include <unordered_map>
 
-#include <viam/api/app/v1/robot.pb.h>
-#include <viam/api/robot/v1/robot.pb.h>
-
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_convert.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/referenceframe/frame.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 
 namespace viam {
+namespace app {
+namespace v1 {
+
+class ComponentConfig;
+class ResourceLevelServiceConfig;
+
+}  // namespace v1
+}  // namespace app
+}  // namespace viam
+
+namespace viam {
 namespace sdk {
 
-class ResourceLevelServiceConfig {
-   public:
+struct ResourceLevelServiceConfig {
     std::string type;
-    AttributeMap attributes;
-    ProtoType converted_attributes;
+    ProtoStruct attributes;
+    ProtoValue converted_attributes;
 };
 
 class ResourceConfig {
    public:
-    static ResourceConfig from_proto(const viam::app::v1::ComponentConfig& proto_cfg);
-    viam::app::v1::ComponentConfig to_proto() const;
+    ResourceConfig(std::string type,
+                   std::string name,
+                   std::string namespace_,
+                   ProtoStruct attributes,
+                   std::string api,
+                   Model model,
+                   LinkConfig frame);
+
     ResourceConfig(std::string type);
+
     Name resource_name();
     const API& api() const;
     const LinkConfig& frame() const;
@@ -32,7 +47,9 @@ class ResourceConfig {
     const std::string& name() const;
     const std::string& namespace_() const;
     const std::string& type() const;
-    const AttributeMap& attributes() const;
+    const std::vector<std::string>& depends_on() const;
+    const std::vector<ResourceLevelServiceConfig>& service_config() const;
+    const ProtoStruct& attributes() const;
 
    private:
     API api_;
@@ -43,11 +60,30 @@ class ResourceConfig {
     std::string type_;
     std::vector<std::string> depends_on_;
     std::vector<ResourceLevelServiceConfig> service_config_;
-    AttributeMap attributes_;
-    ProtoType converted_attributes_;
+    ProtoStruct attributes_;
+    ProtoValue converted_attributes_;
     std::vector<std::string> implicit_depends_on_;
     void fix_api();
 };
+
+namespace proto_convert_details {
+
+template <>
+struct to_proto_impl<ResourceLevelServiceConfig> {
+    void operator()(const ResourceLevelServiceConfig&, app::v1::ResourceLevelServiceConfig*) const;
+};
+
+template <>
+struct to_proto_impl<ResourceConfig> {
+    void operator()(const ResourceConfig&, app::v1::ComponentConfig*) const;
+};
+
+template <>
+struct from_proto_impl<app::v1::ComponentConfig> {
+    ResourceConfig operator()(const app::v1::ComponentConfig*) const;
+};
+
+}  // namespace proto_convert_details
 
 }  // namespace sdk
 }  // namespace viam

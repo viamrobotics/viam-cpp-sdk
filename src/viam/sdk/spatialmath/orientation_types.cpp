@@ -5,13 +5,20 @@
 namespace viam {
 namespace sdk {
 
-viam::app::v1::Translation translation::to_proto() const {
-    viam::app::v1::Translation t;
-    t.set_x(x);
-    t.set_y(y);
-    t.set_z(z);
-    return t;
+namespace proto_convert_details {
+
+void to_proto_impl<translation>::operator()(const translation& self,
+                                            app::v1::Translation* t) const {
+    t->set_x(self.x);
+    t->set_y(self.y);
+    t->set_z(self.z);
 }
 
+translation from_proto_impl<app::v1::Translation>::operator()(
+    const app::v1::Translation* proto) const {
+    return {proto->x(), proto->y(), proto->z()};
+}
+
+}  // namespace proto_convert_details
 }  // namespace sdk
 }  // namespace viam

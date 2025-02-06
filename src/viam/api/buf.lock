@@ -4,12 +4,12 @@ deps:
   - remote: buf.build
     owner: googleapis
     repository: googleapis
-    commit: 8bc2c51e08c447cd8886cdea48a73e14
+    commit: e93e34f48be043dab55be31b4b47f458
   - remote: buf.build
     owner: viamrobotics
     repository: api
-    commit: 021222b153b2498e91837f8f464373f5
+    commit: 8240ab4b04a342cbb8fac75e3b7b7e15
   - remote: buf.build
     owner: viamrobotics
     repository: goutils
-    commit: 3d6f33d2994a40328ea09b75b7993425
+    commit: 5fff320e3fab4611aea8180e09bcb5e5

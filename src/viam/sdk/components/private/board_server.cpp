@@ -1,6 +1,7 @@
 #include <viam/sdk/components/private/board_server.hpp>
 
-#include <viam/sdk/common/service_helper.hpp>
+#include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/common/private/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/board.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -11,8 +12,38 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
+using sdk::from_proto;
+using sdk::to_proto;
+
+Board::status from_proto(const viam::component::board::v1::Status& proto) {
+    Board::status status;
+    for (const auto& analog : proto.analogs()) {
+        status.analog_reader_values.emplace(analog.first, analog.second);
+    }
+    for (const auto& digital : proto.digital_interrupts()) {
+        status.digital_interrupt_values.emplace(digital.first, digital.second);
+    }
+    return status;
+}
+
+Board::power_mode from_proto(viam::component::board::v1::PowerMode proto) {
+    switch (proto) {
+        case viam::component::board::v1::POWER_MODE_NORMAL: {
+            return Board::power_mode::normal;
+        }
+        case viam::component::board::v1::POWER_MODE_OFFLINE_DEEP: {
+            return Board::power_mode::offline_deep;
+        }
+        case viam::component::board::v1::POWER_MODE_UNSPECIFIED:
+        default: {
+            throw Exception(ErrorCondition::k_not_supported,
+                            "Invalid proto board power_mode to decode");
+        }
+    }
+}
+
 BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)){};
+    : ResourceServer(std::move(manager)) {}
 
 ::grpc::Status BoardServer::SetGPIO(::grpc::ServerContext*,
                                     const ::viam::component::board::v1::SetGPIORequest* request,
@@ -77,8 +108,8 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
                                       viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Board>(
         "BoardServer::DoCommand", this, request)([&](auto&, auto& board) {
-        const AttributeMap result = board->do_command(struct_to_map(request->command()));
-        *response->mutable_result() = map_to_struct(result);
+        const ProtoStruct result = board->do_command(from_proto(request->command()));
+        *response->mutable_result() = to_proto(result);
     });
 }
 
@@ -98,9 +129,9 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
 
     const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    AttributeMap extra;
+    ProtoStruct extra;
     if (request->has_extra()) {
-        extra = struct_to_map(request->extra());
+        extra = from_proto(request->extra());
     }
 
     const Board::analog_response result = board->read_analog(request->analog_reader_name(), extra);
@@ -128,9 +159,9 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
 
     const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    AttributeMap extra;
+    ProtoStruct extra;
     if (request->has_extra()) {
-        extra = struct_to_map(request->extra());
+        extra = from_proto(request->extra());
     }
 
     board->write_analog(request->pin(), request->value(), extra);
@@ -153,9 +184,9 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
 
     const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    AttributeMap extra;
+    ProtoStruct extra;
     if (request->has_extra()) {
-        extra = struct_to_map(request->extra());
+        extra = from_proto(request->extra());
     }
 
     const Board::digital_value result =
@@ -198,11 +229,10 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
     return make_service_helper<Board>(
         "BoardServer::SetPowerMode", this, request)([&](auto& helper, auto& board) {
         if (request->has_duration()) {
-            auto duration = ::viam::sdk::from_proto(request->duration());
-            board->set_power_mode(
-                Board::from_proto(request->power_mode()), helper.getExtra(), duration);
+            auto duration = from_proto(request->duration());
+            board->set_power_mode(from_proto(request->power_mode()), helper.getExtra(), duration);
         } else {
-            board->set_power_mode(Board::from_proto(request->power_mode()), helper.getExtra());
+            board->set_power_mode(from_proto(request->power_mode()), helper.getExtra());
         }
     });
 }
@@ -215,7 +245,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
         "BoardServer::GetGeometries", this, request)([&](auto& helper, auto& board) {
         const std::vector<GeometryConfig> geometries = board->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = geometry.to_proto();
+            *response->mutable_geometries()->Add() = to_proto(geometry);
         }
     });
 }

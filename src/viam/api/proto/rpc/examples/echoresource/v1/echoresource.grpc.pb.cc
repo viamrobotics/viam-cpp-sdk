@@ -6,19 +6,19 @@
 #include "proto/rpc/examples/echoresource/v1/echoresource.grpc.pb.h"
 
 #include <functional>
-#include <grpcpp/support/async_stream.h>
-#include <grpcpp/support/async_unary_call.h>
-#include <grpcpp/impl/channel_interface.h>
-#include <grpcpp/impl/client_unary_call.h>
-#include <grpcpp/support/client_callback.h>
-#include <grpcpp/support/message_allocator.h>
-#include <grpcpp/support/method_handler.h>
-#include <grpcpp/impl/rpc_service_method.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/sync_stream.h>
+#include <grpcpp/impl/codegen/async_stream.h>
+#include <grpcpp/impl/codegen/async_unary_call.h>
+#include <grpcpp/impl/codegen/channel_interface.h>
+#include <grpcpp/impl/codegen/client_unary_call.h>
+#include <grpcpp/impl/codegen/client_callback.h>
+#include <grpcpp/impl/codegen/message_allocator.h>
+#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/impl/codegen/rpc_service_method.h>
+#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/codegen/server_callback_handlers.h>
+#include <grpcpp/impl/codegen/server_context.h>
+#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/impl/codegen/sync_stream.h>
 namespace proto {
 namespace rpc {
 namespace examples {
@@ -33,78 +33,83 @@ static const char* EchoResourceService_method_names[] = {
 
 std::unique_ptr< EchoResourceService::Stub> EchoResourceService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< EchoResourceService::Stub> stub(new EchoResourceService::Stub(channel, options));
+  std::unique_ptr< EchoResourceService::Stub> stub(new EchoResourceService::Stub(channel));
   return stub;
 }
 
-EchoResourceService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_EchoResource_(EchoResourceService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_EchoResourceMultiple_(EchoResourceService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
-  , rpcmethod_EchoResourceBiDi_(EchoResourceService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
+EchoResourceService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
+  : channel_(channel), rpcmethod_EchoResource_(EchoResourceService_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_EchoResourceMultiple_(EchoResourceService_method_names[1], ::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_EchoResourceBiDi_(EchoResourceService_method_names[2], ::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
   {}
 
 ::grpc::Status EchoResourceService::Stub::EchoResource(::grpc::ClientContext* context, const ::proto::rpc::examples::echoresource::v1::EchoResourceRequest& request, ::proto::rpc::examples::echoresource::v1::EchoResourceResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::proto::rpc::examples::echoresource::v1::EchoResourceRequest, ::proto::rpc::examples::echoresource::v1::EchoResourceResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_EchoResource_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_EchoResource_, context, request, response);
 }
 
-void EchoResourceService::Stub::async::EchoResource(::grpc::ClientContext* context, const ::proto::rpc::examples::echoresource::v1::EchoResourceRequest* request, ::proto::rpc::examples::echoresource::v1::EchoResourceResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::proto::rpc::examples::echoresource::v1::EchoResourceRequest, ::proto::rpc::examples::echoresource::v1::EchoResourceResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_EchoResource_, context, request, response, std::move(f));
+void EchoResourceService::Stub::experimental_async::EchoResource(::grpc::ClientContext* context, const ::proto::rpc::examples::echoresource::v1::EchoResourceRequest* request, ::proto::rpc::examples::echoresource::v1::EchoResourceResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_EchoResource_, context, request, response, std::move(f));
 }
 
-void EchoResourceService::Stub::async::EchoResource(::grpc::ClientContext* context, const ::proto::rpc::examples::echoresource::v1::EchoResourceRequest* request, ::proto::rpc::examples::echoresource::v1::EchoResourceResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_EchoResource_, context, request, response, reactor);
+void EchoResourceService::Stub::experimental_async::EchoResource(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::examples::echoresource::v1::EchoResourceResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_EchoResource_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::proto::rpc::examples::echoresource::v1::EchoResourceResponse>* EchoResourceService::Stub::PrepareAsyncEchoResourceRaw(::grpc::ClientContext* context, const ::proto::rpc::examples::echoresource::v1::EchoResourceRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::proto::rpc::examples::echoresource::v1::EchoResourceResponse, ::proto::rpc::examples::echoresource::v1::EchoResourceRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_EchoResource_, context, request);
+void EchoResourceService::Stub::experimental_async::EchoResource(::grpc::ClientContext* context, const ::proto::rpc::examples::echoresource::v1::EchoResourceRequest* request, ::proto::rpc::examples::echoresource::v1::EchoResourceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_EchoResource_, context, request, response, reactor);
+}
+
+void EchoResourceService::Stub::experimental_async::EchoResource(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::examples::echoresource::v1::EchoResourceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_EchoResource_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::proto::rpc::examples::echoresource::v1::EchoResourceResponse>* EchoResourceService::Stub::AsyncEchoResourceRaw(::grpc::ClientContext* context, const ::proto::rpc::examples::echoresource::v1::EchoResourceRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncEchoResourceRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::proto::rpc::examples::echoresource::v1::EchoResourceResponse>::Create(channel_.get(), cq, rpcmethod_EchoResource_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::proto::rpc::examples::echoresource::v1::EchoResourceResponse>* EchoResourceService::Stub::PrepareAsyncEchoResourceRaw(::grpc::ClientContext* context, const ::proto::rpc::examples::echoresource::v1::EchoResourceRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::proto::rpc::examples::echoresource::v1::EchoResourceResponse>::Create(channel_.get(), cq, rpcmethod_EchoResource_, context, request, false);
 }
 
 ::grpc::ClientReader< ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleResponse>* EchoResourceService::Stub::EchoResourceMultipleRaw(::grpc::ClientContext* context, const ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleRequest& request) {
-  return ::grpc::internal::ClientReaderFactory< ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleResponse>::Create(channel_.get(), rpcmethod_EchoResourceMultiple_, context, request);
+  return ::grpc_impl::internal::ClientReaderFactory< ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleResponse>::Create(channel_.get(), rpcmethod_EchoResourceMultiple_, context, request);
 }
 
-void EchoResourceService::Stub::async::EchoResourceMultiple(::grpc::ClientContext* context, const ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleRequest* request, ::grpc::ClientReadReactor< ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleResponse>* reactor) {
-  ::grpc::internal::ClientCallbackReaderFactory< ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_EchoResourceMultiple_, context, request, reactor);
+void EchoResourceService::Stub::experimental_async::EchoResourceMultiple(::grpc::ClientContext* context, ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleRequest* request, ::grpc::experimental::ClientReadReactor< ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleResponse>* reactor) {
+  ::grpc_impl::internal::ClientCallbackReaderFactory< ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_EchoResourceMultiple_, context, request, reactor);
 }
 
 ::grpc::ClientAsyncReader< ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleResponse>* EchoResourceService::Stub::AsyncEchoResourceMultipleRaw(::grpc::ClientContext* context, const ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
-  return ::grpc::internal::ClientAsyncReaderFactory< ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleResponse>::Create(channel_.get(), cq, rpcmethod_EchoResourceMultiple_, context, request, true, tag);
+  return ::grpc_impl::internal::ClientAsyncReaderFactory< ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleResponse>::Create(channel_.get(), cq, rpcmethod_EchoResourceMultiple_, context, request, true, tag);
 }
 
 ::grpc::ClientAsyncReader< ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleResponse>* EchoResourceService::Stub::PrepareAsyncEchoResourceMultipleRaw(::grpc::ClientContext* context, const ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncReaderFactory< ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleResponse>::Create(channel_.get(), cq, rpcmethod_EchoResourceMultiple_, context, request, false, nullptr);
+  return ::grpc_impl::internal::ClientAsyncReaderFactory< ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleResponse>::Create(channel_.get(), cq, rpcmethod_EchoResourceMultiple_, context, request, false, nullptr);
 }
 
 ::grpc::ClientReaderWriter< ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest, ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiResponse>* EchoResourceService::Stub::EchoResourceBiDiRaw(::grpc::ClientContext* context) {
-  return ::grpc::internal::ClientReaderWriterFactory< ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest, ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiResponse>::Create(channel_.get(), rpcmethod_EchoResourceBiDi_, context);
+  return ::grpc_impl::internal::ClientReaderWriterFactory< ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest, ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiResponse>::Create(channel_.get(), rpcmethod_EchoResourceBiDi_, context);
 }
 
-void EchoResourceService::Stub::async::EchoResourceBiDi(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest,::proto::rpc::examples::echoresource::v1::EchoResourceBiDiResponse>* reactor) {
-  ::grpc::internal::ClientCallbackReaderWriterFactory< ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest,::proto::rpc::examples::echoresource::v1::EchoResourceBiDiResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_EchoResourceBiDi_, context, reactor);
+void EchoResourceService::Stub::experimental_async::EchoResourceBiDi(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest,::proto::rpc::examples::echoresource::v1::EchoResourceBiDiResponse>* reactor) {
+  ::grpc_impl::internal::ClientCallbackReaderWriterFactory< ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest,::proto::rpc::examples::echoresource::v1::EchoResourceBiDiResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_EchoResourceBiDi_, context, reactor);
 }
 
 ::grpc::ClientAsyncReaderWriter< ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest, ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiResponse>* EchoResourceService::Stub::AsyncEchoResourceBiDiRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
-  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest, ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiResponse>::Create(channel_.get(), cq, rpcmethod_EchoResourceBiDi_, context, true, tag);
+  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest, ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiResponse>::Create(channel_.get(), cq, rpcmethod_EchoResourceBiDi_, context, true, tag);
 }
 
 ::grpc::ClientAsyncReaderWriter< ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest, ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiResponse>* EchoResourceService::Stub::PrepareAsyncEchoResourceBiDiRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest, ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiResponse>::Create(channel_.get(), cq, rpcmethod_EchoResourceBiDi_, context, false, nullptr);
+  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest, ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiResponse>::Create(channel_.get(), cq, rpcmethod_EchoResourceBiDi_, context, false, nullptr);
 }
 
 EchoResourceService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EchoResourceService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EchoResourceService::Service, ::proto::rpc::examples::echoresource::v1::EchoResourceRequest, ::proto::rpc::examples::echoresource::v1::EchoResourceResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< EchoResourceService::Service, ::proto::rpc::examples::echoresource::v1::EchoResourceRequest, ::proto::rpc::examples::echoresource::v1::EchoResourceResponse>(
           [](EchoResourceService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::proto::rpc::examples::echoresource::v1::EchoResourceRequest* req,
              ::proto::rpc::examples::echoresource::v1::EchoResourceResponse* resp) {
                return service->EchoResource(ctx, req, resp);
@@ -114,9 +119,9 @@ EchoResourceService::Service::Service() {
       ::grpc::internal::RpcMethod::SERVER_STREAMING,
       new ::grpc::internal::ServerStreamingHandler< EchoResourceService::Service, ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleRequest, ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleResponse>(
           [](EchoResourceService::Service* service,
-             ::grpc::ServerContext* ctx,
+             ::grpc_impl::ServerContext* ctx,
              const ::proto::rpc::examples::echoresource::v1::EchoResourceMultipleRequest* req,
-             ::grpc::ServerWriter<::proto::rpc::examples::echoresource::v1::EchoResourceMultipleResponse>* writer) {
+             ::grpc_impl::ServerWriter<::proto::rpc::examples::echoresource::v1::EchoResourceMultipleResponse>* writer) {
                return service->EchoResourceMultiple(ctx, req, writer);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
@@ -124,8 +129,8 @@ EchoResourceService::Service::Service() {
       ::grpc::internal::RpcMethod::BIDI_STREAMING,
       new ::grpc::internal::BidiStreamingHandler< EchoResourceService::Service, ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest, ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiResponse>(
           [](EchoResourceService::Service* service,
-             ::grpc::ServerContext* ctx,
-             ::grpc::ServerReaderWriter<::proto::rpc::examples::echoresource::v1::EchoResourceBiDiResponse,
+             ::grpc_impl::ServerContext* ctx,
+             ::grpc_impl::ServerReaderWriter<::proto::rpc::examples::echoresource::v1::EchoResourceBiDiResponse,
              ::proto::rpc::examples::echoresource::v1::EchoResourceBiDiRequest>* stream) {
                return service->EchoResourceBiDi(ctx, stream);
              }, this)));

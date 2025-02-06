@@ -7,7 +7,7 @@
 
 #include <boost/test/included/unit_test.hpp>
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/servo.hpp>
 #include <viam/sdk/tests/mocks/mock_servo.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
@@ -62,15 +62,12 @@ BOOST_AUTO_TEST_CASE(mock_get_geometries) {
 
 BOOST_AUTO_TEST_CASE(mock_do_command) {
     std::shared_ptr<MockServo> servo = MockServo::get_mock_servo();
-    AttributeMap expected = fake_map();
+    ProtoStruct expected = fake_map();
 
-    AttributeMap command = fake_map();
-    AttributeMap result_map = servo->do_command(command);
+    ProtoStruct command = fake_map();
+    ProtoStruct result_map = servo->do_command(command);
 
-    ProtoType expected_pt = *(expected->at(std::string("test")));
-    ProtoType result_pt = *(result_map->at(std::string("test")));
-
-    BOOST_CHECK(result_pt == expected_pt);
+    BOOST_CHECK(result_map.at("test") == expected.at("test"));
 }
 
 BOOST_AUTO_TEST_SUITE_END()
@@ -112,15 +109,12 @@ BOOST_AUTO_TEST_CASE(test_get_geometries) {
 BOOST_AUTO_TEST_CASE(test_do_command) {
     std::shared_ptr<MockServo> mock = MockServo::get_mock_servo();
     client_to_mock_pipeline<Servo>(mock, [](Servo& client) {
-        AttributeMap expected = fake_map();
+        ProtoStruct expected = fake_map();
 
-        AttributeMap command = fake_map();
-        AttributeMap result_map = client.do_command(command);
+        ProtoStruct command = fake_map();
+        ProtoStruct result_map = client.do_command(command);
 
-        ProtoType expected_pt = *(expected->at(std::string("test")));
-        ProtoType result_pt = *(result_map->at(std::string("test")));
-
-        BOOST_CHECK(result_pt == expected_pt);
+        BOOST_CHECK(result_map.at("test") == expected.at("test"));
     });
 }
 

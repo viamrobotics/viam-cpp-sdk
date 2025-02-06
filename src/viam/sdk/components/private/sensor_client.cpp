@@ -1,8 +1,6 @@
 #include <viam/sdk/components/private/sensor_client.hpp>
 
-#include <algorithm>
 #include <memory>
-#include <stdexcept>
 #include <string>
 #include <utility>
 
@@ -21,33 +19,32 @@ namespace impl {
 SensorClient::SensorClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Sensor(std::move(name)),
       stub_(viam::component::sensor::v1::SensorService::NewStub(channel)),
-      channel_(std::move(channel)){};
+      channel_(std::move(channel)) {}
 
 using namespace viam::common::v1;
 
-AttributeMap SensorClient::get_readings(const AttributeMap& extra) {
+ProtoStruct SensorClient::get_readings(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetReadings)
         .with(extra)
         .invoke([](auto& response) {
-            AttributeMap result =
-                std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
+            ProtoStruct result;
             for (const auto& r : response.readings()) {
-                result->emplace(std::move(r.first), std::make_shared<ProtoType>(r.second));
+                result.emplace(r.first, from_proto(r.second));
             }
             return result;
         });
 }
 
-AttributeMap SensorClient::do_command(const AttributeMap& command) {
+ProtoStruct SensorClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
-        .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
-        .invoke([](auto& response) { return struct_to_map(response.result()); });
+        .with([&](auto& request) { *request.mutable_command() = to_proto(command); })
+        .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
-std::vector<GeometryConfig> SensorClient::get_geometries(const AttributeMap& extra) {
+std::vector<GeometryConfig> SensorClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
+        .invoke([](auto& response) { return from_proto(response); });
 }
 
 }  // namespace impl

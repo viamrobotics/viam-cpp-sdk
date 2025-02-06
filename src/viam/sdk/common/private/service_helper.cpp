@@ -1,4 +1,4 @@
-#include <viam/sdk/common/service_helper.hpp>
+#include <viam/sdk/common/private/service_helper.hpp>
 
 #include <sstream>
 
