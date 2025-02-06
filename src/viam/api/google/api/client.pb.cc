@@ -276,7 +276,8 @@ struct MethodSettingsDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MethodSettingsDefaultTypeInternal _MethodSettings_default_instance_;
 PROTOBUF_CONSTEXPR SelectiveGapicGeneration::SelectiveGapicGeneration(
     ::_pbi::ConstantInitialized)
-  : methods_(){}
+  : methods_()
+  , generate_omitted_as_internal_(false){}
 struct SelectiveGapicGenerationDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SelectiveGapicGenerationDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -475,6 +476,7 @@ const uint32_t TableStruct_google_2fapi_2fclient_2eproto::offsets[] PROTOBUF_SEC
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::google::api::SelectiveGapicGeneration, methods_),
+  PROTOBUF_FIELD_OFFSET(::google::api::SelectiveGapicGeneration, generate_omitted_as_internal_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::google::api::CommonLanguageSettings)},
@@ -616,26 +618,27 @@ const char descriptor_table_protodef_google_2fapi_2fclient_2eproto[] PROTOBUF_SE
   "\023pollDelayMultiplier\022\?\n\016max_poll_delay\030\003"
   " \001(\0132\031.google.protobuf.DurationR\014maxPoll"
   "Delay\022G\n\022total_poll_timeout\030\004 \001(\0132\031.goog"
-  "le.protobuf.DurationR\020totalPollTimeout\"4"
+  "le.protobuf.DurationR\020totalPollTimeout\"u"
   "\n\030SelectiveGapicGeneration\022\030\n\007methods\030\001 "
-  "\003(\tR\007methods*\243\001\n\031ClientLibraryOrganizati"
-  "on\022+\n\'CLIENT_LIBRARY_ORGANIZATION_UNSPEC"
-  "IFIED\020\000\022\t\n\005CLOUD\020\001\022\007\n\003ADS\020\002\022\n\n\006PHOTOS\020\003\022"
-  "\017\n\013STREET_VIEW\020\004\022\014\n\010SHOPPING\020\005\022\007\n\003GEO\020\006\022"
-  "\021\n\rGENERATIVE_AI\020\007*g\n\030ClientLibraryDesti"
-  "nation\022*\n&CLIENT_LIBRARY_DESTINATION_UNS"
-  "PECIFIED\020\000\022\n\n\006GITHUB\020\n\022\023\n\017PACKAGE_MANAGE"
-  "R\020\024:J\n\020method_signature\022\036.google.protobu"
-  "f.MethodOptions\030\233\010 \003(\tR\017methodSignature:"
-  "C\n\014default_host\022\037.google.protobuf.Servic"
-  "eOptions\030\231\010 \001(\tR\013defaultHost:C\n\014oauth_sc"
-  "opes\022\037.google.protobuf.ServiceOptions\030\232\010"
-  " \001(\tR\013oauthScopes:D\n\013api_version\022\037.googl"
-  "e.protobuf.ServiceOptions\030\301\272\253\372\001 \001(\tR\napi"
-  "VersionBi\n\016com.google.apiB\013ClientProtoP\001"
-  "ZAgoogle.golang.org/genproto/googleapis/"
-  "api/annotations;annotations\242\002\004GAPIb\006prot"
-  "o3"
+  "\003(\tR\007methods\022\?\n\034generate_omitted_as_inte"
+  "rnal\030\002 \001(\010R\031generateOmittedAsInternal*\243\001"
+  "\n\031ClientLibraryOrganization\022+\n\'CLIENT_LI"
+  "BRARY_ORGANIZATION_UNSPECIFIED\020\000\022\t\n\005CLOU"
+  "D\020\001\022\007\n\003ADS\020\002\022\n\n\006PHOTOS\020\003\022\017\n\013STREET_VIEW\020"
+  "\004\022\014\n\010SHOPPING\020\005\022\007\n\003GEO\020\006\022\021\n\rGENERATIVE_A"
+  "I\020\007*g\n\030ClientLibraryDestination\022*\n&CLIEN"
+  "T_LIBRARY_DESTINATION_UNSPECIFIED\020\000\022\n\n\006G"
+  "ITHUB\020\n\022\023\n\017PACKAGE_MANAGER\020\024:J\n\020method_s"
+  "ignature\022\036.google.protobuf.MethodOptions"
+  "\030\233\010 \003(\tR\017methodSignature:C\n\014default_host"
+  "\022\037.google.protobuf.ServiceOptions\030\231\010 \001(\t"
+  "R\013defaultHost:C\n\014oauth_scopes\022\037.google.p"
+  "rotobuf.ServiceOptions\030\232\010 \001(\tR\013oauthScop"
+  "es:D\n\013api_version\022\037.google.protobuf.Serv"
+  "iceOptions\030\301\272\253\372\001 \001(\tR\napiVersionBi\n\016com."
+  "google.apiB\013ClientProtoP\001ZAgoogle.golang"
+  ".org/genproto/googleapis/api/annotations"
+  ";annotations\242\002\004GAPIb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fclient_2eproto_deps[3] = {
   &::descriptor_table_google_2fapi_2flaunch_5fstage_2eproto,
@@ -644,7 +647,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fclie
 };
 static ::_pbi::once_flag descriptor_table_google_2fapi_2fclient_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2fclient_2eproto = {
-    false, false, 4562, descriptor_table_protodef_google_2fapi_2fclient_2eproto,
+    false, false, 4627, descriptor_table_protodef_google_2fapi_2fclient_2eproto,
     "google/api/client.proto",
     &descriptor_table_google_2fapi_2fclient_2eproto_once, descriptor_table_google_2fapi_2fclient_2eproto_deps, 3, 19,
     schemas, file_default_instances, TableStruct_google_2fapi_2fclient_2eproto::offsets,
@@ -5016,10 +5019,12 @@ SelectiveGapicGeneration::SelectiveGapicGeneration(const SelectiveGapicGeneratio
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       methods_(from.methods_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  generate_omitted_as_internal_ = from.generate_omitted_as_internal_;
   // @@protoc_insertion_point(copy_constructor:google.api.SelectiveGapicGeneration)
 }
 
 inline void SelectiveGapicGeneration::SharedCtor() {
+generate_omitted_as_internal_ = false;
 }
 
 SelectiveGapicGeneration::~SelectiveGapicGeneration() {
@@ -5046,6 +5051,7 @@ void SelectiveGapicGeneration::Clear() {
   (void) cached_has_bits;
 
   methods_.Clear();
+  generate_omitted_as_internal_ = false;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -5067,6 +5073,14 @@ const char* SelectiveGapicGeneration::_InternalParse(const char* ptr, ::_pbi::Pa
             CHK_(::_pbi::VerifyUTF8(str, "google.api.SelectiveGapicGeneration.methods"));
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // bool generate_omitted_as_internal = 2 [json_name = "generateOmittedAsInternal"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          generate_omitted_as_internal_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -5109,6 +5123,12 @@ uint8_t* SelectiveGapicGeneration::_InternalSerialize(
     target = stream->WriteString(1, s, target);
   }
 
+  // bool generate_omitted_as_internal = 2 [json_name = "generateOmittedAsInternal"];
+  if (this->_internal_generate_omitted_as_internal() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_generate_omitted_as_internal(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -5131,6 +5151,11 @@ size_t SelectiveGapicGeneration::ByteSizeLong() const {
   for (int i = 0, n = methods_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
       methods_.Get(i));
+  }
+
+  // bool generate_omitted_as_internal = 2 [json_name = "generateOmittedAsInternal"];
+  if (this->_internal_generate_omitted_as_internal() != 0) {
+    total_size += 1 + 1;
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -5156,6 +5181,9 @@ void SelectiveGapicGeneration::MergeFrom(const SelectiveGapicGeneration& from) {
   (void) cached_has_bits;
 
   methods_.MergeFrom(from.methods_);
+  if (from._internal_generate_omitted_as_internal() != 0) {
+    _internal_set_generate_omitted_as_internal(from._internal_generate_omitted_as_internal());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -5174,6 +5202,7 @@ void SelectiveGapicGeneration::InternalSwap(SelectiveGapicGeneration* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   methods_.InternalSwap(&other->methods_);
+  swap(generate_omitted_as_internal_, other->generate_omitted_as_internal_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata SelectiveGapicGeneration::GetMetadata() const {

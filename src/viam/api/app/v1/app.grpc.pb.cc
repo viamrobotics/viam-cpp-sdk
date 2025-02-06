@@ -91,6 +91,9 @@ static const char* AppService_method_names[] = {
   "/viam.app.v1.AppService/DeleteFragment",
   "/viam.app.v1.AppService/ListMachineFragments",
   "/viam.app.v1.AppService/GetFragmentHistory",
+  "/viam.app.v1.AppService/GetFragmentUsage",
+  "/viam.app.v1.AppService/SetFragmentTag",
+  "/viam.app.v1.AppService/DeleteFragmentTag",
   "/viam.app.v1.AppService/AddRole",
   "/viam.app.v1.AppService/RemoveRole",
   "/viam.app.v1.AppService/ChangeRole",
@@ -189,28 +192,31 @@ AppService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel
   , rpcmethod_DeleteFragment_(AppService_method_names[64], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_ListMachineFragments_(AppService_method_names[65], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetFragmentHistory_(AppService_method_names[66], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_AddRole_(AppService_method_names[67], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_RemoveRole_(AppService_method_names[68], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ChangeRole_(AppService_method_names[69], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListAuthorizations_(AppService_method_names[70], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CheckPermissions_(AppService_method_names[71], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetRegistryItem_(AppService_method_names[72], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreateRegistryItem_(AppService_method_names[73], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UpdateRegistryItem_(AppService_method_names[74], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListRegistryItems_(AppService_method_names[75], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteRegistryItem_(AppService_method_names[76], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_TransferRegistryItem_(AppService_method_names[77], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreateModule_(AppService_method_names[78], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UpdateModule_(AppService_method_names[79], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UploadModuleFile_(AppService_method_names[80], ::grpc::internal::RpcMethod::CLIENT_STREAMING, channel)
-  , rpcmethod_GetModule_(AppService_method_names[81], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListModules_(AppService_method_names[82], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreateKey_(AppService_method_names[83], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteKey_(AppService_method_names[84], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListKeys_(AppService_method_names[85], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_RenameKey_(AppService_method_names[86], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_RotateKey_(AppService_method_names[87], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreateKeyFromExistingKeyAuthorizations_(AppService_method_names[88], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetFragmentUsage_(AppService_method_names[67], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetFragmentTag_(AppService_method_names[68], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteFragmentTag_(AppService_method_names[69], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_AddRole_(AppService_method_names[70], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RemoveRole_(AppService_method_names[71], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ChangeRole_(AppService_method_names[72], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListAuthorizations_(AppService_method_names[73], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CheckPermissions_(AppService_method_names[74], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetRegistryItem_(AppService_method_names[75], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateRegistryItem_(AppService_method_names[76], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateRegistryItem_(AppService_method_names[77], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListRegistryItems_(AppService_method_names[78], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteRegistryItem_(AppService_method_names[79], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_TransferRegistryItem_(AppService_method_names[80], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateModule_(AppService_method_names[81], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateModule_(AppService_method_names[82], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UploadModuleFile_(AppService_method_names[83], ::grpc::internal::RpcMethod::CLIENT_STREAMING, channel)
+  , rpcmethod_GetModule_(AppService_method_names[84], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListModules_(AppService_method_names[85], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateKey_(AppService_method_names[86], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteKey_(AppService_method_names[87], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListKeys_(AppService_method_names[88], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RenameKey_(AppService_method_names[89], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RotateKey_(AppService_method_names[90], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateKeyFromExistingKeyAuthorizations_(AppService_method_names[91], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status AppService::Stub::GetUserIDByEmail(::grpc::ClientContext* context, const ::viam::app::v1::GetUserIDByEmailRequest& request, ::viam::app::v1::GetUserIDByEmailResponse* response) {
@@ -2077,6 +2083,90 @@ void AppService::Stub::experimental_async::GetFragmentHistory(::grpc::ClientCont
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetFragmentHistoryResponse>::Create(channel_.get(), cq, rpcmethod_GetFragmentHistory_, context, request, false);
 }
 
+::grpc::Status AppService::Stub::GetFragmentUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentUsageRequest& request, ::viam::app::v1::GetFragmentUsageResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetFragmentUsage_, context, request, response);
+}
+
+void AppService::Stub::experimental_async::GetFragmentUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentUsageRequest* request, ::viam::app::v1::GetFragmentUsageResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetFragmentUsage_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::GetFragmentUsage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetFragmentUsageResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetFragmentUsage_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::GetFragmentUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentUsageRequest* request, ::viam::app::v1::GetFragmentUsageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetFragmentUsage_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::GetFragmentUsage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetFragmentUsageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetFragmentUsage_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetFragmentUsageResponse>* AppService::Stub::AsyncGetFragmentUsageRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentUsageRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetFragmentUsageResponse>::Create(channel_.get(), cq, rpcmethod_GetFragmentUsage_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetFragmentUsageResponse>* AppService::Stub::PrepareAsyncGetFragmentUsageRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentUsageRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetFragmentUsageResponse>::Create(channel_.get(), cq, rpcmethod_GetFragmentUsage_, context, request, false);
+}
+
+::grpc::Status AppService::Stub::SetFragmentTag(::grpc::ClientContext* context, const ::viam::app::v1::SetFragmentTagRequest& request, ::viam::app::v1::SetFragmentTagResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetFragmentTag_, context, request, response);
+}
+
+void AppService::Stub::experimental_async::SetFragmentTag(::grpc::ClientContext* context, const ::viam::app::v1::SetFragmentTagRequest* request, ::viam::app::v1::SetFragmentTagResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetFragmentTag_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::SetFragmentTag(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::SetFragmentTagResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetFragmentTag_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::SetFragmentTag(::grpc::ClientContext* context, const ::viam::app::v1::SetFragmentTagRequest* request, ::viam::app::v1::SetFragmentTagResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetFragmentTag_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::SetFragmentTag(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::SetFragmentTagResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetFragmentTag_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::SetFragmentTagResponse>* AppService::Stub::AsyncSetFragmentTagRaw(::grpc::ClientContext* context, const ::viam::app::v1::SetFragmentTagRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::SetFragmentTagResponse>::Create(channel_.get(), cq, rpcmethod_SetFragmentTag_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::SetFragmentTagResponse>* AppService::Stub::PrepareAsyncSetFragmentTagRaw(::grpc::ClientContext* context, const ::viam::app::v1::SetFragmentTagRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::SetFragmentTagResponse>::Create(channel_.get(), cq, rpcmethod_SetFragmentTag_, context, request, false);
+}
+
+::grpc::Status AppService::Stub::DeleteFragmentTag(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentTagRequest& request, ::viam::app::v1::DeleteFragmentTagResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteFragmentTag_, context, request, response);
+}
+
+void AppService::Stub::experimental_async::DeleteFragmentTag(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentTagRequest* request, ::viam::app::v1::DeleteFragmentTagResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteFragmentTag_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::DeleteFragmentTag(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteFragmentTagResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteFragmentTag_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::DeleteFragmentTag(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentTagRequest* request, ::viam::app::v1::DeleteFragmentTagResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteFragmentTag_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::DeleteFragmentTag(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::DeleteFragmentTagResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteFragmentTag_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteFragmentTagResponse>* AppService::Stub::AsyncDeleteFragmentTagRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentTagRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteFragmentTagResponse>::Create(channel_.get(), cq, rpcmethod_DeleteFragmentTag_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteFragmentTagResponse>* AppService::Stub::PrepareAsyncDeleteFragmentTagRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentTagRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::DeleteFragmentTagResponse>::Create(channel_.get(), cq, rpcmethod_DeleteFragmentTag_, context, request, false);
+}
+
 ::grpc::Status AppService::Stub::AddRole(::grpc::ClientContext* context, const ::viam::app::v1::AddRoleRequest& request, ::viam::app::v1::AddRoleResponse* response) {
   return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_AddRole_, context, request, response);
 }
@@ -3355,6 +3445,36 @@ AppService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       AppService_method_names[67],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetFragmentUsageRequest, ::viam::app::v1::GetFragmentUsageResponse>(
+          [](AppService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::app::v1::GetFragmentUsageRequest* req,
+             ::viam::app::v1::GetFragmentUsageResponse* resp) {
+               return service->GetFragmentUsage(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[68],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::SetFragmentTagRequest, ::viam::app::v1::SetFragmentTagResponse>(
+          [](AppService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::app::v1::SetFragmentTagRequest* req,
+             ::viam::app::v1::SetFragmentTagResponse* resp) {
+               return service->SetFragmentTag(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[69],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteFragmentTagRequest, ::viam::app::v1::DeleteFragmentTagResponse>(
+          [](AppService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::app::v1::DeleteFragmentTagRequest* req,
+             ::viam::app::v1::DeleteFragmentTagResponse* resp) {
+               return service->DeleteFragmentTag(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[70],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::AddRoleRequest, ::viam::app::v1::AddRoleResponse>(
           [](AppService::Service* service,
              ::grpc_impl::ServerContext* ctx,
@@ -3363,7 +3483,7 @@ AppService::Service::Service() {
                return service->AddRole(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[68],
+      AppService_method_names[71],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::RemoveRoleRequest, ::viam::app::v1::RemoveRoleResponse>(
           [](AppService::Service* service,
@@ -3373,7 +3493,7 @@ AppService::Service::Service() {
                return service->RemoveRole(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[69],
+      AppService_method_names[72],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ChangeRoleRequest, ::viam::app::v1::ChangeRoleResponse>(
           [](AppService::Service* service,
@@ -3383,7 +3503,7 @@ AppService::Service::Service() {
                return service->ChangeRole(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[70],
+      AppService_method_names[73],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListAuthorizationsRequest, ::viam::app::v1::ListAuthorizationsResponse>(
           [](AppService::Service* service,
@@ -3393,7 +3513,7 @@ AppService::Service::Service() {
                return service->ListAuthorizations(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[71],
+      AppService_method_names[74],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CheckPermissionsRequest, ::viam::app::v1::CheckPermissionsResponse>(
           [](AppService::Service* service,
@@ -3403,7 +3523,7 @@ AppService::Service::Service() {
                return service->CheckPermissions(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[72],
+      AppService_method_names[75],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetRegistryItemRequest, ::viam::app::v1::GetRegistryItemResponse>(
           [](AppService::Service* service,
@@ -3413,7 +3533,7 @@ AppService::Service::Service() {
                return service->GetRegistryItem(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[73],
+      AppService_method_names[76],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateRegistryItemRequest, ::viam::app::v1::CreateRegistryItemResponse>(
           [](AppService::Service* service,
@@ -3423,7 +3543,7 @@ AppService::Service::Service() {
                return service->CreateRegistryItem(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[74],
+      AppService_method_names[77],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateRegistryItemRequest, ::viam::app::v1::UpdateRegistryItemResponse>(
           [](AppService::Service* service,
@@ -3433,7 +3553,7 @@ AppService::Service::Service() {
                return service->UpdateRegistryItem(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[75],
+      AppService_method_names[78],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListRegistryItemsRequest, ::viam::app::v1::ListRegistryItemsResponse>(
           [](AppService::Service* service,
@@ -3443,7 +3563,7 @@ AppService::Service::Service() {
                return service->ListRegistryItems(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[76],
+      AppService_method_names[79],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteRegistryItemRequest, ::viam::app::v1::DeleteRegistryItemResponse>(
           [](AppService::Service* service,
@@ -3453,7 +3573,7 @@ AppService::Service::Service() {
                return service->DeleteRegistryItem(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[77],
+      AppService_method_names[80],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::TransferRegistryItemRequest, ::viam::app::v1::TransferRegistryItemResponse>(
           [](AppService::Service* service,
@@ -3463,7 +3583,7 @@ AppService::Service::Service() {
                return service->TransferRegistryItem(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[78],
+      AppService_method_names[81],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateModuleRequest, ::viam::app::v1::CreateModuleResponse>(
           [](AppService::Service* service,
@@ -3473,7 +3593,7 @@ AppService::Service::Service() {
                return service->CreateModule(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[79],
+      AppService_method_names[82],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateModuleRequest, ::viam::app::v1::UpdateModuleResponse>(
           [](AppService::Service* service,
@@ -3483,7 +3603,7 @@ AppService::Service::Service() {
                return service->UpdateModule(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[80],
+      AppService_method_names[83],
       ::grpc::internal::RpcMethod::CLIENT_STREAMING,
       new ::grpc::internal::ClientStreamingHandler< AppService::Service, ::viam::app::v1::UploadModuleFileRequest, ::viam::app::v1::UploadModuleFileResponse>(
           [](AppService::Service* service,
@@ -3493,7 +3613,7 @@ AppService::Service::Service() {
                return service->UploadModuleFile(ctx, reader, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[81],
+      AppService_method_names[84],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetModuleRequest, ::viam::app::v1::GetModuleResponse>(
           [](AppService::Service* service,
@@ -3503,7 +3623,7 @@ AppService::Service::Service() {
                return service->GetModule(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[82],
+      AppService_method_names[85],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListModulesRequest, ::viam::app::v1::ListModulesResponse>(
           [](AppService::Service* service,
@@ -3513,7 +3633,7 @@ AppService::Service::Service() {
                return service->ListModules(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[83],
+      AppService_method_names[86],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateKeyRequest, ::viam::app::v1::CreateKeyResponse>(
           [](AppService::Service* service,
@@ -3523,7 +3643,7 @@ AppService::Service::Service() {
                return service->CreateKey(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[84],
+      AppService_method_names[87],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteKeyRequest, ::viam::app::v1::DeleteKeyResponse>(
           [](AppService::Service* service,
@@ -3533,7 +3653,7 @@ AppService::Service::Service() {
                return service->DeleteKey(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[85],
+      AppService_method_names[88],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListKeysRequest, ::viam::app::v1::ListKeysResponse>(
           [](AppService::Service* service,
@@ -3543,7 +3663,7 @@ AppService::Service::Service() {
                return service->ListKeys(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[86],
+      AppService_method_names[89],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::RenameKeyRequest, ::viam::app::v1::RenameKeyResponse>(
           [](AppService::Service* service,
@@ -3553,7 +3673,7 @@ AppService::Service::Service() {
                return service->RenameKey(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[87],
+      AppService_method_names[90],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::RotateKeyRequest, ::viam::app::v1::RotateKeyResponse>(
           [](AppService::Service* service,
@@ -3563,7 +3683,7 @@ AppService::Service::Service() {
                return service->RotateKey(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[88],
+      AppService_method_names[91],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse>(
           [](AppService::Service* service,
@@ -4040,6 +4160,27 @@ AppService::Service::~Service() {
 }
 
 ::grpc::Status AppService::Service::GetFragmentHistory(::grpc::ServerContext* context, const ::viam::app::v1::GetFragmentHistoryRequest* request, ::viam::app::v1::GetFragmentHistoryResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::GetFragmentUsage(::grpc::ServerContext* context, const ::viam::app::v1::GetFragmentUsageRequest* request, ::viam::app::v1::GetFragmentUsageResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::SetFragmentTag(::grpc::ServerContext* context, const ::viam::app::v1::SetFragmentTagRequest* request, ::viam::app::v1::SetFragmentTagResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::DeleteFragmentTag(::grpc::ServerContext* context, const ::viam::app::v1::DeleteFragmentTagRequest* request, ::viam::app::v1::DeleteFragmentTagResponse* response) {
   (void) context;
   (void) request;
   (void) response;
