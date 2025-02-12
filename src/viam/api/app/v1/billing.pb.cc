@@ -493,7 +493,7 @@ const char descriptor_table_protodef_app_2fv1_2fbilling_2eproto[] PROTOBUF_SECTI
   "(\tR\021billingOwnerOrgId\"\"\n SendPaymentRequ"
   "iredEmailResponse*V\n\021PaymentMethodType\022#"
   "\n\037PAYMENT_METHOD_TYPE_UNSPECIFIED\020\000\022\034\n\030P"
-  "AYMENT_METHOD_TYPE_CARD\020\001*\207\007\n\rUsageCostT"
+  "AYMENT_METHOD_TYPE_CARD\020\001*\363\007\n\rUsageCostT"
   "ype\022\037\n\033USAGE_COST_TYPE_UNSPECIFIED\020\000\022#\n\033"
   "USAGE_COST_TYPE_DATA_UPLOAD\020\001\032\002\010\001\022#\n\033USA"
   "GE_COST_TYPE_DATA_EGRESS\020\002\032\002\010\001\022\"\n\036USAGE_"
@@ -516,31 +516,34 @@ const char descriptor_table_protodef_app_2fv1_2fbilling_2eproto[] PROTOBUF_SECTI
   "Y_DATA_EGRESS\020\022\022\'\n#USAGE_COST_TYPE_TABUL"
   "AR_DATA_EGRESS\020\023\022\037\n\033USAGE_COST_TYPE_LOGS"
   "_EGRESS\020\024\022(\n$USAGE_COST_TYPE_TRAINING_LO"
-  "GS_EGRESS\020\025*X\n\nSourceType\022\033\n\027SOURCE_TYPE"
-  "_UNSPECIFIED\020\000\022\023\n\017SOURCE_TYPE_ORG\020\001\022\030\n\024S"
-  "OURCE_TYPE_FRAGMENT\020\0022\260\004\n\016BillingService"
-  "\022k\n\024GetCurrentMonthUsage\022(.viam.app.v1.G"
-  "etCurrentMonthUsageRequest\032).viam.app.v1"
-  ".GetCurrentMonthUsageResponse\022w\n\030GetOrgB"
-  "illingInformation\022,.viam.app.v1.GetOrgBi"
-  "llingInformationRequest\032-.viam.app.v1.Ge"
-  "tOrgBillingInformationResponse\022e\n\022GetInv"
-  "oicesSummary\022&.viam.app.v1.GetInvoicesSu"
-  "mmaryRequest\032\'.viam.app.v1.GetInvoicesSu"
-  "mmaryResponse\022X\n\rGetInvoicePdf\022!.viam.ap"
-  "p.v1.GetInvoicePdfRequest\032\".viam.app.v1."
-  "GetInvoicePdfResponse0\001\022w\n\030SendPaymentRe"
-  "quiredEmail\022,.viam.app.v1.SendPaymentReq"
-  "uiredEmailRequest\032-.viam.app.v1.SendPaym"
-  "entRequiredEmailResponseB\030Z\026go.viam.com/"
-  "api/app/v1b\006proto3"
+  "GS_EGRESS\020\025\0227\n3USAGE_COST_TYPE_TABULAR_D"
+  "ATA_DATABASE_CLOUD_STORAGE\020\026\0221\n-USAGE_CO"
+  "ST_TYPE_TABULAR_DATA_DATABASE_COMPUTE\020\027*"
+  "X\n\nSourceType\022\033\n\027SOURCE_TYPE_UNSPECIFIED"
+  "\020\000\022\023\n\017SOURCE_TYPE_ORG\020\001\022\030\n\024SOURCE_TYPE_F"
+  "RAGMENT\020\0022\260\004\n\016BillingService\022k\n\024GetCurre"
+  "ntMonthUsage\022(.viam.app.v1.GetCurrentMon"
+  "thUsageRequest\032).viam.app.v1.GetCurrentM"
+  "onthUsageResponse\022w\n\030GetOrgBillingInform"
+  "ation\022,.viam.app.v1.GetOrgBillingInforma"
+  "tionRequest\032-.viam.app.v1.GetOrgBillingI"
+  "nformationResponse\022e\n\022GetInvoicesSummary"
+  "\022&.viam.app.v1.GetInvoicesSummaryRequest"
+  "\032\'.viam.app.v1.GetInvoicesSummaryRespons"
+  "e\022X\n\rGetInvoicePdf\022!.viam.app.v1.GetInvo"
+  "icePdfRequest\032\".viam.app.v1.GetInvoicePd"
+  "fResponse0\001\022w\n\030SendPaymentRequiredEmail\022"
+  ",.viam.app.v1.SendPaymentRequiredEmailRe"
+  "quest\032-.viam.app.v1.SendPaymentRequiredE"
+  "mailResponseB\030Z\026go.viam.com/api/app/v1b\006"
+  "proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fbilling_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_app_2fv1_2fbilling_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2fbilling_2eproto = {
-    false, false, 4418, descriptor_table_protodef_app_2fv1_2fbilling_2eproto,
+    false, false, 4526, descriptor_table_protodef_app_2fv1_2fbilling_2eproto,
     "app/v1/billing.proto",
     &descriptor_table_app_2fv1_2fbilling_2eproto_once, descriptor_table_app_2fv1_2fbilling_2eproto_deps, 1, 15,
     schemas, file_default_instances, TableStruct_app_2fv1_2fbilling_2eproto::offsets,
@@ -598,6 +601,8 @@ bool UsageCostType_IsValid(int value) {
     case 19:
     case 20:
     case 21:
+    case 22:
+    case 23:
       return true;
     default:
       return false;
