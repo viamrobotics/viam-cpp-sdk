@@ -82,8 +82,8 @@ jobs:
         with:
           payload: |
             {
-              "text": "Flutter SDK update protos job has failed",
-              "username": "Flutter SDK",
+              "text": "CPP SDK update protos job has failed",
+              "username": "CPP SDK",
               "icon_url": "https://media.tenor.com/bZMubztJxGkAAAAe/charlie-brown-walking-charlie-brown.png"
             }
         env:
