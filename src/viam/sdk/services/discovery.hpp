@@ -27,12 +27,16 @@ class Discovery : public Service {
    public:
     /// @brief Discover valid viam configuration of resources that are physically
     /// connected to your machine.
+    /// @ingroup Discovery
     inline std::vector<ResourceConfig> discover_resources() {
         return discover_resources({});
     }
 
     /// @brief Discover valid viam configuration of resources that are physically
     /// connected to your machine.
+    /// @param extra Any additional arguments to the method.
+    /// @return array of potential viam configurations for hardware physically
+    // connected to your viam server
     virtual std::vector<ResourceConfig> discover_resources(const ProtoStruct& extra) = 0;
 
     /// @brief Do an arbitrary command.

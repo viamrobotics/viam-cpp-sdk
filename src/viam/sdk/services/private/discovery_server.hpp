@@ -30,11 +30,9 @@ class DiscoveryServer : public ResourceServer,
         ::grpc::ServerContext* context,
         const ::viam::service::discovery::v1::DiscoverResourcesRequest* request,
         ::viam::service::discovery::v1::DiscoverResourcesResponse* response) noexcept override;
-
-    ::grpc::Status DoCommand(
-        ::grpc::ServerContext* context,
-        const ::viam::service::discovery::v1::DoCommandRequest* request,
-        ::viam::service::discovery::v1::DoCommandResponse* response) noexcept override;
+    ::grpc::Status DoCommand(::grpc::ServerContext* context,
+                             const ::viam::common::v1::DoCommandRequest* request,
+                             ::viam::common::v1::DoCommandResponse* response) noexcept override;
 };
 
 }  // namespace impl

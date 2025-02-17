@@ -11,7 +11,7 @@ API Discovery::api() const {
     return API::get<Discovery>();
 }
 
-API::traits<Discovery>::api() {
+API API::traits<Discovery>::api() {
     return {kRDK, kService, "discovery"};
 }
 

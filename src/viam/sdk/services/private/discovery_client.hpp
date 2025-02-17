@@ -24,10 +24,6 @@ class DiscoveryClient : public Discovery {
     std::vector<ResourceConfig> discover_resources(const ProtoStruct& extra) override;
     ProtoStruct do_command(const ProtoStruct& command) override;
 
-    // Using declarations to introduce convenience overloads of interface which do not need to be
-    // passed the ProtoStruct parameter.
-    using Discovery::discover_resources;
-
    private:
     using StubType = viam::service::discovery::v1::DiscoveryService::StubInterface;
     std::unique_ptr<StubType> stub_;
