@@ -34,6 +34,6 @@ class DiscoveryClient : public Discovery {
     std::shared_ptr<grpc::Channel> channel_;
 };
 
-} // namespace impl
-} // namespace sdk
-} // namespace viam
+}  // namespace impl
+}  // namespace sdk
+}  // namespace viam

@@ -29,12 +29,12 @@ BOOST_AUTO_TEST_CASE(mock_get_api) {
 BOOST_AUTO_TEST_CASE(test_discover_resources) {
     std::shared_ptr<MockDiscovery> mock = MockDiscovery::get_mock_discovery();
     client_to_mock_pipeline<Discovery>(mock, [](Discovery& client) {
-        const auto & resources = client.discover_resources();
+        const auto& resources = client.discover_resources();
         BOOST_CHECK_EQUAL(resource, fake_discovered_resources());
     });
 }
 
-BOOST_AUTO_TEST_CASE(test_do_command)  {
+BOOST_AUTO_TEST_CASE(test_do_command) {
     std::shared_ptr<MockDiscovery> mock = MockDiscovery::get_mock_discovery();
     client_to_mock_pipeline<Discovery>(mock, [](Discovery& client) {
         ProtoStruct expected = fake_map();
@@ -46,5 +46,5 @@ BOOST_AUTO_TEST_CASE(test_do_command)  {
     });
 }
 
-} // namespace sdktests
-} // namespace viam
+}  // namespace sdktests
+}  // namespace viam

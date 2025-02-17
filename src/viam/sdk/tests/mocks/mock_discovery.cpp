@@ -19,7 +19,6 @@ sdk::ProtoStruct MockDiscovery::do_command(const sdk::ProtoStruct& command) {
     return (peek_command = command);
 }
 
-
-} // namespace discovery
-} // namespace sdktests
-} // namespace viam
+}  // namespace discovery
+}  // namespace sdktests
+}  // namespace viam

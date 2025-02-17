@@ -19,7 +19,6 @@ class MockDiscovery : public sdk::Discovery {
     sdk::ProtoStruct peek_command;
 };
 
-} // namespace discovery
-} // namespace sdktests
-} // namespace viam 
-
+}  // namespace discovery
+}  // namespace sdktests
+}  // namespace viam

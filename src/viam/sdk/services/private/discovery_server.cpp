@@ -15,7 +15,8 @@ DiscoveryServer::DiscoveryServer(std::shared_ptr<ResourceManager> manager)
     ::viam::service::discovery::v1::DiscoverResourcesResponse* response) noexcept {
     return make_service_helper<Discovery>(
         "DiscoveryServer::DiscoverResources", this, request)([&](auto& helper, auto& discovery) {
-        const std::vector<ResourceConfig> resources = discovery->discover_resources(helper.getExtra());
+        const std::vector<ResourceConfig> resources =
+            discovery->discover_resources(helper.getExtra());
         for (const auto& resource : resources) {
             *response->mutable_resources()->Add() = to_proto(resource);
         }
@@ -31,8 +32,8 @@ DiscoveryServer::DiscoveryServer(std::shared_ptr<ResourceManager> manager)
         const ProtoStruct result = discovery->do_command(from_proto(request->command()));
         *response->mutable_result() = to_proto(result);
     });
-} 
+}
 
-} // namespace impl
-} // namespace sdk
-} // namespace viam
+}  // namespace impl
+}  // namespace sdk
+}  // namespace viam

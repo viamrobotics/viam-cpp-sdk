@@ -14,25 +14,24 @@ namespace sdk {
 /// @defgroup Discovery Classes related to the Discovery service.
 
 /// @class Discovery discovery.hpp "services/discovery.hpp"
-/// @brief A `Discovery` service is used to discover resources that are physically connected to your machine.
-/// @ingroup Discovery 
+/// @brief A `Discovery` service is used to discover resources that are physically connected to
+/// your machine.
+/// @ingroup Discovery
 ///
 /// This acts as an abstract parent class to be inherited from by any drivers representing
 /// specific discovery implementations. This class cannot be used on its own.
 
 class Discovery : public Service {
    public:
-
     /// @brief Discover valid viam configuration of resources that are physically
     /// connected to your machine.
     inline std::vector<ResourceConfig> discover_resources() {
-        return discover_resources({})
+        return discover_resources({});
     }
 
-    /// @brief Discover valid viam configuration of resources that are physically 
-    /// connected to your machine. 
-    virtual std::vector<ResourceConfig> discover_resources(
-        const ProtoStruct& extra) = 0;
+    /// @brief Discover valid viam configuration of resources that are physically
+    /// connected to your machine.
+    virtual std::vector<ResourceConfig> discover_resources(const ProtoStruct& extra) = 0;
 
     /// @brief Do an arbitrary command.
     /// @param command Freeform fields that are service-specific.
@@ -45,9 +44,8 @@ class Discovery : public Service {
     explicit Discovery(std::string name);
 };
 
-
 template <>
-struct API::traits<Navigation> {
+struct API::traits<Discovery> {
     static API api();
 };
 
