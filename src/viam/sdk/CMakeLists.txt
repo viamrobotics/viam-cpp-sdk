@@ -118,10 +118,13 @@ target_sources(viamsdk
     rpc/dial.cpp
     rpc/server.cpp
     rpc/private/viam_grpc_channel.cpp
+    services/discovery.cpp
     services/generic.cpp
     services/mlmodel.cpp
     services/motion.cpp
     services/navigation.cpp
+    services/private/discovery_client.cpp
+    services/private/discovery_server.cpp
     services/private/generic_client.cpp
     services/private/generic_server.cpp
     services/private/mlmodel.cpp
@@ -181,6 +184,7 @@ target_sources(viamsdk
       ../../viam/sdk/rpc/dial.hpp
       ../../viam/sdk/rpc/message_sizes.hpp
       ../../viam/sdk/rpc/server.hpp
+      ../../viam/sdk/services/discovery.hpp
       ../../viam/sdk/services/generic.hpp
       ../../viam/sdk/services/mlmodel.hpp
       ../../viam/sdk/services/motion.hpp
