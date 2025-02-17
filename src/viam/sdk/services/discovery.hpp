@@ -6,7 +6,9 @@
 
 #include <string>
 
+#include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/services/service.hpp>
 
 namespace viam {
 namespace sdk {

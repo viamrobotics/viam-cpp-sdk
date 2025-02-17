@@ -43,7 +43,7 @@
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 #include <viam/sdk/services/private/discovery_client.hpp>
-#include <viam/sdk/services/private/discovery_service.hpp>
+#include <viam/sdk/services/private/discovery_server.hpp>
 #include <viam/sdk/services/private/generic_client.hpp>
 #include <viam/sdk/services/private/generic_server.hpp>
 #include <viam/sdk/services/private/mlmodel_client.hpp>
