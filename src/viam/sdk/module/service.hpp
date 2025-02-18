@@ -31,7 +31,7 @@ class ModuleService {
    public:
     /// @brief Creates a new ModuleService that can serve on the provided socket.
     /// @param addr Address of socket to serve on.
-    explicit ModuleService(std::string addr);
+    explicit ModuleService(std::string addr, Registry& registry);
 
     /// @brief Creates a new ModuleService. Socket path and log level will be
     /// inferred from passed in command line arguments, and passed in model
@@ -41,7 +41,8 @@ class ModuleService {
     /// @param registrations Models to register and add to the module.
     explicit ModuleService(int argc,
                            char** argv,
-                           const std::vector<std::shared_ptr<ModelRegistration>>& registrations);
+                           const std::vector<std::shared_ptr<ModelRegistration>>& registrations,
+                           Registry& registry);
     ~ModuleService();
 
     /// @brief Starts module. serve will return when SIGINT or SIGTERM is received
@@ -63,6 +64,8 @@ class ModuleService {
     Dependencies get_dependencies_(google::protobuf::RepeatedPtrField<std::string> const* proto,
                                    std::string const& resource_name);
     std::shared_ptr<Resource> get_parent_resource_(const Name& name);
+
+    Registry& registry_;
 
     std::mutex lock_;
     std::unique_ptr<Module> module_;

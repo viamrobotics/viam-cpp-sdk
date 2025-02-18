@@ -122,7 +122,7 @@ void Registry::register_resource_client_(
 }
 
 std::shared_ptr<const ModelRegistration> Registry::lookup_model_inlock_(
-    const std::string& name, const std::lock_guard<std::mutex>&) {
+    const std::string& name, const std::lock_guard<std::mutex>&) const {
     if (resources_.find(name) == resources_.end()) {
         return nullptr;
     }
@@ -130,19 +130,20 @@ std::shared_ptr<const ModelRegistration> Registry::lookup_model_inlock_(
     return resources_.at(name);
 }
 
-std::shared_ptr<const ModelRegistration> Registry::lookup_model(const std::string& name) {
+std::shared_ptr<const ModelRegistration> Registry::lookup_model(const std::string& name) const {
     const std::lock_guard<std::mutex> lock(lock_);
     return lookup_model_inlock_(name, lock);
 }
 
 std::shared_ptr<const ModelRegistration> Registry::lookup_model(const API& api,
-                                                                const Model& model) {
+                                                                const Model& model) const {
     const std::lock_guard<std::mutex> lock(lock_);
     const std::string name = api.to_string() + "/" + model.to_string();
     return lookup_model_inlock_(name, lock);
 }
 
-std::shared_ptr<const ResourceServerRegistration> Registry::lookup_resource_server(const API& api) {
+std::shared_ptr<const ResourceServerRegistration> Registry::lookup_resource_server(
+    const API& api) const {
     const std::lock_guard<std::mutex> lock(lock_);
     if (server_apis_.find(api) == server_apis_.end()) {
         return nullptr;
@@ -151,7 +152,8 @@ std::shared_ptr<const ResourceServerRegistration> Registry::lookup_resource_serv
     return server_apis_.at(api);
 }
 
-std::shared_ptr<const ResourceClientRegistration> Registry::lookup_resource_client(const API& api) {
+std::shared_ptr<const ResourceClientRegistration> Registry::lookup_resource_client(
+    const API& api) const {
     const std::lock_guard<std::mutex> lock(lock_);
     if (client_apis_.find(api) == client_apis_.end()) {
         return nullptr;
@@ -161,7 +163,7 @@ std::shared_ptr<const ResourceClientRegistration> Registry::lookup_resource_clie
 }
 
 const google::protobuf::ServiceDescriptor* Registry::get_service_descriptor_(
-    const char* service_full_name) {
+    const char* service_full_name) const {
     const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
     const google::protobuf::ServiceDescriptor* sd = p->FindServiceByName(service_full_name);
     if (!sd) {
@@ -171,12 +173,12 @@ const google::protobuf::ServiceDescriptor* Registry::get_service_descriptor_(
 }
 
 const std::unordered_map<API, std::shared_ptr<const ResourceServerRegistration>>&
-Registry::registered_resource_servers() {
+Registry::registered_resource_servers() const {
     return server_apis_;
 }
 
 const std::unordered_map<std::string, std::shared_ptr<const ModelRegistration>>&
-Registry::registered_models() {
+Registry::registered_models() const {
     return resources_;
 }
 
@@ -184,28 +186,28 @@ const google::protobuf::ServiceDescriptor* ResourceServerRegistration::service_d
     return service_descriptor_;
 }
 
-void register_resources() {
+void Registry::register_resources() {
     // Register all components
-    Registry::register_resource<impl::ArmClient, impl::ArmServer>();
-    Registry::register_resource<impl::BaseClient, impl::BaseServer>();
-    Registry::register_resource<impl::BoardClient, impl::BoardServer>();
-    Registry::register_resource<impl::CameraClient, impl::CameraServer>();
-    Registry::register_resource<impl::EncoderClient, impl::EncoderServer>();
-    Registry::register_resource<impl::GantryClient, impl::GantryServer>();
-    Registry::register_resource<impl::GenericComponentClient, impl::GenericComponentServer>();
-    Registry::register_resource<impl::GripperClient, impl::GripperServer>();
-    Registry::register_resource<impl::MotorClient, impl::MotorServer>();
-    Registry::register_resource<impl::MovementSensorClient, impl::MovementSensorServer>();
-    Registry::register_resource<impl::PoseTrackerClient, impl::PoseTrackerServer>();
-    Registry::register_resource<impl::PowerSensorClient, impl::PowerSensorServer>();
-    Registry::register_resource<impl::SensorClient, impl::SensorServer>();
-    Registry::register_resource<impl::ServoClient, impl::ServoServer>();
+    register_resource<impl::ArmClient, impl::ArmServer>();
+    register_resource<impl::BaseClient, impl::BaseServer>();
+    register_resource<impl::BoardClient, impl::BoardServer>();
+    register_resource<impl::CameraClient, impl::CameraServer>();
+    register_resource<impl::EncoderClient, impl::EncoderServer>();
+    register_resource<impl::GantryClient, impl::GantryServer>();
+    register_resource<impl::GenericComponentClient, impl::GenericComponentServer>();
+    register_resource<impl::GripperClient, impl::GripperServer>();
+    register_resource<impl::MotorClient, impl::MotorServer>();
+    register_resource<impl::MovementSensorClient, impl::MovementSensorServer>();
+    register_resource<impl::PoseTrackerClient, impl::PoseTrackerServer>();
+    register_resource<impl::PowerSensorClient, impl::PowerSensorServer>();
+    register_resource<impl::SensorClient, impl::SensorServer>();
+    register_resource<impl::ServoClient, impl::ServoServer>();
 
     // Register all services
-    Registry::register_resource<impl::GenericServiceClient, impl::GenericServiceServer>();
-    Registry::register_resource<impl::MLModelServiceClient, impl::MLModelServiceServer>();
-    Registry::register_resource<impl::MotionClient, impl::MotionServer>();
-    Registry::register_resource<impl::NavigationClient, impl::NavigationServer>();
+    register_resource<impl::GenericServiceClient, impl::GenericServiceServer>();
+    register_resource<impl::MLModelServiceClient, impl::MLModelServiceServer>();
+    register_resource<impl::MotionClient, impl::MotionServer>();
+    register_resource<impl::NavigationClient, impl::NavigationServer>();
 }
 
 void Registry::initialize() {
@@ -219,12 +221,6 @@ void Registry::initialize() {
     register_resources();
     grpc::reflection::InitProtoReflectionServerBuilderPlugin();
 }
-
-std::unordered_map<std::string, std::shared_ptr<const ModelRegistration>> Registry::resources_;
-std::unordered_map<API, std::shared_ptr<const ResourceClientRegistration>> Registry::client_apis_;
-std::unordered_map<API, std::shared_ptr<const ResourceServerRegistration>> Registry::server_apis_;
-std::mutex Registry::lock_;
-bool Registry::initialized_{false};
 
 }  // namespace sdk
 }  // namespace viam

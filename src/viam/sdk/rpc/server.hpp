@@ -23,11 +23,13 @@ class TestServer;
 
 namespace sdk {
 
+class Registry;
+
 /// @class Server server.hpp "rpc/server.hpp"
 /// @brief Defines gRPC `Server` functionality.
 class Server {
    public:
-    Server();
+    Server(const Registry* registry);
     ~Server();
 
     /// @brief Starts the grpc server. Can only be called once.
