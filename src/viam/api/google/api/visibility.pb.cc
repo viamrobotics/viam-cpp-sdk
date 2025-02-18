@@ -102,17 +102,17 @@ const char descriptor_table_protodef_google_2fapi_2fvisibility_2eproto[] PROTOBU
   "i.VisibilityRuleR\020methodVisibility:e\n\016ap"
   "i_visibility\022\037.google.protobuf.ServiceOp"
   "tions\030\257\312\274\" \001(\0132\032.google.api.VisibilityRu"
-  "leR\rapiVisibilityBn\n\016com.google.apiB\017Vis"
+  "leR\rapiVisibilityBk\n\016com.google.apiB\017Vis"
   "ibilityProtoP\001Z\?google.golang.org/genpro"
-  "to/googleapis/api/visibility;visibility\370"
-  "\001\001\242\002\004GAPIb\006proto3"
+  "to/googleapis/api/visibility;visibility\242"
+  "\002\004GAPIb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fvisibility_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2fdescriptor_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_google_2fapi_2fvisibility_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2fvisibility_2eproto = {
-    false, false, 977, descriptor_table_protodef_google_2fapi_2fvisibility_2eproto,
+    false, false, 974, descriptor_table_protodef_google_2fapi_2fvisibility_2eproto,
     "google/api/visibility.proto",
     &descriptor_table_google_2fapi_2fvisibility_2eproto_once, descriptor_table_google_2fapi_2fvisibility_2eproto_deps, 1, 2,
     schemas, file_default_instances, TableStruct_google_2fapi_2fvisibility_2eproto::offsets,

@@ -117,17 +117,17 @@ const char descriptor_table_protodef_google_2fapi_2fresource_2eproto[] PROTOBUF_
   "sourceDescriptorR\022resourceDefinition:\\\n\010"
   "resource\022\037.google.protobuf.MessageOption"
   "s\030\235\010 \001(\0132\036.google.api.ResourceDescriptor"
-  "R\010resourceBn\n\016com.google.apiB\rResourcePr"
+  "R\010resourceBk\n\016com.google.apiB\rResourcePr"
   "otoP\001ZAgoogle.golang.org/genproto/google"
-  "apis/api/annotations;annotations\370\001\001\242\002\004GA"
-  "PIb\006proto3"
+  "apis/api/annotations;annotations\242\002\004GAPIb"
+  "\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fresource_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2fdescriptor_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_google_2fapi_2fresource_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2fresource_2eproto = {
-    false, false, 1010, descriptor_table_protodef_google_2fapi_2fresource_2eproto,
+    false, false, 1007, descriptor_table_protodef_google_2fapi_2fresource_2eproto,
     "google/api/resource.proto",
     &descriptor_table_google_2fapi_2fresource_2eproto_once, descriptor_table_google_2fapi_2fresource_2eproto_deps, 1, 2,
     schemas, file_default_instances, TableStruct_google_2fapi_2fresource_2eproto::offsets,

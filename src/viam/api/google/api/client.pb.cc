@@ -135,7 +135,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR PythonSettings_ExperimentalFeatures::PythonSettings_ExperimentalFeatures(
     ::_pbi::ConstantInitialized)
   : rest_async_io_enabled_(false)
-  , protobuf_pythonic_types_enabled_(false){}
+  , protobuf_pythonic_types_enabled_(false)
+  , unversioned_package_disabled_(false){}
 struct PythonSettings_ExperimentalFeaturesDefaultTypeInternal {
   PROTOBUF_CONSTEXPR PythonSettings_ExperimentalFeaturesDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -378,6 +379,7 @@ const uint32_t TableStruct_google_2fapi_2fclient_2eproto::offsets[] PROTOBUF_SEC
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::google::api::PythonSettings_ExperimentalFeatures, rest_async_io_enabled_),
   PROTOBUF_FIELD_OFFSET(::google::api::PythonSettings_ExperimentalFeatures, protobuf_pythonic_types_enabled_),
+  PROTOBUF_FIELD_OFFSET(::google::api::PythonSettings_ExperimentalFeatures, unversioned_package_disabled_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::PythonSettings, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -487,17 +489,17 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 62, -1, -1, sizeof(::google::api::CppSettings)},
   { 69, -1, -1, sizeof(::google::api::PhpSettings)},
   { 76, -1, -1, sizeof(::google::api::PythonSettings_ExperimentalFeatures)},
-  { 84, -1, -1, sizeof(::google::api::PythonSettings)},
-  { 92, -1, -1, sizeof(::google::api::NodeSettings)},
-  { 99, 107, -1, sizeof(::google::api::DotnetSettings_RenamedServicesEntry_DoNotUse)},
-  { 109, 117, -1, sizeof(::google::api::DotnetSettings_RenamedResourcesEntry_DoNotUse)},
-  { 119, -1, -1, sizeof(::google::api::DotnetSettings)},
-  { 131, -1, -1, sizeof(::google::api::RubySettings)},
-  { 138, 146, -1, sizeof(::google::api::GoSettings_RenamedServicesEntry_DoNotUse)},
-  { 148, -1, -1, sizeof(::google::api::GoSettings)},
-  { 156, -1, -1, sizeof(::google::api::MethodSettings_LongRunning)},
-  { 166, -1, -1, sizeof(::google::api::MethodSettings)},
-  { 175, -1, -1, sizeof(::google::api::SelectiveGapicGeneration)},
+  { 85, -1, -1, sizeof(::google::api::PythonSettings)},
+  { 93, -1, -1, sizeof(::google::api::NodeSettings)},
+  { 100, 108, -1, sizeof(::google::api::DotnetSettings_RenamedServicesEntry_DoNotUse)},
+  { 110, 118, -1, sizeof(::google::api::DotnetSettings_RenamedResourcesEntry_DoNotUse)},
+  { 120, -1, -1, sizeof(::google::api::DotnetSettings)},
+  { 132, -1, -1, sizeof(::google::api::RubySettings)},
+  { 139, 147, -1, sizeof(::google::api::GoSettings_RenamedServicesEntry_DoNotUse)},
+  { 149, -1, -1, sizeof(::google::api::GoSettings)},
+  { 157, -1, -1, sizeof(::google::api::MethodSettings_LongRunning)},
+  { 167, -1, -1, sizeof(::google::api::MethodSettings)},
+  { 176, -1, -1, sizeof(::google::api::SelectiveGapicGeneration)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -575,70 +577,72 @@ const char descriptor_table_protodef_google_2fapi_2fclient_2eproto[] PROTOBUF_SE
   "\0028\001\"I\n\013CppSettings\022:\n\006common\030\001 \001(\0132\".goo"
   "gle.api.CommonLanguageSettingsR\006common\"I"
   "\n\013PhpSettings\022:\n\006common\030\001 \001(\0132\".google.a"
-  "pi.CommonLanguageSettingsR\006common\"\305\002\n\016Py"
+  "pi.CommonLanguageSettingsR\006common\"\207\003\n\016Py"
   "thonSettings\022:\n\006common\030\001 \001(\0132\".google.ap"
   "i.CommonLanguageSettingsR\006common\022d\n\025expe"
   "rimental_features\030\002 \001(\0132/.google.api.Pyt"
   "honSettings.ExperimentalFeaturesR\024experi"
-  "mentalFeatures\032\220\001\n\024ExperimentalFeatures\022"
+  "mentalFeatures\032\322\001\n\024ExperimentalFeatures\022"
   "1\n\025rest_async_io_enabled\030\001 \001(\010R\022restAsyn"
   "cIoEnabled\022E\n\037protobuf_pythonic_types_en"
   "abled\030\002 \001(\010R\034protobufPythonicTypesEnable"
-  "d\"J\n\014NodeSettings\022:\n\006common\030\001 \001(\0132\".goog"
-  "le.api.CommonLanguageSettingsR\006common\"\256\004"
-  "\n\016DotnetSettings\022:\n\006common\030\001 \001(\0132\".googl"
-  "e.api.CommonLanguageSettingsR\006common\022Z\n\020"
-  "renamed_services\030\002 \003(\0132/.google.api.Dotn"
-  "etSettings.RenamedServicesEntryR\017renamed"
-  "Services\022]\n\021renamed_resources\030\003 \003(\01320.go"
-  "ogle.api.DotnetSettings.RenamedResources"
-  "EntryR\020renamedResources\022+\n\021ignored_resou"
-  "rces\030\004 \003(\tR\020ignoredResources\0228\n\030forced_n"
-  "amespace_aliases\030\005 \003(\tR\026forcedNamespaceA"
-  "liases\0225\n\026handwritten_signatures\030\006 \003(\tR\025"
-  "handwrittenSignatures\032B\n\024RenamedServices"
-  "Entry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005"
-  "value:\0028\001\032C\n\025RenamedResourcesEntry\022\020\n\003ke"
-  "y\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\"J"
-  "\n\014RubySettings\022:\n\006common\030\001 \001(\0132\".google."
-  "api.CommonLanguageSettingsR\006common\"\344\001\n\nG"
-  "oSettings\022:\n\006common\030\001 \001(\0132\".google.api.C"
-  "ommonLanguageSettingsR\006common\022V\n\020renamed"
-  "_services\030\002 \003(\0132+.google.api.GoSettings."
-  "RenamedServicesEntryR\017renamedServices\032B\n"
-  "\024RenamedServicesEntry\022\020\n\003key\030\001 \001(\tR\003key\022"
-  "\024\n\005value\030\002 \001(\tR\005value:\0028\001\"\302\003\n\016MethodSett"
-  "ings\022\032\n\010selector\030\001 \001(\tR\010selector\022I\n\014long"
-  "_running\030\002 \001(\0132&.google.api.MethodSettin"
-  "gs.LongRunningR\013longRunning\0222\n\025auto_popu"
-  "lated_fields\030\003 \003(\tR\023autoPopulatedFields\032"
-  "\224\002\n\013LongRunning\022G\n\022initial_poll_delay\030\001 "
-  "\001(\0132\031.google.protobuf.DurationR\020initialP"
-  "ollDelay\0222\n\025poll_delay_multiplier\030\002 \001(\002R"
-  "\023pollDelayMultiplier\022\?\n\016max_poll_delay\030\003"
-  " \001(\0132\031.google.protobuf.DurationR\014maxPoll"
-  "Delay\022G\n\022total_poll_timeout\030\004 \001(\0132\031.goog"
-  "le.protobuf.DurationR\020totalPollTimeout\"u"
-  "\n\030SelectiveGapicGeneration\022\030\n\007methods\030\001 "
-  "\003(\tR\007methods\022\?\n\034generate_omitted_as_inte"
-  "rnal\030\002 \001(\010R\031generateOmittedAsInternal*\243\001"
-  "\n\031ClientLibraryOrganization\022+\n\'CLIENT_LI"
-  "BRARY_ORGANIZATION_UNSPECIFIED\020\000\022\t\n\005CLOU"
-  "D\020\001\022\007\n\003ADS\020\002\022\n\n\006PHOTOS\020\003\022\017\n\013STREET_VIEW\020"
-  "\004\022\014\n\010SHOPPING\020\005\022\007\n\003GEO\020\006\022\021\n\rGENERATIVE_A"
-  "I\020\007*g\n\030ClientLibraryDestination\022*\n&CLIEN"
-  "T_LIBRARY_DESTINATION_UNSPECIFIED\020\000\022\n\n\006G"
-  "ITHUB\020\n\022\023\n\017PACKAGE_MANAGER\020\024:J\n\020method_s"
-  "ignature\022\036.google.protobuf.MethodOptions"
-  "\030\233\010 \003(\tR\017methodSignature:C\n\014default_host"
-  "\022\037.google.protobuf.ServiceOptions\030\231\010 \001(\t"
-  "R\013defaultHost:C\n\014oauth_scopes\022\037.google.p"
-  "rotobuf.ServiceOptions\030\232\010 \001(\tR\013oauthScop"
-  "es:D\n\013api_version\022\037.google.protobuf.Serv"
-  "iceOptions\030\301\272\253\372\001 \001(\tR\napiVersionBi\n\016com."
-  "google.apiB\013ClientProtoP\001ZAgoogle.golang"
-  ".org/genproto/googleapis/api/annotations"
-  ";annotations\242\002\004GAPIb\006proto3"
+  "d\022@\n\034unversioned_package_disabled\030\003 \001(\010R"
+  "\032unversionedPackageDisabled\"J\n\014NodeSetti"
+  "ngs\022:\n\006common\030\001 \001(\0132\".google.api.CommonL"
+  "anguageSettingsR\006common\"\256\004\n\016DotnetSettin"
+  "gs\022:\n\006common\030\001 \001(\0132\".google.api.CommonLa"
+  "nguageSettingsR\006common\022Z\n\020renamed_servic"
+  "es\030\002 \003(\0132/.google.api.DotnetSettings.Ren"
+  "amedServicesEntryR\017renamedServices\022]\n\021re"
+  "named_resources\030\003 \003(\01320.google.api.Dotne"
+  "tSettings.RenamedResourcesEntryR\020renamed"
+  "Resources\022+\n\021ignored_resources\030\004 \003(\tR\020ig"
+  "noredResources\0228\n\030forced_namespace_alias"
+  "es\030\005 \003(\tR\026forcedNamespaceAliases\0225\n\026hand"
+  "written_signatures\030\006 \003(\tR\025handwrittenSig"
+  "natures\032B\n\024RenamedServicesEntry\022\020\n\003key\030\001"
+  " \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\032C\n\025R"
+  "enamedResourcesEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024"
+  "\n\005value\030\002 \001(\tR\005value:\0028\001\"J\n\014RubySettings"
+  "\022:\n\006common\030\001 \001(\0132\".google.api.CommonLang"
+  "uageSettingsR\006common\"\344\001\n\nGoSettings\022:\n\006c"
+  "ommon\030\001 \001(\0132\".google.api.CommonLanguageS"
+  "ettingsR\006common\022V\n\020renamed_services\030\002 \003("
+  "\0132+.google.api.GoSettings.RenamedService"
+  "sEntryR\017renamedServices\032B\n\024RenamedServic"
+  "esEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\t"
+  "R\005value:\0028\001\"\302\003\n\016MethodSettings\022\032\n\010select"
+  "or\030\001 \001(\tR\010selector\022I\n\014long_running\030\002 \001(\013"
+  "2&.google.api.MethodSettings.LongRunning"
+  "R\013longRunning\0222\n\025auto_populated_fields\030\003"
+  " \003(\tR\023autoPopulatedFields\032\224\002\n\013LongRunnin"
+  "g\022G\n\022initial_poll_delay\030\001 \001(\0132\031.google.p"
+  "rotobuf.DurationR\020initialPollDelay\0222\n\025po"
+  "ll_delay_multiplier\030\002 \001(\002R\023pollDelayMult"
+  "iplier\022\?\n\016max_poll_delay\030\003 \001(\0132\031.google."
+  "protobuf.DurationR\014maxPollDelay\022G\n\022total"
+  "_poll_timeout\030\004 \001(\0132\031.google.protobuf.Du"
+  "rationR\020totalPollTimeout\"u\n\030SelectiveGap"
+  "icGeneration\022\030\n\007methods\030\001 \003(\tR\007methods\022\?"
+  "\n\034generate_omitted_as_internal\030\002 \001(\010R\031ge"
+  "nerateOmittedAsInternal*\243\001\n\031ClientLibrar"
+  "yOrganization\022+\n\'CLIENT_LIBRARY_ORGANIZA"
+  "TION_UNSPECIFIED\020\000\022\t\n\005CLOUD\020\001\022\007\n\003ADS\020\002\022\n"
+  "\n\006PHOTOS\020\003\022\017\n\013STREET_VIEW\020\004\022\014\n\010SHOPPING\020"
+  "\005\022\007\n\003GEO\020\006\022\021\n\rGENERATIVE_AI\020\007*g\n\030ClientL"
+  "ibraryDestination\022*\n&CLIENT_LIBRARY_DEST"
+  "INATION_UNSPECIFIED\020\000\022\n\n\006GITHUB\020\n\022\023\n\017PAC"
+  "KAGE_MANAGER\020\024:J\n\020method_signature\022\036.goo"
+  "gle.protobuf.MethodOptions\030\233\010 \003(\tR\017metho"
+  "dSignature:C\n\014default_host\022\037.google.prot"
+  "obuf.ServiceOptions\030\231\010 \001(\tR\013defaultHost:"
+  "C\n\014oauth_scopes\022\037.google.protobuf.Servic"
+  "eOptions\030\232\010 \001(\tR\013oauthScopes:D\n\013api_vers"
+  "ion\022\037.google.protobuf.ServiceOptions\030\301\272\253"
+  "\372\001 \001(\tR\napiVersionBi\n\016com.google.apiB\013Cl"
+  "ientProtoP\001ZAgoogle.golang.org/genproto/"
+  "googleapis/api/annotations;annotations\242\002"
+  "\004GAPIb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fclient_2eproto_deps[3] = {
   &::descriptor_table_google_2fapi_2flaunch_5fstage_2eproto,
@@ -647,7 +651,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fclie
 };
 static ::_pbi::once_flag descriptor_table_google_2fapi_2fclient_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2fclient_2eproto = {
-    false, false, 4627, descriptor_table_protodef_google_2fapi_2fclient_2eproto,
+    false, false, 4693, descriptor_table_protodef_google_2fapi_2fclient_2eproto,
     "google/api/client.proto",
     &descriptor_table_google_2fapi_2fclient_2eproto_once, descriptor_table_google_2fapi_2fclient_2eproto_deps, 3, 19,
     schemas, file_default_instances, TableStruct_google_2fapi_2fclient_2eproto::offsets,
@@ -2879,16 +2883,16 @@ PythonSettings_ExperimentalFeatures::PythonSettings_ExperimentalFeatures(const P
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&rest_async_io_enabled_, &from.rest_async_io_enabled_,
-    static_cast<size_t>(reinterpret_cast<char*>(&protobuf_pythonic_types_enabled_) -
-    reinterpret_cast<char*>(&rest_async_io_enabled_)) + sizeof(protobuf_pythonic_types_enabled_));
+    static_cast<size_t>(reinterpret_cast<char*>(&unversioned_package_disabled_) -
+    reinterpret_cast<char*>(&rest_async_io_enabled_)) + sizeof(unversioned_package_disabled_));
   // @@protoc_insertion_point(copy_constructor:google.api.PythonSettings.ExperimentalFeatures)
 }
 
 inline void PythonSettings_ExperimentalFeatures::SharedCtor() {
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&rest_async_io_enabled_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&protobuf_pythonic_types_enabled_) -
-    reinterpret_cast<char*>(&rest_async_io_enabled_)) + sizeof(protobuf_pythonic_types_enabled_));
+    0, static_cast<size_t>(reinterpret_cast<char*>(&unversioned_package_disabled_) -
+    reinterpret_cast<char*>(&rest_async_io_enabled_)) + sizeof(unversioned_package_disabled_));
 }
 
 PythonSettings_ExperimentalFeatures::~PythonSettings_ExperimentalFeatures() {
@@ -2915,8 +2919,8 @@ void PythonSettings_ExperimentalFeatures::Clear() {
   (void) cached_has_bits;
 
   ::memset(&rest_async_io_enabled_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&protobuf_pythonic_types_enabled_) -
-      reinterpret_cast<char*>(&rest_async_io_enabled_)) + sizeof(protobuf_pythonic_types_enabled_));
+      reinterpret_cast<char*>(&unversioned_package_disabled_) -
+      reinterpret_cast<char*>(&rest_async_io_enabled_)) + sizeof(unversioned_package_disabled_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2938,6 +2942,14 @@ const char* PythonSettings_ExperimentalFeatures::_InternalParse(const char* ptr,
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
           protobuf_pythonic_types_enabled_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool unversioned_package_disabled = 3 [json_name = "unversionedPackageDisabled"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          unversioned_package_disabled_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2983,6 +2995,12 @@ uint8_t* PythonSettings_ExperimentalFeatures::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_protobuf_pythonic_types_enabled(), target);
   }
 
+  // bool unversioned_package_disabled = 3 [json_name = "unversionedPackageDisabled"];
+  if (this->_internal_unversioned_package_disabled() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(3, this->_internal_unversioned_package_disabled(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -3006,6 +3024,11 @@ size_t PythonSettings_ExperimentalFeatures::ByteSizeLong() const {
 
   // bool protobuf_pythonic_types_enabled = 2 [json_name = "protobufPythonicTypesEnabled"];
   if (this->_internal_protobuf_pythonic_types_enabled() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool unversioned_package_disabled = 3 [json_name = "unversionedPackageDisabled"];
+  if (this->_internal_unversioned_package_disabled() != 0) {
     total_size += 1 + 1;
   }
 
@@ -3037,6 +3060,9 @@ void PythonSettings_ExperimentalFeatures::MergeFrom(const PythonSettings_Experim
   if (from._internal_protobuf_pythonic_types_enabled() != 0) {
     _internal_set_protobuf_pythonic_types_enabled(from._internal_protobuf_pythonic_types_enabled());
   }
+  if (from._internal_unversioned_package_disabled() != 0) {
+    _internal_set_unversioned_package_disabled(from._internal_unversioned_package_disabled());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -3055,8 +3081,8 @@ void PythonSettings_ExperimentalFeatures::InternalSwap(PythonSettings_Experiment
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(PythonSettings_ExperimentalFeatures, protobuf_pythonic_types_enabled_)
-      + sizeof(PythonSettings_ExperimentalFeatures::protobuf_pythonic_types_enabled_)
+      PROTOBUF_FIELD_OFFSET(PythonSettings_ExperimentalFeatures, unversioned_package_disabled_)
+      + sizeof(PythonSettings_ExperimentalFeatures::unversioned_package_disabled_)
       - PROTOBUF_FIELD_OFFSET(PythonSettings_ExperimentalFeatures, rest_async_io_enabled_)>(
           reinterpret_cast<char*>(&rest_async_io_enabled_),
           reinterpret_cast<char*>(&other->rest_async_io_enabled_));
