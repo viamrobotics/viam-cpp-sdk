@@ -7,5 +7,9 @@ Instance::Instance() {
     registry_.initialize();
 }
 
+Registry& Instance::registry() {
+    return registry_;
+}
+
 }  // namespace sdk
 }  // namespace viam
