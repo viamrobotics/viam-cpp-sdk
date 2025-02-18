@@ -187,6 +187,10 @@ class Registry {
     void initialize();
 
    private:
+    friend class Instance;
+
+    Registry() = default;
+
     mutable std::mutex lock_;
     bool initialized_{false};
     std::unordered_map<std::string, std::shared_ptr<const ModelRegistration>> resources_;
