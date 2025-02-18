@@ -50,6 +50,7 @@ target_sources(viamsdk
   PRIVATE
     common/client_helper.cpp
     common/exception.cpp
+    common/instance.cpp
     common/linear_algebra.cpp
     common/pose.cpp
     common/proto_value.cpp
@@ -142,6 +143,7 @@ target_sources(viamsdk
     FILES
       ../../viam/sdk/common/client_helper.hpp
       ../../viam/sdk/common/exception.hpp
+      ../../viam/sdk/common/instance.hpp
       ../../viam/sdk/common/linear_algebra.hpp
       ../../viam/sdk/common/pose.hpp
       ../../viam/sdk/common/proto_convert.hpp
