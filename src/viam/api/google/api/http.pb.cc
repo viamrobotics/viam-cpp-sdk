@@ -132,14 +132,14 @@ const char descriptor_table_protodef_google_2fapi_2fhttp_2eproto[] PROTOBUF_SECT
   "bindings\030\013 \003(\0132\024.google.api.HttpRuleR\022ad"
   "ditionalBindingsB\t\n\007pattern\";\n\021CustomHtt"
   "pPattern\022\022\n\004kind\030\001 \001(\tR\004kind\022\022\n\004path\030\002 \001"
-  "(\tR\004pathBj\n\016com.google.apiB\tHttpProtoP\001Z"
+  "(\tR\004pathBg\n\016com.google.apiB\tHttpProtoP\001Z"
   "Agoogle.golang.org/genproto/googleapis/a"
-  "pi/annotations;annotations\370\001\001\242\002\004GAPIb\006pr"
-  "oto3"
+  "pi/annotations;annotations\242\002\004GAPIb\006proto"
+  "3"
   ;
 static ::_pbi::once_flag descriptor_table_google_2fapi_2fhttp_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2fhttp_2eproto = {
-    false, false, 684, descriptor_table_protodef_google_2fapi_2fhttp_2eproto,
+    false, false, 681, descriptor_table_protodef_google_2fapi_2fhttp_2eproto,
     "google/api/http.proto",
     &descriptor_table_google_2fapi_2fhttp_2eproto_once, nullptr, 0, 3,
     schemas, file_default_instances, TableStruct_google_2fapi_2fhttp_2eproto::offsets,
