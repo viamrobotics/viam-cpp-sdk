@@ -33,7 +33,6 @@ std::vector<ResourceConfig> fake_discovered_resources() {
 
     LinkConfig link(t, o, GeometryConfig(p, sphere{1}, "sphere"), "world");
 
-
     return {
         ResourceConfig("camera",
                        "mycam",
@@ -56,7 +55,7 @@ std::vector<ResourceConfig> fake_discovered_resources() {
                        "rdk:component:motor",
                        Model("rand", "cool", "my_motor"),
                        link),
-                    };
+    };
 };
 
 TestServer::TestServer(std::shared_ptr<Server> sdk_server) : sdk_server_(std::move(sdk_server)) {}
