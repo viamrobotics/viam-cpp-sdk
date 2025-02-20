@@ -23,8 +23,8 @@ class DiscoveryServer : public ResourceServer,
    public:
     using interface_type = Discovery;
     using service_type = service::discovery::v1::DiscoveryService;
-
-    explicit DiscoveryServer(std::shared_ptr<ResourceManager> manager);
+    explicit DiscoveryServer(std::shared_ptr<ResourceManager> manager)
+        : ResourceServer(std::move(manager)) {}
 
     ::grpc::Status DiscoverResources(
         ::grpc::ServerContext* context,

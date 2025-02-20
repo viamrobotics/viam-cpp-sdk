@@ -7,16 +7,14 @@ namespace viam {
 namespace sdktests {
 namespace discovery {
 
-std::shared_ptr<MockDiscovery> MockDiscovery::get_mock_discovery() {
-    return std::make_shared<MockDiscovery>("mock_discovery");
-}
+MockDiscovery::MockDiscovery(std::string name) : Discovery(std::move(name)) {}
 
 std::vector<sdk::ResourceConfig> MockDiscovery::discover_resources(const sdk::ProtoStruct&) {
-    return fake_resources();
+    return fake_discovered_resources();
 }
 
-sdk::ProtoStruct MockDiscovery::do_command(const sdk::ProtoStruct& command) {
-    return (peek_command = command);
+ProtoStruct MockDiscovery::do_command(const sdk::ProtoStruct& command) {
+    return ProtoStruct{};
 }
 
 }  // namespace discovery

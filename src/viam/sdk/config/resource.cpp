@@ -8,6 +8,7 @@
 
 #include <viam/api/app/v1/robot.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
+#include <viam/api/service/discovery/v1/discovery.pb.h>
 
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/private/repeated_ptr_convert.hpp>
@@ -154,6 +155,12 @@ ResourceConfig from_proto_impl<app::v1::ComponentConfig>::operator()(
                           proto->api(),
                           Model::from_str(proto->model()),
                           proto->has_frame() ? from_proto(proto->frame()) : LinkConfig{});
+}
+
+std::vector<ResourceConfig>
+from_proto_impl<service::discovery::v1::DiscoverResourcesResponse>::operator()(
+    const service::discovery::v1::DiscoverResourcesResponse* proto) const {
+    return impl::from_repeated_field(proto->discoveries());
 }
 
 }  // namespace proto_convert_details
