@@ -183,13 +183,13 @@ class Registry {
     const std::unordered_map<API, std::shared_ptr<const ResourceServerRegistration>>&
     registered_resource_servers() const;
 
-    /// @brief Initialized the Viam registry. No-op if it has already been called.
-    void initialize();
-
    private:
     friend class Instance;
 
     Registry() = default;
+
+    /// @brief Initialized the Viam registry. No-op if it has already been called.
+    void initialize();
 
     mutable std::mutex lock_;
     bool initialized_{false};
