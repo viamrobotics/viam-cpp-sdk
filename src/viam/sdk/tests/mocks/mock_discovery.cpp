@@ -14,7 +14,7 @@ std::vector<sdk::ResourceConfig> MockDiscovery::discover_resources(const sdk::Pr
 }
 
 ProtoStruct MockDiscovery::do_command(const sdk::ProtoStruct& command) {
-    return ProtoStruct{};
+    return fake_map();
 }
 
 }  // namespace discovery

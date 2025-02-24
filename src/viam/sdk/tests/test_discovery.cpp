@@ -27,8 +27,12 @@ BOOST_AUTO_TEST_CASE(test_discover_resources) {
 BOOST_AUTO_TEST_CASE(test_do_command) {
     auto mock = std::make_shared<MockDiscovery>("mock_discovery");
     client_to_mock_pipeline<Discovery>(mock, [&](Discovery& client) {
-        const auto ret = client.do_command({});
-        BOOST_CHECK_EQUAL(ret.size(), 0);
+        ProtoStruct expected = fake_map();
+
+        ProtoStruct command = fake_map();
+        ProtoStruct result_map = client.do_command(command);
+
+        BOOST_CHECK(result_map.at("test") == expected.at("test"));
     });
 }
 
