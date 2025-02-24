@@ -17,7 +17,7 @@ struct GlobalInstance {
         return inst;
     }
 
-    static sdk::Registry& registry() {
+    static sdk::Registry* registry() {
         return get().registry();
     }
 };
@@ -61,7 +61,7 @@ class TestServer {
 // The passed in test_case function will have access to the created ResourceClient.
 template <typename ResourceType, typename F>
 void client_to_mock_pipeline(std::shared_ptr<Resource> mock, F&& test_case) {
-    auto server = std::make_shared<sdk::Server>(&GlobalInstance::registry());
+    auto server = std::make_shared<sdk::Server>(GlobalInstance::registry());
 
     // normally the high level server service (either robot or module) handles adding managed
     // resources, but in this case we must do it ourselves.
@@ -74,7 +74,7 @@ void client_to_mock_pipeline(std::shared_ptr<Resource> mock, F&& test_case) {
     auto grpc_channel = test_server.grpc_in_process_channel();
 
     auto resource_client = GlobalInstance::registry()
-                               .lookup_resource_client(API::get<ResourceType>())
+                               ->lookup_resource_client(API::get<ResourceType>())
                                ->create_rpc_client(mock->name(), std::move(grpc_channel));
 
     // Run the passed-in test case on the created stack and give access to the

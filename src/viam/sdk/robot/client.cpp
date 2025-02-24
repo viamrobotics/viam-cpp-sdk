@@ -178,7 +178,7 @@ void RobotClient::refresh() {
         // are being properly registered from name.subtype(), or update what we're
         // using for lookup
         const std::shared_ptr<const ResourceClientRegistration> rs =
-            registry_.lookup_resource_client({name.namespace_(), name.type(), name.subtype()});
+            registry_->lookup_resource_client({name.namespace_(), name.type(), name.subtype()});
         if (rs) {
             try {
                 const std::shared_ptr<Resource> rpc_client =
@@ -221,7 +221,7 @@ void RobotClient::refresh_every() {
     }
 };
 
-RobotClient::RobotClient(std::shared_ptr<ViamChannel> channel, Registry& registry)
+RobotClient::RobotClient(std::shared_ptr<ViamChannel> channel, Registry* registry)
     : registry_(registry),
       channel_(channel->channel()),
       viam_channel_(std::move(channel)),
@@ -235,7 +235,7 @@ std::vector<Name> RobotClient::resource_names() const {
 
 std::shared_ptr<RobotClient> RobotClient::with_channel(std::shared_ptr<ViamChannel> channel,
                                                        const Options& options,
-                                                       Registry& registry) {
+                                                       Registry* registry) {
     std::shared_ptr<RobotClient> robot =
         std::make_shared<RobotClient>(std::move(channel), registry);
     robot->refresh_interval_ = options.refresh_interval();
@@ -256,7 +256,7 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(std::shared_ptr<ViamChann
 
 std::shared_ptr<RobotClient> RobotClient::at_address(const std::string& address,
                                                      const Options& options,
-                                                     Registry& registry) {
+                                                     Registry* registry) {
     const char* uri = address.c_str();
     auto channel = ViamChannel::dial(uri, options.dial_options());
     std::shared_ptr<RobotClient> robot = RobotClient::with_channel(channel, options, registry);
@@ -267,7 +267,7 @@ std::shared_ptr<RobotClient> RobotClient::at_address(const std::string& address,
 
 std::shared_ptr<RobotClient> RobotClient::at_local_socket(const std::string& address,
                                                           const Options& options,
-                                                          Registry& registry) {
+                                                          Registry* registry) {
     const std::string addr = "unix://" + address;
     const char* uri = addr.c_str();
     const std::shared_ptr<grpc::Channel> channel =

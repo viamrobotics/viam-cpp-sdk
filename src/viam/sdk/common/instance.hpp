@@ -1,9 +1,11 @@
 #pragma once
 
-#include <viam/sdk/registry/registry.hpp>
+#include <memory>
 
 namespace viam {
 namespace sdk {
+
+class Registry;
 
 /// @brief Instance management for Viam C++ SDK applications.
 /// This is a single instance class which is responsible for global setup and teardown related to
@@ -13,11 +15,13 @@ namespace sdk {
 class Instance {
    public:
     Instance();
+    ~Instance();
 
-    Registry& registry();
+    Registry* registry();
 
    private:
-    Registry registry_;
+    struct Impl;
+    std::unique_ptr<Impl> impl_;
 };
 
 }  // namespace sdk

@@ -185,7 +185,6 @@ class Registry {
 
    private:
     friend class Instance;
-
     Registry() = default;
 
     /// @brief Initialized the Viam registry. No-op if it has already been called.

@@ -31,7 +31,7 @@ class ModuleService {
    public:
     /// @brief Creates a new ModuleService that can serve on the provided socket.
     /// @param addr Address of socket to serve on.
-    explicit ModuleService(std::string addr, Registry& registry);
+    explicit ModuleService(std::string addr, Registry* registry);
 
     /// @brief Creates a new ModuleService. Socket path and log level will be
     /// inferred from passed in command line arguments, and passed in model
@@ -42,7 +42,7 @@ class ModuleService {
     explicit ModuleService(int argc,
                            char** argv,
                            const std::vector<std::shared_ptr<ModelRegistration>>& registrations,
-                           Registry& registry);
+                           Registry* registry);
     ~ModuleService();
 
     /// @brief Starts module. serve will return when SIGINT or SIGTERM is received
@@ -65,7 +65,7 @@ class ModuleService {
                                    std::string const& resource_name);
     std::shared_ptr<Resource> get_parent_resource_(const Name& name);
 
-    Registry& registry_;
+    Registry* registry_;
 
     std::mutex lock_;
     std::unique_ptr<Module> module_;

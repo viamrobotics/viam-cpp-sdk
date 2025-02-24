@@ -12,13 +12,15 @@
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/common/world_state.hpp>
 #include <viam/sdk/components/component.hpp>
-#include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
+#include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/services/service.hpp>
 
 namespace viam {
 namespace sdk {
+
+class Registry;
 
 /// @defgroup Robot Classes related to a Robot representation.
 
@@ -69,7 +71,7 @@ class RobotClient {
     /// @param options Options for connecting and refreshing.
     static std::shared_ptr<RobotClient> at_address(const std::string& address,
                                                    const Options& options,
-                                                   Registry& registry);
+                                                   Registry* registry);
 
     /// @brief Creates a robot client connected to the robot at the provided local socket.
     /// @param address The local socket of the robot (a .sock file, etc.).
@@ -78,7 +80,7 @@ class RobotClient {
     /// Only useful for connecting to robots across Unix sockets.
     static std::shared_ptr<RobotClient> at_local_socket(const std::string& address,
                                                         const Options& options,
-                                                        Registry& registry);
+                                                        Registry* registry);
 
     /// @brief Creates a robot client connected to the provided channel.
     /// @param channel The channel to connect with.
@@ -87,9 +89,9 @@ class RobotClient {
     /// `close()`d manually.
     static std::shared_ptr<RobotClient> with_channel(std::shared_ptr<ViamChannel> channel,
                                                      const Options& options,
-                                                     Registry& registry);
+                                                     Registry* registry);
 
-    RobotClient(std::shared_ptr<ViamChannel> channel, Registry& registry);
+    RobotClient(std::shared_ptr<ViamChannel> channel, Registry* registry);
 
     std::vector<Name> resource_names() const;
 
@@ -152,7 +154,7 @@ class RobotClient {
     status get_machine_status() const;
 
    private:
-    Registry& registry_;
+    Registry* registry_;
 
     std::vector<std::shared_ptr<std::thread>> threads_;
 

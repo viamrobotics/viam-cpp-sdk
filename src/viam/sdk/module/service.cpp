@@ -57,7 +57,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         std::shared_ptr<Resource> res;
         const Dependencies deps = parent.get_dependencies_(&request->dependencies(), cfg.name());
         const std::shared_ptr<const ModelRegistration> reg =
-            parent.registry_.lookup_model(cfg.api(), cfg.model());
+            parent.registry_->lookup_model(cfg.api(), cfg.model());
         if (reg) {
             try {
                 res = reg->construct_resource(deps, cfg);
@@ -112,7 +112,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         }
 
         const std::shared_ptr<const ModelRegistration> reg =
-            parent.registry_.lookup_model(cfg.name());
+            parent.registry_->lookup_model(cfg.name());
         if (reg) {
             try {
                 const std::shared_ptr<Resource> res = reg->construct_resource(deps, cfg);
@@ -132,7 +132,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         ResourceConfig cfg = from_proto(proto);
 
         const std::shared_ptr<const ModelRegistration> reg =
-            parent.registry_.lookup_model(cfg.api(), cfg.model());
+            parent.registry_->lookup_model(cfg.api(), cfg.model());
         if (!reg) {
             return grpc::Status(grpc::UNKNOWN,
                                 "unable to validate resource " + cfg.resource_name().name() +
@@ -214,17 +214,17 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
     return parent_->resource_by_name(name);
 }
 
-ModuleService::ModuleService(std::string addr, Registry& registry)
+ModuleService::ModuleService(std::string addr, Registry* registry)
     : registry_(registry),
       module_(std::make_unique<Module>(std::move(addr))),
-      server_(std::make_unique<Server>(&registry_)) {
+      server_(std::make_unique<Server>(registry_)) {
     impl_ = std::make_unique<ServiceImpl>(*this);
 }
 
 ModuleService::ModuleService(int argc,
                              char** argv,
                              const std::vector<std::shared_ptr<ModelRegistration>>& registrations,
-                             Registry& registry)
+                             Registry* registry)
     : ModuleService(
           [argc, argv] {
               if (argc < 2) {
@@ -237,7 +237,7 @@ ModuleService::ModuleService(int argc,
     set_logger_severity_from_args(argc, argv);
 
     for (auto&& mr : registrations) {
-        registry_.register_model(mr);
+        registry_->register_model(mr);
         add_model_from_registry(mr->api(), mr->model());
     }
 }
@@ -280,7 +280,7 @@ void ModuleService::add_model_from_registry_inlock_(API api,
                                                     Model model,
                                                     const std::lock_guard<std::mutex>&) {
     const std::shared_ptr<const ResourceServerRegistration> creator =
-        registry_.lookup_resource_server(api);
+        registry_->lookup_resource_server(api);
     std::string name;
     if (creator && creator->service_descriptor()) {
         name = creator->service_descriptor()->full_name();
