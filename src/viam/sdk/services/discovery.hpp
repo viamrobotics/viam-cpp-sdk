@@ -22,7 +22,6 @@ namespace sdk {
 ///
 /// This acts as an abstract parent class to be inherited from by any drivers representing
 /// specific discovery implementations. This class cannot be used on its own.
-
 class Discovery : public Service {
    public:
     /// @brief Discover valid viam configuration of resources that are physically
