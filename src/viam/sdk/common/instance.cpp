@@ -40,7 +40,7 @@ Instance::~Instance() {
 Instance& Instance::current() {
     if (!current_instance.load()) {
         // This variable declaration calls the default ctor, storing a current instance.
-        static Instance inst;
+        static Instance inst;  // NOLINT (misc-const-correctness)
     }
 
     Instance* current = current_instance.load();
