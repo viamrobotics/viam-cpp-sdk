@@ -17,7 +17,6 @@ namespace impl {
 /// @class DiscoveryServer
 /// @brief gRPC server implementation of a `Discovery` service.
 /// @ingroup Discovery
-
 class DiscoveryServer : public ResourceServer,
                         public viam::service::discovery::v1::DiscoveryService::Service {
    public:
