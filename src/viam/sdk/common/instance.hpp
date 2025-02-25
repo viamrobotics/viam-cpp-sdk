@@ -17,6 +17,8 @@ class Instance {
     Instance();
     ~Instance();
 
+    static Instance& current();
+
     Registry* registry();
 
    private:
