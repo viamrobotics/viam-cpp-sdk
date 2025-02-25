@@ -1681,6 +1681,7 @@ class PythonSettings_ExperimentalFeatures final :
   enum : int {
     kRestAsyncIoEnabledFieldNumber = 1,
     kProtobufPythonicTypesEnabledFieldNumber = 2,
+    kUnversionedPackageDisabledFieldNumber = 3,
   };
   // bool rest_async_io_enabled = 1 [json_name = "restAsyncIoEnabled"];
   void clear_rest_async_io_enabled();
@@ -1700,6 +1701,15 @@ class PythonSettings_ExperimentalFeatures final :
   void _internal_set_protobuf_pythonic_types_enabled(bool value);
   public:
 
+  // bool unversioned_package_disabled = 3 [json_name = "unversionedPackageDisabled"];
+  void clear_unversioned_package_disabled();
+  bool unversioned_package_disabled() const;
+  void set_unversioned_package_disabled(bool value);
+  private:
+  bool _internal_unversioned_package_disabled() const;
+  void _internal_set_unversioned_package_disabled(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:google.api.PythonSettings.ExperimentalFeatures)
  private:
   class _Internal;
@@ -1709,6 +1719,7 @@ class PythonSettings_ExperimentalFeatures final :
   typedef void DestructorSkippable_;
   bool rest_async_io_enabled_;
   bool protobuf_pythonic_types_enabled_;
+  bool unversioned_package_disabled_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_google_2fapi_2fclient_2eproto;
 };
@@ -3252,6 +3263,7 @@ class SelectiveGapicGeneration final :
 
   enum : int {
     kMethodsFieldNumber = 1,
+    kGenerateOmittedAsInternalFieldNumber = 2,
   };
   // repeated string methods = 1 [json_name = "methods"];
   int methods_size() const;
@@ -3277,6 +3289,15 @@ class SelectiveGapicGeneration final :
   std::string* _internal_add_methods();
   public:
 
+  // bool generate_omitted_as_internal = 2 [json_name = "generateOmittedAsInternal"];
+  void clear_generate_omitted_as_internal();
+  bool generate_omitted_as_internal() const;
+  void set_generate_omitted_as_internal(bool value);
+  private:
+  bool _internal_generate_omitted_as_internal() const;
+  void _internal_set_generate_omitted_as_internal(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:google.api.SelectiveGapicGeneration)
  private:
   class _Internal;
@@ -3285,6 +3306,7 @@ class SelectiveGapicGeneration final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> methods_;
+  bool generate_omitted_as_internal_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_google_2fapi_2fclient_2eproto;
 };
@@ -5248,6 +5270,26 @@ inline void PythonSettings_ExperimentalFeatures::set_protobuf_pythonic_types_ena
   // @@protoc_insertion_point(field_set:google.api.PythonSettings.ExperimentalFeatures.protobuf_pythonic_types_enabled)
 }
 
+// bool unversioned_package_disabled = 3 [json_name = "unversionedPackageDisabled"];
+inline void PythonSettings_ExperimentalFeatures::clear_unversioned_package_disabled() {
+  unversioned_package_disabled_ = false;
+}
+inline bool PythonSettings_ExperimentalFeatures::_internal_unversioned_package_disabled() const {
+  return unversioned_package_disabled_;
+}
+inline bool PythonSettings_ExperimentalFeatures::unversioned_package_disabled() const {
+  // @@protoc_insertion_point(field_get:google.api.PythonSettings.ExperimentalFeatures.unversioned_package_disabled)
+  return _internal_unversioned_package_disabled();
+}
+inline void PythonSettings_ExperimentalFeatures::_internal_set_unversioned_package_disabled(bool value) {
+  
+  unversioned_package_disabled_ = value;
+}
+inline void PythonSettings_ExperimentalFeatures::set_unversioned_package_disabled(bool value) {
+  _internal_set_unversioned_package_disabled(value);
+  // @@protoc_insertion_point(field_set:google.api.PythonSettings.ExperimentalFeatures.unversioned_package_disabled)
+}
+
 // -------------------------------------------------------------------
 
 // PythonSettings
@@ -6701,6 +6743,26 @@ inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 SelectiveGapicGeneration::mutable_methods() {
   // @@protoc_insertion_point(field_mutable_list:google.api.SelectiveGapicGeneration.methods)
   return &methods_;
+}
+
+// bool generate_omitted_as_internal = 2 [json_name = "generateOmittedAsInternal"];
+inline void SelectiveGapicGeneration::clear_generate_omitted_as_internal() {
+  generate_omitted_as_internal_ = false;
+}
+inline bool SelectiveGapicGeneration::_internal_generate_omitted_as_internal() const {
+  return generate_omitted_as_internal_;
+}
+inline bool SelectiveGapicGeneration::generate_omitted_as_internal() const {
+  // @@protoc_insertion_point(field_get:google.api.SelectiveGapicGeneration.generate_omitted_as_internal)
+  return _internal_generate_omitted_as_internal();
+}
+inline void SelectiveGapicGeneration::_internal_set_generate_omitted_as_internal(bool value) {
+  
+  generate_omitted_as_internal_ = value;
+}
+inline void SelectiveGapicGeneration::set_generate_omitted_as_internal(bool value) {
+  _internal_set_generate_omitted_as_internal(value);
+  // @@protoc_insertion_point(field_set:google.api.SelectiveGapicGeneration.generate_omitted_as_internal)
 }
 
 #ifdef __GNUC__
