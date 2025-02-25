@@ -204,8 +204,8 @@ class Registry {
     void register_resource_client_(
         API api, std::shared_ptr<ResourceClientRegistration> resource_registration);
 
-    const google::protobuf::ServiceDescriptor* get_service_descriptor_(
-        const char* service_full_name) const;
+    static const google::protobuf::ServiceDescriptor* get_service_descriptor_(
+        const char* service_full_name);
 
     std::shared_ptr<const ModelRegistration> lookup_model_inlock_(
         const std::string& name, const std::lock_guard<std::mutex>&) const;

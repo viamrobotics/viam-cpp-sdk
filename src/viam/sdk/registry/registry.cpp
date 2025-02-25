@@ -163,7 +163,7 @@ std::shared_ptr<const ResourceClientRegistration> Registry::lookup_resource_clie
 }
 
 const google::protobuf::ServiceDescriptor* Registry::get_service_descriptor_(
-    const char* service_full_name) const {
+    const char* service_full_name) {
     const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
     const google::protobuf::ServiceDescriptor* sd = p->FindServiceByName(service_full_name);
     if (!sd) {
