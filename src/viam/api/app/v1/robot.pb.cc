@@ -200,7 +200,8 @@ struct ServiceConfigDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ServiceConfigDefaultTypeInternal _ServiceConfig_default_instance_;
 PROTOBUF_CONSTEXPR NetworkConfig::NetworkConfig(
     ::_pbi::ConstantInitialized)
-  : fqdn_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  : traffic_tunnel_endpoints_()
+  , fqdn_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , bind_address_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , tls_cert_file_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , tls_key_file_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
@@ -226,6 +227,19 @@ struct SessionsConfigDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SessionsConfigDefaultTypeInternal _SessionsConfig_default_instance_;
+PROTOBUF_CONSTEXPR TrafficTunnelEndpoint::TrafficTunnelEndpoint(
+    ::_pbi::ConstantInitialized)
+  : connection_timeout_(nullptr)
+  , port_(0){}
+struct TrafficTunnelEndpointDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR TrafficTunnelEndpointDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~TrafficTunnelEndpointDefaultTypeInternal() {}
+  union {
+    TrafficTunnelEndpoint _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TrafficTunnelEndpointDefaultTypeInternal _TrafficTunnelEndpoint_default_instance_;
 PROTOBUF_CONSTEXPR AuthConfig::AuthConfig(
     ::_pbi::ConstantInitialized)
   : handlers_()
@@ -645,7 +659,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 }  // namespace v1
 }  // namespace app
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_app_2fv1_2frobot_2eproto[42];
+static ::_pb::Metadata file_level_metadata_app_2fv1_2frobot_2eproto[43];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_app_2fv1_2frobot_2eproto[1];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_app_2fv1_2frobot_2eproto = nullptr;
 
@@ -807,6 +821,7 @@ const uint32_t TableStruct_app_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTION_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::NetworkConfig, tls_cert_file_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::NetworkConfig, tls_key_file_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::NetworkConfig, sessions_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::NetworkConfig, traffic_tunnel_endpoints_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::SessionsConfig, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -814,6 +829,14 @@ const uint32_t TableStruct_app_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTION_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::SessionsConfig, heartbeat_window_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::TrafficTunnelEndpoint, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::TrafficTunnelEndpoint, port_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::TrafficTunnelEndpoint, connection_timeout_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::AuthConfig, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::AuthConfig, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1113,37 +1136,38 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 115, -1, -1, sizeof(::viam::app::v1::ProcessConfig)},
   { 131, -1, -1, sizeof(::viam::app::v1::ServiceConfig)},
   { 146, -1, -1, sizeof(::viam::app::v1::NetworkConfig)},
-  { 157, -1, -1, sizeof(::viam::app::v1::SessionsConfig)},
-  { 164, 173, -1, sizeof(::viam::app::v1::AuthConfig)},
-  { 176, -1, -1, sizeof(::viam::app::v1::JWKSFile)},
-  { 183, -1, -1, sizeof(::viam::app::v1::ExternalAuthConfig)},
-  { 190, -1, -1, sizeof(::viam::app::v1::AuthHandlerConfig)},
-  { 198, -1, -1, sizeof(::viam::app::v1::Frame)},
-  { 208, -1, -1, sizeof(::viam::app::v1::LogConfiguration)},
-  { 215, -1, -1, sizeof(::viam::app::v1::Translation)},
-  { 224, -1, -1, sizeof(::viam::app::v1::Orientation_NoOrientation)},
-  { 230, -1, -1, sizeof(::viam::app::v1::Orientation_OrientationVectorRadians)},
-  { 240, -1, -1, sizeof(::viam::app::v1::Orientation_OrientationVectorDegrees)},
-  { 250, -1, -1, sizeof(::viam::app::v1::Orientation_EulerAngles)},
-  { 259, -1, -1, sizeof(::viam::app::v1::Orientation_AxisAngles)},
-  { 269, -1, -1, sizeof(::viam::app::v1::Orientation_Quaternion)},
-  { 279, -1, -1, sizeof(::viam::app::v1::Orientation)},
-  { 292, -1, -1, sizeof(::viam::app::v1::RemoteConfig)},
-  { 308, -1, -1, sizeof(::viam::app::v1::RemoteAuth_Credentials)},
-  { 316, -1, -1, sizeof(::viam::app::v1::RemoteAuth)},
-  { 324, 337, -1, sizeof(::viam::app::v1::AgentInfo)},
-  { 344, 352, -1, sizeof(::viam::app::v1::ConfigRequest)},
-  { 354, -1, -1, sizeof(::viam::app::v1::ConfigResponse)},
-  { 361, -1, -1, sizeof(::viam::app::v1::CertificateRequest)},
-  { 368, -1, -1, sizeof(::viam::app::v1::CertificateResponse)},
-  { 377, -1, -1, sizeof(::viam::app::v1::LogRequest)},
-  { 385, -1, -1, sizeof(::viam::app::v1::LogResponse)},
-  { 391, -1, -1, sizeof(::viam::app::v1::NeedsRestartRequest)},
-  { 398, -1, -1, sizeof(::viam::app::v1::NeedsRestartResponse)},
-  { 407, 415, -1, sizeof(::viam::app::v1::ModuleConfig_EnvEntry_DoNotUse)},
-  { 417, -1, -1, sizeof(::viam::app::v1::ModuleConfig)},
-  { 431, -1, -1, sizeof(::viam::app::v1::PackageConfig)},
-  { 442, -1, -1, sizeof(::viam::app::v1::MaintenanceConfig)},
+  { 158, -1, -1, sizeof(::viam::app::v1::SessionsConfig)},
+  { 165, -1, -1, sizeof(::viam::app::v1::TrafficTunnelEndpoint)},
+  { 173, 182, -1, sizeof(::viam::app::v1::AuthConfig)},
+  { 185, -1, -1, sizeof(::viam::app::v1::JWKSFile)},
+  { 192, -1, -1, sizeof(::viam::app::v1::ExternalAuthConfig)},
+  { 199, -1, -1, sizeof(::viam::app::v1::AuthHandlerConfig)},
+  { 207, -1, -1, sizeof(::viam::app::v1::Frame)},
+  { 217, -1, -1, sizeof(::viam::app::v1::LogConfiguration)},
+  { 224, -1, -1, sizeof(::viam::app::v1::Translation)},
+  { 233, -1, -1, sizeof(::viam::app::v1::Orientation_NoOrientation)},
+  { 239, -1, -1, sizeof(::viam::app::v1::Orientation_OrientationVectorRadians)},
+  { 249, -1, -1, sizeof(::viam::app::v1::Orientation_OrientationVectorDegrees)},
+  { 259, -1, -1, sizeof(::viam::app::v1::Orientation_EulerAngles)},
+  { 268, -1, -1, sizeof(::viam::app::v1::Orientation_AxisAngles)},
+  { 278, -1, -1, sizeof(::viam::app::v1::Orientation_Quaternion)},
+  { 288, -1, -1, sizeof(::viam::app::v1::Orientation)},
+  { 301, -1, -1, sizeof(::viam::app::v1::RemoteConfig)},
+  { 317, -1, -1, sizeof(::viam::app::v1::RemoteAuth_Credentials)},
+  { 325, -1, -1, sizeof(::viam::app::v1::RemoteAuth)},
+  { 333, 346, -1, sizeof(::viam::app::v1::AgentInfo)},
+  { 353, 361, -1, sizeof(::viam::app::v1::ConfigRequest)},
+  { 363, -1, -1, sizeof(::viam::app::v1::ConfigResponse)},
+  { 370, -1, -1, sizeof(::viam::app::v1::CertificateRequest)},
+  { 377, -1, -1, sizeof(::viam::app::v1::CertificateResponse)},
+  { 386, -1, -1, sizeof(::viam::app::v1::LogRequest)},
+  { 394, -1, -1, sizeof(::viam::app::v1::LogResponse)},
+  { 400, -1, -1, sizeof(::viam::app::v1::NeedsRestartRequest)},
+  { 407, -1, -1, sizeof(::viam::app::v1::NeedsRestartResponse)},
+  { 416, 424, -1, sizeof(::viam::app::v1::ModuleConfig_EnvEntry_DoNotUse)},
+  { 426, -1, -1, sizeof(::viam::app::v1::ModuleConfig)},
+  { 440, -1, -1, sizeof(::viam::app::v1::PackageConfig)},
+  { 451, -1, -1, sizeof(::viam::app::v1::MaintenanceConfig)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1159,6 +1183,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::app::v1::_ServiceConfig_default_instance_._instance,
   &::viam::app::v1::_NetworkConfig_default_instance_._instance,
   &::viam::app::v1::_SessionsConfig_default_instance_._instance,
+  &::viam::app::v1::_TrafficTunnelEndpoint_default_instance_._instance,
   &::viam::app::v1::_AuthConfig_default_instance_._instance,
   &::viam::app::v1::_JWKSFile_default_instance_._instance,
   &::viam::app::v1::_ExternalAuthConfig_default_instance_._instance,
@@ -1269,127 +1294,133 @@ const char descriptor_table_protodef_app_2fv1_2frobot_2eproto[] PROTOBUF_SECTION
   "esourceLevelServiceConfigB\032\232\204\236\003\025json:\"se"
   "rvice_config\"R\016serviceConfigs\022J\n\021log_con"
   "figuration\030\013 \001(\0132\035.viam.app.v1.LogConfig"
-  "urationR\020logConfiguration\"\305\001\n\rNetworkCon"
+  "urationR\020logConfiguration\"\243\002\n\rNetworkCon"
   "fig\022\022\n\004fqdn\030\001 \001(\tR\004fqdn\022!\n\014bind_address\030"
   "\002 \001(\tR\013bindAddress\022\"\n\rtls_cert_file\030\003 \001("
   "\tR\013tlsCertFile\022 \n\014tls_key_file\030\004 \001(\tR\ntl"
   "sKeyFile\0227\n\010sessions\030\005 \001(\0132\033.viam.app.v1"
-  ".SessionsConfigR\010sessions\"V\n\016SessionsCon"
-  "fig\022D\n\020heartbeat_window\030\001 \001(\0132\031.google.p"
-  "rotobuf.DurationR\017heartbeatWindow\"\345\001\n\nAu"
-  "thConfig\022:\n\010handlers\030\001 \003(\0132\036.viam.app.v1"
-  ".AuthHandlerConfigR\010handlers\022*\n\021tls_auth"
-  "_entities\030\002 \003(\tR\017tlsAuthEntities\022V\n\024exte"
-  "rnal_auth_config\030\003 \001(\0132\037.viam.app.v1.Ext"
-  "ernalAuthConfigH\000R\022externalAuthConfig\210\001\001"
-  "B\027\n\025_external_auth_config\"7\n\010JWKSFile\022+\n"
-  "\004json\030\001 \001(\0132\027.google.protobuf.StructR\004js"
-  "on\"\?\n\022ExternalAuthConfig\022)\n\004jwks\030\001 \001(\0132\025"
-  ".viam.app.v1.JWKSFileR\004jwks\"v\n\021AuthHandl"
-  "erConfig\0220\n\004type\030\001 \001(\0162\034.viam.app.v1.Cre"
-  "dentialsTypeR\004type\022/\n\006config\030\005 \001(\0132\027.goo"
-  "gle.protobuf.StructR\006config\"\315\001\n\005Frame\022\026\n"
-  "\006parent\030\001 \001(\tR\006parent\022:\n\013translation\030\002 \001"
-  "(\0132\030.viam.app.v1.TranslationR\013translatio"
-  "n\022:\n\013orientation\030\003 \001(\0132\030.viam.app.v1.Ori"
-  "entationR\013orientation\0224\n\010geometry\030\004 \001(\0132"
-  "\030.viam.common.v1.GeometryR\010geometry\"(\n\020L"
-  "ogConfiguration\022\024\n\005level\030\001 \001(\tR\005level\"7\n"
-  "\013Translation\022\014\n\001x\030\001 \001(\001R\001x\022\014\n\001y\030\002 \001(\001R\001y"
-  "\022\014\n\001z\030\003 \001(\001R\001z\"\320\007\n\013Orientation\022O\n\016no_ori"
-  "entation\030\001 \001(\0132&.viam.app.v1.Orientation"
-  ".NoOrientationH\000R\rnoOrientation\022Z\n\016vecto"
-  "r_radians\030\002 \001(\01321.viam.app.v1.Orientatio"
-  "n.OrientationVectorRadiansH\000R\rvectorRadi"
-  "ans\022Z\n\016vector_degrees\030\003 \001(\01321.viam.app.v"
-  "1.Orientation.OrientationVectorDegreesH\000"
-  "R\rvectorDegrees\022I\n\014euler_angles\030\004 \001(\0132$."
-  "viam.app.v1.Orientation.EulerAnglesH\000R\013e"
-  "ulerAngles\022F\n\013axis_angles\030\005 \001(\0132#.viam.a"
-  "pp.v1.Orientation.AxisAnglesH\000R\naxisAngl"
-  "es\022E\n\nquaternion\030\006 \001(\0132#.viam.app.v1.Ori"
-  "entation.QuaternionH\000R\nquaternion\032\017\n\rNoO"
-  "rientation\032j\n\030OrientationVectorRadians\022$"
-  "\n\005theta\030\001 \001(\001B\016\232\204\236\003\tjson:\"th\"R\005theta\022\014\n\001"
-  "x\030\002 \001(\001R\001x\022\014\n\001y\030\003 \001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001z\032j"
-  "\n\030OrientationVectorDegrees\022$\n\005theta\030\001 \001("
-  "\001B\016\232\204\236\003\tjson:\"th\"R\005theta\022\014\n\001x\030\002 \001(\001R\001x\022\014"
-  "\n\001y\030\003 \001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001z\032I\n\013EulerAngle"
-  "s\022\022\n\004roll\030\001 \001(\001R\004roll\022\024\n\005pitch\030\002 \001(\001R\005pi"
-  "tch\022\020\n\003yaw\030\003 \001(\001R\003yaw\032\\\n\nAxisAngles\022$\n\005t"
-  "heta\030\001 \001(\001B\016\232\204\236\003\tjson:\"th\"R\005theta\022\014\n\001x\030\002"
-  " \001(\001R\001x\022\014\n\001y\030\003 \001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001z\032D\n\nQ"
-  "uaternion\022\014\n\001w\030\001 \001(\001R\001w\022\014\n\001x\030\002 \001(\001R\001x\022\014\n"
-  "\001y\030\003 \001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001zB\006\n\004type\"\365\003\n\014Re"
-  "moteConfig\022\022\n\004name\030\001 \001(\tR\004name\022\030\n\007addres"
-  "s\030\002 \001(\tR\007address\022(\n\005frame\030\003 \001(\0132\022.viam.a"
-  "pp.v1.FrameR\005frame\022+\n\004auth\030\004 \001(\0132\027.viam."
-  "app.v1.RemoteAuthR\004auth\022\035\n\nmanaged_by\030\005 "
-  "\001(\tR\tmanagedBy\022\032\n\010insecure\030\006 \001(\010R\010insecu"
-  "re\022U\n\031connection_check_interval\030\007 \001(\0132\031."
-  "google.protobuf.DurationR\027connectionChec"
-  "kInterval\022H\n\022reconnect_interval\030\010 \001(\0132\031."
-  "google.protobuf.DurationR\021reconnectInter"
-  "val\022l\n\017service_configs\030\t \003(\0132\'.viam.app."
-  "v1.ResourceLevelServiceConfigB\032\232\204\236\003\025json"
-  ":\"service_config\"R\016serviceConfigs\022\026\n\006sec"
-  "ret\030\n \001(\tR\006secret\"\306\001\n\nRemoteAuth\022E\n\013cred"
-  "entials\030\001 \001(\0132#.viam.app.v1.RemoteAuth.C"
-  "redentialsR\013credentials\022\026\n\006entity\030\002 \001(\tR"
-  "\006entity\032Y\n\013Credentials\0220\n\004type\030\001 \001(\0162\034.v"
-  "iam.app.v1.CredentialsTypeR\004type\022\030\n\007payl"
-  "oad\030\002 \001(\tR\007payload\"\321\001\n\tAgentInfo\022\022\n\004host"
-  "\030\001 \001(\tR\004host\022\016\n\002os\030\002 \001(\tR\002os\022\020\n\003ips\030\003 \003("
-  "\tR\003ips\022\030\n\007version\030\004 \001(\tR\007version\022!\n\014git_"
-  "revision\030\005 \001(\tR\013gitRevision\022\037\n\010platform\030"
-  "\006 \001(\tH\000R\010platform\210\001\001\022#\n\rplatform_tags\030\007 "
-  "\003(\tR\014platformTagsB\013\n\t_platform\"j\n\rConfig"
-  "Request\022\016\n\002id\030\001 \001(\tR\002id\022:\n\nagent_info\030\002 "
-  "\001(\0132\026.viam.app.v1.AgentInfoH\000R\tagentInfo"
-  "\210\001\001B\r\n\013_agent_info\"B\n\016ConfigResponse\0220\n\006"
-  "config\030\001 \001(\0132\030.viam.app.v1.RobotConfigR\006"
-  "config\"$\n\022CertificateRequest\022\016\n\002id\030\001 \001(\t"
-  "R\002id\"v\n\023CertificateResponse\022\016\n\002id\030\001 \001(\tR"
-  "\002id\022\'\n\017tls_certificate\030\002 \001(\tR\016tlsCertifi"
-  "cate\022&\n\017tls_private_key\030\003 \001(\tR\rtlsPrivat"
-  "eKey\"J\n\nLogRequest\022\016\n\002id\030\001 \001(\tR\002id\022,\n\004lo"
-  "gs\030\002 \003(\0132\030.viam.common.v1.LogEntryR\004logs"
-  "\"\r\n\013LogResponse\"%\n\023NeedsRestartRequest\022\016"
-  "\n\002id\030\001 \001(\tR\002id\"\232\001\n\024NeedsRestartResponse\022"
-  "\016\n\002id\030\001 \001(\tR\002id\022!\n\014must_restart\030\002 \001(\010R\013m"
-  "ustRestart\022O\n\026restart_check_interval\030\003 \001"
-  "(\0132\031.google.protobuf.DurationR\024restartCh"
-  "eckInterval\"\363\002\n\014ModuleConfig\022\022\n\004name\030\001 \001"
-  "(\tR\004name\022\022\n\004path\030\002 \001(\tR\004path\022\033\n\tlog_leve"
-  "l\030\003 \001(\tR\010logLevel\022\022\n\004type\030\004 \001(\tR\004type\022\033\n"
-  "\tmodule_id\030\005 \001(\tR\010moduleId\0224\n\003env\030\006 \003(\0132"
-  "\".viam.app.v1.ModuleConfig.EnvEntryR\003env"
-  "\0228\n\006status\030\007 \001(\0132 .viam.app.v1.AppValida"
-  "tionStatusR\006status\022E\n\021first_run_timeout\030"
-  "\010 \001(\0132\031.google.protobuf.DurationR\017firstR"
-  "unTimeout\0326\n\010EnvEntry\022\020\n\003key\030\001 \001(\tR\003key\022"
-  "\024\n\005value\030\002 \001(\tR\005value:\0028\001\"\245\001\n\rPackageCon"
-  "fig\022\022\n\004name\030\001 \001(\tR\004name\022\030\n\007package\030\002 \001(\t"
-  "R\007package\022\030\n\007version\030\003 \001(\tR\007version\022\022\n\004t"
-  "ype\030\004 \001(\tR\004type\0228\n\006status\030\005 \001(\0132 .viam.a"
-  "pp.v1.AppValidationStatusR\006status\"\212\001\n\021Ma"
-  "intenanceConfig\022=\n\013sensor_name\030\001 \001(\0132\034.v"
-  "iam.common.v1.ResourceNameR\nsensorName\0226"
-  "\n\027maintenance_allowed_key\030\002 \001(\tR\025mainten"
-  "anceAllowedKey*\277\001\n\017CredentialsType\022 \n\034CR"
-  "EDENTIALS_TYPE_UNSPECIFIED\020\000\022\035\n\031CREDENTI"
-  "ALS_TYPE_INTERNAL\020\001\022\034\n\030CREDENTIALS_TYPE_"
-  "API_KEY\020\002\022!\n\035CREDENTIALS_TYPE_ROBOT_SECR"
-  "ET\020\003\022*\n&CREDENTIALS_TYPE_ROBOT_LOCATION_"
-  "SECRET\020\0042\262\002\n\014RobotService\022A\n\006Config\022\032.vi"
-  "am.app.v1.ConfigRequest\032\033.viam.app.v1.Co"
-  "nfigResponse\022P\n\013Certificate\022\037.viam.app.v"
-  "1.CertificateRequest\032 .viam.app.v1.Certi"
-  "ficateResponse\0228\n\003Log\022\027.viam.app.v1.LogR"
-  "equest\032\030.viam.app.v1.LogResponse\022S\n\014Need"
-  "sRestart\022 .viam.app.v1.NeedsRestartReque"
-  "st\032!.viam.app.v1.NeedsRestartResponseB\030Z"
-  "\026go.viam.com/api/app/v1b\006proto3"
+  ".SessionsConfigR\010sessions\022\\\n\030traffic_tun"
+  "nel_endpoints\030\006 \003(\0132\".viam.app.v1.Traffi"
+  "cTunnelEndpointR\026trafficTunnelEndpoints\""
+  "V\n\016SessionsConfig\022D\n\020heartbeat_window\030\001 "
+  "\001(\0132\031.google.protobuf.DurationR\017heartbea"
+  "tWindow\"u\n\025TrafficTunnelEndpoint\022\022\n\004port"
+  "\030\001 \001(\005R\004port\022H\n\022connection_timeout\030\002 \001(\013"
+  "2\031.google.protobuf.DurationR\021connectionT"
+  "imeout\"\345\001\n\nAuthConfig\022:\n\010handlers\030\001 \003(\0132"
+  "\036.viam.app.v1.AuthHandlerConfigR\010handler"
+  "s\022*\n\021tls_auth_entities\030\002 \003(\tR\017tlsAuthEnt"
+  "ities\022V\n\024external_auth_config\030\003 \001(\0132\037.vi"
+  "am.app.v1.ExternalAuthConfigH\000R\022external"
+  "AuthConfig\210\001\001B\027\n\025_external_auth_config\"7"
+  "\n\010JWKSFile\022+\n\004json\030\001 \001(\0132\027.google.protob"
+  "uf.StructR\004json\"\?\n\022ExternalAuthConfig\022)\n"
+  "\004jwks\030\001 \001(\0132\025.viam.app.v1.JWKSFileR\004jwks"
+  "\"v\n\021AuthHandlerConfig\0220\n\004type\030\001 \001(\0162\034.vi"
+  "am.app.v1.CredentialsTypeR\004type\022/\n\006confi"
+  "g\030\005 \001(\0132\027.google.protobuf.StructR\006config"
+  "\"\315\001\n\005Frame\022\026\n\006parent\030\001 \001(\tR\006parent\022:\n\013tr"
+  "anslation\030\002 \001(\0132\030.viam.app.v1.Translatio"
+  "nR\013translation\022:\n\013orientation\030\003 \001(\0132\030.vi"
+  "am.app.v1.OrientationR\013orientation\0224\n\010ge"
+  "ometry\030\004 \001(\0132\030.viam.common.v1.GeometryR\010"
+  "geometry\"(\n\020LogConfiguration\022\024\n\005level\030\001 "
+  "\001(\tR\005level\"7\n\013Translation\022\014\n\001x\030\001 \001(\001R\001x\022"
+  "\014\n\001y\030\002 \001(\001R\001y\022\014\n\001z\030\003 \001(\001R\001z\"\320\007\n\013Orientat"
+  "ion\022O\n\016no_orientation\030\001 \001(\0132&.viam.app.v"
+  "1.Orientation.NoOrientationH\000R\rnoOrienta"
+  "tion\022Z\n\016vector_radians\030\002 \001(\01321.viam.app."
+  "v1.Orientation.OrientationVectorRadiansH"
+  "\000R\rvectorRadians\022Z\n\016vector_degrees\030\003 \001(\013"
+  "21.viam.app.v1.Orientation.OrientationVe"
+  "ctorDegreesH\000R\rvectorDegrees\022I\n\014euler_an"
+  "gles\030\004 \001(\0132$.viam.app.v1.Orientation.Eul"
+  "erAnglesH\000R\013eulerAngles\022F\n\013axis_angles\030\005"
+  " \001(\0132#.viam.app.v1.Orientation.AxisAngle"
+  "sH\000R\naxisAngles\022E\n\nquaternion\030\006 \001(\0132#.vi"
+  "am.app.v1.Orientation.QuaternionH\000R\nquat"
+  "ernion\032\017\n\rNoOrientation\032j\n\030OrientationVe"
+  "ctorRadians\022$\n\005theta\030\001 \001(\001B\016\232\204\236\003\tjson:\"t"
+  "h\"R\005theta\022\014\n\001x\030\002 \001(\001R\001x\022\014\n\001y\030\003 \001(\001R\001y\022\014\n"
+  "\001z\030\004 \001(\001R\001z\032j\n\030OrientationVectorDegrees\022"
+  "$\n\005theta\030\001 \001(\001B\016\232\204\236\003\tjson:\"th\"R\005theta\022\014\n"
+  "\001x\030\002 \001(\001R\001x\022\014\n\001y\030\003 \001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001z\032"
+  "I\n\013EulerAngles\022\022\n\004roll\030\001 \001(\001R\004roll\022\024\n\005pi"
+  "tch\030\002 \001(\001R\005pitch\022\020\n\003yaw\030\003 \001(\001R\003yaw\032\\\n\nAx"
+  "isAngles\022$\n\005theta\030\001 \001(\001B\016\232\204\236\003\tjson:\"th\"R"
+  "\005theta\022\014\n\001x\030\002 \001(\001R\001x\022\014\n\001y\030\003 \001(\001R\001y\022\014\n\001z\030"
+  "\004 \001(\001R\001z\032D\n\nQuaternion\022\014\n\001w\030\001 \001(\001R\001w\022\014\n\001"
+  "x\030\002 \001(\001R\001x\022\014\n\001y\030\003 \001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001zB\006"
+  "\n\004type\"\365\003\n\014RemoteConfig\022\022\n\004name\030\001 \001(\tR\004n"
+  "ame\022\030\n\007address\030\002 \001(\tR\007address\022(\n\005frame\030\003"
+  " \001(\0132\022.viam.app.v1.FrameR\005frame\022+\n\004auth\030"
+  "\004 \001(\0132\027.viam.app.v1.RemoteAuthR\004auth\022\035\n\n"
+  "managed_by\030\005 \001(\tR\tmanagedBy\022\032\n\010insecure\030"
+  "\006 \001(\010R\010insecure\022U\n\031connection_check_inte"
+  "rval\030\007 \001(\0132\031.google.protobuf.DurationR\027c"
+  "onnectionCheckInterval\022H\n\022reconnect_inte"
+  "rval\030\010 \001(\0132\031.google.protobuf.DurationR\021r"
+  "econnectInterval\022l\n\017service_configs\030\t \003("
+  "\0132\'.viam.app.v1.ResourceLevelServiceConf"
+  "igB\032\232\204\236\003\025json:\"service_config\"R\016serviceC"
+  "onfigs\022\026\n\006secret\030\n \001(\tR\006secret\"\306\001\n\nRemot"
+  "eAuth\022E\n\013credentials\030\001 \001(\0132#.viam.app.v1"
+  ".RemoteAuth.CredentialsR\013credentials\022\026\n\006"
+  "entity\030\002 \001(\tR\006entity\032Y\n\013Credentials\0220\n\004t"
+  "ype\030\001 \001(\0162\034.viam.app.v1.CredentialsTypeR"
+  "\004type\022\030\n\007payload\030\002 \001(\tR\007payload\"\321\001\n\tAgen"
+  "tInfo\022\022\n\004host\030\001 \001(\tR\004host\022\016\n\002os\030\002 \001(\tR\002o"
+  "s\022\020\n\003ips\030\003 \003(\tR\003ips\022\030\n\007version\030\004 \001(\tR\007ve"
+  "rsion\022!\n\014git_revision\030\005 \001(\tR\013gitRevision"
+  "\022\037\n\010platform\030\006 \001(\tH\000R\010platform\210\001\001\022#\n\rpla"
+  "tform_tags\030\007 \003(\tR\014platformTagsB\013\n\t_platf"
+  "orm\"j\n\rConfigRequest\022\016\n\002id\030\001 \001(\tR\002id\022:\n\n"
+  "agent_info\030\002 \001(\0132\026.viam.app.v1.AgentInfo"
+  "H\000R\tagentInfo\210\001\001B\r\n\013_agent_info\"B\n\016Confi"
+  "gResponse\0220\n\006config\030\001 \001(\0132\030.viam.app.v1."
+  "RobotConfigR\006config\"$\n\022CertificateReques"
+  "t\022\016\n\002id\030\001 \001(\tR\002id\"v\n\023CertificateResponse"
+  "\022\016\n\002id\030\001 \001(\tR\002id\022\'\n\017tls_certificate\030\002 \001("
+  "\tR\016tlsCertificate\022&\n\017tls_private_key\030\003 \001"
+  "(\tR\rtlsPrivateKey\"J\n\nLogRequest\022\016\n\002id\030\001 "
+  "\001(\tR\002id\022,\n\004logs\030\002 \003(\0132\030.viam.common.v1.L"
+  "ogEntryR\004logs\"\r\n\013LogResponse\"%\n\023NeedsRes"
+  "tartRequest\022\016\n\002id\030\001 \001(\tR\002id\"\232\001\n\024NeedsRes"
+  "tartResponse\022\016\n\002id\030\001 \001(\tR\002id\022!\n\014must_res"
+  "tart\030\002 \001(\010R\013mustRestart\022O\n\026restart_check"
+  "_interval\030\003 \001(\0132\031.google.protobuf.Durati"
+  "onR\024restartCheckInterval\"\363\002\n\014ModuleConfi"
+  "g\022\022\n\004name\030\001 \001(\tR\004name\022\022\n\004path\030\002 \001(\tR\004pat"
+  "h\022\033\n\tlog_level\030\003 \001(\tR\010logLevel\022\022\n\004type\030\004"
+  " \001(\tR\004type\022\033\n\tmodule_id\030\005 \001(\tR\010moduleId\022"
+  "4\n\003env\030\006 \003(\0132\".viam.app.v1.ModuleConfig."
+  "EnvEntryR\003env\0228\n\006status\030\007 \001(\0132 .viam.app"
+  ".v1.AppValidationStatusR\006status\022E\n\021first"
+  "_run_timeout\030\010 \001(\0132\031.google.protobuf.Dur"
+  "ationR\017firstRunTimeout\0326\n\010EnvEntry\022\020\n\003ke"
+  "y\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\"\245"
+  "\001\n\rPackageConfig\022\022\n\004name\030\001 \001(\tR\004name\022\030\n\007"
+  "package\030\002 \001(\tR\007package\022\030\n\007version\030\003 \001(\tR"
+  "\007version\022\022\n\004type\030\004 \001(\tR\004type\0228\n\006status\030\005"
+  " \001(\0132 .viam.app.v1.AppValidationStatusR\006"
+  "status\"\212\001\n\021MaintenanceConfig\022=\n\013sensor_n"
+  "ame\030\001 \001(\0132\034.viam.common.v1.ResourceNameR"
+  "\nsensorName\0226\n\027maintenance_allowed_key\030\002"
+  " \001(\tR\025maintenanceAllowedKey*\277\001\n\017Credenti"
+  "alsType\022 \n\034CREDENTIALS_TYPE_UNSPECIFIED\020"
+  "\000\022\035\n\031CREDENTIALS_TYPE_INTERNAL\020\001\022\034\n\030CRED"
+  "ENTIALS_TYPE_API_KEY\020\002\022!\n\035CREDENTIALS_TY"
+  "PE_ROBOT_SECRET\020\003\022*\n&CREDENTIALS_TYPE_RO"
+  "BOT_LOCATION_SECRET\020\0042\262\002\n\014RobotService\022A"
+  "\n\006Config\022\032.viam.app.v1.ConfigRequest\032\033.v"
+  "iam.app.v1.ConfigResponse\022P\n\013Certificate"
+  "\022\037.viam.app.v1.CertificateRequest\032 .viam"
+  ".app.v1.CertificateResponse\0228\n\003Log\022\027.via"
+  "m.app.v1.LogRequest\032\030.viam.app.v1.LogRes"
+  "ponse\022S\n\014NeedsRestart\022 .viam.app.v1.Need"
+  "sRestartRequest\032!.viam.app.v1.NeedsResta"
+  "rtResponseB\030Z\026go.viam.com/api/app/v1b\006pr"
+  "oto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2frobot_2eproto_deps[4] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -1399,9 +1430,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2frobot_2e
 };
 static ::_pbi::once_flag descriptor_table_app_2fv1_2frobot_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2frobot_2eproto = {
-    false, false, 7911, descriptor_table_protodef_app_2fv1_2frobot_2eproto,
+    false, false, 8124, descriptor_table_protodef_app_2fv1_2frobot_2eproto,
     "app/v1/robot.proto",
-    &descriptor_table_app_2fv1_2frobot_2eproto_once, descriptor_table_app_2fv1_2frobot_2eproto_deps, 4, 42,
+    &descriptor_table_app_2fv1_2frobot_2eproto_once, descriptor_table_app_2fv1_2frobot_2eproto_deps, 4, 43,
     schemas, file_default_instances, TableStruct_app_2fv1_2frobot_2eproto::offsets,
     file_level_metadata_app_2fv1_2frobot_2eproto, file_level_enum_descriptors_app_2fv1_2frobot_2eproto,
     file_level_service_descriptors_app_2fv1_2frobot_2eproto,
@@ -5548,12 +5579,14 @@ NetworkConfig::_Internal::sessions(const NetworkConfig* msg) {
 }
 NetworkConfig::NetworkConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  traffic_tunnel_endpoints_(arena) {
   SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.app.v1.NetworkConfig)
 }
 NetworkConfig::NetworkConfig(const NetworkConfig& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      traffic_tunnel_endpoints_(from.traffic_tunnel_endpoints_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   fqdn_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -5643,6 +5676,7 @@ void NetworkConfig::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  traffic_tunnel_endpoints_.Clear();
   fqdn_.ClearToEmpty();
   bind_address_.ClearToEmpty();
   tls_cert_file_.ClearToEmpty();
@@ -5705,6 +5739,19 @@ const char* NetworkConfig::_InternalParse(const char* ptr, ::_pbi::ParseContext*
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
           ptr = ctx->ParseMessage(_internal_mutable_sessions(), ptr);
           CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .viam.app.v1.TrafficTunnelEndpoint traffic_tunnel_endpoints = 6 [json_name = "trafficTunnelEndpoints"];
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_traffic_tunnel_endpoints(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<50>(ptr));
         } else
           goto handle_unusual;
         continue;
@@ -5784,6 +5831,14 @@ uint8_t* NetworkConfig::_InternalSerialize(
         _Internal::sessions(this).GetCachedSize(), target, stream);
   }
 
+  // repeated .viam.app.v1.TrafficTunnelEndpoint traffic_tunnel_endpoints = 6 [json_name = "trafficTunnelEndpoints"];
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_traffic_tunnel_endpoints_size()); i < n; i++) {
+    const auto& repfield = this->_internal_traffic_tunnel_endpoints(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(6, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -5799,6 +5854,13 @@ size_t NetworkConfig::ByteSizeLong() const {
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // repeated .viam.app.v1.TrafficTunnelEndpoint traffic_tunnel_endpoints = 6 [json_name = "trafficTunnelEndpoints"];
+  total_size += 1UL * this->_internal_traffic_tunnel_endpoints_size();
+  for (const auto& msg : this->traffic_tunnel_endpoints_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
 
   // string fqdn = 1 [json_name = "fqdn"];
   if (!this->_internal_fqdn().empty()) {
@@ -5857,6 +5919,7 @@ void NetworkConfig::MergeFrom(const NetworkConfig& from) {
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  traffic_tunnel_endpoints_.MergeFrom(from.traffic_tunnel_endpoints_);
   if (!from._internal_fqdn().empty()) {
     _internal_set_fqdn(from._internal_fqdn());
   }
@@ -5891,6 +5954,7 @@ void NetworkConfig::InternalSwap(NetworkConfig* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  traffic_tunnel_endpoints_.InternalSwap(&other->traffic_tunnel_endpoints_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &fqdn_, lhs_arena,
       &other->fqdn_, rhs_arena
@@ -6107,6 +6171,231 @@ void SessionsConfig::InternalSwap(SessionsConfig* other) {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
       file_level_metadata_app_2fv1_2frobot_2eproto[11]);
+}
+
+// ===================================================================
+
+class TrafficTunnelEndpoint::_Internal {
+ public:
+  static const ::PROTOBUF_NAMESPACE_ID::Duration& connection_timeout(const TrafficTunnelEndpoint* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Duration&
+TrafficTunnelEndpoint::_Internal::connection_timeout(const TrafficTunnelEndpoint* msg) {
+  return *msg->connection_timeout_;
+}
+void TrafficTunnelEndpoint::clear_connection_timeout() {
+  if (GetArenaForAllocation() == nullptr && connection_timeout_ != nullptr) {
+    delete connection_timeout_;
+  }
+  connection_timeout_ = nullptr;
+}
+TrafficTunnelEndpoint::TrafficTunnelEndpoint(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.TrafficTunnelEndpoint)
+}
+TrafficTunnelEndpoint::TrafficTunnelEndpoint(const TrafficTunnelEndpoint& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_connection_timeout()) {
+    connection_timeout_ = new ::PROTOBUF_NAMESPACE_ID::Duration(*from.connection_timeout_);
+  } else {
+    connection_timeout_ = nullptr;
+  }
+  port_ = from.port_;
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.TrafficTunnelEndpoint)
+}
+
+inline void TrafficTunnelEndpoint::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&connection_timeout_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&port_) -
+    reinterpret_cast<char*>(&connection_timeout_)) + sizeof(port_));
+}
+
+TrafficTunnelEndpoint::~TrafficTunnelEndpoint() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.TrafficTunnelEndpoint)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void TrafficTunnelEndpoint::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete connection_timeout_;
+}
+
+void TrafficTunnelEndpoint::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void TrafficTunnelEndpoint::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.TrafficTunnelEndpoint)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaForAllocation() == nullptr && connection_timeout_ != nullptr) {
+    delete connection_timeout_;
+  }
+  connection_timeout_ = nullptr;
+  port_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* TrafficTunnelEndpoint::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // int32 port = 1 [json_name = "port"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          port_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Duration connection_timeout = 2 [json_name = "connectionTimeout"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_connection_timeout(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* TrafficTunnelEndpoint::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.TrafficTunnelEndpoint)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 port = 1 [json_name = "port"];
+  if (this->_internal_port() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_port(), target);
+  }
+
+  // .google.protobuf.Duration connection_timeout = 2 [json_name = "connectionTimeout"];
+  if (this->_internal_has_connection_timeout()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, _Internal::connection_timeout(this),
+        _Internal::connection_timeout(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.TrafficTunnelEndpoint)
+  return target;
+}
+
+size_t TrafficTunnelEndpoint::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.TrafficTunnelEndpoint)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .google.protobuf.Duration connection_timeout = 2 [json_name = "connectionTimeout"];
+  if (this->_internal_has_connection_timeout()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *connection_timeout_);
+  }
+
+  // int32 port = 1 [json_name = "port"];
+  if (this->_internal_port() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_port());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData TrafficTunnelEndpoint::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    TrafficTunnelEndpoint::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*TrafficTunnelEndpoint::GetClassData() const { return &_class_data_; }
+
+void TrafficTunnelEndpoint::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<TrafficTunnelEndpoint *>(to)->MergeFrom(
+      static_cast<const TrafficTunnelEndpoint &>(from));
+}
+
+
+void TrafficTunnelEndpoint::MergeFrom(const TrafficTunnelEndpoint& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.TrafficTunnelEndpoint)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_has_connection_timeout()) {
+    _internal_mutable_connection_timeout()->::PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(from._internal_connection_timeout());
+  }
+  if (from._internal_port() != 0) {
+    _internal_set_port(from._internal_port());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void TrafficTunnelEndpoint::CopyFrom(const TrafficTunnelEndpoint& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.TrafficTunnelEndpoint)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool TrafficTunnelEndpoint::IsInitialized() const {
+  return true;
+}
+
+void TrafficTunnelEndpoint::InternalSwap(TrafficTunnelEndpoint* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(TrafficTunnelEndpoint, port_)
+      + sizeof(TrafficTunnelEndpoint::port_)
+      - PROTOBUF_FIELD_OFFSET(TrafficTunnelEndpoint, connection_timeout_)>(
+          reinterpret_cast<char*>(&connection_timeout_),
+          reinterpret_cast<char*>(&other->connection_timeout_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata TrafficTunnelEndpoint::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
+      file_level_metadata_app_2fv1_2frobot_2eproto[12]);
 }
 
 // ===================================================================
@@ -6375,7 +6664,7 @@ void AuthConfig::InternalSwap(AuthConfig* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata AuthConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[12]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[13]);
 }
 
 // ===================================================================
@@ -6568,7 +6857,7 @@ void JWKSFile::InternalSwap(JWKSFile* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata JWKSFile::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[13]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[14]);
 }
 
 // ===================================================================
@@ -6755,7 +7044,7 @@ void ExternalAuthConfig::InternalSwap(ExternalAuthConfig* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ExternalAuthConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[14]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[15]);
 }
 
 // ===================================================================
@@ -6983,7 +7272,7 @@ void AuthHandlerConfig::InternalSwap(AuthHandlerConfig* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata AuthHandlerConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[15]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[16]);
 }
 
 // ===================================================================
@@ -7314,7 +7603,7 @@ void Frame::InternalSwap(Frame* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Frame::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[16]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[17]);
 }
 
 // ===================================================================
@@ -7509,7 +7798,7 @@ void LogConfiguration::InternalSwap(LogConfiguration* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata LogConfiguration::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[17]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[18]);
 }
 
 // ===================================================================
@@ -7772,7 +8061,7 @@ void Translation::InternalSwap(Translation* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Translation::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[18]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[19]);
 }
 
 // ===================================================================
@@ -7811,7 +8100,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Orientation_NoOrientation::Get
 ::PROTOBUF_NAMESPACE_ID::Metadata Orientation_NoOrientation::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[19]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[20]);
 }
 
 // ===================================================================
@@ -8108,7 +8397,7 @@ void Orientation_OrientationVectorRadians::InternalSwap(Orientation_OrientationV
 ::PROTOBUF_NAMESPACE_ID::Metadata Orientation_OrientationVectorRadians::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[20]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[21]);
 }
 
 // ===================================================================
@@ -8405,7 +8694,7 @@ void Orientation_OrientationVectorDegrees::InternalSwap(Orientation_OrientationV
 ::PROTOBUF_NAMESPACE_ID::Metadata Orientation_OrientationVectorDegrees::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[21]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[22]);
 }
 
 // ===================================================================
@@ -8668,7 +8957,7 @@ void Orientation_EulerAngles::InternalSwap(Orientation_EulerAngles* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Orientation_EulerAngles::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[22]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[23]);
 }
 
 // ===================================================================
@@ -8965,7 +9254,7 @@ void Orientation_AxisAngles::InternalSwap(Orientation_AxisAngles* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Orientation_AxisAngles::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[23]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[24]);
 }
 
 // ===================================================================
@@ -9262,7 +9551,7 @@ void Orientation_Quaternion::InternalSwap(Orientation_Quaternion* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Orientation_Quaternion::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[24]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[25]);
 }
 
 // ===================================================================
@@ -9777,7 +10066,7 @@ void Orientation::InternalSwap(Orientation* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Orientation::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[25]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[26]);
 }
 
 // ===================================================================
@@ -10355,7 +10644,7 @@ void RemoteConfig::InternalSwap(RemoteConfig* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RemoteConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[26]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[27]);
 }
 
 // ===================================================================
@@ -10579,7 +10868,7 @@ void RemoteAuth_Credentials::InternalSwap(RemoteAuth_Credentials* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RemoteAuth_Credentials::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[27]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[28]);
 }
 
 // ===================================================================
@@ -10816,7 +11105,7 @@ void RemoteAuth::InternalSwap(RemoteAuth* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RemoteAuth::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[28]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[29]);
 }
 
 // ===================================================================
@@ -11292,7 +11581,7 @@ void AgentInfo::InternalSwap(AgentInfo* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata AgentInfo::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[29]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[30]);
 }
 
 // ===================================================================
@@ -11540,7 +11829,7 @@ void ConfigRequest::InternalSwap(ConfigRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ConfigRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[30]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[31]);
 }
 
 // ===================================================================
@@ -11727,7 +12016,7 @@ void ConfigResponse::InternalSwap(ConfigResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ConfigResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[31]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[32]);
 }
 
 // ===================================================================
@@ -11922,7 +12211,7 @@ void CertificateRequest::InternalSwap(CertificateRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata CertificateRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[32]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[33]);
 }
 
 // ===================================================================
@@ -12213,7 +12502,7 @@ void CertificateResponse::InternalSwap(CertificateResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata CertificateResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[33]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[34]);
 }
 
 // ===================================================================
@@ -12444,7 +12733,7 @@ void LogRequest::InternalSwap(LogRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata LogRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[34]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[35]);
 }
 
 // ===================================================================
@@ -12483,7 +12772,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*LogResponse::GetClassData() co
 ::PROTOBUF_NAMESPACE_ID::Metadata LogResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[35]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[36]);
 }
 
 // ===================================================================
@@ -12678,7 +12967,7 @@ void NeedsRestartRequest::InternalSwap(NeedsRestartRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata NeedsRestartRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[36]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[37]);
 }
 
 // ===================================================================
@@ -12953,7 +13242,7 @@ void NeedsRestartResponse::InternalSwap(NeedsRestartResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata NeedsRestartResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[37]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[38]);
 }
 
 // ===================================================================
@@ -12967,7 +13256,7 @@ void ModuleConfig_EnvEntry_DoNotUse::MergeFrom(const ModuleConfig_EnvEntry_DoNot
 ::PROTOBUF_NAMESPACE_ID::Metadata ModuleConfig_EnvEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[38]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[39]);
 }
 
 // ===================================================================
@@ -13516,7 +13805,7 @@ void ModuleConfig::InternalSwap(ModuleConfig* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ModuleConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[39]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[40]);
 }
 
 // ===================================================================
@@ -13897,7 +14186,7 @@ void PackageConfig::InternalSwap(PackageConfig* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata PackageConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[40]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[41]);
 }
 
 // ===================================================================
@@ -14140,7 +14429,7 @@ void MaintenanceConfig::InternalSwap(MaintenanceConfig* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata MaintenanceConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[41]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[42]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -14195,6 +14484,10 @@ Arena::CreateMaybeMessage< ::viam::app::v1::NetworkConfig >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::viam::app::v1::SessionsConfig*
 Arena::CreateMaybeMessage< ::viam::app::v1::SessionsConfig >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::app::v1::SessionsConfig >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::TrafficTunnelEndpoint*
+Arena::CreateMaybeMessage< ::viam::app::v1::TrafficTunnelEndpoint >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::TrafficTunnelEndpoint >(arena);
 }
 template<> PROTOBUF_NOINLINE ::viam::app::v1::AuthConfig*
 Arena::CreateMaybeMessage< ::viam::app::v1::AuthConfig >(Arena* arena) {
