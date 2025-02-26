@@ -17,6 +17,15 @@ class ResourceLevelServiceConfig;
 
 }  // namespace v1
 }  // namespace app
+
+namespace service {
+namespace discovery {
+namespace v1 {
+
+class DiscoverResourcesResponse;
+}
+}  // namespace discovery
+}  // namespace service
 }  // namespace viam
 
 namespace viam {
@@ -81,6 +90,12 @@ struct to_proto_impl<ResourceConfig> {
 template <>
 struct from_proto_impl<app::v1::ComponentConfig> {
     ResourceConfig operator()(const app::v1::ComponentConfig*) const;
+};
+
+template <>
+struct from_proto_impl<service::discovery::v1::DiscoverResourcesResponse> {
+    std::vector<ResourceConfig> operator()(
+        const service::discovery::v1::DiscoverResourcesResponse*) const;
 };
 
 }  // namespace proto_convert_details

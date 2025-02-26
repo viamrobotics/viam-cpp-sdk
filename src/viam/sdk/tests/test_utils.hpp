@@ -15,6 +15,7 @@ using namespace viam::sdk;
 
 ProtoStruct fake_map();
 std::vector<GeometryConfig> fake_geometries();
+std::vector<ResourceConfig> fake_discovered_resources();
 
 // TestServer is a wrapper around viam::sdk::Server that is a friend of the
 // class and can therefore access its private fields.

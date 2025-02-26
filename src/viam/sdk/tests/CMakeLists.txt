@@ -30,6 +30,7 @@ target_sources(viamsdk_test
     mocks/mock_motor.cpp
     mocks/mock_motion.cpp
     mocks/mock_movement_sensor.cpp
+    mocks/mock_discovery.cpp
     mocks/mock_navigation.cpp
     mocks/mock_pose_tracker.cpp
     mocks/mock_power_sensor.cpp
@@ -56,6 +57,7 @@ viamcppsdk_add_boost_test(test_board.cpp)
 viamcppsdk_add_boost_test(test_camera.cpp)
 viamcppsdk_add_boost_test(test_common.cpp)
 viamcppsdk_add_boost_test(test_encoder.cpp)
+viamcppsdk_add_boost_test(test_discovery.cpp)
 viamcppsdk_add_boost_test(test_gantry.cpp)
 viamcppsdk_add_boost_test(test_gripper.cpp)
 viamcppsdk_add_boost_test(test_generics.cpp)

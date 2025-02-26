@@ -26,6 +26,38 @@ std::vector<GeometryConfig> fake_geometries() {
             GeometryConfig(p, capsule{2, 4}, "capsule")};
 }
 
+std::vector<ResourceConfig> fake_discovered_resources() {
+    pose p{1, 2, 3};
+    orientation_vector o{0, 0, 0, 1};
+    translation t{1, 2, 3};
+
+    LinkConfig link(t, o, GeometryConfig(p, sphere{1}, "sphere"), "world");
+
+    return {
+        ResourceConfig("camera",
+                       "mycam",
+                       "rdk",
+                       {{"width", 640}, {"height", 480}, {"format", "mjpeg"}},
+                       "rdk:component:camera",
+                       Model("rdk", "camera", "mycam"),
+                       link),
+        ResourceConfig("sensor",
+                       "temp_sensor",
+                       "viam",
+                       {{"type", "temperature"}, {"unit", "celsius"}, {"poll_rate", 1000}},
+                       "rdk:component:sensor",
+                       Model("viam", "temp", "my_temp_sensor"),
+                       link),
+        ResourceConfig("motor",
+                       "arm_motor",
+                       "rand",
+                       {{"max_rpm", 100}, {"encoder_steps", 200}},
+                       "rdk:component:motor",
+                       Model("rand", "cool", "my_motor"),
+                       link),
+    };
+};
+
 TestServer::TestServer(std::shared_ptr<Server> sdk_server) : sdk_server_(std::move(sdk_server)) {}
 
 TestServer::~TestServer() = default;

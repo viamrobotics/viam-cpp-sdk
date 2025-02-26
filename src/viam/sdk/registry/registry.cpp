@@ -42,6 +42,8 @@
 #include <viam/sdk/components/private/servo_server.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
+#include <viam/sdk/services/private/discovery_client.hpp>
+#include <viam/sdk/services/private/discovery_server.hpp>
 #include <viam/sdk/services/private/generic_client.hpp>
 #include <viam/sdk/services/private/generic_server.hpp>
 #include <viam/sdk/services/private/mlmodel_client.hpp>
@@ -204,6 +206,7 @@ void Registry::register_resources() {
     register_resource<impl::ServoClient, impl::ServoServer>();
 
     // Register all services
+    register_resource<impl::DiscoveryClient, impl::DiscoveryServer>();
     register_resource<impl::GenericServiceClient, impl::GenericServiceServer>();
     register_resource<impl::MLModelServiceClient, impl::MLModelServiceServer>();
     register_resource<impl::MotionClient, impl::MotionServer>();
