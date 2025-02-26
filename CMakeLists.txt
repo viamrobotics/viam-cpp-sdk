@@ -324,7 +324,7 @@ set(VIAMCPPSDK_XTL_VERSION_MINIMUM 0.7.2)
 set(VIAMCPPSDK_XTENSOR_VERSION_MINIMUM 0.24.3)
 
 # Time to find `BOOST`.
-find_package(Boost ${VIAMCPPSDK_BOOST_VERSION_MINIMUM} REQUIRED COMPONENTS headers log program_options)
+find_package(Boost ${VIAMCPPSDK_BOOST_VERSION_MINIMUM} REQUIRED COMPONENTS headers log log_setup program_options)
 
 # Time to find `protobuf` and `gRPC[++]`. Normally this would just be
 # something like `find_package(gRPC <version> CONFIG REQUIRED)`, and

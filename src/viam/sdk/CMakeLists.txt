@@ -244,6 +244,7 @@ viamcppsdk_link_viam_api(viamsdk PRIVATE)
 target_link_libraries(viamsdk
   PUBLIC Boost::headers
   PUBLIC Boost::log
+  PUBLIC Boost::log_setup
   PUBLIC xtensor
   PRIVATE ${VIAMCPPSDK_GRPCXX_REFLECTION_LIBRARIES}
   PRIVATE ${VIAMCPPSDK_GRPCXX_LIBRARIES}
