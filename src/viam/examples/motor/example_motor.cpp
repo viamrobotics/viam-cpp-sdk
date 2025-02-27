@@ -55,7 +55,7 @@ int main() {
 
         std::shared_ptr<vs::RobotClient> robot;
         try {
-            robot = vs::RobotClient::at_address(robot_address, options, inst.registry());
+            robot = vs::RobotClient::at_address(robot_address, options);
             cout << "Successfully connected to the robot" << endl;
         } catch (const std::exception& e) {
             cerr << "Failed to connect to the robot. Exiting." << endl;

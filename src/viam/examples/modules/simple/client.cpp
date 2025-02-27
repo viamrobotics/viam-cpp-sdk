@@ -27,7 +27,7 @@ int main() {
     std::string address(uri);
     Options options(1, opts);
 
-    std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options, inst.registry());
+    std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);
 
     // Print resources
     std::cout << "Resources\n";

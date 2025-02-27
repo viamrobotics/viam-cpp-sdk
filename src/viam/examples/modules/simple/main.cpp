@@ -87,7 +87,7 @@ int main(int argc, char** argv) try {
         &MySensor::validate);
 
     std::vector<std::shared_ptr<ModelRegistration>> mrs = {mr};
-    auto my_mod = std::make_shared<ModuleService>(argc, argv, mrs, inst.registry());
+    auto my_mod = std::make_shared<ModuleService>(argc, argv, mrs);
     my_mod->serve();
 
     return EXIT_SUCCESS;

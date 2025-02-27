@@ -42,11 +42,11 @@ int main() {
 
     // Register custom gizmo and summation clients so robot client can access resources
     // of that type from the server.
-    inst.registry()->register_resource_client<GizmoClient>();
-    inst.registry()->register_resource_client<SummationClient>();
+    Registry::get().register_resource_client<GizmoClient>();
+    Registry::get().register_resource_client<SummationClient>();
 
     // Connect to robot.
-    std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options, inst.registry());
+    std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);
     // Print resources.
     std::cout << "Resources" << std::endl;
     std::vector<Name> resource_names = robot->resource_names();

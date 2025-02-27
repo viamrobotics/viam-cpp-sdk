@@ -12,15 +12,13 @@
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/common/world_state.hpp>
 #include <viam/sdk/components/component.hpp>
+#include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
-#include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/services/service.hpp>
 
 namespace viam {
 namespace sdk {
-
-class Registry;
 
 /// @defgroup Robot Classes related to a Robot representation.
 
@@ -70,8 +68,7 @@ class RobotClient {
     /// @param address The address of the robot (IP address, URI, URL, etc.)
     /// @param options Options for connecting and refreshing.
     static std::shared_ptr<RobotClient> at_address(const std::string& address,
-                                                   const Options& options,
-                                                   Registry* registry);
+                                                   const Options& options);
 
     /// @brief Creates a robot client connected to the robot at the provided local socket.
     /// @param address The local socket of the robot (a .sock file, etc.).
@@ -79,8 +76,7 @@ class RobotClient {
     /// Creates a direct connection to the robot using the `unix://` scheme.
     /// Only useful for connecting to robots across Unix sockets.
     static std::shared_ptr<RobotClient> at_local_socket(const std::string& address,
-                                                        const Options& options,
-                                                        Registry* registry);
+                                                        const Options& options);
 
     /// @brief Creates a robot client connected to the provided channel.
     /// @param channel The channel to connect with.
@@ -88,11 +84,8 @@ class RobotClient {
     /// Connects directly to a pre-existing channel. A robot created this way must be
     /// `close()`d manually.
     static std::shared_ptr<RobotClient> with_channel(std::shared_ptr<ViamChannel> channel,
-                                                     const Options& options,
-                                                     Registry* registry);
-
-    RobotClient(std::shared_ptr<ViamChannel> channel, Registry* registry);
-
+                                                     const Options& options);
+    RobotClient(std::shared_ptr<ViamChannel> channel);
     std::vector<Name> resource_names() const;
 
     /// @brief Lookup and return a `shared_ptr` to a resource.
@@ -155,24 +148,17 @@ class RobotClient {
 
    private:
     Registry* registry_;
-
     std::vector<std::shared_ptr<std::thread>> threads_;
-
     std::atomic<bool> should_refresh_;
     unsigned int refresh_interval_;
-
     std::shared_ptr<GrpcChannel> channel_;
     std::shared_ptr<ViamChannel> viam_channel_;
     bool should_close_channel_;
-
     struct impl;
     std::unique_ptr<impl> impl_;
-
     mutable std::mutex lock_;
-
     std::vector<Name> resource_names_;
     ResourceManager resource_manager_;
-
     void refresh_every();
 };
 
