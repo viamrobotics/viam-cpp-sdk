@@ -2,6 +2,9 @@
 
 #include <unordered_map>
 
+#include <boost/log/sources/severity_channel_logger.hpp>
+#include <boost/log/trivial.hpp>
+
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
@@ -30,6 +33,8 @@ class Resource {
 
    protected:
     Name get_resource_name(const std::string& type) const;
+
+    boost::log::sources::severity_channel_logger_mt<boost::log::trivial::severity_level> logger_;
 };
 
 template <>

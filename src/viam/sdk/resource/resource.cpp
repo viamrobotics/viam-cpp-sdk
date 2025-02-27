@@ -1,5 +1,7 @@
 #include <viam/sdk/resource/resource.hpp>
 
+#include <boost/log/keywords/channel.hpp>
+
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/registry/registry.hpp>
@@ -9,7 +11,8 @@ namespace viam {
 namespace sdk {
 
 Resource::~Resource() = default;
-Resource::Resource(std::string name) : name_(std::move(name)) {}
+Resource::Resource(std::string name)
+    : name_(std::move(name)), logger_(boost::log::keywords::channel = name_) {}
 
 std::string Resource::name() const {
     return name_;
