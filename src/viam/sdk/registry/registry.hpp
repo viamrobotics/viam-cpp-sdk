@@ -103,6 +103,9 @@ class ModelRegistration {
 /// @brief A registry of known resources.
 class Registry {
    public:
+    /// @brief Get the application-wide instance of Registry.
+    static Registry& get();
+
     /// @brief Registers a resource with the Registry.
     /// @param resource An object containing resource registration information.
     /// @throws `Exception` if the resource has already been registered.

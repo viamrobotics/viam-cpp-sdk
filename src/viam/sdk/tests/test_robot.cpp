@@ -42,7 +42,7 @@ void robot_client_to_mocks_pipeline(F&& test_case) {
     rm->add(std::string("mock_generic"), generic::MockGenericComponent::get_mock_generic());
     rm->add(std::string("mock_motor"), motor::MockMotor::get_mock_motor());
     rm->add(std::string("mock_camera"), camera::MockCamera::get_mock_camera());
-    auto server = std::make_shared<sdk::Server>(Instance::current().registry());
+    auto server = std::make_shared<sdk::Server>();
     MockRobotService service(rm, *server);
     server->start();
 
@@ -51,8 +51,7 @@ void robot_client_to_mocks_pipeline(F&& test_case) {
     auto test_server = TestServer(server);
     auto grpc_channel = test_server.grpc_in_process_channel();
     auto viam_channel = std::make_shared<ViamChannel>(grpc_channel, "", nullptr);
-    auto client = RobotClient::with_channel(
-        viam_channel, Options(0, boost::none), Instance::current().registry());
+    auto client = RobotClient::with_channel(viam_channel, Options(0, boost::none));
 
     // Run the passed-in test case on the created stack and give access to the
     // created RobotClient and MockRobotService.
@@ -63,7 +62,7 @@ void robot_client_to_mocks_pipeline(F&& test_case) {
 }
 
 BOOST_AUTO_TEST_CASE(test_registering_resources) {
-    auto& registry = *Instance::current().registry();
+    auto& registry = Registry::get();
 
     // To test with mock resources we need to be able to create them, which means registering
     // constructors. This tests that we register correctly.

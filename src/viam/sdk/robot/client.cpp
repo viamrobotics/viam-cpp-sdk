@@ -221,8 +221,8 @@ void RobotClient::refresh_every() {
     }
 };
 
-RobotClient::RobotClient(std::shared_ptr<ViamChannel> channel, Registry* registry)
-    : registry_(registry),
+RobotClient::RobotClient(std::shared_ptr<ViamChannel> channel)
+    : registry_(&Registry::get()),
       channel_(channel->channel()),
       viam_channel_(std::move(channel)),
       should_close_channel_(false),
@@ -234,10 +234,8 @@ std::vector<Name> RobotClient::resource_names() const {
 }
 
 std::shared_ptr<RobotClient> RobotClient::with_channel(std::shared_ptr<ViamChannel> channel,
-                                                       const Options& options,
-                                                       Registry* registry) {
-    std::shared_ptr<RobotClient> robot =
-        std::make_shared<RobotClient>(std::move(channel), registry);
+                                                       const Options& options) {
+    std::shared_ptr<RobotClient> robot = std::make_shared<RobotClient>(std::move(channel));
     robot->refresh_interval_ = options.refresh_interval();
     robot->should_refresh_ = (robot->refresh_interval_ > 0);
     if (robot->should_refresh_) {
@@ -255,25 +253,23 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(std::shared_ptr<ViamChann
 };
 
 std::shared_ptr<RobotClient> RobotClient::at_address(const std::string& address,
-                                                     const Options& options,
-                                                     Registry* registry) {
+                                                     const Options& options) {
     const char* uri = address.c_str();
     auto channel = ViamChannel::dial(uri, options.dial_options());
-    std::shared_ptr<RobotClient> robot = RobotClient::with_channel(channel, options, registry);
+    std::shared_ptr<RobotClient> robot = RobotClient::with_channel(channel, options);
     robot->should_close_channel_ = true;
 
     return robot;
 };
 
 std::shared_ptr<RobotClient> RobotClient::at_local_socket(const std::string& address,
-                                                          const Options& options,
-                                                          Registry* registry) {
+                                                          const Options& options) {
     const std::string addr = "unix://" + address;
     const char* uri = addr.c_str();
     const std::shared_ptr<grpc::Channel> channel =
         sdk::impl::create_viam_channel(uri, grpc::InsecureChannelCredentials());
     auto viam_channel = std::make_shared<ViamChannel>(channel, address.c_str(), nullptr);
-    std::shared_ptr<RobotClient> robot = RobotClient::with_channel(viam_channel, options, registry);
+    std::shared_ptr<RobotClient> robot = RobotClient::with_channel(viam_channel, options);
     robot->should_close_channel_ = true;
 
     return robot;

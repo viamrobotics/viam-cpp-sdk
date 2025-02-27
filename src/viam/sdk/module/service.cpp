@@ -208,32 +208,29 @@ Dependencies ModuleService::get_dependencies_(
 
 std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) {
     if (!parent_) {
-        parent_ = RobotClient::at_local_socket(parent_addr_, {0, boost::none}, registry_);
+        parent_ = RobotClient::at_local_socket(parent_addr_, {0, boost::none});
     }
 
     return parent_->resource_by_name(name);
 }
 
-ModuleService::ModuleService(std::string addr, Registry* registry)
-    : registry_(registry),
+ModuleService::ModuleService(std::string addr)
+    : registry_(&Registry::get()),
       module_(std::make_unique<Module>(std::move(addr))),
-      server_(std::make_unique<Server>(registry_)) {
+      server_(std::make_unique<Server>()) {
     impl_ = std::make_unique<ServiceImpl>(*this);
 }
 
 ModuleService::ModuleService(int argc,
                              char** argv,
-                             const std::vector<std::shared_ptr<ModelRegistration>>& registrations,
-                             Registry* registry)
-    : ModuleService(
-          [argc, argv] {
-              if (argc < 2) {
-                  throw Exception(ErrorCondition::k_connection,
-                                  "Need socket path as command line argument");
-              }
-              return argv[1];
-          }(),
-          registry) {
+                             const std::vector<std::shared_ptr<ModelRegistration>>& registrations)
+    : ModuleService([argc, argv] {
+          if (argc < 2) {
+              throw Exception(ErrorCondition::k_connection,
+                              "Need socket path as command line argument");
+          }
+          return argv[1];
+      }()) {
     set_logger_severity_from_args(argc, argv);
 
     for (auto&& mr : registrations) {

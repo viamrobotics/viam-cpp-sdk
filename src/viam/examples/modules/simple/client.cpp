@@ -2,7 +2,6 @@
 #include <memory>
 #include <string>
 
-#include <viam/sdk/common/instance.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/sensor.hpp>
 #include <viam/sdk/robot/client.hpp>
@@ -11,8 +10,6 @@
 using namespace viam::sdk;
 
 int main() {
-    Instance inst;
-
     const char* uri = "http://localhost:8080/";  // replace with your URI if connecting securely
     DialOptions dial_options;
     dial_options.set_allow_insecure_downgrade(true);  // set to false if connecting securely
@@ -27,7 +24,7 @@ int main() {
     std::string address(uri);
     Options options(1, opts);
 
-    std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options, inst.registry());
+    std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);
 
     // Print resources
     std::cout << "Resources\n";

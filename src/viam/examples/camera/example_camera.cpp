@@ -3,7 +3,6 @@
 #include <unistd.h>
 #include <vector>
 
-#include <viam/sdk/common/instance.hpp>
 #include <viam/sdk/components/camera.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/rpc/dial.hpp>
@@ -14,11 +13,6 @@ int main() {
     using std::endl;
     namespace vs = ::viam::sdk;
     try {
-        // Every Viam C++ SDK program must have one and only one Instance object which is created
-        // before
-        // any other C++ SDK objects and stays alive until all Viam C++ SDK objects are destroyed.
-        vs::Instance inst;
-
         // If you want to connect to a remote robot, this should be the url of the robot
         // Ex: xxx.xxx.viam.cloud
         std::string robot_address("localhost:8080");
@@ -41,7 +35,7 @@ int main() {
 
         std::shared_ptr<vs::RobotClient> robot;
         try {
-            robot = vs::RobotClient::at_address(robot_address, options, inst.registry());
+            robot = vs::RobotClient::at_address(robot_address, options);
             cout << "Successfully connected to the robot" << endl;
         } catch (const std::exception& e) {
             cerr << "Failed to connect to the robot. Exiting." << endl;

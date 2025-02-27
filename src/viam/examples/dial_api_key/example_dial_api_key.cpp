@@ -10,7 +10,6 @@
 #include <boost/optional.hpp>
 #include <boost/program_options.hpp>
 
-#include <viam/sdk/common/instance.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 
@@ -19,10 +18,6 @@ using namespace viam::sdk;
 namespace po = boost::program_options;
 
 int main(int argc, char* argv[]) {
-    // Every Viam C++ SDK program must have one and only one Instance object which is created before
-    // any other C++ SDK objects and stays alive until all Viam C++ SDK objects are destroyed.
-    Instance inst;
-
     po::options_description desc("Allowed options");
     desc.add_options()("help", "List options and exit")(
         "uri", po::value<std::string>(), "URI of robot")(
@@ -46,7 +41,7 @@ int main(int argc, char* argv[]) {
 
     // connect to robot, ensure we can refresh it
     std::shared_ptr<RobotClient> robot =
-        RobotClient::at_address(vm["uri"].as<std::string>(), options, inst.registry());
+        RobotClient::at_address(vm["uri"].as<std::string>(), options);
 
     // ensure we can query resources
     std::vector<Name> resource_names = robot->resource_names();
