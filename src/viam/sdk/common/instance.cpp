@@ -1,6 +1,7 @@
 #include <viam/sdk/common/instance.hpp>
 
 #include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/common/private/instance.hpp>
 #include <viam/sdk/registry/registry.hpp>
 
 #include <atomic>
@@ -16,10 +17,6 @@ std::aligned_storage_t<sizeof(Instance), alignof(Instance)> sentinel;
 std::atomic<Instance*> current_instance{nullptr};
 
 }  // namespace
-
-struct Instance::Impl {
-    Registry registry;
-};
 
 Instance::Instance() {
     Instance* expected = nullptr;
@@ -50,10 +47,6 @@ Instance& Instance::current() {
     }
 
     return *current;
-}
-
-Registry* Instance::registry() {
-    return &(impl_->registry);
 }
 
 }  // namespace sdk

@@ -26,7 +26,7 @@ std::vector<Name> registered_models_for_resource(const std::shared_ptr<Resource>
     std::string resource_type;
     std::string resource_subtype;
     std::vector<Name> resource_names;
-    for (const auto& kv : Instance::current().registry()->registered_models()) {
+    for (const auto& kv : Registry::get().registered_models()) {
         const std::shared_ptr<const ModelRegistration> reg = kv.second;
         if (reg->api() == resource->api()) {
             resource_type = reg->api().resource_type();

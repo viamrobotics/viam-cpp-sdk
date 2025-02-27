@@ -32,8 +32,8 @@ int main(int argc, char** argv) {
     Model mybase_model("viam", "base", "mybase");
 
     // Make sure to explicity register resources with custom APIs.
-    inst.registry()->register_resource_server<GizmoServer>();
-    inst.registry()->register_resource_server<SummationServer>();
+    Registry::get().register_resource_server<GizmoServer>();
+    Registry::get().register_resource_server<SummationServer>();
 
     std::shared_ptr<ModelRegistration> mybase_mr = std::make_shared<ModelRegistration>(
         API::get<Base>(),

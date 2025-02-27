@@ -5,8 +5,6 @@
 namespace viam {
 namespace sdk {
 
-class Registry;
-
 /// @brief Instance management for Viam C++ SDK applications.
 /// This is a single instance class which is responsible for global setup and teardown related to
 /// the SDK. An Instance must be constructed before doing anything else in a program, and it must
@@ -19,9 +17,9 @@ class Instance {
 
     static Instance& current();
 
-    Registry* registry();
-
    private:
+    friend class Registry;
+
     struct Impl;
     std::unique_ptr<Impl> impl_;
 };

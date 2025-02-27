@@ -12,7 +12,7 @@
 #include <grpcpp/ext/proto_server_reflection_plugin.h>
 
 #include <viam/sdk/common/exception.hpp>
-#include <viam/sdk/common/instance.hpp>
+#include <viam/sdk/common/private/instance.hpp>
 #include <viam/sdk/components/private/arm_client.hpp>
 #include <viam/sdk/components/private/arm_server.hpp>
 #include <viam/sdk/components/private/base_client.hpp>
@@ -92,7 +92,7 @@ const Model& ModelRegistration::model() const {
 };
 
 Registry& Registry::get() {
-    return *Instance::current().registry();
+    return Instance::current().impl_->registry;
 }
 
 void Registry::register_model(std::shared_ptr<const ModelRegistration> resource) {
