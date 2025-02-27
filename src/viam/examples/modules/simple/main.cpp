@@ -3,6 +3,7 @@
 #include <sstream>
 
 #include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/common/instance.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/sensor.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -75,6 +76,8 @@ ProtoStruct MySensor::get_readings(const ProtoStruct&) {
 }
 
 int main(int argc, char** argv) try {
+    Instance inst;
+
     Model mysensor_model("viam", "sensor", "mysensor");
 
     std::shared_ptr<ModelRegistration> mr = std::make_shared<ModelRegistration>(

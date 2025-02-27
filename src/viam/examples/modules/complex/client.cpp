@@ -11,6 +11,7 @@
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/support/status.h>
 
+#include <viam/sdk/common/instance.hpp>
 #include <viam/sdk/components/motor.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/rpc/dial.hpp>
@@ -21,6 +22,10 @@
 using namespace viam::sdk;
 
 int main() {
+    // Every Viam C++ SDK program must have one and only one Instance object which is created before
+    // any other C++ SDK objects and stays alive until all Viam C++ SDK objects are destroyed.
+    Instance inst;
+
     const char* uri = "http://localhost:8080/";  // replace with your URI if connecting securely
     DialOptions dial_options;
     dial_options.set_allow_insecure_downgrade(true);  // set to false if connecting securely
