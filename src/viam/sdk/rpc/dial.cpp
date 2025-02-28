@@ -60,8 +60,16 @@ void DialOptions::set_entity(boost::optional<std::string> entity) {
     auth_entity_ = std::move(entity);
 }
 
+void DialOptions::set_initial_connection_attempts(int attempts) {
+    initial_connection_attempts_ = attempts;
+}
+
 void DialOptions::set_timeout(std::chrono::duration<float> timeout) {
     timeout_ = std::move(timeout);
+}
+
+void DialOptions::set_initial_connection_attempt_timeout(std::chrono::duration<float> timeout) {
+    initial_connection_attempt_timeout_ = std::move(timeout);
 }
 
 const boost::optional<std::string>& DialOptions::entity() const {
@@ -72,8 +80,16 @@ const boost::optional<Credentials>& DialOptions::credentials() const {
     return credentials_;
 }
 
+int DialOptions::initial_connection_attempts() const {
+    return initial_connection_attempts_;
+}
+
 const std::chrono::duration<float>& DialOptions::timeout() const {
     return timeout_;
+}
+
+const std::chrono::duration<float>& DialOptions::initial_connection_attempt_timeout() const {
+    return initial_connection_attempt_timeout_;
 }
 
 void DialOptions::set_allow_insecure_downgrade(bool allow) {
@@ -82,6 +98,34 @@ void DialOptions::set_allow_insecure_downgrade(bool allow) {
 
 bool DialOptions::allows_insecure_downgrade() const {
     return allow_insecure_downgrade_;
+}
+
+std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
+                                               const boost::optional<DialOptions>& options,
+                                               bool initial_attempt) {
+    if (!initial_attempt) {
+        return dial(std::move(uri), options);
+    }
+
+    DialOptions opts = options.get_value_or(DialOptions());
+    auto timeout = opts.timeout();
+    auto attempts_remaining = opts.initial_connection_attempts();
+    if (attempts_remaining == 0) {
+        attempts_remaining = -1;
+    }
+    opts.set_timeout(opts.initial_connection_attempt_timeout());
+
+    while (attempts_remaining > 0) {
+        try {
+            auto connection = dial(uri, opts);
+            opts.set_timeout(timeout);
+            return connection;
+        } catch (...) {
+            attempts_remaining -= 1;
+        }
+    }
+
+    throw Exception(ErrorCondition::k_connection, "Unable to establish connection");
 }
 
 std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,

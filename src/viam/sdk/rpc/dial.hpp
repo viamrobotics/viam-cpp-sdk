@@ -16,8 +16,15 @@ class ViamChannel {
    public:
     void close();
     ViamChannel(std::shared_ptr<GrpcChannel> channel, const char* path, void* runtime);
+
     static std::shared_ptr<ViamChannel> dial(const char* uri,
                                              const boost::optional<DialOptions>& options);
+
+    // allows for specifying that this dial is an initial connection attempt, indicating that
+    // initial connection options should be used.
+    static std::shared_ptr<ViamChannel> dial(const char* uri,
+                                             const boost::optional<DialOptions>& options,
+                                             bool initial_attempt);
 
     const std::shared_ptr<GrpcChannel>& channel() const;
 
@@ -49,11 +56,15 @@ class DialOptions {
     const boost::optional<std::string>& entity() const;
     bool allows_insecure_downgrade() const;
     const std::chrono::duration<float>& timeout() const;
+    int initial_connection_attempts() const;
+    const std::chrono::duration<float>& initial_connection_attempt_timeout() const;
 
     void set_entity(boost::optional<std::string> entity);
     void set_credentials(boost::optional<Credentials> creds);
     void set_allow_insecure_downgrade(bool allow);
     void set_timeout(std::chrono::duration<float> timeout);
+    void set_initial_connection_attempts(int attempts);
+    void set_initial_connection_attempt_timeout(std::chrono::duration<float> timeout);
 
    private:
     // TODO (RSDK-917): We currently don't provide a flag for disabling webRTC, instead relying on a
@@ -72,6 +83,14 @@ class DialOptions {
     /// @brief Duration before the dial connection times out
     /// Set to 20sec to match _defaultOfferDeadline in goutils/rpc/wrtc_call_queue.go
     std::chrono::duration<float> timeout_{20};
+
+    /// @brief Number of attempts to make when initially connecting to a robot
+    /// If set to 0 or a negative integer, will attempt to reconnect forever.
+    int initial_connection_attempts_ = 3;
+
+    /// @brief Timeout of connection attempts when initially dialing a robot
+    /// Defaults to 20sec to match the default timeout duration
+    std::chrono::duration<float> initial_connection_attempt_timeout_{20};
 };
 
 class Options {
