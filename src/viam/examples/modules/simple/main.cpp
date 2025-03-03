@@ -76,6 +76,8 @@ ProtoStruct MySensor::get_readings(const ProtoStruct&) {
 }
 
 int main(int argc, char** argv) try {
+    // Every Viam C++ SDK program must have one and only one Instance object which is created before
+    // any other C++ SDK objects and stays alive until all Viam C++ SDK objects are destroyed.
     Instance inst;
 
     Model mysensor_model("viam", "sensor", "mysensor");
