@@ -11,6 +11,8 @@
 using namespace viam::sdk;
 
 int main() {
+    // Every Viam C++ SDK program must have one and only one Instance object which is created before
+    // any other C++ SDK objects and stays alive until all Viam C++ SDK objects are destroyed.
     Instance inst;
 
     const char* uri = "http://localhost:8080/";  // replace with your URI if connecting securely
