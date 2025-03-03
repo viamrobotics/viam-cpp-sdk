@@ -745,7 +745,7 @@ int serve(const std::string& socket_path) try {
     Registry::get().register_model(module_registration);
 
     // Construct the module service and tell it where to place the socket path.
-    auto module_service = std::make_shared<vsdk::ModuleService>(socket_path, inst.registry());
+    auto module_service = std::make_shared<vsdk::ModuleService>(socket_path);
 
     // Add the server as providing the API and model declared in the
     // registration.
