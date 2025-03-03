@@ -85,7 +85,16 @@ class RobotClient {
     /// `close()`d manually.
     static std::shared_ptr<RobotClient> with_channel(std::shared_ptr<ViamChannel> channel,
                                                      const Options& options);
+
     RobotClient(std::shared_ptr<ViamChannel> channel);
+
+    void log(const std::string& name,
+             const std::string& level,
+             const std::string& message,
+             std::chrono::time_point<std::chrono::system_clock, std::chrono::nanoseconds> time);
+
+    void connect_logging();
+
     std::vector<Name> resource_names() const;
 
     /// @brief Lookup and return a `shared_ptr` to a resource.
@@ -147,19 +156,25 @@ class RobotClient {
     status get_machine_status() const;
 
    private:
+    void refresh_every();
+
     Registry* registry_;
+
     std::vector<std::shared_ptr<std::thread>> threads_;
     std::atomic<bool> should_refresh_;
     unsigned int refresh_interval_;
+
     std::shared_ptr<GrpcChannel> channel_;
     std::shared_ptr<ViamChannel> viam_channel_;
     bool should_close_channel_;
+
     struct impl;
     std::unique_ptr<impl> impl_;
+
     mutable std::mutex lock_;
+
     std::vector<Name> resource_names_;
     ResourceManager resource_manager_;
-    void refresh_every();
 };
 
 }  // namespace sdk

@@ -9,6 +9,7 @@
 #include <unistd.h>
 #include <vector>
 
+#include <boost/log/core/core.hpp>
 #include <boost/log/trivial.hpp>
 #include <grpcpp/channel.h>
 #include <grpcpp/client_context.h>
@@ -24,6 +25,7 @@
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/component.hpp>
+#include <viam/sdk/log/private/log_backend.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/rpc/dial.hpp>
@@ -84,8 +86,25 @@ bool operator==(const RobotClient::operation& lhs, const RobotClient::operation&
 
 struct RobotClient::impl {
     impl(std::unique_ptr<RobotService::Stub> stub) : stub_(std::move(stub)) {}
+
+    ~impl() {
+        if (log_sink) {
+            boost::log::core::get()->remove_sink(log_sink);
+        }
+    }
+
     std::unique_ptr<RobotService::Stub> stub_;
+
+    boost::shared_ptr<viam::sdk::impl::SinkType> log_sink;
 };
+
+void RobotClient::connect_logging() {
+    auto& sink = impl_->log_sink;
+    if (!sink) {
+        sink = sdk::impl::LogBackend::create(this);
+        boost::log::core::get()->add_sink(sink);
+    }
+}
 
 RobotClient::~RobotClient() {
     if (should_close_channel_) {
@@ -226,11 +245,31 @@ RobotClient::RobotClient(std::shared_ptr<ViamChannel> channel)
       channel_(channel->channel()),
       viam_channel_(std::move(channel)),
       should_close_channel_(false),
-      impl_(std::make_unique<impl>(RobotService::NewStub(channel_))) {}
+      impl_(std::make_unique<impl>(RobotService::NewStub(channel_), this)) {}
 
 std::vector<Name> RobotClient::resource_names() const {
     const std::lock_guard<std::mutex> lock(lock_);
     return resource_names_;
+}
+
+void RobotClient::log(
+    const std::string& name,
+    const std::string& level,
+    const std::string& message,
+    std::chrono::time_point<std::chrono::system_clock, std::chrono::nanoseconds> time) {
+    robot::v1::LogRequest req;
+    common::v1::LogEntry log;
+
+    *log.mutable_logger_name() = name;
+    log.set_level(level);
+    *log.mutable_message() = message;
+    (void)time;
+    req.mutable_logs()->Add(std::move(log));
+
+    robot::v1::LogResponse resp;
+    ClientContext ctx;
+    const auto response = impl_->stub_->Log(ctx, req, &resp);
+    (void)response;
 }
 
 std::shared_ptr<RobotClient> RobotClient::with_channel(std::shared_ptr<ViamChannel> channel,

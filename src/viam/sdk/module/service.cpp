@@ -209,6 +209,7 @@ Dependencies ModuleService::get_dependencies_(
 std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) {
     if (!parent_) {
         parent_ = RobotClient::at_local_socket(parent_addr_, {0, boost::none});
+        parent_->connect_logging();
     }
 
     return parent_->resource_by_name(name);

@@ -103,6 +103,7 @@ target_sources(viamsdk
     components/sensor.cpp
     components/servo.cpp
     config/resource.cpp
+    log/private/log_backend.cpp
     module/handler_map.cpp
     module/module.cpp
     module/service.cpp
