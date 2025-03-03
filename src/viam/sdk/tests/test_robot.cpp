@@ -62,6 +62,8 @@ void robot_client_to_mocks_pipeline(F&& test_case) {
 }
 
 BOOST_AUTO_TEST_CASE(test_registering_resources) {
+    auto& registry = Registry::get();
+
     // To test with mock resources we need to be able to create them, which means registering
     // constructors. This tests that we register correctly.
     Model camera_model("fake", "fake", "mock_camera");
@@ -70,7 +72,7 @@ BOOST_AUTO_TEST_CASE(test_registering_resources) {
         camera_model,
         [](Dependencies, ResourceConfig cfg) { return camera::MockCamera::get_mock_camera(); },
         [](ResourceConfig cfg) -> std::vector<std::string> { return {}; });
-    Registry::register_model(cr);
+    registry.register_model(cr);
 
     Model generic_model("fake", "fake", "mock_generic");
     std::shared_ptr<ModelRegistration> gr = std::make_shared<ModelRegistration>(
@@ -80,7 +82,7 @@ BOOST_AUTO_TEST_CASE(test_registering_resources) {
             return generic::MockGenericComponent::get_mock_generic();
         },
         [](ResourceConfig cfg) -> std::vector<std::string> { return {}; });
-    Registry::register_model(gr);
+    registry.register_model(gr);
 
     Model motor_model("fake", "fake", "mock_motor");
     std::shared_ptr<ModelRegistration> mr = std::make_shared<ModelRegistration>(
@@ -88,11 +90,11 @@ BOOST_AUTO_TEST_CASE(test_registering_resources) {
         motor_model,
         [](Dependencies, ResourceConfig cfg) { return motor::MockMotor::get_mock_motor(); },
         [](ResourceConfig cfg) -> std::vector<std::string> { return {}; });
-    Registry::register_model(mr);
+    registry.register_model(mr);
 
-    BOOST_CHECK(Registry::lookup_model(API::get<Camera>(), camera_model));
-    BOOST_CHECK(Registry::lookup_model(API::get<GenericComponent>(), generic_model));
-    BOOST_CHECK(Registry::lookup_model(API::get<Motor>(), motor_model));
+    BOOST_CHECK(registry.lookup_model(API::get<Camera>(), camera_model));
+    BOOST_CHECK(registry.lookup_model(API::get<GenericComponent>(), generic_model));
+    BOOST_CHECK(registry.lookup_model(API::get<Motor>(), motor_model));
 }
 
 BOOST_AUTO_TEST_CASE(test_resource_names) {
