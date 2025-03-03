@@ -158,9 +158,8 @@ class RobotClient {
    private:
     void refresh_every();
 
-    Registry* registry_;
-
     std::vector<std::shared_ptr<std::thread>> threads_;
+
     std::atomic<bool> should_refresh_;
     unsigned int refresh_interval_;
 

@@ -2,7 +2,6 @@
 
 #include <grpcpp/grpcpp.h>
 
-#include <viam/sdk/common/instance.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>

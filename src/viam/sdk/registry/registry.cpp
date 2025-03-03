@@ -92,7 +92,9 @@ const Model& ModelRegistration::model() const {
 };
 
 Registry& Registry::get() {
-    return Instance::current().impl_->registry;
+    static Registry& result = Instance::current().impl_->registry;
+
+    return result;
 }
 
 void Registry::register_model(std::shared_ptr<const ModelRegistration> resource) {
@@ -219,13 +221,6 @@ void Registry::register_resources() {
 }
 
 void Registry::initialize() {
-    const std::lock_guard<std::mutex> lock(lock_);
-    if (initialized_) {
-        BOOST_LOG_TRIVIAL(warning)
-            << "Attempted to initialize the Registry but it was already initialized.";
-        return;
-    }
-    initialized_ = true;
     register_resources();
     grpc::reflection::InitProtoReflectionServerBuilderPlugin();
 }

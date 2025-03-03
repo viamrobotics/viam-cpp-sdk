@@ -11,20 +11,19 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
+struct LogBackend;
+
+using SinkType = boost::log::sinks::synchronous_sink<LogBackend>;
+
 struct LogBackend : boost::log::sinks::basic_sink_backend<boost::log::sinks::synchronized_feeding> {
     LogBackend(RobotClient* p) : parent(p) {}
 
     void consume(const boost::log::record_view&);
 
-    static auto create(RobotClient* p) {
-        auto backend = boost::make_shared<LogBackend>(p);
-        return boost::make_shared<boost::log::sinks::synchronous_sink<LogBackend>>(backend);
-    }
+    static boost::shared_ptr<SinkType> create(RobotClient* p);
 
     RobotClient* parent;
 };
-
-using SinkType = boost::log::sinks::synchronous_sink<LogBackend>;
 
 }  // namespace impl
 }  // namespace sdk

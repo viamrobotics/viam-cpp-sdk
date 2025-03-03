@@ -194,8 +194,9 @@ class Registry {
     void initialize();
 
     mutable std::mutex lock_;
-    bool initialized_{false};
+
     std::unordered_map<std::string, std::shared_ptr<const ModelRegistration>> resources_;
+
     std::unordered_map<API, std::shared_ptr<const ResourceClientRegistration>> client_apis_;
     std::unordered_map<API, std::shared_ptr<const ResourceServerRegistration>> server_apis_;
 
