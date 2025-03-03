@@ -147,19 +147,24 @@ class RobotClient {
     status get_machine_status() const;
 
    private:
-    Registry* registry_;
+    void refresh_every();
+
     std::vector<std::shared_ptr<std::thread>> threads_;
+
     std::atomic<bool> should_refresh_;
     unsigned int refresh_interval_;
+
     std::shared_ptr<GrpcChannel> channel_;
     std::shared_ptr<ViamChannel> viam_channel_;
     bool should_close_channel_;
+
     struct impl;
     std::unique_ptr<impl> impl_;
+
     mutable std::mutex lock_;
+
     std::vector<Name> resource_names_;
     ResourceManager resource_manager_;
-    void refresh_every();
 };
 
 }  // namespace sdk

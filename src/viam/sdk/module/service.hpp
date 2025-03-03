@@ -64,8 +64,6 @@ class ModuleService {
                                    std::string const& resource_name);
     std::shared_ptr<Resource> get_parent_resource_(const Name& name);
 
-    Registry* registry_;
-
     std::mutex lock_;
     std::unique_ptr<Module> module_;
     std::shared_ptr<RobotClient> parent_;
