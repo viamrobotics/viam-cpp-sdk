@@ -20,11 +20,10 @@ class ViamChannel {
     static std::shared_ptr<ViamChannel> dial(const char* uri,
                                              const boost::optional<DialOptions>& options);
 
-    // allows for specifying that this dial is an initial connection attempt, indicating that
-    // initial connection options should be used.
-    static std::shared_ptr<ViamChannel> dial(const char* uri,
-                                             const boost::optional<DialOptions>& options,
-                                             bool initial_attempt);
+    // Specifies that this dial is an initial connection attempt and that initial connection options
+    // should be used.
+    static std::shared_ptr<ViamChannel> dial_initial(const char* uri,
+                                                     const boost::optional<DialOptions>& options);
 
     const std::shared_ptr<GrpcChannel>& channel() const;
 
@@ -57,14 +56,14 @@ class DialOptions {
     bool allows_insecure_downgrade() const;
     const std::chrono::duration<float>& timeout() const;
     int initial_connection_attempts() const;
-    const std::chrono::duration<float>& initial_connection_attempt_timeout() const;
+    std::chrono::duration<float> initial_connection_attempt_timeout() const;
 
-    void set_entity(boost::optional<std::string> entity);
-    void set_credentials(boost::optional<Credentials> creds);
-    void set_allow_insecure_downgrade(bool allow);
-    void set_timeout(std::chrono::duration<float> timeout);
-    void set_initial_connection_attempts(int attempts);
-    void set_initial_connection_attempt_timeout(std::chrono::duration<float> timeout);
+    DialOptions& set_entity(boost::optional<std::string> entity);
+    DialOptions& set_credentials(boost::optional<Credentials> creds);
+    DialOptions& set_allow_insecure_downgrade(bool allow);
+    DialOptions& set_timeout(std::chrono::duration<float> timeout);
+    DialOptions& set_initial_connection_attempts(int attempts);
+    DialOptions& set_initial_connection_attempt_timeout(std::chrono::duration<float> timeout);
 
    private:
     // TODO (RSDK-917): We currently don't provide a flag for disabling webRTC, instead relying on a
