@@ -10152,6 +10152,7 @@ class Location final :
     kCreatedOnFieldNumber = 3,
     kAuthFieldNumber = 5,
     kConfigFieldNumber = 8,
+    kPrimaryOrgIdentityFieldNumber = 9,
     kRobotCountFieldNumber = 7,
   };
   // repeated .viam.app.v1.LocationOrganization organizations = 6 [json_name = "organizations"];
@@ -10268,6 +10269,24 @@ class Location final :
       ::viam::app::v1::StorageConfig* config);
   ::viam::app::v1::StorageConfig* unsafe_arena_release_config();
 
+  // optional .viam.app.v1.OrganizationIdentity primary_org_identity = 9 [json_name = "primaryOrgIdentity"];
+  bool has_primary_org_identity() const;
+  private:
+  bool _internal_has_primary_org_identity() const;
+  public:
+  void clear_primary_org_identity();
+  const ::viam::app::v1::OrganizationIdentity& primary_org_identity() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::OrganizationIdentity* release_primary_org_identity();
+  ::viam::app::v1::OrganizationIdentity* mutable_primary_org_identity();
+  void set_allocated_primary_org_identity(::viam::app::v1::OrganizationIdentity* primary_org_identity);
+  private:
+  const ::viam::app::v1::OrganizationIdentity& _internal_primary_org_identity() const;
+  ::viam::app::v1::OrganizationIdentity* _internal_mutable_primary_org_identity();
+  public:
+  void unsafe_arena_set_allocated_primary_org_identity(
+      ::viam::app::v1::OrganizationIdentity* primary_org_identity);
+  ::viam::app::v1::OrganizationIdentity* unsafe_arena_release_primary_org_identity();
+
   // int32 robot_count = 7 [json_name = "robotCount"];
   void clear_robot_count();
   int32_t robot_count() const;
@@ -10284,6 +10303,8 @@ class Location final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::LocationOrganization > organizations_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
@@ -10291,8 +10312,8 @@ class Location final :
   ::PROTOBUF_NAMESPACE_ID::Timestamp* created_on_;
   ::viam::app::v1::LocationAuth* auth_;
   ::viam::app::v1::StorageConfig* config_;
+  ::viam::app::v1::OrganizationIdentity* primary_org_identity_;
   int32_t robot_count_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -48868,6 +48889,96 @@ inline void Location::set_allocated_config(::viam::app::v1::StorageConfig* confi
   }
   config_ = config;
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Location.config)
+}
+
+// optional .viam.app.v1.OrganizationIdentity primary_org_identity = 9 [json_name = "primaryOrgIdentity"];
+inline bool Location::_internal_has_primary_org_identity() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || primary_org_identity_ != nullptr);
+  return value;
+}
+inline bool Location::has_primary_org_identity() const {
+  return _internal_has_primary_org_identity();
+}
+inline void Location::clear_primary_org_identity() {
+  if (primary_org_identity_ != nullptr) primary_org_identity_->Clear();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const ::viam::app::v1::OrganizationIdentity& Location::_internal_primary_org_identity() const {
+  const ::viam::app::v1::OrganizationIdentity* p = primary_org_identity_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::OrganizationIdentity&>(
+      ::viam::app::v1::_OrganizationIdentity_default_instance_);
+}
+inline const ::viam::app::v1::OrganizationIdentity& Location::primary_org_identity() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Location.primary_org_identity)
+  return _internal_primary_org_identity();
+}
+inline void Location::unsafe_arena_set_allocated_primary_org_identity(
+    ::viam::app::v1::OrganizationIdentity* primary_org_identity) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(primary_org_identity_);
+  }
+  primary_org_identity_ = primary_org_identity;
+  if (primary_org_identity) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.Location.primary_org_identity)
+}
+inline ::viam::app::v1::OrganizationIdentity* Location::release_primary_org_identity() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::app::v1::OrganizationIdentity* temp = primary_org_identity_;
+  primary_org_identity_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::OrganizationIdentity* Location::unsafe_arena_release_primary_org_identity() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.Location.primary_org_identity)
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::app::v1::OrganizationIdentity* temp = primary_org_identity_;
+  primary_org_identity_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::OrganizationIdentity* Location::_internal_mutable_primary_org_identity() {
+  _has_bits_[0] |= 0x00000001u;
+  if (primary_org_identity_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::OrganizationIdentity>(GetArenaForAllocation());
+    primary_org_identity_ = p;
+  }
+  return primary_org_identity_;
+}
+inline ::viam::app::v1::OrganizationIdentity* Location::mutable_primary_org_identity() {
+  ::viam::app::v1::OrganizationIdentity* _msg = _internal_mutable_primary_org_identity();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Location.primary_org_identity)
+  return _msg;
+}
+inline void Location::set_allocated_primary_org_identity(::viam::app::v1::OrganizationIdentity* primary_org_identity) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete primary_org_identity_;
+  }
+  if (primary_org_identity) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(primary_org_identity);
+    if (message_arena != submessage_arena) {
+      primary_org_identity = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, primary_org_identity, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  primary_org_identity_ = primary_org_identity;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Location.primary_org_identity)
 }
 
 // -------------------------------------------------------------------

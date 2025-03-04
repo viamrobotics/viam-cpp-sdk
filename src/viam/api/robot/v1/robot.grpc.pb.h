@@ -223,6 +223,14 @@ class RobotService final {
     std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>> PrepareAsyncTunnel(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>>(PrepareAsyncTunnelRaw(context, cq));
     }
+    // ListTunnels lists all available tunnels configured on the robot.
+    virtual ::grpc::Status ListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest& request, ::viam::robot::v1::ListTunnelsResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::ListTunnelsResponse>> AsyncListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::ListTunnelsResponse>>(AsyncListTunnelsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::ListTunnelsResponse>> PrepareAsyncListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::ListTunnelsResponse>>(PrepareAsyncListTunnelsRaw(context, request, cq));
+    }
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
@@ -507,6 +515,19 @@ class RobotService final {
       #else
       virtual void Tunnel(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::viam::robot::v1::TunnelRequest,::viam::robot::v1::TunnelResponse>* reactor) = 0;
       #endif
+      // ListTunnels lists all available tunnels configured on the robot.
+      virtual void ListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest* request, ::viam::robot::v1::ListTunnelsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ListTunnels(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ListTunnelsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void ListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest* request, ::viam::robot::v1::ListTunnelsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void ListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest* request, ::viam::robot::v1::ListTunnelsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void ListTunnels(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ListTunnelsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void ListTunnels(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ListTunnelsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
     };
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     typedef class experimental_async_interface async_interface;
@@ -564,6 +585,8 @@ class RobotService final {
     virtual ::grpc::ClientReaderWriterInterface< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>* TunnelRaw(::grpc::ClientContext* context) = 0;
     virtual ::grpc::ClientAsyncReaderWriterInterface< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>* AsyncTunnelRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
     virtual ::grpc::ClientAsyncReaderWriterInterface< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>* PrepareAsyncTunnelRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::ListTunnelsResponse>* AsyncListTunnelsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::ListTunnelsResponse>* PrepareAsyncListTunnelsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -732,6 +755,13 @@ class RobotService final {
     }
     std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>> PrepareAsyncTunnel(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>>(PrepareAsyncTunnelRaw(context, cq));
+    }
+    ::grpc::Status ListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest& request, ::viam::robot::v1::ListTunnelsResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::ListTunnelsResponse>> AsyncListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::ListTunnelsResponse>>(AsyncListTunnelsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::ListTunnelsResponse>> PrepareAsyncListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::ListTunnelsResponse>>(PrepareAsyncListTunnelsRaw(context, request, cq));
     }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
@@ -998,6 +1028,18 @@ class RobotService final {
       #else
       void Tunnel(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::viam::robot::v1::TunnelRequest,::viam::robot::v1::TunnelResponse>* reactor) override;
       #endif
+      void ListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest* request, ::viam::robot::v1::ListTunnelsResponse* response, std::function<void(::grpc::Status)>) override;
+      void ListTunnels(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ListTunnelsResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void ListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest* request, ::viam::robot::v1::ListTunnelsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void ListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest* request, ::viam::robot::v1::ListTunnelsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void ListTunnels(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ListTunnelsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void ListTunnels(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ListTunnelsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
      private:
       friend class Stub;
       explicit experimental_async(Stub* stub): stub_(stub) { }
@@ -1057,6 +1099,8 @@ class RobotService final {
     ::grpc::ClientReaderWriter< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>* TunnelRaw(::grpc::ClientContext* context) override;
     ::grpc::ClientAsyncReaderWriter< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>* AsyncTunnelRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
     ::grpc::ClientAsyncReaderWriter< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>* PrepareAsyncTunnelRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::ListTunnelsResponse>* AsyncListTunnelsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::ListTunnelsResponse>* PrepareAsyncListTunnelsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetOperations_;
     const ::grpc::internal::RpcMethod rpcmethod_GetSessions_;
     const ::grpc::internal::RpcMethod rpcmethod_ResourceNames_;
@@ -1080,6 +1124,7 @@ class RobotService final {
     const ::grpc::internal::RpcMethod rpcmethod_GetMachineStatus_;
     const ::grpc::internal::RpcMethod rpcmethod_GetVersion_;
     const ::grpc::internal::RpcMethod rpcmethod_Tunnel_;
+    const ::grpc::internal::RpcMethod rpcmethod_ListTunnels_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -1129,6 +1174,8 @@ class RobotService final {
     virtual ::grpc::Status GetVersion(::grpc::ServerContext* context, const ::viam::robot::v1::GetVersionRequest* request, ::viam::robot::v1::GetVersionResponse* response);
     // Tunnel tunnels traffic to the destination port of the robot server.
     virtual ::grpc::Status Tunnel(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::viam::robot::v1::TunnelResponse, ::viam::robot::v1::TunnelRequest>* stream);
+    // ListTunnels lists all available tunnels configured on the robot.
+    virtual ::grpc::Status ListTunnels(::grpc::ServerContext* context, const ::viam::robot::v1::ListTunnelsRequest* request, ::viam::robot::v1::ListTunnelsResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetOperations : public BaseClass {
@@ -1590,7 +1637,27 @@ class RobotService final {
       ::grpc::Service::RequestAsyncBidiStreaming(22, context, stream, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetOperations<WithAsyncMethod_GetSessions<WithAsyncMethod_ResourceNames<WithAsyncMethod_ResourceRPCSubtypes<WithAsyncMethod_CancelOperation<WithAsyncMethod_BlockForOperation<WithAsyncMethod_GetModelsFromModules<WithAsyncMethod_DiscoverComponents<WithAsyncMethod_FrameSystemConfig<WithAsyncMethod_TransformPose<WithAsyncMethod_TransformPCD<WithAsyncMethod_GetStatus<WithAsyncMethod_StreamStatus<WithAsyncMethod_StopAll<WithAsyncMethod_StartSession<WithAsyncMethod_SendSessionHeartbeat<WithAsyncMethod_Log<WithAsyncMethod_GetCloudMetadata<WithAsyncMethod_RestartModule<WithAsyncMethod_Shutdown<WithAsyncMethod_GetMachineStatus<WithAsyncMethod_GetVersion<WithAsyncMethod_Tunnel<Service > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_ListTunnels : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_ListTunnels() {
+      ::grpc::Service::MarkMethodAsync(23);
+    }
+    ~WithAsyncMethod_ListTunnels() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListTunnels(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::ListTunnelsRequest* /*request*/, ::viam::robot::v1::ListTunnelsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestListTunnels(::grpc::ServerContext* context, ::viam::robot::v1::ListTunnelsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::robot::v1::ListTunnelsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(23, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetOperations<WithAsyncMethod_GetSessions<WithAsyncMethod_ResourceNames<WithAsyncMethod_ResourceRPCSubtypes<WithAsyncMethod_CancelOperation<WithAsyncMethod_BlockForOperation<WithAsyncMethod_GetModelsFromModules<WithAsyncMethod_DiscoverComponents<WithAsyncMethod_FrameSystemConfig<WithAsyncMethod_TransformPose<WithAsyncMethod_TransformPCD<WithAsyncMethod_GetStatus<WithAsyncMethod_StreamStatus<WithAsyncMethod_StopAll<WithAsyncMethod_StartSession<WithAsyncMethod_SendSessionHeartbeat<WithAsyncMethod_Log<WithAsyncMethod_GetCloudMetadata<WithAsyncMethod_RestartModule<WithAsyncMethod_Shutdown<WithAsyncMethod_GetMachineStatus<WithAsyncMethod_GetVersion<WithAsyncMethod_Tunnel<WithAsyncMethod_ListTunnels<Service > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_GetOperations : public BaseClass {
    private:
@@ -2654,11 +2721,58 @@ class RobotService final {
     #endif
       { return nullptr; }
   };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_ListTunnels : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_ListTunnels() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(23,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::ListTunnelsRequest, ::viam::robot::v1::ListTunnelsResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::robot::v1::ListTunnelsRequest* request, ::viam::robot::v1::ListTunnelsResponse* response) { return this->ListTunnels(context, request, response); }));}
+    void SetMessageAllocatorFor_ListTunnels(
+        ::grpc::experimental::MessageAllocator< ::viam::robot::v1::ListTunnelsRequest, ::viam::robot::v1::ListTunnelsResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(23);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(23);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::ListTunnelsRequest, ::viam::robot::v1::ListTunnelsResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_ListTunnels() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListTunnels(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::ListTunnelsRequest* /*request*/, ::viam::robot::v1::ListTunnelsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* ListTunnels(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::ListTunnelsRequest* /*request*/, ::viam::robot::v1::ListTunnelsResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ListTunnels(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::robot::v1::ListTunnelsRequest* /*request*/, ::viam::robot::v1::ListTunnelsResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
   #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_GetOperations<ExperimentalWithCallbackMethod_GetSessions<ExperimentalWithCallbackMethod_ResourceNames<ExperimentalWithCallbackMethod_ResourceRPCSubtypes<ExperimentalWithCallbackMethod_CancelOperation<ExperimentalWithCallbackMethod_BlockForOperation<ExperimentalWithCallbackMethod_GetModelsFromModules<ExperimentalWithCallbackMethod_DiscoverComponents<ExperimentalWithCallbackMethod_FrameSystemConfig<ExperimentalWithCallbackMethod_TransformPose<ExperimentalWithCallbackMethod_TransformPCD<ExperimentalWithCallbackMethod_GetStatus<ExperimentalWithCallbackMethod_StreamStatus<ExperimentalWithCallbackMethod_StopAll<ExperimentalWithCallbackMethod_StartSession<ExperimentalWithCallbackMethod_SendSessionHeartbeat<ExperimentalWithCallbackMethod_Log<ExperimentalWithCallbackMethod_GetCloudMetadata<ExperimentalWithCallbackMethod_RestartModule<ExperimentalWithCallbackMethod_Shutdown<ExperimentalWithCallbackMethod_GetMachineStatus<ExperimentalWithCallbackMethod_GetVersion<ExperimentalWithCallbackMethod_Tunnel<Service > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
+  typedef ExperimentalWithCallbackMethod_GetOperations<ExperimentalWithCallbackMethod_GetSessions<ExperimentalWithCallbackMethod_ResourceNames<ExperimentalWithCallbackMethod_ResourceRPCSubtypes<ExperimentalWithCallbackMethod_CancelOperation<ExperimentalWithCallbackMethod_BlockForOperation<ExperimentalWithCallbackMethod_GetModelsFromModules<ExperimentalWithCallbackMethod_DiscoverComponents<ExperimentalWithCallbackMethod_FrameSystemConfig<ExperimentalWithCallbackMethod_TransformPose<ExperimentalWithCallbackMethod_TransformPCD<ExperimentalWithCallbackMethod_GetStatus<ExperimentalWithCallbackMethod_StreamStatus<ExperimentalWithCallbackMethod_StopAll<ExperimentalWithCallbackMethod_StartSession<ExperimentalWithCallbackMethod_SendSessionHeartbeat<ExperimentalWithCallbackMethod_Log<ExperimentalWithCallbackMethod_GetCloudMetadata<ExperimentalWithCallbackMethod_RestartModule<ExperimentalWithCallbackMethod_Shutdown<ExperimentalWithCallbackMethod_GetMachineStatus<ExperimentalWithCallbackMethod_GetVersion<ExperimentalWithCallbackMethod_Tunnel<ExperimentalWithCallbackMethod_ListTunnels<Service > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
   #endif
 
-  typedef ExperimentalWithCallbackMethod_GetOperations<ExperimentalWithCallbackMethod_GetSessions<ExperimentalWithCallbackMethod_ResourceNames<ExperimentalWithCallbackMethod_ResourceRPCSubtypes<ExperimentalWithCallbackMethod_CancelOperation<ExperimentalWithCallbackMethod_BlockForOperation<ExperimentalWithCallbackMethod_GetModelsFromModules<ExperimentalWithCallbackMethod_DiscoverComponents<ExperimentalWithCallbackMethod_FrameSystemConfig<ExperimentalWithCallbackMethod_TransformPose<ExperimentalWithCallbackMethod_TransformPCD<ExperimentalWithCallbackMethod_GetStatus<ExperimentalWithCallbackMethod_StreamStatus<ExperimentalWithCallbackMethod_StopAll<ExperimentalWithCallbackMethod_StartSession<ExperimentalWithCallbackMethod_SendSessionHeartbeat<ExperimentalWithCallbackMethod_Log<ExperimentalWithCallbackMethod_GetCloudMetadata<ExperimentalWithCallbackMethod_RestartModule<ExperimentalWithCallbackMethod_Shutdown<ExperimentalWithCallbackMethod_GetMachineStatus<ExperimentalWithCallbackMethod_GetVersion<ExperimentalWithCallbackMethod_Tunnel<Service > > > > > > > > > > > > > > > > > > > > > > > ExperimentalCallbackService;
+  typedef ExperimentalWithCallbackMethod_GetOperations<ExperimentalWithCallbackMethod_GetSessions<ExperimentalWithCallbackMethod_ResourceNames<ExperimentalWithCallbackMethod_ResourceRPCSubtypes<ExperimentalWithCallbackMethod_CancelOperation<ExperimentalWithCallbackMethod_BlockForOperation<ExperimentalWithCallbackMethod_GetModelsFromModules<ExperimentalWithCallbackMethod_DiscoverComponents<ExperimentalWithCallbackMethod_FrameSystemConfig<ExperimentalWithCallbackMethod_TransformPose<ExperimentalWithCallbackMethod_TransformPCD<ExperimentalWithCallbackMethod_GetStatus<ExperimentalWithCallbackMethod_StreamStatus<ExperimentalWithCallbackMethod_StopAll<ExperimentalWithCallbackMethod_StartSession<ExperimentalWithCallbackMethod_SendSessionHeartbeat<ExperimentalWithCallbackMethod_Log<ExperimentalWithCallbackMethod_GetCloudMetadata<ExperimentalWithCallbackMethod_RestartModule<ExperimentalWithCallbackMethod_Shutdown<ExperimentalWithCallbackMethod_GetMachineStatus<ExperimentalWithCallbackMethod_GetVersion<ExperimentalWithCallbackMethod_Tunnel<ExperimentalWithCallbackMethod_ListTunnels<Service > > > > > > > > > > > > > > > > > > > > > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetOperations : public BaseClass {
    private:
@@ -3046,6 +3160,23 @@ class RobotService final {
     }
     // disable synchronous version of this method
     ::grpc::Status Tunnel(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::robot::v1::TunnelResponse, ::viam::robot::v1::TunnelRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_ListTunnels : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_ListTunnels() {
+      ::grpc::Service::MarkMethodGeneric(23);
+    }
+    ~WithGenericMethod_ListTunnels() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListTunnels(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::ListTunnelsRequest* /*request*/, ::viam::robot::v1::ListTunnelsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -3508,6 +3639,26 @@ class RobotService final {
     }
     void RequestTunnel(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncBidiStreaming(22, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_ListTunnels : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_ListTunnels() {
+      ::grpc::Service::MarkMethodRaw(23);
+    }
+    ~WithRawMethod_ListTunnels() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListTunnels(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::ListTunnelsRequest* /*request*/, ::viam::robot::v1::ListTunnelsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestListTunnels(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(23, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4385,6 +4536,44 @@ class RobotService final {
       { return nullptr; }
   };
   template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_ListTunnels : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_ListTunnels() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(23,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListTunnels(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_ListTunnels() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListTunnels(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::ListTunnelsRequest* /*request*/, ::viam::robot::v1::ListTunnelsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* ListTunnels(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ListTunnels(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_GetOperations : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -4951,7 +5140,34 @@ class RobotService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetVersion(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::robot::v1::GetVersionRequest,::viam::robot::v1::GetVersionResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetOperations<WithStreamedUnaryMethod_GetSessions<WithStreamedUnaryMethod_ResourceNames<WithStreamedUnaryMethod_ResourceRPCSubtypes<WithStreamedUnaryMethod_CancelOperation<WithStreamedUnaryMethod_BlockForOperation<WithStreamedUnaryMethod_GetModelsFromModules<WithStreamedUnaryMethod_DiscoverComponents<WithStreamedUnaryMethod_FrameSystemConfig<WithStreamedUnaryMethod_TransformPose<WithStreamedUnaryMethod_TransformPCD<WithStreamedUnaryMethod_GetStatus<WithStreamedUnaryMethod_StopAll<WithStreamedUnaryMethod_StartSession<WithStreamedUnaryMethod_SendSessionHeartbeat<WithStreamedUnaryMethod_Log<WithStreamedUnaryMethod_GetCloudMetadata<WithStreamedUnaryMethod_RestartModule<WithStreamedUnaryMethod_Shutdown<WithStreamedUnaryMethod_GetMachineStatus<WithStreamedUnaryMethod_GetVersion<Service > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_ListTunnels : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_ListTunnels() {
+      ::grpc::Service::MarkMethodStreamed(23,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::robot::v1::ListTunnelsRequest, ::viam::robot::v1::ListTunnelsResponse>(
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
+                     ::viam::robot::v1::ListTunnelsRequest, ::viam::robot::v1::ListTunnelsResponse>* streamer) {
+                       return this->StreamedListTunnels(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_ListTunnels() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ListTunnels(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::ListTunnelsRequest* /*request*/, ::viam::robot::v1::ListTunnelsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedListTunnels(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::robot::v1::ListTunnelsRequest,::viam::robot::v1::ListTunnelsResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_GetOperations<WithStreamedUnaryMethod_GetSessions<WithStreamedUnaryMethod_ResourceNames<WithStreamedUnaryMethod_ResourceRPCSubtypes<WithStreamedUnaryMethod_CancelOperation<WithStreamedUnaryMethod_BlockForOperation<WithStreamedUnaryMethod_GetModelsFromModules<WithStreamedUnaryMethod_DiscoverComponents<WithStreamedUnaryMethod_FrameSystemConfig<WithStreamedUnaryMethod_TransformPose<WithStreamedUnaryMethod_TransformPCD<WithStreamedUnaryMethod_GetStatus<WithStreamedUnaryMethod_StopAll<WithStreamedUnaryMethod_StartSession<WithStreamedUnaryMethod_SendSessionHeartbeat<WithStreamedUnaryMethod_Log<WithStreamedUnaryMethod_GetCloudMetadata<WithStreamedUnaryMethod_RestartModule<WithStreamedUnaryMethod_Shutdown<WithStreamedUnaryMethod_GetMachineStatus<WithStreamedUnaryMethod_GetVersion<WithStreamedUnaryMethod_ListTunnels<Service > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_StreamStatus : public BaseClass {
    private:
@@ -4980,7 +5196,7 @@ class RobotService final {
     virtual ::grpc::Status StreamedStreamStatus(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::viam::robot::v1::StreamStatusRequest,::viam::robot::v1::StreamStatusResponse>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_StreamStatus<Service > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetOperations<WithStreamedUnaryMethod_GetSessions<WithStreamedUnaryMethod_ResourceNames<WithStreamedUnaryMethod_ResourceRPCSubtypes<WithStreamedUnaryMethod_CancelOperation<WithStreamedUnaryMethod_BlockForOperation<WithStreamedUnaryMethod_GetModelsFromModules<WithStreamedUnaryMethod_DiscoverComponents<WithStreamedUnaryMethod_FrameSystemConfig<WithStreamedUnaryMethod_TransformPose<WithStreamedUnaryMethod_TransformPCD<WithStreamedUnaryMethod_GetStatus<WithSplitStreamingMethod_StreamStatus<WithStreamedUnaryMethod_StopAll<WithStreamedUnaryMethod_StartSession<WithStreamedUnaryMethod_SendSessionHeartbeat<WithStreamedUnaryMethod_Log<WithStreamedUnaryMethod_GetCloudMetadata<WithStreamedUnaryMethod_RestartModule<WithStreamedUnaryMethod_Shutdown<WithStreamedUnaryMethod_GetMachineStatus<WithStreamedUnaryMethod_GetVersion<Service > > > > > > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetOperations<WithStreamedUnaryMethod_GetSessions<WithStreamedUnaryMethod_ResourceNames<WithStreamedUnaryMethod_ResourceRPCSubtypes<WithStreamedUnaryMethod_CancelOperation<WithStreamedUnaryMethod_BlockForOperation<WithStreamedUnaryMethod_GetModelsFromModules<WithStreamedUnaryMethod_DiscoverComponents<WithStreamedUnaryMethod_FrameSystemConfig<WithStreamedUnaryMethod_TransformPose<WithStreamedUnaryMethod_TransformPCD<WithStreamedUnaryMethod_GetStatus<WithSplitStreamingMethod_StreamStatus<WithStreamedUnaryMethod_StopAll<WithStreamedUnaryMethod_StartSession<WithStreamedUnaryMethod_SendSessionHeartbeat<WithStreamedUnaryMethod_Log<WithStreamedUnaryMethod_GetCloudMetadata<WithStreamedUnaryMethod_RestartModule<WithStreamedUnaryMethod_Shutdown<WithStreamedUnaryMethod_GetMachineStatus<WithStreamedUnaryMethod_GetVersion<WithStreamedUnaryMethod_ListTunnels<Service > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1

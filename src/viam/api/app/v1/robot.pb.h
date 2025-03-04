@@ -179,6 +179,9 @@ extern ServiceConfigDefaultTypeInternal _ServiceConfig_default_instance_;
 class SessionsConfig;
 struct SessionsConfigDefaultTypeInternal;
 extern SessionsConfigDefaultTypeInternal _SessionsConfig_default_instance_;
+class TrafficTunnelEndpoint;
+struct TrafficTunnelEndpointDefaultTypeInternal;
+extern TrafficTunnelEndpointDefaultTypeInternal _TrafficTunnelEndpoint_default_instance_;
 class Translation;
 struct TranslationDefaultTypeInternal;
 extern TranslationDefaultTypeInternal _Translation_default_instance_;
@@ -227,6 +230,7 @@ template<> ::viam::app::v1::ResourceLevelServiceConfig* Arena::CreateMaybeMessag
 template<> ::viam::app::v1::RobotConfig* Arena::CreateMaybeMessage<::viam::app::v1::RobotConfig>(Arena*);
 template<> ::viam::app::v1::ServiceConfig* Arena::CreateMaybeMessage<::viam::app::v1::ServiceConfig>(Arena*);
 template<> ::viam::app::v1::SessionsConfig* Arena::CreateMaybeMessage<::viam::app::v1::SessionsConfig>(Arena*);
+template<> ::viam::app::v1::TrafficTunnelEndpoint* Arena::CreateMaybeMessage<::viam::app::v1::TrafficTunnelEndpoint>(Arena*);
 template<> ::viam::app::v1::Translation* Arena::CreateMaybeMessage<::viam::app::v1::Translation>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace viam {
@@ -2735,12 +2739,31 @@ class NetworkConfig final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kTrafficTunnelEndpointsFieldNumber = 6,
     kFqdnFieldNumber = 1,
     kBindAddressFieldNumber = 2,
     kTlsCertFileFieldNumber = 3,
     kTlsKeyFileFieldNumber = 4,
     kSessionsFieldNumber = 5,
   };
+  // repeated .viam.app.v1.TrafficTunnelEndpoint traffic_tunnel_endpoints = 6 [json_name = "trafficTunnelEndpoints"];
+  int traffic_tunnel_endpoints_size() const;
+  private:
+  int _internal_traffic_tunnel_endpoints_size() const;
+  public:
+  void clear_traffic_tunnel_endpoints();
+  ::viam::app::v1::TrafficTunnelEndpoint* mutable_traffic_tunnel_endpoints(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::TrafficTunnelEndpoint >*
+      mutable_traffic_tunnel_endpoints();
+  private:
+  const ::viam::app::v1::TrafficTunnelEndpoint& _internal_traffic_tunnel_endpoints(int index) const;
+  ::viam::app::v1::TrafficTunnelEndpoint* _internal_add_traffic_tunnel_endpoints();
+  public:
+  const ::viam::app::v1::TrafficTunnelEndpoint& traffic_tunnel_endpoints(int index) const;
+  ::viam::app::v1::TrafficTunnelEndpoint* add_traffic_tunnel_endpoints();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::TrafficTunnelEndpoint >&
+      traffic_tunnel_endpoints() const;
+
   // string fqdn = 1 [json_name = "fqdn"];
   void clear_fqdn();
   const std::string& fqdn() const;
@@ -2822,6 +2845,7 @@ class NetworkConfig final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::TrafficTunnelEndpoint > traffic_tunnel_endpoints_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr fqdn_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr bind_address_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr tls_cert_file_;
@@ -2984,6 +3008,169 @@ class SessionsConfig final :
 };
 // -------------------------------------------------------------------
 
+class TrafficTunnelEndpoint final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.TrafficTunnelEndpoint) */ {
+ public:
+  inline TrafficTunnelEndpoint() : TrafficTunnelEndpoint(nullptr) {}
+  ~TrafficTunnelEndpoint() override;
+  explicit PROTOBUF_CONSTEXPR TrafficTunnelEndpoint(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  TrafficTunnelEndpoint(const TrafficTunnelEndpoint& from);
+  TrafficTunnelEndpoint(TrafficTunnelEndpoint&& from) noexcept
+    : TrafficTunnelEndpoint() {
+    *this = ::std::move(from);
+  }
+
+  inline TrafficTunnelEndpoint& operator=(const TrafficTunnelEndpoint& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TrafficTunnelEndpoint& operator=(TrafficTunnelEndpoint&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TrafficTunnelEndpoint& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TrafficTunnelEndpoint* internal_default_instance() {
+    return reinterpret_cast<const TrafficTunnelEndpoint*>(
+               &_TrafficTunnelEndpoint_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    12;
+
+  friend void swap(TrafficTunnelEndpoint& a, TrafficTunnelEndpoint& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TrafficTunnelEndpoint* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TrafficTunnelEndpoint* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  TrafficTunnelEndpoint* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<TrafficTunnelEndpoint>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const TrafficTunnelEndpoint& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const TrafficTunnelEndpoint& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TrafficTunnelEndpoint* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.TrafficTunnelEndpoint";
+  }
+  protected:
+  explicit TrafficTunnelEndpoint(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kConnectionTimeoutFieldNumber = 2,
+    kPortFieldNumber = 1,
+  };
+  // .google.protobuf.Duration connection_timeout = 2 [json_name = "connectionTimeout"];
+  bool has_connection_timeout() const;
+  private:
+  bool _internal_has_connection_timeout() const;
+  public:
+  void clear_connection_timeout();
+  const ::PROTOBUF_NAMESPACE_ID::Duration& connection_timeout() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Duration* release_connection_timeout();
+  ::PROTOBUF_NAMESPACE_ID::Duration* mutable_connection_timeout();
+  void set_allocated_connection_timeout(::PROTOBUF_NAMESPACE_ID::Duration* connection_timeout);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Duration& _internal_connection_timeout() const;
+  ::PROTOBUF_NAMESPACE_ID::Duration* _internal_mutable_connection_timeout();
+  public:
+  void unsafe_arena_set_allocated_connection_timeout(
+      ::PROTOBUF_NAMESPACE_ID::Duration* connection_timeout);
+  ::PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_connection_timeout();
+
+  // int32 port = 1 [json_name = "port"];
+  void clear_port();
+  int32_t port() const;
+  void set_port(int32_t value);
+  private:
+  int32_t _internal_port() const;
+  void _internal_set_port(int32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.TrafficTunnelEndpoint)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::Duration* connection_timeout_;
+  int32_t port_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
 class AuthConfig final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.AuthConfig) */ {
  public:
@@ -3032,7 +3219,7 @@ class AuthConfig final :
                &_AuthConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(AuthConfig& a, AuthConfig& b) {
     a.Swap(&b);
@@ -3231,7 +3418,7 @@ class JWKSFile final :
                &_JWKSFile_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(JWKSFile& a, JWKSFile& b) {
     a.Swap(&b);
@@ -3383,7 +3570,7 @@ class ExternalAuthConfig final :
                &_ExternalAuthConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(ExternalAuthConfig& a, ExternalAuthConfig& b) {
     a.Swap(&b);
@@ -3535,7 +3722,7 @@ class AuthHandlerConfig final :
                &_AuthHandlerConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(AuthHandlerConfig& a, AuthHandlerConfig& b) {
     a.Swap(&b);
@@ -3698,7 +3885,7 @@ class Frame final :
                &_Frame_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   friend void swap(Frame& a, Frame& b) {
     a.Swap(&b);
@@ -3906,7 +4093,7 @@ class LogConfiguration final :
                &_LogConfiguration_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   friend void swap(LogConfiguration& a, LogConfiguration& b) {
     a.Swap(&b);
@@ -4054,7 +4241,7 @@ class Translation final :
                &_Translation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   friend void swap(Translation& a, Translation& b) {
     a.Swap(&b);
@@ -4218,7 +4405,7 @@ class Orientation_NoOrientation final :
                &_Orientation_NoOrientation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   friend void swap(Orientation_NoOrientation& a, Orientation_NoOrientation& b) {
     a.Swap(&b);
@@ -4335,7 +4522,7 @@ class Orientation_OrientationVectorRadians final :
                &_Orientation_OrientationVectorRadians_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    21;
 
   friend void swap(Orientation_OrientationVectorRadians& a, Orientation_OrientationVectorRadians& b) {
     a.Swap(&b);
@@ -4511,7 +4698,7 @@ class Orientation_OrientationVectorDegrees final :
                &_Orientation_OrientationVectorDegrees_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    22;
 
   friend void swap(Orientation_OrientationVectorDegrees& a, Orientation_OrientationVectorDegrees& b) {
     a.Swap(&b);
@@ -4687,7 +4874,7 @@ class Orientation_EulerAngles final :
                &_Orientation_EulerAngles_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    23;
 
   friend void swap(Orientation_EulerAngles& a, Orientation_EulerAngles& b) {
     a.Swap(&b);
@@ -4852,7 +5039,7 @@ class Orientation_AxisAngles final :
                &_Orientation_AxisAngles_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    24;
 
   friend void swap(Orientation_AxisAngles& a, Orientation_AxisAngles& b) {
     a.Swap(&b);
@@ -5028,7 +5215,7 @@ class Orientation_Quaternion final :
                &_Orientation_Quaternion_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    25;
 
   friend void swap(Orientation_Quaternion& a, Orientation_Quaternion& b) {
     a.Swap(&b);
@@ -5214,7 +5401,7 @@ class Orientation final :
                &_Orientation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    26;
 
   friend void swap(Orientation& a, Orientation& b) {
     a.Swap(&b);
@@ -5490,7 +5677,7 @@ class RemoteConfig final :
                &_RemoteConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    27;
 
   friend void swap(RemoteConfig& a, RemoteConfig& b) {
     a.Swap(&b);
@@ -5797,7 +5984,7 @@ class RemoteAuth_Credentials final :
                &_RemoteAuth_Credentials_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    28;
 
   friend void swap(RemoteAuth_Credentials& a, RemoteAuth_Credentials& b) {
     a.Swap(&b);
@@ -5956,7 +6143,7 @@ class RemoteAuth final :
                &_RemoteAuth_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    29;
 
   friend void swap(RemoteAuth& a, RemoteAuth& b) {
     a.Swap(&b);
@@ -6126,7 +6313,7 @@ class AgentInfo final :
                &_AgentInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    30;
 
   friend void swap(AgentInfo& a, AgentInfo& b) {
     a.Swap(&b);
@@ -6395,7 +6582,7 @@ class ConfigRequest final :
                &_ConfigRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    31;
 
   friend void swap(ConfigRequest& a, ConfigRequest& b) {
     a.Swap(&b);
@@ -6564,7 +6751,7 @@ class ConfigResponse final :
                &_ConfigResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    32;
 
   friend void swap(ConfigResponse& a, ConfigResponse& b) {
     a.Swap(&b);
@@ -6716,7 +6903,7 @@ class CertificateRequest final :
                &_CertificateRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    33;
 
   friend void swap(CertificateRequest& a, CertificateRequest& b) {
     a.Swap(&b);
@@ -6864,7 +7051,7 @@ class CertificateResponse final :
                &_CertificateResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    34;
 
   friend void swap(CertificateResponse& a, CertificateResponse& b) {
     a.Swap(&b);
@@ -7044,7 +7231,7 @@ class LogRequest final :
                &_LogRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    34;
+    35;
 
   friend void swap(LogRequest& a, LogRequest& b) {
     a.Swap(&b);
@@ -7211,7 +7398,7 @@ class LogResponse final :
                &_LogResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    35;
+    36;
 
   friend void swap(LogResponse& a, LogResponse& b) {
     a.Swap(&b);
@@ -7328,7 +7515,7 @@ class NeedsRestartRequest final :
                &_NeedsRestartRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    36;
+    37;
 
   friend void swap(NeedsRestartRequest& a, NeedsRestartRequest& b) {
     a.Swap(&b);
@@ -7476,7 +7663,7 @@ class NeedsRestartResponse final :
                &_NeedsRestartResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    37;
+    38;
 
   friend void swap(NeedsRestartResponse& a, NeedsRestartResponse& b) {
     a.Swap(&b);
@@ -7683,7 +7870,7 @@ class ModuleConfig final :
                &_ModuleConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    39;
+    40;
 
   friend void swap(ModuleConfig& a, ModuleConfig& b) {
     a.Swap(&b);
@@ -7961,7 +8148,7 @@ class PackageConfig final :
                &_PackageConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    40;
+    41;
 
   friend void swap(PackageConfig& a, PackageConfig& b) {
     a.Swap(&b);
@@ -8177,7 +8364,7 @@ class MaintenanceConfig final :
                &_MaintenanceConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    41;
+    42;
 
   friend void swap(MaintenanceConfig& a, MaintenanceConfig& b) {
     a.Swap(&b);
@@ -12024,6 +12211,46 @@ inline void NetworkConfig::set_allocated_sessions(::viam::app::v1::SessionsConfi
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.NetworkConfig.sessions)
 }
 
+// repeated .viam.app.v1.TrafficTunnelEndpoint traffic_tunnel_endpoints = 6 [json_name = "trafficTunnelEndpoints"];
+inline int NetworkConfig::_internal_traffic_tunnel_endpoints_size() const {
+  return traffic_tunnel_endpoints_.size();
+}
+inline int NetworkConfig::traffic_tunnel_endpoints_size() const {
+  return _internal_traffic_tunnel_endpoints_size();
+}
+inline void NetworkConfig::clear_traffic_tunnel_endpoints() {
+  traffic_tunnel_endpoints_.Clear();
+}
+inline ::viam::app::v1::TrafficTunnelEndpoint* NetworkConfig::mutable_traffic_tunnel_endpoints(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.NetworkConfig.traffic_tunnel_endpoints)
+  return traffic_tunnel_endpoints_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::TrafficTunnelEndpoint >*
+NetworkConfig::mutable_traffic_tunnel_endpoints() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.NetworkConfig.traffic_tunnel_endpoints)
+  return &traffic_tunnel_endpoints_;
+}
+inline const ::viam::app::v1::TrafficTunnelEndpoint& NetworkConfig::_internal_traffic_tunnel_endpoints(int index) const {
+  return traffic_tunnel_endpoints_.Get(index);
+}
+inline const ::viam::app::v1::TrafficTunnelEndpoint& NetworkConfig::traffic_tunnel_endpoints(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.NetworkConfig.traffic_tunnel_endpoints)
+  return _internal_traffic_tunnel_endpoints(index);
+}
+inline ::viam::app::v1::TrafficTunnelEndpoint* NetworkConfig::_internal_add_traffic_tunnel_endpoints() {
+  return traffic_tunnel_endpoints_.Add();
+}
+inline ::viam::app::v1::TrafficTunnelEndpoint* NetworkConfig::add_traffic_tunnel_endpoints() {
+  ::viam::app::v1::TrafficTunnelEndpoint* _add = _internal_add_traffic_tunnel_endpoints();
+  // @@protoc_insertion_point(field_add:viam.app.v1.NetworkConfig.traffic_tunnel_endpoints)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::TrafficTunnelEndpoint >&
+NetworkConfig::traffic_tunnel_endpoints() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.NetworkConfig.traffic_tunnel_endpoints)
+  return traffic_tunnel_endpoints_;
+}
+
 // -------------------------------------------------------------------
 
 // SessionsConfig
@@ -12111,6 +12338,115 @@ inline void SessionsConfig::set_allocated_heartbeat_window(::PROTOBUF_NAMESPACE_
   }
   heartbeat_window_ = heartbeat_window;
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.SessionsConfig.heartbeat_window)
+}
+
+// -------------------------------------------------------------------
+
+// TrafficTunnelEndpoint
+
+// int32 port = 1 [json_name = "port"];
+inline void TrafficTunnelEndpoint::clear_port() {
+  port_ = 0;
+}
+inline int32_t TrafficTunnelEndpoint::_internal_port() const {
+  return port_;
+}
+inline int32_t TrafficTunnelEndpoint::port() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.TrafficTunnelEndpoint.port)
+  return _internal_port();
+}
+inline void TrafficTunnelEndpoint::_internal_set_port(int32_t value) {
+  
+  port_ = value;
+}
+inline void TrafficTunnelEndpoint::set_port(int32_t value) {
+  _internal_set_port(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.TrafficTunnelEndpoint.port)
+}
+
+// .google.protobuf.Duration connection_timeout = 2 [json_name = "connectionTimeout"];
+inline bool TrafficTunnelEndpoint::_internal_has_connection_timeout() const {
+  return this != internal_default_instance() && connection_timeout_ != nullptr;
+}
+inline bool TrafficTunnelEndpoint::has_connection_timeout() const {
+  return _internal_has_connection_timeout();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& TrafficTunnelEndpoint::_internal_connection_timeout() const {
+  const ::PROTOBUF_NAMESPACE_ID::Duration* p = connection_timeout_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Duration&>(
+      ::PROTOBUF_NAMESPACE_ID::_Duration_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& TrafficTunnelEndpoint::connection_timeout() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.TrafficTunnelEndpoint.connection_timeout)
+  return _internal_connection_timeout();
+}
+inline void TrafficTunnelEndpoint::unsafe_arena_set_allocated_connection_timeout(
+    ::PROTOBUF_NAMESPACE_ID::Duration* connection_timeout) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(connection_timeout_);
+  }
+  connection_timeout_ = connection_timeout;
+  if (connection_timeout) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.TrafficTunnelEndpoint.connection_timeout)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* TrafficTunnelEndpoint::release_connection_timeout() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Duration* temp = connection_timeout_;
+  connection_timeout_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* TrafficTunnelEndpoint::unsafe_arena_release_connection_timeout() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.TrafficTunnelEndpoint.connection_timeout)
+  
+  ::PROTOBUF_NAMESPACE_ID::Duration* temp = connection_timeout_;
+  connection_timeout_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* TrafficTunnelEndpoint::_internal_mutable_connection_timeout() {
+  
+  if (connection_timeout_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Duration>(GetArenaForAllocation());
+    connection_timeout_ = p;
+  }
+  return connection_timeout_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* TrafficTunnelEndpoint::mutable_connection_timeout() {
+  ::PROTOBUF_NAMESPACE_ID::Duration* _msg = _internal_mutable_connection_timeout();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.TrafficTunnelEndpoint.connection_timeout)
+  return _msg;
+}
+inline void TrafficTunnelEndpoint::set_allocated_connection_timeout(::PROTOBUF_NAMESPACE_ID::Duration* connection_timeout) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(connection_timeout_);
+  }
+  if (connection_timeout) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(connection_timeout));
+    if (message_arena != submessage_arena) {
+      connection_timeout = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, connection_timeout, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  connection_timeout_ = connection_timeout;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.TrafficTunnelEndpoint.connection_timeout)
 }
 
 // -------------------------------------------------------------------
@@ -16816,6 +17152,8 @@ inline void MaintenanceConfig::set_allocated_maintenance_allowed_key(std::string
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
