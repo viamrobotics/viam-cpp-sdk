@@ -3,6 +3,7 @@
 #include <istream>
 #include <string>
 
+#include <boost/config.hpp>
 #include <boost/none.hpp>
 #include <boost/optional.hpp>
 #include <grpcpp/channel.h>
@@ -135,6 +136,9 @@ std::shared_ptr<ViamChannel> ViamChannel::dial_initial(
             }
         }
     }
+    // the while loop will run until we either return or throw an error, so we can never reach this
+    // point
+    BOOST_UNREACHABLE_RETURN(nullptr)
 }
 
 std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
