@@ -123,17 +123,19 @@ std::shared_ptr<ViamChannel> ViamChannel::dial_initial(
     }
     opts.set_timeout(opts.initial_connection_attempt_timeout());
 
+    std::exception exception;
     while (attempts_remaining > 0) {
         try {
             auto connection = dial(uri, opts);
             opts.set_timeout(timeout);
             return connection;
-        } catch (const std::exception&) {
+        } catch (const std::exception& e) {
             attempts_remaining -= 1;
+            exception = e;
         }
     }
 
-    throw Exception(ErrorCondition::k_connection, "Unable to establish connection");
+    throw Exception(ErrorCondition::k_connection, exception.what());
 }
 
 std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
