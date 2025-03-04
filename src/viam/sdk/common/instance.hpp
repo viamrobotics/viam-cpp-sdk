@@ -19,6 +19,7 @@ class Instance {
 
    private:
     friend class Registry;
+    friend class Logger;
 
     struct Impl;
     std::unique_ptr<Impl> impl_;

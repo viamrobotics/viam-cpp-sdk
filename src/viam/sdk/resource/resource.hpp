@@ -2,18 +2,20 @@
 
 #include <unordered_map>
 
-#include <boost/log/sources/severity_channel_logger.hpp>
 #include <boost/log/trivial.hpp>
 
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/log/logger.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 
 namespace viam {
 namespace sdk {
 
 class Resource;
+
 using Dependencies = std::unordered_map<Name, std::shared_ptr<Resource>>;
+
 class Resource {
    public:
     virtual ~Resource();
@@ -34,7 +36,7 @@ class Resource {
    protected:
     Name get_resource_name(const std::string& type) const;
 
-    boost::log::sources::severity_channel_logger_mt<boost::log::trivial::severity_level> logger_;
+    LogSource logger_;
 };
 
 template <>

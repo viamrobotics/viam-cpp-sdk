@@ -103,6 +103,7 @@ target_sources(viamsdk
     components/sensor.cpp
     components/servo.cpp
     config/resource.cpp
+    log/logger.cpp
     log/private/log_backend.cpp
     module/handler_map.cpp
     module/module.cpp
@@ -171,6 +172,7 @@ target_sources(viamsdk
       ../../viam/sdk/components/sensor.hpp
       ../../viam/sdk/components/servo.hpp
       ../../viam/sdk/config/resource.hpp
+      ../../viam/sdk/log/logger.hpp
       ../../viam/sdk/module/handler_map.hpp
       ../../viam/sdk/module/module.hpp
       ../../viam/sdk/module/service.hpp

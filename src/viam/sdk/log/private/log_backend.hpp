@@ -3,7 +3,6 @@
 #include <boost/log/core/record_view.hpp>
 #include <boost/log/sinks/basic_sink_backend.hpp>
 #include <boost/log/sinks/sync_frontend.hpp>
-#include <boost/smart_ptr/make_shared.hpp>
 
 #include <viam/sdk/robot/client.hpp>
 
