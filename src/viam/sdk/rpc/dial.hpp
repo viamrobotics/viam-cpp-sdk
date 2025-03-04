@@ -22,6 +22,7 @@ class ViamChannel {
     /// how many times to attempt to connect and with what timeout.
     /// In general, use of this method is discouraged. `RobotClient::at_address(...)` is the
     /// preferred method to connect to a robot, and creates the channel itself.
+    /// @throws Exception if it is unable to establish a connection to the provided URI
     static std::shared_ptr<ViamChannel> dial(const char* uri,
                                              const boost::optional<DialOptions>& options);
 
@@ -30,6 +31,8 @@ class ViamChannel {
     // attempt and so uses the initial connection options.
     /// In general, use of this method is discouraged. `RobotClient::at_address(...)` is the
     /// preferred method to connect to a robot, and creates the channel itself.
+    /// @throws Exception if it is unable to establish a connection to the provided URI within
+    /// the given number of initial connection attempts
     static std::shared_ptr<ViamChannel> dial_initial(const char* uri,
                                                      const boost::optional<DialOptions>& options);
 
