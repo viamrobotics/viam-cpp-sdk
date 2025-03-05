@@ -103,26 +103,28 @@ class ModelRegistration {
 /// @brief A registry of known resources.
 class Registry {
    public:
+    /// @brief Get the application-wide instance of Registry.
+    static Registry& get();
+
     /// @brief Registers a resource with the Registry.
     /// @param resource An object containing resource registration information.
     /// @throws `Exception` if the resource has already been registered.
-    static void register_model(std::shared_ptr<const ModelRegistration> resource);
+    void register_model(std::shared_ptr<const ModelRegistration> resource);
 
     /// @brief Lookup a given registered resource.
     /// @param name The name of the resource to lookup.
     /// @return a `shared_ptr` to the resource's registration data.
-    static std::shared_ptr<const ModelRegistration> lookup_model(const std::string& name);
+    std::shared_ptr<const ModelRegistration> lookup_model(const std::string& name) const;
 
     /// @brief Lookup a given registered resource.
     /// @param api The api of the resource to lookup.
     /// @param model The model of the resource to lookup.
     /// @return a `shared_ptr` to the resource's registration data.
-    static std::shared_ptr<const ModelRegistration> lookup_model(const API& api,
-                                                                 const Model& model);
+    std::shared_ptr<const ModelRegistration> lookup_model(const API& api, const Model& model) const;
 
     /// @brief Register a resource client constructor
     template <typename ResourceClientT>
-    static void register_resource_client() {
+    void register_resource_client() {
         class ResourceClientRegistration2 final : public ResourceClientRegistration {
            public:
             using ResourceClientRegistration::ResourceClientRegistration;
@@ -139,7 +141,7 @@ class Registry {
 
     /// @brief Register a resource server constructor.
     template <typename ResourceServerT>
-    static void register_resource_server() {
+    void register_resource_server() {
         class ResourceServerRegistration2 final : public ResourceServerRegistration {
            public:
             using ResourceServerRegistration::ResourceServerRegistration;
@@ -159,7 +161,7 @@ class Registry {
 
     /// @brief Register resource client and server constructors
     template <typename ResourceClientT, typename ResourceServerT>
-    static void register_resource() {
+    void register_resource() {
         register_resource_client<ResourceClientT>();
         register_resource_server<ResourceServerT>();
     }
@@ -167,44 +169,50 @@ class Registry {
     /// @brief Lookup a registered server api.
     /// @param api The api to lookup.
     /// @return A `shared_ptr` to the registered api's `ResourceServerRegistration`.
-    static std::shared_ptr<const ResourceServerRegistration> lookup_resource_server(const API& api);
+    std::shared_ptr<const ResourceServerRegistration> lookup_resource_server(const API& api) const;
 
     /// @brief Lookup a registered client api.
     /// @param api The api to lookup.
     /// @return A `shared_ptr` to the registered api's `ResourceClientRegistration`.
-    static std::shared_ptr<const ResourceClientRegistration> lookup_resource_client(const API& api);
+    std::shared_ptr<const ResourceClientRegistration> lookup_resource_client(const API& api) const;
 
     /// @brief Provide information on registered resource models.
     /// @return A map from name to `ModelRegistration` of all registered resource models.
-    static const std::unordered_map<std::string, std::shared_ptr<const ModelRegistration>>&
-    registered_models();
+    const std::unordered_map<std::string, std::shared_ptr<const ModelRegistration>>&
+    registered_models() const;
 
     /// @brief Provide access to registered resources.
     /// @return A map from `API` to `ResourceServerRegistration` of all registered resources.
-    static const std::unordered_map<API, std::shared_ptr<const ResourceServerRegistration>>&
-    registered_resource_servers();
-
-    /// @brief Initialized the Viam registry. No-op if it has already been called.
-    static void initialize();
+    const std::unordered_map<API, std::shared_ptr<const ResourceServerRegistration>>&
+    registered_resource_servers() const;
 
    private:
-    static std::mutex lock_;
-    static bool initialized_;
-    static std::unordered_map<std::string, std::shared_ptr<const ModelRegistration>> resources_;
-    static std::unordered_map<API, std::shared_ptr<const ResourceClientRegistration>> client_apis_;
-    static std::unordered_map<API, std::shared_ptr<const ResourceServerRegistration>> server_apis_;
+    friend class Instance;
+    Registry() = default;
 
-    static void register_resource_server_(
+    /// @brief Initialized the Viam registry. No-op if it has already been called.
+    void initialize();
+
+    mutable std::mutex lock_;
+
+    std::unordered_map<std::string, std::shared_ptr<const ModelRegistration>> resources_;
+
+    std::unordered_map<API, std::shared_ptr<const ResourceClientRegistration>> client_apis_;
+    std::unordered_map<API, std::shared_ptr<const ResourceServerRegistration>> server_apis_;
+
+    void register_resources();
+
+    void register_resource_server_(
         API api, std::shared_ptr<ResourceServerRegistration> resource_registration);
 
-    static void register_resource_client_(
+    void register_resource_client_(
         API api, std::shared_ptr<ResourceClientRegistration> resource_registration);
 
     static const google::protobuf::ServiceDescriptor* get_service_descriptor_(
         const char* service_full_name);
 
-    static std::shared_ptr<const ModelRegistration> lookup_model_inlock_(
-        const std::string& name, const std::lock_guard<std::mutex>&);
+    std::shared_ptr<const ModelRegistration> lookup_model_inlock_(
+        const std::string& name, const std::lock_guard<std::mutex>&) const;
 };
 
 }  // namespace sdk
