@@ -26,12 +26,36 @@ std::string to_string(log_level lvl) {
             return "info";
         case log_level::warn:
             return "warning";
+        // RDK does not support fatal so we send error regardless
         case log_level::error:  // fallthrough
         case log_level::fatal:
             return "error";
         default:
             return std::to_string(static_cast<std::underlying_type_t<log_level>>(lvl));
     }
+}
+
+log_level level_from_string(std::string str) {
+    using ll = log_level;
+
+    std::transform(str.begin(), str.end(), str.begin(), ::tolower);
+
+    if (str == "info") {
+        return ll::info;
+    } else if (str == "warn" || str == "warning") {
+        return ll::warn;
+    } else if (str == "error") {
+        return ll::error;
+    } else if (str == "debug") {
+        return ll::debug;
+    } else if (str == "trace") {
+        return ll::trace;
+    } else if (str == "fatal") {
+        return ll::fatal;
+    }
+
+    VIAM_LOG(warn) << "Returning unknown log level " << str << " as info";
+    return ll::info;
 }
 
 std::ostream& operator<<(std::ostream& os, log_level lvl) {

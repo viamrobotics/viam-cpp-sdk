@@ -27,6 +27,8 @@ enum class log_level : std::int8_t {
 
 std::string to_string(log_level);
 
+log_level level_from_string(std::string level);
+
 std::ostream& operator<<(std::ostream&, log_level);
 
 using LogSource = boost::log::sources::severity_channel_logger_mt<log_level>;
