@@ -96,15 +96,6 @@ std::string bytes_to_string(const std::vector<unsigned char>& b) {
     return img_string;
 }
 
-void set_logger_severity_from_args(int argc, char** argv) {
-    if (argc >= 3 && strcmp(argv[2], "--log-level=debug") == 0) {
-        boost::log::core::get()->set_filter(boost::log::trivial::severity >=
-                                            boost::log::trivial::debug);
-        return;
-    }
-    boost::log::core::get()->set_filter(boost::log::trivial::severity >= boost::log::trivial::info);
-}
-
 std::string random_debug_key() {
     static const char alphanum[] = "abcdefghijklmnopqrstuvwxyz";
     static std::default_random_engine generator(
