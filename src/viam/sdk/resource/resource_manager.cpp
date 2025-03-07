@@ -52,7 +52,7 @@ void ResourceManager::replace_all(
         try {
             do_add(resource.first, resource.second);
         } catch (std::exception& exc) {
-            BOOST_LOG_TRIVIAL(error) << "Error replacing all resources" << exc.what();
+            VIAM_LOG(error) << "Error replacing all resources" << exc.what();
             return;
         }
     }
@@ -97,7 +97,7 @@ void ResourceManager::add(const Name& name, std::shared_ptr<Resource> resource) 
     try {
         do_add(name, std::move(resource));
     } catch (std::exception& exc) {
-        BOOST_LOG_TRIVIAL(error) << "Error adding resource to subtype service: " << exc.what();
+        VIAM_LOG(error) << "Error adding resource to subtype service: " << exc.what();
     }
 };
 
@@ -134,7 +134,7 @@ void ResourceManager::remove(const Name& name) {
     try {
         do_remove(name);
     } catch (std::exception& exc) {
-        BOOST_LOG_TRIVIAL(error) << "unable to remove resource: " << exc.what();
+        VIAM_LOG(error) << "unable to remove resource: " << exc.what();
     };
 };
 
@@ -144,8 +144,7 @@ void ResourceManager::replace_one(const Name& name, std::shared_ptr<Resource> re
         do_remove(name);
         do_add(name, std::move(resource));
     } catch (std::exception& exc) {
-        BOOST_LOG_TRIVIAL(error) << "failed to replace resource " << name.to_string() << ": "
-                                 << exc.what();
+        VIAM_LOG(error) << "failed to replace resource " << name.to_string() << ": " << exc.what();
     }
 }
 

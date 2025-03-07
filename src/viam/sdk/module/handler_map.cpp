@@ -66,7 +66,7 @@ HandlerMap_ from_proto_impl<module::v1::HandlerMap>::operator()(
             try {
                 hm.add_model(Model::from_str(mod), handle);
             } catch (const std::exception& ex) {
-                BOOST_LOG_TRIVIAL(error) << "Error " << ex.what() << " processing model " + mod;
+                VIAM_LOG(error) << "Error " << ex.what() << " processing model " + mod;
             }
         }
     }
