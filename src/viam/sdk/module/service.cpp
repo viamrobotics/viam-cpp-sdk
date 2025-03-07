@@ -182,7 +182,12 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         const std::lock_guard<std::mutex> lock(parent.lock_);
         const viam::module::v1::HandlerMap hm = to_proto(parent.module_->handles());
         *response->mutable_handlermap() = hm;
-        parent.parent_addr_ = request->parent_address();
+        auto new_parent_addr = request->parent_address();
+        if (parent.parent_addr_ != new_parent_addr) {
+            parent.parent_addr_ = std::move(new_parent_addr);
+            parent.parent_ = RobotClient::at_local_socket(parent.parent_addr_, {0, boost::none});
+            parent.parent_->connect_logging();
+        }
         response->set_ready(parent.module_->ready());
         return grpc::Status();
     }
@@ -208,6 +213,7 @@ Dependencies ModuleService::get_dependencies_(
 
 std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) {
     if (!parent_) {
+        // LS: I think maybe this is never hit
         parent_ = RobotClient::at_local_socket(parent_addr_, {0, boost::none});
         parent_->connect_logging();
     }
@@ -230,7 +236,7 @@ ModuleService::ModuleService(int argc,
           }
           return argv[1];
       }()) {
-    set_logger_severity_from_args(argc, argv);
+    Logger::get().set_global_log_level(argc, argv);
 
     for (auto&& mr : registrations) {
         Registry::get().register_model(mr);
@@ -240,14 +246,14 @@ ModuleService::ModuleService(int argc,
 
 ModuleService::~ModuleService() {
     // TODO(RSDK-5509): Run registered cleanup functions here.
-    BOOST_LOG_TRIVIAL(info) << "Shutting down gracefully.";
+    VIAM_LOG(info) << "Shutting down gracefully.";
     server_->shutdown();
 
     if (parent_) {
         try {
             parent_->close();
         } catch (const std::exception& exc) {
-            BOOST_LOG_TRIVIAL(error) << exc.what();
+            VIAM_LOG(error) << exc.what();
         }
     }
 }
@@ -265,9 +271,8 @@ void ModuleService::serve() {
     module_->set_ready();
     server_->start();
 
-    BOOST_LOG_TRIVIAL(info) << "Module listening on " << module_->addr();
-    BOOST_LOG_TRIVIAL(info) << "Module handles the following API/model pairs:\n"
-                            << module_->handles();
+    VIAM_LOG(info) << "Module listening on " << module_->addr();
+    VIAM_LOG(info) << "Module handles the following API/model pairs:\n" << module_->handles();
 
     signal_manager_.wait();
 }

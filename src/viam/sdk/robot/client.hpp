@@ -91,7 +91,7 @@ class RobotClient {
     void log(const std::string& name,
              const std::string& level,
              const std::string& message,
-             std::chrono::time_point<std::chrono::system_clock, std::chrono::nanoseconds> time);
+             time_pt time);
 
     void connect_logging();
 
