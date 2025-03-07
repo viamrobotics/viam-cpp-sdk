@@ -30,15 +30,11 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
-#include <google/protobuf/map.h>  // IWYU pragma: export
-#include <google/protobuf/map_entry.h>
-#include <google/protobuf/map_field_inl.h>
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include "app/mltraining/v1/ml_training.pb.h"
 #include "app/packages/v1/packages.pb.h"
 #include "common/v1/common.pb.h"
-#include <google/protobuf/any.pb.h>
 #include <google/protobuf/struct.pb.h>
 #include <google/protobuf/timestamp.pb.h>
 #include "tagger/v1/tagger.pb.h"
@@ -317,9 +313,6 @@ extern GetLocationMetadataRequestDefaultTypeInternal _GetLocationMetadataRequest
 class GetLocationMetadataResponse;
 struct GetLocationMetadataResponseDefaultTypeInternal;
 extern GetLocationMetadataResponseDefaultTypeInternal _GetLocationMetadataResponse_default_instance_;
-class GetLocationMetadataResponse_DataEntry_DoNotUse;
-struct GetLocationMetadataResponse_DataEntry_DoNotUseDefaultTypeInternal;
-extern GetLocationMetadataResponse_DataEntry_DoNotUseDefaultTypeInternal _GetLocationMetadataResponse_DataEntry_DoNotUse_default_instance_;
 class GetLocationRequest;
 struct GetLocationRequestDefaultTypeInternal;
 extern GetLocationRequestDefaultTypeInternal _GetLocationRequest_default_instance_;
@@ -338,9 +331,6 @@ extern GetOrganizationMetadataRequestDefaultTypeInternal _GetOrganizationMetadat
 class GetOrganizationMetadataResponse;
 struct GetOrganizationMetadataResponseDefaultTypeInternal;
 extern GetOrganizationMetadataResponseDefaultTypeInternal _GetOrganizationMetadataResponse_default_instance_;
-class GetOrganizationMetadataResponse_DataEntry_DoNotUse;
-struct GetOrganizationMetadataResponse_DataEntry_DoNotUseDefaultTypeInternal;
-extern GetOrganizationMetadataResponse_DataEntry_DoNotUseDefaultTypeInternal _GetOrganizationMetadataResponse_DataEntry_DoNotUse_default_instance_;
 class GetOrganizationNamespaceAvailabilityRequest;
 struct GetOrganizationNamespaceAvailabilityRequestDefaultTypeInternal;
 extern GetOrganizationNamespaceAvailabilityRequestDefaultTypeInternal _GetOrganizationNamespaceAvailabilityRequest_default_instance_;
@@ -377,9 +367,6 @@ extern GetRobotMetadataRequestDefaultTypeInternal _GetRobotMetadataRequest_defau
 class GetRobotMetadataResponse;
 struct GetRobotMetadataResponseDefaultTypeInternal;
 extern GetRobotMetadataResponseDefaultTypeInternal _GetRobotMetadataResponse_default_instance_;
-class GetRobotMetadataResponse_DataEntry_DoNotUse;
-struct GetRobotMetadataResponse_DataEntry_DoNotUseDefaultTypeInternal;
-extern GetRobotMetadataResponse_DataEntry_DoNotUseDefaultTypeInternal _GetRobotMetadataResponse_DataEntry_DoNotUse_default_instance_;
 class GetRobotPartHistoryRequest;
 struct GetRobotPartHistoryRequestDefaultTypeInternal;
 extern GetRobotPartHistoryRequestDefaultTypeInternal _GetRobotPartHistoryRequest_default_instance_;
@@ -398,9 +385,6 @@ extern GetRobotPartMetadataRequestDefaultTypeInternal _GetRobotPartMetadataReque
 class GetRobotPartMetadataResponse;
 struct GetRobotPartMetadataResponseDefaultTypeInternal;
 extern GetRobotPartMetadataResponseDefaultTypeInternal _GetRobotPartMetadataResponse_default_instance_;
-class GetRobotPartMetadataResponse_DataEntry_DoNotUse;
-struct GetRobotPartMetadataResponse_DataEntry_DoNotUseDefaultTypeInternal;
-extern GetRobotPartMetadataResponse_DataEntry_DoNotUseDefaultTypeInternal _GetRobotPartMetadataResponse_DataEntry_DoNotUse_default_instance_;
 class GetRobotPartRequest;
 struct GetRobotPartRequestDefaultTypeInternal;
 extern GetRobotPartRequestDefaultTypeInternal _GetRobotPartRequest_default_instance_;
@@ -713,9 +697,6 @@ extern UpdateFragmentResponseDefaultTypeInternal _UpdateFragmentResponse_default
 class UpdateLocationMetadataRequest;
 struct UpdateLocationMetadataRequestDefaultTypeInternal;
 extern UpdateLocationMetadataRequestDefaultTypeInternal _UpdateLocationMetadataRequest_default_instance_;
-class UpdateLocationMetadataRequest_DataEntry_DoNotUse;
-struct UpdateLocationMetadataRequest_DataEntry_DoNotUseDefaultTypeInternal;
-extern UpdateLocationMetadataRequest_DataEntry_DoNotUseDefaultTypeInternal _UpdateLocationMetadataRequest_DataEntry_DoNotUse_default_instance_;
 class UpdateLocationMetadataResponse;
 struct UpdateLocationMetadataResponseDefaultTypeInternal;
 extern UpdateLocationMetadataResponseDefaultTypeInternal _UpdateLocationMetadataResponse_default_instance_;
@@ -755,9 +736,6 @@ extern UpdateOrganizationInviteAuthorizationsResponseDefaultTypeInternal _Update
 class UpdateOrganizationMetadataRequest;
 struct UpdateOrganizationMetadataRequestDefaultTypeInternal;
 extern UpdateOrganizationMetadataRequestDefaultTypeInternal _UpdateOrganizationMetadataRequest_default_instance_;
-class UpdateOrganizationMetadataRequest_DataEntry_DoNotUse;
-struct UpdateOrganizationMetadataRequest_DataEntry_DoNotUseDefaultTypeInternal;
-extern UpdateOrganizationMetadataRequest_DataEntry_DoNotUseDefaultTypeInternal _UpdateOrganizationMetadataRequest_DataEntry_DoNotUse_default_instance_;
 class UpdateOrganizationMetadataResponse;
 struct UpdateOrganizationMetadataResponseDefaultTypeInternal;
 extern UpdateOrganizationMetadataResponseDefaultTypeInternal _UpdateOrganizationMetadataResponse_default_instance_;
@@ -776,18 +754,12 @@ extern UpdateRegistryItemResponseDefaultTypeInternal _UpdateRegistryItemResponse
 class UpdateRobotMetadataRequest;
 struct UpdateRobotMetadataRequestDefaultTypeInternal;
 extern UpdateRobotMetadataRequestDefaultTypeInternal _UpdateRobotMetadataRequest_default_instance_;
-class UpdateRobotMetadataRequest_DataEntry_DoNotUse;
-struct UpdateRobotMetadataRequest_DataEntry_DoNotUseDefaultTypeInternal;
-extern UpdateRobotMetadataRequest_DataEntry_DoNotUseDefaultTypeInternal _UpdateRobotMetadataRequest_DataEntry_DoNotUse_default_instance_;
 class UpdateRobotMetadataResponse;
 struct UpdateRobotMetadataResponseDefaultTypeInternal;
 extern UpdateRobotMetadataResponseDefaultTypeInternal _UpdateRobotMetadataResponse_default_instance_;
 class UpdateRobotPartMetadataRequest;
 struct UpdateRobotPartMetadataRequestDefaultTypeInternal;
 extern UpdateRobotPartMetadataRequestDefaultTypeInternal _UpdateRobotPartMetadataRequest_default_instance_;
-class UpdateRobotPartMetadataRequest_DataEntry_DoNotUse;
-struct UpdateRobotPartMetadataRequest_DataEntry_DoNotUseDefaultTypeInternal;
-extern UpdateRobotPartMetadataRequest_DataEntry_DoNotUseDefaultTypeInternal _UpdateRobotPartMetadataRequest_DataEntry_DoNotUse_default_instance_;
 class UpdateRobotPartMetadataResponse;
 struct UpdateRobotPartMetadataResponseDefaultTypeInternal;
 extern UpdateRobotPartMetadataResponseDefaultTypeInternal _UpdateRobotPartMetadataResponse_default_instance_;
@@ -905,14 +877,12 @@ template<> ::viam::app::v1::GetFragmentUsageRequest* Arena::CreateMaybeMessage<:
 template<> ::viam::app::v1::GetFragmentUsageResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetFragmentUsageResponse>(Arena*);
 template<> ::viam::app::v1::GetLocationMetadataRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetLocationMetadataRequest>(Arena*);
 template<> ::viam::app::v1::GetLocationMetadataResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetLocationMetadataResponse>(Arena*);
-template<> ::viam::app::v1::GetLocationMetadataResponse_DataEntry_DoNotUse* Arena::CreateMaybeMessage<::viam::app::v1::GetLocationMetadataResponse_DataEntry_DoNotUse>(Arena*);
 template<> ::viam::app::v1::GetLocationRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetLocationRequest>(Arena*);
 template<> ::viam::app::v1::GetLocationResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetLocationResponse>(Arena*);
 template<> ::viam::app::v1::GetModuleRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetModuleRequest>(Arena*);
 template<> ::viam::app::v1::GetModuleResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetModuleResponse>(Arena*);
 template<> ::viam::app::v1::GetOrganizationMetadataRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetOrganizationMetadataRequest>(Arena*);
 template<> ::viam::app::v1::GetOrganizationMetadataResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetOrganizationMetadataResponse>(Arena*);
-template<> ::viam::app::v1::GetOrganizationMetadataResponse_DataEntry_DoNotUse* Arena::CreateMaybeMessage<::viam::app::v1::GetOrganizationMetadataResponse_DataEntry_DoNotUse>(Arena*);
 template<> ::viam::app::v1::GetOrganizationNamespaceAvailabilityRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetOrganizationNamespaceAvailabilityRequest>(Arena*);
 template<> ::viam::app::v1::GetOrganizationNamespaceAvailabilityResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetOrganizationNamespaceAvailabilityResponse>(Arena*);
 template<> ::viam::app::v1::GetOrganizationRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetOrganizationRequest>(Arena*);
@@ -925,14 +895,12 @@ template<> ::viam::app::v1::GetRobotAPIKeysRequest* Arena::CreateMaybeMessage<::
 template<> ::viam::app::v1::GetRobotAPIKeysResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetRobotAPIKeysResponse>(Arena*);
 template<> ::viam::app::v1::GetRobotMetadataRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetRobotMetadataRequest>(Arena*);
 template<> ::viam::app::v1::GetRobotMetadataResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetRobotMetadataResponse>(Arena*);
-template<> ::viam::app::v1::GetRobotMetadataResponse_DataEntry_DoNotUse* Arena::CreateMaybeMessage<::viam::app::v1::GetRobotMetadataResponse_DataEntry_DoNotUse>(Arena*);
 template<> ::viam::app::v1::GetRobotPartHistoryRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetRobotPartHistoryRequest>(Arena*);
 template<> ::viam::app::v1::GetRobotPartHistoryResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetRobotPartHistoryResponse>(Arena*);
 template<> ::viam::app::v1::GetRobotPartLogsRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetRobotPartLogsRequest>(Arena*);
 template<> ::viam::app::v1::GetRobotPartLogsResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetRobotPartLogsResponse>(Arena*);
 template<> ::viam::app::v1::GetRobotPartMetadataRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetRobotPartMetadataRequest>(Arena*);
 template<> ::viam::app::v1::GetRobotPartMetadataResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetRobotPartMetadataResponse>(Arena*);
-template<> ::viam::app::v1::GetRobotPartMetadataResponse_DataEntry_DoNotUse* Arena::CreateMaybeMessage<::viam::app::v1::GetRobotPartMetadataResponse_DataEntry_DoNotUse>(Arena*);
 template<> ::viam::app::v1::GetRobotPartRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetRobotPartRequest>(Arena*);
 template<> ::viam::app::v1::GetRobotPartResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetRobotPartResponse>(Arena*);
 template<> ::viam::app::v1::GetRobotPartsRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetRobotPartsRequest>(Arena*);
@@ -1037,7 +1005,6 @@ template<> ::viam::app::v1::UpdateBillingServiceResponse* Arena::CreateMaybeMess
 template<> ::viam::app::v1::UpdateFragmentRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateFragmentRequest>(Arena*);
 template<> ::viam::app::v1::UpdateFragmentResponse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateFragmentResponse>(Arena*);
 template<> ::viam::app::v1::UpdateLocationMetadataRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateLocationMetadataRequest>(Arena*);
-template<> ::viam::app::v1::UpdateLocationMetadataRequest_DataEntry_DoNotUse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateLocationMetadataRequest_DataEntry_DoNotUse>(Arena*);
 template<> ::viam::app::v1::UpdateLocationMetadataResponse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateLocationMetadataResponse>(Arena*);
 template<> ::viam::app::v1::UpdateLocationRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateLocationRequest>(Arena*);
 template<> ::viam::app::v1::UpdateLocationResponse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateLocationResponse>(Arena*);
@@ -1051,17 +1018,14 @@ template<> ::viam::app::v1::UpdateOAuthAppResponse* Arena::CreateMaybeMessage<::
 template<> ::viam::app::v1::UpdateOrganizationInviteAuthorizationsRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateOrganizationInviteAuthorizationsRequest>(Arena*);
 template<> ::viam::app::v1::UpdateOrganizationInviteAuthorizationsResponse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateOrganizationInviteAuthorizationsResponse>(Arena*);
 template<> ::viam::app::v1::UpdateOrganizationMetadataRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateOrganizationMetadataRequest>(Arena*);
-template<> ::viam::app::v1::UpdateOrganizationMetadataRequest_DataEntry_DoNotUse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateOrganizationMetadataRequest_DataEntry_DoNotUse>(Arena*);
 template<> ::viam::app::v1::UpdateOrganizationMetadataResponse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateOrganizationMetadataResponse>(Arena*);
 template<> ::viam::app::v1::UpdateOrganizationRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateOrganizationRequest>(Arena*);
 template<> ::viam::app::v1::UpdateOrganizationResponse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateOrganizationResponse>(Arena*);
 template<> ::viam::app::v1::UpdateRegistryItemRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateRegistryItemRequest>(Arena*);
 template<> ::viam::app::v1::UpdateRegistryItemResponse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateRegistryItemResponse>(Arena*);
 template<> ::viam::app::v1::UpdateRobotMetadataRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateRobotMetadataRequest>(Arena*);
-template<> ::viam::app::v1::UpdateRobotMetadataRequest_DataEntry_DoNotUse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateRobotMetadataRequest_DataEntry_DoNotUse>(Arena*);
 template<> ::viam::app::v1::UpdateRobotMetadataResponse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateRobotMetadataResponse>(Arena*);
 template<> ::viam::app::v1::UpdateRobotPartMetadataRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateRobotPartMetadataRequest>(Arena*);
-template<> ::viam::app::v1::UpdateRobotPartMetadataRequest_DataEntry_DoNotUse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateRobotPartMetadataRequest_DataEntry_DoNotUse>(Arena*);
 template<> ::viam::app::v1::UpdateRobotPartMetadataResponse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateRobotPartMetadataResponse>(Arena*);
 template<> ::viam::app::v1::UpdateRobotPartRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateRobotPartRequest>(Arena*);
 template<> ::viam::app::v1::UpdateRobotPartResponse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateRobotPartResponse>(Arena*);
@@ -4962,32 +4926,6 @@ class GetOrganizationMetadataRequest final :
 };
 // -------------------------------------------------------------------
 
-class GetOrganizationMetadataResponse_DataEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<GetOrganizationMetadataResponse_DataEntry_DoNotUse, 
-    std::string, ::PROTOBUF_NAMESPACE_ID::Any,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
-public:
-  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<GetOrganizationMetadataResponse_DataEntry_DoNotUse, 
-    std::string, ::PROTOBUF_NAMESPACE_ID::Any,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
-  GetOrganizationMetadataResponse_DataEntry_DoNotUse();
-  explicit PROTOBUF_CONSTEXPR GetOrganizationMetadataResponse_DataEntry_DoNotUse(
-      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-  explicit GetOrganizationMetadataResponse_DataEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  void MergeFrom(const GetOrganizationMetadataResponse_DataEntry_DoNotUse& other);
-  static const GetOrganizationMetadataResponse_DataEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const GetOrganizationMetadataResponse_DataEntry_DoNotUse*>(&_GetOrganizationMetadataResponse_DataEntry_DoNotUse_default_instance_); }
-  static bool ValidateKey(std::string* s) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "viam.app.v1.GetOrganizationMetadataResponse.DataEntry.key");
- }
-  static bool ValidateValue(void*) { return true; }
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
-};
-
-// -------------------------------------------------------------------
-
 class GetOrganizationMetadataResponse final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetOrganizationMetadataResponse) */ {
  public:
@@ -5036,7 +4974,7 @@ class GetOrganizationMetadataResponse final :
                &_GetOrganizationMetadataResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    20;
 
   friend void swap(GetOrganizationMetadataResponse& a, GetOrganizationMetadataResponse& b) {
     a.Swap(&b);
@@ -5095,8 +5033,6 @@ class GetOrganizationMetadataResponse final :
   protected:
   explicit GetOrganizationMetadataResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
-  private:
-  static void ArenaDtor(void* object);
   public:
 
   static const ClassData _class_data_;
@@ -5106,28 +5042,28 @@ class GetOrganizationMetadataResponse final :
 
   // nested types ----------------------------------------------------
 
-
   // accessors -------------------------------------------------------
 
   enum : int {
     kDataFieldNumber = 1,
   };
-  // map<string, .google.protobuf.Any> data = 1 [json_name = "data"];
-  int data_size() const;
+  // .google.protobuf.Struct data = 1 [json_name = "data"];
+  bool has_data() const;
   private:
-  int _internal_data_size() const;
+  bool _internal_has_data() const;
   public:
   void clear_data();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& data() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_data();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_data();
+  void set_allocated_data(::PROTOBUF_NAMESPACE_ID::Struct* data);
   private:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-      _internal_data() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-      _internal_mutable_data();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_data() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_data();
   public:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-      data() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-      mutable_data();
+  void unsafe_arena_set_allocated_data(
+      ::PROTOBUF_NAMESPACE_ID::Struct* data);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_data();
 
   // @@protoc_insertion_point(class_scope:viam.app.v1.GetOrganizationMetadataResponse)
  private:
@@ -5136,40 +5072,10 @@ class GetOrganizationMetadataResponse final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
-      GetOrganizationMetadataResponse_DataEntry_DoNotUse,
-      std::string, ::PROTOBUF_NAMESPACE_ID::Any,
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> data_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* data_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
-// -------------------------------------------------------------------
-
-class UpdateOrganizationMetadataRequest_DataEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<UpdateOrganizationMetadataRequest_DataEntry_DoNotUse, 
-    std::string, ::PROTOBUF_NAMESPACE_ID::Any,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
-public:
-  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<UpdateOrganizationMetadataRequest_DataEntry_DoNotUse, 
-    std::string, ::PROTOBUF_NAMESPACE_ID::Any,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
-  UpdateOrganizationMetadataRequest_DataEntry_DoNotUse();
-  explicit PROTOBUF_CONSTEXPR UpdateOrganizationMetadataRequest_DataEntry_DoNotUse(
-      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-  explicit UpdateOrganizationMetadataRequest_DataEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  void MergeFrom(const UpdateOrganizationMetadataRequest_DataEntry_DoNotUse& other);
-  static const UpdateOrganizationMetadataRequest_DataEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const UpdateOrganizationMetadataRequest_DataEntry_DoNotUse*>(&_UpdateOrganizationMetadataRequest_DataEntry_DoNotUse_default_instance_); }
-  static bool ValidateKey(std::string* s) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "viam.app.v1.UpdateOrganizationMetadataRequest.DataEntry.key");
- }
-  static bool ValidateValue(void*) { return true; }
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
-};
-
 // -------------------------------------------------------------------
 
 class UpdateOrganizationMetadataRequest final :
@@ -5220,7 +5126,7 @@ class UpdateOrganizationMetadataRequest final :
                &_UpdateOrganizationMetadataRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    21;
 
   friend void swap(UpdateOrganizationMetadataRequest& a, UpdateOrganizationMetadataRequest& b) {
     a.Swap(&b);
@@ -5279,8 +5185,6 @@ class UpdateOrganizationMetadataRequest final :
   protected:
   explicit UpdateOrganizationMetadataRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
-  private:
-  static void ArenaDtor(void* object);
   public:
 
   static const ClassData _class_data_;
@@ -5290,30 +5194,12 @@ class UpdateOrganizationMetadataRequest final :
 
   // nested types ----------------------------------------------------
 
-
   // accessors -------------------------------------------------------
 
   enum : int {
-    kDataFieldNumber = 2,
     kOrganizationIdFieldNumber = 1,
+    kDataFieldNumber = 2,
   };
-  // map<string, .google.protobuf.Any> data = 2 [json_name = "data"];
-  int data_size() const;
-  private:
-  int _internal_data_size() const;
-  public:
-  void clear_data();
-  private:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-      _internal_data() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-      _internal_mutable_data();
-  public:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-      data() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-      mutable_data();
-
   // string organization_id = 1 [json_name = "organizationId"];
   void clear_organization_id();
   const std::string& organization_id() const;
@@ -5328,6 +5214,24 @@ class UpdateOrganizationMetadataRequest final :
   std::string* _internal_mutable_organization_id();
   public:
 
+  // .google.protobuf.Struct data = 2 [json_name = "data"];
+  bool has_data() const;
+  private:
+  bool _internal_has_data() const;
+  public:
+  void clear_data();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& data() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_data();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_data();
+  void set_allocated_data(::PROTOBUF_NAMESPACE_ID::Struct* data);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_data() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_data();
+  public:
+  void unsafe_arena_set_allocated_data(
+      ::PROTOBUF_NAMESPACE_ID::Struct* data);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_data();
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.UpdateOrganizationMetadataRequest)
  private:
   class _Internal;
@@ -5335,12 +5239,8 @@ class UpdateOrganizationMetadataRequest final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
-      UpdateOrganizationMetadataRequest_DataEntry_DoNotUse,
-      std::string, ::PROTOBUF_NAMESPACE_ID::Any,
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> data_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* data_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
@@ -5393,7 +5293,7 @@ class UpdateOrganizationMetadataResponse final :
                &_UpdateOrganizationMetadataResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    22;
 
   friend void swap(UpdateOrganizationMetadataResponse& a, UpdateOrganizationMetadataResponse& b) {
     a.Swap(&b);
@@ -5510,7 +5410,7 @@ class ListOrganizationMembersRequest final :
                &_ListOrganizationMembersRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    23;
 
   friend void swap(ListOrganizationMembersRequest& a, ListOrganizationMembersRequest& b) {
     a.Swap(&b);
@@ -5658,7 +5558,7 @@ class ListOrganizationMembersResponse final :
                &_ListOrganizationMembersResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    24;
 
   friend void swap(ListOrganizationMembersResponse& a, ListOrganizationMembersResponse& b) {
     a.Swap(&b);
@@ -5846,7 +5746,7 @@ class CreateOrganizationInviteRequest final :
                &_CreateOrganizationInviteRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    25;
 
   friend void swap(CreateOrganizationInviteRequest& a, CreateOrganizationInviteRequest& b) {
     a.Swap(&b);
@@ -6046,7 +5946,7 @@ class CreateOrganizationInviteResponse final :
                &_CreateOrganizationInviteResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    26;
 
   friend void swap(CreateOrganizationInviteResponse& a, CreateOrganizationInviteResponse& b) {
     a.Swap(&b);
@@ -6198,7 +6098,7 @@ class UpdateOrganizationInviteAuthorizationsRequest final :
                &_UpdateOrganizationInviteAuthorizationsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    27;
 
   friend void swap(UpdateOrganizationInviteAuthorizationsRequest& a, UpdateOrganizationInviteAuthorizationsRequest& b) {
     a.Swap(&b);
@@ -6402,7 +6302,7 @@ class UpdateOrganizationInviteAuthorizationsResponse final :
                &_UpdateOrganizationInviteAuthorizationsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    28;
 
   friend void swap(UpdateOrganizationInviteAuthorizationsResponse& a, UpdateOrganizationInviteAuthorizationsResponse& b) {
     a.Swap(&b);
@@ -6554,7 +6454,7 @@ class DeleteOrganizationInviteRequest final :
                &_DeleteOrganizationInviteRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    29;
 
   friend void swap(DeleteOrganizationInviteRequest& a, DeleteOrganizationInviteRequest& b) {
     a.Swap(&b);
@@ -6717,7 +6617,7 @@ class DeleteOrganizationInviteResponse final :
                &_DeleteOrganizationInviteResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    30;
 
   friend void swap(DeleteOrganizationInviteResponse& a, DeleteOrganizationInviteResponse& b) {
     a.Swap(&b);
@@ -6834,7 +6734,7 @@ class ResendOrganizationInviteRequest final :
                &_ResendOrganizationInviteRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    31;
 
   friend void swap(ResendOrganizationInviteRequest& a, ResendOrganizationInviteRequest& b) {
     a.Swap(&b);
@@ -6998,7 +6898,7 @@ class ResendOrganizationInviteResponse final :
                &_ResendOrganizationInviteResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    34;
+    32;
 
   friend void swap(ResendOrganizationInviteResponse& a, ResendOrganizationInviteResponse& b) {
     a.Swap(&b);
@@ -7150,7 +7050,7 @@ class DeleteOrganizationMemberRequest final :
                &_DeleteOrganizationMemberRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    35;
+    33;
 
   friend void swap(DeleteOrganizationMemberRequest& a, DeleteOrganizationMemberRequest& b) {
     a.Swap(&b);
@@ -7313,7 +7213,7 @@ class DeleteOrganizationMemberResponse final :
                &_DeleteOrganizationMemberResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    36;
+    34;
 
   friend void swap(DeleteOrganizationMemberResponse& a, DeleteOrganizationMemberResponse& b) {
     a.Swap(&b);
@@ -7430,7 +7330,7 @@ class BillingAddress final :
                &_BillingAddress_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    37;
+    35;
 
   friend void swap(BillingAddress& a, BillingAddress& b) {
     a.Swap(&b);
@@ -7663,7 +7563,7 @@ class EnableBillingServiceRequest final :
                &_EnableBillingServiceRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    38;
+    36;
 
   friend void swap(EnableBillingServiceRequest& a, EnableBillingServiceRequest& b) {
     a.Swap(&b);
@@ -7830,7 +7730,7 @@ class EnableBillingServiceResponse final :
                &_EnableBillingServiceResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    39;
+    37;
 
   friend void swap(EnableBillingServiceResponse& a, EnableBillingServiceResponse& b) {
     a.Swap(&b);
@@ -7947,7 +7847,7 @@ class UpdateBillingServiceRequest final :
                &_UpdateBillingServiceRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    40;
+    38;
 
   friend void swap(UpdateBillingServiceRequest& a, UpdateBillingServiceRequest& b) {
     a.Swap(&b);
@@ -8114,7 +8014,7 @@ class UpdateBillingServiceResponse final :
                &_UpdateBillingServiceResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    41;
+    39;
 
   friend void swap(UpdateBillingServiceResponse& a, UpdateBillingServiceResponse& b) {
     a.Swap(&b);
@@ -8231,7 +8131,7 @@ class GetBillingServiceConfigRequest final :
                &_GetBillingServiceConfigRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    42;
+    40;
 
   friend void swap(GetBillingServiceConfigRequest& a, GetBillingServiceConfigRequest& b) {
     a.Swap(&b);
@@ -8379,7 +8279,7 @@ class GetBillingServiceConfigResponse final :
                &_GetBillingServiceConfigResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    43;
+    41;
 
   friend void swap(GetBillingServiceConfigResponse& a, GetBillingServiceConfigResponse& b) {
     a.Swap(&b);
@@ -8579,7 +8479,7 @@ class DisableBillingServiceRequest final :
                &_DisableBillingServiceRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    44;
+    42;
 
   friend void swap(DisableBillingServiceRequest& a, DisableBillingServiceRequest& b) {
     a.Swap(&b);
@@ -8726,7 +8626,7 @@ class DisableBillingServiceResponse final :
                &_DisableBillingServiceResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    45;
+    43;
 
   friend void swap(DisableBillingServiceResponse& a, DisableBillingServiceResponse& b) {
     a.Swap(&b);
@@ -8843,7 +8743,7 @@ class OrganizationSetSupportEmailRequest final :
                &_OrganizationSetSupportEmailRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    46;
+    44;
 
   friend void swap(OrganizationSetSupportEmailRequest& a, OrganizationSetSupportEmailRequest& b) {
     a.Swap(&b);
@@ -9006,7 +8906,7 @@ class OrganizationSetSupportEmailResponse final :
                &_OrganizationSetSupportEmailResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    47;
+    45;
 
   friend void swap(OrganizationSetSupportEmailResponse& a, OrganizationSetSupportEmailResponse& b) {
     a.Swap(&b);
@@ -9123,7 +9023,7 @@ class OrganizationGetSupportEmailRequest final :
                &_OrganizationGetSupportEmailRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    48;
+    46;
 
   friend void swap(OrganizationGetSupportEmailRequest& a, OrganizationGetSupportEmailRequest& b) {
     a.Swap(&b);
@@ -9271,7 +9171,7 @@ class OrganizationGetSupportEmailResponse final :
                &_OrganizationGetSupportEmailResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    49;
+    47;
 
   friend void swap(OrganizationGetSupportEmailResponse& a, OrganizationGetSupportEmailResponse& b) {
     a.Swap(&b);
@@ -9419,7 +9319,7 @@ class OrganizationIdentity final :
                &_OrganizationIdentity_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    50;
+    48;
 
   friend void swap(OrganizationIdentity& a, OrganizationIdentity& b) {
     a.Swap(&b);
@@ -9583,7 +9483,7 @@ class LocationOrganization final :
                &_LocationOrganization_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    51;
+    49;
 
   friend void swap(LocationOrganization& a, LocationOrganization& b) {
     a.Swap(&b);
@@ -9742,7 +9642,7 @@ class LocationAuth final :
                &_LocationAuth_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    52;
+    50;
 
   friend void swap(LocationAuth& a, LocationAuth& b) {
     a.Swap(&b);
@@ -9926,7 +9826,7 @@ class StorageConfig final :
                &_StorageConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    53;
+    51;
 
   friend void swap(StorageConfig& a, StorageConfig& b) {
     a.Swap(&b);
@@ -10074,7 +9974,7 @@ class Location final :
                &_Location_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    54;
+    52;
 
   friend void swap(Location& a, Location& b) {
     a.Swap(&b);
@@ -10152,6 +10052,7 @@ class Location final :
     kCreatedOnFieldNumber = 3,
     kAuthFieldNumber = 5,
     kConfigFieldNumber = 8,
+    kPrimaryOrgIdentityFieldNumber = 9,
     kRobotCountFieldNumber = 7,
   };
   // repeated .viam.app.v1.LocationOrganization organizations = 6 [json_name = "organizations"];
@@ -10268,6 +10169,24 @@ class Location final :
       ::viam::app::v1::StorageConfig* config);
   ::viam::app::v1::StorageConfig* unsafe_arena_release_config();
 
+  // optional .viam.app.v1.OrganizationIdentity primary_org_identity = 9 [json_name = "primaryOrgIdentity"];
+  bool has_primary_org_identity() const;
+  private:
+  bool _internal_has_primary_org_identity() const;
+  public:
+  void clear_primary_org_identity();
+  const ::viam::app::v1::OrganizationIdentity& primary_org_identity() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::OrganizationIdentity* release_primary_org_identity();
+  ::viam::app::v1::OrganizationIdentity* mutable_primary_org_identity();
+  void set_allocated_primary_org_identity(::viam::app::v1::OrganizationIdentity* primary_org_identity);
+  private:
+  const ::viam::app::v1::OrganizationIdentity& _internal_primary_org_identity() const;
+  ::viam::app::v1::OrganizationIdentity* _internal_mutable_primary_org_identity();
+  public:
+  void unsafe_arena_set_allocated_primary_org_identity(
+      ::viam::app::v1::OrganizationIdentity* primary_org_identity);
+  ::viam::app::v1::OrganizationIdentity* unsafe_arena_release_primary_org_identity();
+
   // int32 robot_count = 7 [json_name = "robotCount"];
   void clear_robot_count();
   int32_t robot_count() const;
@@ -10284,6 +10203,8 @@ class Location final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::LocationOrganization > organizations_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
@@ -10291,8 +10212,8 @@ class Location final :
   ::PROTOBUF_NAMESPACE_ID::Timestamp* created_on_;
   ::viam::app::v1::LocationAuth* auth_;
   ::viam::app::v1::StorageConfig* config_;
+  ::viam::app::v1::OrganizationIdentity* primary_org_identity_;
   int32_t robot_count_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -10345,7 +10266,7 @@ class SharedSecret final :
                &_SharedSecret_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    55;
+    53;
 
   friend void swap(SharedSecret& a, SharedSecret& b) {
     a.Swap(&b);
@@ -10572,7 +10493,7 @@ class CreateLocationRequest final :
                &_CreateLocationRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    56;
+    54;
 
   friend void swap(CreateLocationRequest& a, CreateLocationRequest& b) {
     a.Swap(&b);
@@ -10757,7 +10678,7 @@ class CreateLocationResponse final :
                &_CreateLocationResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    57;
+    55;
 
   friend void swap(CreateLocationResponse& a, CreateLocationResponse& b) {
     a.Swap(&b);
@@ -10909,7 +10830,7 @@ class GetLocationRequest final :
                &_GetLocationRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    58;
+    56;
 
   friend void swap(GetLocationRequest& a, GetLocationRequest& b) {
     a.Swap(&b);
@@ -11057,7 +10978,7 @@ class GetLocationResponse final :
                &_GetLocationResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    59;
+    57;
 
   friend void swap(GetLocationResponse& a, GetLocationResponse& b) {
     a.Swap(&b);
@@ -11209,7 +11130,7 @@ class UpdateLocationRequest final :
                &_UpdateLocationRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    60;
+    58;
 
   friend void swap(UpdateLocationRequest& a, UpdateLocationRequest& b) {
     a.Swap(&b);
@@ -11418,7 +11339,7 @@ class UpdateLocationResponse final :
                &_UpdateLocationResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    61;
+    59;
 
   friend void swap(UpdateLocationResponse& a, UpdateLocationResponse& b) {
     a.Swap(&b);
@@ -11570,7 +11491,7 @@ class DeleteLocationRequest final :
                &_DeleteLocationRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    62;
+    60;
 
   friend void swap(DeleteLocationRequest& a, DeleteLocationRequest& b) {
     a.Swap(&b);
@@ -11717,7 +11638,7 @@ class DeleteLocationResponse final :
                &_DeleteLocationResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    63;
+    61;
 
   friend void swap(DeleteLocationResponse& a, DeleteLocationResponse& b) {
     a.Swap(&b);
@@ -11834,7 +11755,7 @@ class GetLocationMetadataRequest final :
                &_GetLocationMetadataRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    64;
+    62;
 
   friend void swap(GetLocationMetadataRequest& a, GetLocationMetadataRequest& b) {
     a.Swap(&b);
@@ -11934,32 +11855,6 @@ class GetLocationMetadataRequest final :
 };
 // -------------------------------------------------------------------
 
-class GetLocationMetadataResponse_DataEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<GetLocationMetadataResponse_DataEntry_DoNotUse, 
-    std::string, ::PROTOBUF_NAMESPACE_ID::Any,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
-public:
-  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<GetLocationMetadataResponse_DataEntry_DoNotUse, 
-    std::string, ::PROTOBUF_NAMESPACE_ID::Any,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
-  GetLocationMetadataResponse_DataEntry_DoNotUse();
-  explicit PROTOBUF_CONSTEXPR GetLocationMetadataResponse_DataEntry_DoNotUse(
-      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-  explicit GetLocationMetadataResponse_DataEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  void MergeFrom(const GetLocationMetadataResponse_DataEntry_DoNotUse& other);
-  static const GetLocationMetadataResponse_DataEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const GetLocationMetadataResponse_DataEntry_DoNotUse*>(&_GetLocationMetadataResponse_DataEntry_DoNotUse_default_instance_); }
-  static bool ValidateKey(std::string* s) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "viam.app.v1.GetLocationMetadataResponse.DataEntry.key");
- }
-  static bool ValidateValue(void*) { return true; }
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
-};
-
-// -------------------------------------------------------------------
-
 class GetLocationMetadataResponse final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetLocationMetadataResponse) */ {
  public:
@@ -12008,7 +11903,7 @@ class GetLocationMetadataResponse final :
                &_GetLocationMetadataResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    66;
+    63;
 
   friend void swap(GetLocationMetadataResponse& a, GetLocationMetadataResponse& b) {
     a.Swap(&b);
@@ -12067,8 +11962,6 @@ class GetLocationMetadataResponse final :
   protected:
   explicit GetLocationMetadataResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
-  private:
-  static void ArenaDtor(void* object);
   public:
 
   static const ClassData _class_data_;
@@ -12078,28 +11971,28 @@ class GetLocationMetadataResponse final :
 
   // nested types ----------------------------------------------------
 
-
   // accessors -------------------------------------------------------
 
   enum : int {
     kDataFieldNumber = 1,
   };
-  // map<string, .google.protobuf.Any> data = 1 [json_name = "data"];
-  int data_size() const;
+  // .google.protobuf.Struct data = 1 [json_name = "data"];
+  bool has_data() const;
   private:
-  int _internal_data_size() const;
+  bool _internal_has_data() const;
   public:
   void clear_data();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& data() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_data();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_data();
+  void set_allocated_data(::PROTOBUF_NAMESPACE_ID::Struct* data);
   private:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-      _internal_data() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-      _internal_mutable_data();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_data() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_data();
   public:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-      data() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-      mutable_data();
+  void unsafe_arena_set_allocated_data(
+      ::PROTOBUF_NAMESPACE_ID::Struct* data);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_data();
 
   // @@protoc_insertion_point(class_scope:viam.app.v1.GetLocationMetadataResponse)
  private:
@@ -12108,40 +12001,10 @@ class GetLocationMetadataResponse final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
-      GetLocationMetadataResponse_DataEntry_DoNotUse,
-      std::string, ::PROTOBUF_NAMESPACE_ID::Any,
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> data_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* data_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
-// -------------------------------------------------------------------
-
-class UpdateLocationMetadataRequest_DataEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<UpdateLocationMetadataRequest_DataEntry_DoNotUse, 
-    std::string, ::PROTOBUF_NAMESPACE_ID::Any,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
-public:
-  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<UpdateLocationMetadataRequest_DataEntry_DoNotUse, 
-    std::string, ::PROTOBUF_NAMESPACE_ID::Any,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
-  UpdateLocationMetadataRequest_DataEntry_DoNotUse();
-  explicit PROTOBUF_CONSTEXPR UpdateLocationMetadataRequest_DataEntry_DoNotUse(
-      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-  explicit UpdateLocationMetadataRequest_DataEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  void MergeFrom(const UpdateLocationMetadataRequest_DataEntry_DoNotUse& other);
-  static const UpdateLocationMetadataRequest_DataEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const UpdateLocationMetadataRequest_DataEntry_DoNotUse*>(&_UpdateLocationMetadataRequest_DataEntry_DoNotUse_default_instance_); }
-  static bool ValidateKey(std::string* s) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "viam.app.v1.UpdateLocationMetadataRequest.DataEntry.key");
- }
-  static bool ValidateValue(void*) { return true; }
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
-};
-
 // -------------------------------------------------------------------
 
 class UpdateLocationMetadataRequest final :
@@ -12192,7 +12055,7 @@ class UpdateLocationMetadataRequest final :
                &_UpdateLocationMetadataRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    68;
+    64;
 
   friend void swap(UpdateLocationMetadataRequest& a, UpdateLocationMetadataRequest& b) {
     a.Swap(&b);
@@ -12251,8 +12114,6 @@ class UpdateLocationMetadataRequest final :
   protected:
   explicit UpdateLocationMetadataRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
-  private:
-  static void ArenaDtor(void* object);
   public:
 
   static const ClassData _class_data_;
@@ -12262,30 +12123,12 @@ class UpdateLocationMetadataRequest final :
 
   // nested types ----------------------------------------------------
 
-
   // accessors -------------------------------------------------------
 
   enum : int {
-    kDataFieldNumber = 2,
     kLocationIdFieldNumber = 1,
+    kDataFieldNumber = 2,
   };
-  // map<string, .google.protobuf.Any> data = 2 [json_name = "data"];
-  int data_size() const;
-  private:
-  int _internal_data_size() const;
-  public:
-  void clear_data();
-  private:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-      _internal_data() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-      _internal_mutable_data();
-  public:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-      data() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-      mutable_data();
-
   // string location_id = 1 [json_name = "locationId"];
   void clear_location_id();
   const std::string& location_id() const;
@@ -12300,6 +12143,24 @@ class UpdateLocationMetadataRequest final :
   std::string* _internal_mutable_location_id();
   public:
 
+  // .google.protobuf.Struct data = 2 [json_name = "data"];
+  bool has_data() const;
+  private:
+  bool _internal_has_data() const;
+  public:
+  void clear_data();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& data() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_data();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_data();
+  void set_allocated_data(::PROTOBUF_NAMESPACE_ID::Struct* data);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_data() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_data();
+  public:
+  void unsafe_arena_set_allocated_data(
+      ::PROTOBUF_NAMESPACE_ID::Struct* data);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_data();
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.UpdateLocationMetadataRequest)
  private:
   class _Internal;
@@ -12307,12 +12168,8 @@ class UpdateLocationMetadataRequest final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
-      UpdateLocationMetadataRequest_DataEntry_DoNotUse,
-      std::string, ::PROTOBUF_NAMESPACE_ID::Any,
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> data_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr location_id_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* data_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
@@ -12365,7 +12222,7 @@ class UpdateLocationMetadataResponse final :
                &_UpdateLocationMetadataResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    69;
+    65;
 
   friend void swap(UpdateLocationMetadataResponse& a, UpdateLocationMetadataResponse& b) {
     a.Swap(&b);
@@ -12482,7 +12339,7 @@ class GetOrganizationsWithAccessToLocationRequest final :
                &_GetOrganizationsWithAccessToLocationRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    70;
+    66;
 
   friend void swap(GetOrganizationsWithAccessToLocationRequest& a, GetOrganizationsWithAccessToLocationRequest& b) {
     a.Swap(&b);
@@ -12630,7 +12487,7 @@ class GetOrganizationsWithAccessToLocationResponse final :
                &_GetOrganizationsWithAccessToLocationResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    71;
+    67;
 
   friend void swap(GetOrganizationsWithAccessToLocationResponse& a, GetOrganizationsWithAccessToLocationResponse& b) {
     a.Swap(&b);
@@ -12782,7 +12639,7 @@ class ListLocationsRequest final :
                &_ListLocationsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    72;
+    68;
 
   friend void swap(ListLocationsRequest& a, ListLocationsRequest& b) {
     a.Swap(&b);
@@ -12930,7 +12787,7 @@ class ShareLocationRequest final :
                &_ShareLocationRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    73;
+    69;
 
   friend void swap(ShareLocationRequest& a, ShareLocationRequest& b) {
     a.Swap(&b);
@@ -13093,7 +12950,7 @@ class ShareLocationResponse final :
                &_ShareLocationResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    74;
+    70;
 
   friend void swap(ShareLocationResponse& a, ShareLocationResponse& b) {
     a.Swap(&b);
@@ -13210,7 +13067,7 @@ class UnshareLocationRequest final :
                &_UnshareLocationRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    75;
+    71;
 
   friend void swap(UnshareLocationRequest& a, UnshareLocationRequest& b) {
     a.Swap(&b);
@@ -13373,7 +13230,7 @@ class UnshareLocationResponse final :
                &_UnshareLocationResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    76;
+    72;
 
   friend void swap(UnshareLocationResponse& a, UnshareLocationResponse& b) {
     a.Swap(&b);
@@ -13490,7 +13347,7 @@ class ListLocationsResponse final :
                &_ListLocationsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    77;
+    73;
 
   friend void swap(ListLocationsResponse& a, ListLocationsResponse& b) {
     a.Swap(&b);
@@ -13642,7 +13499,7 @@ class CreateLocationSecretRequest final :
                &_CreateLocationSecretRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    78;
+    74;
 
   friend void swap(CreateLocationSecretRequest& a, CreateLocationSecretRequest& b) {
     a.Swap(&b);
@@ -13790,7 +13647,7 @@ class CreateLocationSecretResponse final :
                &_CreateLocationSecretResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    79;
+    75;
 
   friend void swap(CreateLocationSecretResponse& a, CreateLocationSecretResponse& b) {
     a.Swap(&b);
@@ -13942,7 +13799,7 @@ class DeleteLocationSecretRequest final :
                &_DeleteLocationSecretRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    80;
+    76;
 
   friend void swap(DeleteLocationSecretRequest& a, DeleteLocationSecretRequest& b) {
     a.Swap(&b);
@@ -14105,7 +13962,7 @@ class DeleteLocationSecretResponse final :
                &_DeleteLocationSecretResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    81;
+    77;
 
   friend void swap(DeleteLocationSecretResponse& a, DeleteLocationSecretResponse& b) {
     a.Swap(&b);
@@ -14222,7 +14079,7 @@ class LocationAuthRequest final :
                &_LocationAuthRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    82;
+    78;
 
   friend void swap(LocationAuthRequest& a, LocationAuthRequest& b) {
     a.Swap(&b);
@@ -14370,7 +14227,7 @@ class LocationAuthResponse final :
                &_LocationAuthResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    83;
+    79;
 
   friend void swap(LocationAuthResponse& a, LocationAuthResponse& b) {
     a.Swap(&b);
@@ -14522,7 +14379,7 @@ class GetRobotRequest final :
                &_GetRobotRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    84;
+    80;
 
   friend void swap(GetRobotRequest& a, GetRobotRequest& b) {
     a.Swap(&b);
@@ -14670,7 +14527,7 @@ class GetRoverRentalRobotsRequest final :
                &_GetRoverRentalRobotsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    85;
+    81;
 
   friend void swap(GetRoverRentalRobotsRequest& a, GetRoverRentalRobotsRequest& b) {
     a.Swap(&b);
@@ -14818,7 +14675,7 @@ class RoverRentalRobot final :
                &_RoverRentalRobot_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    86;
+    82;
 
   friend void swap(RoverRentalRobot& a, RoverRentalRobot& b) {
     a.Swap(&b);
@@ -15014,7 +14871,7 @@ class GetRoverRentalRobotsResponse final :
                &_GetRoverRentalRobotsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    87;
+    83;
 
   friend void swap(GetRoverRentalRobotsResponse& a, GetRoverRentalRobotsResponse& b) {
     a.Swap(&b);
@@ -15166,7 +15023,7 @@ class GetRobotResponse final :
                &_GetRobotResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    88;
+    84;
 
   friend void swap(GetRobotResponse& a, GetRobotResponse& b) {
     a.Swap(&b);
@@ -15318,7 +15175,7 @@ class GetRobotPartsRequest final :
                &_GetRobotPartsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    89;
+    85;
 
   friend void swap(GetRobotPartsRequest& a, GetRobotPartsRequest& b) {
     a.Swap(&b);
@@ -15466,7 +15323,7 @@ class GetRobotPartsResponse final :
                &_GetRobotPartsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    90;
+    86;
 
   friend void swap(GetRobotPartsResponse& a, GetRobotPartsResponse& b) {
     a.Swap(&b);
@@ -15618,7 +15475,7 @@ class GetRobotPartRequest final :
                &_GetRobotPartRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    91;
+    87;
 
   friend void swap(GetRobotPartRequest& a, GetRobotPartRequest& b) {
     a.Swap(&b);
@@ -15766,7 +15623,7 @@ class GetRobotPartResponse final :
                &_GetRobotPartResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    92;
+    88;
 
   friend void swap(GetRobotPartResponse& a, GetRobotPartResponse& b) {
     a.Swap(&b);
@@ -15934,7 +15791,7 @@ class GetRobotPartLogsRequest final :
                &_GetRobotPartLogsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    93;
+    89;
 
   friend void swap(GetRobotPartLogsRequest& a, GetRobotPartLogsRequest& b) {
     a.Swap(&b);
@@ -16235,7 +16092,7 @@ class GetRobotPartLogsResponse final :
                &_GetRobotPartLogsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    94;
+    90;
 
   friend void swap(GetRobotPartLogsResponse& a, GetRobotPartLogsResponse& b) {
     a.Swap(&b);
@@ -16403,7 +16260,7 @@ class TailRobotPartLogsRequest final :
                &_TailRobotPartLogsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    95;
+    91;
 
   friend void swap(TailRobotPartLogsRequest& a, TailRobotPartLogsRequest& b) {
     a.Swap(&b);
@@ -16583,7 +16440,7 @@ class TailRobotPartLogsResponse final :
                &_TailRobotPartLogsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    96;
+    92;
 
   friend void swap(TailRobotPartLogsResponse& a, TailRobotPartLogsResponse& b) {
     a.Swap(&b);
@@ -16735,7 +16592,7 @@ class GetRobotPartHistoryRequest final :
                &_GetRobotPartHistoryRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    97;
+    93;
 
   friend void swap(GetRobotPartHistoryRequest& a, GetRobotPartHistoryRequest& b) {
     a.Swap(&b);
@@ -16883,7 +16740,7 @@ class GetRobotPartHistoryResponse final :
                &_GetRobotPartHistoryResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    98;
+    94;
 
   friend void swap(GetRobotPartHistoryResponse& a, GetRobotPartHistoryResponse& b) {
     a.Swap(&b);
@@ -17035,7 +16892,7 @@ class UpdateRobotPartRequest final :
                &_UpdateRobotPartRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    99;
+    95;
 
   friend void swap(UpdateRobotPartRequest& a, UpdateRobotPartRequest& b) {
     a.Swap(&b);
@@ -17219,7 +17076,7 @@ class UpdateRobotPartResponse final :
                &_UpdateRobotPartResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    100;
+    96;
 
   friend void swap(UpdateRobotPartResponse& a, UpdateRobotPartResponse& b) {
     a.Swap(&b);
@@ -17371,7 +17228,7 @@ class NewRobotPartRequest final :
                &_NewRobotPartRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    101;
+    97;
 
   friend void swap(NewRobotPartRequest& a, NewRobotPartRequest& b) {
     a.Swap(&b);
@@ -17535,7 +17392,7 @@ class NewRobotPartResponse final :
                &_NewRobotPartResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    102;
+    98;
 
   friend void swap(NewRobotPartResponse& a, NewRobotPartResponse& b) {
     a.Swap(&b);
@@ -17683,7 +17540,7 @@ class DeleteRobotPartRequest final :
                &_DeleteRobotPartRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    103;
+    99;
 
   friend void swap(DeleteRobotPartRequest& a, DeleteRobotPartRequest& b) {
     a.Swap(&b);
@@ -17831,7 +17688,7 @@ class GetRobotPartMetadataRequest final :
                &_GetRobotPartMetadataRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    104;
+    100;
 
   friend void swap(GetRobotPartMetadataRequest& a, GetRobotPartMetadataRequest& b) {
     a.Swap(&b);
@@ -17931,32 +17788,6 @@ class GetRobotPartMetadataRequest final :
 };
 // -------------------------------------------------------------------
 
-class GetRobotPartMetadataResponse_DataEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<GetRobotPartMetadataResponse_DataEntry_DoNotUse, 
-    std::string, ::PROTOBUF_NAMESPACE_ID::Any,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
-public:
-  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<GetRobotPartMetadataResponse_DataEntry_DoNotUse, 
-    std::string, ::PROTOBUF_NAMESPACE_ID::Any,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
-  GetRobotPartMetadataResponse_DataEntry_DoNotUse();
-  explicit PROTOBUF_CONSTEXPR GetRobotPartMetadataResponse_DataEntry_DoNotUse(
-      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-  explicit GetRobotPartMetadataResponse_DataEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  void MergeFrom(const GetRobotPartMetadataResponse_DataEntry_DoNotUse& other);
-  static const GetRobotPartMetadataResponse_DataEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const GetRobotPartMetadataResponse_DataEntry_DoNotUse*>(&_GetRobotPartMetadataResponse_DataEntry_DoNotUse_default_instance_); }
-  static bool ValidateKey(std::string* s) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "viam.app.v1.GetRobotPartMetadataResponse.DataEntry.key");
- }
-  static bool ValidateValue(void*) { return true; }
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
-};
-
-// -------------------------------------------------------------------
-
 class GetRobotPartMetadataResponse final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetRobotPartMetadataResponse) */ {
  public:
@@ -18005,7 +17836,7 @@ class GetRobotPartMetadataResponse final :
                &_GetRobotPartMetadataResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    106;
+    101;
 
   friend void swap(GetRobotPartMetadataResponse& a, GetRobotPartMetadataResponse& b) {
     a.Swap(&b);
@@ -18064,8 +17895,6 @@ class GetRobotPartMetadataResponse final :
   protected:
   explicit GetRobotPartMetadataResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
-  private:
-  static void ArenaDtor(void* object);
   public:
 
   static const ClassData _class_data_;
@@ -18075,28 +17904,28 @@ class GetRobotPartMetadataResponse final :
 
   // nested types ----------------------------------------------------
 
-
   // accessors -------------------------------------------------------
 
   enum : int {
     kDataFieldNumber = 1,
   };
-  // map<string, .google.protobuf.Any> data = 1 [json_name = "data"];
-  int data_size() const;
+  // .google.protobuf.Struct data = 1 [json_name = "data"];
+  bool has_data() const;
   private:
-  int _internal_data_size() const;
+  bool _internal_has_data() const;
   public:
   void clear_data();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& data() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_data();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_data();
+  void set_allocated_data(::PROTOBUF_NAMESPACE_ID::Struct* data);
   private:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-      _internal_data() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-      _internal_mutable_data();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_data() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_data();
   public:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-      data() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-      mutable_data();
+  void unsafe_arena_set_allocated_data(
+      ::PROTOBUF_NAMESPACE_ID::Struct* data);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_data();
 
   // @@protoc_insertion_point(class_scope:viam.app.v1.GetRobotPartMetadataResponse)
  private:
@@ -18105,40 +17934,10 @@ class GetRobotPartMetadataResponse final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
-      GetRobotPartMetadataResponse_DataEntry_DoNotUse,
-      std::string, ::PROTOBUF_NAMESPACE_ID::Any,
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> data_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* data_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
-// -------------------------------------------------------------------
-
-class UpdateRobotPartMetadataRequest_DataEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<UpdateRobotPartMetadataRequest_DataEntry_DoNotUse, 
-    std::string, ::PROTOBUF_NAMESPACE_ID::Any,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
-public:
-  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<UpdateRobotPartMetadataRequest_DataEntry_DoNotUse, 
-    std::string, ::PROTOBUF_NAMESPACE_ID::Any,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
-  UpdateRobotPartMetadataRequest_DataEntry_DoNotUse();
-  explicit PROTOBUF_CONSTEXPR UpdateRobotPartMetadataRequest_DataEntry_DoNotUse(
-      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-  explicit UpdateRobotPartMetadataRequest_DataEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  void MergeFrom(const UpdateRobotPartMetadataRequest_DataEntry_DoNotUse& other);
-  static const UpdateRobotPartMetadataRequest_DataEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const UpdateRobotPartMetadataRequest_DataEntry_DoNotUse*>(&_UpdateRobotPartMetadataRequest_DataEntry_DoNotUse_default_instance_); }
-  static bool ValidateKey(std::string* s) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "viam.app.v1.UpdateRobotPartMetadataRequest.DataEntry.key");
- }
-  static bool ValidateValue(void*) { return true; }
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
-};
-
 // -------------------------------------------------------------------
 
 class UpdateRobotPartMetadataRequest final :
@@ -18189,7 +17988,7 @@ class UpdateRobotPartMetadataRequest final :
                &_UpdateRobotPartMetadataRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    108;
+    102;
 
   friend void swap(UpdateRobotPartMetadataRequest& a, UpdateRobotPartMetadataRequest& b) {
     a.Swap(&b);
@@ -18248,8 +18047,6 @@ class UpdateRobotPartMetadataRequest final :
   protected:
   explicit UpdateRobotPartMetadataRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
-  private:
-  static void ArenaDtor(void* object);
   public:
 
   static const ClassData _class_data_;
@@ -18259,30 +18056,12 @@ class UpdateRobotPartMetadataRequest final :
 
   // nested types ----------------------------------------------------
 
-
   // accessors -------------------------------------------------------
 
   enum : int {
-    kDataFieldNumber = 2,
     kIdFieldNumber = 1,
+    kDataFieldNumber = 2,
   };
-  // map<string, .google.protobuf.Any> data = 2 [json_name = "data"];
-  int data_size() const;
-  private:
-  int _internal_data_size() const;
-  public:
-  void clear_data();
-  private:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-      _internal_data() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-      _internal_mutable_data();
-  public:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-      data() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-      mutable_data();
-
   // string id = 1 [json_name = "id"];
   void clear_id();
   const std::string& id() const;
@@ -18297,6 +18076,24 @@ class UpdateRobotPartMetadataRequest final :
   std::string* _internal_mutable_id();
   public:
 
+  // .google.protobuf.Struct data = 2 [json_name = "data"];
+  bool has_data() const;
+  private:
+  bool _internal_has_data() const;
+  public:
+  void clear_data();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& data() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_data();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_data();
+  void set_allocated_data(::PROTOBUF_NAMESPACE_ID::Struct* data);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_data() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_data();
+  public:
+  void unsafe_arena_set_allocated_data(
+      ::PROTOBUF_NAMESPACE_ID::Struct* data);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_data();
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.UpdateRobotPartMetadataRequest)
  private:
   class _Internal;
@@ -18304,12 +18101,8 @@ class UpdateRobotPartMetadataRequest final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
-      UpdateRobotPartMetadataRequest_DataEntry_DoNotUse,
-      std::string, ::PROTOBUF_NAMESPACE_ID::Any,
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> data_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* data_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
@@ -18362,7 +18155,7 @@ class UpdateRobotPartMetadataResponse final :
                &_UpdateRobotPartMetadataResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    109;
+    103;
 
   friend void swap(UpdateRobotPartMetadataResponse& a, UpdateRobotPartMetadataResponse& b) {
     a.Swap(&b);
@@ -18479,7 +18272,7 @@ class GetRobotAPIKeysRequest final :
                &_GetRobotAPIKeysRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    110;
+    104;
 
   friend void swap(GetRobotAPIKeysRequest& a, GetRobotAPIKeysRequest& b) {
     a.Swap(&b);
@@ -18627,7 +18420,7 @@ class APIKey final :
                &_APIKey_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    111;
+    105;
 
   friend void swap(APIKey& a, APIKey& b) {
     a.Swap(&b);
@@ -18827,7 +18620,7 @@ class GetRobotAPIKeysResponse final :
                &_GetRobotAPIKeysResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    112;
+    106;
 
   friend void swap(GetRobotAPIKeysResponse& a, GetRobotAPIKeysResponse& b) {
     a.Swap(&b);
@@ -18978,7 +18771,7 @@ class DeleteRobotPartResponse final :
                &_DeleteRobotPartResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    113;
+    107;
 
   friend void swap(DeleteRobotPartResponse& a, DeleteRobotPartResponse& b) {
     a.Swap(&b);
@@ -19095,7 +18888,7 @@ class Fragment final :
                &_Fragment_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    114;
+    108;
 
   friend void swap(Fragment& a, Fragment& b) {
     a.Swap(&b);
@@ -19422,7 +19215,7 @@ class FragmentHistoryEntry final :
                &_FragmentHistoryEntry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    115;
+    109;
 
   friend void swap(FragmentHistoryEntry& a, FragmentHistoryEntry& b) {
     a.Swap(&b);
@@ -19666,7 +19459,7 @@ class FragmentRevision final :
                &_FragmentRevision_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    116;
+    110;
 
   friend void swap(FragmentRevision& a, FragmentRevision& b) {
     a.Swap(&b);
@@ -19834,7 +19627,7 @@ class FragmentTag final :
                &_FragmentTag_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    117;
+    111;
 
   friend void swap(FragmentTag& a, FragmentTag& b) {
     a.Swap(&b);
@@ -19998,7 +19791,7 @@ class FragmentError final :
                &_FragmentError_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    118;
+    112;
 
   friend void swap(FragmentError& a, FragmentError& b) {
     a.Swap(&b);
@@ -20173,7 +19966,7 @@ class FragmentUsage final :
                &_FragmentUsage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    119;
+    113;
 
   friend void swap(FragmentUsage& a, FragmentUsage& b) {
     a.Swap(&b);
@@ -20375,7 +20168,7 @@ class ResolvedFragment final :
                &_ResolvedFragment_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    120;
+    114;
 
   friend void swap(ResolvedFragment& a, ResolvedFragment& b) {
     a.Swap(&b);
@@ -20579,7 +20372,7 @@ class ListFragmentsRequest final :
                &_ListFragmentsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    121;
+    115;
 
   friend void swap(ListFragmentsRequest& a, ListFragmentsRequest& b) {
     a.Swap(&b);
@@ -20758,7 +20551,7 @@ class ListFragmentsResponse final :
                &_ListFragmentsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    122;
+    116;
 
   friend void swap(ListFragmentsResponse& a, ListFragmentsResponse& b) {
     a.Swap(&b);
@@ -20930,7 +20723,7 @@ class GetFragmentRequest final :
                &_GetFragmentRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    123;
+    117;
 
   friend void swap(GetFragmentRequest& a, GetFragmentRequest& b) {
     a.Swap(&b);
@@ -21115,7 +20908,7 @@ class GetFragmentResponse final :
                &_GetFragmentResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    124;
+    118;
 
   friend void swap(GetFragmentResponse& a, GetFragmentResponse& b) {
     a.Swap(&b);
@@ -21327,7 +21120,7 @@ class CreateFragmentRequest final :
                &_CreateFragmentRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    125;
+    119;
 
   friend void swap(CreateFragmentRequest& a, CreateFragmentRequest& b) {
     a.Swap(&b);
@@ -21527,7 +21320,7 @@ class CreateFragmentResponse final :
                &_CreateFragmentResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    126;
+    120;
 
   friend void swap(CreateFragmentResponse& a, CreateFragmentResponse& b) {
     a.Swap(&b);
@@ -21679,7 +21472,7 @@ class UpdateFragmentRequest final :
                &_UpdateFragmentRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    127;
+    121;
 
   friend void swap(UpdateFragmentRequest& a, UpdateFragmentRequest& b) {
     a.Swap(&b);
@@ -21894,7 +21687,7 @@ class UpdateFragmentResponse final :
                &_UpdateFragmentResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    128;
+    122;
 
   friend void swap(UpdateFragmentResponse& a, UpdateFragmentResponse& b) {
     a.Swap(&b);
@@ -22046,7 +21839,7 @@ class DeleteFragmentRequest final :
                &_DeleteFragmentRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    129;
+    123;
 
   friend void swap(DeleteFragmentRequest& a, DeleteFragmentRequest& b) {
     a.Swap(&b);
@@ -22193,7 +21986,7 @@ class DeleteFragmentResponse final :
                &_DeleteFragmentResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    130;
+    124;
 
   friend void swap(DeleteFragmentResponse& a, DeleteFragmentResponse& b) {
     a.Swap(&b);
@@ -22310,7 +22103,7 @@ class GetFragmentHistoryRequest final :
                &_GetFragmentHistoryRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    131;
+    125;
 
   friend void swap(GetFragmentHistoryRequest& a, GetFragmentHistoryRequest& b) {
     a.Swap(&b);
@@ -22494,7 +22287,7 @@ class GetFragmentHistoryResponse final :
                &_GetFragmentHistoryResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    132;
+    126;
 
   friend void swap(GetFragmentHistoryResponse& a, GetFragmentHistoryResponse& b) {
     a.Swap(&b);
@@ -22662,7 +22455,7 @@ class GetFragmentUsageRequest final :
                &_GetFragmentUsageRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    133;
+    127;
 
   friend void swap(GetFragmentUsageRequest& a, GetFragmentUsageRequest& b) {
     a.Swap(&b);
@@ -22810,7 +22603,7 @@ class GetFragmentUsageResponse final :
                &_GetFragmentUsageResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    134;
+    128;
 
   friend void swap(GetFragmentUsageResponse& a, GetFragmentUsageResponse& b) {
     a.Swap(&b);
@@ -22962,7 +22755,7 @@ class SetFragmentTagRequest final :
                &_SetFragmentTagRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    135;
+    129;
 
   friend void swap(SetFragmentTagRequest& a, SetFragmentTagRequest& b) {
     a.Swap(&b);
@@ -23142,7 +22935,7 @@ class SetFragmentTagResponse final :
                &_SetFragmentTagResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    136;
+    130;
 
   friend void swap(SetFragmentTagResponse& a, SetFragmentTagResponse& b) {
     a.Swap(&b);
@@ -23294,7 +23087,7 @@ class DeleteFragmentTagRequest final :
                &_DeleteFragmentTagRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    137;
+    131;
 
   friend void swap(DeleteFragmentTagRequest& a, DeleteFragmentTagRequest& b) {
     a.Swap(&b);
@@ -23458,7 +23251,7 @@ class DeleteFragmentTagResponse final :
                &_DeleteFragmentTagResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    138;
+    132;
 
   friend void swap(DeleteFragmentTagResponse& a, DeleteFragmentTagResponse& b) {
     a.Swap(&b);
@@ -23610,7 +23403,7 @@ class ListRobotsRequest final :
                &_ListRobotsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    139;
+    133;
 
   friend void swap(ListRobotsRequest& a, ListRobotsRequest& b) {
     a.Swap(&b);
@@ -23758,7 +23551,7 @@ class AdditionalFragment final :
                &_AdditionalFragment_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    140;
+    134;
 
   friend void swap(AdditionalFragment& a, AdditionalFragment& b) {
     a.Swap(&b);
@@ -23927,7 +23720,7 @@ class ListMachineFragmentsRequest final :
                &_ListMachineFragmentsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    141;
+    135;
 
   friend void swap(ListMachineFragmentsRequest& a, ListMachineFragmentsRequest& b) {
     a.Swap(&b);
@@ -24121,7 +23914,7 @@ class ListMachineFragmentsResponse final :
                &_ListMachineFragmentsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    142;
+    136;
 
   friend void swap(ListMachineFragmentsResponse& a, ListMachineFragmentsResponse& b) {
     a.Swap(&b);
@@ -24293,7 +24086,7 @@ class ListRobotsResponse final :
                &_ListRobotsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    143;
+    137;
 
   friend void swap(ListRobotsResponse& a, ListRobotsResponse& b) {
     a.Swap(&b);
@@ -24445,7 +24238,7 @@ class NewRobotRequest final :
                &_NewRobotRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    144;
+    138;
 
   friend void swap(NewRobotRequest& a, NewRobotRequest& b) {
     a.Swap(&b);
@@ -24609,7 +24402,7 @@ class NewRobotResponse final :
                &_NewRobotResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    145;
+    139;
 
   friend void swap(NewRobotResponse& a, NewRobotResponse& b) {
     a.Swap(&b);
@@ -24757,7 +24550,7 @@ class UpdateRobotRequest final :
                &_UpdateRobotRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    146;
+    140;
 
   friend void swap(UpdateRobotRequest& a, UpdateRobotRequest& b) {
     a.Swap(&b);
@@ -24937,7 +24730,7 @@ class UpdateRobotResponse final :
                &_UpdateRobotResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    147;
+    141;
 
   friend void swap(UpdateRobotResponse& a, UpdateRobotResponse& b) {
     a.Swap(&b);
@@ -25089,7 +24882,7 @@ class DeleteRobotRequest final :
                &_DeleteRobotRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    148;
+    142;
 
   friend void swap(DeleteRobotRequest& a, DeleteRobotRequest& b) {
     a.Swap(&b);
@@ -25236,7 +25029,7 @@ class DeleteRobotResponse final :
                &_DeleteRobotResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    149;
+    143;
 
   friend void swap(DeleteRobotResponse& a, DeleteRobotResponse& b) {
     a.Swap(&b);
@@ -25353,7 +25146,7 @@ class GetRobotMetadataRequest final :
                &_GetRobotMetadataRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    150;
+    144;
 
   friend void swap(GetRobotMetadataRequest& a, GetRobotMetadataRequest& b) {
     a.Swap(&b);
@@ -25453,32 +25246,6 @@ class GetRobotMetadataRequest final :
 };
 // -------------------------------------------------------------------
 
-class GetRobotMetadataResponse_DataEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<GetRobotMetadataResponse_DataEntry_DoNotUse, 
-    std::string, ::PROTOBUF_NAMESPACE_ID::Any,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
-public:
-  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<GetRobotMetadataResponse_DataEntry_DoNotUse, 
-    std::string, ::PROTOBUF_NAMESPACE_ID::Any,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
-  GetRobotMetadataResponse_DataEntry_DoNotUse();
-  explicit PROTOBUF_CONSTEXPR GetRobotMetadataResponse_DataEntry_DoNotUse(
-      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-  explicit GetRobotMetadataResponse_DataEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  void MergeFrom(const GetRobotMetadataResponse_DataEntry_DoNotUse& other);
-  static const GetRobotMetadataResponse_DataEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const GetRobotMetadataResponse_DataEntry_DoNotUse*>(&_GetRobotMetadataResponse_DataEntry_DoNotUse_default_instance_); }
-  static bool ValidateKey(std::string* s) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "viam.app.v1.GetRobotMetadataResponse.DataEntry.key");
- }
-  static bool ValidateValue(void*) { return true; }
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
-};
-
-// -------------------------------------------------------------------
-
 class GetRobotMetadataResponse final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetRobotMetadataResponse) */ {
  public:
@@ -25527,7 +25294,7 @@ class GetRobotMetadataResponse final :
                &_GetRobotMetadataResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    152;
+    145;
 
   friend void swap(GetRobotMetadataResponse& a, GetRobotMetadataResponse& b) {
     a.Swap(&b);
@@ -25586,8 +25353,6 @@ class GetRobotMetadataResponse final :
   protected:
   explicit GetRobotMetadataResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
-  private:
-  static void ArenaDtor(void* object);
   public:
 
   static const ClassData _class_data_;
@@ -25597,28 +25362,28 @@ class GetRobotMetadataResponse final :
 
   // nested types ----------------------------------------------------
 
-
   // accessors -------------------------------------------------------
 
   enum : int {
     kDataFieldNumber = 1,
   };
-  // map<string, .google.protobuf.Any> data = 1 [json_name = "data"];
-  int data_size() const;
+  // .google.protobuf.Struct data = 1 [json_name = "data"];
+  bool has_data() const;
   private:
-  int _internal_data_size() const;
+  bool _internal_has_data() const;
   public:
   void clear_data();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& data() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_data();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_data();
+  void set_allocated_data(::PROTOBUF_NAMESPACE_ID::Struct* data);
   private:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-      _internal_data() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-      _internal_mutable_data();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_data() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_data();
   public:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-      data() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-      mutable_data();
+  void unsafe_arena_set_allocated_data(
+      ::PROTOBUF_NAMESPACE_ID::Struct* data);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_data();
 
   // @@protoc_insertion_point(class_scope:viam.app.v1.GetRobotMetadataResponse)
  private:
@@ -25627,40 +25392,10 @@ class GetRobotMetadataResponse final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
-      GetRobotMetadataResponse_DataEntry_DoNotUse,
-      std::string, ::PROTOBUF_NAMESPACE_ID::Any,
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> data_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* data_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
-// -------------------------------------------------------------------
-
-class UpdateRobotMetadataRequest_DataEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<UpdateRobotMetadataRequest_DataEntry_DoNotUse, 
-    std::string, ::PROTOBUF_NAMESPACE_ID::Any,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
-public:
-  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<UpdateRobotMetadataRequest_DataEntry_DoNotUse, 
-    std::string, ::PROTOBUF_NAMESPACE_ID::Any,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
-  UpdateRobotMetadataRequest_DataEntry_DoNotUse();
-  explicit PROTOBUF_CONSTEXPR UpdateRobotMetadataRequest_DataEntry_DoNotUse(
-      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-  explicit UpdateRobotMetadataRequest_DataEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  void MergeFrom(const UpdateRobotMetadataRequest_DataEntry_DoNotUse& other);
-  static const UpdateRobotMetadataRequest_DataEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const UpdateRobotMetadataRequest_DataEntry_DoNotUse*>(&_UpdateRobotMetadataRequest_DataEntry_DoNotUse_default_instance_); }
-  static bool ValidateKey(std::string* s) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "viam.app.v1.UpdateRobotMetadataRequest.DataEntry.key");
- }
-  static bool ValidateValue(void*) { return true; }
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
-};
-
 // -------------------------------------------------------------------
 
 class UpdateRobotMetadataRequest final :
@@ -25711,7 +25446,7 @@ class UpdateRobotMetadataRequest final :
                &_UpdateRobotMetadataRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    154;
+    146;
 
   friend void swap(UpdateRobotMetadataRequest& a, UpdateRobotMetadataRequest& b) {
     a.Swap(&b);
@@ -25770,8 +25505,6 @@ class UpdateRobotMetadataRequest final :
   protected:
   explicit UpdateRobotMetadataRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
-  private:
-  static void ArenaDtor(void* object);
   public:
 
   static const ClassData _class_data_;
@@ -25781,30 +25514,12 @@ class UpdateRobotMetadataRequest final :
 
   // nested types ----------------------------------------------------
 
-
   // accessors -------------------------------------------------------
 
   enum : int {
-    kDataFieldNumber = 2,
     kIdFieldNumber = 1,
+    kDataFieldNumber = 2,
   };
-  // map<string, .google.protobuf.Any> data = 2 [json_name = "data"];
-  int data_size() const;
-  private:
-  int _internal_data_size() const;
-  public:
-  void clear_data();
-  private:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-      _internal_data() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-      _internal_mutable_data();
-  public:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-      data() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-      mutable_data();
-
   // string id = 1 [json_name = "id"];
   void clear_id();
   const std::string& id() const;
@@ -25819,6 +25534,24 @@ class UpdateRobotMetadataRequest final :
   std::string* _internal_mutable_id();
   public:
 
+  // .google.protobuf.Struct data = 2 [json_name = "data"];
+  bool has_data() const;
+  private:
+  bool _internal_has_data() const;
+  public:
+  void clear_data();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& data() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_data();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_data();
+  void set_allocated_data(::PROTOBUF_NAMESPACE_ID::Struct* data);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_data() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_data();
+  public:
+  void unsafe_arena_set_allocated_data(
+      ::PROTOBUF_NAMESPACE_ID::Struct* data);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_data();
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.UpdateRobotMetadataRequest)
  private:
   class _Internal;
@@ -25826,12 +25559,8 @@ class UpdateRobotMetadataRequest final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
-      UpdateRobotMetadataRequest_DataEntry_DoNotUse,
-      std::string, ::PROTOBUF_NAMESPACE_ID::Any,
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> data_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* data_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
@@ -25884,7 +25613,7 @@ class UpdateRobotMetadataResponse final :
                &_UpdateRobotMetadataResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    155;
+    147;
 
   friend void swap(UpdateRobotMetadataResponse& a, UpdateRobotMetadataResponse& b) {
     a.Swap(&b);
@@ -26001,7 +25730,7 @@ class MarkPartAsMainRequest final :
                &_MarkPartAsMainRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    156;
+    148;
 
   friend void swap(MarkPartAsMainRequest& a, MarkPartAsMainRequest& b) {
     a.Swap(&b);
@@ -26148,7 +25877,7 @@ class MarkPartAsMainResponse final :
                &_MarkPartAsMainResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    157;
+    149;
 
   friend void swap(MarkPartAsMainResponse& a, MarkPartAsMainResponse& b) {
     a.Swap(&b);
@@ -26265,7 +25994,7 @@ class MarkPartForRestartRequest final :
                &_MarkPartForRestartRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    158;
+    150;
 
   friend void swap(MarkPartForRestartRequest& a, MarkPartForRestartRequest& b) {
     a.Swap(&b);
@@ -26412,7 +26141,7 @@ class MarkPartForRestartResponse final :
                &_MarkPartForRestartResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    159;
+    151;
 
   friend void swap(MarkPartForRestartResponse& a, MarkPartForRestartResponse& b) {
     a.Swap(&b);
@@ -26529,7 +26258,7 @@ class CreateRobotPartSecretRequest final :
                &_CreateRobotPartSecretRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    160;
+    152;
 
   friend void swap(CreateRobotPartSecretRequest& a, CreateRobotPartSecretRequest& b) {
     a.Swap(&b);
@@ -26677,7 +26406,7 @@ class CreateRobotPartSecretResponse final :
                &_CreateRobotPartSecretResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    161;
+    153;
 
   friend void swap(CreateRobotPartSecretResponse& a, CreateRobotPartSecretResponse& b) {
     a.Swap(&b);
@@ -26829,7 +26558,7 @@ class DeleteRobotPartSecretRequest final :
                &_DeleteRobotPartSecretRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    162;
+    154;
 
   friend void swap(DeleteRobotPartSecretRequest& a, DeleteRobotPartSecretRequest& b) {
     a.Swap(&b);
@@ -26992,7 +26721,7 @@ class DeleteRobotPartSecretResponse final :
                &_DeleteRobotPartSecretResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    163;
+    155;
 
   friend void swap(DeleteRobotPartSecretResponse& a, DeleteRobotPartSecretResponse& b) {
     a.Swap(&b);
@@ -27109,7 +26838,7 @@ class Authorization final :
                &_Authorization_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    164;
+    156;
 
   friend void swap(Authorization& a, Authorization& b) {
     a.Swap(&b);
@@ -27353,7 +27082,7 @@ class AddRoleRequest final :
                &_AddRoleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    165;
+    157;
 
   friend void swap(AddRoleRequest& a, AddRoleRequest& b) {
     a.Swap(&b);
@@ -27504,7 +27233,7 @@ class AddRoleResponse final :
                &_AddRoleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    166;
+    158;
 
   friend void swap(AddRoleResponse& a, AddRoleResponse& b) {
     a.Swap(&b);
@@ -27621,7 +27350,7 @@ class RemoveRoleRequest final :
                &_RemoveRoleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    167;
+    159;
 
   friend void swap(RemoveRoleRequest& a, RemoveRoleRequest& b) {
     a.Swap(&b);
@@ -27772,7 +27501,7 @@ class RemoveRoleResponse final :
                &_RemoveRoleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    168;
+    160;
 
   friend void swap(RemoveRoleResponse& a, RemoveRoleResponse& b) {
     a.Swap(&b);
@@ -27889,7 +27618,7 @@ class ChangeRoleRequest final :
                &_ChangeRoleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    169;
+    161;
 
   friend void swap(ChangeRoleRequest& a, ChangeRoleRequest& b) {
     a.Swap(&b);
@@ -28060,7 +27789,7 @@ class ChangeRoleResponse final :
                &_ChangeRoleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    170;
+    162;
 
   friend void swap(ChangeRoleResponse& a, ChangeRoleResponse& b) {
     a.Swap(&b);
@@ -28177,7 +27906,7 @@ class ListAuthorizationsRequest final :
                &_ListAuthorizationsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    171;
+    163;
 
   friend void swap(ListAuthorizationsRequest& a, ListAuthorizationsRequest& b) {
     a.Swap(&b);
@@ -28351,7 +28080,7 @@ class ListAuthorizationsResponse final :
                &_ListAuthorizationsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    172;
+    164;
 
   friend void swap(ListAuthorizationsResponse& a, ListAuthorizationsResponse& b) {
     a.Swap(&b);
@@ -28503,7 +28232,7 @@ class CheckPermissionsRequest final :
                &_CheckPermissionsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    173;
+    165;
 
   friend void swap(CheckPermissionsRequest& a, CheckPermissionsRequest& b) {
     a.Swap(&b);
@@ -28655,7 +28384,7 @@ class AuthorizedPermissions final :
                &_AuthorizedPermissions_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    174;
+    166;
 
   friend void swap(AuthorizedPermissions& a, AuthorizedPermissions& b) {
     a.Swap(&b);
@@ -28845,7 +28574,7 @@ class CheckPermissionsResponse final :
                &_CheckPermissionsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    175;
+    167;
 
   friend void swap(CheckPermissionsResponse& a, CheckPermissionsResponse& b) {
     a.Swap(&b);
@@ -28997,7 +28726,7 @@ class ModuleVersion final :
                &_ModuleVersion_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    176;
+    168;
 
   friend void swap(ModuleVersion& a, ModuleVersion& b) {
     a.Swap(&b);
@@ -29222,7 +28951,7 @@ class ModuleMetadata final :
                &_ModuleMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    177;
+    169;
 
   friend void swap(ModuleMetadata& a, ModuleMetadata& b) {
     a.Swap(&b);
@@ -29431,7 +29160,7 @@ class MLModelMetadata final :
                &_MLModelMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    178;
+    170;
 
   friend void swap(MLModelMetadata& a, MLModelMetadata& b) {
     a.Swap(&b);
@@ -29611,7 +29340,7 @@ class MLTrainingVersion final :
                &_MLTrainingVersion_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    179;
+    171;
 
   friend void swap(MLTrainingVersion& a, MLTrainingVersion& b) {
     a.Swap(&b);
@@ -29779,7 +29508,7 @@ class MLTrainingMetadata final :
                &_MLTrainingMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    180;
+    172;
 
   friend void swap(MLTrainingMetadata& a, MLTrainingMetadata& b) {
     a.Swap(&b);
@@ -29971,7 +29700,7 @@ class RegistryItem final :
                &_RegistryItem_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    181;
+    173;
 
   friend void swap(RegistryItem& a, RegistryItem& b) {
     a.Swap(&b);
@@ -30379,7 +30108,7 @@ class GetRegistryItemRequest final :
                &_GetRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    182;
+    174;
 
   friend void swap(GetRegistryItemRequest& a, GetRegistryItemRequest& b) {
     a.Swap(&b);
@@ -30543,7 +30272,7 @@ class GetRegistryItemResponse final :
                &_GetRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    183;
+    175;
 
   friend void swap(GetRegistryItemResponse& a, GetRegistryItemResponse& b) {
     a.Swap(&b);
@@ -30695,7 +30424,7 @@ class CreateRegistryItemRequest final :
                &_CreateRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    184;
+    176;
 
   friend void swap(CreateRegistryItemRequest& a, CreateRegistryItemRequest& b) {
     a.Swap(&b);
@@ -30869,7 +30598,7 @@ class CreateRegistryItemResponse final :
                &_CreateRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    185;
+    177;
 
   friend void swap(CreateRegistryItemResponse& a, CreateRegistryItemResponse& b) {
     a.Swap(&b);
@@ -30993,7 +30722,7 @@ class UpdateRegistryItemRequest final :
                &_UpdateRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    186;
+    178;
 
   friend void swap(UpdateRegistryItemRequest& a, UpdateRegistryItemRequest& b) {
     a.Swap(&b);
@@ -31273,7 +31002,7 @@ class UpdateRegistryItemResponse final :
                &_UpdateRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    187;
+    179;
 
   friend void swap(UpdateRegistryItemResponse& a, UpdateRegistryItemResponse& b) {
     a.Swap(&b);
@@ -31390,7 +31119,7 @@ class ListRegistryItemsRequest final :
                &_ListRegistryItemsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    188;
+    180;
 
   friend void swap(ListRegistryItemsRequest& a, ListRegistryItemsRequest& b) {
     a.Swap(&b);
@@ -31710,7 +31439,7 @@ class ListRegistryItemsResponse final :
                &_ListRegistryItemsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    189;
+    181;
 
   friend void swap(ListRegistryItemsResponse& a, ListRegistryItemsResponse& b) {
     a.Swap(&b);
@@ -31862,7 +31591,7 @@ class DeleteRegistryItemRequest final :
                &_DeleteRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    190;
+    182;
 
   friend void swap(DeleteRegistryItemRequest& a, DeleteRegistryItemRequest& b) {
     a.Swap(&b);
@@ -32009,7 +31738,7 @@ class DeleteRegistryItemResponse final :
                &_DeleteRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    191;
+    183;
 
   friend void swap(DeleteRegistryItemResponse& a, DeleteRegistryItemResponse& b) {
     a.Swap(&b);
@@ -32126,7 +31855,7 @@ class TransferRegistryItemRequest final :
                &_TransferRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    192;
+    184;
 
   friend void swap(TransferRegistryItemRequest& a, TransferRegistryItemRequest& b) {
     a.Swap(&b);
@@ -32289,7 +32018,7 @@ class TransferRegistryItemResponse final :
                &_TransferRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    193;
+    185;
 
   friend void swap(TransferRegistryItemResponse& a, TransferRegistryItemResponse& b) {
     a.Swap(&b);
@@ -32406,7 +32135,7 @@ class CreateModuleRequest final :
                &_CreateModuleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    194;
+    186;
 
   friend void swap(CreateModuleRequest& a, CreateModuleRequest& b) {
     a.Swap(&b);
@@ -32570,7 +32299,7 @@ class CreateModuleResponse final :
                &_CreateModuleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    195;
+    187;
 
   friend void swap(CreateModuleResponse& a, CreateModuleResponse& b) {
     a.Swap(&b);
@@ -32734,7 +32463,7 @@ class UpdateModuleRequest final :
                &_UpdateModuleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    196;
+    188;
 
   friend void swap(UpdateModuleRequest& a, UpdateModuleRequest& b) {
     a.Swap(&b);
@@ -32982,7 +32711,7 @@ class UpdateModuleResponse final :
                &_UpdateModuleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    197;
+    189;
 
   friend void swap(UpdateModuleResponse& a, UpdateModuleResponse& b) {
     a.Swap(&b);
@@ -33130,7 +32859,7 @@ class UpdateModuleMetadata final :
                &_UpdateModuleMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    198;
+    190;
 
   friend void swap(UpdateModuleMetadata& a, UpdateModuleMetadata& b) {
     a.Swap(&b);
@@ -33298,7 +33027,7 @@ class UpdateMLModelMetadata final :
                &_UpdateMLModelMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    199;
+    191;
 
   friend void swap(UpdateMLModelMetadata& a, UpdateMLModelMetadata& b) {
     a.Swap(&b);
@@ -33452,7 +33181,7 @@ class UpdateMLTrainingMetadata final :
                &_UpdateMLTrainingMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    200;
+    192;
 
   friend void swap(UpdateMLTrainingMetadata& a, UpdateMLTrainingMetadata& b) {
     a.Swap(&b);
@@ -33617,7 +33346,7 @@ class Model final :
                &_Model_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    201;
+    193;
 
   friend void swap(Model& a, Model& b) {
     a.Swap(&b);
@@ -33822,7 +33551,7 @@ class ModuleFileInfo final :
                &_ModuleFileInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    202;
+    194;
 
   friend void swap(ModuleFileInfo& a, ModuleFileInfo& b) {
     a.Swap(&b);
@@ -34034,7 +33763,7 @@ class UploadModuleFileRequest final :
                &_UploadModuleFileRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    203;
+    195;
 
   friend void swap(UploadModuleFileRequest& a, UploadModuleFileRequest& b) {
     a.Swap(&b);
@@ -34219,7 +33948,7 @@ class UploadModuleFileResponse final :
                &_UploadModuleFileResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    204;
+    196;
 
   friend void swap(UploadModuleFileResponse& a, UploadModuleFileResponse& b) {
     a.Swap(&b);
@@ -34367,7 +34096,7 @@ class GetModuleRequest final :
                &_GetModuleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    205;
+    197;
 
   friend void swap(GetModuleRequest& a, GetModuleRequest& b) {
     a.Swap(&b);
@@ -34531,7 +34260,7 @@ class GetModuleResponse final :
                &_GetModuleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    206;
+    198;
 
   friend void swap(GetModuleResponse& a, GetModuleResponse& b) {
     a.Swap(&b);
@@ -34683,7 +34412,7 @@ class Module final :
                &_Module_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    207;
+    199;
 
   friend void swap(Module& a, Module& b) {
     a.Swap(&b);
@@ -35021,7 +34750,7 @@ class VersionHistory final :
                &_VersionHistory_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    208;
+    200;
 
   friend void swap(VersionHistory& a, VersionHistory& b) {
     a.Swap(&b);
@@ -35246,7 +34975,7 @@ class Uploads final :
                &_Uploads_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    209;
+    201;
 
   friend void swap(Uploads& a, Uploads& b) {
     a.Swap(&b);
@@ -35414,7 +35143,7 @@ class ListModulesRequest final :
                &_ListModulesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    210;
+    202;
 
   friend void swap(ListModulesRequest& a, ListModulesRequest& b) {
     a.Swap(&b);
@@ -35582,7 +35311,7 @@ class ListModulesResponse final :
                &_ListModulesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    211;
+    203;
 
   friend void swap(ListModulesResponse& a, ListModulesResponse& b) {
     a.Swap(&b);
@@ -35734,7 +35463,7 @@ class GetUserIDByEmailRequest final :
                &_GetUserIDByEmailRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    212;
+    204;
 
   friend void swap(GetUserIDByEmailRequest& a, GetUserIDByEmailRequest& b) {
     a.Swap(&b);
@@ -35882,7 +35611,7 @@ class GetUserIDByEmailResponse final :
                &_GetUserIDByEmailResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    213;
+    205;
 
   friend void swap(GetUserIDByEmailResponse& a, GetUserIDByEmailResponse& b) {
     a.Swap(&b);
@@ -36030,7 +35759,7 @@ class ListOrganizationsByUserRequest final :
                &_ListOrganizationsByUserRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    214;
+    206;
 
   friend void swap(ListOrganizationsByUserRequest& a, ListOrganizationsByUserRequest& b) {
     a.Swap(&b);
@@ -36178,7 +35907,7 @@ class OrgDetails final :
                &_OrgDetails_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    215;
+    207;
 
   friend void swap(OrgDetails& a, OrgDetails& b) {
     a.Swap(&b);
@@ -36383,7 +36112,7 @@ class ListOrganizationsByUserResponse final :
                &_ListOrganizationsByUserResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    216;
+    208;
 
   friend void swap(ListOrganizationsByUserResponse& a, ListOrganizationsByUserResponse& b) {
     a.Swap(&b);
@@ -36535,7 +36264,7 @@ class SearchOrganizationsRequest final :
                &_SearchOrganizationsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    217;
+    209;
 
   friend void swap(SearchOrganizationsRequest& a, SearchOrganizationsRequest& b) {
     a.Swap(&b);
@@ -36748,7 +36477,7 @@ class SearchOrganizationsResponse final :
                &_SearchOrganizationsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    218;
+    210;
 
   friend void swap(SearchOrganizationsResponse& a, SearchOrganizationsResponse& b) {
     a.Swap(&b);
@@ -36900,7 +36629,7 @@ class CreateKeyRequest final :
                &_CreateKeyRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    219;
+    211;
 
   friend void swap(CreateKeyRequest& a, CreateKeyRequest& b) {
     a.Swap(&b);
@@ -37068,7 +36797,7 @@ class CreateKeyResponse final :
                &_CreateKeyResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    220;
+    212;
 
   friend void swap(CreateKeyResponse& a, CreateKeyResponse& b) {
     a.Swap(&b);
@@ -37232,7 +36961,7 @@ class DeleteKeyRequest final :
                &_DeleteKeyRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    221;
+    213;
 
   friend void swap(DeleteKeyRequest& a, DeleteKeyRequest& b) {
     a.Swap(&b);
@@ -37379,7 +37108,7 @@ class DeleteKeyResponse final :
                &_DeleteKeyResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    222;
+    214;
 
   friend void swap(DeleteKeyResponse& a, DeleteKeyResponse& b) {
     a.Swap(&b);
@@ -37496,7 +37225,7 @@ class RenameKeyRequest final :
                &_RenameKeyRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    223;
+    215;
 
   friend void swap(RenameKeyRequest& a, RenameKeyRequest& b) {
     a.Swap(&b);
@@ -37660,7 +37389,7 @@ class RenameKeyResponse final :
                &_RenameKeyResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    224;
+    216;
 
   friend void swap(RenameKeyResponse& a, RenameKeyResponse& b) {
     a.Swap(&b);
@@ -37824,7 +37553,7 @@ class AuthorizationDetails final :
                &_AuthorizationDetails_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    225;
+    217;
 
   friend void swap(AuthorizationDetails& a, AuthorizationDetails& b) {
     a.Swap(&b);
@@ -38036,7 +37765,7 @@ class APIKeyWithAuthorizations final :
                &_APIKeyWithAuthorizations_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    226;
+    218;
 
   friend void swap(APIKeyWithAuthorizations& a, APIKeyWithAuthorizations& b) {
     a.Swap(&b);
@@ -38208,7 +37937,7 @@ class ListKeysRequest final :
                &_ListKeysRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    227;
+    219;
 
   friend void swap(ListKeysRequest& a, ListKeysRequest& b) {
     a.Swap(&b);
@@ -38356,7 +38085,7 @@ class ListKeysResponse final :
                &_ListKeysResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    228;
+    220;
 
   friend void swap(ListKeysResponse& a, ListKeysResponse& b) {
     a.Swap(&b);
@@ -38508,7 +38237,7 @@ class RotateKeyRequest final :
                &_RotateKeyRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    229;
+    221;
 
   friend void swap(RotateKeyRequest& a, RotateKeyRequest& b) {
     a.Swap(&b);
@@ -38656,7 +38385,7 @@ class RotateKeyResponse final :
                &_RotateKeyResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    230;
+    222;
 
   friend void swap(RotateKeyResponse& a, RotateKeyResponse& b) {
     a.Swap(&b);
@@ -38820,7 +38549,7 @@ class CreateKeyFromExistingKeyAuthorizationsRequest final :
                &_CreateKeyFromExistingKeyAuthorizationsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    231;
+    223;
 
   friend void swap(CreateKeyFromExistingKeyAuthorizationsRequest& a, CreateKeyFromExistingKeyAuthorizationsRequest& b) {
     a.Swap(&b);
@@ -38968,7 +38697,7 @@ class CreateKeyFromExistingKeyAuthorizationsResponse final :
                &_CreateKeyFromExistingKeyAuthorizationsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    232;
+    224;
 
   friend void swap(CreateKeyFromExistingKeyAuthorizationsResponse& a, CreateKeyFromExistingKeyAuthorizationsResponse& b) {
     a.Swap(&b);
@@ -39132,7 +38861,7 @@ class OrganizationSetLogoRequest final :
                &_OrganizationSetLogoRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    233;
+    225;
 
   friend void swap(OrganizationSetLogoRequest& a, OrganizationSetLogoRequest& b) {
     a.Swap(&b);
@@ -39295,7 +39024,7 @@ class OrganizationSetLogoResponse final :
                &_OrganizationSetLogoResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    234;
+    226;
 
   friend void swap(OrganizationSetLogoResponse& a, OrganizationSetLogoResponse& b) {
     a.Swap(&b);
@@ -39412,7 +39141,7 @@ class OrganizationGetLogoRequest final :
                &_OrganizationGetLogoRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    235;
+    227;
 
   friend void swap(OrganizationGetLogoRequest& a, OrganizationGetLogoRequest& b) {
     a.Swap(&b);
@@ -39560,7 +39289,7 @@ class OrganizationGetLogoResponse final :
                &_OrganizationGetLogoResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    236;
+    228;
 
   friend void swap(OrganizationGetLogoResponse& a, OrganizationGetLogoResponse& b) {
     a.Swap(&b);
@@ -39708,7 +39437,7 @@ class EnableAuthServiceRequest final :
                &_EnableAuthServiceRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    237;
+    229;
 
   friend void swap(EnableAuthServiceRequest& a, EnableAuthServiceRequest& b) {
     a.Swap(&b);
@@ -39855,7 +39584,7 @@ class EnableAuthServiceResponse final :
                &_EnableAuthServiceResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    238;
+    230;
 
   friend void swap(EnableAuthServiceResponse& a, EnableAuthServiceResponse& b) {
     a.Swap(&b);
@@ -39972,7 +39701,7 @@ class DisableAuthServiceRequest final :
                &_DisableAuthServiceRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    239;
+    231;
 
   friend void swap(DisableAuthServiceRequest& a, DisableAuthServiceRequest& b) {
     a.Swap(&b);
@@ -40119,7 +39848,7 @@ class DisableAuthServiceResponse final :
                &_DisableAuthServiceResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    240;
+    232;
 
   friend void swap(DisableAuthServiceResponse& a, DisableAuthServiceResponse& b) {
     a.Swap(&b);
@@ -40236,7 +39965,7 @@ class CreateOAuthAppRequest final :
                &_CreateOAuthAppRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    241;
+    233;
 
   friend void swap(CreateOAuthAppRequest& a, CreateOAuthAppRequest& b) {
     a.Swap(&b);
@@ -40420,7 +40149,7 @@ class CreateOAuthAppResponse final :
                &_CreateOAuthAppResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    242;
+    234;
 
   friend void swap(CreateOAuthAppResponse& a, CreateOAuthAppResponse& b) {
     a.Swap(&b);
@@ -40584,7 +40313,7 @@ class ReadOAuthAppRequest final :
                &_ReadOAuthAppRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    243;
+    235;
 
   friend void swap(ReadOAuthAppRequest& a, ReadOAuthAppRequest& b) {
     a.Swap(&b);
@@ -40748,7 +40477,7 @@ class ReadOAuthAppResponse final :
                &_ReadOAuthAppResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    244;
+    236;
 
   friend void swap(ReadOAuthAppResponse& a, ReadOAuthAppResponse& b) {
     a.Swap(&b);
@@ -40932,7 +40661,7 @@ class UpdateOAuthAppRequest final :
                &_UpdateOAuthAppRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    245;
+    237;
 
   friend void swap(UpdateOAuthAppRequest& a, UpdateOAuthAppRequest& b) {
     a.Swap(&b);
@@ -41131,7 +40860,7 @@ class UpdateOAuthAppResponse final :
                &_UpdateOAuthAppResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    246;
+    238;
 
   friend void swap(UpdateOAuthAppResponse& a, UpdateOAuthAppResponse& b) {
     a.Swap(&b);
@@ -41248,7 +40977,7 @@ class DeleteOAuthAppRequest final :
                &_DeleteOAuthAppRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    247;
+    239;
 
   friend void swap(DeleteOAuthAppRequest& a, DeleteOAuthAppRequest& b) {
     a.Swap(&b);
@@ -41411,7 +41140,7 @@ class DeleteOAuthAppResponse final :
                &_DeleteOAuthAppResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    248;
+    240;
 
   friend void swap(DeleteOAuthAppResponse& a, DeleteOAuthAppResponse& b) {
     a.Swap(&b);
@@ -41528,7 +41257,7 @@ class ListOAuthAppsRequest final :
                &_ListOAuthAppsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    249;
+    241;
 
   friend void swap(ListOAuthAppsRequest& a, ListOAuthAppsRequest& b) {
     a.Swap(&b);
@@ -41676,7 +41405,7 @@ class ListOAuthAppsResponse final :
                &_ListOAuthAppsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    250;
+    242;
 
   friend void swap(ListOAuthAppsResponse& a, ListOAuthAppsResponse& b) {
     a.Swap(&b);
@@ -41834,7 +41563,7 @@ class OAuthConfig final :
                &_OAuthConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    251;
+    243;
 
   friend void swap(OAuthConfig& a, OAuthConfig& b) {
     a.Swap(&b);
@@ -45563,37 +45292,92 @@ inline void GetOrganizationMetadataRequest::set_allocated_organization_id(std::s
 
 // -------------------------------------------------------------------
 
-// -------------------------------------------------------------------
-
 // GetOrganizationMetadataResponse
 
-// map<string, .google.protobuf.Any> data = 1 [json_name = "data"];
-inline int GetOrganizationMetadataResponse::_internal_data_size() const {
-  return data_.size();
+// .google.protobuf.Struct data = 1 [json_name = "data"];
+inline bool GetOrganizationMetadataResponse::_internal_has_data() const {
+  return this != internal_default_instance() && data_ != nullptr;
 }
-inline int GetOrganizationMetadataResponse::data_size() const {
-  return _internal_data_size();
+inline bool GetOrganizationMetadataResponse::has_data() const {
+  return _internal_has_data();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-GetOrganizationMetadataResponse::_internal_data() const {
-  return data_.GetMap();
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetOrganizationMetadataResponse::_internal_data() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = data_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-GetOrganizationMetadataResponse::data() const {
-  // @@protoc_insertion_point(field_map:viam.app.v1.GetOrganizationMetadataResponse.data)
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetOrganizationMetadataResponse::data() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetOrganizationMetadataResponse.data)
   return _internal_data();
 }
-inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-GetOrganizationMetadataResponse::_internal_mutable_data() {
-  return data_.MutableMap();
+inline void GetOrganizationMetadataResponse::unsafe_arena_set_allocated_data(
+    ::PROTOBUF_NAMESPACE_ID::Struct* data) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(data_);
+  }
+  data_ = data;
+  if (data) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.GetOrganizationMetadataResponse.data)
 }
-inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-GetOrganizationMetadataResponse::mutable_data() {
-  // @@protoc_insertion_point(field_mutable_map:viam.app.v1.GetOrganizationMetadataResponse.data)
-  return _internal_mutable_data();
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetOrganizationMetadataResponse::release_data() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = data_;
+  data_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
 }
-
-// -------------------------------------------------------------------
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetOrganizationMetadataResponse::unsafe_arena_release_data() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetOrganizationMetadataResponse.data)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = data_;
+  data_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetOrganizationMetadataResponse::_internal_mutable_data() {
+  
+  if (data_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    data_ = p;
+  }
+  return data_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetOrganizationMetadataResponse::mutable_data() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_data();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetOrganizationMetadataResponse.data)
+  return _msg;
+}
+inline void GetOrganizationMetadataResponse::set_allocated_data(::PROTOBUF_NAMESPACE_ID::Struct* data) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(data_);
+  }
+  if (data) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(data));
+    if (message_arena != submessage_arena) {
+      data = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, data, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  data_ = data;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetOrganizationMetadataResponse.data)
+}
 
 // -------------------------------------------------------------------
 
@@ -45649,30 +45433,89 @@ inline void UpdateOrganizationMetadataRequest::set_allocated_organization_id(std
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateOrganizationMetadataRequest.organization_id)
 }
 
-// map<string, .google.protobuf.Any> data = 2 [json_name = "data"];
-inline int UpdateOrganizationMetadataRequest::_internal_data_size() const {
-  return data_.size();
+// .google.protobuf.Struct data = 2 [json_name = "data"];
+inline bool UpdateOrganizationMetadataRequest::_internal_has_data() const {
+  return this != internal_default_instance() && data_ != nullptr;
 }
-inline int UpdateOrganizationMetadataRequest::data_size() const {
-  return _internal_data_size();
+inline bool UpdateOrganizationMetadataRequest::has_data() const {
+  return _internal_has_data();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-UpdateOrganizationMetadataRequest::_internal_data() const {
-  return data_.GetMap();
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& UpdateOrganizationMetadataRequest::_internal_data() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = data_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-UpdateOrganizationMetadataRequest::data() const {
-  // @@protoc_insertion_point(field_map:viam.app.v1.UpdateOrganizationMetadataRequest.data)
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& UpdateOrganizationMetadataRequest::data() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateOrganizationMetadataRequest.data)
   return _internal_data();
 }
-inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-UpdateOrganizationMetadataRequest::_internal_mutable_data() {
-  return data_.MutableMap();
+inline void UpdateOrganizationMetadataRequest::unsafe_arena_set_allocated_data(
+    ::PROTOBUF_NAMESPACE_ID::Struct* data) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(data_);
+  }
+  data_ = data;
+  if (data) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.UpdateOrganizationMetadataRequest.data)
 }
-inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-UpdateOrganizationMetadataRequest::mutable_data() {
-  // @@protoc_insertion_point(field_mutable_map:viam.app.v1.UpdateOrganizationMetadataRequest.data)
-  return _internal_mutable_data();
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UpdateOrganizationMetadataRequest::release_data() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = data_;
+  data_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UpdateOrganizationMetadataRequest::unsafe_arena_release_data() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateOrganizationMetadataRequest.data)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = data_;
+  data_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UpdateOrganizationMetadataRequest::_internal_mutable_data() {
+  
+  if (data_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    data_ = p;
+  }
+  return data_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UpdateOrganizationMetadataRequest::mutable_data() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_data();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateOrganizationMetadataRequest.data)
+  return _msg;
+}
+inline void UpdateOrganizationMetadataRequest::set_allocated_data(::PROTOBUF_NAMESPACE_ID::Struct* data) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(data_);
+  }
+  if (data) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(data));
+    if (message_arena != submessage_arena) {
+      data = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, data, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  data_ = data;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateOrganizationMetadataRequest.data)
 }
 
 // -------------------------------------------------------------------
@@ -48870,6 +48713,96 @@ inline void Location::set_allocated_config(::viam::app::v1::StorageConfig* confi
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Location.config)
 }
 
+// optional .viam.app.v1.OrganizationIdentity primary_org_identity = 9 [json_name = "primaryOrgIdentity"];
+inline bool Location::_internal_has_primary_org_identity() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || primary_org_identity_ != nullptr);
+  return value;
+}
+inline bool Location::has_primary_org_identity() const {
+  return _internal_has_primary_org_identity();
+}
+inline void Location::clear_primary_org_identity() {
+  if (primary_org_identity_ != nullptr) primary_org_identity_->Clear();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const ::viam::app::v1::OrganizationIdentity& Location::_internal_primary_org_identity() const {
+  const ::viam::app::v1::OrganizationIdentity* p = primary_org_identity_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::OrganizationIdentity&>(
+      ::viam::app::v1::_OrganizationIdentity_default_instance_);
+}
+inline const ::viam::app::v1::OrganizationIdentity& Location::primary_org_identity() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Location.primary_org_identity)
+  return _internal_primary_org_identity();
+}
+inline void Location::unsafe_arena_set_allocated_primary_org_identity(
+    ::viam::app::v1::OrganizationIdentity* primary_org_identity) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(primary_org_identity_);
+  }
+  primary_org_identity_ = primary_org_identity;
+  if (primary_org_identity) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.Location.primary_org_identity)
+}
+inline ::viam::app::v1::OrganizationIdentity* Location::release_primary_org_identity() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::app::v1::OrganizationIdentity* temp = primary_org_identity_;
+  primary_org_identity_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::OrganizationIdentity* Location::unsafe_arena_release_primary_org_identity() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.Location.primary_org_identity)
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::app::v1::OrganizationIdentity* temp = primary_org_identity_;
+  primary_org_identity_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::OrganizationIdentity* Location::_internal_mutable_primary_org_identity() {
+  _has_bits_[0] |= 0x00000001u;
+  if (primary_org_identity_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::OrganizationIdentity>(GetArenaForAllocation());
+    primary_org_identity_ = p;
+  }
+  return primary_org_identity_;
+}
+inline ::viam::app::v1::OrganizationIdentity* Location::mutable_primary_org_identity() {
+  ::viam::app::v1::OrganizationIdentity* _msg = _internal_mutable_primary_org_identity();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Location.primary_org_identity)
+  return _msg;
+}
+inline void Location::set_allocated_primary_org_identity(::viam::app::v1::OrganizationIdentity* primary_org_identity) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete primary_org_identity_;
+  }
+  if (primary_org_identity) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(primary_org_identity);
+    if (message_arena != submessage_arena) {
+      primary_org_identity = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, primary_org_identity, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  primary_org_identity_ = primary_org_identity;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Location.primary_org_identity)
+}
+
 // -------------------------------------------------------------------
 
 // SharedSecret
@@ -49959,37 +49892,92 @@ inline void GetLocationMetadataRequest::set_allocated_location_id(std::string* l
 
 // -------------------------------------------------------------------
 
-// -------------------------------------------------------------------
-
 // GetLocationMetadataResponse
 
-// map<string, .google.protobuf.Any> data = 1 [json_name = "data"];
-inline int GetLocationMetadataResponse::_internal_data_size() const {
-  return data_.size();
+// .google.protobuf.Struct data = 1 [json_name = "data"];
+inline bool GetLocationMetadataResponse::_internal_has_data() const {
+  return this != internal_default_instance() && data_ != nullptr;
 }
-inline int GetLocationMetadataResponse::data_size() const {
-  return _internal_data_size();
+inline bool GetLocationMetadataResponse::has_data() const {
+  return _internal_has_data();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-GetLocationMetadataResponse::_internal_data() const {
-  return data_.GetMap();
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetLocationMetadataResponse::_internal_data() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = data_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-GetLocationMetadataResponse::data() const {
-  // @@protoc_insertion_point(field_map:viam.app.v1.GetLocationMetadataResponse.data)
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetLocationMetadataResponse::data() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetLocationMetadataResponse.data)
   return _internal_data();
 }
-inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-GetLocationMetadataResponse::_internal_mutable_data() {
-  return data_.MutableMap();
+inline void GetLocationMetadataResponse::unsafe_arena_set_allocated_data(
+    ::PROTOBUF_NAMESPACE_ID::Struct* data) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(data_);
+  }
+  data_ = data;
+  if (data) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.GetLocationMetadataResponse.data)
 }
-inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-GetLocationMetadataResponse::mutable_data() {
-  // @@protoc_insertion_point(field_mutable_map:viam.app.v1.GetLocationMetadataResponse.data)
-  return _internal_mutable_data();
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetLocationMetadataResponse::release_data() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = data_;
+  data_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
 }
-
-// -------------------------------------------------------------------
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetLocationMetadataResponse::unsafe_arena_release_data() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetLocationMetadataResponse.data)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = data_;
+  data_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetLocationMetadataResponse::_internal_mutable_data() {
+  
+  if (data_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    data_ = p;
+  }
+  return data_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetLocationMetadataResponse::mutable_data() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_data();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetLocationMetadataResponse.data)
+  return _msg;
+}
+inline void GetLocationMetadataResponse::set_allocated_data(::PROTOBUF_NAMESPACE_ID::Struct* data) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(data_);
+  }
+  if (data) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(data));
+    if (message_arena != submessage_arena) {
+      data = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, data, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  data_ = data;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetLocationMetadataResponse.data)
+}
 
 // -------------------------------------------------------------------
 
@@ -50045,30 +50033,89 @@ inline void UpdateLocationMetadataRequest::set_allocated_location_id(std::string
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateLocationMetadataRequest.location_id)
 }
 
-// map<string, .google.protobuf.Any> data = 2 [json_name = "data"];
-inline int UpdateLocationMetadataRequest::_internal_data_size() const {
-  return data_.size();
+// .google.protobuf.Struct data = 2 [json_name = "data"];
+inline bool UpdateLocationMetadataRequest::_internal_has_data() const {
+  return this != internal_default_instance() && data_ != nullptr;
 }
-inline int UpdateLocationMetadataRequest::data_size() const {
-  return _internal_data_size();
+inline bool UpdateLocationMetadataRequest::has_data() const {
+  return _internal_has_data();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-UpdateLocationMetadataRequest::_internal_data() const {
-  return data_.GetMap();
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& UpdateLocationMetadataRequest::_internal_data() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = data_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-UpdateLocationMetadataRequest::data() const {
-  // @@protoc_insertion_point(field_map:viam.app.v1.UpdateLocationMetadataRequest.data)
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& UpdateLocationMetadataRequest::data() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateLocationMetadataRequest.data)
   return _internal_data();
 }
-inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-UpdateLocationMetadataRequest::_internal_mutable_data() {
-  return data_.MutableMap();
+inline void UpdateLocationMetadataRequest::unsafe_arena_set_allocated_data(
+    ::PROTOBUF_NAMESPACE_ID::Struct* data) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(data_);
+  }
+  data_ = data;
+  if (data) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.UpdateLocationMetadataRequest.data)
 }
-inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-UpdateLocationMetadataRequest::mutable_data() {
-  // @@protoc_insertion_point(field_mutable_map:viam.app.v1.UpdateLocationMetadataRequest.data)
-  return _internal_mutable_data();
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UpdateLocationMetadataRequest::release_data() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = data_;
+  data_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UpdateLocationMetadataRequest::unsafe_arena_release_data() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateLocationMetadataRequest.data)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = data_;
+  data_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UpdateLocationMetadataRequest::_internal_mutable_data() {
+  
+  if (data_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    data_ = p;
+  }
+  return data_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UpdateLocationMetadataRequest::mutable_data() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_data();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateLocationMetadataRequest.data)
+  return _msg;
+}
+inline void UpdateLocationMetadataRequest::set_allocated_data(::PROTOBUF_NAMESPACE_ID::Struct* data) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(data_);
+  }
+  if (data) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(data));
+    if (message_arena != submessage_arena) {
+      data = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, data, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  data_ = data;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateLocationMetadataRequest.data)
 }
 
 // -------------------------------------------------------------------
@@ -53115,37 +53162,92 @@ inline void GetRobotPartMetadataRequest::set_allocated_id(std::string* id) {
 
 // -------------------------------------------------------------------
 
-// -------------------------------------------------------------------
-
 // GetRobotPartMetadataResponse
 
-// map<string, .google.protobuf.Any> data = 1 [json_name = "data"];
-inline int GetRobotPartMetadataResponse::_internal_data_size() const {
-  return data_.size();
+// .google.protobuf.Struct data = 1 [json_name = "data"];
+inline bool GetRobotPartMetadataResponse::_internal_has_data() const {
+  return this != internal_default_instance() && data_ != nullptr;
 }
-inline int GetRobotPartMetadataResponse::data_size() const {
-  return _internal_data_size();
+inline bool GetRobotPartMetadataResponse::has_data() const {
+  return _internal_has_data();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-GetRobotPartMetadataResponse::_internal_data() const {
-  return data_.GetMap();
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetRobotPartMetadataResponse::_internal_data() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = data_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-GetRobotPartMetadataResponse::data() const {
-  // @@protoc_insertion_point(field_map:viam.app.v1.GetRobotPartMetadataResponse.data)
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetRobotPartMetadataResponse::data() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetRobotPartMetadataResponse.data)
   return _internal_data();
 }
-inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-GetRobotPartMetadataResponse::_internal_mutable_data() {
-  return data_.MutableMap();
+inline void GetRobotPartMetadataResponse::unsafe_arena_set_allocated_data(
+    ::PROTOBUF_NAMESPACE_ID::Struct* data) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(data_);
+  }
+  data_ = data;
+  if (data) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.GetRobotPartMetadataResponse.data)
 }
-inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-GetRobotPartMetadataResponse::mutable_data() {
-  // @@protoc_insertion_point(field_mutable_map:viam.app.v1.GetRobotPartMetadataResponse.data)
-  return _internal_mutable_data();
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetRobotPartMetadataResponse::release_data() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = data_;
+  data_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
 }
-
-// -------------------------------------------------------------------
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetRobotPartMetadataResponse::unsafe_arena_release_data() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetRobotPartMetadataResponse.data)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = data_;
+  data_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetRobotPartMetadataResponse::_internal_mutable_data() {
+  
+  if (data_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    data_ = p;
+  }
+  return data_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetRobotPartMetadataResponse::mutable_data() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_data();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetRobotPartMetadataResponse.data)
+  return _msg;
+}
+inline void GetRobotPartMetadataResponse::set_allocated_data(::PROTOBUF_NAMESPACE_ID::Struct* data) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(data_);
+  }
+  if (data) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(data));
+    if (message_arena != submessage_arena) {
+      data = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, data, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  data_ = data;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetRobotPartMetadataResponse.data)
+}
 
 // -------------------------------------------------------------------
 
@@ -53201,30 +53303,89 @@ inline void UpdateRobotPartMetadataRequest::set_allocated_id(std::string* id) {
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateRobotPartMetadataRequest.id)
 }
 
-// map<string, .google.protobuf.Any> data = 2 [json_name = "data"];
-inline int UpdateRobotPartMetadataRequest::_internal_data_size() const {
-  return data_.size();
+// .google.protobuf.Struct data = 2 [json_name = "data"];
+inline bool UpdateRobotPartMetadataRequest::_internal_has_data() const {
+  return this != internal_default_instance() && data_ != nullptr;
 }
-inline int UpdateRobotPartMetadataRequest::data_size() const {
-  return _internal_data_size();
+inline bool UpdateRobotPartMetadataRequest::has_data() const {
+  return _internal_has_data();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-UpdateRobotPartMetadataRequest::_internal_data() const {
-  return data_.GetMap();
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& UpdateRobotPartMetadataRequest::_internal_data() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = data_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-UpdateRobotPartMetadataRequest::data() const {
-  // @@protoc_insertion_point(field_map:viam.app.v1.UpdateRobotPartMetadataRequest.data)
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& UpdateRobotPartMetadataRequest::data() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateRobotPartMetadataRequest.data)
   return _internal_data();
 }
-inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-UpdateRobotPartMetadataRequest::_internal_mutable_data() {
-  return data_.MutableMap();
+inline void UpdateRobotPartMetadataRequest::unsafe_arena_set_allocated_data(
+    ::PROTOBUF_NAMESPACE_ID::Struct* data) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(data_);
+  }
+  data_ = data;
+  if (data) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.UpdateRobotPartMetadataRequest.data)
 }
-inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-UpdateRobotPartMetadataRequest::mutable_data() {
-  // @@protoc_insertion_point(field_mutable_map:viam.app.v1.UpdateRobotPartMetadataRequest.data)
-  return _internal_mutable_data();
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UpdateRobotPartMetadataRequest::release_data() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = data_;
+  data_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UpdateRobotPartMetadataRequest::unsafe_arena_release_data() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateRobotPartMetadataRequest.data)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = data_;
+  data_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UpdateRobotPartMetadataRequest::_internal_mutable_data() {
+  
+  if (data_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    data_ = p;
+  }
+  return data_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UpdateRobotPartMetadataRequest::mutable_data() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_data();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateRobotPartMetadataRequest.data)
+  return _msg;
+}
+inline void UpdateRobotPartMetadataRequest::set_allocated_data(::PROTOBUF_NAMESPACE_ID::Struct* data) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(data_);
+  }
+  if (data) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(data));
+    if (message_arena != submessage_arena) {
+      data = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, data, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  data_ = data;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateRobotPartMetadataRequest.data)
 }
 
 // -------------------------------------------------------------------
@@ -58489,37 +58650,92 @@ inline void GetRobotMetadataRequest::set_allocated_id(std::string* id) {
 
 // -------------------------------------------------------------------
 
-// -------------------------------------------------------------------
-
 // GetRobotMetadataResponse
 
-// map<string, .google.protobuf.Any> data = 1 [json_name = "data"];
-inline int GetRobotMetadataResponse::_internal_data_size() const {
-  return data_.size();
+// .google.protobuf.Struct data = 1 [json_name = "data"];
+inline bool GetRobotMetadataResponse::_internal_has_data() const {
+  return this != internal_default_instance() && data_ != nullptr;
 }
-inline int GetRobotMetadataResponse::data_size() const {
-  return _internal_data_size();
+inline bool GetRobotMetadataResponse::has_data() const {
+  return _internal_has_data();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-GetRobotMetadataResponse::_internal_data() const {
-  return data_.GetMap();
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetRobotMetadataResponse::_internal_data() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = data_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-GetRobotMetadataResponse::data() const {
-  // @@protoc_insertion_point(field_map:viam.app.v1.GetRobotMetadataResponse.data)
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetRobotMetadataResponse::data() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetRobotMetadataResponse.data)
   return _internal_data();
 }
-inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-GetRobotMetadataResponse::_internal_mutable_data() {
-  return data_.MutableMap();
+inline void GetRobotMetadataResponse::unsafe_arena_set_allocated_data(
+    ::PROTOBUF_NAMESPACE_ID::Struct* data) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(data_);
+  }
+  data_ = data;
+  if (data) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.GetRobotMetadataResponse.data)
 }
-inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-GetRobotMetadataResponse::mutable_data() {
-  // @@protoc_insertion_point(field_mutable_map:viam.app.v1.GetRobotMetadataResponse.data)
-  return _internal_mutable_data();
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetRobotMetadataResponse::release_data() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = data_;
+  data_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
 }
-
-// -------------------------------------------------------------------
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetRobotMetadataResponse::unsafe_arena_release_data() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetRobotMetadataResponse.data)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = data_;
+  data_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetRobotMetadataResponse::_internal_mutable_data() {
+  
+  if (data_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    data_ = p;
+  }
+  return data_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetRobotMetadataResponse::mutable_data() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_data();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetRobotMetadataResponse.data)
+  return _msg;
+}
+inline void GetRobotMetadataResponse::set_allocated_data(::PROTOBUF_NAMESPACE_ID::Struct* data) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(data_);
+  }
+  if (data) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(data));
+    if (message_arena != submessage_arena) {
+      data = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, data, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  data_ = data;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetRobotMetadataResponse.data)
+}
 
 // -------------------------------------------------------------------
 
@@ -58575,30 +58791,89 @@ inline void UpdateRobotMetadataRequest::set_allocated_id(std::string* id) {
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateRobotMetadataRequest.id)
 }
 
-// map<string, .google.protobuf.Any> data = 2 [json_name = "data"];
-inline int UpdateRobotMetadataRequest::_internal_data_size() const {
-  return data_.size();
+// .google.protobuf.Struct data = 2 [json_name = "data"];
+inline bool UpdateRobotMetadataRequest::_internal_has_data() const {
+  return this != internal_default_instance() && data_ != nullptr;
 }
-inline int UpdateRobotMetadataRequest::data_size() const {
-  return _internal_data_size();
+inline bool UpdateRobotMetadataRequest::has_data() const {
+  return _internal_has_data();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-UpdateRobotMetadataRequest::_internal_data() const {
-  return data_.GetMap();
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& UpdateRobotMetadataRequest::_internal_data() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = data_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >&
-UpdateRobotMetadataRequest::data() const {
-  // @@protoc_insertion_point(field_map:viam.app.v1.UpdateRobotMetadataRequest.data)
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& UpdateRobotMetadataRequest::data() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateRobotMetadataRequest.data)
   return _internal_data();
 }
-inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-UpdateRobotMetadataRequest::_internal_mutable_data() {
-  return data_.MutableMap();
+inline void UpdateRobotMetadataRequest::unsafe_arena_set_allocated_data(
+    ::PROTOBUF_NAMESPACE_ID::Struct* data) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(data_);
+  }
+  data_ = data;
+  if (data) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.UpdateRobotMetadataRequest.data)
 }
-inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::Any >*
-UpdateRobotMetadataRequest::mutable_data() {
-  // @@protoc_insertion_point(field_mutable_map:viam.app.v1.UpdateRobotMetadataRequest.data)
-  return _internal_mutable_data();
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UpdateRobotMetadataRequest::release_data() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = data_;
+  data_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UpdateRobotMetadataRequest::unsafe_arena_release_data() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateRobotMetadataRequest.data)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = data_;
+  data_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UpdateRobotMetadataRequest::_internal_mutable_data() {
+  
+  if (data_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    data_ = p;
+  }
+  return data_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UpdateRobotMetadataRequest::mutable_data() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_data();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateRobotMetadataRequest.data)
+  return _msg;
+}
+inline void UpdateRobotMetadataRequest::set_allocated_data(::PROTOBUF_NAMESPACE_ID::Struct* data) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(data_);
+  }
+  if (data) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(data));
+    if (message_arena != submessage_arena) {
+      data = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, data, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  data_ = data;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateRobotMetadataRequest.data)
 }
 
 // -------------------------------------------------------------------
@@ -69787,22 +70062,6 @@ OAuthConfig::mutable_enabled_grants() {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
