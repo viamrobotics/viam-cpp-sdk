@@ -5,6 +5,7 @@
 
 #include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/common/proto_value.hpp>
+#include <viam/sdk/log/logger.hpp>
 #include <viam/sdk/referenceframe/frame.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 
@@ -45,7 +46,8 @@ class ResourceConfig {
                    ProtoStruct attributes,
                    std::string api,
                    Model model,
-                   LinkConfig frame);
+                   LinkConfig frame,
+                   sdk::log_level lvl = sdk::log_level::info);
 
     ResourceConfig(std::string type);
 
@@ -60,6 +62,8 @@ class ResourceConfig {
     const std::string& name() const;
     const std::string& namespace_() const;
     const std::string& type() const;
+
+    log_level log_level() const;
 
     const std::vector<std::string>& depends_on() const;
 
@@ -88,6 +92,8 @@ class ResourceConfig {
     ProtoValue converted_attributes_;
 
     std::vector<std::string> implicit_depends_on_;
+
+    sdk::log_level log_level_;
 };
 
 namespace proto_convert_details {
