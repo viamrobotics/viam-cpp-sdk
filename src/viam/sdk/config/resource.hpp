@@ -61,18 +61,26 @@ class ResourceConfig {
     const ProtoStruct& attributes() const;
 
    private:
+    void fix_api();
+
     API api_;
+
     LinkConfig frame_;
+
     Model model_;
+
     std::string name_;
     std::string namespace__;
     std::string type_;
+
     std::vector<std::string> depends_on_;
+
     std::vector<ResourceLevelServiceConfig> service_config_;
+
     ProtoStruct attributes_;
     ProtoValue converted_attributes_;
+
     std::vector<std::string> implicit_depends_on_;
-    void fix_api();
 };
 
 namespace proto_convert_details {
