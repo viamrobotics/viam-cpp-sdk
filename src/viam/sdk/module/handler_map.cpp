@@ -2,8 +2,6 @@
 
 #include <memory>
 
-#include <boost/log/trivial.hpp>
-
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/module/v1/module.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>

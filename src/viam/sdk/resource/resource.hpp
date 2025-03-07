@@ -2,8 +2,6 @@
 
 #include <unordered_map>
 
-#include <boost/log/trivial.hpp>
-
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/log/logger.hpp>

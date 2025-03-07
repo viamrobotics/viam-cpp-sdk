@@ -7,7 +7,6 @@
 #include <sys/socket.h>
 #include <sys/stat.h>
 
-#include <boost/log/trivial.hpp>
 #include <boost/none.hpp>
 #include <google/protobuf/descriptor.h>
 #include <grpcpp/channel.h>
@@ -108,7 +107,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         try {
             Stoppable::stop_if_stoppable(res);
         } catch (const std::exception& err) {
-            BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err.what();
+            VIAM_LOG(error) << "unable to stop resource: " << err.what();
         }
 
         const std::shared_ptr<const ModelRegistration> reg =
@@ -169,7 +168,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         try {
             Stoppable::stop_if_stoppable(res);
         } catch (const std::exception& err) {
-            BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err.what();
+            VIAM_LOG(error) << "unable to stop resource: " << err.what();
         }
 
         manager->remove(name);

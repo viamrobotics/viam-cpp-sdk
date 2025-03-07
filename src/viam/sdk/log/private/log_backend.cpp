@@ -3,8 +3,6 @@
 #include <boost/date_time/posix_time/conversion.hpp>
 #include <boost/smart_ptr/make_shared.hpp>
 
-#include <viam/sdk/log/private/keywords.hpp>
-
 namespace viam {
 namespace sdk {
 namespace impl {

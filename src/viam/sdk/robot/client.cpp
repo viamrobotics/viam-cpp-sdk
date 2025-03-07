@@ -10,7 +10,6 @@
 #include <vector>
 
 #include <boost/log/core/core.hpp>
-#include <boost/log/trivial.hpp>
 #include <grpcpp/channel.h>
 #include <grpcpp/client_context.h>
 #include <grpcpp/grpcpp.h>

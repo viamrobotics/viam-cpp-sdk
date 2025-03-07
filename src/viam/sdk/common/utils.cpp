@@ -10,9 +10,6 @@
 
 #include <boost/algorithm/string.hpp>
 #include <boost/blank.hpp>
-#include <boost/log/core.hpp>
-#include <boost/log/expressions.hpp>
-#include <boost/log/trivial.hpp>
 #include <boost/optional/optional.hpp>
 
 #include <viam/api/common/v1/common.pb.h>
