@@ -50,14 +50,21 @@ class ResourceConfig {
     ResourceConfig(std::string type);
 
     Name resource_name();
+
     const API& api() const;
+
     const LinkConfig& frame() const;
+
     const Model& model() const;
+
     const std::string& name() const;
     const std::string& namespace_() const;
     const std::string& type() const;
+
     const std::vector<std::string>& depends_on() const;
+
     const std::vector<ResourceLevelServiceConfig>& service_config() const;
+
     const ProtoStruct& attributes() const;
 
    private:
