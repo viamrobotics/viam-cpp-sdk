@@ -964,6 +964,10 @@ class Detection final :
     kXMaxFieldNumber = 3,
     kYMaxFieldNumber = 4,
     kConfidenceFieldNumber = 5,
+    kXMinNormalizedFieldNumber = 7,
+    kYMinNormalizedFieldNumber = 8,
+    kXMaxNormalizedFieldNumber = 9,
+    kYMaxNormalizedFieldNumber = 10,
   };
   // string class_name = 6 [json_name = "className"];
   void clear_class_name();
@@ -1040,6 +1044,58 @@ class Detection final :
   void _internal_set_confidence(double value);
   public:
 
+  // optional double x_min_normalized = 7 [json_name = "xMinNormalized"];
+  bool has_x_min_normalized() const;
+  private:
+  bool _internal_has_x_min_normalized() const;
+  public:
+  void clear_x_min_normalized();
+  double x_min_normalized() const;
+  void set_x_min_normalized(double value);
+  private:
+  double _internal_x_min_normalized() const;
+  void _internal_set_x_min_normalized(double value);
+  public:
+
+  // optional double y_min_normalized = 8 [json_name = "yMinNormalized"];
+  bool has_y_min_normalized() const;
+  private:
+  bool _internal_has_y_min_normalized() const;
+  public:
+  void clear_y_min_normalized();
+  double y_min_normalized() const;
+  void set_y_min_normalized(double value);
+  private:
+  double _internal_y_min_normalized() const;
+  void _internal_set_y_min_normalized(double value);
+  public:
+
+  // optional double x_max_normalized = 9 [json_name = "xMaxNormalized"];
+  bool has_x_max_normalized() const;
+  private:
+  bool _internal_has_x_max_normalized() const;
+  public:
+  void clear_x_max_normalized();
+  double x_max_normalized() const;
+  void set_x_max_normalized(double value);
+  private:
+  double _internal_x_max_normalized() const;
+  void _internal_set_x_max_normalized(double value);
+  public:
+
+  // optional double y_max_normalized = 10 [json_name = "yMaxNormalized"];
+  bool has_y_max_normalized() const;
+  private:
+  bool _internal_has_y_max_normalized() const;
+  public:
+  void clear_y_max_normalized();
+  double y_max_normalized() const;
+  void set_y_max_normalized(double value);
+  private:
+  double _internal_y_max_normalized() const;
+  void _internal_set_y_max_normalized(double value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.service.vision.v1.Detection)
  private:
   class _Internal;
@@ -1055,6 +1111,10 @@ class Detection final :
   int64_t x_max_;
   int64_t y_max_;
   double confidence_;
+  double x_min_normalized_;
+  double y_min_normalized_;
+  double x_max_normalized_;
+  double y_max_normalized_;
   friend struct ::TableStruct_service_2fvision_2fv1_2fvision_2eproto;
 };
 // -------------------------------------------------------------------
@@ -3856,6 +3916,118 @@ inline void Detection::set_allocated_class_name(std::string* class_name) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.service.vision.v1.Detection.class_name)
+}
+
+// optional double x_min_normalized = 7 [json_name = "xMinNormalized"];
+inline bool Detection::_internal_has_x_min_normalized() const {
+  bool value = (_has_bits_[0] & 0x00000010u) != 0;
+  return value;
+}
+inline bool Detection::has_x_min_normalized() const {
+  return _internal_has_x_min_normalized();
+}
+inline void Detection::clear_x_min_normalized() {
+  x_min_normalized_ = 0;
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline double Detection::_internal_x_min_normalized() const {
+  return x_min_normalized_;
+}
+inline double Detection::x_min_normalized() const {
+  // @@protoc_insertion_point(field_get:viam.service.vision.v1.Detection.x_min_normalized)
+  return _internal_x_min_normalized();
+}
+inline void Detection::_internal_set_x_min_normalized(double value) {
+  _has_bits_[0] |= 0x00000010u;
+  x_min_normalized_ = value;
+}
+inline void Detection::set_x_min_normalized(double value) {
+  _internal_set_x_min_normalized(value);
+  // @@protoc_insertion_point(field_set:viam.service.vision.v1.Detection.x_min_normalized)
+}
+
+// optional double y_min_normalized = 8 [json_name = "yMinNormalized"];
+inline bool Detection::_internal_has_y_min_normalized() const {
+  bool value = (_has_bits_[0] & 0x00000020u) != 0;
+  return value;
+}
+inline bool Detection::has_y_min_normalized() const {
+  return _internal_has_y_min_normalized();
+}
+inline void Detection::clear_y_min_normalized() {
+  y_min_normalized_ = 0;
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline double Detection::_internal_y_min_normalized() const {
+  return y_min_normalized_;
+}
+inline double Detection::y_min_normalized() const {
+  // @@protoc_insertion_point(field_get:viam.service.vision.v1.Detection.y_min_normalized)
+  return _internal_y_min_normalized();
+}
+inline void Detection::_internal_set_y_min_normalized(double value) {
+  _has_bits_[0] |= 0x00000020u;
+  y_min_normalized_ = value;
+}
+inline void Detection::set_y_min_normalized(double value) {
+  _internal_set_y_min_normalized(value);
+  // @@protoc_insertion_point(field_set:viam.service.vision.v1.Detection.y_min_normalized)
+}
+
+// optional double x_max_normalized = 9 [json_name = "xMaxNormalized"];
+inline bool Detection::_internal_has_x_max_normalized() const {
+  bool value = (_has_bits_[0] & 0x00000040u) != 0;
+  return value;
+}
+inline bool Detection::has_x_max_normalized() const {
+  return _internal_has_x_max_normalized();
+}
+inline void Detection::clear_x_max_normalized() {
+  x_max_normalized_ = 0;
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline double Detection::_internal_x_max_normalized() const {
+  return x_max_normalized_;
+}
+inline double Detection::x_max_normalized() const {
+  // @@protoc_insertion_point(field_get:viam.service.vision.v1.Detection.x_max_normalized)
+  return _internal_x_max_normalized();
+}
+inline void Detection::_internal_set_x_max_normalized(double value) {
+  _has_bits_[0] |= 0x00000040u;
+  x_max_normalized_ = value;
+}
+inline void Detection::set_x_max_normalized(double value) {
+  _internal_set_x_max_normalized(value);
+  // @@protoc_insertion_point(field_set:viam.service.vision.v1.Detection.x_max_normalized)
+}
+
+// optional double y_max_normalized = 10 [json_name = "yMaxNormalized"];
+inline bool Detection::_internal_has_y_max_normalized() const {
+  bool value = (_has_bits_[0] & 0x00000080u) != 0;
+  return value;
+}
+inline bool Detection::has_y_max_normalized() const {
+  return _internal_has_y_max_normalized();
+}
+inline void Detection::clear_y_max_normalized() {
+  y_max_normalized_ = 0;
+  _has_bits_[0] &= ~0x00000080u;
+}
+inline double Detection::_internal_y_max_normalized() const {
+  return y_max_normalized_;
+}
+inline double Detection::y_max_normalized() const {
+  // @@protoc_insertion_point(field_get:viam.service.vision.v1.Detection.y_max_normalized)
+  return _internal_y_max_normalized();
+}
+inline void Detection::_internal_set_y_max_normalized(double value) {
+  _has_bits_[0] |= 0x00000080u;
+  y_max_normalized_ = value;
+}
+inline void Detection::set_y_max_normalized(double value) {
+  _internal_set_y_max_normalized(value);
+  // @@protoc_insertion_point(field_set:viam.service.vision.v1.Detection.y_max_normalized)
 }
 
 // -------------------------------------------------------------------
