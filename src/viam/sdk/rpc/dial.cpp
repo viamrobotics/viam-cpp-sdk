@@ -3,6 +3,7 @@
 #include <istream>
 #include <string>
 
+#include <boost/config.hpp>
 #include <boost/none.hpp>
 #include <boost/optional.hpp>
 #include <grpcpp/channel.h>
@@ -52,16 +53,35 @@ ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* pat
 
 DialOptions::DialOptions() = default;
 
-void DialOptions::set_credentials(boost::optional<Credentials> creds) {
+DialOptions& DialOptions::set_credentials(boost::optional<Credentials> creds) {
     credentials_ = std::move(creds);
+
+    return *this;
 }
 
-void DialOptions::set_entity(boost::optional<std::string> entity) {
+DialOptions& DialOptions::set_entity(boost::optional<std::string> entity) {
     auth_entity_ = std::move(entity);
+
+    return *this;
 }
 
-void DialOptions::set_timeout(std::chrono::duration<float> timeout) {
-    timeout_ = std::move(timeout);
+DialOptions& DialOptions::set_initial_connection_attempts(int attempts) {
+    initial_connection_attempts_ = attempts;
+
+    return *this;
+}
+
+DialOptions& DialOptions::set_timeout(std::chrono::duration<float> timeout) {
+    timeout_ = timeout;
+
+    return *this;
+}
+
+DialOptions& DialOptions::set_initial_connection_attempt_timeout(
+    std::chrono::duration<float> timeout) {
+    initial_connection_attempt_timeout_ = timeout;
+
+    return *this;
 }
 
 const boost::optional<std::string>& DialOptions::entity() const {
@@ -72,16 +92,53 @@ const boost::optional<Credentials>& DialOptions::credentials() const {
     return credentials_;
 }
 
+int DialOptions::initial_connection_attempts() const {
+    return initial_connection_attempts_;
+}
+
 const std::chrono::duration<float>& DialOptions::timeout() const {
     return timeout_;
 }
 
-void DialOptions::set_allow_insecure_downgrade(bool allow) {
+std::chrono::duration<float> DialOptions::initial_connection_attempt_timeout() const {
+    return initial_connection_attempt_timeout_;
+}
+
+DialOptions& DialOptions::set_allow_insecure_downgrade(bool allow) {
     allow_insecure_downgrade_ = allow;
+
+    return *this;
 }
 
 bool DialOptions::allows_insecure_downgrade() const {
     return allow_insecure_downgrade_;
+}
+
+std::shared_ptr<ViamChannel> ViamChannel::dial_initial(
+    const char* uri, const boost::optional<DialOptions>& options) {
+    DialOptions opts = options.get_value_or(DialOptions());
+    auto timeout = opts.timeout();
+    auto attempts_remaining = opts.initial_connection_attempts();
+    if (attempts_remaining == 0) {
+        attempts_remaining = -1;
+    }
+    opts.set_timeout(opts.initial_connection_attempt_timeout());
+
+    while (attempts_remaining != 0) {
+        try {
+            auto connection = dial(uri, opts);
+            opts.set_timeout(timeout);
+            return connection;
+        } catch (const std::exception& e) {
+            attempts_remaining -= 1;
+            if (attempts_remaining == 0) {
+                throw e;
+            }
+        }
+    }
+    // the while loop will run until we either return or throw an error, so we can never reach this
+    // point
+    BOOST_UNREACHABLE_RETURN(nullptr)
 }
 
 std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,

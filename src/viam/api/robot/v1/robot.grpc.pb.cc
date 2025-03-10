@@ -47,6 +47,7 @@ static const char* RobotService_method_names[] = {
   "/viam.robot.v1.RobotService/GetMachineStatus",
   "/viam.robot.v1.RobotService/GetVersion",
   "/viam.robot.v1.RobotService/Tunnel",
+  "/viam.robot.v1.RobotService/ListTunnels",
 };
 
 std::unique_ptr< RobotService::Stub> RobotService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -79,6 +80,7 @@ RobotService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chann
   , rpcmethod_GetMachineStatus_(RobotService_method_names[20], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetVersion_(RobotService_method_names[21], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Tunnel_(RobotService_method_names[22], ::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
+  , rpcmethod_ListTunnels_(RobotService_method_names[23], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status RobotService::Stub::GetOperations(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest& request, ::viam::robot::v1::GetOperationsResponse* response) {
@@ -701,6 +703,34 @@ void RobotService::Stub::experimental_async::Tunnel(::grpc::ClientContext* conte
   return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>::Create(channel_.get(), cq, rpcmethod_Tunnel_, context, false, nullptr);
 }
 
+::grpc::Status RobotService::Stub::ListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest& request, ::viam::robot::v1::ListTunnelsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListTunnels_, context, request, response);
+}
+
+void RobotService::Stub::experimental_async::ListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest* request, ::viam::robot::v1::ListTunnelsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListTunnels_, context, request, response, std::move(f));
+}
+
+void RobotService::Stub::experimental_async::ListTunnels(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ListTunnelsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListTunnels_, context, request, response, std::move(f));
+}
+
+void RobotService::Stub::experimental_async::ListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest* request, ::viam::robot::v1::ListTunnelsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListTunnels_, context, request, response, reactor);
+}
+
+void RobotService::Stub::experimental_async::ListTunnels(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ListTunnelsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListTunnels_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::ListTunnelsResponse>* RobotService::Stub::AsyncListTunnelsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::ListTunnelsResponse>::Create(channel_.get(), cq, rpcmethod_ListTunnels_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::ListTunnelsResponse>* RobotService::Stub::PrepareAsyncListTunnelsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::ListTunnelsResponse>::Create(channel_.get(), cq, rpcmethod_ListTunnels_, context, request, false);
+}
+
 RobotService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       RobotService_method_names[0],
@@ -932,6 +962,16 @@ RobotService::Service::Service() {
              ::viam::robot::v1::TunnelRequest>* stream) {
                return service->Tunnel(ctx, stream);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      RobotService_method_names[23],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::ListTunnelsRequest, ::viam::robot::v1::ListTunnelsResponse>(
+          [](RobotService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::robot::v1::ListTunnelsRequest* req,
+             ::viam::robot::v1::ListTunnelsResponse* resp) {
+               return service->ListTunnels(ctx, req, resp);
+             }, this)));
 }
 
 RobotService::Service::~Service() {
@@ -1094,6 +1134,13 @@ RobotService::Service::~Service() {
 ::grpc::Status RobotService::Service::Tunnel(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::viam::robot::v1::TunnelResponse, ::viam::robot::v1::TunnelRequest>* stream) {
   (void) context;
   (void) stream;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status RobotService::Service::ListTunnels(::grpc::ServerContext* context, const ::viam::robot::v1::ListTunnelsRequest* request, ::viam::robot::v1::ListTunnelsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
