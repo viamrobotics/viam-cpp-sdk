@@ -10,8 +10,8 @@
 #include <viam/sdk/spatialmath/orientation_types.hpp>
 
 namespace viam {
-namespace sdktests {
 
+namespace sdktests {
 using namespace viam::sdk;
 
 ProtoStruct fake_map() {

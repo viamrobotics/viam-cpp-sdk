@@ -12,10 +12,19 @@ namespace sdk {
 /// objects in the same program is an error.
 class Instance {
    public:
+    /// @brief Enumeration for creation behavior of @ref current
+    enum class Creation {
+        open_existing,  ///< Instance must already exist
+        if_needed       ///< Use existing instance if present, else create one.
+    };
+
     Instance();
     ~Instance();
 
-    static Instance& current();
+    /// @brief Get the current Instance according to the Creation behavior.
+    /// Calling current(Creation::open_existing) when an instance has not yet been constructed is an
+    /// error.
+    static Instance& current(Creation);
 
    private:
     friend class Registry;
