@@ -13,16 +13,8 @@
 namespace viam {
 namespace sdktests {
 
-struct GlobalFixture {
-    GlobalFixture() {
-        BOOST_TEST_MESSAGE("Creating instance");
-        (void)sdk::Instance::current(sdk::Instance::Creation::if_needed);
-    }
-};
-
-BOOST_TEST_GLOBAL_FIXTURE(GlobalFixture);
-
 using namespace viam::sdk;
+BOOST_TEST_GLOBAL_FIXTURE(Instance);
 
 ProtoStruct fake_map();
 std::vector<GeometryConfig> fake_geometries();
