@@ -10,7 +10,6 @@
 #include <viam/sdk/spatialmath/orientation_types.hpp>
 
 namespace viam {
-
 namespace sdktests {
 using namespace viam::sdk;
 
