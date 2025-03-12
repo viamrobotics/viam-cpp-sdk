@@ -12,19 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#define BOOST_TEST_MODULE test module test_mlmodel
 #include <viam/sdk/services/mlmodel.hpp>
 
 #include <memory>
 #include <tuple>
 #include <unordered_map>
 
+#include <boost/test/included/unit_test.hpp>
 #include <boost/variant/get.hpp>
 
 #include <viam/sdk/tests/mocks/mlmodel_mocks.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
-
-#define BOOST_TEST_MODULE test module test_mlmodel
-#include <boost/test/included/unit_test.hpp>
 
 namespace viam {
 namespace sdk {
