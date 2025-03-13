@@ -22,8 +22,8 @@ class Instance {
     ~Instance();
 
     /// @brief Get the current Instance according to the Creation behavior.
-    /// Calling current(Creation::open_existing) when an instance has not yet been constructed is an
-    /// error.
+    /// @throws an @ref Exception if current(Creation::open_existing) is called when an instance has
+    /// not yet been constructed.
     static Instance& current(Creation);
 
    private:

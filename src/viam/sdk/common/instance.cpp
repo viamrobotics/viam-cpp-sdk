@@ -1,10 +1,10 @@
 #include <viam/sdk/common/instance.hpp>
 
+#include <atomic>
+
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/private/instance.hpp>
 #include <viam/sdk/registry/registry.hpp>
-
-#include <atomic>
 
 namespace viam {
 namespace sdk {
