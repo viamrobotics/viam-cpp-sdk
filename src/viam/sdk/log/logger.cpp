@@ -100,6 +100,10 @@ void Logger::set_global_log_level(int argc, char** argv) {
     }
 }
 
+void Logger::set_resource_log_level(const std::string& resource, log_level lvl) {
+    resource_levels_[resource] = lvl;
+}
+
 void Logger::init_logging() {
     sdk_logger_.channel(global_resource_name());
     boost::log::core::get()->add_global_attribute("TimeStamp",

@@ -55,7 +55,7 @@ class Logger {
     /// how to start modules with a "log-level" commandline argument.
     void set_global_log_level(int argc, char** argv);
 
-    void set_resource_log_level(std::string resource, log_level);
+    void set_resource_log_level(const std::string& resource, log_level);
 
     LogSource& logger() {
         return sdk_logger_;
