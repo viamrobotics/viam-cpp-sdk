@@ -38,6 +38,7 @@ var searchData=
   ['coordinates_35',['coordinates',['../structviam_1_1sdk_1_1coordinates.html',1,'viam::sdk']]],
   ['create_5fresource_5fserver_36',['create_resource_server',['../classviam_1_1sdk_1_1ResourceServerRegistration.html#ac29e547bd2badcc93001233b9bd495cd',1,'viam::sdk::ResourceServerRegistration']]],
   ['create_5frpc_5fclient_37',['create_rpc_client',['../classviam_1_1sdk_1_1ResourceClientRegistration.html#a2f791b6faca0f11dae7f7c03927b9d52',1,'viam::sdk::ResourceClientRegistration']]],
-  ['credentials_38',['Credentials',['../classviam_1_1sdk_1_1Credentials.html',1,'viam::sdk::Credentials'],['../classviam_1_1sdk_1_1Credentials.html#a5332ea9f28be0f99df5c2dd6987c9720',1,'viam::sdk::Credentials::Credentials()']]],
-  ['current_39',['current',['../structviam_1_1sdk_1_1PowerSensor_1_1current.html',1,'viam::sdk::PowerSensor']]]
+  ['creation_38',['Creation',['../classviam_1_1sdk_1_1Instance.html#a8a82a81310c4339011555fbe15689aa8',1,'viam::sdk::Instance']]],
+  ['credentials_39',['Credentials',['../classviam_1_1sdk_1_1Credentials.html',1,'viam::sdk::Credentials'],['../classviam_1_1sdk_1_1Credentials.html#a5332ea9f28be0f99df5c2dd6987c9720',1,'viam::sdk::Credentials::Credentials()']]],
+  ['current_40',['current',['../structviam_1_1sdk_1_1PowerSensor_1_1current.html',1,'viam::sdk::PowerSensor::current'],['../classviam_1_1sdk_1_1Instance.html#a39639c15c58001c546d82db34c070f8e',1,'viam::sdk::Instance::current()']]]
 ];

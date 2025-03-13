@@ -76,7 +76,9 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="classviam_1_1sdk_1_1Registry-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">viam::sdk::Registry Class Reference</div></div>
 </div><!--header-->
@@ -87,77 +89,78 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="registry_8hpp_source.html">registry.hpp</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a7be297a0fb461f056cf7fcacdf9550aa" id="r_a7be297a0fb461f056cf7fcacdf9550aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7be297a0fb461f056cf7fcacdf9550aa">register_model</a> (std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ModelRegistration.html">ModelRegistration</a> &gt; resource)</td></tr>
+<tr class="memdesc:a7be297a0fb461f056cf7fcacdf9550aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers a resource with the <a class="el" href="classviam_1_1sdk_1_1Registry.html" title="A registry of known resources.">Registry</a>.  <br /></td></tr>
+<tr class="separator:a7be297a0fb461f056cf7fcacdf9550aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea741b88a5ca1368a358151b63c790a0" id="r_aea741b88a5ca1368a358151b63c790a0"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ModelRegistration.html">ModelRegistration</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea741b88a5ca1368a358151b63c790a0">lookup_model</a> (const std::string &amp;name) const</td></tr>
+<tr class="memdesc:aea741b88a5ca1368a358151b63c790a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup a given registered resource.  <br /></td></tr>
+<tr class="separator:aea741b88a5ca1368a358151b63c790a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a7ef115a3f1c2caffa099d6982a7d5a" id="r_a6a7ef115a3f1c2caffa099d6982a7d5a"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ModelRegistration.html">ModelRegistration</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a7ef115a3f1c2caffa099d6982a7d5a">lookup_model</a> (const <a class="el" href="classviam_1_1sdk_1_1API.html">API</a> &amp;api, const <a class="el" href="classviam_1_1sdk_1_1Model.html">Model</a> &amp;model) const</td></tr>
+<tr class="memdesc:a6a7ef115a3f1c2caffa099d6982a7d5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup a given registered resource.  <br /></td></tr>
+<tr class="separator:a6a7ef115a3f1c2caffa099d6982a7d5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6ae34de491b91d0eee0f4f71b97219c" id="r_ae6ae34de491b91d0eee0f4f71b97219c"><td class="memTemplParams" colspan="2"><a id="ae6ae34de491b91d0eee0f4f71b97219c" name="ae6ae34de491b91d0eee0f4f71b97219c"></a>
+template&lt;typename ResourceClientT &gt; </td></tr>
+<tr class="memitem:ae6ae34de491b91d0eee0f4f71b97219c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>register_resource_client</b> ()</td></tr>
+<tr class="memdesc:ae6ae34de491b91d0eee0f4f71b97219c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a resource client constructor. <br /></td></tr>
+<tr class="separator:ae6ae34de491b91d0eee0f4f71b97219c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4145499b8920de7e2393c75dbba21dc6" id="r_a4145499b8920de7e2393c75dbba21dc6"><td class="memTemplParams" colspan="2"><a id="a4145499b8920de7e2393c75dbba21dc6" name="a4145499b8920de7e2393c75dbba21dc6"></a>
+template&lt;typename ResourceServerT &gt; </td></tr>
+<tr class="memitem:a4145499b8920de7e2393c75dbba21dc6"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>register_resource_server</b> ()</td></tr>
+<tr class="memdesc:a4145499b8920de7e2393c75dbba21dc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a resource server constructor. <br /></td></tr>
+<tr class="separator:a4145499b8920de7e2393c75dbba21dc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c63d107b03ced57e5db84b4b236b96e" id="r_a9c63d107b03ced57e5db84b4b236b96e"><td class="memTemplParams" colspan="2"><a id="a9c63d107b03ced57e5db84b4b236b96e" name="a9c63d107b03ced57e5db84b4b236b96e"></a>
+template&lt;typename ResourceClientT , typename ResourceServerT &gt; </td></tr>
+<tr class="memitem:a9c63d107b03ced57e5db84b4b236b96e"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>register_resource</b> ()</td></tr>
+<tr class="memdesc:a9c63d107b03ced57e5db84b4b236b96e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register resource client and server constructors. <br /></td></tr>
+<tr class="separator:a9c63d107b03ced57e5db84b4b236b96e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e897bd494e0fcf479209d704ef2e98b" id="r_a8e897bd494e0fcf479209d704ef2e98b"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ResourceServerRegistration.html">ResourceServerRegistration</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e897bd494e0fcf479209d704ef2e98b">lookup_resource_server</a> (const <a class="el" href="classviam_1_1sdk_1_1API.html">API</a> &amp;api) const</td></tr>
+<tr class="memdesc:a8e897bd494e0fcf479209d704ef2e98b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup a registered server api.  <br /></td></tr>
+<tr class="separator:a8e897bd494e0fcf479209d704ef2e98b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26955c77ef2b3c4fe84391d941cbfd9d" id="r_a26955c77ef2b3c4fe84391d941cbfd9d"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ResourceClientRegistration.html">ResourceClientRegistration</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a26955c77ef2b3c4fe84391d941cbfd9d">lookup_resource_client</a> (const <a class="el" href="classviam_1_1sdk_1_1API.html">API</a> &amp;api) const</td></tr>
+<tr class="memdesc:a26955c77ef2b3c4fe84391d941cbfd9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup a registered client api.  <br /></td></tr>
+<tr class="separator:a26955c77ef2b3c4fe84391d941cbfd9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9987e0de97a65d62d02430bdc5b9eb8a" id="r_a9987e0de97a65d62d02430bdc5b9eb8a"><td class="memItemLeft" align="right" valign="top">const std::unordered_map&lt; std::string, std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ModelRegistration.html">ModelRegistration</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9987e0de97a65d62d02430bdc5b9eb8a">registered_models</a> () const</td></tr>
+<tr class="memdesc:a9987e0de97a65d62d02430bdc5b9eb8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provide information on registered resource models.  <br /></td></tr>
+<tr class="separator:a9987e0de97a65d62d02430bdc5b9eb8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad99e98848030342078ef8894b9a9feaf" id="r_ad99e98848030342078ef8894b9a9feaf"><td class="memItemLeft" align="right" valign="top">const std::unordered_map&lt; <a class="el" href="classviam_1_1sdk_1_1API.html">API</a>, std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ResourceServerRegistration.html">ResourceServerRegistration</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad99e98848030342078ef8894b9a9feaf">registered_resource_servers</a> () const</td></tr>
+<tr class="memdesc:ad99e98848030342078ef8894b9a9feaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provide access to registered resources.  <br /></td></tr>
+<tr class="separator:ad99e98848030342078ef8894b9a9feaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ade50a789b2e90712459f3971b88ced17" id="r_ade50a789b2e90712459f3971b88ced17"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade50a789b2e90712459f3971b88ced17">register_model</a> (std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ModelRegistration.html">ModelRegistration</a> &gt; resource)</td></tr>
-<tr class="memdesc:ade50a789b2e90712459f3971b88ced17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers a resource with the <a class="el" href="classviam_1_1sdk_1_1Registry.html" title="A registry of known resources.">Registry</a>.  <br /></td></tr>
-<tr class="separator:ade50a789b2e90712459f3971b88ced17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a353e0a263914a3e0047cc3e4aa8453d6" id="r_a353e0a263914a3e0047cc3e4aa8453d6"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ModelRegistration.html">ModelRegistration</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a353e0a263914a3e0047cc3e4aa8453d6">lookup_model</a> (const std::string &amp;name)</td></tr>
-<tr class="memdesc:a353e0a263914a3e0047cc3e4aa8453d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup a given registered resource.  <br /></td></tr>
-<tr class="separator:a353e0a263914a3e0047cc3e4aa8453d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5474802670fe9dbce92899885498a31b" id="r_a5474802670fe9dbce92899885498a31b"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ModelRegistration.html">ModelRegistration</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5474802670fe9dbce92899885498a31b">lookup_model</a> (const <a class="el" href="classviam_1_1sdk_1_1API.html">API</a> &amp;api, const <a class="el" href="classviam_1_1sdk_1_1Model.html">Model</a> &amp;model)</td></tr>
-<tr class="memdesc:a5474802670fe9dbce92899885498a31b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup a given registered resource.  <br /></td></tr>
-<tr class="separator:a5474802670fe9dbce92899885498a31b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfa42da556ba37af38499e934aed680a" id="r_adfa42da556ba37af38499e934aed680a"><td class="memTemplParams" colspan="2"><a id="adfa42da556ba37af38499e934aed680a" name="adfa42da556ba37af38499e934aed680a"></a>
-template&lt;typename ResourceClientT &gt; </td></tr>
-<tr class="memitem:adfa42da556ba37af38499e934aed680a"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>register_resource_client</b> ()</td></tr>
-<tr class="memdesc:adfa42da556ba37af38499e934aed680a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a resource client constructor. <br /></td></tr>
-<tr class="separator:adfa42da556ba37af38499e934aed680a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7183e2cc762ef7f815cb12b2fe61b099" id="r_a7183e2cc762ef7f815cb12b2fe61b099"><td class="memTemplParams" colspan="2"><a id="a7183e2cc762ef7f815cb12b2fe61b099" name="a7183e2cc762ef7f815cb12b2fe61b099"></a>
-template&lt;typename ResourceServerT &gt; </td></tr>
-<tr class="memitem:a7183e2cc762ef7f815cb12b2fe61b099"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>register_resource_server</b> ()</td></tr>
-<tr class="memdesc:a7183e2cc762ef7f815cb12b2fe61b099"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a resource server constructor. <br /></td></tr>
-<tr class="separator:a7183e2cc762ef7f815cb12b2fe61b099"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b166e97b12c65b88e07a1d62bee9bc2" id="r_a9b166e97b12c65b88e07a1d62bee9bc2"><td class="memTemplParams" colspan="2"><a id="a9b166e97b12c65b88e07a1d62bee9bc2" name="a9b166e97b12c65b88e07a1d62bee9bc2"></a>
-template&lt;typename ResourceClientT , typename ResourceServerT &gt; </td></tr>
-<tr class="memitem:a9b166e97b12c65b88e07a1d62bee9bc2"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>register_resource</b> ()</td></tr>
-<tr class="memdesc:a9b166e97b12c65b88e07a1d62bee9bc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register resource client and server constructors. <br /></td></tr>
-<tr class="separator:a9b166e97b12c65b88e07a1d62bee9bc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8116342c4ffcd5b537002068c992a49d" id="r_a8116342c4ffcd5b537002068c992a49d"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ResourceServerRegistration.html">ResourceServerRegistration</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8116342c4ffcd5b537002068c992a49d">lookup_resource_server</a> (const <a class="el" href="classviam_1_1sdk_1_1API.html">API</a> &amp;api)</td></tr>
-<tr class="memdesc:a8116342c4ffcd5b537002068c992a49d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup a registered server api.  <br /></td></tr>
-<tr class="separator:a8116342c4ffcd5b537002068c992a49d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18deafb10028460abae8a69e40bdc148" id="r_a18deafb10028460abae8a69e40bdc148"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ResourceClientRegistration.html">ResourceClientRegistration</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a18deafb10028460abae8a69e40bdc148">lookup_resource_client</a> (const <a class="el" href="classviam_1_1sdk_1_1API.html">API</a> &amp;api)</td></tr>
-<tr class="memdesc:a18deafb10028460abae8a69e40bdc148"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup a registered client api.  <br /></td></tr>
-<tr class="separator:a18deafb10028460abae8a69e40bdc148"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac39f056892e8f1bf40c95aee0366d7c9" id="r_ac39f056892e8f1bf40c95aee0366d7c9"><td class="memItemLeft" align="right" valign="top">static const std::unordered_map&lt; std::string, std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ModelRegistration.html">ModelRegistration</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac39f056892e8f1bf40c95aee0366d7c9">registered_models</a> ()</td></tr>
-<tr class="memdesc:ac39f056892e8f1bf40c95aee0366d7c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provide information on registered resource models.  <br /></td></tr>
-<tr class="separator:ac39f056892e8f1bf40c95aee0366d7c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a276c2d9e813a7da41568c10454680de9" id="r_a276c2d9e813a7da41568c10454680de9"><td class="memItemLeft" align="right" valign="top">static const std::unordered_map&lt; <a class="el" href="classviam_1_1sdk_1_1API.html">API</a>, std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ResourceServerRegistration.html">ResourceServerRegistration</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a276c2d9e813a7da41568c10454680de9">registered_resource_servers</a> ()</td></tr>
-<tr class="memdesc:a276c2d9e813a7da41568c10454680de9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provide access to registered resources.  <br /></td></tr>
-<tr class="separator:a276c2d9e813a7da41568c10454680de9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24e546a7d8016debc2daca77fd317518" id="r_a24e546a7d8016debc2daca77fd317518"><td class="memItemLeft" align="right" valign="top"><a id="a24e546a7d8016debc2daca77fd317518" name="a24e546a7d8016debc2daca77fd317518"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>initialize</b> ()</td></tr>
-<tr class="memdesc:a24e546a7d8016debc2daca77fd317518"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialized the Viam registry. No-op if it has already been called. <br /></td></tr>
-<tr class="separator:a24e546a7d8016debc2daca77fd317518"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55a5fd2baadc421f507db23d04a08669" id="r_a55a5fd2baadc421f507db23d04a08669"><td class="memItemLeft" align="right" valign="top"><a id="a55a5fd2baadc421f507db23d04a08669" name="a55a5fd2baadc421f507db23d04a08669"></a>
+static <a class="el" href="classviam_1_1sdk_1_1Registry.html">Registry</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> ()</td></tr>
+<tr class="memdesc:a55a5fd2baadc421f507db23d04a08669"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the application-wide instance of <a class="el" href="classviam_1_1sdk_1_1Registry.html" title="A registry of known resources.">Registry</a>. <br /></td></tr>
+<tr class="separator:a55a5fd2baadc421f507db23d04a08669"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:aea90763cbe6c91bbcd6e9bf0d66dc500" id="r_aea90763cbe6c91bbcd6e9bf0d66dc500"><td class="memItemLeft" align="right" valign="top"><a id="aea90763cbe6c91bbcd6e9bf0d66dc500" name="aea90763cbe6c91bbcd6e9bf0d66dc500"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>Instance</b></td></tr>
+<tr class="separator:aea90763cbe6c91bbcd6e9bf0d66dc500"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A registry of known resources. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a5474802670fe9dbce92899885498a31b" name="a5474802670fe9dbce92899885498a31b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5474802670fe9dbce92899885498a31b">&#9670;&#160;</a></span>lookup_model() <span class="overload">[1/2]</span></h2>
+<a id="a6a7ef115a3f1c2caffa099d6982a7d5a" name="a6a7ef115a3f1c2caffa099d6982a7d5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a7ef115a3f1c2caffa099d6982a7d5a">&#9670;&#160;</a></span>lookup_model() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ModelRegistration.html">ModelRegistration</a> &gt; viam::sdk::Registry::lookup_model </td>
+          <td class="memname">std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ModelRegistration.html">ModelRegistration</a> &gt; viam::sdk::Registry::lookup_model </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1API.html">API</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>api</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Model.html">Model</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>model</em></span>&#160;)</td>
+          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Model.html">Model</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>model</em></span>&#160;) const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Lookup a given registered resource. </p>
@@ -172,27 +175,19 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>initialize</b>
 
 </div>
 </div>
-<a id="a353e0a263914a3e0047cc3e4aa8453d6" name="a353e0a263914a3e0047cc3e4aa8453d6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a353e0a263914a3e0047cc3e4aa8453d6">&#9670;&#160;</a></span>lookup_model() <span class="overload">[2/2]</span></h2>
+<a id="aea741b88a5ca1368a358151b63c790a0" name="aea741b88a5ca1368a358151b63c790a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea741b88a5ca1368a358151b63c790a0">&#9670;&#160;</a></span>lookup_model() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ModelRegistration.html">ModelRegistration</a> &gt; viam::sdk::Registry::lookup_model </td>
+          <td class="memname">std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ModelRegistration.html">ModelRegistration</a> &gt; viam::sdk::Registry::lookup_model </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Lookup a given registered resource. </p>
@@ -206,27 +201,19 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>initialize</b>
 
 </div>
 </div>
-<a id="a18deafb10028460abae8a69e40bdc148" name="a18deafb10028460abae8a69e40bdc148"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a18deafb10028460abae8a69e40bdc148">&#9670;&#160;</a></span>lookup_resource_client()</h2>
+<a id="a26955c77ef2b3c4fe84391d941cbfd9d" name="a26955c77ef2b3c4fe84391d941cbfd9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26955c77ef2b3c4fe84391d941cbfd9d">&#9670;&#160;</a></span>lookup_resource_client()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ResourceClientRegistration.html">ResourceClientRegistration</a> &gt; viam::sdk::Registry::lookup_resource_client </td>
+          <td class="memname">std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ResourceClientRegistration.html">ResourceClientRegistration</a> &gt; viam::sdk::Registry::lookup_resource_client </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1API.html">API</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>api</em></span></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Lookup a registered client api. </p>
@@ -240,27 +227,19 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>initialize</b>
 
 </div>
 </div>
-<a id="a8116342c4ffcd5b537002068c992a49d" name="a8116342c4ffcd5b537002068c992a49d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8116342c4ffcd5b537002068c992a49d">&#9670;&#160;</a></span>lookup_resource_server()</h2>
+<a id="a8e897bd494e0fcf479209d704ef2e98b" name="a8e897bd494e0fcf479209d704ef2e98b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e897bd494e0fcf479209d704ef2e98b">&#9670;&#160;</a></span>lookup_resource_server()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ResourceServerRegistration.html">ResourceServerRegistration</a> &gt; viam::sdk::Registry::lookup_resource_server </td>
+          <td class="memname">std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ResourceServerRegistration.html">ResourceServerRegistration</a> &gt; viam::sdk::Registry::lookup_resource_server </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1API.html">API</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>api</em></span></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Lookup a registered server api. </p>
@@ -274,27 +253,19 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>initialize</b>
 
 </div>
 </div>
-<a id="ade50a789b2e90712459f3971b88ced17" name="ade50a789b2e90712459f3971b88ced17"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ade50a789b2e90712459f3971b88ced17">&#9670;&#160;</a></span>register_model()</h2>
+<a id="a7be297a0fb461f056cf7fcacdf9550aa" name="a7be297a0fb461f056cf7fcacdf9550aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7be297a0fb461f056cf7fcacdf9550aa">&#9670;&#160;</a></span>register_model()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void viam::sdk::Registry::register_model </td>
+          <td class="memname">void viam::sdk::Registry::register_model </td>
           <td>(</td>
           <td class="paramtype">std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ModelRegistration.html">ModelRegistration</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>resource</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Registers a resource with the <a class="el" href="classviam_1_1sdk_1_1Registry.html" title="A registry of known resources.">Registry</a>. </p>
@@ -313,27 +284,19 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>initialize</b>
 
 </div>
 </div>
-<a id="ac39f056892e8f1bf40c95aee0366d7c9" name="ac39f056892e8f1bf40c95aee0366d7c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac39f056892e8f1bf40c95aee0366d7c9">&#9670;&#160;</a></span>registered_models()</h2>
+<a id="a9987e0de97a65d62d02430bdc5b9eb8a" name="a9987e0de97a65d62d02430bdc5b9eb8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9987e0de97a65d62d02430bdc5b9eb8a">&#9670;&#160;</a></span>registered_models()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static const std::unordered_map&lt; std::string, std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ModelRegistration.html">ModelRegistration</a> &gt; &gt; &amp; viam::sdk::Registry::registered_models </td>
+          <td class="memname">const std::unordered_map&lt; std::string, std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ModelRegistration.html">ModelRegistration</a> &gt; &gt; &amp; viam::sdk::Registry::registered_models </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Provide information on registered resource models. </p>
@@ -341,27 +304,19 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>initialize</b>
 
 </div>
 </div>
-<a id="a276c2d9e813a7da41568c10454680de9" name="a276c2d9e813a7da41568c10454680de9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a276c2d9e813a7da41568c10454680de9">&#9670;&#160;</a></span>registered_resource_servers()</h2>
+<a id="ad99e98848030342078ef8894b9a9feaf" name="ad99e98848030342078ef8894b9a9feaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad99e98848030342078ef8894b9a9feaf">&#9670;&#160;</a></span>registered_resource_servers()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static const std::unordered_map&lt; <a class="el" href="classviam_1_1sdk_1_1API.html">API</a>, std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ResourceServerRegistration.html">ResourceServerRegistration</a> &gt; &gt; &amp; viam::sdk::Registry::registered_resource_servers </td>
+          <td class="memname">const std::unordered_map&lt; <a class="el" href="classviam_1_1sdk_1_1API.html">API</a>, std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ResourceServerRegistration.html">ResourceServerRegistration</a> &gt; &gt; &amp; viam::sdk::Registry::registered_resource_servers </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Provide access to registered resources. </p>
