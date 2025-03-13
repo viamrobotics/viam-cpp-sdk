@@ -23,6 +23,7 @@
 
 #include <tensorflow/lite/c/c_api.h>
 
+#include <viam/sdk/common/instance.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -723,6 +724,10 @@ class MLModelServiceTFLite : public vsdk::MLModelService,
 };
 
 int serve(const std::string& socket_path) try {
+    // Every Viam C++ SDK program must have one and only one Instance object which is created before
+    // any other C++ SDK objects and stays alive until all Viam C++ SDK objects are destroyed.
+    vsdk::Instance inst;
+
     // Create a new model registration for the service.
     auto module_registration = std::make_shared<vsdk::ModelRegistration>(
         // Identify that this resource offers the MLModelService API
@@ -737,7 +742,7 @@ int serve(const std::string& socket_path) try {
         });
 
     // Register the newly created registration with the Registry.
-    vsdk::Registry::register_model(module_registration);
+    Registry::get().register_model(module_registration);
 
     // Construct the module service and tell it where to place the socket path.
     auto module_service = std::make_shared<vsdk::ModuleService>(socket_path);

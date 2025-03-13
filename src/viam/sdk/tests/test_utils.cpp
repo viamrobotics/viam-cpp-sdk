@@ -11,7 +11,6 @@
 
 namespace viam {
 namespace sdktests {
-
 using namespace viam::sdk;
 
 ProtoStruct fake_map() {
