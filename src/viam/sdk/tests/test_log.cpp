@@ -7,6 +7,7 @@
 #include <sstream>
 
 #include <viam/sdk/resource/resource.hpp>
+#include <viam/sdk/tests/mocks/mock_sensor.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
 namespace viam {
@@ -66,6 +67,60 @@ BOOST_AUTO_TEST_CASE(test_global_filter) {
         BOOST_TEST_INFO("Checking for " << not_logged << " not in log rec\n" << rec);
         BOOST_CHECK(rec.find(not_logged) == std::string::npos);
     }
+}
+
+struct LogSensor : sensor::MockSensor {
+    using sensor::MockSensor::MockSensor;
+
+    sdk::ProtoStruct get_readings(const sdk::ProtoStruct& extra) override {
+        VIAM_RESOURCE_LOG(info) << "sensor info";
+        VIAM_RESOURCE_LOG(error) << "sensor error";
+        return sensor::MockSensor::get_readings(extra);
+    }
+};
+
+BOOST_AUTO_TEST_CASE(test_resource_filter) {
+    cout_redirect redirect;
+
+    auto defaultSensor = std::make_shared<LogSensor>("DefaultSensor");
+    auto errorSensor = std::make_shared<LogSensor>("ErrorSensor");
+    errorSensor->set_log_level(sdk::log_level::error);
+
+    for (auto sensor : {defaultSensor, errorSensor}) {
+        client_to_mock_pipeline<Sensor>(sensor,
+                                        [&](Sensor& client) { (void)client.get_readings({}); });
+    }
+
+    std::vector<std::string> defaultLogs;
+    std::vector<std::string> errLogs;
+
+    const std::string rec = redirect.os.str();
+    BOOST_TEST_INFO("Log records\n" << rec);
+
+    std::stringstream ss(rec);
+    redirect.release();
+
+    {
+        std::string local;
+
+        while (std::getline(ss, local, '\n')) {
+            if (local.find("DefaultSensor") != std::string::npos) {
+                defaultLogs.push_back(std::move(local));
+            } else if (local.find("ErrorSensor") != std::string::npos) {
+                errLogs.push_back(std::move(local));
+            }
+        }
+    }
+
+    BOOST_ASSERT(defaultLogs.size() == 2);
+    {
+        BOOST_TEST_MESSAGE("default logs\n" << defaultLogs.front() << "\n" << defaultLogs.back());
+        BOOST_CHECK(defaultLogs.front().find("sensor info") != std::string::npos);
+        BOOST_CHECK(defaultLogs.back().find("sensor error") != std::string::npos);
+    }
+
+    BOOST_ASSERT(errLogs.size() == 1);
+    BOOST_CHECK(errLogs.back().find("sensor error") != std::string::npos);
 }
 
 }  // namespace sdktests
