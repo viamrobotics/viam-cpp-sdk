@@ -60,6 +60,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         if (reg) {
             try {
                 res = reg->construct_resource(deps, cfg);
+                res->set_log_level(cfg.log_level());
             } catch (const std::exception& exc) {
                 return grpc::Status(::grpc::INTERNAL, exc.what());
             }
@@ -98,6 +99,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         }
         try {
             Reconfigurable::reconfigure_if_reconfigurable(res, deps, cfg);
+            res->set_log_level(cfg.log_level());
             return grpc::Status();
         } catch (const std::exception& exc) {
             return grpc::Status(::grpc::INTERNAL, exc.what());
