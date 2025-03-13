@@ -28,6 +28,9 @@ class Resource {
     /// @brief Return the resource's name.
     virtual std::string name() const;
 
+    /// @brief Set the log level for log messages originating from this Resource.
+    void set_log_level(log_level) const;
+
    private:
     std::string name_;
 
