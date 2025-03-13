@@ -47,6 +47,7 @@ target_include_directories(viamsdk_test
 
 target_link_libraries(viamsdk_test
   PUBLIC viam-cpp-sdk::viamsdk
+  PUBLIC Boost::unit_test_framework
 )
 
 viamcppsdk_link_viam_api(viamsdk_test PUBLIC)

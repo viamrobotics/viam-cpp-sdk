@@ -85,7 +85,7 @@ bool Logger::Filter::operator()(const boost::log::attribute_value_set& attrs) {
 }
 
 Logger& Logger::get() {
-    static Logger& result = Instance::current().impl_->logger;
+    static Logger& result = Instance::current(Instance::Creation::open_existing).impl_->logger;
 
     return result;
 }

@@ -2,6 +2,9 @@
 
 #include <grpcpp/grpcpp.h>
 
+#include <boost/test/unit_test.hpp>
+
+#include <viam/sdk/common/instance.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
@@ -9,6 +12,14 @@
 
 namespace viam {
 namespace sdktests {
+
+struct GlobalFixture {
+    GlobalFixture() {
+        (void)sdk::Instance::current(sdk::Instance::Creation::if_needed);
+    }
+};
+
+BOOST_TEST_GLOBAL_FIXTURE(GlobalFixture);
 
 using namespace viam::sdk;
 

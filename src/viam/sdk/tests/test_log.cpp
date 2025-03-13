@@ -1,12 +1,13 @@
 #define BOOST_TEST_MODULE test module test_log
+#include <boost/test/included/unit_test.hpp>
+
 #include <viam/sdk/log/logger.hpp>
 
 #include <iostream>
 #include <sstream>
 
-#include <boost/test/included/unit_test.hpp>
-
 #include <viam/sdk/resource/resource.hpp>
+#include <viam/sdk/tests/test_utils.hpp>
 
 namespace viam {
 namespace sdktests {

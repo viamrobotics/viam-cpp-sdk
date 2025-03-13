@@ -91,7 +91,7 @@ const Model& ModelRegistration::model() const {
 };
 
 Registry& Registry::get() {
-    static Registry& result = Instance::current().impl_->registry;
+    static Registry& result = Instance::current(Instance::Creation::open_existing).impl_->registry;
 
     return result;
 }

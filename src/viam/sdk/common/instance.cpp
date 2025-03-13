@@ -35,10 +35,14 @@ Instance::~Instance() {
     impl_.reset();
 }
 
-Instance& Instance::current() {
+Instance& Instance::current(Instance::Creation creation) {
     if (!current_instance.load()) {
-        // This variable declaration calls the default ctor, storing a current instance.
-        static Instance inst;  // NOLINT (misc-const-correctness)
+        if (creation == Creation::if_needed) {
+            // This variable declaration calls the default ctor, storing a current instance.
+            static Instance inst;  // NOLINT (misc-const-correctness)
+        } else {
+            throw Exception("Instance has not yet been created");
+        }
     }
 
     Instance* current = current_instance.load();
