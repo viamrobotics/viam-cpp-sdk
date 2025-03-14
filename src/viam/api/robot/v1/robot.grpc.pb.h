@@ -91,15 +91,6 @@ class RobotService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::GetModelsFromModulesResponse>> PrepareAsyncGetModelsFromModules(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::GetModelsFromModulesResponse>>(PrepareAsyncGetModelsFromModulesRaw(context, request, cq));
     }
-    // DiscoverComponents returns the list of discovered component configurations.
-    // This API is deprecated
-    virtual ::grpc::Status DiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::viam::robot::v1::DiscoverComponentsResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::DiscoverComponentsResponse>> AsyncDiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::DiscoverComponentsResponse>>(AsyncDiscoverComponentsRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::DiscoverComponentsResponse>> PrepareAsyncDiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::DiscoverComponentsResponse>>(PrepareAsyncDiscoverComponentsRaw(context, request, cq));
-    }
     virtual ::grpc::Status FrameSystemConfig(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest& request, ::viam::robot::v1::FrameSystemConfigResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::FrameSystemConfigResponse>> AsyncFrameSystemConfig(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::FrameSystemConfigResponse>>(AsyncFrameSystemConfigRaw(context, request, cq));
@@ -321,20 +312,6 @@ class RobotService final {
       #else
       virtual void GetModelsFromModules(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetModelsFromModulesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // DiscoverComponents returns the list of discovered component configurations.
-      // This API is deprecated
-      virtual void DiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest* request, ::viam::robot::v1::DiscoverComponentsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void DiscoverComponents(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::DiscoverComponentsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void DiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest* request, ::viam::robot::v1::DiscoverComponentsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void DiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest* request, ::viam::robot::v1::DiscoverComponentsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void DiscoverComponents(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::DiscoverComponentsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void DiscoverComponents(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::DiscoverComponentsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       virtual void FrameSystemConfig(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest* request, ::viam::robot::v1::FrameSystemConfigResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void FrameSystemConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::FrameSystemConfigResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -551,8 +528,6 @@ class RobotService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::BlockForOperationResponse>* PrepareAsyncBlockForOperationRaw(::grpc::ClientContext* context, const ::viam::robot::v1::BlockForOperationRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::GetModelsFromModulesResponse>* AsyncGetModelsFromModulesRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::GetModelsFromModulesResponse>* PrepareAsyncGetModelsFromModulesRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::DiscoverComponentsResponse>* AsyncDiscoverComponentsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::DiscoverComponentsResponse>* PrepareAsyncDiscoverComponentsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::FrameSystemConfigResponse>* AsyncFrameSystemConfigRaw(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::FrameSystemConfigResponse>* PrepareAsyncFrameSystemConfigRaw(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::TransformPoseResponse>* AsyncTransformPoseRaw(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPoseRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -639,13 +614,6 @@ class RobotService final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetModelsFromModulesResponse>> PrepareAsyncGetModelsFromModules(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetModelsFromModulesResponse>>(PrepareAsyncGetModelsFromModulesRaw(context, request, cq));
-    }
-    ::grpc::Status DiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::viam::robot::v1::DiscoverComponentsResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::DiscoverComponentsResponse>> AsyncDiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::DiscoverComponentsResponse>>(AsyncDiscoverComponentsRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::DiscoverComponentsResponse>> PrepareAsyncDiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::DiscoverComponentsResponse>>(PrepareAsyncDiscoverComponentsRaw(context, request, cq));
     }
     ::grpc::Status FrameSystemConfig(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest& request, ::viam::robot::v1::FrameSystemConfigResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::FrameSystemConfigResponse>> AsyncFrameSystemConfig(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest& request, ::grpc::CompletionQueue* cq) {
@@ -850,18 +818,6 @@ class RobotService final {
       #else
       void GetModelsFromModules(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetModelsFromModulesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
-      void DiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest* request, ::viam::robot::v1::DiscoverComponentsResponse* response, std::function<void(::grpc::Status)>) override;
-      void DiscoverComponents(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::DiscoverComponentsResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void DiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest* request, ::viam::robot::v1::DiscoverComponentsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void DiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest* request, ::viam::robot::v1::DiscoverComponentsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void DiscoverComponents(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::DiscoverComponentsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void DiscoverComponents(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::DiscoverComponentsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void FrameSystemConfig(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest* request, ::viam::robot::v1::FrameSystemConfigResponse* response, std::function<void(::grpc::Status)>) override;
       void FrameSystemConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::FrameSystemConfigResponse* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -1065,8 +1021,6 @@ class RobotService final {
     ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::BlockForOperationResponse>* PrepareAsyncBlockForOperationRaw(::grpc::ClientContext* context, const ::viam::robot::v1::BlockForOperationRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetModelsFromModulesResponse>* AsyncGetModelsFromModulesRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetModelsFromModulesResponse>* PrepareAsyncGetModelsFromModulesRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::DiscoverComponentsResponse>* AsyncDiscoverComponentsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::DiscoverComponentsResponse>* PrepareAsyncDiscoverComponentsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::FrameSystemConfigResponse>* AsyncFrameSystemConfigRaw(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::FrameSystemConfigResponse>* PrepareAsyncFrameSystemConfigRaw(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::TransformPoseResponse>* AsyncTransformPoseRaw(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPoseRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -1108,7 +1062,6 @@ class RobotService final {
     const ::grpc::internal::RpcMethod rpcmethod_CancelOperation_;
     const ::grpc::internal::RpcMethod rpcmethod_BlockForOperation_;
     const ::grpc::internal::RpcMethod rpcmethod_GetModelsFromModules_;
-    const ::grpc::internal::RpcMethod rpcmethod_DiscoverComponents_;
     const ::grpc::internal::RpcMethod rpcmethod_FrameSystemConfig_;
     const ::grpc::internal::RpcMethod rpcmethod_TransformPose_;
     const ::grpc::internal::RpcMethod rpcmethod_TransformPCD_;
@@ -1142,9 +1095,6 @@ class RobotService final {
     virtual ::grpc::Status BlockForOperation(::grpc::ServerContext* context, const ::viam::robot::v1::BlockForOperationRequest* request, ::viam::robot::v1::BlockForOperationResponse* response);
     // GetModelsFromModules returns the list of models supported in modules on the machine.
     virtual ::grpc::Status GetModelsFromModules(::grpc::ServerContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest* request, ::viam::robot::v1::GetModelsFromModulesResponse* response);
-    // DiscoverComponents returns the list of discovered component configurations.
-    // This API is deprecated
-    virtual ::grpc::Status DiscoverComponents(::grpc::ServerContext* context, const ::viam::robot::v1::DiscoverComponentsRequest* request, ::viam::robot::v1::DiscoverComponentsResponse* response);
     virtual ::grpc::Status FrameSystemConfig(::grpc::ServerContext* context, const ::viam::robot::v1::FrameSystemConfigRequest* request, ::viam::robot::v1::FrameSystemConfigResponse* response);
     virtual ::grpc::Status TransformPose(::grpc::ServerContext* context, const ::viam::robot::v1::TransformPoseRequest* request, ::viam::robot::v1::TransformPoseResponse* response);
     virtual ::grpc::Status TransformPCD(::grpc::ServerContext* context, const ::viam::robot::v1::TransformPCDRequest* request, ::viam::robot::v1::TransformPCDResponse* response);
@@ -1318,32 +1268,12 @@ class RobotService final {
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_DiscoverComponents : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_DiscoverComponents() {
-      ::grpc::Service::MarkMethodAsync(7);
-    }
-    ~WithAsyncMethod_DiscoverComponents() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status DiscoverComponents(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::DiscoverComponentsRequest* /*request*/, ::viam::robot::v1::DiscoverComponentsResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestDiscoverComponents(::grpc::ServerContext* context, ::viam::robot::v1::DiscoverComponentsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::robot::v1::DiscoverComponentsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
   class WithAsyncMethod_FrameSystemConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_FrameSystemConfig() {
-      ::grpc::Service::MarkMethodAsync(8);
+      ::grpc::Service::MarkMethodAsync(7);
     }
     ~WithAsyncMethod_FrameSystemConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1354,7 +1284,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestFrameSystemConfig(::grpc::ServerContext* context, ::viam::robot::v1::FrameSystemConfigRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::robot::v1::FrameSystemConfigResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1363,7 +1293,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_TransformPose() {
-      ::grpc::Service::MarkMethodAsync(9);
+      ::grpc::Service::MarkMethodAsync(8);
     }
     ~WithAsyncMethod_TransformPose() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1374,7 +1304,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestTransformPose(::grpc::ServerContext* context, ::viam::robot::v1::TransformPoseRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::robot::v1::TransformPoseResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1383,7 +1313,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_TransformPCD() {
-      ::grpc::Service::MarkMethodAsync(10);
+      ::grpc::Service::MarkMethodAsync(9);
     }
     ~WithAsyncMethod_TransformPCD() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1394,7 +1324,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestTransformPCD(::grpc::ServerContext* context, ::viam::robot::v1::TransformPCDRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::robot::v1::TransformPCDResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1403,7 +1333,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetStatus() {
-      ::grpc::Service::MarkMethodAsync(11);
+      ::grpc::Service::MarkMethodAsync(10);
     }
     ~WithAsyncMethod_GetStatus() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1414,7 +1344,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetStatus(::grpc::ServerContext* context, ::viam::robot::v1::GetStatusRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::robot::v1::GetStatusResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1423,7 +1353,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_StreamStatus() {
-      ::grpc::Service::MarkMethodAsync(12);
+      ::grpc::Service::MarkMethodAsync(11);
     }
     ~WithAsyncMethod_StreamStatus() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1434,7 +1364,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestStreamStatus(::grpc::ServerContext* context, ::viam::robot::v1::StreamStatusRequest* request, ::grpc::ServerAsyncWriter< ::viam::robot::v1::StreamStatusResponse>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncServerStreaming(12, context, request, writer, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncServerStreaming(11, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1443,7 +1373,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_StopAll() {
-      ::grpc::Service::MarkMethodAsync(13);
+      ::grpc::Service::MarkMethodAsync(12);
     }
     ~WithAsyncMethod_StopAll() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1454,7 +1384,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestStopAll(::grpc::ServerContext* context, ::viam::robot::v1::StopAllRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::robot::v1::StopAllResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1463,7 +1393,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_StartSession() {
-      ::grpc::Service::MarkMethodAsync(14);
+      ::grpc::Service::MarkMethodAsync(13);
     }
     ~WithAsyncMethod_StartSession() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1474,7 +1404,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestStartSession(::grpc::ServerContext* context, ::viam::robot::v1::StartSessionRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::robot::v1::StartSessionResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(14, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1483,7 +1413,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_SendSessionHeartbeat() {
-      ::grpc::Service::MarkMethodAsync(15);
+      ::grpc::Service::MarkMethodAsync(14);
     }
     ~WithAsyncMethod_SendSessionHeartbeat() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1494,7 +1424,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSendSessionHeartbeat(::grpc::ServerContext* context, ::viam::robot::v1::SendSessionHeartbeatRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::robot::v1::SendSessionHeartbeatResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(15, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(14, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1503,7 +1433,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_Log() {
-      ::grpc::Service::MarkMethodAsync(16);
+      ::grpc::Service::MarkMethodAsync(15);
     }
     ~WithAsyncMethod_Log() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1514,7 +1444,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestLog(::grpc::ServerContext* context, ::viam::robot::v1::LogRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::robot::v1::LogResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(16, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(15, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1523,7 +1453,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetCloudMetadata() {
-      ::grpc::Service::MarkMethodAsync(17);
+      ::grpc::Service::MarkMethodAsync(16);
     }
     ~WithAsyncMethod_GetCloudMetadata() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1534,7 +1464,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetCloudMetadata(::grpc::ServerContext* context, ::viam::robot::v1::GetCloudMetadataRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::robot::v1::GetCloudMetadataResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(17, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(16, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1543,7 +1473,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_RestartModule() {
-      ::grpc::Service::MarkMethodAsync(18);
+      ::grpc::Service::MarkMethodAsync(17);
     }
     ~WithAsyncMethod_RestartModule() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1554,7 +1484,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRestartModule(::grpc::ServerContext* context, ::viam::robot::v1::RestartModuleRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::robot::v1::RestartModuleResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(18, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(17, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1563,7 +1493,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_Shutdown() {
-      ::grpc::Service::MarkMethodAsync(19);
+      ::grpc::Service::MarkMethodAsync(18);
     }
     ~WithAsyncMethod_Shutdown() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1574,7 +1504,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestShutdown(::grpc::ServerContext* context, ::viam::robot::v1::ShutdownRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::robot::v1::ShutdownResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(19, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(18, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1583,7 +1513,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetMachineStatus() {
-      ::grpc::Service::MarkMethodAsync(20);
+      ::grpc::Service::MarkMethodAsync(19);
     }
     ~WithAsyncMethod_GetMachineStatus() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1594,7 +1524,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetMachineStatus(::grpc::ServerContext* context, ::viam::robot::v1::GetMachineStatusRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::robot::v1::GetMachineStatusResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(20, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(19, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1603,7 +1533,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetVersion() {
-      ::grpc::Service::MarkMethodAsync(21);
+      ::grpc::Service::MarkMethodAsync(20);
     }
     ~WithAsyncMethod_GetVersion() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1614,7 +1544,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetVersion(::grpc::ServerContext* context, ::viam::robot::v1::GetVersionRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::robot::v1::GetVersionResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(21, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(20, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1623,7 +1553,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_Tunnel() {
-      ::grpc::Service::MarkMethodAsync(22);
+      ::grpc::Service::MarkMethodAsync(21);
     }
     ~WithAsyncMethod_Tunnel() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1634,7 +1564,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestTunnel(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::viam::robot::v1::TunnelResponse, ::viam::robot::v1::TunnelRequest>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncBidiStreaming(22, context, stream, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncBidiStreaming(21, context, stream, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1643,7 +1573,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListTunnels() {
-      ::grpc::Service::MarkMethodAsync(23);
+      ::grpc::Service::MarkMethodAsync(22);
     }
     ~WithAsyncMethod_ListTunnels() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1654,10 +1584,10 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListTunnels(::grpc::ServerContext* context, ::viam::robot::v1::ListTunnelsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::robot::v1::ListTunnelsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(23, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(22, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetOperations<WithAsyncMethod_GetSessions<WithAsyncMethod_ResourceNames<WithAsyncMethod_ResourceRPCSubtypes<WithAsyncMethod_CancelOperation<WithAsyncMethod_BlockForOperation<WithAsyncMethod_GetModelsFromModules<WithAsyncMethod_DiscoverComponents<WithAsyncMethod_FrameSystemConfig<WithAsyncMethod_TransformPose<WithAsyncMethod_TransformPCD<WithAsyncMethod_GetStatus<WithAsyncMethod_StreamStatus<WithAsyncMethod_StopAll<WithAsyncMethod_StartSession<WithAsyncMethod_SendSessionHeartbeat<WithAsyncMethod_Log<WithAsyncMethod_GetCloudMetadata<WithAsyncMethod_RestartModule<WithAsyncMethod_Shutdown<WithAsyncMethod_GetMachineStatus<WithAsyncMethod_GetVersion<WithAsyncMethod_Tunnel<WithAsyncMethod_ListTunnels<Service > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_GetOperations<WithAsyncMethod_GetSessions<WithAsyncMethod_ResourceNames<WithAsyncMethod_ResourceRPCSubtypes<WithAsyncMethod_CancelOperation<WithAsyncMethod_BlockForOperation<WithAsyncMethod_GetModelsFromModules<WithAsyncMethod_FrameSystemConfig<WithAsyncMethod_TransformPose<WithAsyncMethod_TransformPCD<WithAsyncMethod_GetStatus<WithAsyncMethod_StreamStatus<WithAsyncMethod_StopAll<WithAsyncMethod_StartSession<WithAsyncMethod_SendSessionHeartbeat<WithAsyncMethod_Log<WithAsyncMethod_GetCloudMetadata<WithAsyncMethod_RestartModule<WithAsyncMethod_Shutdown<WithAsyncMethod_GetMachineStatus<WithAsyncMethod_GetVersion<WithAsyncMethod_Tunnel<WithAsyncMethod_ListTunnels<Service > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_GetOperations : public BaseClass {
    private:
@@ -1988,53 +1918,6 @@ class RobotService final {
       { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_DiscoverComponents : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithCallbackMethod_DiscoverComponents() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(7,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::DiscoverComponentsRequest, ::viam::robot::v1::DiscoverComponentsResponse>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::robot::v1::DiscoverComponentsRequest* request, ::viam::robot::v1::DiscoverComponentsResponse* response) { return this->DiscoverComponents(context, request, response); }));}
-    void SetMessageAllocatorFor_DiscoverComponents(
-        ::grpc::experimental::MessageAllocator< ::viam::robot::v1::DiscoverComponentsRequest, ::viam::robot::v1::DiscoverComponentsResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(7);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::DiscoverComponentsRequest, ::viam::robot::v1::DiscoverComponentsResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~ExperimentalWithCallbackMethod_DiscoverComponents() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status DiscoverComponents(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::DiscoverComponentsRequest* /*request*/, ::viam::robot::v1::DiscoverComponentsResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* DiscoverComponents(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::DiscoverComponentsRequest* /*request*/, ::viam::robot::v1::DiscoverComponentsResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* DiscoverComponents(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::robot::v1::DiscoverComponentsRequest* /*request*/, ::viam::robot::v1::DiscoverComponentsResponse* /*response*/)
-    #endif
-      { return nullptr; }
-  };
-  template <class BaseClass>
   class ExperimentalWithCallbackMethod_FrameSystemConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -2045,7 +1928,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(8,
+        MarkMethodCallback(7,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::FrameSystemConfigRequest, ::viam::robot::v1::FrameSystemConfigResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -2057,9 +1940,9 @@ class RobotService final {
     void SetMessageAllocatorFor_FrameSystemConfig(
         ::grpc::experimental::MessageAllocator< ::viam::robot::v1::FrameSystemConfigRequest, ::viam::robot::v1::FrameSystemConfigResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(8);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(7);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::FrameSystemConfigRequest, ::viam::robot::v1::FrameSystemConfigResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -2092,7 +1975,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(9,
+        MarkMethodCallback(8,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::TransformPoseRequest, ::viam::robot::v1::TransformPoseResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -2104,9 +1987,9 @@ class RobotService final {
     void SetMessageAllocatorFor_TransformPose(
         ::grpc::experimental::MessageAllocator< ::viam::robot::v1::TransformPoseRequest, ::viam::robot::v1::TransformPoseResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(9);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(8);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::TransformPoseRequest, ::viam::robot::v1::TransformPoseResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -2139,7 +2022,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(10,
+        MarkMethodCallback(9,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::TransformPCDRequest, ::viam::robot::v1::TransformPCDResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -2151,9 +2034,9 @@ class RobotService final {
     void SetMessageAllocatorFor_TransformPCD(
         ::grpc::experimental::MessageAllocator< ::viam::robot::v1::TransformPCDRequest, ::viam::robot::v1::TransformPCDResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(10);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(9);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::TransformPCDRequest, ::viam::robot::v1::TransformPCDResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -2186,7 +2069,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(11,
+        MarkMethodCallback(10,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::GetStatusRequest, ::viam::robot::v1::GetStatusResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -2198,9 +2081,9 @@ class RobotService final {
     void SetMessageAllocatorFor_GetStatus(
         ::grpc::experimental::MessageAllocator< ::viam::robot::v1::GetStatusRequest, ::viam::robot::v1::GetStatusResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(11);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(10);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::GetStatusRequest, ::viam::robot::v1::GetStatusResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -2233,7 +2116,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(12,
+        MarkMethodCallback(11,
           new ::grpc_impl::internal::CallbackServerStreamingHandler< ::viam::robot::v1::StreamStatusRequest, ::viam::robot::v1::StreamStatusResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -2271,7 +2154,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(13,
+        MarkMethodCallback(12,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::StopAllRequest, ::viam::robot::v1::StopAllResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -2283,9 +2166,9 @@ class RobotService final {
     void SetMessageAllocatorFor_StopAll(
         ::grpc::experimental::MessageAllocator< ::viam::robot::v1::StopAllRequest, ::viam::robot::v1::StopAllResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(13);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(12);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(13);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(12);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::StopAllRequest, ::viam::robot::v1::StopAllResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -2318,7 +2201,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(14,
+        MarkMethodCallback(13,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::StartSessionRequest, ::viam::robot::v1::StartSessionResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -2330,9 +2213,9 @@ class RobotService final {
     void SetMessageAllocatorFor_StartSession(
         ::grpc::experimental::MessageAllocator< ::viam::robot::v1::StartSessionRequest, ::viam::robot::v1::StartSessionResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(14);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(13);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(14);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(13);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::StartSessionRequest, ::viam::robot::v1::StartSessionResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -2365,7 +2248,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(15,
+        MarkMethodCallback(14,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::SendSessionHeartbeatRequest, ::viam::robot::v1::SendSessionHeartbeatResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -2377,9 +2260,9 @@ class RobotService final {
     void SetMessageAllocatorFor_SendSessionHeartbeat(
         ::grpc::experimental::MessageAllocator< ::viam::robot::v1::SendSessionHeartbeatRequest, ::viam::robot::v1::SendSessionHeartbeatResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(15);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(14);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(15);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(14);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::SendSessionHeartbeatRequest, ::viam::robot::v1::SendSessionHeartbeatResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -2412,7 +2295,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(16,
+        MarkMethodCallback(15,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::LogRequest, ::viam::robot::v1::LogResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -2424,9 +2307,9 @@ class RobotService final {
     void SetMessageAllocatorFor_Log(
         ::grpc::experimental::MessageAllocator< ::viam::robot::v1::LogRequest, ::viam::robot::v1::LogResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(16);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(15);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(16);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(15);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::LogRequest, ::viam::robot::v1::LogResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -2459,7 +2342,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(17,
+        MarkMethodCallback(16,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::GetCloudMetadataRequest, ::viam::robot::v1::GetCloudMetadataResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -2471,9 +2354,9 @@ class RobotService final {
     void SetMessageAllocatorFor_GetCloudMetadata(
         ::grpc::experimental::MessageAllocator< ::viam::robot::v1::GetCloudMetadataRequest, ::viam::robot::v1::GetCloudMetadataResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(17);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(16);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(17);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(16);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::GetCloudMetadataRequest, ::viam::robot::v1::GetCloudMetadataResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -2506,7 +2389,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(18,
+        MarkMethodCallback(17,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::RestartModuleRequest, ::viam::robot::v1::RestartModuleResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -2518,9 +2401,9 @@ class RobotService final {
     void SetMessageAllocatorFor_RestartModule(
         ::grpc::experimental::MessageAllocator< ::viam::robot::v1::RestartModuleRequest, ::viam::robot::v1::RestartModuleResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(18);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(17);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(18);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(17);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::RestartModuleRequest, ::viam::robot::v1::RestartModuleResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -2553,7 +2436,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(19,
+        MarkMethodCallback(18,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::ShutdownRequest, ::viam::robot::v1::ShutdownResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -2565,9 +2448,9 @@ class RobotService final {
     void SetMessageAllocatorFor_Shutdown(
         ::grpc::experimental::MessageAllocator< ::viam::robot::v1::ShutdownRequest, ::viam::robot::v1::ShutdownResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(19);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(18);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(19);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(18);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::ShutdownRequest, ::viam::robot::v1::ShutdownResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -2600,7 +2483,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(20,
+        MarkMethodCallback(19,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::GetMachineStatusRequest, ::viam::robot::v1::GetMachineStatusResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -2612,9 +2495,9 @@ class RobotService final {
     void SetMessageAllocatorFor_GetMachineStatus(
         ::grpc::experimental::MessageAllocator< ::viam::robot::v1::GetMachineStatusRequest, ::viam::robot::v1::GetMachineStatusResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(20);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(19);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(20);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(19);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::GetMachineStatusRequest, ::viam::robot::v1::GetMachineStatusResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -2647,7 +2530,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(21,
+        MarkMethodCallback(20,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::GetVersionRequest, ::viam::robot::v1::GetVersionResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -2659,9 +2542,9 @@ class RobotService final {
     void SetMessageAllocatorFor_GetVersion(
         ::grpc::experimental::MessageAllocator< ::viam::robot::v1::GetVersionRequest, ::viam::robot::v1::GetVersionResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(21);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(20);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(21);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(20);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::GetVersionRequest, ::viam::robot::v1::GetVersionResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -2694,7 +2577,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(22,
+        MarkMethodCallback(21,
           new ::grpc_impl::internal::CallbackBidiHandler< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -2732,7 +2615,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(23,
+        MarkMethodCallback(22,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::ListTunnelsRequest, ::viam::robot::v1::ListTunnelsResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -2744,9 +2627,9 @@ class RobotService final {
     void SetMessageAllocatorFor_ListTunnels(
         ::grpc::experimental::MessageAllocator< ::viam::robot::v1::ListTunnelsRequest, ::viam::robot::v1::ListTunnelsResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(23);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(22);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(23);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(22);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::ListTunnelsRequest, ::viam::robot::v1::ListTunnelsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -2769,10 +2652,10 @@ class RobotService final {
       { return nullptr; }
   };
   #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_GetOperations<ExperimentalWithCallbackMethod_GetSessions<ExperimentalWithCallbackMethod_ResourceNames<ExperimentalWithCallbackMethod_ResourceRPCSubtypes<ExperimentalWithCallbackMethod_CancelOperation<ExperimentalWithCallbackMethod_BlockForOperation<ExperimentalWithCallbackMethod_GetModelsFromModules<ExperimentalWithCallbackMethod_DiscoverComponents<ExperimentalWithCallbackMethod_FrameSystemConfig<ExperimentalWithCallbackMethod_TransformPose<ExperimentalWithCallbackMethod_TransformPCD<ExperimentalWithCallbackMethod_GetStatus<ExperimentalWithCallbackMethod_StreamStatus<ExperimentalWithCallbackMethod_StopAll<ExperimentalWithCallbackMethod_StartSession<ExperimentalWithCallbackMethod_SendSessionHeartbeat<ExperimentalWithCallbackMethod_Log<ExperimentalWithCallbackMethod_GetCloudMetadata<ExperimentalWithCallbackMethod_RestartModule<ExperimentalWithCallbackMethod_Shutdown<ExperimentalWithCallbackMethod_GetMachineStatus<ExperimentalWithCallbackMethod_GetVersion<ExperimentalWithCallbackMethod_Tunnel<ExperimentalWithCallbackMethod_ListTunnels<Service > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
+  typedef ExperimentalWithCallbackMethod_GetOperations<ExperimentalWithCallbackMethod_GetSessions<ExperimentalWithCallbackMethod_ResourceNames<ExperimentalWithCallbackMethod_ResourceRPCSubtypes<ExperimentalWithCallbackMethod_CancelOperation<ExperimentalWithCallbackMethod_BlockForOperation<ExperimentalWithCallbackMethod_GetModelsFromModules<ExperimentalWithCallbackMethod_FrameSystemConfig<ExperimentalWithCallbackMethod_TransformPose<ExperimentalWithCallbackMethod_TransformPCD<ExperimentalWithCallbackMethod_GetStatus<ExperimentalWithCallbackMethod_StreamStatus<ExperimentalWithCallbackMethod_StopAll<ExperimentalWithCallbackMethod_StartSession<ExperimentalWithCallbackMethod_SendSessionHeartbeat<ExperimentalWithCallbackMethod_Log<ExperimentalWithCallbackMethod_GetCloudMetadata<ExperimentalWithCallbackMethod_RestartModule<ExperimentalWithCallbackMethod_Shutdown<ExperimentalWithCallbackMethod_GetMachineStatus<ExperimentalWithCallbackMethod_GetVersion<ExperimentalWithCallbackMethod_Tunnel<ExperimentalWithCallbackMethod_ListTunnels<Service > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
   #endif
 
-  typedef ExperimentalWithCallbackMethod_GetOperations<ExperimentalWithCallbackMethod_GetSessions<ExperimentalWithCallbackMethod_ResourceNames<ExperimentalWithCallbackMethod_ResourceRPCSubtypes<ExperimentalWithCallbackMethod_CancelOperation<ExperimentalWithCallbackMethod_BlockForOperation<ExperimentalWithCallbackMethod_GetModelsFromModules<ExperimentalWithCallbackMethod_DiscoverComponents<ExperimentalWithCallbackMethod_FrameSystemConfig<ExperimentalWithCallbackMethod_TransformPose<ExperimentalWithCallbackMethod_TransformPCD<ExperimentalWithCallbackMethod_GetStatus<ExperimentalWithCallbackMethod_StreamStatus<ExperimentalWithCallbackMethod_StopAll<ExperimentalWithCallbackMethod_StartSession<ExperimentalWithCallbackMethod_SendSessionHeartbeat<ExperimentalWithCallbackMethod_Log<ExperimentalWithCallbackMethod_GetCloudMetadata<ExperimentalWithCallbackMethod_RestartModule<ExperimentalWithCallbackMethod_Shutdown<ExperimentalWithCallbackMethod_GetMachineStatus<ExperimentalWithCallbackMethod_GetVersion<ExperimentalWithCallbackMethod_Tunnel<ExperimentalWithCallbackMethod_ListTunnels<Service > > > > > > > > > > > > > > > > > > > > > > > > ExperimentalCallbackService;
+  typedef ExperimentalWithCallbackMethod_GetOperations<ExperimentalWithCallbackMethod_GetSessions<ExperimentalWithCallbackMethod_ResourceNames<ExperimentalWithCallbackMethod_ResourceRPCSubtypes<ExperimentalWithCallbackMethod_CancelOperation<ExperimentalWithCallbackMethod_BlockForOperation<ExperimentalWithCallbackMethod_GetModelsFromModules<ExperimentalWithCallbackMethod_FrameSystemConfig<ExperimentalWithCallbackMethod_TransformPose<ExperimentalWithCallbackMethod_TransformPCD<ExperimentalWithCallbackMethod_GetStatus<ExperimentalWithCallbackMethod_StreamStatus<ExperimentalWithCallbackMethod_StopAll<ExperimentalWithCallbackMethod_StartSession<ExperimentalWithCallbackMethod_SendSessionHeartbeat<ExperimentalWithCallbackMethod_Log<ExperimentalWithCallbackMethod_GetCloudMetadata<ExperimentalWithCallbackMethod_RestartModule<ExperimentalWithCallbackMethod_Shutdown<ExperimentalWithCallbackMethod_GetMachineStatus<ExperimentalWithCallbackMethod_GetVersion<ExperimentalWithCallbackMethod_Tunnel<ExperimentalWithCallbackMethod_ListTunnels<Service > > > > > > > > > > > > > > > > > > > > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetOperations : public BaseClass {
    private:
@@ -2893,29 +2776,12 @@ class RobotService final {
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_DiscoverComponents : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_DiscoverComponents() {
-      ::grpc::Service::MarkMethodGeneric(7);
-    }
-    ~WithGenericMethod_DiscoverComponents() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status DiscoverComponents(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::DiscoverComponentsRequest* /*request*/, ::viam::robot::v1::DiscoverComponentsResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
   class WithGenericMethod_FrameSystemConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_FrameSystemConfig() {
-      ::grpc::Service::MarkMethodGeneric(8);
+      ::grpc::Service::MarkMethodGeneric(7);
     }
     ~WithGenericMethod_FrameSystemConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2932,7 +2798,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_TransformPose() {
-      ::grpc::Service::MarkMethodGeneric(9);
+      ::grpc::Service::MarkMethodGeneric(8);
     }
     ~WithGenericMethod_TransformPose() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2949,7 +2815,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_TransformPCD() {
-      ::grpc::Service::MarkMethodGeneric(10);
+      ::grpc::Service::MarkMethodGeneric(9);
     }
     ~WithGenericMethod_TransformPCD() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2966,7 +2832,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetStatus() {
-      ::grpc::Service::MarkMethodGeneric(11);
+      ::grpc::Service::MarkMethodGeneric(10);
     }
     ~WithGenericMethod_GetStatus() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2983,7 +2849,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_StreamStatus() {
-      ::grpc::Service::MarkMethodGeneric(12);
+      ::grpc::Service::MarkMethodGeneric(11);
     }
     ~WithGenericMethod_StreamStatus() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3000,7 +2866,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_StopAll() {
-      ::grpc::Service::MarkMethodGeneric(13);
+      ::grpc::Service::MarkMethodGeneric(12);
     }
     ~WithGenericMethod_StopAll() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3017,7 +2883,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_StartSession() {
-      ::grpc::Service::MarkMethodGeneric(14);
+      ::grpc::Service::MarkMethodGeneric(13);
     }
     ~WithGenericMethod_StartSession() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3034,7 +2900,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_SendSessionHeartbeat() {
-      ::grpc::Service::MarkMethodGeneric(15);
+      ::grpc::Service::MarkMethodGeneric(14);
     }
     ~WithGenericMethod_SendSessionHeartbeat() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3051,7 +2917,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_Log() {
-      ::grpc::Service::MarkMethodGeneric(16);
+      ::grpc::Service::MarkMethodGeneric(15);
     }
     ~WithGenericMethod_Log() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3068,7 +2934,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetCloudMetadata() {
-      ::grpc::Service::MarkMethodGeneric(17);
+      ::grpc::Service::MarkMethodGeneric(16);
     }
     ~WithGenericMethod_GetCloudMetadata() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3085,7 +2951,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_RestartModule() {
-      ::grpc::Service::MarkMethodGeneric(18);
+      ::grpc::Service::MarkMethodGeneric(17);
     }
     ~WithGenericMethod_RestartModule() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3102,7 +2968,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_Shutdown() {
-      ::grpc::Service::MarkMethodGeneric(19);
+      ::grpc::Service::MarkMethodGeneric(18);
     }
     ~WithGenericMethod_Shutdown() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3119,7 +2985,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetMachineStatus() {
-      ::grpc::Service::MarkMethodGeneric(20);
+      ::grpc::Service::MarkMethodGeneric(19);
     }
     ~WithGenericMethod_GetMachineStatus() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3136,7 +3002,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetVersion() {
-      ::grpc::Service::MarkMethodGeneric(21);
+      ::grpc::Service::MarkMethodGeneric(20);
     }
     ~WithGenericMethod_GetVersion() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3153,7 +3019,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_Tunnel() {
-      ::grpc::Service::MarkMethodGeneric(22);
+      ::grpc::Service::MarkMethodGeneric(21);
     }
     ~WithGenericMethod_Tunnel() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3170,7 +3036,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListTunnels() {
-      ::grpc::Service::MarkMethodGeneric(23);
+      ::grpc::Service::MarkMethodGeneric(22);
     }
     ~WithGenericMethod_ListTunnels() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3322,32 +3188,12 @@ class RobotService final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_DiscoverComponents : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_DiscoverComponents() {
-      ::grpc::Service::MarkMethodRaw(7);
-    }
-    ~WithRawMethod_DiscoverComponents() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status DiscoverComponents(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::DiscoverComponentsRequest* /*request*/, ::viam::robot::v1::DiscoverComponentsResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestDiscoverComponents(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
   class WithRawMethod_FrameSystemConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_FrameSystemConfig() {
-      ::grpc::Service::MarkMethodRaw(8);
+      ::grpc::Service::MarkMethodRaw(7);
     }
     ~WithRawMethod_FrameSystemConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3358,7 +3204,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestFrameSystemConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3367,7 +3213,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_TransformPose() {
-      ::grpc::Service::MarkMethodRaw(9);
+      ::grpc::Service::MarkMethodRaw(8);
     }
     ~WithRawMethod_TransformPose() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3378,7 +3224,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestTransformPose(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3387,7 +3233,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_TransformPCD() {
-      ::grpc::Service::MarkMethodRaw(10);
+      ::grpc::Service::MarkMethodRaw(9);
     }
     ~WithRawMethod_TransformPCD() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3398,7 +3244,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestTransformPCD(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3407,7 +3253,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetStatus() {
-      ::grpc::Service::MarkMethodRaw(11);
+      ::grpc::Service::MarkMethodRaw(10);
     }
     ~WithRawMethod_GetStatus() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3418,7 +3264,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetStatus(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3427,7 +3273,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_StreamStatus() {
-      ::grpc::Service::MarkMethodRaw(12);
+      ::grpc::Service::MarkMethodRaw(11);
     }
     ~WithRawMethod_StreamStatus() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3438,7 +3284,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestStreamStatus(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncWriter< ::grpc::ByteBuffer>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncServerStreaming(12, context, request, writer, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncServerStreaming(11, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3447,7 +3293,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_StopAll() {
-      ::grpc::Service::MarkMethodRaw(13);
+      ::grpc::Service::MarkMethodRaw(12);
     }
     ~WithRawMethod_StopAll() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3458,7 +3304,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestStopAll(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3467,7 +3313,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_StartSession() {
-      ::grpc::Service::MarkMethodRaw(14);
+      ::grpc::Service::MarkMethodRaw(13);
     }
     ~WithRawMethod_StartSession() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3478,7 +3324,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestStartSession(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(14, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3487,7 +3333,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_SendSessionHeartbeat() {
-      ::grpc::Service::MarkMethodRaw(15);
+      ::grpc::Service::MarkMethodRaw(14);
     }
     ~WithRawMethod_SendSessionHeartbeat() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3498,7 +3344,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSendSessionHeartbeat(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(15, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(14, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3507,7 +3353,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_Log() {
-      ::grpc::Service::MarkMethodRaw(16);
+      ::grpc::Service::MarkMethodRaw(15);
     }
     ~WithRawMethod_Log() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3518,7 +3364,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestLog(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(16, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(15, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3527,7 +3373,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetCloudMetadata() {
-      ::grpc::Service::MarkMethodRaw(17);
+      ::grpc::Service::MarkMethodRaw(16);
     }
     ~WithRawMethod_GetCloudMetadata() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3538,7 +3384,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetCloudMetadata(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(17, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(16, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3547,7 +3393,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_RestartModule() {
-      ::grpc::Service::MarkMethodRaw(18);
+      ::grpc::Service::MarkMethodRaw(17);
     }
     ~WithRawMethod_RestartModule() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3558,7 +3404,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRestartModule(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(18, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(17, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3567,7 +3413,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_Shutdown() {
-      ::grpc::Service::MarkMethodRaw(19);
+      ::grpc::Service::MarkMethodRaw(18);
     }
     ~WithRawMethod_Shutdown() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3578,7 +3424,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestShutdown(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(19, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(18, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3587,7 +3433,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetMachineStatus() {
-      ::grpc::Service::MarkMethodRaw(20);
+      ::grpc::Service::MarkMethodRaw(19);
     }
     ~WithRawMethod_GetMachineStatus() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3598,7 +3444,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetMachineStatus(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(20, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(19, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3607,7 +3453,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetVersion() {
-      ::grpc::Service::MarkMethodRaw(21);
+      ::grpc::Service::MarkMethodRaw(20);
     }
     ~WithRawMethod_GetVersion() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3618,7 +3464,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetVersion(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(21, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(20, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3627,7 +3473,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_Tunnel() {
-      ::grpc::Service::MarkMethodRaw(22);
+      ::grpc::Service::MarkMethodRaw(21);
     }
     ~WithRawMethod_Tunnel() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3638,7 +3484,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestTunnel(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncBidiStreaming(22, context, stream, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncBidiStreaming(21, context, stream, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3647,7 +3493,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListTunnels() {
-      ::grpc::Service::MarkMethodRaw(23);
+      ::grpc::Service::MarkMethodRaw(22);
     }
     ~WithRawMethod_ListTunnels() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3658,7 +3504,7 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListTunnels(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(23, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(22, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3928,44 +3774,6 @@ class RobotService final {
       { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_DiscoverComponents : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithRawCallbackMethod_DiscoverComponents() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(7,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DiscoverComponents(context, request, response); }));
-    }
-    ~ExperimentalWithRawCallbackMethod_DiscoverComponents() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status DiscoverComponents(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::DiscoverComponentsRequest* /*request*/, ::viam::robot::v1::DiscoverComponentsResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* DiscoverComponents(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* DiscoverComponents(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
-  };
-  template <class BaseClass>
   class ExperimentalWithRawCallbackMethod_FrameSystemConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -3976,7 +3784,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(8,
+        MarkMethodRawCallback(7,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -4014,7 +3822,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(9,
+        MarkMethodRawCallback(8,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -4052,7 +3860,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(10,
+        MarkMethodRawCallback(9,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -4090,7 +3898,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(11,
+        MarkMethodRawCallback(10,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -4128,7 +3936,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(12,
+        MarkMethodRawCallback(11,
           new ::grpc_impl::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -4166,7 +3974,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(13,
+        MarkMethodRawCallback(12,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -4204,7 +4012,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(14,
+        MarkMethodRawCallback(13,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -4242,7 +4050,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(15,
+        MarkMethodRawCallback(14,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -4280,7 +4088,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(16,
+        MarkMethodRawCallback(15,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -4318,7 +4126,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(17,
+        MarkMethodRawCallback(16,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -4356,7 +4164,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(18,
+        MarkMethodRawCallback(17,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -4394,7 +4202,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(19,
+        MarkMethodRawCallback(18,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -4432,7 +4240,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(20,
+        MarkMethodRawCallback(19,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -4470,7 +4278,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(21,
+        MarkMethodRawCallback(20,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -4508,7 +4316,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(22,
+        MarkMethodRawCallback(21,
           new ::grpc_impl::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -4546,7 +4354,7 @@ class RobotService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(23,
+        MarkMethodRawCallback(22,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -4763,39 +4571,12 @@ class RobotService final {
     virtual ::grpc::Status StreamedGetModelsFromModules(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::robot::v1::GetModelsFromModulesRequest,::viam::robot::v1::GetModelsFromModulesResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_DiscoverComponents : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_DiscoverComponents() {
-      ::grpc::Service::MarkMethodStreamed(7,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::robot::v1::DiscoverComponentsRequest, ::viam::robot::v1::DiscoverComponentsResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
-                     ::viam::robot::v1::DiscoverComponentsRequest, ::viam::robot::v1::DiscoverComponentsResponse>* streamer) {
-                       return this->StreamedDiscoverComponents(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_DiscoverComponents() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status DiscoverComponents(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::DiscoverComponentsRequest* /*request*/, ::viam::robot::v1::DiscoverComponentsResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedDiscoverComponents(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::robot::v1::DiscoverComponentsRequest,::viam::robot::v1::DiscoverComponentsResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
   class WithStreamedUnaryMethod_FrameSystemConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_FrameSystemConfig() {
-      ::grpc::Service::MarkMethodStreamed(8,
+      ::grpc::Service::MarkMethodStreamed(7,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::FrameSystemConfigRequest, ::viam::robot::v1::FrameSystemConfigResponse>(
             [this](::grpc_impl::ServerContext* context,
@@ -4822,7 +4603,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_TransformPose() {
-      ::grpc::Service::MarkMethodStreamed(9,
+      ::grpc::Service::MarkMethodStreamed(8,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::TransformPoseRequest, ::viam::robot::v1::TransformPoseResponse>(
             [this](::grpc_impl::ServerContext* context,
@@ -4849,7 +4630,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_TransformPCD() {
-      ::grpc::Service::MarkMethodStreamed(10,
+      ::grpc::Service::MarkMethodStreamed(9,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::TransformPCDRequest, ::viam::robot::v1::TransformPCDResponse>(
             [this](::grpc_impl::ServerContext* context,
@@ -4876,7 +4657,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetStatus() {
-      ::grpc::Service::MarkMethodStreamed(11,
+      ::grpc::Service::MarkMethodStreamed(10,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::GetStatusRequest, ::viam::robot::v1::GetStatusResponse>(
             [this](::grpc_impl::ServerContext* context,
@@ -4903,7 +4684,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_StopAll() {
-      ::grpc::Service::MarkMethodStreamed(13,
+      ::grpc::Service::MarkMethodStreamed(12,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::StopAllRequest, ::viam::robot::v1::StopAllResponse>(
             [this](::grpc_impl::ServerContext* context,
@@ -4930,7 +4711,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_StartSession() {
-      ::grpc::Service::MarkMethodStreamed(14,
+      ::grpc::Service::MarkMethodStreamed(13,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::StartSessionRequest, ::viam::robot::v1::StartSessionResponse>(
             [this](::grpc_impl::ServerContext* context,
@@ -4957,7 +4738,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_SendSessionHeartbeat() {
-      ::grpc::Service::MarkMethodStreamed(15,
+      ::grpc::Service::MarkMethodStreamed(14,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::SendSessionHeartbeatRequest, ::viam::robot::v1::SendSessionHeartbeatResponse>(
             [this](::grpc_impl::ServerContext* context,
@@ -4984,7 +4765,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_Log() {
-      ::grpc::Service::MarkMethodStreamed(16,
+      ::grpc::Service::MarkMethodStreamed(15,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::LogRequest, ::viam::robot::v1::LogResponse>(
             [this](::grpc_impl::ServerContext* context,
@@ -5011,7 +4792,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetCloudMetadata() {
-      ::grpc::Service::MarkMethodStreamed(17,
+      ::grpc::Service::MarkMethodStreamed(16,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::GetCloudMetadataRequest, ::viam::robot::v1::GetCloudMetadataResponse>(
             [this](::grpc_impl::ServerContext* context,
@@ -5038,7 +4819,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_RestartModule() {
-      ::grpc::Service::MarkMethodStreamed(18,
+      ::grpc::Service::MarkMethodStreamed(17,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::RestartModuleRequest, ::viam::robot::v1::RestartModuleResponse>(
             [this](::grpc_impl::ServerContext* context,
@@ -5065,7 +4846,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_Shutdown() {
-      ::grpc::Service::MarkMethodStreamed(19,
+      ::grpc::Service::MarkMethodStreamed(18,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::ShutdownRequest, ::viam::robot::v1::ShutdownResponse>(
             [this](::grpc_impl::ServerContext* context,
@@ -5092,7 +4873,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetMachineStatus() {
-      ::grpc::Service::MarkMethodStreamed(20,
+      ::grpc::Service::MarkMethodStreamed(19,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::GetMachineStatusRequest, ::viam::robot::v1::GetMachineStatusResponse>(
             [this](::grpc_impl::ServerContext* context,
@@ -5119,7 +4900,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetVersion() {
-      ::grpc::Service::MarkMethodStreamed(21,
+      ::grpc::Service::MarkMethodStreamed(20,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::GetVersionRequest, ::viam::robot::v1::GetVersionResponse>(
             [this](::grpc_impl::ServerContext* context,
@@ -5146,7 +4927,7 @@ class RobotService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListTunnels() {
-      ::grpc::Service::MarkMethodStreamed(23,
+      ::grpc::Service::MarkMethodStreamed(22,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::ListTunnelsRequest, ::viam::robot::v1::ListTunnelsResponse>(
             [this](::grpc_impl::ServerContext* context,
@@ -5167,14 +4948,14 @@ class RobotService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedListTunnels(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::robot::v1::ListTunnelsRequest,::viam::robot::v1::ListTunnelsResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetOperations<WithStreamedUnaryMethod_GetSessions<WithStreamedUnaryMethod_ResourceNames<WithStreamedUnaryMethod_ResourceRPCSubtypes<WithStreamedUnaryMethod_CancelOperation<WithStreamedUnaryMethod_BlockForOperation<WithStreamedUnaryMethod_GetModelsFromModules<WithStreamedUnaryMethod_DiscoverComponents<WithStreamedUnaryMethod_FrameSystemConfig<WithStreamedUnaryMethod_TransformPose<WithStreamedUnaryMethod_TransformPCD<WithStreamedUnaryMethod_GetStatus<WithStreamedUnaryMethod_StopAll<WithStreamedUnaryMethod_StartSession<WithStreamedUnaryMethod_SendSessionHeartbeat<WithStreamedUnaryMethod_Log<WithStreamedUnaryMethod_GetCloudMetadata<WithStreamedUnaryMethod_RestartModule<WithStreamedUnaryMethod_Shutdown<WithStreamedUnaryMethod_GetMachineStatus<WithStreamedUnaryMethod_GetVersion<WithStreamedUnaryMethod_ListTunnels<Service > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_GetOperations<WithStreamedUnaryMethod_GetSessions<WithStreamedUnaryMethod_ResourceNames<WithStreamedUnaryMethod_ResourceRPCSubtypes<WithStreamedUnaryMethod_CancelOperation<WithStreamedUnaryMethod_BlockForOperation<WithStreamedUnaryMethod_GetModelsFromModules<WithStreamedUnaryMethod_FrameSystemConfig<WithStreamedUnaryMethod_TransformPose<WithStreamedUnaryMethod_TransformPCD<WithStreamedUnaryMethod_GetStatus<WithStreamedUnaryMethod_StopAll<WithStreamedUnaryMethod_StartSession<WithStreamedUnaryMethod_SendSessionHeartbeat<WithStreamedUnaryMethod_Log<WithStreamedUnaryMethod_GetCloudMetadata<WithStreamedUnaryMethod_RestartModule<WithStreamedUnaryMethod_Shutdown<WithStreamedUnaryMethod_GetMachineStatus<WithStreamedUnaryMethod_GetVersion<WithStreamedUnaryMethod_ListTunnels<Service > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_StreamStatus : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithSplitStreamingMethod_StreamStatus() {
-      ::grpc::Service::MarkMethodStreamed(12,
+      ::grpc::Service::MarkMethodStreamed(11,
         new ::grpc::internal::SplitServerStreamingHandler<
           ::viam::robot::v1::StreamStatusRequest, ::viam::robot::v1::StreamStatusResponse>(
             [this](::grpc_impl::ServerContext* context,
@@ -5196,7 +4977,7 @@ class RobotService final {
     virtual ::grpc::Status StreamedStreamStatus(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::viam::robot::v1::StreamStatusRequest,::viam::robot::v1::StreamStatusResponse>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_StreamStatus<Service > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetOperations<WithStreamedUnaryMethod_GetSessions<WithStreamedUnaryMethod_ResourceNames<WithStreamedUnaryMethod_ResourceRPCSubtypes<WithStreamedUnaryMethod_CancelOperation<WithStreamedUnaryMethod_BlockForOperation<WithStreamedUnaryMethod_GetModelsFromModules<WithStreamedUnaryMethod_DiscoverComponents<WithStreamedUnaryMethod_FrameSystemConfig<WithStreamedUnaryMethod_TransformPose<WithStreamedUnaryMethod_TransformPCD<WithStreamedUnaryMethod_GetStatus<WithSplitStreamingMethod_StreamStatus<WithStreamedUnaryMethod_StopAll<WithStreamedUnaryMethod_StartSession<WithStreamedUnaryMethod_SendSessionHeartbeat<WithStreamedUnaryMethod_Log<WithStreamedUnaryMethod_GetCloudMetadata<WithStreamedUnaryMethod_RestartModule<WithStreamedUnaryMethod_Shutdown<WithStreamedUnaryMethod_GetMachineStatus<WithStreamedUnaryMethod_GetVersion<WithStreamedUnaryMethod_ListTunnels<Service > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetOperations<WithStreamedUnaryMethod_GetSessions<WithStreamedUnaryMethod_ResourceNames<WithStreamedUnaryMethod_ResourceRPCSubtypes<WithStreamedUnaryMethod_CancelOperation<WithStreamedUnaryMethod_BlockForOperation<WithStreamedUnaryMethod_GetModelsFromModules<WithStreamedUnaryMethod_FrameSystemConfig<WithStreamedUnaryMethod_TransformPose<WithStreamedUnaryMethod_TransformPCD<WithStreamedUnaryMethod_GetStatus<WithSplitStreamingMethod_StreamStatus<WithStreamedUnaryMethod_StopAll<WithStreamedUnaryMethod_StartSession<WithStreamedUnaryMethod_SendSessionHeartbeat<WithStreamedUnaryMethod_Log<WithStreamedUnaryMethod_GetCloudMetadata<WithStreamedUnaryMethod_RestartModule<WithStreamedUnaryMethod_Shutdown<WithStreamedUnaryMethod_GetMachineStatus<WithStreamedUnaryMethod_GetVersion<WithStreamedUnaryMethod_ListTunnels<Service > > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1
