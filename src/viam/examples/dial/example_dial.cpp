@@ -9,6 +9,7 @@
 
 #include <boost/optional.hpp>
 
+#include <viam/sdk/common/instance.hpp>
 #include <viam/sdk/components/generic.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/rpc/dial.hpp>
@@ -16,6 +17,10 @@
 using namespace viam::sdk;
 
 int main() {
+    // Every Viam C++ SDK program must have one and only one Instance object which is created before
+    // any other C++ SDK objects and stays alive until all Viam C++ SDK objects are destroyed.
+    Instance inst;
+
     const char* uri = "<your robot URI here>";
     DialOptions dial_options;
     std::string type = "<your authentication type>";
