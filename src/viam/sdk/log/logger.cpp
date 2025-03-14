@@ -90,6 +90,10 @@ Logger& Logger::get() {
     return result;
 }
 
+LogSource& Logger::logger() {
+    return sdk_logger_;
+}
+
 void Logger::set_global_log_level(log_level lvl) {
     global_level_ = lvl;
 }

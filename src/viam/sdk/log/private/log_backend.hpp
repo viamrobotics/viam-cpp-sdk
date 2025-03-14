@@ -14,6 +14,7 @@ struct LogBackend;
 
 using SinkType = boost::log::sinks::synchronous_sink<LogBackend>;
 
+// Log backend which implements sending messages to RDK.
 struct LogBackend : boost::log::sinks::basic_sink_backend<boost::log::sinks::synchronized_feeding> {
     LogBackend(RobotClient* p) : parent(p) {}
 
