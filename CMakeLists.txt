@@ -328,12 +328,16 @@ if (VIAMCPPSDK_BUILD_TESTS)
   set(VIAMCPPSDK_BOOST_TEST "unit_test_framework")
 endif()
 
+if (VIAMCPPSDK_BUILD_EXAMPLES)
+  set(VIAMCPPSDK_BOOST_PROGRAM_OPTIONS "program_options")
+endif()
+
 find_package(Boost ${VIAMCPPSDK_BOOST_VERSION_MINIMUM} REQUIRED 
   COMPONENTS 
     headers 
     log 
     log_setup 
-    program_options 
+    ${VIAMCPPSDK_BOOST_PROGRAM_OPTIONS}
     ${VIAMCPPSDK_BOOST_TEST}
 )
 
