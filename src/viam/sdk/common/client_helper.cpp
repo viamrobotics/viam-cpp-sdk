@@ -5,9 +5,8 @@
 #include <grpcpp/client_context.h>
 #include <grpcpp/support/status.h>
 
-#include <boost/log/trivial.hpp>
-
 #include <viam/sdk/common/private/version_metadata.hpp>
+#include <viam/sdk/log/logger.hpp>
 
 namespace viam {
 namespace sdk {
@@ -15,8 +14,8 @@ namespace sdk {
 namespace client_helper_details {
 
 [[noreturn]] void errorHandlerReturnedUnexpectedly(const ::grpc::Status* status) noexcept {
-    BOOST_LOG_TRIVIAL(fatal) << "ClientHelper error handler callback returned instead of throwing: "
-                             << status->error_message() << '(' << status->error_details() << ')';
+    VIAM_LOG(fatal) << "ClientHelper error handler callback returned instead of throwing: "
+                    << status->error_message() << '(' << status->error_details() << ')';
     std::abort();
 }
 

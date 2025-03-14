@@ -27,6 +27,7 @@ Instance::Instance() {
 
     impl_ = std::make_unique<Instance::Impl>();
     impl_->registry.initialize();
+    impl_->logger.init_logging();
 }
 
 Instance::~Instance() {
