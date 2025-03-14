@@ -20,6 +20,10 @@
 namespace viam {
 namespace sdk {
 
+namespace impl {
+struct LogBackend;
+}
+
 /// @defgroup Robot Classes related to a Robot representation.
 
 /// @class RobotClient client.hpp "robot/client.hpp"
@@ -88,13 +92,6 @@ class RobotClient {
 
     RobotClient(std::shared_ptr<ViamChannel> channel);
 
-    void log(const std::string& name,
-             const std::string& level,
-             const std::string& message,
-             time_pt time);
-
-    void connect_logging();
-
     std::vector<Name> resource_names() const;
 
     /// @brief Lookup and return a `shared_ptr` to a resource.
@@ -156,6 +153,16 @@ class RobotClient {
     status get_machine_status() const;
 
    private:
+    friend class ModuleService;
+    friend struct impl::LogBackend;
+
+    void log(const std::string& name,
+             const std::string& level,
+             const std::string& message,
+             time_pt time);
+
+    void connect_logging();
+
     void refresh_every();
 
     std::vector<std::shared_ptr<std::thread>> threads_;
