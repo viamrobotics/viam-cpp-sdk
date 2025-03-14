@@ -31,7 +31,6 @@ static const char* RobotService_method_names[] = {
   "/viam.robot.v1.RobotService/CancelOperation",
   "/viam.robot.v1.RobotService/BlockForOperation",
   "/viam.robot.v1.RobotService/GetModelsFromModules",
-  "/viam.robot.v1.RobotService/DiscoverComponents",
   "/viam.robot.v1.RobotService/FrameSystemConfig",
   "/viam.robot.v1.RobotService/TransformPose",
   "/viam.robot.v1.RobotService/TransformPCD",
@@ -64,23 +63,22 @@ RobotService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chann
   , rpcmethod_CancelOperation_(RobotService_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_BlockForOperation_(RobotService_method_names[5], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetModelsFromModules_(RobotService_method_names[6], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DiscoverComponents_(RobotService_method_names[7], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_FrameSystemConfig_(RobotService_method_names[8], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_TransformPose_(RobotService_method_names[9], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_TransformPCD_(RobotService_method_names[10], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetStatus_(RobotService_method_names[11], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_StreamStatus_(RobotService_method_names[12], ::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
-  , rpcmethod_StopAll_(RobotService_method_names[13], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_StartSession_(RobotService_method_names[14], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SendSessionHeartbeat_(RobotService_method_names[15], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Log_(RobotService_method_names[16], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetCloudMetadata_(RobotService_method_names[17], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_RestartModule_(RobotService_method_names[18], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Shutdown_(RobotService_method_names[19], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetMachineStatus_(RobotService_method_names[20], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetVersion_(RobotService_method_names[21], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Tunnel_(RobotService_method_names[22], ::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
-  , rpcmethod_ListTunnels_(RobotService_method_names[23], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_FrameSystemConfig_(RobotService_method_names[7], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_TransformPose_(RobotService_method_names[8], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_TransformPCD_(RobotService_method_names[9], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetStatus_(RobotService_method_names[10], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_StreamStatus_(RobotService_method_names[11], ::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_StopAll_(RobotService_method_names[12], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_StartSession_(RobotService_method_names[13], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SendSessionHeartbeat_(RobotService_method_names[14], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Log_(RobotService_method_names[15], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetCloudMetadata_(RobotService_method_names[16], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RestartModule_(RobotService_method_names[17], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Shutdown_(RobotService_method_names[18], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetMachineStatus_(RobotService_method_names[19], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetVersion_(RobotService_method_names[20], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Tunnel_(RobotService_method_names[21], ::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
+  , rpcmethod_ListTunnels_(RobotService_method_names[22], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status RobotService::Stub::GetOperations(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest& request, ::viam::robot::v1::GetOperationsResponse* response) {
@@ -277,34 +275,6 @@ void RobotService::Stub::experimental_async::GetModelsFromModules(::grpc::Client
 
 ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetModelsFromModulesResponse>* RobotService::Stub::PrepareAsyncGetModelsFromModulesRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest& request, ::grpc::CompletionQueue* cq) {
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::GetModelsFromModulesResponse>::Create(channel_.get(), cq, rpcmethod_GetModelsFromModules_, context, request, false);
-}
-
-::grpc::Status RobotService::Stub::DiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::viam::robot::v1::DiscoverComponentsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DiscoverComponents_, context, request, response);
-}
-
-void RobotService::Stub::experimental_async::DiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest* request, ::viam::robot::v1::DiscoverComponentsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DiscoverComponents_, context, request, response, std::move(f));
-}
-
-void RobotService::Stub::experimental_async::DiscoverComponents(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::DiscoverComponentsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DiscoverComponents_, context, request, response, std::move(f));
-}
-
-void RobotService::Stub::experimental_async::DiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest* request, ::viam::robot::v1::DiscoverComponentsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DiscoverComponents_, context, request, response, reactor);
-}
-
-void RobotService::Stub::experimental_async::DiscoverComponents(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::DiscoverComponentsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DiscoverComponents_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::robot::v1::DiscoverComponentsResponse>* RobotService::Stub::AsyncDiscoverComponentsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::DiscoverComponentsResponse>::Create(channel_.get(), cq, rpcmethod_DiscoverComponents_, context, request, true);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::robot::v1::DiscoverComponentsResponse>* RobotService::Stub::PrepareAsyncDiscoverComponentsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::robot::v1::DiscoverComponentsResponse>::Create(channel_.get(), cq, rpcmethod_DiscoverComponents_, context, request, false);
 }
 
 ::grpc::Status RobotService::Stub::FrameSystemConfig(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest& request, ::viam::robot::v1::FrameSystemConfigResponse* response) {
@@ -805,16 +775,6 @@ RobotService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       RobotService_method_names[7],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::DiscoverComponentsRequest, ::viam::robot::v1::DiscoverComponentsResponse>(
-          [](RobotService::Service* service,
-             ::grpc_impl::ServerContext* ctx,
-             const ::viam::robot::v1::DiscoverComponentsRequest* req,
-             ::viam::robot::v1::DiscoverComponentsResponse* resp) {
-               return service->DiscoverComponents(ctx, req, resp);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[8],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::FrameSystemConfigRequest, ::viam::robot::v1::FrameSystemConfigResponse>(
           [](RobotService::Service* service,
              ::grpc_impl::ServerContext* ctx,
@@ -823,7 +783,7 @@ RobotService::Service::Service() {
                return service->FrameSystemConfig(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[9],
+      RobotService_method_names[8],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::TransformPoseRequest, ::viam::robot::v1::TransformPoseResponse>(
           [](RobotService::Service* service,
@@ -833,7 +793,7 @@ RobotService::Service::Service() {
                return service->TransformPose(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[10],
+      RobotService_method_names[9],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::TransformPCDRequest, ::viam::robot::v1::TransformPCDResponse>(
           [](RobotService::Service* service,
@@ -843,7 +803,7 @@ RobotService::Service::Service() {
                return service->TransformPCD(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[11],
+      RobotService_method_names[10],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::GetStatusRequest, ::viam::robot::v1::GetStatusResponse>(
           [](RobotService::Service* service,
@@ -853,7 +813,7 @@ RobotService::Service::Service() {
                return service->GetStatus(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[12],
+      RobotService_method_names[11],
       ::grpc::internal::RpcMethod::SERVER_STREAMING,
       new ::grpc::internal::ServerStreamingHandler< RobotService::Service, ::viam::robot::v1::StreamStatusRequest, ::viam::robot::v1::StreamStatusResponse>(
           [](RobotService::Service* service,
@@ -863,7 +823,7 @@ RobotService::Service::Service() {
                return service->StreamStatus(ctx, req, writer);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[13],
+      RobotService_method_names[12],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::StopAllRequest, ::viam::robot::v1::StopAllResponse>(
           [](RobotService::Service* service,
@@ -873,7 +833,7 @@ RobotService::Service::Service() {
                return service->StopAll(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[14],
+      RobotService_method_names[13],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::StartSessionRequest, ::viam::robot::v1::StartSessionResponse>(
           [](RobotService::Service* service,
@@ -883,7 +843,7 @@ RobotService::Service::Service() {
                return service->StartSession(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[15],
+      RobotService_method_names[14],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::SendSessionHeartbeatRequest, ::viam::robot::v1::SendSessionHeartbeatResponse>(
           [](RobotService::Service* service,
@@ -893,7 +853,7 @@ RobotService::Service::Service() {
                return service->SendSessionHeartbeat(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[16],
+      RobotService_method_names[15],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::LogRequest, ::viam::robot::v1::LogResponse>(
           [](RobotService::Service* service,
@@ -903,7 +863,7 @@ RobotService::Service::Service() {
                return service->Log(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[17],
+      RobotService_method_names[16],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::GetCloudMetadataRequest, ::viam::robot::v1::GetCloudMetadataResponse>(
           [](RobotService::Service* service,
@@ -913,7 +873,7 @@ RobotService::Service::Service() {
                return service->GetCloudMetadata(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[18],
+      RobotService_method_names[17],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::RestartModuleRequest, ::viam::robot::v1::RestartModuleResponse>(
           [](RobotService::Service* service,
@@ -923,7 +883,7 @@ RobotService::Service::Service() {
                return service->RestartModule(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[19],
+      RobotService_method_names[18],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::ShutdownRequest, ::viam::robot::v1::ShutdownResponse>(
           [](RobotService::Service* service,
@@ -933,7 +893,7 @@ RobotService::Service::Service() {
                return service->Shutdown(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[20],
+      RobotService_method_names[19],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::GetMachineStatusRequest, ::viam::robot::v1::GetMachineStatusResponse>(
           [](RobotService::Service* service,
@@ -943,7 +903,7 @@ RobotService::Service::Service() {
                return service->GetMachineStatus(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[21],
+      RobotService_method_names[20],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::GetVersionRequest, ::viam::robot::v1::GetVersionResponse>(
           [](RobotService::Service* service,
@@ -953,7 +913,7 @@ RobotService::Service::Service() {
                return service->GetVersion(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[22],
+      RobotService_method_names[21],
       ::grpc::internal::RpcMethod::BIDI_STREAMING,
       new ::grpc::internal::BidiStreamingHandler< RobotService::Service, ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>(
           [](RobotService::Service* service,
@@ -963,7 +923,7 @@ RobotService::Service::Service() {
                return service->Tunnel(ctx, stream);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RobotService_method_names[23],
+      RobotService_method_names[22],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::ListTunnelsRequest, ::viam::robot::v1::ListTunnelsResponse>(
           [](RobotService::Service* service,
@@ -1020,13 +980,6 @@ RobotService::Service::~Service() {
 }
 
 ::grpc::Status RobotService::Service::GetModelsFromModules(::grpc::ServerContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest* request, ::viam::robot::v1::GetModelsFromModulesResponse* response) {
-  (void) context;
-  (void) request;
-  (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
-::grpc::Status RobotService::Service::DiscoverComponents(::grpc::ServerContext* context, const ::viam::robot::v1::DiscoverComponentsRequest* request, ::viam::robot::v1::DiscoverComponentsResponse* response) {
   (void) context;
   (void) request;
   (void) response;
