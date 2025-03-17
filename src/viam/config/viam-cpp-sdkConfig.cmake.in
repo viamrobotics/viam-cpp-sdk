@@ -2,7 +2,7 @@
 
 include(CMakeFindDependencyMacro)
 
-find_dependency(Boost @Boost_VERSION_MAJOR@.@Boost_VERSION_MINOR@ COMPONENTS headers log)
+find_dependency(Boost @Boost_VERSION_MAJOR@.@Boost_VERSION_MINOR@ COMPONENTS headers log log_setup)
 
 if (@gRPC_FOUND@)
   find_dependency(gRPC @gRPC_VERSION_MAJOR@.@gRPC_VERSION_MINOR@ CONFIG)
