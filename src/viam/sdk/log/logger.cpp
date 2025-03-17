@@ -63,7 +63,7 @@ std::ostream& operator<<(std::ostream& os, log_level lvl) {
     return os;
 }
 
-std::string global_resource_name() {
+const char* global_resource_name() {
     return "Viam C++ SDK";
 }
 

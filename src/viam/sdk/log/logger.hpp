@@ -48,7 +48,7 @@ using LogSource = boost::log::sources::severity_channel_logger_mt<log_level>;
 
 /// @brief Returns the "channel name" of general log messages not originating from resources.
 /// @ingroup Log
-std::string global_resource_name();
+const char* global_resource_name();
 
 /// @class Logger logger.hpp "log/logger.hpp"
 /// @brief Manages the logging infrastructure in the SDDK.

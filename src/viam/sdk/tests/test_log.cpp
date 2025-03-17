@@ -24,7 +24,7 @@ BOOST_AUTO_TEST_CASE(test_cout_logging) {
     redirect.release();
 
     for (const std::string& s :
-         {"log1"s, to_string(sdk::log_level::info), sdk::global_resource_name()}) {
+         {"log1"s, to_string(sdk::log_level::info), std::string{sdk::global_resource_name()}}) {
         BOOST_CHECK(rec.find(s) != std::string::npos);
     }
 }
