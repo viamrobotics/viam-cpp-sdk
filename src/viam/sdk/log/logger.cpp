@@ -113,7 +113,7 @@ void Logger::init_logging() {
     boost::log::core::get()->add_global_attribute("TimeStamp",
                                                   boost::log::attributes::local_clock());
 
-    boost::log::formatter fmt =
+    const boost::log::formatter fmt =
         boost::log::expressions::stream
         << boost::log::expressions::format_date_time<boost::posix_time::ptime>(
                "TimeStamp", "%Y--%m--%d %H:%M:%S")
@@ -142,7 +142,7 @@ void Logger::disable_console_logging() {
 namespace log_detail {
 
 boost::string_view trim_filename(const char* file) {
-    boost::string_view result(file);
+    const boost::string_view result(file);
     const std::size_t second_last = result  //
                                         .substr(0, result.find_last_of('/'))
                                         .find_last_of('/');
