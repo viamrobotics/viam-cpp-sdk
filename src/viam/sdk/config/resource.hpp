@@ -47,7 +47,7 @@ class ResourceConfig {
                    std::string api,
                    Model model,
                    LinkConfig frame,
-                   sdk::log_level lvl = sdk::log_level::info);
+                   log_level lvl = sdk::log_level::info);
 
     ResourceConfig(std::string type);
 
@@ -93,7 +93,7 @@ class ResourceConfig {
 
     std::vector<std::string> implicit_depends_on_;
 
-    sdk::log_level log_level_;
+    log_level log_level_;
 };
 
 namespace proto_convert_details {

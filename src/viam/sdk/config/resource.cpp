@@ -27,7 +27,7 @@ ResourceConfig::ResourceConfig(std::string type,
                                std::string api,
                                Model model,
                                LinkConfig frame,
-                               sdk::log_level lvl)
+                               log_level lvl)
     : api_({kRDK, type, ""}),
       frame_(std::move(frame)),
       model_(std::move(model)),
