@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE(test_global_filter) {
     VIAM_LOG(error) << "error1";
     VIAM_LOG(trace) << "trace1";  // not logged
 
-    auto& logger = sdk::Logger::get();
+    auto& logger = sdk::LogManager::get();
 
     using ll = sdk::log_level;
 

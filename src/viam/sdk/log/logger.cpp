@@ -67,7 +67,7 @@ const char* global_resource_name() {
     return "Viam C++ SDK";
 }
 
-bool Logger::Filter::operator()(const boost::log::attribute_value_set& attrs) const {
+bool LogManager::Filter::operator()(const boost::log::attribute_value_set& attrs) const {
     auto sev = attrs[attr_sev_type{}];
     if (!sev) {
         return false;
@@ -84,31 +84,31 @@ bool Logger::Filter::operator()(const boost::log::attribute_value_set& attrs) co
     return *sev >= parent->global_level_;
 }
 
-Logger& Logger::get() {
-    static Logger& result = Instance::current(Instance::Creation::open_existing).impl_->logger;
+LogManager& LogManager::get() {
+    static LogManager& result = Instance::current(Instance::Creation::open_existing).impl_->log_mgr;
 
     return result;
 }
 
-LogSource& Logger::logger() {
+LogSource& LogManager::global_logger() {
     return sdk_logger_;
 }
 
-void Logger::set_global_log_level(log_level lvl) {
+void LogManager::set_global_log_level(log_level lvl) {
     global_level_ = lvl;
 }
 
-void Logger::set_global_log_level(int argc, char** argv) {
+void LogManager::set_global_log_level(int argc, char** argv) {
     if (argc >= 3 && strcmp(argv[2], "--log-level=debug") == 0) {
         set_global_log_level(log_level::debug);
     }
 }
 
-void Logger::set_resource_log_level(const std::string& resource, log_level lvl) {
+void LogManager::set_resource_log_level(const std::string& resource, log_level lvl) {
     resource_levels_[resource] = lvl;
 }
 
-void Logger::init_logging() {
+void LogManager::init_logging() {
     sdk_logger_.channel(global_resource_name());
     boost::log::core::get()->add_global_attribute("TimeStamp",
                                                   boost::log::attributes::local_clock());
@@ -134,7 +134,7 @@ void Logger::init_logging() {
     VIAM_LOG(debug) << "Initialized console logging";
 }
 
-void Logger::disable_console_logging() {
+void LogManager::disable_console_logging() {
     VIAM_LOG(debug) << "Disabling console logging";
     boost::log::core::get()->remove_sink(console_sink_);
 }

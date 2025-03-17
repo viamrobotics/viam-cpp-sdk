@@ -30,7 +30,7 @@ Name Resource::get_resource_name() const {
 }
 
 void Resource::set_log_level(log_level ll) const {
-    Logger::get().set_resource_log_level(name_, ll);
+    LogManager::get().set_resource_log_level(name_, ll);
 }
 
 }  // namespace sdk

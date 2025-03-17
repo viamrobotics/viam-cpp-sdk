@@ -50,16 +50,16 @@ using LogSource = boost::log::sources::severity_channel_logger_mt<log_level>;
 /// @ingroup Log
 const char* global_resource_name();
 
-/// @class Logger logger.hpp "log/logger.hpp"
+/// @class LogManager logger.hpp "log/logger.hpp"
 /// @brief Manages the logging infrastructure in the SDDK.
 /// @ingroup Log
 ///
 /// Handles initialization and bookkeeping for logging infrastructure in the C++ SDK. This includes
 /// console logging, if active, and both global and resource-level log filtering.
-class Logger {
+class LogManager {
    public:
     struct Filter {
-        const Logger* parent;
+        const LogManager* parent;
 
         bool operator()(const boost::log::attribute_value_set&) const;
     };
@@ -67,7 +67,7 @@ class Logger {
     /// @brief Returns the unique logger instance.
     ///
     /// This is the only way to access the logger.
-    static Logger& get();
+    static LogManager& get();
 
     /// @brief Set the global logger severity.
     void set_global_log_level(log_level);
@@ -82,9 +82,10 @@ class Logger {
 
     /// @brief Set the logger severity for a resource.
     ///
-    /// Logger can maintain separate severity levels for individual resources. For example, you may
-    /// want to only report "error" messages for global logs and logs for one component of a modular
-    /// resource, but enable verbose logging for a new component that is still being debugged.
+    /// LogManager can maintain separate severity levels for individual resources. For example, you
+    /// may want to only report "error" messages for global logs and logs for one component of a
+    /// modular resource, but enable verbose logging for a new component that is still being
+    /// debugged.
     /// @see @ref Resource, which has a set_log_level method which automatically provides its own
     /// resource name.
     void set_resource_log_level(const std::string& resource, log_level);
@@ -92,18 +93,18 @@ class Logger {
     /// @brief Return the SDK global log source.
     ///
     /// Users should prefer to log messages using the logging macros below.
-    LogSource& logger();
+    LogSource& global_logger();
 
    private:
     friend class RobotClient;
     friend class Instance;
-    Logger() = default;
+    LogManager() = default;
 
-    Logger(const Logger&) = delete;
-    Logger(Logger&&) = delete;
+    LogManager(const LogManager&) = delete;
+    LogManager(LogManager&&) = delete;
 
-    Logger& operator=(const Logger&) = delete;
-    Logger& operator=(Logger&&) = delete;
+    LogManager& operator=(const LogManager&) = delete;
+    LogManager& operator=(LogManager&&) = delete;
 
     void init_logging();
     void disable_console_logging();
@@ -143,7 +144,7 @@ BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_time,
 /// @ingroup Log
 ///
 /// Use this macro to generate log messages pertaining to the SDK at large.
-#define VIAM_LOG(level) VIAM_LOG_IMPL(::viam::sdk::Logger::get().logger(), level)
+#define VIAM_LOG(level) VIAM_LOG_IMPL(::viam::sdk::LogManager::get().global_logger(), level)
 
 /// @brief Log macro for resource-level logs.
 /// @ingroup Log

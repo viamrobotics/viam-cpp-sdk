@@ -101,9 +101,9 @@ void RobotClient::connect_logging() {
     auto& sink = impl_->log_sink;
     if (!sink) {
         sink = sdk::impl::LogBackend::create(this);
-        sink->set_filter(Logger::Filter{&Logger::get()});
+        sink->set_filter(LogManager::Filter{&LogManager::get()});
 
-        Logger::get().disable_console_logging();
+        LogManager::get().disable_console_logging();
         boost::log::core::get()->add_sink(sink);
     }
 }

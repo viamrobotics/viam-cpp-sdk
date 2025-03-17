@@ -9,7 +9,7 @@ namespace sdk {
 
 struct Instance::Impl {
     Registry registry;
-    Logger logger;
+    LogManager log_mgr;
 };
 
 }  // namespace sdk

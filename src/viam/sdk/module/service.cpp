@@ -237,7 +237,7 @@ ModuleService::ModuleService(int argc,
           }
           return argv[1];
       }()) {
-    Logger::get().set_global_log_level(argc, argv);
+    LogManager::get().set_global_log_level(argc, argv);
 
     for (auto&& mr : registrations) {
         Registry::get().register_model(mr);
