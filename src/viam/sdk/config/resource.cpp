@@ -83,7 +83,7 @@ const std::string& ResourceConfig::type() const {
     return type_;
 }
 
-log_level ResourceConfig::log_level() const {
+log_level ResourceConfig::get_log_level() const {
     return log_level_;
 }
 
@@ -143,7 +143,7 @@ void to_proto_impl<ResourceConfig>::operator()(const ResourceConfig& self,
     *proto->mutable_namespace_() = self.namespace_();
     *proto->mutable_type() = self.type();
     *proto->mutable_api() = self.api().to_string();
-    *proto->mutable_log_configuration()->mutable_level() = to_string(self.log_level());
+    *proto->mutable_log_configuration()->mutable_level() = to_string(self.get_log_level());
     *proto->mutable_model() = self.model().to_string();
     *proto->mutable_attributes() = to_proto(self.attributes());
 

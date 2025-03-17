@@ -63,7 +63,7 @@ class ResourceConfig {
     const std::string& namespace_() const;
     const std::string& type() const;
 
-    log_level log_level() const;
+    log_level get_log_level() const;
 
     const std::vector<std::string>& depends_on() const;
 
