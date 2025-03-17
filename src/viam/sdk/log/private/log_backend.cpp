@@ -8,15 +8,16 @@ namespace sdk {
 namespace impl {
 
 time_pt ptime_convert(const boost::posix_time::ptime& from) {
-    boost::posix_time::time_duration const time_since_epoch =
-        from - boost::posix_time::from_time_t(0);
-    time_pt t = std::chrono::system_clock::from_time_t(time_since_epoch.total_seconds());
-    long nsec =
-        time_since_epoch.fractional_seconds() * (1000000000 / time_since_epoch.ticks_per_second());
+    namespace posix_time = boost::posix_time;
+
+    posix_time::time_duration const time_since_epoch = from - posix_time::from_time_t(0);
+    const time_pt t = std::chrono::system_clock::from_time_t(time_since_epoch.total_seconds());
+    const long nsec = time_since_epoch.fractional_seconds() *
+                      (1000000000 / posix_time::time_duration::ticks_per_second());
     return t + std::chrono::nanoseconds(nsec);
 }
 
-void LogBackend::consume(const boost::log::record_view& rec) {
+void LogBackend::consume(const boost::log::record_view& rec) const {
     parent->log(*rec[attr_channel_type{}],
                 to_string(*rec[attr_sev_type{}]),
                 *rec[boost::log::expressions::smessage],

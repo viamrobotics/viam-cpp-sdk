@@ -18,7 +18,7 @@ using SinkType = boost::log::sinks::synchronous_sink<LogBackend>;
 struct LogBackend : boost::log::sinks::basic_sink_backend<boost::log::sinks::synchronized_feeding> {
     LogBackend(RobotClient* p) : parent(p) {}
 
-    void consume(const boost::log::record_view&);
+    void consume(const boost::log::record_view&) const;
 
     static boost::shared_ptr<SinkType> create(RobotClient* p);
 
