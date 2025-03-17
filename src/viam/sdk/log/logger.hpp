@@ -15,6 +15,7 @@
 #include <boost/log/sinks/text_ostream_backend.hpp>
 #include <boost/log/sources/severity_channel_logger.hpp>
 #include <boost/log/utility/manipulators/add_value.hpp>
+#include <boost/utility/string_view.hpp>
 
 namespace viam {
 namespace sdk {
@@ -116,17 +117,26 @@ class Logger {
     std::map<std::string, log_level> resource_levels_;
 };
 
+namespace log_detail {
+
+// Some of the filenames in the SDK are not unique, eg config/resource.hpp, resource/resource.hpp.
+// This function trims a full filename /path/to/some/file.xpp to some/file.xpp
+boost::string_view trim_filename(const char* file);
+
+}  // namespace log_detail
+
 BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_channel, "Channel", std::string);
 BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_sev, "Severity", viam::sdk::log_level);
-BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_file, "file", const char*);
+BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_file, "file", boost::string_view);
 BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_line, "line", unsigned int);
 BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_time,
                                  "TimeStamp",
                                  boost::log::attributes::local_clock::value_type);
 
-#define VIAM_LOG_IMPL(lg, level)                                            \
-    BOOST_LOG_SEV((lg), ::viam::sdk::log_level::level)                      \
-        << ::boost::log::add_value(::viam::sdk::attr_file_type{}, __FILE__) \
+#define VIAM_LOG_IMPL(lg, level)                                                     \
+    BOOST_LOG_SEV((lg), ::viam::sdk::log_level::level)                               \
+        << ::boost::log::add_value(::viam::sdk::attr_file_type{},                    \
+                                   ::viam::sdk::log_detail::trim_filename(__FILE__)) \
         << ::boost::log::add_value(::viam::sdk::attr_line_type{}, __LINE__)
 
 /// @brief Log macro for general SDK logs.
