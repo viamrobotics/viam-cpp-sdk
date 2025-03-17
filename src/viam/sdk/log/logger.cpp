@@ -54,7 +54,7 @@ log_level level_from_string(std::string level) {
         return ll::fatal;
     }
 
-    VIAM_LOG(warn) << "Returning unknown log level " << level << " as info";
+    VIAM_LOG(warn) << "Returning unknown log level `" << level << "` as info";
     return ll::info;
 }
 
