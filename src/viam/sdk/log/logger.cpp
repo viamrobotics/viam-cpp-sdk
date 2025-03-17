@@ -35,26 +35,26 @@ std::string to_string(log_level lvl) {
     }
 }
 
-log_level level_from_string(std::string str) {
+log_level level_from_string(std::string level) {
     using ll = log_level;
 
-    std::transform(str.begin(), str.end(), str.begin(), ::tolower);
+    std::transform(level.begin(), level.end(), level.begin(), ::tolower);
 
-    if (str == "info") {
+    if (level == "info") {
         return ll::info;
-    } else if (str == "warn" || str == "warning") {
+    } else if (level == "warn" || level == "warning") {
         return ll::warn;
-    } else if (str == "error") {
+    } else if (level == "error") {
         return ll::error;
-    } else if (str == "debug") {
+    } else if (level == "debug") {
         return ll::debug;
-    } else if (str == "trace") {
+    } else if (level == "trace") {
         return ll::trace;
-    } else if (str == "fatal") {
+    } else if (level == "fatal") {
         return ll::fatal;
     }
 
-    VIAM_LOG(warn) << "Returning unknown log level " << str << " as info";
+    VIAM_LOG(warn) << "Returning unknown log level " << level << " as info";
     return ll::info;
 }
 
