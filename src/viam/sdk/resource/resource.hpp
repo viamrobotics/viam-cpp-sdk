@@ -4,7 +4,7 @@
 
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/config/resource.hpp>
-#include <viam/sdk/log/logger.hpp>
+#include <viam/sdk/log/logging.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 
 namespace viam {

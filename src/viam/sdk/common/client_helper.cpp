@@ -6,7 +6,7 @@
 #include <grpcpp/support/status.h>
 
 #include <viam/sdk/common/private/version_metadata.hpp>
-#include <viam/sdk/log/logger.hpp>
+#include <viam/sdk/log/logging.hpp>
 
 namespace viam {
 namespace sdk {

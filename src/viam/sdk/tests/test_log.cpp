@@ -1,7 +1,7 @@
 #define BOOST_TEST_MODULE test module test_log
 #include <boost/test/included/unit_test.hpp>
 
-#include <viam/sdk/log/logger.hpp>
+#include <viam/sdk/log/logging.hpp>
 
 #include <iostream>
 #include <sstream>

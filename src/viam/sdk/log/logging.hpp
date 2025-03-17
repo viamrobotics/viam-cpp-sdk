@@ -1,4 +1,4 @@
-/// @file log/logger.hpp
+/// @file log/logging.hpp
 ///
 /// @brief Defines logging infrastructure
 #pragma once
@@ -50,7 +50,7 @@ using LogSource = boost::log::sources::severity_channel_logger_mt<log_level>;
 /// @ingroup Log
 const char* global_resource_name();
 
-/// @class LogManager logger.hpp "log/logger.hpp"
+/// @class LogManager logging.hpp "log/logging.hpp"
 /// @brief Manages the logging infrastructure in the SDDK.
 /// @ingroup Log
 ///

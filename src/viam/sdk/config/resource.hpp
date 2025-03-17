@@ -5,7 +5,7 @@
 
 #include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/common/proto_value.hpp>
-#include <viam/sdk/log/logger.hpp>
+#include <viam/sdk/log/logging.hpp>
 #include <viam/sdk/referenceframe/frame.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 

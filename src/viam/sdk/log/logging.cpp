@@ -1,4 +1,4 @@
-#include <viam/sdk/log/logger.hpp>
+#include <viam/sdk/log/logging.hpp>
 
 #include <iostream>
 
