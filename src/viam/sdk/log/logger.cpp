@@ -131,9 +131,11 @@ void Logger::init_logging() {
     console_sink_->set_formatter(fmt);
 
     boost::log::core::get()->add_sink(console_sink_);
+    VIAM_LOG(info) << "Initialized console logging";
 }
 
 void Logger::disable_console_logging() {
+    VIAM_LOG(info) << "Disabling console logging";
     boost::log::core::get()->remove_sink(console_sink_);
 }
 
