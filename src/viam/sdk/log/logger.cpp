@@ -67,7 +67,7 @@ std::string global_resource_name() {
     return "Viam C++ SDK";
 }
 
-bool Logger::Filter::operator()(const boost::log::attribute_value_set& attrs) {
+bool Logger::Filter::operator()(const boost::log::attribute_value_set& attrs) const {
     auto sev = attrs[attr_sev_type{}];
     if (!sev) {
         return false;

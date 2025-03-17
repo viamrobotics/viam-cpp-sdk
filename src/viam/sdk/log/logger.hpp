@@ -58,9 +58,9 @@ std::string global_resource_name();
 class Logger {
    public:
     struct Filter {
-        Logger* parent;
+        const Logger* parent;
 
-        bool operator()(const boost::log::attribute_value_set&);
+        bool operator()(const boost::log::attribute_value_set&) const;
     };
 
     /// @brief Returns the unique logger instance.
