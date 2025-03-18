@@ -101,7 +101,15 @@ void RobotClient::connect_logging() {
     auto& sink = impl_->log_sink;
     if (!sink) {
         sink = sdk::impl::LogBackend::create(this);
-        sink->set_filter(LogManager::Filter{&LogManager::get()});
+        sink->set_filter([filter = LogManager::Filter{&LogManager::get()}](
+                             const boost::log::attribute_value_set& attrs) {
+            auto force = attrs[sdk::impl::attr_console_force_type{}];
+            if (force && *force) {
+                return false;
+            }
+
+            return filter(attrs);
+        });
 
         LogManager::get().disable_console_logging();
         boost::log::core::get()->add_sink(sink);
@@ -270,7 +278,13 @@ void RobotClient::log(const std::string& name,
     robot::v1::LogResponse resp;
     ClientContext ctx;
     const auto response = impl_->stub_->Log(ctx, req, &resp);
-    (void)response;
+    if (is_error_response(response)) {
+        // Manually override to force this to get logged to console so we don't set off an infinite
+        // loop
+        VIAM_LOG(error) << boost::log::add_value(sdk::impl::attr_console_force_type{}, true)
+                        << "Error sending log message over grpc: " << response.error_message()
+                        << response.error_details();
+    }
 }
 
 std::shared_ptr<RobotClient> RobotClient::with_channel(std::shared_ptr<ViamChannel> channel,

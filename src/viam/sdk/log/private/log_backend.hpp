@@ -25,6 +25,11 @@ struct LogBackend : boost::log::sinks::basic_sink_backend<boost::log::sinks::syn
     RobotClient* parent;
 };
 
+// TBD if we want to expose this to users, but for now it is an implementation detail.
+// Disabling console logging is implemented by changing the filter on the console sink to reject all
+// messages unless they have a "force" flag set to true.
+BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_console_force, "force", bool);
+
 }  // namespace impl
 }  // namespace sdk
 }  // namespace viam

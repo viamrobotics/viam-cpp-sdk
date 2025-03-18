@@ -12,6 +12,7 @@
 
 #include <viam/sdk/common/instance.hpp>
 #include <viam/sdk/common/private/instance.hpp>
+#include <viam/sdk/log/private/log_backend.hpp>
 
 namespace viam {
 namespace sdk {
@@ -136,7 +137,18 @@ void LogManager::init_logging() {
 
 void LogManager::disable_console_logging() {
     VIAM_LOG(debug) << "Disabling console logging";
-    boost::log::core::get()->remove_sink(console_sink_);
+
+    // Set a filter which ignores all console logs unless they contain a console force flag which is
+    // set to true.
+    console_sink_->set_filter(
+        [filter = Filter{this}](const boost::log::attribute_value_set& attrs) {
+            auto force = attrs[impl::attr_console_force_type{}];
+            if (force && *force) {
+                return filter(attrs);
+            }
+
+            return false;
+        });
 }
 
 namespace log_detail {
