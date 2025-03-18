@@ -347,6 +347,7 @@ class SubmitTrainingJobRequest final :
     kModelVersionFieldNumber = 4,
     kDatasetIdFieldNumber = 7,
     kModelTypeFieldNumber = 5,
+    kModelFrameworkFieldNumber = 8,
   };
   // repeated string tags = 6 [json_name = "tags", (.tagger.v1.tags) = "bson:\"tags\" json:\"tags\""];
   int tags_size() const;
@@ -437,6 +438,15 @@ class SubmitTrainingJobRequest final :
   void _internal_set_model_type(::viam::app::mltraining::v1::ModelType value);
   public:
 
+  // .viam.app.mltraining.v1.ModelFramework model_framework = 8 [json_name = "modelFramework", (.tagger.v1.tags) = "bson:\"model_framework\" json:\"model_framework\""];
+  void clear_model_framework();
+  ::viam::app::mltraining::v1::ModelFramework model_framework() const;
+  void set_model_framework(::viam::app::mltraining::v1::ModelFramework value);
+  private:
+  ::viam::app::mltraining::v1::ModelFramework _internal_model_framework() const;
+  void _internal_set_model_framework(::viam::app::mltraining::v1::ModelFramework value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.mltraining.v1.SubmitTrainingJobRequest)
  private:
   class _Internal;
@@ -450,6 +460,7 @@ class SubmitTrainingJobRequest final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr model_version_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr dataset_id_;
   int model_type_;
+  int model_framework_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto;
 };
@@ -3350,6 +3361,26 @@ inline void SubmitTrainingJobRequest::_internal_set_model_type(::viam::app::mltr
 inline void SubmitTrainingJobRequest::set_model_type(::viam::app::mltraining::v1::ModelType value) {
   _internal_set_model_type(value);
   // @@protoc_insertion_point(field_set:viam.app.mltraining.v1.SubmitTrainingJobRequest.model_type)
+}
+
+// .viam.app.mltraining.v1.ModelFramework model_framework = 8 [json_name = "modelFramework", (.tagger.v1.tags) = "bson:\"model_framework\" json:\"model_framework\""];
+inline void SubmitTrainingJobRequest::clear_model_framework() {
+  model_framework_ = 0;
+}
+inline ::viam::app::mltraining::v1::ModelFramework SubmitTrainingJobRequest::_internal_model_framework() const {
+  return static_cast< ::viam::app::mltraining::v1::ModelFramework >(model_framework_);
+}
+inline ::viam::app::mltraining::v1::ModelFramework SubmitTrainingJobRequest::model_framework() const {
+  // @@protoc_insertion_point(field_get:viam.app.mltraining.v1.SubmitTrainingJobRequest.model_framework)
+  return _internal_model_framework();
+}
+inline void SubmitTrainingJobRequest::_internal_set_model_framework(::viam::app::mltraining::v1::ModelFramework value) {
+  
+  model_framework_ = value;
+}
+inline void SubmitTrainingJobRequest::set_model_framework(::viam::app::mltraining::v1::ModelFramework value) {
+  _internal_set_model_framework(value);
+  // @@protoc_insertion_point(field_set:viam.app.mltraining.v1.SubmitTrainingJobRequest.model_framework)
 }
 
 // repeated string tags = 6 [json_name = "tags", (.tagger.v1.tags) = "bson:\"tags\" json:\"tags\""];
