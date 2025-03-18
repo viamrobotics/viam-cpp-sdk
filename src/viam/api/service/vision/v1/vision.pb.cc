@@ -86,7 +86,11 @@ PROTOBUF_CONSTEXPR Detection::Detection(
   , y_min_(int64_t{0})
   , x_max_(int64_t{0})
   , y_max_(int64_t{0})
-  , confidence_(0){}
+  , confidence_(0)
+  , x_min_normalized_(0)
+  , y_min_normalized_(0)
+  , x_max_normalized_(0)
+  , y_max_normalized_(0){}
 struct DetectionDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DetectionDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -311,12 +315,20 @@ const uint32_t TableStruct_service_2fvision_2fv1_2fvision_2eproto::offsets[] PRO
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, y_max_),
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, confidence_),
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, class_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, x_min_normalized_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, y_min_normalized_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, x_max_normalized_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, y_max_normalized_),
   0,
   1,
   2,
   3,
   ~0u,
   ~0u,
+  4,
+  5,
+  6,
+  7,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -427,18 +439,18 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 12, -1, -1, sizeof(::viam::service::vision::v1::GetDetectionsResponse)},
   { 19, -1, -1, sizeof(::viam::service::vision::v1::GetDetectionsFromCameraRequest)},
   { 28, -1, -1, sizeof(::viam::service::vision::v1::GetDetectionsFromCameraResponse)},
-  { 35, 47, -1, sizeof(::viam::service::vision::v1::Detection)},
-  { 53, -1, -1, sizeof(::viam::service::vision::v1::GetClassificationsRequest)},
-  { 66, -1, -1, sizeof(::viam::service::vision::v1::GetClassificationsResponse)},
-  { 73, -1, -1, sizeof(::viam::service::vision::v1::GetClassificationsFromCameraRequest)},
-  { 83, -1, -1, sizeof(::viam::service::vision::v1::GetClassificationsFromCameraResponse)},
-  { 90, -1, -1, sizeof(::viam::service::vision::v1::Classification)},
-  { 98, -1, -1, sizeof(::viam::service::vision::v1::GetObjectPointCloudsRequest)},
-  { 108, -1, -1, sizeof(::viam::service::vision::v1::GetObjectPointCloudsResponse)},
-  { 116, -1, -1, sizeof(::viam::service::vision::v1::GetPropertiesRequest)},
-  { 124, -1, -1, sizeof(::viam::service::vision::v1::CaptureAllFromCameraRequest)},
-  { 137, -1, -1, sizeof(::viam::service::vision::v1::CaptureAllFromCameraResponse)},
-  { 148, -1, -1, sizeof(::viam::service::vision::v1::GetPropertiesResponse)},
+  { 35, 51, -1, sizeof(::viam::service::vision::v1::Detection)},
+  { 61, -1, -1, sizeof(::viam::service::vision::v1::GetClassificationsRequest)},
+  { 74, -1, -1, sizeof(::viam::service::vision::v1::GetClassificationsResponse)},
+  { 81, -1, -1, sizeof(::viam::service::vision::v1::GetClassificationsFromCameraRequest)},
+  { 91, -1, -1, sizeof(::viam::service::vision::v1::GetClassificationsFromCameraResponse)},
+  { 98, -1, -1, sizeof(::viam::service::vision::v1::Classification)},
+  { 106, -1, -1, sizeof(::viam::service::vision::v1::GetObjectPointCloudsRequest)},
+  { 116, -1, -1, sizeof(::viam::service::vision::v1::GetObjectPointCloudsResponse)},
+  { 124, -1, -1, sizeof(::viam::service::vision::v1::GetPropertiesRequest)},
+  { 132, -1, -1, sizeof(::viam::service::vision::v1::CaptureAllFromCameraRequest)},
+  { 145, -1, -1, sizeof(::viam::service::vision::v1::CaptureAllFromCameraResponse)},
+  { 156, -1, -1, sizeof(::viam::service::vision::v1::GetPropertiesResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -478,100 +490,106 @@ const char descriptor_table_protodef_service_2fvision_2fv1_2fvision_2eproto[] PR
   ".google.protobuf.StructR\005extra\"d\n\037GetDet"
   "ectionsFromCameraResponse\022A\n\ndetections\030"
   "\001 \003(\0132!.viam.service.vision.v1.Detection"
-  "R\ndetections\"\332\001\n\tDetection\022\030\n\005x_min\030\001 \001("
+  "R\ndetections\"\352\003\n\tDetection\022\030\n\005x_min\030\001 \001("
   "\003H\000R\004xMin\210\001\001\022\030\n\005y_min\030\002 \001(\003H\001R\004yMin\210\001\001\022\030"
   "\n\005x_max\030\003 \001(\003H\002R\004xMax\210\001\001\022\030\n\005y_max\030\004 \001(\003H"
   "\003R\004yMax\210\001\001\022\036\n\nconfidence\030\005 \001(\001R\nconfiden"
-  "ce\022\035\n\nclass_name\030\006 \001(\tR\tclassNameB\010\n\006_x_"
-  "minB\010\n\006_y_minB\010\n\006_x_maxB\010\n\006_y_max\"\315\001\n\031Ge"
-  "tClassificationsRequest\022\022\n\004name\030\001 \001(\tR\004n"
-  "ame\022\024\n\005image\030\002 \001(\014R\005image\022\024\n\005width\030\003 \001(\005"
-  "R\005width\022\026\n\006height\030\004 \001(\005R\006height\022\033\n\tmime_"
-  "type\030\005 \001(\tR\010mimeType\022\014\n\001n\030\006 \001(\005R\001n\022-\n\005ex"
-  "tra\030c \001(\0132\027.google.protobuf.StructR\005extr"
-  "a\"n\n\032GetClassificationsResponse\022P\n\017class"
-  "ifications\030\001 \003(\0132&.viam.service.vision.v"
-  "1.ClassificationR\017classifications\"\227\001\n#Ge"
-  "tClassificationsFromCameraRequest\022\022\n\004nam"
-  "e\030\001 \001(\tR\004name\022\037\n\013camera_name\030\002 \001(\tR\ncame"
-  "raName\022\014\n\001n\030\003 \001(\005R\001n\022-\n\005extra\030c \001(\0132\027.go"
-  "ogle.protobuf.StructR\005extra\"x\n$GetClassi"
-  "ficationsFromCameraResponse\022P\n\017classific"
-  "ations\030\001 \003(\0132&.viam.service.vision.v1.Cl"
-  "assificationR\017classifications\"O\n\016Classif"
-  "ication\022\035\n\nclass_name\030\001 \001(\tR\tclassName\022\036"
-  "\n\nconfidence\030\002 \001(\001R\nconfidence\"\236\001\n\033GetOb"
-  "jectPointCloudsRequest\022\022\n\004name\030\001 \001(\tR\004na"
-  "me\022\037\n\013camera_name\030\002 \001(\tR\ncameraName\022\033\n\tm"
-  "ime_type\030\003 \001(\tR\010mimeType\022-\n\005extra\030c \001(\0132"
-  "\027.google.protobuf.StructR\005extra\"w\n\034GetOb"
-  "jectPointCloudsResponse\022\033\n\tmime_type\030\001 \001"
-  "(\tR\010mimeType\022:\n\007objects\030\002 \003(\0132 .viam.com"
-  "mon.v1.PointCloudObjectR\007objects\"Y\n\024GetP"
-  "ropertiesRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005"
+  "ce\022\035\n\nclass_name\030\006 \001(\tR\tclassName\022-\n\020x_m"
+  "in_normalized\030\007 \001(\001H\004R\016xMinNormalized\210\001\001"
+  "\022-\n\020y_min_normalized\030\010 \001(\001H\005R\016yMinNormal"
+  "ized\210\001\001\022-\n\020x_max_normalized\030\t \001(\001H\006R\016xMa"
+  "xNormalized\210\001\001\022-\n\020y_max_normalized\030\n \001(\001"
+  "H\007R\016yMaxNormalized\210\001\001B\010\n\006_x_minB\010\n\006_y_mi"
+  "nB\010\n\006_x_maxB\010\n\006_y_maxB\023\n\021_x_min_normaliz"
+  "edB\023\n\021_y_min_normalizedB\023\n\021_x_max_normal"
+  "izedB\023\n\021_y_max_normalized\"\315\001\n\031GetClassif"
+  "icationsRequest\022\022\n\004name\030\001 \001(\tR\004name\022\024\n\005i"
+  "mage\030\002 \001(\014R\005image\022\024\n\005width\030\003 \001(\005R\005width\022"
+  "\026\n\006height\030\004 \001(\005R\006height\022\033\n\tmime_type\030\005 \001"
+  "(\tR\010mimeType\022\014\n\001n\030\006 \001(\005R\001n\022-\n\005extra\030c \001("
+  "\0132\027.google.protobuf.StructR\005extra\"n\n\032Get"
+  "ClassificationsResponse\022P\n\017classificatio"
+  "ns\030\001 \003(\0132&.viam.service.vision.v1.Classi"
+  "ficationR\017classifications\"\227\001\n#GetClassif"
+  "icationsFromCameraRequest\022\022\n\004name\030\001 \001(\tR"
+  "\004name\022\037\n\013camera_name\030\002 \001(\tR\ncameraName\022\014"
+  "\n\001n\030\003 \001(\005R\001n\022-\n\005extra\030c \001(\0132\027.google.pro"
+  "tobuf.StructR\005extra\"x\n$GetClassification"
+  "sFromCameraResponse\022P\n\017classifications\030\001"
+  " \003(\0132&.viam.service.vision.v1.Classifica"
+  "tionR\017classifications\"O\n\016Classification\022"
+  "\035\n\nclass_name\030\001 \001(\tR\tclassName\022\036\n\nconfid"
+  "ence\030\002 \001(\001R\nconfidence\"\236\001\n\033GetObjectPoin"
+  "tCloudsRequest\022\022\n\004name\030\001 \001(\tR\004name\022\037\n\013ca"
+  "mera_name\030\002 \001(\tR\ncameraName\022\033\n\tmime_type"
+  "\030\003 \001(\tR\010mimeType\022-\n\005extra\030c \001(\0132\027.google"
+  ".protobuf.StructR\005extra\"w\n\034GetObjectPoin"
+  "tCloudsResponse\022\033\n\tmime_type\030\001 \001(\tR\010mime"
+  "Type\022:\n\007objects\030\002 \003(\0132 .viam.common.v1.P"
+  "ointCloudObjectR\007objects\"Y\n\024GetPropertie"
+  "sRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c "
+  "\001(\0132\027.google.protobuf.StructR\005extra\"\305\002\n\033"
+  "CaptureAllFromCameraRequest\022\022\n\004name\030\001 \001("
+  "\tR\004name\022\037\n\013camera_name\030\002 \001(\tR\ncameraName"
+  "\022!\n\014return_image\030\003 \001(\010R\013returnImage\0225\n\026r"
+  "eturn_classifications\030\004 \001(\010R\025returnClass"
+  "ifications\022+\n\021return_detections\030\005 \001(\010R\020r"
+  "eturnDetections\022;\n\032return_object_point_c"
+  "louds\030\006 \001(\010R\027returnObjectPointClouds\022-\n\005"
   "extra\030c \001(\0132\027.google.protobuf.StructR\005ex"
-  "tra\"\305\002\n\033CaptureAllFromCameraRequest\022\022\n\004n"
-  "ame\030\001 \001(\tR\004name\022\037\n\013camera_name\030\002 \001(\tR\nca"
-  "meraName\022!\n\014return_image\030\003 \001(\010R\013returnIm"
-  "age\0225\n\026return_classifications\030\004 \001(\010R\025ret"
-  "urnClassifications\022+\n\021return_detections\030"
-  "\005 \001(\010R\020returnDetections\022;\n\032return_object"
-  "_point_clouds\030\006 \001(\010R\027returnObjectPointCl"
-  "ouds\022-\n\005extra\030c \001(\0132\027.google.protobuf.St"
-  "ructR\005extra\"\325\002\n\034CaptureAllFromCameraResp"
-  "onse\0225\n\005image\030\001 \001(\0132\037.viam.component.cam"
-  "era.v1.ImageR\005image\022A\n\ndetections\030\002 \003(\0132"
-  "!.viam.service.vision.v1.DetectionR\ndete"
-  "ctions\022P\n\017classifications\030\003 \003(\0132&.viam.s"
-  "ervice.vision.v1.ClassificationR\017classif"
-  "ications\022:\n\007objects\030\004 \003(\0132 .viam.common."
-  "v1.PointCloudObjectR\007objects\022-\n\005extra\030c "
-  "\001(\0132\027.google.protobuf.StructR\005extra\"\312\001\n\025"
-  "GetPropertiesResponse\022;\n\031classifications"
-  "_supported\030\001 \001(\010R\030classificationsSupport"
-  "ed\0221\n\024detections_supported\030\002 \001(\010R\023detect"
-  "ionsSupported\022A\n\035object_point_clouds_sup"
-  "ported\030\003 \001(\010R\032objectPointCloudsSupported"
-  "2\315\013\n\rVisionService\022\310\001\n\027GetDetectionsFrom"
-  "Camera\0226.viam.service.vision.v1.GetDetec"
-  "tionsFromCameraRequest\0327.viam.service.vi"
-  "sion.v1.GetDetectionsFromCameraResponse\""
-  "<\202\323\344\223\0026\"4/viam/api/v1/service/vision/{na"
-  "me}/camera_detections\022\243\001\n\rGetDetections\022"
-  ",.viam.service.vision.v1.GetDetectionsRe"
-  "quest\032-.viam.service.vision.v1.GetDetect"
-  "ionsResponse\"5\202\323\344\223\002/\"-/viam/api/v1/servi"
-  "ce/vision/{name}/detections\022\334\001\n\034GetClass"
-  "ificationsFromCamera\022;.viam.service.visi"
-  "on.v1.GetClassificationsFromCameraReques"
-  "t\032<.viam.service.vision.v1.GetClassifica"
-  "tionsFromCameraResponse\"A\202\323\344\223\002;\"9/viam/a"
-  "pi/v1/service/vision/{name}/camera_class"
-  "ifications\022\267\001\n\022GetClassifications\0221.viam"
-  ".service.vision.v1.GetClassificationsReq"
-  "uest\0322.viam.service.vision.v1.GetClassif"
-  "icationsResponse\":\202\323\344\223\0024\"2/viam/api/v1/s"
-  "ervice/vision/{name}/classifications\022\301\001\n"
-  "\024GetObjectPointClouds\0223.viam.service.vis"
-  "ion.v1.GetObjectPointCloudsRequest\0324.via"
-  "m.service.vision.v1.GetObjectPointClouds"
-  "Response\">\202\323\344\223\0028\"6/viam/api/v1/service/v"
-  "ision/{name}/object_point_clouds\022\247\001\n\rGet"
-  "Properties\022,.viam.service.vision.v1.GetP"
-  "ropertiesRequest\032-.viam.service.vision.v"
-  "1.GetPropertiesResponse\"9\202\323\344\223\0023\"1/viam/a"
-  "pi/v1/service/vision/{name}/get_properti"
-  "es\022\271\001\n\024CaptureAllFromCamera\0223.viam.servi"
-  "ce.vision.v1.CaptureAllFromCameraRequest"
-  "\0324.viam.service.vision.v1.CaptureAllFrom"
-  "CameraResponse\"6\202\323\344\223\0020\"./viam/api/v1/ser"
-  "vice/vision/{name}/capture_all\022\207\001\n\tDoCom"
-  "mand\022 .viam.common.v1.DoCommandRequest\032!"
-  ".viam.common.v1.DoCommandResponse\"5\202\323\344\223\002"
-  "/\"-/viam/api/v1/service/vision/{name}/do"
-  "_commandB\?\n\032com.viam.service.vision.v1Z!"
-  "go.viam.com/api/service/vision/v1b\006proto"
-  "3"
+  "tra\"\325\002\n\034CaptureAllFromCameraResponse\0225\n\005"
+  "image\030\001 \001(\0132\037.viam.component.camera.v1.I"
+  "mageR\005image\022A\n\ndetections\030\002 \003(\0132!.viam.s"
+  "ervice.vision.v1.DetectionR\ndetections\022P"
+  "\n\017classifications\030\003 \003(\0132&.viam.service.v"
+  "ision.v1.ClassificationR\017classifications"
+  "\022:\n\007objects\030\004 \003(\0132 .viam.common.v1.Point"
+  "CloudObjectR\007objects\022-\n\005extra\030c \001(\0132\027.go"
+  "ogle.protobuf.StructR\005extra\"\312\001\n\025GetPrope"
+  "rtiesResponse\022;\n\031classifications_support"
+  "ed\030\001 \001(\010R\030classificationsSupported\0221\n\024de"
+  "tections_supported\030\002 \001(\010R\023detectionsSupp"
+  "orted\022A\n\035object_point_clouds_supported\030\003"
+  " \001(\010R\032objectPointCloudsSupported2\315\013\n\rVis"
+  "ionService\022\310\001\n\027GetDetectionsFromCamera\0226"
+  ".viam.service.vision.v1.GetDetectionsFro"
+  "mCameraRequest\0327.viam.service.vision.v1."
+  "GetDetectionsFromCameraResponse\"<\202\323\344\223\0026\""
+  "4/viam/api/v1/service/vision/{name}/came"
+  "ra_detections\022\243\001\n\rGetDetections\022,.viam.s"
+  "ervice.vision.v1.GetDetectionsRequest\032-."
+  "viam.service.vision.v1.GetDetectionsResp"
+  "onse\"5\202\323\344\223\002/\"-/viam/api/v1/service/visio"
+  "n/{name}/detections\022\334\001\n\034GetClassificatio"
+  "nsFromCamera\022;.viam.service.vision.v1.Ge"
+  "tClassificationsFromCameraRequest\032<.viam"
+  ".service.vision.v1.GetClassificationsFro"
+  "mCameraResponse\"A\202\323\344\223\002;\"9/viam/api/v1/se"
+  "rvice/vision/{name}/camera_classificatio"
+  "ns\022\267\001\n\022GetClassifications\0221.viam.service"
+  ".vision.v1.GetClassificationsRequest\0322.v"
+  "iam.service.vision.v1.GetClassifications"
+  "Response\":\202\323\344\223\0024\"2/viam/api/v1/service/v"
+  "ision/{name}/classifications\022\301\001\n\024GetObje"
+  "ctPointClouds\0223.viam.service.vision.v1.G"
+  "etObjectPointCloudsRequest\0324.viam.servic"
+  "e.vision.v1.GetObjectPointCloudsResponse"
+  "\">\202\323\344\223\0028\"6/viam/api/v1/service/vision/{n"
+  "ame}/object_point_clouds\022\247\001\n\rGetProperti"
+  "es\022,.viam.service.vision.v1.GetPropertie"
+  "sRequest\032-.viam.service.vision.v1.GetPro"
+  "pertiesResponse\"9\202\323\344\223\0023\"1/viam/api/v1/se"
+  "rvice/vision/{name}/get_properties\022\271\001\n\024C"
+  "aptureAllFromCamera\0223.viam.service.visio"
+  "n.v1.CaptureAllFromCameraRequest\0324.viam."
+  "service.vision.v1.CaptureAllFromCameraRe"
+  "sponse\"6\202\323\344\223\0020\"./viam/api/v1/service/vis"
+  "ion/{name}/capture_all\022\207\001\n\tDoCommand\022 .v"
+  "iam.common.v1.DoCommandRequest\032!.viam.co"
+  "mmon.v1.DoCommandResponse\"5\202\323\344\223\002/\"-/viam"
+  "/api/v1/service/vision/{name}/do_command"
+  "B\?\n\032com.viam.service.vision.v1Z!go.viam."
+  "com/api/service/vision/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fvision_2fv1_2fvision_2eproto_deps[4] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -581,7 +599,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fvision_2f
 };
 static ::_pbi::once_flag descriptor_table_service_2fvision_2fv1_2fvision_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fvision_2fv1_2fvision_2eproto = {
-    false, false, 4401, descriptor_table_protodef_service_2fvision_2fv1_2fvision_2eproto,
+    false, false, 4673, descriptor_table_protodef_service_2fvision_2fv1_2fvision_2eproto,
     "service/vision/v1/vision.proto",
     &descriptor_table_service_2fvision_2fv1_2fvision_2eproto_once, descriptor_table_service_2fvision_2fv1_2fvision_2eproto_deps, 4, 16,
     schemas, file_default_instances, TableStruct_service_2fvision_2fv1_2fvision_2eproto::offsets,
@@ -1655,6 +1673,18 @@ class Detection::_Internal {
   static void set_has_y_max(HasBits* has_bits) {
     (*has_bits)[0] |= 8u;
   }
+  static void set_has_x_min_normalized(HasBits* has_bits) {
+    (*has_bits)[0] |= 16u;
+  }
+  static void set_has_y_min_normalized(HasBits* has_bits) {
+    (*has_bits)[0] |= 32u;
+  }
+  static void set_has_x_max_normalized(HasBits* has_bits) {
+    (*has_bits)[0] |= 64u;
+  }
+  static void set_has_y_max_normalized(HasBits* has_bits) {
+    (*has_bits)[0] |= 128u;
+  }
 };
 
 Detection::Detection(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -1676,8 +1706,8 @@ Detection::Detection(const Detection& from)
       GetArenaForAllocation());
   }
   ::memcpy(&x_min_, &from.x_min_,
-    static_cast<size_t>(reinterpret_cast<char*>(&confidence_) -
-    reinterpret_cast<char*>(&x_min_)) + sizeof(confidence_));
+    static_cast<size_t>(reinterpret_cast<char*>(&y_max_normalized_) -
+    reinterpret_cast<char*>(&x_min_)) + sizeof(y_max_normalized_));
   // @@protoc_insertion_point(copy_constructor:viam.service.vision.v1.Detection)
 }
 
@@ -1688,8 +1718,8 @@ class_name_.InitDefault();
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&x_min_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&confidence_) -
-    reinterpret_cast<char*>(&x_min_)) + sizeof(confidence_));
+    0, static_cast<size_t>(reinterpret_cast<char*>(&y_max_normalized_) -
+    reinterpret_cast<char*>(&x_min_)) + sizeof(y_max_normalized_));
 }
 
 Detection::~Detection() {
@@ -1724,6 +1754,11 @@ void Detection::Clear() {
         reinterpret_cast<char*>(&x_min_)) + sizeof(y_max_));
   }
   confidence_ = 0;
+  if (cached_has_bits & 0x000000f0u) {
+    ::memset(&x_min_normalized_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&y_max_normalized_) -
+        reinterpret_cast<char*>(&x_min_normalized_)) + sizeof(y_max_normalized_));
+  }
   _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -1786,6 +1821,42 @@ const char* Detection::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.service.vision.v1.Detection.class_name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional double x_min_normalized = 7 [json_name = "xMinNormalized"];
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 57)) {
+          _Internal::set_has_x_min_normalized(&has_bits);
+          x_min_normalized_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional double y_min_normalized = 8 [json_name = "yMinNormalized"];
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 65)) {
+          _Internal::set_has_y_min_normalized(&has_bits);
+          y_min_normalized_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional double x_max_normalized = 9 [json_name = "xMaxNormalized"];
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 73)) {
+          _Internal::set_has_x_max_normalized(&has_bits);
+          x_max_normalized_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional double y_max_normalized = 10 [json_name = "yMaxNormalized"];
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 81)) {
+          _Internal::set_has_y_max_normalized(&has_bits);
+          y_max_normalized_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
         } else
           goto handle_unusual;
         continue;
@@ -1863,6 +1934,30 @@ uint8_t* Detection::_InternalSerialize(
         6, this->_internal_class_name(), target);
   }
 
+  // optional double x_min_normalized = 7 [json_name = "xMinNormalized"];
+  if (_internal_has_x_min_normalized()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(7, this->_internal_x_min_normalized(), target);
+  }
+
+  // optional double y_min_normalized = 8 [json_name = "yMinNormalized"];
+  if (_internal_has_y_min_normalized()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(8, this->_internal_y_min_normalized(), target);
+  }
+
+  // optional double x_max_normalized = 9 [json_name = "xMaxNormalized"];
+  if (_internal_has_x_max_normalized()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(9, this->_internal_x_max_normalized(), target);
+  }
+
+  // optional double y_max_normalized = 10 [json_name = "yMaxNormalized"];
+  if (_internal_has_y_max_normalized()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(10, this->_internal_y_max_normalized(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1918,6 +2013,28 @@ size_t Detection::ByteSizeLong() const {
     total_size += 1 + 8;
   }
 
+  if (cached_has_bits & 0x000000f0u) {
+    // optional double x_min_normalized = 7 [json_name = "xMinNormalized"];
+    if (cached_has_bits & 0x00000010u) {
+      total_size += 1 + 8;
+    }
+
+    // optional double y_min_normalized = 8 [json_name = "yMinNormalized"];
+    if (cached_has_bits & 0x00000020u) {
+      total_size += 1 + 8;
+    }
+
+    // optional double x_max_normalized = 9 [json_name = "xMaxNormalized"];
+    if (cached_has_bits & 0x00000040u) {
+      total_size += 1 + 8;
+    }
+
+    // optional double y_max_normalized = 10 [json_name = "yMaxNormalized"];
+    if (cached_has_bits & 0x00000080u) {
+      total_size += 1 + 8;
+    }
+
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -1966,6 +2083,21 @@ void Detection::MergeFrom(const Detection& from) {
   if (raw_confidence != 0) {
     _internal_set_confidence(from._internal_confidence());
   }
+  if (cached_has_bits & 0x000000f0u) {
+    if (cached_has_bits & 0x00000010u) {
+      x_min_normalized_ = from.x_min_normalized_;
+    }
+    if (cached_has_bits & 0x00000020u) {
+      y_min_normalized_ = from.y_min_normalized_;
+    }
+    if (cached_has_bits & 0x00000040u) {
+      x_max_normalized_ = from.x_max_normalized_;
+    }
+    if (cached_has_bits & 0x00000080u) {
+      y_max_normalized_ = from.y_max_normalized_;
+    }
+    _has_bits_[0] |= cached_has_bits;
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1991,8 +2123,8 @@ void Detection::InternalSwap(Detection* other) {
       &other->class_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Detection, confidence_)
-      + sizeof(Detection::confidence_)
+      PROTOBUF_FIELD_OFFSET(Detection, y_max_normalized_)
+      + sizeof(Detection::y_max_normalized_)
       - PROTOBUF_FIELD_OFFSET(Detection, x_min_)>(
           reinterpret_cast<char*>(&x_min_),
           reinterpret_cast<char*>(&other->x_min_));
