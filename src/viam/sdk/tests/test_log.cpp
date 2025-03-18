@@ -123,5 +123,15 @@ BOOST_AUTO_TEST_CASE(test_resource_filter) {
     BOOST_CHECK(errLogs.back().find("sensor error") != std::string::npos);
 }
 
+BOOST_AUTO_TEST_CASE(filename_trim) {
+    using namespace log_detail;
+
+    BOOST_CHECK(trim_filename("") == "");
+    BOOST_CHECK(trim_filename("no_delim") == "no_delim");
+    BOOST_CHECK(trim_filename("one/slash.cpp") == "one/slash.cpp");
+    BOOST_CHECK(trim_filename("a/full/path.cpp") == "full/path.cpp");
+    BOOST_CHECK(trim_filename("a/b/c/d.cpp") == "c/d.cpp");
+}
+
 }  // namespace sdktests
 }  // namespace viam
