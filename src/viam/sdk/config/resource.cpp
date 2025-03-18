@@ -155,7 +155,6 @@ void to_proto_impl<ResourceConfig>::operator()(const ResourceConfig& self,
 
 ResourceConfig from_proto_impl<app::v1::ComponentConfig>::operator()(
     const app::v1::ComponentConfig* proto) const {
-    const std::string& level_str = proto->log_configuration().level();
     return ResourceConfig(proto->type(),
                           proto->name(),
                           proto->namespace_(),
@@ -163,7 +162,9 @@ ResourceConfig from_proto_impl<app::v1::ComponentConfig>::operator()(
                           proto->api(),
                           Model::from_str(proto->model()),
                           proto->has_frame() ? from_proto(proto->frame()) : LinkConfig{},
-                          level_str.empty() ? log_level::info : level_from_string(level_str));
+                          proto->has_log_configuration()
+                              ? level_from_string(proto->log_configuration().level())
+                              : log_level::info);
 }
 
 std::vector<ResourceConfig>
