@@ -7,6 +7,7 @@
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/sensor.hpp>
 #include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/log/logging.hpp>
 #include <viam/sdk/module/service.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/reconfigurable.hpp>
@@ -65,7 +66,9 @@ void MySensor::reconfigure(const Dependencies&, const ResourceConfig& cfg) {
 
 ProtoStruct MySensor::do_command(const ProtoStruct& command) {
     for (const auto& entry : command) {
-        std::cout << "Command entry " << entry.first;
+        // The VIAM_RESOURCE_LOG macro will associate log messages to the current resource and can
+        // be filtered upon
+        VIAM_RESOURCE_LOG(info) << "Command entry " << entry.first;
     }
 
     return command;
@@ -79,6 +82,9 @@ int main(int argc, char** argv) try {
     // Every Viam C++ SDK program must have one and only one Instance object which is created before
     // any other C++ SDK objects and stays alive until all Viam C++ SDK objects are destroyed.
     Instance inst;
+
+    // Write general log statements with the VIAM_LOG macro
+    VIAM_LOG(info) << "Starting up simple sensor module";
 
     Model mysensor_model("viam", "sensor", "mysensor");
 
