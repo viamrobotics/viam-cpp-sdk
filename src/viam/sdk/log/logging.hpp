@@ -134,7 +134,7 @@ BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_time,
                                  "TimeStamp",
                                  boost::log::attributes::local_clock::value_type);
 
-#define VIAM_LOG_IMPL(lg, level)                                                     \
+#define VIAM_SDK_LOG_IMPL(lg, level)                                                 \
     BOOST_LOG_SEV((lg), ::viam::sdk::log_level::level)                               \
         << ::boost::log::add_value(::viam::sdk::attr_file_type{},                    \
                                    ::viam::sdk::log_detail::trim_filename(__FILE__)) \
@@ -144,7 +144,7 @@ BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_time,
 /// @ingroup Log
 ///
 /// Use this macro to generate log messages pertaining to the SDK at large.
-#define VIAM_LOG(level) VIAM_LOG_IMPL(::viam::sdk::LogManager::get().global_logger(), level)
+#define VIAM_SDK_LOG(level) VIAM_SDK_LOG_IMPL(::viam::sdk::LogManager::get().global_logger(), level)
 
 /// @brief Log macro for resource-level logs.
 /// @ingroup Log
@@ -152,7 +152,7 @@ BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_time,
 /// This macro can only be called from the definition of a member function of a class inheriting
 /// @ref Resource. It will log messages to the log source of that specific resource, allowing
 /// resource-level log filtering.
-#define VIAM_RESOURCE_LOG(level) VIAM_LOG_IMPL(this->logger_, level)
+#define VIAM_RESOURCE_LOG(level) VIAM_SDK_LOG_IMPL(this->logger_, level)
 
 }  // namespace sdk
 }  // namespace viam

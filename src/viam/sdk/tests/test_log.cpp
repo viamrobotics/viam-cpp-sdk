@@ -16,7 +16,7 @@ namespace sdktests {
 BOOST_AUTO_TEST_CASE(test_cout_logging) {
     cout_redirect redirect;
 
-    VIAM_LOG(info) << "log1";
+    VIAM_SDK_LOG(info) << "log1";
 
     using namespace std::string_literals;
 
@@ -32,9 +32,9 @@ BOOST_AUTO_TEST_CASE(test_cout_logging) {
 BOOST_AUTO_TEST_CASE(test_global_filter) {
     cout_redirect redirect;
 
-    VIAM_LOG(info) << "info1";
-    VIAM_LOG(error) << "error1";
-    VIAM_LOG(trace) << "trace1";  // not logged
+    VIAM_SDK_LOG(info) << "info1";
+    VIAM_SDK_LOG(error) << "error1";
+    VIAM_SDK_LOG(trace) << "trace1";  // not logged
 
     auto& logger = sdk::LogManager::get();
 
@@ -42,18 +42,18 @@ BOOST_AUTO_TEST_CASE(test_global_filter) {
 
     logger.set_global_log_level(ll::trace);
 
-    VIAM_LOG(trace) << "trace2";
-    VIAM_LOG(info) << "info2";
+    VIAM_SDK_LOG(trace) << "trace2";
+    VIAM_SDK_LOG(info) << "info2";
 
     logger.set_global_log_level(ll::error);
 
-    VIAM_LOG(info) << "info3";  // not logged
-    VIAM_LOG(error) << "error2";
+    VIAM_SDK_LOG(info) << "info3";  // not logged
+    VIAM_SDK_LOG(error) << "error2";
 
     logger.set_global_log_level(ll::info);
 
-    VIAM_LOG(info) << "info4";
-    VIAM_LOG(trace) << "trace3";  // once again not logged
+    VIAM_SDK_LOG(info) << "info4";
+    VIAM_SDK_LOG(trace) << "trace3";  // once again not logged
 
     const std::string rec = redirect.os.str();
     redirect.release();

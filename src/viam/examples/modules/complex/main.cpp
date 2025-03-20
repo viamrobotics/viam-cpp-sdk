@@ -48,8 +48,8 @@ int main(int argc, char** argv) {
         [](Dependencies deps, ResourceConfig cfg) { return std::make_unique<MyGizmo>(deps, cfg); },
         MyGizmo::validate);
 
-    // Write general log statements with the VIAM_LOG macro
-    VIAM_LOG(info) << "Registered mybase and mygizmo";
+    // Write general log statements with the VIAM_SDK_LOG macro
+    VIAM_SDK_LOG(info) << "Registered mybase and mygizmo";
 
     Model mysummation_model("viam", "summation", "mysummation");
 

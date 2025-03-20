@@ -14,8 +14,8 @@ namespace sdk {
 namespace client_helper_details {
 
 [[noreturn]] void errorHandlerReturnedUnexpectedly(const ::grpc::Status* status) noexcept {
-    VIAM_LOG(fatal) << "ClientHelper error handler callback returned instead of throwing: "
-                    << status->error_message() << '(' << status->error_details() << ')';
+    VIAM_SDK_LOG(fatal) << "ClientHelper error handler callback returned instead of throwing: "
+                        << status->error_message() << '(' << status->error_details() << ')';
     std::abort();
 }
 

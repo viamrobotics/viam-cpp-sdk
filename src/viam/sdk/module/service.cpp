@@ -109,7 +109,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         try {
             Stoppable::stop_if_stoppable(res);
         } catch (const std::exception& err) {
-            VIAM_LOG(error) << "unable to stop resource: " << err.what();
+            VIAM_SDK_LOG(error) << "unable to stop resource: " << err.what();
         }
 
         const std::shared_ptr<const ModelRegistration> reg =
@@ -170,7 +170,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         try {
             Stoppable::stop_if_stoppable(res);
         } catch (const std::exception& err) {
-            VIAM_LOG(error) << "unable to stop resource: " << err.what();
+            VIAM_SDK_LOG(error) << "unable to stop resource: " << err.what();
         }
 
         manager->remove(name);
@@ -247,14 +247,14 @@ ModuleService::ModuleService(int argc,
 
 ModuleService::~ModuleService() {
     // TODO(RSDK-5509): Run registered cleanup functions here.
-    VIAM_LOG(info) << "Shutting down gracefully.";
+    VIAM_SDK_LOG(info) << "Shutting down gracefully.";
     server_->shutdown();
 
     if (parent_) {
         try {
             parent_->close();
         } catch (const std::exception& exc) {
-            VIAM_LOG(error) << exc.what();
+            VIAM_SDK_LOG(error) << exc.what();
         }
     }
 }
@@ -272,8 +272,8 @@ void ModuleService::serve() {
     module_->set_ready();
     server_->start();
 
-    VIAM_LOG(info) << "Module listening on " << module_->addr();
-    VIAM_LOG(info) << "Module handles the following API/model pairs:\n" << module_->handles();
+    VIAM_SDK_LOG(info) << "Module listening on " << module_->addr();
+    VIAM_SDK_LOG(info) << "Module handles the following API/model pairs:\n" << module_->handles();
 
     signal_manager_.wait();
 }

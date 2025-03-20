@@ -55,7 +55,7 @@ log_level level_from_string(std::string level) {
         return ll::fatal;
     }
 
-    VIAM_LOG(warn) << "Returning unknown log level `" << level << "` as info";
+    VIAM_SDK_LOG(warn) << "Returning unknown log level `" << level << "` as info";
     return ll::info;
 }
 
@@ -132,11 +132,11 @@ void LogManager::init_logging() {
     console_sink_->set_formatter(fmt);
 
     boost::log::core::get()->add_sink(console_sink_);
-    VIAM_LOG(debug) << "Initialized console logging";
+    VIAM_SDK_LOG(debug) << "Initialized console logging";
 }
 
 void LogManager::disable_console_logging() {
-    VIAM_LOG(debug) << "Disabling console logging";
+    VIAM_SDK_LOG(debug) << "Disabling console logging";
 
     // Set a filter which ignores all console logs unless they contain a console force flag which is
     // set to true.
