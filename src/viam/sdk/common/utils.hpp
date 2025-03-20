@@ -110,16 +110,6 @@ ProtoStruct with_debug_entry(ProtoStruct&& map, std::string debug_key);
 /// @returns the new ProtoStruct
 ProtoStruct with_debug_entry(ProtoStruct&& map);
 
-/// @brief Set the boost trivial logger's severity depending on args.
-/// @param argc The number of args.
-/// @param argv The commandline arguments to parse.
-///
-/// Sets the boost trivial logger's severity to debug if "--log-level=debug" is the
-/// the third argument. Sets severity to info otherwise. Useful for module
-/// implementations. See LogLevel documentation in the RDK for more information on
-/// how to start modules with a "log-level" commandline argument.
-void set_logger_severity_from_args(int argc, char** argv);
-
 /// @brief Used in modular filter components to get the 'fromDataManagement' value from an extra
 /// ProtoStruct.
 /// @param extra The extra ProtoStruct.

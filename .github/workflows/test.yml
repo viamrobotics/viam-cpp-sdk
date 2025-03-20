@@ -14,6 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     container: ghcr.io/viamrobotics/cpp-base:bullseye-amd64
     strategy:
+      fail-fast: false
       matrix:
         include:
           - BUILD_SHARED: ON
