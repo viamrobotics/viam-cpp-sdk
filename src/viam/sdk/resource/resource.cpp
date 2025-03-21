@@ -26,5 +26,8 @@ Name Resource::get_resource_name() const {
     return get_resource_name(kResource);
 }
 
+// default behavior is to just return
+void Resource::close() {}
+
 }  // namespace sdk
 }  // namespace viam
