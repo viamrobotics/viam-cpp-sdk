@@ -40885,20 +40885,35 @@ class GetAppContentResponse final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kUrlFieldNumber = 1,
+    kBlobPathFieldNumber = 1,
+    kEntrypointFieldNumber = 2,
   };
-  // string url = 1 [json_name = "url"];
-  void clear_url();
-  const std::string& url() const;
+  // string blob_path = 1 [json_name = "blobPath"];
+  void clear_blob_path();
+  const std::string& blob_path() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_url(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_url();
-  PROTOBUF_NODISCARD std::string* release_url();
-  void set_allocated_url(std::string* url);
+  void set_blob_path(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_blob_path();
+  PROTOBUF_NODISCARD std::string* release_blob_path();
+  void set_allocated_blob_path(std::string* blob_path);
   private:
-  const std::string& _internal_url() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_url(const std::string& value);
-  std::string* _internal_mutable_url();
+  const std::string& _internal_blob_path() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_blob_path(const std::string& value);
+  std::string* _internal_mutable_blob_path();
+  public:
+
+  // string entrypoint = 2 [json_name = "entrypoint"];
+  void clear_entrypoint();
+  const std::string& entrypoint() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_entrypoint(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_entrypoint();
+  PROTOBUF_NODISCARD std::string* release_entrypoint();
+  void set_allocated_entrypoint(std::string* entrypoint);
+  private:
+  const std::string& _internal_entrypoint() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_entrypoint(const std::string& value);
+  std::string* _internal_mutable_entrypoint();
   public:
 
   // @@protoc_insertion_point(class_scope:viam.app.v1.GetAppContentResponse)
@@ -40908,7 +40923,8 @@ class GetAppContentResponse final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr url_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr blob_path_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr entrypoint_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
@@ -72252,54 +72268,104 @@ inline void GetAppContentRequest::set_allocated_name(std::string* name) {
 
 // GetAppContentResponse
 
-// string url = 1 [json_name = "url"];
-inline void GetAppContentResponse::clear_url() {
-  url_.ClearToEmpty();
+// string blob_path = 1 [json_name = "blobPath"];
+inline void GetAppContentResponse::clear_blob_path() {
+  blob_path_.ClearToEmpty();
 }
-inline const std::string& GetAppContentResponse::url() const {
-  // @@protoc_insertion_point(field_get:viam.app.v1.GetAppContentResponse.url)
-  return _internal_url();
+inline const std::string& GetAppContentResponse::blob_path() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetAppContentResponse.blob_path)
+  return _internal_blob_path();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void GetAppContentResponse::set_url(ArgT0&& arg0, ArgT... args) {
+void GetAppContentResponse::set_blob_path(ArgT0&& arg0, ArgT... args) {
  
- url_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:viam.app.v1.GetAppContentResponse.url)
+ blob_path_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetAppContentResponse.blob_path)
 }
-inline std::string* GetAppContentResponse::mutable_url() {
-  std::string* _s = _internal_mutable_url();
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetAppContentResponse.url)
+inline std::string* GetAppContentResponse::mutable_blob_path() {
+  std::string* _s = _internal_mutable_blob_path();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetAppContentResponse.blob_path)
   return _s;
 }
-inline const std::string& GetAppContentResponse::_internal_url() const {
-  return url_.Get();
+inline const std::string& GetAppContentResponse::_internal_blob_path() const {
+  return blob_path_.Get();
 }
-inline void GetAppContentResponse::_internal_set_url(const std::string& value) {
+inline void GetAppContentResponse::_internal_set_blob_path(const std::string& value) {
   
-  url_.Set(value, GetArenaForAllocation());
+  blob_path_.Set(value, GetArenaForAllocation());
 }
-inline std::string* GetAppContentResponse::_internal_mutable_url() {
+inline std::string* GetAppContentResponse::_internal_mutable_blob_path() {
   
-  return url_.Mutable(GetArenaForAllocation());
+  return blob_path_.Mutable(GetArenaForAllocation());
 }
-inline std::string* GetAppContentResponse::release_url() {
-  // @@protoc_insertion_point(field_release:viam.app.v1.GetAppContentResponse.url)
-  return url_.Release();
+inline std::string* GetAppContentResponse::release_blob_path() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetAppContentResponse.blob_path)
+  return blob_path_.Release();
 }
-inline void GetAppContentResponse::set_allocated_url(std::string* url) {
-  if (url != nullptr) {
+inline void GetAppContentResponse::set_allocated_blob_path(std::string* blob_path) {
+  if (blob_path != nullptr) {
     
   } else {
     
   }
-  url_.SetAllocated(url, GetArenaForAllocation());
+  blob_path_.SetAllocated(blob_path, GetArenaForAllocation());
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (url_.IsDefault()) {
-    url_.Set("", GetArenaForAllocation());
+  if (blob_path_.IsDefault()) {
+    blob_path_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetAppContentResponse.url)
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetAppContentResponse.blob_path)
+}
+
+// string entrypoint = 2 [json_name = "entrypoint"];
+inline void GetAppContentResponse::clear_entrypoint() {
+  entrypoint_.ClearToEmpty();
+}
+inline const std::string& GetAppContentResponse::entrypoint() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetAppContentResponse.entrypoint)
+  return _internal_entrypoint();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetAppContentResponse::set_entrypoint(ArgT0&& arg0, ArgT... args) {
+ 
+ entrypoint_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetAppContentResponse.entrypoint)
+}
+inline std::string* GetAppContentResponse::mutable_entrypoint() {
+  std::string* _s = _internal_mutable_entrypoint();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetAppContentResponse.entrypoint)
+  return _s;
+}
+inline const std::string& GetAppContentResponse::_internal_entrypoint() const {
+  return entrypoint_.Get();
+}
+inline void GetAppContentResponse::_internal_set_entrypoint(const std::string& value) {
+  
+  entrypoint_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetAppContentResponse::_internal_mutable_entrypoint() {
+  
+  return entrypoint_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetAppContentResponse::release_entrypoint() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetAppContentResponse.entrypoint)
+  return entrypoint_.Release();
+}
+inline void GetAppContentResponse::set_allocated_entrypoint(std::string* entrypoint) {
+  if (entrypoint != nullptr) {
+    
+  } else {
+    
+  }
+  entrypoint_.SetAllocated(entrypoint, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (entrypoint_.IsDefault()) {
+    entrypoint_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetAppContentResponse.entrypoint)
 }
 
 // -------------------------------------------------------------------
