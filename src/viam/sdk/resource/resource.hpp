@@ -25,6 +25,9 @@ class Resource {
     /// @brief Return the resource's name.
     virtual std::string name() const;
 
+    /// @brief Closes a resource
+    virtual void close();
+
    private:
     std::string name_;
 
