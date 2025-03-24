@@ -29,6 +29,7 @@
 #include <boost/program_options.hpp>
 #include <boost/variant/get.hpp>
 
+#include <viam/sdk/common/instance.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/services/mlmodel.hpp>
 
@@ -78,6 +79,10 @@ constexpr char kRobotConfigTemplate[] = R"(
 }  // namespace
 
 int main(int argc, char* argv[]) try {
+    // Every Viam C++ SDK program must have one and only one Instance object which is created before
+    // any other C++ SDK objects and stays alive until all Viam C++ SDK objects are destroyed.
+    viam::sdk::Instance inst;
+
     // Build up our command line options. The example operates in two
     // modes. In the "--generate" mode, it takes command line
     // parameters needed to satisfy the interpolation points in the

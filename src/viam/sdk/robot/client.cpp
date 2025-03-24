@@ -178,7 +178,8 @@ void RobotClient::refresh() {
         // are being properly registered from name.subtype(), or update what we're
         // using for lookup
         const std::shared_ptr<const ResourceClientRegistration> rs =
-            Registry::lookup_resource_client({name.namespace_(), name.type(), name.subtype()});
+            Registry::get().lookup_resource_client(
+                {name.namespace_(), name.type(), name.subtype()});
         if (rs) {
             try {
                 const std::shared_ptr<Resource> rpc_client =
@@ -225,9 +226,7 @@ RobotClient::RobotClient(std::shared_ptr<ViamChannel> channel)
     : channel_(channel->channel()),
       viam_channel_(std::move(channel)),
       should_close_channel_(false),
-      impl_(std::make_unique<impl>(RobotService::NewStub(channel_))) {
-    Registry::initialize();
-}
+      impl_(std::make_unique<impl>(RobotService::NewStub(channel_))) {}
 
 std::vector<Name> RobotClient::resource_names() const {
     const std::lock_guard<std::mutex> lock(lock_);

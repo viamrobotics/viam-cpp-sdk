@@ -69,18 +69,6 @@ extern CancelOperationResponseDefaultTypeInternal _CancelOperationResponse_defau
 class ConfigStatus;
 struct ConfigStatusDefaultTypeInternal;
 extern ConfigStatusDefaultTypeInternal _ConfigStatus_default_instance_;
-class DiscoverComponentsRequest;
-struct DiscoverComponentsRequestDefaultTypeInternal;
-extern DiscoverComponentsRequestDefaultTypeInternal _DiscoverComponentsRequest_default_instance_;
-class DiscoverComponentsResponse;
-struct DiscoverComponentsResponseDefaultTypeInternal;
-extern DiscoverComponentsResponseDefaultTypeInternal _DiscoverComponentsResponse_default_instance_;
-class Discovery;
-struct DiscoveryDefaultTypeInternal;
-extern DiscoveryDefaultTypeInternal _Discovery_default_instance_;
-class DiscoveryQuery;
-struct DiscoveryQueryDefaultTypeInternal;
-extern DiscoveryQueryDefaultTypeInternal _DiscoveryQuery_default_instance_;
 class FrameSystemConfig;
 struct FrameSystemConfigDefaultTypeInternal;
 extern FrameSystemConfigDefaultTypeInternal _FrameSystemConfig_default_instance_;
@@ -246,10 +234,6 @@ template<> ::viam::robot::v1::BlockForOperationResponse* Arena::CreateMaybeMessa
 template<> ::viam::robot::v1::CancelOperationRequest* Arena::CreateMaybeMessage<::viam::robot::v1::CancelOperationRequest>(Arena*);
 template<> ::viam::robot::v1::CancelOperationResponse* Arena::CreateMaybeMessage<::viam::robot::v1::CancelOperationResponse>(Arena*);
 template<> ::viam::robot::v1::ConfigStatus* Arena::CreateMaybeMessage<::viam::robot::v1::ConfigStatus>(Arena*);
-template<> ::viam::robot::v1::DiscoverComponentsRequest* Arena::CreateMaybeMessage<::viam::robot::v1::DiscoverComponentsRequest>(Arena*);
-template<> ::viam::robot::v1::DiscoverComponentsResponse* Arena::CreateMaybeMessage<::viam::robot::v1::DiscoverComponentsResponse>(Arena*);
-template<> ::viam::robot::v1::Discovery* Arena::CreateMaybeMessage<::viam::robot::v1::Discovery>(Arena*);
-template<> ::viam::robot::v1::DiscoveryQuery* Arena::CreateMaybeMessage<::viam::robot::v1::DiscoveryQuery>(Arena*);
 template<> ::viam::robot::v1::FrameSystemConfig* Arena::CreateMaybeMessage<::viam::robot::v1::FrameSystemConfig>(Arena*);
 template<> ::viam::robot::v1::FrameSystemConfigRequest* Arena::CreateMaybeMessage<::viam::robot::v1::FrameSystemConfigRequest>(Arena*);
 template<> ::viam::robot::v1::FrameSystemConfigResponse* Arena::CreateMaybeMessage<::viam::robot::v1::FrameSystemConfigResponse>(Arena*);
@@ -4618,362 +4602,6 @@ class GetSessionsResponse final :
 };
 // -------------------------------------------------------------------
 
-class DiscoveryQuery final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.DiscoveryQuery) */ {
- public:
-  inline DiscoveryQuery() : DiscoveryQuery(nullptr) {}
-  ~DiscoveryQuery() override;
-  explicit PROTOBUF_CONSTEXPR DiscoveryQuery(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  DiscoveryQuery(const DiscoveryQuery& from);
-  DiscoveryQuery(DiscoveryQuery&& from) noexcept
-    : DiscoveryQuery() {
-    *this = ::std::move(from);
-  }
-
-  inline DiscoveryQuery& operator=(const DiscoveryQuery& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline DiscoveryQuery& operator=(DiscoveryQuery&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const DiscoveryQuery& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const DiscoveryQuery* internal_default_instance() {
-    return reinterpret_cast<const DiscoveryQuery*>(
-               &_DiscoveryQuery_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    28;
-
-  friend void swap(DiscoveryQuery& a, DiscoveryQuery& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(DiscoveryQuery* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(DiscoveryQuery* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  DiscoveryQuery* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<DiscoveryQuery>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const DiscoveryQuery& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const DiscoveryQuery& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(DiscoveryQuery* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.robot.v1.DiscoveryQuery";
-  }
-  protected:
-  explicit DiscoveryQuery(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kSubtypeFieldNumber = 1,
-    kModelFieldNumber = 2,
-    kExtraFieldNumber = 99,
-  };
-  // string subtype = 1 [json_name = "subtype"];
-  void clear_subtype();
-  const std::string& subtype() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_subtype(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_subtype();
-  PROTOBUF_NODISCARD std::string* release_subtype();
-  void set_allocated_subtype(std::string* subtype);
-  private:
-  const std::string& _internal_subtype() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_subtype(const std::string& value);
-  std::string* _internal_mutable_subtype();
-  public:
-
-  // string model = 2 [json_name = "model"];
-  void clear_model();
-  const std::string& model() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_model(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_model();
-  PROTOBUF_NODISCARD std::string* release_model();
-  void set_allocated_model(std::string* model);
-  private:
-  const std::string& _internal_model() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_model(const std::string& value);
-  std::string* _internal_mutable_model();
-  public:
-
-  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  bool has_extra() const;
-  private:
-  bool _internal_has_extra() const;
-  public:
-  void clear_extra();
-  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
-  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
-  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
-  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
-  private:
-  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
-  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
-  public:
-  void unsafe_arena_set_allocated_extra(
-      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
-  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
-
-  // @@protoc_insertion_point(class_scope:viam.robot.v1.DiscoveryQuery)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr subtype_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr model_;
-  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
-};
-// -------------------------------------------------------------------
-
-class Discovery final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.Discovery) */ {
- public:
-  inline Discovery() : Discovery(nullptr) {}
-  ~Discovery() override;
-  explicit PROTOBUF_CONSTEXPR Discovery(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  Discovery(const Discovery& from);
-  Discovery(Discovery&& from) noexcept
-    : Discovery() {
-    *this = ::std::move(from);
-  }
-
-  inline Discovery& operator=(const Discovery& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Discovery& operator=(Discovery&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const Discovery& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const Discovery* internal_default_instance() {
-    return reinterpret_cast<const Discovery*>(
-               &_Discovery_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    29;
-
-  friend void swap(Discovery& a, Discovery& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(Discovery* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(Discovery* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  Discovery* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<Discovery>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const Discovery& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const Discovery& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(Discovery* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.robot.v1.Discovery";
-  }
-  protected:
-  explicit Discovery(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kQueryFieldNumber = 1,
-    kResultsFieldNumber = 2,
-  };
-  // .viam.robot.v1.DiscoveryQuery query = 1 [json_name = "query"];
-  bool has_query() const;
-  private:
-  bool _internal_has_query() const;
-  public:
-  void clear_query();
-  const ::viam::robot::v1::DiscoveryQuery& query() const;
-  PROTOBUF_NODISCARD ::viam::robot::v1::DiscoveryQuery* release_query();
-  ::viam::robot::v1::DiscoveryQuery* mutable_query();
-  void set_allocated_query(::viam::robot::v1::DiscoveryQuery* query);
-  private:
-  const ::viam::robot::v1::DiscoveryQuery& _internal_query() const;
-  ::viam::robot::v1::DiscoveryQuery* _internal_mutable_query();
-  public:
-  void unsafe_arena_set_allocated_query(
-      ::viam::robot::v1::DiscoveryQuery* query);
-  ::viam::robot::v1::DiscoveryQuery* unsafe_arena_release_query();
-
-  // .google.protobuf.Struct results = 2 [json_name = "results"];
-  bool has_results() const;
-  private:
-  bool _internal_has_results() const;
-  public:
-  void clear_results();
-  const ::PROTOBUF_NAMESPACE_ID::Struct& results() const;
-  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_results();
-  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_results();
-  void set_allocated_results(::PROTOBUF_NAMESPACE_ID::Struct* results);
-  private:
-  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_results() const;
-  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_results();
-  public:
-  void unsafe_arena_set_allocated_results(
-      ::PROTOBUF_NAMESPACE_ID::Struct* results);
-  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_results();
-
-  // @@protoc_insertion_point(class_scope:viam.robot.v1.Discovery)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::viam::robot::v1::DiscoveryQuery* query_;
-  ::PROTOBUF_NAMESPACE_ID::Struct* results_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
-};
-// -------------------------------------------------------------------
-
 class ModuleModel final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.ModuleModel) */ {
  public:
@@ -5022,7 +4650,7 @@ class ModuleModel final :
                &_ModuleModel_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    28;
 
   friend void swap(ModuleModel& a, ModuleModel& b) {
     a.Swap(&b);
@@ -5212,7 +4840,7 @@ class GetModelsFromModulesRequest final :
                &_GetModelsFromModulesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    29;
 
   friend void swap(GetModelsFromModulesRequest& a, GetModelsFromModulesRequest& b) {
     a.Swap(&b);
@@ -5329,7 +4957,7 @@ class GetModelsFromModulesResponse final :
                &_GetModelsFromModulesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    30;
 
   friend void swap(GetModelsFromModulesResponse& a, GetModelsFromModulesResponse& b) {
     a.Swap(&b);
@@ -5433,310 +5061,6 @@ class GetModelsFromModulesResponse final :
 };
 // -------------------------------------------------------------------
 
-class DiscoverComponentsRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.DiscoverComponentsRequest) */ {
- public:
-  inline DiscoverComponentsRequest() : DiscoverComponentsRequest(nullptr) {}
-  ~DiscoverComponentsRequest() override;
-  explicit PROTOBUF_CONSTEXPR DiscoverComponentsRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  DiscoverComponentsRequest(const DiscoverComponentsRequest& from);
-  DiscoverComponentsRequest(DiscoverComponentsRequest&& from) noexcept
-    : DiscoverComponentsRequest() {
-    *this = ::std::move(from);
-  }
-
-  inline DiscoverComponentsRequest& operator=(const DiscoverComponentsRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline DiscoverComponentsRequest& operator=(DiscoverComponentsRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const DiscoverComponentsRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const DiscoverComponentsRequest* internal_default_instance() {
-    return reinterpret_cast<const DiscoverComponentsRequest*>(
-               &_DiscoverComponentsRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    33;
-
-  friend void swap(DiscoverComponentsRequest& a, DiscoverComponentsRequest& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(DiscoverComponentsRequest* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(DiscoverComponentsRequest* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  DiscoverComponentsRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<DiscoverComponentsRequest>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const DiscoverComponentsRequest& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const DiscoverComponentsRequest& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(DiscoverComponentsRequest* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.robot.v1.DiscoverComponentsRequest";
-  }
-  protected:
-  explicit DiscoverComponentsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kQueriesFieldNumber = 1,
-  };
-  // repeated .viam.robot.v1.DiscoveryQuery queries = 1 [json_name = "queries"];
-  int queries_size() const;
-  private:
-  int _internal_queries_size() const;
-  public:
-  void clear_queries();
-  ::viam::robot::v1::DiscoveryQuery* mutable_queries(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::DiscoveryQuery >*
-      mutable_queries();
-  private:
-  const ::viam::robot::v1::DiscoveryQuery& _internal_queries(int index) const;
-  ::viam::robot::v1::DiscoveryQuery* _internal_add_queries();
-  public:
-  const ::viam::robot::v1::DiscoveryQuery& queries(int index) const;
-  ::viam::robot::v1::DiscoveryQuery* add_queries();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::DiscoveryQuery >&
-      queries() const;
-
-  // @@protoc_insertion_point(class_scope:viam.robot.v1.DiscoverComponentsRequest)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::DiscoveryQuery > queries_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
-};
-// -------------------------------------------------------------------
-
-class DiscoverComponentsResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.DiscoverComponentsResponse) */ {
- public:
-  inline DiscoverComponentsResponse() : DiscoverComponentsResponse(nullptr) {}
-  ~DiscoverComponentsResponse() override;
-  explicit PROTOBUF_CONSTEXPR DiscoverComponentsResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  DiscoverComponentsResponse(const DiscoverComponentsResponse& from);
-  DiscoverComponentsResponse(DiscoverComponentsResponse&& from) noexcept
-    : DiscoverComponentsResponse() {
-    *this = ::std::move(from);
-  }
-
-  inline DiscoverComponentsResponse& operator=(const DiscoverComponentsResponse& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline DiscoverComponentsResponse& operator=(DiscoverComponentsResponse&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const DiscoverComponentsResponse& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const DiscoverComponentsResponse* internal_default_instance() {
-    return reinterpret_cast<const DiscoverComponentsResponse*>(
-               &_DiscoverComponentsResponse_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    34;
-
-  friend void swap(DiscoverComponentsResponse& a, DiscoverComponentsResponse& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(DiscoverComponentsResponse* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(DiscoverComponentsResponse* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  DiscoverComponentsResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<DiscoverComponentsResponse>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const DiscoverComponentsResponse& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const DiscoverComponentsResponse& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(DiscoverComponentsResponse* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.robot.v1.DiscoverComponentsResponse";
-  }
-  protected:
-  explicit DiscoverComponentsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kDiscoveryFieldNumber = 1,
-  };
-  // repeated .viam.robot.v1.Discovery discovery = 1 [json_name = "discovery"];
-  int discovery_size() const;
-  private:
-  int _internal_discovery_size() const;
-  public:
-  void clear_discovery();
-  ::viam::robot::v1::Discovery* mutable_discovery(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::Discovery >*
-      mutable_discovery();
-  private:
-  const ::viam::robot::v1::Discovery& _internal_discovery(int index) const;
-  ::viam::robot::v1::Discovery* _internal_add_discovery();
-  public:
-  const ::viam::robot::v1::Discovery& discovery(int index) const;
-  ::viam::robot::v1::Discovery* add_discovery();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::Discovery >&
-      discovery() const;
-
-  // @@protoc_insertion_point(class_scope:viam.robot.v1.DiscoverComponentsResponse)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::Discovery > discovery_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
-};
-// -------------------------------------------------------------------
-
 class Status final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.Status) */ {
  public:
@@ -5785,7 +5109,7 @@ class Status final :
                &_Status_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    35;
+    31;
 
   friend void swap(Status& a, Status& b) {
     a.Swap(&b);
@@ -5977,7 +5301,7 @@ class GetStatusRequest final :
                &_GetStatusRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    36;
+    32;
 
   friend void swap(GetStatusRequest& a, GetStatusRequest& b) {
     a.Swap(&b);
@@ -6129,7 +5453,7 @@ class GetStatusResponse final :
                &_GetStatusResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    37;
+    33;
 
   friend void swap(GetStatusResponse& a, GetStatusResponse& b) {
     a.Swap(&b);
@@ -6281,7 +5605,7 @@ class StreamStatusRequest final :
                &_StreamStatusRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    38;
+    34;
 
   friend void swap(StreamStatusRequest& a, StreamStatusRequest& b) {
     a.Swap(&b);
@@ -6453,7 +5777,7 @@ class StreamStatusResponse final :
                &_StreamStatusResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    39;
+    35;
 
   friend void swap(StreamStatusResponse& a, StreamStatusResponse& b) {
     a.Swap(&b);
@@ -6605,7 +5929,7 @@ class StopExtraParameters final :
                &_StopExtraParameters_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    40;
+    36;
 
   friend void swap(StopExtraParameters& a, StopExtraParameters& b) {
     a.Swap(&b);
@@ -6777,7 +6101,7 @@ class StopAllRequest final :
                &_StopAllRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    41;
+    37;
 
   friend void swap(StopAllRequest& a, StopAllRequest& b) {
     a.Swap(&b);
@@ -6928,7 +6252,7 @@ class StopAllResponse final :
                &_StopAllResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    42;
+    38;
 
   friend void swap(StopAllResponse& a, StopAllResponse& b) {
     a.Swap(&b);
@@ -7045,7 +6369,7 @@ class StartSessionRequest final :
                &_StartSessionRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    43;
+    39;
 
   friend void swap(StartSessionRequest& a, StartSessionRequest& b) {
     a.Swap(&b);
@@ -7193,7 +6517,7 @@ class StartSessionResponse final :
                &_StartSessionResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    44;
+    40;
 
   friend void swap(StartSessionResponse& a, StartSessionResponse& b) {
     a.Swap(&b);
@@ -7361,7 +6685,7 @@ class SendSessionHeartbeatRequest final :
                &_SendSessionHeartbeatRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    45;
+    41;
 
   friend void swap(SendSessionHeartbeatRequest& a, SendSessionHeartbeatRequest& b) {
     a.Swap(&b);
@@ -7508,7 +6832,7 @@ class SendSessionHeartbeatResponse final :
                &_SendSessionHeartbeatResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    46;
+    42;
 
   friend void swap(SendSessionHeartbeatResponse& a, SendSessionHeartbeatResponse& b) {
     a.Swap(&b);
@@ -7625,7 +6949,7 @@ class LogRequest final :
                &_LogRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    47;
+    43;
 
   friend void swap(LogRequest& a, LogRequest& b) {
     a.Swap(&b);
@@ -7776,7 +7100,7 @@ class LogResponse final :
                &_LogResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    48;
+    44;
 
   friend void swap(LogResponse& a, LogResponse& b) {
     a.Swap(&b);
@@ -7892,7 +7216,7 @@ class GetCloudMetadataRequest final :
                &_GetCloudMetadataRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    49;
+    45;
 
   friend void swap(GetCloudMetadataRequest& a, GetCloudMetadataRequest& b) {
     a.Swap(&b);
@@ -8009,7 +7333,7 @@ class GetCloudMetadataResponse final :
                &_GetCloudMetadataResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    50;
+    46;
 
   friend void swap(GetCloudMetadataResponse& a, GetCloudMetadataResponse& b) {
     a.Swap(&b);
@@ -8227,7 +7551,7 @@ class RestartModuleRequest final :
                &_RestartModuleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    51;
+    47;
 
   friend void swap(RestartModuleRequest& a, RestartModuleRequest& b) {
     a.Swap(&b);
@@ -8411,7 +7735,7 @@ class RestartModuleResponse final :
                &_RestartModuleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    52;
+    48;
 
   friend void swap(RestartModuleResponse& a, RestartModuleResponse& b) {
     a.Swap(&b);
@@ -8527,7 +7851,7 @@ class ShutdownRequest final :
                &_ShutdownRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    53;
+    49;
 
   friend void swap(ShutdownRequest& a, ShutdownRequest& b) {
     a.Swap(&b);
@@ -8643,7 +7967,7 @@ class ShutdownResponse final :
                &_ShutdownResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    54;
+    50;
 
   friend void swap(ShutdownResponse& a, ShutdownResponse& b) {
     a.Swap(&b);
@@ -8759,7 +8083,7 @@ class GetMachineStatusRequest final :
                &_GetMachineStatusRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    55;
+    51;
 
   friend void swap(GetMachineStatusRequest& a, GetMachineStatusRequest& b) {
     a.Swap(&b);
@@ -8876,7 +8200,7 @@ class GetMachineStatusResponse final :
                &_GetMachineStatusResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    56;
+    52;
 
   friend void swap(GetMachineStatusResponse& a, GetMachineStatusResponse& b) {
     a.Swap(&b);
@@ -9091,7 +8415,7 @@ class ResourceStatus final :
                &_ResourceStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    57;
+    53;
 
   friend void swap(ResourceStatus& a, ResourceStatus& b) {
     a.Swap(&b);
@@ -9365,7 +8689,7 @@ class ConfigStatus final :
                &_ConfigStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    58;
+    54;
 
   friend void swap(ConfigStatus& a, ConfigStatus& b) {
     a.Swap(&b);
@@ -9532,7 +8856,7 @@ class GetVersionRequest final :
                &_GetVersionRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    59;
+    55;
 
   friend void swap(GetVersionRequest& a, GetVersionRequest& b) {
     a.Swap(&b);
@@ -9649,7 +8973,7 @@ class GetVersionResponse final :
                &_GetVersionResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    60;
+    56;
 
   friend void swap(GetVersionResponse& a, GetVersionResponse& b) {
     a.Swap(&b);
@@ -11895,374 +11219,6 @@ GetSessionsResponse::sessions() const {
 
 // -------------------------------------------------------------------
 
-// DiscoveryQuery
-
-// string subtype = 1 [json_name = "subtype"];
-inline void DiscoveryQuery::clear_subtype() {
-  subtype_.ClearToEmpty();
-}
-inline const std::string& DiscoveryQuery::subtype() const {
-  // @@protoc_insertion_point(field_get:viam.robot.v1.DiscoveryQuery.subtype)
-  return _internal_subtype();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void DiscoveryQuery::set_subtype(ArgT0&& arg0, ArgT... args) {
- 
- subtype_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:viam.robot.v1.DiscoveryQuery.subtype)
-}
-inline std::string* DiscoveryQuery::mutable_subtype() {
-  std::string* _s = _internal_mutable_subtype();
-  // @@protoc_insertion_point(field_mutable:viam.robot.v1.DiscoveryQuery.subtype)
-  return _s;
-}
-inline const std::string& DiscoveryQuery::_internal_subtype() const {
-  return subtype_.Get();
-}
-inline void DiscoveryQuery::_internal_set_subtype(const std::string& value) {
-  
-  subtype_.Set(value, GetArenaForAllocation());
-}
-inline std::string* DiscoveryQuery::_internal_mutable_subtype() {
-  
-  return subtype_.Mutable(GetArenaForAllocation());
-}
-inline std::string* DiscoveryQuery::release_subtype() {
-  // @@protoc_insertion_point(field_release:viam.robot.v1.DiscoveryQuery.subtype)
-  return subtype_.Release();
-}
-inline void DiscoveryQuery::set_allocated_subtype(std::string* subtype) {
-  if (subtype != nullptr) {
-    
-  } else {
-    
-  }
-  subtype_.SetAllocated(subtype, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (subtype_.IsDefault()) {
-    subtype_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.DiscoveryQuery.subtype)
-}
-
-// string model = 2 [json_name = "model"];
-inline void DiscoveryQuery::clear_model() {
-  model_.ClearToEmpty();
-}
-inline const std::string& DiscoveryQuery::model() const {
-  // @@protoc_insertion_point(field_get:viam.robot.v1.DiscoveryQuery.model)
-  return _internal_model();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void DiscoveryQuery::set_model(ArgT0&& arg0, ArgT... args) {
- 
- model_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:viam.robot.v1.DiscoveryQuery.model)
-}
-inline std::string* DiscoveryQuery::mutable_model() {
-  std::string* _s = _internal_mutable_model();
-  // @@protoc_insertion_point(field_mutable:viam.robot.v1.DiscoveryQuery.model)
-  return _s;
-}
-inline const std::string& DiscoveryQuery::_internal_model() const {
-  return model_.Get();
-}
-inline void DiscoveryQuery::_internal_set_model(const std::string& value) {
-  
-  model_.Set(value, GetArenaForAllocation());
-}
-inline std::string* DiscoveryQuery::_internal_mutable_model() {
-  
-  return model_.Mutable(GetArenaForAllocation());
-}
-inline std::string* DiscoveryQuery::release_model() {
-  // @@protoc_insertion_point(field_release:viam.robot.v1.DiscoveryQuery.model)
-  return model_.Release();
-}
-inline void DiscoveryQuery::set_allocated_model(std::string* model) {
-  if (model != nullptr) {
-    
-  } else {
-    
-  }
-  model_.SetAllocated(model, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (model_.IsDefault()) {
-    model_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.DiscoveryQuery.model)
-}
-
-// .google.protobuf.Struct extra = 99 [json_name = "extra"];
-inline bool DiscoveryQuery::_internal_has_extra() const {
-  return this != internal_default_instance() && extra_ != nullptr;
-}
-inline bool DiscoveryQuery::has_extra() const {
-  return _internal_has_extra();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Struct& DiscoveryQuery::_internal_extra() const {
-  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
-  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
-      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Struct& DiscoveryQuery::extra() const {
-  // @@protoc_insertion_point(field_get:viam.robot.v1.DiscoveryQuery.extra)
-  return _internal_extra();
-}
-inline void DiscoveryQuery::unsafe_arena_set_allocated_extra(
-    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
-  }
-  extra_ = extra;
-  if (extra) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.robot.v1.DiscoveryQuery.extra)
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* DiscoveryQuery::release_extra() {
-  
-  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
-  extra_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* DiscoveryQuery::unsafe_arena_release_extra() {
-  // @@protoc_insertion_point(field_release:viam.robot.v1.DiscoveryQuery.extra)
-  
-  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
-  extra_ = nullptr;
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* DiscoveryQuery::_internal_mutable_extra() {
-  
-  if (extra_ == nullptr) {
-    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
-    extra_ = p;
-  }
-  return extra_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* DiscoveryQuery::mutable_extra() {
-  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
-  // @@protoc_insertion_point(field_mutable:viam.robot.v1.DiscoveryQuery.extra)
-  return _msg;
-}
-inline void DiscoveryQuery::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
-  }
-  if (extra) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
-    if (message_arena != submessage_arena) {
-      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, extra, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  extra_ = extra;
-  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.DiscoveryQuery.extra)
-}
-
-// -------------------------------------------------------------------
-
-// Discovery
-
-// .viam.robot.v1.DiscoveryQuery query = 1 [json_name = "query"];
-inline bool Discovery::_internal_has_query() const {
-  return this != internal_default_instance() && query_ != nullptr;
-}
-inline bool Discovery::has_query() const {
-  return _internal_has_query();
-}
-inline void Discovery::clear_query() {
-  if (GetArenaForAllocation() == nullptr && query_ != nullptr) {
-    delete query_;
-  }
-  query_ = nullptr;
-}
-inline const ::viam::robot::v1::DiscoveryQuery& Discovery::_internal_query() const {
-  const ::viam::robot::v1::DiscoveryQuery* p = query_;
-  return p != nullptr ? *p : reinterpret_cast<const ::viam::robot::v1::DiscoveryQuery&>(
-      ::viam::robot::v1::_DiscoveryQuery_default_instance_);
-}
-inline const ::viam::robot::v1::DiscoveryQuery& Discovery::query() const {
-  // @@protoc_insertion_point(field_get:viam.robot.v1.Discovery.query)
-  return _internal_query();
-}
-inline void Discovery::unsafe_arena_set_allocated_query(
-    ::viam::robot::v1::DiscoveryQuery* query) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(query_);
-  }
-  query_ = query;
-  if (query) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.robot.v1.Discovery.query)
-}
-inline ::viam::robot::v1::DiscoveryQuery* Discovery::release_query() {
-  
-  ::viam::robot::v1::DiscoveryQuery* temp = query_;
-  query_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::viam::robot::v1::DiscoveryQuery* Discovery::unsafe_arena_release_query() {
-  // @@protoc_insertion_point(field_release:viam.robot.v1.Discovery.query)
-  
-  ::viam::robot::v1::DiscoveryQuery* temp = query_;
-  query_ = nullptr;
-  return temp;
-}
-inline ::viam::robot::v1::DiscoveryQuery* Discovery::_internal_mutable_query() {
-  
-  if (query_ == nullptr) {
-    auto* p = CreateMaybeMessage<::viam::robot::v1::DiscoveryQuery>(GetArenaForAllocation());
-    query_ = p;
-  }
-  return query_;
-}
-inline ::viam::robot::v1::DiscoveryQuery* Discovery::mutable_query() {
-  ::viam::robot::v1::DiscoveryQuery* _msg = _internal_mutable_query();
-  // @@protoc_insertion_point(field_mutable:viam.robot.v1.Discovery.query)
-  return _msg;
-}
-inline void Discovery::set_allocated_query(::viam::robot::v1::DiscoveryQuery* query) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete query_;
-  }
-  if (query) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(query);
-    if (message_arena != submessage_arena) {
-      query = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, query, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  query_ = query;
-  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.Discovery.query)
-}
-
-// .google.protobuf.Struct results = 2 [json_name = "results"];
-inline bool Discovery::_internal_has_results() const {
-  return this != internal_default_instance() && results_ != nullptr;
-}
-inline bool Discovery::has_results() const {
-  return _internal_has_results();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Struct& Discovery::_internal_results() const {
-  const ::PROTOBUF_NAMESPACE_ID::Struct* p = results_;
-  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
-      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Struct& Discovery::results() const {
-  // @@protoc_insertion_point(field_get:viam.robot.v1.Discovery.results)
-  return _internal_results();
-}
-inline void Discovery::unsafe_arena_set_allocated_results(
-    ::PROTOBUF_NAMESPACE_ID::Struct* results) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(results_);
-  }
-  results_ = results;
-  if (results) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.robot.v1.Discovery.results)
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* Discovery::release_results() {
-  
-  ::PROTOBUF_NAMESPACE_ID::Struct* temp = results_;
-  results_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* Discovery::unsafe_arena_release_results() {
-  // @@protoc_insertion_point(field_release:viam.robot.v1.Discovery.results)
-  
-  ::PROTOBUF_NAMESPACE_ID::Struct* temp = results_;
-  results_ = nullptr;
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* Discovery::_internal_mutable_results() {
-  
-  if (results_ == nullptr) {
-    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
-    results_ = p;
-  }
-  return results_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* Discovery::mutable_results() {
-  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_results();
-  // @@protoc_insertion_point(field_mutable:viam.robot.v1.Discovery.results)
-  return _msg;
-}
-inline void Discovery::set_allocated_results(::PROTOBUF_NAMESPACE_ID::Struct* results) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(results_);
-  }
-  if (results) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(results));
-    if (message_arena != submessage_arena) {
-      results = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, results, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  results_ = results;
-  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.Discovery.results)
-}
-
-// -------------------------------------------------------------------
-
 // ModuleModel
 
 // string module_name = 1 [json_name = "moduleName"];
@@ -12481,94 +11437,6 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::Modul
 GetModelsFromModulesResponse::models() const {
   // @@protoc_insertion_point(field_list:viam.robot.v1.GetModelsFromModulesResponse.models)
   return models_;
-}
-
-// -------------------------------------------------------------------
-
-// DiscoverComponentsRequest
-
-// repeated .viam.robot.v1.DiscoveryQuery queries = 1 [json_name = "queries"];
-inline int DiscoverComponentsRequest::_internal_queries_size() const {
-  return queries_.size();
-}
-inline int DiscoverComponentsRequest::queries_size() const {
-  return _internal_queries_size();
-}
-inline void DiscoverComponentsRequest::clear_queries() {
-  queries_.Clear();
-}
-inline ::viam::robot::v1::DiscoveryQuery* DiscoverComponentsRequest::mutable_queries(int index) {
-  // @@protoc_insertion_point(field_mutable:viam.robot.v1.DiscoverComponentsRequest.queries)
-  return queries_.Mutable(index);
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::DiscoveryQuery >*
-DiscoverComponentsRequest::mutable_queries() {
-  // @@protoc_insertion_point(field_mutable_list:viam.robot.v1.DiscoverComponentsRequest.queries)
-  return &queries_;
-}
-inline const ::viam::robot::v1::DiscoveryQuery& DiscoverComponentsRequest::_internal_queries(int index) const {
-  return queries_.Get(index);
-}
-inline const ::viam::robot::v1::DiscoveryQuery& DiscoverComponentsRequest::queries(int index) const {
-  // @@protoc_insertion_point(field_get:viam.robot.v1.DiscoverComponentsRequest.queries)
-  return _internal_queries(index);
-}
-inline ::viam::robot::v1::DiscoveryQuery* DiscoverComponentsRequest::_internal_add_queries() {
-  return queries_.Add();
-}
-inline ::viam::robot::v1::DiscoveryQuery* DiscoverComponentsRequest::add_queries() {
-  ::viam::robot::v1::DiscoveryQuery* _add = _internal_add_queries();
-  // @@protoc_insertion_point(field_add:viam.robot.v1.DiscoverComponentsRequest.queries)
-  return _add;
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::DiscoveryQuery >&
-DiscoverComponentsRequest::queries() const {
-  // @@protoc_insertion_point(field_list:viam.robot.v1.DiscoverComponentsRequest.queries)
-  return queries_;
-}
-
-// -------------------------------------------------------------------
-
-// DiscoverComponentsResponse
-
-// repeated .viam.robot.v1.Discovery discovery = 1 [json_name = "discovery"];
-inline int DiscoverComponentsResponse::_internal_discovery_size() const {
-  return discovery_.size();
-}
-inline int DiscoverComponentsResponse::discovery_size() const {
-  return _internal_discovery_size();
-}
-inline void DiscoverComponentsResponse::clear_discovery() {
-  discovery_.Clear();
-}
-inline ::viam::robot::v1::Discovery* DiscoverComponentsResponse::mutable_discovery(int index) {
-  // @@protoc_insertion_point(field_mutable:viam.robot.v1.DiscoverComponentsResponse.discovery)
-  return discovery_.Mutable(index);
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::Discovery >*
-DiscoverComponentsResponse::mutable_discovery() {
-  // @@protoc_insertion_point(field_mutable_list:viam.robot.v1.DiscoverComponentsResponse.discovery)
-  return &discovery_;
-}
-inline const ::viam::robot::v1::Discovery& DiscoverComponentsResponse::_internal_discovery(int index) const {
-  return discovery_.Get(index);
-}
-inline const ::viam::robot::v1::Discovery& DiscoverComponentsResponse::discovery(int index) const {
-  // @@protoc_insertion_point(field_get:viam.robot.v1.DiscoverComponentsResponse.discovery)
-  return _internal_discovery(index);
-}
-inline ::viam::robot::v1::Discovery* DiscoverComponentsResponse::_internal_add_discovery() {
-  return discovery_.Add();
-}
-inline ::viam::robot::v1::Discovery* DiscoverComponentsResponse::add_discovery() {
-  ::viam::robot::v1::Discovery* _add = _internal_add_discovery();
-  // @@protoc_insertion_point(field_add:viam.robot.v1.DiscoverComponentsResponse.discovery)
-  return _add;
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::Discovery >&
-DiscoverComponentsResponse::discovery() const {
-  // @@protoc_insertion_point(field_list:viam.robot.v1.DiscoverComponentsResponse.discovery)
-  return discovery_;
 }
 
 // -------------------------------------------------------------------
@@ -14882,14 +13750,6 @@ inline void GetVersionResponse::set_allocated_api_version(std::string* api_versi
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

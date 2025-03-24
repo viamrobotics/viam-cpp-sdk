@@ -14,6 +14,8 @@ jobs:
       image: ghcr.io/viamrobotics/canon:amd64
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GIT_ACCESS_TOKEN }}
       # note (erodkin): these dependencies were cribbed from what we use to build the SDK
       # in the release job. Only very cursory effort was made to prune.
       - name: install dependencies
@@ -75,6 +77,7 @@ jobs:
           body: This is an auto-generated PR to update proto definitions. Check the commits to see which repos and commits are responsible for the changes
           assignees: stuqdog
           reviewers: stuqdog
+          token: ${{ secrets.GIT_ACCESS_TOKEN }}
 
       - name: Notify slack of failure
         uses: slackapi/slack-github-action@v1.24.0

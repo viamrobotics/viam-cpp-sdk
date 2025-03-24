@@ -2,6 +2,7 @@
 #include <memory>
 #include <string>
 
+#include <viam/sdk/common/instance.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/sensor.hpp>
 #include <viam/sdk/robot/client.hpp>
@@ -10,6 +11,10 @@
 using namespace viam::sdk;
 
 int main() {
+    // Every Viam C++ SDK program must have one and only one Instance object which is created before
+    // any other C++ SDK objects and stays alive until all Viam C++ SDK objects are destroyed.
+    Instance inst;
+
     const char* uri = "http://localhost:8080/";  // replace with your URI if connecting securely
     DialOptions dial_options;
     dial_options.set_allow_insecure_downgrade(true);  // set to false if connecting securely

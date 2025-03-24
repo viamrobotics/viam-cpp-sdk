@@ -34,7 +34,7 @@
 # constrained by the version of CMake available on target systems.
 cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 
-set(CMAKE_PROJECT_VERSION 0.3.0)
+set(CMAKE_PROJECT_VERSION 0.4.0)
 
 # Identify the project.
 project(viam-cpp-sdk
@@ -324,7 +324,11 @@ set(VIAMCPPSDK_XTL_VERSION_MINIMUM 0.7.2)
 set(VIAMCPPSDK_XTENSOR_VERSION_MINIMUM 0.24.3)
 
 # Time to find `BOOST`.
-find_package(Boost ${VIAMCPPSDK_BOOST_VERSION_MINIMUM} REQUIRED COMPONENTS headers log program_options)
+if (VIAMCPPSDK_BUILD_TESTS)
+  set(VIAMCPPSDK_BOOST_TEST "unit_test_framework")
+endif()
+
+find_package(Boost ${VIAMCPPSDK_BOOST_VERSION_MINIMUM} REQUIRED COMPONENTS headers log program_options ${VIAMCPPSDK_BOOST_TEST})
 
 # Time to find `protobuf` and `gRPC[++]`. Normally this would just be
 # something like `find_package(gRPC <version> CONFIG REQUIRED)`, and
