@@ -5,7 +5,9 @@
 
 #include <string>
 
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/component.hpp>
+#include <viam/sdk/resource/resource_api.hpp>
 
 namespace viam {
 namespace sdk {
