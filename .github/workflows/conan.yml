@@ -128,7 +128,7 @@ jobs:
         shell: bash
         run: |
           conan profile detect
-          conan create . --build=missing -s compiler.cppstd=14
+          conan create . --build=missing -s compiler.cppstd=14 -a:s compiler.cppstd=14 -o "abseil/*:shared=True"
 
   build_linux_debian:
     if: github.repository_owner == 'viamrobotics'
@@ -204,4 +204,4 @@ jobs:
 
           pip install conan
           conan profile detect
-          conan create . --build=missing -s compiler.cppstd=14
+          conan create . --build=missing -s compiler.cppstd=14 -a:s compiler.cppstd=14 -o "abseil/*:shared=True"
