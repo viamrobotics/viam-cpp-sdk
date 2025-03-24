@@ -11,6 +11,7 @@ on:
     paths:
       - conanfile.py
       - test_package/conanfile.py
+      - .github/workflows/conan.yml
 
 jobs:
   prepare:
