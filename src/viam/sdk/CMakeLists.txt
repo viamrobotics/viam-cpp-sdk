@@ -100,8 +100,11 @@ target_sources(viamsdk
     components/private/sensor_server.cpp
     components/private/servo_client.cpp
     components/private/servo_server.cpp
+    components/private/switch_client.cpp
+    components/private/switch_server.cpp
     components/sensor.cpp
     components/servo.cpp
+    components/switch.cpp
     config/resource.cpp
     module/handler_map.cpp
     module/module.cpp
@@ -169,6 +172,7 @@ target_sources(viamsdk
       ../../viam/sdk/components/power_sensor.hpp
       ../../viam/sdk/components/sensor.hpp
       ../../viam/sdk/components/servo.hpp
+      ../../viam/sdk/components/switch.hpp
       ../../viam/sdk/config/resource.hpp
       ../../viam/sdk/module/handler_map.hpp
       ../../viam/sdk/module/module.hpp
