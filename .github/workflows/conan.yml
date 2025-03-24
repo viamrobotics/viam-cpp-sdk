@@ -101,6 +101,7 @@ jobs:
           apt-get update
           apt-get -y dist-upgrade
           DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
+              autoconf \
               build-essential \
               ca-certificates \
               curl \
@@ -167,6 +168,7 @@ jobs:
           apt-get update
           apt-get -y dist-upgrade
           DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
+              autoconf \
               build-essential \
               ca-certificates \
               cmake \
