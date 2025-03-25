@@ -61,6 +61,7 @@ target_sources(viamsdk
     components/arm.cpp
     components/base.cpp
     components/board.cpp
+    components/button.cpp
     components/camera.cpp
     components/component.cpp
     components/encoder.cpp
@@ -78,6 +79,8 @@ target_sources(viamsdk
     components/private/board_client.cpp
     components/private/board_server.cpp
     components/private/camera_client.cpp
+    components/private/button_client.cpp
+    components/private/button_server.cpp
     components/private/camera_server.cpp
     components/private/encoder.cpp
     components/private/encoder_client.cpp
@@ -157,6 +160,7 @@ target_sources(viamsdk
       ../../viam/sdk/components/arm.hpp
       ../../viam/sdk/components/base.hpp
       ../../viam/sdk/components/board.hpp
+      ../../viam/sdk/components/button.hpp
       ../../viam/sdk/components/camera.hpp
       ../../viam/sdk/components/component.hpp
       ../../viam/sdk/components/encoder.hpp
