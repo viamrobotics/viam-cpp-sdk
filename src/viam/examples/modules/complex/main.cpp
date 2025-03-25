@@ -1,7 +1,6 @@
 #include <memory>
 #include <signal.h>
 
-#include <boost/log/trivial.hpp>
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/server_context.h>
 
@@ -9,6 +8,7 @@
 #include <viam/sdk/components/base.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/log/logging.hpp>
 #include <viam/sdk/module/module.hpp>
 #include <viam/sdk/module/service.hpp>
 #include <viam/sdk/registry/registry.hpp>
@@ -47,6 +47,9 @@ int main(int argc, char** argv) {
         mygizmo_model,
         [](Dependencies deps, ResourceConfig cfg) { return std::make_unique<MyGizmo>(deps, cfg); },
         MyGizmo::validate);
+
+    // Write general log statements with the VIAM_SDK_LOG macro
+    VIAM_SDK_LOG(info) << "Registered mybase and mygizmo";
 
     Model mysummation_model("viam", "summation", "mysummation");
 

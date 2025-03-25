@@ -2,7 +2,6 @@
 
 #include <exception>
 #include <fstream>
-#include <iostream>
 #include <sstream>
 
 #include <grpcpp/support/status.h>
@@ -10,6 +9,7 @@
 #include <viam/sdk/components/base.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/log/logging.hpp>
 #include <viam/sdk/resource/resource.hpp>
 
 using namespace viam::sdk;
@@ -106,7 +106,8 @@ void MyBase::set_power(const Vector3& linear, const Vector3& angular, const Prot
 }
 
 ProtoStruct MyBase::do_command(const ProtoStruct& command) {
-    std::cout << "Received DoCommand request for MyBase " << Resource::name() << std::endl;
+    // The VIAM_RESOURCE_LOG macro will associate log messages to the current resource
+    VIAM_RESOURCE_LOG(info) << "Received DoCommand request";
     return command;
 }
 
