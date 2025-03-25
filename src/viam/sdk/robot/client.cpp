@@ -6,7 +6,6 @@
 #include <mutex>
 #include <string>
 #include <thread>
-#include <unistd.h>
 #include <vector>
 
 #include <boost/log/trivial.hpp>

@@ -1,6 +1,7 @@
 #pragma once
 
-#include <signal.h>
+#include <windows.h>
+#include <csignal> // Try to get standard signal definitions
 
 namespace viam {
 namespace sdk {
@@ -16,12 +17,19 @@ class SignalManager {
 
     /// @brief Wait for SignalManager to receive SIGINT or SIGTERM.
     /// @return The signal number if successful.
-    /// @throws `std::runtime_error` if the underlying sigwait call was unsuccessful.
+    /// @throws `std::runtime_error` if the underlying wait was unsuccessful.
     int wait();
 
+    /// @brief Cleanup resources
+    ~SignalManager();
+
    private:
-    sigset_t sigset_;
+    static BOOL WINAPI ConsoleCtrlHandler(DWORD ctrlType);
+    HANDLE eventHandle_;
+    static SignalManager* instance_;
+    int receivedSignal_;
 };
 
 }  // namespace sdk
 }  // namespace viam
+

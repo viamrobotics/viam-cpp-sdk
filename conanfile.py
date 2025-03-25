@@ -2,6 +2,7 @@ from conan import ConanFile
 from conan.tools.cmake import CMake, CMakeDeps, CMakeToolchain, cmake_layout
 from conan.tools.files import load
 from conan.tools.apple import is_apple_os
+from conan.tools.build import check_min_cppstd
 import os
 import re
 
@@ -32,6 +33,8 @@ class ViamCppSdkRecipe(ConanFile):
         self.version = re.search("set\(CMAKE_PROJECT_VERSION (.+)\)", content).group(1).strip()
 
     def configure(self):
+        if self.settings.compiler.cppstd:
+            check_min_cppstd(self, "17")
         if self.options.shared:
             # See https://github.com/conan-io/conan-center-index/issues/25107
             self.options["grpc"].secure = True
@@ -43,7 +46,8 @@ class ViamCppSdkRecipe(ConanFile):
                 self.options[lib].shared = True
 
     def requirements(self):
-        self.requires('boost/[>=1.74.0]', transitive_headers=True)
+        #self.requires('boost/[>=1.74.0]', transitive_headers=True)
+        self.requires('boost/1.86.0', transitive_headers=True)
 
         # The SDK supports older grpc and protobuf, but these are the oldest
         # maintained conan packages.
@@ -68,6 +72,8 @@ class ViamCppSdkRecipe(ConanFile):
 
         tc.cache_variables["VIAMCPPSDK_BUILD_TESTS"] = False
         tc.cache_variables["VIAMCPPSDK_BUILD_EXAMPLES"] = False
+        tc.cache_variables["VIAMCPPSDK_ENFORCE_COMPILER_MINIMA"] = False # For Windows
+        tc.cache_variables["VIAMCPPSDK_USE_WALL_WERROR"] = False # For Windows
 
         tc.generate()
 

@@ -136,6 +136,7 @@ if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
 endif()
 
 
+message("The compiler is ${CMAKE_CXX_COMPILER_ID} and the version is ${CMAKE_CXX_COMPILER_VERSION}")
 # Enforce known toolchains and toolchain minima unless asked not to.
 if (VIAMCPPSDK_ENFORCE_COMPILER_MINIMA)
   if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
@@ -238,6 +239,7 @@ find_package(Threads REQUIRED)
 # `target_link_directories` call down in src/CMakeLists.txt, as it
 # will no longer be needed.
 set(viam_rust_utils_file ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils${CMAKE_STATIC_LIBRARY_SUFFIX})
+message("value of viam_rust_utils_file is ${viam_rust_utils_file}")
 
 file(GLOB viam_rust_utils_files ${PROJECT_SOURCE_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils*${CMAKE_STATIC_LIBRARY_SUFFIX})
 
@@ -279,7 +281,10 @@ target_link_directories(viam_rust_utils
     "$<INSTALL_INTERFACE:${CMAKE_INSTALL_LIBDIR}>"
 )
 
-set_property(TARGET viam_rust_utils PROPERTY IMPORTED_LOCATION ${viam_rust_utils_file})
+set_target_properties(viam_rust_utils PROPERTIES 
+	IMPORTED_LOCATION ${viam_rust_utils_file}
+	IMPORTED_IMPLIB ${viam_rust_utils_file}
+)
 
 install(
   IMPORTED_RUNTIME_ARTIFACTS viam_rust_utils
@@ -326,6 +331,10 @@ set(VIAMCPPSDK_XTENSOR_VERSION_MINIMUM 0.24.3)
 # Time to find `BOOST`.
 if (VIAMCPPSDK_BUILD_TESTS)
   set(VIAMCPPSDK_BOOST_TEST "unit_test_framework")
+endif()
+
+if(POLICY CMP0167)
+	cmake_policy(SET CMP0167 OLD)
 endif()
 
 find_package(Boost ${VIAMCPPSDK_BOOST_VERSION_MINIMUM} REQUIRED COMPONENTS headers log program_options ${VIAMCPPSDK_BOOST_TEST})

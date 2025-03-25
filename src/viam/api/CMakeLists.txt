@@ -61,14 +61,24 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
   # TODO: File an upstream issue with `buf.build` to add
   # `find_package` support for it, then use it.
   #
+  message("the url to try to get but is called https://github.com/bufbuild/buf/releases/latest/download/buf-${CMAKE_HOST_SYSTEM_NAME}-${CMAKE_HOST_SYSTEM_PROCESSOR}")
   find_program(BUF_COMMAND buf)
-  if (NOT BUF_COMMAND)
-    file(
-      DOWNLOAD
-      https://github.com/bufbuild/buf/releases/latest/download/buf-${CMAKE_HOST_SYSTEM_NAME}-${CMAKE_HOST_SYSTEM_PROCESSOR}
-      ${CMAKE_CURRENT_BINARY_DIR}/buf_latest
-      STATUS buf_status
-    )
+  if(NOT BUF_COMMAND)
+      if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
+          file(
+              DOWNLOAD
+              https://github.com/bufbuild/buf/releases/latest/download/buf-Windows-x86_64.exe
+              ${CMAKE_CURRENT_BINARY_DIR}/buf_latest.exe
+              STATUS buf_status
+          )
+      else()
+          file(
+              DOWNLOAD
+              https://github.com/bufbuild/buf/releases/latest/download/buf-${CMAKE_HOST_SYSTEM_NAME}-${CMAKE_HOST_SYSTEM_PROCESSOR}
+              ${CMAKE_CURRENT_BINARY_DIR}/buf_latest
+              STATUS buf_status
+          )
+      endif()
     list(GET buf_status 0 buf_status_code)
     list(GET buf_status 1 buf_status_string)
 
@@ -76,7 +86,11 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
       message(FATAL_ERROR "No local `buf` program found (try setting PATH?) and failed to download: ${buf_status_string}")
     endif()
 
-    set(BUF_COMMAND ${CMAKE_CURRENT_BINARY_DIR}/buf_latest)
+    if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
+      set(BUF_COMMAND ${CMAKE_CURRENT_BINARY_DIR}/buf_latest.exe)
+    else()
+      set(BUF_COMMAND ${CMAKE_CURRENT_BINARY_DIR}/buf_latest)
+    endif()
     file(CHMOD ${BUF_COMMAND} PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE)
   endif()
 
