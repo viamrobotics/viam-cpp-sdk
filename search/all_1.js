@@ -15,5 +15,12 @@ var searchData=
   ['boardclient_12',['BoardClient',['../classviam_1_1sdk_1_1impl_1_1BoardClient.html',1,'viam::sdk::impl']]],
   ['boardserver_13',['BoardServer',['../classviam_1_1sdk_1_1impl_1_1BoardServer.html',1,'viam::sdk::impl']]],
   ['box_14',['box',['../structviam_1_1sdk_1_1box.html',1,'viam::sdk']]],
-  ['building_20documentation_20locally_20for_20testing_15',['Building Documentation Locally for Testing',['../index.html#autotoc_md5',1,'']]]
+  ['building_20documentation_20locally_20for_20testing_15',['Building Documentation Locally for Testing',['../index.html#autotoc_md5',1,'']]],
+  ['button_16',['Button',['../classviam_1_1sdk_1_1Button.html',1,'viam::sdk']]],
+  ['button_20component_17',['Classes related to the Button component.',['../group__Button.html',1,'']]],
+  ['button_2ehpp_18',['button.hpp',['../button_8hpp.html',1,'']]],
+  ['button_5fclient_2ehpp_19',['button_client.hpp',['../button__client_8hpp.html',1,'']]],
+  ['button_5fserver_2ehpp_20',['button_server.hpp',['../button__server_8hpp.html',1,'']]],
+  ['buttonclient_21',['ButtonClient',['../classviam_1_1sdk_1_1impl_1_1ButtonClient.html',1,'viam::sdk::impl']]],
+  ['buttonserver_22',['ButtonServer',['../classviam_1_1sdk_1_1impl_1_1ButtonServer.html',1,'viam::sdk::impl']]]
 ];
